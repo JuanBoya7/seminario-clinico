@@ -1394,10 +1394,24 @@ function initSendButton(){
       return;
     }
 
+    // Se intenta abrir la confirmacion en una pestana nueva, pero muchos
+    // navegadores integrados bloquean las emergentes — entre ellos el de
+    // WhatsApp, que es justo por donde llega el enlace a los estudiantes.
+    // Con la emergente bloqueada, un form.submit() a target="_blank" no envia
+    // NADA y el grupo se queda creyendo que entrego. Por eso se sondea primero
+    // y, si esta bloqueada, se envia en la MISMA pestana: es preferible perder
+    // de vista el formulario que dar por entregada una actividad que no salio.
+    // Volver atras es seguro: el autoguardado quedo bajo la clave del grupo.
+    let destino = "_self";
+    try {
+      const ventana = window.open("", "entrega-actividad");
+      if (ventana) destino = "entrega-actividad";
+    } catch (e) { destino = "_self"; }
+
     const form = document.createElement("form");
     form.method = "POST";
     form.action = ENVIO.url;
-    form.target = "_blank";
+    form.target = destino;
     const campo = document.createElement("input");
     campo.type = "hidden";
     campo.name = "payload";
