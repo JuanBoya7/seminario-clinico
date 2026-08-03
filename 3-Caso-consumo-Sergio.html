@@ -297,17 +297,41 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
   border-top:1px solid var(--border);
   padding:16px clamp(20px,4vw,64px);
   display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-  margin:0 calc(-1 * clamp(20px,4vw,64px));
 }
 .save-status{font-size:12.5px; color:var(--ink-faint); flex:1 1 200px; min-width:0;}
 .save-status.ok{color:var(--mild);}
 .save-status.warn{color:var(--severe);}
 
-@media (max-width:480px){
-  .save-bar{flex-direction:column; align-items:stretch;}
-  .save-status{text-align:center;}
+/* En pantallas angostas la barra deja de flotar. Fija ocupaba casi media
+   pantalla del celular mientras el grupo escribia, y ahi no sirve para nada:
+   se usa al final. Pasa al cierre del documento, despues del ultimo bloque. */
+@media (max-width:900px){
+  .save-bar{
+    position:static;
+    margin:0;
+    padding:20px 16px 30px;
+    background:var(--surface);
+    backdrop-filter:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea */
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea.
+     El flex:0 0 auto es imprescindible: la regla de escritorio usa
+     flex:1 1 200px, y al apilarse en columna esos 200px dejan de ser ancho y
+     pasan a ser ALTO. Ese era el bulto que se comia media pantalla. */
+  .save-status{order:-1; text-align:center; font-size:12px; flex:0 0 auto;}
+  /* Los dos botones comparten una fila: la mitad de alto que apilados */
+  .save-actions{flex-direction:row; gap:10px;}
+  .save-actions .btn{flex:1 1 0; min-width:0; padding:13px 8px; font-size:13.5px;}
+  /* Ya no hay barra flotante que tapar: se recupera ese espacio al final */
+  .main{padding-bottom:8px;}
+}
+
+/* Muy angosto: los dos rotulos no entran lado a lado */
+@media (max-width:360px){
   .save-actions{flex-direction:column;}
-  #btn-guardar, #btn-enviar{width:100%;}
 }
 
 /* ---- Restriction toast ---- */
