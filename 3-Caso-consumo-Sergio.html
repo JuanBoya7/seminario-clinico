@@ -963,6 +963,111 @@ function computeSessionKey(embeddedRaw){
   }
 }
 
+// ---- Identidad del grupo: curso + numero de grupo ----------------------
+// Antes la clave del autoguardado se derivaba de sessionStorage, que muere al
+// cerrar la pestana. Con los recursos repartidos como enlace, eso significaba
+// perder la actividad entera si el grupo cerraba el navegador.
+// Ahora, en cuanto el grupo se identifica (curso + numero), el autoguardado
+// pasa a una clave estable derivada de esos dos datos: el mismo grupo recupera
+// su trabajo al reabrir el enlace, y otro grupo distinto en el mismo
+// computador sigue viendo el formulario limpio, que era el motivo original de
+// no usar una clave fija.
+let ARCHIVO_GUARDADO = false;
+
+function claveDeGrupo(){
+  const curso = (state.text["ct-curso"] || "").trim();
+  const grupo = (state.text["f-grupo"] || "").trim();
+  if (!curso || !grupo) return null;
+  return STORAGE_PREFIX + "g" + curso + "-" + grupo;
+}
+
+// Distingue "el formulario esta vacio" de "ya hay trabajo hecho". El curso y el
+// numero de grupo no cuentan: son la identificacion, no una respuesta.
+function hayRespuestas(datos){
+  if (!datos) return false;
+  const textos = datos.text || {};
+  const escrito = Object.keys(textos).some(k =>
+    k !== "ct-curso" && k !== "f-grupo" && (textos[k] || "").trim().length > 0);
+  if (escrito) return true;
+  const criterios = datos.criteria || {};
+  if (Object.keys(criterios).some(k => criterios[k] && criterios[k].checked)) return true;
+  const listas = datos.lists || {};
+  return Object.keys(listas).some(k =>
+    (listas[k] || []).some(i => (i.value || "").trim().length > 0));
+}
+
+// Se dispara cuando el grupo termina de identificarse (al salir del campo, no
+// en cada tecla: si corriera por tecla, escribir "12" pasaria por el grupo "1"
+// y podria ofrecer la actividad de otro grupo).
+function vincularClaveAlGrupo(){
+  if (ARCHIVO_GUARDADO) return;          // archivo ya entregado: conserva su clave
+  const clave = claveDeGrupo();
+  if (!clave || clave === SESSION_KEY) return;
+
+  let guardado = null;
+  try {
+    const bruto = localStorage.getItem(clave);
+    if (bruto) guardado = JSON.parse(bruto);
+  } catch (e) { guardado = null; }
+
+  if (hayRespuestas(guardado) && !hayRespuestas(state)) {
+    // Se pregunta siempre. Restaurar en silencio seria peor: si el numero se
+    // tecleo mal, el grupo veria respuestas ajenas sin entender de donde salen.
+    const seguir = window.confirm(
+      "Encontramos una actividad guardada en este navegador para el grupo " +
+      state.text["f-grupo"] + " del " + state.text["ct-curso"] + ".\n\n" +
+      "Aceptar: continuar esa actividad.\n" +
+      "Cancelar: empezar de cero (se reemplaza lo anterior).");
+    if (seguir) {
+      try {
+        // Se deja bajo la clave que loadInitialState va a leer y se recarga:
+        // asi la rehidratacion usa el mismo camino de siempre y no hay que
+        // repintar a mano los checklists de cada caso.
+        localStorage.setItem(SESSION_KEY, JSON.stringify(guardado));
+        sessionStorage.setItem(STORAGE_PREFIX + "recuperado", "1");
+        location.reload();
+        return;
+      } catch (e) { /* si falla, se sigue de largo sin recuperar */ }
+    }
+  }
+
+  const anterior = SESSION_KEY;
+  SESSION_KEY = clave;
+  persistToLocalStorage();
+
+  // La clave temporal de sesion ya no sirve: su contenido acaba de quedar bajo
+  // la clave del grupo. Sin esto se acumula una por cada apertura del enlace y,
+  // en un computador compartido, con el tiempo se llena el almacenamiento del
+  // navegador y el autoguardado deja de funcionar.
+  try {
+    const esTemporal = anterior && anterior !== clave &&
+      anterior.indexOf(STORAGE_PREFIX + "saved_") !== 0 &&
+      anterior.indexOf(STORAGE_PREFIX + "g") !== 0;
+    if (esTemporal) localStorage.removeItem(anterior);
+  } catch (e) { /* si el navegador lo impide, solo queda una clave de mas */ }
+}
+
+function initClavePorGrupo(){
+  const curso = document.getElementById("ct-curso");
+  const grupo = document.getElementById("f-grupo");
+  if (curso) curso.addEventListener("change", vincularClaveAlGrupo);
+  if (grupo) grupo.addEventListener("change", vincularClaveAlGrupo);  // al salir del campo
+  if (grupo) grupo.addEventListener("blur", vincularClaveAlGrupo);
+  // Si ya venian cargados (recarga tras recuperar), se vincula de entrada.
+  vincularClaveAlGrupo();
+}
+
+function avisarSiSeRecupero(){
+  try {
+    if (sessionStorage.getItem(STORAGE_PREFIX + "recuperado") !== "1") return;
+    sessionStorage.removeItem(STORAGE_PREFIX + "recuperado");
+    const status = document.getElementById("save-status");
+    status.textContent = "Se recuperó la actividad guardada de este grupo.";
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  } catch (e) { /* sin sessionStorage no hay aviso, pero tampoco error */ }
+}
+
 function persistToLocalStorage(){
   try {
     localStorage.setItem(SESSION_KEY, JSON.stringify(state));
@@ -980,6 +1085,7 @@ function persistToLocalStorage(){
 function loadInitialState(){
   // 1) Prioridad: datos incrustados en el propio archivo HTML (al reabrir uno ya guardado)
   const embedded = document.getElementById("saved-data").textContent.trim();
+  ARCHIVO_GUARDADO = !!(embedded && embedded !== "{}");
   SESSION_KEY = computeSessionKey(embedded);
   let loaded = null;
   if (embedded && embedded !== "{}") {
@@ -1355,6 +1461,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initDynamicList("problemas", "list-problemas", "btn-add-problema", "Describí un problema identificado", "Quitar problema", 2);
     initSimpleFields();
     initGrupoNumerico();
+    initClavePorGrupo();
+    avisarSiSeRecupero();
     initInputRestrictions();
     initSaveButton();
     initSendButton();
