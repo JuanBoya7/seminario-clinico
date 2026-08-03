@@ -1188,6 +1188,15 @@ function computeSessionKey(embeddedRaw){
   }
   // Archivo en blanco: sesión nueva por pestaña (no persiste entre reaperturas de la plantilla).
   try {
+    // Si el grupo ya se identifico en esta pestana, se reusa SU clave. Esto es
+    // lo que hace seguro volver atras despues de enviar: al regresar, la pagina
+    // se ejecuta de nuevo y sin esto arrancaria con una sesion vacia mientras el
+    // navegador repone los textos en pantalla — el grupo veria sus respuestas
+    // pero la actividad estaria vacia por dentro, y un segundo envio saldria
+    // incompleto.
+    const fijada = sessionStorage.getItem(STORAGE_PREFIX + "clave");
+    if (fijada) return fijada;
+
     let sid = sessionStorage.getItem(STORAGE_PREFIX + "sid");
     if (!sid) {
       sid = "s" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
@@ -1256,10 +1265,10 @@ function vincularClaveAlGrupo(){
       "Cancelar: empezar de cero (se reemplaza lo anterior).");
     if (seguir) {
       try {
-        // Se deja bajo la clave que loadInitialState va a leer y se recarga:
-        // asi la rehidratacion usa el mismo camino de siempre y no hay que
-        // repintar a mano los checklists de cada caso.
-        localStorage.setItem(SESSION_KEY, JSON.stringify(guardado));
+        // Se fija la clave del grupo y se recarga: la rehidratacion usa el
+        // camino de siempre y no hay que repintar a mano los checklists de
+        // cada caso.
+        sessionStorage.setItem(STORAGE_PREFIX + "clave", clave);
         sessionStorage.setItem(STORAGE_PREFIX + "recuperado", "1");
         location.reload();
         return;
@@ -1269,6 +1278,7 @@ function vincularClaveAlGrupo(){
 
   const anterior = SESSION_KEY;
   SESSION_KEY = clave;
+  try { sessionStorage.setItem(STORAGE_PREFIX + "clave", clave); } catch (e) {}
   persistToLocalStorage();
 
   // La clave temporal de sesion ya no sirve: su contenido acaba de quedar bajo
