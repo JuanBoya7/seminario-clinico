@@ -1,0 +1,21 @@
+# Solo se publican las actividades HTML. Todo lo demas se queda en el computador.
+
+# Videos de los casos: pesan de mas para GitHub y no son de distribucion abierta
+*.mp4
+*.mov
+*.avi
+
+# Transcripciones: material de preparacion del docente
+Transcripciones/
+
+# Backend de entregas: no aporta nada al estudiante
+Envio a Sheets/
+
+# Entregas de los grupos, si alguna queda en la carpeta por error.
+# Llevan nombres de estudiantes: nunca deben terminar en un repositorio publico.
+9??-caso-*.html
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
