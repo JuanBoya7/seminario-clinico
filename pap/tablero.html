@@ -168,7 +168,15 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
 const ENVIO = {
   // Misma URL que la hoja del observador: la del proyecto de Apps Script DEL
   // SIMULACRO, distinto del de los análisis de caso.
-  url: "https://script.google.com/macros/s/AKfycbzkRbltrAH6gUUoPnUngoKrbPAcD8umATgumhwqp-VKB9rTGLIuCwM_M8INtJuHliTc/exec"
+  url: "https://script.google.com/macros/s/AKfycbzkRbltrAH6gUUoPnUngoKrbPAcD8umATgumhwqp-VKB9rTGLIuCwM_M8INtJuHliTc/exec",
+  // Dominio de la cuenta dueña del script. El receptor pertenece a una cuenta de
+  // Workspace, y ahí Google acepta dos direcciones distintas según quién pida:
+  // la corta de arriba funciona sin sesión iniciada, y con sesión hay que usar la
+  // de dominio (/a/macros/DOMINIO/s/…) o Google intenta resolverla vía Drive y
+  // responde "No se puede abrir el archivo". Como el tablero puede abrirse en
+  // cualquiera de las dos condiciones, se prueban las dos. Dejar esto vacío
+  // desactiva el reintento.
+  dominio: "areandina.edu.co"
 };
 
 const ESTACIONES = {
@@ -190,7 +198,17 @@ const REFRESCO_MS = 30000;   // el tablero se proyecta: se refresca solo
    ============================================================ */
 let contadorCallback = 0;
 
-function pedirResumen(grupo){
+// Las dos direcciones posibles del mismo despliegue, en orden de intento.
+function direcciones(){
+  const lista = [ENVIO.url];
+  if (ENVIO.dominio && ENVIO.url.indexOf("/macros/s/") !== -1) {
+    lista.push(ENVIO.url.replace("/macros/s/", "/a/macros/" + ENVIO.dominio + "/s/"));
+  }
+  return lista;
+}
+
+function pedirResumen(grupo, url){
+  url = url || ENVIO.url;
   return new Promise((resolver, rechazar) => {
     const nombre = "__pap_cb_" + (++contadorCallback);
     const script = document.createElement("script");
@@ -201,7 +219,7 @@ function pedirResumen(grupo){
     // El identificador del receptor va en el mensaje de error: el fallo típico
     // es que la página quedó cacheada apuntando a un despliegue anterior, y sin
     // ver cuál intentó no hay forma de darse cuenta.
-    const cual = ENVIO.url.replace(/.*macros\/s\/(.{0,12}).*/, "$1");
+    const cual = url.replace(/.*\/s\/(.{0,12}).*/, "$1");
 
     const temporizador = setTimeout(() => {
       limpiar();
@@ -221,7 +239,7 @@ function pedirResumen(grupo){
         "la implementación vigente, recargá con Ctrl+F5"));
     };
 
-    script.src = ENVIO.url + "?tablero=1&callback=" + nombre +
+    script.src = url + "?tablero=1&callback=" + nombre +
       (grupo ? "&grupo=" + encodeURIComponent(grupo) : "") +
       "&t=" + Date.now();
     document.body.appendChild(script);
@@ -334,29 +352,6 @@ function pintarDestacadas(datos){
    ============================================================ */
 let cargando = false;
 
-// El caso file:// merece explicación, no un error genérico: quien abre el
-// tablero por doble clic no tiene forma de deducir que el problema es ese.
-function avisoDeArchivoLocal(){
-  const estado = document.getElementById("estado");
-  estado.textContent = "el tablero está abierto desde la carpeta";
-  estado.classList.add("error");
-
-  document.getElementById("cifras").innerHTML = "";
-  document.getElementById("cabeza").innerHTML = "";
-  document.getElementById("cuerpo").innerHTML = `
-    <tr><td>
-      <strong>Abrilo desde su dirección web.</strong><br>
-      Este tablero lee las observaciones de una hoja en línea, y esa consulta no
-      sale cuando la página se abre como archivo del computador. La copia de la
-      carpeta es el código, no la herramienta.
-      <br><br>
-      <a href="https://juanboya7.github.io/seminario-clinico/pap/tablero.html"
-         style="color:var(--accent); font-weight:600;">Abrir el tablero publicado</a>
-    </td></tr>`;
-  document.getElementById("errores").innerHTML = "";
-  document.getElementById("destacadas").innerHTML = "";
-}
-
 async function actualizar(){
   if (cargando) return;
   cargando = true;
@@ -368,22 +363,22 @@ async function actualizar(){
     if (!/^https?:\/\//.test(ENVIO.url)) {
       throw new Error("falta configurar la URL del receptor del simulacro");
     }
-    // Abierto por doble clic desde la carpeta, la página corre en file:// y la
-    // petición al receptor no sale. No es un fallo a diagnosticar cada vez: el
-    // tablero lee de una hoja en línea, así que la copia local nunca es la
-    // herramienta correcta. Se avisa con un mensaje propio y se corta acá.
-    if (location.protocol === "file:") {
-      avisoDeArchivoLocal();
-      return;
-    }
+    // Acá había un corte para file://, sobre la idea de que la petición no salía
+    // desde la carpeta. Es falso: el JSONP viaja en un <script src>, que no está
+    // sujeto a CORS, y se comprobó que responde igual abriendo el archivo por
+    // doble clic. La copia local es una vía legítima si falla internet en el aula.
     const grupo = document.getElementById("f-grupo").value;
-    // Un reintento antes de dar el error por bueno: durante la actividad el
-    // tablero está proyectado y un tropiezo puntual de red no debería mostrarse
-    // en pantalla delante del curso.
-    let datos;
-    try {
-      datos = await pedirResumen(grupo);
-    } catch (primero) {
+    // Se recorren las dos formas de la dirección (ver ENVIO.dominio): cuál de las
+    // dos responde depende de si hay sesión de Google abierta en el navegador, y
+    // eso no se puede averiguar desde acá. Al final, un reintento de la primera:
+    // durante la actividad el tablero está proyectado y un tropiezo puntual de
+    // red no debería mostrarse en pantalla delante del curso.
+    let datos, ultimoFallo;
+    for (const direccion of direcciones()) {
+      try { datos = await pedirResumen(grupo, direccion); ultimoFallo = null; break; }
+      catch (fallo) { ultimoFallo = fallo; }
+    }
+    if (ultimoFallo) {
       await new Promise(r => setTimeout(r, 2000));
       datos = await pedirResumen(grupo);
     }
