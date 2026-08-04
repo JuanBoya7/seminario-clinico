@@ -168,15 +168,15 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
 const ENVIO = {
   // Misma URL que la hoja del observador: la del proyecto de Apps Script DEL
   // SIMULACRO, distinto del de los análisis de caso.
-  url: "https://script.google.com/macros/s/AKfycbzkRbltrAH6gUUoPnUngoKrbPAcD8umATgumhwqp-VKB9rTGLIuCwM_M8INtJuHliTc/exec",
-  // Dominio de la cuenta dueña del script. El receptor pertenece a una cuenta de
-  // Workspace, y ahí Google acepta dos direcciones distintas según quién pida:
-  // la corta de arriba funciona sin sesión iniciada, y con sesión hay que usar la
-  // de dominio (/a/macros/DOMINIO/s/…) o Google intenta resolverla vía Drive y
-  // responde "No se puede abrir el archivo". Como el tablero puede abrirse en
-  // cualquiera de las dos condiciones, se prueban las dos. Dejar esto vacío
-  // desactiva el reintento.
-  dominio: "areandina.edu.co"
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbzkRbltrAH6gUUoPnUngoKrbPAcD8umATgumhwqp-VKB9rTGLIuCwM_M8INtJuHliTc/exec",
+  // La dirección es la forma "de dominio" (/a/macros/DOMINIO/s/…), no la corta
+  // (/macros/s/…) que entrega Apps Script al publicar. El receptor pertenece a una
+  // cuenta de Workspace, y ahí la forma corta solo resuelve si el navegador NO
+  // tiene sesión de Google abierta; con sesión, Google la enruta por Drive y
+  // devuelve "No se puede abrir el archivo". La de dominio funciona en los dos
+  // casos —comprobado con sesión y sin ella—, así que es la que sirve siempre.
+  // Aun así se conserva la corta como reintento, por si algún día cambia.
+  alterna: true
 };
 
 const ESTACIONES = {
@@ -201,9 +201,12 @@ let contadorCallback = 0;
 // Las dos direcciones posibles del mismo despliegue, en orden de intento.
 function direcciones(){
   const lista = [ENVIO.url];
-  if (ENVIO.dominio && ENVIO.url.indexOf("/macros/s/") !== -1) {
-    lista.push(ENVIO.url.replace("/macros/s/", "/a/macros/" + ENVIO.dominio + "/s/"));
-  }
+  if (!ENVIO.alterna) return lista;
+  // La otra forma de la misma dirección, en el sentido que corresponda.
+  const otra = ENVIO.url.indexOf("/a/macros/") !== -1
+    ? ENVIO.url.replace(/\/a\/macros\/[^/]+\/s\//, "/macros/s/")
+    : ENVIO.url.replace("/macros/s/", "/a/macros/areandina.edu.co/s/");
+  if (otra !== ENVIO.url) lista.push(otra);
   return lista;
 }
 
