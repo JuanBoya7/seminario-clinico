@@ -102,6 +102,79 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
   text-transform:uppercase; letter-spacing:0.05em; display:block;}
 
 .vacio-msg{color:var(--ink-faint); font-size:13.5px; font-style:italic;}
+
+/* ---- Conmutador de modo ---- */
+.modos{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
+.modo{font-family:var(--font-body); font-size:14px; font-weight:600; cursor:pointer;
+  padding:8px 18px; border-radius:99px; border:1px solid var(--border);
+  background:var(--bg); color:var(--ink-soft);}
+.modo.is-on{background:var(--accent-soft); border-color:var(--accent);
+  color:var(--accent-dark);}
+.modo-nota{font-size:12.5px; color:var(--ink-faint); margin-left:6px;}
+
+/* ---- Vista de cierre: se proyecta, así que todo es más grande ---- */
+.titular{font-family:var(--font-display); font-size:27px; font-weight:600;
+  line-height:1.3; color:var(--ink); border-left:5px solid var(--accent);
+  padding:4px 0 4px 18px; margin-bottom:28px;}
+.titular em{font-style:normal; color:var(--accent-dark);}
+
+.panel-cierre{border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 24px; margin-bottom:20px;}
+.panel-cierre h2{font-size:20px;}
+.panel-cierre .sub{font-size:13.5px; color:var(--ink-faint); margin:4px 0 20px;}
+
+/* La conclusión va escrita, no deducida: es lo que se discute en plenaria */
+.conclusion{margin-top:18px; padding:13px 16px; background:var(--surface);
+  border-radius:8px; font-size:15.5px; line-height:1.5; color:var(--ink);}
+.conclusion strong{color:var(--accent-dark);}
+
+/* Curva de los cinco pasos */
+.curva{display:flex; align-items:flex-end; gap:10px; min-height:200px;}
+.paso{flex:1 1 0; min-width:0; display:flex; flex-direction:column;
+  justify-content:flex-end; align-items:center; gap:8px;}
+.paso-barra{width:100%; border-radius:6px 6px 0 0; background:var(--accent);
+  min-height:4px; transition:height .4s ease;}
+.paso.cae .paso-barra{background:var(--severe);}
+.paso.sostiene .paso-barra{background:var(--mild);}
+.paso-pct{font-family:var(--font-display); font-size:23px; font-weight:600;}
+.paso-nombre{font-size:12.5px; color:var(--ink-soft); text-align:center;
+  line-height:1.3; min-height:2.6em;}
+.paso-n{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint);
+  text-transform:uppercase; letter-spacing:0.05em;}
+
+/* Riesgo por escena y errores por componente comparten la fila con barra */
+.fila-comp{display:flex; align-items:center; gap:12px; margin-bottom:11px;}
+.fila-comp .nom{flex:0 0 34%; font-size:14px; min-width:0;}
+.fila-comp .bar{flex:1 1 auto; height:20px; background:var(--surface-alt);
+  border-radius:5px; overflow:hidden;}
+.fila-comp .bar span{display:block; height:100%; background:var(--accent);}
+.fila-comp.alto .bar span{background:var(--mild);}
+.fila-comp.bajo .bar span{background:var(--severe);}
+.fila-comp .val{flex:0 0 96px; text-align:right; font-family:var(--font-mono);
+  font-size:12px; color:var(--ink-faint);}
+
+.err-comp{margin-bottom:16px;}
+.err-comp .cab{font-size:13.5px; font-weight:600; margin-bottom:6px;}
+.err-comp .cab span{font-family:var(--font-mono); font-size:11px;
+  color:var(--ink-faint); font-weight:400; margin-left:6px;}
+.err-comp .det{font-size:13px; color:var(--ink-soft); margin-left:2px;}
+
+.voz{border-left:3px solid var(--accent); background:var(--surface);
+  padding:13px 16px; border-radius:0 8px 8px 0; margin-bottom:12px; font-size:15px;
+  line-height:1.5;}
+.voz.baja{border-left-color:var(--severe);}
+.voz .de{font-family:var(--font-mono); font-size:10.5px; color:var(--accent-dark);
+  text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+.voz.baja .de{color:var(--severe);}
+
+@media (max-width:700px){
+  .titular{font-size:21px;}
+  .curva{gap:5px; min-height:150px;}
+  .paso-pct{font-size:17px;}
+  .paso-nombre{font-size:11px;}
+  .fila-comp .nom{flex:0 0 40%; font-size:13px;}
+  .fila-comp .val{flex:0 0 72px;}
+}
 .js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
   padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
 </style>
@@ -129,6 +202,14 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
       <span class="estado" id="estado">—</span>
     </div>
   </div>
+
+  <div class="modos">
+    <button class="modo is-on" id="modo-actividad">Actividad</button>
+    <button class="modo" id="modo-cierre">Cierre</button>
+    <span class="modo-nota" id="modo-nota">La matriz completa, para mirar mientras la actividad corre.</span>
+  </div>
+
+  <div id="vista-actividad">
 
   <div class="cifras" id="cifras"></div>
 
@@ -158,6 +239,52 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
       <div id="destacadas"></div>
     </div>
   </div>
+
+  </div><!-- /vista-actividad -->
+
+  <!-- ============================================================
+       VISTA DE CIERRE
+       ============================================================
+       No es la misma información más bonita: es menos información.
+       Proyectar la matriz completa en plenaria invita a leerla entera y a
+       no concluir nada. Acá cada panel afirma UNA cosa, redactada a partir
+       de los datos, para que el curso tenga algo que discutir en vez de
+       cifras que mirar.
+       ============================================================ -->
+  <div id="vista-cierre" hidden>
+
+    <div class="titular" id="titular"></div>
+
+    <div class="panel-cierre">
+      <h2>Cómo se sostiene la intervención</h2>
+      <div class="sub">Los cinco componentes en el orden en que ocurren. Cada barra es la proporción de “sí”.</div>
+      <div id="curva"></div>
+      <div class="conclusion" id="conclusion-curva"></div>
+    </div>
+
+    <div class="panel-cierre">
+      <h2>¿Cuándo se preguntó por el riesgo?</h2>
+      <div class="sub">El mismo componente, escena por escena.</div>
+      <div id="riesgo"></div>
+      <div class="conclusion" id="conclusion-riesgo"></div>
+    </div>
+
+    <div class="panel-cierre">
+      <h2>Los errores no son azarosos</h2>
+      <div class="sub">Cada error marcado pertenece a un componente. Se agrupan por ahí.</div>
+      <div id="errores-cierre"></div>
+      <div class="conclusion" id="conclusion-errores"></div>
+    </div>
+
+    <div class="panel-cierre">
+      <h2>Lo que vio el curso</h2>
+      <div class="sub">Una observación escrita de la escena con más “sí” y otra de la que
+        menos. El rótulo describe cómo le fue a la escena, no si la observación es
+        elogiosa: muchas veces la más aguda aparece donde mejor salió.</div>
+      <div id="voces"></div>
+    </div>
+
+  </div><!-- /vista-cierre -->
 
 </div>
 
@@ -351,9 +478,326 @@ function pintarDestacadas(datos){
 }
 
 /* ============================================================
+   3 bis. VISTA DE CIERRE
+   ============================================================
+   Todo lo de acá se calcula con lo que el receptor ya devuelve: no hace
+   falta tocar el Codigo.gs ni republicar nada.
+
+   Las frases de conclusión se redactan a partir de los números, no están
+   escritas de antemano. Importa: si un año el curso deriva bien, el tablero
+   tiene que decir eso y no la afirmación que esperábamos.
+   ============================================================ */
+
+// Nombre corto de cada paso, para que la curva se lea de un vistazo.
+const PASOS = {
+  "1": "Contacto psicológico",
+  "2": "Dimensiones del problema",
+  "3": "Evaluación del riesgo",
+  "4": "Posibles soluciones",
+  "5": "Paso concreto y ruta"
+};
+
+// A qué componente pertenece cada error de la lista de la clase. Es un
+// criterio, no un dato: si cambia la rúbrica, se ajusta acá.
+const ERROR_A_PASO = {
+  "Contó su propia historia": "1",
+  "Juzgó, regañó o tomó partido": "1",
+  "Minimizó lo que sentía la persona": "1",
+  "Dependió de preguntas de sí/no": "2",
+  "Entró en debate o discusión": "2",
+  "Soslayó una señal de peligro": "3",
+  "Dio consejos directos en lugar de opciones": "4",
+  "Permitió la visión en túnel": "4",
+  "Dejó la escena sin ninguna ruta": "5",
+  "Prometió algo que no podía cumplir": "5"
+};
+
+const numeroDePaso = (item) => (String(item).match(/^\s*(\d+)/) || [])[1] || null;
+
+// "1 · Suicidio" → "suicidio". Para que las frases se lean como frases y no
+// arrastren el número de la estación en medio de la oración.
+const nombreEscena = (k) =>
+  String(ESTACIONES[k] || ("estación " + k)).replace(/^\d+\s*·\s*/, "").toLowerCase();
+
+// Proporción de "sí" de un ítem, sumando todas las estaciones (o una sola).
+function proporcion(datos, item, soloEstacion){
+  let si = 0, total = 0;
+  Object.keys(datos.estaciones || {}).forEach(k => {
+    if (soloEstacion && k !== soloEstacion) return;
+    const d = datos.estaciones[k].items[item];
+    if (!d) return;
+    si += d.si; total += d.si + d.parcial + d.no;
+  });
+  return { si, total, pct: total ? si / total : null };
+}
+
+const porcentaje = (p) => p === null ? "—" : Math.round(p * 100) + "%";
+
+function pasosOrdenados(datos){
+  return (datos.items || [])
+    .map(item => ({ item, n: numeroDePaso(item) }))
+    .filter(x => x.n && PASOS[x.n])
+    .sort((a, b) => Number(a.n) - Number(b.n));
+}
+
+function pintarCurva(datos){
+  const cont = document.getElementById("curva");
+  const concl = document.getElementById("conclusion-curva");
+  const pasos = pasosOrdenados(datos).map(x => {
+    const p = proporcion(datos, x.item);
+    return { n: x.n, item: x.item, pct: p.pct, total: p.total };
+  }).filter(p => p.total > 0);
+
+  if (pasos.length < 2) {
+    cont.innerHTML = `<div class="vacio-msg">Faltan observaciones para trazar la curva.</div>`;
+    concl.textContent = "";
+    return;
+  }
+
+  const mejor = pasos.reduce((a, b) => b.pct > a.pct ? b : a);
+  const peor  = pasos.reduce((a, b) => b.pct < a.pct ? b : a);
+
+  cont.innerHTML = `<div class="curva">` + pasos.map(p => {
+    const clase = p === peor ? "cae" : (p === mejor ? "sostiene" : "");
+    return `<div class="paso ${clase}">
+      <div class="paso-pct">${porcentaje(p.pct)}</div>
+      <div class="paso-barra" style="height:${Math.max(4, Math.round(p.pct * 165))}px"></div>
+      <div class="paso-n">Paso ${p.n}</div>
+      <div class="paso-nombre">${PASOS[p.n]}</div>
+    </div>`;
+  }).join("") + `</div>`;
+
+  // El quiebre: la mayor caída entre dos pasos consecutivos. Es más útil que
+  // el mínimo absoluto, porque señala DÓNDE se pierde la intervención.
+  let quiebre = null;
+  for (let i = 1; i < pasos.length; i++) {
+    const caida = pasos[i - 1].pct - pasos[i].pct;
+    if (!quiebre || caida > quiebre.caida) {
+      quiebre = { caida, de: pasos[i - 1], a: pasos[i] };
+    }
+  }
+
+  let texto = `Lo que mejor se sostuvo fue <strong>${PASOS[mejor.n].toLowerCase()}</strong> ` +
+    `(${porcentaje(mejor.pct)}) y lo que más se cayó, <strong>${PASOS[peor.n].toLowerCase()}</strong> ` +
+    `(${porcentaje(peor.pct)}).`;
+
+  if (quiebre && quiebre.caida > 0.15) {
+    texto += ` El quiebre está entre el paso ${quiebre.de.n} y el ${quiebre.a.n}: ` +
+      `caen ${Math.round(quiebre.caida * 100)} puntos de golpe.`;
+    // La lectura del quiebre depende de DÓNDE cae, no puede escribirse de
+    // antemano: entre el 4 y el 5 significa que se contiene y no se deriva,
+    // pero entre el 1 y el 2 significa algo muy distinto.
+    if (quiebre.a.n === "5") {
+      texto += ` Hasta ahí la intervención acompaña; a partir de ahí tiene que decidir y derivar.`;
+    } else if (quiebre.a.n === "2") {
+      texto += ` El vínculo se establece, pero la exploración del problema no llega a abrirse.`;
+    } else if (quiebre.a.n === "3") {
+      texto += ` Se explora la situación, y aun así la pregunta por el riesgo queda afuera.`;
+    } else {
+      texto += ` Conviene detenerse ahí: es donde la secuencia deja de sostenerse.`;
+    }
+  } else {
+    texto += ` No hay un quiebre marcado entre pasos: el desempeño es parejo a lo largo de la secuencia.`;
+  }
+  concl.innerHTML = texto;
+}
+
+function pintarRiesgo(datos){
+  const cont = document.getElementById("riesgo");
+  const concl = document.getElementById("conclusion-riesgo");
+  const itemRiesgo = (datos.items || []).find(i => numeroDePaso(i) === "3");
+
+  if (!itemRiesgo) {
+    cont.innerHTML = `<div class="vacio-msg">Sin datos del componente de riesgo.</div>`;
+    concl.textContent = "";
+    return;
+  }
+
+  const filas = Object.keys(datos.estaciones || {}).sort().map(k => {
+    const p = proporcion(datos, itemRiesgo, k);
+    return { k, pct: p.pct, si: p.si, total: p.total };
+  }).filter(f => f.total > 0).sort((a, b) => b.pct - a.pct);
+
+  if (!filas.length) {
+    cont.innerHTML = `<div class="vacio-msg">Sin datos del componente de riesgo.</div>`;
+    concl.textContent = "";
+    return;
+  }
+
+  const alta = filas[0], baja = filas[filas.length - 1];
+  cont.innerHTML = filas.map(f => {
+    const clase = f === alta ? "alto" : (f === baja ? "bajo" : "");
+    return `<div class="fila-comp ${clase}">
+      <span class="nom">${ESTACIONES[f.k] || ("Estación " + f.k)}</span>
+      <span class="bar"><span style="width:${Math.round(f.pct * 100)}%"></span></span>
+      <span class="val">${porcentaje(f.pct)} · ${f.si}/${f.total}</span>
+    </div>`;
+  }).join("");
+
+  let texto = `Se preguntó por el riesgo en <strong>${porcentaje(alta.pct)}</strong> de las ` +
+    `observaciones de la escena de ${nombreEscena(alta.k)}`;
+  if (filas.length > 1) {
+    texto += ` y en <strong>${porcentaje(baja.pct)}</strong> de las de ` +
+      `${nombreEscena(baja.k)}.`;
+    if (alta.pct - baja.pct > 0.2) {
+      texto += ` La diferencia es la pregunta del cierre: ¿se evalúa el riesgo porque el ` +
+        `protocolo lo pide, o solo cuando la escena lo hace evidente?`;
+      // La bajada del duelo tiene una lectura propia y es la de la clase; si
+      // el mínimo cae en otra escena, afirmarlo igual sería inventar.
+      if (baja.k === "3") {
+        texto += ` En duelo el descarte es obligatorio precisamente porque no se ve.`;
+      }
+    }
+  } else {
+    texto += `.`;
+  }
+  concl.innerHTML = texto;
+}
+
+function pintarErroresCierre(datos){
+  const cont = document.getElementById("errores-cierre");
+  const concl = document.getElementById("conclusion-errores");
+  const pares = Object.keys(datos.errores || {})
+    .map(k => [k, datos.errores[k]])
+    .sort((a, b) => b[1] - a[1]);
+
+  if (!pares.length) {
+    cont.innerHTML = `<div class="vacio-msg">Ningún error marcado todavía.</div>`;
+    concl.textContent = "";
+    return;
+  }
+
+  // Se agrupan por componente para poder confrontarlos con la curva.
+  const porPaso = {};
+  pares.forEach(([nombre, n]) => {
+    const paso = ERROR_A_PASO[nombre] || "otros";
+    (porPaso[paso] = porPaso[paso] || { total: 0, errores: [] });
+    porPaso[paso].total += n;
+    porPaso[paso].errores.push([nombre, n]);
+  });
+
+  const grupos = Object.keys(porPaso)
+    .sort((a, b) => porPaso[b].total - porPaso[a].total);
+  const tope = porPaso[grupos[0]].total;
+
+  cont.innerHTML = grupos.map(paso => {
+    const g = porPaso[paso];
+    const titulo = PASOS[paso] ? ("Paso " + paso + " · " + PASOS[paso]) : "Otros";
+    return `<div class="err-comp">
+      <div class="cab">${titulo}<span>${g.total} marcas</span></div>
+      <div class="fila-comp">
+        <span class="nom"></span>
+        <span class="bar"><span style="width:${Math.round(g.total / tope * 100)}%"></span></span>
+        <span class="val">${g.total}</span>
+      </div>
+      <div class="det">${g.errores.map(([e, n]) => e + " (" + n + ")").join(" · ")}</div>
+    </div>`;
+  }).join("");
+
+  const pasoMasErrado = grupos[0];
+  const pasosCurva = pasosOrdenados(datos)
+    .map(x => ({ n: x.n, pct: proporcion(datos, x.item).pct, total: proporcion(datos, x.item).total }))
+    .filter(p => p.total > 0);
+  const peorCurva = pasosCurva.length
+    ? pasosCurva.reduce((a, b) => b.pct < a.pct ? b : a) : null;
+
+  let texto = `El error más marcado fue <strong>${pares[0][0].toLowerCase()}</strong> ` +
+    `(${pares[0][1]} veces).`;
+  if (peorCurva && pasoMasErrado === peorCurva.n) {
+    texto += ` Los errores se concentran en el <strong>paso ${pasoMasErrado}</strong>, que es ` +
+      `también el peor sostenido en la curva. Son dos maneras distintas de mirar —marcar un ` +
+      `error y calificar un componente— que llegaron al mismo punto: la coincidencia es lo ` +
+      `que le da peso al hallazgo.`;
+  } else if (peorCurva && PASOS[pasoMasErrado]) {
+    texto += ` Los errores se concentran en el <strong>paso ${pasoMasErrado}</strong>, ` +
+      `mientras que el componente peor sostenido es el ${peorCurva.n}. Vale preguntarse por ` +
+      `qué las dos miradas no coinciden.`;
+  }
+  concl.innerHTML = texto;
+}
+
+function pintarVoces(datos){
+  const cont = document.getElementById("voces");
+  const lista = (datos.destacadas || []);
+  if (!lista.length) {
+    cont.innerHTML = `<div class="vacio-msg">Sin observaciones escritas todavía.</div>`;
+    return;
+  }
+
+  // Se ordenan las estaciones por desempeño global y se toma una voz de la
+  // mejor y otra de la peor: el contraste es lo que abre la discusión.
+  const desempeno = Object.keys(datos.estaciones || {}).map(k => {
+    let si = 0, total = 0;
+    Object.keys(datos.estaciones[k].items).forEach(item => {
+      const d = datos.estaciones[k].items[item];
+      si += d.si; total += d.si + d.parcial + d.no;
+    });
+    return { k, pct: total ? si / total : 0, total };
+  }).filter(e => e.total > 0).sort((a, b) => b.pct - a.pct);
+
+  const elegir = (clave) => {
+    const dela = lista.filter(o => String(o.estacion) === String(clave));
+    return dela.length ? dela[dela.length - 1] : null;
+  };
+
+  const bloques = [];
+  if (desempeno.length) {
+    const arriba = elegir(desempeno[0].k);
+    if (arriba) bloques.push({ o: arriba, pct: desempeno[0].pct, baja: false,
+                               rotulo: "Escena con más “sí”" });
+  }
+  if (desempeno.length > 1) {
+    const abajo = elegir(desempeno[desempeno.length - 1].k);
+    if (abajo) bloques.push({ o: abajo, pct: desempeno[desempeno.length - 1].pct, baja: true,
+                              rotulo: "Escena con menos “sí”" });
+  }
+  if (!bloques.length) bloques.push({ o: lista[lista.length - 1], pct: null, baja: false,
+                                      rotulo: "Del curso" });
+
+  cont.innerHTML = bloques.map(b => `
+    <div class="voz ${b.baja ? "baja" : ""}">
+      <span class="de">${b.rotulo} · ${ESTACIONES[b.o.estacion] || ("Estación " + b.o.estacion)}${
+        b.pct === null ? "" : " · " + porcentaje(b.pct) + " de sí"}</span>
+      ${b.o.texto}
+    </div>`).join("");
+}
+
+function pintarTitular(datos){
+  const el = document.getElementById("titular");
+  const pasos = pasosOrdenados(datos)
+    .map(x => ({ n: x.n, ...proporcion(datos, x.item) }))
+    .filter(p => p.total > 0);
+
+  if (!pasos.length) { el.textContent = "Todavía no llegó ninguna observación."; return; }
+
+  const primero = pasos[0];
+  const ultimo = pasos[pasos.length - 1];
+  const obs = datos.total || 0;
+
+  if (primero.pct - ultimo.pct > 0.2) {
+    el.innerHTML = `Con ${obs} observaciones del curso: el contacto se sostuvo en ` +
+      `<em>${porcentaje(primero.pct)}</em> de los casos y la derivación a una ruta, ` +
+      `en <em>${porcentaje(ultimo.pct)}</em>. <em>Contener no es derivar.</em>`;
+  } else {
+    el.innerHTML = `Con ${obs} observaciones del curso: la secuencia se sostuvo pareja, ` +
+      `del <em>${porcentaje(primero.pct)}</em> en el contacto al ` +
+      `<em>${porcentaje(ultimo.pct)}</em> en la derivación.`;
+  }
+}
+
+function pintarCierre(datos){
+  pintarTitular(datos);
+  pintarCurva(datos);
+  pintarRiesgo(datos);
+  pintarErroresCierre(datos);
+  pintarVoces(datos);
+}
+
+/* ============================================================
    4. CICLO DE ACTUALIZACIÓN
    ============================================================ */
 let cargando = false;
+let ultimosDatos = null;   // para repintar al cambiar de modo sin volver a pedir
 
 async function actualizar(){
   if (cargando) return;
@@ -387,10 +831,12 @@ async function actualizar(){
       datos = await pedirResumen(grupo, posibles[posibles.length - 1]);
     }
     if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
+    ultimosDatos = datos;
     pintarCifras(datos);
     pintarTabla(datos);
     pintarErrores(datos);
     pintarDestacadas(datos);
+    pintarCierre(datos);
     estado.textContent = "actualizado " + new Date().toLocaleTimeString();
   } catch (err) {
     estado.textContent = "sin conexión con el receptor — " + err.message;
@@ -407,6 +853,24 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     document.getElementById("btn-actualizar").addEventListener("click", actualizar);
     document.getElementById("f-grupo").addEventListener("change", actualizar);
+
+    // Conmutador Actividad / Cierre. El refresco automático sigue corriendo en
+    // los dos modos: si llega una observación tarde, el cierre se actualiza.
+    const bActividad = document.getElementById("modo-actividad");
+    const bCierre = document.getElementById("modo-cierre");
+    const nota = document.getElementById("modo-nota");
+    const cambiarModo = (aCierre) => {
+      document.getElementById("vista-actividad").hidden = aCierre;
+      document.getElementById("vista-cierre").hidden = !aCierre;
+      bActividad.classList.toggle("is-on", !aCierre);
+      bCierre.classList.toggle("is-on", aCierre);
+      nota.textContent = aCierre
+        ? "Cuatro conclusiones para discutir en plenaria."
+        : "La matriz completa, para mirar mientras la actividad corre.";
+      if (aCierre && ultimosDatos) pintarCierre(ultimosDatos);
+    };
+    bActividad.addEventListener("click", () => cambiarModo(false));
+    bCierre.addEventListener("click", () => cambiarModo(true));
     actualizar();
     setInterval(actualizar, REFRESCO_MS);
   } catch (err) {
