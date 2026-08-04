@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro PAP — Tablero</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --moderate:#b8722a;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5;
+     -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+
+.wrap{max-width:1180px; margin:0 auto; padding:22px 20px 48px;}
+
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:20px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select, .btn{font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+select{font-weight:600;}
+.btn{cursor:pointer; font-weight:600; background:var(--accent); color:#fff; border-color:var(--accent);}
+.btn:hover{background:var(--accent-dark);}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+
+/* ---- Cifras de cabecera ---- */
+.cifras{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px; margin-bottom:26px;}
+.cifra{border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px;
+  background:var(--surface);}
+.cifra .n{font-family:var(--font-display); font-size:30px; font-weight:600; line-height:1.1;}
+.cifra .t{font-size:12px; color:var(--ink-faint); text-transform:uppercase;
+  letter-spacing:0.05em; margin-top:2px;}
+
+/* ---- Matriz de ítems por estación ---- */
+.tabla-caja{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:30px;}
+table{border-collapse:collapse; width:100%; min-width:760px;}
+th,td{padding:10px 12px; text-align:left; border-bottom:1px solid var(--border);
+  font-size:13.5px; vertical-align:middle;}
+thead th{background:var(--surface); font-size:11.5px; text-transform:uppercase;
+  letter-spacing:0.05em; color:var(--ink-faint); font-weight:600; white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+td.item{font-weight:600; min-width:230px;}
+
+/* La barra apilada dice de un vistazo dónde está el problema */
+.barra{display:flex; height:22px; border-radius:5px; overflow:hidden;
+  background:var(--surface-alt); min-width:110px;}
+.barra span{display:block; height:100%;}
+.b-si{background:var(--mild);} .b-parcial{background:var(--moderate);} .b-no{background:var(--severe);}
+.cifra-celda{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint);
+  margin-top:3px; white-space:nowrap;}
+td.vacio{color:var(--ink-faint); font-style:italic;}
+
+.leyenda{display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px;
+  color:var(--ink-soft); margin:-18px 0 30px;}
+.leyenda i{display:inline-block; width:11px; height:11px; border-radius:3px;
+  margin-right:5px; vertical-align:middle;}
+
+/* ---- Errores y observaciones ---- */
+.dos{display:grid; grid-template-columns:1fr; gap:22px;}
+@media (min-width:860px){ .dos{grid-template-columns:1fr 1fr;} }
+.panel{border:1px solid var(--border); border-radius:var(--radius); padding:18px;}
+.panel h2{font-size:18px; margin-bottom:4px;}
+.panel .sub{font-size:13px; color:var(--ink-faint); margin-bottom:14px;}
+
+.err-fila{display:flex; align-items:center; gap:10px; margin-bottom:9px;}
+.err-nombre{flex:1 1 auto; font-size:13.5px; min-width:0;}
+.err-barra{flex:0 0 40%; height:16px; background:var(--surface-alt); border-radius:4px;
+  overflow:hidden;}
+.err-barra span{display:block; height:100%; background:var(--severe);}
+.err-n{flex:0 0 26px; text-align:right; font-family:var(--font-mono); font-size:12px;
+  color:var(--ink-faint);}
+
+.obs{border-left:3px solid var(--accent); background:var(--surface);
+  padding:9px 12px; border-radius:0 6px 6px 0; margin-bottom:8px; font-size:13.5px;}
+.obs .de{font-family:var(--font-mono); font-size:10.5px; color:var(--accent);
+  text-transform:uppercase; letter-spacing:0.05em; display:block;}
+
+.vacio-msg{color:var(--ink-faint); font-size:13.5px; font-style:italic;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ves este mensaje, el tablero no se está ejecutando. Abrilo en un navegador de escritorio.
+  </div>
+
+  <div class="cabecera">
+    <div>
+      <div class="eyebrow">Simulacro de PAP · Tablero docente</div>
+      <h1>Resultados en vivo</h1>
+    </div>
+    <div class="controles">
+      <select id="f-grupo">
+        <option value="">Todos los grupos</option>
+        <option value="901">901</option>
+        <option value="902">902</option>
+        <option value="903">903</option>
+      </select>
+      <button class="btn" id="btn-actualizar">Actualizar</button>
+      <span class="estado" id="estado">—</span>
+    </div>
+  </div>
+
+  <div class="cifras" id="cifras"></div>
+
+  <div class="tabla-caja">
+    <table>
+      <thead><tr id="cabeza"></tr></thead>
+      <tbody id="cuerpo"></tbody>
+    </table>
+  </div>
+
+  <div class="leyenda">
+    <span><i class="b-si" style="background:var(--mild)"></i>Sí</span>
+    <span><i class="b-parcial" style="background:var(--moderate)"></i>Parcial</span>
+    <span><i class="b-no" style="background:var(--severe)"></i>No</span>
+    <span style="color:var(--ink-faint)">Cada barra es el total de observaciones de esa estación para ese ítem.</span>
+  </div>
+
+  <div class="dos">
+    <div class="panel">
+      <h2>Errores más observados</h2>
+      <div class="sub">Tomados de la columna “qué NO hacer” de la clase.</div>
+      <div id="errores"></div>
+    </div>
+    <div class="panel">
+      <h2>Observaciones destacadas</h2>
+      <div class="sub">Insumo directo para la plenaria.</div>
+      <div id="destacadas"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const ENVIO = {
+  url: "https://script.google.com/macros/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec"
+};
+
+const ESTACIONES = {
+  "1": "1 · Suicidio",
+  "2": "2 · Pánico",
+  "3": "3 · Duelo",
+  "4": "4 · Violencia",
+  "5": "5 · Psicosis"
+};
+
+const REFRESCO_MS = 30000;   // el tablero se proyecta: se refresca solo
+
+/* ============================================================
+   2. CARGA DE DATOS (JSONP)
+   ============================================================
+   Se pide con un <script> y callback, no con fetch: esta página vive en
+   GitHub Pages y el receptor en script.google.com. Apps Script no emite
+   cabeceras CORS de forma fiable, así que fetch fallaría sin explicación.
+   ============================================================ */
+let contadorCallback = 0;
+
+function pedirResumen(grupo){
+  return new Promise((resolver, rechazar) => {
+    const nombre = "__pap_cb_" + (++contadorCallback);
+    const script = document.createElement("script");
+    const limpiar = () => {
+      delete window[nombre];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+    const temporizador = setTimeout(() => {
+      limpiar();
+      rechazar(new Error("El receptor no respondió a tiempo."));
+    }, 15000);
+
+    window[nombre] = (datos) => {
+      clearTimeout(temporizador);
+      limpiar();
+      resolver(datos);
+    };
+
+    script.onerror = () => {
+      clearTimeout(temporizador);
+      limpiar();
+      rechazar(new Error("No se pudo contactar al receptor."));
+    };
+
+    script.src = ENVIO.url + "?tablero=1&callback=" + nombre +
+      (grupo ? "&grupo=" + encodeURIComponent(grupo) : "") +
+      "&t=" + Date.now();
+    document.body.appendChild(script);
+  });
+}
+
+/* ============================================================
+   3. RENDERIZADO
+   ============================================================ */
+function pintarCifras(datos){
+  const estaciones = Object.keys(datos.estaciones || {});
+  const cont = document.getElementById("cifras");
+
+  // "Peor sostenido" = el ítem con menor proporción de "Sí" en todo el conjunto.
+  let peorItem = "—", peorPct = null;
+  (datos.items || []).forEach(item => {
+    let si = 0, total = 0;
+    estaciones.forEach(k => {
+      const d = datos.estaciones[k].items[item];
+      if (!d) return;
+      si += d.si; total += d.si + d.parcial + d.no;
+    });
+    if (total === 0) return;
+    const pct = si / total;
+    if (peorPct === null || pct < peorPct) { peorPct = pct; peorItem = item; }
+  });
+
+  cont.innerHTML = `
+    <div class="cifra"><div class="n">${datos.total || 0}</div><div class="t">Observaciones</div></div>
+    <div class="cifra"><div class="n">${estaciones.length}</div><div class="t">Estaciones con datos</div></div>
+    <div class="cifra"><div class="n">${peorPct === null ? "—" : Math.round(peorPct*100) + "%"}</div>
+      <div class="t">Cumplimiento del ítem más flojo</div></div>
+    <div class="cifra" style="grid-column:span 2;">
+      <div class="n" style="font-size:17px; line-height:1.35;">${peorItem}</div>
+      <div class="t">Componente peor sostenido</div></div>
+  `;
+}
+
+function celdaBarra(d){
+  if (!d) return `<td class="vacio">sin datos</td>`;
+  const total = d.si + d.parcial + d.no;
+  if (!total) return `<td class="vacio">sin datos</td>`;
+  const p = (n) => (n / total * 100).toFixed(1) + "%";
+  return `<td>
+    <div class="barra">
+      <span class="b-si" style="width:${p(d.si)}"></span>
+      <span class="b-parcial" style="width:${p(d.parcial)}"></span>
+      <span class="b-no" style="width:${p(d.no)}"></span>
+    </div>
+    <div class="cifra-celda">${d.si} sí · ${d.parcial} parcial · ${d.no} no</div>
+  </td>`;
+}
+
+function pintarTabla(datos){
+  const cabeza = document.getElementById("cabeza");
+  const cuerpo = document.getElementById("cuerpo");
+  const claves = Object.keys(datos.estaciones || {}).sort();
+
+  if (!claves.length || !(datos.items || []).length) {
+    cabeza.innerHTML = "<th>Ítem</th>";
+    cuerpo.innerHTML = `<tr><td class="vacio">Todavía no llegó ninguna observación.</td></tr>`;
+    return;
+  }
+
+  cabeza.innerHTML = "<th>Componente</th>" +
+    claves.map(k => `<th>${ESTACIONES[k] || ("Estación " + k)}</th>`).join("");
+
+  cuerpo.innerHTML = datos.items.map(item =>
+    `<tr><td class="item">${item}</td>` +
+    claves.map(k => celdaBarra(datos.estaciones[k].items[item])).join("") +
+    `</tr>`
+  ).join("");
+}
+
+function pintarErrores(datos){
+  const cont = document.getElementById("errores");
+  const pares = Object.keys(datos.errores || {})
+    .map(k => [k, datos.errores[k]])
+    .sort((a, b) => b[1] - a[1]);
+
+  if (!pares.length) {
+    cont.innerHTML = `<div class="vacio-msg">Ningún error marcado todavía.</div>`;
+    return;
+  }
+  const tope = pares[0][1];
+  cont.innerHTML = pares.map(([nombre, n]) => `
+    <div class="err-fila">
+      <span class="err-nombre">${nombre}</span>
+      <span class="err-barra"><span style="width:${(n/tope*100).toFixed(1)}%"></span></span>
+      <span class="err-n">${n}</span>
+    </div>`).join("");
+}
+
+function pintarDestacadas(datos){
+  const cont = document.getElementById("destacadas");
+  const lista = (datos.destacadas || []).slice().reverse();
+  if (!lista.length) {
+    cont.innerHTML = `<div class="vacio-msg">Sin observaciones escritas todavía.</div>`;
+    return;
+  }
+  cont.innerHTML = lista.map(o => `
+    <div class="obs">
+      <span class="de">${ESTACIONES[o.estacion] || ("Estación " + o.estacion)}</span>
+      ${o.texto}
+    </div>`).join("");
+}
+
+/* ============================================================
+   4. CICLO DE ACTUALIZACIÓN
+   ============================================================ */
+let cargando = false;
+
+async function actualizar(){
+  if (cargando) return;
+  cargando = true;
+  const estado = document.getElementById("estado");
+  estado.classList.remove("error");
+  estado.textContent = "actualizando…";
+
+  try {
+    const datos = await pedirResumen(document.getElementById("f-grupo").value);
+    if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
+    pintarCifras(datos);
+    pintarTabla(datos);
+    pintarErrores(datos);
+    pintarDestacadas(datos);
+    estado.textContent = "actualizado " + new Date().toLocaleTimeString();
+  } catch (err) {
+    estado.textContent = "sin conexión con el receptor — " + err.message;
+    estado.classList.add("error");
+  } finally {
+    cargando = false;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const aviso = document.getElementById("js-warning-fallback");
+  if (aviso) aviso.style.display = "none";
+
+  try {
+    document.getElementById("btn-actualizar").addEventListener("click", actualizar);
+    document.getElementById("f-grupo").addEventListener("change", actualizar);
+    actualizar();
+    setInterval(actualizar, REFRESCO_MS);
+  } catch (err) {
+    if (aviso) { aviso.style.display = ""; aviso.textContent = "Error al iniciar: " + err.message; }
+  }
+});
+</script>
+</body>
+</html>

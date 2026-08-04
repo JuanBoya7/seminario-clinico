@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro PAP — Estaciones</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.55;
+     -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+
+.wrap{max-width:720px; margin:0 auto; padding:20px 16px 48px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:22px;}
+.masthead h1{font-size:25px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14.5px; margin:0;}
+
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+
+/* ---- Selector de estación ---- */
+.selector{background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px; margin-bottom:24px;}
+.selector label{display:block; font-size:11.5px; font-weight:600; letter-spacing:0.02em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
+select{width:100%; font-family:var(--font-body); font-size:15.5px; font-weight:600;
+  color:var(--ink); background:var(--bg); border:1px solid var(--border);
+  border-radius:8px; padding:12px 10px;}
+select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+
+/* ---- Ficha de la estación ---- */
+.ficha{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+  margin-bottom:26px;}
+.ficha-cab{background:var(--accent-soft); padding:16px 18px; border-bottom:1px solid var(--border);}
+.ficha-cab h2{font-size:20px; margin-bottom:4px;}
+.ruta{display:inline-block; font-family:var(--font-mono); font-size:11px; font-weight:700;
+  letter-spacing:0.06em; background:var(--accent); color:#fff;
+  padding:3px 9px; border-radius:99px; margin-top:6px;}
+.ruta.sin{background:var(--ink-faint);}
+.ficha-cuerpo{padding:18px;}
+
+.campo{margin-bottom:18px;}
+.campo:last-child{margin-bottom:0;}
+.campo-tit{font-family:var(--font-mono); font-size:11px; letter-spacing:0.07em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
+.campo p{margin:0 0 8px; font-size:15px;}
+
+.lineas{list-style:none; padding:0; margin:0;}
+.lineas li{background:var(--surface); border-left:3px solid var(--accent);
+  padding:11px 14px; border-radius:0 8px 8px 0; margin-bottom:8px;
+  font-size:15px; font-style:italic; color:var(--ink);}
+.lineas li .acot{font-style:normal; color:var(--ink-faint); font-size:13px; display:block;
+  margin-bottom:3px;}
+
+/* ---- Bloque reservado al paciente ---- */
+.spoiler{border:1px dashed var(--moderate); background:var(--moderate-soft);
+  border-radius:8px; padding:14px;}
+.spoiler-btn{font-family:var(--font-body); font-size:14px; font-weight:600;
+  background:transparent; border:none; color:var(--moderate); cursor:pointer;
+  padding:0; text-align:left;}
+.spoiler-aviso{font-size:13px; color:var(--ink-soft); margin:6px 0 0;}
+.spoiler-texto{display:none; margin-top:12px; font-size:15px;}
+.spoiler.abierto .spoiler-texto{display:block;}
+.spoiler.abierto .spoiler-aviso{display:none;}
+
+/* ---- Guía común ---- */
+.pasos{list-style:none; padding:0; margin:0; counter-reset:paso;}
+.pasos li{position:relative; padding:0 0 14px 34px; font-size:15px;}
+.pasos li::before{counter-increment:paso; content:counter(paso);
+  position:absolute; left:0; top:0; width:24px; height:24px; border-radius:50%;
+  background:var(--accent); color:#fff; font-family:var(--font-mono);
+  font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.pasos strong{display:block;}
+
+.dos{display:grid; grid-template-columns:1fr; gap:14px;}
+@media (min-width:620px){ .dos{grid-template-columns:1fr 1fr;} }
+.caja{border:1px solid var(--border); border-radius:8px; padding:14px;}
+.caja.si{background:var(--mild-soft); border-color:var(--mild);}
+.caja.no{background:var(--severe-soft); border-color:var(--severe);}
+.caja h3{font-size:14px; margin-bottom:8px;}
+.caja.si h3{color:var(--mild);} .caja.no h3{color:var(--severe);}
+.caja ul{margin:0; padding-left:18px; font-size:14px;}
+.caja li{margin-bottom:5px;}
+
+.aviso-cuidado{border:1px solid var(--border); background:var(--surface);
+  border-radius:var(--radius); padding:16px 18px; font-size:14px; color:var(--ink-soft);
+  margin-bottom:26px;}
+.aviso-cuidado strong{color:var(--ink);}
+
+.pie{margin-top:34px; padding-top:16px; border-top:1px solid var(--border);
+  font-size:12.5px; color:var(--ink-faint);}
+.pie a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ves este mensaje, la página no se está ejecutando. Abrila en un navegador,
+    no dentro del visor de una app de mensajería.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow">Simulacro de PAP · Guion de estación</div>
+    <h1>Estaciones de crisis</h1>
+    <p>
+      Cada mesa trabaja una sola estación durante toda la actividad y rota los roles
+      internamente. Elegí abajo la que te asignaron.
+    </p>
+  </header>
+
+  <div class="aviso-cuidado">
+    <strong>Antes de empezar.</strong> Representar estas escenas puede remover cosas
+    personales. El rol de paciente es voluntario: si una estación te toca de cerca,
+    decilo y tomá otro rol, sin dar explicaciones. Al cerrar cada ronda, quien hizo de
+    paciente sale del personaje en voz alta —su nombre y una frase cualquiera— antes
+    de seguir.
+  </div>
+
+  <div class="selector">
+    <label for="f-estacion">Estación asignada a tu mesa</label>
+    <select id="f-estacion">
+      <option value="">— Elegí tu estación —</option>
+      <option value="1">Estación 1 — Ideación suicida inminente</option>
+      <option value="2">Estación 2 — Ataque de pánico en espacio público</option>
+      <option value="3">Estación 3 — Duelo agudo</option>
+      <option value="4">Estación 4 — Violencia intrafamiliar reciente</option>
+      <option value="5">Estación 5 — Descompensación psicótica con agitación</option>
+    </select>
+  </div>
+
+  <div id="ficha"></div>
+
+  <div id="guia-comun" style="display:none;">
+    <div class="ficha">
+      <div class="ficha-cab">
+        <div class="eyebrow">Para la dupla de psicólogos</div>
+        <h2>Los cinco componentes</h2>
+      </div>
+      <div class="ficha-cuerpo">
+        <ol class="pasos">
+          <li><strong>Realizar contacto psicológico.</strong> Que la persona se sienta
+              escuchada, aceptada y apoyada. Uno abre; el otro observa la escena y el entorno.</li>
+          <li><strong>Analizar las dimensiones del problema.</strong> Presente (qué pasó,
+              cómo se siente), pasado inmediato (quién, qué, cuándo) y futuro inmediato (riesgos).</li>
+          <li><strong>Sondear posibles soluciones.</strong> Acompañar a generar alternativas
+              y examinar los obstáculos, en vez de indicar la salida.</li>
+          <li><strong>Iniciar pasos concretos.</strong> El mejor paso próximo, uno solo.
+              Directivo únicamente si hace falta.</li>
+          <li><strong>Verificar el progreso.</strong> Acá: verbalizar a qué recurso o ruta
+              de atención se derivaría el caso en la vida real.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="dos" style="margin-bottom:26px;">
+      <div class="caja si">
+        <h3>Qué SÍ hacer</h3>
+        <ul>
+          <li>Escuchar reflejando sentimientos y hechos</li>
+          <li>Comunicar aceptación</li>
+          <li>Plantear preguntas abiertas</li>
+          <li>Evaluar el riesgo de forma explícita</li>
+          <li>Trabajar por bloques y fijar prioridades</li>
+          <li>Dar un paso cada vez, con metas de corto plazo</li>
+          <li>Acordar cómo sigue: un recontacto concreto</li>
+        </ul>
+      </div>
+      <div class="caja no">
+        <h3>Qué NO hacer</h3>
+        <ul>
+          <li>Contar la propia historia</li>
+          <li>Juzgar, regañar o tomar partido</li>
+          <li>Depender de preguntas de sí/no</li>
+          <li>Soslayar las señales de peligro</li>
+          <li>Permitir la visión en túnel</li>
+          <li>Dar consejos directos en lugar de opciones</li>
+          <li>Prometer lo que no es posible</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pie">
+    Fuentes: Deza Villanueva, S. (2007). <em>Intervención en crisis: primeros auxilios
+    psicológicos</em>. Slaikeu, K. A. (1996). OPS/OMS, <em>Guía de Intervención mhGAP 2.0</em> (2017).
+    <br>Seminario Profesional I — Clínico · Fundación Universitaria del Área Andina.
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   1. LAS CINCO ESTACIONES
+   ============================================================
+   Cada estación declara además su correspondencia con la Guía mhGAP, que es el
+   tema de la semana: el ejercicio no termina en contener, termina en derivar.
+   Por eso "ruta" y "puntoClave" no son adorno — son lo que conecta el simulacro
+   con la clase de protocolos y rutas de atención.
+   ============================================================ */
+const ESTACIONES = [
+  {
+    n: "1",
+    titulo: "Ideación suicida inminente",
+    ruta: "mhGAP · SUI",
+    perfil: "Estudiante universitario tras un quiebre reciente —una ruptura, una pérdida académica o un conflicto familiar; el detalle lo elige quien hace de paciente—. Se le encuentra en un lugar apartado del campus.",
+    estado: "Aplanamiento afectivo, mirada evitativa, habla lenta y en tono bajo. Tiene una idea de método, pero no ha actuado.",
+    lineas: [
+      { texto: "No hace falta que estés aquí, de verdad, ya tomé una decisión." },
+      { texto: "Llevo pensando en esto hace semanas, no es algo de un día." },
+      { acot: "Si insisten en preguntar por el plan", texto: "¿Para qué quieres saber? ¿Vas a hacer algo con eso?" }
+    ],
+    evolucion: "Se abre progresivamente si la dupla valida sin juzgar y pregunta directamente por la ideación, el plan y los medios, sin rodeos ni eufemismos. Se cierra más si le presionan a “animarse” o le minimizan (“no pienses así”), o si entran a discutir razones para vivir.",
+    puntoClave: "Preguntar por la autolesión no provoca autolesión: suele reducir la ansiedad y ayuda a que la persona se sienta comprendida. Conviene establecer el vínculo antes de preguntar."
+  },
+  {
+    n: "2",
+    titulo: "Ataque de pánico en espacio público",
+    ruta: "mhGAP · OTR",
+    perfil: "Persona adulta, sin antecedentes conocidos por los presentes, con un episodio agudo en un espacio concurrido: una cafetería, una terminal, una sala de espera.",
+    estado: "Hiperventilación, taquicardia referida, sensación de muerte inminente, deseo de huir del espacio.",
+    lineas: [
+      { texto: "No puedo respirar, algo me está pasando, llamen a alguien—" },
+      { texto: "Necesito salir de aquí, necesito aire, no puedo quedarme quieto—" },
+      { acot: "Si intentan tocarle o sujetarle sin permiso", texto: "¡No me toques, no me toques!" }
+    ],
+    evolucion: "La hiperventilación cede en dos o tres minutos de escena si la dupla regula su propio tono, valida la sensación sin reforzar el catastrofismo y guía la respiración de forma pausada. Empeora si le dicen “calmate” sin una guía concreta, o si le sujetan bruscamente.",
+    puntoClave: "Antes de atribuirlo a ansiedad hay que descartar causa física: el módulo de Atención y Prácticas Esenciales exige evaluar la salud física en toda consulta. Decirlo en voz alta cuenta."
+  },
+  {
+    n: "3",
+    titulo: "Duelo agudo",
+    ruta: "mhGAP · DEP (descarte)",
+    perfil: "Familiar directo —hijo, hermana, pareja— que acaba de recibir la noticia de un fallecimiento inesperado por accidente o evento súbito.",
+    estado: "Shock inicial, negación verbal, alternancia entre embotamiento afectivo y llanto descontrolado.",
+    lineas: [
+      { texto: "No, no puede ser, seguro es un error, hace dos horas hablé con ella—" },
+      { acot: "Tras un silencio prolongado", texto: "¿Qué se supone que haga ahora?" },
+      { texto: "No quiero que nadie me toque, solo... no sé qué hacer." }
+    ],
+    evolucion: "Empieza a verbalizar más allá de la negación si la dupla tolera el silencio y no fuerza el procesamiento inmediato. Vuelve al mutismo si le apuran (“tenés que ser fuerte”) o minimizan la pérdida.",
+    puntoClave: "Esta es la estación que más se presta a un error de ruta: una reacción normal ante una pérdida importante reciente es uno de los descartes obligatorios antes de diagnosticar depresión. Acompañar no es diagnosticar."
+  },
+  {
+    n: "4",
+    titulo: "Violencia intrafamiliar reciente",
+    ruta: "Ruta intersectorial",
+    rutaSin: true,
+    perfil: "Persona que sufrió una agresión física o emocional reciente de un familiar o su pareja, y es atendida poco después del episodio.",
+    estado: "Miedo, vergüenza y ambivalencia: minimiza lo ocurrido o protege verbalmente a quien agredió. Puede haber un signo físico, siempre implícito — no se simula ninguna lesión.",
+    lineas: [
+      { texto: "No es tan grave como parece, además yo también grité, no fue solo culpa de él." },
+      { texto: "Por favor no le digan a nadie, si esto se sabe todo se va a complicar más." },
+      { texto: "No necesito ir a ninguna parte, ya se me pasa." }
+    ],
+    evolucion: "Se abre y considera una derivación si la dupla no confronta ni juzga la ambivalencia, y deja claro que la decisión es suya pero conocer las rutas disponibles es un derecho. Se cierra por completo si le presionan a denunciar o le cuestionan la versión.",
+    puntoClave: "No hay un módulo mhGAP para esto, y ese es justamente el aprendizaje: la ruta es intersectorial —salud, protección, justicia—. La dupla tiene que nombrar una ruta concreta sin decidir por la persona."
+  },
+  {
+    n: "5",
+    titulo: "Descompensación psicótica con agitación",
+    ruta: "mhGAP · PSI",
+    perfil: "Persona con agitación psicomotora y discurso desorganizado o ideas de daño y persecución; puede tener o no antecedente conocido.",
+    estado: "Hipervigilancia, desconfianza hacia quienes se acercan, movimientos erráticos, discurso que se fragmenta.",
+    lineas: [
+      { texto: "Ustedes también están con ellos, ¿verdad? Sé que me están vigilando." },
+      { texto: "No se acerquen, no sé qué quieren hacerme." },
+      { acot: "Discurso desorganizado intercalado", texto: "Las señales ya empezaron... no es casualidad que estén aquí." }
+    ],
+    evolucion: "La agitación baja si la dupla mantiene distancia física prudente, tono bajo y constante, no confronta el contenido delirante —ni lo valida ni lo discute— y ofrece opciones concretas y simples. Empeora si le acorralan físicamente, le contradicen de frente o suben la voz.",
+    puntoClave: "La agitación es una manifestación de urgencia: activa una sub-ruta de atención inmediata. Antes de atribuirla a psicosis hay que descartar delirio por enfermedad física aguda."
+  }
+];
+
+/* ============================================================
+   2. RENDERIZADO
+   ============================================================ */
+function renderFicha(numero){
+  const cont = document.getElementById("ficha");
+  const guia = document.getElementById("guia-comun");
+
+  if (!numero) { cont.innerHTML = ""; guia.style.display = "none"; return; }
+
+  const e = ESTACIONES.find(x => x.n === numero);
+  if (!e) { cont.innerHTML = ""; guia.style.display = "none"; return; }
+
+  const lineas = e.lineas.map(l =>
+    `<li>${l.acot ? `<span class="acot">${l.acot}:</span>` : ""}“${l.texto}”</li>`
+  ).join("");
+
+  cont.innerHTML = `
+    <div class="ficha">
+      <div class="ficha-cab">
+        <div class="eyebrow">Estación ${e.n}</div>
+        <h2>${e.titulo}</h2>
+        <span class="ruta${e.rutaSin ? " sin" : ""}">${e.ruta}</span>
+      </div>
+      <div class="ficha-cuerpo">
+        <div class="campo">
+          <div class="campo-tit">Perfil</div>
+          <p>${e.perfil}</p>
+        </div>
+        <div class="campo">
+          <div class="campo-tit">Estado inicial</div>
+          <p>${e.estado}</p>
+        </div>
+        <div class="campo">
+          <div class="campo-tit">Líneas de apertura — las dice quien hace de paciente</div>
+          <ul class="lineas">${lineas}</ul>
+        </div>
+        <div class="campo">
+          <div class="campo-tit">Cómo evoluciona la escena</div>
+          <div class="spoiler" id="spoiler">
+            <button type="button" class="spoiler-btn" id="spoiler-btn">
+              Mostrar — solo quien hace de paciente
+            </button>
+            <p class="spoiler-aviso">
+              Si vas a intervenir, no lo abras: esto dice cómo reacciona el paciente
+              según lo que hagan, y leerlo de antemano vacía el ejercicio.
+            </p>
+            <div class="spoiler-texto">
+              <p>${e.evolucion}</p>
+              <div class="campo-tit" style="margin-top:14px;">Punto clave de la ruta</div>
+              <p style="margin:0;">${e.puntoClave}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const caja = document.getElementById("spoiler");
+  document.getElementById("spoiler-btn").addEventListener("click", () => {
+    caja.classList.toggle("abierto");
+    document.getElementById("spoiler-btn").textContent =
+      caja.classList.contains("abierto") ? "Ocultar de nuevo" : "Mostrar — solo quien hace de paciente";
+  });
+
+  guia.style.display = "";
+}
+
+/* ============================================================
+   3. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const aviso = document.getElementById("js-warning-fallback");
+  if (aviso) aviso.style.display = "none";
+
+  try {
+    const sel = document.getElementById("f-estacion");
+    sel.addEventListener("change", () => renderFicha(sel.value));
+
+    // Permite repartir un enlace directo por estación: ...pap-estaciones.html#3
+    const desdeEnlace = (location.hash || "").replace("#", "");
+    if (["1","2","3","4","5"].indexOf(desdeEnlace) > -1) {
+      sel.value = desdeEnlace;
+      renderFicha(desdeEnlace);
+    }
+  } catch (err) {
+    if (aviso) { aviso.style.display = ""; aviso.textContent = "Error al iniciar: " + err.message; }
+  }
+});
+</script>
+</body>
+</html>
