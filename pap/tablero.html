@@ -198,9 +198,14 @@ function pedirResumen(grupo){
       delete window[nombre];
       if (script.parentNode) script.parentNode.removeChild(script);
     };
+    // El identificador del receptor va en el mensaje de error: el fallo típico
+    // es que la página quedó cacheada apuntando a un despliegue anterior, y sin
+    // ver cuál intentó no hay forma de darse cuenta.
+    const cual = ENVIO.url.replace(/.*macros\/s\/(.{0,12}).*/, "$1");
+
     const temporizador = setTimeout(() => {
       limpiar();
-      rechazar(new Error("El receptor no respondió a tiempo."));
+      rechazar(new Error("el receptor " + cual + "… no respondió a tiempo"));
     }, 15000);
 
     window[nombre] = (datos) => {
@@ -212,7 +217,8 @@ function pedirResumen(grupo){
     script.onerror = () => {
       clearTimeout(temporizador);
       limpiar();
-      rechazar(new Error("No se pudo contactar al receptor."));
+      rechazar(new Error("no respondió el receptor " + cual + "… — si esa no es " +
+        "la implementación vigente, recargá con Ctrl+F5"));
     };
 
     script.src = ENVIO.url + "?tablero=1&callback=" + nombre +
@@ -339,7 +345,17 @@ async function actualizar(){
     if (!/^https?:\/\//.test(ENVIO.url)) {
       throw new Error("falta configurar la URL del receptor del simulacro");
     }
-    const datos = await pedirResumen(document.getElementById("f-grupo").value);
+    const grupo = document.getElementById("f-grupo").value;
+    // Un reintento antes de dar el error por bueno: durante la actividad el
+    // tablero está proyectado y un tropiezo puntual de red no debería mostrarse
+    // en pantalla delante del curso.
+    let datos;
+    try {
+      datos = await pedirResumen(grupo);
+    } catch (primero) {
+      await new Promise(r => setTimeout(r, 2000));
+      datos = await pedirResumen(grupo);
+    }
     if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
     pintarCifras(datos);
     pintarTabla(datos);
