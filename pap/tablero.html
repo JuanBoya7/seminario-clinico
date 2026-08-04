@@ -373,14 +373,15 @@ async function actualizar(){
     // eso no se puede averiguar desde acá. Al final, un reintento de la primera:
     // durante la actividad el tablero está proyectado y un tropiezo puntual de
     // red no debería mostrarse en pantalla delante del curso.
+    const posibles = direcciones();
     let datos, ultimoFallo;
-    for (const direccion of direcciones()) {
+    for (const direccion of posibles) {
       try { datos = await pedirResumen(grupo, direccion); ultimoFallo = null; break; }
       catch (fallo) { ultimoFallo = fallo; }
     }
     if (ultimoFallo) {
       await new Promise(r => setTimeout(r, 2000));
-      datos = await pedirResumen(grupo);
+      datos = await pedirResumen(grupo, posibles[posibles.length - 1]);
     }
     if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
     pintarCifras(datos);
