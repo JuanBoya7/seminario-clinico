@@ -166,7 +166,9 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
    1. CONFIGURACIÓN
    ============================================================ */
 const ENVIO = {
-  url: "https://script.google.com/macros/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec"
+  // Misma URL que la hoja del observador: la del proyecto de Apps Script DEL
+  // SIMULACRO, distinto del de los análisis de caso.
+  url: "PENDIENTE"
 };
 
 const ESTACIONES = {
@@ -334,6 +336,9 @@ async function actualizar(){
   estado.textContent = "actualizando…";
 
   try {
+    if (!/^https?:\/\//.test(ENVIO.url)) {
+      throw new Error("falta configurar la URL del receptor del simulacro");
+    }
     const datos = await pedirResumen(document.getElementById("f-grupo").value);
     if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
     pintarCifras(datos);
