@@ -334,6 +334,29 @@ function pintarDestacadas(datos){
    ============================================================ */
 let cargando = false;
 
+// El caso file:// merece explicación, no un error genérico: quien abre el
+// tablero por doble clic no tiene forma de deducir que el problema es ese.
+function avisoDeArchivoLocal(){
+  const estado = document.getElementById("estado");
+  estado.textContent = "el tablero está abierto desde la carpeta";
+  estado.classList.add("error");
+
+  document.getElementById("cifras").innerHTML = "";
+  document.getElementById("cabeza").innerHTML = "";
+  document.getElementById("cuerpo").innerHTML = `
+    <tr><td>
+      <strong>Abrilo desde su dirección web.</strong><br>
+      Este tablero lee las observaciones de una hoja en línea, y esa consulta no
+      sale cuando la página se abre como archivo del computador. La copia de la
+      carpeta es el código, no la herramienta.
+      <br><br>
+      <a href="https://juanboya7.github.io/seminario-clinico/pap/tablero.html"
+         style="color:var(--accent); font-weight:600;">Abrir el tablero publicado</a>
+    </td></tr>`;
+  document.getElementById("errores").innerHTML = "";
+  document.getElementById("destacadas").innerHTML = "";
+}
+
 async function actualizar(){
   if (cargando) return;
   cargando = true;
@@ -344,6 +367,14 @@ async function actualizar(){
   try {
     if (!/^https?:\/\//.test(ENVIO.url)) {
       throw new Error("falta configurar la URL del receptor del simulacro");
+    }
+    // Abierto por doble clic desde la carpeta, la página corre en file:// y la
+    // petición al receptor no sale. No es un fallo a diagnosticar cada vez: el
+    // tablero lee de una hoja en línea, así que la copia local nunca es la
+    // herramienta correcta. Se avisa con un mensaje propio y se corta acá.
+    if (location.protocol === "file:") {
+      avisoDeArchivoLocal();
+      return;
     }
     const grupo = document.getElementById("f-grupo").value;
     // Un reintento antes de dar el error por bueno: durante la actividad el
