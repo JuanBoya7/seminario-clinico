@@ -805,6 +805,12 @@ function listHasContent(listKey){
 function initSimpleFields(){
   // inputs de texto y textareas identificados por id
   document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
+    // Un desplegable con una sola opción ya viene elegido de fábrica y nunca
+    // dispara "change": sin esto su valor no entra al estado, y el envío viaja
+    // con el grupo del curso vacío aunque en pantalla se vea seleccionado.
+    // No pisa nada al reabrir un archivo guardado: solo siembra lo que falta.
+    if (!state.text[el.id] && el.value) state.text[el.id] = el.value;
+
     el.addEventListener("input", () => {
       state.text[el.id] = el.value;
       updateProgress();
