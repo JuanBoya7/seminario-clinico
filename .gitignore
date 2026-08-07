@@ -1,4 +1,5 @@
-# Solo se publican las actividades HTML. Todo lo demas se queda en el computador.
+# Se publican las actividades HTML. Del resto, solo queda fuera lo que pesa de
+# mas, lo que es material de preparacion, o lo que lleva nombres de estudiantes.
 
 # Videos de los casos: pesan de mas para GitHub y no son de distribucion abierta
 *.mp4
@@ -8,8 +9,12 @@
 # Transcripciones: material de preparacion del docente
 Transcripciones/
 
-# Backend de entregas: no aporta nada al estudiante
-Envio a Sheets/
+# "Envio a Sheets/" estuvo aca hasta el 2026-08-07, con el argumento de que el
+# backend no le aporta nada al estudiante. Sigue sin aportarle, pero el costo de
+# no versionarlo aparecio al sumar la UDES: el receptor desplegado se habia ido
+# quedando atras del archivo local y no habia historial para saber cual valia.
+# No hay credenciales ahi dentro, y la URL del receptor ya viaja visible en los
+# HTML publicados, asi que versionarlo no expone nada nuevo.
 
 # Entregas de los grupos, si alguna queda en la carpeta por error.
 # Llevan nombres de estudiantes: nunca deben terminar en un repositorio publico.
