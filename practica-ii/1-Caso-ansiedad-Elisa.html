@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso Elisa — Evaluación diagnóstica</title>
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --none:#8a97a0;
+  --none-soft:#eef1f2;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-soft);}
+
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.app-shell{
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  min-height:100vh;
+}
+@media (max-width:900px){
+  .app-shell{grid-template-columns:1fr;}
+}
+
+/* ---- Sidebar / nav ---- */
+.sidebar{
+  border-right:1px solid var(--border);
+  padding:28px 20px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  background:var(--surface);
+}
+@media (max-width:900px){
+  .sidebar{
+    position:relative;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding:18px 16px;
+  }
+}
+.sidebar-brand{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:6px;
+}
+.sidebar-title{
+  font-size:19px;
+  margin-bottom:22px;
+  line-height:1.3;
+}
+.nav-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+@media (max-width:900px){
+  .nav-list{flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:4px;}
+}
+.nav-item{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  white-space:nowrap;
+  transition:background 0.15s ease, color 0.15s ease;
+}
+.nav-item:hover{background:var(--surface-alt); color:var(--ink);}
+.nav-item.is-complete .nav-dot{background:var(--accent); border-color:var(--accent);}
+.nav-dot{
+  width:7px; height:7px; border-radius:50%;
+  border:1.5px solid var(--ink-faint);
+  flex-shrink:0;
+}
+
+/* ---- Progress block (sidebar) ---- */
+.progress-block{margin-top:26px; padding-top:20px; border-top:1px solid var(--border);}
+.progress-label{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:12px; color:var(--ink-soft); margin-bottom:8px;
+}
+.progress-pct{font-family:var(--font-mono); font-size:15px; color:var(--accent-dark); font-weight:600;}
+.progress-track{
+  height:6px; border-radius:99px; background:var(--surface-alt); overflow:hidden;
+}
+.progress-fill{
+  height:100%; background:var(--accent); border-radius:99px;
+  transition:width 0.4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+.autosave-note{font-size:11.5px; color:var(--ink-faint); margin-top:10px;}
+
+/* ---- Main content ---- */
+.main{padding:36px clamp(20px,4vw,64px) 100px; max-width:880px;}
+.masthead{margin-bottom:34px;}
+.masthead-eyebrow{
+  font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;
+}
+.masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); font-size:15px; max-width:60ch;}
+
+section.block{margin-bottom:40px; scroll-margin-top:24px;}
+.block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+.block-heading h2{font-size:20px;}
+.block-index{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint);}
+.block-sub{color:var(--ink-soft); font-size:14px; margin-bottom:18px; max-width:64ch;}
+
+/* ---- Card ---- */
+.card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow-card);
+}
+.card + .card{margin-top:0;}
+.card-label{
+  font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px;
+  display:flex; align-items:center; gap:6px;
+}
+.required-mark{color:var(--severe); font-size:13px;}
+.card-help{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
+
+/* ---- Inputs ---- */
+input[type="text"], textarea, select{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:14.5px;
+  color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:11px 13px;
+  transition:border-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* Campo con prefijo fijo: la palabra "Grupo" es parte del disenio, no la
+   escribe el estudiante. Evita que cada grupo invente su propio formato. */
+.input-prefixed{display:flex; align-items:stretch;}
+.input-prefix{
+  display:flex; align-items:center; white-space:nowrap;
+  padding:0 14px; font-size:14.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft);
+  border:1px solid var(--border); border-right:none;
+  border-radius:8px 0 0 8px;
+}
+.input-prefixed input[type="text"]{border-radius:0 8px 8px 0; flex:1 1 auto; min-width:0;}
+
+input[type="text"]:focus, textarea:focus, select:focus{
+  outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+  background:var(--bg);
+}
+textarea{resize:vertical; min-height:76px; line-height:1.5;}
+textarea.evidence-box{min-height:56px; font-size:13.5px;}
+select{cursor:pointer; appearance:none; -webkit-appearance:none;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%237d8c91"/></svg>');
+  background-repeat:no-repeat; background-position:right 14px center; padding-right:34px;
+}
+select.select-lg{font-size:15.5px; font-weight:600; padding:13px 34px 13px 15px; background-color:var(--bg);}
+
+/* ---- Radio / checkbox groups ---- */
+.option-list{display:flex; flex-direction:column; gap:8px;}
+.option-row{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 12px; border:1px solid var(--border); border-radius:8px;
+  cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease;
+  font-size:14px;
+}
+.option-row:hover{border-color:var(--accent); background:var(--accent-soft);}
+.option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
+.option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
+
+/* ---- Checklist diagnóstico (impulsado por el desplegable) ---- */
+.diagnosis-select-card{margin-bottom:20px;}
+.diagnosis-card{
+  border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:20px; overflow:hidden; box-shadow:var(--shadow-card);
+}
+.diagnosis-header{padding:18px 22px; background:var(--surface); display:flex; flex-direction:column; gap:6px;}
+.diagnosis-header-top{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+.diagnosis-header h3{font-size:17px;}
+.diagnosis-code{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-top:2px;}
+.diagnosis-blurb{font-size:13.5px; color:var(--ink-soft);}
+
+.diagnosis-body-inner{padding:20px 22px 22px;}
+.diagnosis-placeholder{
+  padding:30px 24px; text-align:center; color:var(--ink-faint); font-size:14px;
+  border:1px dashed var(--border); border-radius:var(--radius); background:var(--surface);
+}
+
+/* ---- Alerta de cumplimiento diagnóstico (se recalcula en vivo) ---- */
+.criteria-alert{
+  margin-bottom:18px; padding:13px 16px; border-radius:8px;
+  border:1px solid var(--border); background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;
+}
+.criteria-alert .alert-dot{width:9px; height:9px; border-radius:50%; background:var(--ink-faint); flex-shrink:0;}
+.criteria-alert strong{color:var(--ink);}
+.criteria-alert.is-met{background:var(--mild-soft); border-color:var(--mild);}
+.criteria-alert.is-met .alert-dot{background:var(--mild);}
+.criteria-alert.is-met strong{color:var(--mild);}
+
+.criterion{
+  border-top:1px solid var(--border); padding:16px 0;
+}
+.criterion:first-child{border-top:none; padding-top:6px;}
+.criterion-main{display:flex; gap:12px; align-items:flex-start;}
+.criterion-main input{margin-top:3px; width:20px; height:20px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.criterion-num{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); flex-shrink:0; margin-top:2px;}
+.criterion-text{font-size:14px; color:var(--ink); cursor:pointer;}
+.criterion-evidence{margin-top:10px; margin-left:29px; display:none;}
+.criterion.is-checked .criterion-evidence{display:block;}
+.criterion-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+/* ---- Bloque "pool": un mínimo de N ítems dentro de un mismo criterio ---- */
+.pool-block{border-top:1px solid var(--border); padding:16px 0;}
+.pool-block:first-child{border-top:none; padding-top:6px;}
+.pool-heading{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.pool-heading-text{font-size:14px; color:var(--ink); flex:1; min-width:200px;}
+.pool-counter{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+.pool-items{display:flex; flex-direction:column; gap:2px; margin-left:29px;}
+.pool-item{display:flex; align-items:flex-start; gap:10px; padding:6px 0; font-size:13.5px; color:var(--ink); cursor:pointer;}
+.pool-item input{margin-top:3px; width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.pool-evidence{margin-top:10px; margin-left:29px;}
+.pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+/* ---- Lista dinámica (integrantes, lista de problemas, etc.) ---- */
+.dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
+.dynamic-list-row input{flex:1;}
+.btn-remove-item{
+  flex-shrink:0; width:40px; height:40px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--ink-faint); font-size:18px; line-height:1;
+  cursor:pointer; transition:all 0.15s ease;
+}
+.btn-remove-item:hover{border-color:var(--severe); color:var(--severe); background:var(--severe-soft);}
+.btn-add-item{
+  margin-top:4px; font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft); border:1px solid transparent;
+  border-radius:8px; padding:9px 16px; cursor:pointer; transition:background 0.15s ease;
+}
+.btn-add-item:hover{background:var(--accent); color:#fff;}
+
+/* ---- Buttons ---- */
+.btn{
+  font-family:var(--font-body); font-size:14.5px; font-weight:600;
+  padding:13px 26px; border-radius:9px; border:1px solid transparent;
+  cursor:pointer; transition:transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-primary:active{transform:scale(0.98);}
+.btn-secondary{background:#fff; color:var(--accent); border-color:var(--accent);}
+.btn-secondary:hover{background:var(--accent-soft);}
+.btn-secondary:active{transform:scale(0.98);}
+.btn:disabled{opacity:0.5; cursor:not-allowed;}
+.save-actions{display:flex; gap:10px; flex-wrap:wrap;}
+
+.save-bar{
+  position:sticky; bottom:0; left:0; right:0;
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(6px);
+  border-top:1px solid var(--border);
+  padding:16px clamp(20px,4vw,64px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.save-status{font-size:12.5px; color:var(--ink-faint); flex:1 1 200px; min-width:0;}
+.save-status.ok{color:var(--mild);}
+.save-status.warn{color:var(--severe);}
+
+/* En pantallas angostas la barra deja de flotar. Fija ocupaba casi media
+   pantalla del celular mientras el grupo escribia, y ahi no sirve para nada:
+   se usa al final. Pasa al cierre del documento, despues del ultimo bloque. */
+@media (max-width:900px){
+  .save-bar{
+    position:static;
+    margin:0;
+    padding:20px 16px 30px;
+    background:var(--surface);
+    backdrop-filter:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea.
+     El flex:0 0 auto es imprescindible: la regla de escritorio usa
+     flex:1 1 200px, y al apilarse en columna esos 200px dejan de ser ancho y
+     pasan a ser ALTO. Ese era el bulto que se comia media pantalla. */
+  .save-status{order:-1; text-align:center; font-size:12px; flex:0 0 auto;}
+  /* Los dos botones comparten una fila: la mitad de alto que apilados */
+  .save-actions{flex-direction:row; gap:10px;}
+  .save-actions .btn{flex:1 1 0; min-width:0; padding:13px 8px; font-size:13.5px;}
+  /* Ya no hay barra flotante que tapar: se recupera ese espacio al final */
+  .main{padding-bottom:8px;}
+}
+
+/* Muy angosto: los dos rotulos no entran lado a lado */
+@media (max-width:360px){
+  .save-actions{flex-direction:column;}
+}
+
+/* ---- Restriction toast ---- */
+.toast{
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px;
+  font-size:13px; opacity:0; pointer-events:none; transition:all 0.25s ease;
+  z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+
+/* ---- Aviso de JavaScript (visible solo si el script no arranca) ---- */
+.js-warning{
+  background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 18px; border-radius:var(--radius); font-size:14px; margin-bottom:24px;
+  line-height:1.5;
+}
+
+@media print{.sidebar,.save-bar{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     EMBEDDED DATA
+     Al guardar la actividad, este bloque se reescribe con las
+     respuestas del estudiante para que el archivo, al reabrirse,
+     se rehidrate automáticamente.
+     ============================================================ -->
+<script id="saved-data" type="application/json">{}</script>
+
+<div class="app-shell">
+
+  <!-- ============================================================
+       SIDEBAR / NAVEGACIÓN
+       ============================================================ -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">PRÁCTICA II - CLÍNICA</div>
+    <div class="sidebar-title">Caso Elisa<br>Evaluación diagnóstica</div>
+
+    <ul class="nav-list" id="nav-list">
+      <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Primeras impresiones</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Checklist diagnóstico</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Comprensión del caso</a></li>
+    </ul>
+
+    <div class="progress-block">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span class="progress-pct" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="autosave-note" id="autosave-note">Guardado automático activo</div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       CONTENIDO PRINCIPAL
+       ============================================================ -->
+  <main class="main">
+
+    <!-- Aviso si el archivo se abre en un visor que NO ejecuta JavaScript.
+         Se oculta automáticamente en cuanto el script arranca. -->
+    <noscript>
+      <div class="js-warning">
+        Este recurso necesita JavaScript para funcionar. Ábrelo en un navegador
+        (Chrome, Edge, Firefox o Safari), no dentro de un visor de archivos ni de la
+        vista previa de una app de mensajería.
+      </div>
+    </noscript>
+    <div class="js-warning" id="js-warning-fallback">
+      Si ves este mensaje, el recurso no se está ejecutando. Ábrelo en un navegador real
+      (Chrome, Edge, Firefox o Safari) — no dentro de un visor de archivos ni de la vista
+      previa de una app de mensajería.
+    </div>
+
+    <header class="masthead">
+      <div class="masthead-eyebrow">Trastornos de ansiedad · DSM-5</div>
+      <h1>Caso Elisa — Evaluación diagnóstica</h1>
+      <p>
+        Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
+        Al presionar "Guardar actividad" desde el celular, puede abrirse el cuadro para compartir o
+        guardar el archivo — elijan "Guardar en Archivos" (iPhone) o la carpeta de Descargas (Android).
+        Al terminar, presionen además "Enviar al docente": se abrirá una pestaña confirmando que las
+        respuestas llegaron.
+      </p>
+    </header>
+
+    <!-- ============ BLOQUE 0 — DATOS DEL GRUPO ============ -->
+    <section class="block" id="bloque-0">
+      <div class="block-heading"><h2>Datos del grupo</h2></div>
+      <div class="card">
+        <div class="card-label">Grupo del curso <span class="required-mark">*</span></div>
+        <div class="card-help">Viene fijo: este recurso es de Práctica II - Clínica.</div>
+        <select id="ct-curso" data-required="true">
+          <option value="Práctica II">Práctica II</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="card-label">Grupo de trabajo <span class="required-mark">*</span></div>
+        <div class="card-help">Escriban únicamente el número.</div>
+        <div class="input-prefixed">
+          <span class="input-prefix">Grupo</span>
+          <input type="text" id="f-grupo" data-required="true" inputmode="numeric"
+                 maxlength="3" placeholder="4">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Integrantes <span class="required-mark">*</span></div>
+        <div class="card-help">Agreguen el nombre de cada integrante del grupo.</div>
+        <div class="dynamic-list" id="list-integrantes"></div>
+        <button type="button" class="btn-add-item" id="btn-add-integrante">+ Agregar integrante</button>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 1 — PRIMERAS IMPRESIONES ============ -->
+    <section class="block" id="bloque-1">
+      <div class="block-heading">
+        <span class="block-index">01</span>
+        <h2>Primeras impresiones</h2>
+      </div>
+      <p class="block-sub">
+        Antes de aplicar el checklist diagnóstico, registren su primera lectura del caso tal como se
+        presenta en los primeros minutos de la sesión de evaluación: motivo de consulta, lista de
+        problemas e hipótesis iniciales basadas en impresiones.
+      </p>
+
+      <div class="card">
+        <div class="card-label">¿Cuál es el motivo de consulta de Elisa? <span class="required-mark">*</span></div>
+        <textarea data-required="true" id="f-primeras-motivo" rows="3"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Lista de problemas <span class="required-mark">*</span></div>
+        <div class="card-help">Comiencen a elaborar la lista de problemas que identifican en el caso, uno por casilla.</div>
+        <div class="dynamic-list" id="list-problemas"></div>
+        <button type="button" class="btn-add-item" id="btn-add-problema">+ Agregar problema</button>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Primera hipótesis diagnóstica, basada en impresiones <span class="required-mark">*</span></div>
+        <div class="card-help">
+          Todavía sin aplicar criterios formales: a partir del relato de Elisa y de la primera entrevista
+          de la psicóloga, ¿qué tipo de trastorno de ansiedad les sugiere esta primera impresión, y por qué?
+          Más adelante van a poder contrastar esta hipótesis con el checklist DSM-5.
+        </div>
+        <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Habilidades del terapeuta <span class="required-mark">*</span></div>
+        <div class="card-help">
+          ¿Qué habilidades terapéuticas identifican en el manejo que hace la psicóloga durante esta
+          primera evaluación?
+        </div>
+        <textarea data-required="true" id="f-habilidades-terapeuta" rows="4"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
+    <section class="block" id="bloque-2">
+      <div class="block-heading">
+        <span class="block-index">02</span>
+        <h2>Checklist diagnóstico DSM-5</h2>
+      </div>
+      <p class="block-sub">
+        Usando el menú desplegable, elijan el trastorno de ansiedad que consideren que mejor explica el
+        caso de Elisa. Al seleccionarlo aparecerán sus criterios diagnósticos DSM-5: marcá cada uno que
+        identifiques en el caso y escribí, con tus propias palabras, la evidencia que lo sustenta. Pueden
+        cambiar de diagnóstico para comparar más de uno — sus respuestas se conservan aunque cambien
+        la selección.
+      </p>
+
+      <div class="card diagnosis-select-card">
+        <div class="card-label">Diagnóstico que el grupo va a poner a prueba <span class="required-mark">*</span></div>
+        <div class="card-help">Elegí el trastorno de ansiedad cuyos criterios querés revisar primero.</div>
+        <select id="ct-diagnostico-elegido" class="select-lg" data-required="true">
+          <option value="">— Selecciona un trastorno de ansiedad —</option>
+          <option value="panico">Trastorno de pánico</option>
+          <option value="agorafobia">Agorafobia</option>
+          <option value="fobia-especifica">Fobia específica</option>
+          <option value="ansiedad-social">Trastorno de ansiedad social</option>
+          <option value="ansiedad-separacion">Trastorno de ansiedad por separación</option>
+          <option value="tag">Trastorno de ansiedad generalizada (TAG)</option>
+        </select>
+      </div>
+
+      <div id="diagnosis-checklist"></div>
+    </section>
+
+    <!-- ============ BLOQUE 3 — COMPRENSIÓN DEL CASO ============ -->
+    <section class="block" id="bloque-3">
+      <div class="block-heading">
+        <span class="block-index">03</span>
+        <h2>Comprensión del caso</h2>
+      </div>
+      <p class="block-sub">Expresen abiertamente su opinión sobre el caso.</p>
+
+      <div class="card">
+        <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
+        <div class="card-help">
+          Ahora que ya completaron el checklist diagnóstico, describan las conclusiones y percepciones
+          generales del grupo sobre el caso: qué hallazgos les parecieron más relevantes, qué dudas
+          persisten, y cómo argumentarían el diagnóstico frente al caso, comparándolo con los demás
+          trastornos de ansiedad que descartaron. No se espera responder preguntas puntuales, sino una
+          reflexión integradora del análisis que ya realizaron.
+        </div>
+        <textarea data-required="true" id="f-analisis" rows="8"></textarea>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Barra fija de guardado -->
+<div class="save-bar">
+  <div class="save-status" id="save-status">Los cambios se guardan automáticamente en este navegador.</div>
+  <div class="save-actions">
+    <button class="btn btn-secondary" id="btn-guardar">Guardar actividad</button>
+    <button class="btn btn-primary" id="btn-enviar">Enviar al docente</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Pegar y cortar están deshabilitados: escribí tu respuesta manualmente.</div>
+
+<script>
+/* ============================================================
+   1. DATOS DE CONTENIDO
+   ============================================================ */
+
+// Trastornos de ansiedad disponibles en el desplegable, con sus criterios
+// diagnósticos DSM-5 (fuente: Morrison, DSM-5 — Guía para el diagnóstico
+// clínico, cap. 4 "Trastornos de ansiedad"). Cada criterio corresponde a
+// una letra del criterio original (A, B, C...). Algunos criterios del DSM-5
+// exigen un mínimo de síntomas o situaciones dentro de una misma letra
+// (p. ej. "3 de los siguientes 6 síntomas" en el TAG): esos se modelan
+// como bloque "pool" — un grupo de ítems marcables con un umbral mínimo
+// (pools[clave].min) — en vez de como un único criterio de texto largo,
+// para poder calcular si el trastorno queda o no diagnósticamente cumplido.
+const ANXIETY_DISORDERS = [
+  {
+    key: "panico",
+    label: "Trastorno de pánico",
+    code: "F41.0 [300.01]",
+    blurb: "Ataques de pánico repetidos e inesperados, con miedo persistente a que se repitan.",
+    pools: { sintomas: { min: 4, heading: "Durante el ataque están presentes 4 (o más) de los siguientes 13 síntomas:" } },
+    criteria: [
+      { pool: "sintomas", text: "Palpitaciones, sacudidas del corazón o aceleración de la frecuencia cardíaca." },
+      { pool: "sintomas", text: "Sudoración." },
+      { pool: "sintomas", text: "Temblor o sacudidas." },
+      { pool: "sintomas", text: "Sensación de dificultad para respirar o de asfixia." },
+      { pool: "sintomas", text: "Sensación de ahogo." },
+      { pool: "sintomas", text: "Dolor o malestar en el pecho." },
+      { pool: "sintomas", text: "Náuseas o malestar abdominal." },
+      { pool: "sintomas", text: "Sensación de mareo, inestabilidad, aturdimiento o desmayo." },
+      { pool: "sintomas", text: "Escalofríos o sensación de calor." },
+      { pool: "sintomas", text: "Parestesias (sensación de entumecimiento o de hormigueo)." },
+      { pool: "sintomas", text: "Desrealización (sensación de irrealidad) o despersonalización (separarse de uno mismo)." },
+      { pool: "sintomas", text: "Miedo a perder el control o a \"volverse loco\"." },
+      { pool: "sintomas", text: "Miedo a morir." },
+      { text: "Al menos uno de los ataques ha ido seguido durante un mes (o más) de inquietud o preocupación persistente por sufrir nuevos ataques o por sus consecuencias, y/o de un cambio significativo en la conducta relacionado con los ataques (por ejemplo, evitar actividades no familiares)." },
+      { text: "La alteración no se puede atribuir a los efectos fisiológicos de una sustancia (intoxicación, abstinencia) ni a otra afección médica." },
+      { text: "La alteración no se explica mejor por otro trastorno mental: los ataques no aparecen únicamente como respuesta a situaciones sociales temidas (ansiedad social), a objetos o situaciones fóbicas circunscritos (fobia específica), a obsesiones (TOC), al recuerdo de sucesos traumáticos (TEPT) o a la separación de figuras de apego (ansiedad por separación)." }
+    ]
+  },
+  {
+    key: "agorafobia",
+    label: "Agorafobia",
+    code: "F40.00 [300.22]",
+    blurb: "Temor a situaciones de las que sería difícil escapar o donde no habría ayuda disponible.",
+    pools: { situaciones: { min: 2, heading: "Miedo o ansiedad intensos ante 2 (o más) de las siguientes 5 situaciones:" } },
+    criteria: [
+      { pool: "situaciones", text: "Usar el transporte público (autobuses, trenes, aviones)." },
+      { pool: "situaciones", text: "Estar en espacios abiertos (parques, puentes, estacionamientos)." },
+      { pool: "situaciones", text: "Estar en sitios cerrados (tiendas, cines, teatros)." },
+      { pool: "situaciones", text: "Hacer fila o estar en medio de una multitud." },
+      { pool: "situaciones", text: "Salir de casa solo." },
+      { text: "Teme o evita estas situaciones porque piensa que escapar podría ser difícil, o que no podría disponer de ayuda si aparecen síntomas de pánico u otros síntomas incapacitantes o embarazosos." },
+      { text: "Las situaciones agorafóbicas casi siempre provocan miedo o ansiedad." },
+      { text: "Las situaciones agorafóbicas se evitan de forma activa, requieren la presencia de un acompañante o se resisten con miedo o ansiedad intensos." },
+      { text: "El miedo o la ansiedad son desproporcionados en relación con el peligro real que plantea la situación." },
+      { text: "El miedo, la ansiedad o la evitación son persistentes, y duran típicamente 6 o más meses." },
+      { text: "El malestar es clínicamente significativo o causa deterioro social, laboral u otras áreas importantes del funcionamiento, y no se explica mejor por los síntomas de otro trastorno mental ni por el consumo de una sustancia u otra afección médica." }
+    ]
+  },
+  {
+    key: "fobia-especifica",
+    label: "Fobia específica",
+    code: "F40.2xx [300.29]",
+    blurb: "Temor injustificado y desproporcionado ante un objeto o una situación concretos.",
+    pools: {},
+    criteria: [
+      { text: "Miedo o ansiedad intensos por un objeto o una situación específicos (por ejemplo, volar, alturas, animales, ver sangre, recibir una inyección, espacios cerrados)." },
+      { text: "El objeto o la situación fóbica casi siempre provocan miedo o ansiedad inmediatos." },
+      { text: "El objeto o la situación fóbica se evitan de forma activa o se resisten con miedo o ansiedad intensos." },
+      { text: "El miedo o la ansiedad son desproporcionados en relación con el peligro real que plantea el objeto o la situación específicos." },
+      { text: "El miedo, la ansiedad o la evitación son persistentes, y duran típicamente 6 o más meses." },
+      { text: "El malestar es clínicamente significativo o causa deterioro social, laboral u otras áreas importantes del funcionamiento." },
+      { text: "La alteración no se explica mejor por los síntomas de otro trastorno mental (agorafobia, ansiedad social, ansiedad por separación, TOC, TEPT)." }
+    ]
+  },
+  {
+    key: "ansiedad-social",
+    label: "Trastorno de ansiedad social",
+    code: "F40.10 [300.23]",
+    blurb: "Miedo a parecer torpe, tonto o avergonzado frente a otras personas.",
+    pools: {},
+    criteria: [
+      { text: "Miedo o ansiedad intensos en una o más situaciones sociales en las que el individuo está expuesto al posible examen por parte de otras personas (mantener una conversación, comer o beber en público, hablar o actuar frente a otros)." },
+      { text: "Le preocupa actuar de cierta manera o mostrar síntomas de ansiedad que se valoren negativamente (que se traduzcan en humillación, vergüenza, rechazo, o que ofendan a otros)." },
+      { text: "Las situaciones sociales casi siempre provocan miedo o ansiedad." },
+      { text: "Las situaciones sociales se evitan o se resisten con miedo o ansiedad intensos." },
+      { text: "El miedo o la ansiedad son desproporcionados en relación con la amenaza real que supone la situación social." },
+      { text: "El miedo, la ansiedad o la evitación son persistentes, y duran típicamente 6 o más meses." },
+      { text: "El malestar es clínicamente significativo o causa deterioro social, laboral u otras áreas importantes del funcionamiento, y no se explica mejor por el consumo de una sustancia, otra afección médica u otro trastorno mental." }
+    ]
+  },
+  {
+    key: "ansiedad-separacion",
+    label: "Trastorno de ansiedad por separación",
+    code: "F93.0 [309.21]",
+    blurb: "Miedo excesivo a que algo malo le ocurra a una figura de apego, o a separarse de ella.",
+    pools: { sintomas: { min: 3, heading: "Se cumplen 3 (o más) de los siguientes 8 síntomas:" } },
+    criteria: [
+      { pool: "sintomas", text: "Malestar excesivo y recurrente cuando prevé o vive la separación del hogar o de las figuras de mayor apego." },
+      { pool: "sintomas", text: "Preocupación excesiva y persistente por la posible pérdida de las figuras de mayor apego, o de que puedan sufrir algún daño (enfermedad, accidente, desastre o muerte)." },
+      { pool: "sintomas", text: "Preocupación excesiva y persistente por la posibilidad de que un acontecimiento adverso (perderse, ser secuestrado, tener un accidente, enfermar) lo separe de una figura de mayor apego." },
+      { pool: "sintomas", text: "Resistencia o rechazo persistente a salir, alejarse de casa, ir al trabajo, a la universidad o a cualquier otro lugar, por miedo a la separación." },
+      { pool: "sintomas", text: "Miedo excesivo y persistente a estar solo, o sin las figuras de mayor apego, en casa o en otros lugares." },
+      { pool: "sintomas", text: "Resistencia o rechazo persistente a dormir fuera de casa o a dormir sin tener cerca a una figura de mayor apego." },
+      { pool: "sintomas", text: "Pesadillas repetidas relacionadas con el tema de la separación." },
+      { pool: "sintomas", text: "Quejas repetidas de síntomas físicos (dolores de cabeza, de estómago, náuseas, vómitos) cuando ocurre o se anticipa la separación de las figuras de mayor apego." },
+      { text: "El miedo, la ansiedad o la evitación son persistentes (típicamente 6 meses o más en adultos) y causan malestar clínicamente significativo o deterioro funcional; no se explican mejor por otro trastorno mental." }
+    ]
+  },
+  {
+    key: "tag",
+    label: "Trastorno de ansiedad generalizada (TAG)",
+    code: "F41.1 [300.02]",
+    blurb: "Preocupación crónica, difusa y difícil de controlar, sin ataques de pánico.",
+    pools: { sintomas: { min: 3, heading: "Se cumplen 3 (o más) de los siguientes 6 síntomas:" } },
+    criteria: [
+      { text: "Ansiedad y preocupación excesivas, presentes más días que ausentes durante al menos 6 meses, en relación con diversos temas o actividades (trabajo, estudios, salud, familia, dinero, rendimiento)." },
+      { text: "Al individuo le resulta difícil controlar la preocupación." },
+      { pool: "sintomas", text: "Inquietud o sensación de estar al límite." },
+      { pool: "sintomas", text: "Fatiga fácil." },
+      { pool: "sintomas", text: "Dificultad para concentrarse o quedarse con la mente en blanco." },
+      { pool: "sintomas", text: "Irritabilidad." },
+      { pool: "sintomas", text: "Tensión muscular." },
+      { pool: "sintomas", text: "Alteración del sueño." },
+      { text: "La ansiedad, la preocupación o los síntomas físicos causan malestar clínicamente significativo o deterioro del funcionamiento social, laboral u otras áreas importantes." },
+      { text: "La alteración no se puede atribuir a los efectos fisiológicos de una sustancia u otra afección médica." },
+      { text: "La alteración no se explica mejor por otro trastorno mental." }
+    ]
+  }
+];
+
+/* ============================================================
+   2. ESTADO DE LA APLICACIÓN
+   ============================================================ */
+const state = {
+  text: {},      // inputs / textareas / select simples,  { id: valor }
+  radio: {},     // grupos de selección única,   { groupName: valor }
+  checkbox: {},  // grupos de selección múltiple,{ groupName: [valores] }
+  criteria: {},  // checklist DSM-5,             { "panico-0": {checked, evidence}, ... }
+  lists: { integrantes: [], problemas: [] } // listas dinámicas: { id, value }[]
+};
+
+/* ============================================================
+   3. RESTRICCIÓN DE COPIAR / PEGAR / CORTAR
+   ============================================================ */
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg || "Pegar y cortar están deshabilitados: escribí tu respuesta manualmente.";
+  t.classList.add("is-visible");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove("is-visible"), 2400);
+}
+
+function initInputRestrictions(){
+  const block = (e) => { e.preventDefault(); showToast(); };
+  // "copy", el menú contextual (clic derecho) y arrastrar texto hacia afuera quedan habilitados
+  // a propósito: el docente puede copiar respuestas para dar feedback o evaluar cada plantilla.
+  // Solo se bloquean las vías de PEGAR contenido: el evento "paste", soltar (drop) y cortar (cut).
+  ["cut","paste","drop"].forEach(evt => {
+    document.addEventListener(evt, block);
+  });
+  // Bloqueo adicional de atajos de teclado: Ctrl/Cmd + V (pegar) y Ctrl/Cmd + X (cortar)
+  document.addEventListener("keydown", (e) => {
+    const key = e.key.toLowerCase();
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && ["v","x"].includes(key)) {
+      e.preventDefault();
+      showToast();
+    }
+  });
+}
+
+/* ============================================================
+   4. RENDERIZADO — CHECKLIST DIAGNÓSTICO (impulsado por el desplegable)
+   ============================================================ */
+function updateCriterionState(disorderKey, idx, checked, evidence){
+  const k = `${disorderKey}-${idx}`;
+  state.criteria[k] = { checked, evidence };
+}
+
+function isCriterionChecked(disorderKey, idx){
+  const k = `${disorderKey}-${idx}`;
+  return !!(state.criteria[k] && state.criteria[k].checked);
+}
+
+// Agrupa los criterios "planos" del trastorno en bloques con letra propia
+// (A, B, C...): un criterio individual es su propio bloque "required";
+// varios criterios que comparten la misma clave de pool se agrupan en un
+// único bloque "pool" con umbral mínimo (igual que el DSM-5 los presenta
+// bajo una sola letra, p. ej. el criterio A del pánico o la C del TAG).
+function buildDiagnosisBlocks(disorder){
+  const blocks = [];
+  const poolBlockIndex = {};
+  disorder.criteria.forEach((crit, idx) => {
+    if (crit.pool) {
+      if (!(crit.pool in poolBlockIndex)) {
+        poolBlockIndex[crit.pool] = blocks.length;
+        blocks.push({ type: "pool", poolKey: crit.pool, items: [] });
+      }
+      blocks[poolBlockIndex[crit.pool]].items.push({ text: crit.text, idx });
+    } else {
+      blocks.push({ type: "required", text: crit.text, idx });
+    }
+  });
+  return blocks;
+}
+
+function computeDisorderStatus(disorder, blocks){
+  let met = 0;
+  blocks.forEach(block => {
+    if (block.type === "required") {
+      if (isCriterionChecked(disorder.key, block.idx)) met++;
+    } else {
+      const min = disorder.pools[block.poolKey].min;
+      const count = block.items.filter(it => isCriterionChecked(disorder.key, it.idx)).length;
+      if (count >= min) met++;
+    }
+  });
+  return { met, total: blocks.length, isMet: blocks.length > 0 && met === blocks.length };
+}
+
+// Actualiza, en vivo, el contador de cada bloque tipo "pool" y la alerta
+// general de "criterios cumplidos" a medida que el grupo va marcando.
+function updateDiagnosisStatus(disorderKey){
+  const disorder = ANXIETY_DISORDERS.find(d => d.key === disorderKey);
+  if (!disorder) return;
+  const blocks = buildDiagnosisBlocks(disorder);
+
+  blocks.forEach(block => {
+    if (block.type !== "pool") return;
+    const min = disorder.pools[block.poolKey].min;
+    const count = block.items.filter(it => isCriterionChecked(disorderKey, it.idx)).length;
+    const counterEl = document.getElementById(`poolcounter-${disorderKey}-${block.poolKey}`);
+    if (counterEl) counterEl.textContent = `${count} / ${block.items.length} (mínimo ${min})`;
+  });
+
+  const { met, total, isMet } = computeDisorderStatus(disorder, blocks);
+  const alertEl = document.getElementById(`alert-${disorderKey}`);
+  if (alertEl) {
+    alertEl.classList.toggle("is-met", isMet);
+    alertEl.innerHTML = isMet
+      ? `<span class="alert-dot"></span><span>Con lo marcado hasta ahora, <strong>se cumplen los ${total} criterios diagnósticos</strong> de este trastorno.</span>`
+      : `<span class="alert-dot"></span><span><strong>${met} / ${total}</strong> criterios diagnósticos cumplidos por ahora — todavía faltan requisitos por marcar.</span>`;
+  }
+}
+
+function renderDiagnosisChecklist(selectedKey){
+  const container = document.getElementById("diagnosis-checklist");
+  container.innerHTML = "";
+
+  const disorder = ANXIETY_DISORDERS.find(d => d.key === selectedKey);
+  if (!disorder) {
+    container.innerHTML = `<div class="diagnosis-placeholder">Selecciona un trastorno de ansiedad en el menú de arriba para ver sus criterios diagnósticos.</div>`;
+    return;
+  }
+
+  const card = document.createElement("div");
+  card.className = "diagnosis-card";
+  card.dataset.disorder = disorder.key;
+
+  const header = document.createElement("div");
+  header.className = "diagnosis-header";
+  header.innerHTML = `
+    <div class="diagnosis-header-top">
+      <div>
+        <h3>${disorder.label}</h3>
+        <div class="diagnosis-code">${disorder.code}</div>
+      </div>
+    </div>
+    <div class="diagnosis-blurb">${disorder.blurb}</div>
+  `;
+
+  const inner = document.createElement("div");
+  inner.className = "diagnosis-body-inner";
+
+  const alertBox = document.createElement("div");
+  alertBox.className = "criteria-alert";
+  alertBox.id = `alert-${disorder.key}`;
+  inner.appendChild(alertBox);
+
+  const blocks = buildDiagnosisBlocks(disorder);
+
+  blocks.forEach((block, blockIdx) => {
+    const letter = String.fromCharCode(65 + blockIdx); // A, B, C...
+
+    if (block.type === "required") {
+      const idx = block.idx;
+      const stateKey = `${disorder.key}-${idx}`;
+      const saved = state.criteria[stateKey];
+
+      const row = document.createElement("div");
+      row.className = "criterion";
+      row.dataset.key = stateKey;
+      row.innerHTML = `
+        <div class="criterion-main">
+          <input type="checkbox" id="crit-${stateKey}">
+          <span class="criterion-num">${letter}.</span>
+          <label class="criterion-text" for="crit-${stateKey}">${block.text}</label>
+        </div>
+        <div class="criterion-evidence">
+          <label for="evid-${stateKey}">Evidencia en el caso (escribí con tus palabras)</label>
+          <textarea class="evidence-box" id="evid-${stateKey}" rows="2"></textarea>
+        </div>
+      `;
+      inner.appendChild(row);
+
+      const checkbox = row.querySelector(`#crit-${stateKey}`);
+      const evidenceBox = row.querySelector(`#evid-${stateKey}`);
+
+      if (saved) {
+        checkbox.checked = !!saved.checked;
+        evidenceBox.value = saved.evidence || "";
+        row.classList.toggle("is-checked", !!saved.checked);
+      }
+
+      checkbox.addEventListener("change", () => {
+        row.classList.toggle("is-checked", checkbox.checked);
+        updateCriterionState(disorder.key, idx, checkbox.checked, evidenceBox.value);
+        updateDiagnosisStatus(disorder.key);
+        persistToLocalStorage();
+      });
+      evidenceBox.addEventListener("input", () => {
+        updateCriterionState(disorder.key, idx, checkbox.checked, evidenceBox.value);
+        persistToLocalStorage();
+      });
+
+    } else {
+      // Bloque tipo "pool": un mínimo de N ítems dentro de un mismo criterio.
+      const poolMeta = disorder.pools[block.poolKey];
+      const poolBlock = document.createElement("div");
+      poolBlock.className = "pool-block";
+      poolBlock.innerHTML = `
+        <div class="pool-heading">
+          <span class="criterion-num">${letter}.</span>
+          <span class="pool-heading-text">${poolMeta.heading}</span>
+          <span class="pool-counter" id="poolcounter-${disorder.key}-${block.poolKey}">0 / ${block.items.length} (mínimo ${poolMeta.min})</span>
+        </div>
+        <div class="pool-items"></div>
+        <div class="pool-evidence">
+          <label for="poolevid-${disorder.key}-${block.poolKey}">Evidencia general de los síntomas marcados (opcional)</label>
+          <textarea class="evidence-box" id="poolevid-${disorder.key}-${block.poolKey}" rows="2"></textarea>
+        </div>
+      `;
+      inner.appendChild(poolBlock);
+
+      const itemsContainer = poolBlock.querySelector(".pool-items");
+      block.items.forEach(item => {
+        const stateKey = `${disorder.key}-${item.idx}`;
+        const saved = state.criteria[stateKey];
+
+        const label = document.createElement("label");
+        label.className = "pool-item";
+        label.innerHTML = `<input type="checkbox" id="crit-${stateKey}"><span>${item.text}</span>`;
+        itemsContainer.appendChild(label);
+
+        const checkbox = label.querySelector("input");
+        if (saved) checkbox.checked = !!saved.checked;
+
+        checkbox.addEventListener("change", () => {
+          updateCriterionState(disorder.key, item.idx, checkbox.checked, "");
+          updateDiagnosisStatus(disorder.key);
+          persistToLocalStorage();
+        });
+      });
+
+      const poolEvidId = `poolevid-${disorder.key}-${block.poolKey}`;
+      const poolEvidBox = poolBlock.querySelector(`#${poolEvidId}`);
+      poolEvidBox.value = state.text[poolEvidId] || "";
+      poolEvidBox.addEventListener("input", () => {
+        state.text[poolEvidId] = poolEvidBox.value;
+        persistToLocalStorage();
+      });
+    }
+  });
+
+  card.appendChild(header);
+  card.appendChild(inner);
+  container.appendChild(card);
+
+  updateDiagnosisStatus(disorder.key);
+}
+
+function initDiagnosisSelect(){
+  const select = document.getElementById("ct-diagnostico-elegido");
+  select.addEventListener("change", () => {
+    renderDiagnosisChecklist(select.value);
+  });
+}
+
+/* ============================================================
+   5. LISTA DINÁMICA REUTILIZABLE (integrantes, lista de problemas, etc.)
+   ============================================================ */
+let dynamicListCounter = 0;
+
+// state.lists = { integrantes: [{id, value}], problemas: [{id, value}] }
+
+function createDynamicListRow(listKey, id, value, placeholder, removeTitle){
+  const row = document.createElement("div");
+  row.className = "dynamic-list-row";
+  row.dataset.itemId = id;
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = placeholder;
+  input.value = value || "";
+
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "btn-remove-item";
+  removeBtn.title = removeTitle;
+  removeBtn.textContent = "×";
+
+  input.addEventListener("input", () => {
+    const item = state.lists[listKey].find(i => i.id === id);
+    if (item) item.value = input.value;
+    updateProgress();
+    persistToLocalStorage();
+  });
+
+  removeBtn.addEventListener("click", () => {
+    state.lists[listKey] = state.lists[listKey].filter(i => i.id !== id);
+    row.remove();
+    updateProgress();
+    persistToLocalStorage();
+  });
+
+  row.appendChild(input);
+  row.appendChild(removeBtn);
+  return row;
+}
+
+function addDynamicListItem(listKey, containerId, placeholder, removeTitle, value){
+  dynamicListCounter++;
+  const id = "item" + dynamicListCounter;
+  state.lists[listKey].push({ id, value: value || "" });
+  document.getElementById(containerId).appendChild(
+    createDynamicListRow(listKey, id, value || "", placeholder, removeTitle)
+  );
+  updateProgress();
+  persistToLocalStorage();
+}
+
+function initDynamicList(listKey, containerId, addButtonId, placeholder, removeTitle, minRows){
+  const loaded = (state.lists[listKey] && state.lists[listKey].length > 0) ? state.lists[listKey].slice() : null;
+  state.lists[listKey] = [];
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  if (loaded) {
+    loaded.forEach(item => addDynamicListItem(listKey, containerId, placeholder, removeTitle, item.value));
+  } else {
+    for (let i = 0; i < minRows; i++) addDynamicListItem(listKey, containerId, placeholder, removeTitle, "");
+  }
+
+  document.getElementById(addButtonId).addEventListener("click", () =>
+    addDynamicListItem(listKey, containerId, placeholder, removeTitle, "")
+  );
+}
+
+function listHasContent(listKey){
+  return state.lists[listKey] && state.lists[listKey].some(i => i.value && i.value.trim().length > 0);
+}
+
+/* ============================================================
+   6. CAMPOS SIMPLES (texto, textarea, radio, checkbox, select)
+   ============================================================ */
+function initSimpleFields(){
+  // inputs de texto, textareas y selects identificados por id
+  document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
+    el.addEventListener("input", () => {
+      state.text[el.id] = el.value;
+      updateProgress();
+      persistToLocalStorage();
+    });
+    el.addEventListener("change", () => {
+      state.text[el.id] = el.value;
+      updateProgress();
+      persistToLocalStorage();
+    });
+  });
+
+  // grupos de opción única (radio)
+  document.querySelectorAll('.option-list[data-group]').forEach(group => {
+    const name = group.dataset.group;
+    const isMulti = group.dataset.multi === "true";
+    group.querySelectorAll("input").forEach(input => {
+      input.addEventListener("change", () => {
+        group.querySelectorAll(".option-row").forEach(row => {
+          const inp = row.querySelector("input");
+          row.classList.toggle("is-checked", inp.checked);
+        });
+        if (isMulti) {
+          const values = Array.from(group.querySelectorAll("input:checked")).map(i => i.value);
+          state.checkbox[name] = values;
+        } else {
+          state.radio[name] = input.value;
+        }
+        updateProgress();
+        persistToLocalStorage();
+      });
+    });
+  });
+}
+
+/* ============================================================
+   6-bis. NUMERO DE GRUPO (solo digitos)
+   ============================================================
+   La palabra "Grupo" es parte del disenio del campo, no algo que el estudiante
+   escriba: si cada grupo elige su propio formato ("Grupo 7", "7", "grupo7"),
+   se pierde la trazabilidad en el nombre del archivo y en la hoja de entregas.
+   Este filtro descarta todo lo que no sea un digito.
+   ============================================================ */
+function initGrupoNumerico(){
+  const el = document.getElementById("f-grupo");
+  if (!el) return;
+  // Se registra despues del listener generico de initSimpleFields, asi que el
+  // valor que queda en el estado es siempre el ya filtrado.
+  el.addEventListener("input", () => {
+    const limpio = el.value.replace(/\D/g, "");
+    if (el.value !== limpio) el.value = limpio;
+    state.text["f-grupo"] = limpio;
+    updateProgress();
+    persistToLocalStorage();
+  });
+}
+
+/* ============================================================
+   7. BARRA DE PROGRESO
+   ============================================================ */
+function computeProgress(){
+  let total = 0, filled = 0;
+
+  // Listas dinámicas obligatorias: integrantes del grupo y lista de problemas
+  total++;
+  if (listHasContent("integrantes")) filled++;
+  total++;
+  if (listHasContent("problemas")) filled++;
+
+  // Campos de texto / select obligatorios
+  document.querySelectorAll('[data-required="true"]').forEach(el => {
+    if (el.classList && el.classList.contains("option-list")) {
+      total++;
+      const name = el.dataset.group;
+      const isMulti = el.dataset.multi === "true";
+      if (isMulti) {
+        if (state.checkbox[name] && state.checkbox[name].length > 0) filled++;
+      } else {
+        if (state.radio[name]) filled++;
+      }
+    } else if (el.tagName === "TEXTAREA" || el.tagName === "INPUT" || el.tagName === "SELECT") {
+      total++;
+      if (el.value && el.value.trim().length > 0) filled++;
+    }
+  });
+
+  const pct = total === 0 ? 0 : Math.round((filled / total) * 100);
+  return pct;
+}
+
+function updateProgress(){
+  const pct = computeProgress();
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-pct").textContent = pct + "%";
+
+  // marcar secciones completas en el menú lateral
+  document.querySelectorAll(".block").forEach(section => {
+    const requiredEls = section.querySelectorAll('[data-required="true"]');
+    let done = true;
+    let requiredCount = requiredEls.length;
+    if (section.id === "bloque-0") {
+      requiredCount++;
+      if (!listHasContent("integrantes")) done = false;
+    }
+    if (section.id === "bloque-1") {
+      requiredCount++;
+      if (!listHasContent("problemas")) done = false;
+    }
+    requiredEls.forEach(el => {
+      if (el.classList.contains("option-list")) {
+        const name = el.dataset.group;
+        const isMulti = el.dataset.multi === "true";
+        const ok = isMulti ? (state.checkbox[name] && state.checkbox[name].length > 0) : !!state.radio[name];
+        if (!ok) done = false;
+      } else if (!el.value || !el.value.trim()) {
+        done = false;
+      }
+    });
+    const navItem = document.querySelector(`.nav-item[data-target="${section.id}"]`);
+    if (navItem) navItem.classList.toggle("is-complete", done && requiredCount > 0);
+  });
+}
+
+/* ============================================================
+   8. PERSISTENCIA — localStorage (autoguardado) + JSON incrustado
+   ============================================================ */
+// El autoguardado se vincula a una "sesión" concreta. Un archivo en blanco (saved-data = {})
+// genera una sesión nueva y limpia cada vez que se abre por primera vez, de modo que la
+// plantilla repartida NUNCA hereda respuestas de una sesión anterior en el mismo navegador.
+// Un archivo ya guardado (con datos incrustados) reabre su propia sesión y conserva el respaldo.
+const STORAGE_PREFIX = "caso_elisa_actividad_v1:";
+let SESSION_KEY = null;
+
+function computeSessionKey(embeddedRaw){
+  if (embeddedRaw && embeddedRaw !== "{}") {
+    // Archivo guardado: clave estable derivada del contenido, para reabrir su propio respaldo.
+    let hash = 0;
+    for (let i = 0; i < embeddedRaw.length; i++) {
+      hash = ((hash << 5) - hash + embeddedRaw.charCodeAt(i)) | 0;
+    }
+    return STORAGE_PREFIX + "saved_" + Math.abs(hash);
+  }
+  // Archivo en blanco: sesión nueva por pestaña (no persiste entre reaperturas de la plantilla).
+  try {
+    // Si el grupo ya se identifico en esta pestana, se reusa SU clave. Esto es
+    // lo que hace seguro volver atras despues de enviar: al regresar, la pagina
+    // se ejecuta de nuevo y sin esto arrancaria con una sesion vacia mientras el
+    // navegador repone los textos en pantalla — el grupo veria sus respuestas
+    // pero la actividad estaria vacia por dentro, y un segundo envio saldria
+    // incompleto.
+    const fijada = sessionStorage.getItem(STORAGE_PREFIX + "clave");
+    if (fijada) return fijada;
+
+    let sid = sessionStorage.getItem(STORAGE_PREFIX + "sid");
+    if (!sid) {
+      sid = "s" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+      sessionStorage.setItem(STORAGE_PREFIX + "sid", sid);
+    }
+    return STORAGE_PREFIX + sid;
+  } catch (e) {
+    return STORAGE_PREFIX + "fallback";
+  }
+}
+
+// ---- Identidad del grupo: curso + numero de grupo ----------------------
+// Antes la clave del autoguardado se derivaba de sessionStorage, que muere al
+// cerrar la pestana. Con los recursos repartidos como enlace, eso significaba
+// perder la actividad entera si el grupo cerraba el navegador.
+// Ahora, en cuanto el grupo se identifica (curso + numero), el autoguardado
+// pasa a una clave estable derivada de esos dos datos: el mismo grupo recupera
+// su trabajo al reabrir el enlace, y otro grupo distinto en el mismo
+// computador sigue viendo el formulario limpio, que era el motivo original de
+// no usar una clave fija.
+let ARCHIVO_GUARDADO = false;
+
+function claveDeGrupo(){
+  const curso = (state.text["ct-curso"] || "").trim();
+  const grupo = (state.text["f-grupo"] || "").trim();
+  if (!curso || !grupo) return null;
+  return STORAGE_PREFIX + "g" + curso + "-" + grupo;
+}
+
+// Distingue "el formulario esta vacio" de "ya hay trabajo hecho". El curso y el
+// numero de grupo no cuentan: son la identificacion, no una respuesta.
+function hayRespuestas(datos){
+  if (!datos) return false;
+  const textos = datos.text || {};
+  const escrito = Object.keys(textos).some(k =>
+    k !== "ct-curso" && k !== "f-grupo" && (textos[k] || "").trim().length > 0);
+  if (escrito) return true;
+  const criterios = datos.criteria || {};
+  if (Object.keys(criterios).some(k => criterios[k] && criterios[k].checked)) return true;
+  const listas = datos.lists || {};
+  return Object.keys(listas).some(k =>
+    (listas[k] || []).some(i => (i.value || "").trim().length > 0));
+}
+
+// Se dispara cuando el grupo termina de identificarse (al salir del campo, no
+// en cada tecla: si corriera por tecla, escribir "12" pasaria por el grupo "1"
+// y podria ofrecer la actividad de otro grupo).
+function vincularClaveAlGrupo(){
+  if (ARCHIVO_GUARDADO) return;          // archivo ya entregado: conserva su clave
+  const clave = claveDeGrupo();
+  if (!clave || clave === SESSION_KEY) return;
+
+  let guardado = null;
+  try {
+    const bruto = localStorage.getItem(clave);
+    if (bruto) guardado = JSON.parse(bruto);
+  } catch (e) { guardado = null; }
+
+  if (hayRespuestas(guardado) && !hayRespuestas(state)) {
+    // Se pregunta siempre. Restaurar en silencio seria peor: si el numero se
+    // tecleo mal, el grupo veria respuestas ajenas sin entender de donde salen.
+    const seguir = window.confirm(
+      "Encontramos una actividad guardada en este navegador para el grupo " +
+      state.text["f-grupo"] + " del " + state.text["ct-curso"] + ".\n\n" +
+      "Aceptar: continuar esa actividad.\n" +
+      "Cancelar: empezar de cero (se reemplaza lo anterior).");
+    if (seguir) {
+      try {
+        // Se fija la clave del grupo y se recarga: la rehidratacion usa el
+        // camino de siempre y no hay que repintar a mano los checklists de
+        // cada caso.
+        sessionStorage.setItem(STORAGE_PREFIX + "clave", clave);
+        sessionStorage.setItem(STORAGE_PREFIX + "recuperado", "1");
+        location.reload();
+        return;
+      } catch (e) { /* si falla, se sigue de largo sin recuperar */ }
+    }
+  }
+
+  const anterior = SESSION_KEY;
+  SESSION_KEY = clave;
+  try { sessionStorage.setItem(STORAGE_PREFIX + "clave", clave); } catch (e) {}
+  persistToLocalStorage();
+
+  // La clave temporal de sesion ya no sirve: su contenido acaba de quedar bajo
+  // la clave del grupo. Sin esto se acumula una por cada apertura del enlace y,
+  // en un computador compartido, con el tiempo se llena el almacenamiento del
+  // navegador y el autoguardado deja de funcionar.
+  try {
+    const esTemporal = anterior && anterior !== clave &&
+      anterior.indexOf(STORAGE_PREFIX + "saved_") !== 0 &&
+      anterior.indexOf(STORAGE_PREFIX + "g") !== 0;
+    if (esTemporal) localStorage.removeItem(anterior);
+  } catch (e) { /* si el navegador lo impide, solo queda una clave de mas */ }
+}
+
+function initClavePorGrupo(){
+  const curso = document.getElementById("ct-curso");
+  const grupo = document.getElementById("f-grupo");
+  if (curso) curso.addEventListener("change", vincularClaveAlGrupo);
+  if (grupo) grupo.addEventListener("change", vincularClaveAlGrupo);  // al salir del campo
+  if (grupo) grupo.addEventListener("blur", vincularClaveAlGrupo);
+  // Si ya venian cargados (recarga tras recuperar), se vincula de entrada.
+  vincularClaveAlGrupo();
+}
+
+function avisarSiSeRecupero(){
+  try {
+    if (sessionStorage.getItem(STORAGE_PREFIX + "recuperado") !== "1") return;
+    sessionStorage.removeItem(STORAGE_PREFIX + "recuperado");
+    const status = document.getElementById("save-status");
+    status.textContent = "Se recuperó la actividad guardada de este grupo.";
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  } catch (e) { /* sin sessionStorage no hay aviso, pero tampoco error */ }
+}
+
+function persistToLocalStorage(){
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(state));
+    const status = document.getElementById("save-status");
+    status.textContent = "Cambios guardados automáticamente · " + new Date().toLocaleTimeString();
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  } catch (err) {
+    const status = document.getElementById("save-status");
+    status.textContent = "No se pudo autoguardar en este navegador.";
+    status.classList.add("warn");
+  }
+}
+
+function loadInitialState(){
+  // 1) Prioridad: datos incrustados en el propio archivo HTML (al reabrir uno ya guardado)
+  const embedded = document.getElementById("saved-data").textContent.trim();
+  ARCHIVO_GUARDADO = !!(embedded && embedded !== "{}");
+  SESSION_KEY = computeSessionKey(embedded);
+  let loaded = null;
+  if (embedded && embedded !== "{}") {
+    try { loaded = JSON.parse(embedded); } catch (e) { loaded = null; }
+  }
+  // 2) Si no hay datos incrustados, recuperar solo el autoguardado de ESTA sesión (misma pestaña)
+  if (!loaded) {
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (raw) loaded = JSON.parse(raw);
+    } catch (e) { loaded = null; }
+  }
+  if (loaded) {
+    Object.assign(state.text, loaded.text || {});
+    Object.assign(state.radio, loaded.radio || {});
+    Object.assign(state.checkbox, loaded.checkbox || {});
+    Object.assign(state.criteria, loaded.criteria || {});
+    state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
+    state.lists.problemas = Array.isArray(loaded.lists && loaded.lists.problemas) ? loaded.lists.problemas : [];
+  }
+}
+
+function applyStateToDOM(){
+  // texto / textarea / select
+  Object.keys(state.text).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = state.text[id];
+  });
+
+  // radios
+  Object.keys(state.radio).forEach(name => {
+    const value = state.radio[name];
+    const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (input) {
+      input.checked = true;
+      const row = input.closest(".option-row");
+      if (row) row.classList.add("is-checked");
+    }
+  });
+
+  // checkboxes múltiples
+  Object.keys(state.checkbox).forEach(name => {
+    (state.checkbox[name] || []).forEach(value => {
+      const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+      if (input) {
+        input.checked = true;
+        const row = input.closest(".option-row");
+        if (row) row.classList.add("is-checked");
+      }
+    });
+  });
+}
+
+/* ============================================================
+   9. GUARDAR ACTIVIDAD (descarga un HTML autocontenido)
+   ============================================================ */
+function slugify(text){
+  return (text || "grupo")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "") || "grupo";
+}
+
+function buildDownloadableHTML(){
+  const clone = document.documentElement.cloneNode(true);
+  const dataScript = clone.querySelector("#saved-data");
+  dataScript.textContent = JSON.stringify(state);
+  return "<!DOCTYPE html>\n" + clone.outerHTML;
+}
+
+function initSaveButton(){
+  document.getElementById("btn-guardar").addEventListener("click", async () => {
+    const html = buildDownloadableHTML();
+    const grupo = state.text["f-grupo"] || "";
+    const curso = (state.text["ct-curso"] || "sin-curso")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().trim().replace(/\s+/g, "-");
+    const numero = grupo.trim() || "sin-numero";
+    const filename = `${curso}-caso-elisa-grupo-${numero}.html`;
+    const status = document.getElementById("save-status");
+
+    // Detección de dispositivo móvil / táctil. En escritorio SIEMPRE se descarga el archivo
+    // directamente; la ventana de "compartir" (Web Share API) se reserva para móviles, donde
+    // la descarga clásica por enlace es poco confiable (especialmente en iPhone).
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+      (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
+
+    if (isMobile) {
+      try {
+        const file = new File([html], filename, { type: "text/html" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: filename });
+          status.textContent = "Actividad guardada · " + new Date().toLocaleTimeString();
+          status.classList.remove("warn");
+          status.classList.add("ok");
+          return;
+        }
+      } catch (err) {
+        if (err && err.name === "AbortError") {
+          // El estudiante cerró el cuadro de compartir sin elegir nada: no forzamos la descarga.
+          return;
+        }
+        // Si falla por otro motivo, seguimos con la descarga clásica como respaldo.
+      }
+    }
+
+    // Descarga clásica por enlace (escritorio y la mayoría de Android)
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    status.textContent = "Actividad guardada y descargada · " + new Date().toLocaleTimeString();
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  });
+}
+
+/* ============================================================
+   9-bis. ENVÍO AL DOCENTE (Google Apps Script → hoja de cálculo)
+   ============================================================
+
+   Función ADICIONAL al guardado local: el archivo se sigue guardando y
+   entregando igual que antes. Esto solo agrega una copia de las respuestas en
+   una hoja de cálculo del docente.
+
+   Se envía con un formulario HTML oculto, no con fetch(). Es deliberado: los
+   estudiantes abren el archivo con doble clic (origen "file://" = null) y ahí
+   fetch() queda bloqueado por CORS. El formulario no tiene esa restricción, y
+   al abrirse en una pestaña nueva el grupo VE la confirmación de que llegó.
+   ============================================================ */
+
+const ENVIO = {
+  // Pegar acá la URL de la web app de Apps Script (termina en /exec).
+  // Mientras diga "PENDIENTE", el botón avisa que el envío no está configurado
+  // en vez de fallar en silencio.
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec",
+  curso: "PII-2026-B",
+  caso: "elisa",
+  casoLabel: "Elisa"
+};
+
+// Grupos de criterios que se vuelcan a la hoja. Es lo único que cambia entre
+// los recursos de cada caso.
+function gruposDeCriterios(){
+  // Solo el diagnostico que el grupo eligio en el desplegable: es su respuesta.
+  const sel = document.getElementById("ct-diagnostico-elegido");
+  const d = sel && ANXIETY_DISORDERS.find(x => x.key === sel.value);
+  return d ? [{ key: d.key, label: d.label }] : [];
+}
+
+function etiquetaDeCampo(el){
+  const card = el.closest(".card");
+  const label = card && card.querySelector(".card-label");
+  return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
+}
+
+function textoDeCriterio(stateKey){
+  const cb = document.getElementById("crit-" + stateKey);
+  if (!cb) return stateKey;
+  const row = cb.closest(".criterion");
+  if (row) {
+    const num = row.querySelector(".criterion-num");
+    const txt = row.querySelector(".criterion-text");
+    return ((num ? num.textContent.trim() + " " : "") + (txt ? txt.textContent.trim() : "")).trim();
+  }
+  const span = cb.parentElement && cb.parentElement.querySelector("span");
+  return span ? span.textContent.trim() : stateKey;
+}
+
+// Ordena las claves de criterio para que en la hoja aparezcan en el mismo orden
+// que en el checklist, no en el orden en que el grupo los fue marcando.
+function ordenarClaves(claves){
+  const peso = (k) => {
+    const m = k.match(/-(pool|req)-(\d+)$/) || k.match(/-(\d+)$/);
+    if (!m) return [9, 0];
+    if (m.length === 3) return [m[1] === "pool" ? 0 : 1, parseInt(m[2], 10)];
+    return [0, parseInt(m[1], 10)];
+  };
+  return claves.slice().sort((a, b) => {
+    const pa = peso(a), pb = peso(b);
+    return pa[0] - pb[0] || pa[1] - pb[1];
+  });
+}
+
+function recogerEnvio(){
+  const campos = {};
+
+  // Campos de texto y selects, etiquetados con el enunciado real de la pregunta
+  document.querySelectorAll(
+    'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
+  ).forEach(el => {
+    if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
+    let valor = el.value;
+    if (el.tagName === "SELECT" && el.selectedIndex >= 0) valor = el.options[el.selectedIndex].text;
+    if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
+  });
+
+  // Listas dinámicas (menos integrantes, que también tiene columna propia)
+  Object.keys(state.lists).forEach(listKey => {
+    if (listKey === "integrantes") return;
+    const valores = state.lists[listKey].map(i => (i.value || "").trim()).filter(Boolean);
+    if (!valores.length) return;
+    const cont = document.getElementById("list-" + listKey);
+    const card = cont && cont.closest(".card");
+    const label = card && card.querySelector(".card-label");
+    const etiqueta = label ? label.textContent.replace(/\*/g, "").trim() : listKey;
+    campos[etiqueta] = valores.map((v, i) => (i + 1) + ". " + v).join("\n");
+  });
+
+  // Checklist diagnóstico: criterios marcados, evidencia y resultado
+  gruposDeCriterios().forEach(g => {
+    const marcados = ordenarClaves(
+      Object.keys(state.criteria).filter(k =>
+        k.indexOf(g.key + "-") === 0 && state.criteria[k] && state.criteria[k].checked
+      )
+    );
+
+    campos["Criterios marcados — " + g.label] = marcados.length
+      ? marcados.map(k => "• " + textoDeCriterio(k)).join("\n")
+      : "(ninguno)";
+
+    const evidencias = marcados
+      .map(k => {
+        const e = (state.criteria[k].evidence || "").trim();
+        return e ? "• " + textoDeCriterio(k) + "\n   → " + e : null;
+      })
+      .filter(Boolean);
+
+    Object.keys(state.text).forEach(k => {
+      if (k.indexOf("poolevid-" + g.key) === 0 && (state.text[k] || "").trim()) {
+        evidencias.push("• Evidencia general de los síntomas: " + state.text[k].trim());
+      }
+    });
+
+    if (evidencias.length) campos["Evidencia — " + g.label] = evidencias.join("\n");
+
+    const partes = [];
+    const badge = document.getElementById("badge-" + g.key);
+    const resumen = document.getElementById("summary-" + g.key);
+    const aviso = document.getElementById("alert-" + g.key);
+    if (badge) partes.push(badge.textContent.trim());
+    if (resumen) partes.push(resumen.textContent.trim());
+    else if (aviso) partes.push(aviso.textContent.trim());
+    if (partes.length) campos["Resultado — " + g.label] = partes.join(" · ");
+  });
+
+  return {
+    curso: ENVIO.curso,
+    caso: ENVIO.caso,
+    casoLabel: ENVIO.casoLabel,
+    cursoGrupo: (state.text["ct-curso"] || "").trim(),
+    grupo: (state.text["f-grupo"] || "").trim()
+      ? "Grupo " + state.text["f-grupo"].trim() : "",
+    integrantes: state.lists.integrantes
+      .map(i => (i.value || "").trim()).filter(Boolean).join("; "),
+    campos: campos,
+    estado: JSON.stringify(state)
+  };
+}
+
+function initSendButton(){
+  const boton = document.getElementById("btn-enviar");
+  if (!boton) return;
+
+  boton.addEventListener("click", () => {
+    const status = document.getElementById("save-status");
+    const avisar = (msg, ok) => {
+      status.textContent = msg;
+      status.classList.toggle("ok", !!ok);
+      status.classList.toggle("warn", !ok);
+    };
+
+    if (!/^https?:\/\//.test(ENVIO.url)) {
+      avisar("El envío en línea no está configurado en este archivo: guarden la actividad y entréguenla como archivo.", false);
+      return;
+    }
+
+    const faltante = highlightInvalidFields();
+    if (faltante) {
+      faltante.scrollIntoView({ behavior: "smooth", block: "center" });
+      avisar("Faltan campos obligatorios por completar antes de enviar.", false);
+      return;
+    }
+
+    // Se intenta abrir la confirmacion en una pestana nueva, pero muchos
+    // navegadores integrados bloquean las emergentes — entre ellos el de
+    // WhatsApp, que es justo por donde llega el enlace a los estudiantes.
+    // Con la emergente bloqueada, un form.submit() a target="_blank" no envia
+    // NADA y el grupo se queda creyendo que entrego. Por eso se sondea primero
+    // y, si esta bloqueada, se envia en la MISMA pestana: es preferible perder
+    // de vista el formulario que dar por entregada una actividad que no salio.
+    // Volver atras es seguro: el autoguardado quedo bajo la clave del grupo.
+    let destino = "_self";
+    try {
+      const ventana = window.open("", "entrega-actividad");
+      if (ventana) destino = "entrega-actividad";
+    } catch (e) { destino = "_self"; }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = ENVIO.url;
+    form.target = destino;
+    const campo = document.createElement("input");
+    campo.type = "hidden";
+    campo.name = "payload";
+    campo.value = JSON.stringify(recogerEnvio());
+    form.appendChild(campo);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+
+    avisar("Actividad enviada · " + new Date().toLocaleTimeString() +
+           " — revisen la pestaña de confirmación que se abrió.", true);
+  });
+}
+
+/* ============================================================
+   10. NAVEGACIÓN LATERAL (scroll suave)
+   ============================================================ */
+function initNav(){
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.getElementById(item.dataset.target);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+/* ============================================================
+   11. VALIDACIÓN AL GUARDAR (resalta campos obligatorios vacíos)
+   ============================================================ */
+function highlightInvalidFields(){
+  let firstInvalid = null;
+  document.querySelectorAll('[data-required="true"]').forEach(el => {
+    let ok = true;
+    if (el.classList.contains("option-list")) {
+      const name = el.dataset.group;
+      const isMulti = el.dataset.multi === "true";
+      ok = isMulti ? (state.checkbox[name] && state.checkbox[name].length > 0) : !!state.radio[name];
+      el.classList.toggle("invalid", !ok);
+    } else {
+      ok = !!(el.value && el.value.trim());
+      el.classList.toggle("invalid", !ok);
+    }
+    if (!ok && !firstInvalid) firstInvalid = el;
+  });
+  return firstInvalid;
+}
+
+/* ============================================================
+   12. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  // El script arrancó: ocultamos el aviso de "no se está ejecutando".
+  const warn = document.getElementById("js-warning-fallback");
+  if (warn) warn.style.display = "none";
+
+  try {
+    loadInitialState();
+    initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
+    initDynamicList("problemas", "list-problemas", "btn-add-problema", "Describí un problema identificado", "Quitar problema", 2);
+    initSimpleFields();
+    initGrupoNumerico();
+    initClavePorGrupo();
+    avisarSiSeRecupero();
+    initDiagnosisSelect();
+    initInputRestrictions();
+    initSaveButton();
+    initSendButton();
+    initNav();
+    applyStateToDOM();
+    renderDiagnosisChecklist(document.getElementById("ct-diagnostico-elegido").value);
+    updateProgress();
+
+    // Autoguardado periódico de respaldo, además del guardado en cada evento
+    setInterval(persistToLocalStorage, 15000);
+  } catch (err) {
+    // Si algo falla al iniciar, mostramos el motivo en lugar de dejar la página inerte.
+    if (warn) {
+      warn.style.display = "block";
+      warn.textContent = "Ocurrió un error al iniciar el recurso: " + (err && err.message ? err.message : err) +
+        ". Intenta recargar la página en un navegador actualizado.";
+    }
+  }
+});
+</script>
+</body>
+</html>

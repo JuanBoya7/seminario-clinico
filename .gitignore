@@ -13,7 +13,9 @@ Envio a Sheets/
 
 # Entregas de los grupos, si alguna queda en la carpeta por error.
 # Llevan nombres de estudiantes: nunca deben terminar en un repositorio publico.
+# La primera linea cubre al Seminario (901/902/903); la segunda, a Practica II.
 9??-caso-*.html
+practica-ii-caso-*.html
 
 # Sistema
 Thumbs.db

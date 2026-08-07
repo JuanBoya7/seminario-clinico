@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro de primeros auxilios psicológicos</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-size:15px; line-height:1.6;
+  padding:clamp(28px,5vw,72px) clamp(20px,5vw,32px);
+}
+.wrap{max-width:720px; margin:0 auto;}
+
+.eyebrow{
+  font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px;
+}
+h1{
+  font-family:var(--font-display); font-weight:600;
+  font-size:clamp(26px,5vw,34px); line-height:1.2; margin:0 0 14px;
+}
+.lead{color:var(--ink-soft); margin:0 0 30px; font-size:15.5px;}
+
+.case{
+  display:block; text-decoration:none; color:inherit;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px 22px; margin-bottom:14px;
+  transition:border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.case:hover{border-color:var(--accent); box-shadow:var(--shadow-card);}
+.case:active{transform:scale(0.995);}
+.case-top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.case-num{font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--accent);}
+.case-title{font-family:var(--font-display); font-size:20px; font-weight:600; margin:0;}
+.case-meta{font-size:13px; color:var(--ink-faint); margin-top:5px;}
+.case-arrow{float:right; color:var(--accent); font-size:18px; line-height:1;}
+
+.note{
+  margin-top:30px; padding:18px 20px;
+  background:var(--accent-soft); border-radius:var(--radius);
+  font-size:14px; color:var(--ink-soft);
+}
+.note strong{color:var(--ink);}
+.note ol{margin:10px 0 0; padding-left:20px;}
+.note li{margin-bottom:5px;}
+
+.cuidado{
+  margin-top:16px; padding:18px 20px;
+  background:var(--moderate-soft); border:1px solid var(--moderate);
+  border-radius:var(--radius); font-size:14px; color:var(--ink-soft);
+}
+.cuidado strong{color:var(--ink);}
+
+footer{margin-top:32px; font-size:12.5px; color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Práctica II · Clínica</div>
+  <h1>Simulacro de primeros auxilios psicológicos</h1>
+  <p class="lead">
+    Actividad presencial por estaciones. Cada mesa trabaja una sola crisis durante toda
+    la actividad y rota los roles internamente: paciente, dupla de psicólogos y
+    observadores.
+  </p>
+
+  <a class="case" href="estaciones.html">
+    <span class="case-arrow">&rarr;</span>
+    <div class="case-top">
+      <span class="case-num">A</span>
+      <h2 class="case-title">Guion de la estación</h2>
+    </div>
+    <div class="case-meta">Para toda la mesa · perfil del paciente y guía de la dupla</div>
+  </a>
+
+  <a class="case" href="observador.html">
+    <span class="case-arrow">&rarr;</span>
+    <div class="case-top">
+      <span class="case-num">B</span>
+      <h2 class="case-title">Hoja del observador</h2>
+    </div>
+    <div class="case-meta">Solo para quienes observan · se llena durante la escena</div>
+  </a>
+
+  <div class="note">
+    <strong>El guion no se comparte con quien interviene.</strong>
+    <ol>
+      <li>Solo quien hace de paciente abre “cómo evoluciona la escena”: dice cómo
+          reacciona según lo que hagan, y leerlo antes vacía el ejercicio.</li>
+      <li>Quienes observan envían una vez por ronda, durante la escena y no después.</li>
+    </ol>
+  </div>
+
+  <div class="cuidado">
+    <strong>Antes de empezar.</strong> Representar estas escenas puede remover cosas
+    personales. El rol de paciente es voluntario: si una estación te toca de cerca,
+    decilo y tomá otro rol, sin dar explicaciones. Al cerrar cada ronda, quien hizo de
+    paciente sale del personaje en voz alta antes de seguir.
+  </div>
+
+  <footer>Universidad de Santander · Psicología</footer>
+
+</div>
+</body>
+</html>

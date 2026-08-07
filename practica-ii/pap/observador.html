@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro PAP — Hoja del observador</title>
+<style>
+/* ============================================================
+   TOKENS — mismos que los recursos de análisis de caso
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 40px;}
+
+.masthead{margin-bottom:22px;}
+.eyebrow{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;
+}
+.masthead h1{font-size:24px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14px; margin:0;}
+
+/* ---- Aviso de JavaScript inactivo ---- */
+.js-warning{
+  background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;
+}
+
+/* ---- Identificación: fila compacta de tres selectores ---- */
+.ident{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px; margin-bottom:8px;
+}
+.ident label{
+  display:block; font-size:11.5px; font-weight:600; letter-spacing:0.02em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;
+}
+select{
+  width:100%; font-family:var(--font-body); font-size:15px; font-weight:600;
+  color:var(--ink); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px; padding:10px 8px;
+}
+select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+select.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-soft);}
+
+.ident-nota{
+  font-size:12px; color:var(--ink-faint); margin:0 0 22px; padding:0 2px;
+}
+.estacion-nombre{color:var(--accent-dark); font-weight:600;}
+
+/* ---- Ítems de cotejo ---- */
+.seccion-titulo{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border);
+}
+
+.item{
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:12px 14px; margin-bottom:10px; background:var(--bg);
+}
+.item.respondido{background:var(--surface); border-color:var(--surface-alt);}
+.item-num{
+  font-family:var(--font-mono); font-size:11px; color:var(--accent);
+  font-weight:700; margin-right:6px;
+}
+.item-texto{font-size:14.5px; font-weight:600; display:block; margin-bottom:3px;}
+.item-pista{font-size:12.5px; color:var(--ink-faint); margin-bottom:10px;}
+
+/* Tres botones grandes: se responde de un toque, sin desplegables */
+.opciones{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
+.opcion{
+  border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  padding:11px 4px; border-radius:8px; cursor:pointer; text-align:center;
+  transition:background .12s ease, color .12s ease, border-color .12s ease;
+}
+.opcion:active{transform:scale(0.97);}
+.opcion[aria-pressed="true"][data-valor="Sí"]{background:var(--mild); border-color:var(--mild); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="Parcial"]{background:var(--moderate); border-color:var(--moderate); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="No"]{background:var(--severe); border-color:var(--severe); color:#fff;}
+.item.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-soft);}
+
+/* ---- Errores (selección múltiple) ---- */
+.error-lista{display:flex; flex-direction:column; gap:7px;}
+.error-fila{
+  display:flex; align-items:flex-start; gap:10px;
+  border:1px solid var(--border); border-radius:8px; padding:11px 12px;
+  font-size:14px; cursor:pointer; background:var(--bg);
+}
+.error-fila.is-checked{background:var(--severe-soft); border-color:var(--severe);}
+.error-fila input{width:19px; height:19px; margin:1px 0 0; flex-shrink:0; accent-color:var(--severe);}
+
+textarea{
+  width:100%; font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  background:var(--bg); border:1px solid var(--border); border-radius:8px;
+  padding:11px 12px; resize:vertical;
+}
+textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+
+/* ---- Barra de envío ---- */
+.barra{
+  margin-top:26px; padding:18px 0 0; border-top:1px solid var(--border);
+  display:flex; flex-direction:column; gap:12px;
+}
+.estado{font-size:12.5px; color:var(--ink-faint); text-align:center; min-height:18px;}
+.estado.ok{color:var(--mild);}
+.estado.warn{color:var(--severe);}
+.btn{
+  font-family:var(--font-body); font-size:16px; font-weight:600;
+  padding:15px 26px; border-radius:9px; border:1px solid transparent;
+  cursor:pointer; background:var(--accent); color:#fff; width:100%;
+}
+.btn:hover{background:var(--accent-dark);}
+.btn:active{transform:scale(0.99);}
+.progreso{font-size:12.5px; color:var(--ink-faint); text-align:center;}
+
+@media (min-width:560px){
+  .error-lista{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ves este mensaje, la hoja no se está ejecutando. Abrila en un navegador
+    (Chrome, Safari, Edge o Firefox), no dentro del visor de una app de mensajería.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow">Simulacro de PAP · Hoja del observador</div>
+    <h1>Cotejo de la intervención</h1>
+    <p>
+      Marcá durante la escena, no después. Al cerrar la ronda, enviá: son unos pocos
+      toques y se puede volver a enviar en la siguiente ronda desde esta misma página.
+    </p>
+  </header>
+
+  <!-- Identificación de la observación -->
+  <div class="ident">
+    <div>
+      <label for="f-curso">Grupo del curso</label>
+      <select id="f-curso">
+        <option value="Práctica II">Práctica II</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-estacion">Estación</label>
+      <select id="f-estacion">
+        <option value="">—</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-ronda">Ronda</label>
+      <select id="f-ronda">
+        <option value="">—</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+  <p class="ident-nota" id="ident-nota">
+    Elegí tu grupo, tu estación y la ronda que estás observando.
+  </p>
+
+  <!-- Los ítems se generan desde el guion de la clase -->
+  <div id="items"></div>
+
+  <div class="seccion-titulo">Errores frecuentes (marcá los que hayas visto)</div>
+  <div class="error-lista" id="errores"></div>
+
+  <div class="seccion-titulo">Observación destacada</div>
+  <textarea id="f-destacada" rows="2"
+    placeholder="Una línea: lo más significativo de esta ronda."></textarea>
+
+  <div class="barra">
+    <div class="progreso" id="progreso">0 de 6 ítems marcados</div>
+    <button class="btn" id="btn-enviar">Enviar observación</button>
+    <div class="estado" id="estado"></div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const ENVIO = {
+  // URL del proyecto de Apps Script DEL SIMULACRO, que es distinto del de los
+  // análisis de caso: cada uno tiene su propia hoja y su propia implementación.
+  // Mientras diga "PENDIENTE", el botón avisa en vez de fallar en silencio.
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbzkRbltrAH6gUUoPnUngoKrbPAcD8umATgumhwqp-VKB9rTGLIuCwM_M8INtJuHliTc/exec",
+  curso: "PII-2026-B"
+};
+
+/* ============================================================
+   2. CONTENIDO DE LA RÚBRICA
+   ============================================================
+   Los seis ítems son los cinco componentes estratégicos de Slaikeu más la
+   coordinación de la dupla. Fuente: Deza Villanueva, S. (2007), "Intervención
+   en crisis: primeros auxilios psicológicos", y la clase 3 del corte 1.
+
+   La "pista" no dice qué debe hacer el interventor: describe qué mirar. Es la
+   diferencia entre una rúbrica que enseña a observar y una que dicta la
+   respuesta correcta.
+   ============================================================ */
+const ITEMS = [
+  { n: "1", titulo: "Realizó contacto psicológico",
+    pista: "Presentación, tono, postura, escucha que refleja sentimientos y hechos." },
+  { n: "2", titulo: "Analizó las dimensiones del problema",
+    pista: "Indagó presente, pasado inmediato y futuro inmediato, con preguntas abiertas." },
+  { n: "3", titulo: "Evaluó el riesgo de forma explícita",
+    pista: "Preguntó directamente por riesgo cuando la escena lo requería, sin eufemismos." },
+  { n: "4", titulo: "Sondeó posibles soluciones",
+    pista: "Acompañó a generar alternativas en lugar de indicar qué hacer." },
+  { n: "5", titulo: "Inició un paso concreto y enlazó con una ruta",
+    pista: "Un solo paso próximo, y a qué recurso o ruta de atención se derivaría." },
+  { n: "6", titulo: "La dupla se coordinó",
+    pista: "Sin hablar encima, sin contradecirse, sin competir por el protagonismo." }
+];
+
+// Tomados literalmente de la columna "NO" de la clase: contactar, dimensionar,
+// soluciones, acción y seguimiento.
+const ERRORES = [
+  "Contó su propia historia",
+  "Juzgó, regañó o tomó partido",
+  "Dependió de preguntas de sí/no",
+  "Soslayó una señal de peligro",
+  "Minimizó lo que sentía la persona",
+  "Dio consejos directos en lugar de opciones",
+  "Entró en debate o discusión",
+  "Prometió algo que no podía cumplir",
+  "Permitió la visión en túnel",
+  "Dejó la escena sin ninguna ruta"
+];
+
+// Solo para orientar al observador sobre qué escena está mirando.
+const ESTACIONES = {
+  "1": "Ideación suicida inminente",
+  "2": "Ataque de pánico en espacio público",
+  "3": "Duelo agudo",
+  "4": "Violencia intrafamiliar reciente",
+  "5": "Descompensación psicótica con agitación"
+};
+
+/* ============================================================
+   3. ESTADO
+   ============================================================ */
+const state = { respuestas: {}, errores: [] };
+
+/* ============================================================
+   4. RENDERIZADO
+   ============================================================ */
+function renderItems(){
+  const cont = document.getElementById("items");
+  cont.innerHTML = "";
+
+  ITEMS.forEach(item => {
+    const caja = document.createElement("div");
+    caja.className = "item";
+    caja.dataset.item = item.n;
+    caja.innerHTML = `
+      <span class="item-texto"><span class="item-num">${item.n}</span>${item.titulo}</span>
+      <div class="item-pista">${item.pista}</div>
+      <div class="opciones"></div>
+    `;
+
+    const opciones = caja.querySelector(".opciones");
+    ["Sí", "Parcial", "No"].forEach(valor => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opcion";
+      btn.dataset.valor = valor;
+      btn.textContent = valor;
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", () => elegir(item.n, valor, caja));
+      opciones.appendChild(btn);
+    });
+
+    cont.appendChild(caja);
+  });
+}
+
+function elegir(numero, valor, caja){
+  // Volver a tocar la opción ya marcada la desmarca: en vivo se equivoca uno
+  // de botón con frecuencia y no hay tiempo para pelearse con el formulario.
+  if (state.respuestas[numero] === valor) delete state.respuestas[numero];
+  else state.respuestas[numero] = valor;
+
+  caja.querySelectorAll(".opcion").forEach(b => {
+    b.setAttribute("aria-pressed", String(state.respuestas[numero] === b.dataset.valor));
+  });
+  caja.classList.toggle("respondido", !!state.respuestas[numero]);
+  caja.classList.remove("invalid");
+  actualizarProgreso();
+}
+
+function renderErrores(){
+  const cont = document.getElementById("errores");
+  cont.innerHTML = "";
+  ERRORES.forEach((texto, i) => {
+    const fila = document.createElement("label");
+    fila.className = "error-fila";
+    fila.innerHTML = `<input type="checkbox" id="err-${i}"><span>${texto}</span>`;
+    const casilla = fila.querySelector("input");
+    casilla.addEventListener("change", () => {
+      fila.classList.toggle("is-checked", casilla.checked);
+      state.errores = ERRORES.filter((_, j) =>
+        document.getElementById("err-" + j).checked);
+    });
+    cont.appendChild(fila);
+  });
+}
+
+function actualizarProgreso(){
+  const hechos = Object.keys(state.respuestas).length;
+  document.getElementById("progreso").textContent =
+    `${hechos} de ${ITEMS.length} ítems marcados`;
+}
+
+function actualizarNota(){
+  const est = document.getElementById("f-estacion").value;
+  const nota = document.getElementById("ident-nota");
+  nota.innerHTML = est
+    ? `Estación ${est}: <span class="estacion-nombre">${ESTACIONES[est]}</span>`
+    : "Elegí tu grupo, tu estación y la ronda que estás observando.";
+}
+
+/* ============================================================
+   5. VALIDACIÓN Y ENVÍO
+   ============================================================ */
+function primerFaltante(){
+  // La identificación es obligatoria: sin ella la fila no se puede ubicar.
+  const ids = ["f-curso", "f-estacion", "f-ronda"];
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    const vacio = !el.value;
+    el.classList.toggle("invalid", vacio);
+    if (vacio) return el;
+  }
+  // Los ítems también: una observación a medias distorsiona el promedio del
+  // tablero, que es lo que se proyecta en la plenaria.
+  for (const item of ITEMS) {
+    const caja = document.querySelector(`.item[data-item="${item.n}"]`);
+    const vacio = !state.respuestas[item.n];
+    caja.classList.toggle("invalid", vacio);
+    if (vacio) return caja;
+  }
+  return null;
+}
+
+function recogerEnvio(){
+  const campos = {};
+  ITEMS.forEach(item => {
+    campos[`${item.n}. ${item.titulo}`] = state.respuestas[item.n] || "";
+  });
+  campos["Errores observados"] = state.errores.join("\n");
+  const destacada = document.getElementById("f-destacada").value.trim();
+  if (destacada) campos["Observación destacada"] = destacada;
+
+  return {
+    tipo: "pap",
+    curso: ENVIO.curso,
+    cursoGrupo: document.getElementById("f-curso").value,
+    estacion: document.getElementById("f-estacion").value,
+    ronda: document.getElementById("f-ronda").value,
+    observador: "",
+    campos: campos,
+    estado: ""
+  };
+}
+
+function enviar(){
+  const estado = document.getElementById("estado");
+  const avisar = (msg, ok) => {
+    estado.textContent = msg;
+    estado.classList.toggle("ok", !!ok);
+    estado.classList.toggle("warn", !ok);
+  };
+
+  const faltante = primerFaltante();
+  if (faltante) {
+    faltante.scrollIntoView({ behavior: "smooth", block: "center" });
+    avisar("Falta completar la identificación o algún ítem.", false);
+    return;
+  }
+
+  // Mismo criterio que en los análisis de caso: se sondea la ventana emergente
+  // antes de elegir el destino. Si está bloqueada (el navegador de WhatsApp lo
+  // hace) y se usara target="_blank", no se enviaría nada y el observador se
+  // quedaría creyendo que registró la ronda.
+  let destino = "_self";
+  try {
+    const ventana = window.open("", "entrega-observacion");
+    if (ventana) destino = "entrega-observacion";
+  } catch (e) { destino = "_self"; }
+
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = ENVIO.url;
+  form.target = destino;
+  const campo = document.createElement("input");
+  campo.type = "hidden";
+  campo.name = "payload";
+  campo.value = JSON.stringify(recogerEnvio());
+  form.appendChild(campo);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+  avisar("Observación enviada · " + new Date().toLocaleTimeString(), true);
+  prepararSiguienteRonda();
+}
+
+// Tras enviar se limpian los ítems pero se conservan curso y estación, y la
+// ronda avanza sola: el observador se queda en la misma mesa toda la actividad
+// y va a enviar tres veces seguidas.
+function prepararSiguienteRonda(){
+  state.respuestas = {};
+  state.errores = [];
+  document.querySelectorAll(".item").forEach(caja => {
+    caja.classList.remove("respondido", "invalid");
+    caja.querySelectorAll(".opcion").forEach(b => b.setAttribute("aria-pressed", "false"));
+  });
+  document.querySelectorAll(".error-fila").forEach(f => {
+    f.classList.remove("is-checked");
+    f.querySelector("input").checked = false;
+  });
+  document.getElementById("f-destacada").value = "";
+
+  const ronda = document.getElementById("f-ronda");
+  const siguiente = String(parseInt(ronda.value, 10) + 1);
+  ronda.value = ["1","2","3"].indexOf(siguiente) > -1 ? siguiente : "";
+  actualizarProgreso();
+}
+
+/* ============================================================
+   6. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const aviso = document.getElementById("js-warning-fallback");
+  if (aviso) aviso.style.display = "none";
+
+  try {
+    renderItems();
+    renderErrores();
+    actualizarProgreso();
+    document.getElementById("f-estacion").addEventListener("change", actualizarNota);
+    ["f-curso","f-estacion","f-ronda"].forEach(id => {
+      document.getElementById(id).addEventListener("change", (e) =>
+        e.target.classList.remove("invalid"));
+    });
+    document.getElementById("btn-enviar").addEventListener("click", enviar);
+  } catch (err) {
+    if (aviso) {
+      aviso.style.display = "";
+      aviso.textContent = "Error al iniciar la hoja: " + err.message;
+    }
+  }
+});
+</script>
+</body>
+</html>

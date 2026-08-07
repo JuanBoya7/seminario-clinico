@@ -193,10 +193,7 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
     </div>
     <div class="controles">
       <select id="f-grupo">
-        <option value="">Todos los grupos</option>
-        <option value="901">901</option>
-        <option value="902">902</option>
-        <option value="903">903</option>
+        <option value="Práctica II">Práctica II</option>
       </select>
       <button class="btn" id="btn-actualizar">Actualizar</button>
       <span class="estado" id="estado">—</span>
@@ -305,9 +302,9 @@ const ENVIO = {
   // Aun así se conserva la corta como reintento, por si algún día cambia.
   alterna: true,
   // Dos asignaturas escriben en la misma hoja del simulacro. El resumen se pide
-  // por curso para que este tablero solo agregue las observaciones de Seminario Profesional I (FUAA)
+  // por curso para que este tablero solo agregue las observaciones de Práctica II (UDES)
   // y no las del otro. Debe coincidir con ENVIO.curso de observador.html.
-  curso: "SPI-2026-2"
+  curso: "PII-2026-B"
 };
 
 const ESTACIONES = {
