@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutas de atención mhGAP — Depresión, Psicosis, Suicidio</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --yes:#1f6f78;
+  --no:#8a6a3c;
+  --alert:#a33a2e;
+  --alert-soft:#fbeeec;
+  --warn-soft:#fdf6ea;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-size:15px; line-height:1.6;
+  padding:clamp(24px,4vw,56px) clamp(16px,4vw,32px) 80px;
+}
+.wrap{max-width:780px; margin:0 auto;}
+
+.eyebrow{font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+h1{font-family:var(--font-display); font-weight:600; font-size:clamp(25px,5vw,33px); line-height:1.2; margin:0 0 14px;}
+.lead{color:var(--ink-soft); margin:0 0 28px; font-size:15.5px;}
+
+/* --- selector de ruta --- */
+.routes{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-bottom:28px;}
+.route{
+  text-align:left; cursor:pointer; font:inherit; color:inherit;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px 18px; transition:border-color .15s, box-shadow .15s, transform .1s;
+}
+.route:hover{border-color:var(--accent); box-shadow:var(--shadow-card);}
+.route:active{transform:scale(0.995);}
+.route[aria-pressed="true"]{border-color:var(--accent); background:var(--accent-soft); box-shadow:var(--shadow-card);}
+.route-code{font-size:11.5px; font-weight:700; letter-spacing:.09em; color:var(--accent); text-transform:uppercase;}
+.route-name{font-family:var(--font-display); font-size:19px; font-weight:600; margin:2px 0 3px;}
+.route-desc{font-size:13px; color:var(--ink-faint); line-height:1.45;}
+
+/* --- barra de estado --- */
+.statusbar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:10px 0; margin-bottom:22px; font-size:13px; color:var(--ink-faint);
+}
+.statusbar strong{color:var(--ink); font-weight:600;}
+.btn-ghost{
+  font:inherit; font-size:13px; cursor:pointer; background:none; color:var(--accent);
+  border:1px solid var(--border); border-radius:7px; padding:5px 11px;
+}
+.btn-ghost:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+/* --- tarjetas del flujo --- */
+.flow{display:flex; flex-direction:column;}
+.node{animation:rise .28s ease both;}
+@keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+.connector{width:2px; height:22px; background:var(--border); margin-left:26px;}
+
+.card{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px 20px;
+}
+.card.is-outcome{background:var(--accent-soft); border-color:#c3dde0;}
+.card.is-stop{background:var(--warn-soft); border-color:#ecdcbd;}
+.card.is-alert{background:var(--alert-soft); border-color:#eccfca;}
+
+.card-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+.step-badge{
+  flex:none; width:30px; height:30px; border-radius:50%;
+  background:var(--accent); color:#fff; font-size:13px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; align-self:flex-start;
+}
+.card.is-stop .step-badge{background:var(--no);}
+.card.is-alert .step-badge{background:var(--alert);}
+.card.is-outcome .step-badge{background:var(--accent-dark);}
+.card-tag{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent);}
+.card.is-alert .card-tag{color:var(--alert);}
+.card.is-stop .card-tag{color:var(--no);}
+.card h3{font-family:var(--font-display); font-size:19px; font-weight:600; margin:0; line-height:1.3;}
+.card-body{font-size:14.5px; color:var(--ink-soft);}
+.card-body ul{margin:8px 0 0; padding-left:19px;}
+.card-body li{margin-bottom:4px;}
+.card-body p{margin:8px 0 0;}
+.card-body strong{color:var(--ink);}
+.row{display:flex; gap:12px; align-items:flex-start;}
+.row-main{flex:1; min-width:0;}
+
+.tip{
+  margin-top:14px; padding:12px 14px; border-radius:8px;
+  background:rgba(255,255,255,.7); border:1px dashed var(--border);
+  font-size:13.5px; color:var(--ink-soft);
+}
+.tip b{display:block; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--accent); margin-bottom:4px;}
+.tip.is-red{border-color:#e3bfb9;}
+.tip.is-red b{color:var(--alert);}
+
+/* --- opciones --- */
+.options{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+.opt{
+  font:inherit; font-size:14px; cursor:pointer; color:#fff; background:var(--accent);
+  border:1px solid var(--accent); border-radius:8px; padding:8px 18px; font-weight:600;
+  transition:filter .15s, transform .1s;
+}
+.opt:hover{filter:brightness(1.08);} .opt:active{transform:scale(0.97);}
+.opt.is-no{background:#fff; color:var(--no); border-color:#dccdb4;}
+.opt.is-neutral{background:#fff; color:var(--accent); border-color:var(--border);}
+.opt.is-chosen{opacity:.45;}
+.opt-hint{width:100%; font-size:12.5px; color:var(--ink-faint); margin-top:-2px;}
+
+.answered{
+  margin-top:14px; font-size:13px; color:var(--ink-faint);
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.answered .chip{
+  background:#fff; border:1px solid var(--border); border-radius:20px;
+  padding:3px 12px; font-weight:600; color:var(--accent);
+}
+.answered .chip.is-no{color:var(--no);}
+.relink{font:inherit; font-size:12.5px; background:none; border:none; cursor:pointer; color:var(--ink-faint); text-decoration:underline; padding:0;}
+.relink:hover{color:var(--accent);}
+
+.empty{
+  border:1px dashed var(--border); border-radius:var(--radius);
+  padding:34px 22px; text-align:center; color:var(--ink-faint); font-size:14.5px;
+}
+
+footer{margin-top:44px; padding-top:18px; border-top:1px solid var(--border); font-size:12.5px; color:var(--ink-faint);}
+footer p{margin:0 0 6px;}
+@media print{ .options,.btn-ghost,.route{display:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Guía de Intervención mhGAP · OPS/OMS</div>
+  <h1>Rutas de atención mhGAP 2.0</h1>
+  <p class="lead">
+    Tres rutas clínicas recorridas paso a paso. Elijan un módulo y respondan cada nodo de
+    decisión: la ruta se despliega según lo que respondan, igual que en la consulta real.
+    Cualquier decisión anterior puede volver a tomarse para comparar los dos desenlaces.
+  </p>
+
+  <div class="routes" id="routes"></div>
+
+  <div class="statusbar" id="statusbar" hidden>
+    <span id="statusText"></span>
+    <button class="btn-ghost" id="resetBtn" type="button">Reiniciar la ruta</button>
+  </div>
+
+  <div class="flow" id="flow">
+    <div class="empty">Seleccionen arriba el módulo con el que van a trabajar.</div>
+  </div>
+
+  <footer>
+    <p><strong>Fuente:</strong> OPS/OMS. <em>Guía de Intervención mhGAP para los trastornos mentales,
+    neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada.</em>
+    Versión 2.0. Washington, D.C.; 2017. Módulos DEP (pp. 19–31), PSI (pp. 33–49) y SUI (pp. 131–139).</p>
+    <p>Material de apoyo docente. No sustituye la guía original ni el juicio clínico; las dosis y
+    esquemas farmacológicos se incluyen solo con fines ilustrativos del diseño de la ruta.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   MODELO DE DATOS
+   Cada nodo: { fase, paso, tag, titulo, cuerpo, tip, tono, opciones[] }
+   tono: '' | 'outcome' | 'stop' | 'alert'
+   ============================================================ */
+
+const RUTAS = {
+
+/* ---------------------------------------------------------------- DEPRESIÓN */
+dep: {
+  codigo: "DEP",
+  nombre: "Depresión",
+  desc: "Del síntoma básico al protocolo de manejo, pasando por los tres descartes obligatorios.",
+  inicio: "dep-portada",
+  nodos: {
+
+  "dep-portada": {
+    fase:"Panorama", paso:"", tag:"Módulo DEP · manifestaciones comunes",
+    titulo:"¿Cuándo se sospecha depresión?",
+    cuerpo:`<p>La ruta se activa cuando la persona consulta —por lo que sea— y aparece alguna de estas manifestaciones comunes:</p>
+      <ul>
+        <li>Múltiples síntomas físicos persistentes sin causa clara.</li>
+        <li>Escasa energía, fatiga, alteraciones del sueño.</li>
+        <li>Tristeza o estado de ánimo deprimido persistentes, ansiedad.</li>
+        <li>Pérdida de interés o placer en actividades normalmente placenteras.</li>
+      </ul>`,
+    tip:{t:"Estructura del módulo", x:"Toda ruta mhGAP tiene la misma tríada: <b>Evaluación</b> (¿es este trastorno y no otra cosa?) → <b>Manejo</b> (protocolo psicosocial y farmacológico) → <b>Seguimiento</b> (reevaluar, ajustar, referir)."},
+    opciones:[{l:"Comenzar la evaluación (DEP 1)", to:"dep-1a", k:"neutral"}]
+  },
+
+  "dep-1a": {
+    fase:"DEP 1 · Evaluación", paso:"1", tag:"¿Tiene la persona depresión?",
+    titulo:"¿Ha tenido al menos uno de los síntomas básicos durante al menos dos semanas?",
+    cuerpo:`<ul>
+        <li>Estado de ánimo deprimido persistente.</li>
+        <li>Marcada disminución del interés o el placer en actividades antes disfrutadas.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"dep-1b"},
+      {l:"No", to:"dep-otr", k:"no"}
+    ]
+  },
+
+  "dep-1b": {
+    fase:"DEP 1 · Evaluación", paso:"1", tag:"Síntomas acompañantes",
+    titulo:"¿Tiene o tuvo varios de los siguientes síntomas durante al menos dos semanas?",
+    cuerpo:`<ul>
+        <li>Alteraciones del sueño o dormir demasiado.</li>
+        <li>Cambio significativo del apetito o el peso.</li>
+        <li>Creencia de que carece de méritos o culpabilidad excesiva.</li>
+        <li>Fatiga o pérdida de energía.</li>
+        <li>Disminución de la concentración · indecisión.</li>
+        <li>Agitación observable o inquietud física.</li>
+        <li>Habla o se mueve más lentamente de lo usual.</li>
+        <li>Desesperanza.</li>
+        <li>Pensamientos o actos suicidas.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"dep-1c"},
+      {l:"No", to:"dep-otr", k:"no"}
+    ]
+  },
+
+  "dep-1c": {
+    fase:"DEP 1 · Evaluación", paso:"1", tag:"Criterio de funcionamiento",
+    titulo:"¿Tiene considerable dificultad en el funcionamiento diario?",
+    cuerpo:`<p>En el ámbito personal, familiar, social, educativo, ocupacional o de otro tipo.</p>`,
+    tip:{t:"Consejo clínico", x:"Una persona con depresión puede tener síntomas psicóticos (delirios o alucinaciones). Si están presentes, se adapta el tratamiento y se <b>consulta a un especialista</b>."},
+    opciones:[
+      {l:"Sí", to:"dep-2a"},
+      {l:"No", to:"dep-otr", k:"no"}
+    ]
+  },
+
+  "dep-otr": {
+    fase:"Salida de la ruta", paso:"—", tag:"Criterio no cumplido", tono:"stop",
+    titulo:"Es improbable que sea depresión",
+    cuerpo:`<p>No se cumple el umbral del módulo. Esto <strong>no significa que no haya sufrimiento</strong>:
+      los síntomas que no satisfacen plenamente los criterios se manejan en el módulo
+      <strong>OTR — Otros padecimientos de salud mental importantes</strong>.</p>`,
+    tip:{t:"Lectura pedagógica", x:"El punto de corte no es burocrático: define qué intervención es costo-efectiva y segura en el nivel no especializado. Bajarlo medicaliza el malestar; subirlo deja gente sin atención."},
+    opciones:[]
+  },
+
+  "dep-2a": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Descarte 1 de 3 · condición física",
+    titulo:"¿Hay una enfermedad física que pueda asemejarse a la depresión o exacerbarla?",
+    cuerpo:`<p>Signos o síntomas que sugieran anemia, desnutrición, hipotiroidismo, alteraciones del
+      estado de ánimo por consumo de sustancias, o efectos secundarios de medicamentos
+      (por ejemplo, esteroides).</p>`,
+    opciones:[
+      {l:"Sí", to:"dep-2a-fis"},
+      {l:"No", to:"dep-2b", k:"no"}
+    ]
+  },
+
+  "dep-2a-fis": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Desvío obligatorio",
+    titulo:"Trate primero la enfermedad física",
+    cuerpo:`<p>La ruta se detiene hasta resolver la causa médica. Después se vuelve a evaluar.</p>
+      <p><strong>¿Persisten los síntomas depresivos después del tratamiento?</strong></p>`,
+    opciones:[
+      {l:"Sí, persisten", to:"dep-2b"},
+      {l:"No, remitieron", to:"dep-2a-fin", k:"no"}
+    ]
+  },
+
+  "dep-2a-fin": {
+    fase:"Salida de la ruta", paso:"—", tag:"Causa médica resuelta", tono:"stop",
+    titulo:"No es necesario ningún tratamiento para depresión",
+    cuerpo:`<p>Los síntomas eran atribuibles a la condición física. Tratarla resolvió el cuadro.</p>`,
+    tip:{t:"Lectura pedagógica", x:"Este es el descarte que más se omite en la práctica: se prescribe un antidepresivo a un hipotiroidismo o a una anemia."},
+    opciones:[]
+  },
+
+  "dep-2b": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Descarte 2 de 3 · antecedentes de manía",
+    titulo:"¿Hay antecedentes de manía?",
+    cuerpo:`<p>¿Se han presentado <strong>simultáneamente</strong> varios de estos síntomas durante
+      <strong>al menos una semana</strong>, con gravedad suficiente para interferir considerablemente
+      con el trabajo y las actividades sociales, o para requerir hospitalización o reclusión?</p>
+      <ul>
+        <li>Elevación del estado de ánimo o irritabilidad.</li>
+        <li>Disminución de la necesidad de sueño.</li>
+        <li>Mayor actividad y energía; habla en demasía o con gran rapidez.</li>
+        <li>Comportamientos impulsivos o imprudentes (gastos excesivos, decisiones sin reflexionar, indiscreciones sexuales).</li>
+        <li>Pérdida de las inhibiciones sociales normales.</li>
+        <li>Se distrae fácilmente.</li>
+        <li>Autoestima exacerbada sin justificación real.</li>
+      </ul>`,
+    tip:{t:"Punto crítico de la ruta", x:"Las personas con un episodio depresivo dentro de un trastorno bipolar corren riesgo de padecer manía y <b>su tratamiento es distinto</b>. Omitir este descarte puede inducir un viraje maníaco con antidepresivos.", red:true},
+    opciones:[
+      {l:"Sí, hay antecedentes de manía", to:"dep-bipolar"},
+      {l:"No", to:"dep-2c", k:"no"}
+    ]
+  },
+
+  "dep-bipolar": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Desenlace diagnóstico", tono:"outcome",
+    titulo:"Es probable que sea un episodio depresivo en el trastorno bipolar",
+    cuerpo:`<p>La ruta cambia de destino: se continúa al paso 3 (trastornos concurrentes) y luego
+      al <strong>PROTOCOLO 2</strong>, no al protocolo de depresión.</p>`,
+    opciones:[{l:"Continuar al paso 3", to:"dep-3", k:"neutral"}]
+  },
+
+  "dep-2c": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Descarte 3 de 3 · pérdida reciente",
+    titulo:"¿Ha sufrido una pérdida importante en los últimos seis meses?",
+    cuerpo:`<p>Por ejemplo, duelo por el fallecimiento de un allegado.</p>`,
+    opciones:[
+      {l:"Sí", to:"dep-2c-duelo"},
+      {l:"No", to:"dep-probable", k:"no"}
+    ]
+  },
+
+  "dep-2c-duelo": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Duelo: cuándo sí es depresión",
+    titulo:"¿Está presente alguno de estos síntomas, o hay antecedentes de depresión?",
+    cuerpo:`<ul>
+        <li>Ideación suicida.</li>
+        <li>Creencia de que carece de méritos.</li>
+        <li>Síntomas psicóticos.</li>
+        <li>Habla o se mueve más lentamente de lo normal.</li>
+        <li>Antecedentes personales de depresión.</li>
+      </ul>`,
+    tip:{t:"Lectura pedagógica", x:"La guía no dice “el duelo excluye la depresión”. Dice que una reacción normal a una pérdida no se medicaliza, <b>salvo</b> que aparezcan estos marcadores de gravedad."},
+    opciones:[
+      {l:"Sí, alguno está presente", to:"dep-probable"},
+      {l:"No, ninguno", to:"dep-duelo-otr", k:"no"}
+    ]
+  },
+
+  "dep-duelo-otr": {
+    fase:"Salida de la ruta", paso:"—", tag:"Reacción normal a una pérdida", tono:"stop",
+    titulo:"No aplique el tratamiento para la depresión",
+    cuerpo:`<p>Se acompaña a la persona desde el módulo <strong>OTR</strong>, con apoyo psicosocial y
+      seguimiento, sin instalar un diagnóstico ni un tratamiento antidepresivo.</p>`,
+    opciones:[]
+  },
+
+  "dep-probable": {
+    fase:"DEP 1 · Evaluación", paso:"2", tag:"Desenlace diagnóstico", tono:"outcome",
+    titulo:"Es probable que sea DEPRESIÓN",
+    cuerpo:`<p>Los tres descartes están resueltos. Antes de manejar, falta un paso obligatorio.</p>`,
+    opciones:[{l:"Continuar al paso 3", to:"dep-3", k:"neutral"}]
+  },
+
+  "dep-3": {
+    fase:"DEP 1 · Evaluación", paso:"3", tag:"Trastornos MNS concurrentes",
+    titulo:"¿Hay otros trastornos MNS prioritarios al mismo tiempo?",
+    cuerpo:`<p>Investigue conforme al <strong>Esquema Principal</strong> de la GI-mhGAP. Las personas con
+      depresión tienen mayor riesgo de la mayoría de los demás trastornos MNS; evalúe en
+      particular el <strong>consumo de sustancias psicoactivas</strong>.</p>`,
+    tip:{t:"Prioridad absoluta", x:"Si hay <b>riesgo inminente de suicidio</b>, evalúe y aplique el tratamiento del módulo SUI <b>antes</b> de continuar con esta ruta.", red:true},
+    opciones:[
+      {l:"Ir al protocolo de manejo", to:"dep-protocolo", k:"neutral"},
+      {l:"Ver primero la ruta de suicidio (SUI)", to:"__ruta:sui", k:"no"}
+    ]
+  },
+
+  "dep-protocolo": {
+    fase:"DEP 2 · Manejo", paso:"1", tag:"Protocolo 1 · Depresión", tono:"outcome",
+    titulo:"Manejo de la depresión",
+    cuerpo:`<p><strong>Intervenciones psicosociales</strong></p>
+      <ul>
+        <li>Psicoeducación a la persona y sus cuidadores.</li>
+        <li>Reducir el estrés y fortalecer los apoyos sociales; reactivar la red social previa.</li>
+        <li>Promover el funcionamiento en las actividades diarias y en la vida de la comunidad:
+            reanudar actividades placenteras, ciclo regular de sueño, actividad física, comer con
+            regularidad, tiempo con personas de confianza.</li>
+        <li>Si es factible, derivar a un tratamiento psicológico breve: activación conductual,
+            terapia cognitivo-conductual, terapia interpersonal, orientación para la resolución de problemas.</li>
+      </ul>
+      <p><strong>Intervenciones farmacológicas</strong></p>
+      <ul>
+        <li>Considerar antidepresivos, decidido conjuntamente con la persona. Un solo medicamento,
+            en la dosis inicial más baja.</li>
+        <li>Mantener entre 9 y 12 meses <em>después</em> de la remisión; nunca suspender por simple mejoría.</li>
+        <li><strong>NO</strong> tratar con intervenciones ineficaces (por ejemplo, inyecciones de vitaminas).</li>
+      </ul>`,
+    tip:{t:"Precauciones", x:"Adultos mayores: evite amitriptilina. Enfermedad cardiovascular: NO recete amitriptilina. Con pensamientos o planes suicidas: ISRS de primera línea y entrega fraccionada del medicamento (p. ej. una semana por vez). Si aparece manía, suspenda el antidepresivo de inmediato.", red:true},
+    opciones:[
+      {l:"Ver grupos especiales de población", to:"dep-grupos", k:"neutral"},
+      {l:"Pasar al seguimiento (DEP 3)", to:"dep-seg", k:"neutral"}
+    ]
+  },
+
+  "dep-grupos": {
+    fase:"DEP 2 · Manejo", paso:"3", tag:"Grupos especiales de población",
+    titulo:"Cómo se adapta el protocolo",
+    cuerpo:`<ul>
+        <li><strong>Niños y adolescentes:</strong> vaya al módulo MCON. En mayores de 12 años, si los
+            síntomas persisten pese a las intervenciones psicosociales, considere fluoxetina
+            (ningún otro ISRS ni tricíclicos) con control semanal las primeras cuatro semanas.</li>
+        <li><strong>Embarazo y lactancia:</strong> evite los antidepresivos si es posible, especialmente
+            en el primer trimestre. Si no hay respuesta psicológica, la dosis eficaz más baja. En
+            lactancia, evite fármacos de acción prolongada como la fluoxetina.</li>
+        <li><strong>Adultos mayores:</strong> fluoxetina es la opción preferida; evite amitriptilina.</li>
+      </ul>`,
+    opciones:[{l:"Pasar al seguimiento (DEP 3)", to:"dep-seg", k:"neutral"}]
+  },
+
+  "dep-seg": {
+    fase:"DEP 3 · Seguimiento", paso:"1", tag:"Evaluación de la mejoría",
+    titulo:"¿Está mejorando la persona?",
+    cuerpo:`<p>Segunda cita a <strong>no más de una semana</strong>. Contacto periódico —teléfono, visita
+      domiciliaria, tarjetas de contacto— durante los tres primeros meses.</p>`,
+    opciones:[
+      {l:"Sí, mejora", to:"dep-seg-si"},
+      {l:"No mejora", to:"dep-seg-no", k:"no"}
+    ]
+  },
+
+  "dep-seg-si": {
+    fase:"DEP 3 · Seguimiento", paso:"3", tag:"Respuesta al tratamiento", tono:"outcome",
+    titulo:"Continuar y espaciar el contacto",
+    cuerpo:`<ul>
+        <li>Continuar el plan actual hasta estar libre de síntomas 9 a 12 meses.</li>
+        <li>Reducir el contacto a medida que mejoran los síntomas (por ejemplo, cada 3 meses después
+            de los 3 meses iniciales).</li>
+        <li>Al suspender: analizar riesgos y beneficios con la persona y reducir la dosis de forma
+            gradual durante un mínimo de 4 semanas, vigilando la recurrencia.</li>
+      </ul>
+      <p>En cada contacto se reevalúa el <strong>riesgo inminente de suicidio</strong> y se investigan
+      trastornos médicos concurrentes.</p>`,
+    opciones:[]
+  },
+
+  "dep-seg-no": {
+    fase:"DEP 3 · Seguimiento", paso:"1", tag:"Falta de respuesta", tono:"alert",
+    titulo:"Revisar antes de escalar",
+    cuerpo:`<ul>
+        <li>Si no recibe tratamiento psicológico, considérelo. Si lo recibe, evalúe su participación y experiencia.</li>
+        <li>Si no toma antidepresivos, considere recetarlos.</li>
+        <li>Si los toma: ¿los toma como se prescribió? ¿Hay efectos secundarios? Si no los hay,
+            aumente la dosis y haga seguimiento en una o dos semanas.</li>
+      </ul>
+      <p>El aumento de dosis exige un seguimiento muy de cerca por el posible aumento de efectos secundarios.</p>`,
+    tip:{t:"Lectura pedagógica", x:"La ruta obliga a revisar <b>diagnóstico, adherencia y dosis</b> antes de concluir que el tratamiento fracasó. Cambiar de fármaco sin ese chequeo es el error más frecuente."},
+    opciones:[{l:"Reevaluar la mejoría", to:"dep-seg", k:"neutral"}]
+  }
+}},
+
+/* ----------------------------------------------------------------- PSICOSIS */
+psi: {
+  codigo: "PSI",
+  nombre: "Psicosis y trastorno bipolar",
+  desc: "Un solo módulo para dos trastornos: primero se descarta el delirio, luego se decide manía o psicosis.",
+  inicio: "psi-portada",
+  nodos: {
+
+  "psi-portada": {
+    fase:"Panorama", paso:"", tag:"Módulo PSI · manifestaciones comunes",
+    titulo:"¿Cuándo se sospecha psicosis?",
+    cuerpo:`<ul>
+        <li>Cambios pronunciados de la conducta; descuido de responsabilidades del trabajo, la escuela,
+            lo doméstico o lo social.</li>
+        <li>Comportamiento agitado o agresivo; aumento o disminución de la actividad.</li>
+        <li>Creencias falsas fijas no compartidas por otros en la cultura de la persona.</li>
+        <li>Oye voces o ve cosas que no existen.</li>
+        <li>No se da cuenta de que tiene problemas de salud mental.</li>
+      </ul>`,
+    tip:{t:"Por qué un módulo para dos trastornos", x:"El módulo integra psicosis y trastorno bipolar porque en el nivel no especializado ambos se presentan con conducta alterada y la <b>decisión farmacológica se bifurca en el mismo punto</b>: antipsicótico frente a estabilizador del ánimo."},
+    opciones:[{l:"Comenzar la evaluación (PSI 1)", to:"psi-1", k:"neutral"}]
+  },
+
+  "psi-1": {
+    fase:"PSI 1 · Evaluación", paso:"1", tag:"¿Hay otras explicaciones para los síntomas?",
+    titulo:"¿Hay signos de delirio por una enfermedad física aguda o por medicación?",
+    cuerpo:`<p>Según la historia clínica, el examen o los resultados de laboratorio: infección, malaria
+      cerebral, deshidratación, anomalías metabólicas (hipoglucemia, hiponatremia), o efectos
+      secundarios de medicamentos (antimaláricos, esteroides).</p>`,
+    opciones:[
+      {l:"Sí", to:"psi-1-fis"},
+      {l:"No", to:"psi-2", k:"no"}
+    ]
+  },
+
+  "psi-1-fis": {
+    fase:"PSI 1 · Evaluación", paso:"1", tag:"Desvío obligatorio", tono:"alert",
+    titulo:"Evalúe y trate la enfermedad física aguda",
+    cuerpo:`<p>Derive a servicios de urgencia o a un especialista según sea necesario.</p>
+      <p><strong>¿Persisten los síntomas después de tratar la causa aguda?</strong></p>`,
+    tip:{t:"Lectura pedagógica", x:"Un delirio confundido con psicosis y tratado con antipsicóticos deja sin resolver la causa que puede estar matando a la persona. Este descarte es de seguridad, no de precisión diagnóstica."},
+    opciones:[
+      {l:"Sí, persisten", to:"psi-2"},
+      {l:"No, remitieron", to:"psi-1-fin", k:"no"}
+    ]
+  },
+
+  "psi-1-fin": {
+    fase:"Salida de la ruta", paso:"—", tag:"Causa médica resuelta", tono:"stop",
+    titulo:"Era un delirio de causa física",
+    cuerpo:`<p>Resuelta la causa aguda, no procede la ruta de psicosis. Continúe el manejo médico y el
+      seguimiento habitual.</p>`,
+    opciones:[]
+  },
+
+  "psi-2": {
+    fase:"PSI 1 · Evaluación", paso:"2", tag:"¿Episodio maníaco agudo?",
+    titulo:"¿Varios de estos síntomas al mismo tiempo, durante al menos una semana?",
+    cuerpo:`<p>Con gravedad suficiente para interferir considerablemente en el trabajo y las actividades
+      sociales, o para requerir reclusión u hospitalización.</p>
+      <ul>
+        <li>Estado de ánimo elevado o irritable.</li>
+        <li>Disminución de la necesidad de sueño.</li>
+        <li>Aumento de la actividad y la energía; habla mucho o con rapidez.</li>
+        <li>Pérdida de las inhibiciones sociales normales (por ejemplo, indiscreciones sexuales).</li>
+        <li>Comportamientos impulsivos o temerarios: gastos excesivos, decisiones importantes sin reflexionar.</li>
+        <li>Se distrae fácilmente.</li>
+        <li>Aumento injustificado de la autoestima.</li>
+      </ul>`,
+    tip:{t:"Antes de proseguir", x:"Si la persona presenta <b>agitación o agresividad aguda</b>, vaya al Cuadro 5 (manejo de conducta agitada) antes de continuar. Si hay <b>riesgo inminente de suicidio</b>, evalúelo y trátelo primero (módulo SUI).", red:true},
+    opciones:[
+      {l:"Sí", to:"psi-mania"},
+      {l:"No", to:"psi-3", k:"no"},
+      {l:"Hay agitación aguda ahora", to:"psi-agitacion", k:"no"}
+    ]
+  },
+
+  "psi-agitacion": {
+    fase:"PSI 2 · Manejo", paso:"5", tag:"Cuadro 5 · conducta agitada o agresiva", tono:"alert",
+    titulo:"Sub-ruta de urgencia: agitación aguda",
+    cuerpo:`<p><strong>Primero la seguridad.</strong> Manténgase tranquilo, use un tono de voz calmado,
+      escuche, no responda agresivamente a la provocación, retire de la situación al posible
+      desencadenante, haga participar a cuidadores y personal.</p>
+      <p><strong>Evaluación de la causa subyacente:</strong> glucemia (si es baja, glucosa), signos vitales,
+      temperatura y saturación de oxígeno; descarte delirio y causas físicas; descarte intoxicación
+      por estimulantes o abstinencia de alcohol o sedantes.</p>
+      <p><strong>Sedación solo si se agotaron las demás posibilidades:</strong> para agitación por psicosis o
+      manía, haloperidol oral o intramuscular 2 mg por hora hasta 5 dosis (máximo 10 mg); para
+      agitación por sustancias, diazepam 10–20 mg por vía oral.</p>`,
+    tip:{t:"Después de la urgencia", x:"Una vez que cede la agitación, se vuelve al Esquema Principal y se retoma la evaluación por el módulo pertinente. La urgencia no reemplaza el diagnóstico."},
+    opciones:[{l:"Retomar la evaluación", to:"psi-2", k:"neutral"}]
+  },
+
+  "psi-mania": {
+    fase:"PSI 1 · Evaluación", paso:"2", tag:"Desenlace diagnóstico", tono:"outcome",
+    titulo:"Sospeche un episodio maníaco del TRASTORNO BIPOLAR",
+    cuerpo:`<p>La ruta se dirige al <strong>PROTOCOLO 1</strong>. Antes: evalúe demencia, depresión,
+      intoxicación o abstinencia de drogas o alcohol, y trate los trastornos concurrentes.</p>`,
+    tip:{t:"Consejo clínico", x:"Las personas con trastorno bipolar pueden experimentar a lo largo de su vida solo episodios maníacos, o una combinación de maníacos y depresivos. Para el episodio depresivo, la evaluación se hace desde el módulo DEP."},
+    opciones:[
+      {l:"Ir al PROTOCOLO 1 (manía)", to:"psi-prot1", k:"neutral"},
+      {l:"Ver el módulo DEP", to:"__ruta:dep", k:"no"}
+    ]
+  },
+
+  "psi-3": {
+    fase:"PSI 1 · Evaluación", paso:"3", tag:"¿Sufre la persona de psicosis?",
+    titulo:"¿Tiene al menos dos de los siguientes síntomas?",
+    cuerpo:`<ul>
+        <li>Estados delirantes: creencias fijas falsas no compartidas por otros en su cultura.</li>
+        <li>Alucinaciones: oye voces o ve cosas que no existen.</li>
+        <li>Lenguaje o conducta desorganizados: habla incoherente o ilógica, murmurar o reírse solo,
+            apariencia extraña, signos de descuido de sí mismo.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"psi-psicosis"},
+      {l:"No", to:"psi-3-no", k:"no"}
+    ]
+  },
+
+  "psi-3-no": {
+    fase:"Salida de la ruta", paso:"—", tag:"Criterio no cumplido", tono:"stop",
+    titulo:"Considere consultar a un especialista",
+    cuerpo:`<p>No se cumple el umbral de dos síntomas. Se consulta para examinar otras causas posibles
+      de psicosis en lugar de iniciar antipsicóticos.</p>`,
+    opciones:[]
+  },
+
+  "psi-psicosis": {
+    fase:"PSI 1 · Evaluación", paso:"3", tag:"Desenlace diagnóstico", tono:"outcome",
+    titulo:"Sospeche que se trata de un caso de PSICOSIS",
+    cuerpo:`<p>La ruta se dirige al <strong>PROTOCOLO 2</strong>. Si hay riesgo inminente de suicidio,
+      evalúelo y trátelo antes de proseguir.</p>`,
+    opciones:[
+      {l:"Ir al PROTOCOLO 2 (psicosis)", to:"psi-prot2", k:"neutral"},
+      {l:"Ver primero la ruta de suicidio (SUI)", to:"__ruta:sui", k:"no"}
+    ]
+  },
+
+  "psi-prot1": {
+    fase:"PSI 2 · Manejo", paso:"1", tag:"Protocolo 1 · Episodio maníaco", tono:"outcome",
+    titulo:"Manejo del episodio maníaco en el trastorno bipolar",
+    cuerpo:`<ul>
+        <li>Psicoeducación a la persona y los cuidadores.</li>
+        <li><strong>Si está tomando antidepresivos, DESCONTINUARLOS</strong> para prevenir un mayor riesgo de manía.</li>
+        <li>Iniciar litio, valproato, carbamazepina o antipsicóticos. Considerar benzodiacepina a corto
+            plazo (2 a 4 semanas como máximo) para el trastorno conductual o la agitación.</li>
+        <li>Promover el funcionamiento en las actividades diarias; reducir el estrés y fortalecer los apoyos sociales.</li>
+        <li>Garantizar la seguridad de la persona y de otros; apoyar la rehabilitación en la comunidad.</li>
+        <li>Mantenimiento por al menos <strong>2 años</strong> después del último episodio bipolar.</li>
+      </ul>`,
+    tip:{t:"Condicionantes de recursos", x:"El litio es primera línea <b>solo si</b> es factible el seguimiento clínico y de laboratorio y hay supervisión de especialista. Si no, valproato o carbamazepina. La guía subordina la elección del fármaco a lo que el sistema puede monitorear.", red:true},
+    opciones:[
+      {l:"Ver grupos especiales de población", to:"psi-grupos", k:"neutral"},
+      {l:"Pasar al seguimiento (PSI 3)", to:"psi-seg-mania", k:"neutral"}
+    ]
+  },
+
+  "psi-prot2": {
+    fase:"PSI 2 · Manejo", paso:"2", tag:"Protocolo 2 · Psicosis", tono:"outcome",
+    titulo:"Manejo de la psicosis",
+    cuerpo:`<ul>
+        <li>Psicoeducación a la persona y los cuidadores.</li>
+        <li>Iniciar medicación antipsicótica: <strong>uno solo a la vez</strong>, comenzando con la dosis
+            más baja y aumentando lenta y gradualmente hasta la dosis eficaz más baja.</li>
+        <li>Probar la medicación en una dosis normalmente eficaz durante <strong>4 a 6 semanas</strong>
+            antes de considerarla ineficaz.</li>
+        <li>Promover el funcionamiento en las actividades diarias; reducir el estrés y fortalecer los apoyos sociales.</li>
+        <li>Garantizar la seguridad de la persona y de otros; apoyar la rehabilitación en la comunidad.</li>
+        <li>Vigilar peso, presión arterial, glucemia, colesterol y ECG cuando sea posible.</li>
+      </ul>`,
+    tip:{t:"Consejos para los cuidadores", x:"No trate de convencer a la persona de que sus creencias son falsas; sea neutral y preste apoyo. Evite críticas u hostilidad severas. Dé libertad de movimiento evitando la restricción. Se debe evitar la hospitalización a largo plazo."},
+    opciones:[
+      {l:"Ver grupos especiales de población", to:"psi-grupos", k:"neutral"},
+      {l:"Pasar al seguimiento (PSI 3)", to:"psi-seg-psi", k:"neutral"}
+    ]
+  },
+
+  "psi-grupos": {
+    fase:"PSI 2 · Manejo", paso:"3", tag:"Grupos especiales de población",
+    titulo:"Cómo se adapta el protocolo",
+    cuerpo:`<ul>
+        <li><strong>Embarazo y lactancia (psicosis):</strong> haloperidol oral en dosis bajas o clorpromazina.
+            No prescribir anticolinérgicos, salvo casos agudos a corto plazo. No usar antipsicóticos
+            de depósito de forma sistemática.</li>
+        <li><strong>Embarazo y lactancia (manía):</strong> EVITAR valproato, litio y carbamazepina por riesgo
+            de malformaciones congénitas. Considerar haloperidol en dosis bajas con precaución y
+            consulta especializada.</li>
+        <li><strong>Adolescentes:</strong> dosis inferiores y mayor riesgo de interacciones. Risperidona solo
+            bajo supervisión de especialista.</li>
+        <li><strong>Adultos mayores:</strong> los antipsicóticos aumentan el riesgo de episodios
+            cerebrovasculares y muerte en psicosis relacionada con demencia.</li>
+      </ul>`,
+    opciones:[
+      {l:"Seguimiento de psicosis", to:"psi-seg-psi", k:"neutral"},
+      {l:"Seguimiento de episodio maníaco", to:"psi-seg-mania", k:"neutral"}
+    ]
+  },
+
+  "psi-seg-psi": {
+    fase:"PSI 3 · Seguimiento", paso:"1", tag:"Psicosis",
+    titulo:"¿Está mejorando la persona?",
+    cuerpo:`<p>El seguimiento inicial debe ser lo más frecuente posible, incluso diario, hasta que los
+      síntomas agudos respondan. Después: consulta mensual, bimestral o trimestral según necesidad
+      clínica y factibilidad.</p>`,
+    opciones:[
+      {l:"Sí, mejora", to:"psi-seg-psi-si"},
+      {l:"No mejora", to:"psi-seg-psi-no", k:"no"}
+    ]
+  },
+
+  "psi-seg-psi-si": {
+    fase:"PSI 3 · Seguimiento", paso:"3", tag:"Respuesta al tratamiento", tono:"outcome",
+    titulo:"Continuar, monitorear y considerar la suspensión",
+    cuerpo:`<ul>
+        <li>Continuar el plan y reducir la frecuencia de las sesiones una vez que ceden los síntomas.</li>
+        <li>Monitorear observancia, efectos secundarios y dosificación; vigilar peso, presión arterial y glucemia.</li>
+        <li><strong>Primer episodio o recaída:</strong> considerar la suspensión 12 meses después de la
+            remisión completa de los síntomas.</li>
+        <li><strong>Síntomas que persisten más de 3 meses:</strong> considerar la suspensión solo tras una
+            remisión total durante varios años.</li>
+        <li>Al suspender: reducción gradual y lenta, enseñando a la persona y a la familia a detectar
+            los primeros síntomas de recaída.</li>
+      </ul>`,
+    opciones:[]
+  },
+
+  "psi-seg-psi-no": {
+    fase:"PSI 3 · Seguimiento", paso:"1", tag:"Cuadro 4 · respuesta inadecuada", tono:"alert",
+    titulo:"Verifique antes de cambiar de medicamento",
+    cuerpo:`<ul>
+        <li>Asegure una dosificación eficaz típica durante un mínimo de 4 a 6 semanas.</li>
+        <li>Compruebe la dosis; si es baja, auméntela hasta la dosis eficaz más baja.</li>
+        <li>Pregunte por consumo de alcohol o sustancias (módulo SUS) y por acontecimientos estresantes recientes.</li>
+        <li>Descarte enfermedades físicas u otros trastornos MNS: vuelva al paso 1 de la evaluación.</li>
+        <li>Si no responde a más de un antipsicótico en dosis y duración adecuadas, considere consulta
+            especializada; la clozapina solo bajo supervisión y con laboratorio disponible.</li>
+      </ul>`,
+    opciones:[{l:"Reevaluar la mejoría", to:"psi-seg-psi", k:"neutral"}]
+  },
+
+  "psi-seg-mania": {
+    fase:"PSI 3 · Seguimiento", paso:"1", tag:"Episodio maníaco en el trastorno bipolar",
+    titulo:"¿Está mejorando la persona?",
+    cuerpo:`<p>En manía aguda, seguimiento inicial lo más frecuente posible, incluso diario. Cuando no hay
+      estados maníacos ni depresivos, consulta al menos cada tres meses, vigilando la recaída.</p>`,
+    opciones:[
+      {l:"Sí, mejora", to:"psi-seg-mania-si"},
+      {l:"No mejora", to:"psi-seg-mania-no", k:"no"}
+    ]
+  },
+
+  "psi-seg-mania-si": {
+    fase:"PSI 3 · Seguimiento", paso:"3", tag:"Respuesta al tratamiento", tono:"outcome",
+    titulo:"Mantenimiento por al menos dos años",
+    cuerpo:`<p>Seguimiento hasta la remisión de los síntomas y mantenimiento de la medicación durante al
+      menos 2 años.</p>
+      <p><strong>¿Remisión total sin episodios durante al menos dos años?</strong> Entonces se aborda con la
+      persona y el cuidador el riesgo de suspender, se consulta a un especialista sobre la decisión y
+      se reduce la medicación gradualmente durante semanas o meses.</p>`,
+    opciones:[]
+  },
+
+  "psi-seg-mania-no": {
+    fase:"PSI 3 · Seguimiento", paso:"1", tag:"Falta de respuesta", tono:"alert",
+    titulo:"Verifique dosis y duración antes de cambiar",
+    cuerpo:`<ul>
+        <li>Verifique dosificación y efectos secundarios.</li>
+        <li>Asegure una dosificación eficaz típica durante un mínimo de 4 a 6 semanas.</li>
+        <li>Si tras 4–6 semanas no hay mejoría, considere cambiar la medicación. Si la respuesta sigue
+            siendo deficiente, consulte a un especialista.</li>
+      </ul>`,
+    tip:{t:"Consejo clínico", x:"Si cambia de medicamento, empiece el nuevo primero y mantenga ambos durante 2 semanas antes de reducir el primero."},
+    opciones:[{l:"Reevaluar la mejoría", to:"psi-seg-mania", k:"neutral"}]
+  }
+}},
+
+/* ------------------------------------------------------ AUTOLESIÓN / SUICIDIO */
+sui: {
+  codigo: "SUI",
+  nombre: "Autolesión / Suicidio",
+  desc: "Una ruta organizada por niveles de riesgo, donde la urgencia médica se atiende antes que el diagnóstico.",
+  inicio: "sui-portada",
+  nodos: {
+
+  "sui-portada": {
+    fase:"Panorama", paso:"", tag:"Módulo SUI · a quién se pregunta",
+    titulo:"¿A quién hay que preguntarle por autolesión?",
+    cuerpo:`<p>A <strong>toda persona de 10 años o más</strong> que presente alguna de estas condiciones se le
+      debe preguntar por pensamientos o planes de autolesión en el último mes, y por actos de
+      autolesión en el último año:</p>
+      <ul>
+        <li>Cualquiera de los trastornos MNS prioritarios.</li>
+        <li>Dolor crónico.</li>
+        <li>Alteraciones emocionales agudas.</li>
+      </ul>
+      <p>La indagación se repite de forma periódica, no solo en la evaluación inicial.</p>`,
+    tip:{t:"Consejo clínico", x:"Las preguntas sobre autolesión <b>no provocan</b> actos de autolesión. A menudo reducen la ansiedad asociada y ayudan a que la persona se sienta comprendida. Establezca una relación antes de preguntar y pídale que explique sus razones para causarse daño."},
+    opciones:[{l:"Comenzar la evaluación (SUI 1)", to:"sui-1", k:"neutral"}]
+  },
+
+  "sui-1": {
+    fase:"SUI 1 · Evaluación", paso:"1", tag:"Nivel 1 · urgencia médica",
+    titulo:"¿Ha intentado la persona un acto médicamente grave de autolesión?",
+    cuerpo:`<p>Busque evidencias de autolesión o signos y síntomas que requieran tratamiento médico urgente:</p>
+      <ul>
+        <li>Signos de envenenamiento o intoxicación.</li>
+        <li>Sangrado por una herida autoinfligida.</li>
+        <li>Pérdida del conocimiento.</li>
+        <li>Letargo extremo.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"sui-prot1"},
+      {l:"No", to:"sui-2", k:"no"}
+    ]
+  },
+
+  "sui-prot1": {
+    fase:"SUI 2 · Manejo", paso:"1", tag:"Protocolo 1 · acto médicamente grave", tono:"alert",
+    titulo:"Estabilización médica primero",
+    cuerpo:`<ul>
+        <li>Coloque a la persona en un entorno seguro y propicio dentro de un establecimiento de salud.
+            <strong>NO la deje sola.</strong></li>
+        <li>Trate médicamente la lesión o la intoxicación. En intoxicación aguda con plaguicidas, siga
+            el protocolo específico y traslade de inmediato si no se dispone de vía aérea, atropina y
+            diazepam intravenosos.</li>
+        <li>Si se requiere hospitalización, continúe monitoreando estrechamente para prevenir el suicidio.</li>
+        <li>Elimine el acceso a los medios de autolesión.</li>
+        <li>Ofrezca y active el apoyo psicosocial; ofrezca apoyo a los cuidadores.</li>
+        <li>Consulte a un especialista en salud mental, si es factible.</li>
+      </ul>`,
+    tip:{t:"La ruta no termina aquí", x:"Una vez que la persona está médicamente estable, se <b>regresa al paso 2</b> de la evaluación. Salvar la vida no equivale a haber evaluado el riesgo.", red:true},
+    opciones:[{l:"Persona estable: volver al paso 2", to:"sui-2", k:"neutral"}]
+  },
+
+  "sui-2": {
+    fase:"SUI 1 · Evaluación", paso:"2", tag:"Nivel 2 · riesgo inminente",
+    titulo:"¿Existe riesgo inminente de autolesión o suicidio?",
+    cuerpo:`<p>Pregunte a la persona y a sus cuidadores si observan <strong>alguno</strong> de estos:</p>
+      <ul>
+        <li>Pensamientos o plan de autolesión o suicidio <strong>en la actualidad</strong>.</li>
+        <li>Antecedentes de pensamientos o plan de autolesión en el último mes, o de un acto de
+            autolesión en el último año, <strong>en una persona que ahora está extremadamente agitada,
+            violenta, afligida o no se comunica</strong>.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"sui-prot2"},
+      {l:"No", to:"sui-2b", k:"no"}
+    ]
+  },
+
+  "sui-2b": {
+    fase:"SUI 1 · Evaluación", paso:"2", tag:"Nivel 3 · riesgo persistente",
+    titulo:"¿Hay antecedentes de pensamientos o plan en el último mes, o de un acto en el último año?",
+    cuerpo:`<p>Sin la agitación, violencia o aflicción actuales que definen el riesgo inminente.</p>`,
+    opciones:[
+      {l:"Sí", to:"sui-prot3"},
+      {l:"No", to:"sui-sin-riesgo", k:"no"}
+    ]
+  },
+
+  "sui-sin-riesgo": {
+    fase:"SUI 1 · Evaluación", paso:"2", tag:"Sin riesgo identificado", tono:"stop",
+    titulo:"Es improbable que haya riesgo de autolesión o suicidio",
+    cuerpo:`<p>Se continúa con los pasos 3 a 5 de la evaluación: trastornos concurrentes, dolor crónico y
+      gravedad de los síntomas emocionales.</p>`,
+    opciones:[{l:"Continuar al paso 3", to:"sui-3", k:"neutral"}]
+  },
+
+  "sui-prot2": {
+    fase:"SUI 2 · Manejo", paso:"2", tag:"Protocolo 2 · riesgo inminente", tono:"alert",
+    titulo:"Riesgo inminente: no dejar sola a la persona",
+    cuerpo:`<ul>
+        <li><strong>Elimine los medios</strong> de autolesión o suicidio: plaguicidas, sustancias tóxicas,
+            medicamentos de prescripción, armas de fuego.</li>
+        <li>Cree un entorno seguro y propicio; si es posible, un área tranquila y separada para esperar
+            el tratamiento. <strong>NO deje sola a la persona.</strong></li>
+        <li>Asigne a un miembro del personal o a un familiar para garantizar su seguridad en todo momento.</li>
+        <li>Atienda el estado mental y la alteración emocional.</li>
+        <li>Psicoeducación a la persona y a sus cuidadores; ofrezca y active el apoyo psicosocial;
+            ofrezca apoyo a los cuidadores.</li>
+        <li>Consulte a un especialista en salud mental, si es factible. Mantenga contacto regular.</li>
+      </ul>`,
+    tip:{t:"Si receta medicamentos", x:"Use fármacos menos peligrosos en caso de sobredosis intencional y entregue prescripciones para períodos breves, por ejemplo una semana por vez.", red:true},
+    opciones:[{l:"Continuar al paso 3", to:"sui-3", k:"neutral"}]
+  },
+
+  "sui-prot3": {
+    fase:"SUI 2 · Manejo", paso:"3", tag:"Protocolo 3 · riesgo de autolesión", tono:"outcome",
+    titulo:"Riesgo presente sin inminencia",
+    cuerpo:`<ul>
+        <li>Ofrezca y active el apoyo psicosocial: investigue las razones y las formas de permanecer con
+            vida, concéntrese en los puntos fuertes de la persona y en cómo resolvió problemas anteriores.</li>
+        <li>Movilice a familia, amigos y recursos comunitarios para vigilar de cerca mientras persista el riesgo.</li>
+        <li>Recomiende restringir el acceso a los medios de autolesión.</li>
+        <li>Consulte a un especialista en salud mental, si es factible.</li>
+        <li>Mantenga contacto regular y seguimiento periódico.</li>
+      </ul>`,
+    tip:{t:"Apoyo a los cuidadores", x:"Informe a la familia que preguntar por el suicidio suele aliviar a la persona. Los cuidadores presentan con frecuencia estrés grave: présteles apoyo emocional y adviértales que eviten la hostilidad y las críticas severas."},
+    opciones:[{l:"Continuar al paso 3", to:"sui-3", k:"neutral"}]
+  },
+
+  "sui-3": {
+    fase:"SUI 1 · Evaluación", paso:"3", tag:"Trastornos MNS concurrentes",
+    titulo:"¿Tiene la persona trastornos MNS concurrentes?",
+    cuerpo:`<ul>
+        <li>Depresión.</li>
+        <li>Psicosis.</li>
+        <li>Trastornos por consumo de sustancias.</li>
+        <li>Epilepsia.</li>
+        <li>Trastornos mentales y conductuales del niño y el adolescente.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"sui-3-si"},
+      {l:"No", to:"sui-4", k:"no"}
+    ]
+  },
+
+  "sui-3-si": {
+    fase:"SUI 1 · Evaluación", paso:"3", tag:"Derivación entre módulos", tono:"outcome",
+    titulo:"Trate los trastornos concurrentes",
+    cuerpo:`<p>Vaya a los módulos pertinentes. La ruta de suicidio no reemplaza el manejo del trastorno de base.</p>`,
+    opciones:[
+      {l:"Continuar al paso 4", to:"sui-4", k:"neutral"},
+      {l:"Abrir el módulo DEP", to:"__ruta:dep", k:"no"},
+      {l:"Abrir el módulo PSI", to:"__ruta:psi", k:"no"}
+    ]
+  },
+
+  "sui-4": {
+    fase:"SUI 1 · Evaluación", paso:"4", tag:"Dolor crónico",
+    titulo:"¿Tiene la persona un dolor crónico?",
+    cuerpo:`<p>El dolor crónico es uno de los tres motivos por los que la guía obliga a preguntar por
+      autolesión, y aquí vuelve como objetivo de tratamiento.</p>`,
+    opciones:[
+      {l:"Sí", to:"sui-4-si"},
+      {l:"No", to:"sui-5", k:"no"}
+    ]
+  },
+
+  "sui-4-si": {
+    fase:"SUI 1 · Evaluación", paso:"4", tag:"Manejo del dolor", tono:"outcome",
+    titulo:"Controle el dolor y trate todo trastorno médico pertinente",
+    cuerpo:`<p>Reducir el dolor es una intervención de prevención del suicidio, no un asunto aparte.</p>`,
+    opciones:[{l:"Continuar al paso 5", to:"sui-5", k:"neutral"}]
+  },
+
+  "sui-5": {
+    fase:"SUI 1 · Evaluación", paso:"5", tag:"Gravedad de los síntomas emocionales",
+    titulo:"¿Son los síntomas emocionales suficientemente graves para justificar tratamiento clínico?",
+    cuerpo:`<ul>
+        <li>Dificultad para llevar a cabo actividades usuales laborales, escolares, domésticas o sociales.</li>
+        <li>Automedicación repetida para alteraciones emocionales o síntomas físicos idiopáticos.</li>
+        <li>Marcada aflicción o búsqueda reiterada de ayuda.</li>
+      </ul>`,
+    opciones:[
+      {l:"Sí", to:"sui-5-si"},
+      {l:"No", to:"sui-seg", k:"no"}
+    ]
+  },
+
+  "sui-5-si": {
+    fase:"SUI 1 · Evaluación", paso:"5", tag:"Módulo OTR", tono:"outcome",
+    titulo:"Trate los síntomas emocionales",
+    cuerpo:`<p>Vaya al módulo <strong>OTR — Otros padecimientos de salud mental importantes</strong>, y continúe
+      con el seguimiento del módulo SUI.</p>`,
+    opciones:[{l:"Pasar al seguimiento (SUI 3)", to:"sui-seg", k:"neutral"}]
+  },
+
+  "sui-seg": {
+    fase:"SUI 3 · Seguimiento", paso:"1", tag:"Frecuencia de contacto",
+    titulo:"¿Está mejorando la persona?",
+    cuerpo:`<p>Mantenga un contacto continuo —teléfono, visitas a domicilio, cartas o tarjetas con
+      información de contacto— inicialmente con mayor frecuencia (diario o semanal) durante los dos
+      primeros meses. En cada contacto, investigue sistemáticamente pensamientos y planes suicidas.</p>`,
+    opciones:[
+      {l:"Sí, mejora", to:"sui-seg-si"},
+      {l:"No mejora", to:"sui-seg-no", k:"no"}
+    ]
+  },
+
+  "sui-seg-si": {
+    fase:"SUI 3 · Seguimiento", paso:"2", tag:"Seguimiento prolongado", tono:"outcome",
+    titulo:"Espaciar el contacto sin cerrar el caso",
+    cuerpo:`<ul>
+        <li>Disminuya la frecuencia del contacto a medida que la persona mejora.</li>
+        <li>Continúe el seguimiento durante <strong>2 años</strong>: por ejemplo, cada 2 o 4 semanas después
+            de los dos meses iniciales, y dos veces durante el segundo año.</li>
+      </ul>`,
+    tip:{t:"Lectura pedagógica", x:"La única ruta de las tres que fija un horizonte de seguimiento de dos años tras la mejoría. El riesgo suicida no se “da de alta”: se acompaña mientras persiste."},
+    opciones:[]
+  },
+
+  "sui-seg-no": {
+    fase:"SUI 3 · Seguimiento", paso:"2", tag:"Riesgo persistente", tono:"alert",
+    titulo:"Aumente el contacto y derive",
+    cuerpo:`<ul>
+        <li>Aumente la frecuencia o la duración del contacto según sea necesario.</li>
+        <li>Derive a la persona al especialista cuando sea necesario.</li>
+        <li>Efectúe el seguimiento mientras persista el riesgo de autolesión o suicidio.</li>
+        <li>En cada contacto, vuelva a preguntar: ¿es inminente el riesgo? Si lo es, regrese al paso 2
+            de la evaluación.</li>
+      </ul>`,
+    opciones:[
+      {l:"Reevaluar el riesgo inminente", to:"sui-2", k:"neutral"},
+      {l:"Reevaluar la mejoría", to:"sui-seg", k:"neutral"}
+    ]
+  }
+}}
+
+};
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+
+let rutaActual = null;
+let camino = [];   // [{id, elegido:index|null}]
+
+const $routes = document.getElementById('routes');
+const $flow = document.getElementById('flow');
+const $statusbar = document.getElementById('statusbar');
+const $statusText = document.getElementById('statusText');
+
+Object.entries(RUTAS).forEach(([k,r]) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'route'; b.dataset.ruta = k;
+  b.setAttribute('aria-pressed','false');
+  b.innerHTML = `<div class="route-code">Módulo ${r.codigo}</div>
+                 <div class="route-name">${r.nombre}</div>
+                 <div class="route-desc">${r.desc}</div>`;
+  b.addEventListener('click', () => abrirRuta(k));
+  $routes.appendChild(b);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (rutaActual) abrirRuta(rutaActual);
+});
+
+function abrirRuta(k){
+  rutaActual = k;
+  camino = [{ id: RUTAS[k].inicio, elegido: null }];
+  document.querySelectorAll('.route').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.ruta === k)));
+  pintar();
+  $statusbar.hidden = false;
+}
+
+function elegir(indiceNodo, indiceOpcion){
+  const nodo = RUTAS[rutaActual].nodos[camino[indiceNodo].id];
+  const destino = nodo.opciones[indiceOpcion].to;
+
+  if (destino.startsWith('__ruta:')) { abrirRuta(destino.split(':')[1]); return; }
+
+  camino = camino.slice(0, indiceNodo + 1);
+  camino[indiceNodo].elegido = indiceOpcion;
+  camino.push({ id: destino, elegido: null });
+  pintar();
+
+  requestAnimationFrame(() => {
+    const cards = $flow.querySelectorAll('.node');
+    const last = cards[cards.length - 1];
+    if (last) last.scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+}
+
+function pintar(){
+  const R = RUTAS[rutaActual];
+  $flow.innerHTML = '';
+
+  camino.forEach((paso, i) => {
+    const n = R.nodos[paso.id];
+    if (i > 0) {
+      const c = document.createElement('div');
+      c.className = 'connector';
+      $flow.appendChild(c);
+    }
+
+    const wrap = document.createElement('div');
+    wrap.className = 'node';
+    const tono = n.tono ? ' is-' + n.tono : '';
+    const badge = n.paso ? `<div class="step-badge">${n.paso}</div>` : '';
+
+    let tipHtml = '';
+    if (n.tip) tipHtml = `<div class="tip${n.tip.red ? ' is-red' : ''}"><b>${n.tip.t}</b>${n.tip.x}</div>`;
+
+    let accion = '';
+    if (paso.elegido === null && n.opciones.length) {
+      accion = '<div class="options">' + n.opciones.map((o,j) =>
+        `<button type="button" class="opt${o.k==='no'?' is-no':o.k==='neutral'?' is-neutral':''}" data-i="${i}" data-j="${j}">${o.l}</button>`
+      ).join('') + '</div>';
+    } else if (paso.elegido !== null) {
+      const el = n.opciones[paso.elegido];
+      const otras = n.opciones.map((o,j)=>({o,j})).filter(x => x.j !== paso.elegido);
+      accion = `<div class="answered">
+          <span>Respuesta elegida:</span>
+          <span class="chip${el.k==='no'?' is-no':''}">${el.l}</span>
+          ${otras.map(x=>`<button type="button" class="relink" data-i="${i}" data-j="${x.j}">probar «${x.o.l}»</button>`).join('')}
+        </div>`;
+    } else if (!n.opciones.length) {
+      accion = `<div class="answered"><span>Fin de este recorrido. Pueden reabrir cualquier decisión anterior o reiniciar la ruta.</span></div>`;
+    }
+
+    wrap.innerHTML = `
+      <div class="card${tono}">
+        <div class="row">
+          ${badge}
+          <div class="row-main">
+            <div class="card-head">
+              <span class="card-tag">${n.fase} · ${n.tag}</span>
+            </div>
+            <h3>${n.titulo}</h3>
+            <div class="card-body">${n.cuerpo}</div>
+            ${tipHtml}
+            ${accion}
+          </div>
+        </div>
+      </div>`;
+    $flow.appendChild(wrap);
+  });
+
+  $flow.querySelectorAll('.opt, .relink').forEach(b =>
+    b.addEventListener('click', () => elegir(+b.dataset.i, +b.dataset.j)));
+
+  const decisiones = camino.filter(p => p.elegido !== null).length;
+  $statusText.innerHTML = `Módulo <strong>${R.codigo} · ${R.nombre}</strong> — ${decisiones}
+    ${decisiones === 1 ? 'decisión tomada' : 'decisiones tomadas'}`;
+}
+</script>
+</body>
+</html>
