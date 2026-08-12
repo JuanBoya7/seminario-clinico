@@ -46,6 +46,10 @@ h1{font-family:var(--font-display); font-weight:600; font-size:clamp(21px,3.4vw,
 .stage{display:grid; grid-template-columns:minmax(0,1fr) 292px; gap:22px; align-items:start;}
 @media (max-width:900px){ .stage{grid-template-columns:minmax(0,1fr);} }
 
+/* El zoom usa transform: escala lo visible pero no la altura que ocupa en el
+   layout. Por eso el mapa va dentro de un contenedor al que se le fija a mano
+   la altura ya escalada; si no, al ampliar se monta sobre la leyenda y el pie. */
+.map-shell{position:relative;}
 .map{transform-origin:top left;}
 
 /* bandas de fase */
@@ -163,7 +167,7 @@ footer p{margin:0 0 4px;}
   </div>
 
   <div class="stage">
-    <div class="map" id="map"></div>
+    <div class="map-shell" id="mapShell"><div class="map" id="map"></div></div>
     <aside class="panel" id="panel">
       <span class="ptag">Panel de detalle</span>
       <h2>Seleccionen una caja del mapa</h2>
@@ -399,6 +403,8 @@ function pintar(k){
   $panel.innerHTML = `<span class="ptag">Panel de detalle</span>
     <h2>Módulo ${m.codigo} · ${m.nombre}</h2>
     <p class="hint">Toquen cualquier caja del mapa para ver aquí los criterios completos.</p>`;
+
+  ajustarAlto();  // cada módulo tiene una altura distinta
 }
 
 function detalle(id){
@@ -416,7 +422,19 @@ function setZoom(v){
   $map.style.transform = zoom===100 ? '' : `scale(${zoom/100})`;
   $map.style.width = zoom===100 ? '' : (10000/zoom) + '%';
   document.getElementById('zVal').textContent = zoom + '%';
+  ajustarAlto();
 }
+
+/* getBoundingClientRect ya devuelve la altura con la escala aplicada: se la
+   pasamos al contenedor para que la leyenda y el pie queden siempre debajo. */
+function ajustarAlto(){
+  document.getElementById('mapShell').style.height =
+    Math.ceil($map.getBoundingClientRect().height) + 'px';
+}
+
+/* Al cambiar el ancho, el texto refluye y el alto natural del mapa cambia. */
+let reflow;
+addEventListener('resize', ()=>{ clearTimeout(reflow); reflow = setTimeout(ajustarAlto, 120); });
 
 pintar('dep');
 </script>
