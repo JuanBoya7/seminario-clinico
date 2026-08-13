@@ -56,9 +56,9 @@ h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
   padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;
 }
 
-/* ---- Identificación: fila compacta de tres selectores ---- */
+/* ---- Identificación: fila compacta de dos selectores ---- */
 .ident{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
   background:var(--surface); border:1px solid var(--border);
   border-radius:var(--radius); padding:14px; margin-bottom:8px;
 }
@@ -164,8 +164,8 @@ textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px va
     <div class="eyebrow">Simulacro de PAP · Hoja del observador</div>
     <h1>Cotejo de la intervención</h1>
     <p>
-      Marcá durante la escena, no después. Al cerrar la ronda, enviá: son unos pocos
-      toques y se puede volver a enviar en la siguiente ronda desde esta misma página.
+      Marcá durante la escena, no después. Al cerrar, enviá: son unos pocos toques y
+      se puede volver a enviar en la escena siguiente desde esta misma página.
     </p>
   </header>
 
@@ -191,18 +191,9 @@ textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px va
         <option value="5">5</option>
       </select>
     </div>
-    <div>
-      <label for="f-ronda">Ronda</label>
-      <select id="f-ronda">
-        <option value="">—</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
   </div>
   <p class="ident-nota" id="ident-nota">
-    Elegí tu grupo, tu estación y la ronda que estás observando.
+    Elegí tu grupo y la estación que se está representando.
   </p>
 
   <!-- Los ítems se generan desde el guion de la clase -->
@@ -213,7 +204,7 @@ textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px va
 
   <div class="seccion-titulo">Observación destacada</div>
   <textarea id="f-destacada" rows="2"
-    placeholder="Una línea: lo más significativo de esta ronda."></textarea>
+    placeholder="Una línea: lo más significativo de esta escena."></textarea>
 
   <div class="barra">
     <div class="progreso" id="progreso">0 de 6 ítems marcados</div>
@@ -288,7 +279,11 @@ const ESTACIONES = {
 /* ============================================================
    3. ESTADO
    ============================================================ */
-const state = { respuestas: {}, errores: [] };
+// "envios" cuenta cuántas observaciones mandó este dispositivo. Reemplaza al
+// antiguo selector de ronda: la ronda ya no se elige a mano, se deduce del
+// orden de envío, así que no está topada en tres y sigue distinguiendo dos
+// registros aunque se repita la misma estación.
+const state = { respuestas: {}, errores: [], envios: 0 };
 
 /* ============================================================
    4. RENDERIZADO
@@ -365,7 +360,7 @@ function actualizarNota(){
   const nota = document.getElementById("ident-nota");
   nota.innerHTML = est
     ? `Estación ${est}: <span class="estacion-nombre">${ESTACIONES[est]}</span>`
-    : "Elegí tu grupo, tu estación y la ronda que estás observando.";
+    : "Elegí tu grupo y la estación que se está representando.";
 }
 
 /* ============================================================
@@ -373,7 +368,7 @@ function actualizarNota(){
    ============================================================ */
 function primerFaltante(){
   // La identificación es obligatoria: sin ella la fila no se puede ubicar.
-  const ids = ["f-curso", "f-estacion", "f-ronda"];
+  const ids = ["f-curso", "f-estacion"];
   for (const id of ids) {
     const el = document.getElementById(id);
     const vacio = !el.value;
@@ -405,7 +400,7 @@ function recogerEnvio(){
     curso: ENVIO.curso,
     cursoGrupo: document.getElementById("f-curso").value,
     estacion: document.getElementById("f-estacion").value,
-    ronda: document.getElementById("f-ronda").value,
+    ronda: String(state.envios + 1),
     observador: "",
     campos: campos,
     estado: ""
@@ -430,7 +425,7 @@ function enviar(){
   // Mismo criterio que en los análisis de caso: se sondea la ventana emergente
   // antes de elegir el destino. Si está bloqueada (el navegador de WhatsApp lo
   // hace) y se usara target="_blank", no se enviaría nada y el observador se
-  // quedaría creyendo que registró la ronda.
+  // quedaría creyendo que registró la observación.
   let destino = "_self";
   try {
     const ventana = window.open("", "entrega-observacion");
@@ -451,13 +446,15 @@ function enviar(){
   document.body.removeChild(form);
 
   avisar("Observación enviada · " + new Date().toLocaleTimeString(), true);
-  prepararSiguienteRonda();
+  prepararSiguienteEscena();
 }
 
-// Tras enviar se limpian los ítems pero se conservan curso y estación, y la
-// ronda avanza sola: el observador se queda en la misma mesa toda la actividad
-// y va a enviar tres veces seguidas.
-function prepararSiguienteRonda(){
+// Tras enviar se limpian los ítems y tambien la estación: cada escena trabaja
+// una crisis distinta delante de todo el curso, asi que arrastrarla haria que
+// el segundo envio llegara etiquetado con la escena del primero. El grupo del
+// curso si se conserva, que no cambia en toda la actividad.
+function prepararSiguienteEscena(){
+  state.envios += 1;
   state.respuestas = {};
   state.errores = [];
   document.querySelectorAll(".item").forEach(caja => {
@@ -470,9 +467,9 @@ function prepararSiguienteRonda(){
   });
   document.getElementById("f-destacada").value = "";
 
-  const ronda = document.getElementById("f-ronda");
-  const siguiente = String(parseInt(ronda.value, 10) + 1);
-  ronda.value = ["1","2","3"].indexOf(siguiente) > -1 ? siguiente : "";
+  document.getElementById("f-estacion").value = "";
+  actualizarNota();
+
   actualizarProgreso();
 }
 
@@ -488,7 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderErrores();
     actualizarProgreso();
     document.getElementById("f-estacion").addEventListener("change", actualizarNota);
-    ["f-curso","f-estacion","f-ronda"].forEach(id => {
+    ["f-curso","f-estacion"].forEach(id => {
       document.getElementById(id).addEventListener("change", (e) =>
         e.target.classList.remove("invalid"));
     });
