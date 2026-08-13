@@ -781,9 +781,11 @@ function pintarTitular(datos){
   const obs = datos.total || 0;
 
   if (primero.pct - ultimo.pct > 0.2) {
+    // "de las observaciones" y no "de los casos": ahora todo el curso mira la
+    // misma escena, asi que el porcentaje cuenta miradas, no intervenciones.
     el.innerHTML = `Con ${obs} observaciones del curso: el contacto se sostuvo en ` +
-      `<em>${porcentaje(primero.pct)}</em> de los casos y la derivación a una ruta, ` +
-      `en <em>${porcentaje(ultimo.pct)}</em>. <em>Contener no es derivar.</em>`;
+      `<em>${porcentaje(primero.pct)}</em> de las observaciones y la derivación a una ` +
+      `ruta, en <em>${porcentaje(ultimo.pct)}</em>. <em>Contener no es derivar.</em>`;
   } else {
     el.innerHTML = `Con ${obs} observaciones del curso: la secuencia se sostuvo pareja, ` +
       `del <em>${porcentaje(primero.pct)}</em> en el contacto al ` +
