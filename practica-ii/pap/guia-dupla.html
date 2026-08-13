@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro PAP — Guía de la dupla</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.55;
+     -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+
+.wrap{max-width:720px; margin:0 auto; padding:20px 16px 48px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:22px;}
+.masthead h1{font-size:25px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14.5px; margin:0;}
+
+.ficha{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+  margin-bottom:26px;}
+.ficha-cab{background:var(--accent-soft); padding:16px 18px; border-bottom:1px solid var(--border);}
+.ficha-cab h2{font-size:20px; margin-bottom:4px;}
+.ficha-cuerpo{padding:18px;}
+
+.pasos{list-style:none; padding:0; margin:0; counter-reset:paso;}
+.pasos li{position:relative; padding:0 0 14px 34px; font-size:15px;}
+.pasos li:last-child{padding-bottom:0;}
+.pasos li::before{counter-increment:paso; content:counter(paso);
+  position:absolute; left:0; top:0; width:24px; height:24px; border-radius:50%;
+  background:var(--accent); color:#fff; font-family:var(--font-mono);
+  font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.pasos strong{display:block;}
+
+.caja{border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin-bottom:26px;}
+.caja.si{background:var(--mild-soft); border-color:var(--mild);}
+.caja h3{font-size:14px; margin-bottom:8px;}
+.caja.si h3{color:var(--mild);}
+.caja ul{margin:0; padding-left:18px; font-size:14px;}
+.caja li{margin-bottom:5px;}
+.caja li:last-child{margin-bottom:0;}
+
+.nota{border:1px solid var(--border); background:var(--surface);
+  border-radius:var(--radius); padding:16px 18px; font-size:14px; color:var(--ink-soft);
+  margin-bottom:26px;}
+.nota strong{color:var(--ink);}
+
+.pie{margin-top:34px; padding-top:16px; border-top:1px solid var(--border);
+  font-size:12.5px; color:var(--ink-faint);}
+.pie a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Simulacro de PAP · Guía de la dupla</div>
+    <h1>Los cinco componentes</h1>
+    <p>
+      Esto lo puede abrir cualquiera, antes o durante la escena: es el método, no el
+      guion. Quienes intervienen lo repasan antes de entrar; quienes observan miran
+      exactamente esto.
+    </p>
+  </header>
+
+  <div class="ficha">
+    <div class="ficha-cab">
+      <div class="eyebrow">Para la dupla de psicólogos</div>
+      <h2>Qué hacer, en orden</h2>
+    </div>
+    <div class="ficha-cuerpo">
+      <ol class="pasos">
+        <li><strong>Realizar contacto psicológico.</strong> Que la persona se sienta
+            escuchada, aceptada y apoyada. Uno abre; el otro observa la escena y el entorno.</li>
+        <li><strong>Analizar las dimensiones del problema.</strong> Presente (qué pasó,
+            cómo se siente), pasado inmediato (quién, qué, cuándo) y futuro inmediato (riesgos).</li>
+        <li><strong>Sondear posibles soluciones.</strong> Acompañar a generar alternativas
+            y examinar los obstáculos, en vez de indicar la salida.</li>
+        <li><strong>Iniciar pasos concretos.</strong> El mejor paso próximo, uno solo.
+            Directivo únicamente si hace falta.</li>
+        <li><strong>Verificar el progreso.</strong> Acá: verbalizar a qué recurso o ruta
+            de atención se derivaría el caso en la vida real.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="caja si">
+    <h3>Qué SÍ hacer</h3>
+    <ul>
+      <li>Escuchar reflejando sentimientos y hechos</li>
+      <li>Comunicar aceptación</li>
+      <li>Plantear preguntas abiertas</li>
+      <li>Evaluar el riesgo de forma explícita</li>
+      <li>Trabajar por bloques y fijar prioridades</li>
+      <li>Dar un paso cada vez, con metas de corto plazo</li>
+      <li>Acordar cómo sigue: un recontacto concreto</li>
+    </ul>
+  </div>
+
+  <div class="nota">
+    <strong>La lista de errores frecuentes no está acá.</strong> Está en la hoja del
+    observador, que es donde cumple su función: marcar lo que efectivamente pasó en la
+    escena. Repasarla justo antes de intervenir tiende a hacer esos errores más
+    presentes, no menos.
+  </div>
+
+  <div class="pie">
+    Fuentes: Deza Villanueva, S. (2007). <em>Intervención en crisis: primeros auxilios
+    psicológicos</em>. Slaikeu, K. A. (1996). OPS/OMS, <em>Guía de Intervención mhGAP 2.0</em> (2017).
+  </div>
+</div>
+</body>
+</html>

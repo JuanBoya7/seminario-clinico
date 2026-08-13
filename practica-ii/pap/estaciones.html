@@ -130,23 +130,23 @@ select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(
     <div class="eyebrow">Simulacro de PAP · Guion de estación</div>
     <h1>Estaciones de crisis</h1>
     <p>
-      Cada mesa trabaja una sola estación durante toda la actividad y rota los roles
-      internamente. Elegí abajo la que te asignaron.
+      Esta hoja la abre únicamente quien hace de paciente: ni la dupla que interviene
+      ni el curso que observa la leen. Elegí abajo la estación de esta escena.
     </p>
   </header>
 
   <div class="aviso-cuidado">
     <strong>Antes de empezar.</strong> Representar estas escenas puede remover cosas
-    personales. El rol de paciente es voluntario: si una estación te toca de cerca,
-    decilo y tomá otro rol, sin dar explicaciones. Al cerrar cada ronda, quien hizo de
+    personales. Pasar al frente es voluntario, y el rol de paciente en particular: si una
+    escena te toca de cerca, quedate observando, sin dar explicaciones. Al cerrar cada escena, quien hizo de
     paciente sale del personaje en voz alta —su nombre y una frase cualquiera— antes
     de seguir.
   </div>
 
   <div class="selector">
-    <label for="f-estacion">Estación asignada a tu mesa</label>
+    <label for="f-estacion">Estación de esta escena</label>
     <select id="f-estacion">
-      <option value="">— Elegí tu estación —</option>
+      <option value="">— Elegí la estación —</option>
       <option value="1">Estación 1 — Ideación suicida inminente</option>
       <option value="2">Estación 2 — Ataque de pánico en espacio público</option>
       <option value="3">Estación 3 — Duelo agudo</option>
@@ -157,55 +157,10 @@ select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(
 
   <div id="ficha"></div>
 
-  <div id="guia-comun" style="display:none;">
-    <div class="ficha">
-      <div class="ficha-cab">
-        <div class="eyebrow">Para la dupla de psicólogos</div>
-        <h2>Los cinco componentes</h2>
-      </div>
-      <div class="ficha-cuerpo">
-        <ol class="pasos">
-          <li><strong>Realizar contacto psicológico.</strong> Que la persona se sienta
-              escuchada, aceptada y apoyada. Uno abre; el otro observa la escena y el entorno.</li>
-          <li><strong>Analizar las dimensiones del problema.</strong> Presente (qué pasó,
-              cómo se siente), pasado inmediato (quién, qué, cuándo) y futuro inmediato (riesgos).</li>
-          <li><strong>Sondear posibles soluciones.</strong> Acompañar a generar alternativas
-              y examinar los obstáculos, en vez de indicar la salida.</li>
-          <li><strong>Iniciar pasos concretos.</strong> El mejor paso próximo, uno solo.
-              Directivo únicamente si hace falta.</li>
-          <li><strong>Verificar el progreso.</strong> Acá: verbalizar a qué recurso o ruta
-              de atención se derivaría el caso en la vida real.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="dos" style="margin-bottom:26px;">
-      <div class="caja si">
-        <h3>Qué SÍ hacer</h3>
-        <ul>
-          <li>Escuchar reflejando sentimientos y hechos</li>
-          <li>Comunicar aceptación</li>
-          <li>Plantear preguntas abiertas</li>
-          <li>Evaluar el riesgo de forma explícita</li>
-          <li>Trabajar por bloques y fijar prioridades</li>
-          <li>Dar un paso cada vez, con metas de corto plazo</li>
-          <li>Acordar cómo sigue: un recontacto concreto</li>
-        </ul>
-      </div>
-      <div class="caja no">
-        <h3>Qué NO hacer</h3>
-        <ul>
-          <li>Contar la propia historia</li>
-          <li>Juzgar, regañar o tomar partido</li>
-          <li>Depender de preguntas de sí/no</li>
-          <li>Soslayar las señales de peligro</li>
-          <li>Permitir la visión en túnel</li>
-          <li>Dar consejos directos en lugar de opciones</li>
-          <li>Prometer lo que no es posible</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <!-- La guia de la dupla (los cinco componentes y el "que si hacer") vivia aca,
+       pero esta hoja ahora la abre unicamente quien hace de paciente. Se movio a
+       guia-dupla.html, que es publica: lo que debe quedar oculto es como
+       evoluciona la escena, no el metodo. -->
 
   <div class="pie">
     Fuentes: Deza Villanueva, S. (2007). <em>Intervención en crisis: primeros auxilios
@@ -254,7 +209,8 @@ const ESTACIONES = [
   {
     n: "3",
     titulo: "Duelo agudo",
-    ruta: "mhGAP · DEP (descarte)",
+    ruta: "No es DEP · duelo normal",
+    rutaSin: true,
     perfil: "Familiar directo —hijo, hermana, pareja— que acaba de recibir la noticia de un fallecimiento inesperado por accidente o evento súbito.",
     estado: "Shock inicial, negación verbal, alternancia entre embotamiento afectivo y llanto descontrolado.",
     lineas: [
@@ -301,12 +257,11 @@ const ESTACIONES = [
    ============================================================ */
 function renderFicha(numero){
   const cont = document.getElementById("ficha");
-  const guia = document.getElementById("guia-comun");
 
-  if (!numero) { cont.innerHTML = ""; guia.style.display = "none"; return; }
+  if (!numero) { cont.innerHTML = ""; return; }
 
   const e = ESTACIONES.find(x => x.n === numero);
-  if (!e) { cont.innerHTML = ""; guia.style.display = "none"; return; }
+  if (!e) { cont.innerHTML = ""; return; }
 
   const lineas = e.lineas.map(l =>
     `<li>${l.acot ? `<span class="acot">${l.acot}:</span>` : ""}“${l.texto}”</li>`
