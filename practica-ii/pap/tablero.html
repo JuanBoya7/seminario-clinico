@@ -102,6 +102,10 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
   text-transform:uppercase; letter-spacing:0.05em; display:block;}
 
 .vacio-msg{color:var(--ink-faint); font-size:13.5px; font-style:italic;}
+/* Cartel de alcance: aparece cuando hay una escena filtrada pero el bloque
+   que sigue no pudo recortarse a ella. */
+.aviso-global{font-size:12.5px; color:var(--ink-faint); background:var(--surface-alt);
+  border-radius:6px; padding:7px 10px; margin-bottom:12px; line-height:1.4;}
 
 /* ---- Conmutador de modo ---- */
 .modos{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
@@ -195,6 +199,9 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
       <select id="f-grupo">
         <option value="Práctica II">Práctica II</option>
       </select>
+      <select id="f-estacion">
+        <option value="">Todas las estaciones</option>
+      </select>
       <button class="btn" id="btn-actualizar">Actualizar</button>
       <span class="estado" id="estado">—</span>
     </div>
@@ -274,8 +281,8 @@ td.vacio{color:var(--ink-faint); font-style:italic;}
     </div>
 
     <div class="panel-cierre">
-      <h2>Lo que vio el curso</h2>
-      <div class="sub">Una observación escrita de la escena con más “sí” y otra de la que
+      <h2 id="voces-titulo">Lo que vio el curso</h2>
+      <div class="sub" id="voces-sub">Una observación escrita de la escena con más “sí” y otra de la que
         menos. El rótulo describe cómo le fue a la escena, no si la observación es
         elogiosa: muchas veces la más aguda aparece donde mejor salió.</div>
       <div id="voces"></div>
@@ -379,6 +386,53 @@ function pedirResumen(grupo, url){
 }
 
 /* ============================================================
+   2 bis. RECORTE POR ESTACIÓN
+   ============================================================
+   El receptor siempre devuelve el paquete completo del grupo. El filtro de
+   estación no vuelve a pedir nada: recorta ese paquete a una sola escena y
+   se lo entrega a las mismas funciones de pintado, que no saben que hubo
+   recorte. Así el cierre global y el cierre por escena comparten código.
+
+   Los errores marcados vienen por estación en est.errores (ver resumen() en
+   Codigo.gs). Si faltan —el navegador quedó contra un despliegue anterior del
+   receptor, que solo los mandaba sumados— se conserva el conteo global y se
+   avisa en pantalla: mostrar el número del grupo entero rotulado como si fuera
+   de una escena sería peor que no recortar.
+   ============================================================ */
+function recortar(datos, estacion){
+  if (!estacion || !datos || !datos.estaciones || !datos.estaciones[estacion]) return datos;
+  const est = datos.estaciones[estacion];
+
+  const propios = est.errores && Object.keys(est.errores).length ? est.errores : null;
+
+  return {
+    ok: true,
+    actualizado: datos.actualizado,
+    total: est.total || 0,
+    // Solo los ítems que esta escena efectivamente registró, en el orden original.
+    items: (datos.items || []).filter(i => est.items[i]),
+    estaciones: { [estacion]: est },
+    destacadas: (datos.destacadas || []).filter(o => String(o.estacion) === String(estacion)),
+    errores: propios || datos.errores || {},
+    // Marcas que leen las funciones de pintado para ajustar los textos.
+    __estacion: estacion,
+    __erroresGlobales: !propios
+  };
+}
+
+// El paquete completo del grupo, sin recortar. Lo necesita la vista por
+// escena para poder decir "acá 17%, en el conjunto del curso 3%": sin ese
+// contraste, un porcentaje suelto de una sola escena no dice nada.
+let datosDelGrupo = null;
+
+const estacionActiva = (datos) => (datos && datos.__estacion) || null;
+
+// "de la escena de duelo" / "del curso", según haya recorte o no.
+const deQuien = (datos) => estacionActiva(datos)
+  ? "de la escena de " + nombreEscena(datos.__estacion)
+  : "del curso";
+
+/* ============================================================
    3. RENDERIZADO
    ============================================================ */
 function pintarCifras(datos){
@@ -399,9 +453,18 @@ function pintarCifras(datos){
     if (peorPct === null || pct < peorPct) { peorPct = pct; peorItem = item; }
   });
 
+  // Con una escena filtrada, "1 estación con datos" no informa nada: en ese
+  // lugar va cuál es la escena, que es lo que el docente necesita ver para no
+  // confundirse sobre qué está mirando.
+  const segunda = estacionActiva(datos)
+    ? `<div class="cifra"><div class="n" style="font-size:19px; line-height:1.35;">${
+        ESTACIONES[datos.__estacion] || ("Estación " + datos.__estacion)
+      }</div><div class="t">Escena en pantalla</div></div>`
+    : `<div class="cifra"><div class="n">${estaciones.length}</div><div class="t">Estaciones con datos</div></div>`;
+
   cont.innerHTML = `
     <div class="cifra"><div class="n">${datos.total || 0}</div><div class="t">Observaciones</div></div>
-    <div class="cifra"><div class="n">${estaciones.length}</div><div class="t">Estaciones con datos</div></div>
+    ${segunda}
     <div class="cifra"><div class="n">${peorPct === null ? "—" : Math.round(peorPct*100) + "%"}</div>
       <div class="t">Cumplimiento del ítem más flojo</div></div>
     <div class="cifra" style="grid-column:span 2;">
@@ -457,12 +520,22 @@ function pintarErrores(datos){
     return;
   }
   const tope = pares[0][1];
-  cont.innerHTML = pares.map(([nombre, n]) => `
+  cont.innerHTML = avisoErrores(datos) + pares.map(([nombre, n]) => `
     <div class="err-fila">
       <span class="err-nombre">${nombre}</span>
       <span class="err-barra"><span style="width:${(n/tope*100).toFixed(1)}%"></span></span>
       <span class="err-n">${n}</span>
     </div>`).join("");
+}
+
+// Solo aparece si el receptor no mandó los errores por estación. Sin este
+// cartel, el bloque se leería como si fuera de la escena filtrada y sería
+// sencillamente falso.
+function avisoErrores(datos){
+  if (!estacionActiva(datos) || !datos.__erroresGlobales) return "";
+  return `<div class="aviso-global">Este bloque es del grupo completo: el receptor no
+    separó los errores por estación. Suele ser un despliegue anterior — recargá con
+    Ctrl+F5.</div>`;
 }
 
 function pintarDestacadas(datos){
@@ -607,6 +680,14 @@ function pintarCurva(datos){
 function pintarRiesgo(datos){
   const cont = document.getElementById("riesgo");
   const concl = document.getElementById("conclusion-riesgo");
+
+  // Esta sección es comparativa por naturaleza: recortarla a una escena la
+  // dejaría en una barra sola, que no dice nada. Con filtro activo se sigue
+  // pintando el grupo entero y se resalta la escena elegida, que es la lectura
+  // que sirve para devolverle el dato a una dupla: dónde quedó respecto de las demás.
+  const activa = estacionActiva(datos);
+  if (activa && datosDelGrupo) datos = datosDelGrupo;
+
   const itemRiesgo = (datos.items || []).find(i => numeroDePaso(i) === "3");
 
   if (!itemRiesgo) {
@@ -629,8 +710,9 @@ function pintarRiesgo(datos){
   const alta = filas[0], baja = filas[filas.length - 1];
   cont.innerHTML = filas.map(f => {
     const clase = f === alta ? "alto" : (f === baja ? "bajo" : "");
-    return `<div class="fila-comp ${clase}">
-      <span class="nom">${ESTACIONES[f.k] || ("Estación " + f.k)}</span>
+    const esta = activa && String(f.k) === String(activa);
+    return `<div class="fila-comp ${clase}"${esta ? ' style="font-weight:700;"' : ""}>
+      <span class="nom">${ESTACIONES[f.k] || ("Estación " + f.k)}${esta ? " ←" : ""}</span>
       <span class="bar"><span style="width:${Math.round(f.pct * 100)}%"></span></span>
       <span class="val">${porcentaje(f.pct)} · ${f.si}/${f.total}</span>
     </div>`;
@@ -653,6 +735,18 @@ function pintarRiesgo(datos){
     }
   } else {
     texto += `.`;
+  }
+
+  // Con filtro, la frase útil no es cuál escena quedó más alta sino dónde
+  // quedó la que se está mirando.
+  if (activa) {
+    const mia = filas.find(f => String(f.k) === String(activa));
+    if (mia) {
+      const puesto = filas.indexOf(mia) + 1;
+      texto = `En ${nombreEscena(activa)} se preguntó por el riesgo en ` +
+        `<strong>${porcentaje(mia.pct)}</strong> de las observaciones (${mia.si}/${mia.total}), ` +
+        `el puesto ${puesto} de ${filas.length} escenas. ` + texto;
+    }
   }
   concl.innerHTML = texto;
 }
@@ -683,7 +777,7 @@ function pintarErroresCierre(datos){
     .sort((a, b) => porPaso[b].total - porPaso[a].total);
   const tope = porPaso[grupos[0]].total;
 
-  cont.innerHTML = grupos.map(paso => {
+  cont.innerHTML = avisoErrores(datos) + grupos.map(paso => {
     const g = porPaso[paso];
     const titulo = PASOS[paso] ? ("Paso " + paso + " · " + PASOS[paso]) : "Otros";
     return `<div class="err-comp">
@@ -706,7 +800,14 @@ function pintarErroresCierre(datos){
 
   let texto = `El error más marcado fue <strong>${pares[0][0].toLowerCase()}</strong> ` +
     `(${pares[0][1]} veces).`;
-  if (peorCurva && pasoMasErrado === peorCurva.n) {
+  // El cruce con la curva solo vale si ambas miradas cubren lo mismo. Con una
+  // escena filtrada y errores del grupo entero, coincidan o no, la coincidencia
+  // no significaría nada: se omite en lugar de afirmarla.
+  const cruzable = !(estacionActiva(datos) && datos.__erroresGlobales);
+  if (!cruzable) {
+    texto += ` La curva de arriba es de ${nombreEscena(datos.__estacion)}, pero estos ` +
+      `errores son del grupo entero: no se pueden cruzar.`;
+  } else if (peorCurva && pasoMasErrado === peorCurva.n) {
     texto += ` Los errores se concentran en el <strong>paso ${pasoMasErrado}</strong>, que es ` +
       `también el peor sostenido en la curva. Son dos maneras distintas de mirar —marcar un ` +
       `error y calificar un componente— que llegaron al mismo punto: la coincidencia es lo ` +
@@ -719,11 +820,45 @@ function pintarErroresCierre(datos){
   concl.innerHTML = texto;
 }
 
+// El encabezado de la sección cambia con el filtro: sin él promete un
+// contraste entre escenas que con una sola no existe.
+const VOCES_SUB_GLOBAL = document.getElementById("voces-sub") &&
+  document.getElementById("voces-sub").innerHTML;
+
+function rotularVoces(datos){
+  const t = document.getElementById("voces-titulo");
+  const s = document.getElementById("voces-sub");
+  if (!t || !s) return;
+  if (estacionActiva(datos)) {
+    t.textContent = "Lo que se vio en esta escena";
+    s.textContent = "Las últimas observaciones escritas de la escena filtrada. " +
+      "Es el material con el que se le devuelve el trabajo a las duplas.";
+  } else {
+    t.textContent = "Lo que vio el curso";
+    s.innerHTML = VOCES_SUB_GLOBAL;
+  }
+}
+
 function pintarVoces(datos){
   const cont = document.getElementById("voces");
   const lista = (datos.destacadas || []);
+  rotularVoces(datos);
   if (!lista.length) {
     cont.innerHTML = `<div class="vacio-msg">Sin observaciones escritas todavía.</div>`;
+    return;
+  }
+
+  // Con una escena filtrada no hay contraste entre escenas que hacer: los
+  // rótulos "con más sí" / "con menos sí" serían falsos sobre una sola. Se
+  // muestran en cambio las últimas voces escritas de esa escena, que es el
+  // material con el que se le devuelve el trabajo a las duplas.
+  if (estacionActiva(datos)) {
+    const suyas = lista.slice(-3).reverse();
+    cont.innerHTML = suyas.map(o => `
+      <div class="voz">
+        <span class="de">${ESTACIONES[o.estacion] || ("Estación " + o.estacion)} · lo que escribieron los observadores</span>
+        ${o.texto}
+      </div>`).join("");
     return;
   }
 
@@ -780,11 +915,11 @@ function pintarTitular(datos){
   if (primero.pct - ultimo.pct > 0.2) {
     // "de las observaciones" y no "de los casos": ahora todo el curso mira la
     // misma escena, asi que el porcentaje cuenta miradas, no intervenciones.
-    el.innerHTML = `Con ${obs} observaciones del curso: el contacto se sostuvo en ` +
+    el.innerHTML = `Con ${obs} observaciones ${deQuien(datos)}: el contacto se sostuvo en ` +
       `<em>${porcentaje(primero.pct)}</em> de las observaciones y la derivación a una ` +
       `ruta, en <em>${porcentaje(ultimo.pct)}</em>. <em>Contener no es derivar.</em>`;
   } else {
-    el.innerHTML = `Con ${obs} observaciones del curso: la secuencia se sostuvo pareja, ` +
+    el.innerHTML = `Con ${obs} observaciones ${deQuien(datos)}: la secuencia se sostuvo pareja, ` +
       `del <em>${porcentaje(primero.pct)}</em> en el contacto al ` +
       `<em>${porcentaje(ultimo.pct)}</em> en la derivación.`;
   }
@@ -803,6 +938,36 @@ function pintarCierre(datos){
    ============================================================ */
 let cargando = false;
 let ultimosDatos = null;   // para repintar al cambiar de modo sin volver a pedir
+
+// El desplegable solo ofrece escenas que tienen observaciones. Si se listaran
+// las cinco siempre, elegir una vacía daría un tablero en blanco que parece
+// una falla de conexión y no una estación sin datos.
+function poblarEstaciones(datos){
+  const sel = document.getElementById("f-estacion");
+  const claves = Object.keys(datos.estaciones || {}).sort();
+  const firma = claves.join(",");
+  if (sel.dataset.firma === firma) return;   // sin cambios: no se toca la selección
+  sel.dataset.firma = firma;
+
+  const elegida = sel.value;
+  sel.innerHTML = `<option value="">Todas las estaciones</option>` +
+    claves.map(k => `<option value="${k}">${ESTACIONES[k] || ("Estación " + k)}</option>`).join("");
+  // Si la escena elegida sigue existiendo, se conserva: el tablero se refresca
+  // solo cada 30 s y no puede saltar a "todas" en medio de una devolución.
+  sel.value = claves.indexOf(elegida) !== -1 ? elegida : "";
+}
+
+// Solo repinta: el filtro de estación no vuelve a pedir datos al receptor.
+function refiltrar(){
+  if (!datosDelGrupo) return;
+  const datos = recortar(datosDelGrupo, document.getElementById("f-estacion").value);
+  ultimosDatos = datos;
+  pintarCifras(datos);
+  pintarTabla(datos);
+  pintarErrores(datos);
+  pintarDestacadas(datos);
+  pintarCierre(datos);
+}
 
 async function actualizar(){
   if (cargando) return;
@@ -836,6 +1001,13 @@ async function actualizar(){
       datos = await pedirResumen(grupo, posibles[posibles.length - 1]);
     }
     if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
+
+    // El paquete completo se guarda antes de recortar: la vista por escena lo
+    // necesita para comparar, y el filtro no debe costar una petición más.
+    datosDelGrupo = datos;
+    poblarEstaciones(datos);
+    datos = recortar(datos, document.getElementById("f-estacion").value);
+
     ultimosDatos = datos;
     pintarCifras(datos);
     pintarTabla(datos);
@@ -857,7 +1029,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     document.getElementById("btn-actualizar").addEventListener("click", actualizar);
-    document.getElementById("f-grupo").addEventListener("change", actualizar);
+    document.getElementById("f-grupo").addEventListener("change", () => {
+      // Cambiar de grupo invalida la escena elegida: las estaciones con datos
+      // pueden ser otras.
+      document.getElementById("f-estacion").dataset.firma = "";
+      actualizar();
+    });
+    document.getElementById("f-estacion").addEventListener("change", refiltrar);
 
     // Conmutador Actividad / Cierre. El refresco automático sigue corriendo en
     // los dos modos: si llega una observación tarde, el cierre se actualiza.
@@ -883,5 +1061,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
 </body>
 </html>
