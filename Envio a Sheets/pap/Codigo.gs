@@ -216,7 +216,9 @@ function resumen(curso, grupo, callback) {
         var estacion = String(colEstacion > -1 ? (fila[colEstacion] || 'sin') : 'sin');
         datos.total++;
 
-        if (!datos.estaciones[estacion]) datos.estaciones[estacion] = { total: 0, items: {} };
+        if (!datos.estaciones[estacion]) {
+          datos.estaciones[estacion] = { total: 0, items: {}, errores: {} };
+        }
         var est = datos.estaciones[estacion];
         est.total++;
 
@@ -233,7 +235,13 @@ function resumen(curso, grupo, callback) {
             valor.split('\n').forEach(function (err) {
               err = err.replace(/^[•\-\s]+/, '').trim();
               if (!err) return;
+              // El mismo conteo se lleva dos veces: sumado para el cierre en
+              // plenaria, y por estación para la devolución a cada dupla. Sin
+              // la segunda copia el tablero puede filtrar la matriz por escena
+              // pero no los errores, y termina mostrando el número del grupo
+              // entero al lado de la curva de una sola escena.
               datos.errores[err] = (datos.errores[err] || 0) + 1;
+              est.errores[err] = (est.errores[err] || 0) + 1;
             });
             continue;
           }
