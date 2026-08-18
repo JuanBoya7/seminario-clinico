@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Juego de roles</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding:clamp(24px,5vw,64px) clamp(18px,5vw,32px);}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:760px; margin:0 auto;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:8px;}
+h1{font-size:clamp(26px,5vw,33px); line-height:1.2; margin-bottom:14px;}
+.lead{color:var(--ink-soft); margin:0 0 12px; font-size:15.5px;}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:38px 0 14px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+
+/* ---- Tarjetas de recurso ---- */
+.recurso{display:block; text-decoration:none; color:inherit;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px 20px; margin-bottom:12px;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .1s ease;}
+.recurso:hover{border-color:var(--accent); box-shadow:var(--shadow-card);}
+.recurso:active{transform:scale(0.995);}
+.recurso-top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.recurso-titulo{font-family:var(--font-display); font-size:19px; font-weight:600;}
+.recurso-quien{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+  border-radius:5px; padding:3px 7px;}
+.recurso-desc{font-size:14px; color:var(--ink-soft); margin-top:6px;}
+
+/* ---- Guion de la sesión ---- */
+.tramo{display:grid; grid-template-columns:88px 1fr; gap:14px;
+  padding:13px 0; border-bottom:1px solid var(--border);}
+.tramo:last-child{border-bottom:none;}
+.tramo-hora{font-family:var(--font-mono); font-size:12.5px; color:var(--accent);
+  font-weight:700; padding-top:2px;}
+.tramo-que{font-size:14.5px; font-weight:600; margin-bottom:2px;}
+.tramo-detalle{font-size:13.5px; color:var(--ink-soft);}
+
+/* ---- Roles ---- */
+.roles{list-style:none; margin:0; padding:0;}
+.roles li{padding:11px 0; border-bottom:1px solid var(--border); font-size:14.5px;}
+.roles li:last-child{border-bottom:none;}
+.roles b{color:var(--accent-dark);}
+
+.nota{margin-top:22px; padding:16px 19px; background:var(--accent-soft);
+  border-radius:var(--radius); font-size:14px; color:var(--accent-dark);}
+.nota b{font-weight:700;}
+.aviso{margin-top:14px; padding:16px 19px; background:var(--moderate-soft);
+  border:1px solid var(--moderate); border-radius:var(--radius);
+  font-size:14px; color:#6d4415;}
+.aviso b{color:var(--moderate);}
+
+.pie{margin-top:44px; padding-top:16px; border-top:1px solid var(--border);
+  font-size:12.5px; color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Práctica II · Clínica · UDES · 2026-B</div>
+  <h1>La entrevista en tres enfoques</h1>
+  <p class="lead">
+    Seis grupos, seis consultantes y tres marcos teóricos. Cada grupo entrevista
+    desde el enfoque que le tocó; los demás observan y valoran con la misma rúbrica.
+  </p>
+  <p class="lead">
+    Lo que se pone a prueba no es quién entrevista mejor, sino algo más difícil de
+    ver: que la forma de preguntar decide qué aparece. Al final proyectamos las
+    valoraciones de los seis grupos y discutimos, sobre todo, dónde no coincidimos.
+  </p>
+
+  <div class="seccion-titulo">Materiales</div>
+
+  <a class="recurso" href="premisas.html">
+    <div class="recurso-top">
+      <span class="recurso-titulo">Las seis premisas</span>
+      <span class="recurso-quien">Para empezar la actividad</span>
+    </div>
+    <div class="recurso-desc">
+      El punto de partida de cada grupo y qué hay que construir a partir de él.
+      La historia del consultante la escriben ustedes, y se califica.
+    </div>
+  </a>
+
+  <a class="recurso" href="observador.html">
+    <div class="recurso-top">
+      <span class="recurso-titulo">Hoja del observador</span>
+      <span class="recurso-quien">En clase, desde el celular</span>
+    </div>
+    <div class="recurso-desc">
+      Se llena durante la escena y se envía apenas termina. Cinco envíos por
+      estudiante, uno por cada grupo que no es el suyo. Trae la rúbrica adentro:
+      cada aspecto abre sus cinco niveles con un toque.
+    </div>
+  </a>
+
+  <a class="recurso" href="enfoques.html">
+    <div class="recurso-top">
+      <span class="recurso-titulo">Los tres enfoques</span>
+      <span class="recurso-quien">Para repasar</span>
+    </div>
+    <div class="recurso-desc">
+      Qué busca cada entrevista, cómo pregunta, qué evita, y en qué se le nota.
+      Lo visto en clase, por si querés volver sobre eso antes de entrar en escena.
+    </div>
+  </a>
+
+  <div class="seccion-titulo">Cómo se arma cada grupo</div>
+  <ul class="roles">
+    <li><b>Entrevistador.</b> Una persona. Conduce la entrevista de principio a fin.</li>
+    <li><b>Consultante.</b> Una persona. Sostiene el caso que el grupo construyó, con sus reservas y sus aperturas.</li>
+    <li><b>Cabina.</b> El resto del grupo. Prepara el caso, no habla durante la escena, y es quien responde en la retroalimentación: por qué construyeron ese consultante, qué esperaban que apareciera y qué no apareció.</li>
+  </ul>
+  <div class="nota">
+    <b>Los roles reparten el trabajo, no la calificación.</b> La rúbrica no evalúa al
+    entrevistador ni al consultante por separado: los cinco aspectos preguntan qué
+    entrevista produjo el grupo. Quien preparó el caso y no habló durante la escena
+    está siendo evaluado igual que quien condujo — y el quinto aspecto mira
+    precisamente eso, si detrás de la escena hubo una decisión de grupo o una
+    improvisación de dos personas.
+  </div>
+  <div class="nota">
+    <b>Treinta y un estudiantes, seis grupos:</b> cinco grupos de cinco y uno de seis.
+    Nadie mira desde afuera — mientras un grupo está en escena, los otros veintiséis
+    valoran, y esa valoración también cuenta.
+  </div>
+
+  <div class="seccion-titulo">Guion de la sesión · dos horas</div>
+  <div class="tramo">
+    <div class="tramo-hora">0:00 – 0:10</div>
+    <div><div class="tramo-que">Encuadre</div>
+      <div class="tramo-detalle">Reglas del ejercicio, escala de 1 a 5, y el acuerdo
+        sobre cómo se retroalimenta a un par.</div></div>
+  </div>
+  <div class="tramo">
+    <div class="tramo-hora">0:10 – 0:15</div>
+    <div><div class="tramo-que">Últimos ajustes en grupo</div>
+      <div class="tramo-detalle">Reparto de roles internos y repaso de las reservas del
+        consultante.</div></div>
+  </div>
+  <div class="tramo">
+    <div class="tramo-hora">0:15 – 1:45</div>
+    <div><div class="tramo-que">Seis rondas de quince minutos</div>
+      <div class="tramo-detalle">Diez minutos de entrevista, cinco de retroalimentación.
+        El consultante habla primero: cómo se sintió, antes de cualquier juicio técnico.
+        Después responde la cabina. Las hojas se envían al cerrar cada retro —no al
+        final de la clase— porque el quinto aspecto valora cómo respondió el grupo.</div></div>
+  </div>
+  <div class="tramo">
+    <div class="tramo-hora">1:45 – 2:00</div>
+    <div><div class="tramo-que">Cierre con el tablero</div>
+      <div class="tramo-detalle">Se proyecta la vista de desacuerdos y se discuten dos o
+        tres. La pregunta de salida: ¿qué preguntó cada enfoque que los otros dos no
+        preguntaron?</div></div>
+  </div>
+
+  <div class="aviso">
+    <b>El reloj es lo primero que se rompe.</b> Diez minutos de entrevista son diez, no
+    quince: si la primera ronda se estira, la sexta se queda sin retroalimentación y el
+    último grupo trabaja gratis. Conviene poner un cronómetro visible y cortar aunque la
+    escena esté buena — cortar a mitad de camino también es material para discutir.
+  </div>
+
+  <div class="pie">
+    Práctica II - Clínica · Universidad de Santander · 2026-B<br>
+    Los enlaces de esta página funcionan desde el celular. La hoja del observador y el
+    tablero necesitan conexión.
+  </div>
+
+</div>
+</body>
+</html>

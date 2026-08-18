@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Premisas de los seis grupos</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --mild:#3f7d53; --mild-soft:#e7f3ea;
+  --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --severe:#a83f2b; --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:780px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:26px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:34px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+
+/* ---- Tarjeta de premisa ---- */
+.premisa{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:16px; overflow:hidden;}
+.premisa-cabeza{padding:15px 18px; background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.premisa-grupo{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:#fff; background:var(--accent); border-radius:5px; padding:4px 8px;}
+.premisa-enfoque{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--accent-dark);}
+.premisa-cuerpo{padding:16px 18px;}
+.premisa-frase{font-family:var(--font-display); font-size:18.5px; line-height:1.4;
+  margin:0 0 14px;}
+.premisa-frase em{color:var(--accent-dark); font-style:italic;}
+
+.anclas{list-style:none; margin:0; padding:0;}
+.anclas li{padding:8px 0; border-bottom:1px solid var(--border); font-size:14px;
+  color:var(--ink-soft);}
+.anclas li:last-child{border-bottom:none;}
+.anclas b{color:var(--accent-dark); font-weight:600;}
+.anclas-titulo{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
+
+/* ---- Bloques de instrucción ---- */
+.bloque{background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px 20px; margin-bottom:14px;}
+.bloque p:first-child{margin-top:0;} .bloque p:last-child{margin-bottom:0;}
+
+.construir{counter-reset:paso; list-style:none; margin:0; padding:0;}
+.construir li{position:relative; padding:11px 0 11px 34px; font-size:14.5px;
+  border-bottom:1px solid var(--border);}
+.construir li:last-child{border-bottom:none;}
+.construir li::before{counter-increment:paso; content:counter(paso);
+  position:absolute; left:0; top:12px; font-family:var(--font-mono); font-size:11px;
+  font-weight:700; color:#fff; background:var(--accent);
+  width:20px; height:20px; border-radius:50%; text-align:center; line-height:20px;}
+.construir b{font-weight:600;}
+
+.limites{list-style:none; margin:0; padding:0;}
+.limites li{position:relative; padding:9px 0 9px 22px; font-size:14.3px;
+  border-bottom:1px solid var(--border); color:var(--ink-soft);}
+.limites li:last-child{border-bottom:none;}
+.limites li::before{content:"×"; position:absolute; left:2px; top:9px;
+  color:var(--severe); font-weight:700;}
+
+.aviso{background:var(--moderate-soft); border:1px solid var(--moderate);
+  border-radius:var(--radius); padding:16px 18px; font-size:14px; color:#6d4415;
+  margin-top:16px;}
+.aviso b{color:var(--moderate);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Práctica II · Clínica · Juego de roles</div>
+    <h1>Seis premisas para robustecer</h1>
+    <p>
+      Cada grupo recibe una premisa de tres líneas. No es un caso: es un punto de
+      partida. La historia del consultante —de dónde viene, qué calla, con qué se
+      abre— la construyen ustedes antes de la clase, y esa construcción es la mitad
+      del trabajo evaluable.
+    </p>
+    <p>
+      Como todos los grupos se evalúan con la <a href="rubrica.html">misma rúbrica</a>,
+      que los casos sean distintos no impide comparar. Al contrario: seis consultantes
+      distintos hacen visible que lo que cambia entre enfoques no es el paciente, sino
+      la forma de preguntar.
+    </p>
+  </header>
+
+  <div class="seccion-titulo">Las premisas</div>
+  <div id="premisas"></div>
+
+  <div class="seccion-titulo">Qué tiene que construir el grupo</div>
+  <p style="font-size:14.5px; color:var(--ink-soft); margin:0 0 14px;">
+    Antes de la clase, y por escrito. Quien actúe como consultante tiene que poder
+    sostener diez minutos de preguntas que no vio venir; eso no se improvisa, se
+    prepara.
+  </p>
+  <div class="bloque">
+    <ol class="construir">
+      <li><b>Quién es.</b> Nombre, con quién vive, de qué trabaja o estudia, cómo es un día suyo.</li>
+      <li><b>Desde cuándo y qué cambió.</b> Cuánto lleva esto y qué pasó alrededor del momento en que empezó. No hace falta que la persona lo tenga claro; ustedes sí.</li>
+      <li><b>Qué trae dicho y qué no.</b> Lo que dice de entrada, y dos o tres cosas que sabe pero no menciona por vergüenza, por costumbre o porque no le parecen relevantes.</li>
+      <li><b>Con qué se abre cada una de esas cosas.</b> Esto es lo importante: para cada dato reservado, con qué tipo de pregunta aparece y con cuál se cierra. Si no lo definen, el consultante lo entrega todo en el minuto dos y la entrevista se queda sin oficio.</li>
+      <li><b>Cómo reacciona al entrevistador.</b> Qué le pasa si lo interrumpen, si toman notas sin mirarlo, si van muy rápido, si se quedan callados. Esto es lo que permite ver el efecto del entrevistador sobre la entrevista, que es más difícil de observar que el contenido.</li>
+      <li><b>Qué espera de esta consulta.</b> Qué cree que le van a hacer, qué teme, qué querría llevarse.</li>
+    </ol>
+  </div>
+
+  <div class="seccion-titulo">Límites de la construcción</div>
+  <div class="bloque">
+    <ul class="limites">
+      <li><b>Sin crisis aguda.</b> Nada de riesgo suicida inminente, agitación o descompensación: eso es primeros auxilios psicológicos, otro dispositivo y otra sesión. Acá se entrevista a alguien que llegó por su cuenta y puede conversar.</li>
+      <li><b>Sin diagnóstico exótico.</b> No busquen el cuadro raro. Lo interesante de una primera entrevista está en lo ordinario mal entendido, no en lo infrecuente.</li>
+      <li><b>Sin secretos imposibles.</b> Todo dato reservado tiene que poder salir en diez minutos si alguien pregunta bien. Un secreto que nadie puede alcanzar no enseña nada.</li>
+      <li><b>Sin trampas al entrevistador.</b> El consultante no está ahí para hacerlo fracasar. Es una persona común que quiere que esto sirva de algo.</li>
+      <li><b>Sin historias propias.</b> No usen la historia de alguien de su vida ni la suya. Es un ejercicio público y grabado en la memoria del curso.</li>
+    </ul>
+  </div>
+
+  <div class="aviso">
+    <b>Entrega previa.</b> La construcción del caso se manda al docente antes de la
+    clase. No es un trámite: sirve para verificar que el consultante tenga con qué
+    sostener la escena y que el caso admita el enfoque asignado. En clase, el resto
+    del curso solo conoce la premisa de tres líneas — el mismo punto de partida que
+    tiene cualquiera al abrir la puerta del consultorio.
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">← Volver a la actividad</a>
+    <a href="enfoques.html">Fichas de los tres enfoques</a>
+    <a href="rubrica.html">Rúbrica</a>
+    <a href="observador.html">Hoja del observador</a>
+  </nav>
+
+</div>
+
+<script>
+/* ============================================================
+   LAS SEIS PREMISAS
+   ============================================================
+   Una por grupo. El enfoque asignado sale de ENFOQUE_DE_GRUPO en
+   observador.html: grupos 1-2 cognitivo-conductual, 3-4 psicoanálisis,
+   5-6 humanista. Si acá se reordenan las premisas hay que revisar allá.
+
+   Cada premisa trae anclas fijas —lo único que el grupo NO puede cambiar—
+   y deja todo lo demás abierto. Las anclas existen para dos cosas: que la
+   escena tenga bordes reconocibles para los observadores, y que el caso no
+   se deslice hacia la crisis aguda, que es otro dispositivo.
+
+   Ninguna premisa es exclusiva de su enfoque: las seis se podrían entrevistar
+   desde los tres. Eso es deliberado y conviene decírselo al curso.
+   ============================================================ */
+const PREMISAS = [
+  { grupo:"1", enfoque:"Cognitivo-conductual",
+    frase:"Un hombre de 28 años consulta porque <em>“desde que me ascendieron no puedo dormir”</em>. Lleva cuatro meses así y ya probó de todo.",
+    anclas:[
+      "<b>Llega solo</b>, por decisión propia, después de que un compañero le dijo que fuera.",
+      "<b>Cuatro meses</b> de evolución, coincidiendo con el ascenso.",
+      "Dice textualmente en algún momento: <b>“yo antes no era así”</b>."
+    ]},
+
+  { grupo:"2", enfoque:"Cognitivo-conductual",
+    frase:"Una mujer de 41 años cuenta que revisa <em>“como quince veces”</em> si cerró la puerta antes de salir. Últimamente llega tarde al trabajo por eso.",
+    anclas:[
+      "<b>Remitida por medicina general</b>, que no le encontró nada.",
+      "Empezó <b>hace algo más de un año</b> y se agravó en los últimos meses.",
+      "Dice textualmente: <b>“yo sé que es una bobada, pero no puedo salir sin revisar”</b>."
+    ]},
+
+  { grupo:"3", enfoque:"Psicoanálisis",
+    frase:"Un hombre de 35 años dice que su vida <em>“va bien”</em>: trabajo estable, familia, salud. Consulta porque hace meses llora en el carro antes de entrar a su casa y no sabe por qué.",
+    anclas:[
+      "<b>Llega por su cuenta</b> y le cuesta explicar por qué vino.",
+      "<b>No hay un desencadenante visible.</b> Nada malo pasó.",
+      "Dice textualmente: <b>“no tengo motivos para estar así”</b>."
+    ]},
+
+  { grupo:"4", enfoque:"Psicoanálisis",
+    frase:"Una mujer de 26 años consulta porque todas sus relaciones se terminan alrededor del tercer mes. Dice que le pasa <em>“siempre lo mismo”</em> y quiere entender qué hace mal.",
+    anclas:[
+      "<b>Viene por sugerencia de una amiga</b>, con cierto escepticismo.",
+      "<b>Cuatro relaciones</b> en los últimos tres años, con un final parecido.",
+      "Dice textualmente: <b>“yo siempre termino eligiendo lo mismo”</b>."
+    ]},
+
+  { grupo:"5", enfoque:"Humanista",
+    frase:"Una mujer de 52 años se jubiló hace cinco meses después de veintiocho años en el mismo puesto. Consulta porque <em>“ya no sé quién soy cuando no estoy trabajando”</em>.",
+    anclas:[
+      "<b>Llega por su cuenta.</b> Nunca había consultado a psicología.",
+      "<b>La jubilación fue voluntaria</b> y la esperaba con ganas.",
+      "Dice textualmente: <b>“todo el mundo me dice que debería estar disfrutando”</b>."
+    ]},
+
+  { grupo:"6", enfoque:"Humanista",
+    frase:"Un joven de 19 años cursa tercer semestre de la carrera que eligió su padre. Le va bien. Consulta porque siente que <em>“estoy viviendo una vida prestada”</em>.",
+    anclas:[
+      "<b>Llega remitido por bienestar universitario</b>, sin haberlo pedido él.",
+      "<b>Buen rendimiento académico.</b> No hay materias perdidas.",
+      "Dice textualmente: <b>“no me puedo quejar de nada”</b>."
+    ]}
+];
+
+document.getElementById("premisas").innerHTML = PREMISAS.map(p => `
+  <article class="premisa">
+    <div class="premisa-cabeza">
+      <span class="premisa-grupo">Grupo ${p.grupo}</span>
+      <span class="premisa-enfoque">${p.enfoque}</span>
+    </div>
+    <div class="premisa-cuerpo">
+      <p class="premisa-frase">${p.frase}</p>
+      <div class="anclas-titulo">Anclas fijas · lo único que no se puede cambiar</div>
+      <ul class="anclas">${p.anclas.map(a => `<li>${a}</li>`).join("")}</ul>
+    </div>
+  </article>`).join("");
+</script>
+</body>
+</html>

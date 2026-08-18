@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Tablero</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n2:#b8722a; --n3:#7d7b3a; --n4:#3f7d53; --n5:#1f6f78;
+  --alerta:#b8722a; --alerta-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:1240px; margin:0 auto; padding:22px 20px 50px;}
+
+/* ---- Cabecera ---- */
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:22px;
+  padding-bottom:16px; border-bottom:1px solid var(--border);}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:5px;}
+.cabecera h1{font-size:25px;}
+.meta{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);
+  text-align:right;}
+.meta .total{color:var(--accent-dark); font-weight:700;}
+
+/* ---- Cambio de vista ---- */
+.vistas{display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap;}
+.vista-btn{border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  font-family:var(--font-body); font-size:14px; font-weight:600;
+  padding:10px 16px; border-radius:8px; cursor:pointer;}
+.vista-btn[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff;}
+
+.vacio{background:var(--surface); border:1px dashed var(--border);
+  border-radius:var(--radius); padding:44px 24px; text-align:center;
+  color:var(--ink-faint); font-size:15px;}
+
+/* ---- Vista por enfoques ---- */
+.columnas{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+.columna-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;
+  padding-bottom:6px; border-bottom:2px solid var(--accent-soft);}
+
+.tarjeta{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:14px; overflow:hidden; background:var(--bg);}
+.tarjeta-cabeza{padding:12px 15px; background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; gap:10px;}
+.tarjeta-grupo{font-family:var(--font-display); font-size:17px; font-weight:600;}
+.tarjeta-n{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint);}
+.tarjeta-global{font-family:var(--font-mono); font-size:20px; font-weight:700;}
+
+.filas{padding:6px 15px 12px;}
+.fila{padding:9px 0; border-bottom:1px solid var(--border);}
+.fila:last-child{border-bottom:none;}
+.fila-alto{display:flex; align-items:baseline; justify-content:space-between; gap:8px;}
+.fila-nombre{font-size:13.2px; color:var(--ink-soft);}
+.fila-valor{font-family:var(--font-mono); font-size:14px; font-weight:700;}
+.fila-disperso .fila-nombre{color:var(--alerta); font-weight:600;}
+
+/* Barra de puntos: una marca por observador, en su posición de la escala.
+   Muestra el promedio y la dispersión a la vez, que es lo que hay que discutir. */
+.escala-barra{position:relative; height:16px; margin-top:6px;
+  background:linear-gradient(to right,
+    rgba(168,63,43,.10), rgba(184,114,42,.10), rgba(125,123,58,.10),
+    rgba(63,125,83,.10), rgba(31,111,120,.12));
+  border-radius:4px;}
+.punto{position:absolute; top:3px; width:9px; height:9px; border-radius:50%;
+  transform:translateX(-50%); opacity:.85; border:1px solid rgba(255,255,255,.7);}
+.marca-prom{position:absolute; top:-2px; width:2px; height:20px;
+  background:var(--ink); transform:translateX(-50%); border-radius:1px;}
+
+/* ---- Vista de comentarios ---- */
+.coment-grupo{margin-bottom:26px;}
+.coment-cabeza{font-family:var(--font-display); font-size:19px; font-weight:600;
+  margin-bottom:4px;}
+.coment-enfoque{font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:12px;}
+.coment-lista{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px;}
+.coment{border:1px solid var(--border); border-left:3px solid var(--accent);
+  border-radius:8px; padding:11px 13px; font-size:14px; background:var(--bg);}
+.coment.distinto{border-left-color:var(--alerta);}
+.coment.pregunta{border-left-color:var(--n3);}
+.coment-tipo{font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
+.coment-texto{color:var(--ink);}
+.coment-firma{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint);
+  margin-top:5px;}
+
+/* ---- Vista comparativa ---- */
+.tabla{width:100%; border-collapse:collapse; font-size:14px;}
+.tabla th, .tabla td{padding:11px 12px; border-bottom:1px solid var(--border); text-align:left;}
+.tabla th{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-faint); font-weight:700;}
+.tabla td.num{font-family:var(--font-mono); font-weight:700; text-align:center; width:120px;}
+.tabla tr.destacada td{background:var(--alerta-soft);}
+.leyenda{font-size:13px; color:var(--ink-faint); margin:14px 0 0;}
+
+.error{background:#fbeae6; border:1px solid #a83f2b; color:#a83f2b;
+  border-radius:var(--radius); padding:16px 18px; font-size:14.5px;}
+
+@media (max-width:900px){
+  .columnas{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cabecera">
+    <div>
+      <div class="eyebrow">Práctica II · Clínica · Juego de roles</div>
+      <h1>Cómo vio el curso cada entrevista</h1>
+    </div>
+    <div class="meta">
+      <div><span class="total" id="total">—</span> valoraciones</div>
+      <div id="actualizado">esperando datos…</div>
+    </div>
+  </div>
+
+  <div class="vistas">
+    <button class="vista-btn" data-vista="enfoques" aria-pressed="true">Por enfoque</button>
+    <button class="vista-btn" data-vista="comparativa" aria-pressed="false">Dónde no coincidimos</button>
+    <button class="vista-btn" data-vista="comentarios" aria-pressed="false">Comentarios y preguntas</button>
+  </div>
+
+  <div id="panel">
+    <div class="vacio">Cargando el resumen…</div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const FUENTE = {
+  // Misma dirección que ENVIO.url en observador.html: es el mismo proyecto de
+  // Apps Script, que atiende doPost (envíos) y doGet (este resumen).
+  url: "https://script.google.com/macros/s/AKfycbyVFfbkJevCTqb-ctFso0XgHDYuq944BfoQtiuM8ZLT1j5GE3lvsfQYXZEa_7hBgsXp/exec",
+  curso: "PII-2026-B",
+  grupo: "Práctica II",
+  refrescoMs: 20000
+};
+
+// Los tres enfoques, en el orden en que se proyectan. El texto debe coincidir
+// con ENFOQUE_DE_GRUPO en observador.html: es lo que viaja en cada envío.
+const ENFOQUES = ["Cognitivo-conductual", "Psicoanálisis", "Humanista"];
+
+// Umbral a partir del cual una valoración se marca como discutible. Con escala
+// de 1 a 5, un rango de 3 o más significa que alguien puso 1 y alguien 4 sobre
+// la misma escena: eso no es ruido, es la conversación de la plenaria.
+const RANGO_DISCUTIBLE = 3;
+
+const COLOR_NIVEL = { 1:"#a83f2b", 2:"#b8722a", 3:"#7d7b3a", 4:"#3f7d53", 5:"#1f6f78" };
+
+let ultimo = null;
+let vista = "enfoques";
+
+/* ============================================================
+   2. CARGA (JSONP)
+   ============================================================
+   JSONP y no fetch(): el tablero se sirve desde GitHub Pages, otro dominio, y
+   un <script> con callback no depende de que Apps Script emita cabeceras CORS.
+   ============================================================ */
+function cargar(){
+  if (FUENTE.url === "PENDIENTE") {
+    document.getElementById("panel").innerHTML =
+      '<div class="error">Falta publicar el receptor: pegá su dirección en ' +
+      'FUENTE.url, acá y en observador.html.</div>';
+    return;
+  }
+
+  const nombre = "cb_" + Date.now();
+  window[nombre] = datos => {
+    delete window[nombre];
+    script.remove();
+    recibir(datos);
+  };
+
+  const script = document.createElement("script");
+  script.src = FUENTE.url +
+    "?tablero=1&curso=" + encodeURIComponent(FUENTE.curso) +
+    "&grupo=" + encodeURIComponent(FUENTE.grupo) +
+    "&callback=" + nombre +
+    "&t=" + Date.now();                       // corta la caché de Apps Script
+  script.onerror = () => {
+    delete window[nombre];
+    document.getElementById("panel").innerHTML =
+      '<div class="error">No se pudo contactar al receptor. Revisá la conexión ' +
+      'y que la implementación esté publicada con acceso “Cualquier usuario”.</div>';
+  };
+  document.body.appendChild(script);
+}
+
+function recibir(datos){
+  if (!datos || !datos.ok) {
+    document.getElementById("panel").innerHTML =
+      '<div class="error">El receptor respondió con un error: ' +
+      ((datos && datos.error) || "sin detalle") + '</div>';
+    return;
+  }
+  ultimo = datos;
+  document.getElementById("total").textContent = datos.total;
+  document.getElementById("actualizado").textContent =
+    "actualizado " + new Date(datos.actualizado).toLocaleTimeString();
+  pintar();
+}
+
+/* ============================================================
+   3. ESTADÍSTICA MÍNIMA
+   ============================================================
+   Promedio y rango, nada más. El rango es lo que interesa: con seis
+   observadores por escena, la desviación estándar no dice más que el rango y
+   se explica peor delante del curso.
+   ============================================================ */
+function resumirAspecto(valores){
+  const n = valores.length;
+  const suma = valores.reduce((a,b) => a+b, 0);
+  const min = Math.min.apply(null, valores);
+  const max = Math.max.apply(null, valores);
+  return { n:n, promedio:suma/n, min:min, max:max, rango:max-min, valores:valores };
+}
+
+// Título corto: "A1. Encuadre y apertura" → "Encuadre y apertura"
+function sinPrefijo(etiqueta){
+  return etiqueta.replace(/^A\d+\.\s*/, "");
+}
+
+function gruposOrdenados(){
+  return Object.keys(ultimo.grupos).sort((a,b) => Number(a) - Number(b));
+}
+
+/* ============================================================
+   4. VISTAS
+   ============================================================ */
+function pintar(){
+  if (!ultimo) return;
+  if (!ultimo.total) {
+    document.getElementById("panel").innerHTML =
+      '<div class="vacio">Todavía no llegó ninguna valoración. ' +
+      'El tablero se actualiza solo cada veinte segundos.</div>';
+    return;
+  }
+  if (vista === "enfoques")    return pintarEnfoques();
+  if (vista === "comparativa") return pintarComparativa();
+  return pintarComentarios();
+}
+
+/* --- Vista 1: tres columnas, dos grupos por columna --- */
+function pintarEnfoques(){
+  const columnas = ENFOQUES.map(enfoque => {
+    const grupos = gruposOrdenados().filter(g => ultimo.grupos[g].enfoque === enfoque);
+
+    const tarjetas = grupos.map(g => {
+      const datos = ultimo.grupos[g];
+      const filas = ultimo.aspectos
+        .filter(a => datos.aspectos[a] && datos.aspectos[a].length)
+        .map(a => {
+          const r = resumirAspecto(datos.aspectos[a]);
+          const puntos = r.valores.map(v => {
+            const izq = ((v - 1) / 4) * 100;
+            return `<span class="punto" style="left:${izq}%;background:${COLOR_NIVEL[v]}"></span>`;
+          }).join("");
+          const marca = ((r.promedio - 1) / 4) * 100;
+          return `
+            <div class="fila ${r.rango >= RANGO_DISCUTIBLE ? "fila-disperso" : ""}">
+              <div class="fila-alto">
+                <span class="fila-nombre">${sinPrefijo(a)}</span>
+                <span class="fila-valor" style="color:${COLOR_NIVEL[Math.round(r.promedio)]}">
+                  ${r.promedio.toFixed(1)}</span>
+              </div>
+              <div class="escala-barra">
+                ${puntos}<span class="marca-prom" style="left:${marca}%"></span>
+              </div>
+            </div>`;
+        }).join("");
+
+      const todos = [].concat.apply([], ultimo.aspectos.map(a => datos.aspectos[a] || []));
+      const global = todos.length ? (todos.reduce((x,y)=>x+y,0) / todos.length) : 0;
+
+      return `
+        <div class="tarjeta">
+          <div class="tarjeta-cabeza">
+            <div>
+              <div class="tarjeta-grupo">Grupo ${g}</div>
+              <div class="tarjeta-n">${datos.total} valoraciones</div>
+            </div>
+            <div class="tarjeta-global" style="color:${COLOR_NIVEL[Math.round(global)] || "#4b5c63"}">
+              ${global ? global.toFixed(1) : "—"}</div>
+          </div>
+          <div class="filas">${filas || '<div class="fila">Sin aspectos valorados.</div>'}</div>
+        </div>`;
+    }).join("");
+
+    return `
+      <div>
+        <div class="columna-titulo">${enfoque}</div>
+        ${tarjetas || '<div class="vacio">Sin valoraciones todavía.</div>'}
+      </div>`;
+  }).join("");
+
+  document.getElementById("panel").innerHTML = `<div class="columnas">${columnas}</div>`;
+}
+
+/* --- Vista 2: dónde el curso no se puso de acuerdo --- */
+function pintarComparativa(){
+  const filas = [];
+  gruposOrdenados().forEach(g => {
+    const datos = ultimo.grupos[g];
+    ultimo.aspectos.forEach(a => {
+      const valores = datos.aspectos[a];
+      if (!valores || valores.length < 2) return;
+      const r = resumirAspecto(valores);
+      filas.push({ grupo:g, enfoque:datos.enfoque, aspecto:sinPrefijo(a), r:r });
+    });
+  });
+
+  // De mayor a menor desacuerdo: lo que hay que discutir primero está arriba.
+  filas.sort((x,y) => y.r.rango - x.r.rango || y.r.n - x.r.n);
+
+  const cuerpo = filas.slice(0, 20).map(f => `
+    <tr class="${f.r.rango >= RANGO_DISCUTIBLE ? "destacada" : ""}">
+      <td><strong>Grupo ${f.grupo}</strong><br>
+        <span style="font-size:12px;color:var(--ink-faint)">${f.enfoque}</span></td>
+      <td>${f.aspecto}</td>
+      <td class="num" style="color:${COLOR_NIVEL[Math.round(f.r.promedio)]}">
+        ${f.r.promedio.toFixed(1)}</td>
+      <td class="num">${f.r.min} – ${f.r.max}</td>
+      <td class="num">${f.r.rango}</td>
+    </tr>`).join("");
+
+  document.getElementById("panel").innerHTML = `
+    <table class="tabla">
+      <thead><tr>
+        <th>Grupo</th><th>Aspecto</th><th>Promedio</th><th>Rango</th><th>Distancia</th>
+      </tr></thead>
+      <tbody>${cuerpo || '<tr><td colspan="5">Hacen falta al menos dos valoraciones por aspecto.</td></tr>'}</tbody>
+    </table>
+    <p class="leyenda">
+      Ordenado por desacuerdo. Las filas resaltadas son aquellas donde alguien puso
+      ${RANGO_DISCUTIBLE} puntos más que otro sobre la misma escena — no son errores de
+      medición: son dos formas distintas de mirar, y son lo primero que conviene
+      preguntar en voz alta.
+    </p>`;
+}
+
+/* --- Vista 3: lo que escribieron --- */
+function pintarComentarios(){
+  const porGrupo = {};
+  ultimo.comentarios.forEach(c => {
+    (porGrupo[c.grupo] = porGrupo[c.grupo] || []).push(c);
+  });
+
+  const clase = tipo =>
+    tipo.indexOf("distinto") > -1 ? "distinto" :
+    tipo.indexOf("Pregunta") > -1 ? "pregunta" : "";
+
+  const bloques = gruposOrdenados().map(g => {
+    const lista = (porGrupo[g] || []).map(c => `
+      <div class="coment ${clase(c.tipo)}">
+        <div class="coment-tipo">${c.tipo}</div>
+        <div class="coment-texto">${escapar(c.texto)}</div>
+        <div class="coment-firma">grupo ${escapar(c.observador)}</div>
+      </div>`).join("");
+
+    if (!lista) return "";
+    return `
+      <div class="coment-grupo">
+        <div class="coment-cabeza">Grupo ${g}</div>
+        <div class="coment-enfoque">${ultimo.grupos[g].enfoque}</div>
+        <div class="coment-lista">${lista}</div>
+      </div>`;
+  }).join("");
+
+  document.getElementById("panel").innerHTML =
+    bloques || '<div class="vacio">Todavía no hay comentarios.</div>';
+}
+
+function escapar(t){
+  return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ============================================================
+   5. INICIALIZACIÓN
+   ============================================================ */
+document.querySelectorAll(".vista-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    vista = btn.dataset.vista;
+    document.querySelectorAll(".vista-btn").forEach(b =>
+      b.setAttribute("aria-pressed", String(b === btn)));
+    pintar();
+  });
+});
+
+cargar();
+setInterval(cargar, FUENTE.refrescoMs);
+</script>
+</body>
+</html>

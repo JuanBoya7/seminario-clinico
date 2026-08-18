@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Hoja del observador</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n2:#b8722a; --n3:#7d7b3a; --n4:#3f7d53; --n5:#1f6f78;
+  --mild:#3f7d53; --severe:#a83f2b; --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 40px;}
+
+.masthead{margin-bottom:20px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead h1{font-size:24px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14px; margin:0;}
+
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+
+/* ---- Identificación ---- */
+.ident{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px; margin-bottom:8px;}
+.ident label{display:block; font-size:11.5px; font-weight:600; letter-spacing:0.02em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;}
+select{width:100%; font-family:var(--font-body); font-size:15px; font-weight:600;
+  color:var(--ink); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px; padding:10px 8px;}
+select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+select.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-soft);}
+
+.asignacion{border:1px solid var(--border); border-left:3px solid var(--accent);
+  border-radius:8px; padding:12px 15px; margin:0 0 22px; background:var(--bg);
+  font-size:13.5px; color:var(--ink-soft);}
+.asignacion.vacia{border-left-color:var(--border); color:var(--ink-faint);}
+.asignacion.error{border-left-color:var(--severe); background:var(--severe-soft); color:var(--severe);}
+.asignacion b{color:var(--accent-dark);}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+.seccion-nota{font-size:12.5px; color:var(--ink-faint); margin:-4px 0 12px;}
+
+/* ---- Aspectos de la rúbrica ---- */
+.item{border:1px solid var(--border); border-radius:var(--radius);
+  padding:13px 14px; margin-bottom:11px; background:var(--bg);}
+.item.respondido{background:var(--surface); border-color:var(--surface-alt);}
+.item.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-soft);}
+.item-num{font-family:var(--font-mono); font-size:11px; color:var(--accent);
+  font-weight:700; margin-right:6px;}
+.item-texto{font-size:15px; font-weight:600; display:block; margin-bottom:3px;}
+.item-pista{font-size:12.5px; color:var(--ink-faint); margin-bottom:11px;}
+
+.opciones{display:grid; grid-template-columns:repeat(5,1fr); gap:5px;}
+.opcion{border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  font-family:var(--font-body); font-size:13px; font-weight:600; line-height:1.2;
+  padding:10px 2px; border-radius:8px; cursor:pointer; text-align:center;
+  transition:background .12s ease, color .12s ease, border-color .12s ease;}
+.opcion .cifra{display:block; font-family:var(--font-mono); font-size:16px; margin-bottom:2px;}
+.opcion .etiqueta{display:block; font-size:9.5px; font-weight:500;}
+.opcion:active{transform:scale(0.97);}
+.opcion[aria-pressed="true"][data-valor="1"]{background:var(--n1); border-color:var(--n1); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="2"]{background:var(--n2); border-color:var(--n2); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="3"]{background:var(--n3); border-color:var(--n3); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="4"]{background:var(--n4); border-color:var(--n4); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="5"]{background:var(--n5); border-color:var(--n5); color:#fff;}
+
+/* Descriptor del nivel elegido: aparece recién al tocar, para no llenar la
+   pantalla con veinticinco párrafos mientras la escena está corriendo. */
+.descriptor{font-size:12.8px; color:var(--ink-soft); background:var(--surface-alt);
+  border-radius:7px; padding:9px 11px; margin-top:9px;}
+.descriptor[hidden]{display:none;}
+
+/* Los cinco descriptores a demanda. Existe para no tener que salir de la hoja a
+   consultar la rúbrica en otra pestaña: en el celular, volver significa perder
+   de vista la escena. */
+.ver-niveles{background:none; border:none; color:var(--accent); cursor:pointer;
+  font-family:var(--font-body); font-size:12.5px; font-weight:600;
+  padding:0; margin:0 0 10px; display:block;}
+.ver-niveles::before{content:"▸ "; font-size:11px;}
+.ver-niveles[aria-expanded="true"]::before{content:"▾ ";}
+.todos-niveles{margin:0 0 11px; border:1px solid var(--border); border-radius:8px;
+  overflow:hidden;}
+.todos-niveles[hidden]{display:none;}
+.nivel-fila{display:flex; gap:9px; align-items:flex-start;
+  padding:8px 10px; font-size:12.6px; color:var(--ink-soft);
+  border-bottom:1px solid var(--border);}
+.nivel-fila:last-child{border-bottom:none;}
+.nivel-cifra{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:#fff; border-radius:4px; padding:2px 6px; flex-shrink:0; margin-top:1px;}
+
+textarea{width:100%; font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  background:var(--bg); border:1px solid var(--border); border-radius:8px;
+  padding:11px 12px; resize:vertical;}
+textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+textarea.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-soft);}
+.campo{margin-bottom:16px;}
+.campo-titulo{font-size:14.5px; font-weight:600; margin-bottom:3px;}
+.campo-nota{font-size:12.5px; color:var(--ink-faint); margin-bottom:8px;}
+
+.integrante{display:flex; gap:7px; margin-bottom:7px;}
+.integrante input{flex:1; min-width:0; font-family:var(--font-body); font-size:15px;
+  padding:11px 12px; border:1px solid var(--border); border-radius:8px;
+  background:var(--bg); color:var(--ink);}
+.integrante input.invalid{border-color:var(--severe);}
+.quitar{flex:none; width:42px; border:1px solid var(--border); border-radius:8px;
+  background:var(--bg); color:var(--ink-faint); font-size:18px; line-height:1;
+  cursor:pointer;}
+.quitar:disabled{opacity:0.35; cursor:default;}
+.agregar{margin-top:2px; background:none; border:1px dashed var(--border);
+  border-radius:8px; padding:10px 14px; width:100%; cursor:pointer;
+  font-family:var(--font-body); font-size:13.5px; color:var(--ink-soft);}
+
+.barra{margin-top:26px; padding:18px 0 0; border-top:1px solid var(--border);
+  display:flex; flex-direction:column; gap:12px;}
+.estado{font-size:12.5px; color:var(--ink-faint); text-align:center; min-height:18px;}
+.estado.ok{color:var(--mild);}
+.estado.warn{color:var(--severe);}
+.btn{font-family:var(--font-body); font-size:16px; font-weight:600;
+  padding:15px 26px; border-radius:9px; border:1px solid transparent;
+  cursor:pointer; background:var(--accent); color:#fff; width:100%;}
+.btn:hover{background:var(--accent-dark);}
+.progreso{font-size:12.5px; color:var(--ink-faint); text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ves este mensaje, la hoja no se está ejecutando. Abrila en un navegador
+    (Chrome, Safari, Edge o Firefox), no dentro del visor de una app de mensajería.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow">Práctica II · Juego de roles · Hoja del observador</div>
+    <h1>Valoración de la entrevista</h1>
+    <p>
+      Los cinco aspectos son los mismos para los seis grupos y valoran al grupo, no a
+      sus integrantes. Marcá durante la escena y enviá al cerrar la retroalimentación:
+      el último aspecto necesita haber escuchado cómo responde el grupo.
+    </p>
+  </header>
+
+  <div class="ident">
+    <div>
+      <label for="f-curso">Curso</label>
+      <select id="f-curso">
+        <option value="Práctica II">Práctica II</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-mi-grupo">Tu grupo</label>
+      <select id="f-mi-grupo">
+        <option value="">—</option>
+        <option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option>
+        <option value="5">5</option><option value="6">6</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-sustenta">Grupo en escena</label>
+      <select id="f-sustenta">
+        <option value="">—</option>
+        <option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option>
+        <option value="5">5</option><option value="6">6</option>
+      </select>
+    </div>
+  </div>
+  <div class="asignacion vacia" id="asignacion">
+    Elegí tu grupo y el grupo que está en escena. El enfoque se muestra solo.
+  </div>
+
+  <div id="contenido" hidden>
+
+    <div class="seccion-titulo">Quiénes son tu grupo</div>
+    <p class="seccion-nota">
+      Se escribe una sola vez: queda puesto en las rondas siguientes y viaja con cada
+      valoración que envíes. Nombre y apellido de cada integrante, incluido vos.
+    </p>
+    <div id="integrantes"></div>
+    <button type="button" class="agregar" id="btn-agregar">+ Agregar integrante</button>
+
+    <div class="seccion-titulo">Los cinco aspectos</div>
+    <p class="seccion-nota">
+      Un toque por aspecto. Si dudás entre dos niveles, tocá <em>ver los cinco
+      niveles</em> y ahí está la rúbrica completa, sin salir de esta hoja. Ninguno
+      pregunta qué tal estuvo el entrevistador o el consultante: preguntan qué
+      entrevista produjo este grupo.
+    </p>
+    <div id="items"></div>
+
+    <div class="seccion-titulo">Tu comentario</div>
+    <p class="seccion-nota">
+      Esto es lo que de verdad le sirve al grupo. Describí lo que viste, no lo que
+      debió pasar.
+    </p>
+
+    <div class="campo">
+      <div class="campo-titulo">Lo mejor que hizo el grupo</div>
+      <div class="campo-nota">Un momento concreto, no una virtud general.</div>
+      <textarea id="f-mejor" rows="2"
+        placeholder="“Cuando ella dijo que no podía dormir, se quedó callado y ella siguió sola.”"></textarea>
+    </div>
+
+    <div class="campo">
+      <div class="campo-titulo">Lo que yo habría hecho distinto</div>
+      <div class="campo-nota">Tu opinión, en primera persona. No es una corrección: es tu lectura.</div>
+      <textarea id="f-distinto" rows="2"
+        placeholder="“Yo me habría quedado en el tema del trabajo en vez de pasar a la familia.”"></textarea>
+    </div>
+
+    <div class="campo">
+      <div class="campo-titulo">Una pregunta para el grupo</div>
+      <div class="campo-nota">Genuina, no retórica. Algo que no podés responder desde afuera.</div>
+      <textarea id="f-pregunta" rows="2"
+        placeholder="“¿Qué te hizo dudar en el minuto en que cambiaste de tema?”"></textarea>
+    </div>
+
+    <div class="barra">
+      <div class="progreso" id="progreso">0 de 5 aspectos valorados</div>
+      <button class="btn" id="btn-enviar">Enviar valoración</button>
+      <div class="estado" id="estado"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const ENVIO = {
+  // Proyecto de Apps Script PROPIO de esta actividad — distinto del de los
+  // análisis de caso y del simulacro de PAP. Mientras diga "PENDIENTE" el botón
+  // avisa en pantalla en vez de fallar en silencio.
+  url: "https://script.google.com/macros/s/AKfycbyVFfbkJevCTqb-ctFso0XgHDYuq944BfoQtiuM8ZLT1j5GE3lvsfQYXZEa_7hBgsXp/exec",
+  curso: "PII-2026-B"
+};
+
+/* ============================================================
+   2. QUIÉN ENTREVISTA CON QUÉ ENFOQUE
+   ============================================================
+   Dos grupos por enfoque. Este mapa es lo único que hay que tocar si en otra
+   cohorte cambia el número de grupos; el orden coincide con las premisas de
+   premisas.html.
+   ============================================================ */
+const ENFOQUE_DE_GRUPO = {
+  "1":"Cognitivo-conductual", "2":"Cognitivo-conductual",
+  "3":"Psicoanálisis",        "4":"Psicoanálisis",
+  "5":"Humanista",            "6":"Humanista"
+};
+
+/* ============================================================
+   3. LA RÚBRICA
+   ============================================================
+   Los cinco aspectos se valoran igual en los seis grupos: es lo que permite
+   que el tablero cruce enfoques al final. Lo que cambia entre grupos no es la
+   rúbrica, son las respuestas.
+
+   `titulo` está duplicado, con la misma redacción, en rubrica.html. El tablero
+   agrupa por el texto literal del ítem: si acá dice una cosa y allá otra, el
+   mismo aspecto se cuenta como dos columnas y el promedio se parte en dos.
+   Los descriptores largos viven en rubrica.html; acá van los cuatro que se
+   despliegan al tocar, que son los mismos abreviados.
+   ============================================================ */
+const ASPECTOS = [
+  { n:"A1", titulo:"Apropiación del enfoque",
+    pista:"¿La entrevista que produjo el grupo es reconocible como cognitivo-conductual, psicoanalítica o humanista?",
+    niveles:[
+      "No se reconoce el enfoque, o se usaron movimientos que ese marco evita.",
+      "Destellos sueltos: se parece más a otro enfoque que al asignado.",
+      "Se reconoce por tramos y se pierde en otros.",
+      "Se sostiene de principio a fin y se puede señalar en qué momentos.",
+      "El grupo lo usó para llegar a algo que otro marco no habría alcanzado."
+    ]},
+  { n:"A2", titulo:"Construcción del caso",
+    pista:"La profundidad de la historia que el grupo levantó desde su premisa, y si resistió lo que no vio venir.",
+    niveles:[
+      "Caso plano o inconsistente, o entregó todo en el primer minuto.",
+      "Creíble en lo básico, pero se agota: improvisa ante lo no previsto.",
+      "Suficiente para la escena, sin más fondo que lo que le preguntaron.",
+      "Consistente y con fondo: reserva y abre cuando le preguntan bien; respeta las anclas.",
+      "El caso tenía capas: apareció material que ni el propio grupo daba por seguro."
+    ]},
+  { n:"A3", titulo:"Estructura de la entrevista",
+    pista:"Cómo abre, cómo reparte el tiempo y cómo cierra. Decisiones sobre la forma de la sesión.",
+    niveles:[
+      "Sin encuadre y sin control del tiempo: empieza en el aire y se corta en seco.",
+      "Hay apertura o hay cierre, pero no ambos; el tiempo se desbordó.",
+      "Encuadre y cierre presentes pero recitados; el tiempo alcanzó apenas.",
+      "Apertura clara, ritmo distribuido y cierre que recoge lo trabajado.",
+      "La forma sostuvo el contenido: se supo dónde se estaba parado de principio a fin."
+    ]},
+  { n:"A4", titulo:"Conducción y escucha",
+    pista:"Qué produjeron las preguntas. Cuánto dirigir depende del enfoque —el CC es directivo, el humanista no—, así que no valorés cuánto dirigió sino si sirvió.",
+    niveles:[
+      "Interrogatorio: preguntas encadenadas, de sí y no, interrupciones. Se recogió poco.",
+      "Datos sueltos, pero quedaron puertas abiertas que nadie retomó.",
+      "Conducción ordenada y correcta, aunque se quedó en la superficie.",
+      "Las preguntas se encadenan con lo que aparece y profundizan donde el consultante señala.",
+      "La conducción lo llevó a decir algo que no traía pensado."
+    ]},
+  { n:"A5", titulo:"Trabajo de equipo y apropiación compartida",
+    pista:"Incluye a quienes no estuvieron en escena: si se nota preparación conjunta y si el grupo da cuenta de sus decisiones en la retro.",
+    niveles:[
+      "Cada quien por separado: escena y caso no se hablan, y nadie explica por qué se hizo así.",
+      "Preparación desigual: uno o dos sostienen todo y el resto no da cuenta de nada.",
+      "El grupo funcionó, pero en la retro respondió en general o una sola persona.",
+      "Escena y caso encajan, y varios integrantes responden con criterio propio.",
+      "Se nota una decisión de grupo: explican qué buscaron, qué no apareció y por qué."
+    ]}
+];
+
+// Mismos colores que las variables --n1…--n5 del CSS. Se repiten acá porque las
+// filas de "ver los cinco niveles" se pintan desde JavaScript.
+const NIVEL_COLOR = ["#a83f2b", "#b8722a", "#7d7b3a", "#3f7d53", "#1f6f78"];
+
+const NIVELES = [
+  { valor:"1", etiqueta:"Incipiente" },
+  { valor:"2", etiqueta:"Insuf." },
+  { valor:"3", etiqueta:"Aceptable" },
+  { valor:"4", etiqueta:"Logrado" },
+  { valor:"5", etiqueta:"Destacado" }
+];
+
+/* ============================================================
+   4. ESTADO
+   ============================================================ */
+const state = { respuestas:{}, integrantes:[] };
+
+// Cuántas casillas de integrante aparecen de entrada. Dos, no una: una sola
+// casilla se lee como "escribí tu nombre" y varios grupos mandarían un solo
+// nombre por hoja.
+const INTEGRANTES_INICIALES = 2;
+
+/* ============================================================
+   5. RENDERIZADO
+   ============================================================ */
+function renderItems(){
+  const cont = document.getElementById("items");
+  cont.innerHTML = "";
+
+  ASPECTOS.forEach(item => {
+    const caja = document.createElement("div");
+    caja.className = "item";
+    caja.dataset.item = item.n;
+    const filas = item.niveles.map((texto, i) => `
+      <div class="nivel-fila">
+        <span class="nivel-cifra" style="background:${NIVEL_COLOR[i]}">${i + 1}</span>
+        <span>${texto}</span>
+      </div>`).join("");
+
+    caja.innerHTML = `
+      <span class="item-texto"><span class="item-num">${item.n}</span>${item.titulo}</span>
+      <div class="item-pista">${item.pista}</div>
+      <button type="button" class="ver-niveles" aria-expanded="false">ver los cinco niveles</button>
+      <div class="todos-niveles" hidden>${filas}</div>
+      <div class="opciones"></div>
+      <div class="descriptor" hidden></div>`;
+
+    const verNiveles = caja.querySelector(".ver-niveles");
+    const listaNiveles = caja.querySelector(".todos-niveles");
+    verNiveles.addEventListener("click", () => {
+      const abierto = listaNiveles.hidden;
+      listaNiveles.hidden = !abierto;
+      verNiveles.setAttribute("aria-expanded", String(abierto));
+      verNiveles.textContent = abierto ? "ocultar los niveles" : "ver los cinco niveles";
+    });
+
+    const opciones = caja.querySelector(".opciones");
+    NIVELES.forEach(nivel => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opcion";
+      btn.dataset.valor = nivel.valor;
+      btn.innerHTML = `<span class="cifra">${nivel.valor}</span>` +
+                      `<span class="etiqueta">${nivel.etiqueta}</span>`;
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", () => elegir(item, nivel.valor, caja));
+      opciones.appendChild(btn);
+    });
+
+    cont.appendChild(caja);
+  });
+}
+
+function elegir(item, valor, caja){
+  // Volver a tocar el nivel marcado lo desmarca: en vivo uno se equivoca de botón
+  // y no hay tiempo para pelearse con el formulario.
+  if (state.respuestas[item.n] === valor) delete state.respuestas[item.n];
+  else state.respuestas[item.n] = valor;
+
+  const elegido = state.respuestas[item.n];
+  caja.querySelectorAll(".opcion").forEach(b =>
+    b.setAttribute("aria-pressed", String(elegido === b.dataset.valor)));
+  caja.classList.toggle("respondido", !!elegido);
+  caja.classList.remove("invalid");
+
+  const desc = caja.querySelector(".descriptor");
+  if (elegido) {
+    desc.textContent = item.niveles[parseInt(elegido, 10) - 1];
+    desc.hidden = false;
+  } else {
+    desc.hidden = true;
+  }
+
+  actualizarProgreso();
+}
+
+function actualizarProgreso(){
+  const hechos = Object.keys(state.respuestas).length;
+  document.getElementById("progreso").textContent =
+    `${hechos} de ${ASPECTOS.length} aspectos valorados`;
+}
+
+/* ============================================================
+   5b. INTEGRANTES DEL GRUPO OBSERVADOR
+   ============================================================
+   La lista sobrevive al envío: prepararSiguienteRonda() no la toca. Cada
+   estudiante llena su grupo una vez y las cinco rondas siguientes salen con
+   los mismos nombres, que es justo lo que permite atribuir A5 a quienes no
+   estuvieron en escena.
+   ============================================================ */
+function renderIntegrantes(){
+  const cont = document.getElementById("integrantes");
+  cont.innerHTML = "";
+
+  state.integrantes.forEach((nombre, i) => {
+    const fila = document.createElement("div");
+    fila.className = "integrante";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = nombre;
+    input.placeholder = "Nombre y apellido";
+    input.setAttribute("aria-label", "Integrante " + (i + 1));
+    input.addEventListener("input", () => {
+      state.integrantes[i] = input.value;
+      input.classList.remove("invalid");
+    });
+
+    const quitar = document.createElement("button");
+    quitar.type = "button";
+    quitar.className = "quitar";
+    quitar.textContent = "×";
+    quitar.setAttribute("aria-label", "Quitar integrante " + (i + 1));
+    quitar.disabled = state.integrantes.length <= 1;
+    quitar.addEventListener("click", () => {
+      state.integrantes.splice(i, 1);
+      renderIntegrantes();
+    });
+
+    fila.appendChild(input);
+    fila.appendChild(quitar);
+    cont.appendChild(fila);
+  });
+}
+
+// Los nombres tal como viajan: sin vacíos y sin espacios de sobra.
+function integrantesLimpios(){
+  return state.integrantes.map(n => n.trim()).filter(Boolean);
+}
+
+/* ============================================================
+   6. ENFOQUE DEL GRUPO EN ESCENA
+   ============================================================ */
+function actualizarAsignacion(){
+  const mi  = document.getElementById("f-mi-grupo").value;
+  const sus = document.getElementById("f-sustenta").value;
+  const caja = document.getElementById("asignacion");
+  const contenido = document.getElementById("contenido");
+
+  caja.classList.remove("error");
+
+  if (!mi || !sus) {
+    caja.classList.add("vacia");
+    caja.textContent = "Elegí tu grupo y el grupo que está en escena. El enfoque se muestra solo.";
+    contenido.hidden = true;
+    return;
+  }
+
+  if (mi === sus) {
+    // Nadie se valora a sí mismo: mientras el grupo sustenta, sus integrantes
+    // están en escena o respondiendo la retro, no llenando esta hoja.
+    caja.classList.remove("vacia");
+    caja.classList.add("error");
+    caja.textContent = "Ese es tu propio grupo. Mientras sustentás no llenás esta hoja: " +
+                       "cambiá el grupo en escena cuando te toque observar.";
+    contenido.hidden = true;
+    return;
+  }
+
+  caja.classList.remove("vacia");
+  caja.innerHTML = `El grupo <b>${sus}</b> entrevista desde el enfoque ` +
+                   `<b>${ENFOQUE_DE_GRUPO[sus]}</b>. Los cinco aspectos son los mismos ` +
+                   `que para cualquier otro grupo.`;
+  contenido.hidden = false;
+  actualizarProgreso();
+}
+
+/* ============================================================
+   7. VALIDACIÓN Y ENVÍO
+   ============================================================ */
+function primerFaltante(){
+  for (const id of ["f-curso","f-mi-grupo","f-sustenta"]) {
+    const el = document.getElementById(id);
+    const vacio = !el.value;
+    el.classList.toggle("invalid", vacio);
+    if (vacio) return el;
+  }
+  // Un envío sin nombres deja A5 sin a quién atribuirse.
+  if (!integrantesLimpios().length) {
+    const primera = document.querySelector("#integrantes input");
+    if (primera) primera.classList.add("invalid");
+    return primera;
+  }
+
+  for (const item of ASPECTOS) {
+    const caja = document.querySelector(`.item[data-item="${item.n}"]`);
+    const vacio = !state.respuestas[item.n];
+    caja.classList.toggle("invalid", vacio);
+    if (vacio) return caja;
+  }
+  // Una valoración sin comentario es un número sin argumento: al grupo no le
+  // dice qué hacer distinto la próxima vez.
+  const mejor = document.getElementById("f-mejor");
+  const vacioMejor = !mejor.value.trim();
+  mejor.classList.toggle("invalid", vacioMejor);
+  if (vacioMejor) return mejor;
+
+  return null;
+}
+
+function recogerEnvio(){
+  const campos = {};
+  ASPECTOS.forEach(item => {
+    campos[`${item.n}. ${item.titulo}`] = state.respuestas[item.n] || "";
+  });
+  campos["Lo mejor que hizo"] = document.getElementById("f-mejor").value.trim();
+
+  const distinto = document.getElementById("f-distinto").value.trim();
+  if (distinto) campos["Lo que habría hecho distinto"] = distinto;
+  const pregunta = document.getElementById("f-pregunta").value.trim();
+  if (pregunta) campos["Pregunta al grupo"] = pregunta;
+
+  const sus = document.getElementById("f-sustenta").value;
+  return {
+    tipo: "entrevista",
+    curso: ENVIO.curso,
+    cursoGrupo: document.getElementById("f-curso").value,
+    grupo: sus,
+    enfoque: ENFOQUE_DE_GRUPO[sus],
+    observador: document.getElementById("f-mi-grupo").value,
+    integrantes: integrantesLimpios(),
+    campos: campos
+  };
+}
+
+function enviar(){
+  const estado = document.getElementById("estado");
+  const avisar = (msg, ok) => {
+    estado.textContent = msg;
+    estado.classList.toggle("ok", !!ok);
+    estado.classList.toggle("warn", !ok);
+  };
+
+  if (ENVIO.url === "PENDIENTE") {
+    avisar("Falta publicar el receptor: pegá su dirección en ENVIO.url.", false);
+    return;
+  }
+
+  const faltante = primerFaltante();
+  if (faltante) {
+    faltante.scrollIntoView({ behavior:"smooth", block:"center" });
+    avisar("Falta la identificación, los integrantes, algún aspecto o el comentario.", false);
+    return;
+  }
+
+  // Formulario oculto y no fetch(): los estudiantes abren esto desde el navegador
+  // del celular, a menudo el integrado de una app de mensajería, donde fetch y las
+  // ventanas emergentes son poco fiables. Se sondea la ventana antes de elegir el
+  // destino: si estuviera bloqueada y usáramos target="_blank", no se enviaría nada
+  // y el observador se quedaría creyendo que registró la ronda.
+  let destino = "_self";
+  try {
+    const ventana = window.open("", "entrega-valoracion");
+    if (ventana) destino = "entrega-valoracion";
+  } catch (e) { destino = "_self"; }
+
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = ENVIO.url;
+  form.target = destino;
+  const campo = document.createElement("input");
+  campo.type = "hidden";
+  campo.name = "payload";
+  campo.value = JSON.stringify(recogerEnvio());
+  form.appendChild(campo);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+  avisar("Valoración enviada · " + new Date().toLocaleTimeString(), true);
+  prepararSiguienteRonda();
+}
+
+// Tras enviar se limpia todo menos "tu grupo": cada estudiante se queda donde
+// está las seis rondas y solo cambia el grupo en escena.
+function prepararSiguienteRonda(){
+  state.respuestas = {};
+  document.querySelectorAll(".item").forEach(caja => {
+    caja.classList.remove("respondido","invalid");
+    caja.querySelectorAll(".opcion").forEach(b => b.setAttribute("aria-pressed","false"));
+    caja.querySelector(".descriptor").hidden = true;
+  });
+  ["f-mejor","f-distinto","f-pregunta"].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = "";
+    el.classList.remove("invalid");
+  });
+  document.getElementById("f-sustenta").value = "";
+  actualizarAsignacion();
+}
+
+/* ============================================================
+   8. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const aviso = document.getElementById("js-warning-fallback");
+  if (aviso) aviso.style.display = "none";
+
+  try {
+    renderItems();
+    for (let i = 0; i < INTEGRANTES_INICIALES; i++) state.integrantes.push("");
+    renderIntegrantes();
+    document.getElementById("btn-agregar").addEventListener("click", () => {
+      state.integrantes.push("");
+      renderIntegrantes();
+      const casillas = document.querySelectorAll("#integrantes input");
+      casillas[casillas.length - 1].focus();
+    });
+    ["f-curso","f-mi-grupo","f-sustenta"].forEach(id => {
+      document.getElementById(id).addEventListener("change", e => {
+        e.target.classList.remove("invalid");
+        actualizarAsignacion();
+      });
+    });
+    document.getElementById("btn-enviar").addEventListener("click", enviar);
+    actualizarAsignacion();
+  } catch (err) {
+    if (aviso) {
+      aviso.style.display = "";
+      aviso.textContent = "Error al iniciar la hoja: " + err.message;
+    }
+  }
+});
+</script>
+</body>
+</html>

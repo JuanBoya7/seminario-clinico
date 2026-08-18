@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Fichas de encargo</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --mild:#3f7d53; --mild-soft:#e7f3ea;
+  --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --severe:#a83f2b; --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:760px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:24px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+
+/* ---- Selector de enfoque ---- */
+.tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:22px;}
+.tab{border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  font-family:var(--font-body); font-size:13.5px; font-weight:600; line-height:1.3;
+  padding:12px 6px; border-radius:9px; cursor:pointer; text-align:center;}
+.tab small{display:block; font-weight:500; font-size:11px; color:var(--ink-faint); margin-top:3px;}
+.tab[aria-selected="true"]{background:var(--accent); border-color:var(--accent); color:#fff;}
+.tab[aria-selected="true"] small{color:rgba(255,255,255,.75);}
+
+.panel[hidden]{display:none;}
+
+.lema{font-family:var(--font-display); font-size:19px; line-height:1.35;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:18px 20px; margin-bottom:20px;}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:26px 0 11px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+
+.lista{list-style:none; margin:0; padding:0;}
+.lista li{padding:10px 0 10px 20px; position:relative; font-size:14.5px;
+  border-bottom:1px solid var(--border);}
+.lista li:last-child{border-bottom:none;}
+.lista li::before{content:"—"; position:absolute; left:0; color:var(--accent);}
+.lista b{font-weight:600;}
+
+.evita li::before{content:"×"; color:var(--severe); font-weight:700;}
+
+/* ---- Firma: los marcadores que después aparecen en la hoja del observador ---- */
+.firma{background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:16px 18px;}
+.firma-nota{font-size:13px; color:var(--ink-faint); margin:0 0 12px;}
+.marcador{display:flex; gap:11px; align-items:flex-start;
+  padding:11px 0; border-bottom:1px solid var(--border);}
+.marcador:last-child{border-bottom:none;}
+.marcador-id{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:#fff; background:var(--accent); border-radius:5px;
+  padding:3px 6px; flex-shrink:0; margin-top:2px;}
+.marcador-texto{font-size:14.5px; font-weight:600;}
+.marcador-como{font-size:13px; color:var(--ink-soft); margin-top:2px;}
+
+.pistas{background:var(--moderate-soft); border:1px solid var(--moderate);
+  border-radius:var(--radius); padding:15px 17px; font-size:13.8px; color:#6d4415;
+  margin-top:22px;}
+.pistas b{color:var(--moderate);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Práctica II · Clínica · Juego de roles</div>
+    <h1>Tres formas de entrar a la misma entrevista</h1>
+    <p>
+      Los tres enfoques hacen preguntas distintas porque buscan cosas distintas. No
+      hay uno correcto. Lo que sí se puede evaluar es si la entrevista fue
+      <em>reconocible</em>: si alguien que entra a mitad de la escena podría decir
+      desde qué marco se está trabajando.
+    </p>
+    <p>
+      Cada ficha termina con tres <b>marcadores</b>: lo que un observador debería poder
+      señalar con el dedo si el enfoque estuvo ahí. Son la traducción concreta del
+      primer aspecto de la <a href="rubrica.html">rúbrica</a> —apropiación del
+      enfoque— para cada uno de los tres marcos. Que estén publicados de antemano no
+      es hacer trampa: es la diferencia entre una rúbrica que enseña y una que
+      sorprende.
+    </p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-enfoque="cc" aria-selected="true">
+      Cognitivo-conductual<small>Grupos 1 y 2</small></button>
+    <button class="tab" role="tab" data-enfoque="psa" aria-selected="false">
+      Psicoanálisis<small>Grupos 3 y 4</small></button>
+    <button class="tab" role="tab" data-enfoque="hum" aria-selected="false">
+      Humanista<small>Grupos 5 y 6</small></button>
+  </div>
+
+  <div id="panel"></div>
+
+  <nav class="nav">
+    <a href="index.html">← Volver a la actividad</a>
+    <a href="premisas.html">Las seis premisas</a>
+    <a href="rubrica.html">Rúbrica</a>
+    <a href="observador.html">Hoja del observador</a>
+  </nav>
+
+</div>
+
+<script>
+/* ============================================================
+   CONTENIDO DE LAS TRES FICHAS
+   ============================================================
+   Los `marcadores` NO viajan en ningún envío: son material de estudio, no ítems
+   de la rúbrica. Desarrollan el aspecto A1 (apropiación del enfoque) de
+   rubrica.html, así que si allá cambia el criterio, acá hay que revisar que los
+   tres marcadores sigan describiéndolo.
+   ============================================================ */
+const ENFOQUES = {
+
+  cc: {
+    nombre: "Cognitivo-conductual",
+    lema: "Es una entrevista <em>directiva</em>: quien entrevista lleva el peso de la conversación, elige los temas y propone las áreas a explorar.",
+    objetivo: [
+      "<b>Obtener información fiable, válida y útil.</b> Ese es el propósito declarado, y justifica que la entrevista sea activa y estructurada (o semiestructurada).",
+      "<b>Puntualizar información objetiva.</b> Frecuencia —las veces que la conducta se presenta en un tiempo objetivo— y tiempo transcurrido.",
+      "<b>Identificar antecedentes</b> predisponentes y precipitantes, y explorar las áreas de ajuste para reconocer las conductas problema.",
+      "<b>Correlacionar las variables.</b> Pensamiento, conducta y emoción en un contexto específico: esa relación es lo que permite identificar la conducta problema.",
+      "<b>Centrarse en el aquí y el ahora,</b> y cerrar con una aproximación inicial al tratamiento: objetivos terapéuticos o una tarea."
+    ],
+    evita: [
+      "Convertir la conversación en un interrogatorio: es el peligro que la propia teoría se señala a sí misma.",
+      "Sesgos por temas precipitados o selección inapropiada de la información.",
+      "Aceptar “siempre” y “nunca” sin pedir un número."
+    ],
+    marcadores: [
+      { id:"CC1", texto:"Puntualizó frecuencia o tiempo transcurrido",
+        como:"Cuántas veces, desde cuándo, cuánto dura. Un dato objetivo, no un adverbio." },
+      { id:"CC2", texto:"Relacionó pensamiento, conducta y emoción",
+        como:"No tres preguntas sueltas: la correlación entre las tres en una situación concreta." },
+      { id:"CC3", texto:"Exploró antecedentes o áreas de ajuste",
+        como:"Predisponentes y precipitantes; en qué contextos aparece la conducta y en cuáles no." }
+    ],
+    pista: "Que sea directiva no la exime de escuchar. La frontera entre dirigir y interrogar es justamente lo que este enfoque tiene que aprender a manejar, y es lo que los observadores van a mirar."
+  },
+
+  psa: {
+    nombre: "Psicoanálisis",
+    lema: "Facilitar al entrevistado la libre expresión de sus procesos inconscientes — algo que nunca se logra en un encuadre formal de preguntas y respuestas.",
+    objetivo: [
+      "<b>Configurar el campo.</b> Una estructuración adecuada de la relación, que es lo que hace posible todo lo demás.",
+      "<b>Asociación libre.</b> Técnica no directiva que deja la iniciativa al entrevistado y lo ayuda discretamente en los momentos difíciles.",
+      "<b>Participar lo menos posible</b> — que no significa quedarse afuera: es la posición de <em>observador participante</em>. Si nos involucramos más allá, desvirtuamos el sentido de la entrevista.",
+      "<b>Mensajes preverbales.</b> Asentir ligeramente, mirar amablemente, un comentario neutro: por lo general basta para que se restablezca la comunicación interrumpida.",
+      "<b>Transferencia y contratransferencia.</b> Lo que el entrevistado reproduce del pasado con vigencia actual, y lo que eso le produce a quien entrevista — bien empleada, la contratransferencia es sumamente útil.",
+      "<b>Devolución.</b> Al término, algo hay que decir para fundar una indicación: sucinta, sin ir más allá del objetivo de la tarea realizada."
+    ],
+    evita: [
+      "Preguntar demasiado, hasta convertirlo en interrogatorio.",
+      "Dar apoyo o expresar simpatía manifiesta.",
+      "Dar opiniones o hablar de uno mismo.",
+      "Interpretar de entrada. Liberman propone un uso muy estricto de la interpretación; Bleger la admite sobre todo cuando la comunicación tiende a interrumpirse o distorsionarse."
+    ],
+    marcadores: [
+      { id:"PS1", texto:"Dejó la iniciativa al entrevistado",
+        como:"Participó lo menos posible, ayudando en los momentos difíciles con gestos o comentarios neutros en vez de preguntas." },
+      { id:"PS2", texto:"Puntuó una palabra del consultante",
+        como:"Repitió o subrayó un término que dijo, y eso abrió más de lo que cerró." },
+      { id:"PS3", texto:"Cerró con una devolución sucinta",
+        como:"Dijo algo al final que funda una indicación, sin informe detallado ni interpretación extensa." }
+    ],
+    pista: "Los cuatro peligros que la propia teoría enumera —interrogar, apoyar, simpatizar, hablar de uno mismo— son tentaciones amables. Se cae en ellas por querer ayudar, no por descuido, y por eso cuesta verlas desde adentro."
+  },
+
+  hum: {
+    nombre: "Humanista",
+    lema: "Un estilo <em>no directivo</em> que otorga todo el protagonismo de la dirección del proceso al cliente.",
+    objetivo: [
+      "<b>Las tres actitudes de Rogers</b> son el fundamento de la intervención, y son necesarias y suficientes. Tienen que darse en armonía: no se eligen, se sostienen las tres a la vez.",
+      "<b>Empatía.</b> Penetrar en el mundo perceptual del otro y moverse en él con familiaridad; captar su mundo subjetivo desde <em>su propio marco de referencia</em>, como si fuera el propio, y manifestar esa comprensión de modo que el otro la perciba.",
+      "<b>Consideración positiva incondicional.</b> Disposición intencional a validar la experiencia del otro: una mirada llena de aprecio, aceptándolo tal como es, con respeto absoluto por su persona, sus actitudes y su comportamiento.",
+      "<b>Congruencia o autenticidad.</b> El facilitador deja fluir sus sentimientos, no se niega ninguno de los que experimenta en la relación y está dispuesto a comunicarlos si persisten. Se hace vulnerable en vez de adoptar un papel de especialista."
+    ],
+    evita: [
+      "Dirigir el proceso: el protagonismo es del cliente.",
+      "Juzgar o evaluar, que es lo contrario de la consideración positiva incondicional.",
+      "Refugiarse en el rol de profesional — eso es lo opuesto a la congruencia.",
+      "Convertir el reflejo en un tic verbal que repite lo último que oyó."
+    ],
+    marcadores: [
+      { id:"HU1", texto:"Comprendió desde el marco de referencia del otro",
+        como:"Una devolución que el consultante reconoció como suya, no la lectura del entrevistador sobre lo que oyó." },
+      { id:"HU2", texto:"Validó la experiencia sin evaluarla",
+        como:"Aceptó actitudes y decisiones que podría no compartir, sin corregirlas ni aprobarlas desde afuera." },
+      { id:"HU3", texto:"Se mostró como persona, no como especialista",
+        como:"Habló desde sí cuando correspondió, sin esconderse detrás del rol técnico." }
+    ],
+    pista: "Las tres actitudes se sostienen juntas o no funcionan. El riesgo más común es la escucha decorativa: mucho asentir y mucho “entiendo”, que imita la empatía sin comprender desde el marco del otro y sin ninguna congruencia detrás."
+  }
+};
+
+/* ============================================================
+   RENDERIZADO
+   ============================================================ */
+function pintar(clave){
+  const e = ENFOQUES[clave];
+  const li = arr => arr.map(t => `<li>${t}</li>`).join("");
+
+  document.getElementById("panel").innerHTML = `
+    <div class="panel">
+      <div class="lema">${e.lema}</div>
+
+      <div class="seccion-titulo">Qué hace esta entrevista</div>
+      <ul class="lista">${li(e.objetivo)}</ul>
+
+      <div class="seccion-titulo">Qué no hace</div>
+      <ul class="lista evita">${li(e.evita)}</ul>
+
+      <div class="seccion-titulo">La firma del enfoque</div>
+      <div class="firma">
+        <p class="firma-nota">
+          Los tres marcadores que los observadores van a buscar al valorar el aspecto
+          A1. Si ninguno aparece, la entrevista pudo haber sido buena, pero no fue
+          ${e.nombre.toLowerCase()}.
+        </p>
+        ${e.marcadores.map(m => `
+          <div class="marcador">
+            <span class="marcador-id">${m.id}</span>
+            <div>
+              <div class="marcador-texto">${m.texto}</div>
+              <div class="marcador-como">${m.como}</div>
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <div class="pistas"><b>Advertencia de oficio.</b> ${e.pista}</div>
+    </div>`;
+}
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t =>
+      t.setAttribute("aria-selected", String(t === tab)));
+    pintar(tab.dataset.enfoque);
+  });
+});
+
+pintar("cc");
+</script>
+</body>
+</html>

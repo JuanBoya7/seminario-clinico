@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La entrevista en tres enfoques — Rúbrica</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n1-soft:#fbeae6;
+  --n2:#b8722a; --n2-soft:#faf1e4;
+  --n3:#7d7b3a; --n3-soft:#f3f2e3;
+  --n4:#3f7d53; --n4-soft:#e7f3ea;
+  --n5:#1f6f78; --n5-soft:#e2eff0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:1000px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:24px; max-width:760px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+
+.escala{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:26px;}
+.nivel-chip{border-radius:8px; padding:11px 10px; font-size:12.6px; line-height:1.35;}
+.nivel-chip b{display:block; font-size:13.5px; margin-bottom:2px;}
+.nivel-chip:nth-child(1){background:var(--n1-soft); color:var(--n1);}
+.nivel-chip:nth-child(2){background:var(--n2-soft); color:var(--n2);}
+.nivel-chip:nth-child(3){background:var(--n3-soft); color:var(--n3);}
+.nivel-chip:nth-child(4){background:var(--n4-soft); color:var(--n4);}
+.nivel-chip:nth-child(5){background:var(--n5-soft); color:var(--n5);}
+
+.aspecto{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:18px; overflow:hidden;}
+.aspecto-cabeza{background:var(--surface); padding:16px 18px; border-bottom:1px solid var(--border);}
+.aspecto-num{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:var(--accent); letter-spacing:0.06em;}
+.aspecto-cabeza h2{font-size:19px; margin:3px 0 6px;}
+.aspecto-cabeza p{margin:0; font-size:14px; color:var(--ink-soft); max-width:720px;}
+
+.niveles{display:grid; grid-template-columns:repeat(5,1fr);}
+.nivel{padding:14px 14px; font-size:13px; border-right:1px solid var(--border);
+  color:var(--ink-soft);}
+.nivel:last-child{border-right:none;}
+.nivel-titulo{font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;}
+.nivel:nth-child(1) .nivel-titulo{color:var(--n1);}
+.nivel:nth-child(2) .nivel-titulo{color:var(--n2);}
+.nivel:nth-child(3) .nivel-titulo{color:var(--n3);}
+.nivel:nth-child(4) .nivel-titulo{color:var(--n4);}
+.nivel:nth-child(5) .nivel-titulo{color:var(--n5);}
+
+.por-enfoque{padding:14px 18px; background:var(--accent-soft); font-size:13.5px;
+  color:var(--accent-dark); border-top:1px solid var(--border);}
+.por-enfoque b{display:block; font-family:var(--font-mono); font-size:10.5px;
+  letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;}
+.por-enfoque ul{margin:0; padding-left:18px;}
+.por-enfoque li{margin-bottom:4px;}
+.por-enfoque li b{display:inline; font-family:var(--font-body); font-size:13.5px;
+  letter-spacing:0; text-transform:none; margin:0;}
+
+.nota{background:var(--n2-soft); border:1px solid var(--n2); color:#6d4415;
+  border-radius:var(--radius); padding:16px 18px; font-size:14px; margin-top:26px;
+  max-width:760px;}
+.nota b{color:var(--n2);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+@media (max-width:820px){
+  .escala{grid-template-columns:repeat(2,1fr);}
+  .niveles{grid-template-columns:1fr;}
+  .nivel{border-right:none; border-bottom:1px solid var(--border);}
+  .nivel:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Práctica II · Clínica · Juego de roles</div>
+    <h1>Rúbrica común de la entrevista</h1>
+    <p>
+      Cinco aspectos, los mismos para los seis grupos y para los tres enfoques. Que
+      la rúbrica sea única es lo que hace posible la comparación al final: si cada
+      enfoque se evaluara con su propia lista, no habría nada que cruzar.
+    </p>
+    <p>
+      <b>Los cinco aspectos evalúan al grupo, no a sus integrantes.</b> Ninguno pregunta
+      qué tal estuvo el entrevistador o qué tal estuvo el consultante: preguntan qué
+      entrevista produjo este grupo. Los roles reparten el trabajo, no la calificación
+      — quien preparó el caso y no habló durante la escena está siendo evaluado igual
+      que quien condujo.
+    </p>
+    <p>
+      Cada estudiante que observa puntúa los cinco aspectos de 1 a 5 y agrega su
+      comentario. No se espera que los seis grupos coincidan. <b>El desacuerdo entre
+      observadores es material de la sesión, no un error de medición</b>: dos personas
+      mirando la misma escena y puntuando distinto es exactamente lo que hay que
+      discutir.
+    </p>
+  </header>
+
+  <div class="escala">
+    <div class="nivel-chip"><b>1 · Incipiente</b>No aparece, o aparece de un modo que estorba.</div>
+    <div class="nivel-chip"><b>2 · Insuficiente</b>Se intenta, de forma irregular o incompleta.</div>
+    <div class="nivel-chip"><b>3 · Aceptable</b>Está, correcto, pero se queda en lo mínimo.</div>
+    <div class="nivel-chip"><b>4 · Logrado</b>Aparece con consistencia durante toda la entrevista.</div>
+    <div class="nivel-chip"><b>5 · Destacado</b>Además produce algo: la entrevista avanza por eso.</div>
+  </div>
+
+  <div id="aspectos"></div>
+
+  <div class="nota">
+    <b>Sobre calificar a un par.</b> La nota no es el producto de esta hoja: el
+    comentario sí. Un 2 sin explicación no le sirve a nadie; un 2 con una frase de lo
+    que viste —y de qué te habría hecho poner un 3— es la retroalimentación completa.
+    Describí lo que pasó, no lo que debió pasar.
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">← Volver a la actividad</a>
+    <a href="premisas.html">Las seis premisas</a>
+    <a href="enfoques.html">Fichas de los tres enfoques</a>
+    <a href="observador.html">Hoja del observador</a>
+  </nav>
+
+</div>
+
+<script>
+/* ============================================================
+   LOS CINCO ASPECTOS
+   ============================================================
+   Esta constante está duplicada, con la misma redacción de `titulo`, en
+   observador.html (ASPECTOS) y en tablero.html. El tablero agrupa por el texto
+   literal del ítem: si acá se cambia un título y allá no, el mismo aspecto se
+   cuenta como dos columnas distintas y el promedio se parte en dos.
+
+   Son cinco y no diez a propósito: se responden mientras la escena sigue
+   corriendo, desde el celular, sin dejar de mirar.
+   ============================================================ */
+const ASPECTOS = [
+  {
+    n: "A1",
+    titulo: "Apropiación del enfoque",
+    resumen: "¿La entrevista que produjo el grupo es reconocible como cognitivo-conductual, psicoanalítica o humanista? El sujeto acá es el grupo: el enfoque se prepara entre todos, no lo improvisa quien conduce.",
+    niveles: [
+      "No se reconoce el enfoque en la entrevista, o se trabajó con movimientos que ese marco explícitamente evita.",
+      "Aparecen destellos sueltos: la entrevista se parece más a otro enfoque que al asignado.",
+      "El enfoque se reconoce por tramos y se pierde en otros.",
+      "El enfoque se sostiene de principio a fin y se puede señalar en qué momentos.",
+      "El grupo no solo aplicó el enfoque: lo usó para llegar a algo que otro marco probablemente no habría alcanzado."
+    ],
+    enfoque: [
+      "<b>Cognitivo-conductual:</b> directiva y centrada en el aquí y el ahora — puntualiza frecuencia y tiempo transcurrido, correlaciona pensamiento, conducta y emoción, e identifica antecedentes predisponentes y precipitantes.",
+      "<b>Psicoanálisis:</b> asociación libre y posición de observador participante — deja la iniciativa, interviene lo menos posible, atiende la transferencia y su propia contratransferencia, y no interpreta de entrada.",
+      "<b>Humanista:</b> las tres actitudes rogerianas sostenidas en armonía — empatía desde el marco de referencia del otro, consideración positiva incondicional y congruencia."
+    ]
+  },
+  {
+    n: "A2",
+    titulo: "Construcción del caso",
+    resumen: "La profundidad de la historia que el grupo levantó a partir de su premisa, y si resistió preguntas que no vio venir.",
+    niveles: [
+      "Caso plano o inconsistente: se contradice, o entrega todo lo que tiene en el primer minuto.",
+      "Creíble en lo básico, pero se agota pronto: ante lo no previsto, se improvisa algo que no encaja.",
+      "Caso suficiente para sostener la escena, sin más fondo que lo que alcanzaron a preguntarle.",
+      "Caso consistente y con fondo: reserva lo que corresponde, lo abre cuando le preguntan bien y respeta las anclas de la premisa.",
+      "El caso tenía capas: apareció material que ni el propio grupo daba por seguro que se alcanzaría, sin volverse un acertijo."
+    ],
+    notaTitulo: "Qué mirar, sea cual sea el enfoque",
+    enfoque: [
+      "<b>Consistencia,</b> no complejidad. Una historia sencilla y bien sostenida vale más que una enredada.",
+      "<b>Reserva verosímil.</b> Lo que el caso calla, ¿lo calla por una razón humana o porque el guion lo dice?",
+      "<b>Respeto de las anclas.</b> La edad, el modo de llegar y la frase textual de la premisa tienen que estar ahí.",
+      "<b>Nada de trampas.</b> Un caso montado para hacer fracasar la entrevista no es profundidad: es competencia."
+    ]
+  },
+  {
+    n: "A3",
+    titulo: "Estructura de la entrevista",
+    resumen: "Cómo abre, cómo distribuye el tiempo y cómo cierra. Son decisiones sobre la forma de la sesión, y se toman antes de entrar a la escena.",
+    niveles: [
+      "Sin encuadre y sin control del tiempo: empieza en el aire y se corta en seco.",
+      "Hay apertura o hay cierre, pero no ambos; el tiempo se desbordó.",
+      "Encuadre y cierre presentes pero recitados; el tiempo alcanzó apenas.",
+      "Apertura clara, ritmo distribuido y un cierre que recoge lo trabajado.",
+      "La forma sostuvo el contenido: el consultante supo dónde estaba parado de principio a fin y salió sabiendo qué sigue."
+    ],
+    enfoque: [
+      "<b>Cognitivo-conductual:</b> encuadre explícito y activo; el cierre deja una aproximación inicial al tratamiento — objetivos terapéuticos o una tarea.",
+      "<b>Psicoanálisis:</b> se configura el campo al abrir, y al término <em>algo hay que decir</em> para fundar una indicación: una devolución sucinta, sin informe detallado, que no vaya más allá del objetivo de la tarea realizada.",
+      "<b>Humanista:</b> el encuadre transmite que no se viene a ser evaluado; el cierre recoge la experiencia, no un plan de acción."
+    ]
+  },
+  {
+    n: "A4",
+    titulo: "Conducción y escucha",
+    resumen: "Cómo se condujo la conversación y qué produjeron las preguntas. <b>Cuánto dirige quien entrevista depende del enfoque</b> — el cognitivo-conductual es directivo por definición y el humanista es no directivo por definición —, así que acá no se valora cuánto dirigió, sino si la conducción produjo algo.",
+    niveles: [
+      "Interrogatorio: preguntas encadenadas, de sí y no, e interrupciones. Se recogió poco y el consultante terminó replegándose.",
+      "Las preguntas obtuvieron datos sueltos, pero quedaron puertas abiertas que nadie retomó.",
+      "La conducción fue ordenada y correcta, aunque la entrevista se quedó en la superficie de lo que se trajo.",
+      "Las preguntas se encadenan con lo que va apareciendo y profundizan donde el consultante señala.",
+      "La conducción llevó al consultante a decir algo que no traía pensado."
+    ],
+    enfoque: [
+      "<b>Cognitivo-conductual:</b> es <em>directiva</em>: quien entrevista lleva el peso de la conversación, elige los temas y propone las áreas a explorar. No se penaliza que hable mucho — se penaliza que interrogue, que es el peligro que el propio enfoque se señala.",
+      "<b>Psicoanálisis:</b> participa lo menos posible y deja la iniciativa al entrevistado, en posición de observador participante. Los mensajes preverbales —asentir, una mirada amable, un comentario neutro— son intervención legítima, no pasividad.",
+      "<b>Humanista:</b> es <em>no directiva</em>: todo el protagonismo de la dirección del proceso es del cliente. La comprensión se verifica cuando el otro la reconoce como suya."
+    ]
+  },
+  {
+    n: "A5",
+    titulo: "Trabajo de equipo y apropiación compartida",
+    resumen: "Mira al grupo entero, incluidos quienes no estuvieron en escena: si se nota una preparación conjunta y si el grupo puede dar cuenta de sus decisiones en la retroalimentación.",
+    niveles: [
+      "Cada quien hizo lo suyo por separado: la escena y el caso no se hablan entre sí, y en la retro nadie puede explicar por qué se hizo así.",
+      "Preparación desigual: uno o dos sostienen todo y el resto no puede dar cuenta de lo que se hizo.",
+      "El grupo funcionó, aunque en la retro las respuestas fueron generales o quedaron en manos de una sola persona.",
+      "Escena y caso encajan, y en la retro varios integrantes responden con criterio propio.",
+      "Se nota una decisión de grupo detrás de la escena: pueden explicar qué buscaron, qué no apareció y por qué, y lo hacen entre varios."
+    ],
+    notaTitulo: "Qué mirar, sea cual sea el enfoque",
+    enfoque: [
+      "<b>Encaje.</b> ¿El caso construido le daba a la entrevista algo que hacer, o eran dos preparaciones separadas?",
+      "<b>La retro.</b> Quién responde, cuántos responden, y si las respuestas tienen criterio o son excusas.",
+      "<b>Reparto real.</b> Los roles distribuyen el trabajo; que uno hable no significa que uno solo trabajó.",
+      "<b>Ojo con el reflejo fácil:</b> un grupo tímido no es un grupo desorganizado. Se valora la preparación, no la soltura escénica."
+    ]
+  }
+];
+
+const NIVELES = ["1 · Incipiente", "2 · Insuficiente", "3 · Aceptable",
+                 "4 · Logrado", "5 · Destacado"];
+
+document.getElementById("aspectos").innerHTML = ASPECTOS.map(a => `
+  <section class="aspecto">
+    <div class="aspecto-cabeza">
+      <div class="aspecto-num">Aspecto ${a.n}</div>
+      <h2>${a.titulo}</h2>
+      <p>${a.resumen}</p>
+    </div>
+    <div class="niveles">
+      ${a.niveles.map((texto, i) => `
+        <div class="nivel">
+          <div class="nivel-titulo">${NIVELES[i]}</div>
+          ${texto}
+        </div>`).join("")}
+    </div>
+    <div class="por-enfoque">
+      <b>${a.notaTitulo || "Qué mirar según el enfoque asignado al grupo"}</b>
+      <ul>${a.enfoque.map(t => `<li>${t}</li>`).join("")}</ul>
+    </div>
+  </section>`).join("");
+</script>
+</body>
+</html>
