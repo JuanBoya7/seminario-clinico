@@ -108,6 +108,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
 
 .error{background:#fbeae6; border:1px solid #a83f2b; color:#a83f2b;
   border-radius:var(--radius); padding:16px 18px; font-size:14.5px;}
+.detalle{display:block; margin-top:8px; font-family:var(--font-mono); font-size:12px; opacity:0.75;}
 
 @media (max-width:900px){
   .columnas{grid-template-columns:1fr;}
@@ -168,11 +169,35 @@ let ultimo = null;
 let vista = "enfoques";
 
 /* ============================================================
-   2. CARGA (JSONP)
+   2. CARGA (fetch, con JSONP de respaldo)
    ============================================================
-   JSONP y no fetch(): el tablero se sirve desde GitHub Pages, otro dominio, y
-   un <script> con callback no depende de que Apps Script emita cabeceras CORS.
+   Se intenta fetch() primero. Antes esto era solo JSONP, con el argumento de
+   que un <script> no depende de cabeceras CORS; el argumento era falso —Apps
+   Script responde `Access-Control-Allow-Origin: *`, tambien en el redirect a
+   googleusercontent— y salio caro: en Edge, inyectar un <script> de
+   script.google.com puede quedar bloqueado (prevencion de rastreo, extensiones,
+   filtros de red) y el tablero moria con "no se pudo contactar al receptor"
+   aunque el receptor estuviera perfecto. Una peticion fetch no se confunde con
+   un script de terceros.
+
+   El JSONP queda como respaldo para el caso inverso: si fetch falla por CORS en
+   algun navegador viejo, el <script> todavia puede pasar.
    ============================================================ */
+function direccion(){
+  return FUENTE.url +
+    "?tablero=1&curso=" + encodeURIComponent(FUENTE.curso) +
+    "&grupo=" + encodeURIComponent(FUENTE.grupo) +
+    "&t=" + Date.now();                       // corta la caché de Apps Script
+}
+
+function sinReceptor(detalle){
+  document.getElementById("panel").innerHTML =
+    '<div class="error">No se pudo contactar al receptor. Revisá la conexión y ' +
+    'que la implementación esté publicada con acceso “Cualquier usuario”.' +
+    (detalle ? '<br><span class="detalle">Detalle técnico: ' + detalle + '</span>' : '') +
+    '</div>';
+}
+
 function cargar(){
   if (FUENTE.url === "PENDIENTE") {
     document.getElementById("panel").innerHTML =
@@ -181,6 +206,17 @@ function cargar(){
     return;
   }
 
+  fetch(direccion(), { cache: "no-store" })
+    .then(r => {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(recibir)
+    .catch(err => cargarJsonp(err.message));
+}
+
+// Respaldo: el mismo pedido, con callback, inyectado como <script>.
+function cargarJsonp(porQueFallo){
   const nombre = "cb_" + Date.now();
   window[nombre] = datos => {
     delete window[nombre];
@@ -189,16 +225,11 @@ function cargar(){
   };
 
   const script = document.createElement("script");
-  script.src = FUENTE.url +
-    "?tablero=1&curso=" + encodeURIComponent(FUENTE.curso) +
-    "&grupo=" + encodeURIComponent(FUENTE.grupo) +
-    "&callback=" + nombre +
-    "&t=" + Date.now();                       // corta la caché de Apps Script
+  script.src = direccion() + "&callback=" + nombre;
   script.onerror = () => {
     delete window[nombre];
-    document.getElementById("panel").innerHTML =
-      '<div class="error">No se pudo contactar al receptor. Revisá la conexión ' +
-      'y que la implementación esté publicada con acceso “Cualquier usuario”.</div>';
+    script.remove();
+    sinReceptor("fetch: " + porQueFallo + " · script: bloqueado o sin respuesta");
   };
   document.body.appendChild(script);
 }
