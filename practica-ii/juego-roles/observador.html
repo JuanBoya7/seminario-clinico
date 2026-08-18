@@ -113,19 +113,6 @@ textarea.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-s
 .campo-titulo{font-size:14.5px; font-weight:600; margin-bottom:3px;}
 .campo-nota{font-size:12.5px; color:var(--ink-faint); margin-bottom:8px;}
 
-.integrante{display:flex; gap:7px; margin-bottom:7px;}
-.integrante input{flex:1; min-width:0; font-family:var(--font-body); font-size:15px;
-  padding:11px 12px; border:1px solid var(--border); border-radius:8px;
-  background:var(--bg); color:var(--ink);}
-.integrante input.invalid{border-color:var(--severe);}
-.quitar{flex:none; width:42px; border:1px solid var(--border); border-radius:8px;
-  background:var(--bg); color:var(--ink-faint); font-size:18px; line-height:1;
-  cursor:pointer;}
-.quitar:disabled{opacity:0.35; cursor:default;}
-.agregar{margin-top:2px; background:none; border:1px dashed var(--border);
-  border-radius:8px; padding:10px 14px; width:100%; cursor:pointer;
-  font-family:var(--font-body); font-size:13.5px; color:var(--ink-soft);}
-
 .barra{margin-top:26px; padding:18px 0 0; border-top:1px solid var(--border);
   display:flex; flex-direction:column; gap:12px;}
 .estado{font-size:12.5px; color:var(--ink-faint); text-align:center; min-height:18px;}
@@ -188,14 +175,6 @@ textarea.invalid{border-color:var(--severe); box-shadow:0 0 0 3px var(--severe-s
   </div>
 
   <div id="contenido" hidden>
-
-    <div class="seccion-titulo">Quiénes son tu grupo</div>
-    <p class="seccion-nota">
-      Se escribe una sola vez: queda puesto en las rondas siguientes y viaja con cada
-      valoración que envíes. Nombre y apellido de cada integrante, incluido vos.
-    </p>
-    <div id="integrantes"></div>
-    <button type="button" class="agregar" id="btn-agregar">+ Agregar integrante</button>
 
     <div class="seccion-titulo">Los cinco aspectos</div>
     <p class="seccion-nota">
@@ -344,12 +323,7 @@ const NIVELES = [
 /* ============================================================
    4. ESTADO
    ============================================================ */
-const state = { respuestas:{}, integrantes:[] };
-
-// Cuántas casillas de integrante aparecen de entrada. Dos, no una: una sola
-// casilla se lee como "escribí tu nombre" y varios grupos mandarían un solo
-// nombre por hoja.
-const INTEGRANTES_INICIALES = 2;
+const state = { respuestas:{} };
 
 /* ============================================================
    5. RENDERIZADO
@@ -432,54 +406,6 @@ function actualizarProgreso(){
 }
 
 /* ============================================================
-   5b. INTEGRANTES DEL GRUPO OBSERVADOR
-   ============================================================
-   La lista sobrevive al envío: prepararSiguienteRonda() no la toca. Cada
-   estudiante llena su grupo una vez y las cinco rondas siguientes salen con
-   los mismos nombres, que es justo lo que permite atribuir A5 a quienes no
-   estuvieron en escena.
-   ============================================================ */
-function renderIntegrantes(){
-  const cont = document.getElementById("integrantes");
-  cont.innerHTML = "";
-
-  state.integrantes.forEach((nombre, i) => {
-    const fila = document.createElement("div");
-    fila.className = "integrante";
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = nombre;
-    input.placeholder = "Nombre y apellido";
-    input.setAttribute("aria-label", "Integrante " + (i + 1));
-    input.addEventListener("input", () => {
-      state.integrantes[i] = input.value;
-      input.classList.remove("invalid");
-    });
-
-    const quitar = document.createElement("button");
-    quitar.type = "button";
-    quitar.className = "quitar";
-    quitar.textContent = "×";
-    quitar.setAttribute("aria-label", "Quitar integrante " + (i + 1));
-    quitar.disabled = state.integrantes.length <= 1;
-    quitar.addEventListener("click", () => {
-      state.integrantes.splice(i, 1);
-      renderIntegrantes();
-    });
-
-    fila.appendChild(input);
-    fila.appendChild(quitar);
-    cont.appendChild(fila);
-  });
-}
-
-// Los nombres tal como viajan: sin vacíos y sin espacios de sobra.
-function integrantesLimpios(){
-  return state.integrantes.map(n => n.trim()).filter(Boolean);
-}
-
-/* ============================================================
    6. ENFOQUE DEL GRUPO EN ESCENA
    ============================================================ */
 function actualizarAsignacion(){
@@ -526,13 +452,6 @@ function primerFaltante(){
     el.classList.toggle("invalid", vacio);
     if (vacio) return el;
   }
-  // Un envío sin nombres deja A5 sin a quién atribuirse.
-  if (!integrantesLimpios().length) {
-    const primera = document.querySelector("#integrantes input");
-    if (primera) primera.classList.add("invalid");
-    return primera;
-  }
-
   for (const item of ASPECTOS) {
     const caja = document.querySelector(`.item[data-item="${item.n}"]`);
     const vacio = !state.respuestas[item.n];
@@ -569,7 +488,6 @@ function recogerEnvio(){
     grupo: sus,
     enfoque: ENFOQUE_DE_GRUPO[sus],
     observador: document.getElementById("f-mi-grupo").value,
-    integrantes: integrantesLimpios(),
     campos: campos
   };
 }
@@ -590,7 +508,7 @@ function enviar(){
   const faltante = primerFaltante();
   if (faltante) {
     faltante.scrollIntoView({ behavior:"smooth", block:"center" });
-    avisar("Falta la identificación, los integrantes, algún aspecto o el comentario.", false);
+    avisar("Falta la identificación, algún aspecto o el comentario.", false);
     return;
   }
 
@@ -649,14 +567,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     renderItems();
-    for (let i = 0; i < INTEGRANTES_INICIALES; i++) state.integrantes.push("");
-    renderIntegrantes();
-    document.getElementById("btn-agregar").addEventListener("click", () => {
-      state.integrantes.push("");
-      renderIntegrantes();
-      const casillas = document.querySelectorAll("#integrantes input");
-      casillas[casillas.length - 1].focus();
-    });
     ["f-curso","f-mi-grupo","f-sustenta"].forEach(id => {
       document.getElementById(id).addEventListener("change", e => {
         e.target.classList.remove("invalid");

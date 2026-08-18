@@ -59,12 +59,7 @@ var CURSOS = {
 // partir de lo que trae el envío, así que cambiar la rúbrica en el HTML no
 // obliga a tocar este script.
 var COLUMNAS_FIJAS = ['Fecha de envío', 'Curso', 'Grupo en escena', 'Enfoque',
-                      'Grupo observador', COL_INTEGRANTES];
-
-// Integrantes del grupo que observa, separados por ' · '. Es columna fija y no
-// un campo más porque el orden importa al leer la hoja: quién valoró va junto a
-// qué grupo valoró, no al final después de los cinco aspectos.
-var COL_INTEGRANTES = 'Integrantes del grupo observador';
+                      'Grupo observador'];
 
 // Columnas de texto libre: no son puntuaciones y no entran en los promedios.
 var COL_MEJOR = 'Lo mejor que hizo';
@@ -100,9 +95,6 @@ function doPost(e) {
     }
     if (!datos.grupo || !datos.observador) {
       return paginaError('Falta indicar tu grupo o el grupo que está en escena.');
-    }
-    if (!datos.integrantes || !datos.integrantes.length) {
-      return paginaError('Falta listar los integrantes de tu grupo.');
     }
     if (String(datos.grupo) === String(datos.observador)) {
       // La hoja ya lo impide en pantalla, pero un envío viejo reenviado desde
@@ -189,9 +181,6 @@ function escribirFila(grupoCurso, datos) {
     if (etiqueta === 'Grupo en escena') return datos.grupo || '';
     if (etiqueta === 'Enfoque') return datos.enfoque || '';
     if (etiqueta === 'Grupo observador') return datos.observador || '';
-    if (etiqueta === COL_INTEGRANTES) {
-      return (datos.integrantes || []).join(' · ');
-    }
     return campos[etiqueta] !== undefined ? campos[etiqueta] : '';
   });
 
