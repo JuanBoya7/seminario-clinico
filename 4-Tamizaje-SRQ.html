@@ -154,11 +154,13 @@ section.block{margin-bottom:40px; scroll-margin-top:24px;}
   box-shadow:var(--shadow-card);
 }
 .card + .card{margin-top:0;}
+/* display:block y no flex: con flex, un enunciado largo que envuelve empuja el
+   asterisco a una linea propia y queda flotando solo contra el margen derecho,
+   como si fuera otra cosa. Como inline se queda pegado a la ultima palabra. */
 .card-label{
   font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px;
-  display:flex; align-items:center; gap:6px;
 }
-.required-mark{color:var(--severe); font-size:13px;}
+.required-mark{color:var(--severe); font-size:13px; margin-left:5px;}
 .card-help{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
 
 input[type="text"], textarea, select{
@@ -358,6 +360,8 @@ textarea{resize:vertical; min-height:76px; line-height:1.5;}
   .srq-item-text{flex:0 0 auto;}
   .srq-opts{width:100%;}
   .srq-opt{flex:1 1 0; justify-content:center; padding:9px 6px;}
+  /* Area tactil: en escritorio 38 px alcanza con el raton, en la mano no */
+  .btn-add-item{padding:12px 16px;}
 }
 
 @media (max-width:360px){
@@ -383,6 +387,9 @@ textarea{resize:vertical; min-height:76px; line-height:1.5;}
 .rubrica-inline > summary{
   cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px;
   font-size:12.5px; font-weight:600; color:var(--accent);
+  /* El relleno vertical es el area tactil: sin el, el disparador mide 19 px de
+     alto y en un celular hay que apuntarle. */
+  padding:9px 4px 9px 0;
 }
 .rubrica-inline > summary::-webkit-details-marker{display:none;}
 .rubrica-inline > summary::before{
@@ -405,6 +412,14 @@ textarea{resize:vertical; min-height:76px; line-height:1.5;}
 .rubrica-nivel:nth-child(2) b{color:var(--moderate);}
 .rubrica-nivel:nth-child(3) b{color:var(--mild);}
 .rubrica-nivel:nth-child(4) b{color:var(--accent);}
+/* Este bloque va acá y no junto al resto de las reglas móviles de más arriba:
+   los estilos base de .rubrica-inline se declaran en esta zona de la hoja, es
+   decir DESPUÉS de aquel media query, así que allá el override no ganaba por
+   orden de cascada y el área táctil se quedaba en 19 px. */
+@media (max-width:900px){
+  .rubrica-inline > summary{padding:14px 4px 14px 0;}
+}
+
 @media (max-width:560px){
   .rubrica-nivel{flex-direction:column; gap:3px;}
   .rubrica-nivel b{flex:none;}
@@ -1102,7 +1117,10 @@ function actualizarResultados(){
 
     const detalle = document.getElementById("detalle-" + sub.key);
     if (detalle) {
-      detalle.textContent = c.positivas + " de " + c.total + " positivas · punto de corte: " +
+      // "0 de 1 positiva", no "0 de 1 positivas": la subescala de trastorno
+      // convulsivo tiene un solo item y la concordancia va con el total.
+      detalle.textContent = c.positivas + " de " + c.total +
+        (c.total === 1 ? " positiva" : " positivas") + " · punto de corte: " +
         (sub.corte === 1 ? "1 respuesta positiva" : sub.corte + " respuestas positivas") +
         (c.sinResponder ? " · " + c.sinResponder + " sin responder" : "");
     }
