@@ -37,25 +37,37 @@ Un envío cuyo `curso` no esté en esa lista se rechaza con un mensaje, no se es
 > Mientras tanto, descargar un `.xlsx` de cada hoja al cierre de cada corte alcanza como
 > respaldo.
 
-## Hay dos receptores, y son independientes
+## Hay varios receptores, y son independientes
 
 | Carpeta | Recibe | Estado |
 |---|---|---|
 | [`casos/Codigo.gs`](casos/Codigo.gs) | Los análisis de caso (Elisa, Susana, Sergio) | Ya publicado y en uso |
 | [`pap/Codigo.gs`](pap/Codigo.gs) | El simulacro de primeros auxilios psicológicos | Falta publicarlo |
+| [`juego-roles/Codigo.gs`](juego-roles/Codigo.gs) | Las valoraciones del juego de roles de entrevista | Falta publicarlo |
+| [`tamizaje/Codigo.gs`](tamizaje/Codigo.gs) | Las fichas del tamizaje SRQ (clase 3.1) | Publicado el 2026-08-18 |
 
 Cada uno vive en **su propio proyecto de Apps Script, vinculado a su propia hoja de
 cálculo**, con su propia URL. Están separados a propósito: el de los casos ya está
-validado, y una falla del simulacro —en plena aula, con treinta estudiantes enviando a
-la vez— no debe poder llevarse por delante las entregas de los casos.
+validado, y una falla de cualquiera de los otros —en plena aula, con treinta
+estudiantes enviando a la vez— no debe poder llevarse por delante las entregas de los
+casos.
 
-Los pasos de abajo sirven para los dos. Lo único que cambia es qué archivo pegás y en
+Los pasos de abajo sirven para todos. Lo único que cambia es qué archivo pegás y en
 qué HTML va la URL resultante:
 
 - **Casos** → la URL va en el bloque `ENVIO` de los tres `*-Caso-*.html`, y en los tres
   de `practica-ii/`.
 - **Simulacro** → la URL va en `pap/observador.html` **y** en `pap/tablero.html`, y en los
   dos equivalentes de `practica-ii/pap/`. Las cuatro páginas usan la misma dirección.
+- **Juego de roles** → la URL va en `practica-ii/juego-roles/observador.html` y en
+  `practica-ii/juego-roles/tablero.html`.
+- **Tamizaje SRQ** → la URL va en el bloque `ENVIO` de `4-Tamizaje-SRQ.html`. Es la única
+  actividad con una sola página, así que hay un solo lugar donde pegarla.
+
+> **El receptor del tamizaje pinta filas.** Es el único que no es intercambiable con los
+> demás: cuando el envío trae `alertaSUI`, colorea la fila entera y escribe una columna
+> `Alerta` en tercera posición, para que el ítem 17 del SRQ se vea sin desplazarse por la
+> hoja. Si alguna vez se unifican los receptores, esa parte no se puede perder.
 
 **Si tocás un `Codigo.gs`, hay que republicar para que el cambio surta efecto:**
 Implementar → Administrar implementaciones → editar → Versión: **Nueva**. La URL no
