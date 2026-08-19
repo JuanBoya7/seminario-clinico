@@ -615,7 +615,8 @@ textarea{resize:vertical; min-height:76px; line-height:1.5;}
         <div class="card-label">Guion de devolución <span class="required-mark">*</span></div>
         <div class="card-help">
           Escriban lo que le van a decir al consultante sobre su resultado, con las palabras
-          exactas. Léanselo antes de enviar la actividad.
+          exactas, y léanselo en voz alta antes de enviar. No es para informarle nada que no
+          sepa —ayudó a escribirlo—: es para practicar cómo suena dicho.
         </div>
         <textarea data-required="true" id="f-devolucion" rows="5"></textarea>
       </div>
@@ -789,6 +790,19 @@ const RUBRICA_CAMPOS = {
   ]
 };
 
+// El cuarto criterio evalúa las tres preguntas del bloque "Cómo aplicamos" en
+// conjunto, no una por una. Por eso va colgado del bloque y no de cada tarjeta:
+// repetir los mismos cuatro niveles tres veces seguidas sería ruido, y sugeriría
+// que cada pregunta se califica por separado, que no es el caso.
+const RUBRICA_BLOQUES = {
+  "bloque-5": [
+    "Respuestas de trámite: «todo bien», «ninguna», «nada que cambiar».",
+    "Describe lo que pasó, pero sin conectarlo con lo que la persona respondió.",
+    "Identifica una decisión propia durante la aplicación que pudo haber influido en las respuestas.",
+    "Además propone un cambio concreto y dice qué efecto esperaría de él."
+  ]
+};
+
 const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobresaliente"];
 
 // El encuadre que se dice antes de la primera pregunta. Están los cinco porque
@@ -884,30 +898,46 @@ function renderConsentimiento(){
 /* ------------------------------------------------------------------
    Criterio de evaluación al pie de las preguntas de la ficha
    ------------------------------------------------------------------ */
+function construirPlegableRubrica(niveles, rotulo){
+  const det = document.createElement("details");
+  det.className = "rubrica-inline";
+
+  const sum = document.createElement("summary");
+  sum.textContent = rotulo || "Ver cómo se evalúa";
+  det.appendChild(sum);
+
+  const cont = document.createElement("div");
+  cont.className = "rubrica-niveles";
+  niveles.forEach((texto, i) => {
+    const fila = document.createElement("div");
+    fila.className = "rubrica-nivel";
+    fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
+    cont.appendChild(fila);
+  });
+  det.appendChild(cont);
+  return det;
+}
+
 function initRubricaEnLinea(){
+  // Criterios que cuelgan de una pregunta: van dentro de su tarjeta.
   Object.keys(RUBRICA_CAMPOS).forEach(id => {
     const campo = document.getElementById(id);
     const card = campo && campo.closest(".card");
     if (!card) return;
+    card.appendChild(construirPlegableRubrica(RUBRICA_CAMPOS[id]));
+  });
 
-    const det = document.createElement("details");
-    det.className = "rubrica-inline";
-
-    const sum = document.createElement("summary");
-    sum.textContent = "Ver cómo se evalúa";
-    det.appendChild(sum);
-
-    const cont = document.createElement("div");
-    cont.className = "rubrica-niveles";
-    RUBRICA_CAMPOS[id].forEach((texto, i) => {
-      const fila = document.createElement("div");
-      fila.className = "rubrica-nivel";
-      fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
-      cont.appendChild(fila);
-    });
-    det.appendChild(cont);
-
-    card.appendChild(det);
+  // Criterios que cubren un bloque entero: van al pie de la última tarjeta del
+  // bloque, para que queden alineados con los demás y no sueltos en el margen.
+  Object.keys(RUBRICA_BLOQUES).forEach(id => {
+    const bloque = document.getElementById(id);
+    if (!bloque) return;
+    const cards = bloque.querySelectorAll(".card");
+    if (!cards.length) return;
+    const det = construirPlegableRubrica(RUBRICA_BLOQUES[id],
+                                         "Ver cómo se evalúan las tres respuestas");
+    det.classList.add("rubrica-bloque");
+    cards[cards.length - 1].appendChild(det);
   });
 }
 
