@@ -351,6 +351,11 @@ textarea{resize:vertical; min-height:76px; line-height:1.5;}
   .main{padding-bottom:8px;}
   /* En celular las tres opciones no caben al lado del enunciado */
   .srq-item{flex-direction:column; gap:9px;}
+  /* El flex:0 0 auto es imprescindible, y es el mismo problema que tiene
+     .save-status mas abajo: la regla de escritorio usa flex:1 1 300px, y al
+     apilarse en columna esos 300px dejan de ser ancho y pasan a ser ALTO.
+     Sin esta linea queda un hueco enorme entre cada pregunta y sus opciones. */
+  .srq-item-text{flex:0 0 auto;}
   .srq-opts{width:100%;}
   .srq-opt{flex:1 1 0; justify-content:center; padding:9px 6px;}
 }
