@@ -1235,6 +1235,17 @@ function listHasContent(listKey){
    ============================================================ */
 function initSimpleFields(){
   document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
+    // Un campo que ya trae valor desde el marcado —un desplegable con una sola
+    // opción, por ejemplo— nunca dispara "input" ni "change", así que sin esta
+    // siembra su valor no llegaría nunca al estado. Y del estado salen cuatro
+    // cosas: la clave del autoguardado, el nombre del archivo que se descarga,
+    // el aviso de recuperación y el grupo del curso que viaja en el envío.
+    // La guarda evita pisar lo que ya haya cargado loadInitialState() al
+    // reabrir un archivo guardado.
+    if (state.text[el.id] === undefined && el.value) {
+      state.text[el.id] = el.value;
+    }
+
     el.addEventListener("input", () => {
       state.text[el.id] = el.value;
       updateProgress();
