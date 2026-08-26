@@ -319,6 +319,123 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   max-width:58ch;
 }
 
+/* ============================================================
+   LA FASE — material de consulta
+
+   Vive debajo de la cuadrícula y nunca se proyecta: la escena es un
+   overlay a pantalla completa, así que esto solo lo ve quien abre el
+   archivo. Por eso la rúbrica y la Carta de Ottawa pueden estar acá
+   sin estorbar en el salón, y por eso el deck se puede repartir.
+   ============================================================ */
+.pagina{max-width:1180px; margin:0 auto; padding:0 32px 90px;}
+
+.tira{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 18px;
+  padding:18px 22px; margin-bottom:clamp(34px,6vh,58px);
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--accent-soft);
+}
+.tira .tira-f{
+  font-family:var(--font-display); font-size:clamp(18px,2vw,25px);
+  line-height:1.2; color:var(--accent-dark);
+}
+.tira .tira-d{font-size:13.5px; color:var(--ink-soft);}
+.tira .tira-p{
+  margin-left:auto; font-family:var(--font-display); font-weight:600;
+  font-size:clamp(18px,2vw,25px); color:var(--accent-dark);
+}
+@media (max-width:600px){ .tira .tira-p{margin-left:0;} }
+
+.seccion{margin-bottom:clamp(38px,7vh,68px);}
+.seccion[hidden]{display:none;}
+.seccion-r{
+  font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:8px;
+}
+.seccion-t{
+  font-family:var(--font-display); font-size:clamp(22px,2.6vw,31px);
+  line-height:1.2; letter-spacing:-.01em; color:var(--ink);
+}
+.seccion-s{margin-top:11px; max-width:74ch; font-size:14.5px; line-height:1.65; color:var(--ink-soft);}
+.seccion-s p{margin:0 0 10px;}
+.seccion-s p:last-child{margin-bottom:0;}
+.seccion-s strong{color:var(--ink); font-weight:600;}
+
+/* --- Entregables ------------------------------------------------ */
+.entregables{margin-top:24px; display:grid; gap:12px;}
+.ent{
+  border:1px solid var(--border); border-left:4px solid var(--accent);
+  border-radius:var(--radius); background:var(--surface); padding:16px 20px;
+}
+.ent-n{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.ent-t{
+  font-family:var(--font-display); font-size:clamp(17px,1.8vw,22px);
+  line-height:1.25; margin-top:4px; color:var(--ink);
+}
+.ent-i{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;}
+.ent-i span{
+  padding:5px 11px; border-radius:999px;
+  background:var(--bg); border:1px solid var(--border);
+  font-size:13px; color:var(--ink-soft);
+}
+
+/* --- Rúbrica ---------------------------------------------------- */
+.rub{margin-top:24px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+.rub details{border-bottom:1px solid var(--border);}
+.rub details:last-child{border-bottom:none;}
+.rub summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:14px;
+  padding:14px 18px; background:var(--bg);
+  font-size:15px; font-weight:600; color:var(--ink);
+}
+.rub summary::-webkit-details-marker{display:none;}
+.rub summary:hover{background:var(--surface);}
+.rub summary .peso{margin-left:auto; font-family:var(--font-display); color:var(--accent);}
+.rub summary::after{content:"+"; color:var(--accent); font-size:19px; line-height:1; width:1ch;}
+.rub details[open] summary::after{content:"\2013";}
+.rub .niveles{padding:4px 18px 18px; background:var(--surface); display:grid; gap:9px;}
+.rub .nivel{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start;}
+.rub .nivel b{
+  font-family:var(--font-display); font-size:15px;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:7px; padding:3px 0; min-width:3ch; text-align:center;
+}
+.rub .nivel span{font-size:14px; line-height:1.5; color:var(--ink-soft);}
+.rub-pie{margin-top:12px; font-size:12.5px; color:var(--ink-faint);}
+
+/* --- Carta de Ottawa -------------------------------------------- */
+.ott{
+  margin-top:24px; display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(285px,1fr)); gap:16px 20px;
+}
+.ott-c{border-top:3px solid var(--accent); padding:13px 0 0;}
+.ott-c.secundaria{border-top-color:var(--ink-faint);}
+.ott-k{
+  font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.ott-t{
+  font-family:var(--font-display); font-size:clamp(17px,1.8vw,21px);
+  line-height:1.25; margin-top:5px; color:var(--ink);
+}
+.ott-e{margin-top:9px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
+.ott-x{margin-top:11px; display:flex; flex-wrap:wrap; gap:6px;}
+.ott-x span{
+  padding:4px 10px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--border);
+  font-size:12.5px; color:var(--ink-soft);
+}
+.ott-q{
+  margin-top:11px; padding:11px 14px; border-radius:9px;
+  background:var(--accent-soft);
+  font-family:var(--font-display); font-size:15.5px; line-height:1.35;
+  color:var(--accent-dark);
+}
+
 @media print{
   .escena{display:none !important;}
   .globo{break-inside:avoid; box-shadow:none;}
@@ -329,6 +446,45 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 
 <div class="wrap" id="portada">
   <div class="globos" id="globos"></div>
+</div>
+
+<!-- ============================================================
+     Material de consulta. Nunca se proyecta: la escena lo tapa.
+     ============================================================ -->
+<div class="pagina">
+  <div class="tira">
+    <span class="tira-f" id="tira-f"></span>
+    <span class="tira-d" id="tira-d"></span>
+    <span class="tira-p" id="tira-p"></span>
+  </div>
+
+  <section class="seccion" id="sec-encuadre" hidden>
+    <div class="seccion-r">La actividad</div>
+    <h2 class="seccion-t" id="enc-t"></h2>
+    <div class="seccion-s" id="enc-s"></div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">Qué se entrega</div>
+    <h2 class="seccion-t" id="ent-t"></h2>
+    <div class="seccion-s" id="ent-s"></div>
+    <div class="entregables" id="entregables"></div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">Cómo se califica</div>
+    <h2 class="seccion-t" id="rub-t"></h2>
+    <div class="seccion-s" id="rub-s"></div>
+    <div class="rub" id="rub"></div>
+    <div class="rub-pie">Cada criterio despliega sus descriptores de desempeño en cinco niveles, calificados sobre 5.</div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">El marco</div>
+    <h2 class="seccion-t" id="ott-t"></h2>
+    <div class="seccion-s" id="ott-s"></div>
+    <div class="ott" id="ott"></div>
+  </section>
 </div>
 
 <!-- ============================================================
@@ -374,6 +530,124 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 </div>
 
 <script>
+const FASE = {
+  "titulo": "Fase II · Presentación de la intervención",
+  "fecha": "Sustentación · viernes 11 de septiembre",
+  "peso": "50%",
+  "encuadre": null,
+  "entregables": {
+    "t": "Los tres puntos de la Fase II",
+    "s": "Sustentación oral apoyada en material audiovisual que evidencie el desarrollo del programa. Cada punto responde a una de las tres preguntas de arriba, en el mismo orden."
+  },
+  "rubrica": {
+    "t": "Rúbrica de la Fase II",
+    "s": "Cinco criterios que suman el 50% de la nota final. Los dos últimos —dominio conceptual y comunicación— no miden lo que hicieron en el sitio sino cómo lo cuentan: son 15 de los 50.",
+    "criterios": [
+      {
+        "criterio": "Calidad de la implementación y evidencias presentadas",
+        "peso": 15,
+        "niveles": [
+          "Evidencia una implementación sólida con registros variados y verificables.",
+          "Muestra una implementación adecuada con evidencias suficientes.",
+          "Presenta evidencias limitadas o poco organizadas.",
+          "Aporta evidencias parciales que respaldan débilmente la implementación.",
+          "Evidencias escasas, irrelevantes o ausentes."
+        ]
+      },
+      {
+        "criterio": "Presentación de hallazgos y análisis del impacto",
+        "peso": 10,
+        "niveles": [
+          "Expone hallazgos claros y analiza el impacto con indicadores.",
+          "Presenta hallazgos con un análisis de impacto adecuado.",
+          "Muestra hallazgos con un análisis de impacto superficial.",
+          "Menciona hallazgos sin relacionarlos con el impacto.",
+          "No presenta hallazgos ni analiza el impacto."
+        ]
+      },
+      {
+        "criterio": "Testimonios, experiencias y reflexión crítica",
+        "peso": 10,
+        "niveles": [
+          "Integra testimonios significativos y una reflexión crítica profunda.",
+          "Incluye testimonios y una reflexión pertinente.",
+          "Aporta testimonios o reflexión de forma limitada.",
+          "Presenta testimonios o reflexión de manera superficial.",
+          "Carece de testimonios y de reflexión crítica."
+        ]
+      },
+      {
+        "criterio": "Dominio conceptual durante la sustentación",
+        "peso": 10,
+        "niveles": [
+          "Domina los conceptos y responde con solvencia y fundamento.",
+          "Maneja los conceptos con seguridad y pocas imprecisiones.",
+          "Muestra un dominio conceptual básico o con vacíos.",
+          "Responde con imprecisiones frecuentes y dominio limitado.",
+          "Evidencia desconocimiento de los conceptos clave."
+        ]
+      },
+      {
+        "criterio": "Calidad de la comunicación y organización de la presentación",
+        "peso": 5,
+        "niveles": [
+          "Comunica con claridad, orden y excelente uso del material audiovisual.",
+          "Presenta de forma clara y organizada.",
+          "La comunicación o la organización presentan fallas.",
+          "La presentación es poco fluida y con recursos deficientes.",
+          "Presentación desorganizada o poco comprensible."
+        ]
+      }
+    ]
+  },
+  "ottawa": {
+    "t": "Carta de Ottawa: en qué se apoyó lo que hicieron",
+    "s": "<p>La misma Carta con la que diseñaron el programa, ahora para reconocerse en ella. Cada área de acción trae <strong>la pregunta que hay que poder responder</strong> en la reflexión final.</p><p>Un programa que no se reconoce en ninguna probablemente no fue de promoción de la salud. Decirlo vale más que forzar el encaje.</p>",
+    "componentes": [
+      {
+        "rotulo": "Área de acción",
+        "title": "Reforzar la acción comunitaria",
+        "question": "¿Cómo involucró a la comunidad durante el desarrollo del programa?"
+      },
+      {
+        "rotulo": "Área de acción",
+        "title": "Desarrollar las aptitudes personales",
+        "question": "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"
+      },
+      {
+        "rotulo": "Área de acción",
+        "title": "Crear ambientes favorables",
+        "question": "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"
+      },
+      {
+        "rotulo": "Área de acción",
+        "title": "Reorientar los servicios de salud",
+        "question": "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"
+      },
+      {
+        "rotulo": "Estrategia central",
+        "title": "Actuar como mediador",
+        "explanation": "Coordinación y mediación entre la comunidad, las instituciones, los gobiernos y demás actores sociales para lograr la salud."
+      },
+      {
+        "rotulo": "Estrategia central",
+        "title": "Promocionar el concepto",
+        "explanation": "La salud como recurso para la vida cotidiana. Implica abogar por la salud para crear las condiciones esenciales que la favorecen."
+      },
+      {
+        "rotulo": "Estrategia central",
+        "title": "Proporcionar medios",
+        "explanation": "Reducir las inequidades y brindar oportunidades para que todas las personas desarrollen su máximo potencial de salud."
+      },
+      {
+        "rotulo": "Marco que engloba todo",
+        "title": "Elaborar una política pública sana",
+        "question": "¿Qué políticas, normas o acuerdos del escenario de práctica podrían fortalecer la salud de la población?"
+      }
+    ]
+  }
+};
+
 /* ============================================================
    LAS TRES PREGUNTAS
 
@@ -596,6 +870,56 @@ document.addEventListener("keydown", e => {
     revelar();
   }
 });
+/* ============================================================
+   MATERIAL DE CONSULTA
+
+   Los entregables no se declaran aparte: son los puntos de las
+   preguntas. Declararlos dos veces era justamente lo que hacía que el
+   documento general y los decks se contradijeran.
+   ============================================================ */
+$("tira-f").textContent = FASE.titulo;
+$("tira-d").textContent = FASE.fecha;
+$("tira-p").textContent = FASE.peso;
+
+if (FASE.encuadre){
+  $("sec-encuadre").hidden = false;
+  $("enc-t").textContent = FASE.encuadre.t;
+  $("enc-s").innerHTML = FASE.encuadre.s;
+}
+
+$("ent-t").textContent = FASE.entregables.t;
+$("ent-s").innerHTML = FASE.entregables.s;
+$("entregables").innerHTML = PREGUNTAS.map(p =>
+  '<div class="ent">' +
+    '<div class="ent-n">' + escapar(p.punto.n) + '</div>' +
+    '<div class="ent-t">' + escapar(p.punto.t) + '</div>' +
+    '<div class="ent-i">' + p.punto.items.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' +
+  '</div>').join("");
+
+$("rub-t").textContent = FASE.rubrica.t;
+$("rub-s").innerHTML = FASE.rubrica.s;
+// Los descriptores vienen de mejor a peor; el nivel es 5 menos el índice.
+$("rub").innerHTML = FASE.rubrica.criterios.map(c =>
+  '<details>' +
+    '<summary>' + escapar(c.criterio) +
+      '<span class="peso">' + c.peso + '%</span>' +
+    '</summary>' +
+    '<div class="niveles">' + c.niveles.map((n, i) =>
+      '<div class="nivel"><b>' + (5 - i) + '</b><span>' + escapar(n) + '</span></div>'
+    ).join("") + '</div>' +
+  '</details>').join("");
+
+$("ott-t").textContent = FASE.ottawa.t;
+$("ott-s").innerHTML = FASE.ottawa.s;
+$("ott").innerHTML = FASE.ottawa.componentes.map(c =>
+  '<div class="ott-c' + (c.rotulo === "Área de acción" ? "" : " secundaria") + '">' +
+    '<div class="ott-k">' + escapar(c.rotulo) + '</div>' +
+    '<div class="ott-t">' + escapar(c.title) + '</div>' +
+    (c.explanation ? '<div class="ott-e">' + escapar(c.explanation) + '</div>' : "") +
+    (c.examples ? '<div class="ott-x">' + c.examples.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' : "") +
+    (c.question ? '<div class="ott-q">' + escapar(c.question) + '</div>' : "") +
+  '</div>').join("");
+
 </script>
 
 </body>
