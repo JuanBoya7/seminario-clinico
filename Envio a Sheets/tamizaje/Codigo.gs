@@ -35,14 +35,14 @@ var ID_HOJA = '';
 // desplegable "Grupo del curso". Si se abre un grupo nuevo hay que agregarlo en
 // los dos lados.
 //
-// Hoy solo escribe el Seminario. Queda como mapa y no como constante suelta por
-// si la Práctica II de la UDES adopta después esta misma actividad: se agrega
-// una clave acá, una opción en el HTML, y no hay nada más que tocar.
+// Desde el 2026-08-25 también escribe la Práctica II de la UDES, que adoptó
+// esta misma actividad: su espejo vive en practica-ii/4-Tamizaje-SRQ.html.
 //
 // No es seguridad real (la URL viaja dentro del HTML y es visible); solo evita
 // que un envío accidental o de otra asignatura ensucie la hoja.
 var CURSOS = {
-  'SPI-2026-2': ['901', '902', '903']    // Seminario Profesional I - Clínico (FUAA)
+  'SPI-2026-2': ['901', '902', '903'],   // Seminario Profesional I - Clínico (FUAA)
+  'PII-2026-B': ['Práctica II']          // Práctica II - Clínica (UDES)
 };
 
 // Columnas fijas, siempre en este orden y siempre primero. "Alerta" va tercera,
