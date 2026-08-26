@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamizaje SRQ — Rúbrica</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n1-soft:#fbeae6;
+  --n2:#b8722a; --n2-soft:#faf1e4;
+  --n3:#3f7d53; --n3-soft:#e7f3ea;
+  --n4:#1f6f78; --n4-soft:#e2eff0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:1000px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:24px; max-width:760px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+.masthead b{color:var(--ink);}
+
+/* ---- Reparto del peso ---- */
+.pesos{display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap;}
+.peso-bloque{flex:1 1 240px; border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px 16px; background:var(--surface);}
+.peso-cifra{font-family:var(--font-mono); font-size:23px; font-weight:700; color:var(--accent-dark);}
+.peso-bloque h3{font-size:15px; margin:2px 0 4px;}
+.peso-bloque p{margin:0; font-size:13px; color:var(--ink-soft);}
+
+/* ---- Escala de desempeño ---- */
+.escala{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:26px;}
+.nivel-chip{border-radius:8px; padding:11px 10px; font-size:12.6px; line-height:1.35;}
+.nivel-chip b{display:block; font-size:13.5px; margin-bottom:2px;}
+.nivel-chip:nth-child(1){background:var(--n1-soft); color:var(--n1);}
+.nivel-chip:nth-child(2){background:var(--n2-soft); color:var(--n2);}
+.nivel-chip:nth-child(3){background:var(--n3-soft); color:var(--n3);}
+.nivel-chip:nth-child(4){background:var(--n4-soft); color:var(--n4);}
+
+/* ---- Criterios ---- */
+.criterio{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:18px; overflow:hidden;}
+.criterio-cabeza{background:var(--surface); padding:16px 18px; border-bottom:1px solid var(--border);}
+.criterio-meta{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.criterio-num{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:var(--accent); letter-spacing:0.06em;}
+.criterio-peso{font-family:var(--font-mono); font-size:11.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:3px 9px; border-radius:99px;}
+.criterio-cabeza h2{font-size:19px; margin:3px 0 6px;}
+.criterio-cabeza p{margin:0; font-size:14px; color:var(--ink-soft); max-width:720px;}
+
+.niveles{display:grid; grid-template-columns:repeat(4,1fr);}
+.nivel{padding:14px; font-size:13px; border-right:1px solid var(--border); color:var(--ink-soft);}
+.nivel:last-child{border-right:none;}
+.nivel-titulo{font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;}
+.nivel:nth-child(1) .nivel-titulo{color:var(--n1);}
+.nivel:nth-child(2) .nivel-titulo{color:var(--n2);}
+.nivel:nth-child(3) .nivel-titulo{color:var(--n3);}
+.nivel:nth-child(4) .nivel-titulo{color:var(--n4);}
+
+.nota{border-radius:var(--radius); padding:16px 18px; font-size:14px;
+  margin-top:22px; max-width:820px;}
+.nota b{display:block; margin-bottom:5px;}
+.nota ul{margin:8px 0 0; padding-left:19px;}
+.nota li{margin-bottom:5px;}
+.nota-limite{background:var(--n2-soft); border:1px solid var(--n2); color:#6d4415;}
+.nota-limite b{color:var(--n2);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+@media (max-width:820px){
+  .escala{grid-template-columns:repeat(2,1fr);}
+  .niveles{grid-template-columns:1fr;}
+  .nivel{border-right:none; border-bottom:1px solid var(--border);}
+  .nivel:last-child{border-bottom:none;}
+}
+@media print{.nav{display:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Tamizaje SRQ · Aplicación asistida</div>
+    <h1>Rúbrica de la actividad</h1>
+    <p>
+      Cuatro criterios, los mismos para todos los grupos. Están escritos antes de la
+      aplicación y a la vista desde el comienzo: <b>saber contra qué se los mide es
+      parte de la actividad</b>, no información reservada.
+    </p>
+    <p>
+      Todos los criterios evalúan <b>al grupo</b>, no a sus integrantes. Ninguno pregunta
+      qué tal estuvo quien leyó las preguntas o quién las registró: preguntan qué lectura
+      del instrumento produjo este grupo.
+    </p>
+  </header>
+
+  <div class="pesos">
+    <div class="peso-bloque">
+      <div class="peso-cifra">70%</div>
+      <h3>La ficha</h3>
+      <p>Qué hicieron con el resultado: cómo lo leyeron, qué límites le reconocieron y
+         cómo se lo dijeron a la persona.</p>
+    </div>
+    <div class="peso-bloque">
+      <div class="peso-cifra">30%</div>
+      <h3>La aplicación</h3>
+      <p>Qué vieron de su propio trabajo mientras aplicaban el instrumento.</p>
+    </div>
+  </div>
+
+  <div class="escala">
+    <div class="nivel-chip"><b>Insuficiente</b>No aparece, o aparece de un modo que contradice el resultado.</div>
+    <div class="nivel-chip"><b>En proceso</b>Está enunciado, pero no aterrizado a este caso.</div>
+    <div class="nivel-chip"><b>Satisfactorio</b>Está y se sostiene con lo que obtuvieron.</div>
+    <div class="nivel-chip"><b>Sobresaliente</b>Además agrega una lectura que la consigna no pedía.</div>
+  </div>
+
+  <!-- ============ CRITERIO 1 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 1</span>
+        <span class="criterio-peso">25%</span>
+      </div>
+      <h2>Lectura del resultado</h2>
+      <p>
+        El SRQ no arroja un puntaje sino cuatro, cada uno con su propio punto de corte.
+        Este criterio mira si el grupo leyó eso o lo aplanó en un veredicto único.
+      </p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        La interpretación contradice el puntaje que el propio grupo obtuvo, o reporta un
+        único resultado global para todo el cuestionario.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Nombra el resultado correcto pero repite la cifra sin leerla, o no distingue
+        entre las subescalas que dieron positivas y las que no.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Lee las cuatro subescalas por separado y su interpretación es coherente con los
+        puntajes obtenidos.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además señala cuál de los resultados pesa más en este caso y por qué, o advierte
+        una tensión entre dos de ellos.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CRITERIO 2 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 2</span>
+        <span class="criterio-peso">25%</span>
+      </div>
+      <h2>Alcance del resultado</h2>
+      <p>
+        Un tamizaje estima probabilidad, no establece diagnóstico. Este criterio mira si
+        esa distinción quedó en una frase aprendida o si el grupo la aplicó a lo que
+        efectivamente obtuvo.
+      </p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        Trata el resultado como un diagnóstico, o el campo se resuelve con una fórmula
+        general que serviría para cualquier caso.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Afirma correctamente que el tamizaje no diagnostica, pero sin referirlo a su
+        propio resultado.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Nombra al menos una conclusión concreta que este resultado no autoriza a
+        sostener, referida a lo que este grupo obtuvo.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además identifica una fuente concreta de error en este caso: dónde está el punto
+        de corte, qué preguntan realmente los ítems, o en qué condiciones se respondió.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CRITERIO 3 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 3</span>
+        <span class="criterio-peso">20%</span>
+      </div>
+      <h2>Devolución</h2>
+      <p>
+        El guion se evalúa como lo que es: algo que se le dice a una persona real, en voz
+        alta, sobre sus propias respuestas.
+      </p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        Comunica un diagnóstico, alarma, o está escrito en un lenguaje que no se le podría
+        decir a la persona tal como está.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Es comprensible, pero informa el puntaje sin decir qué significa — o lo suaviza
+        tanto que termina no diciendo nada.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Lenguaje llano, dice qué se encontró y qué no significa, y es decible tal cual
+        está escrito.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además contempla cómo puede caerle esto a quien lo escucha, y deja la conversación
+        abierta en lugar de cerrarla.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CRITERIO 4 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 4</span>
+        <span class="criterio-peso">30%</span>
+      </div>
+      <h2>Observación de la propia aplicación</h2>
+      <p>
+        Las tres preguntas del último bloque. No se evalúa que la aplicación haya salido
+        bien, sino que el grupo haya podido mirarla.
+      </p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        Respuestas de trámite: "todo bien", "ninguna", "nada que cambiar".
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Describe lo que pasó, pero sin conectarlo con lo que la persona respondió.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Identifica al menos una decisión propia durante la aplicación que pudo haber
+        influido en las respuestas.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además propone un cambio concreto y dice qué efecto esperaría de él.
+      </div>
+    </div>
+  </div>
+
+  <div class="nota nota-limite">
+    <b>Lo que no se califica</b>
+    <ul>
+      <li><b>Las respuestas al SRQ.</b> Todas, sin excepción. Son las respuestas
+          personales de un compañero, no trabajo académico: un puntaje alto no baja
+          ninguna nota, y un puntaje bajo no sube ninguna.</li>
+      <li><b>El encuadre.</b> Es requisito para empezar, no un punto que sume: sin él la
+          actividad no se habilita, así que todos los grupos lo tienen.</li>
+    </ul>
+  </div>
+
+  <div class="nav">
+    <a href="4-Tamizaje-SRQ.html">&rarr; Ir a la actividad</a>
+  </div>
+
+</div>
+</body>
+</html>

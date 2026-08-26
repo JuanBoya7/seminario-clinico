@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cierre del tamizaje — Preguntas para el salón</title>
+<style>
+/* ============================================================
+   TOKENS
+   Los mismos del recurso de aplicación (4-Tamizaje-SRQ.html):
+   los dos se proyectan en la misma sesión, uno detrás del otro.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:14px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 6px 22px rgba(22,35,43,0.07);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   LOS GLOBOS
+   ============================================================ */
+.wrap{
+  max-width:1180px; margin:0 auto;
+  padding:clamp(36px,7vh,80px) 32px 80px;
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center;
+}
+
+.globos{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(300px,1fr));
+  gap:38px 30px;
+}
+
+/* Con un número impar de globos, el último quedaría solo contra el margen
+   izquierdo. Se lo pasa a fila completa y se lo centra: la cuadrícula sigue
+   leyéndose simétrica. Con número par la regla no se activa. */
+.globos > .globo:last-child:nth-child(odd){
+  grid-column:1 / -1;
+  justify-self:center;
+  width:calc(50% - 15px);
+}
+
+@media (max-width:820px){
+  .globos{grid-template-columns:1fr; gap:32px 0;}
+  .globos > .globo:last-child:nth-child(odd){grid-column:auto; width:100%;}
+}
+
+.globo{
+  position:relative;
+  display:block; width:100%; text-align:left;
+  font-family:var(--font-display);
+  font-size:clamp(19px,1.85vw,23px);
+  line-height:1.34; letter-spacing:-.005em;
+  color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:26px 26px 30px;
+  cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.globo:hover, .globo:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(22,35,43,.05), 0 14px 30px rgba(22,35,43,.11);
+  background:var(--bg);
+  outline:none;
+}
+.globo:focus-visible{border-color:var(--accent);}
+
+/* La colita del bocadillo. Dos capas: el borde y el relleno encima. */
+.globo::before, .globo::after{
+  content:""; position:absolute; left:34px; width:0; height:0;
+  border-style:solid;
+}
+.globo::before{
+  bottom:-15px;
+  border-width:15px 15px 0 0;
+  border-color:var(--border) transparent transparent transparent;
+}
+.globo::after{
+  bottom:-13px;
+  border-width:13px 13px 0 0;
+  border-color:var(--surface) transparent transparent transparent;
+  transition:border-top-color .16s ease;
+}
+.globo:hover::after, .globo:focus-visible::after{border-top-color:var(--bg);}
+
+.globo .num{
+  display:block;
+  font-family:var(--font-body);
+  font-size:11.5px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:13px;
+}
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+.escena{
+  position:fixed; inset:0; z-index:50;
+  background:var(--bg);
+  display:none;
+  flex-direction:column;
+}
+.escena.abierta{display:flex;}
+
+.escena-barra{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:16px 26px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.escena-barra .cuenta{
+  font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.escena-barra .btns{display:flex; align-items:center; gap:8px;}
+.bt{
+  font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px;
+  padding:7px 14px; cursor:pointer;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt.primario{background:var(--accent); border-color:var(--accent); color:#fff;}
+.bt.primario:hover{background:var(--accent-dark); border-color:var(--accent-dark); color:#fff;}
+
+.escena-cuerpo{
+  flex:1 1 auto; overflow-y:auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:clamp(24px,4vh,56px) clamp(20px,5vw,64px) 40px;
+}
+.escena-inner{width:100%; max-width:1000px;}
+
+/* Etapa 1: la pregunta sola, para proyectarla mientras discuten. */
+.q-texto{
+  font-family:var(--font-display);
+  font-size:clamp(28px,3.9vw,50px);
+  line-height:1.2; letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:24ch;
+  transition:font-size .22s ease, max-width .22s ease;
+}
+.q-texto.ancha{max-width:30ch;}
+
+/* Etapa 2: la pregunta ya se leyó y se discutió. Baja a encabezado para
+   dejarle la pantalla a la explicación, y el cuerpo deja de centrarse
+   verticalmente — si no, con contenido más alto que la pantalla el
+   centrado deja la primera línea fuera de alcance del scroll. */
+.escena.revelado .escena-cuerpo{justify-content:flex-start;}
+.escena.revelado .q-texto,
+.escena.revelado .q-texto.ancha{
+  font-size:clamp(20px,2.2vw,29px);
+  max-width:46ch;
+  color:var(--ink-soft);
+}
+
+.revelar-zona{margin-top:clamp(28px,5vh,52px);}
+
+/* Etapa 2: el argumento. */
+.explica{
+  margin-top:clamp(26px,4vh,44px);
+  padding-top:clamp(24px,3.5vh,38px);
+  border-top:1px solid var(--border);
+}
+.explica[hidden]{display:none;}
+
+.idea{
+  font-family:var(--font-display);
+  font-size:clamp(21px,2.5vw,31px);
+  line-height:1.32; letter-spacing:-.01em;
+  color:var(--accent-dark);
+  background:var(--accent-soft);
+  border-radius:var(--radius);
+  padding:22px 26px;
+  max-width:44ch;
+}
+
+.porque{margin-top:clamp(22px,3vh,32px);}
+.porque ul{margin:0; padding:0; list-style:none;}
+.porque li{
+  position:relative;
+  padding-left:26px; margin-bottom:15px;
+  font-size:clamp(16px,1.7vw,21px);
+  line-height:1.5; color:var(--ink-soft);
+  max-width:76ch;
+}
+.porque li:last-child{margin-bottom:0;}
+.porque li::before{
+  content:""; position:absolute; left:6px; top:.62em;
+  width:7px; height:7px; border-radius:50%; background:var(--accent);
+}
+.porque li strong{color:var(--ink); font-weight:600;}
+
+.fuente{
+  margin-top:clamp(24px,3vh,34px);
+  font-size:12.5px; color:var(--ink-faint);
+  max-width:76ch;
+}
+.fuente strong{color:var(--ink-soft); font-weight:600;}
+
+/* Tarjetas que no son preguntas al salón: la del enlace y la del cierre.
+   Sin colita de bocadillo — nadie las dice en voz alta — y con el borde
+   en el color de acento para que se lean como otra cosa. */
+.globo.utilitaria{
+  background:var(--bg);
+  border-color:var(--accent-soft);
+  border-width:2px;
+}
+.globo.utilitaria::before, .globo.utilitaria::after{display:none;}
+
+/* --- Panel del enlace ------------------------------------------- */
+/* Esta pantalla se proyecta para que la lean desde el fondo del salón:
+   va centrada y con el título en tamaño de portada, no de encabezado. */
+.escena.enlace .escena-inner{text-align:center;}
+.escena.enlace .q-texto{
+  max-width:none;
+  font-size:clamp(24px,3.2vw,42px);
+  margin-bottom:clamp(24px,4vh,40px);
+}
+.panel-qr{display:flex; flex-direction:column; align-items:center; text-align:center;}
+.panel-qr[hidden]{display:none;}
+.panel-qr .qr-img{
+  width:clamp(220px,34vh,360px); height:auto;
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px; background:#fff;
+}
+.panel-qr .qr-url{
+  margin-top:22px;
+  font-size:clamp(15px,1.6vw,20px);
+  color:var(--ink-soft); word-break:break-all;
+}
+
+/* --- Panel de cierre: la cadena y la regla ---------------------- */
+.panel-cierre[hidden]{display:none;}
+.banda{
+  font-size:clamp(13px,1.35vw,16px); color:var(--ink-soft);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:12px 18px; margin-bottom:22px;
+}
+.banda strong{color:var(--ink);}
+
+.cadena{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.paso{
+  position:relative;
+  border-top:3px solid var(--accent);
+  padding:14px 12px 0 0;
+}
+.paso .paso-n{
+  font-size:11px; font-weight:700; letter-spacing:.15em;
+  color:var(--accent); text-transform:uppercase;
+}
+.paso .paso-t{
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.2vw,28px); line-height:1.2;
+  margin-top:6px; color:var(--ink);
+}
+.paso .paso-r{
+  margin-top:10px;
+  font-size:clamp(12.5px,1.3vw,15px); line-height:1.45;
+  color:var(--ink-soft);
+}
+.paso:not(:last-child)::after{
+  content:"→";
+  position:absolute; right:-4px; top:-2px;
+  transform:translateY(-55%);
+  font-size:20px; line-height:1; color:var(--accent);
+}
+@media (max-width:820px){
+  .cadena{grid-template-columns:1fr; gap:20px;}
+  .paso:not(:last-child)::after{content:"↓"; right:auto; left:0; top:auto; bottom:-18px; transform:none;}
+}
+
+.regla{
+  margin-top:clamp(26px,4vh,40px);
+  font-family:var(--font-display);
+  font-size:clamp(20px,2.4vw,30px); line-height:1.32;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:24px 28px;
+  max-width:58ch;
+}
+
+/* --- Panel de marco: definiciones y criterios -------------------- */
+.panel-marco[hidden]{display:none;}
+
+.trio{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.4vw,34px);
+}
+@media (max-width:820px){ .trio{grid-template-columns:1fr; gap:24px;} }
+
+.def{border-top:3px solid var(--accent); padding-top:14px;}
+.def .def-de{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.def .def-cita{
+  font-family:var(--font-display);
+  font-size:clamp(17px,1.95vw,25px); line-height:1.28;
+  margin-top:10px; color:var(--ink);
+}
+.def .def-que{
+  margin-top:10px;
+  font-size:clamp(12.5px,1.3vw,15px); color:var(--ink-soft);
+}
+
+.comun{
+  margin-top:clamp(24px,3.4vh,36px);
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.2vw,28px); line-height:1.32;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:20px 24px;
+  max-width:56ch;
+}
+
+.marco-mas{margin-top:clamp(24px,3.4vh,36px);}
+.marco-defs[hidden], .marco-criterios[hidden]{display:none;}
+.eje{border-top:3px solid var(--accent); padding-top:14px;}
+.eje .eje-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.eje .eje-q{
+  font-family:var(--font-display);
+  font-size:clamp(18px,2vw,26px); line-height:1.22;
+  margin-top:6px; color:var(--ink);
+}
+.eje ul{margin:14px 0 0; padding:0; list-style:none;}
+.eje li{
+  position:relative; padding-left:18px; margin-bottom:9px;
+  font-size:clamp(12.5px,1.35vw,16px); line-height:1.45; color:var(--ink-soft);
+}
+.eje li:last-child{margin-bottom:0;}
+.eje li::before{
+  content:""; position:absolute; left:2px; top:.6em;
+  width:5px; height:5px; border-radius:50%; background:var(--accent);
+}
+
+@media print{
+  .escena{display:none !important;}
+  .globo{break-inside:avoid; box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="portada">
+  <div class="globos" id="globos"></div>
+</div>
+
+<!-- ============================================================
+     Vista de proyección
+     ============================================================ -->
+<div class="escena" id="escena" role="dialog" aria-modal="true" aria-labelledby="q-texto">
+  <div class="escena-barra">
+    <div class="cuenta" id="cuenta"></div>
+    <div class="btns">
+      <button class="bt" id="bt-ant" title="Anterior (←)">← Anterior</button>
+      <button class="bt" id="bt-sig" title="Siguiente (→)">Siguiente →</button>
+      <button class="bt" id="bt-cerrar" title="Volver a la cuadrícula (Esc)">Cerrar</button>
+    </div>
+  </div>
+
+  <div class="escena-cuerpo" id="escena-cuerpo">
+    <div class="escena-inner">
+      <div class="q-texto" id="q-texto"></div>
+
+      <div class="revelar-zona" id="revelar-zona">
+        <button class="bt primario" id="bt-revelar">Argumento</button>
+      </div>
+
+      <div class="explica" id="explica" hidden>
+        <div class="idea" id="idea"></div>
+
+        <div class="porque">
+          <ul id="porque"></ul>
+        </div>
+
+        <div class="fuente" id="fuente"></div>
+      </div>
+
+      <!-- Enlace a la actividad. El mismo codigo de la diapositiva de cierre
+           del deck, para que el recurso pueda proyectarse sin el deck. -->
+      <div class="panel-qr" id="panel-qr" hidden>
+        <img class="qr-img" id="qr-img" alt="Codigo QR de la actividad">
+        <div class="qr-url" id="qr-url"></div>
+      </div>
+
+      <!-- Marco: que es y cuando se tamiza. Son dos pantallas que se
+           reemplazan, no dos bloques que se apilan: apiladas obligan a
+           hacer scroll y en proyeccion eso ya no se lee. -->
+      <div class="panel-marco" id="panel-marco" hidden>
+        <div class="marco-defs" id="marco-defs">
+          <div class="trio" id="defs"></div>
+          <div class="comun" id="comun"></div>
+
+          <div class="marco-mas" id="marco-mas">
+            <button class="bt primario" id="bt-criterios">Criterios</button>
+          </div>
+        </div>
+
+        <div class="marco-criterios" id="marco-criterios" hidden>
+          <div class="trio" id="ejes"></div>
+          <div class="fuente" id="fuente-marco"></div>
+        </div>
+      </div>
+
+      <!-- Cierre: la cadena, sus responsables y la regla etica. Es lo unico
+           del tema que no se puede inferir de haber aplicado el instrumento. -->
+      <div class="panel-cierre" id="panel-cierre" hidden>
+        <div class="banda" id="banda"></div>
+        <div class="cadena" id="cadena"></div>
+        <div class="regla" id="regla"></div>
+        <div class="fuente" id="fuente-cierre"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   LAS PREGUNTAS
+
+   El criterio para que una pregunta esté acá es que NO se pueda
+   hacer antes de aplicar el cuestionario: la respuesta tiene que
+   depender de lo que le acaba de pasar a alguien del salón. Las
+   preguntas conceptuales del tema —por qué el corte es 11, los
+   criterios de Wilson y Jungner, quién responde por la
+   canalización— se quedaron fuera a propósito: son buenas, pero
+   se pueden hacer sin haber aplicado nada. No son coyunturales,
+   son temario, y ya están en el deck de la clase.
+
+   El ítem 17 se trata en hipotético (globo 6). Nunca se pregunta
+   por lo que respondió alguien del salón.
+   ============================================================ */
+const PREGUNTAS = [
+  {
+    pregunta: "A quienes el instrumento clasificó como positivos: ¿se reconocen en ese resultado, o consideran que el tamizaje los clasificó mal?",
+    idea: "Un positivo con el que la persona no se identifica no invalida el instrumento: es el producto previsto de una prueba calibrada para maximizar la sensibilidad a costa de la especificidad.",
+    porque: [
+      "La Resolución 518 exige instrumentos de <strong>alta sensibilidad</strong> — la proporción de casos reales que la prueba detecta, VP/(VP+FN). Maximizarla obliga a fijar un punto de corte bajo.",
+      "Un punto de corte bajo desplaza el equilibrio en un solo sentido: reduce la tasa de falsos negativos y eleva la de falsos positivos. Con un mismo instrumento no se pueden bajar las dos a la vez; la única decisión disponible es <strong>cuál de los dos errores se prefiere cometer</strong>.",
+      "En detección temprana el error costoso es el falso negativo: un caso no detectado sale del sistema sin ruta. El falso positivo, en cambio, tiene corrección prevista dentro del proceso — la confirmación diagnóstica.",
+      "De ahí que el resultado positivo se enuncie como <strong>probabilidad y no como caso</strong>. Quien no se reconoce en su positivo está describiendo, sin nombrarlo, el mecanismo por el cual el instrumento cumple su función."
+    ],
+    fuente: "<strong>Resolución 518 de 2015</strong>, Plan de Salud Pública de Intervenciones Colectivas (exigencia de alta sensibilidad) · <strong>Ministerio de Salud (2015)</strong>, Orientaciones para el desarrollo de las actividades de tamizaje."
+  },
+  {
+    pregunta: "La mayoría obtuvo resultados negativos. ¿Por qué consideran que en esta aplicación se dio ese escenario?",
+    idea: "Un tamizaje no se elige por disponibilidad. Se elige a partir de una hipótesis previa sobre qué evento se espera encontrar y en qué población; sin esa hipótesis, el resultado —positivo o negativo— queda sin marco de interpretación.",
+    porque: [
+      "El tamizaje opera sobre <strong>población focalizada</strong>: un grupo delimitado por un riesgo específico, identificado antes mediante mapeo. Aplicar el instrumento a una población no focalizada equivale a aplicarlo sin hipótesis.",
+      "El rendimiento de una prueba no es una propiedad fija del instrumento. Los <strong>valores predictivos</strong> —positivo y negativo— dependen de la prevalencia del evento en la población evaluada: la misma sensibilidad sostiene inferencias distintas en poblaciones distintas.",
+      "En baja prevalencia, el valor predictivo negativo es alto y el positivo bajo: los negativos informan, y la mayoría de los positivos son falsos. Ese es, previsiblemente, el escenario de este grupo.",
+      "Por eso los criterios de decisión exigen definir primero el evento, su magnitud, su fase detectable y la respuesta disponible, y <strong>solo después</strong> seleccionar la prueba. La secuencia inversa —tener un instrumento y buscarle población— produce datos que no habilitan ninguna decisión."
+    ],
+    fuente: "<strong>Ministerio de Salud (2015)</strong>, focalización de la población y aspectos para tamizajes no descritos · <strong>Wilson y Jungner</strong> (Organización Mundial de la Salud, 1968), criterios clásicos de decisión."
+  },
+  {
+    pregunta: "A quienes aplicaron: ¿qué dificultad supuso comunicar un resultado que, para quien lo recibía, podía sonar a alarma o a etiqueta?",
+    idea: "La dificultad no está en el dato sino en su recepción: quien escucha un resultado de tamizaje sobre sí mismo no lo oye como una probabilidad, lo oye como una definición.",
+    porque: [
+      "El emisor enuncia un dato de detección; el receptor recibe una atribución sobre su identidad. Esa asimetría es la fuente del <strong>etiquetamiento</strong>: la persona incorpora como condición clínica lo que era una señal de probabilidad. Es un daño iatrogénico del procedimiento y no lo produce el instrumento, sino el modo de comunicar su resultado.",
+      "Notificar asertivamente no es atenuar el resultado ni administrarlo por partes. Es entregarlo con su alcance: qué se midió, <strong>qué no permite afirmar</strong> ese resultado y qué corresponde hacer ahora. Suavizar el dato para no alarmar produce el efecto contrario — la persona percibe que se le está reservando algo y llena el vacío con lo peor.",
+      "Nombrar el instrumento delimita el enunciado y le quita carga rotulativa. No «usted presenta un cuadro ansioso», sino «este cuestionario, que detecta y no confirma, marcó tantas respuestas en tal subescala».",
+      "El paso siguiente se enuncia en el mismo acto, no después. Un resultado que alarma sin conducta asociada deja a la persona con la alarma y sin la ruta; lo que devuelve el control es saber qué sigue y quién responde por ello."
+    ],
+    fuente: "<strong>Ministerio de Salud (2015)</strong>, distinción entre tamizaje y diagnóstico: el resultado es probable, requiere confirmación y obliga a canalización."
+  },
+  {
+    pregunta: "A quien respondió: ¿habría marcado las mismas respuestas en una aplicación autoadministrada y en privado?",
+    idea: "El dato no lo produce el cuestionario por sí solo. Lo produce la interacción entre el cuestionario, quien lo administra y las condiciones en que se aplica: los tres forman parte del instrumento.",
+    porque: [
+      "Un cuestionario de síntomas es una medida de <strong>autoinforme</strong>: no registra síntomas, registra lo que la persona declara sobre sus síntomas, ante un interlocutor determinado y en un contexto determinado.",
+      "La <strong>heteroaplicación</strong> modifica el rendimiento en dos direcciones opuestas: mejora la comprensión de los reactivos y aumenta el sesgo de <strong>deseabilidad social</strong> en los más sensibles. Se gana precisión en la comprensión y se pierde en lo que se declara.",
+      "Por eso las <strong>condiciones de aplicación</strong> —privacidad del entorno, quién administra, presencia de terceros— integran el reporte y no son un detalle logístico: el resultado se interpreta junto con ellas.",
+      "Acá se aplicó con varios grupos en simultáneo, de modo que cada respondiente sabía que podía ser escuchado. Un negativo obtenido en esas condiciones no equivale a un negativo obtenido en consulta individual."
+    ],
+    fuente: "<strong>Ministerio de Salud (2020)</strong>, Pruebas para detección temprana de riesgos y alteraciones, Anexo 11: el cuestionario está autorizado para aplicarse «a manera de entrevista estructurada»."
+  },
+  {
+    pregunta: "A quienes dio positiva la subescala de alcohol: ¿a qué atribuyen ese resultado?",
+    idea: "Esa subescala clasifica como positivo con una sola respuesta y pregunta por «alguna vez». Con esas dos reglas, lo que detecta no es un estado actual: es una biografía.",
+    porque: [
+      "La subescala tiene <strong>punto de corte de una respuesta</strong> y <strong>no delimita ventana temporal</strong>. Las dos reglas operan en el mismo sentido: basta un episodio, en cualquier momento de la vida, para quedar clasificado como positivo.",
+      "Sin ventana temporal, el reactivo registra ocurrencia histórica y no estado presente. Un instrumento así no discrimina entre un patrón de consumo vigente y un hecho aislado y remoto: los codifica igual.",
+      "Eso es <strong>baja especificidad</strong> — la proporción de personas sin la condición que la prueba clasifica correctamente como negativas. Sensibilidad y especificidad son propiedades independientes: un instrumento puede detectar bien y descartar mal a la vez.",
+      "No es un defecto por corregir. En el nivel primario de atención, para el que este cuestionario fue diseñado, sobredetectar y confirmar después tiene menor costo que omitir casos: la especificidad se recupera en la confirmación diagnóstica, no en el tamizaje."
+    ],
+    fuente: "<strong>Ministerio de Salud (2020)</strong>, Pruebas para detección temprana de riesgos y alteraciones, Anexo 11: subescala de problemas relacionados con el alcohol y su punto de corte."
+  }
+];
+
+/* ============================================================
+   PORTADA
+   ============================================================ */
+/* ============================================================
+   LAS OTRAS DOS TARJETAS
+
+   Ni la del enlace ni la del cierre son preguntas al salón, pero viven en
+   la misma cuadrícula porque el recurso se proyecta solo, sin el deck: la
+   primera es con lo que abren la actividad, y la última es lo único del
+   tema que no se puede inferir de haberla aplicado —la cadena completa,
+   quién responde por cada paso y la regla que decide si el tamizaje se
+   hace—. Van al principio y al final, que es el orden de la sesión.
+   ============================================================ */
+const ENLACE = {
+  tipo: "aplicacion",
+  rotulo: "Aplicación",
+  titulo: "Abran el cuestionario",
+  url: "https://juanboya7.github.io/seminario-clinico/practica-ii/4-Tamizaje-SRQ.html",
+  qr: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1AAAANQAQMAAAAc1RxyAAAABlBMVEUgOT////+mDKjrAAAEaElEQVR42u3dwa4TMQwF0Ij//+dhA3Ri31RI9XTxdJ6EKK+lZ5HFlROPs66v/SwUCoVCoVAoFAqF+vHU2n7+vPHv77V95v7O68+/r1uvd+p3/lpf+0GhUCjUT6PWPZv2rHll1Su37v/jnm739NpT7fX91gqFQqFQn+dVz5maSfn1/uqebPU7rRUKhUKhpvPqlFU1p+7ZdK+y5BUKhUKhvlNf9T3Ce3LVGmqV3UN5hUKhUKhvnF/tHRd1r2/f9fu/vJNXKBQKhfo8r/bfzPzRH4hCoVCo2bxqTe6xq71WXedqKn+rtUKhUCjUTF7V36XP7XVY7gzcT7P+/m2tUCgUCjWxH9ifEb7Kk1e9h733W/Q6TH2FQqFQqLn6KqfNnlb9nXpqVc+u5BUKhUKhntkP7GdZe/6cn9RKiXZPOmuFQqFQqE/zat/zyxXT/qqfX516C51foVAoFGru/KrPtk3PWdUnhGsm9Wm4+i1QKBQKNT3fIr+u/YN9ZnuvudJ+o7VCoVAo1Of7gb23ovelp73C/n7eG5RXKBQKhZrMq34mtadQmh347j37gSgUCoV6Yj8wzbettzOulWqvK86+XfotUCgUCjXab5ESZx1vEem/6z3wewpaKxQKhUJNPC9cu/ryPSF9StP7is35FQqFQqFmnxdOibMn2SnH0gymvVqTVygUCoWanG/xrnO97xyebhG5LvOYUCgUCvX0/Ven54j7rVZ7buV7r+QVCoVCoWb7A/c9v+tKHe4r3oyVa7L6vLG1QqFQKNTneZV3+NZ6/7xw3wE8z2qyVigUCoWa2g9MtVPqa0/1WMqyewVmrVAoFAo1O98i7RS+q6PyHSK1m8NaoVAoFGqmvrriTz7dOtVW9w7DvQ6zVigUCoWaPb+6p02urHJXRtotlFcoFAqFms2r/VWdKNj70/f9v/wN+gNRKBQKNd/Pnvf3zq9O91/pZ0ehUCjUU/0WK3ah94Tq3X/1HqxTPWatUCgUCjXTH1j7AE8zAnsapb3Fy30iKBQKhXqgvuqptXdd9NuEe+/g/n/VVygUCoV6Zh5T6v7rVVWdxJ7nOskrFAqFQj3Tz37uEqy7gP2Okbor2J8ZtlYoFAqFmrqvMdVIK0xlutoci/S5PfusFQqFQqFmzq96L2DvnEg11mr97Kn3wlqhUCgUarY/8Dx5/Wq7frUHvndk6A9EoVAo1PTzV1e8N6TfNJzm5PY9xf3T1gqFQqFQE/Nur6v3BdY9wnpmVbswakWmvkKhUCjUbL9FOqnqtdLp/qvU816zz1qhUCgUauq+xlo35b7Bd/Mvei0mr1AoFAo1PZ+9V0npXKv+6/TM1Z5Z1gqFQqFQE/Mtco9FmtGUa6/TZ/VboFAoFOqZvEozK/q/TxNy+yQmeYVCoVCoZ/Kqnk5d8YaQlGh1soXzKxQKhUI9dX51z6t6QnXuJ7zi9Nulnx2FQqFQD/UH9jlLp+eD0ySm/Bt5hUKhUKjp56+e+UGhUCgUCoVCoVCoH039BijVzPFbF9OqAAAAAElFTkSuQmCC"
+};
+
+const MARCO = {
+  tipo: "marco",
+  rotulo: "Marco",
+  titulo: "Qué es un tamizaje y cuándo se hace",
+  tituloA: "Qué es un tamizaje",
+  tituloB: "Cuándo se decide tamizar",
+  // De cada definición se proyecta solo el fragmento que la distingue de las
+  // otras dos; las tres completas están en el deck y en la fuente al pie.
+  defs: [
+    { de: "Organización Mundial de la Salud",
+      cita: "«…una población saludable… tienen una patología pero aún no presentan síntomas»",
+      que: "Fija el momento: antes del síntoma." },
+    { de: "U.S. Preventive Services Task Force",
+      cita: "«…identifica a las personas que requieren una intervención especial»",
+      que: "Fija el propósito: separar a quien necesita algo más." },
+    { de: "Resolución 518 de 2015",
+      cita: "«…instrumentos de alta sensibilidad… eventos de alta externalidad»",
+      que: "Fija el cómo y a quiénes: pruebas sensibles, población vulnerable." }
+  ],
+  comun: "Las tres dicen lo mismo: se aplica a personas aparentemente sanas para detectar temprano, no para diagnosticar.",
+  // Las dos listas de criterios —seis y seis— se reparten sin residuo entre
+  // estos tres ejes. Agruparlas así no es un recorte: es lo que permite
+  // proyectar doce criterios sin proyectar doce renglones.
+  ejes: [
+    { r: "El problema", q: "¿Amerita buscarlo?", li: [
+      "Es importante y tiene una fase temprana detectable.",
+      "Es un evento de alta externalidad, con impacto poblacional."
+    ]},
+    { r: "La prueba", q: "¿Sirve para buscarlo?", li: [
+      "Adecuada, aceptable y válida.",
+      "Validada, efectiva y costo-efectiva.",
+      "Aplicable masivamente sobre grupos poblacionales."
+    ]},
+    { r: "La respuesta", q: "¿Y si aparece?", li: [
+      "Hay tratamiento aceptable y medios disponibles.",
+      "La atención está garantizada, y sin importar la afiliación.",
+      "El proceso es continuo, no una jornada suelta."
+    ]}
+  ],
+  fuente: "Los seis criterios de <strong>Wilson y Jungner</strong> (Organización Mundial de la Salud, 1968) y los seis de la <strong>Resolución 518 de 2015</strong> para pruebas no listadas, repartidos entre los tres ejes que ambas listas comparten. Definiciones citadas en <strong>Revista de Salud Pública</strong>, 15(2), 2013."
+};
+
+const CIERRE = {
+  tipo: "cierre",
+  rotulo: "Cierre",
+  titulo: "Qué obliga un resultado positivo",
+  banda: "<strong>Entidad territorial:</strong> establece y justifica a quién se tamiza, identifica las aseguradoras, coordina el proceso y lo audita.",
+  pasos: [
+    { t: "Detectar",  r: "Institución contratada. Aplica el instrumento y obtiene consentimiento informado por prueba." },
+    { t: "Confirmar", r: "El resultado es probable: sin confirmación diagnóstica no hay caso." },
+    { t: "Canalizar", r: "Por el sistema de referencia y contrarreferencia, según la ruta acordada con la entidad territorial." },
+    { t: "Atender",   r: "Entidades administradoras de planes de beneficios. Garantizan la atención y su continuidad." }
+  ],
+  regla: "No se deben realizar tamizajes si no está garantizada la atención de las personas con resultados anormales.",
+  fuente: "<strong>Ministerio de Salud (2015)</strong>, criterios éticos, ejecución y procedimiento de canalización en el marco del Plan de Salud Pública de Intervenciones Colectivas."
+};
+
+const TARJETAS = [
+  ENLACE,
+  ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
+  MARCO,
+  CIERRE
+];
+
+/* ============================================================
+   CUADRÍCULA
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const contGlobos = $("globos");
+let actual = 0;
+
+// La numeración corre solo sobre las preguntas: las otras dos llevan rótulo.
+let nPregunta = 0;
+TARJETAS.forEach((t, i) => {
+  if (t.tipo === "pregunta") nPregunta++;
+  t.rotulo = t.rotulo || ("Pregunta " + nPregunta);
+
+  const b = document.createElement("button");
+  b.className = "globo" + (t.tipo === "pregunta" ? "" : " utilitaria");
+  b.type = "button";
+  b.dataset.i = i;
+  b.innerHTML =
+    '<span class="num">' + escapar(t.rotulo) + '</span>' +
+    escapar(t.tipo === "pregunta" ? t.pregunta : t.titulo);
+  b.addEventListener("click", () => abrir(i));
+  contGlobos.appendChild(b);
+});
+const TOTAL_PREGUNTAS = nPregunta;
+
+function escapar(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+const escena = $("escena");
+
+function abrir(i){
+  actual = i;
+  pintar();
+  escena.classList.add("abierta");
+  document.body.style.overflow = "hidden";
+  const foco = !$("revelar-zona").hidden ? $("bt-revelar")
+             : !$("marco-mas").hidden && !$("panel-marco").hidden ? $("bt-criterios")
+             : $("bt-sig");
+  foco.focus();
+}
+
+function cerrar(){
+  escena.classList.remove("abierta");
+  document.body.style.overflow = "";
+  const b = contGlobos.querySelector('[data-i="' + actual + '"]');
+  if (b) b.focus();
+}
+
+function mover(paso){
+  actual = (actual + paso + TARJETAS.length) % TARJETAS.length;
+  pintar();
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+function pintar(){
+  const t = TARJETAS[actual];
+  const esPregunta = t.tipo === "pregunta";
+
+  $("cuenta").textContent = esPregunta
+    ? t.rotulo + " de " + TOTAL_PREGUNTAS
+    : t.rotulo;
+
+  $("q-texto").textContent = esPregunta ? t.pregunta : (t.tituloA || t.titulo);
+  // Las preguntas largas necesitan más caracteres por línea o quedan en columna.
+  $("q-texto").classList.toggle("ancha", (esPregunta ? t.pregunta : t.titulo).length > 110);
+
+  // Solo las preguntas se tapan: el enlace y el cierre se muestran enteros,
+  // porque no hay nada que discutir antes de verlos.
+  $("revelar-zona").hidden = !esPregunta;
+  $("explica").hidden = true;
+  $("panel-qr").hidden = t.tipo !== "aplicacion";
+  $("panel-cierre").hidden = t.tipo !== "cierre";
+  $("panel-marco").hidden = t.tipo !== "marco";
+  $("marco-criterios").hidden = true;
+  $("marco-defs").hidden = false;
+  // El cierre se alinea arriba, como el argumento de una pregunta; el enlace
+  // se centra en la pantalla, que es una sola cosa mirada de lejos.
+  escena.classList.toggle("revelado", t.tipo === "cierre" || t.tipo === "marco");
+  escena.classList.toggle("enlace", t.tipo === "aplicacion");
+
+  if (esPregunta){
+    $("idea").textContent = t.idea;
+    $("porque").innerHTML = t.porque.map(x => "<li>" + x + "</li>").join("");
+    $("fuente").innerHTML = t.fuente;
+  } else if (t.tipo === "aplicacion"){
+    $("qr-img").src = t.qr;
+    $("qr-url").textContent = t.url;
+  } else if (t.tipo === "marco"){
+    $("defs").innerHTML = t.defs.map(d =>
+      '<div class="def">' +
+        '<div class="def-de">' + escapar(d.de) + '</div>' +
+        '<div class="def-cita">' + escapar(d.cita) + '</div>' +
+        '<div class="def-que">' + escapar(d.que) + '</div>' +
+      '</div>').join("");
+    $("comun").textContent = t.comun;
+    $("ejes").innerHTML = t.ejes.map(e =>
+      '<div class="eje">' +
+        '<div class="eje-r">' + escapar(e.r) + '</div>' +
+        '<div class="eje-q">' + escapar(e.q) + '</div>' +
+        '<ul>' + e.li.map(x => '<li>' + escapar(x) + '</li>').join("") + '</ul>' +
+      '</div>').join("");
+    $("fuente-marco").innerHTML = t.fuente;
+  } else {
+    $("banda").innerHTML = t.banda;
+    $("cadena").innerHTML = t.pasos.map((p, i) =>
+      '<div class="paso">' +
+        '<div class="paso-n">' + (i + 1) + '</div>' +
+        '<div class="paso-t">' + escapar(p.t) + '</div>' +
+        '<div class="paso-r">' + escapar(p.r) + '</div>' +
+      '</div>').join("");
+    $("regla").textContent = "\u00ab" + t.regla + "\u00bb";
+    $("fuente-cierre").innerHTML = t.fuente;
+  }
+}
+
+function revelar(){
+  if (TARJETAS[actual].tipo !== "pregunta") return;
+  if (!$("explica").hidden) return;
+  $("explica").hidden = false;
+  $("revelar-zona").hidden = true;
+  escena.classList.add("revelado");
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+function verCriterios(){
+  if ($("marco-criterios").hidden === false) return;
+  $("marco-defs").hidden = true;
+  $("marco-criterios").hidden = false;
+  $("q-texto").textContent = TARJETAS[actual].tituloB;
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+$("bt-criterios").addEventListener("click", verCriterios);
+$("bt-revelar").addEventListener("click", revelar);
+$("bt-cerrar").addEventListener("click", cerrar);
+$("bt-ant").addEventListener("click", () => mover(-1));
+$("bt-sig").addEventListener("click", () => mover(1));
+
+document.addEventListener("keydown", e => {
+  if (!escena.classList.contains("abierta")) return;
+
+  // Dentro de un <details> abierto, la barra espaciadora es del navegador.
+  const enResumen = e.target && e.target.tagName === "SUMMARY";
+
+  if (e.key === "Escape"){ cerrar(); }
+  else if (e.key === "ArrowRight"){ e.preventDefault(); mover(1); }
+  else if (e.key === "ArrowLeft"){ e.preventDefault(); mover(-1); }
+  else if ((e.key === " " || e.key === "Enter") && !enResumen){
+    // Enter sobre un botón ya hace lo suyo; no lo duplicamos.
+    if (e.key === "Enter" && e.target && e.target.tagName === "BUTTON") return;
+    e.preventDefault();
+    if (TARJETAS[actual].tipo === "marco") verCriterios();
+    else revelar();
+  }
+});
+</script>
+
+</body>
+</html>
