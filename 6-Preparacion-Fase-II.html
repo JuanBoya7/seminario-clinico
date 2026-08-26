@@ -457,7 +457,6 @@ const CIERRE = {
   tipo: "cierre",
   rotulo: "Cierre",
   titulo: "Cómo se sustenta",
-  banda: "<strong>Esto se decide hoy, no la semana que viene.</strong> Entre esta clase y la sustentación del 11 de septiembre hay una sola semana: lo que no quede resuelto acá se termina improvisando allá.",
   pasos: [
     { t: "Implementan", r: "El programa en el sitio, con la población y la metodología que decidieron en la Fase I." },
     { t: "Registran",   r: "Mientras ocurre, no después. Con alguien del grupo que tenga ese rol asignado." },
@@ -557,7 +556,9 @@ function pintar(){
     $("punto-t").textContent = t.punto.t;
     $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + escapar(x) + "</span>").join("");
   } else {
-    $("banda").innerHTML = t.banda;
+    // La banda es opcional: el cierre de la Fase II va sin ella.
+    $("banda").hidden = !t.banda;
+    $("banda").innerHTML = t.banda || "";
     $("cadena").innerHTML = t.pasos.map((p, i) =>
       '<div class="paso">' +
         '<div class="paso-n">' + (i + 1) + '</div>' +

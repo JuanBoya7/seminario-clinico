@@ -571,7 +571,9 @@ function pintar(){
     $("punto-t").textContent = t.punto.t;
     $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + escapar(x) + "</span>").join("");
   } else {
-    $("banda").innerHTML = t.banda;
+    // La banda es opcional: el cierre de la Fase II va sin ella.
+    $("banda").hidden = !t.banda;
+    $("banda").innerHTML = t.banda || "";
     $("cadena").innerHTML = t.pasos.map((p, i) =>
       '<div class="paso">' +
         '<div class="paso-n">' + (i + 1) + '</div>' +
