@@ -223,6 +223,91 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 }
 .fuente strong{color:var(--ink-soft); font-weight:600;}
 
+/* Tarjetas que no son preguntas al salón: la del enlace y la del cierre.
+   Sin colita de bocadillo — nadie las dice en voz alta — y con el borde
+   en el color de acento para que se lean como otra cosa. */
+.globo.utilitaria{
+  background:var(--bg);
+  border-color:var(--accent-soft);
+  border-width:2px;
+}
+.globo.utilitaria::before, .globo.utilitaria::after{display:none;}
+
+/* --- Panel del enlace ------------------------------------------- */
+/* Esta pantalla se proyecta para que la lean desde el fondo del salón:
+   va centrada y con el título en tamaño de portada, no de encabezado. */
+.escena.enlace .escena-inner{text-align:center;}
+.escena.enlace .q-texto{
+  max-width:none;
+  font-size:clamp(24px,3.2vw,42px);
+  margin-bottom:clamp(24px,4vh,40px);
+}
+.panel-qr{display:flex; flex-direction:column; align-items:center; text-align:center;}
+.panel-qr[hidden]{display:none;}
+.panel-qr .qr-img{
+  width:clamp(220px,34vh,360px); height:auto;
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px; background:#fff;
+}
+.panel-qr .qr-url{
+  margin-top:22px;
+  font-size:clamp(15px,1.6vw,20px);
+  color:var(--ink-soft); word-break:break-all;
+}
+
+/* --- Panel de cierre: la cadena y la regla ---------------------- */
+.panel-cierre[hidden]{display:none;}
+.banda{
+  font-size:clamp(13px,1.35vw,16px); color:var(--ink-soft);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:12px 18px; margin-bottom:22px;
+}
+.banda strong{color:var(--ink);}
+
+.cadena{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.paso{
+  position:relative;
+  border-top:3px solid var(--accent);
+  padding:14px 12px 0 0;
+}
+.paso .paso-n{
+  font-size:11px; font-weight:700; letter-spacing:.15em;
+  color:var(--accent); text-transform:uppercase;
+}
+.paso .paso-t{
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.2vw,28px); line-height:1.2;
+  margin-top:6px; color:var(--ink);
+}
+.paso .paso-r{
+  margin-top:10px;
+  font-size:clamp(12.5px,1.3vw,15px); line-height:1.45;
+  color:var(--ink-soft);
+}
+.paso:not(:last-child)::after{
+  content:"→";
+  position:absolute; right:-4px; top:-2px;
+  transform:translateY(-55%);
+  font-size:20px; line-height:1; color:var(--accent);
+}
+@media (max-width:820px){
+  .cadena{grid-template-columns:1fr; gap:20px;}
+  .paso:not(:last-child)::after{content:"↓"; right:auto; left:0; top:auto; bottom:-18px; transform:none;}
+}
+
+.regla{
+  margin-top:clamp(26px,4vh,40px);
+  font-family:var(--font-display);
+  font-size:clamp(20px,2.4vw,30px); line-height:1.32;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:24px 28px;
+  max-width:58ch;
+}
+
 @media print{
   .escena{display:none !important;}
   .globo{break-inside:avoid; box-shadow:none;}
@@ -240,10 +325,10 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
      ============================================================ -->
 <div class="escena" id="escena" role="dialog" aria-modal="true" aria-labelledby="q-texto">
   <div class="escena-barra">
-    <div class="cuenta" id="cuenta">Pregunta 1 de 4</div>
+    <div class="cuenta" id="cuenta"></div>
     <div class="btns">
-      <button class="bt" id="bt-ant" title="Pregunta anterior (←)">← Anterior</button>
-      <button class="bt" id="bt-sig" title="Pregunta siguiente (→)">Siguiente →</button>
+      <button class="bt" id="bt-ant" title="Anterior (←)">← Anterior</button>
+      <button class="bt" id="bt-sig" title="Siguiente (→)">Siguiente →</button>
       <button class="bt" id="bt-cerrar" title="Volver a la cuadrícula (Esc)">Cerrar</button>
     </div>
   </div>
@@ -264,6 +349,22 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
         </div>
 
         <div class="fuente" id="fuente"></div>
+      </div>
+
+      <!-- Enlace a la actividad. El mismo codigo de la diapositiva de cierre
+           del deck, para que el recurso pueda proyectarse sin el deck. -->
+      <div class="panel-qr" id="panel-qr" hidden>
+        <img class="qr-img" id="qr-img" alt="Codigo QR de la actividad">
+        <div class="qr-url" id="qr-url"></div>
+      </div>
+
+      <!-- Cierre: la cadena, sus responsables y la regla etica. Es lo unico
+           del tema que no se puede inferir de haber aplicado el instrumento. -->
+      <div class="panel-cierre" id="panel-cierre" hidden>
+        <div class="banda" id="banda"></div>
+        <div class="cadena" id="cadena"></div>
+        <div class="regla" id="regla"></div>
+        <div class="fuente" id="fuente-cierre"></div>
       </div>
     </div>
   </div>
@@ -346,21 +447,69 @@ const PREGUNTAS = [
 /* ============================================================
    PORTADA
    ============================================================ */
+/* ============================================================
+   LAS OTRAS DOS TARJETAS
+
+   Ni la del enlace ni la del cierre son preguntas al salón, pero viven en
+   la misma cuadrícula porque el recurso se proyecta solo, sin el deck: la
+   primera es con lo que abren la actividad, y la última es lo único del
+   tema que no se puede inferir de haberla aplicado —la cadena completa,
+   quién responde por cada paso y la regla que decide si el tamizaje se
+   hace—. Van al principio y al final, que es el orden de la sesión.
+   ============================================================ */
+const ENLACE = {
+  tipo: "aplicacion",
+  rotulo: "Aplicación",
+  titulo: "Abran el cuestionario",
+  url: "https://juanboya7.github.io/seminario-clinico/4-Tamizaje-SRQ.html",
+  qr: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1AAAANQAQMAAAAc1RxyAAAABlBMVEUgOT////+mDKjrAAAEg0lEQVR42u3du24bMRAFUCL//89Mkdi786BUaNaFcQQEEaS1TsHiguRwuPaPvRYKhUKhUCgUCoVC/Xpqhdf/L77/X+mZr2+vZ28/F76Nf/Nn/dgLhUKhUL+NWvdsykl0f+Lfu+vJK5O+3tfPYooZKxQKhUJ9nlcxZ+6Jc0+imGL18+v/+pvGCoVCoVDTeRVzJ+ZXXC+8P3F/Tl6hUCgU6ifmV3kGtZqdrn6e1a8XyisUCoVCPbF/lVf3uhw7Z5P9KxQKhUI9kVfxk5l/6gNRKBQKNZtXtSr9XeVgNwfLn+aXsUKhUCjUTF51e1KxHjDOm/Lq3/3punJorFAoFAo1sR7YzaFiGl1JFGvW47tcL2h+hUKhUKi5vKp16bk+Pc+qur85PSuvUCgUCjWXV3Xnqe5Z7d2l1in7lnoLFAqFQg3n1ale4r7O92rtr69pv37NWKFQKBTq83qL0xmstfrTw7l+va4I5vQzVigUCoX6NK9yRUVXCVjzq57bir8ZZ2rGCoVCoVAz/Zhy38Dr835e1a8l5joM/S1QKBQKNT2/uudPdyp4NWuBpyr3vLtlrFAoFAo1049p73wzyKlqPVcU1jqNOv8yVigUCoWaqmffu86SdnNWuP+l17M1Y4VCoVComfrA3Hdpt/fed/cH9+kV52fGCoVCoVAT/QNPd4yc+izV6ou+86D1QBQKhUI905+9rg2ut3Xs+0X1hbxCoVAo1Pz9V7XvxVr9rVYxq/p7r+QVCoVCoWbPX+Wavi5zTp0u+luz5BUKhUKhnjgvfLojeL89R7zf3lEsr1AoFAo1Wc9ez07lTIozrfhtfub+pLFCoVAo1Nx9Iq/uGO5nZrWasH/GWKFQKBTq8/XAmk975xPDeefqdCYr/oL9KxQKhUJN1gfm+og4Y6qrfv2sKieW/SsUCoVCPXFfY+1k253JqmeH8wyt3qtlrFAoFAo1d19j35MpJliugl8v6i3kFQqFQqGm6y3yvY19LUXt196f4Mr5ZaxQKBQKNdM/MJ/5jXOutfoOF3t3NfHmVygUCoV6Zj3wXSVgnDvtQ5VG7tUkr1AoFAo1Xc9ez/rWyvbakX2t0/2O5lcoFAqFmp1f9TeL9Ot7XX1gTbt6kthYoVAoFGpqPfC01pe/yX3d6/ta2W6sUCgUCjWxHrhKR4pYL9jVV+zdZVX3S/IKhUKhUBPrgXVNb+9TvWDuudR1xq0Vg8YKhUKhUBP7V6ceFXk9MPdq2vvUJfeeXvIKhUKhUFP9A/fhrFWdga3Vd7ao3dz1Z0ehUCjU7HnhPGvax/uG63nimGSrrTo0VigUCoWamF+d7wbO94OcOrSfOgvKKxQKhULN3n8Vc6bvXrF3f8fVWqdbRexfoVAoFGoqr1Zz4mqXOot6Squ7wbGbr8krFAqFQk3nVb+H1XUPXE3VRXcvibxCoVAo1BN5de6/Xm8g7vMqd2uSVygUCoWa3r+6z67O/ZXOvS76igtjhUKhUKjZ+sCcPbkPxlrdPtbpFLJ6CxQKhUI9c/7qmRcKhUKhUCgUCoVC/WrqL4Wr3OHHHAxqAAAAAElFTkSuQmCC"
+};
+
+const CIERRE = {
+  tipo: "cierre",
+  rotulo: "Cierre",
+  titulo: "Qué obliga un resultado positivo",
+  banda: "<strong>Entidad territorial:</strong> establece y justifica a quién se tamiza, identifica las aseguradoras, coordina el proceso y lo audita.",
+  pasos: [
+    { t: "Detectar",  r: "Institución contratada. Aplica el instrumento y obtiene consentimiento informado por prueba." },
+    { t: "Confirmar", r: "El resultado es probable: sin confirmación diagnóstica no hay caso." },
+    { t: "Canalizar", r: "Por el sistema de referencia y contrarreferencia, según la ruta acordada con la entidad territorial." },
+    { t: "Atender",   r: "Entidades administradoras de planes de beneficios. Garantizan la atención y su continuidad." }
+  ],
+  regla: "No se deben realizar tamizajes si no está garantizada la atención de las personas con resultados anormales.",
+  fuente: "<strong>Ministerio de Salud (2015)</strong>, criterios éticos, ejecución y procedimiento de canalización en el marco del Plan de Salud Pública de Intervenciones Colectivas."
+};
+
+const TARJETAS = [
+  ENLACE,
+  ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
+  CIERRE
+];
+
+/* ============================================================
+   CUADRÍCULA
+   ============================================================ */
 const $ = id => document.getElementById(id);
 const contGlobos = $("globos");
 let actual = 0;
 
-PREGUNTAS.forEach((p, i) => {
+// La numeración corre solo sobre las preguntas: las otras dos llevan rótulo.
+let nPregunta = 0;
+TARJETAS.forEach((t, i) => {
+  if (t.tipo === "pregunta") nPregunta++;
+  t.rotulo = t.rotulo || ("Pregunta " + nPregunta);
+
   const b = document.createElement("button");
-  b.className = "globo";
+  b.className = "globo" + (t.tipo === "pregunta" ? "" : " utilitaria");
   b.type = "button";
   b.dataset.i = i;
   b.innerHTML =
-    '<span class="num">Pregunta ' + (i + 1) + '</span>' +
-    escapar(p.pregunta);
+    '<span class="num">' + escapar(t.rotulo) + '</span>' +
+    escapar(t.tipo === "pregunta" ? t.pregunta : t.titulo);
   b.addEventListener("click", () => abrir(i));
   contGlobos.appendChild(b);
 });
+const TOTAL_PREGUNTAS = nPregunta;
 
 function escapar(s){
   return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -376,7 +525,7 @@ function abrir(i){
   pintar();
   escena.classList.add("abierta");
   document.body.style.overflow = "hidden";
-  $("bt-revelar").focus();
+  ($("revelar-zona").hidden ? $("bt-sig") : $("bt-revelar")).focus();
 }
 
 function cerrar(){
@@ -387,30 +536,56 @@ function cerrar(){
 }
 
 function mover(paso){
-  actual = (actual + paso + PREGUNTAS.length) % PREGUNTAS.length;
+  actual = (actual + paso + TARJETAS.length) % TARJETAS.length;
   pintar();
   $("escena-cuerpo").scrollTop = 0;
 }
 
 function pintar(){
-  const p = PREGUNTAS[actual];
+  const t = TARJETAS[actual];
+  const esPregunta = t.tipo === "pregunta";
 
-  $("cuenta").textContent = "Pregunta " + (actual + 1) + " de " + PREGUNTAS.length;
-  $("q-texto").textContent = p.pregunta;
+  $("cuenta").textContent = esPregunta
+    ? t.rotulo + " de " + TOTAL_PREGUNTAS
+    : t.rotulo;
+
+  $("q-texto").textContent = esPregunta ? t.pregunta : t.titulo;
   // Las preguntas largas necesitan más caracteres por línea o quedan en columna.
-  $("q-texto").classList.toggle("ancha", p.pregunta.length > 110);
+  $("q-texto").classList.toggle("ancha", (esPregunta ? t.pregunta : t.titulo).length > 110);
 
-  $("idea").textContent = p.idea;
-  $("porque").innerHTML = p.porque.map(x => "<li>" + x + "</li>").join("");
-  $("fuente").innerHTML = p.fuente;
-
-  // Cada pregunta empieza tapada: primero habla el salón.
+  // Solo las preguntas se tapan: el enlace y el cierre se muestran enteros,
+  // porque no hay nada que discutir antes de verlos.
+  $("revelar-zona").hidden = !esPregunta;
   $("explica").hidden = true;
-  $("revelar-zona").hidden = false;
-  escena.classList.remove("revelado");
+  $("panel-qr").hidden = t.tipo !== "aplicacion";
+  $("panel-cierre").hidden = t.tipo !== "cierre";
+  // El cierre se alinea arriba, como el argumento de una pregunta; el enlace
+  // se centra en la pantalla, que es una sola cosa mirada de lejos.
+  escena.classList.toggle("revelado", t.tipo === "cierre");
+  escena.classList.toggle("enlace", t.tipo === "aplicacion");
+
+  if (esPregunta){
+    $("idea").textContent = t.idea;
+    $("porque").innerHTML = t.porque.map(x => "<li>" + x + "</li>").join("");
+    $("fuente").innerHTML = t.fuente;
+  } else if (t.tipo === "aplicacion"){
+    $("qr-img").src = t.qr;
+    $("qr-url").textContent = t.url;
+  } else {
+    $("banda").innerHTML = t.banda;
+    $("cadena").innerHTML = t.pasos.map((p, i) =>
+      '<div class="paso">' +
+        '<div class="paso-n">' + (i + 1) + '</div>' +
+        '<div class="paso-t">' + escapar(p.t) + '</div>' +
+        '<div class="paso-r">' + escapar(p.r) + '</div>' +
+      '</div>').join("");
+    $("regla").textContent = "\u00ab" + t.regla + "\u00bb";
+    $("fuente-cierre").innerHTML = t.fuente;
+  }
 }
 
 function revelar(){
+  if (TARJETAS[actual].tipo !== "pregunta") return;
   if (!$("explica").hidden) return;
   $("explica").hidden = false;
   $("revelar-zona").hidden = true;
