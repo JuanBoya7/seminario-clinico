@@ -308,6 +308,61 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   max-width:58ch;
 }
 
+/* --- Panel de marco: definiciones y criterios -------------------- */
+.panel-marco[hidden]{display:none;}
+
+.trio{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.4vw,34px);
+}
+@media (max-width:820px){ .trio{grid-template-columns:1fr; gap:24px;} }
+
+.def{border-top:3px solid var(--accent); padding-top:14px;}
+.def .def-de{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.def .def-cita{
+  font-family:var(--font-display);
+  font-size:clamp(17px,1.95vw,25px); line-height:1.28;
+  margin-top:10px; color:var(--ink);
+}
+.def .def-que{
+  margin-top:10px;
+  font-size:clamp(12.5px,1.3vw,15px); color:var(--ink-soft);
+}
+
+.comun{
+  margin-top:clamp(24px,3.4vh,36px);
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.2vw,28px); line-height:1.32;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:20px 24px;
+  max-width:56ch;
+}
+
+.marco-mas{margin-top:clamp(24px,3.4vh,36px);}
+.marco-defs[hidden], .marco-criterios[hidden]{display:none;}
+.eje{border-top:3px solid var(--accent); padding-top:14px;}
+.eje .eje-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.eje .eje-q{
+  font-family:var(--font-display);
+  font-size:clamp(18px,2vw,26px); line-height:1.22;
+  margin-top:6px; color:var(--ink);
+}
+.eje ul{margin:14px 0 0; padding:0; list-style:none;}
+.eje li{
+  position:relative; padding-left:18px; margin-bottom:9px;
+  font-size:clamp(12.5px,1.35vw,16px); line-height:1.45; color:var(--ink-soft);
+}
+.eje li:last-child{margin-bottom:0;}
+.eje li::before{
+  content:""; position:absolute; left:2px; top:.6em;
+  width:5px; height:5px; border-radius:50%; background:var(--accent);
+}
+
 @media print{
   .escena{display:none !important;}
   .globo{break-inside:avoid; box-shadow:none;}
@@ -356,6 +411,25 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
       <div class="panel-qr" id="panel-qr" hidden>
         <img class="qr-img" id="qr-img" alt="Codigo QR de la actividad">
         <div class="qr-url" id="qr-url"></div>
+      </div>
+
+      <!-- Marco: que es y cuando se tamiza. Son dos pantallas que se
+           reemplazan, no dos bloques que se apilan: apiladas obligan a
+           hacer scroll y en proyeccion eso ya no se lee. -->
+      <div class="panel-marco" id="panel-marco" hidden>
+        <div class="marco-defs" id="marco-defs">
+          <div class="trio" id="defs"></div>
+          <div class="comun" id="comun"></div>
+
+          <div class="marco-mas" id="marco-mas">
+            <button class="bt primario" id="bt-criterios">Criterios</button>
+          </div>
+        </div>
+
+        <div class="marco-criterios" id="marco-criterios" hidden>
+          <div class="trio" id="ejes"></div>
+          <div class="fuente" id="fuente-marco"></div>
+        </div>
       </div>
 
       <!-- Cierre: la cadena, sus responsables y la regla etica. Es lo unico
@@ -465,6 +539,48 @@ const ENLACE = {
   qr: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1AAAANQAQMAAAAc1RxyAAAABlBMVEUgOT////+mDKjrAAAEg0lEQVR42u3du24bMRAFUCL//89Mkdi786BUaNaFcQQEEaS1TsHiguRwuPaPvRYKhUKhUCgUCoVC/Xpqhdf/L77/X+mZr2+vZ28/F76Nf/Nn/dgLhUKhUL+NWvdsykl0f+Lfu+vJK5O+3tfPYooZKxQKhUJ9nlcxZ+6Jc0+imGL18+v/+pvGCoVCoVDTeRVzJ+ZXXC+8P3F/Tl6hUCgU6ifmV3kGtZqdrn6e1a8XyisUCoVCPbF/lVf3uhw7Z5P9KxQKhUI9kVfxk5l/6gNRKBQKNZtXtSr9XeVgNwfLn+aXsUKhUCjUTF51e1KxHjDOm/Lq3/3punJorFAoFAo1sR7YzaFiGl1JFGvW47tcL2h+hUKhUKi5vKp16bk+Pc+qur85PSuvUCgUCjWXV3Xnqe5Z7d2l1in7lnoLFAqFQg3n1ale4r7O92rtr69pv37NWKFQKBTq83qL0xmstfrTw7l+va4I5vQzVigUCoX6NK9yRUVXCVjzq57bir8ZZ2rGCoVCoVAz/Zhy38Dr835e1a8l5joM/S1QKBQKNT2/uudPdyp4NWuBpyr3vLtlrFAoFAo1049p73wzyKlqPVcU1jqNOv8yVigUCoWaqmffu86SdnNWuP+l17M1Y4VCoVComfrA3Hdpt/fed/cH9+kV52fGCoVCoVAT/QNPd4yc+izV6ou+86D1QBQKhUI905+9rg2ut3Xs+0X1hbxCoVAo1Pz9V7XvxVr9rVYxq/p7r+QVCoVCoWbPX+Wavi5zTp0u+luz5BUKhUKhnjgvfLojeL89R7zf3lEsr1AoFAo1Wc9ez07lTIozrfhtfub+pLFCoVAo1Nx9Iq/uGO5nZrWasH/GWKFQKBTq8/XAmk975xPDeefqdCYr/oL9KxQKhUJN1gfm+og4Y6qrfv2sKieW/SsUCoVCPXFfY+1k253JqmeH8wyt3qtlrFAoFAo1d19j35MpJliugl8v6i3kFQqFQqGm6y3yvY19LUXt196f4Mr5ZaxQKBQKNdM/MJ/5jXOutfoOF3t3NfHmVygUCoV6Zj3wXSVgnDvtQ5VG7tUkr1AoFAo1Xc9ez/rWyvbakX2t0/2O5lcoFAqFmp1f9TeL9Ot7XX1gTbt6kthYoVAoFGpqPfC01pe/yX3d6/ta2W6sUCgUCjWxHrhKR4pYL9jVV+zdZVX3S/IKhUKhUBPrgXVNb+9TvWDuudR1xq0Vg8YKhUKhUBP7V6ceFXk9MPdq2vvUJfeeXvIKhUKhUFP9A/fhrFWdga3Vd7ao3dz1Z0ehUCjU7HnhPGvax/uG63nimGSrrTo0VigUCoWamF+d7wbO94OcOrSfOgvKKxQKhULN3n8Vc6bvXrF3f8fVWqdbRexfoVAoFGoqr1Zz4mqXOot6Squ7wbGbr8krFAqFQk3nVb+H1XUPXE3VRXcvibxCoVAo1BN5de6/Xm8g7vMqd2uSVygUCoWa3r+6z67O/ZXOvS76igtjhUKhUKjZ+sCcPbkPxlrdPtbpFLJ6CxQKhUI9c/7qmRcKhUKhUCgUCoVC/WrqL4Wr3OHHHAxqAAAAAElFTkSuQmCC"
 };
 
+const MARCO = {
+  tipo: "marco",
+  rotulo: "Marco",
+  titulo: "Qué es un tamizaje y cuándo se hace",
+  tituloA: "Qué es un tamizaje",
+  tituloB: "Cuándo se decide tamizar",
+  // De cada definición se proyecta solo el fragmento que la distingue de las
+  // otras dos; las tres completas están en el deck y en la fuente al pie.
+  defs: [
+    { de: "Organización Mundial de la Salud",
+      cita: "«…una población saludable… tienen una patología pero aún no presentan síntomas»",
+      que: "Fija el momento: antes del síntoma." },
+    { de: "U.S. Preventive Services Task Force",
+      cita: "«…identifica a las personas que requieren una intervención especial»",
+      que: "Fija el propósito: separar a quien necesita algo más." },
+    { de: "Resolución 518 de 2015",
+      cita: "«…instrumentos de alta sensibilidad… eventos de alta externalidad»",
+      que: "Fija el cómo y a quiénes: pruebas sensibles, población vulnerable." }
+  ],
+  comun: "Las tres dicen lo mismo: se aplica a personas aparentemente sanas para detectar temprano, no para diagnosticar.",
+  // Las dos listas de criterios —seis y seis— se reparten sin residuo entre
+  // estos tres ejes. Agruparlas así no es un recorte: es lo que permite
+  // proyectar doce criterios sin proyectar doce renglones.
+  ejes: [
+    { r: "El problema", q: "¿Amerita buscarlo?", li: [
+      "Es importante y tiene una fase temprana detectable.",
+      "Es un evento de alta externalidad, con impacto poblacional."
+    ]},
+    { r: "La prueba", q: "¿Sirve para buscarlo?", li: [
+      "Adecuada, aceptable y válida.",
+      "Validada, efectiva y costo-efectiva.",
+      "Aplicable masivamente sobre grupos poblacionales."
+    ]},
+    { r: "La respuesta", q: "¿Y si aparece?", li: [
+      "Hay tratamiento aceptable y medios disponibles.",
+      "La atención está garantizada, y sin importar la afiliación.",
+      "El proceso es continuo, no una jornada suelta."
+    ]}
+  ],
+  fuente: "Los seis criterios de <strong>Wilson y Jungner</strong> (Organización Mundial de la Salud, 1968) y los seis de la <strong>Resolución 518 de 2015</strong> para pruebas no listadas, repartidos entre los tres ejes que ambas listas comparten. Definiciones citadas en <strong>Revista de Salud Pública</strong>, 15(2), 2013."
+};
+
 const CIERRE = {
   tipo: "cierre",
   rotulo: "Cierre",
@@ -483,6 +599,7 @@ const CIERRE = {
 const TARJETAS = [
   ENLACE,
   ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
+  MARCO,
   CIERRE
 ];
 
@@ -525,7 +642,10 @@ function abrir(i){
   pintar();
   escena.classList.add("abierta");
   document.body.style.overflow = "hidden";
-  ($("revelar-zona").hidden ? $("bt-sig") : $("bt-revelar")).focus();
+  const foco = !$("revelar-zona").hidden ? $("bt-revelar")
+             : !$("marco-mas").hidden && !$("panel-marco").hidden ? $("bt-criterios")
+             : $("bt-sig");
+  foco.focus();
 }
 
 function cerrar(){
@@ -549,7 +669,7 @@ function pintar(){
     ? t.rotulo + " de " + TOTAL_PREGUNTAS
     : t.rotulo;
 
-  $("q-texto").textContent = esPregunta ? t.pregunta : t.titulo;
+  $("q-texto").textContent = esPregunta ? t.pregunta : (t.tituloA || t.titulo);
   // Las preguntas largas necesitan más caracteres por línea o quedan en columna.
   $("q-texto").classList.toggle("ancha", (esPregunta ? t.pregunta : t.titulo).length > 110);
 
@@ -559,9 +679,12 @@ function pintar(){
   $("explica").hidden = true;
   $("panel-qr").hidden = t.tipo !== "aplicacion";
   $("panel-cierre").hidden = t.tipo !== "cierre";
+  $("panel-marco").hidden = t.tipo !== "marco";
+  $("marco-criterios").hidden = true;
+  $("marco-defs").hidden = false;
   // El cierre se alinea arriba, como el argumento de una pregunta; el enlace
   // se centra en la pantalla, que es una sola cosa mirada de lejos.
-  escena.classList.toggle("revelado", t.tipo === "cierre");
+  escena.classList.toggle("revelado", t.tipo === "cierre" || t.tipo === "marco");
   escena.classList.toggle("enlace", t.tipo === "aplicacion");
 
   if (esPregunta){
@@ -571,6 +694,21 @@ function pintar(){
   } else if (t.tipo === "aplicacion"){
     $("qr-img").src = t.qr;
     $("qr-url").textContent = t.url;
+  } else if (t.tipo === "marco"){
+    $("defs").innerHTML = t.defs.map(d =>
+      '<div class="def">' +
+        '<div class="def-de">' + escapar(d.de) + '</div>' +
+        '<div class="def-cita">' + escapar(d.cita) + '</div>' +
+        '<div class="def-que">' + escapar(d.que) + '</div>' +
+      '</div>').join("");
+    $("comun").textContent = t.comun;
+    $("ejes").innerHTML = t.ejes.map(e =>
+      '<div class="eje">' +
+        '<div class="eje-r">' + escapar(e.r) + '</div>' +
+        '<div class="eje-q">' + escapar(e.q) + '</div>' +
+        '<ul>' + e.li.map(x => '<li>' + escapar(x) + '</li>').join("") + '</ul>' +
+      '</div>').join("");
+    $("fuente-marco").innerHTML = t.fuente;
   } else {
     $("banda").innerHTML = t.banda;
     $("cadena").innerHTML = t.pasos.map((p, i) =>
@@ -593,6 +731,15 @@ function revelar(){
   $("escena-cuerpo").scrollTop = 0;
 }
 
+function verCriterios(){
+  if ($("marco-criterios").hidden === false) return;
+  $("marco-defs").hidden = true;
+  $("marco-criterios").hidden = false;
+  $("q-texto").textContent = TARJETAS[actual].tituloB;
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+$("bt-criterios").addEventListener("click", verCriterios);
 $("bt-revelar").addEventListener("click", revelar);
 $("bt-cerrar").addEventListener("click", cerrar);
 $("bt-ant").addEventListener("click", () => mover(-1));
@@ -611,7 +758,8 @@ document.addEventListener("keydown", e => {
     // Enter sobre un botón ya hace lo suyo; no lo duplicamos.
     if (e.key === "Enter" && e.target && e.target.tagName === "BUTTON") return;
     e.preventDefault();
-    revelar();
+    if (TARJETAS[actual].tipo === "marco") verCriterios();
+    else revelar();
   }
 });
 </script>
