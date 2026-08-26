@@ -196,6 +196,21 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   color:var(--ink-soft);
 }
 
+/* La tarjeta de cierre no es una pregunta destapada: nada estuvo oculto,
+   así que el título se queda a tamaño de portada y el bloque se centra.
+   El centrado va por margen automático y no por justify-content: con
+   centrado real, un contenido más alto que la pantalla desborda por
+   arriba y la primera línea queda fuera del alcance del scroll. */
+.escena.cierre .escena-inner{margin-block:auto;}
+.escena.cierre .q-texto,
+.escena.cierre .q-texto.ancha{
+  font-size:clamp(26px,3.4vw,44px);
+  max-width:20ch;
+  color:var(--ink);
+  margin-bottom:clamp(26px,4.5vh,44px);
+}
+.escena.cierre .paso .paso-r{font-size:clamp(13px,1.4vw,16.5px);}
+
 .revelar-zona{margin-top:clamp(28px,5vh,52px);}
 .revelar-zona .nota{
   margin-top:14px; font-size:13px; color:var(--ink-faint); max-width:52ch;
@@ -767,7 +782,6 @@ const CIERRE = {
   tipo: "cierre",
   rotulo: "Cierre",
   titulo: "Qué se llevan de acá",
-  banda: "<strong>La hoja no se entrega ni se califica.</strong> La nota está en las dos fases, de 50% cada una.",
   pasos: [
     { t: "Deciden",   r: "Las cuatro respuestas de hoy. Lo que quedó en blanco es lo que hay que ir a averiguar al sitio." },
     { t: "Aplican",   r: "El instrumento que eligieron, a la población que delimitaron, en la semana que se fijaron." },
@@ -859,6 +873,7 @@ function pintar(){
   $("explica").hidden = true;
   $("panel-cierre").hidden = esPregunta;
   escena.classList.toggle("revelado", !esPregunta);
+  escena.classList.toggle("cierre", !esPregunta);
 
   if (esPregunta){
     $("idea").textContent = t.idea;
