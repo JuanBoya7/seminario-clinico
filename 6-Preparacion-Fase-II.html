@@ -423,19 +423,55 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .rub-pie{margin-top:12px; font-size:12.5px; color:var(--ink-faint);}
 
 /* --- Carta de Ottawa -------------------------------------------- */
+/* Dos bloques, no una lista de siete. Las áreas de acción son el QUÉ
+   —sobre qué actúa el programa— y las estrategias centrales el CÓMO.
+   Que las estrategias no parezcan un área más es justamente el punto:
+   atraviesan a las cuatro. De ahí que vayan en su propio bloque, sobre
+   fondo distinto, y que entre los dos haya un puente que lo enuncie. */
+.ott-grupo{margin-top:22px;}
+.ott-grupo.como{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px 26px;
+}
+.ott-eje{
+  display:inline-block;
+  padding:3px 12px; border-radius:999px;
+  background:var(--accent); color:#fff;
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+}
+.ott-grupo.como .ott-eje{background:var(--ink-soft);}
+.ott-cab h3{
+  font-family:var(--font-display); font-size:clamp(19px,2.1vw,26px);
+  line-height:1.2; margin-top:10px; color:var(--ink);
+}
+.ott-cab p{
+  margin:9px 0 0; max-width:72ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.ott-cab p strong{color:var(--ink); font-weight:600;}
+
+/* El puente: una línea rotulada que dice cómo se relacionan los dos
+   bloques. Es lo único que impide leerlos como dos listas sueltas. */
+.ott-puente{
+  display:flex; align-items:center; gap:14px;
+  margin:26px 0 0;
+  font-size:13px; font-weight:600; color:var(--ink-faint);
+}
+.ott-puente::before, .ott-puente::after{
+  content:""; flex:1; height:1px; background:var(--border);
+}
+
 .ott{
-  margin-top:24px; display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(285px,1fr)); gap:16px 20px;
+  margin-top:18px; display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:16px 20px;
 }
 .ott-c{border-top:3px solid var(--accent); padding:13px 0 0;}
-.ott-c.secundaria{border-top-color:var(--ink-faint);}
-.ott-k{
-  font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-faint);
-}
+.ott-grupo.como .ott-c{border-top-color:var(--ink-faint);}
 .ott-t{
   font-family:var(--font-display); font-size:clamp(17px,1.8vw,21px);
-  line-height:1.25; margin-top:5px; color:var(--ink);
+  line-height:1.25; color:var(--ink);
 }
 .ott-e{margin-top:9px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
 .ott-x{margin-top:11px; display:flex; flex-wrap:wrap; gap:6px;}
@@ -498,7 +534,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
     <div class="seccion-r">El marco</div>
     <h2 class="seccion-t" id="ott-t"></h2>
     <div class="seccion-s" id="ott-s"></div>
-    <div class="ott" id="ott"></div>
+    <div id="ott"></div>
   </section>
 </div>
 
@@ -618,41 +654,51 @@ const FASE = {
   "ottawa": {
     "t": "Carta de Ottawa: en qué se apoyó lo que hicieron",
     "s": "<p>La misma Carta con la que diseñaron el programa, ahora para reconocerse en ella. Cada área de acción trae <strong>la pregunta que hay que poder responder</strong> en la reflexión final.</p><p>Un programa que no se reconoce en ninguna probablemente no fue de promoción de la salud. Decirlo vale más que forzar el encaje.</p>",
-    "componentes": [
+    "puente": "Y cada una se trabajó con alguna de estas tres",
+    "grupos": [
       {
-        "rotulo": "Área de acción",
-        "title": "Reforzar la acción comunitaria",
-        "question": "¿Cómo involucró a la comunidad durante el desarrollo del programa?"
+        "eje": "El qué",
+        "titulo": "Áreas de acción",
+        "lead": "Sobre qué actuó el programa. Hay que poder señalar <strong>cuál sostuvo la intervención y en qué momento concreto</strong>.",
+        "modo": "que",
+        "componentes": [
+          {
+            "title": "Reforzar la acción comunitaria",
+            "question": "¿Cómo involucró a la comunidad durante el desarrollo del programa?"
+          },
+          {
+            "title": "Desarrollar las aptitudes personales",
+            "question": "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"
+          },
+          {
+            "title": "Crear ambientes favorables",
+            "question": "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"
+          },
+          {
+            "title": "Reorientar los servicios de salud",
+            "question": "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"
+          }
+        ]
       },
       {
-        "rotulo": "Área de acción",
-        "title": "Desarrollar las aptitudes personales",
-        "question": "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"
-      },
-      {
-        "rotulo": "Área de acción",
-        "title": "Crear ambientes favorables",
-        "question": "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"
-      },
-      {
-        "rotulo": "Área de acción",
-        "title": "Reorientar los servicios de salud",
-        "question": "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"
-      },
-      {
-        "rotulo": "Estrategia central",
-        "title": "Actuar como mediador",
-        "explanation": "Coordinación y mediación entre la comunidad, las instituciones, los gobiernos y demás actores sociales para lograr la salud."
-      },
-      {
-        "rotulo": "Estrategia central",
-        "title": "Promocionar el concepto",
-        "explanation": "La salud como recurso para la vida cotidiana. Implica abogar por la salud para crear las condiciones esenciales que la favorecen."
-      },
-      {
-        "rotulo": "Estrategia central",
-        "title": "Proporcionar medios",
-        "explanation": "Reducir las inequidades y brindar oportunidades para que todas las personas desarrollen su máximo potencial de salud."
+        "eje": "El cómo",
+        "titulo": "Estrategias centrales",
+        "lead": "De qué manera se actuó. <strong>No son un área más:</strong> atraviesan a las cuatro, y las tres conforman un solo eje — mediar, abogar y capacitar.",
+        "modo": "como",
+        "componentes": [
+          {
+            "title": "Actuar como mediador",
+            "explanation": "Coordinación y mediación entre la comunidad, las instituciones, los gobiernos y demás actores sociales para lograr la salud."
+          },
+          {
+            "title": "Promocionar el concepto",
+            "explanation": "La salud como recurso para la vida cotidiana. Implica abogar por la salud para crear las condiciones esenciales que la favorecen."
+          },
+          {
+            "title": "Proporcionar medios",
+            "explanation": "Reducir las inequidades y brindar oportunidades para que todas las personas desarrollen su máximo potencial de salud."
+          }
+        ]
       }
     ]
   }
@@ -922,13 +968,23 @@ $("rub").innerHTML = FASE.rubrica.criterios.map(c =>
 
 $("ott-t").textContent = FASE.ottawa.t;
 $("ott-s").innerHTML = FASE.ottawa.s;
-$("ott").innerHTML = FASE.ottawa.componentes.map(c =>
-  '<div class="ott-c' + (c.rotulo === "Área de acción" ? "" : " secundaria") + '">' +
-    '<div class="ott-k">' + escapar(c.rotulo) + '</div>' +
-    '<div class="ott-t">' + escapar(c.title) + '</div>' +
-    (c.explanation ? '<div class="ott-e">' + escapar(c.explanation) + '</div>' : "") +
-    (c.examples ? '<div class="ott-x">' + c.examples.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' : "") +
-    (c.question ? '<div class="ott-q">' + escapar(c.question) + '</div>' : "") +
+// Un bloque por grupo, con el puente intercalado entre los dos.
+$("ott").innerHTML = FASE.ottawa.grupos.map((g, i) =>
+  (i ? '<div class="ott-puente">' + escapar(FASE.ottawa.puente) + '</div>' : "") +
+  '<div class="ott-grupo' + (g.modo === "como" ? " como" : "") + '">' +
+    '<div class="ott-cab">' +
+      '<span class="ott-eje">' + escapar(g.eje) + '</span>' +
+      '<h3>' + escapar(g.titulo) + '</h3>' +
+      '<p>' + g.lead + '</p>' +
+    '</div>' +
+    '<div class="ott">' + g.componentes.map(c =>
+      '<div class="ott-c">' +
+        '<div class="ott-t">' + escapar(c.title) + '</div>' +
+        (c.explanation ? '<div class="ott-e">' + escapar(c.explanation) + '</div>' : "") +
+        (c.examples ? '<div class="ott-x">' + c.examples.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' : "") +
+        (c.question ? '<div class="ott-q">' + escapar(c.question) + '</div>' : "") +
+      '</div>').join("") +
+    '</div>' +
   '</div>').join("");
 
 </script>
