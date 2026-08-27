@@ -131,8 +131,19 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 }
 .grupo > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 
+/* La categoría no se pliega: es el rótulo bajo el cual cuelgan sus
+   variables, y es lo que da la lectura panorámica en dos niveles. */
+.categoria{margin:clamp(34px,5vh,54px) 0 4px;}
+.categoria[hidden]{display:none;}
+.categoria h2{
+  font-size:clamp(21px,2.5vw,29px); line-height:1.2; letter-spacing:-.01em;
+  color:var(--accent-dark);
+  padding-bottom:9px; border-bottom:2px solid var(--accent-soft);
+}
+.categoria p{margin:9px 0 0; max-width:84ch; font-size:13.5px; line-height:1.6; color:var(--ink-faint);}
+
 .grupo-cab{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
-.grupo-cab h2{font-size:clamp(18px,2.1vw,25px); line-height:1.2;}
+.grupo-cab h3{font-family:var(--font-display); font-weight:600; font-size:clamp(17px,1.9vw,22px); line-height:1.2; color:var(--ink);}
 .grupo-cab .n{
   font-size:12px; font-weight:600; color:var(--ink-faint);
   background:var(--bg); border:1px solid var(--border);
@@ -299,8 +310,18 @@ const ESCENARIOS = [
      registro  — gratuito, pero exige registrarse o formarse antes.
      licencia  — se compra al editor. Nombre sí, copia no.            */
 
+const CATEGORIAS = [
+  { t: "Síntomas y síndromes", d: "Qué le está pasando a la persona. Es por donde entra la mayoría de las consultas." },
+  { t: "Consumo y adicciones", d: "Sustancias y conductas. Comparten mecanismo, suelen aparecer juntas y ninguna se tamiza sin ventana temporal delimitada." },
+  { t: "Infancia y desarrollo", d: "Donde quien responde no es quien tiene el problema sino su cuidador o su docente. Comparar entre informantes suele decir más que cualquiera por separado." },
+  { t: "Funcionamiento y salud física", d: "No qué siente la persona sino qué puede hacer, y con qué limitación física convive." },
+  { t: "Contexto y vínculos", d: "Lo que rodea a la persona. Casi siempre es acá donde un programa de promoción de la salud puede intervenir de verdad." },
+  { t: "Recursos y resultado", d: "Con qué cuenta la persona y cómo le fue. Son las medidas de antes y después de un programa." }
+];
+
 const GRUPOS = [
-  {
+{
+    cat: "Síntomas y síndromes",
     t: "Malestar psicológico general",
     sub: "Tamizaje inespecífico: detectan que algo anda mal, sin decir qué. Sirven como primera puerta cuando no hay una hipótesis diagnóstica todavía.",
     inst: [
@@ -340,7 +361,8 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Síntomas y síndromes",
     t: "Depresión",
     sub: "Todos comparten el mismo problema de interpretación: puntúan síntomas de las últimas dos semanas y no distinguen un episodio de una reacción esperable ante una pérdida reciente.",
     inst: [
@@ -388,7 +410,39 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Síntomas y síndromes",
+    t: "Manía y bipolaridad",
+    sub: "Un tamizaje de depresión no distingue lo unipolar de lo bipolar, y esa distinción cambia la conducta entera. Donde se tamiza depresión conviene tamizar manía: basta con preguntar por episodios previos de ánimo elevado, y omitirlo es de los errores más costosos de esta guía.",
+    inst: [
+      {
+        n: "Cuestionario de Trastornos del Ánimo", s: "MDQ",
+        d: "Trece síntomas de manía e hipomanía a lo largo de la vida, más agrupación temporal e interferencia.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "13 ítems más 2 · 5 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","hospital","comunidad"],
+        nota: "Los trece síntomas no bastan solos: <strong>el positivo exige además que hayan coincidido en el tiempo y causado problemas</strong>, que son las dos preguntas finales y las que más se omiten."
+      },
+      {
+        n: "Lista de Verificación de Hipomanía", s: "HCL-32",
+        d: "Treinta y dos conductas y estados propios de fases hipomaníacas, descritos sin lenguaje clínico.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "32 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel"],
+        nota: "Más sensible que el anterior a la <strong>hipomanía</strong>, que es la que más se pasa por alto porque la persona no la recuerda como un problema sino como una buena época."
+      },
+      {
+        n: "Escala de Manía de Young", s: "YMRS",
+        d: "Gravedad de once síntomas maníacos en la última semana.",
+        responde: "Heteroaplicada", pob: "Adultos",
+        med: "11 ítems · 15 min", acceso: "libre",
+        esc: ["salud-mental","hospital"],
+        nota: "<strong>No tamiza:</strong> mide gravedad de un episodio ya identificado y sirve para seguimiento. Requiere entrenamiento para puntuar."
+      }
+    ]
+  },
+{
+    cat: "Síntomas y síndromes",
     t: "Ansiedad",
     sub: "En escenarios hospitalarios conviene aplicarlos junto a un tamizaje de depresión: la comorbilidad es alta y un instrumento solo deja la mitad del cuadro afuera.",
     inst: [
@@ -419,7 +473,48 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Síntomas y síndromes",
+    t: "Psicosis y riesgo de psicosis",
+    sub: "Una de las tres condiciones prioritarias de la guía mhGAP, junto con depresión y suicidio. Acá el falso positivo tiene un costo particular: etiqueta con la categoría más estigmatizante de la salud mental. El resultado se comunica con más cuidado que en ninguna otra variable, y siempre como probabilidad que exige valoración.",
+    inst: [
+      {
+        n: "Cuestionario Prodrómico, versión breve", s: "PQ-16",
+        d: "Experiencias perceptivas inusuales, ideas de referencia y síntomas negativos atenuados, con su nivel de malestar asociado.",
+        responde: "Autoinforme", pob: "12 a 35 años",
+        med: "16 ítems · 5-10 min", acceso: "libre",
+        esc: ["salud-mental","ninez","primer-nivel","comunidad"],
+        nota: "Pensado para <strong>estados mentales de riesgo</strong>, no para psicosis establecida. Puntúa el malestar además de la presencia, que es lo que separa una experiencia inusual de un problema."
+      },
+      {
+        n: "Cuestionario de Experiencias Psicóticas en la Comunidad", s: "CAPE-42",
+        d: "Experiencias psicóticas subclínicas en población general, en dimensiones positiva, negativa y depresiva.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "42 ítems · 15-20 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","ninez"],
+        nota: "Diseñado para población general y no clínica: parte de que estas experiencias se distribuyen como <strong>un continuo</strong> y no como una categoría."
+      },
+      {
+        n: "Subescala psicótica del Cuestionario de Autorreporte de Síntomas", s: "SRQ-30",
+        d: "Cuatro preguntas sobre interferencia del pensamiento, voces e ideas de daño, dentro del cuestionario general.",
+        responde: "Autoinforme o entrevista", pob: "Adultos",
+        med: "4 ítems", acceso: "libre",
+        url: "https://www.minsalud.gov.co/sites/rid/lists/bibliotecadigital/ride/de/dij/resolucion-3280-de-2018.pdf",
+        esc: ["salud-mental","primer-nivel","hospital","comunidad"],
+        nota: "Es la que ya tienen a la mano. Tamizaje <strong>muy grueso</strong>: un positivo obliga a valoración y nunca autoriza una conclusión por sí solo."
+      },
+      {
+        n: "Escala de Síndromes Positivo y Negativo", s: "PANSS",
+        d: "Gravedad de treinta síntomas positivos, negativos y de psicopatología general.",
+        responde: "Entrevista semiestructurada", pob: "Adultos",
+        med: "30 ítems · 45 min", acceso: "licencia",
+        esc: ["salud-mental","hospital"],
+        nota: "No es tamizaje sino medida de gravedad, se compra con su editor y <strong>exige entrenamiento formal</strong> para puntuar con fiabilidad."
+      }
+    ]
+  },
+{
+    cat: "Síntomas y síndromes",
     t: "Riesgo suicida",
     sub: "Ninguno de estos se aplica sin haber definido antes qué se hace con un positivo, quién lo recibe y en cuánto tiempo. Un tamizaje de riesgo sin ruta activa es el peor caso posible.",
     inst: [
@@ -451,7 +546,126 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Síntomas y síndromes",
+    t: "Trauma y estrés postraumático",
+    sub: "Antes de tamizar exposición a eventos traumáticos hay que tener resuelto el soporte inmediato: la aplicación misma puede reactivar sintomatología.",
+    inst: [
+      {
+        n: "Lista de Verificación del Trastorno de Estrés Postraumático", s: "PCL-5",
+        d: "Los veinte síntomas de estrés postraumático del DSM-5, con gravedad.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "20 ítems · 5-10 min", acceso: "libre",
+        url: "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+        esc: ["salud-mental","hospital","comunidad","primer-nivel"],
+        nota: "Distribuida libremente por el Centro Nacional de Estrés Postraumático de los Estados Unidos, con versiones en español."
+      },
+      {
+        n: "Escala de Síntomas de Estrés Postraumático Infantil", s: "CPSS-5",
+        d: "Sintomatología postraumática y su interferencia en la vida cotidiana.",
+        responde: "Autoinforme, con versión para cuidador", pob: "8 a 18 años",
+        med: "27 ítems · 15 min", acceso: "libre",
+        esc: ["ninez","salud-mental","cuidadores"],
+        nota: "De uso libre para fines clínicos y de investigación, citando a sus autores."
+      }
+    ]
+  },
+{
+    cat: "Síntomas y síndromes",
+    t: "Duelo",
+    sub: "El duelo no es un trastorno, y esta es la variable donde más fácil se patologiza lo normal. La distinción es temporal y funcional: el criterio de duelo prolongado exige al menos doce meses desde la pérdida en adultos y seis en niños, más interferencia sostenida. Aplicar un instrumento de duelo antes de ese plazo mide un proceso esperable y lo devuelve como si fuera un problema.",
+    inst: [
+      {
+        n: "Inventario de Duelo Complicado", s: "ICG",
+        d: "Síntomas de duelo que persisten e interfieren: añoranza intensa, incredulidad, evitación de recordatorios y dificultad para aceptar la pérdida.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "19 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
+        nota: "El más usado y con validación en español. De uso libre para fines clínicos y de investigación citando a sus autores."
+      },
+      {
+        n: "Escala de Duelo Prolongado", s: "PG-13-R",
+        d: "Los criterios de trastorno de duelo prolongado, incluido el requisito temporal desde la pérdida.",
+        responde: "Autoinforme o entrevista", pob: "Adultos",
+        med: "13 ítems · 10 min", acceso: "registro",
+        esc: ["salud-mental","hospital","primer-nivel"],
+        nota: "Se solicita a su equipo autor en la Universidad de Columbia. Es la que está <strong>alineada con el criterio diagnóstico vigente</strong>, así que es la que conviene si lo que se busca es sostener esa distinción."
+      },
+      {
+        n: "Inventario Texas Revisado de Duelo", s: "TRIG",
+        d: "Duelo en dos momentos: cómo fue la reacción en el momento de la pérdida y cómo es el sentimiento presente.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "21 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","primer-nivel","ninez"],
+        nota: "Que separe pasado de presente es lo que lo distingue: <strong>permite estimar el curso</strong> y no solo el estado actual, que es la información que decide si hay que intervenir."
+      },
+      {
+        n: "Cuestionario de Riesgo de Duelo Complicado", s: "CRDC",
+        d: "Factores de riesgo de duelo complicado en la familia, identificables antes o alrededor del momento de la pérdida.",
+        responde: "Heteroaplicado al familiar", pob: "Familiares adultos",
+        med: "Variable · 10 min", acceso: "libre",
+        esc: ["hospital","cuidadores","primer-nivel","mayores"],
+        nota: "Desarrollado en cuidados paliativos. <strong>Es preventivo y no diagnóstico:</strong> se aplica antes de que el duelo ocurra, que es cuando todavía se puede hacer algo."
+      }
+    ]
+  },
+{
+    cat: "Síntomas y síndromes",
+    t: "Sueño en adultos",
+    sub: "Rara vez se tamiza y aparece en casi todo: es síntoma de depresión y de ansiedad, y a la vez factor que las sostiene. En escenarios hospitalarios conviene descartar causa médica antes de leerlo como psicológico. Para menores de edad hay una variable propia, con instrumentos distintos.",
+    inst: [
+      {
+        n: "Índice de Calidad de Sueño de Pittsburgh", s: "PSQI",
+        d: "Calidad del sueño del último mes en siete componentes: latencia, duración, eficiencia, alteraciones, medicación y disfunción diurna.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "19 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
+        nota: "El más usado en investigación sobre sueño. Libre para uso clínico y académico citando a sus autores; el uso comercial sí requiere licencia."
+      },
+      {
+        n: "Índice de Severidad del Insomnio", s: "ISI",
+        d: "Gravedad del insomnio, satisfacción con el sueño e interferencia en el funcionamiento diurno.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "7 ítems · 5 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
+        nota: "Muy breve y sensible al cambio, lo que lo hace útil como <strong>medida antes y después</strong> de una intervención. De uso libre para fines clínicos y de investigación citando a su autor."
+      },
+      {
+        n: "Escala de Somnolencia de Epworth", s: "ESS",
+        d: "Probabilidad de quedarse dormido en ocho situaciones cotidianas. Mide somnolencia diurna, no calidad de sueño.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "8 ítems · 3 min", acceso: "registro",
+        url: "https://eprovide.mapi-trust.org/instruments/epworth-sleepiness-scale",
+        esc: ["hospital","primer-nivel","salud-mental"],
+        nota: "Su distribución la gestiona una agencia de licenciamiento: el uso académico suele autorizarse sin costo, pero <strong>hay que solicitarlo</strong>. Un puntaje alto obliga a descartar apnea antes que causa psicológica."
+      }
+    ]
+  },
+{
+    cat: "Síntomas y síndromes",
+    t: "Conducta alimentaria",
+    sub: "Poco tamizados en la práctica y de alta prevalencia en población adolescente y universitaria, que suele ser la población disponible en varios escenarios.",
+    inst: [
+      {
+        n: "Cuestionario SCOFF", s: "SCOFF",
+        d: "Cinco preguntas de cribado de anorexia y bulimia.",
+        responde: "Autoinforme o entrevista", pob: "Adolescentes y adultos",
+        med: "5 ítems · 2 min", acceso: "libre",
+        esc: ["ninez","salud-mental","primer-nivel","comunidad"],
+        nota: "Dos respuestas afirmativas ya indican necesidad de valoración. Su brevedad lo hace aplicable en tamizajes colectivos."
+      },
+      {
+        n: "Prueba de Actitudes ante la Alimentación", s: "EAT-26",
+        d: "Actitudes y conductas de riesgo respecto a la alimentación y el peso.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "26 ítems · 10 min", acceso: "libre",
+        esc: ["ninez","salud-mental","comunidad","primer-nivel"],
+        nota: "De uso libre citando a sus autores. Más extenso que el SCOFF y con puntaje de corte establecido."
+      }
+    ]
+  },
+{
+    cat: "Consumo y adicciones",
     t: "Consumo de sustancias",
     sub: "Casi todos preguntan por «alguna vez» o por los últimos doce meses. Sin ventana temporal delimitada, detectan biografía además de estado actual.",
     inst: [
@@ -500,7 +714,47 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Consumo y adicciones",
+    t: "Adicciones comportamentales",
+    sub: "El ASSIST y el CRAFFT solo miran sustancias; esto es lo que queda afuera. En población adolescente y universitaria la prevalencia suele superar a la de varias sustancias, y casi nunca se tamiza porque no hay una sustancia que nombrar.",
+    inst: [
+      {
+        n: "Cuestionario Lie-Bet", s: "Lie/Bet",
+        d: "Dos preguntas: haber mentido sobre cuánto se juega y haber necesitado apostar cantidades cada vez mayores.",
+        responde: "Entrevista", pob: "Adolescentes y adultos",
+        med: "2 ítems · 1 min", acceso: "libre",
+        esc: ["consumo","salud-mental","primer-nivel","comunidad"],
+        nota: "El tamizaje más breve de esta guía. Una sola respuesta afirmativa ya justifica seguir preguntando."
+      },
+      {
+        n: "Cuestionario de Juego Patológico de South Oaks", s: "SOGS",
+        d: "Conductas y consecuencias del juego problemático: pérdidas perseguidas, préstamos, mentiras y conflictos.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "20 ítems · 10 min", acceso: "libre",
+        esc: ["consumo","salud-mental","comunidad"],
+        nota: "El más usado y con validación en español. Pregunta también por <strong>de dónde salió el dinero</strong>, que suele revelar el alcance real del problema."
+      },
+      {
+        n: "Escala breve de Trastorno de Juego por Internet", s: "IGDS9-SF",
+        d: "Los nueve criterios propuestos para el trastorno de juego por internet en los últimos doce meses.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "9 ítems · 5 min", acceso: "libre",
+        esc: ["consumo","ninez","salud-mental","comunidad"],
+        nota: "Construida directamente sobre los criterios diagnósticos propuestos, lo que la hace fácil de defender en una sustentación."
+      },
+      {
+        n: "Test de Adicción a Internet", s: "IAT",
+        d: "Uso problemático de internet y su interferencia en el sueño, el estudio, el trabajo y las relaciones.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "20 ítems · 10 min", acceso: "libre",
+        esc: ["consumo","ninez","comunidad","salud-mental"],
+        nota: "Anterior a las redes sociales actuales, así que algunos ítems se leen anticuados. Sigue siendo el más validado de su variable."
+      }
+    ]
+  },
+{
+    cat: "Infancia y desarrollo",
     t: "Infancia y adolescencia",
     sub: "Con niños pequeños el informante no es el niño. Estos instrumentos existen en versiones paralelas —niño, cuidador y docente— y comparar entre ellas suele decir más que cualquiera por separado.",
     inst: [
@@ -532,7 +786,8 @@ const GRUPOS = [
       }
     ]
   },
-  {
+{
+    cat: "Infancia y desarrollo",
     t: "Atención e hiperactividad",
     sub: "El criterio diagnóstico exige presencia en más de un contexto, así que un solo informante nunca alcanza: hay que tener la versión de casa y la de colegio.",
     inst: [
@@ -563,68 +818,191 @@ const GRUPOS = [
       }
     ]
   },
-  {
-    t: "Trauma y estrés postraumático",
-    sub: "Antes de tamizar exposición a eventos traumáticos hay que tener resuelto el soporte inmediato: la aplicación misma puede reactivar sintomatología.",
+{
+    cat: "Infancia y desarrollo",
+    t: "Desarrollo infantil",
+    sub: "El tamizaje más costo-efectivo de la primera infancia y el que más ventana de intervención abre: lo que se detecta a los dos años admite respuestas que a los siete ya no. Acá no hay autoinforme posible — responde el cuidador o el profesional que observa.",
     inst: [
       {
-        n: "Lista de Verificación del Trastorno de Estrés Postraumático", s: "PCL-5",
-        d: "Los veinte síntomas de estrés postraumático del DSM-5, con gravedad.",
-        responde: "Autoinforme", pob: "Adultos",
-        med: "20 ítems · 5-10 min", acceso: "libre",
-        url: "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
-        esc: ["salud-mental","hospital","comunidad","primer-nivel"],
-        nota: "Distribuida libremente por el Centro Nacional de Estrés Postraumático de los Estados Unidos, con versiones en español."
+        n: "Escala Abreviada de Desarrollo, tercera edición", s: "EAD-3",
+        d: "Cuatro áreas del desarrollo: motricidad gruesa, motricidad fina-adaptativa, audición-lenguaje y personal-social.",
+        responde: "Aplicada por el profesional, con observación directa", pob: "0 a 5 años",
+        med: "Por rangos de edad · 20-30 min", acceso: "libre",
+        url: "https://www.minsalud.gov.co/sites/rid/lists/bibliotecadigital/ride/de/dij/resolucion-3280-de-2018.pdf",
+        esc: ["ninez","cuidadores","primer-nivel","comunidad"],
+        nota: "<strong>Es la de uso obligatorio en la ruta de atención colombiana</strong>, así que además de servir es la que la institución va a reconocer sin discusión."
       },
       {
-        n: "Escala de Síntomas de Estrés Postraumático Infantil", s: "CPSS-5",
-        d: "Sintomatología postraumática y su interferencia en la vida cotidiana.",
-        responde: "Autoinforme, con versión para cuidador", pob: "8 a 18 años",
-        med: "27 ítems · 15 min", acceso: "libre",
-        esc: ["ninez","salud-mental","cuidadores"],
-        nota: "De uso libre para fines clínicos y de investigación, citando a sus autores."
+        n: "Lista Modificada de Verificación de Autismo en Niños Pequeños", s: "M-CHAT-R/F",
+        d: "Señales tempranas de riesgo de autismo: atención conjunta, señalar, respuesta al nombre y juego simbólico.",
+        responde: "Cuidador, más entrevista de seguimiento", pob: "16 a 30 meses",
+        med: "20 ítems · 5 min, más seguimiento", acceso: "libre",
+        url: "https://mchatscreen.com/",
+        esc: ["ninez","cuidadores","primer-nivel"],
+        nota: "<strong>La entrevista de seguimiento no es opcional:</strong> aplicar solo los veinte ítems dispara los falsos positivos y termina alarmando a familias sin motivo."
+      },
+      {
+        n: "Cuestionarios de Edades y Etapas", s: "ASQ-3",
+        d: "Cinco áreas del desarrollo en cuestionarios específicos por edad, respondidos en casa.",
+        responde: "Cuidador", pob: "1 a 66 meses",
+        med: "30 ítems · 15 min", acceso: "licencia",
+        esc: ["ninez","cuidadores","primer-nivel"],
+        nota: "Se adquiere con su editor. Para uso libre en Colombia conviene la Escala Abreviada de Desarrollo, que además es la normativa."
       }
     ]
   },
-  {
-    t: "Duelo",
-    sub: "El duelo no es un trastorno, y esta es la variable donde más fácil se patologiza lo normal. La distinción es temporal y funcional: el criterio de duelo prolongado exige al menos doce meses desde la pérdida en adultos y seis en niños, más interferencia sostenida. Aplicar un instrumento de duelo antes de ese plazo mide un proceso esperable y lo devuelve como si fuera un problema.",
+{
+    cat: "Infancia y desarrollo",
+    t: "Sueño en la infancia",
+    sub: "Va aparte del sueño adulto porque los instrumentos son otros: acá el que responde casi siempre es el cuidador, y lo que se tamiza son hábitos y conductas de sueño más que insomnio. Un problema de sueño infantil suele presentarse como problema de conducta diurna, así que conviene descartarlo antes de leer la irritabilidad o la desatención como cuadro emocional.",
     inst: [
       {
-        n: "Inventario de Duelo Complicado", s: "ICG",
-        d: "Síntomas de duelo que persisten e interfieren: añoranza intensa, incredulidad, evitación de recordatorios y dificultad para aceptar la pérdida.",
-        responde: "Autoinforme", pob: "Adultos",
-        med: "19 ítems · 10 min", acceso: "libre",
-        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
-        nota: "El más usado y con validación en español. De uso libre para fines clínicos y de investigación citando a sus autores."
+        n: "Tamizaje BEARS de Sueño Infantil", s: "BEARS",
+        d: "Cinco dominios en cinco preguntas: problemas al acostarse, somnolencia diurna, despertares, regularidad y duración, y ronquido.",
+        responde: "Entrevista al cuidador, y al niño si tiene edad", pob: "2 a 18 años",
+        med: "5 dominios · 5 min", acceso: "libre",
+        esc: ["ninez","cuidadores","primer-nivel","salud-mental","comunidad"],
+        nota: "Es un guion de entrevista, no un cuestionario: <strong>se aplica en la consulta sin material</strong>, lo que lo hace el más viable de los cuatro en escenarios con poco tiempo."
       },
       {
-        n: "Escala de Duelo Prolongado", s: "PG-13-R",
-        d: "Los criterios de trastorno de duelo prolongado, incluido el requisito temporal desde la pérdida.",
-        responde: "Autoinforme o entrevista", pob: "Adultos",
-        med: "13 ítems · 10 min", acceso: "registro",
-        esc: ["salud-mental","hospital","primer-nivel"],
-        nota: "Se solicita a su equipo autor en la Universidad de Columbia. Es la que está <strong>alineada con el criterio diagnóstico vigente</strong>, así que es la que conviene si lo que se busca es sostener esa distinción."
+        n: "Cuestionario Breve de Sueño Infantil", s: "BISQ",
+        d: "Patrón de sueño del lactante y el preescolar: latencia, despertares nocturnos, lugar y forma de dormirse.",
+        responde: "Cuidador", pob: "0 a 3 años",
+        med: "10 ítems · 5 min", acceso: "libre",
+        esc: ["ninez","cuidadores","primer-nivel","comunidad"],
+        nota: "Pensado para la edad en que <strong>no hay a quién preguntarle más que al cuidador</strong>. Distingue la percepción del problema por parte de los padres del patrón objetivo, que no siempre coinciden."
       },
       {
-        n: "Inventario Texas Revisado de Duelo", s: "TRIG",
-        d: "Duelo en dos momentos: cómo fue la reacción en el momento de la pérdida y cómo es el sentimiento presente.",
+        n: "Cuestionario de Hábitos de Sueño Infantiles", s: "CSHQ",
+        d: "Ocho dominios de hábitos y alteraciones: resistencia a acostarse, ansiedad del sueño, despertares, parasomnias, respiración y somnolencia diurna.",
+        responde: "Cuidador", pob: "4 a 10 años",
+        med: "33 ítems · 10-15 min", acceso: "libre",
+        esc: ["ninez","cuidadores","salud-mental","primer-nivel"],
+        nota: "El más usado en investigación sobre sueño infantil. De uso libre para fines clínicos y de investigación citando a sus autores."
+      },
+      {
+        n: "Escala de Alteraciones del Sueño en la Infancia", s: "SDSC",
+        d: "Seis factores de trastornos del sueño, incluidos los del inicio y mantenimiento, los respiratorios y la hipersomnolencia.",
+        responde: "Cuidador", pob: "3 a 18 años",
+        med: "26 ítems · 10 min", acceso: "libre",
+        esc: ["ninez","cuidadores","salud-mental","primer-nivel","comunidad"],
+        nota: "Bien validada en español y con <strong>puntuaciones por factor</strong>, no solo un total, lo que orienta hacia qué tipo de problema mirar."
+      }
+    ]
+  },
+{
+    cat: "Funcionamiento y salud física",
+    t: "Funcionamiento cognitivo en adultos jóvenes",
+    sub: "Distinto del cribado en el adulto mayor: acá no se busca degeneración sino un cambio respecto del propio rendimiento previo, casi siempre por consumo, sueño insuficiente, estado anímico o traumatismo. Un resultado bajo señala una causa que hay que buscar en otra parte de esta guía, no un diagnóstico. Ojo además: los tres últimos son pruebas neuropsicológicas, no cuestionarios — exigen formación para aplicarlas e interpretarlas.",
+    inst: [
+      {
+        n: "Escala de Autorreporte de Déficit de Atención en Adultos", s: "ASRS v1.1",
+        d: "Síntomas de inatención e hiperactividad en la vida adulta. Su parte A, de seis ítems, funciona como tamizaje.",
+        responde: "Autoinforme", pob: "18 años en adelante",
+        med: "6 ítems de tamizaje o 18 completos · 5-10 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
+        nota: "Desarrollada con la Organización Mundial de la Salud y de uso libre. <strong>Es la puerta de entrada más frecuente</strong> a la queja cognitiva en población universitaria y laboral."
+      },
+      {
+        n: "Cuestionario de Fallos Cognitivos", s: "CFQ",
+        d: "Frecuencia de errores cotidianos de memoria, atención y acción: olvidar para qué entró a un cuarto, no oír lo que le dicen, extraviar objetos.",
         responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "21 ítems · 10 min", acceso: "libre",
-        esc: ["salud-mental","comunidad","primer-nivel","ninez"],
-        nota: "Que separe pasado de presente es lo que lo distingue: <strong>permite estimar el curso</strong> y no solo el estado actual, que es la información que decide si hay que intervenir."
+        med: "25 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","primer-nivel","consumo"],
+        nota: "Mide <strong>percepción de fallos, no rendimiento</strong>, y esa es justamente su utilidad: capta la queja subjetiva, que es con lo que la persona consulta y que no siempre correlaciona con el desempeño en pruebas."
       },
       {
-        n: "Cuestionario de Riesgo de Duelo Complicado", s: "CRDC",
-        d: "Factores de riesgo de duelo complicado en la familia, identificables antes o alrededor del momento de la pérdida.",
-        responde: "Heteroaplicado al familiar", pob: "Familiares adultos",
-        med: "Variable · 10 min", acceso: "libre",
-        esc: ["hospital","cuidadores","primer-nivel","mayores"],
-        nota: "Desarrollado en cuidados paliativos. <strong>Es preventivo y no diagnóstico:</strong> se aplica antes de que el duelo ocurra, que es cuando todavía se puede hacer algo."
+        n: "Prueba de Rastreo", s: "TMT A y B",
+        d: "Atención sostenida y velocidad de procesamiento en la parte A; flexibilidad cognitiva y alternancia en la parte B.",
+        responde: "Heteroaplicada", pob: "Adolescentes y adultos",
+        med: "2 partes · 5-10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","consumo","primer-nivel"],
+        nota: "De dominio público y sensible al daño frontal. Requiere <strong>baremos por edad y escolaridad</strong>: el tiempo bruto no significa nada por sí solo."
+      },
+      {
+        n: "Batería de Evaluación Frontal", s: "FAB",
+        d: "Seis tareas breves de funciones ejecutivas: conceptualización, flexibilidad, programación motora, control inhibitorio y autonomía.",
+        responde: "Heteroaplicada", pob: "Adultos",
+        med: "6 subpruebas · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","consumo"],
+        nota: "Breve y sin material especial. Útil cuando la sospecha apunta a lo ejecutivo, que es lo que más se afecta en consumo crónico y traumatismo."
+      },
+      {
+        n: "Prueba de Símbolos y Dígitos", s: "SDMT",
+        d: "Velocidad de procesamiento de la información, el dominio que primero cae ante casi cualquier compromiso cognitivo.",
+        responde: "Heteroaplicada", pob: "8 años en adelante",
+        med: "90 segundos", acceso: "licencia",
+        esc: ["salud-mental","hospital"],
+        nota: "Se adquiere con su editor. Muy sensible al cambio, lo que la vuelve estándar en seguimiento neurológico."
       }
     ]
   },
-  {
+{
+    cat: "Funcionamiento y salud física",
+    t: "Deterioro cognitivo en adultos mayores",
+    sub: "Acá sí se busca degeneración, a diferencia del cribado en adultos jóvenes. Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
+    inst: [
+      {
+        n: "Prueba Mini-Cog", s: "Mini-Cog",
+        d: "Cribado rápido de deterioro cognitivo: recuerdo de tres palabras más dibujo del reloj.",
+        responde: "Heteroaplicada", pob: "Adultos mayores",
+        med: "3 min", acceso: "libre",
+        url: "https://mini-cog.com/",
+        esc: ["mayores","primer-nivel","hospital","comunidad"],
+        nota: "Gratuita para uso clínico y educativo desde su sitio oficial. Su brevedad la hace viable en escenarios con poco tiempo por persona."
+      },
+      {
+        n: "Evaluación Cognitiva de Montreal", s: "MoCA",
+        d: "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas.",
+        responde: "Heteroaplicada", pob: "Adultos y adultos mayores",
+        med: "30 puntos · 10-15 min", acceso: "registro",
+        esc: ["mayores","salud-mental","hospital"],
+        nota: "Desde 2020 exige <strong>certificación y registro</strong> del aplicador en su sitio oficial."
+      },
+      {
+        n: "Mini Examen del Estado Mental", s: "MMSE",
+        d: "Cribado cognitivo clásico: orientación, memoria, atención, lenguaje y praxis.",
+        responde: "Heteroaplicada", pob: "Adultos mayores",
+        med: "30 puntos · 10 min", acceso: "licencia",
+        esc: ["mayores","hospital","primer-nivel"],
+        nota: "Aunque circula por todas partes, <strong>está bajo licencia</strong> desde 2001. Para uso libre conviene el Mini-Cog."
+      }
+    ]
+  },
+{
+    cat: "Funcionamiento y salud física",
+    t: "Dolor crónico",
+    sub: "Lo psicológico del dolor crónico no es su intensidad sino lo que la persona cree y hace respecto de él. Eso es lo que explica que dos personas con el mismo diagnóstico funcionen de manera distinta, y es lo único de todo el cuadro sobre lo que una intervención psicológica puede actuar.",
+    inst: [
+      {
+        n: "Escala de Catastrofización ante el Dolor", s: "PCS",
+        d: "Rumiación, magnificación y desesperanza frente al dolor.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "13 ítems · 5 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","salud-mental","mayores"],
+        nota: "<strong>Es el predictor psicológico mejor establecido de discapacidad por dolor</strong>, por encima de la intensidad que la persona reporta. Hay versión infantil."
+      },
+      {
+        n: "Escala de Kinesiofobia de Tampa", s: "TSK",
+        d: "Miedo al movimiento y a volver a lesionarse, y la evitación que se deriva de ese miedo.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "17 ítems · 5 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","salud-mental"],
+        nota: "Mide el motor del círculo de evitación, desacondicionamiento y más dolor. <strong>Ahí es donde una intervención psicológica sí entra</strong>, incluso sin tocar la causa física."
+      },
+      {
+        n: "Cuestionario Breve del Dolor", s: "BPI",
+        d: "Intensidad del dolor y, por separado, su interferencia en siete áreas de la vida diaria.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "9 ítems · 5-10 min", acceso: "registro",
+        url: "https://www.mdanderson.org/research/departments-labs-institutes/departments-divisions/symptom-research/symptom-assessment-tools/brief-pain-inventory.html",
+        esc: ["hospital","primer-nivel","mayores"],
+        nota: "Se solicita a su institución, sin costo para uso académico. Separar intensidad de interferencia <strong>permite mostrar mejoría aunque el dolor no baje</strong>, que suele ser el resultado realista."
+      }
+    ]
+  },
+{
+    cat: "Contexto y vínculos",
     t: "Violencia",
     sub: "Ninguno de estos se aplica sin privacidad garantizada y sin plan de seguridad definido. Preguntar por violencia delante de la pareja, del cuidador o de la familia no solo invalida la respuesta: puede aumentar el riesgo de quien responde.",
     inst: [
@@ -671,122 +1049,156 @@ const GRUPOS = [
       }
     ]
   },
-  {
-    t: "Sueño en adultos",
-    sub: "Rara vez se tamiza y aparece en casi todo: es síntoma de depresión y de ansiedad, y a la vez factor que las sostiene. En escenarios hospitalarios conviene descartar causa médica antes de leerlo como psicológico. Para menores de edad hay una variable propia, con instrumentos distintos.",
+{
+    cat: "Contexto y vínculos",
+    t: "Funcionamiento familiar",
+    sub: "Todos miden percepción del funcionamiento, no funcionamiento observado, y la percepción cambia según quién de la familia responde. Aplicarlos a más de un miembro es más informativo que aplicarlos a uno solo.",
     inst: [
       {
-        n: "Índice de Calidad de Sueño de Pittsburgh", s: "PSQI",
-        d: "Calidad del sueño del último mes en siete componentes: latencia, duración, eficiencia, alteraciones, medicación y disfunción diurna.",
+        n: "Cuestionario APGAR Familiar", s: "APGAR familiar",
+        d: "Satisfacción con cinco funciones de la propia familia: adaptación, participación, crecimiento, afecto y capacidad resolutiva.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "5 ítems · 3 min", acceso: "libre",
+        esc: ["primer-nivel","comunidad","ninez","cuidadores","salud-mental"],
+        nota: "Muy breve y de uso corriente en atención primaria en Colombia. Hay versión para niños con caritas en lugar de escala verbal."
+      },
+      {
+        n: "Escala de Cohesión y Adaptabilidad Familiar", s: "FACES III",
+        d: "Cohesión y adaptabilidad familiar, las dos dimensiones del modelo circumplejo de funcionamiento familiar.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "20 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","ninez","primer-nivel"],
+        nota: "Ampliamente reproducida y validada en población latinoamericana. <strong>Las versiones posteriores están bajo licencia</strong>, así que conviene citar explícitamente que se usa la tercera."
+      },
+      {
+        n: "Prueba de Percepción del Funcionamiento Familiar", s: "FF-SIL",
+        d: "Cohesión, armonía, comunicación, permeabilidad, afectividad, roles y adaptabilidad.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "14 ítems · 10 min", acceso: "libre",
+        esc: ["primer-nivel","comunidad","salud-mental","cuidadores"],
+        nota: "De origen cubano y muy extendida en atención primaria en la región, lo que facilita encontrar referentes de comparación locales."
+      }
+    ]
+  },
+{
+    cat: "Contexto y vínculos",
+    t: "Apoyo social percibido",
+    sub: "De todas las variables de esta guía, la más pertinente para un programa de promoción: es modificable por una intervención comunitaria y se puede medir antes y después. Todas miden percepción de apoyo y no red real, y para el efecto sobre la salud la percepción predice mejor que el conteo.",
+    inst: [
+      {
+        n: "Escala Multidimensional de Apoyo Social Percibido", s: "MSPSS",
+        d: "Apoyo percibido desde tres fuentes distintas: la familia, los amigos y una persona significativa.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "12 ítems · 5 min", acceso: "libre",
+        esc: ["comunidad","salud-mental","primer-nivel","ninez","mayores","cuidadores"],
+        nota: "Que separe las tres fuentes es lo valioso: <strong>un programa puede fortalecer una sin tocar las otras</strong>, y el instrumento lo muestra en el perfil."
+      },
+      {
+        n: "Cuestionario Duke-UNC de Apoyo Social Funcional", s: "Duke-UNC",
+        d: "Apoyo confidencial —tener con quién hablar— y apoyo afectivo —sentirse querido—.",
         responde: "Autoinforme", pob: "Adultos",
+        med: "11 ítems · 5 min", acceso: "libre",
+        esc: ["comunidad","primer-nivel","mayores","cuidadores"],
+        nota: "Muy usado en atención primaria en español y de los más breves de su variable."
+      },
+      {
+        n: "Escala de Red Social de Lubben", s: "LSNS-6",
+        d: "Tamaño y frecuencia de contacto de la red de familiares y amigos: aislamiento social objetivo.",
+        responde: "Autoinforme o entrevista", pob: "Adultos mayores",
+        med: "6 ítems · 3 min", acceso: "libre",
+        esc: ["mayores","comunidad","primer-nivel","cuidadores"],
+        nota: "Mide <strong>red efectiva y no percepción</strong>, así que es el complemento natural de la escala anterior: se puede tener red amplia y sentirse sin apoyo, o al revés."
+      }
+    ]
+  },
+{
+    cat: "Contexto y vínculos",
+    t: "Cuidadores",
+    sub: "La población de un programa no siempre es la que tiene el problema. En pediatría, geriatría y discapacidad, el cuidador sostiene la carga y casi nunca es a quien alguien evalúa: suele ser la población objetivo más evidente y más desatendida de un escenario de práctica.",
+    inst: [
+      {
+        n: "Escala de Sobrecarga del Cuidador de Zarit", s: "Zarit",
+        d: "Sobrecarga percibida por quien cuida a una persona dependiente, en su dimensión objetiva y subjetiva.",
+        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
+        med: "22 ítems · 10 min", acceso: "libre",
+        esc: ["cuidadores","mayores","hospital","comunidad","salud-mental"],
+        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems para tamizaje rápido."
+      },
+      {
+        n: "Índice de Esfuerzo del Cuidador", s: "CSI",
+        d: "Trece situaciones concretas de dificultad en el cuidado: sueño, esfuerzo físico, cambios de rutina, costo económico.",
+        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
+        med: "13 ítems · 5 min", acceso: "libre",
+        esc: ["cuidadores","mayores","hospital","comunidad"],
+        nota: "Más breve que la Zarit y con formato sí/no. Al preguntar por hechos y no por sentimientos, <strong>rinde mejor con cuidadores que minimizan su propia carga</strong>."
+      }
+    ]
+  },
+{
+    cat: "Contexto y vínculos",
+    t: "Burnout y estrés laboral",
+    sub: "Solo hace falta si el sitio de práctica es una empresa u organización, pero en ese caso suele ser la variable correcta. Ojo con el encuadre: en un tamizaje pedido por la organización el trabajador sabe quién va a leer el resultado, y eso condiciona lo que responde. Sin anonimato garantizado, los datos no sirven.",
+    inst: [
+      {
+        n: "Inventario de Burnout de Copenhague", s: "CBI",
+        d: "Agotamiento en tres planos separados: el personal, el relacionado con el trabajo y el relacionado con los usuarios o clientes.",
+        responde: "Autoinforme", pob: "Adultos trabajadores",
         med: "19 ítems · 10 min", acceso: "libre",
-        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
-        nota: "El más usado en investigación sobre sueño. Libre para uso clínico y académico citando a sus autores; el uso comercial sí requiere licencia."
+        esc: ["comunidad","hospital","primer-nivel","salud-mental"],
+        nota: "Libre y sin licencia, a diferencia del Maslach. Separar el agotamiento personal del laboral <strong>evita atribuirle al trabajo lo que viene de otra parte</strong>."
       },
       {
-        n: "Índice de Severidad del Insomnio", s: "ISI",
-        d: "Gravedad del insomnio, satisfacción con el sueño e interferencia en el funcionamiento diurno.",
-        responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "7 ítems · 5 min", acceso: "libre",
-        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
-        nota: "Muy breve y sensible al cambio, lo que lo hace útil como <strong>medida antes y después</strong> de una intervención. De uso libre para fines clínicos y de investigación citando a su autor."
+        n: "Cuestionario de Evaluación de Riesgos Psicosociales en el Trabajo", s: "COPSOQ · ISTAS21",
+        d: "Exigencias, control, apoyo, compensaciones y doble presencia: las condiciones de trabajo que producen daño.",
+        responde: "Autoinforme, con aplicación colectiva", pob: "Adultos trabajadores",
+        med: "Versión corta o media · 15-30 min", acceso: "libre",
+        url: "https://www.copsoq-network.org/",
+        esc: ["comunidad","hospital","primer-nivel"],
+        nota: "<strong>Evalúa condiciones y no personas</strong>, que es la mirada que corresponde si lo que se quiere intervenir es la organización. En Colombia la batería de riesgo psicosocial del Ministerio del Trabajo es la de uso obligatorio."
       },
       {
-        n: "Escala de Somnolencia de Epworth", s: "ESS",
-        d: "Probabilidad de quedarse dormido en ocho situaciones cotidianas. Mide somnolencia diurna, no calidad de sueño.",
-        responde: "Autoinforme", pob: "Adultos",
-        med: "8 ítems · 3 min", acceso: "registro",
-        url: "https://eprovide.mapi-trust.org/instruments/epworth-sleepiness-scale",
-        esc: ["hospital","primer-nivel","salud-mental"],
-        nota: "Su distribución la gestiona una agencia de licenciamiento: el uso académico suele autorizarse sin costo, pero <strong>hay que solicitarlo</strong>. Un puntaje alto obliga a descartar apnea antes que causa psicológica."
+        n: "Inventario de Burnout de Maslach", s: "MBI",
+        d: "Agotamiento emocional, despersonalización y realización personal.",
+        responde: "Autoinforme", pob: "Adultos trabajadores",
+        med: "22 ítems · 10 min", acceso: "licencia",
+        esc: ["comunidad","hospital","salud-mental"],
+        nota: "El estándar histórico de la variable, pero se compra con su editor."
       }
     ]
   },
-  {
-    t: "Sueño en la infancia",
-    sub: "Va aparte del sueño adulto porque los instrumentos son otros: acá el que responde casi siempre es el cuidador, y lo que se tamiza son hábitos y conductas de sueño más que insomnio. Un problema de sueño infantil suele presentarse como problema de conducta diurna, así que conviene descartarlo antes de leer la irritabilidad o la desatención como cuadro emocional.",
+{
+    cat: "Recursos y resultado",
+    t: "Autoestima y autoeficacia",
+    sub: "Son las variables mediadoras del pilar de Ottawa donde casi todos los programas de práctica terminan: el desarrollo de aptitudes personales. Sirven de indicador de resultado cuando el programa no busca reducir un síntoma sino aumentar un recurso.",
     inst: [
       {
-        n: "Tamizaje BEARS de Sueño Infantil", s: "BEARS",
-        d: "Cinco dominios en cinco preguntas: problemas al acostarse, somnolencia diurna, despertares, regularidad y duración, y ronquido.",
-        responde: "Entrevista al cuidador, y al niño si tiene edad", pob: "2 a 18 años",
-        med: "5 dominios · 5 min", acceso: "libre",
-        esc: ["ninez","cuidadores","primer-nivel","salud-mental","comunidad"],
-        nota: "Es un guion de entrevista, no un cuestionario: <strong>se aplica en la consulta sin material</strong>, lo que lo hace el más viable de los cuatro en escenarios con poco tiempo."
-      },
-      {
-        n: "Cuestionario Breve de Sueño Infantil", s: "BISQ",
-        d: "Patrón de sueño del lactante y el preescolar: latencia, despertares nocturnos, lugar y forma de dormirse.",
-        responde: "Cuidador", pob: "0 a 3 años",
+        n: "Escala de Autoestima de Rosenberg", s: "Rosenberg",
+        d: "Valoración global positiva y negativa de sí mismo.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
         med: "10 ítems · 5 min", acceso: "libre",
-        esc: ["ninez","cuidadores","primer-nivel","comunidad"],
-        nota: "Pensado para la edad en que <strong>no hay a quién preguntarle más que al cuidador</strong>. Distingue la percepción del problema por parte de los padres del patrón objetivo, que no siempre coinciden."
+        esc: ["comunidad","salud-mental","ninez","primer-nivel"],
+        nota: "La más usada del mundo en su variable, con validación en español y en población colombiana — lo que facilita encontrar con qué comparar."
       },
       {
-        n: "Cuestionario de Hábitos de Sueño Infantiles", s: "CSHQ",
-        d: "Ocho dominios de hábitos y alteraciones: resistencia a acostarse, ansiedad del sueño, despertares, parasomnias, respiración y somnolencia diurna.",
-        responde: "Cuidador", pob: "4 a 10 años",
-        med: "33 ítems · 10-15 min", acceso: "libre",
-        esc: ["ninez","cuidadores","salud-mental","primer-nivel"],
-        nota: "El más usado en investigación sobre sueño infantil. De uso libre para fines clínicos y de investigación citando a sus autores."
-      },
-      {
-        n: "Escala de Alteraciones del Sueño en la Infancia", s: "SDSC",
-        d: "Seis factores de trastornos del sueño, incluidos los del inicio y mantenimiento, los respiratorios y la hipersomnolencia.",
-        responde: "Cuidador", pob: "3 a 18 años",
-        med: "26 ítems · 10 min", acceso: "libre",
-        esc: ["ninez","cuidadores","salud-mental","primer-nivel","comunidad"],
-        nota: "Bien validada en español y con <strong>puntuaciones por factor</strong>, no solo un total, lo que orienta hacia qué tipo de problema mirar."
-      }
-    ]
-  },
-  {
-    t: "Funcionamiento cognitivo en adultos jóvenes",
-    sub: "Distinto del cribado en el adulto mayor: acá no se busca degeneración sino un cambio respecto del propio rendimiento previo, casi siempre por consumo, sueño insuficiente, estado anímico o traumatismo. Un resultado bajo señala una causa que hay que buscar en otra parte de esta guía, no un diagnóstico. Ojo además: los tres últimos son pruebas neuropsicológicas, no cuestionarios — exigen formación para aplicarlas e interpretarlas.",
-    inst: [
-      {
-        n: "Escala de Autorreporte de Déficit de Atención en Adultos", s: "ASRS v1.1",
-        d: "Síntomas de inatención e hiperactividad en la vida adulta. Su parte A, de seis ítems, funciona como tamizaje.",
-        responde: "Autoinforme", pob: "18 años en adelante",
-        med: "6 ítems de tamizaje o 18 completos · 5-10 min", acceso: "libre",
-        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
-        nota: "Desarrollada con la Organización Mundial de la Salud y de uso libre. <strong>Es la puerta de entrada más frecuente</strong> a la queja cognitiva en población universitaria y laboral."
-      },
-      {
-        n: "Cuestionario de Fallos Cognitivos", s: "CFQ",
-        d: "Frecuencia de errores cotidianos de memoria, atención y acción: olvidar para qué entró a un cuarto, no oír lo que le dicen, extraviar objetos.",
+        n: "Escala de Autoeficacia General", s: "GSE",
+        d: "Confianza en poder afrontar demandas nuevas y resolver situaciones difíciles.",
         responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "25 ítems · 10 min", acceso: "libre",
-        esc: ["salud-mental","comunidad","primer-nivel","consumo"],
-        nota: "Mide <strong>percepción de fallos, no rendimiento</strong>, y esa es justamente su utilidad: capta la queja subjetiva, que es con lo que la persona consulta y que no siempre correlaciona con el desempeño en pruebas."
+        med: "10 ítems · 4 min", acceso: "libre",
+        esc: ["comunidad","salud-mental","primer-nivel","ninez"],
+        nota: "Mide autoeficacia <strong>general y no conductual</strong>: si el programa apunta a una conducta concreta —usar preservativo, tomar la medicación, hacer ejercicio—, conviene una escala específica de esa conducta."
       },
       {
-        n: "Prueba de Rastreo", s: "TMT A y B",
-        d: "Atención sostenida y velocidad de procesamiento en la parte A; flexibilidad cognitiva y alternancia en la parte B.",
-        responde: "Heteroaplicada", pob: "Adolescentes y adultos",
-        med: "2 partes · 5-10 min", acceso: "libre",
-        esc: ["salud-mental","hospital","consumo","primer-nivel"],
-        nota: "De dominio público y sensible al daño frontal. Requiere <strong>baremos por edad y escolaridad</strong>: el tiempo bruto no significa nada por sí solo."
-      },
-      {
-        n: "Batería de Evaluación Frontal", s: "FAB",
-        d: "Seis tareas breves de funciones ejecutivas: conceptualización, flexibilidad, programación motora, control inhibitorio y autonomía.",
-        responde: "Heteroaplicada", pob: "Adultos",
-        med: "6 subpruebas · 10 min", acceso: "libre",
-        esc: ["salud-mental","hospital","consumo"],
-        nota: "Breve y sin material especial. Útil cuando la sospecha apunta a lo ejecutivo, que es lo que más se afecta en consumo crónico y traumatismo."
-      },
-      {
-        n: "Prueba de Símbolos y Dígitos", s: "SDMT",
-        d: "Velocidad de procesamiento de la información, el dominio que primero cae ante casi cualquier compromiso cognitivo.",
-        responde: "Heteroaplicada", pob: "8 años en adelante",
-        med: "90 segundos", acceso: "licencia",
-        esc: ["salud-mental","hospital"],
-        nota: "Se adquiere con su editor. Muy sensible al cambio, lo que la vuelve estándar en seguimiento neurológico."
+        n: "Escala de Locus de Control de la Salud", s: "MHLC",
+        d: "A quién atribuye la persona el control sobre su salud: a sí misma, a los profesionales o al azar.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "18 ítems · 8 min", acceso: "libre",
+        esc: ["comunidad","primer-nivel","hospital","salud-mental"],
+        nota: "Distingue a quien va a sostener un cambio de quien espera que se lo resuelvan. <strong>Es información sobre cómo diseñar el programa</strong>, más que sobre la persona."
       }
     ]
   },
-  {
+{
+    cat: "Recursos y resultado",
     t: "Adherencia al tratamiento",
     sub: "Todo autoinforme de adherencia la sobreestima: casi nadie declara que no cumple. Por eso conviene acompañar la medición con algo que explique el incumplimiento —conocimiento de la enfermedad, barreras concretas, alianza con quien atiende— y no solo cuantificarlo. La adherencia no es un rasgo de la persona: es el ajuste entre el tratamiento y su vida cotidiana.",
     inst: [
@@ -832,108 +1244,45 @@ const GRUPOS = [
       }
     ]
   },
-  {
-    t: "Funcionamiento familiar",
-    sub: "Todos miden percepción del funcionamiento, no funcionamiento observado, y la percepción cambia según quién de la familia responde. Aplicarlos a más de un miembro es más informativo que aplicarlos a uno solo.",
+{
+    cat: "Recursos y resultado",
+    t: "Calidad de vida relacionada con la salud",
+    sub: "La variable de resultado por excelencia de un programa de promoción: no mide síntomas sino la vida de la persona. Es también la variable con menos opciones libres de esta guía —casi todas exigen solicitud o licencia—, así que el permiso se resuelve antes de diseñar el programa alrededor de una de ellas, no después.",
     inst: [
       {
-        n: "Cuestionario APGAR Familiar", s: "APGAR familiar",
-        d: "Satisfacción con cinco funciones de la propia familia: adaptación, participación, crecimiento, afecto y capacidad resolutiva.",
+        n: "Instrumento de Calidad de Vida de la Organización Mundial de la Salud, versión breve", s: "WHOQOL-BREF",
+        d: "Cuatro dominios: salud física, salud psicológica, relaciones sociales y ambiente.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "26 ítems · 10-15 min", acceso: "registro",
+        url: "https://www.who.int/tools/whoqol/whoqol-bref",
+        esc: ["comunidad","hospital","primer-nivel","salud-mental","mayores"],
+        nota: "La Organización Mundial de la Salud la cede sin costo para uso académico, pero <strong>hay que solicitarla</strong>. Es la más alineada con la definición amplia de salud que usa la Carta de Ottawa."
+      },
+      {
+        n: "Cuestionario EQ-5D", s: "EQ-5D",
+        d: "Cinco dimensiones —movilidad, autocuidado, actividades, dolor y ansiedad o depresión— más una escala visual de salud global.",
         responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "5 ítems · 3 min", acceso: "libre",
-        esc: ["primer-nivel","comunidad","ninez","cuidadores","salud-mental"],
-        nota: "Muy breve y de uso corriente en atención primaria en Colombia. Hay versión para niños con caritas en lugar de escala verbal."
+        med: "5 ítems más escala · 3 min", acceso: "registro",
+        url: "https://euroqol.org/",
+        esc: ["hospital","primer-nivel","mayores","comunidad"],
+        nota: "Registro gratuito para uso académico. Muy breve y con <strong>valores poblacionales de referencia</strong>, lo que permite comparar contra la población general."
       },
       {
-        n: "Escala de Cohesión y Adaptabilidad Familiar", s: "FACES III",
-        d: "Cohesión y adaptabilidad familiar, las dos dimensiones del modelo circumplejo de funcionamiento familiar.",
-        responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "20 ítems · 10 min", acceso: "libre",
-        esc: ["salud-mental","comunidad","ninez","primer-nivel"],
-        nota: "Ampliamente reproducida y validada en población latinoamericana. <strong>Las versiones posteriores están bajo licencia</strong>, así que conviene citar explícitamente que se usa la tercera."
+        n: "Cuestionario KIDSCREEN", s: "KIDSCREEN",
+        d: "Calidad de vida en la infancia y la adolescencia, en diez dimensiones.",
+        responde: "Autoinforme y versión para cuidador", pob: "8 a 18 años",
+        med: "10, 27 o 52 ítems · 5-20 min", acceso: "registro",
+        url: "https://www.kidscreen.org/",
+        esc: ["ninez","cuidadores","comunidad","salud-mental"],
+        nota: "Desarrollado en Europa con versiones en español y registro gratuito para uso académico. La versión de diez ítems es viable en tamizajes colectivos."
       },
       {
-        n: "Prueba de Percepción del Funcionamiento Familiar", s: "FF-SIL",
-        d: "Cohesión, armonía, comunicación, permeabilidad, afectividad, roles y adaptabilidad.",
-        responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "14 ítems · 10 min", acceso: "libre",
-        esc: ["primer-nivel","comunidad","salud-mental","cuidadores"],
-        nota: "De origen cubano y muy extendida en atención primaria en la región, lo que facilita encontrar referentes de comparación locales."
-      }
-    ]
-  },
-  {
-    t: "Cuidadores",
-    sub: "La población de un programa no siempre es la que tiene el problema. En pediatría, geriatría y discapacidad, el cuidador sostiene la carga y casi nunca es a quien alguien evalúa: suele ser la población objetivo más evidente y más desatendida de un escenario de práctica.",
-    inst: [
-      {
-        n: "Escala de Sobrecarga del Cuidador de Zarit", s: "Zarit",
-        d: "Sobrecarga percibida por quien cuida a una persona dependiente, en su dimensión objetiva y subjetiva.",
-        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
-        med: "22 ítems · 10 min", acceso: "libre",
-        esc: ["cuidadores","mayores","hospital","comunidad","salud-mental"],
-        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems para tamizaje rápido."
-      },
-      {
-        n: "Índice de Esfuerzo del Cuidador", s: "CSI",
-        d: "Trece situaciones concretas de dificultad en el cuidado: sueño, esfuerzo físico, cambios de rutina, costo económico.",
-        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
-        med: "13 ítems · 5 min", acceso: "libre",
-        esc: ["cuidadores","mayores","hospital","comunidad"],
-        nota: "Más breve que la Zarit y con formato sí/no. Al preguntar por hechos y no por sentimientos, <strong>rinde mejor con cuidadores que minimizan su propia carga</strong>."
-      }
-    ]
-  },
-  {
-    t: "Deterioro cognitivo en adultos mayores",
-    sub: "Acá sí se busca degeneración, a diferencia del cribado en adultos jóvenes. Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
-    inst: [
-      {
-        n: "Prueba Mini-Cog", s: "Mini-Cog",
-        d: "Cribado rápido de deterioro cognitivo: recuerdo de tres palabras más dibujo del reloj.",
-        responde: "Heteroaplicada", pob: "Adultos mayores",
-        med: "3 min", acceso: "libre",
-        url: "https://mini-cog.com/",
-        esc: ["mayores","primer-nivel","hospital","comunidad"],
-        nota: "Gratuita para uso clínico y educativo desde su sitio oficial. Su brevedad la hace viable en escenarios con poco tiempo por persona."
-      },
-      {
-        n: "Evaluación Cognitiva de Montreal", s: "MoCA",
-        d: "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas.",
-        responde: "Heteroaplicada", pob: "Adultos y adultos mayores",
-        med: "30 puntos · 10-15 min", acceso: "registro",
-        esc: ["mayores","salud-mental","hospital"],
-        nota: "Desde 2020 exige <strong>certificación y registro</strong> del aplicador en su sitio oficial."
-      },
-      {
-        n: "Mini Examen del Estado Mental", s: "MMSE",
-        d: "Cribado cognitivo clásico: orientación, memoria, atención, lenguaje y praxis.",
-        responde: "Heteroaplicada", pob: "Adultos mayores",
-        med: "30 puntos · 10 min", acceso: "licencia",
-        esc: ["mayores","hospital","primer-nivel"],
-        nota: "Aunque circula por todas partes, <strong>está bajo licencia</strong> desde 2001. Para uso libre conviene el Mini-Cog."
-      }
-    ]
-  },
-  {
-    t: "Conducta alimentaria",
-    sub: "Poco tamizados en la práctica y de alta prevalencia en población adolescente y universitaria, que suele ser la población disponible en varios escenarios.",
-    inst: [
-      {
-        n: "Cuestionario SCOFF", s: "SCOFF",
-        d: "Cinco preguntas de cribado de anorexia y bulimia.",
-        responde: "Autoinforme o entrevista", pob: "Adolescentes y adultos",
-        med: "5 ítems · 2 min", acceso: "libre",
-        esc: ["ninez","salud-mental","primer-nivel","comunidad"],
-        nota: "Dos respuestas afirmativas ya indican necesidad de valoración. Su brevedad lo hace aplicable en tamizajes colectivos."
-      },
-      {
-        n: "Prueba de Actitudes ante la Alimentación", s: "EAT-26",
-        d: "Actitudes y conductas de riesgo respecto a la alimentación y el peso.",
-        responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "26 ítems · 10 min", acceso: "libre",
-        esc: ["ninez","salud-mental","comunidad","primer-nivel"],
-        nota: "De uso libre citando a sus autores. Más extenso que el SCOFF y con puntaje de corte establecido."
+        n: "Cuestionario de Salud SF-36", s: "SF-36 · SF-12",
+        d: "Ocho dimensiones de salud física y mental percibida.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "36 o 12 ítems · 5-15 min", acceso: "licencia",
+        esc: ["hospital","primer-nivel","comunidad"],
+        nota: "Se adquiere con su editor. Para uso libre conviene alguno de los anteriores."
       }
     ]
   }
@@ -975,18 +1324,33 @@ function pintarInstrumento(i){
   '</div>';
 }
 
-$("grupos").innerHTML = GRUPOS.map((g, gi) =>
-  '<details class="grupo" id="g' + gi + '">' +
-    '<summary>' +
-      '<div class="grupo-cab"><h2>' + escapar(g.t) + '</h2>' +
-        '<span class="n">' + g.inst.length + '</span>' +
-        '<span class="mas" aria-hidden="true"></span></div>' +
-      '<p class="grupo-sub">' + escapar(g.sub) + '</p>' +
-    '</summary>' +
-    '<div class="grupo-cuerpo">' +
-      '<div class="tarjetas">' + g.inst.map(pintarInstrumento).join("") + '</div>' +
-    '</div>' +
-  '</details>').join("");
+/* La categoría es un encabezado y no un desplegable: se ve siempre, y de
+   ella cuelgan sus variables, que sí se pliegan. Se emite al cambiar de
+   categoría, así que el arreglo tiene que venir ordenado por ella. */
+let catPrevia = null;
+$("grupos").innerHTML = GRUPOS.map((g, gi) => {
+  let cab = "";
+  if (g.cat !== catPrevia){
+    catPrevia = g.cat;
+    const c = CATEGORIAS.find(x => x.t === g.cat) || { t: g.cat, d: "" };
+    cab = '<div class="categoria" data-cat="' + escapar(g.cat) + '">' +
+            '<h2>' + escapar(c.t) + '</h2>' +
+            '<p>' + escapar(c.d) + '</p>' +
+          '</div>';
+  }
+  return cab +
+    '<details class="grupo" id="g' + gi + '" data-cat="' + escapar(g.cat) + '">' +
+      '<summary>' +
+        '<div class="grupo-cab"><h3>' + escapar(g.t) + '</h3>' +
+          '<span class="n">' + g.inst.length + '</span>' +
+          '<span class="mas" aria-hidden="true"></span></div>' +
+        '<p class="grupo-sub">' + escapar(g.sub) + '</p>' +
+      '</summary>' +
+      '<div class="grupo-cuerpo">' +
+        '<div class="tarjetas">' + g.inst.map(pintarInstrumento).join("") + '</div>' +
+      '</div>' +
+    '</details>';
+}).join("");
 
 $("filtros").insertAdjacentHTML("beforeend", ESCENARIOS.map(e =>
   '<button class="chip" type="button" data-esc="' + e.id + '"' +
@@ -1022,6 +1386,12 @@ function aplicar(){
     sec.querySelector(".n").textContent = enGrupo;
     if (filtrando) sec.open = enGrupo > 0;
     visibles += enGrupo;
+  });
+
+  // Una categoría sin variables visibles se esconde con ellas.
+  document.querySelectorAll(".categoria").forEach(c => {
+    const cat = c.dataset.cat.replace(/"/g, '\\"');
+    c.hidden = !document.querySelector('.grupo:not([hidden])[data-cat="' + cat + '"]');
   });
 
   // Al limpiar todo se vuelve a la lectura panorámica.
