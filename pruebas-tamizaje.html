@@ -111,16 +111,47 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 /* ============================================================
    GRUPOS E INSTRUMENTOS
    ============================================================ */
-.grupo{margin-top:clamp(32px,5vh,50px);}
+/* Cada variable es un desplegable. Plegadas, las catorce caben en una
+   lectura panorámica: se ve qué hay disponible antes de entrar a nada.
+   El resumen conserva la descripción porque es lo que permite decidir
+   cuál desplegar sin abrirlas todas. */
+.grupo{margin-top:14px;}
 .grupo[hidden]{display:none;}
-.grupo-cab{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
-.grupo-cab h2{font-size:clamp(20px,2.3vw,27px); line-height:1.2;}
+.grupo > summary{
+  list-style:none; cursor:pointer;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--surface); padding:17px 20px;
+  transition:background .14s, border-color .14s;
+}
+.grupo > summary::-webkit-details-marker{display:none;}
+.grupo > summary:hover{background:var(--surface-alt); border-color:var(--accent-soft);}
+.grupo[open] > summary{
+  border-bottom-left-radius:0; border-bottom-right-radius:0;
+  border-color:var(--accent-soft); background:var(--accent-soft);
+}
+.grupo > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+.grupo-cab{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.grupo-cab h2{font-size:clamp(18px,2.1vw,25px); line-height:1.2;}
 .grupo-cab .n{
   font-size:12px; font-weight:600; color:var(--ink-faint);
-  background:var(--surface); border:1px solid var(--border);
+  background:var(--bg); border:1px solid var(--border);
   border-radius:999px; padding:2px 10px;
 }
-.grupo-sub{margin-top:7px; max-width:80ch; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+/* El signo cambia con el estado: es la única señal de que hay más. */
+.grupo-cab .mas{
+  margin-left:auto; flex:none;
+  font-size:20px; line-height:1; color:var(--accent); font-weight:400;
+}
+.grupo[open] .grupo-cab .mas::after{content:"\2013";}
+.grupo:not([open]) .grupo-cab .mas::after{content:"+";}
+.grupo-sub{margin:8px 0 0; max-width:84ch; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+
+.grupo-cuerpo{
+  border:1px solid var(--accent-soft); border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  padding:4px 18px 20px;
+}
 
 .tarjetas{
   margin-top:18px; display:grid;
@@ -222,6 +253,7 @@ footer strong{color:var(--ink-soft); font-weight:600;}
     <div class="controles-fila" style="margin-top:10px">
       <input class="buscador" id="buscador" type="search"
              placeholder="Buscar por nombre, sigla o lo que detecta…" autocomplete="off">
+      <button class="chip" type="button" id="bt-todo">Desplegar todo</button>
     </div>
     <div class="cuenta" id="cuenta"></div>
   </div>
@@ -555,24 +587,132 @@ const GRUPOS = [
     ]
   },
   {
-    t: "Cuidadores y familia",
-    sub: "La población de un programa no siempre es la que tiene el problema. En pediatría, geriatría y discapacidad, el cuidador suele ser quien sostiene la carga y quien nadie evalúa.",
+    t: "Violencia",
+    sub: "Ninguno de estos se aplica sin privacidad garantizada y sin plan de seguridad definido. Preguntar por violencia delante de la pareja, del cuidador o de la familia no solo invalida la respuesta: puede aumentar el riesgo de quien responde.",
+    inst: [
+      {
+        n: "Tamizaje de Violencia de Pareja", s: "HITS",
+        d: "Frecuencia con que la pareja lastima, insulta, amenaza o grita. Su sigla nombra esas cuatro conductas.",
+        responde: "Autoinforme o entrevista", pob: "Adultos",
+        med: "4 ítems · 2 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","salud-mental","comunidad"],
+        nota: "De los más breves que existen, lo que lo hace viable en consulta. Hay versión validada en español."
+      },
+      {
+        n: "Herramienta de Tamizaje de Maltrato a la Mujer", s: "WAST",
+        d: "Tensión en la relación y violencia física, emocional y sexual por parte de la pareja.",
+        responde: "Autoinforme o entrevista", pob: "Mujeres adultas",
+        med: "8 ítems · 5 min", acceso: "libre",
+        esc: ["primer-nivel","hospital","comunidad","salud-mental"],
+        nota: "Sus <strong>dos primeros ítems funcionan como versión corta</strong>, pensados para abrir el tema sin nombrar la violencia de entrada."
+      },
+      {
+        n: "Tamizaje de Evaluación de Abuso", s: "AAS",
+        d: "Abuso físico, sexual y durante el embarazo, con mapa corporal de localización de lesiones.",
+        responde: "Entrevista", pob: "Mujeres, incluidas gestantes",
+        med: "5 ítems · 5 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","comunidad"],
+        nota: "Diseñado para control prenatal, donde hay contacto repetido y privado — que es justo lo que este tipo de tamizaje necesita."
+      },
+      {
+        n: "Herramientas de Tamizaje de Maltrato Infantil", s: "ICAST",
+        d: "Exposición a violencia física, emocional y sexual en el hogar, la escuela y la comunidad.",
+        responde: "Autoinforme del niño, del joven o retrospectivo del adulto", pob: "Desde los 11 años",
+        med: "Variable · 20-30 min", acceso: "libre",
+        url: "https://www.ispcan.org/",
+        esc: ["ninez","comunidad","salud-mental"],
+        nota: "Desarrolladas por la Sociedad Internacional para la Prevención del Maltrato Infantil. <strong>Aplicarlas activa el deber de reporte</strong>: hay que tener resuelta la ruta antes."
+      },
+      {
+        n: "Índice de Sospecha de Maltrato al Adulto Mayor", s: "EASI",
+        d: "Señales de maltrato físico, psicológico, financiero y negligencia en personas mayores.",
+        responde: "Entrevista, con un ítem de observación del profesional", pob: "Adultos mayores",
+        med: "6 ítems · 2 min", acceso: "libre",
+        esc: ["mayores","primer-nivel","hospital","comunidad"],
+        nota: "Los cinco primeros ítems se preguntan a la persona y el sexto lo responde quien evalúa. <strong>Requiere que la persona esté sin acompañante</strong>, que suele ser el punto difícil."
+      }
+    ]
+  },
+  {
+    t: "Sueño",
+    sub: "Rara vez se tamiza y aparece en casi todo: es síntoma de depresión y de ansiedad, y a la vez factor que las sostiene. En escenarios hospitalarios conviene descartar causa médica antes de leerlo como psicológico.",
+    inst: [
+      {
+        n: "Índice de Calidad de Sueño de Pittsburgh", s: "PSQI",
+        d: "Calidad del sueño del último mes en siete componentes: latencia, duración, eficiencia, alteraciones, medicación y disfunción diurna.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "19 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
+        nota: "El más usado en investigación sobre sueño. Libre para uso clínico y académico citando a sus autores; el uso comercial sí requiere licencia."
+      },
+      {
+        n: "Índice de Severidad del Insomnio", s: "ISI",
+        d: "Gravedad del insomnio, satisfacción con el sueño e interferencia en el funcionamiento diurno.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "7 ítems · 5 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
+        nota: "Muy breve y sensible al cambio, lo que lo hace útil como <strong>medida antes y después</strong> de una intervención. De uso libre para fines clínicos y de investigación citando a su autor."
+      },
+      {
+        n: "Escala de Somnolencia de Epworth", s: "ESS",
+        d: "Probabilidad de quedarse dormido en ocho situaciones cotidianas. Mide somnolencia diurna, no calidad de sueño.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "8 ítems · 3 min", acceso: "registro",
+        url: "https://eprovide.mapi-trust.org/instruments/epworth-sleepiness-scale",
+        esc: ["hospital","primer-nivel","salud-mental"],
+        nota: "Su distribución la gestiona una agencia de licenciamiento: el uso académico suele autorizarse sin costo, pero <strong>hay que solicitarlo</strong>. Un puntaje alto obliga a descartar apnea antes que causa psicológica."
+      }
+    ]
+  },
+  {
+    t: "Funcionamiento familiar",
+    sub: "Todos miden percepción del funcionamiento, no funcionamiento observado, y la percepción cambia según quién de la familia responde. Aplicarlos a más de un miembro es más informativo que aplicarlos a uno solo.",
+    inst: [
+      {
+        n: "Cuestionario APGAR Familiar", s: "APGAR familiar",
+        d: "Satisfacción con cinco funciones de la propia familia: adaptación, participación, crecimiento, afecto y capacidad resolutiva.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "5 ítems · 3 min", acceso: "libre",
+        esc: ["primer-nivel","comunidad","ninez","cuidadores","salud-mental"],
+        nota: "Muy breve y de uso corriente en atención primaria en Colombia. Hay versión para niños con caritas en lugar de escala verbal."
+      },
+      {
+        n: "Escala de Cohesión y Adaptabilidad Familiar", s: "FACES III",
+        d: "Cohesión y adaptabilidad familiar, las dos dimensiones del modelo circumplejo de funcionamiento familiar.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "20 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","ninez","primer-nivel"],
+        nota: "Ampliamente reproducida y validada en población latinoamericana. <strong>Las versiones posteriores están bajo licencia</strong>, así que conviene citar explícitamente que se usa la tercera."
+      },
+      {
+        n: "Prueba de Percepción del Funcionamiento Familiar", s: "FF-SIL",
+        d: "Cohesión, armonía, comunicación, permeabilidad, afectividad, roles y adaptabilidad.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "14 ítems · 10 min", acceso: "libre",
+        esc: ["primer-nivel","comunidad","salud-mental","cuidadores"],
+        nota: "De origen cubano y muy extendida en atención primaria en la región, lo que facilita encontrar referentes de comparación locales."
+      }
+    ]
+  },
+  {
+    t: "Cuidadores",
+    sub: "La población de un programa no siempre es la que tiene el problema. En pediatría, geriatría y discapacidad, el cuidador sostiene la carga y casi nunca es a quien alguien evalúa: suele ser la población objetivo más evidente y más desatendida de un escenario de práctica.",
     inst: [
       {
         n: "Escala de Sobrecarga del Cuidador de Zarit", s: "Zarit",
-        d: "Sobrecarga percibida por quien cuida a una persona dependiente.",
+        d: "Sobrecarga percibida por quien cuida a una persona dependiente, en su dimensión objetiva y subjetiva.",
         responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
         med: "22 ítems · 10 min", acceso: "libre",
         esc: ["cuidadores","mayores","hospital","comunidad","salud-mental"],
-        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems. <strong>Es de los pocos instrumentos que dan una población objetivo evidente y desatendida</strong> en escenarios de práctica."
+        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems para tamizaje rápido."
       },
       {
-        n: "Cuestionario APGAR Familiar", s: "APGAR familiar",
-        d: "Percepción de funcionalidad de la propia familia en cinco dimensiones.",
-        responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "5 ítems · 3 min", acceso: "libre",
-        esc: ["cuidadores","primer-nivel","comunidad","ninez"],
-        nota: "Muy breve y de uso corriente en atención primaria en Colombia. Mide percepción, no funcionamiento observado."
+        n: "Índice de Esfuerzo del Cuidador", s: "CSI",
+        d: "Trece situaciones concretas de dificultad en el cuidado: sueño, esfuerzo físico, cambios de rutina, costo económico.",
+        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
+        med: "13 ítems · 5 min", acceso: "libre",
+        esc: ["cuidadores","mayores","hospital","comunidad"],
+        nota: "Más breve que la Zarit y con formato sí/no. Al preguntar por hechos y no por sentimientos, <strong>rinde mejor con cuidadores que minimizan su propia carga</strong>."
       }
     ]
   },
@@ -668,12 +808,17 @@ function pintarInstrumento(i){
 }
 
 $("grupos").innerHTML = GRUPOS.map((g, gi) =>
-  '<section class="grupo" id="g' + gi + '">' +
-    '<div class="grupo-cab"><h2>' + escapar(g.t) + '</h2>' +
-      '<span class="n">' + g.inst.length + '</span></div>' +
-    '<p class="grupo-sub">' + escapar(g.sub) + '</p>' +
-    '<div class="tarjetas">' + g.inst.map(pintarInstrumento).join("") + '</div>' +
-  '</section>').join("");
+  '<details class="grupo" id="g' + gi + '">' +
+    '<summary>' +
+      '<div class="grupo-cab"><h2>' + escapar(g.t) + '</h2>' +
+        '<span class="n">' + g.inst.length + '</span>' +
+        '<span class="mas" aria-hidden="true"></span></div>' +
+      '<p class="grupo-sub">' + escapar(g.sub) + '</p>' +
+    '</summary>' +
+    '<div class="grupo-cuerpo">' +
+      '<div class="tarjetas">' + g.inst.map(pintarInstrumento).join("") + '</div>' +
+    '</div>' +
+  '</details>').join("");
 
 $("filtros").insertAdjacentHTML("beforeend", ESCENARIOS.map(e =>
   '<button class="chip" type="button" data-esc="' + e.id + '"' +
@@ -687,6 +832,10 @@ let escActivo = "todos";
 
 function aplicar(){
   const q = $("buscador").value.trim().toLowerCase();
+  // Con filtro o búsqueda activos las variables se despliegan solas: si no,
+  // los resultados quedarían escondidos dentro de un desplegable cerrado y
+  // parecería que la búsqueda no encontró nada.
+  const filtrando = escActivo !== "todos" || q !== "";
   let visibles = 0;
 
   document.querySelectorAll(".grupo").forEach(sec => {
@@ -703,15 +852,39 @@ function aplicar(){
     // encabezados huérfanos que hacen parecer que falta contenido.
     sec.hidden = enGrupo === 0;
     sec.querySelector(".n").textContent = enGrupo;
+    if (filtrando) sec.open = enGrupo > 0;
     visibles += enGrupo;
   });
 
+  // Al limpiar todo se vuelve a la lectura panorámica.
+  if (!filtrando) document.querySelectorAll(".grupo").forEach(s => s.open = false);
+  sincronizarTodo();
+
   $("vacio").hidden = visibles > 0;
+  const nVar = document.querySelectorAll(".grupo:not([hidden])").length;
   const et = ESCENARIOS.find(e => e.id === escActivo).et;
   $("cuenta").textContent = visibles + (visibles === 1 ? " instrumento" : " instrumentos") +
     (escActivo === "todos" ? " en total" : " para «" + et + "»") +
-    (q ? " que coinciden con la búsqueda" : "");
+    (q ? " que coinciden con la búsqueda" : "") +
+    " · " + nVar + (nVar === 1 ? " variable" : " variables");
 }
+
+/* El botón dice lo que va a hacer, no el estado en que está: si hay alguna
+   plegada, despliega; solo cuando están todas abiertas ofrece plegar. */
+function sincronizarTodo(){
+  const abiertas = document.querySelectorAll(".grupo:not([hidden])[open]").length;
+  const total = document.querySelectorAll(".grupo:not([hidden])").length;
+  $("bt-todo").textContent = (total && abiertas === total) ? "Plegar todo" : "Desplegar todo";
+}
+
+$("bt-todo").addEventListener("click", () => {
+  const desplegar = $("bt-todo").textContent === "Desplegar todo";
+  document.querySelectorAll(".grupo:not([hidden])").forEach(s => s.open = desplegar);
+  sincronizarTodo();
+});
+
+// Al plegar o desplegar a mano, el botón se pone al día.
+$("grupos").addEventListener("toggle", sincronizarTodo, true);
 
 $("filtros").addEventListener("click", ev => {
   const b = ev.target.closest(".chip");
