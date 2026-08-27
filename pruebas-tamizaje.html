@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pruebas de tamizaje — Guía de consulta</title>
+<style>
+/* ============================================================
+   TOKENS
+   Los del recurso de aplicación del tamizaje (4-Tamizaje-SRQ.html):
+   esto pertenece a esa familia, no a la de los decks de fase.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --libre:#3f7d53;
+  --libre-soft:#e7f3ea;
+  --registro:#b8722a;
+  --registro-soft:#faf1e4;
+  --licencia:#a83f2b;
+  --licencia-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:12px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+a{color:inherit;}
+
+.pagina{max-width:1180px; margin:0 auto; padding:clamp(30px,6vh,60px) 28px 90px;}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.rotulo{
+  font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px;
+}
+h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; max-width:22ch;}
+.lead{
+  margin-top:15px; max-width:76ch;
+  font-size:clamp(14.5px,1.5vw,16.5px); line-height:1.65; color:var(--ink-soft);
+}
+.lead strong{color:var(--ink); font-weight:600;}
+
+/* El aviso no es decorativo: sin él este recurso invita a aplicar
+   instrumentos sin encuadre, que es lo contrario de lo que se enseña. */
+.aviso{
+  margin-top:26px; padding:18px 22px;
+  border:1px solid var(--border); border-left:4px solid var(--accent);
+  border-radius:var(--radius); background:var(--surface);
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+  max-width:84ch;
+}
+.aviso strong{color:var(--ink); font-weight:600;}
+.aviso ul{margin:10px 0 0; padding-left:20px;}
+.aviso li{margin-bottom:6px;}
+.aviso li:last-child{margin-bottom:0;}
+
+/* ============================================================
+   CONTROLES
+   ============================================================ */
+.controles{
+  position:sticky; top:0; z-index:10;
+  margin:34px 0 0; padding:16px 0 14px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.controles-fila{display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+.controles-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint); margin-right:4px;
+}
+.chip{
+  font-family:var(--font-body); font-size:13.5px; font-weight:500;
+  color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:999px;
+  padding:7px 14px; cursor:pointer;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.chip:hover{background:var(--surface-alt); color:var(--ink);}
+.chip[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;
+}
+.buscador{
+  flex:1 1 220px; min-width:200px;
+  font-family:var(--font-body); font-size:14px; color:var(--ink);
+  padding:9px 14px; border:1px solid var(--border); border-radius:999px;
+  background:var(--bg);
+}
+.buscador:focus{outline:none; border-color:var(--accent);}
+.cuenta{margin-top:10px; font-size:12.5px; color:var(--ink-faint);}
+
+/* ============================================================
+   GRUPOS E INSTRUMENTOS
+   ============================================================ */
+.grupo{margin-top:clamp(32px,5vh,50px);}
+.grupo[hidden]{display:none;}
+.grupo-cab{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+.grupo-cab h2{font-size:clamp(20px,2.3vw,27px); line-height:1.2;}
+.grupo-cab .n{
+  font-size:12px; font-weight:600; color:var(--ink-faint);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:999px; padding:2px 10px;
+}
+.grupo-sub{margin-top:7px; max-width:80ch; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+
+.tarjetas{
+  margin-top:18px; display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px;
+}
+.inst{
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--surface); padding:18px 20px 20px;
+  box-shadow:var(--shadow-card);
+  display:flex; flex-direction:column;
+}
+.inst[hidden]{display:none;}
+.inst-cab{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+.inst-n{
+  font-family:var(--font-display); font-size:18px; line-height:1.25; color:var(--ink);
+  text-decoration:none;
+}
+a.inst-n{color:var(--accent-dark); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px;}
+a.inst-n:hover{color:var(--accent);}
+.inst-n .sigla{font-family:var(--font-body); font-size:13px; font-weight:700; color:var(--ink-faint);}
+
+.acceso{
+  flex:none; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  border-radius:999px; padding:3px 9px; white-space:nowrap;
+}
+.acceso.libre{background:var(--libre-soft); color:var(--libre);}
+.acceso.registro{background:var(--registro-soft); color:var(--registro);}
+.acceso.licencia{background:var(--licencia-soft); color:var(--licencia);}
+
+.inst-d{margin-top:10px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
+.inst-datos{
+  margin-top:12px; display:flex; flex-wrap:wrap; gap:6px;
+}
+.inst-datos span{
+  font-size:12px; color:var(--ink-soft);
+  background:var(--bg); border:1px solid var(--border);
+  border-radius:6px; padding:3px 9px;
+}
+.inst-nota{
+  margin-top:12px; padding-top:11px; border-top:1px solid var(--border);
+  font-size:13px; line-height:1.5; color:var(--ink-faint);
+}
+.inst-nota strong{color:var(--ink-soft); font-weight:600;}
+.inst-pie{margin-top:auto;}
+
+.vacio{
+  margin-top:40px; padding:28px; text-align:center;
+  border:1px dashed var(--border); border-radius:var(--radius);
+  color:var(--ink-faint); font-size:14.5px;
+}
+.vacio[hidden]{display:none;}
+
+footer{
+  margin-top:clamp(46px,8vh,80px); padding-top:24px;
+  border-top:1px solid var(--border);
+  font-size:12.5px; line-height:1.6; color:var(--ink-faint); max-width:84ch;
+}
+footer strong{color:var(--ink-soft); font-weight:600;}
+
+@media print{
+  .controles{position:static;}
+  .inst{break-inside:avoid; box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="pagina">
+
+  <div class="rotulo">Guía de consulta</div>
+  <h1>Pruebas de tamizaje por variable psicológica</h1>
+  <p class="lead">
+    Instrumentos de <strong>detección</strong> agrupados por lo que detectan. El filtro de
+    escenario recorta la lista a lo que tiene sentido aplicar en cada sitio de práctica.
+    Donde el instrumento es de distribución libre, <strong>el nombre es un enlace a su
+    fuente oficial</strong>; donde no lo es, se indica cómo se consigue.
+  </p>
+
+  <div class="aviso">
+    <strong>Antes de repartir cualquiera de estos:</strong>
+    <ul>
+      <li>Un tamizaje <strong>detecta, no diagnostica</strong>. Su resultado es una
+          probabilidad que exige confirmación, y no se enuncia como un caso.</li>
+      <li>No se tamiza si no está garantizada la atención de quien resulte positivo.
+          La ruta de canalización se define <em>antes</em> de aplicar.</li>
+      <li>Los marcados como <strong>con licencia</strong> no se pueden fotocopiar ni
+          descargar: hay que adquirirlos con su editor. Circular copias es una infracción,
+          y además suele implicar usar versiones desactualizadas o mal traducidas.</li>
+      <li>Verificá que exista <strong>validación en población colombiana</strong> o
+          latinoamericana antes de sostener un punto de corte. La traducción de un
+          instrumento no traslada sus propiedades psicométricas.</li>
+    </ul>
+  </div>
+
+  <div class="controles">
+    <div class="controles-fila" id="filtros">
+      <span class="controles-r">Escenario</span>
+    </div>
+    <div class="controles-fila" style="margin-top:10px">
+      <input class="buscador" id="buscador" type="search"
+             placeholder="Buscar por nombre, sigla o lo que detecta…" autocomplete="off">
+    </div>
+    <div class="cuenta" id="cuenta"></div>
+  </div>
+
+  <div id="grupos"></div>
+
+  <div class="vacio" id="vacio" hidden>
+    Ningún instrumento de esta guía coincide con el filtro y la búsqueda activos.
+  </div>
+
+  <footer id="pie"></footer>
+</div>
+
+<script>
+/* ============================================================
+   POR QUÉ AGRUPADO POR VARIABLE Y NO POR INSTITUCIÓN
+
+   Lo que decide si un instrumento sirve es qué se quiere detectar,
+   quién responde y a qué edad. El escenario condiciona la población y
+   el tiempo disponible, pero no el constructo: el mismo hospital puede
+   necesitar tamizar depresión, consumo o deterioro cognitivo.
+
+   Por eso la variable es el grupo y el escenario es un filtro. Un
+   recurso en papel tendría que elegir una de las dos entradas; acá se
+   pueden tener las dos sin duplicar contenido.
+   ============================================================ */
+
+const ESCENARIOS = [
+  { id: "todos",        et: "Todos" },
+  { id: "hospital",     et: "Hospital general" },
+  { id: "salud-mental", et: "Salud mental" },
+  { id: "ninez",        et: "Niños y adolescentes" },
+  { id: "mayores",      et: "Adultos mayores" },
+  { id: "consumo",      et: "Consumo de sustancias" },
+  { id: "primer-nivel", et: "Consulta externa" },
+  { id: "cuidadores",   et: "Cuidadores y familia" },
+  { id: "comunidad",    et: "Comunidad" }
+];
+
+/* Los tres estados de acceso son la información que evita repartir algo
+   que no se puede repartir:
+     libre     — se descarga y se reproduce sin permiso.
+     registro  — gratuito, pero exige registrarse o formarse antes.
+     licencia  — se compra al editor. Nombre sí, copia no.            */
+
+const GRUPOS = [
+  {
+    t: "Malestar psicológico general",
+    sub: "Tamizaje inespecífico: detectan que algo anda mal, sin decir qué. Sirven como primera puerta cuando no hay una hipótesis diagnóstica todavía.",
+    inst: [
+      {
+        n: "Cuestionario de Autorreporte de Síntomas", s: "SRQ-20 / SRQ-30",
+        d: "Síntomas emocionales, y en la versión de 30 ítems también consumo de alcohol, síntomas psicóticos y convulsiones.",
+        responde: "Autoinforme o entrevista estructurada", pob: "Adultos",
+        med: "20 o 30 ítems · 10-15 min", acceso: "libre",
+        url: "https://www.minsalud.gov.co/sites/rid/lists/bibliotecadigital/ride/de/dij/resolucion-3280-de-2018.pdf",
+        esc: ["hospital","salud-mental","primer-nivel","comunidad","mayores"],
+        nota: "El que aplicaron en clase. <strong>El ítem 17 pregunta por ideación suicida</strong> y su positivo obliga a conducta inmediata, sin esperar al puntaje total."
+      },
+      {
+        n: "Evaluación de Discapacidad de la Organización Mundial de la Salud", s: "WHODAS 2.0",
+        d: "Funcionamiento y discapacidad en seis dominios de la vida diaria. No mide síntomas: mide qué tanto interfieren.",
+        responde: "Autoinforme o informante", pob: "Adultos",
+        med: "12 o 36 ítems · 5-20 min", acceso: "libre",
+        url: "https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health/who-disability-assessment-schedule",
+        esc: ["hospital","salud-mental","primer-nivel","comunidad"],
+        nota: "Útil como <strong>medida de resultado</strong>: se aplica antes y después de un programa, y el cambio en funcionamiento es un indicador más defendible que el cambio en síntomas."
+      },
+      {
+        n: "Cuestionario General de Salud", s: "GHQ-12",
+        d: "Malestar psicológico general y detección de casos probables en población no clínica.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "12 ítems · 5 min", acceso: "licencia",
+        esc: ["hospital","primer-nivel","comunidad"],
+        nota: "Se adquiere con su editor. Muy usado en investigación ocupacional y comunitaria."
+      },
+      {
+        n: "Escala de Malestar Psicológico de Kessler", s: "K-10",
+        d: "Ansiedad y depresión inespecíficas en las últimas cuatro semanas.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "10 ítems · 5 min", acceso: "libre",
+        esc: ["primer-nivel","comunidad","hospital"],
+        nota: "Sin repositorio oficial único: búsquenlo por su nombre junto con la validación que vayan a citar."
+      }
+    ]
+  },
+  {
+    t: "Depresión",
+    sub: "Todos comparten el mismo problema de interpretación: puntúan síntomas de las últimas dos semanas y no distinguen un episodio de una reacción esperable ante una pérdida reciente.",
+    inst: [
+      {
+        n: "Cuestionario sobre la Salud del Paciente", s: "PHQ-9",
+        d: "Los nueve criterios de episodio depresivo, con gravedad. El ítem 9 tamiza ideación suicida.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "9 ítems · 3-5 min", acceso: "libre",
+        url: "https://www.phqscreeners.com/select-screener",
+        esc: ["hospital","salud-mental","primer-nivel","comunidad","mayores"],
+        nota: "Dominio público, sin permiso ni costo, en más de 80 idiomas. La versión <strong>PHQ-2</strong> son sus dos primeros ítems y sirve como filtro ultrabreve."
+      },
+      {
+        n: "Cuestionario sobre la Salud del Paciente, versión adolescente", s: "PHQ-A",
+        d: "Adaptación del PHQ-9 con lenguaje y referentes ajustados a la adolescencia.",
+        responde: "Autoinforme", pob: "11 a 17 años",
+        med: "9 ítems · 5 min", acceso: "libre",
+        url: "https://www.phqscreeners.com/select-screener",
+        esc: ["ninez","salud-mental","primer-nivel"],
+        nota: "Aplicarlo requiere resolver antes quién recibe el resultado si el menor puntúa en el ítem de ideación."
+      },
+      {
+        n: "Escala de Depresión Geriátrica de Yesavage", s: "GDS-15",
+        d: "Sintomatología depresiva en personas mayores, evitando los ítems somáticos que en esa población confunden con enfermedad física.",
+        responde: "Autoinforme o heteroaplicada", pob: "Adultos mayores",
+        med: "15 ítems · 5-7 min", acceso: "libre",
+        esc: ["mayores","hospital","primer-nivel","comunidad"],
+        nota: "Formato sí/no, lo que la hace viable con baja escolaridad. Existe una versión de 5 ítems para tamizaje rápido."
+      },
+      {
+        n: "Escala de Depresión Posparto de Edimburgo", s: "EPDS",
+        d: "Sintomatología depresiva en el embarazo y el posparto, sin ítems somáticos confundibles con el puerperio.",
+        responde: "Autoinforme", pob: "Gestantes y puérperas",
+        med: "10 ítems · 5 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","comunidad"],
+        nota: "De reproducción libre citando a sus autores. Su ítem 10 indaga autolesión y se revisa siempre, aparte del puntaje."
+      },
+      {
+        n: "Inventario de Depresión de Beck", s: "BDI-II",
+        d: "Gravedad de la sintomatología depresiva. Es de los más usados en investigación clínica.",
+        responde: "Autoinforme", pob: "13 años en adelante",
+        med: "21 ítems · 10 min", acceso: "licencia",
+        esc: ["salud-mental","hospital","primer-nivel"],
+        nota: "Se adquiere con su editor. <strong>No es un instrumento de tamizaje poblacional:</strong> está pensado para medir gravedad en quien ya consulta."
+      }
+    ]
+  },
+  {
+    t: "Ansiedad",
+    sub: "En escenarios hospitalarios conviene aplicarlos junto a un tamizaje de depresión: la comorbilidad es alta y un instrumento solo deja la mitad del cuadro afuera.",
+    inst: [
+      {
+        n: "Escala del Trastorno de Ansiedad Generalizada", s: "GAD-7",
+        d: "Síntomas de ansiedad generalizada de las últimas dos semanas, con gravedad.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "7 ítems · 3-5 min", acceso: "libre",
+        url: "https://www.phqscreeners.com/select-screener",
+        esc: ["hospital","salud-mental","primer-nivel","comunidad"],
+        nota: "Dominio público, del mismo repositorio que el PHQ. <strong>GAD-2</strong> son sus dos primeros ítems, como filtro previo."
+      },
+      {
+        n: "Pantalla de Trastornos Emocionales Relacionados con la Ansiedad Infantil", s: "SCARED",
+        d: "Ansiedad de separación, generalizada, social, pánico y rechazo escolar.",
+        responde: "Autoinforme y versión paralela para padres", pob: "8 a 18 años",
+        med: "41 ítems · 10-15 min", acceso: "libre",
+        esc: ["ninez","salud-mental","cuidadores"],
+        nota: "Que tenga <strong>versión de padres y de niño en paralelo</strong> es lo que la hace valiosa: la discrepancia entre ambas es en sí un hallazgo."
+      },
+      {
+        n: "Inventario de Ansiedad de Beck", s: "BAI",
+        d: "Gravedad de síntomas ansiosos, con énfasis en lo somático, lo que ayuda a separarlos de los depresivos.",
+        responde: "Autoinforme", pob: "17 a 80 años",
+        med: "21 ítems · 10 min", acceso: "licencia",
+        esc: ["salud-mental","hospital"],
+        nota: "Se adquiere con su editor. Lo mismo aplica al <strong>Inventario de Ansiedad Estado-Rasgo (STAI)</strong>."
+      }
+    ]
+  },
+  {
+    t: "Riesgo suicida",
+    sub: "Ninguno de estos se aplica sin haber definido antes qué se hace con un positivo, quién lo recibe y en cuánto tiempo. Un tamizaje de riesgo sin ruta activa es el peor caso posible.",
+    inst: [
+      {
+        n: "Escala Columbia para Evaluar el Riesgo de Suicidio", s: "C-SSRS",
+        d: "Gravedad e intensidad de la ideación, conductas suicidas y letalidad. Es el estándar más extendido.",
+        responde: "Heteroaplicada", pob: "Desde la infancia",
+        med: "Versión de tamizaje de 6 ítems", acceso: "registro",
+        url: "https://cssrs.columbia.edu/",
+        esc: ["hospital","salud-mental","primer-nivel","ninez"],
+        nota: "Gratuita, pero exige <strong>registrarse y formarse</strong> antes de usarla. Hay versión validada al español."
+      },
+      {
+        n: "Preguntas de Tamizaje de Riesgo Suicida", s: "ASQ",
+        d: "Cuatro preguntas de tamizaje rápido, más una de urgencia si alguna resulta positiva.",
+        responde: "Heteroaplicada", pob: "Desde los 8 años",
+        med: "4 ítems · 20 segundos", acceso: "libre",
+        url: "https://www.nimh.nih.gov/research/research-conducted-at-nimh/asq-toolkit-materials",
+        esc: ["hospital","salud-mental","ninez","primer-nivel"],
+        nota: "Pensada para urgencias y hospitalización general. El material oficial incluye <strong>el protocolo de qué hacer con cada resultado</strong>, que es la parte que no se puede improvisar."
+      },
+      {
+        n: "Ítems de riesgo dentro de otros tamizajes", s: "PHQ-9 · SRQ",
+        d: "El ítem 9 del PHQ-9 y el ítem 17 del SRQ indagan ideación aunque el instrumento no sea de riesgo suicida.",
+        responde: "Según el instrumento", pob: "Según el instrumento",
+        med: "1 ítem", acceso: "libre",
+        esc: ["hospital","salud-mental","primer-nivel","comunidad","mayores","ninez"],
+        nota: "Se revisan <strong>siempre por separado del puntaje total</strong>: alguien puede dar negativo global y positivo en ese ítem. No aplicar un instrumento que los contiene sin haber previsto la conducta."
+      }
+    ]
+  },
+  {
+    t: "Consumo de sustancias",
+    sub: "Casi todos preguntan por «alguna vez» o por los últimos doce meses. Sin ventana temporal delimitada, detectan biografía además de estado actual.",
+    inst: [
+      {
+        n: "Prueba de Identificación de Trastornos por Consumo de Alcohol", s: "AUDIT",
+        d: "Consumo de riesgo, consumo perjudicial y dependencia de alcohol.",
+        responde: "Autoinforme o entrevista", pob: "Adultos y adolescentes",
+        med: "10 ítems · 5 min", acceso: "libre",
+        url: "https://www.paho.org/sites/default/files/Auditmanual_ENG.pdf",
+        esc: ["consumo","hospital","primer-nivel","comunidad","salud-mental"],
+        nota: "Desarrollada por la Organización Mundial de la Salud. <strong>AUDIT-C</strong> son sus tres primeros ítems, para tamizaje rápido en consulta."
+      },
+      {
+        n: "Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias", s: "ASSIST",
+        d: "Consumo y riesgo asociado para diez clases de sustancias, con nivel de riesgo por sustancia.",
+        responde: "Entrevista", pob: "Adultos",
+        med: "8 ítems por sustancia · 10-15 min", acceso: "libre",
+        url: "https://www.who.int/publications/i/item/978924159938-2",
+        esc: ["consumo","salud-mental","primer-nivel","hospital"],
+        nota: "Viene con su <strong>manual de intervención breve</strong> vinculado al nivel de riesgo, lo que la vuelve tamizaje e intervención a la vez."
+      },
+      {
+        n: "Tamizaje de Consumo en Adolescentes", s: "CRAFFT",
+        d: "Consumo de riesgo de alcohol y otras sustancias, con preguntas centradas en situaciones propias de la adolescencia.",
+        responde: "Autoinforme o entrevista", pob: "12 a 21 años",
+        med: "9 ítems · 5 min", acceso: "libre",
+        url: "https://crafft.org/",
+        esc: ["consumo","ninez","primer-nivel","salud-mental"],
+        nota: "Es el estándar en población adolescente. Hay versión en español en el sitio oficial."
+      },
+      {
+        n: "Prueba de Detección de Abuso de Drogas", s: "DAST-10",
+        d: "Problemas asociados al consumo de drogas distintas del alcohol en los últimos doce meses.",
+        responde: "Autoinforme", pob: "Adultos y adolescentes",
+        med: "10 ítems · 5 min", acceso: "libre",
+        esc: ["consumo","salud-mental","primer-nivel"],
+        nota: "Complementa al AUDIT, que solo cubre alcohol."
+      },
+      {
+        n: "Cuestionario CAGE", s: "CAGE",
+        d: "Cuatro preguntas sobre problemas con el alcohol a lo largo de la vida.",
+        responde: "Entrevista", pob: "Adultos",
+        med: "4 ítems · 1 min", acceso: "libre",
+        esc: ["consumo","hospital","primer-nivel"],
+        nota: "Muy breve y muy sensible, pero <strong>sin ventana temporal</strong>: un episodio remoto puntúa igual que un patrón actual."
+      }
+    ]
+  },
+  {
+    t: "Infancia y adolescencia",
+    sub: "Con niños pequeños el informante no es el niño. Estos instrumentos existen en versiones paralelas —niño, cuidador y docente— y comparar entre ellas suele decir más que cualquiera por separado.",
+    inst: [
+      {
+        n: "Cuestionario de Capacidades y Dificultades", s: "SDQ",
+        d: "Síntomas emocionales, problemas de conducta, hiperactividad, relación con pares y conducta prosocial.",
+        responde: "Cuidador, docente y autoinforme desde los 11", pob: "2 a 17 años",
+        med: "25 ítems · 10 min", acceso: "libre",
+        url: "https://www.sdqinfo.org/",
+        esc: ["ninez","cuidadores","salud-mental","comunidad","primer-nivel"],
+        nota: "Descarga gratuita en más de 40 idiomas, español incluido. Es el de cribado infantil más usado en el mundo, y <strong>la única de las cinco escalas que mide algo positivo</strong> es la de conducta prosocial."
+      },
+      {
+        n: "Cuestionario de Síntomas para Niños", s: "RQC",
+        d: "Diez preguntas al cuidador sobre problemas del desarrollo y del comportamiento.",
+        responde: "Cuidador", pob: "5 a 15 años",
+        med: "10 ítems · 5-10 min", acceso: "libre",
+        url: "https://www.minsalud.gov.co/sites/rid/lists/bibliotecadigital/ride/de/dij/resolucion-3280-de-2018.pdf",
+        esc: ["ninez","cuidadores","primer-nivel","comunidad"],
+        nota: "Es el equivalente infantil del SRQ y está en la misma normativa colombiana. <strong>Una sola respuesta positiva ya obliga a valoración</strong>."
+      },
+      {
+        n: "Lista de Verificación de la Conducta Infantil", s: "CBCL",
+        d: "Perfil amplio de problemas emocionales y conductuales, con puntuaciones por síndromes.",
+        responde: "Cuidador, docente y autoinforme", pob: "1½ a 18 años",
+        med: "100+ ítems · 20-30 min", acceso: "licencia",
+        esc: ["ninez","salud-mental","cuidadores"],
+        nota: "Se adquiere con su editor. Es evaluación amplia, no tamizaje breve: para cribado rápido conviene el SDQ."
+      }
+    ]
+  },
+  {
+    t: "Atención e hiperactividad",
+    sub: "El criterio diagnóstico exige presencia en más de un contexto, así que un solo informante nunca alcanza: hay que tener la versión de casa y la de colegio.",
+    inst: [
+      {
+        n: "Escalas de Evaluación Vanderbilt", s: "Vanderbilt",
+        d: "Síntomas de inatención e hiperactividad más comorbilidades frecuentes y desempeño funcional.",
+        responde: "Cuidador y docente, en versiones paralelas", pob: "6 a 12 años",
+        med: "45-55 ítems · 10-15 min", acceso: "libre",
+        url: "https://www.nichq.org/resource/nichq-vanderbilt-assessment-scales",
+        esc: ["ninez","cuidadores","primer-nivel","salud-mental"],
+        nota: "Incluye escala de desempeño, no solo de síntomas — que es lo que permite sostener el criterio de interferencia."
+      },
+      {
+        n: "Escala SNAP-IV", s: "SNAP-IV",
+        d: "Síntomas de inatención, hiperactividad-impulsividad y oposicionismo, redactados sobre los criterios diagnósticos.",
+        responde: "Cuidador y docente", pob: "6 a 18 años",
+        med: "18 o 26 ítems · 10 min", acceso: "libre",
+        esc: ["ninez","cuidadores","salud-mental"],
+        nota: "Más breve que la Vanderbilt y de uso muy extendido en la región."
+      },
+      {
+        n: "Escalas Conners", s: "Conners 3",
+        d: "Evaluación amplia de atención, hiperactividad y problemas asociados, con baremos.",
+        responde: "Cuidador, docente y autoinforme", pob: "6 a 18 años",
+        med: "Variable · 20 min", acceso: "licencia",
+        esc: ["ninez","salud-mental"],
+        nota: "Se adquiere con su editor."
+      }
+    ]
+  },
+  {
+    t: "Trauma y estrés postraumático",
+    sub: "Antes de tamizar exposición a eventos traumáticos hay que tener resuelto el soporte inmediato: la aplicación misma puede reactivar sintomatología.",
+    inst: [
+      {
+        n: "Lista de Verificación del Trastorno de Estrés Postraumático", s: "PCL-5",
+        d: "Los veinte síntomas de estrés postraumático del DSM-5, con gravedad.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "20 ítems · 5-10 min", acceso: "libre",
+        url: "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+        esc: ["salud-mental","hospital","comunidad","primer-nivel"],
+        nota: "Distribuida libremente por el Centro Nacional de Estrés Postraumático de los Estados Unidos, con versiones en español."
+      },
+      {
+        n: "Escala de Síntomas de Estrés Postraumático Infantil", s: "CPSS-5",
+        d: "Sintomatología postraumática y su interferencia en la vida cotidiana.",
+        responde: "Autoinforme, con versión para cuidador", pob: "8 a 18 años",
+        med: "27 ítems · 15 min", acceso: "libre",
+        esc: ["ninez","salud-mental","cuidadores"],
+        nota: "De uso libre para fines clínicos y de investigación, citando a sus autores."
+      }
+    ]
+  },
+  {
+    t: "Cuidadores y familia",
+    sub: "La población de un programa no siempre es la que tiene el problema. En pediatría, geriatría y discapacidad, el cuidador suele ser quien sostiene la carga y quien nadie evalúa.",
+    inst: [
+      {
+        n: "Escala de Sobrecarga del Cuidador de Zarit", s: "Zarit",
+        d: "Sobrecarga percibida por quien cuida a una persona dependiente.",
+        responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
+        med: "22 ítems · 10 min", acceso: "libre",
+        esc: ["cuidadores","mayores","hospital","comunidad","salud-mental"],
+        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems. <strong>Es de los pocos instrumentos que dan una población objetivo evidente y desatendida</strong> en escenarios de práctica."
+      },
+      {
+        n: "Cuestionario APGAR Familiar", s: "APGAR familiar",
+        d: "Percepción de funcionalidad de la propia familia en cinco dimensiones.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "5 ítems · 3 min", acceso: "libre",
+        esc: ["cuidadores","primer-nivel","comunidad","ninez"],
+        nota: "Muy breve y de uso corriente en atención primaria en Colombia. Mide percepción, no funcionamiento observado."
+      }
+    ]
+  },
+  {
+    t: "Adultos mayores y cognición",
+    sub: "Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
+    inst: [
+      {
+        n: "Prueba Mini-Cog", s: "Mini-Cog",
+        d: "Cribado rápido de deterioro cognitivo: recuerdo de tres palabras más dibujo del reloj.",
+        responde: "Heteroaplicada", pob: "Adultos mayores",
+        med: "3 min", acceso: "libre",
+        url: "https://mini-cog.com/",
+        esc: ["mayores","primer-nivel","hospital","comunidad"],
+        nota: "Gratuita para uso clínico y educativo desde su sitio oficial. Su brevedad la hace viable en escenarios con poco tiempo por persona."
+      },
+      {
+        n: "Evaluación Cognitiva de Montreal", s: "MoCA",
+        d: "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas.",
+        responde: "Heteroaplicada", pob: "Adultos y adultos mayores",
+        med: "30 puntos · 10-15 min", acceso: "registro",
+        esc: ["mayores","salud-mental","hospital"],
+        nota: "Desde 2020 exige <strong>certificación y registro</strong> del aplicador en su sitio oficial."
+      },
+      {
+        n: "Mini Examen del Estado Mental", s: "MMSE",
+        d: "Cribado cognitivo clásico: orientación, memoria, atención, lenguaje y praxis.",
+        responde: "Heteroaplicada", pob: "Adultos mayores",
+        med: "30 puntos · 10 min", acceso: "licencia",
+        esc: ["mayores","hospital","primer-nivel"],
+        nota: "Aunque circula por todas partes, <strong>está bajo licencia</strong> desde 2001. Para uso libre conviene el Mini-Cog."
+      }
+    ]
+  },
+  {
+    t: "Conducta alimentaria",
+    sub: "Poco tamizados en la práctica y de alta prevalencia en población adolescente y universitaria, que suele ser la población disponible en varios escenarios.",
+    inst: [
+      {
+        n: "Cuestionario SCOFF", s: "SCOFF",
+        d: "Cinco preguntas de cribado de anorexia y bulimia.",
+        responde: "Autoinforme o entrevista", pob: "Adolescentes y adultos",
+        med: "5 ítems · 2 min", acceso: "libre",
+        esc: ["ninez","salud-mental","primer-nivel","comunidad"],
+        nota: "Dos respuestas afirmativas ya indican necesidad de valoración. Su brevedad lo hace aplicable en tamizajes colectivos."
+      },
+      {
+        n: "Prueba de Actitudes ante la Alimentación", s: "EAT-26",
+        d: "Actitudes y conductas de riesgo respecto a la alimentación y el peso.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "26 ítems · 10 min", acceso: "libre",
+        esc: ["ninez","salud-mental","comunidad","primer-nivel"],
+        nota: "De uso libre citando a sus autores. Más extenso que el SCOFF y con puntaje de corte establecido."
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   PINTADO
+   ============================================================ */
+const $ = id => document.getElementById(id);
+
+function escapar(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+const ET_ACCESO = { libre:"Libre", registro:"Con registro", licencia:"Con licencia" };
+
+// El nombre es enlace solo cuando hay fuente oficial verificada. Sin url se
+// pinta como texto: un enlace roto en un instrumento clínico es peor que
+// ninguno.
+function pintarInstrumento(i){
+  const titulo =
+    escapar(i.n) + ' <span class="sigla">' + escapar(i.s) + '</span>';
+  const nombre = i.url
+    ? '<a class="inst-n" href="' + i.url + '" target="_blank" rel="noopener">' + titulo + '</a>'
+    : '<span class="inst-n">' + titulo + '</span>';
+
+  return '<div class="inst" data-esc="' + i.esc.join(" ") + '" data-txt="' +
+      escapar((i.n + " " + i.s + " " + i.d + " " + i.pob).toLowerCase()) + '">' +
+    '<div class="inst-cab">' + nombre +
+      '<span class="acceso ' + i.acceso + '">' + ET_ACCESO[i.acceso] + '</span>' +
+    '</div>' +
+    '<div class="inst-d">' + escapar(i.d) + '</div>' +
+    '<div class="inst-datos">' +
+      '<span>' + escapar(i.responde) + '</span>' +
+      '<span>' + escapar(i.pob) + '</span>' +
+      '<span>' + escapar(i.med) + '</span>' +
+    '</div>' +
+    '<div class="inst-pie"><div class="inst-nota">' + i.nota + '</div></div>' +
+  '</div>';
+}
+
+$("grupos").innerHTML = GRUPOS.map((g, gi) =>
+  '<section class="grupo" id="g' + gi + '">' +
+    '<div class="grupo-cab"><h2>' + escapar(g.t) + '</h2>' +
+      '<span class="n">' + g.inst.length + '</span></div>' +
+    '<p class="grupo-sub">' + escapar(g.sub) + '</p>' +
+    '<div class="tarjetas">' + g.inst.map(pintarInstrumento).join("") + '</div>' +
+  '</section>').join("");
+
+$("filtros").insertAdjacentHTML("beforeend", ESCENARIOS.map(e =>
+  '<button class="chip" type="button" data-esc="' + e.id + '"' +
+    (e.id === "todos" ? ' aria-pressed="true"' : ' aria-pressed="false"') +
+  '>' + escapar(e.et) + '</button>').join(""));
+
+/* ============================================================
+   FILTRO Y BÚSQUEDA
+   ============================================================ */
+let escActivo = "todos";
+
+function aplicar(){
+  const q = $("buscador").value.trim().toLowerCase();
+  let visibles = 0;
+
+  document.querySelectorAll(".grupo").forEach(sec => {
+    let enGrupo = 0;
+    sec.querySelectorAll(".inst").forEach(card => {
+      const porEsc = escActivo === "todos" ||
+                     card.dataset.esc.split(" ").includes(escActivo);
+      const porTxt = !q || card.dataset.txt.includes(q);
+      const ok = porEsc && porTxt;
+      card.hidden = !ok;
+      if (ok) enGrupo++;
+    });
+    // Un grupo sin instrumentos visibles se esconde entero: si no, quedan
+    // encabezados huérfanos que hacen parecer que falta contenido.
+    sec.hidden = enGrupo === 0;
+    sec.querySelector(".n").textContent = enGrupo;
+    visibles += enGrupo;
+  });
+
+  $("vacio").hidden = visibles > 0;
+  const et = ESCENARIOS.find(e => e.id === escActivo).et;
+  $("cuenta").textContent = visibles + (visibles === 1 ? " instrumento" : " instrumentos") +
+    (escActivo === "todos" ? " en total" : " para «" + et + "»") +
+    (q ? " que coinciden con la búsqueda" : "");
+}
+
+$("filtros").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip");
+  if (!b) return;
+  escActivo = b.dataset.esc;
+  document.querySelectorAll(".chip").forEach(c =>
+    c.setAttribute("aria-pressed", String(c === b)));
+  aplicar();
+});
+
+$("buscador").addEventListener("input", aplicar);
+
+const TOTAL = GRUPOS.reduce((n, g) => n + g.inst.length, 0);
+const LIBRES = GRUPOS.reduce((n, g) => n + g.inst.filter(i => i.acceso === "libre").length, 0);
+const CON_URL = GRUPOS.reduce((n, g) => n + g.inst.filter(i => i.url).length, 0);
+
+$("pie").innerHTML =
+  "<strong>" + TOTAL + " instrumentos</strong> en " + GRUPOS.length + " variables. " +
+  LIBRES + " son de distribución libre y " + CON_URL + " enlazan a una fuente oficial " +
+  "verificada; los demás se localizan por su nombre o se adquieren con su editor. " +
+  "<br><br>Esta guía reúne instrumentos de uso corriente y no sustituye la revisión de " +
+  "la literatura: antes de sostener un punto de corte hay que verificar la validación " +
+  "disponible para la población con la que se va a trabajar. " +
+  "<strong>Ningún tamizaje diagnostica</strong>, y ninguno se aplica sin ruta de atención " +
+  "definida para los resultados positivos.";
+
+aplicar();
+</script>
+
+</body>
+</html>
