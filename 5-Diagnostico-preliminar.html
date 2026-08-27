@@ -831,34 +831,37 @@ const PREGUNTAS = [
 
    Se proyecta al terminar las cuatro preguntas y se queda en pantalla
    mientras los grupos hablan: son el marco al que se agarran para
-   improvisar dirigido, no un cuestionario que se responda por escrito
-   ni una por una.
+   improvisar dirigido, no un cuestionario que se responda una por una.
 
-   El criterio de las tres: que la respuesta salga de algo que el
-   estudiante ya tiene. Lo que entendió al leer, lo que le parecería
-   estando en el lugar de esa población, y lo que ve en su propio sitio.
-   Ninguna exige criterio técnico —una pregunta que uno no se siente
-   capaz de responder es la que garantiza el silencio—, y la primera es
-   deliberadamente descriptiva: recontar es la tarea más fácil que
-   existe, y de paso es diagnóstica, porque lo que no se puede recontar
-   no estaba claro en la hoja.
+   Las tres son calificativas porque el propósito es que cada grupo se
+   lleve un veredicto ajeno sobre su propuesta. Arman un arco: validar,
+   objetar, decidir.
 
-   Están en orden de exigencia: describir, imaginarse, comparar.
+   Dos decisiones que sostienen el ejercicio con un curso callado. La
+   primera pregunta es por lo que está bien: elogiar en público cuesta
+   menos que criticar, y arranca hablando al grupo que no se atrevería a
+   abrir con una objeción. Y la segunda deja explícito que se puede
+   objetar sin saber cómo se arregla — exigir la solución junto con la
+   crítica es lo que levantaría el listón técnico que hay que evitar.
+
+   La tercera es binaria antes que argumentada: sí o no, y después el
+   porqué. Es la forma más fácil de arrancarle una postura a alguien que
+   no quiere hablar.
    ============================================================ */
 const ROTACION = {
   tipo: "rotacion",
   rotulo: "Rotación",
   titulo: "La hoja del grupo de al lado",
-  banda: "<strong>Cada grupo le pasa su hoja al grupo de su derecha.</strong> Léanla, coméntenla un momento entre ustedes y después tomen dos minutos para decirle al salón lo que piensan. Las tres preguntas se quedan proyectadas para orientar lo que van a decir: no hay que responderlas una por una ni por escrito.",
+  banda: "<strong>Cada grupo le pasa su hoja al grupo de su derecha.</strong> Léanla, coméntenla entre ustedes y después tomen dos minutos para decirle al salón qué les pareció. Las tres preguntas se quedan proyectadas para orientar lo que van a decir, sin responderlas una por una. Mientras un grupo habla, el grupo dueño de la hoja anota lo que le sirva: eso es lo que se lleva.",
   pasos: [
-    { t: "¿Qué entendieron que va a hacer ese grupo?",
-      r: "Cuéntenlo con sus palabras, sin volver a mirar la hoja. Lo que no se pueda recontar de memoria probablemente tampoco quedó claro en el papel." },
-    { t: "Si ustedes fueran de esa población, ¿irían?",
-      r: "Piensen en las personas que describe la hoja, no en sus compañeros. ¿Qué haría que valiera la pena ir, y qué haría que no volvieran?" },
-    { t: "¿Qué de esto reconocen en su propio sitio?",
-      r: "Acá ustedes son los que saben. Si el mismo problema aparece en varios sitios, deja de ser una particularidad de ese lugar." }
+    { t: "¿Qué es lo mejor resuelto de esta propuesta?",
+      r: "Señalen una sola cosa y digan por qué. Al grupo dueño le sirve tanto saber qué ya tiene firme como saber qué le falla." },
+    { t: "¿Qué aspecto le cambiarían?",
+      r: "No hace falta saber cómo arreglarlo: alcanza con decir qué no los convence. Señalar el problema ya es un aporte." },
+    { t: "Tal como está hoy, ¿la aprobarían?",
+      r: "Respondan primero sí o no, y después el porqué. Es la única de las tres que los obliga a tomar partido." }
   ],
-  regla: "Ninguna de las tres pide conocimiento técnico: piden lo que entendieron y lo que les pareció. Para eso ya tienen todo lo que hace falta."
+  regla: "Se juzga la propuesta, no al grupo. Y lo que nadie objete hoy va a aparecer igual el día de la sustentación, con nota de por medio."
 };
 
 /* ============================================================
