@@ -634,8 +634,8 @@ const GRUPOS = [
     ]
   },
   {
-    t: "Sueño",
-    sub: "Rara vez se tamiza y aparece en casi todo: es síntoma de depresión y de ansiedad, y a la vez factor que las sostiene. En escenarios hospitalarios conviene descartar causa médica antes de leerlo como psicológico.",
+    t: "Sueño en adultos",
+    sub: "Rara vez se tamiza y aparece en casi todo: es síntoma de depresión y de ansiedad, y a la vez factor que las sostiene. En escenarios hospitalarios conviene descartar causa médica antes de leerlo como psicológico. Para menores de edad hay una variable propia, con instrumentos distintos.",
     inst: [
       {
         n: "Índice de Calidad de Sueño de Pittsburgh", s: "PSQI",
@@ -661,6 +661,90 @@ const GRUPOS = [
         url: "https://eprovide.mapi-trust.org/instruments/epworth-sleepiness-scale",
         esc: ["hospital","primer-nivel","salud-mental"],
         nota: "Su distribución la gestiona una agencia de licenciamiento: el uso académico suele autorizarse sin costo, pero <strong>hay que solicitarlo</strong>. Un puntaje alto obliga a descartar apnea antes que causa psicológica."
+      }
+    ]
+  },
+  {
+    t: "Sueño en la infancia",
+    sub: "Va aparte del sueño adulto porque los instrumentos son otros: acá el que responde casi siempre es el cuidador, y lo que se tamiza son hábitos y conductas de sueño más que insomnio. Un problema de sueño infantil suele presentarse como problema de conducta diurna, así que conviene descartarlo antes de leer la irritabilidad o la desatención como cuadro emocional.",
+    inst: [
+      {
+        n: "Tamizaje BEARS de Sueño Infantil", s: "BEARS",
+        d: "Cinco dominios en cinco preguntas: problemas al acostarse, somnolencia diurna, despertares, regularidad y duración, y ronquido.",
+        responde: "Entrevista al cuidador, y al niño si tiene edad", pob: "2 a 18 años",
+        med: "5 dominios · 5 min", acceso: "libre",
+        esc: ["ninez","cuidadores","primer-nivel","salud-mental","comunidad"],
+        nota: "Es un guion de entrevista, no un cuestionario: <strong>se aplica en la consulta sin material</strong>, lo que lo hace el más viable de los cuatro en escenarios con poco tiempo."
+      },
+      {
+        n: "Cuestionario Breve de Sueño Infantil", s: "BISQ",
+        d: "Patrón de sueño del lactante y el preescolar: latencia, despertares nocturnos, lugar y forma de dormirse.",
+        responde: "Cuidador", pob: "0 a 3 años",
+        med: "10 ítems · 5 min", acceso: "libre",
+        esc: ["ninez","cuidadores","primer-nivel","comunidad"],
+        nota: "Pensado para la edad en que <strong>no hay a quién preguntarle más que al cuidador</strong>. Distingue la percepción del problema por parte de los padres del patrón objetivo, que no siempre coinciden."
+      },
+      {
+        n: "Cuestionario de Hábitos de Sueño Infantiles", s: "CSHQ",
+        d: "Ocho dominios de hábitos y alteraciones: resistencia a acostarse, ansiedad del sueño, despertares, parasomnias, respiración y somnolencia diurna.",
+        responde: "Cuidador", pob: "4 a 10 años",
+        med: "33 ítems · 10-15 min", acceso: "libre",
+        esc: ["ninez","cuidadores","salud-mental","primer-nivel"],
+        nota: "El más usado en investigación sobre sueño infantil. De uso libre para fines clínicos y de investigación citando a sus autores."
+      },
+      {
+        n: "Escala de Alteraciones del Sueño en la Infancia", s: "SDSC",
+        d: "Seis factores de trastornos del sueño, incluidos los del inicio y mantenimiento, los respiratorios y la hipersomnolencia.",
+        responde: "Cuidador", pob: "3 a 18 años",
+        med: "26 ítems · 10 min", acceso: "libre",
+        esc: ["ninez","cuidadores","salud-mental","primer-nivel","comunidad"],
+        nota: "Bien validada en español y con <strong>puntuaciones por factor</strong>, no solo un total, lo que orienta hacia qué tipo de problema mirar."
+      }
+    ]
+  },
+  {
+    t: "Funcionamiento cognitivo en adultos jóvenes",
+    sub: "Distinto del cribado en el adulto mayor: acá no se busca degeneración sino un cambio respecto del propio rendimiento previo, casi siempre por consumo, sueño insuficiente, estado anímico o traumatismo. Un resultado bajo señala una causa que hay que buscar en otra parte de esta guía, no un diagnóstico. Ojo además: los tres últimos son pruebas neuropsicológicas, no cuestionarios — exigen formación para aplicarlas e interpretarlas.",
+    inst: [
+      {
+        n: "Escala de Autorreporte de Déficit de Atención en Adultos", s: "ASRS v1.1",
+        d: "Síntomas de inatención e hiperactividad en la vida adulta. Su parte A, de seis ítems, funciona como tamizaje.",
+        responde: "Autoinforme", pob: "18 años en adelante",
+        med: "6 ítems de tamizaje o 18 completos · 5-10 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
+        nota: "Desarrollada con la Organización Mundial de la Salud y de uso libre. <strong>Es la puerta de entrada más frecuente</strong> a la queja cognitiva en población universitaria y laboral."
+      },
+      {
+        n: "Cuestionario de Fallos Cognitivos", s: "CFQ",
+        d: "Frecuencia de errores cotidianos de memoria, atención y acción: olvidar para qué entró a un cuarto, no oír lo que le dicen, extraviar objetos.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "25 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","primer-nivel","consumo"],
+        nota: "Mide <strong>percepción de fallos, no rendimiento</strong>, y esa es justamente su utilidad: capta la queja subjetiva, que es con lo que la persona consulta y que no siempre correlaciona con el desempeño en pruebas."
+      },
+      {
+        n: "Prueba de Rastreo", s: "TMT A y B",
+        d: "Atención sostenida y velocidad de procesamiento en la parte A; flexibilidad cognitiva y alternancia en la parte B.",
+        responde: "Heteroaplicada", pob: "Adolescentes y adultos",
+        med: "2 partes · 5-10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","consumo","primer-nivel"],
+        nota: "De dominio público y sensible al daño frontal. Requiere <strong>baremos por edad y escolaridad</strong>: el tiempo bruto no significa nada por sí solo."
+      },
+      {
+        n: "Batería de Evaluación Frontal", s: "FAB",
+        d: "Seis tareas breves de funciones ejecutivas: conceptualización, flexibilidad, programación motora, control inhibitorio y autonomía.",
+        responde: "Heteroaplicada", pob: "Adultos",
+        med: "6 subpruebas · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","consumo"],
+        nota: "Breve y sin material especial. Útil cuando la sospecha apunta a lo ejecutivo, que es lo que más se afecta en consumo crónico y traumatismo."
+      },
+      {
+        n: "Prueba de Símbolos y Dígitos", s: "SDMT",
+        d: "Velocidad de procesamiento de la información, el dominio que primero cae ante casi cualquier compromiso cognitivo.",
+        responde: "Heteroaplicada", pob: "8 años en adelante",
+        med: "90 segundos", acceso: "licencia",
+        esc: ["salud-mental","hospital"],
+        nota: "Se adquiere con su editor. Muy sensible al cambio, lo que la vuelve estándar en seguimiento neurológico."
       }
     ]
   },
@@ -717,8 +801,8 @@ const GRUPOS = [
     ]
   },
   {
-    t: "Adultos mayores y cognición",
-    sub: "Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
+    t: "Deterioro cognitivo en adultos mayores",
+    sub: "Acá sí se busca degeneración, a diferencia del cribado en adultos jóvenes. Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
     inst: [
       {
         n: "Prueba Mini-Cog", s: "Mini-Cog",
