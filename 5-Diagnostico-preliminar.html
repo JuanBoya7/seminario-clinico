@@ -334,6 +334,16 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   max-width:58ch;
 }
 
+/* La tarjeta de rotación reusa el panel del cierre, pero sus tres
+   columnas no son una secuencia —son tres preguntas simultáneas sobre
+   la misma hoja—, así que pierden las flechas. */
+.escena.rotacion .cadena{grid-template-columns:repeat(3,1fr);}
+.escena.rotacion .paso:not(:last-child)::after{content:none;}
+.escena.rotacion .paso .paso-t{font-size:clamp(18px,2vw,25px);}
+@media (max-width:820px){
+  .escena.rotacion .cadena{grid-template-columns:1fr;}
+}
+
 /* ============================================================
    LA FASE — material de consulta
 
@@ -817,6 +827,38 @@ const PREGUNTAS = [
 ];
 
 /* ============================================================
+   LA TARJETA DE ROTACIÓN
+
+   Se proyecta al terminar las cuatro preguntas y queda en pantalla
+   mientras los grupos leen y escriben.
+
+   Las tres preguntas son cerradas a propósito. Pedirle a un curso poco
+   participativo que «opine sobre la propuesta ajena» devuelve «nos
+   pareció completa»; pedirle que busque huecos contra un criterio dado
+   es una tarea que sí se puede ejecutar. La tercera —qué le falta— es
+   la que más rinde, porque encontrar lo que no está es más fácil que
+   emitir un juicio.
+
+   Escribir antes de hablar no es un detalle: es lo que evita que los
+   dos minutos de sustentación se improvisen.
+   ============================================================ */
+const ROTACION = {
+  tipo: "rotacion",
+  rotulo: "Rotación",
+  titulo: "La hoja del grupo de al lado",
+  banda: "<strong>Cada grupo le pasa su hoja al grupo de su derecha.</strong> Respondan las tres preguntas por escrito, al pie de la hoja que reciban. Después cada grupo sustenta en dos minutos lo que escribió, y el grupo dueño de la hoja tiene treinta segundos para responder.",
+  pasos: [
+    { t: "¿Se puede contar esa población?",
+      r: "Si dice «adultos mayores» y no dice cuántos, cada cuánto los ven ni hasta cuándo, todavía no está caracterizada." },
+    { t: "¿El instrumento sirve para ese problema?",
+      r: "Lean el problema que nombraron y después el instrumento que eligieron. ¿Lo que mide es lo que hay que demostrar?" },
+    { t: "¿Qué le falta para poder presentarse?",
+      r: "Lo que esté en blanco o resuelto a medias. Es la pregunta más útil de las tres." }
+  ],
+  regla: "No se trata de calificar la hoja ajena, sino de devolverla mejor de lo que llegó: lo que escriban ahí le sirve al otro grupo para armar su Fase I."
+};
+
+/* ============================================================
    LA TARJETA DE CIERRE
 
    No es una pregunta al salón. Va al final porque es lo único que no
@@ -837,8 +879,11 @@ const CIERRE = {
   regla: "El grupo que hoy no pueda responder la tercera pregunta todavía no tiene Fase I: tiene una idea."
 };
 
+// La rotación solo existe donde hay franja de clase para ella; en el otro
+// deck ROTACION es null y la tarjeta simplemente no aparece.
 const TARJETAS = [
   ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
+  ...(ROTACION ? [ROTACION] : []),
   CIERRE
 ];
 
@@ -920,6 +965,7 @@ function pintar(){
   $("panel-cierre").hidden = esPregunta;
   escena.classList.toggle("revelado", !esPregunta);
   escena.classList.toggle("cierre", !esPregunta);
+  escena.classList.toggle("rotacion", t.tipo === "rotacion");
 
   if (esPregunta){
     $("idea").textContent = t.idea;
