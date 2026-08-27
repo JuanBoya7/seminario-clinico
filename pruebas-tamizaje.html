@@ -587,6 +587,44 @@ const GRUPOS = [
     ]
   },
   {
+    t: "Duelo",
+    sub: "El duelo no es un trastorno, y esta es la variable donde más fácil se patologiza lo normal. La distinción es temporal y funcional: el criterio de duelo prolongado exige al menos doce meses desde la pérdida en adultos y seis en niños, más interferencia sostenida. Aplicar un instrumento de duelo antes de ese plazo mide un proceso esperable y lo devuelve como si fuera un problema.",
+    inst: [
+      {
+        n: "Inventario de Duelo Complicado", s: "ICG",
+        d: "Síntomas de duelo que persisten e interfieren: añoranza intensa, incredulidad, evitación de recordatorios y dificultad para aceptar la pérdida.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "19 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
+        nota: "El más usado y con validación en español. De uso libre para fines clínicos y de investigación citando a sus autores."
+      },
+      {
+        n: "Escala de Duelo Prolongado", s: "PG-13-R",
+        d: "Los criterios de trastorno de duelo prolongado, incluido el requisito temporal desde la pérdida.",
+        responde: "Autoinforme o entrevista", pob: "Adultos",
+        med: "13 ítems · 10 min", acceso: "registro",
+        esc: ["salud-mental","hospital","primer-nivel"],
+        nota: "Se solicita a su equipo autor en la Universidad de Columbia. Es la que está <strong>alineada con el criterio diagnóstico vigente</strong>, así que es la que conviene si lo que se busca es sostener esa distinción."
+      },
+      {
+        n: "Inventario Texas Revisado de Duelo", s: "TRIG",
+        d: "Duelo en dos momentos: cómo fue la reacción en el momento de la pérdida y cómo es el sentimiento presente.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "21 ítems · 10 min", acceso: "libre",
+        esc: ["salud-mental","comunidad","primer-nivel","ninez"],
+        nota: "Que separe pasado de presente es lo que lo distingue: <strong>permite estimar el curso</strong> y no solo el estado actual, que es la información que decide si hay que intervenir."
+      },
+      {
+        n: "Cuestionario de Riesgo de Duelo Complicado", s: "CRDC",
+        d: "Factores de riesgo de duelo complicado en la familia, identificables antes o alrededor del momento de la pérdida.",
+        responde: "Heteroaplicado al familiar", pob: "Familiares adultos",
+        med: "Variable · 10 min", acceso: "libre",
+        esc: ["hospital","cuidadores","primer-nivel","mayores"],
+        nota: "Desarrollado en cuidados paliativos. <strong>Es preventivo y no diagnóstico:</strong> se aplica antes de que el duelo ocurra, que es cuando todavía se puede hacer algo."
+      }
+    ]
+  },
+  {
     t: "Violencia",
     sub: "Ninguno de estos se aplica sin privacidad garantizada y sin plan de seguridad definido. Preguntar por violencia delante de la pareja, del cuidador o de la familia no solo invalida la respuesta: puede aumentar el riesgo de quien responde.",
     inst: [
@@ -745,6 +783,52 @@ const GRUPOS = [
         med: "90 segundos", acceso: "licencia",
         esc: ["salud-mental","hospital"],
         nota: "Se adquiere con su editor. Muy sensible al cambio, lo que la vuelve estándar en seguimiento neurológico."
+      }
+    ]
+  },
+  {
+    t: "Adherencia al tratamiento",
+    sub: "Todo autoinforme de adherencia la sobreestima: casi nadie declara que no cumple. Por eso conviene acompañar la medición con algo que explique el incumplimiento —conocimiento de la enfermedad, barreras concretas, alianza con quien atiende— y no solo cuantificarlo. La adherencia no es un rasgo de la persona: es el ajuste entre el tratamiento y su vida cotidiana.",
+    inst: [
+      {
+        n: "Test de Morisky-Green-Levine", s: "MMAS",
+        d: "Cumplimiento autodeclarado del tratamiento farmacológico: olvidos, horarios, abandono al mejorar y abandono ante efectos adversos.",
+        responde: "Entrevista", pob: "Adultos",
+        med: "4 u 8 ítems · 3 min", acceso: "licencia",
+        esc: ["hospital","primer-nivel","salud-mental","mayores","comunidad"],
+        nota: "<strong>Circula por todas partes, pero su autor tiene los derechos y los hace valer</strong> — hay artículos retractados por usarlo sin licencia. Si el trabajo se va a publicar o presentar formalmente, conviene usar alguno de los libres de esta lista."
+      },
+      {
+        n: "Test de Batalla", s: "Batalla",
+        d: "Conocimiento que la persona tiene de su propia enfermedad, en tres preguntas.",
+        responde: "Entrevista", pob: "Adultos",
+        med: "3 ítems · 2 min", acceso: "libre",
+        esc: ["primer-nivel","hospital","mayores","comunidad"],
+        nota: "No mide adherencia sino su condición previa: <strong>quien no entiende para qué es el tratamiento no lo sostiene</strong>. Por eso es el complemento natural de cualquiera de los otros."
+      },
+      {
+        n: "Cuestionario Simplificado de Adherencia a la Medicación", s: "SMAQ",
+        d: "Adherencia farmacológica combinando preguntas cualitativas con recuento de dosis omitidas en la última semana y el último trimestre.",
+        responde: "Autoinforme o entrevista", pob: "Adultos",
+        med: "6 ítems · 5 min", acceso: "libre",
+        esc: ["hospital","primer-nivel","salud-mental","comunidad"],
+        nota: "Desarrollado y validado en español. Mezclar pregunta abierta con conteo lo hace algo <strong>menos vulnerable a la deseabilidad social</strong> que los de solo sí y no."
+      },
+      {
+        n: "Escala de Adherencia a Recargas y Medicamentos", s: "ARMS",
+        d: "Dos cosas por separado: la dificultad para tomar el medicamento y la dificultad para conseguirlo.",
+        responde: "Entrevista", pob: "Adultos",
+        med: "12 ítems · 5 min", acceso: "libre",
+        esc: ["primer-nivel","hospital","mayores","comunidad"],
+        nota: "Diseñada para <strong>baja alfabetización</strong>, y la única que separa la barrera de acceso de la conducta: distinción decisiva donde el problema no es la voluntad sino la entrega."
+      },
+      {
+        n: "Inventario de Alianza de Trabajo, versión breve", s: "WAI-SR",
+        d: "Acuerdo en los objetivos, acuerdo en las tareas y vínculo entre quien consulta y quien atiende.",
+        responde: "Autoinforme, con versión para el profesional", pob: "Adolescentes y adultos",
+        med: "12 ítems · 5 min", acceso: "libre",
+        esc: ["salud-mental","primer-nivel","hospital","comunidad"],
+        nota: "Para adherencia a una intervención psicológica y no a un fármaco. La alianza es <strong>el predictor mejor establecido de que alguien siga viniendo</strong>, así que sirve de indicador de proceso en un programa."
       }
     ]
   },
