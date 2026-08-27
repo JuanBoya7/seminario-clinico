@@ -833,35 +833,35 @@ const PREGUNTAS = [
    mientras los grupos hablan: son el marco al que se agarran para
    improvisar dirigido, no un cuestionario que se responda una por una.
 
+   Va sin banda ni regla, y con una sola línea de aclaración por
+   pregunta. La mecánica —rotar a la derecha, dos minutos por grupo, el
+   dueño de la hoja anotando— se dice en voz alta; está anotada en el
+   archivo de enlaces, que es contexto del docente y no contenido del
+   recurso.
+
    Las tres son calificativas porque el propósito es que cada grupo se
    lleve un veredicto ajeno sobre su propuesta. Arman un arco: validar,
-   objetar, decidir.
+   objetar, decidir. Empiezan por lo que está bien a propósito, porque
+   elogiar en público cuesta menos que criticar y eso arranca hablando al
+   grupo que no abriría con una objeción. Y la tercera es binaria antes
+   que argumentada: sí o no, y después el porqué.
 
-   Dos decisiones que sostienen el ejercicio con un curso callado. La
-   primera pregunta es por lo que está bien: elogiar en público cuesta
-   menos que criticar, y arranca hablando al grupo que no se atrevería a
-   abrir con una objeción. Y la segunda deja explícito que se puede
-   objetar sin saber cómo se arregla — exigir la solución junto con la
-   crítica es lo que levantaría el listón técnico que hay que evitar.
-
-   La tercera es binaria antes que argumentada: sí o no, y después el
-   porqué. Es la forma más fácil de arrancarle una postura a alguien que
-   no quiere hablar.
+   El «preferiblemente» de la segunda está medido: pide la justificación
+   sin exigirla. Obligar a justificar una objeción es lo que hace que
+   quien no sabe cómo fundamentarla prefiera callarse.
    ============================================================ */
 const ROTACION = {
   tipo: "rotacion",
   rotulo: "Rotación",
   titulo: "La hoja del grupo de al lado",
-  banda: "<strong>Cada grupo le pasa su hoja al grupo de su derecha.</strong> Léanla, coméntenla entre ustedes y después tomen dos minutos para decirle al salón qué les pareció. Las tres preguntas se quedan proyectadas para orientar lo que van a decir, sin responderlas una por una. Mientras un grupo habla, el grupo dueño de la hoja anota lo que le sirva: eso es lo que se lleva.",
   pasos: [
     { t: "¿Qué es lo mejor resuelto de esta propuesta?",
-      r: "Señalen una sola cosa y digan por qué. Al grupo dueño le sirve tanto saber qué ya tiene firme como saber qué le falla." },
+      r: "Señalen una sola cosa y digan por qué." },
     { t: "¿Qué aspecto le cambiarían?",
-      r: "No hace falta saber cómo arreglarlo: alcanza con decir qué no los convence. Señalar el problema ya es un aporte." },
+      r: "Menciónenlo y, preferiblemente, justifíquenlo." },
     { t: "Tal como está hoy, ¿la aprobarían?",
-      r: "Respondan primero sí o no, y después el porqué. Es la única de las tres que los obliga a tomar partido." }
-  ],
-  regla: "Se juzga la propuesta, no al grupo. Y lo que nadie objete hoy va a aparecer igual el día de la sustentación, con nota de por medio."
+      r: "Respondan primero sí o no, y después el porqué." }
+  ]
 };
 
 /* ============================================================
@@ -989,7 +989,9 @@ function pintar(){
         '<div class="paso-t">' + escapar(p.t) + '</div>' +
         '<div class="paso-r">' + escapar(p.r) + '</div>' +
       '</div>').join("");
-    $("regla").textContent = "«" + t.regla + "»";
+    // La regla es opcional, como la banda: la rotación va sin ninguna de las dos.
+    $("regla").hidden = !t.regla;
+    $("regla").textContent = t.regla ? "«" + t.regla + "»" : "";
   }
 }
 

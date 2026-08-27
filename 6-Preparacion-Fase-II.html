@@ -914,7 +914,9 @@ function pintar(){
         '<div class="paso-t">' + escapar(p.t) + '</div>' +
         '<div class="paso-r">' + escapar(p.r) + '</div>' +
       '</div>').join("");
-    $("regla").textContent = "«" + t.regla + "»";
+    // La regla es opcional, como la banda: la rotación va sin ninguna de las dos.
+    $("regla").hidden = !t.regla;
+    $("regla").textContent = t.regla ? "«" + t.regla + "»" : "";
   }
 }
 
