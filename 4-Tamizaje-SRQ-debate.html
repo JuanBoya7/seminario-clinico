@@ -457,20 +457,23 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
    se pueden hacer sin haber aplicado nada. No son coyunturales,
    son temario, y ya están en el deck de la clase.
 
-   El ítem 17 se trata en hipotético (globo 6). Nunca se pregunta
-   por lo que respondió alguien del salón.
+   Ninguna pregunta indaga por lo que respondió alguien del salón
+   sobre sí mismo: se pregunta por cómo se aplicó y por qué salió
+   lo que salió. El material del debate es el procedimiento.
    ============================================================ */
 const PREGUNTAS = [
   {
     pregunta: "A quienes el instrumento clasificó como positivos: ¿se reconocen en ese resultado, o consideran que el tamizaje los clasificó mal?",
     idea: "Un positivo con el que la persona no se identifica no invalida el instrumento: es el producto previsto de una prueba calibrada para maximizar la sensibilidad a costa de la especificidad.",
     porque: [
-      "La Resolución 518 exige instrumentos de <strong>alta sensibilidad</strong> — la proporción de casos reales que la prueba detecta, VP/(VP+FN). Maximizarla obliga a fijar un punto de corte bajo.",
+      "La Resolución 518 exige instrumentos de <strong>alta sensibilidad</strong> — la proporción de casos reales que la prueba alcanza a detectar. Maximizarla obliga a fijar un punto de corte bajo.",
       "Un punto de corte bajo desplaza el equilibrio en un solo sentido: reduce la tasa de falsos negativos y eleva la de falsos positivos. Con un mismo instrumento no se pueden bajar las dos a la vez; la única decisión disponible es <strong>cuál de los dos errores se prefiere cometer</strong>.",
       "En detección temprana el error costoso es el falso negativo: un caso no detectado sale del sistema sin ruta. El falso positivo, en cambio, tiene corrección prevista dentro del proceso — la confirmación diagnóstica.",
+      "La subescala de alcohol lleva esa lógica al extremo: <strong>corte de una sola respuesta y sin ventana temporal</strong>. Basta un episodio, en cualquier momento de la vida, para quedar clasificado como positivo.",
+      "Sin ventana temporal, el reactivo registra ocurrencia histórica y no estado presente: no distingue un consumo vigente de un hecho aislado y remoto. Un instrumento puede detectar bien y descartar mal a la vez — <strong>sensibilidad y especificidad son propiedades independientes</strong>.",
       "De ahí que el resultado positivo se enuncie como <strong>probabilidad y no como caso</strong>. Quien no se reconoce en su positivo está describiendo, sin nombrarlo, el mecanismo por el cual el instrumento cumple su función."
     ],
-    fuente: "<strong>Resolución 518 de 2015</strong>, Plan de Salud Pública de Intervenciones Colectivas (exigencia de alta sensibilidad) · <strong>Ministerio de Salud (2015)</strong>, Orientaciones para el desarrollo de las actividades de tamizaje."
+    fuente: "<strong>Resolución 518 de 2015</strong>, Plan de Salud Pública de Intervenciones Colectivas (exigencia de alta sensibilidad) · <strong>Ministerio de Salud (2015)</strong>, Orientaciones para el desarrollo de las actividades de tamizaje · <strong>Ministerio de Salud (2020)</strong>, Pruebas para detección temprana de riesgos y alteraciones, Anexo 11: subescala de alcohol y su punto de corte."
   },
   {
     pregunta: "La mayoría obtuvo resultados negativos. ¿Por qué consideran que en esta aplicación se dio ese escenario?",
@@ -504,17 +507,6 @@ const PREGUNTAS = [
       "Acá se aplicó con varios grupos en simultáneo, de modo que cada respondiente sabía que podía ser escuchado. Un negativo obtenido en esas condiciones no equivale a un negativo obtenido en consulta individual."
     ],
     fuente: "<strong>Ministerio de Salud (2020)</strong>, Pruebas para detección temprana de riesgos y alteraciones, Anexo 11: el cuestionario está autorizado para aplicarse «a manera de entrevista estructurada»."
-  },
-  {
-    pregunta: "A quienes dio positiva la subescala de alcohol: ¿a qué atribuyen ese resultado?",
-    idea: "Esa subescala clasifica como positivo con una sola respuesta y pregunta por «alguna vez». Con esas dos reglas, lo que detecta no es un estado actual: es una biografía.",
-    porque: [
-      "La subescala tiene <strong>punto de corte de una respuesta</strong> y <strong>no delimita ventana temporal</strong>. Las dos reglas operan en el mismo sentido: basta un episodio, en cualquier momento de la vida, para quedar clasificado como positivo.",
-      "Sin ventana temporal, el reactivo registra ocurrencia histórica y no estado presente. Un instrumento así no discrimina entre un patrón de consumo vigente y un hecho aislado y remoto: los codifica igual.",
-      "Eso es <strong>baja especificidad</strong> — la proporción de personas sin la condición que la prueba clasifica correctamente como negativas. Sensibilidad y especificidad son propiedades independientes: un instrumento puede detectar bien y descartar mal a la vez.",
-      "No es un defecto por corregir. En el nivel primario de atención, para el que este cuestionario fue diseñado, sobredetectar y confirmar después tiene menor costo que omitir casos: la especificidad se recupera en la confirmación diagnóstica, no en el tamizaje."
-    ],
-    fuente: "<strong>Ministerio de Salud (2020)</strong>, Pruebas para detección temprana de riesgos y alteraciones, Anexo 11: subescala de problemas relacionados con el alcohol y su punto de corte."
   }
 ];
 
