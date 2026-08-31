@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preparación de la Fase II — Dos preguntas para el salón (contingencia)</title>
+<title>Presentación de la intervención — Dos preguntas para el salón</title>
 <style>
 /* ============================================================
    TOKENS
    Estructura tomada del deck de cierre del tamizaje
    (4-Tamizaje-SRQ-debate.html): los dos son recursos de
    proyección y se manejan igual. Lo que cambia es el acento,
-   que acá es el de la Fase II en la página de lineamientos de
+   que acá es el de esta presentación en la página de lineamientos de
    programas de promoción en salud, para que se distinga de un
    vistazo del deck del diagnóstico preliminar, que es rojo.
    ============================================================ */
@@ -323,7 +323,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   margin-top:7px; color:var(--ink-faint);
 }
 
-/* El puente con la Fase II: cada pregunta es uno de sus dos puntos, y
+/* El puente con la entrega: cada pregunta es uno de sus dos puntos, y
    los ítems son los que la rúbrica va a evaluar en la sustentación. */
 .punto{
   margin-top:clamp(26px,3.6vh,38px);
@@ -874,16 +874,16 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 
 <script>
 const FASE = {
-  "titulo": "Fase II · Presentación de la intervención",
+  "titulo": "Presentación de la intervención",
   "fecha": "Sustentación oral con material audiovisual",
   "peso": "100%",
   "encuadre": null,
   "entregables": {
-    "t": "Los dos puntos de la Fase II",
+    "t": "Los dos puntos de la presentación",
     "s": "Sustentación oral apoyada en material audiovisual que evidencie el desarrollo del programa. Cada punto responde a una de las dos preguntas de arriba, en el mismo orden."
   },
   "rubrica": {
-    "t": "Rúbrica de la Fase II",
+    "t": "Rúbrica de la presentación",
     "s": "Cinco criterios que suman el 100% de la nota. En esta versión la implementación es la única fase calificable, así que los pesos originales —que estaban sobre 50— se duplicaron. Los dos últimos —dominio conceptual y comunicación— no miden lo que hicieron en el sitio sino cómo lo cuentan: son 30 de los 100.",
     "criterios": [
       {
@@ -1127,10 +1127,10 @@ const PREGUNTAS = [
         { n: "Ejecución y participación", d: "Si la actividad se realizó como estaba planeada y si las personas participaron." },
         { n: "Resultado inmediato", d: "Qué cambió justo después de la intervención. Se sugiere una<span class='et'>encuesta de adherencia de conocimientos</span> aplicada al cerrar: se hace una sola vez y muestra qué quedó instalado." }
       ],
-      pie: "Los dos primeros muestran que el programa ocurrió; solo el tercero muestra que algo cambió. Se definieron en la Fase I."
+      pie: "Los dos primeros muestran que el programa ocurrió; solo el tercero muestra que algo cambió."
     },
     punto: {
-      n: "Punto 1 de la Fase II",
+      n: "Punto 1",
       t: "Actividades e indicadores de cumplimiento",
       items: ["Actividades realizadas", "Población participante", "Cambios alcanzados e indicadores<span class='et'>cobertura</span><span class='et'>ejecución</span><span class='et'>resultado inmediato</span>", "Evidencias del programa: las que apliquen<span class='et'>fotografías</span><span class='et'>material educativo</span><span class='et'>registro</span>"]
     }
@@ -1152,14 +1152,14 @@ const PREGUNTAS = [
       pie: "Las tres van juntas y en ese orden: lo que estorbó, lo que quedó y lo que haría falta."
     },
     punto: {
-      n: "Punto 2 de la Fase II",
+      n: "Punto 2",
       t: "Reflexión final",
       items: ["Área de acción en la que se apoyó<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central utilizada<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Reflexión crítica<span class='et'>dificultades</span><span class='et'>aprendizajes</span><span class='et'>oportunidades</span>"]
     }
   }
 ];
 
-// El deck de la Fase II se proyecta en una franja corta, al terminar las
+// Este deck se proyecta en una franja corta, al terminar las
 // sustentaciones: no hay tiempo para la rotación de hojas.
 const ROTACION = null;
 
@@ -1278,7 +1278,7 @@ function pintar(){
     $("punto-t").textContent = t.punto.t;
     $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + x + "</span>").join("");
   } else {
-    // La banda es opcional: el cierre de la Fase II va sin ella.
+    // La banda es opcional: este cierre va sin ella.
     $("banda").hidden = !t.banda;
     $("banda").innerHTML = t.banda || "";
     $("cadena").innerHTML = t.pasos.map((p, i) =>
