@@ -401,6 +401,22 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   line-height:1.25; margin-top:4px; color:var(--ink);
 }
 .ent-i{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;}
+/* La etiqueta dentro de un ítem: mismo tratamiento que las del ejemplo
+   de los determinantes —versalitas, redonda, cuerpo pequeño— pero en
+   neutro, porque acá no liga con ninguna tarjeta. */
+.ent-i span .et, .punto-items span .et{
+  display:inline-block; margin:0 0 0 5px; vertical-align:1px;
+  padding:1px 6px; border:none; border-radius:999px;
+  background:var(--surface-alt);
+  font-size:9.5px; font-weight:600; line-height:1.5;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.ent-i span .et:first-of-type, .punto-items span .et:first-of-type{margin-left:9px;}
+.ent-i span i{
+  font-style:normal; font-weight:700; font-size:11px;
+  color:var(--accent); margin-right:7px;
+}
 .ent-i span{
   padding:5px 11px; border-radius:999px;
   background:var(--bg); border:1px solid var(--border);
@@ -432,65 +448,229 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .rub .nivel span{font-size:14px; line-height:1.5; color:var(--ink-soft);}
 .rub-pie{margin-top:12px; font-size:12.5px; color:var(--ink-faint);}
 
-/* --- Carta de Ottawa -------------------------------------------- */
-/* Dos bloques, no una lista de siete. Las áreas de acción son el QUÉ
-   —sobre qué actúa el programa— y las estrategias centrales el CÓMO.
-   Que las estrategias no parezcan un área más es justamente el punto:
-   atraviesan a las cuatro. De ahí que vayan en su propio bloque, sobre
-   fondo distinto, y que entre los dos haya un puente que lo enuncie. */
-.ott-grupo{margin-top:22px;}
-.ott-grupo.como{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:22px 24px 26px;
+/* --- El marco de intervención ----------------------------------- */
+/* Dos bloques, no una lista de seis. No compiten entre sí: el
+   determinante dice sobre qué causa modificable se actúa y el estadio
+   en qué momento se entra, así que cada grupo elige uno de cada uno.
+   Entre los dos va un puente que enuncia la relación.
+
+   Cada bloque es un desplegable, como los grupos del recurso de
+   pruebas de tamizaje. Plegados, los dos caben en una sola pantalla y
+   se leen como lo que son —las dos decisiones que hay que tomar antes
+   de diseñar—, en vez de como seis opciones sueltas. El resumen
+   conserva la línea que dice de qué decide el bloque, que es lo que
+   permite elegir cuál abrir sin abrirlos todos.
+
+   La regla de estilo del bloque 'como' se conserva: el marco puede
+   volver a crecer, y sin ella habría que reponerla. */
+.mrc-grupo{margin-top:22px;}
+.mrc-grupo > summary{
+  list-style:none; cursor:pointer;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--surface); padding:17px 20px 19px;
+  transition:background .14s, border-color .14s;
 }
-.ott-eje{
+.mrc-grupo > summary::-webkit-details-marker{display:none;}
+.mrc-grupo > summary:hover{background:var(--surface-alt); border-color:var(--accent-soft);}
+.mrc-grupo[open] > summary{
+  border-bottom-left-radius:0; border-bottom-right-radius:0;
+  border-color:var(--accent-soft); background:var(--accent-soft);
+}
+.mrc-grupo > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+.mrc-eje{
   display:inline-block;
   padding:3px 12px; border-radius:999px;
   background:var(--accent); color:#fff;
   font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
 }
-.ott-grupo.como .ott-eje{background:var(--ink-soft);}
-.ott-cab h3{
+.mrc-grupo.como .mrc-eje{background:var(--ink-soft);}
+.mrc-cab{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:10px;}
+.mrc-cab h3{
   font-family:var(--font-display); font-size:clamp(19px,2.1vw,26px);
-  line-height:1.2; margin-top:10px; color:var(--ink);
+  line-height:1.2; color:var(--ink);
 }
-.ott-cab p{
-  margin:9px 0 0; max-width:72ch;
+.mrc-cab .n{
+  font-size:12px; font-weight:600; color:var(--ink-faint);
+  background:var(--bg); border:1px solid var(--border);
+  border-radius:999px; padding:2px 10px;
+}
+/* El signo cambia con el estado: es la única señal de que hay más. */
+.mrc-cab .mas{
+  margin-left:auto; flex:none;
+  font-size:20px; line-height:1; color:var(--accent); font-weight:400;
+}
+.mrc-grupo[open] .mrc-cab .mas::after{content:"\2013";}
+.mrc-grupo:not([open]) .mrc-cab .mas::after{content:"+";}
+.mrc-grupo.como .mrc-cab .mas{color:var(--ink-soft);}
+/* La línea del resumen: de qué decide el bloque, en una frase. */
+.mrc-sub{
+  margin:9px 0 0; max-width:84ch;
   font-size:14px; line-height:1.6; color:var(--ink-soft);
 }
-.ott-cab p strong{color:var(--ink); font-weight:600;}
+.mrc-cuerpo{
+  border:1px solid var(--accent-soft); border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  padding:2px 20px 24px;
+}
+.mrc-lead{
+  margin:18px 0 0; max-width:72ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.mrc-lead strong{color:var(--ink); font-weight:600;}
+
+/* El nombre del marco, desplegado letra por letra. Las dos mitades van
+   en columnas para que se vea el reparto —antes y después— y las tres
+   primeras letras van encendidas porque son las tres categorías que el
+   estudiante acaba de leer: ese es el remate. */
+.acr{
+  margin-top:26px; padding:22px 24px 24px;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--bg);
+}
+.acr-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.acr-n{
+  margin-top:7px;
+  font-family:var(--font-display); font-size:clamp(24px,3.2vw,38px);
+  line-height:1.05; letter-spacing:-.01em;
+}
+.acr-n .a{color:var(--accent);}
+.acr-n .g{color:var(--ink-faint); font-weight:400;}
+.acr-n .b{color:var(--ink);}
+/* La autoría va bajo el nombre, en cuerpo pequeño: identifica el marco
+   sin competir con el título. */
+.acr-aut{
+  margin-top:5px;
+  font-size:13px; font-style:italic; color:var(--ink-faint);
+}
+/* Las referencias, con sangría francesa. Van en la última sección de la
+   página: dentro del marco cortaban la explicación. */
+.refs{margin-top:22px; font-size:13px; line-height:1.65; color:var(--ink-soft);}
+.refs div{padding-left:26px; text-indent:-26px; margin-bottom:11px;}
+.refs div:last-child{margin-bottom:0;}
+.refs i{font-style:italic;}
+.acr-s{
+  margin:11px 0 0; max-width:70ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.acr-s strong{color:var(--ink); font-weight:600; font-style:italic;}
+.acr-g{
+  margin-top:20px; display:grid; gap:20px 28px;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+}
+.acr-h{
+  font-family:var(--font-display); font-size:17px; color:var(--ink);
+  padding-bottom:7px; border-bottom:1px solid var(--border);
+}
+.acr-h span{
+  display:block; margin-top:3px;
+  font-family:var(--font-body); font-size:12.5px; font-weight:500;
+  color:var(--ink-faint);
+}
+/* La frase de la que sale la sigla. Va entera y con las iniciales
+   resaltadas dentro: así se lee que es una oración y no una lista de
+   componentes, que era lo que confundía. Las tres primeras van en
+   acento porque son las causas; las otras cuatro solo nombran lo que se
+   hace con ellas. */
+.acr-f{
+  margin-top:12px;
+  font-size:clamp(14px,1.5vw,16.5px); line-height:1.75; color:var(--ink-soft);
+}
+.acr-f span{white-space:nowrap;}
+.acr-f b{
+  font-family:var(--font-display); font-size:1.32em; font-weight:600;
+  color:var(--ink-faint); line-height:1;
+}
+.acr-f .on{color:var(--ink); font-weight:600;}
+.acr-f .on b{color:var(--accent);}
+.acr-es{
+  margin-top:10px; padding-left:11px;
+  border-left:2px solid var(--border);
+  font-size:13px; line-height:1.55; color:var(--ink-faint);
+}
+.acr-pie{
+  margin-top:18px; padding-top:14px; border-top:1px solid var(--border);
+  font-size:13.5px; line-height:1.55; color:var(--ink-soft);
+}
 
 /* El puente: una línea rotulada que dice cómo se relacionan los dos
    bloques. Es lo único que impide leerlos como dos listas sueltas. */
-.ott-puente{
+.mrc-puente{
   display:flex; align-items:center; gap:14px;
   margin:26px 0 0;
   font-size:13px; font-weight:600; color:var(--ink-faint);
 }
-.ott-puente::before, .ott-puente::after{
+.mrc-puente::before, .mrc-puente::after{
   content:""; flex:1; height:1px; background:var(--border);
 }
 
-.ott{
-  margin-top:18px; display:grid;
+.mrc{
+  margin-top:20px; display:grid;
   grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:16px 20px;
 }
-.ott-c{border-top:3px solid var(--accent); padding:13px 0 0;}
-.ott-grupo.como .ott-c{border-top-color:var(--ink-faint);}
-.ott-t{
+.mrc-c{border-top:3px solid var(--accent); padding:13px 0 0;}
+.mrc-grupo.como .mrc-c{border-top-color:var(--ink-faint);}
+.mrc-t{
   font-family:var(--font-display); font-size:clamp(17px,1.8vw,21px);
   line-height:1.25; color:var(--ink);
 }
-.ott-e{margin-top:9px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
-.ott-x{margin-top:11px; display:flex; flex-wrap:wrap; gap:6px;}
-.ott-x span{
-  padding:4px 10px; border-radius:999px;
+.mrc-e{margin-top:9px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
+/* Las pildoras son botones: cada una guarda la definicion de su fase o
+   de su actividad, y se abre al presionarla. La definicion no vive en
+   un tooltip porque en el salon se proyecta y se lee en voz alta; tiene
+   que quedar en pantalla hasta que alguien la cierre. */
+.mrc-x{margin-top:11px; display:flex; flex-wrap:wrap; gap:6px;}
+.mrc-x button{
+  padding:4px 10px 4px 24px; border-radius:999px;
   background:var(--surface); border:1px solid var(--border);
-  font-size:12.5px; color:var(--ink-soft);
+  font:inherit; font-size:12.5px; color:var(--ink-soft);
+  cursor:pointer; position:relative; text-align:left;
+  transition:background .15s, border-color .15s, color .15s;
 }
-.ott-q{
+/* El signo es el unico indicio de que la pildora se puede abrir, asi
+   que va siempre visible y no solo al pasar el cursor. */
+.mrc-x button::before{
+  content:"+";
+  position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  font-size:13px; line-height:1; color:var(--ink-faint);
+}
+.mrc-x button:hover{border-color:var(--accent); color:var(--ink);}
+.mrc-x button[aria-expanded="true"]{
+  background:var(--accent); border-color:var(--accent); color:#fff;
+}
+.mrc-x button[aria-expanded="true"]::before{content:"\2212"; color:#fff;}
+.mrc-grupo.como .mrc-x button:hover{border-color:var(--ink-soft);}
+.mrc-grupo.como .mrc-x button[aria-expanded="true"]{
+  background:var(--ink-soft); border-color:var(--ink-soft);
+}
+/* La definicion se abre debajo de toda la fila y no junto a su pildora:
+   asi el ancho no depende de donde quedo la pildora al ajustarse. */
+.mrc-d{
+  margin-top:9px; padding:10px 13px; border-radius:9px;
+  background:var(--accent-soft);
+  font-size:13.5px; line-height:1.55; color:var(--ink);
+}
+.mrc-d[hidden]{display:none;}
+.mrc-d b{font-weight:600;}
+.mrc-grupo.como .mrc-d{background:var(--surface); border:1px solid var(--border);}
+/* El fundamento teorico: de donde sale la categoria. Va en cuerpo
+   pequeno y con rotulo propio porque es respaldo para la sustentacion,
+   no una opcion que haya que decidir. */
+.mrc-b{
+  margin-top:10px; padding-left:11px;
+  border-left:2px solid var(--border);
+  font-size:12.5px; line-height:1.5; color:var(--ink-faint);
+}
+.mrc-b b{
+  display:block; margin-bottom:2px;
+  font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+.mrc-q{
   margin-top:11px; padding:11px 14px; border-radius:9px;
   background:var(--accent-soft);
   font-family:var(--font-display); font-size:15.5px; line-height:1.35;
@@ -533,6 +713,13 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   </section>
 
   <section class="seccion">
+    <div class="seccion-r">El marco</div>
+    <h2 class="seccion-t" id="mrc-t"></h2>
+    <div class="seccion-s" id="mrc-s"></div>
+    <div id="mrc"></div>
+  </section>
+
+  <section class="seccion">
     <div class="seccion-r">Cómo se califica</div>
     <h2 class="seccion-t" id="rub-t"></h2>
     <div class="seccion-s" id="rub-s"></div>
@@ -540,12 +727,11 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
     <div class="rub-pie">Cada criterio despliega sus descriptores de desempeño en cinco niveles, calificados sobre 5.</div>
   </section>
 
-  <section class="seccion">
-    <div class="seccion-r">El marco</div>
-    <h2 class="seccion-t" id="ott-t"></h2>
-    <div class="seccion-s" id="ott-s"></div>
-    <div id="ott"></div>
-  </section>
+    <section class="seccion">
+      <div class="seccion-r">Referencias</div>
+      <h2 class="seccion-t">De dónde sale el marco</h2>
+      <div class="refs" id="refs"></div>
+    </section>
 </div>
 
 <!-- ============================================================
@@ -661,10 +847,9 @@ const FASE = {
       }
     ]
   },
-  "ottawa": {
+  "marco": {
     "t": "Carta de Ottawa: en qué se apoyó lo que hicieron",
     "s": "<p>La misma Carta con la que diseñaron el programa, ahora para reconocerse en ella. Cada área de acción trae <strong>la pregunta que hay que poder responder</strong> en la reflexión final.</p><p>Un programa que no se reconoce en ninguna probablemente no fue de promoción de la salud. Decirlo vale más que forzar el encaje.</p>",
-    "puente": "Y cada una se trabajó con alguna de estas tres",
     "grupos": [
       {
         "eje": "El qué",
@@ -674,21 +859,95 @@ const FASE = {
         "componentes": [
           {
             "title": "Reforzar la acción comunitaria",
-            "question": "¿Cómo involucró a la comunidad durante el desarrollo del programa?"
+            "question": "¿Cómo involucró a la comunidad durante el desarrollo del programa?",
+            "examples": [
+              {
+                "t": "Grupos de pacientes crónicos",
+                "d": "Personas con una misma condición que se reúnen a sostenerse entre sí. El recurso lo aporta el grupo, no el profesional."
+              },
+              {
+                "t": "Clubes de hipertensos y diabéticos",
+                "d": "Espacios periódicos de la institución donde la población con esas condiciones aprende y se acompaña."
+              },
+              {
+                "t": "Redes de apoyo familiar",
+                "d": "Se vincula a familiares y cuidadores para que el sostén no dependa solo del servicio."
+              },
+              {
+                "t": "Comités de usuarios",
+                "d": "Instancia donde la comunidad participa en las decisiones sobre el servicio que recibe."
+              }
+            ]
           },
           {
             "title": "Desarrollar las aptitudes personales",
-            "question": "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"
+            "question": "¿Qué habilidades o conocimientos fortaleció en las personas participantes?",
+            "examples": [
+              {
+                "t": "Consejería en consulta",
+                "d": "Orientación individual dentro de la atención, para que la persona decida con información."
+              },
+              {
+                "t": "Educación en autocuidado",
+                "d": "Enseñar a reconocer signos y a manejar la condición en el día a día."
+              },
+              {
+                "t": "Adherencia al tratamiento",
+                "d": "Trabajar lo que hace que alguien sostenga o abandone lo que le indicaron."
+              },
+              {
+                "t": "Técnicas de autoexamen",
+                "d": "Enseñar procedimientos que la persona se aplica a sí misma para detectar a tiempo."
+              }
+            ]
           },
           {
             "title": "Crear ambientes favorables",
-            "question": "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"
+            "question": "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?",
+            "examples": [
+              {
+                "t": "Salas de espera educativas",
+                "d": "Convertir el tiempo de espera en oportunidad de aprendizaje, con material y actividades."
+              },
+              {
+                "t": "Consultorios con lactario",
+                "d": "Adecuar el espacio para que la lactancia sea posible dentro del servicio."
+              },
+              {
+                "t": "Entornos hospitalarios seguros",
+                "d": "Modificar condiciones físicas del sitio que hoy exponen a riesgo a quien está en él."
+              },
+              {
+                "t": "Ambientes libres de humo",
+                "d": "Definir y señalizar los espacios donde no se fuma, y sostener esa norma en el tiempo."
+              }
+            ]
           },
           {
             "title": "Reorientar los servicios de salud",
-            "question": "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"
+            "question": "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?",
+            "examples": [
+              {
+                "t": "Consulta con enfoque preventivo",
+                "d": "Usar el motivo de consulta para anticipar problemas, y no solo para tratar el actual."
+              },
+              {
+                "t": "Tamizaje en el primer nivel",
+                "d": "Detectar en la puerta de entrada del sistema, sin esperar a que haya remisión."
+              },
+              {
+                "t": "Atención domiciliaria",
+                "d": "Llevar el servicio a donde está la persona cuando ella no puede llegar a él."
+              },
+              {
+                "t": "Programas de detección temprana",
+                "d": "Rutas organizadas para encontrar los casos antes de que se agraven."
+              }
+            ]
           }
-        ]
+        ],
+        "puente": "Y cada una se trabajó con alguna de estas tres",
+        "sub": "Sobre qué actuó el programa. Hay que poder señalar cuál sostuvo la intervención y en qué momento concreto."
       },
       {
         "eje": "El cómo",
@@ -708,10 +967,20 @@ const FASE = {
             "title": "Proporcionar medios",
             "explanation": "Reducir las inequidades y brindar oportunidades para que todas las personas desarrollen su máximo potencial de salud."
           }
-        ]
+        ],
+        "sub": "De qué manera se actuó. Las tres atraviesan a cualquiera de las áreas, así que no se elige entre ellas."
       }
-    ]
-  }
+    ],
+    "acronimo": {
+      "r": "Su nombre",
+      "a": "Carta de Ottawa",
+      "aut": "Organización Mundial de la Salud, 1986",
+      "s": "Nace en la <strong>Primera Conferencia Internacional sobre la Promoción de la Salud</strong>, reunida en Ottawa el 21 de noviembre de 1986. Ahí se define la promoción de la salud como el proceso de dar a la población los medios para ejercer mayor control sobre su propia salud, y se reparte ese proceso en las áreas de acción y las estrategias que siguen."
+    }
+  },
+  "referencias": [
+    "Organización Mundial de la Salud. (1986). <i>Carta de Ottawa para la promoción de la salud</i>. Primera Conferencia Internacional sobre la Promoción de la Salud, Ottawa, Canadá, 21 de noviembre de 1986."
+  ]
 };
 
 /* ============================================================
@@ -773,7 +1042,7 @@ const PREGUNTAS = [
     punto: {
       n: "Punto 3 de la Fase II",
       t: "Reflexión final",
-      items: ["Relación con los principios de la Carta de Ottawa", "Testimonios y experiencias de los participantes", "Reflexión crítica"]
+      items: ["Área de acción en la que se apoyó<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central utilizada<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Testimonios y experiencias de los participantes", "Reflexión crítica"]
     }
   }
 ];
@@ -895,7 +1164,7 @@ function pintar(){
     $("porque").innerHTML = t.porque.map(x => "<li>" + x + "</li>").join("");
     $("punto-r").textContent = t.punto.n;
     $("punto-t").textContent = t.punto.t;
-    $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + escapar(x) + "</span>").join("");
+    $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + x + "</span>").join("");
   } else {
     // La banda es opcional: el cierre de la Fase II va sin ella.
     $("banda").hidden = !t.banda;
@@ -958,11 +1227,15 @@ if (FASE.encuadre){
 
 $("ent-t").textContent = FASE.entregables.t;
 $("ent-s").innerHTML = FASE.entregables.s;
+// La numeración corre a lo largo de toda la fase: así la lista se lee
+// como el guión de la sustentación, en el orden en que hay que darla.
+let nEnt = 0;
 $("entregables").innerHTML = PREGUNTAS.map(p =>
   '<div class="ent">' +
     '<div class="ent-n">' + escapar(p.punto.n) + '</div>' +
     '<div class="ent-t">' + escapar(p.punto.t) + '</div>' +
-    '<div class="ent-i">' + p.punto.items.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' +
+    '<div class="ent-i">' + p.punto.items.map(x =>
+      '<span><i>' + (++nEnt) + '</i>' + x + '</span>').join("") + '</div>' +
   '</div>').join("");
 
 $("rub-t").textContent = FASE.rubrica.t;
@@ -978,26 +1251,87 @@ $("rub").innerHTML = FASE.rubrica.criterios.map(c =>
     ).join("") + '</div>' +
   '</details>').join("");
 
-$("ott-t").textContent = FASE.ottawa.t;
-$("ott-s").innerHTML = FASE.ottawa.s;
-// Un bloque por grupo, con el puente intercalado entre los dos.
-$("ott").innerHTML = FASE.ottawa.grupos.map((g, i) =>
-  (i ? '<div class="ott-puente">' + escapar(FASE.ottawa.puente) + '</div>' : "") +
-  '<div class="ott-grupo' + (g.modo === "como" ? " como" : "") + '">' +
-    '<div class="ott-cab">' +
-      '<span class="ott-eje">' + escapar(g.eje) + '</span>' +
-      '<h3>' + escapar(g.titulo) + '</h3>' +
-      '<p>' + g.lead + '</p>' +
-    '</div>' +
-    '<div class="ott">' + g.componentes.map(c =>
-      '<div class="ott-c">' +
-        '<div class="ott-t">' + escapar(c.title) + '</div>' +
-        (c.explanation ? '<div class="ott-e">' + escapar(c.explanation) + '</div>' : "") +
-        (c.examples ? '<div class="ott-x">' + c.examples.map(x => '<span>' + escapar(x) + '</span>').join("") + '</div>' : "") +
-        (c.question ? '<div class="ott-q">' + escapar(c.question) + '</div>' : "") +
+$("refs").innerHTML = FASE.referencias.map(x => '<div>' + x + '</div>').join("");
+
+$("mrc-t").textContent = FASE.marco.t;
+$("mrc-s").innerHTML = FASE.marco.s;
+// Un bloque por grupo, con el puente de cada uno intercalado antes del siguiente.
+// El acrónimo va antes de los bloques: es el contexto del marco entero.
+$("mrc").innerHTML =
+  (FASE.marco.acronimo ? pintarAcronimo(FASE.marco.acronimo) : "") +
+  FASE.marco.grupos.map((g, i, a) =>
+  (i ? '<div class="mrc-puente">' + escapar(a[i - 1].puente) + '</div>' : "") +
+  '<details class="mrc-grupo' + (g.modo === "como" ? " como" : "") + '">' +
+    '<summary>' +
+      '<span class="mrc-eje">' + escapar(g.eje) + '</span>' +
+      '<div class="mrc-cab">' +
+        '<h3>' + escapar(g.titulo) + '</h3>' +
+        '<span class="n">' + g.componentes.length + '</span>' +
+        '<span class="mas" aria-hidden="true"></span>' +
+      '</div>' +
+      '<p class="mrc-sub">' + escapar(g.sub) + '</p>' +
+    '</summary>' +
+    '<div class="mrc-cuerpo">' +
+    '<p class="mrc-lead">' + g.lead + '</p>' +
+    '<div class="mrc">' + g.componentes.map(c =>
+      '<div class="mrc-c' + (c.cat ? " c" + c.cat : "") + '">' +
+        '<div class="mrc-t">' + escapar(c.title) + '</div>' +
+        (c.explanation ? '<div class="mrc-e">' + escapar(c.explanation) + '</div>' : "") +
+        (c.base ? '<div class="mrc-b"><b>Fundamento</b>' + escapar(c.base) + '</div>' : "") +
+        (c.examples ? '<div class="mrc-x">' + c.examples.map((x, k) =>
+          '<button type="button" aria-expanded="false" data-def="' +
+            escapar(x.d || "") + '" data-t="' + escapar(x.t) + '">' +
+            escapar(x.t) + '</button>').join("") + '</div>' +
+          '<div class="mrc-d" hidden></div>' : "") +
+        (c.question ? '<div class="mrc-q">' + escapar(c.question) + '</div>' : "") +
       '</div>').join("") +
     '</div>' +
-  '</div>').join("");
+    '</div>' +
+  '</details>').join("");
+
+// El nombre del marco: dos columnas de siete letras, con las tres
+// primeras encendidas.
+function pintarAcronimo(a){
+  return '<div class="acr">' +
+    '<div class="acr-r">' + escapar(a.r) + '</div>' +
+    '<div class="acr-n"><span class="a">' + escapar(a.a) + '</span>' +
+      (a.b ? '<span class="g">-</span><span class="b">' + escapar(a.b) + '</span>' : "") +
+    '</div>' +
+    (a.aut ? '<div class="acr-aut">' + escapar(a.aut) + '</div>' : "") +
+    '<p class="acr-s">' + a.s + '</p>' +
+    (a.cols ? '<div class="acr-g">' + a.cols.map(c =>
+      '<div>' +
+        '<div class="acr-h">' + escapar(c.h) + '<span>' + escapar(c.sub) + '</span></div>' +
+        '<div class="acr-f">' + c.frase.map(x =>
+          '<span' + (x.on ? ' class="on"' : '') + '>' +
+            '<b>' + escapar(x.i) + '</b>' + escapar(x.r) +
+          '</span>').join(" ") +
+        '</div>' +
+        '<div class="acr-es">' + escapar(c.es) + '</div>' +
+      '</div>').join("") +
+    '</div>' : "") +
+    (a.pie ? '<div class="acr-pie">' + escapar(a.pie) + '</div>' : "") +
+  '</div>';
+}
+
+/* Una sola definicion abierta por tarjeta: abrir otra reemplaza a la
+   anterior en lugar de acumular paneles. Volver a presionar la misma
+   pildora la cierra. */
+$("mrc").addEventListener("click", e => {
+  const b = e.target.closest(".mrc-x button");
+  if (!b) return;
+  const fila = b.parentNode;
+  const panel = fila.nextElementSibling;
+  const abierta = b.getAttribute("aria-expanded") === "true";
+  fila.querySelectorAll("button").forEach(o => o.setAttribute("aria-expanded", "false"));
+  if (abierta) {
+    panel.hidden = true;
+    return;
+  }
+  b.setAttribute("aria-expanded", "true");
+  panel.innerHTML = "<b>" + escapar(b.dataset.t) + ".</b> " + escapar(b.dataset.def);
+  panel.hidden = false;
+});
 
 </script>
 
