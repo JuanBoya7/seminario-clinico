@@ -476,7 +476,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 /* La etiqueta dentro de un ítem: mismo tratamiento que las del ejemplo
    de los determinantes —versalitas, redonda, cuerpo pequeño— pero en
    neutro, porque acá no liga con ninguna tarjeta. */
-.ent-i span .et, .punto-items span .et{
+.ent-i span .et, .punto-items span .et, .nivref .et{
   display:inline-block; margin:0 0 0 5px; vertical-align:1px;
   padding:1px 6px; border:none; border-radius:999px;
   background:var(--surface-alt);
@@ -484,7 +484,8 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   letter-spacing:.06em; text-transform:uppercase;
   color:var(--ink-faint);
 }
-.ent-i span .et:first-of-type, .punto-items span .et:first-of-type{margin-left:9px;}
+.ent-i span .et:first-of-type, .punto-items span .et:first-of-type,
+.nivref .et:first-of-type{margin-left:9px;}
 .ent-i span i{
   font-style:normal; font-weight:700; font-size:11px;
   color:var(--accent); margin-right:7px;
@@ -1124,7 +1125,7 @@ const PREGUNTAS = [
       lista: [
         { n: "Cobertura", d: "A cuántas personas se llegó, sobre las que se esperaba alcanzar." },
         { n: "Ejecución y participación", d: "Si la actividad se realizó como estaba planeada y si las personas participaron." },
-        { n: "Resultado inmediato", d: "Qué cambió justo después de la intervención." }
+        { n: "Resultado inmediato", d: "Qué cambió justo después de la intervención. Se sugiere una<span class='et'>encuesta de adherencia de conocimientos</span> aplicada al cerrar: se hace una sola vez y muestra qué quedó instalado." }
       ],
       pie: "Los dos primeros muestran que el programa ocurrió; solo el tercero muestra que algo cambió. Se definieron en la Fase I."
     },
@@ -1355,7 +1356,7 @@ function pintarNiveles(n){
   return '<div class="nivref">' +
     '<div class="nivref-r">' + escapar(n.t) + '</div>' +
     '<div class="nivref-l">' + n.lista.map(x =>
-      '<div><b>' + escapar(x.n) + '</b>' + escapar(x.d) + '</div>').join("") +
+      '<div><b>' + escapar(x.n) + '</b>' + x.d + '</div>').join("") +
     '</div>' +
     '<div class="nivref-p">' + escapar(n.pie) + '</div>' +
   '</div>';
