@@ -404,7 +404,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 /* La etiqueta dentro de un ítem: mismo tratamiento que las del ejemplo
    de los determinantes —versalitas, redonda, cuerpo pequeño— pero en
    neutro, porque acá no liga con ninguna tarjeta. */
-.ent-i span .et, .punto-items span .et{
+.ent-i span .et, .punto-items span .et, .nivref .et{
   display:inline-block; margin:0 0 0 5px; vertical-align:1px;
   padding:1px 6px; border:none; border-radius:999px;
   background:var(--surface-alt);
@@ -412,7 +412,8 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   letter-spacing:.06em; text-transform:uppercase;
   color:var(--ink-faint);
 }
-.ent-i span .et:first-of-type, .punto-items span .et:first-of-type{margin-left:9px;}
+.ent-i span .et:first-of-type, .punto-items span .et:first-of-type,
+.nivref .et:first-of-type{margin-left:9px;}
 .ent-i span i{
   font-style:normal; font-weight:700; font-size:11px;
   color:var(--accent); margin-right:7px;
@@ -441,6 +442,15 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-size:10px; letter-spacing:.09em; text-transform:uppercase;
   margin-right:8px;
 }
+/* La remisión: la flecha dice que lo remitido está más arriba, y el
+   botón ahorra buscarlo —abre esa pregunta en la vista de proyección—. */
+.nivref .ir{
+  display:inline-block; margin-left:8px;
+  background:none; border:none; padding:0;
+  font:inherit; font-size:12px; font-weight:600;
+  color:var(--accent); cursor:pointer;
+}
+.nivref .ir:hover{text-decoration:underline;}
 .nivref-p{
   margin-top:12px; padding-top:11px; border-top:1px solid var(--border);
   font-size:12.5px; line-height:1.5; color:var(--ink-faint);
@@ -1117,7 +1127,7 @@ const PREGUNTAS = [
         { n: "Actividades", d: "Qué se va a hacer, en concreto. Tienen que poder derivarse del área de acción que declararon." },
         { n: "Cronograma", d: "Cuándo se hace cada cosa, dentro del tiempo que realmente queda del corte." },
         { n: "Recursos", d: "Qué hace falta y quién lo pone: materiales, espacios, personas y permisos." },
-        { n: "Indicadores", d: "Con qué se va a medir. Se definen acá y se reportan en la Fase II." }
+        { n: "Indicadores", d: "Con qué se va a medir. Se definen acá y se reportan en la Fase II.<span class='et'>cobertura</span><span class='et'>participación y ejecución</span><span class='et'>resultado inmediato</span><button type='button' class='ir' data-p='3'>↑ Pregunta 4</button>" }
       ],
       pie: "Todo esto es proyección: lo que efectivamente ocurra se describe en la Fase II, y la diferencia entre lo uno y lo otro es después un hallazgo."
     },
@@ -1361,7 +1371,7 @@ function pintarNiveles(n){
   return '<div class="nivref">' +
     '<div class="nivref-r">' + escapar(n.t) + '</div>' +
     '<div class="nivref-l">' + n.lista.map(x =>
-      '<div><b>' + escapar(x.n) + '</b>' + escapar(x.d) + '</div>').join("") +
+      '<div><b>' + escapar(x.n) + '</b>' + x.d + '</div>').join("") +
     '</div>' +
     '<div class="nivref-p">' + escapar(n.pie) + '</div>' +
   '</div>';
@@ -1443,6 +1453,12 @@ function pintarAcronimo(a){
     (a.pie ? '<div class="acr-pie">' + escapar(a.pie) + '</div>' : "") +
   '</div>';
 }
+
+// La remisión abre la pregunta que explica los tres indicadores.
+document.addEventListener("click", e => {
+  const b = e.target.closest(".nivref .ir");
+  if (b) abrir(Number(b.dataset.p));
+});
 
 /* Una sola definicion abierta por tarjeta: abrir otra reemplaza a la
    anterior en lugar de acumular paneles. Volver a presionar la misma
