@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico preliminar — Cuatro preguntas para el salón</title>
+<style>
+/* ============================================================
+   TOKENS
+   Estructura tomada del deck de cierre del tamizaje
+   (4-Tamizaje-SRQ-debate.html): los dos son recursos de
+   proyección y se manejan igual. Lo que cambia es el acento,
+   que acá es el de la Fase I en la página de lineamientos de
+   programas de promoción en salud — esta actividad es su
+   antesala, no un tema aparte.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#faf7f0;
+  --surface-alt:#f3ede2;
+  --border:#e4ddd0;
+  --ink:#201d18;
+  --ink-soft:#5c5648;
+  --ink-faint:#8a8272;
+  --accent:#cd4a60;
+  --accent-dark:#8f2d3f;
+  --accent-soft:#fbeef0;
+  --font-display:"Spectral","Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --cat1:#b4531c;
+  --cat1-soft:#f8ece2;
+  --cat2:#1f6f8b;
+  --cat2-soft:#e6f0f3;
+  --cat3:#6b4c9a;
+  --cat3-soft:#efeaf7;
+  --radius:14px;
+  --shadow-card:0 1px 2px rgba(32,29,24,0.04), 0 6px 22px rgba(32,29,24,0.07);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   PORTADA
+   ============================================================ */
+.wrap{
+  max-width:1180px; margin:0 auto;
+  padding:clamp(30px,6vh,64px) 32px 80px;
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center;
+}
+
+.globos{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(300px,1fr));
+  gap:38px 30px;
+}
+
+/* Con un número impar de globos el último quedaría solo contra el margen
+   izquierdo. Se lo pasa a fila completa y se lo centra. */
+.globos > .globo:last-child:nth-child(odd){
+  grid-column:1 / -1;
+  justify-self:center;
+  width:calc(50% - 15px);
+}
+
+@media (max-width:820px){
+  .globos{grid-template-columns:1fr; gap:32px 0;}
+  .globos > .globo:last-child:nth-child(odd){grid-column:auto; width:100%;}
+}
+
+.globo{
+  position:relative;
+  display:block; width:100%; text-align:left;
+  font-family:var(--font-display);
+  font-size:clamp(19px,1.85vw,23px);
+  line-height:1.34; letter-spacing:-.005em;
+  color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:26px 26px 30px;
+  cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.globo:hover, .globo:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(32,29,24,.05), 0 14px 30px rgba(32,29,24,.11);
+  background:var(--bg);
+  outline:none;
+}
+.globo:focus-visible{border-color:var(--accent);}
+
+/* La colita del bocadillo. Dos capas: el borde y el relleno encima. */
+.globo::before, .globo::after{
+  content:""; position:absolute; left:34px; width:0; height:0;
+  border-style:solid;
+}
+.globo::before{
+  bottom:-15px;
+  border-width:15px 15px 0 0;
+  border-color:var(--border) transparent transparent transparent;
+}
+.globo::after{
+  bottom:-13px;
+  border-width:13px 13px 0 0;
+  border-color:var(--surface) transparent transparent transparent;
+  transition:border-top-color .16s ease;
+}
+.globo:hover::after, .globo:focus-visible::after{border-top-color:var(--bg);}
+
+.globo .num{
+  display:block;
+  font-family:var(--font-body);
+  font-size:11.5px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:13px;
+}
+.globo .pie{
+  display:block; margin-top:16px;
+  font-family:var(--font-body);
+  font-size:12.5px; font-weight:500; color:var(--ink-faint);
+}
+
+/* La tarjeta de cierre no es una pregunta al salón: sin colita y con el
+   borde en el acento, para que se lea como otra cosa. */
+.globo.utilitaria{
+  background:var(--bg);
+  border-color:var(--accent-soft);
+  border-width:2px;
+}
+.globo.utilitaria::before, .globo.utilitaria::after{display:none;}
+
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+.escena{
+  position:fixed; inset:0; z-index:50;
+  background:var(--bg);
+  display:none;
+  flex-direction:column;
+}
+.escena.abierta{display:flex;}
+
+.escena-barra{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:16px 26px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.escena-barra .cuenta{
+  font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.escena-barra .btns{display:flex; align-items:center; gap:8px;}
+.bt{
+  font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px;
+  padding:7px 14px; cursor:pointer;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt.primario{background:var(--accent); border-color:var(--accent); color:#fff;}
+.bt.primario:hover{background:var(--accent-dark); border-color:var(--accent-dark); color:#fff;}
+
+.escena-cuerpo{
+  flex:1 1 auto; overflow-y:auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:clamp(24px,4vh,56px) clamp(20px,5vw,64px) 40px;
+}
+.escena-inner{width:100%; max-width:1000px;}
+
+/* Etapa 1: la pregunta sola, mientras el grupo la responde en la hoja. */
+.q-texto{
+  font-family:var(--font-display);
+  font-size:clamp(28px,3.9vw,50px);
+  line-height:1.2; letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:24ch;
+  transition:font-size .22s ease, max-width .22s ease;
+}
+.q-texto.ancha{max-width:30ch;}
+
+/* Etapa 2: ya se respondió y se discutió. La pregunta baja a encabezado y
+   el cuerpo deja de centrarse verticalmente — si no, con contenido más
+   alto que la pantalla la primera línea queda fuera del scroll. */
+.escena.revelado .escena-cuerpo{justify-content:flex-start;}
+.escena.revelado .q-texto,
+.escena.revelado .q-texto.ancha{
+  font-size:clamp(20px,2.2vw,29px);
+  max-width:46ch;
+  color:var(--ink-soft);
+}
+
+/* La tarjeta de cierre no es una pregunta destapada: nada estuvo oculto,
+   así que el título se queda a tamaño de portada y el bloque se centra.
+   El centrado va por margen automático y no por justify-content: con
+   centrado real, un contenido más alto que la pantalla desborda por
+   arriba y la primera línea queda fuera del alcance del scroll. */
+.escena.cierre .escena-inner{margin-block:auto;}
+.escena.cierre .q-texto,
+.escena.cierre .q-texto.ancha{
+  font-size:clamp(26px,3.4vw,44px);
+  max-width:20ch;
+  color:var(--ink);
+  margin-bottom:clamp(26px,4.5vh,44px);
+}
+.escena.cierre .paso .paso-r{font-size:clamp(13px,1.4vw,16.5px);}
+
+.revelar-zona{margin-top:clamp(28px,5vh,52px);}
+.revelar-zona .nota{
+  margin-top:14px; font-size:13px; color:var(--ink-faint); max-width:52ch;
+}
+
+/* Etapa 2: la puesta en común. */
+.explica{
+  margin-top:clamp(26px,4vh,44px);
+  padding-top:clamp(24px,3.5vh,38px);
+  border-top:1px solid var(--border);
+}
+.explica[hidden]{display:none;}
+
+.idea{
+  font-family:var(--font-display);
+  font-size:clamp(21px,2.5vw,31px);
+  line-height:1.32; letter-spacing:-.01em;
+  color:var(--accent-dark);
+  background:var(--accent-soft);
+  border-radius:var(--radius);
+  padding:22px 26px;
+  max-width:44ch;
+}
+
+.porque{margin-top:clamp(22px,3vh,32px);}
+.porque ul{margin:0; padding:0; list-style:none;}
+.porque li{
+  position:relative;
+  padding-left:26px; margin-bottom:15px;
+  font-size:clamp(16px,1.7vw,21px);
+  line-height:1.5; color:var(--ink-soft);
+  max-width:76ch;
+}
+.porque li:last-child{margin-bottom:0;}
+.porque li::before{
+  content:""; position:absolute; left:6px; top:.62em;
+  width:7px; height:7px; border-radius:50%; background:var(--accent);
+}
+.porque li strong{color:var(--ink); font-weight:600;}
+
+/* Los niveles de prevención, en la pregunta del tamizaje. Van como
+   tarjetas y no como un renglón más de la lista porque son una escala
+   —se elige un punto de tres— y una enumeración dentro de un párrafo no
+   deja ver eso. Toman el mismo lenguaje que los entregables de la Fase
+   II: filete de acento a la izquierda, rótulo en versalitas y el texto
+   debajo. Solo aparecen en la pregunta que los usa. */
+.niveles{margin-top:clamp(24px,3.2vh,34px); max-width:76ch;}
+.niveles[hidden]{display:none;}
+.niveles-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.niveles-t{
+  font-family:var(--font-display);
+  font-size:clamp(17px,1.9vw,24px); line-height:1.22;
+  margin-top:6px; color:var(--ink);
+}
+.niveles-g{
+  margin-top:14px; display:grid; gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+}
+.niveles-g .nv{
+  border:1px solid var(--border);
+  border-left:4px solid var(--accent);
+  border-radius:var(--radius);
+  background:var(--surface);
+  padding:13px 16px;
+}
+.niveles-g .nv b{
+  display:block;
+  font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--accent);
+}
+.niveles-g .nv span{
+  display:block; margin-top:6px;
+  font-size:clamp(13.5px,1.4vw,16px); line-height:1.45; color:var(--ink-soft);
+}
+.niveles-pie{
+  margin-top:11px;
+  font-size:clamp(13px,1.35vw,15.5px); line-height:1.5; color:var(--ink-faint);
+}
+
+/* El puente con la Fase I: cada pregunta es uno de sus cuatro puntos, y
+   los ítems son los que la rúbrica va a evaluar en la presentación. */
+.punto{
+  margin-top:clamp(26px,3.6vh,38px);
+  border:1px solid var(--border);
+  border-left:4px solid var(--accent);
+  border-radius:var(--radius);
+  background:var(--surface);
+  padding:20px 24px;
+  max-width:76ch;
+}
+.punto .punto-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.punto .punto-t{
+  font-family:var(--font-display);
+  font-size:clamp(18px,2vw,26px); line-height:1.22;
+  margin-top:6px; color:var(--ink);
+}
+.punto .punto-items{
+  display:flex; flex-wrap:wrap; gap:7px;
+  margin-top:14px;
+}
+.punto .punto-items span{
+  padding:6px 12px; border-radius:999px;
+  background:var(--bg); border:1px solid var(--border);
+  font-size:clamp(12.5px,1.3vw,14.5px); font-weight:500; color:var(--ink-soft);
+}
+
+/* --- Panel de cierre --------------------------------------------- */
+.panel-cierre[hidden]{display:none;}
+.banda{
+  font-size:clamp(13px,1.35vw,16px); color:var(--ink-soft);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:12px 18px; margin-bottom:22px;
+}
+.banda strong{color:var(--ink);}
+
+.cadena{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.paso{
+  position:relative;
+  border-top:3px solid var(--accent);
+  padding:14px 12px 0 0;
+}
+.paso .paso-n{
+  font-size:11px; font-weight:700; letter-spacing:.15em;
+  color:var(--accent); text-transform:uppercase;
+}
+.paso .paso-t{
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.2vw,28px); line-height:1.2;
+  margin-top:6px; color:var(--ink);
+}
+.paso .paso-r{
+  margin-top:10px;
+  font-size:clamp(12.5px,1.3vw,15px); line-height:1.45;
+  color:var(--ink-soft);
+}
+.paso:not(:last-child)::after{
+  content:"→";
+  position:absolute; right:-4px; top:-2px;
+  transform:translateY(-55%);
+  font-size:20px; line-height:1; color:var(--accent);
+}
+@media (max-width:820px){
+  .cadena{grid-template-columns:1fr; gap:20px;}
+  .paso:not(:last-child)::after{content:"↓"; right:auto; left:0; top:auto; bottom:-18px; transform:none;}
+}
+
+.regla{
+  margin-top:clamp(26px,4vh,40px);
+  font-family:var(--font-display);
+  font-size:clamp(20px,2.4vw,30px); line-height:1.32;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:var(--radius); padding:24px 28px;
+  max-width:58ch;
+}
+
+/* La tarjeta de rotación reusa el panel del cierre, pero sus tres
+   columnas no son una secuencia —son tres preguntas simultáneas sobre
+   la misma hoja—, así que pierden las flechas. */
+.escena.rotacion .cadena{grid-template-columns:repeat(3,1fr);}
+.escena.rotacion .paso:not(:last-child)::after{content:none;}
+.escena.rotacion .paso .paso-t{font-size:clamp(18px,2vw,25px);}
+@media (max-width:820px){
+  .escena.rotacion .cadena{grid-template-columns:1fr;}
+}
+
+/* ============================================================
+   LA FASE — material de consulta
+
+   Vive debajo de la cuadrícula y nunca se proyecta: la escena es un
+   overlay a pantalla completa, así que esto solo lo ve quien abre el
+   archivo. Por eso la rúbrica y los modelos de intervención pueden
+   estar acá sin estorbar en el salón, y por eso el deck se puede repartir.
+   ============================================================ */
+.pagina{max-width:1180px; margin:0 auto; padding:0 32px 90px;}
+
+.tira{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 18px;
+  padding:18px 22px; margin-bottom:clamp(34px,6vh,58px);
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--accent-soft);
+}
+.tira .tira-f{
+  font-family:var(--font-display); font-size:clamp(18px,2vw,25px);
+  line-height:1.2; color:var(--accent-dark);
+}
+.tira .tira-d{font-size:13.5px; color:var(--ink-soft);}
+.tira .tira-p{
+  margin-left:auto; font-family:var(--font-display); font-weight:600;
+  font-size:clamp(18px,2vw,25px); color:var(--accent-dark);
+}
+@media (max-width:600px){ .tira .tira-p{margin-left:0;} }
+
+.seccion{margin-bottom:clamp(38px,7vh,68px);}
+.seccion[hidden]{display:none;}
+.seccion-r{
+  font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:8px;
+}
+.seccion-t{
+  font-family:var(--font-display); font-size:clamp(22px,2.6vw,31px);
+  line-height:1.2; letter-spacing:-.01em; color:var(--ink);
+}
+.seccion-s{margin-top:11px; max-width:74ch; font-size:14.5px; line-height:1.65; color:var(--ink-soft);}
+.seccion-s p{margin:0 0 10px;}
+.seccion-s p:last-child{margin-bottom:0;}
+.seccion-s strong{color:var(--ink); font-weight:600;}
+
+/* --- Entregables ------------------------------------------------ */
+.entregables{margin-top:24px; display:grid; gap:12px;}
+.ent{
+  border:1px solid var(--border); border-left:4px solid var(--accent);
+  border-radius:var(--radius); background:var(--surface); padding:16px 20px;
+}
+.ent-n{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.ent-t{
+  font-family:var(--font-display); font-size:clamp(17px,1.8vw,22px);
+  line-height:1.25; margin-top:4px; color:var(--ink);
+}
+.ent-i{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;}
+/* La etiqueta dentro de un ítem: mismo tratamiento que las del ejemplo
+   de los determinantes —versalitas, redonda, cuerpo pequeño— pero en
+   neutro, porque acá no liga con ninguna tarjeta. */
+.ent-i span .et, .punto-items span .et{
+  display:inline-block; margin:0 0 0 5px; vertical-align:1px;
+  padding:1px 6px; border:none; border-radius:999px;
+  background:var(--surface-alt);
+  font-size:9.5px; font-weight:600; line-height:1.5;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.ent-i span .et:first-of-type, .punto-items span .et:first-of-type{margin-left:9px;}
+.ent-i span i{
+  font-style:normal; font-weight:700; font-size:11px;
+  color:var(--accent); margin-right:7px;
+}
+.ent-i span{
+  padding:5px 11px; border-radius:999px;
+  background:var(--bg); border:1px solid var(--border);
+  font-size:13px; color:var(--ink-soft);
+}
+
+/* La consulta de los niveles de prevención, bajo el punto que los
+   nombra. Va en tono menor a propósito: no compite con las tarjetas de
+   entregables ni se lee como un bloque de decisión. */
+.nivref{
+  margin-top:10px; padding:16px 20px 18px;
+  background:var(--surface); border-radius:var(--radius);
+}
+.nivref-r{
+  font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.nivref-l{margin-top:11px; display:grid; gap:8px;}
+.nivref-l div{font-size:13px; line-height:1.55; color:var(--ink-soft);}
+.nivref-l b{
+  color:var(--ink); font-weight:600;
+  font-size:10px; letter-spacing:.09em; text-transform:uppercase;
+  margin-right:8px;
+}
+.nivref-p{
+  margin-top:12px; padding-top:11px; border-top:1px solid var(--border);
+  font-size:12.5px; line-height:1.5; color:var(--ink-faint);
+}
+
+/* --- Rúbrica ---------------------------------------------------- */
+.rub{margin-top:24px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+.rub details{border-bottom:1px solid var(--border);}
+.rub details:last-child{border-bottom:none;}
+.rub summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:14px;
+  padding:14px 18px; background:var(--bg);
+  font-size:15px; font-weight:600; color:var(--ink);
+}
+.rub summary::-webkit-details-marker{display:none;}
+.rub summary:hover{background:var(--surface);}
+.rub summary .peso{margin-left:auto; font-family:var(--font-display); color:var(--accent);}
+.rub summary::after{content:"+"; color:var(--accent); font-size:19px; line-height:1; width:1ch;}
+.rub details[open] summary::after{content:"\2013";}
+.rub .niveles{padding:4px 18px 18px; background:var(--surface); display:grid; gap:9px;}
+.rub .nivel{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start;}
+.rub .nivel b{
+  font-family:var(--font-display); font-size:15px;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:7px; padding:3px 0; min-width:3ch; text-align:center;
+}
+.rub .nivel span{font-size:14px; line-height:1.5; color:var(--ink-soft);}
+.rub-pie{margin-top:12px; font-size:12.5px; color:var(--ink-faint);}
+
+/* --- El marco de intervención ----------------------------------- */
+/* Dos bloques, no una lista de seis. No compiten entre sí: el
+   determinante dice sobre qué causa modificable se actúa y el estadio
+   en qué momento se entra, así que cada grupo elige uno de cada uno.
+   Entre los dos va un puente que enuncia la relación.
+
+   Cada bloque es un desplegable, como los grupos del recurso de
+   pruebas de tamizaje. Plegados, los dos caben en una sola pantalla y
+   se leen como lo que son —las dos decisiones que hay que tomar antes
+   de diseñar—, en vez de como seis opciones sueltas. El resumen
+   conserva la línea que dice de qué decide el bloque, que es lo que
+   permite elegir cuál abrir sin abrirlos todos.
+
+   La regla de estilo del bloque 'como' se conserva: el marco puede
+   volver a crecer, y sin ella habría que reponerla. */
+.mrc-grupo{margin-top:22px;}
+.mrc-grupo > summary{
+  list-style:none; cursor:pointer;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--surface); padding:17px 20px 19px;
+  transition:background .14s, border-color .14s;
+}
+.mrc-grupo > summary::-webkit-details-marker{display:none;}
+.mrc-grupo > summary:hover{background:var(--surface-alt); border-color:var(--accent-soft);}
+.mrc-grupo[open] > summary{
+  border-bottom-left-radius:0; border-bottom-right-radius:0;
+  border-color:var(--accent-soft); background:var(--accent-soft);
+}
+.mrc-grupo > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+.mrc-eje{
+  display:inline-block;
+  padding:3px 12px; border-radius:999px;
+  background:var(--accent); color:#fff;
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+}
+.mrc-grupo.como .mrc-eje{background:var(--ink-soft);}
+.mrc-cab{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:10px;}
+.mrc-cab h3{
+  font-family:var(--font-display); font-size:clamp(19px,2.1vw,26px);
+  line-height:1.2; color:var(--ink);
+}
+.mrc-cab .n{
+  font-size:12px; font-weight:600; color:var(--ink-faint);
+  background:var(--bg); border:1px solid var(--border);
+  border-radius:999px; padding:2px 10px;
+}
+/* El signo cambia con el estado: es la única señal de que hay más. */
+.mrc-cab .mas{
+  margin-left:auto; flex:none;
+  font-size:20px; line-height:1; color:var(--accent); font-weight:400;
+}
+.mrc-grupo[open] .mrc-cab .mas::after{content:"\2013";}
+.mrc-grupo:not([open]) .mrc-cab .mas::after{content:"+";}
+.mrc-grupo.como .mrc-cab .mas{color:var(--ink-soft);}
+/* La línea del resumen: de qué decide el bloque, en una frase. */
+.mrc-sub{
+  margin:9px 0 0; max-width:84ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.mrc-cuerpo{
+  border:1px solid var(--accent-soft); border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  padding:2px 20px 24px;
+}
+.mrc-lead{
+  margin:18px 0 0; max-width:72ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.mrc-lead strong{color:var(--ink); font-weight:600;}
+
+/* El nombre del marco, desplegado letra por letra. Las dos mitades van
+   en columnas para que se vea el reparto —antes y después— y las tres
+   primeras letras van encendidas porque son las tres categorías que el
+   estudiante acaba de leer: ese es el remate. */
+.acr{
+  margin-top:26px; padding:22px 24px 24px;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--bg);
+}
+.acr-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.acr-n{
+  margin-top:7px;
+  font-family:var(--font-display); font-size:clamp(24px,3.2vw,38px);
+  line-height:1.05; letter-spacing:-.01em;
+}
+.acr-n .a{color:var(--accent);}
+.acr-n .g{color:var(--ink-faint); font-weight:400;}
+.acr-n .b{color:var(--ink);}
+/* La autoría va bajo el nombre, en cuerpo pequeño: identifica el marco
+   sin competir con el título. */
+.acr-aut{
+  margin-top:5px;
+  font-size:13px; font-style:italic; color:var(--ink-faint);
+}
+/* Las referencias, con sangría francesa. Van en la última sección de la
+   página: dentro del marco cortaban la explicación. */
+.refs{margin-top:22px; font-size:13px; line-height:1.65; color:var(--ink-soft);}
+.refs div{padding-left:26px; text-indent:-26px; margin-bottom:11px;}
+.refs div:last-child{margin-bottom:0;}
+.refs i{font-style:italic;}
+.acr-s{
+  margin:11px 0 0; max-width:70ch;
+  font-size:14px; line-height:1.6; color:var(--ink-soft);
+}
+.acr-s strong{color:var(--ink); font-weight:600; font-style:italic;}
+.acr-g{
+  margin-top:20px; display:grid; gap:20px 28px;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+}
+.acr-h{
+  font-family:var(--font-display); font-size:17px; color:var(--ink);
+  padding-bottom:7px; border-bottom:1px solid var(--border);
+}
+.acr-h span{
+  display:block; margin-top:3px;
+  font-family:var(--font-body); font-size:12.5px; font-weight:500;
+  color:var(--ink-faint);
+}
+/* La frase de la que sale la sigla. Va entera y con las iniciales
+   resaltadas dentro: así se lee que es una oración y no una lista de
+   componentes, que era lo que confundía. Las tres primeras van en
+   acento porque son las causas; las otras cuatro solo nombran lo que se
+   hace con ellas. */
+.acr-f{
+  margin-top:12px;
+  font-size:clamp(14px,1.5vw,16.5px); line-height:1.75; color:var(--ink-soft);
+}
+.acr-f span{white-space:nowrap;}
+.acr-f b{
+  font-family:var(--font-display); font-size:1.32em; font-weight:600;
+  color:var(--ink-faint); line-height:1;
+}
+.acr-f .on{color:var(--ink); font-weight:600;}
+.acr-f .on b{color:var(--accent);}
+.acr-es{
+  margin-top:10px; padding-left:11px;
+  border-left:2px solid var(--border);
+  font-size:13px; line-height:1.55; color:var(--ink-faint);
+}
+.acr-pie{
+  margin-top:18px; padding-top:14px; border-top:1px solid var(--border);
+  font-size:13.5px; line-height:1.55; color:var(--ink-soft);
+}
+
+/* El puente: una línea rotulada que dice cómo se relacionan los dos
+   bloques. Es lo único que impide leerlos como dos listas sueltas. */
+.mrc-puente{
+  display:flex; align-items:center; gap:14px;
+  margin:26px 0 0;
+  font-size:13px; font-weight:600; color:var(--ink-faint);
+}
+.mrc-puente::before, .mrc-puente::after{
+  content:""; flex:1; height:1px; background:var(--border);
+}
+
+.mrc{
+  margin-top:20px; display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:16px 20px;
+}
+.mrc-c{border-top:3px solid var(--accent); padding:13px 0 0;}
+.mrc-grupo.como .mrc-c{border-top-color:var(--ink-faint);}
+.mrc-t{
+  font-family:var(--font-display); font-size:clamp(17px,1.8vw,21px);
+  line-height:1.25; color:var(--ink);
+}
+.mrc-e{margin-top:9px; font-size:14px; line-height:1.55; color:var(--ink-soft);}
+/* Las pildoras son botones: cada una guarda la definicion de su fase o
+   de su actividad, y se abre al presionarla. La definicion no vive en
+   un tooltip porque en el salon se proyecta y se lee en voz alta; tiene
+   que quedar en pantalla hasta que alguien la cierre. */
+.mrc-x{margin-top:11px; display:flex; flex-wrap:wrap; gap:6px;}
+.mrc-x button{
+  padding:4px 10px 4px 24px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--border);
+  font:inherit; font-size:12.5px; color:var(--ink-soft);
+  cursor:pointer; position:relative; text-align:left;
+  transition:background .15s, border-color .15s, color .15s;
+}
+/* El signo es el unico indicio de que la pildora se puede abrir, asi
+   que va siempre visible y no solo al pasar el cursor. */
+.mrc-x button::before{
+  content:"+";
+  position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  font-size:13px; line-height:1; color:var(--ink-faint);
+}
+.mrc-x button:hover{border-color:var(--accent); color:var(--ink);}
+.mrc-x button[aria-expanded="true"]{
+  background:var(--accent); border-color:var(--accent); color:#fff;
+}
+.mrc-x button[aria-expanded="true"]::before{content:"\2212"; color:#fff;}
+.mrc-grupo.como .mrc-x button:hover{border-color:var(--ink-soft);}
+.mrc-grupo.como .mrc-x button[aria-expanded="true"]{
+  background:var(--ink-soft); border-color:var(--ink-soft);
+}
+/* La definicion se abre debajo de toda la fila y no junto a su pildora:
+   asi el ancho no depende de donde quedo la pildora al ajustarse. */
+.mrc-d{
+  margin-top:9px; padding:10px 13px; border-radius:9px;
+  background:var(--accent-soft);
+  font-size:13.5px; line-height:1.55; color:var(--ink);
+}
+.mrc-d[hidden]{display:none;}
+.mrc-d b{font-weight:600;}
+.mrc-grupo.como .mrc-d{background:var(--surface); border:1px solid var(--border);}
+/* El fundamento teorico: de donde sale la categoria. Va en cuerpo
+   pequeno y con rotulo propio porque es respaldo para la sustentacion,
+   no una opcion que haya que decidir. */
+.mrc-b{
+  margin-top:10px; padding-left:11px;
+  border-left:2px solid var(--border);
+  font-size:12.5px; line-height:1.5; color:var(--ink-faint);
+}
+.mrc-b b{
+  display:block; margin-bottom:2px;
+  font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+.mrc-q{
+  margin-top:11px; padding:11px 14px; border-radius:9px;
+  background:var(--accent-soft);
+  font-family:var(--font-display); font-size:15.5px; line-height:1.35;
+  color:var(--accent-dark);
+}
+
+/* --- Ligadura por color ------------------------------------------ */
+/* El ejemplo de la entrada y las tarjetas comparten color: es lo que
+   evita tener que rehacer de memoria cuál era cuál. La etiqueta con el
+   nombre va siempre, porque el color solo no basta cuando se imprime en
+   gris o quien lee no lo distingue. */
+.lig{font-weight:600;}
+.lig-1{color:var(--cat1);}
+.lig-2{color:var(--cat2);}
+.lig-3{color:var(--cat3);}
+.lig b{
+  display:inline-block; margin-left:6px; vertical-align:2px;
+  padding:1px 7px; border-radius:999px;
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+}
+.lig-1 b{background:var(--cat1-soft);}
+.lig-2 b{background:var(--cat2-soft);}
+.lig-3 b{background:var(--cat3-soft);}
+
+/* La tarjeta devuelve el color del tramo que le corresponde. */
+.mrc-grupo .mrc-c.c1{border-top-color:var(--cat1);}
+.mrc-grupo .mrc-c.c2{border-top-color:var(--cat2);}
+.mrc-grupo .mrc-c.c3{border-top-color:var(--cat3);}
+.mrc-c.c1 .mrc-t{color:var(--cat1);}
+.mrc-c.c2 .mrc-t{color:var(--cat2);}
+.mrc-c.c3 .mrc-t{color:var(--cat3);}
+.mrc-grupo .mrc-c.c1 .mrc-x button:hover{border-color:var(--cat1);}
+.mrc-grupo .mrc-c.c2 .mrc-x button:hover{border-color:var(--cat2);}
+.mrc-grupo .mrc-c.c3 .mrc-x button:hover{border-color:var(--cat3);}
+.mrc-grupo .mrc-c.c1 .mrc-x button[aria-expanded="true"]{background:var(--cat1); border-color:var(--cat1);}
+.mrc-grupo .mrc-c.c2 .mrc-x button[aria-expanded="true"]{background:var(--cat2); border-color:var(--cat2);}
+.mrc-grupo .mrc-c.c3 .mrc-x button[aria-expanded="true"]{background:var(--cat3); border-color:var(--cat3);}
+.mrc-grupo .mrc-c.c1 .mrc-d{background:var(--cat1-soft);}
+.mrc-grupo .mrc-c.c2 .mrc-d{background:var(--cat2-soft);}
+.mrc-grupo .mrc-c.c3 .mrc-d{background:var(--cat3-soft);}
+
+@media print{
+  .escena{display:none !important;}
+  .globo{break-inside:avoid; box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="portada">
+  <div class="globos" id="globos"></div>
+</div>
+
+<!-- ============================================================
+     Material de consulta. Nunca se proyecta: la escena lo tapa.
+     ============================================================ -->
+<div class="pagina">
+  <div class="tira">
+    <span class="tira-f" id="tira-f"></span>
+    <span class="tira-d" id="tira-d"></span>
+    <span class="tira-p" id="tira-p"></span>
+  </div>
+
+  <section class="seccion" id="sec-encuadre" hidden>
+    <div class="seccion-r">La actividad</div>
+    <h2 class="seccion-t" id="enc-t"></h2>
+    <div class="seccion-s" id="enc-s"></div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">Qué se entrega</div>
+    <h2 class="seccion-t" id="ent-t"></h2>
+    <div class="seccion-s" id="ent-s"></div>
+    <div class="entregables" id="entregables"></div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">El marco</div>
+    <h2 class="seccion-t" id="mrc-t"></h2>
+    <div class="seccion-s" id="mrc-s"></div>
+    <div id="mrc"></div>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-r">Cómo se califica</div>
+    <h2 class="seccion-t" id="rub-t"></h2>
+    <div class="seccion-s" id="rub-s"></div>
+    <div class="rub" id="rub"></div>
+    <div class="rub-pie">Cada criterio despliega sus descriptores de desempeño en cinco niveles, calificados sobre 5.</div>
+  </section>
+
+    <section class="seccion">
+      <div class="seccion-r">Referencias</div>
+      <h2 class="seccion-t">De dónde sale el marco</h2>
+      <div class="refs" id="refs"></div>
+    </section>
+</div>
+
+<!-- ============================================================
+     Vista de proyección
+     ============================================================ -->
+<div class="escena" id="escena" role="dialog" aria-modal="true" aria-labelledby="q-texto">
+  <div class="escena-barra">
+    <div class="cuenta" id="cuenta"></div>
+    <div class="btns">
+      <button class="bt" id="bt-ant" title="Anterior (←)">← Anterior</button>
+      <button class="bt" id="bt-sig" title="Siguiente (→)">Siguiente →</button>
+      <button class="bt" id="bt-cerrar" title="Volver a la cuadrícula (Esc)">Cerrar</button>
+    </div>
+  </div>
+
+  <div class="escena-cuerpo" id="escena-cuerpo">
+    <div class="escena-inner">
+      <div class="q-texto" id="q-texto"></div>
+
+      <div class="revelar-zona" id="revelar-zona">
+        <button class="bt primario" id="bt-revelar">Puesta en común</button>
+        <div class="nota">Se presiona cuando los grupos ya escribieron su respuesta.</div>
+      </div>
+
+      <div class="explica" id="explica" hidden>
+        <div class="idea" id="idea"></div>
+        <div class="porque"><ul id="porque"></ul></div>
+        <div class="niveles" id="niveles" hidden>
+          <div class="niveles-r" id="niveles-r"></div>
+          <div class="niveles-t" id="niveles-t"></div>
+          <div class="niveles-g" id="niveles-g"></div>
+          <div class="niveles-pie" id="niveles-pie"></div>
+        </div>
+        <div class="punto" id="punto">
+          <div class="punto-r" id="punto-r"></div>
+          <div class="punto-t" id="punto-t"></div>
+          <div class="punto-items" id="punto-items"></div>
+        </div>
+      </div>
+
+      <!-- Cierre: qué queda armado y qué falta -->
+      <div class="panel-cierre" id="panel-cierre" hidden>
+        <div class="banda" id="banda"></div>
+        <div class="cadena" id="cadena"></div>
+        <div class="regla" id="regla"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FASE = {
+  "titulo": "Fase I · Diagnóstico institucional",
+  "fecha": "Presentación corta de avance",
+  "peso": "50%",
+  "encuadre": {
+    "t": "Programa de promoción de la salud: diseño e implementación",
+    "s": "<p>La promoción de la salud trasciende la prevención de la enfermedad. Implica fortalecer las capacidades de las personas y las comunidades para ejercer mayor control sobre los determinantes de su salud, mediante acciones intersectoriales, participación comunitaria y el desarrollo de entornos saludables.</p><p><strong>Objetivo.</strong> Diseñar, implementar y evaluar un programa de promoción de la salud fundamentado en un determinante modificable y un modelo de estadios de intervención, dirigido a una población del escenario de práctica asignado, utilizando herramientas de evaluación, tamizaje e intervención comunitaria.</p><p><strong>Población.</strong> Cada grupo trabaja con la población de su sitio de prácticas. <strong>La problemática debe surgir del proceso diagnóstico y no de una elección arbitraria.</strong></p><p>La actividad tiene dos fases calificables, de 50% cada una: esta y la implementación, que se sustenta al final del corte.</p>"
+  },
+  "entregables": {
+    "t": "Los cuatro puntos de la Fase I",
+    "s": "El diagnóstico es la base científica del programa y tiene que justificar la necesidad de la intervención. Cada punto responde a una de las cuatro preguntas de arriba, en el mismo orden."
+  },
+  "referencias": [
+    "Green, L. W. (1974). Toward cost-benefit evaluations of health education: some concepts, methods, and examples. <i>Health Education Monographs</i>, 2(supl. 1), 34-64.",
+    "Green, L. W., Kreuter, M. W., Deeds, S. G. y Partridge, K. B. (1980). <i>Health Education Planning: A Diagnostic Approach</i>. Mayfield.",
+    "Green, L. W. y Kreuter, M. W. (1991). <i>Health Promotion Planning: An Educational and Environmental Approach</i> (2.ª ed.). Mayfield.",
+    "Green, L. W., Gielen, A. C., Ottoson, J. M., Peterson, D. V. y Kreuter, M. W. (2022). <i>Health Program Planning, Implementation, and Evaluation: Creating Behavioral, Environmental and Policy Change</i>. Johns Hopkins University Press."
+  ],
+  "rubrica": {
+    "t": "Rúbrica de la Fase I",
+    "s": "Cinco criterios que suman el 50% de la nota final. El de mayor peso es la aplicación del tamizaje: es lo que convierte el problema en evidencia.",
+    "criterios": [
+      {
+        "criterio": "Caracterización de la población y contexto",
+        "peso": 10,
+        "niveles": [
+          "Describe con precisión el escenario y las variables sociodemográficas con fuentes confiables.",
+          "Caracteriza el contexto de forma adecuada, con algunos datos por profundizar.",
+          "Presenta una caracterización general con vacíos o datos poco relevantes.",
+          "Caracterización básica, con información dispersa o poco pertinente.",
+          "Caracterización superficial, incompleta o sin sustento."
+        ]
+      },
+      {
+        "criterio": "Sustento de la problemática mediante diagnóstico",
+        "peso": 10,
+        "niveles": [
+          "Justifica la problemática con evidencia diagnóstica clara y bien argumentada.",
+          "Sustenta la problemática con evidencia, aunque la argumentación es mejorable.",
+          "Enuncia la problemática con evidencia parcial o débil.",
+          "Plantea la problemática con escaso respaldo en el diagnóstico.",
+          "La problemática no se sustenta en el diagnóstico realizado."
+        ]
+      },
+      {
+        "criterio": "Proceso de evaluación y aplicación del tamizaje",
+        "peso": 15,
+        "niveles": [
+          "Aplica instrumentos pertinentes con procedimiento y criterios de selección rigurosos.",
+          "Aplica el tamizaje correctamente, con detalles metodológicos por afinar.",
+          "Realiza el tamizaje con fallas en instrumentos, criterios o procedimiento.",
+          "Aplica el tamizaje de forma incompleta o con debilidades importantes.",
+          "No aplica tamizaje o lo hace sin rigor metodológico."
+        ]
+      },
+      {
+        "criterio": "Análisis e interpretación de los resultados",
+        "peso": 5,
+        "niveles": [
+          "Analiza e interpreta los hallazgos con profundidad y sentido crítico.",
+          "Interpreta los resultados de forma adecuada, con análisis básico.",
+          "Presenta resultados con análisis limitado o meramente descriptivo.",
+          "Enumera resultados con interpretación mínima.",
+          "No analiza los resultados o los interpreta erróneamente."
+        ]
+      },
+      {
+        "criterio": "Diseño del programa coherente con el marco declarado",
+        "peso": 10,
+        "niveles": [
+          "Diseña un programa completo cuyas actividades se derivan con claridad del determinante y el estadio declarados.",
+          "Propone un programa coherente, con vínculo reconocible entre el marco y las actividades.",
+          "El diseño es incompleto o las actividades no se desprenden del marco declarado.",
+          "Esboza un programa con estructura parcial y un marco enunciado pero no aplicado.",
+          "El programa carece de estructura o no declara sobre qué determinante ni en qué estadio interviene."
+        ]
+      }
+    ]
+  },
+  /* ----------------------------------------------------------
+     EL MARCO
+
+     Reemplaza a las áreas de acción de la Carta de Ottawa. El cambio
+     no es de contenido sino de exigencia: relacionar actividades ya
+     ejecutadas con un pilar se puede hacer al final y hacia atrás;
+     declarar el marco hay que hacerlo antes, porque de ahí sale qué
+     actividades son siquiera pensables.
+
+     Son dos bloques, y responden preguntas distintas —sobre qué causa
+     modificable se actúa, y en qué momento del cambio se entra—, así
+     que no compiten: cada grupo elige uno de cada uno.
+
+     El primero era antes el enfoque teórico, con los seis modelos del
+     material de la asignatura. Se cambió porque esos modelos son de
+     intervención clínica —explican y tratan el caso individual— y esta
+     actividad diseña un programa de promoción para una población. Un
+     enfoque teórico además se declara sin comprometerse a nada; un
+     determinante no: fija qué tipo de actividad sirve y cuál no.
+
+     Hubo un tercer bloque con los modelos del continuum y se quitó.
+     De sus seis criterios, tres escalonaban por lo mismo y el del
+     ciclo de vida no era un criterio de escalonamiento sino un rasgo
+     de la población, ya trabajado en el punto 1. Lo único que aportaba
+     —los tres niveles de prevención— se movió a la pregunta 3, que es
+     donde se decide: al leer el tamizaje, no antes.
+
+     Entre bloque y bloque va un puente que enuncia la relación; es lo
+     único que impide leerlos como dos listas sueltas, y por eso el
+     puente es propio del bloque y no uno solo para todos.
+     ---------------------------------------------------------- */
+  "marco": {
+    "t": "El marco: con qué se sustenta el programa",
+    "s": "<p>El programa se sustenta en dos decisiones: <strong>sobre qué causa modificable actúa</strong> y <strong>en qué momento del cambio entra</strong>. Se toman juntas y antes de diseñar las actividades, porque son las que definen cuáles tienen sentido. El cuarto punto de la fase se evalúa por la coherencia entre lo que se decide acá y lo que el grupo terminó haciendo.</p>",
+    "acronimo": {
+              "r": "Su nombre",
+              "a": "PRECEDE",
+      "aut": "Lawrence W. Green y Marshall W. Kreuter",
+      "b": "PROCEED",
+              "s": "El marco tiene nombre, y el nombre se lee en dos tiempos: <strong>precede</strong>, lo que va antes, y <strong>proceed</strong>, lo que sigue. Primero se averigua la causa; después se ejecuta y se evalúa.",
+              "cols": [
+                {
+                  "h": "PRECEDE",
+                  "sub": "Lo que va antes: averiguar la causa",
+                  "frase": [
+                    {
+                      "i": "P",
+                      "r": "redisposing,",
+                      "on": true
+                    },
+                    {
+                      "i": "R",
+                      "r": "einforcing, and",
+                      "on": true
+                    },
+                    {
+                      "i": "E",
+                      "r": "nabling",
+                      "on": true
+                    },
+                    {
+                      "i": "C",
+                      "r": "onstructs in"
+                    },
+                    {
+                      "i": "E",
+                      "r": "ducational / Ecological"
+                    },
+                    {
+                      "i": "D",
+                      "r": "iagnosis and"
+                    },
+                    {
+                      "i": "E",
+                      "r": "valuation"
+                    }
+                  ],
+                  "es": "Constructos predisponentes, reforzadores y facilitadores en el diagnóstico y la evaluación educativa y ecológica."
+                },
+                {
+                  "h": "PROCEED",
+                  "sub": "Lo que sigue: ejecutar y evaluar",
+                  "frase": [
+                    {
+                      "i": "P",
+                      "r": "olicy,"
+                    },
+                    {
+                      "i": "R",
+                      "r": "egulatory, and"
+                    },
+                    {
+                      "i": "O",
+                      "r": "rganizational"
+                    },
+                    {
+                      "i": "C",
+                      "r": "onstructs in"
+                    },
+                    {
+                      "i": "E",
+                      "r": "ducational and"
+                    },
+                    {
+                      "i": "E",
+                      "r": "nvironmental"
+                    },
+                    {
+                      "i": "D",
+                      "r": "evelopment"
+                    }
+                  ],
+                  "es": "Constructos políticos, normativos y organizacionales en el desarrollo educativo y ambiental."
+                }
+              ],
+              "pie": "Las tres primeras letras son las tres categorías del primer bloque. PRECEDE es esta fase; PROCEED es la Fase II."
+            },
+    "grupos": [
+      {
+        "eje": "El qué",
+        "titulo": "Determinante sobre el que se actúa",
+        "sub": "Sobre qué factor modificable actúa el programa. Se elige uno: es lo que explica por qué la población hace o no hace lo que hace, y de ahí sale qué tipo de actividad sirve.",
+        "lead": "Un determinante es la causa modificable de la conducta, no la conducta misma. Green y Kreuter los agrupan en tres tipos, y <strong>cada tipo admite un tipo distinto de actividad</strong>. Una sola conducta puede tener las tres causas: alguien no sostiene su tratamiento <span class=\"lig lig-1\">porque cree que si no siente nada ya no lo necesita<b>predisponente</b></span>; o <span class=\"lig lig-2\">porque se le acabó y no consiguió la cita para la fórmula<b>facilitador</b></span>; o <span class=\"lig lig-3\">porque en la casa nadie acompaña y dejó de tener sentido<b>reforzador</b></span>. <span class=\"lig lig-1\">La primera</span> pide educación, <span class=\"lig lig-2\">la segunda</span> gestión con la institución, <span class=\"lig lig-3\">la tercera</span> trabajo con la familia — y la conducta que se ve es la misma. <strong>Por eso el determinante se lee del diagnóstico y no se elige por gusto.</strong> Ojo con la salida fácil: quedarse siempre en predisponentes es lo que convierte todo programa en un taller.",
+        "modo": "que",
+        "componentes": [
+          {
+            "title": "Predisponentes",
+            "cat": 1,
+            "explanation": "Lo que la población trae consigo y la motiva o la frena: lo que sabe, lo que cree, lo que valora y el riesgo que percibe. Son los que se modifican con información y educación, y por eso son los más trabajados —y los que más se eligen sin verificar que sean el problema real—.",
+            "base": "Se apoya en el modelo de creencias en salud —susceptibilidad, severidad, beneficios y barreras percibidas— y en la actitud de la teoría de la conducta planificada.",
+          "examples": [
+              {
+                "t": "Conocimiento del problema",
+                "d": "Qué sabe la población sobre lo que le pasa y sobre lo que existe para atenderlo. Su ausencia se corrige informando, y solo su ausencia."
+              },
+              {
+                "t": "Creencias y mitos",
+                "d": "Ideas instaladas que contradicen la conducta buscada. No se corrigen con más datos: hay que trabajar la creencia misma."
+              },
+              {
+                "t": "Percepción de riesgo",
+                "d": "Cuánto se siente la población expuesta al problema. Quien no se percibe en riesgo no actúa aunque sepa todo lo demás."
+              },
+              {
+                "t": "Actitud hacia el servicio",
+                "d": "Qué espera la población del servicio o del profesional. Una actitud negativa previa bloquea el acceso aunque el acceso exista."
+              },
+              {
+                "t": "Autoeficacia percibida",
+                "d": "Si la persona se cree capaz de hacerlo. Es distinto de tener la habilidad: se puede tener y no creerse capaz."
+              }
+            ]
+          },
+          {
+            "title": "Facilitadores",
+            "cat": 2,
+            "explanation": "Lo que hace posible o imposible la conducta, más allá de la voluntad: habilidades, recursos, disponibilidad del servicio, distancia, costo, trámites. Cuando el determinante es de este tipo, ninguna actividad educativa lo resuelve: hay que crear la condición o gestionarla con la institución.",
+            "base": "Se apoya en la teoría cognitivo-social de Bandura —autoeficacia y capacidad— y en el control conductual percibido de Ajzen.",
+          "examples": [
+              {
+                "t": "Habilidades para la acción",
+                "d": "Saber cómo hacerlo, no solo que hay que hacerlo. Se trabaja con entrenamiento y ensayo, no con una charla."
+              },
+              {
+                "t": "Disponibilidad del servicio",
+                "d": "Que el servicio exista y esté funcionando cuando la población lo necesita. Si no está, el programa se dirige a la institución."
+              },
+              {
+                "t": "Accesibilidad",
+                "d": "Distancia, transporte, costo y tiempo. Barreras que la población no puede resolver por decisión propia."
+              },
+              {
+                "t": "Horarios y trámites",
+                "d": "Requisitos, citas y filas. Suelen ser la barrera más fácil de intervenir desde la práctica, y la que menos se mira."
+              },
+              {
+                "t": "Recursos materiales",
+                "d": "Lo que hace falta tener para sostener la conducta. Sin el recurso, la intención no se convierte en acto."
+              }
+            ]
+          },
+          {
+            "title": "Reforzadores",
+            "cat": 3,
+            "explanation": "Lo que ocurre después de la conducta y determina si se repite: la reacción de la familia, de los pares, del personal de salud; el reconocimiento, el estigma. Cuando el determinante es de este tipo, el programa se dirige al entorno y no a la persona: es donde el trabajo comunitario y con familias tiene algo que decir.",
+            "base": "Se apoya en el refuerzo y el aprendizaje vicario de Bandura, y en la norma subjetiva de la teoría de la conducta planificada.",
+          "examples": [
+              {
+                "t": "Apoyo de la familia",
+                "d": "Si el entorno cercano sostiene o castiga la conducta. Explica buena parte de los abandonos tras un buen inicio."
+              },
+              {
+                "t": "Presión de los pares",
+                "d": "Lo que el grupo aprueba o ridiculiza. Es el reforzador dominante en adolescentes, por encima de lo que la persona sepa."
+              },
+              {
+                "t": "Trato del personal de salud",
+                "d": "Cómo se recibe a quien consulta. Un mal trato en la primera vez cancela cualquier campaña previa."
+              },
+              {
+                "t": "Estigma en la comunidad",
+                "d": "El costo social de ser visto buscando ayuda. Es el reforzador que más pesa en salud mental."
+              },
+              {
+                "t": "Reconocimiento e incentivos",
+                "d": "Lo que la persona gana visiblemente al sostener la conducta. Su ausencia no impide empezar, pero impide mantener."
+              }
+            ]
+          }
+        ],
+        "puente": "El determinante dice sobre qué se actúa; falta decir en qué momento se entra"
+      },
+      {
+        "eje": "El cuándo",
+        "titulo": "Modelo de estadios de intervención",
+        "sub": "En qué momento del proceso está la población. Se elige uno: el cambio pasa por fases, y a cada fase le sirve una actividad distinta.",
+        "lead": "En qué momento del proceso está la población. El cambio no ocurre de manera instantánea: pasa por fases sucesivas, y <strong>una actividad pensada para quien ya decidió cambiar no le sirve a quien todavía no reconoce el problema</strong>. Se elige después del tamizaje, no antes: el estadio es un dato de la población, no una preferencia del grupo. Los tres describen cómo cambia una población, que es lo que diseña un programa: no cómo se conduce una terapia.",
+        "modo": "que",
+        "componentes": [
+          {
+            "title": "Transteórico de cambio",
+            "explanation": "Prochaska y DiClemente. El cambio de comportamiento avanza por etapas y la estrategia se ajusta a cada una. Es el más usado en conductas de salud —consumo, dieta, ejercicio, adherencia—.",
+            "examples": [
+              {
+                "t": "Precontemplación",
+                "d": "La persona no reconoce la necesidad de cambio ni tiene intención de cambiar en el futuro cercano. La estrategia es aumentar la conciencia del problema."
+              },
+              {
+                "t": "Contemplación",
+                "d": "Empieza a reconocer el problema, pero aún no ha tomado la decisión de cambiar. La estrategia es resolver la ambivalencia."
+              },
+              {
+                "t": "Preparación",
+                "d": "Planifica el cambio, explora opciones y hace pequeñas acciones para preparar el terreno. La estrategia es diseñar un plan de acción concreto."
+              },
+              {
+                "t": "Acción",
+                "d": "Hace modificaciones claras en su comportamiento, su ambiente o sus experiencias para superar el problema."
+              },
+              {
+                "t": "Mantenimiento",
+                "d": "Consolida los cambios logrados para prevenir recaídas. La estrategia es dar apoyo para sostener lo alcanzado."
+              }
+            ]
+          },
+          {
+            "title": "Intervención motivacional",
+            "explanation": "Basado en la entrevista motivacional. Trabaja la ambivalencia en lugar de confrontarla: es la persona misma quien nombra la distancia entre lo que hace y lo que quiere. Sirve donde el obstáculo no es la falta de información sino la falta de decisión.",
+            "examples": [
+              {
+                "t": "Generar discrepancia",
+                "d": "Ayudar a la persona a ver la diferencia entre su comportamiento actual y las metas que dice querer."
+              },
+              {
+                "t": "Aumentar la autoconfianza",
+                "d": "Fomentar la creencia de que es capaz de realizar el cambio. Sin esa creencia, reconocer el problema no basta."
+              },
+              {
+                "t": "Reducir la resistencia",
+                "d": "Evitar la confrontación directa y trabajar de forma colaborativa. La resistencia se lee como señal de que hay que cambiar de estrategia."
+              },
+              {
+                "t": "Promover el cambio activo",
+                "d": "Facilitar la planificación de acciones concretas una vez resuelta la ambivalencia."
+              }
+            ]
+          },
+          {
+            "title": "Crisis e intervención",
+            "explanation": "Caplan. Ordena la intervención según la fase emocional en que está la persona tras un evento crítico. Aplica donde hay trauma, emergencia o pérdida reciente, y es el modelo que está detrás de los primeros auxilios psicológicos.",
+            "examples": [
+              {
+                "t": "Impacto",
+                "d": "La persona reacciona al evento con altos niveles de angustia y desorganización. Es el momento de la contención inmediata."
+              },
+              {
+                "t": "Retiro",
+                "d": "Aparece una evitación emocional de la realidad de la crisis. Se observa distanciamiento o negación de lo ocurrido."
+              },
+              {
+                "t": "Adaptación",
+                "d": "La persona empieza a buscar soluciones y a enfrentar la situación. Es cuando el apoyo puede orientarse a recursos concretos."
+              },
+              {
+                "t": "Reorganización",
+                "d": "Acepta la nueva realidad y comienza la recuperación emocional. Se consolida lo aprendido durante la crisis."
+              }
+            ]
+          }        ]
+      }
+    ]
+  }
+};
+
+/* ============================================================
+   LAS CUATRO PREGUNTAS
+
+   El criterio de selección no es temático: es estructural. La Fase I
+   tiene cuatro puntos —contextualización, priorización del problema,
+   evaluación y tamizaje, diseño del programa— y acá hay una pregunta
+   por punto, en ese mismo orden. Un grupo que responde las cuatro en
+   serio sale del salón con el esqueleto de lo que presenta en la Fase
+   I; y donde no pueda responder, ahí está lo que le falta averiguar en
+   el sitio.
+
+   Por eso no se reordenan ni se agregan. Cada pregunta cubre un punto
+   completo y ninguna cubre dos: si se parte alguna en dos, se rompe la
+   correspondencia que hace que el ejercicio sirva.
+
+   La tercera es la que decide todo lo demás: es el punto que la
+   rúbrica marca como importante y el que más pesa.
+   ============================================================ */
+const PREGUNTAS = [
+  {
+    pregunta: "¿Cómo son las personas con las que van a trabajar, y qué se puede hacer —y qué no— con una población así?",
+    idea: "Caracterizar no es describir: es leer qué le exige esa población al trabajo. Si después de describirla el grupo puede hacer exactamente lo mismo que iba a hacer antes, la caracterización no sirvió de nada.",
+    porque: [
+      "Un niño, un adulto mayor, un cuidador y un grupo familiar <strong>no admiten el mismo trabajo</strong>: cambia el interlocutor, la duración, el consentimiento y hasta qué se puede preguntar.",
+      "De ahí sale la primera decisión: <strong>trabajo individual o colectivo</strong>. La impone la población, no la comodidad del grupo.",
+      "Hay poblaciones que no responden por sí mismas. Ahí el interlocutor real es el cuidador, y eso cambia de raíz qué problema se puede priorizar."
+    ],
+    punto: {
+      n: "Punto 1 de la Fase I",
+      t: "Contextualización de la población",
+      items: ["Caracterización general", "Descripción del escenario de práctica"]
+    }
+  },
+  {
+    pregunta: "De todo lo que pasa en ese sitio, ¿cuál es el problema que van a trabajar, y por qué ese y no otro?",
+    idea: "Priorizar es descartar con un criterio explícito. Un problema elegido sin decir qué se dejó afuera y por qué no está priorizado: está simplemente escogido.",
+    porque: [
+      "Lo que ustedes observan, lo que reporta el personal y lo que la institución declara <strong>casi nunca coinciden</strong>. Esa discrepancia no estorba: es el primer hallazgo.",
+      "El problema que nombran hoy es <strong>hipótesis, no conclusión</strong>. Si ya estuviera comprobada, sobraría la fase que viene."
+    ],
+    punto: {
+      n: "Punto 2 de la Fase I",
+      t: "Identificación y priorización del problema",
+      items: ["Problema priorizado", "Criterios de priorización y sustento diagnóstico"]
+    }
+  },
+  {
+    pregunta: "¿Cómo van a demostrar que ese problema existe? Con qué instrumento, a quiénes y cuándo.",
+    idea: "Esta respuesta es la Fase I. Todo lo demás se puede ajustar después; el instrumento, la población y la fecha de aplicación, no — sin ellos no hay evidencia que presentar.",
+    porque: [
+      "El instrumento se elige <strong>después</strong> de la hipótesis, nunca antes. Tener un cuestionario y buscarle población produce datos que no deciden nada: es lo que pasó al aplicar el tamizaje en clase.",
+      "«A quiénes» no es la población entera: es una <strong>población focalizada</strong> por el riesgo que ustedes suponen. Aplicárselo a quien no tiene por qué dar positivo devuelve negativos vacíos."
+    ],
+    niveles: {
+      r: "Lo que decide el resultado",
+      t: "Nivel de prevención en el que queda la población",
+      lista: [
+        { n: "Primaria", d: "El problema todavía no aparece y se actúa sobre el riesgo." },
+        { n: "Secundaria", d: "Hay síntomas tempranos. Es a donde suele llevar un tamizaje positivo." },
+        { n: "Terciaria", d: "El trastorno ya está establecido: cabe sostener y remitir." }
+      ],
+      pie: "No se puede elegir antes de aplicar el instrumento, y una vez elegido fija el alcance del programa."
+    },
+    punto: {
+      n: "Punto 3 de la Fase I",
+      t: "Evaluación y tamizaje",
+      items: ["Instrumentos utilizados", "Procedimiento y criterios de selección", "Resultados obtenidos y su análisis", "Nivel de prevención en el que queda la población<span class=\"et\">primaria</span><span class=\"et\">secundaria</span><span class=\"et\">terciaria</span>"]
+    }
+  },
+  {
+    pregunta: "Si el tamizaje confirma el problema, ¿qué van a hacer con esa población?",
+    idea: "Un programa que el sitio no permite ejecutar no es un programa. La viabilidad se resuelve ahora, mientras todavía se puede cambiar de plan, y no la semana de la implementación.",
+    porque: [
+      "El diseño responde cuatro preguntas: <strong>desde dónde se interviene</strong> —el determinante y el estadio—, <strong>qué se busca</strong> —objetivos y población—, <strong>qué se va a hacer</strong> —actividades, cronograma, recursos— y <strong>cómo se sabrá si sirvió</strong> —el indicador—.",
+      "Las actividades acá son <strong>proyección</strong>: lo que se hará. La descripción detallada de lo que efectivamente ocurrió es el primer punto de la Fase II, y casi nunca coincide con lo proyectado — esa diferencia es después un hallazgo, no una falla.",
+      "El marco entra acá, y entra primero. Si las actividades ya están escritas y después se les busca un modelo que las cubra, el modelo no sustentó nada: lo decoró."
+    ],
+    punto: {
+      n: "Punto 4 de la Fase I",
+      t: "Diseño del programa",
+      items: ["Determinante declarado<span class=\"et\">predisponente</span><span class=\"et\">facilitador</span><span class=\"et\">reforzador</span>", "Estadio declarado<span class=\"et\">transteórico</span><span class=\"et\">motivacional</span><span class=\"et\">crisis</span>", "Qué se busca: objetivos y población focalizada", "Qué se proyecta hacer: actividades, cronograma y recursos"]
+    }
+  }
+];
+
+/* ============================================================
+   LA TARJETA DE ROTACIÓN
+
+   Se proyecta al terminar las cuatro preguntas y se queda en pantalla
+   mientras los grupos hablan: son el marco al que se agarran para
+   improvisar dirigido, no un cuestionario que se responda una por una.
+
+   Va sin banda ni regla, y con una sola línea de aclaración por
+   pregunta. La mecánica —rotar a la derecha, dos minutos por grupo, el
+   dueño de la hoja anotando— se dice en voz alta; está anotada en el
+   archivo de enlaces, que es contexto del docente y no contenido del
+   recurso.
+
+   Las tres son calificativas porque el propósito es que cada grupo se
+   lleve un veredicto ajeno sobre su propuesta. Arman un arco: validar,
+   objetar, decidir. Empiezan por lo que está bien a propósito, porque
+   elogiar en público cuesta menos que criticar y eso arranca hablando al
+   grupo que no abriría con una objeción. Y la tercera es binaria antes
+   que argumentada: sí o no, y después el porqué.
+
+   El «preferiblemente» de la segunda está medido: pide la justificación
+   sin exigirla. Obligar a justificar una objeción es lo que hace que
+   quien no sabe cómo fundamentarla prefiera callarse.
+   ============================================================ */
+const ROTACION = {
+  tipo: "rotacion",
+  rotulo: "Rotación",
+  titulo: "La hoja del grupo de al lado",
+  pasos: [
+    { t: "¿Qué es lo mejor resuelto de esta propuesta?",
+      r: "Señalen una sola cosa y digan por qué." },
+    { t: "¿Qué aspecto le cambiarían?",
+      r: "Menciónenlo y, preferiblemente, justifíquenlo." },
+    { t: "Tal como está hoy, ¿la aprobarían?",
+      r: "Respondan primero sí o no, y después el porqué." }
+  ]
+};
+
+/* ============================================================
+   LA TARJETA DE CIERRE
+
+   No es una pregunta al salón. Va al final porque es lo único que no
+   se puede deducir de haber respondido las cuatro: cómo se convierte
+   la hoja en la presentación de la Fase I, y qué parte del trabajo no
+   pasa por el salón sino por el sitio.
+   ============================================================ */
+const CIERRE = {
+  tipo: "cierre",
+  rotulo: "Cierre",
+  titulo: "Qué se llevan de acá",
+  pasos: [
+    { t: "Deciden",   r: "Las cuatro respuestas de hoy. Lo que quedó en blanco es lo que hay que ir a averiguar al sitio." },
+    { t: "Aplican",   r: "El instrumento que eligieron, a la población que delimitaron, en la semana que se fijaron." },
+    { t: "Presentan", r: "Fase I: los cuatro puntos, ya con los resultados del tamizaje." },
+    { t: "Ejecutan",  r: "Fase II: el programa implementado, con sus evidencias y hallazgos." }
+  ],
+  regla: "El grupo que hoy no pueda responder la tercera pregunta todavía no tiene Fase I: tiene una idea."
+};
+
+// La rotación solo existe donde hay franja de clase para ella; en el otro
+// deck ROTACION es null y la tarjeta simplemente no aparece.
+const TARJETAS = [
+  ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
+  ...(ROTACION ? [ROTACION] : []),
+  CIERRE
+];
+
+/* ============================================================
+   CUADRÍCULA
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const contGlobos = $("globos");
+let actual = 0;
+
+// La numeración corre solo sobre las preguntas: el cierre lleva rótulo.
+let nPregunta = 0;
+TARJETAS.forEach((t, i) => {
+  if (t.tipo === "pregunta") nPregunta++;
+  t.rotulo = t.rotulo || ("Pregunta " + nPregunta);
+
+  const b = document.createElement("button");
+  b.className = "globo" + (t.tipo === "pregunta" ? "" : " utilitaria");
+  b.type = "button";
+  b.dataset.i = i;
+  b.innerHTML =
+    '<span class="num">' + escapar(t.rotulo) + '</span>' +
+    escapar(t.tipo === "pregunta" ? t.pregunta : t.titulo) +
+    (t.tipo === "pregunta"
+      ? '<span class="pie">' + escapar(t.punto.n) + ' · ' + escapar(t.punto.t) + '</span>'
+      : "");
+  b.addEventListener("click", () => abrir(i));
+  contGlobos.appendChild(b);
+});
+const TOTAL_PREGUNTAS = nPregunta;
+
+function escapar(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+const escena = $("escena");
+
+function abrir(i){
+  actual = i;
+  pintar();
+  escena.classList.add("abierta");
+  document.body.style.overflow = "hidden";
+  (!$("revelar-zona").hidden ? $("bt-revelar") : $("bt-sig")).focus();
+}
+
+function cerrar(){
+  escena.classList.remove("abierta");
+  document.body.style.overflow = "";
+  const b = contGlobos.querySelector('[data-i="' + actual + '"]');
+  if (b) b.focus();
+}
+
+function mover(paso){
+  actual = (actual + paso + TARJETAS.length) % TARJETAS.length;
+  pintar();
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+function pintar(){
+  const t = TARJETAS[actual];
+  const esPregunta = t.tipo === "pregunta";
+
+  $("cuenta").textContent = esPregunta
+    ? t.rotulo + " de " + TOTAL_PREGUNTAS
+    : t.rotulo;
+
+  const enunciado = esPregunta ? t.pregunta : t.titulo;
+  $("q-texto").textContent = enunciado;
+  // Las preguntas largas necesitan más caracteres por línea o quedan en columna.
+  $("q-texto").classList.toggle("ancha", enunciado.length > 110);
+
+  // Solo las preguntas se tapan: el cierre se muestra entero, porque no hay
+  // nada que discutir antes de verlo.
+  $("revelar-zona").hidden = !esPregunta;
+  $("explica").hidden = true;
+  $("panel-cierre").hidden = esPregunta;
+  escena.classList.toggle("revelado", !esPregunta);
+  escena.classList.toggle("cierre", !esPregunta);
+  escena.classList.toggle("rotacion", t.tipo === "rotacion");
+
+  if (esPregunta){
+    $("idea").textContent = t.idea;
+    $("porque").innerHTML = t.porque.map(x => "<li>" + x + "</li>").join("");
+    // Solo la pregunta del tamizaje trae niveles; las demás lo ocultan.
+    $("niveles").hidden = !t.niveles;
+    if (t.niveles){
+      $("niveles-r").textContent = t.niveles.r;
+      $("niveles-t").textContent = t.niveles.t;
+      $("niveles-g").innerHTML = t.niveles.lista.map(x =>
+        '<div class="nv"><b>' + escapar(x.n) + '</b><span>' + escapar(x.d) + '</span></div>').join("");
+      $("niveles-pie").textContent = t.niveles.pie;
+    }
+    $("punto-r").textContent = t.punto.n;
+    $("punto-t").textContent = t.punto.t;
+    $("punto-items").innerHTML = t.punto.items.map(x => "<span>" + x + "</span>").join("");
+  } else {
+    // La banda es opcional: el cierre de la Fase II va sin ella.
+    $("banda").hidden = !t.banda;
+    $("banda").innerHTML = t.banda || "";
+    $("cadena").innerHTML = t.pasos.map((p, i) =>
+      '<div class="paso">' +
+        '<div class="paso-n">' + (i + 1) + '</div>' +
+        '<div class="paso-t">' + escapar(p.t) + '</div>' +
+        '<div class="paso-r">' + escapar(p.r) + '</div>' +
+      '</div>').join("");
+    // La regla es opcional, como la banda: la rotación va sin ninguna de las dos.
+    $("regla").hidden = !t.regla;
+    $("regla").textContent = t.regla ? "«" + t.regla + "»" : "";
+  }
+}
+
+function revelar(){
+  if (TARJETAS[actual].tipo !== "pregunta") return;
+  if (!$("explica").hidden) return;
+  $("explica").hidden = false;
+  $("revelar-zona").hidden = true;
+  escena.classList.add("revelado");
+  $("escena-cuerpo").scrollTop = 0;
+}
+
+$("bt-revelar").addEventListener("click", revelar);
+$("bt-cerrar").addEventListener("click", cerrar);
+$("bt-ant").addEventListener("click", () => mover(-1));
+$("bt-sig").addEventListener("click", () => mover(1));
+
+document.addEventListener("keydown", e => {
+  if (!escena.classList.contains("abierta")) return;
+
+  if (e.key === "Escape"){ cerrar(); }
+  else if (e.key === "ArrowRight"){ e.preventDefault(); mover(1); }
+  else if (e.key === "ArrowLeft"){ e.preventDefault(); mover(-1); }
+  else if (e.key === " " || e.key === "Enter"){
+    // Enter sobre un botón ya hace lo suyo; no lo duplicamos.
+    if (e.key === "Enter" && e.target && e.target.tagName === "BUTTON") return;
+    e.preventDefault();
+    revelar();
+  }
+});
+/* ============================================================
+   MATERIAL DE CONSULTA
+
+   Los entregables no se declaran aparte: son los puntos de las
+   preguntas. Declararlos dos veces era justamente lo que hacía que el
+   documento general y los decks se contradijeran.
+   ============================================================ */
+$("tira-f").textContent = FASE.titulo;
+$("tira-d").textContent = FASE.fecha;
+$("tira-p").textContent = FASE.peso;
+
+if (FASE.encuadre){
+  $("sec-encuadre").hidden = false;
+  $("enc-t").textContent = FASE.encuadre.t;
+  $("enc-s").innerHTML = FASE.encuadre.s;
+}
+
+$("ent-t").textContent = FASE.entregables.t;
+$("ent-s").innerHTML = FASE.entregables.s;
+// La numeración corre a lo largo de toda la fase y no dentro de cada
+// punto: así la lista se lee como el guión de la sustentación, en el
+// orden en que hay que organizarla.
+let nEnt = 0;
+$("entregables").innerHTML = PREGUNTAS.map(p =>
+  '<div class="ent">' +
+    '<div class="ent-n">' + escapar(p.punto.n) + '</div>' +
+    '<div class="ent-t">' + escapar(p.punto.t) + '</div>' +
+    '<div class="ent-i">' + p.punto.items.map(x =>
+      '<span><i>' + (++nEnt) + '</i>' + x + '</span>').join("") + '</div>' +
+  '</div>' +
+  (p.niveles ? pintarNiveles(p.niveles) : "")).join("");
+
+// Los mismos datos que la escena, en tono de consulta.
+function pintarNiveles(n){
+  return '<div class="nivref">' +
+    '<div class="nivref-r">Los tres niveles</div>' +
+    '<div class="nivref-l">' + n.lista.map(x =>
+      '<div><b>' + escapar(x.n) + '</b>' + escapar(x.d) + '</div>').join("") +
+    '</div>' +
+    '<div class="nivref-p">' + escapar(n.pie) + '</div>' +
+  '</div>';
+}
+
+$("rub-t").textContent = FASE.rubrica.t;
+$("rub-s").innerHTML = FASE.rubrica.s;
+// Los descriptores vienen de mejor a peor; el nivel es 5 menos el índice.
+$("rub").innerHTML = FASE.rubrica.criterios.map(c =>
+  '<details>' +
+    '<summary>' + escapar(c.criterio) +
+      '<span class="peso">' + c.peso + '%</span>' +
+    '</summary>' +
+    '<div class="niveles">' + c.niveles.map((n, i) =>
+      '<div class="nivel"><b>' + (5 - i) + '</b><span>' + escapar(n) + '</span></div>'
+    ).join("") + '</div>' +
+  '</details>').join("");
+
+$("refs").innerHTML = FASE.referencias.map(x => '<div>' + x + '</div>').join("");
+
+$("mrc-t").textContent = FASE.marco.t;
+$("mrc-s").innerHTML = FASE.marco.s;
+// Un bloque por grupo, con el puente de cada uno intercalado antes del siguiente.
+// El acrónimo va antes de los bloques: es el contexto del marco entero.
+$("mrc").innerHTML =
+  (FASE.marco.acronimo ? pintarAcronimo(FASE.marco.acronimo) : "") +
+  FASE.marco.grupos.map((g, i, a) =>
+  (i ? '<div class="mrc-puente">' + escapar(a[i - 1].puente) + '</div>' : "") +
+  '<details class="mrc-grupo' + (g.modo === "como" ? " como" : "") + '">' +
+    '<summary>' +
+      '<span class="mrc-eje">' + escapar(g.eje) + '</span>' +
+      '<div class="mrc-cab">' +
+        '<h3>' + escapar(g.titulo) + '</h3>' +
+        '<span class="n">' + g.componentes.length + '</span>' +
+        '<span class="mas" aria-hidden="true"></span>' +
+      '</div>' +
+      '<p class="mrc-sub">' + escapar(g.sub) + '</p>' +
+    '</summary>' +
+    '<div class="mrc-cuerpo">' +
+    '<p class="mrc-lead">' + g.lead + '</p>' +
+    '<div class="mrc">' + g.componentes.map(c =>
+      '<div class="mrc-c' + (c.cat ? " c" + c.cat : "") + '">' +
+        '<div class="mrc-t">' + escapar(c.title) + '</div>' +
+        (c.explanation ? '<div class="mrc-e">' + escapar(c.explanation) + '</div>' : "") +
+        (c.base ? '<div class="mrc-b"><b>Fundamento</b>' + escapar(c.base) + '</div>' : "") +
+        (c.examples ? '<div class="mrc-x">' + c.examples.map((x, k) =>
+          '<button type="button" aria-expanded="false" data-def="' +
+            escapar(x.d || "") + '" data-t="' + escapar(x.t) + '">' +
+            escapar(x.t) + '</button>').join("") + '</div>' +
+          '<div class="mrc-d" hidden></div>' : "") +
+        (c.question ? '<div class="mrc-q">' + escapar(c.question) + '</div>' : "") +
+      '</div>').join("") +
+    '</div>' +
+    '</div>' +
+  '</details>').join("");
+
+// El nombre del marco: dos columnas de siete letras, con las tres
+// primeras encendidas.
+function pintarAcronimo(a){
+  return '<div class="acr">' +
+    '<div class="acr-r">' + escapar(a.r) + '</div>' +
+    '<div class="acr-n"><span class="a">' + escapar(a.a) + '</span>' +
+      '<span class="g">-</span><span class="b">' + escapar(a.b) + '</span></div>' +
+    (a.aut ? '<div class="acr-aut">' + escapar(a.aut) + '</div>' : "") +
+    '<p class="acr-s">' + a.s + '</p>' +
+    '<div class="acr-g">' + a.cols.map(c =>
+      '<div>' +
+        '<div class="acr-h">' + escapar(c.h) + '<span>' + escapar(c.sub) + '</span></div>' +
+        '<div class="acr-f">' + c.frase.map(x =>
+          '<span' + (x.on ? ' class="on"' : '') + '>' +
+            '<b>' + escapar(x.i) + '</b>' + escapar(x.r) +
+          '</span>').join(" ") +
+        '</div>' +
+        '<div class="acr-es">' + escapar(c.es) + '</div>' +
+      '</div>').join("") +
+    '</div>' +
+    '<div class="acr-pie">' + escapar(a.pie) + '</div>' +
+  '</div>';
+}
+
+/* Una sola definicion abierta por tarjeta: abrir otra reemplaza a la
+   anterior en lugar de acumular paneles. Volver a presionar la misma
+   pildora la cierra. */
+$("mrc").addEventListener("click", e => {
+  const b = e.target.closest(".mrc-x button");
+  if (!b) return;
+  const fila = b.parentNode;
+  const panel = fila.nextElementSibling;
+  const abierta = b.getAttribute("aria-expanded") === "true";
+  fila.querySelectorAll("button").forEach(o => o.setAttribute("aria-expanded", "false"));
+  if (abierta) {
+    panel.hidden = true;
+    return;
+  }
+  b.setAttribute("aria-expanded", "true");
+  panel.innerHTML = "<b>" + escapar(b.dataset.t) + ".</b> " + escapar(b.dataset.def);
+  panel.hidden = false;
+});
+
+</script>
+
+</body>
+</html>
