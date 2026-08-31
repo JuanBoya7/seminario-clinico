@@ -423,6 +423,29 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-size:13px; color:var(--ink-soft);
 }
 
+/* La consulta de los niveles de prevención, bajo el punto que los
+   nombra. Va en tono menor a propósito: no compite con las tarjetas de
+   entregables ni se lee como un bloque de decisión. */
+.nivref{
+  margin-top:10px; padding:16px 20px 18px;
+  background:var(--surface); border-radius:var(--radius);
+}
+.nivref-r{
+  font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.nivref-l{margin-top:11px; display:grid; gap:8px;}
+.nivref-l div{font-size:13px; line-height:1.55; color:var(--ink-soft);}
+.nivref-l b{
+  color:var(--ink); font-weight:600;
+  font-size:10px; letter-spacing:.09em; text-transform:uppercase;
+  margin-right:8px;
+}
+.nivref-p{
+  margin-top:12px; padding-top:11px; border-top:1px solid var(--border);
+  font-size:12.5px; line-height:1.5; color:var(--ink-faint);
+}
+
 /* --- Rúbrica ---------------------------------------------------- */
 .rub{margin-top:24px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
 .rub details{border-bottom:1px solid var(--border);}
@@ -813,14 +836,14 @@ const FASE = {
         ]
       },
       {
-        "criterio": "Testimonios, experiencias y reflexión crítica",
+        "criterio": "Reflexión crítica sobre la experiencia",
         "peso": 10,
         "niveles": [
-          "Integra testimonios significativos y una reflexión crítica profunda.",
-          "Incluye testimonios y una reflexión pertinente.",
-          "Aporta testimonios o reflexión de forma limitada.",
-          "Presenta testimonios o reflexión de manera superficial.",
-          "Carece de testimonios y de reflexión crítica."
+          "Reflexiona con profundidad sobre las dificultades, los aprendizajes y lo que haría falta.",
+          "Presenta una reflexión pertinente y bien argumentada.",
+          "Reflexiona de forma limitada o poco argumentada.",
+          "La reflexión es superficial o meramente descriptiva.",
+          "No presenta reflexión crítica sobre la experiencia."
         ]
       },
       {
@@ -1016,7 +1039,7 @@ const PREGUNTAS = [
     punto: {
       n: "Punto 1 de la Fase II",
       t: "Descripción de la implementación",
-      items: ["Actividades realizadas", "Población participante", "Metodología utilizada", "Fotografías y videos", "Material educativo", "Registro de actividades"]
+      items: ["Actividades realizadas", "Población participante", "Evidencias del programa: las que apliquen<span class='et'>fotografías</span><span class='et'>material educativo</span><span class='et'>registro</span>"]
     }
   },
   {
@@ -1029,7 +1052,7 @@ const PREGUNTAS = [
     punto: {
       n: "Punto 2 de la Fase II",
       t: "Hallazgos",
-      items: ["Cambios observados", "Indicadores alcanzados", "Dificultades encontradas", "Aprendizajes", "Oportunidades de mejora"]
+      items: ["Cambios alcanzados e indicadores"]
     }
   },
   {
@@ -1039,10 +1062,19 @@ const PREGUNTAS = [
       "Los pilares no son un menú donde se escoge el que suene mejor: <strong>entornos favorables, acción comunitaria, aptitudes personales y reorientación de los servicios</strong>. Hay que señalar cuál sostuvo la intervención, y en qué momento concreto.",
       "Casi todos los programas de práctica terminan en <strong>aptitudes personales</strong>. No está mal, pero pregúntense si algo tocó el entorno o los servicios: ahí está la diferencia entre educar y promover."
     ],
+    niveles: {
+      t: "Qué contiene la reflexión",
+      lista: [
+        { n: "Dificultades", d: "Lo que no salió como estaba planeado, y por qué. Nombrarlas es lo que permite que otro grupo no repita el mismo tropiezo." },
+        { n: "Aprendizajes", d: "Lo que el grupo sabe ahora y no sabía antes de ejecutar. No es lo que aprendió la población: es lo que aprendieron ustedes." },
+        { n: "Oportunidades de mejora", d: "Lo que haría distinto quien retome el programa. Se dirige a quien sigue, no a quien ya terminó." }
+      ],
+      pie: "Las tres van juntas y en ese orden: lo que estorbó, lo que quedó y lo que haría falta."
+    },
     punto: {
       n: "Punto 3 de la Fase II",
       t: "Reflexión final",
-      items: ["Área de acción en la que se apoyó<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central utilizada<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Testimonios y experiencias de los participantes", "Reflexión crítica"]
+      items: ["Área de acción en la que se apoyó<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central utilizada<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Reflexión crítica<span class='et'>dificultades</span><span class='et'>aprendizajes</span><span class='et'>oportunidades</span>"]
     }
   }
 ];
@@ -1236,7 +1268,20 @@ $("entregables").innerHTML = PREGUNTAS.map(p =>
     '<div class="ent-t">' + escapar(p.punto.t) + '</div>' +
     '<div class="ent-i">' + p.punto.items.map(x =>
       '<span><i>' + (++nEnt) + '</i>' + x + '</span>').join("") + '</div>' +
-  '</div>').join("");
+  '</div>' +
+  (p.niveles ? pintarNiveles(p.niveles) : "")).join("");
+
+// Los mismos datos que la escena, en tono de consulta.
+function pintarNiveles(n){
+  return '<div class="nivref">' +
+    '<div class="nivref-r">' + escapar(n.t) + '</div>' +
+    '<div class="nivref-l">' + n.lista.map(x =>
+      '<div><b>' + escapar(x.n) + '</b>' + escapar(x.d) + '</div>').join("") +
+    '</div>' +
+    '<div class="nivref-p">' + escapar(n.pie) + '</div>' +
+  '</div>';
+}
+
 
 $("rub-t").textContent = FASE.rubrica.t;
 $("rub-s").innerHTML = FASE.rubrica.s;
