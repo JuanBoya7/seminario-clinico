@@ -423,6 +423,29 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-size:13px; color:var(--ink-soft);
 }
 
+/* La consulta de los niveles de prevención, bajo el punto que los
+   nombra. Va en tono menor a propósito: no compite con las tarjetas de
+   entregables ni se lee como un bloque de decisión. */
+.nivref{
+  margin-top:10px; padding:16px 20px 18px;
+  background:var(--surface); border-radius:var(--radius);
+}
+.nivref-r{
+  font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.nivref-l{margin-top:11px; display:grid; gap:8px;}
+.nivref-l div{font-size:13px; line-height:1.55; color:var(--ink-soft);}
+.nivref-l b{
+  color:var(--ink); font-weight:600;
+  font-size:10px; letter-spacing:.09em; text-transform:uppercase;
+  margin-right:8px;
+}
+.nivref-p{
+  margin-top:12px; padding-top:11px; border-top:1px solid var(--border);
+  font-size:12.5px; line-height:1.5; color:var(--ink-faint);
+}
+
 /* --- Rúbrica ---------------------------------------------------- */
 .rub{margin-top:24px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
 .rub details{border-bottom:1px solid var(--border);}
@@ -1087,10 +1110,21 @@ const PREGUNTAS = [
       "Los indicadores se definen junto con las actividades. Si no se sabe qué medir, la Fase II queda en un informe de lo que se hizo, sin manera de decir si funcionó.<div class='tres-ind'><div class='ind'><div class='ind-n'>Indicador 1</div><div class='ind-t'>Cobertura</div><div class='ind-q'>¿A cuántas personas llegamos?</div></div><div class='ind'><div class='ind-n'>Indicador 2</div><div class='ind-t'>Ejecución y participación</div><div class='ind-q'>¿La actividad se realizó y las personas participaron?</div></div><div class='ind efecto'><div class='ind-n'>Indicador 3</div><div class='ind-t'>Resultado inmediato</div><div class='ind-q'>¿Qué cambió justo después de la intervención?</div></div></div>",
       "La Carta de Ottawa entra acá. Un programa que no se reconoce en ninguno de sus pilares probablemente no es de promoción."
     ],
+    niveles: {
+      t: "Qué contiene el diseño",
+      lista: [
+        { n: "Objetivos", d: "Qué se propone lograr el programa con esa población, en términos que después se puedan verificar." },
+        { n: "Actividades", d: "Qué se va a hacer, en concreto. Tienen que poder derivarse del área de acción que declararon." },
+        { n: "Cronograma", d: "Cuándo se hace cada cosa, dentro del tiempo que realmente queda del corte." },
+        { n: "Recursos", d: "Qué hace falta y quién lo pone: materiales, espacios, personas y permisos." },
+        { n: "Indicadores", d: "Con qué se va a medir. Se definen acá y se reportan en la Fase II." }
+      ],
+      pie: "Todo esto es proyección: lo que efectivamente ocurra se describe en la Fase II, y la diferencia entre lo uno y lo otro es después un hallazgo."
+    },
     punto: {
       n: "Punto 4 de la Fase I",
       t: "Diseño del programa",
-      items: ["Área de acción declarada<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Proyección del programa: qué se busca, qué se hará y cómo se medirá"]
+      items: ["Área de acción declarada<span class='et'>comunitaria</span><span class='et'>aptitudes</span><span class='et'>ambientes</span><span class='et'>servicios</span>", "Estrategia central<span class='et'>mediar</span><span class='et'>abogar</span><span class='et'>capacitar</span>", "Programa proyectado<span class='et'>objetivos</span><span class='et'>actividades</span><span class='et'>cronograma</span><span class='et'>recursos</span><span class='et'>indicadores</span>"]
     }
   }
 ];
@@ -1319,7 +1353,20 @@ $("entregables").innerHTML = PREGUNTAS.map(p =>
     '<div class="ent-t">' + escapar(p.punto.t) + '</div>' +
     '<div class="ent-i">' + p.punto.items.map(x =>
       '<span><i>' + (++nEnt) + '</i>' + x + '</span>').join("") + '</div>' +
-  '</div>').join("");
+  '</div>' +
+  (p.niveles ? pintarNiveles(p.niveles) : "")).join("");
+
+// Los mismos datos que la escena, en tono de consulta.
+function pintarNiveles(n){
+  return '<div class="nivref">' +
+    '<div class="nivref-r">' + escapar(n.t) + '</div>' +
+    '<div class="nivref-l">' + n.lista.map(x =>
+      '<div><b>' + escapar(x.n) + '</b>' + escapar(x.d) + '</div>').join("") +
+    '</div>' +
+    '<div class="nivref-p">' + escapar(n.pie) + '</div>' +
+  '</div>';
+}
+
 
 $("rub-t").textContent = FASE.rubrica.t;
 $("rub-s").innerHTML = FASE.rubrica.s;
