@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustentación por sitio de práctica — Guion de preguntas</title>
+<style>
+/* ============================================================
+   TOKENS
+   Misma estructura que los recursos de proyección de promoción
+   en salud (Fase I y Fase II): son la misma familia de material.
+   El acento cambia —acá bronce— para que no se confunda de un
+   vistazo con el deck de la Fase II, que es azul, ni con el del
+   diagnóstico preliminar, que es rojo.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#faf7f0;
+  --surface-alt:#f3ede2;
+  --border:#e4ddd0;
+  --ink:#201d18;
+  --ink-soft:#5c5648;
+  --ink-faint:#8a8272;
+  --accent:#a3682c;
+  --accent-dark:#7a4c1c;
+  --accent-soft:#f6ecdd;
+  --font-display:"Spectral","Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:14px;
+  --shadow-card:0 1px 2px rgba(32,29,24,0.04), 0 6px 22px rgba(32,29,24,0.07);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+.wrap{
+  max-width:1100px; margin:0 auto;
+  padding:clamp(30px,5vh,58px) 30px 90px;
+}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.kicker{
+  font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:12px;
+}
+h1{font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:-.015em;}
+
+/* ============================================================
+   BLOQUES Y TARJETAS DE PREGUNTA
+   ============================================================ */
+.bloque{margin-top:52px;}
+.bloque:first-of-type{margin-top:44px;}
+.bloque-cab{
+  display:flex; align-items:baseline; gap:16px;
+  padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.bloque-num{
+  font-family:var(--font-display); font-size:38px; line-height:1;
+  color:var(--accent); font-weight:600;
+}
+.bloque-tit{flex:1;}
+.bloque-tit h2{font-size:clamp(20px,2.3vw,25px); letter-spacing:-.01em;}
+.reparto{
+  display:inline-block; margin-top:7px;
+  font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--accent-dark); background:var(--accent-soft);
+  border-radius:999px; padding:4px 11px;
+}
+.reparto-nota{
+  font-size:13px; color:var(--ink-faint); margin-left:9px; text-transform:none;
+  letter-spacing:0; font-weight:400;
+}
+
+.tarjetas{margin-top:22px; display:grid; gap:16px;}
+
+.tarjeta{
+  display:block; width:100%; text-align:left;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px 24px;
+  cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+}
+.tarjeta:hover, .tarjeta:focus-visible{
+  transform:translateY(-2px);
+  background:var(--bg);
+  border-color:var(--accent);
+  box-shadow:0 2px 4px rgba(32,29,24,.05), 0 14px 30px rgba(32,29,24,.11);
+  outline:none;
+}
+.tarjeta .marca{
+  font-family:var(--font-body);
+  font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:11px;
+}
+.tarjeta .pregunta{
+  font-family:var(--font-display);
+  font-size:clamp(18px,1.75vw,21px); line-height:1.32; letter-spacing:-.005em;
+}
+/* El apunte es una sola línea en corrido, no una lista de cotejo:
+   dice qué debe quedar cubierto sin competir con la pregunta. Lo
+   ancla una barra en el acento en vez de una viñeta. */
+.tarjeta .apunta{
+  margin:14px 0 0; padding:0 0 0 13px;
+  border-left:2px solid var(--accent-soft);
+  font-size:13.5px; line-height:1.5; color:var(--ink-soft);
+}
+
+/* ============================================================
+   RECUADRO DE LA CARTA DE OTTAWA
+   Cada área y cada estrategia lleva su pregunta orientadora
+   debajo: son las mismas del recurso que consolidaba las dos
+   fases de promoción en salud, para que el estudiante no tenga
+   que traducir de un material al otro.
+   ============================================================ */
+.ottawa{
+  margin-top:16px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 18px;
+}
+.ottawa h3{
+  font-family:var(--font-body);
+  font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:3px;
+}
+.ottawa .sub{font-size:12.5px; font-style:italic; color:var(--ink-faint); margin:0 0 12px;}
+.ottawa .grupo{margin-bottom:18px;}
+.ottawa .grupo:last-child{margin-bottom:0;}
+
+.rejilla{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;
+}
+@media (max-width:700px){ .rejilla{grid-template-columns:1fr;} }
+
+.opcion{
+  border:1px solid var(--border); border-radius:10px;
+  background:var(--surface); padding:11px 13px;
+}
+.opcion .nombre{
+  font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:4px;
+}
+.opcion .orienta{
+  font-family:var(--font-display);
+  font-size:13.5px; line-height:1.4; color:var(--ink-soft); font-style:italic;
+}
+.opcion.area{border-color:#c9dbd2; background:#f3f8f5;}
+.opcion.area .nombre{color:#2f5d4a;}
+
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+.escena{
+  position:fixed; inset:0; z-index:50;
+  background:var(--bg);
+  display:none;
+  flex-direction:column;
+  padding:clamp(20px,3.4vh,38px) clamp(24px,5vw,68px);
+}
+.escena.abierta{display:flex;}
+body.proyectando{overflow:hidden;}
+
+.escena-cab{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; padding-bottom:12px; border-bottom:1px solid var(--border);
+  flex:none;
+}
+.escena-ruta{
+  font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent);
+}
+.escena-ruta span{color:var(--ink-faint); font-weight:600;}
+.cerrar{
+  border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  border-radius:9px; padding:7px 14px; font-size:13px; cursor:pointer;
+  flex:none;
+}
+.cerrar:hover{background:var(--surface); color:var(--ink);}
+
+/* El cuerpo centra la pregunta cuando sobra espacio, pero cuando el
+   contenido es más alto que la pantalla —el recuadro de Ottawa, con
+   siete opciones y sus preguntas— pasa a alinearse arriba y a
+   desplazarse. Antes se recortaba por ambos extremos. */
+.escena-cuerpo{
+  flex:1 1 auto; min-height:0;
+  display:flex; flex-direction:column; justify-content:center;
+  max-width:1040px; width:100%; margin:0 auto;
+  padding:clamp(16px,3vh,34px) 0;
+  overflow-y:auto;
+}
+.escena-cuerpo::-webkit-scrollbar{width:8px;}
+.escena-cuerpo::-webkit-scrollbar-thumb{background:var(--border); border-radius:4px;}
+
+.escena-pregunta{
+  font-family:var(--font-display);
+  font-size:clamp(28px,4.6vw,54px); line-height:1.16; letter-spacing:-.018em;
+}
+.escena-apunta{
+  margin:clamp(20px,3.2vh,36px) 0 0; padding:0 0 0 clamp(14px,1.3vw,20px);
+  border-left:3px solid var(--accent-soft);
+  font-size:clamp(16px,1.75vw,21px); line-height:1.45; color:var(--ink-soft);
+  max-width:62ch;
+}
+.escena-extra{margin-top:clamp(18px,2.6vh,30px); width:100%;}
+
+/* Las preguntas que traen el recuadro de Ottawa no caben a tamaño
+   pleno: se proyectan en escala reducida, alineadas arriba, y el
+   recuadro se reparte en tres columnas si la pantalla lo permite. */
+.escena.densa .escena-cuerpo{justify-content:flex-start;}
+.escena.densa .escena-pregunta{font-size:clamp(23px,2.9vw,36px); line-height:1.2;}
+.escena.densa .escena-apunta{
+  font-size:clamp(14.5px,1.35vw,17px); margin-top:clamp(12px,1.8vh,20px);
+  max-width:78ch;
+}
+.escena.densa .ottawa{padding:18px 20px; margin-top:0;}
+.escena.densa .ottawa h3{font-size:12.5px;}
+.escena.densa .ottawa .sub{font-size:13.5px;}
+.escena.densa .opcion .nombre{font-size:clamp(14px,1.25vw,16px);}
+.escena.densa .opcion .orienta{font-size:clamp(13.5px,1.2vw,15.5px);}
+@media (min-width:1100px){
+  .escena.densa .rejilla{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+
+.escena-pie{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding-top:12px; border-top:1px solid var(--border);
+  flex:none;
+}
+.nav{display:flex; gap:9px;}
+.btn{
+  font-family:var(--font-body); font-size:14px; font-weight:600;
+  border-radius:10px; padding:9px 16px; cursor:pointer;
+  border:1px solid var(--border); background:var(--bg); color:var(--ink);
+  transition:background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.btn:hover{background:var(--surface); transform:translateY(-1px);}
+.btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.btn[disabled]{opacity:.35; cursor:default; transform:none;}
+.progreso{font-size:13px; color:var(--ink-faint);}
+.pista{font-size:12.5px; color:var(--ink-faint);}
+
+/* ============================================================
+   IMPRESIÓN — el guion completo en papel
+   ============================================================ */
+@media print{
+  .escena{display:none !important;}
+  body{font-size:11pt;}
+  .wrap{padding:0; max-width:none;}
+  .tarjeta{
+    box-shadow:none; break-inside:avoid; page-break-inside:avoid;
+    background:#fff; border-color:#ccc;
+  }
+  .bloque{margin-top:26px; break-inside:avoid;}
+}
+
+@media (max-width:640px){
+  .bloque-cab{gap:12px;}
+  .bloque-num{font-size:30px;}
+  .escena-pie{flex-direction:column; align-items:flex-start;}
+  .pista{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="kicker">Práctica II · Clínica</div>
+  <h1>Sustentación por sitio de práctica</h1>
+
+  <div id="bloques"></div>
+
+</div>
+
+<!-- ============================================================
+     VISTA DE PROYECCIÓN
+     ============================================================ -->
+<div class="escena" id="escena" role="dialog" aria-modal="true" aria-label="Pregunta en proyección">
+  <div class="escena-cab">
+    <div class="escena-ruta" id="ruta"></div>
+    <button class="cerrar" id="cerrar">Cerrar · Esc</button>
+  </div>
+  <div class="escena-cuerpo">
+    <div class="escena-pregunta" id="e-pregunta"></div>
+    <p class="escena-apunta" id="e-apunta"></p>
+    <div class="escena-extra" id="e-extra"></div>
+  </div>
+  <div class="escena-pie">
+    <div class="nav">
+      <button class="btn" id="anterior">← Anterior</button>
+      <button class="btn" id="siguiente">Siguiente →</button>
+    </div>
+    <div class="progreso" id="progreso"></div>
+    <div class="pista">Flechas para navegar · Esc para salir</div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   EL RECUADRO DE LA CARTA DE OTTAWA
+   Las cuatro preguntas orientadoras de las áreas de acción están
+   copiadas literalmente del recurso que consolidaba las fases I
+   y II de promoción en salud (promocion-salud.html): son el
+   mismo marco y no deben divergir. Las tres de las estrategias
+   centrales se escribieron acá, siguiendo esa misma voz, porque
+   en aquel recurso las centrales llevaban explicación pero no
+   pregunta.
+   ============================================================ */
+const AREAS = [
+  ["Reforzar la acción comunitaria",
+   "¿Cómo involucró a la comunidad durante el desarrollo del programa?"],
+  ["Desarrollar las aptitudes personales",
+   "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"],
+  ["Crear ambientes favorables",
+   "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"],
+  ["Reorientar los servicios de salud",
+   "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"]
+];
+
+const CENTRALES = [
+  ["Actuar como mediador",
+   "¿Entre qué actores tuvo que mediar para que la actividad ocurriera?"],
+  ["Promocionar el concepto",
+   "¿Cómo instaló la salud como un recurso para la vida cotidiana de los participantes?"],
+  ["Proporcionar medios",
+   "¿Qué puso al alcance de quienes tenían menos posibilidades de acceder?"]
+];
+
+function opciones(lista, clase){
+  return `<div class="rejilla">` + lista.map(([nombre, orienta]) => `
+    <div class="opcion ${clase}">
+      <div class="nombre">${nombre}</div>
+      <div class="orienta">${orienta}</div>
+    </div>`).join("") + `</div>`;
+}
+
+const RECUADRO_OTTAWA = `
+  <div class="ottawa">
+    <div class="grupo">
+      <h3>Áreas de acción — Carta de Ottawa</h3>
+      <p class="sub">Una por actividad</p>
+      ${opciones(AREAS, "area")}
+    </div>
+    <div class="grupo">
+      <h3>Estrategias centrales — Carta de Ottawa</h3>
+      <p class="sub">Atraviesan a las cuatro áreas: pueden señalar más de una</p>
+      ${opciones(CENTRALES, "")}
+    </div>
+  </div>`;
+
+/* ============================================================
+   EL GUION
+   Los bloques y el reparto de expositores salen del documento
+   «Presentación por sitio de práctica». Cada ítem de ese
+   documento se abrió acá en las preguntas que hacen falta para
+   cubrirlo: lo que cambia es la forma —pregunta en vez de
+   enunciado—, no lo que se pide.
+
+   El ítem «Resultados y evidencia» de aquel documento no está
+   en este guion: se retiró a propósito, no se omitió.
+   ============================================================ */
+const GUION = [
+  {
+    num: 1,
+    titulo: "Contexto del sitio",
+    reparto: "1 estudiante",
+    nota: "",
+    preguntas: [
+      {
+        pregunta: "¿Dónde hicieron la práctica y con quiénes trabajaron?",
+        apunte: "Institución y sede, población atendida y sus características, y en qué parte del trabajo de la institución se insertaron."
+      },
+      {
+        pregunta: "¿Qué necesidad de salud detectaron y cómo llegaron a ella?",
+        apunte: "Cuál es la necesidad, cómo la identificaron —qué observaron, a quién preguntaron, qué revisaron— y por qué esa y no otra."
+      }
+    ]
+  },
+  {
+    num: 2,
+    titulo: "Actividades realizadas",
+    reparto: "Rotan todos",
+    nota: "— cada quien presenta la suya; este bloque se repite por cada actividad",
+    preguntas: [
+      {
+        pregunta: "¿Qué se propuso lograr esta actividad y con quiénes?",
+        apunte: "El objetivo en una frase, la población destinataria y el número de participantes, y por qué esta actividad responde a la necesidad detectada."
+      },
+      {
+        pregunta: "¿Cómo la hicieron?",
+        apunte: "La técnica utilizada y por qué esa, cómo transcurrió —dónde, cuánto duró, quién condujo qué— y qué ajustaron sobre la marcha."
+      },
+      {
+        pregunta: "¿En qué área de acción de la Carta de Ottawa se inscribe esta actividad?",
+        apunte: "Una sola área, con el argumento de por qué es esa; las estrategias centrales que la atraviesan, que pueden ser más de una; y la pregunta orientadora del área que eligieron.",
+        extra: RECUADRO_OTTAWA,
+        densa: true
+      }
+    ]
+  },
+  {
+    num: 3,
+    titulo: "Dificultades, aprendizajes y oportunidades",
+    reparto: "3 estudiantes",
+    nota: "— uno por ítem",
+    preguntas: [
+      {
+        pregunta: "¿Qué dificultades enfrentaron y cómo las resolvieron?",
+        apunte: "Las dificultades reales del sitio, qué hicieron ante cada una y cuáles quedaron sin resolver."
+      },
+      {
+        pregunta: "¿Qué aprendieron sobre el rol del psicólogo en promoción de la salud?",
+        apunte: "Qué hace un psicólogo en promoción que no hace en atención clínica, qué les cambió respecto de lo que creían al entrar, y con qué se queda cada quien."
+      },
+      {
+        pregunta: "¿Qué oportunidades de mejora deja el sitio?",
+        apunte: "Qué haría distinto el grupo que llegue el próximo periodo, qué queda instalado en la institución cuando ustedes se van, y qué recomendarían al sitio y al programa."
+      }
+    ]
+  }
+];
+
+/* ------------------------------------------------------------
+   Se aplana el guion a una sola secuencia: la proyección corre
+   de la primera pregunta a la última sin cortes entre bloques,
+   que es como transcurre la sustentación.
+   ------------------------------------------------------------ */
+const SECUENCIA = [];
+GUION.forEach(b => b.preguntas.forEach(p => {
+  SECUENCIA.push({ ...p, bloque: b });
+}));
+
+/* ------------------------------------------------------------
+   PORTADA
+   ------------------------------------------------------------ */
+const cont = document.getElementById("bloques");
+let n = 0;
+
+GUION.forEach(b => {
+  const sec = document.createElement("section");
+  sec.className = "bloque";
+
+  const cab = document.createElement("div");
+  cab.className = "bloque-cab";
+  cab.innerHTML = `
+    <div class="bloque-num">${b.num}</div>
+    <div class="bloque-tit">
+      <h2>${b.titulo}</h2>
+      <div><span class="reparto">${b.reparto}</span>${b.nota ? `<span class="reparto-nota">${b.nota}</span>` : ""}</div>
+    </div>`;
+  sec.appendChild(cab);
+
+  const tarjetas = document.createElement("div");
+  tarjetas.className = "tarjetas";
+
+  b.preguntas.forEach(p => {
+    const idx = n++;
+    const t = document.createElement("div");
+    t.className = "tarjeta";
+    t.innerHTML = `
+      <div class="marca">Pregunta ${idx + 1}</div>
+      <div class="pregunta">${p.pregunta}</div>
+      <p class="apunta">${p.apunte}</p>
+      ${p.extra || ""}`;
+
+    t.addEventListener("click", () => abrir(idx));
+    t.setAttribute("tabindex", "0");
+    t.setAttribute("role", "button");
+    t.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(idx); }
+    });
+
+    tarjetas.appendChild(t);
+  });
+
+  sec.appendChild(tarjetas);
+  cont.appendChild(sec);
+});
+
+/* ------------------------------------------------------------
+   PROYECCIÓN
+   ------------------------------------------------------------ */
+const escena = document.getElementById("escena");
+const elRuta = document.getElementById("ruta");
+const elPreg = document.getElementById("e-pregunta");
+const elApunta = document.getElementById("e-apunta");
+const elExtra = document.getElementById("e-extra");
+const elProg = document.getElementById("progreso");
+const btnAnt = document.getElementById("anterior");
+const btnSig = document.getElementById("siguiente");
+
+let actual = 0;
+
+function pintar(idx){
+  const p = SECUENCIA[idx];
+  actual = idx;
+
+  elRuta.innerHTML = `Bloque ${p.bloque.num} · ${p.bloque.titulo} <span>— ${p.bloque.reparto}</span>`;
+  elPreg.textContent = p.pregunta;
+  elApunta.textContent = p.apunte;
+  elExtra.innerHTML = p.extra || "";
+
+  escena.classList.toggle("densa", !!p.densa);
+  document.querySelector(".escena-cuerpo").scrollTop = 0;
+
+  elProg.textContent = `Pregunta ${idx + 1} de ${SECUENCIA.length}`;
+  btnAnt.disabled = idx === 0;
+  btnSig.disabled = idx === SECUENCIA.length - 1;
+}
+
+function abrir(idx){
+  pintar(idx);
+  escena.classList.add("abierta");
+  document.body.classList.add("proyectando");
+  document.getElementById("cerrar").focus();
+}
+
+function cerrar(){
+  escena.classList.remove("abierta");
+  document.body.classList.remove("proyectando");
+}
+
+function mover(paso){
+  const destino = actual + paso;
+  if (destino >= 0 && destino < SECUENCIA.length) pintar(destino);
+}
+
+document.getElementById("cerrar").addEventListener("click", cerrar);
+btnAnt.addEventListener("click", () => mover(-1));
+btnSig.addEventListener("click", () => mover(1));
+
+document.addEventListener("keydown", e => {
+  if (!escena.classList.contains("abierta")) return;
+  if (e.key === "Escape") cerrar();
+  else if (e.key === "ArrowRight" || e.key === "PageDown") mover(1);
+  else if (e.key === "ArrowLeft" || e.key === "PageUp") mover(-1);
+});
+</script>
+
+</body>
+</html>
