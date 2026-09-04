@@ -120,10 +120,10 @@ h1{font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:-.015em;}
 
 /* ============================================================
    RECUADRO DE LA CARTA DE OTTAWA
-   Cada área y cada estrategia lleva su pregunta orientadora
-   debajo: son las mismas del recurso que consolidaba las dos
-   fases de promoción en salud, para que el estudiante no tenga
-   que traducir de un material al otro.
+   Cada área lleva debajo una pregunta de encaje, que se responde
+   sí o no; cada estrategia central, una glosa de una línea. La
+   clase .orienta da formato a ambas: lo que cambia es el texto,
+   no la jerarquía.
    ============================================================ */
 .ottawa{
   margin-top:16px;
@@ -311,32 +311,34 @@ body.proyectando{overflow:hidden;}
 <script>
 /* ============================================================
    EL RECUADRO DE LA CARTA DE OTTAWA
-   Las cuatro preguntas orientadoras de las áreas de acción están
-   copiadas literalmente del recurso que consolidaba las fases I
-   y II de promoción en salud (promocion-salud.html): son el
-   mismo marco y no deben divergir. Las tres de las estrategias
-   centrales se escribieron acá, siguiendo esa misma voz, porque
-   en aquel recurso las centrales llevaban explicación pero no
-   pregunta.
+   Las áreas llevan una pregunta de encaje —se responde sí o no—
+   porque acá el estudiante no tiene que desarrollarlas: tiene
+   que elegir una y descartar las otras tres. Son una versión
+   abreviada de las preguntas orientadoras de promocion-salud.html,
+   que sigue siendo el material donde se desarrollan.
+
+   Las estrategias centrales no llevan pregunta sino una glosa de
+   una línea, como en aquel recurso: se pueden señalar varias, no
+   hay nada que descartar, y una pregunta ahí no orientaba.
    ============================================================ */
 const AREAS = [
   ["Reforzar la acción comunitaria",
-   "¿Cómo involucró a la comunidad durante el desarrollo del programa?"],
+   "¿Involucró a la comunidad durante el desarrollo del programa?"],
   ["Desarrollar las aptitudes personales",
-   "¿Qué habilidades o conocimientos fortaleció en las personas participantes?"],
+   "¿Fortaleció habilidades o conocimientos en los participantes?"],
   ["Crear ambientes favorables",
-   "¿Cómo contribuye su intervención a crear un ambiente más saludable dentro del contexto de práctica?"],
+   "¿Cambió algo del entorno para hacerlo más saludable?"],
   ["Reorientar los servicios de salud",
-   "¿Cómo puede su intervención ayudar a que los servicios de salud sean más preventivos y comunitarios?"]
+   "¿Movió al servicio hacia lo preventivo y comunitario?"]
 ];
 
 const CENTRALES = [
   ["Actuar como mediador",
-   "¿Entre qué actores tuvo que mediar para que la actividad ocurriera?"],
+   "Poner de acuerdo a actores con intereses distintos."],
   ["Promocionar el concepto",
-   "¿Cómo instaló la salud como un recurso para la vida cotidiana de los participantes?"],
+   "Hablar de salud como recurso para vivir, no como ausencia de enfermedad."],
   ["Proporcionar medios",
-   "¿Qué puso al alcance de quienes tenían menos posibilidades de acceder?"]
+   "Acercar recursos a quien tiene menos acceso."]
 ];
 
 function opciones(lista, clase){
@@ -351,7 +353,7 @@ const RECUADRO_OTTAWA = `
   <div class="ottawa">
     <div class="grupo">
       <h3>Áreas de acción — Carta de Ottawa</h3>
-      <p class="sub">Una por actividad</p>
+      <p class="sub">Una por actividad: la pregunta que se responda con sí</p>
       ${opciones(AREAS, "area")}
     </div>
     <div class="grupo">
@@ -405,7 +407,7 @@ const GUION = [
       },
       {
         pregunta: "¿En qué área de acción de la Carta de Ottawa se inscribe esta actividad?",
-        apunte: "Una sola área, con el argumento de por qué es esa; las estrategias centrales que la atraviesan, que pueden ser más de una; y la pregunta orientadora del área que eligieron.",
+        apunte: "Una sola área, con el argumento de por qué es esa; y las estrategias centrales que la atraviesan, que pueden ser más de una.",
         extra: RECUADRO_OTTAWA,
         densa: true
       }
