@@ -142,6 +142,64 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
 .masthead p{color:var(--ink-soft); font-size:15px; max-width:60ch;}
 
+/* Enlace a la rúbrica, en el encabezado. Apunta a la URL absoluta de Pages y no
+   al archivo vecino: el recurso se guarda y viaja solo, y un enlace relativo
+   quedaría roto en cuanto el grupo descarga su copia. */
+.link-rubrica{
+  display:inline-block; margin-top:14px;
+  font-size:14px; font-weight:600; color:var(--accent); text-decoration:none;
+  border:1px solid var(--border); border-radius:8px; padding:9px 14px;
+}
+.link-rubrica:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+/* Criterio de evaluación al pie de las preguntas abiertas. Se muestra PLEGADO:
+   la regla del curso es que una consigna abierta no enumere qué observar,
+   porque entonces el estudiante ya no desarrolla la mirada clínica, sólo
+   verifica una lista. Plegado respeta las dos cosas — quien quiere saber contra
+   qué se lo mide lo abre, y quien responde de frente lo hace sin la lista
+   delante. */
+.rubrica-inline{margin-top:12px; border-top:1px solid var(--border); padding-top:10px;}
+.rubrica-inline > summary{
+  cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:600; color:var(--accent);
+  /* El relleno vertical es el área táctil: sin él, el disparador mide 19 px de
+     alto y en un celular hay que apuntarle. */
+  padding:9px 4px 9px 0;
+}
+.rubrica-inline > summary::-webkit-details-marker{display:none;}
+.rubrica-inline > summary::before{
+  content:""; width:7px; height:7px; flex-shrink:0;
+  border-right:1.8px solid var(--accent); border-bottom:1.8px solid var(--accent);
+  transform:rotate(-45deg); transition:transform 0.2s ease;
+}
+.rubrica-inline[open] > summary::before{transform:rotate(45deg);}
+.rubrica-peso{
+  font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:2px 7px; border-radius:99px;
+}
+.rubrica-niveles{margin-top:10px; display:flex; flex-direction:column; gap:6px;}
+.rubrica-nivel{
+  display:flex; gap:10px; align-items:flex-start;
+  font-size:12.5px; line-height:1.45; color:var(--ink-soft);
+  padding:7px 11px; border-radius:7px; background:var(--surface);
+}
+.rubrica-nivel b{
+  flex:0 0 96px; font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.04em; text-transform:uppercase; margin-top:1px;
+}
+.rubrica-nivel:nth-child(1) b{color:var(--severe);}
+.rubrica-nivel:nth-child(2) b{color:var(--moderate);}
+.rubrica-nivel:nth-child(3) b{color:var(--mild);}
+.rubrica-nivel:nth-child(4) b{color:var(--accent);}
+@media (max-width:900px){
+  .rubrica-inline > summary{padding:14px 4px 14px 0;}
+}
+@media (max-width:560px){
+  .rubrica-nivel{flex-direction:column; gap:3px;}
+  .rubrica-nivel b{flex:none;}
+}
+
 section.block{margin-bottom:40px; scroll-margin-top:24px;}
 .block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
 .block-heading h2{font-size:20px;}
@@ -432,6 +490,10 @@ select.select-lg{font-size:15.5px; font-weight:600; padding:13px 34px 13px 15px;
         Al terminar, presionen además "Enviar al docente": se abrirá una pestaña confirmando que las
         respuestas llegaron.
       </p>
+      <a class="link-rubrica" target="_blank" rel="noopener"
+         href="https://juanboya7.github.io/seminario-clinico/1-Caso-ansiedad-Elisa-rubrica.html">
+        Ver la rúbrica de evaluación &rarr;
+      </a>
     </header>
 
     <!-- ============ BLOQUE 0 — DATOS DEL GRUPO ============ -->
@@ -1688,6 +1750,93 @@ function highlightInvalidFields(){
 }
 
 /* ============================================================
+   11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
+   ============================================================ */
+
+// Los cuatro criterios de 1-Caso-ansiedad-Elisa-rubrica.html, condensados y
+// colgados de la consigna que cada uno evalúa. Si cambian allá hay que
+// cambiarlos acá también: no hay una sola fuente, porque la rúbrica es una
+// página aparte y este recurso tiene que seguir funcionando sin conexión.
+const RUBRICA_CAMPOS = {
+  "f-primeras-hipotesis": {
+    peso: "20%",
+    rotulo: "Ver cómo se evalúan las tres primeras respuestas",
+    niveles: [
+      "El motivo de consulta se confunde con el diagnóstico, o la lista de problemas repite una sola queja.",
+      "Registra el motivo y algunos problemas, pero la hipótesis no se desprende de ellos.",
+      "Distingue lo que Elisa consulta de lo que el grupo infiere, y la hipótesis se apoya en la lista de problemas.",
+      "Además señala qué información falta para sostener esa primera hipótesis."
+    ]
+  },
+  "f-habilidades-terapeuta": {
+    peso: "20%",
+    rotulo: "Ver cómo se evalúa",
+    niveles: [
+      "Califica a la psicóloga — «fue empática», «manejó bien» — sin decir qué hizo.",
+      "Nombra habilidades reconocibles, pero sin anclarlas a un momento de la sesión.",
+      "Describe qué hace, en qué momento, y qué efecto tiene sobre lo que Elisa cuenta después.",
+      "Además señala una decisión de la entrevista que habría cambiado la información obtenida."
+    ]
+  },
+  "ct-diagnostico-elegido": {
+    peso: "30%",
+    rotulo: "Ver cómo se evalúa el checklist",
+    niveles: [
+      "Hay criterios marcados sin evidencia, o la evidencia no corresponde al criterio que acompaña.",
+      "Escribe evidencia sólo para algunos criterios, o repite el enunciado en lugar de traer un dato del caso.",
+      "Cada criterio marcado va con evidencia del caso en palabras propias, y no quedan sin marcar los que el caso documenta.",
+      "Además separa lo que el caso permite afirmar de lo que habría que preguntar en una entrevista posterior."
+    ]
+  },
+  "f-analisis": {
+    peso: "30%",
+    rotulo: "Ver cómo se evalúa el diagnóstico diferencial",
+    niveles: [
+      "Sostiene un solo diagnóstico sin mencionar alternativas, o nombra varias sin argumento.",
+      "Menciona otro trastorno posible, pero lo descarta por afirmación.",
+      "Compara al menos un trastorno alternativo y explica el descarte con un criterio: el foco del temor, la duración o la afectación.",
+      "Además reconoce lo que quedaría por descartar, o sostiene de manera argumentada una comorbilidad."
+    ]
+  }
+};
+
+const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobresaliente"];
+
+function construirPlegableRubrica(criterio){
+  const det = document.createElement("details");
+  det.className = "rubrica-inline";
+
+  const sum = document.createElement("summary");
+  sum.innerHTML = "<span>" + criterio.rotulo + "</span>" +
+                  "<span class=\"rubrica-peso\">" + criterio.peso + "</span>";
+  det.appendChild(sum);
+
+  const cont = document.createElement("div");
+  cont.className = "rubrica-niveles";
+  criterio.niveles.forEach((texto, i) => {
+    const fila = document.createElement("div");
+    fila.className = "rubrica-nivel";
+    fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
+    cont.appendChild(fila);
+  });
+  det.appendChild(cont);
+  return det;
+}
+
+function initRubricaEnLinea(){
+  Object.keys(RUBRICA_CAMPOS).forEach(id => {
+    const campo = document.getElementById(id);
+    // El plegable va dentro de la tarjeta de la consigna, no suelto en el
+    // margen, para que quede alineado con el resto del bloque. La tarjeta del
+    // desplegable de diagnóstico es estable: renderDiagnosisChecklist sólo
+    // reescribe #diagnosis-checklist, que es un contenedor aparte.
+    const card = campo && campo.closest(".card");
+    if (!card) return;
+    card.appendChild(construirPlegableRubrica(RUBRICA_CAMPOS[id]));
+  });
+}
+
+/* ============================================================
    12. INICIALIZACIÓN
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -1697,6 +1846,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     loadInitialState();
+    initRubricaEnLinea();
     initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
     initDynamicList("problemas", "list-problemas", "btn-add-problema", "Describí un problema identificado", "Quitar problema", 2);
     initSimpleFields();
