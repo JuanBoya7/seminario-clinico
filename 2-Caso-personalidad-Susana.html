@@ -589,10 +589,9 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <div class="card">
         <div class="card-label">Habilidades del terapeuta <span class="required-mark">*</span></div>
         <div class="card-help">
-          ¿Qué habilidades terapéuticas identifican en el manejo que hace la psicóloga durante estas
-          primeras sesiones?
+          ¿En qué momento la psicóloga cambia el rumbo de la entrevista, y qué obtiene con eso?
         </div>
-        <textarea data-required="true" id="f-habilidades-terapeuta" rows="4"></textarea>
+        <textarea data-required="true" id="f-habilidades-terapeuta" rows="3"></textarea>
       </div>
     </section>
 
@@ -625,14 +624,10 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <div class="card">
         <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
         <div class="card-help">
-          Ahora que ya completaron el checklist diagnóstico, describan las conclusiones y percepciones
-          generales del grupo sobre el caso: qué hallazgos les parecieron más relevantes, qué dudas
-          persisten, y cómo argumentarían el diagnóstico frente al caso, considerando que el TLP es una
-          condición de difícil diagnóstico con precisión y que suele solaparse con los trastornos del
-          estado de ánimo. No se espera responder preguntas puntuales, sino una reflexión integradora
-          del análisis que ya realizaron.
+          ¿Cómo se relacionan las dos hipótesis entre sí: una explica a la otra, coexisten, o una
+          descarta a la otra?
         </div>
-        <textarea data-required="true" id="f-analisis" rows="8"></textarea>
+        <textarea data-required="true" id="f-analisis" rows="5"></textarea>
       </div>
     </section>
 
@@ -769,6 +764,20 @@ function initInputRestrictions(){
 /* ============================================================
    4. RENDERIZADO — CHECKLIST DSM-5 POR CONDICIÓN
    ============================================================ */
+/* Los criterios de exclusión ("no se puede atribuir a…", "no se explica mejor
+   por…") no se pueden evidenciar desde un video: que algo no se mencione no lo
+   descarta. Pedirles "evidencia" produce respuestas como "no se menciona consumo",
+   que es un error lógico. Se les pide entonces lo que sí corresponde a esta altura
+   del proceso: qué habría que averiguar para poder sostenerlos. */
+function esCriterioDeExclusion(texto){
+  return /no se (puede atribuir|explica mejor|explican mejor)/i.test(texto || "");
+}
+function etiquetaEvidencia(texto){
+  return esCriterioDeExclusion(texto)
+    ? "¿Qué habría que preguntar o descartar para sostener este criterio?"
+    : "Evidencia en el caso (escribí con tus palabras)";
+}
+
 function updateCriterionState(stateKey, checked, evidence){
   state.criteria[stateKey] = { checked, evidence };
 }
@@ -932,7 +941,7 @@ function renderConditionChecklists(){
           <label class="criterion-text" for="crit-${stateKey}">${text}</label>
         </div>
         <div class="criterion-evidence">
-          <label for="evid-${stateKey}">Evidencia en el caso (escribí con tus palabras)</label>
+          <label for="evid-${stateKey}">${etiquetaEvidencia(text)}</label>
           <textarea class="evidence-box" id="evid-${stateKey}" rows="2"></textarea>
         </div>
       `;
