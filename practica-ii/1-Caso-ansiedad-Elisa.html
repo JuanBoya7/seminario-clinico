@@ -556,14 +556,6 @@ select.select-lg{font-size:15.5px; font-weight:600; padding:13px 34px 13px 15px;
         </div>
         <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
       </div>
-
-      <div class="card">
-        <div class="card-label">Habilidades del terapeuta <span class="required-mark">*</span></div>
-        <div class="card-help">
-          ¿En qué momento la psicóloga cambia el rumbo de la entrevista, y qué obtiene con eso?
-        </div>
-        <textarea data-required="true" id="f-habilidades-terapeuta" rows="3"></textarea>
-      </div>
     </section>
 
     <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
@@ -603,12 +595,12 @@ select.select-lg{font-size:15.5px; font-weight:600; padding:13px 34px 13px 15px;
         <span class="block-index">03</span>
         <h2>Comprensión del caso</h2>
       </div>
-      <p class="block-sub">Expresen abiertamente su opinión sobre el caso.</p>
+      <p class="block-sub">Cierren el análisis con las conclusiones del grupo.</p>
 
       <div class="card">
         <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
         <div class="card-help">
-          ¿Qué otro trastorno de ansiedad consideraron, y con qué criterio lo descartaron?
+          ¿A qué conclusiones llegaron sobre el caso después de elegir y justificar los criterios?
         </div>
         <textarea data-required="true" id="f-analisis" rows="5"></textarea>
       </div>
@@ -1767,13 +1759,13 @@ function highlightInvalidFields(){
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
-// Los cuatro criterios de 1-Caso-ansiedad-Elisa-rubrica.html, condensados y
+// Los tres criterios de 1-Caso-ansiedad-Elisa-rubrica.html, condensados y
 // colgados de la consigna que cada uno evalúa. Si cambian allá hay que
 // cambiarlos acá también: no hay una sola fuente, porque la rúbrica es una
 // página aparte y este recurso tiene que seguir funcionando sin conexión.
 const RUBRICA_CAMPOS = {
   "f-primeras-hipotesis": {
-    peso: "20%",
+    peso: "25%",
     rotulo: "Ver cómo se evalúan las tres primeras respuestas",
     niveles: [
       "El motivo de consulta se confunde con el diagnóstico, o la lista de problemas repite una sola queja.",
@@ -1782,18 +1774,8 @@ const RUBRICA_CAMPOS = {
       "Además señala qué información falta para sostener esa primera hipótesis."
     ]
   },
-  "f-habilidades-terapeuta": {
-    peso: "20%",
-    rotulo: "Ver cómo se evalúa",
-    niveles: [
-      "Califica a la psicóloga — «fue empática», «manejó bien» — sin decir qué hizo.",
-      "Nombra habilidades reconocibles, pero sin anclarlas a un momento de la sesión.",
-      "Describe qué hace, en qué momento, y qué efecto tiene sobre lo que Elisa cuenta después.",
-      "Además señala una decisión de la entrevista que habría cambiado la información obtenida."
-    ]
-  },
   "ct-diagnostico-elegido": {
-    peso: "30%",
+    peso: "40%",
     rotulo: "Ver cómo se evalúa el checklist",
     niveles: [
       "Hay criterios marcados sin evidencia, o la evidencia no corresponde al criterio que acompaña.",
@@ -1803,13 +1785,13 @@ const RUBRICA_CAMPOS = {
     ]
   },
   "f-analisis": {
-    peso: "30%",
-    rotulo: "Ver cómo se evalúa el diagnóstico diferencial",
+    peso: "35%",
+    rotulo: "Ver cómo se evalúan las conclusiones",
     niveles: [
-      "Sostiene un solo diagnóstico sin mencionar alternativas, o nombra varias sin argumento.",
-      "Menciona otro trastorno posible, pero lo descarta por afirmación.",
-      "Compara al menos un trastorno alternativo y explica el descarte con un criterio: el foco del temor, la duración o la afectación.",
-      "Además reconoce lo que quedaría por descartar, o sostiene de manera argumentada una comorbilidad."
+      "No hay conclusión, o la que hay contradice los criterios que el grupo marcó.",
+      "Enuncia una conclusión, pero la sostiene por afirmación: no se apoya en los criterios elegidos ni en la evidencia escrita.",
+      "La conclusión se desprende de los criterios marcados y de su evidencia, y el grupo dice qué lo llevó a sostenerla.",
+      "Además reconoce los límites de esa conclusión: qué queda por descartar, qué información falta o qué la haría cambiar."
     ]
   }
 };

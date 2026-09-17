@@ -543,14 +543,6 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-help">Todavía sin aplicar criterios formales: ¿qué hipótesis diagnóstica les sugiere esta primera impresión del caso?</div>
         <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
       </div>
-
-      <div class="card">
-        <div class="card-label">Habilidades del terapeuta <span class="required-mark">*</span></div>
-        <div class="card-help">
-          ¿En qué momento la psicóloga cambia el rumbo de la entrevista, y qué obtiene con eso?
-        </div>
-        <textarea data-required="true" id="f-habilidades-terapeuta" rows="3"></textarea>
-      </div>
     </section>
 
     <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
@@ -574,12 +566,12 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <span class="block-index">03</span>
         <h2>Comprensión del caso</h2>
       </div>
-      <p class="block-sub">Expresen abiertamente su opinión sobre el caso.</p>
+      <p class="block-sub">Cierren el análisis con las conclusiones del grupo.</p>
 
       <div class="card">
         <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
         <div class="card-help">
-          ¿Cada sustancia sostiene un diagnóstico propio, o el patrón de una explica el de la otra?
+          ¿A qué conclusiones llegaron sobre el caso después de elegir y justificar los criterios?
         </div>
         <textarea data-required="true" id="f-analisis" rows="5"></textarea>
       </div>
@@ -685,7 +677,7 @@ const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobre
 
 const RUBRICA_CAMPOS = {
   "f-primeras-hipotesis": {
-    peso: "20%",
+    peso: "25%",
     rotulo: "Ver cómo se evalúan las tres primeras respuestas",
     niveles: [
       "El motivo de consulta se da por sentado —«consume drogas»— o se confunde con el diagnóstico.",
@@ -694,24 +686,14 @@ const RUBRICA_CAMPOS = {
       "Además señala qué información falta, o registra que la falta de conciencia de problema es en sí un dato."
     ]
   },
-  "f-habilidades-terapeuta": {
-    peso: "20%",
-    rotulo: "Ver cómo se evalúa",
-    niveles: [
-      "Califica a la psicóloga — «fue empática», «manejó bien» — sin decir qué hizo.",
-      "Nombra habilidades reconocibles, pero sin anclarlas a un momento de la sesión.",
-      "Describe qué hace, en qué momento, y qué efecto tiene sobre lo que Sergio cuenta después.",
-      "Además señala una decisión de la entrevista que habría cambiado la información obtenida."
-    ]
-  },
   "f-analisis": {
-    peso: "30%",
-    rotulo: "Ver cómo se evalúan las dos sustancias y la gravedad",
+    peso: "35%",
+    rotulo: "Ver cómo se evalúan las conclusiones",
     niveles: [
-      "Trata el consumo como un solo cuadro, o confunde consumir con cumplir criterios de trastorno.",
-      "Separa las dos sustancias, pero traslada los criterios de una a la otra sin evidencia propia.",
-      "Evalúa cada sustancia con sus propios criterios, y la gravedad se corresponde con lo marcado.",
-      "Además discute qué parte del cuadro pertenece al consumo y qué habría que evaluar aparte."
+      "No hay conclusión, o la que hay contradice los criterios que el grupo marcó.",
+      "Enuncia una conclusión, pero la sostiene por afirmación: no se apoya en los criterios elegidos ni en la evidencia escrita.",
+      "La conclusión se desprende de los criterios marcados y de su evidencia, y el grupo dice qué lo llevó a sostenerla.",
+      "Además reconoce los límites de esa conclusión: qué queda por descartar, qué información falta o qué la haría cambiar."
     ]
   }
 };
@@ -755,7 +737,7 @@ function initRubricaChecklist(){
   const seccion = document.getElementById("bloque-2");
   if (!seccion) return;
   seccion.appendChild(construirPlegableRubrica({
-    peso: "30%",
+    peso: "40%",
     rotulo: "Ver cómo se evalúa el checklist",
     niveles: [
       "Hay criterios marcados y ninguna evidencia escrita, o la evidencia no corresponde a lo marcado.",
