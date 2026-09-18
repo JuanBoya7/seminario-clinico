@@ -435,7 +435,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
       <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Primeras impresiones</a></li>
       <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Checklist diagnóstico</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Comprensión del caso</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Antes del segundo fragmento</a></li>
+      <li><a class="nav-item" href="#bloque-4" data-target="bloque-4"><span class="nav-dot"></span>Comprensión del caso</a></li>
     </ul>
 
     <div class="progress-block">
@@ -521,9 +522,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <h2>Primeras impresiones</h2>
       </div>
       <p class="block-sub">
-        Antes de aplicar el checklist diagnóstico, registren su primera lectura del caso, tal como se
-        trabaja al cierre de este fragmento de la sesión: motivo de consulta, lista de problemas e
-        hipótesis iniciales basadas en impresiones.
+        Después del primer fragmento —la sesión inicial de evaluación— registren su primera lectura del
+        caso: motivo de consulta, lista de problemas e hipótesis iniciales basadas en impresiones.
       </p>
 
       <div class="card">
@@ -543,6 +543,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-help">Todavía sin aplicar criterios formales: ¿qué hipótesis diagnóstica les sugiere esta primera impresión del caso?</div>
         <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
       </div>
+      <div class="card">
+        <div class="card-label">La explicación de Sergio <span class="required-mark">*</span></div>
+        <div class="card-help">¿A qué atribuye Sergio los conflictos que lo traen a consulta?</div>
+        <textarea data-required="true" id="f-atribucion" rows="3"></textarea>
+      </div>
     </section>
 
     <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
@@ -552,21 +557,46 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <h2>Checklist diagnóstico DSM-5</h2>
       </div>
       <p class="block-sub">
-        Evaluá por separado el trastorno por consumo de <strong>cocaína</strong> y de <strong>cannabis</strong>.
-        Marcá cada criterio que consideres presente en el caso y escribí, con tus propias palabras, la
-        evidencia que lo sustenta. La gravedad se calcula automáticamente según la cantidad de criterios
-        marcados (2–3 leve · 4–5 moderada · 6 o más grave, DSM-5).
+        Evalúen el <strong>trastorno por consumo de cocaína</strong>. Marquen únicamente los criterios que
+        puedan sostener con lo que el caso muestra, y escriban con sus propias palabras la evidencia que
+        los respalda: una casilla sin marcar también es una decisión del grupo. La gravedad se calcula
+        automáticamente según la cantidad de criterios marcados (2–3 leve · 4–5 moderada · 6 o más grave,
+        DSM-5).
       </p>
       <div id="substance-checklists"></div>
     </section>
 
-    <!-- ============ BLOQUE 3 — COMPRENSIÓN DEL CASO ============ -->
+    <!-- ============ BLOQUE 3 — ANTES DEL SEGUNDO FRAGMENTO ============ -->
     <section class="block" id="bloque-3">
       <div class="block-heading">
         <span class="block-index">03</span>
+        <h2>Antes del segundo fragmento</h2>
+      </div>
+      <p class="block-sub">
+        Respondan con lo que tienen hasta acá, antes de ver el autorregistro que Sergio trae a la
+        sesión siguiente.
+      </p>
+
+      <div class="card">
+        <div class="card-label">Criterios que quedaron sin decidir <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué criterios no pudieron decidir todavía, y qué haría falta para decidirlos?</div>
+        <textarea data-required="true" id="f-pendientes" rows="4"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 4 — COMPRENSIÓN DEL CASO ============ -->
+    <section class="block" id="bloque-4">
+      <div class="block-heading">
+        <span class="block-index">04</span>
         <h2>Comprensión del caso</h2>
       </div>
       <p class="block-sub">Cierren el análisis con las conclusiones del grupo.</p>
+
+      <div class="card">
+        <div class="card-label">El lugar del cannabis <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué papel cumple el cannabis en las secuencias que Sergio registró?</div>
+        <textarea data-required="true" id="f-cannabis" rows="3"></textarea>
+      </div>
 
       <div class="card">
         <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
@@ -612,9 +642,13 @@ const DSM_CRITERIA = [
   "Abstinencia: síndrome propio de la sustancia al reducir o suspender el consumo, o se consume la misma sustancia (u otra similar) para aliviar o evitar esos síntomas."
 ];
 
+// El checklist corre sobre una sola sustancia. Los once criterios son idénticos
+// para cualquiera, así que repetirlos por sustancia es transcribir dos veces, no
+// diagnosticar dos veces; y de las dos que el caso documenta, la cocaína es la
+// que aparece en las tres secuencias del autorregistro. El lugar del cannabis se
+// trabaja como pregunta abierta en el bloque 4.
 const SUBSTANCES = [
-  { key: "cocaina",  label: "Cocaína" },
-  { key: "cannabis", label: "Cannabis" }
+  { key: "cocaina",  label: "Cocaína" }
 ];
 
 /* ============================================================
@@ -669,7 +703,7 @@ function severityFromCount(count){
   return { level: "ninguna", label: "No se cumplen los criterios mínimos (0–1)" };
 }
 
-/* Los criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados y colgados de
+/* Los tres criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados y colgados de
    la consigna que cada uno evalúa. Si cambian allá hay que cambiarlos acá también:
    la rúbrica es una página aparte y este recurso tiene que seguir funcionando sin
    conexión. */
@@ -678,11 +712,11 @@ const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobre
 const RUBRICA_CAMPOS = {
   "f-primeras-hipotesis": {
     peso: "25%",
-    rotulo: "Ver cómo se evalúan las tres primeras respuestas",
+    rotulo: "Ver cómo se evalúan las primeras respuestas",
     niveles: [
       "El motivo de consulta se da por sentado —«consume drogas»— o se confunde con el diagnóstico.",
       "Registra el motivo y algunos problemas, pero la hipótesis no se desprende de ellos.",
-      "Distingue lo que Sergio consulta de lo que trae su pareja, y la hipótesis se apoya en la lista de problemas.",
+      "Distingue lo que Sergio consulta de lo que trae su pareja, y reconstruye la explicación de él sin adoptarla ni descartarla.",
       "Además señala qué información falta, o registra que la falta de conciencia de problema es en sí un dato."
     ]
   },
@@ -741,9 +775,9 @@ function initRubricaChecklist(){
     rotulo: "Ver cómo se evalúa el checklist",
     niveles: [
       "Hay criterios marcados y ninguna evidencia escrita, o la evidencia no corresponde a lo marcado.",
-      "Escribe evidencia para una sola sustancia, o repite el enunciado en lugar de traer un dato del caso.",
-      "Cada sustancia marcada va con evidencia del caso en palabras propias, y no quedan sin marcar los criterios que el caso documenta.",
-      "Además separa lo que el caso permite afirmar de lo que habría que preguntar en una entrevista posterior."
+      "Escribe evidencia para algunos criterios, o repite el enunciado en lugar de traer un dato del caso.",
+      "Cada criterio marcado va con evidencia del caso en palabras propias, y los que quedan sin marcar están sostenidos como decisión.",
+      "Además distingue los criterios que se observan de los que exigen atribuir una causa, y resuelve estos últimos con el autorregistro."
     ]
   }));
 }

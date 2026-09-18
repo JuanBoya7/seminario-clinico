@@ -9,6 +9,10 @@
 # Transcripciones: material de preparacion del docente
 Transcripciones/
 
+# Subtitulos de los videos de caso: son la pista del canal que los publico,
+# y siguen el mismo criterio que los .mp4 y las transcripciones.
+*.srt
+
 # "Envio a Sheets/" estuvo aca hasta el 2026-08-07, con el argumento de que el
 # backend no le aporta nada al estudiante. Sigue sin aportarle, pero el costo de
 # no versionarlo aparecio al sumar la UDES: el receptor desplegado se habia ido
