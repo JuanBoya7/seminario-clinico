@@ -21,6 +21,16 @@
  * "902 Elisa", "Práctica II Susana"... — con encabezados que se crean solos a partir de
  * las preguntas que trae el envío. Si mañana se agrega una pregunta nueva al
  * HTML, aparece una columna nueva sin tocar este script.
+ *
+ * Modo de lectura para el tablero docente (hoy, solo el caso Susana):
+ * doGet con ?tablero=Susana&curso=…&grupo=… devuelve, por grupo de trabajo, su
+ * última entrega resumida —criterios marcados, veredicto y la línea que lo
+ * sostiene—. No escribe nada y no toca doPost: publicar esta versión no cambia
+ * cómo se reciben las entregas de ningún caso.
+ *
+ * Para publicarla: reemplazar el contenido de Codigo.gs por este archivo, y en
+ * Implementar → Administrar implementaciones → editar la implementación vigente
+ * → Versión: Nueva → Implementar. La dirección no cambia.
  */
 
 // Cursos que escriben en esta hoja, y los grupos habilitados de cada uno.
@@ -199,12 +209,111 @@ function escapar(texto) {
 
 
 /**
- * Permite abrir la URL de la web app en el navegador para comprobar que quedó
- * bien publicada, sin tener que enviar una actividad de prueba.
+ * Sin parámetros: permite abrir la URL de la web app en el navegador para
+ * comprobar que quedó bien publicada, sin enviar una actividad de prueba.
+ *
+ * Con ?tablero=<caso>: devuelve el resumen que consume el tablero docente de
+ * ese caso (ver resumenCaso).
  */
-function doGet() {
+function doGet(e) {
+  var p = (e && e.parameter) || {};
+  if (p.tablero) {
+    return resumenCaso(String(p.tablero), String(p.curso || ''), String(p.grupo || ''),
+                       String(p.callback || ''));
+  }
   return pagina('#1a7f5a', 'Receptor activo',
     '<p>La dirección de entrega está funcionando.</p>' +
     '<p class="nota">Esta página es solo de comprobación. Las actividades se envían ' +
     'desde el archivo HTML del caso.</p>');
+}
+
+
+/* ------------------------------------------------------------------
+   Resumen para el tablero docente
+   ------------------------------------------------------------------ */
+
+// Casos con tablero. La pestaña que se lee es "<grupo del curso> <caso>", la
+// misma que escribe doPost.
+var CASOS_CON_TABLERO = ['Susana'];
+
+/**
+ * Por cada grupo de trabajo devuelve su ÚLTIMA entrega —si un grupo envió dos
+ * veces, cuenta la segunda— y de ella solo lo que el tablero proyecta: el número
+ * de grupo, los criterios marcados, el veredicto y la línea que lo sostiene.
+ * Los integrantes no viajan: el tablero se proyecta delante del curso.
+ *
+ * Todo sale de la columna "JSON completo", que ya guarda el estado entero de la
+ * actividad: el tablero no necesita columnas nuevas ni que se toque doPost.
+ *
+ * Responde JSON, o JSONP si trae callback: el tablero intenta fetch primero y
+ * usa un <script> como respaldo.
+ */
+function resumenCaso(caso, curso, grupoCurso, callback) {
+  var datos;
+  try {
+    if (CASOS_CON_TABLERO.indexOf(caso) === -1) {
+      throw new Error('El caso "' + caso + '" no tiene tablero.');
+    }
+    var grupos = CURSOS[curso];
+    if (!grupos) throw new Error('Curso no configurado: "' + curso + '".');
+
+    var libro = SpreadsheetApp.getActiveSpreadsheet();
+    var entregas = [];
+
+    grupos.forEach(function (g) {
+      if (grupoCurso && g !== grupoCurso) return;
+      var hoja = libro.getSheetByName((g + ' ' + caso).substring(0, 60));
+      if (!hoja || hoja.getLastRow() < 2) return;
+
+      var tabla = hoja.getRange(1, 1, hoja.getLastRow(), hoja.getLastColumn()).getValues();
+      var enc = tabla[0];
+      var cFecha = enc.indexOf('Fecha de envío');
+      var cGrupo = enc.indexOf('Grupo');
+      var cJson = enc.indexOf(COLUMNA_JSON);
+      if (cGrupo === -1 || cJson === -1) return;
+
+      // Las filas se agregan en orden de llegada: la última de cada grupo es su
+      // entrega vigente. La fecha solo desempata si alguien reordenó la hoja.
+      var ultima = {};
+      for (var f = 1; f < tabla.length; f++) {
+        var grupo = String(tabla[f][cGrupo] || '').trim();
+        if (!grupo) continue;
+        var fecha = (cFecha > -1 && tabla[f][cFecha] instanceof Date) ? tabla[f][cFecha] : null;
+        var previa = ultima[grupo];
+        if (previa && previa.fecha && fecha && previa.fecha > fecha) continue;
+        ultima[grupo] = { fecha: fecha, json: String(tabla[f][cJson] || '') };
+      }
+
+      Object.keys(ultima).forEach(function (grupo) {
+        var estado = {};
+        try { estado = JSON.parse(ultima[grupo].json) || {}; } catch (err) { estado = {}; }
+        var criterios = estado.criteria || {};
+        entregas.push({
+          cursoGrupo: g,
+          grupo: grupo,
+          enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
+          veredicto: String((estado.radio || {}).veredicto || ''),
+          dato: String((estado.text || {})['f-veredicto-dato'] || '').substring(0, 400),
+          marcados: Object.keys(criterios).filter(function (k) {
+            return criterios[k] && criterios[k].checked;
+          })
+        });
+      });
+    });
+
+    datos = { ok: true, actualizado: new Date().toISOString(), caso: caso, entregas: entregas };
+  } catch (err) {
+    datos = { ok: false, error: err.message };
+  }
+
+  var cuerpo = JSON.stringify(datos);
+  if (callback) {
+    // El nombre del callback llega por la URL y se escribe tal cual al principio
+    // de la respuesta: solo se aceptan nombres de función válidos.
+    if (!/^[A-Za-z_$][\w$]*$/.test(callback)) callback = 'callback';
+    return ContentService.createTextOutput(callback + '(' + cuerpo + ');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(cuerpo)
+    .setMimeType(ContentService.MimeType.JSON);
 }

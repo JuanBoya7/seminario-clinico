@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso Susana — Tablero</title>
+<style>
+/* ============================================================
+   TOKENS — los mismos de la actividad y del tablero del simulacro
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  /* Un color por veredicto. Ninguno sugiere "correcto": la rúbrica no
+     califica acertar el trastorno, y el tablero tampoco debe insinuarlo. */
+  --c-tdm:#1f6f78;
+  --c-tlp:#6d5a9c;
+  --c-ambos:#b8722a;
+  --c-ninguno:#8a97a0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5;
+     -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+button{font-family:var(--font-body);}
+
+.wrap{max-width:1180px; margin:0 auto; padding:22px 24px 40px;}
+
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
+.aviso-demo{background:var(--moderate-soft); border:1px solid var(--moderate); color:var(--moderate);
+  border-radius:10px; padding:9px 14px; font-size:13.5px; margin-bottom:16px;}
+.aviso-demo[hidden]{display:none;}
+
+/* ---- Cabecera ---- */
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:16px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:var(--ink);
+  background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
+.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt[hidden]{display:none;}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+
+/* ---- Navegación entre las dos pantallas ---- */
+.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
+.nav-pantallas[hidden]{display:none;}
+.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px;
+  border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
+.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+
+/* ---- Panel: una pantalla a la vez, pensada para proyectar ---- */
+.panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
+.panel h2{font-size:clamp(22px,2.4vw,30px);}
+.panel .sub{font-size:14.5px; color:var(--ink-faint); margin:6px 0 22px; max-width:70ch;}
+.vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
+
+/* La frase se redacta con los datos, no está escrita de antemano. */
+.frase{font-family:var(--font-display); font-size:clamp(20px,2.3vw,28px); line-height:1.35;
+  color:var(--ink); border-left:5px solid var(--accent); padding:4px 0 4px 18px; margin-top:24px;}
+.frase em{font-style:normal; color:var(--accent-dark);}
+
+/* ---- Filas con barra ---- */
+.fila{display:grid; grid-template-columns:minmax(180px,32%) minmax(0,1fr) 90px; gap:14px;
+  align-items:center; margin-bottom:12px;}
+.fila .nom{font-size:16.5px; line-height:1.3;}
+.bar{display:flex; height:28px; background:var(--surface-alt); border-radius:6px; overflow:hidden;}
+.bar span{display:block; height:100%;}
+.fila .val{font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); text-align:right;
+  white-space:nowrap;}
+
+/* ---- Antes de destapar: cuántos enviaron ---- */
+.contador{font-family:var(--font-display); font-size:clamp(72px,11vw,128px); line-height:1;
+  color:var(--accent-dark);}
+.contador-t{font-size:18px; color:var(--ink-soft); margin-top:6px;}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px;}
+.chip{font-size:14.5px; padding:7px 13px; border-radius:99px; background:var(--accent-soft);
+  color:var(--accent-dark);}
+.chip small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px; color:var(--accent);}
+.btn-principal{font-size:17px; font-weight:600; color:#fff; background:var(--accent);
+  border:1px solid var(--accent); border-radius:10px; padding:14px 26px; cursor:pointer;}
+.btn-principal:hover{background:var(--accent-dark);}
+.btn-principal[hidden]{display:none;}
+
+/* ---- Voces ---- */
+/* 210px: con los cuatro veredictos presentes, entran las cuatro columnas en una
+   pantalla de proyector en vez de mandar la última a una segunda fila. */
+.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px;}
+.col-voz h3{font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
+.voz{background:var(--surface); padding:12px 14px; border-radius:8px; margin-bottom:10px;
+  font-size:16px; line-height:1.45;}
+.voz .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
+
+/* ---- Cierre: una afirmación, la del veredicto que predomina ----
+   Aparece recién cuando el docente la pide: primero se discuten las voces, y
+   la afirmación llega para cerrar, no para adelantar la conclusión. */
+.cierre{margin-top:30px; border-top:1px solid var(--border); padding-top:24px;}
+.cierre .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:12px;}
+.empate{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px;
+  font-size:14px; color:var(--ink-soft);}
+.afirmacion{font-family:var(--font-display); font-size:clamp(22px,2.6vw,32px); line-height:1.35;
+  color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:20px 24px;
+  max-width:60ch;}
+.afirmacion-fuente{font-size:12.5px; color:var(--ink-faint); margin-top:10px;}
+.afirmacion-fuente strong{color:var(--ink-soft); font-weight:600;}
+
+.pie{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
+.pie[hidden]{display:none;}
+.pie .cuenta{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);}
+
+@media (max-width:760px){
+  .wrap{padding:16px 14px 30px;}
+  .panel{padding:20px 18px 22px;}
+  .fila{grid-template-columns:minmax(0,1fr); gap:6px;}
+  .fila .val{text-align:left;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ves este mensaje, el tablero no se está ejecutando. Abrilo en un navegador de escritorio.
+  </div>
+  <div class="aviso-demo" id="aviso-demo" hidden></div>
+
+  <div class="cabecera">
+    <div>
+      <div class="eyebrow">Caso Susana · Tablero docente</div>
+      <h1>Veredictos del curso</h1>
+    </div>
+    <div class="controles">
+      <select id="f-grupo" aria-label="Grupo del curso"></select>
+      <button class="bt" id="bt-tapar" hidden>Volver a tapar</button>
+      <span class="estado" id="estado">—</span>
+    </div>
+  </div>
+
+  <nav class="nav-pantallas" id="nav" hidden></nav>
+  <main id="pantalla"></main>
+  <div class="pie" id="pie" hidden>
+    <button class="bt" id="bt-ant">← Anterior</button>
+    <span class="cuenta" id="cuenta"></span>
+    <button class="bt" id="bt-sig">Siguiente →</button>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const FUENTE = {
+  // La misma dirección que ENVIO.url en 2-Caso-personalidad-Susana.html: el
+  // receptor de los casos, que ahora atiende también el modo de lectura
+  // (?tablero=Susana). Con "PENDIENTE" el tablero muestra datos de ejemplo.
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec",
+  // Reintenta con la otra forma de la misma dirección (de dominio / corta):
+  // cuál responde depende de si el navegador tiene sesión de Google abierta.
+  alterna: true,
+  curso: "SPI-2026-2",
+  caso: "Susana",          // la pestaña de la hoja es "<grupo del curso> Susana"
+  refrescoMs: 20000
+};
+
+// Opciones del selector. Deben coincidir con el desplegable "Grupo del curso"
+// de la actividad y con CURSOS en el receptor.
+const GRUPOS_CURSO = ["901", "902", "903"];
+
+const VEREDICTOS = [
+  { v: "tdm",     nombre: "Trastorno depresivo mayor",              corto: "TDM",     color: "var(--c-tdm)" },
+  { v: "tlp",     nombre: "Trastorno límite de la personalidad",    corto: "TLP",     color: "var(--c-tlp)" },
+  { v: "ambos",   nombre: "Los dos a la vez",                       corto: "los dos", color: "var(--c-ambos)" },
+  { v: "ninguno", nombre: "Ninguno, con la información disponible", corto: "ninguno", color: "var(--c-ninguno)" }
+];
+
+/* ============================================================
+   2. LA AFIRMACIÓN DE CIERRE
+   ============================================================
+   Una por veredicto, y se proyecta solo la del que predomina. Está escrita
+   como lo que ESE veredicto exige, no como que la mayoría acertó: así sigue
+   siendo cierta aunque el curso se equivoque, y el cierre no contradice a la
+   rúbrica, que no califica acertar el trastorno. Las tres primeras vuelven
+   al eje del caso —desde cuándo le pasa a Susana lo que le pasa—.
+   Fuente: Morrison, DSM-5: Guía para el diagnóstico clínico.
+   ============================================================ */
+const AFIRMACIONES = {
+  tdm: {
+    texto: "Un episodio depresivo necesita un antes distinto: si Susana siempre fue así, lo que se ve ya no es un episodio.",
+    fuente: "<strong>Morrison</strong>, cap. 3: criterios del episodio depresivo mayor, que exigen un cambio respecto de la actividad previa."
+  },
+  tlp: {
+    texto: "Un trastorno de la personalidad no empieza en la adultez: si el patrón no viene desde la adolescencia, no es TLP, por intensa que sea la crisis.",
+    fuente: "<strong>Morrison</strong>, cap. 17: esquema para el diagnóstico de los trastornos de la personalidad (pp. 531–532) y p. 548."
+  },
+  ambos: {
+    texto: "Los dos a la vez son posibles, pero piden dos historias: un patrón que viene desde la adolescencia y, sobre él, un cambio reciente que se distinga de ese patrón.",
+    fuente: "<strong>Morrison</strong>, cap. 17: evaluación de Josephine Armitage (p. 547) · cap. 3: criterios de duración del episodio."
+  },
+  ninguno: {
+    texto: "Suspender el juicio también es una conclusión clínica, y se sostiene igual que un diagnóstico: nombrando el dato que falta.",
+    fuente: "<strong>Morrison</strong>, cap. 17: esquema para el diagnóstico de los trastornos de la personalidad (pp. 531–532)."
+  }
+};
+
+/* ============================================================
+   3. DATOS DE EJEMPLO
+   ============================================================
+   Nueve grupos inventados. Se usan mientras FUENTE.url diga "PENDIENTE", o
+   con ?demo=1 en la dirección, para ensayar el cierre antes de la clase.
+   Llegan de a uno, como llegarían en el aula.
+   ============================================================ */
+const DEMO = [
+  { g: 1, h: "10:31", v: "ambos",   d: "Se corta para no sufrir y está triste aunque el padre no esté." },
+  { g: 2, h: "10:33", v: "tdm",     d: "Duerme mucho y pasa el día en la cama desde que dejó el colegio." },
+  { g: 3, h: "10:34", v: "ambos",   d: "Se siente desplazada y sola desde que tiene uso de razón." },
+  { g: 4, h: "10:36", v: "ambos",   d: "Triste casi todos los días, y la ira sube con cada discusión con el padre." },
+  { g: 5, h: "10:37", v: "tlp",     d: "Cortarse le da alivio: regula la rabia con el cuerpo." },
+  { g: 6, h: "10:39", v: "ninguno", d: "Nadie le preguntó si quería morir ni desde cuándo le pasa." },
+  { g: 7, h: "10:40", v: "ambos",   d: "Ya se sentía muy mal antes de la muerte de la madre." },
+  { g: 8, h: "10:42", v: "tdm",     d: "La fluoxetina no le hace efecto y pasa el día en la cama." },
+  { g: 9, h: "10:44", v: "ambos",   d: "Tres hospitalizaciones, por tristeza y por cortes." }
+];
+
+function entregasDemo(cuantas){
+  const hoy = new Date();
+  return DEMO.slice(0, cuantas).map(x => {
+    const [hh, mm] = x.h.split(":").map(Number);
+    const fecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), hh, mm);
+    return { cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + x.g, enviado: fecha.toISOString(),
+             veredicto: x.v, dato: x.d };
+  });
+}
+
+/* ============================================================
+   4. CARGA (fetch, con JSONP de respaldo)
+   ============================================================
+   Igual que el tablero del juego de roles: fetch primero —Apps Script
+   responde con Access-Control-Allow-Origin: *— y el <script> con callback
+   como respaldo si fetch falla. Se prueban las dos formas de la dirección,
+   como en el tablero del simulacro.
+   ============================================================ */
+const MODO_DEMO = FUENTE.url === "PENDIENTE" || /[?&]demo=1\b/.test(location.search);
+let demoVisibles = 5;
+
+function direcciones(){
+  const lista = [FUENTE.url];
+  if (!FUENTE.alterna) return lista;
+  const otra = FUENTE.url.indexOf("/a/macros/") !== -1
+    ? FUENTE.url.replace(/\/a\/macros\/[^/]+\/s\//, "/macros/s/")
+    : FUENTE.url.replace("/macros/s/", "/a/macros/areandina.edu.co/s/");
+  if (otra !== FUENTE.url) lista.push(otra);
+  return lista;
+}
+
+function urlResumen(base, grupo){
+  return base + "?tablero=" + encodeURIComponent(FUENTE.caso) +
+    "&curso=" + encodeURIComponent(FUENTE.curso) +
+    (grupo ? "&grupo=" + encodeURIComponent(grupo) : "") +
+    "&t=" + Date.now();
+}
+
+let contadorCallback = 0;
+function pedirJsonp(url){
+  return new Promise((resolver, rechazar) => {
+    const nombre = "__susana_cb_" + (++contadorCallback);
+    const script = document.createElement("script");
+    const limpiar = () => { delete window[nombre]; script.remove(); };
+    const reloj = setTimeout(() => { limpiar(); rechazar(new Error("sin respuesta a tiempo")); }, 15000);
+    window[nombre] = datos => { clearTimeout(reloj); limpiar(); resolver(datos); };
+    script.onerror = () => { clearTimeout(reloj); limpiar(); rechazar(new Error("script bloqueado o sin respuesta")); };
+    script.src = url + "&callback=" + nombre;
+    document.body.appendChild(script);
+  });
+}
+
+async function pedirResumen(grupo){
+  let ultimoFallo = null;
+  for (const base of direcciones()) {
+    const url = urlResumen(base, grupo);
+    try {
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return await r.json();
+    } catch (errFetch) {
+      try { return await pedirJsonp(url); }
+      catch (errScript) { ultimoFallo = new Error("fetch: " + errFetch.message + " · script: " + errScript.message); }
+    }
+  }
+  throw ultimoFallo || new Error("sin dirección");
+}
+
+/* ============================================================
+   5. PANTALLAS
+   ============================================================ */
+const esc = s => String(s == null ? "" : s)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const numeroDeGrupo = e => parseInt(String(e.grupo).replace(/\D/g, ""), 10) || 0;
+const plural = (n, uno, varios) => n === 1 ? uno : varios;
+const pct = (n, d) => d ? Math.round(n / d * 100) : 0;
+const grupoElegido = () => document.getElementById("f-grupo").value;
+const veredicto = v => VEREDICTOS.find(x => x.v === v) || { v, nombre: v, corto: v, color: "var(--c-ninguno)" };
+
+// "Grupo 4", o "901 · Grupo 4" cuando el tablero mezcla grupos del curso.
+const quien = e => (grupoElegido() ? "" : e.cursoGrupo + " · ") + e.grupo;
+
+function contar(E){
+  return VEREDICTOS.map(v => Object.assign({ n: E.filter(e => e.veredicto === v.v).length }, v));
+}
+
+// El veredicto que predomina; con empate, todos los empatados.
+function predominantes(E){
+  const cuenta = contar(E);
+  const max = Math.max(0, ...cuenta.map(c => c.n));
+  return max ? cuenta.filter(c => c.n === max).map(c => c.v) : [];
+}
+
+const sinEntregas = `<div class="vacio-msg">Todavía no llegó ninguna entrega de este grupo.</div>`;
+
+function pantallaEnvios(E){
+  const orden = E.slice().sort((a, b) =>
+    (a.cursoGrupo + numeroDeGrupo(a)).localeCompare(b.cursoGrupo + numeroDeGrupo(b), "es", { numeric: true }));
+  const chips = orden.map(e => {
+    const hora = e.enviado ? new Date(e.enviado).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "";
+    return `<span class="chip">${esc(quien(e))}${hora ? `<small>${hora}</small>` : ""}</span>`;
+  }).join("");
+  return `<section class="panel">
+    <div class="contador">${E.length}</div>
+    <div class="contador-t">${plural(E.length, "grupo envió su veredicto", "grupos enviaron su veredicto")}</div>
+    <div class="chips">${chips || '<span class="vacio-msg">Esperando la primera entrega…</span>'}</div>
+    <div class="sub">Los resultados están tapados para que ningún grupo ajuste su veredicto al de los
+      demás. Destapalos cuando hayan enviado todos.</div>
+    <button class="btn-principal" id="bt-destapar">Destapar resultados</button>
+  </section>`;
+}
+
+function pantallaVeredictos(E){
+  if (!E.length) return `<section class="panel"><h2>Los veredictos</h2>${sinEntregas}</section>`;
+  const n = E.length;
+  const cuenta = contar(E);
+  const filas = cuenta.map(c => `<div class="fila">
+      <div class="nom">${esc(c.nombre)}</div>
+      <div class="bar"><span style="width:${pct(c.n, n)}%;background:${c.color}"></span></div>
+      <div class="val">${c.n} de ${n}</div>
+    </div>`).join("");
+
+  const orden = cuenta.filter(c => c.n > 0).sort((a, b) => b.n - a.n);
+  let frase;
+  if (orden.length === 1) {
+    frase = `Los ${n} grupos concluyeron lo mismo: <em>«${esc(orden[0].corto)}»</em>. Un acuerdo total también se discute: ¿con qué dato lo sostiene cada uno?`;
+  } else if (orden[0].n === orden[1].n) {
+    const empatados = orden.filter(c => c.n === orden[0].n);
+    frase = `El curso está partido: ${empatados.map(c => `${c.n} por <em>«${esc(c.corto)}»</em>`).join(" y ")}.`;
+  } else {
+    frase = `Predomina <em>«${esc(orden[0].corto)}»</em>: ${orden[0].n} de ${n} grupos` +
+      (orden.length > 1 ? "; " + orden.slice(1).map(c => `${c.n}, «${esc(c.corto)}»`).join("; ") : "") + ".";
+  }
+  return `<section class="panel">
+    <h2>Los veredictos</h2>
+    <div class="sub">Qué concluyó cada grupo después de aplicar los dos checklists.</div>
+    ${filas}
+    <div class="frase">${frase}</div>
+  </section>`;
+}
+
+let cierreElegido = null;   // con empate, cuál de los empatados se está mostrando
+let mostrada = false;       // si la afirmación ya se destapó
+
+function bloqueCierre(E){
+  const tope = predominantes(E);
+  if (!tope.length) return "";
+  if (!tope.includes(cierreElegido)) { cierreElegido = tope[0]; mostrada = false; }
+  const a = AFIRMACIONES[cierreElegido];
+  if (!a) return "";
+
+  const empate = tope.length > 1
+    ? `<div class="empate">Empate entre ${tope.map(v => "«" + esc(veredicto(v).corto) + "»").join(" y ")}. Cerrar con:
+        ${tope.map(v => `<button class="pill${v === cierreElegido ? " is-on" : ""}" data-cierre="${v}">${esc(veredicto(v).nombre)}</button>`).join("")}
+      </div>`
+    : "";
+
+  return `<div class="cierre">
+    <div class="rot">Para cerrar · ${esc(veredicto(cierreElegido).nombre)}</div>
+    ${empate}
+    ${mostrada
+      ? `<div class="afirmacion">${esc(a.texto)}</div><div class="afirmacion-fuente">${a.fuente}</div>`
+      : `<button class="btn-principal" id="bt-afirmacion">Mostrar la afirmación de cierre</button>`}
+  </div>`;
+}
+
+function pantallaVoces(E){
+  if (!E.length) return `<section class="panel"><h2>Las voces</h2>${sinEntregas}</section>`;
+  const columnas = VEREDICTOS.map(v => {
+    const suyas = E.filter(e => e.veredicto === v.v).sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
+    if (!suyas.length) return "";
+    return `<div class="col-voz">
+      <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
+      ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
+        e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")}
+    </div>`;
+  }).join("");
+  return `<section class="panel">
+    <h2>Las voces</h2>
+    <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.</div>
+    <div class="voces">${columnas}</div>
+    ${bloqueCierre(E)}
+  </section>`;
+}
+
+const PANTALLAS = [
+  { id: "veredictos", rotulo: "Veredictos",       pintar: pantallaVeredictos },
+  { id: "voces",      rotulo: "Voces y cierre",   pintar: pantallaVoces }
+];
+
+/* ============================================================
+   6. ESTADO Y PINTADO
+   ============================================================
+   Destapar es por grupo del curso y dura lo que la pestaña: si se recarga
+   en medio del debate, sigue destapado; en la clase siguiente arranca tapado.
+   ============================================================ */
+let entregas = [];
+let actual = 0;
+let firma = "";
+let cargando = false;
+
+const claveDestapado = () => "susana_tablero_destapado:" + FUENTE.curso + ":" + (grupoElegido() || "todos");
+function destapado(){
+  try { return sessionStorage.getItem(claveDestapado()) === "1"; } catch (e) { return !!window.__destapado; }
+}
+function fijarDestapado(si){
+  try { si ? sessionStorage.setItem(claveDestapado(), "1") : sessionStorage.removeItem(claveDestapado()); }
+  catch (e) { window.__destapado = si; }
+}
+
+function visibles(){
+  const g = grupoElegido();
+  return entregas.filter(e => !g || e.cursoGrupo === g);
+}
+
+function pintar(){
+  const E = visibles();
+  const abierto = destapado();
+  const cont = document.getElementById("pantalla");
+  document.getElementById("nav").hidden = !abierto;
+  document.getElementById("pie").hidden = !abierto;
+  document.getElementById("bt-tapar").hidden = !abierto;
+
+  if (!abierto) {
+    cont.innerHTML = pantallaEnvios(E);
+    return;
+  }
+  document.getElementById("nav").innerHTML = PANTALLAS.map((x, i) =>
+    `<button class="pill${i === actual ? " is-on" : ""}" data-ir="${i}">${x.rotulo}</button>`).join("");
+  document.getElementById("cuenta").textContent =
+    `${actual + 1} de ${PANTALLAS.length} · ${E.length} ${plural(E.length, "grupo", "grupos")}`;
+  cont.innerHTML = PANTALLAS[actual].pintar(E);
+}
+
+function ir(i){
+  actual = (i + PANTALLAS.length) % PANTALLAS.length;
+  pintar();
+  window.scrollTo(0, 0);
+}
+
+function mostrarAfirmacion(){
+  if (mostrada || !AFIRMACIONES[cierreElegido]) return;
+  mostrada = true;
+  pintar();
+  const caja = document.querySelector(".afirmacion");
+  if (caja) caja.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* ============================================================
+   7. CICLO DE ACTUALIZACIÓN
+   ============================================================ */
+function avisar(texto, error){
+  const el = document.getElementById("estado");
+  el.textContent = texto;
+  el.classList.toggle("error", !!error);
+}
+
+async function actualizar(){
+  if (cargando) return;
+  cargando = true;
+  try {
+    let nuevas;
+    if (MODO_DEMO) {
+      nuevas = entregasDemo(demoVisibles);
+      avisar("datos de ejemplo · " + new Date().toLocaleTimeString());
+    } else {
+      avisar("actualizando…");
+      const datos = await pedirResumen(grupoElegido());
+      if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
+      nuevas = Array.isArray(datos.entregas) ? datos.entregas : [];
+      avisar("actualizado " + new Date().toLocaleTimeString());
+    }
+    // Solo se repinta si llegó algo distinto: repintar por repintar movería
+    // la pantalla en medio de la discusión.
+    const nuevaFirma = JSON.stringify(nuevas);
+    if (nuevaFirma !== firma) {
+      firma = nuevaFirma;
+      entregas = nuevas;
+      pintar();
+    }
+  } catch (err) {
+    avisar("sin conexión con el receptor — " + err.message, true);
+  } finally {
+    cargando = false;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const aviso = document.getElementById("js-warning-fallback");
+  if (aviso) aviso.style.display = "none";
+  try {
+    const sel = document.getElementById("f-grupo");
+    sel.innerHTML = GRUPOS_CURSO.map(g => `<option value="${esc(g)}">${esc(g)}</option>`).join("") +
+      (GRUPOS_CURSO.length > 1 ? `<option value="">Todos los grupos</option>` : "");
+    try {
+      const previo = localStorage.getItem("susana_tablero_grupo:" + FUENTE.curso);
+      if (previo !== null && [...sel.options].some(o => o.value === previo)) sel.value = previo;
+    } catch (e) {}
+    sel.addEventListener("change", () => {
+      try { localStorage.setItem("susana_tablero_grupo:" + FUENTE.curso, sel.value); } catch (e) {}
+      actual = 0; cierreElegido = null; mostrada = false; firma = ""; entregas = [];
+      pintar();
+      actualizar();
+    });
+
+    if (MODO_DEMO) {
+      const av = document.getElementById("aviso-demo");
+      av.hidden = false;
+      av.textContent = FUENTE.url === "PENDIENTE"
+        ? "Datos de ejemplo: el receptor todavía no está configurado en este tablero. Sirven para ensayar el cierre."
+        : "Datos de ejemplo (?demo=1): nada de esto viene de la hoja de entregas.";
+      // Las entregas de ejemplo llegan de a una, como en el aula.
+      const goteo = setInterval(() => {
+        if (demoVisibles >= DEMO.length) { clearInterval(goteo); return; }
+        demoVisibles++;
+        actualizar();
+      }, 4000);
+    }
+
+    // Delegación: los botones se crean con cada repintado.
+    document.addEventListener("click", ev => {
+      const b = ev.target.closest("button");
+      if (!b) return;
+      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; mostrada = false; pintar(); }
+      else if (b.id === "bt-afirmacion") mostrarAfirmacion();
+      else if (b.dataset.ir !== undefined) ir(Number(b.dataset.ir));
+      else if (b.dataset.cierre) { cierreElegido = b.dataset.cierre; mostrada = false; pintar(); }
+    });
+    document.getElementById("bt-ant").addEventListener("click", () => ir(actual - 1));
+    document.getElementById("bt-sig").addEventListener("click", () => ir(actual + 1));
+    document.getElementById("bt-tapar").addEventListener("click", () => { fijarDestapado(false); pintar(); });
+    document.addEventListener("keydown", ev => {
+      if (!destapado() || ev.target.tagName === "SELECT") return;
+      if (ev.key === "ArrowRight") { ev.preventDefault(); ir(actual + 1); }
+      else if (ev.key === "ArrowLeft") { ev.preventDefault(); ir(actual - 1); }
+      // Barra espaciadora: destapa la afirmación sin tener que ir al botón.
+      else if ((ev.key === " " || ev.code === "Space") && PANTALLAS[actual].id === "voces" && ev.target.tagName !== "BUTTON") {
+        ev.preventDefault(); mostrarAfirmacion();
+      }
+    });
+
+    pintar();
+    actualizar();
+    setInterval(actualizar, FUENTE.refrescoMs);
+  } catch (err) {
+    if (aviso) { aviso.style.display = ""; aviso.textContent = "Error al iniciar el tablero: " + err.message; }
+  }
+});
+</script>
+</body>
+</html>

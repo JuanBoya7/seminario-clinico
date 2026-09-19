@@ -41,7 +41,7 @@ Un envío cuyo `curso` no esté en esa lista se rechaza con un mensaje, no se es
 
 | Carpeta | Recibe | Estado |
 |---|---|---|
-| [`casos/Codigo.gs`](casos/Codigo.gs) | Los análisis de caso (Elisa, Susana, Sergio) | Ya publicado y en uso |
+| [`casos/Codigo.gs`](casos/Codigo.gs) | Los análisis de caso (Elisa, Susana, Sergio), y el resumen que lee el tablero de Susana | Publicado y en uso. La versión con el modo de lectura del tablero (2026-09-18) hay que republicarla como versión nueva |
 | [`pap/Codigo.gs`](pap/Codigo.gs) | El simulacro de primeros auxilios psicológicos | Falta publicarlo |
 | [`juego-roles/Codigo.gs`](juego-roles/Codigo.gs) | Las valoraciones del juego de roles de entrevista | Falta publicarlo |
 | [`tamizaje/Codigo.gs`](tamizaje/Codigo.gs) | Las fichas del tamizaje SRQ (clase 3.1) | Publicado el 2026-08-18 |
@@ -56,7 +56,9 @@ Los pasos de abajo sirven para todos. Lo único que cambia es qué archivo pegá
 qué HTML va la URL resultante:
 
 - **Casos** → la URL va en el bloque `ENVIO` de los tres `*-Caso-*.html`, y en los tres
-  de `practica-ii/`.
+  de `practica-ii/`. El tablero de Susana (`2-Caso-personalidad-Susana-tablero.html` y su
+  copia en `practica-ii/`) usa la **misma** dirección, en `FUENTE.url`: lee de esta hoja
+  en modo resumen (`?tablero=Susana`).
 - **Simulacro** → la URL va en `pap/observador.html` **y** en `pap/tablero.html`, y en los
   dos equivalentes de `practica-ii/pap/`. Las cuatro páginas usan la misma dirección.
 - **Juego de roles** → la URL va en `practica-ii/juego-roles/observador.html` y en
@@ -257,6 +259,7 @@ entrega el archivo. Por eso conservamos las dos vías.
 | El botón avisa que no está configurado | La `url` sigue en `PENDIENTE` | Paso 4 |
 | El tablero dice "sin conexión con el receptor" | La `url` de `tablero.html` está vacía, mal copiada, o apunta al receptor de los casos | Igualarla a la de `observador.html` |
 | El tablero carga pero sale vacío | Todavía no llegó ninguna observación, o el filtro de grupo no coincide | Enviar una de prueba y poner el filtro en "Todos" |
+| El tablero de Susana dice "sin conexión con el receptor" | El receptor de los casos publicado es anterior al modo de lectura: a `?tablero=Susana` responde con la página de comprobación | Republicar `casos/Codigo.gs` como versión nueva. Para ensayar mientras tanto, abrir el tablero con `?demo=1` |
 | Una observación cayó en la hoja de los casos | `observador.html` quedó con la URL del receptor viejo | Pegar la URL del proyecto del simulacro |
 | "Este script no está vinculado a ninguna hoja de cálculo" | El proyecto se creó suelto, sin hoja | Pegar el identificador de la hoja en `ID_HOJA` y republicar |
 | `getSheetByName of null` | Lo mismo, en una versión anterior del script | Actualizar `pap/Codigo.gs` y hacer lo de arriba |

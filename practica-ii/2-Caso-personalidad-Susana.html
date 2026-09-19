@@ -358,7 +358,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .pool-evidence{margin-top:10px; margin-left:29px;}
 .pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
 
-/* ---- Lista dinámica (integrantes, lista de problemas, etc.) ---- */
+/* ---- Lista dinámica (integrantes) ---- */
 .dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
 .dynamic-list-row input{flex:1;}
 .btn-remove-item{
@@ -450,6 +450,10 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
   line-height:1.5;
 }
 
+/* ---- Veredicto: una opción y una línea ---- */
+.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
+.option-list.invalid{border-radius:8px;}
+
 @media print{.sidebar,.save-bar{display:none;}}
 </style>
 </head>
@@ -474,9 +478,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 
     <ul class="nav-list" id="nav-list">
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
-      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Primeras impresiones</a></li>
-      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Comprensión del caso</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Veredicto</a></li>
     </ul>
 
     <div class="progress-block">
@@ -510,7 +513,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
     </div>
 
     <header class="masthead">
-      <div class="masthead-eyebrow">Trastornos de la personalidad · DSM-5</div>
+      <div class="masthead-eyebrow">Estado de ánimo y personalidad · DSM-5</div>
       <h1>Caso Susana — Evaluación diagnóstica</h1>
       <p>
         Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
@@ -552,70 +555,51 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
     </section>
 
-    <!-- ============ BLOQUE 1 — PRIMERAS IMPRESIONES ============ -->
+    <!-- ============ BLOQUE 1 — DIAGNÓSTICO DSM-5 ============ -->
     <section class="block" id="bloque-1">
       <div class="block-heading">
         <span class="block-index">01</span>
-        <h2>Primeras impresiones</h2>
-      </div>
-      <p class="block-sub">
-        Antes de aplicar el checklist diagnóstico, registren su primera lectura del caso tal como se
-        presenta en las primeras sesiones de evaluación (entrevista inicial, intervención ante la
-        crisis de ira, análisis de secuencia y genograma): motivo de consulta, lista de problemas e
-        hipótesis iniciales basadas en impresiones.
-      </p>
-
-      <div class="card">
-        <div class="card-label">¿Cuál es el motivo de consulta de Susana? <span class="required-mark">*</span></div>
-        <textarea data-required="true" id="f-primeras-motivo" rows="3"></textarea>
-      </div>
-
-      <div class="card">
-        <div class="card-label">Lista de problemas <span class="required-mark">*</span></div>
-        <div class="card-help">Comiencen a elaborar la lista de problemas que identifican en el caso, uno por casilla.</div>
-        <div class="dynamic-list" id="list-problemas"></div>
-        <button type="button" class="btn-add-item" id="btn-add-problema">+ Agregar problema</button>
-      </div>
-
-      <div class="card">
-        <div class="card-label">Primeras hipótesis, basadas en impresiones <span class="required-mark">*</span></div>
-        <div class="card-help">Todavía sin aplicar criterios formales: ¿qué hipótesis diagnóstica les sugiere esta primera impresión del caso?</div>
-        <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
-      </div>
-    </section>
-
-    <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
-    <section class="block" id="bloque-2">
-      <div class="block-heading">
-        <span class="block-index">02</span>
         <h2>Diagnóstico DSM-5</h2>
       </div>
       <p class="block-sub">
         Evalúen por separado el <strong>trastorno límite de la personalidad</strong> y el
-        <strong>trastorno depresivo mayor</strong>: las dos hipótesis diagnósticas que se plantea la
-        psicóloga en este caso. Marquen cada criterio que consideren presente y escriban, con sus
-        propias palabras, la evidencia que lo sustenta. La gravedad automática (leve/moderada/grave)
-        solo aparece en el trastorno depresivo mayor, porque es el único de los dos que el DSM-5
-        gradúa así — el TLP no tiene una gravedad oficial, así que en su lugar van a ver un aviso de
-        cumplimiento de criterios.
+        <strong>trastorno depresivo mayor</strong>. Marquen cada criterio que consideren presente y
+        escriban, con sus propias palabras, la evidencia que lo sustenta; los criterios de exclusión
+        solo se marcan. La gravedad automática (leve/moderada/grave) solo aparece en el trastorno
+        depresivo mayor, porque es el único de los dos que el DSM-5 gradúa así — el TLP no tiene una
+        gravedad oficial, así que en su lugar van a ver un aviso de cumplimiento de criterios.
       </p>
       <div id="condition-checklists"></div>
     </section>
 
-    <!-- ============ BLOQUE 3 — COMPRENSIÓN DEL CASO ============ -->
-    <section class="block" id="bloque-3">
+    <!-- ============ BLOQUE 2 — VEREDICTO ============ -->
+    <!-- Es lo que se proyecta: el tablero docente lo pone al lado del de los
+         demás grupos y de lo que dice el checklist de cada uno. Por eso acá no
+         hay ningún aviso de si el veredicto coincide con el checklist: esa
+         diferencia es material del debate, y avisarla la borraría. -->
+    <section class="block" id="bloque-2">
       <div class="block-heading">
-        <span class="block-index">03</span>
-        <h2>Comprensión del caso</h2>
+        <span class="block-index">02</span>
+        <h2>Veredicto</h2>
       </div>
-      <p class="block-sub">Cierren el análisis con las conclusiones del grupo.</p>
+      <p class="block-sub">
+        Con los dos checklists resueltos, elijan el veredicto del grupo. El veredicto y su línea se
+        proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen al
+        tablero, al terminar presionen «Enviar al docente».
+      </p>
 
       <div class="card">
-        <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
-        <div class="card-help">
-          ¿A qué conclusiones llegaron sobre el caso después de elegir y justificar los criterios?
+        <div class="card-label">Veredicto del grupo <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué sostiene la evidencia del caso?</div>
+        <div class="option-list" data-group="veredicto" data-required="true">
+          <label class="option-row"><input type="radio" name="veredicto" value="tdm"><span>Trastorno depresivo mayor</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="tlp"><span>Trastorno límite de la personalidad</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="ambos"><span>Los dos a la vez</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="ninguno"><span>Ninguno, con la información disponible</span></label>
         </div>
-        <textarea data-required="true" id="f-analisis" rows="5"></textarea>
+        <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
+        <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
+                  rows="2" maxlength="280"></textarea>
       </div>
     </section>
 
@@ -716,7 +700,7 @@ const state = {
   checkbox: {},  // grupos de selección múltiple,{ groupName: [valores] }
   criteria: {},  // checklist DSM-5,             { "tlp-pool-0": {checked, evidence}, ... }
   conditionOpen: {}, // qué acordeón de condición está abierto
-  lists: { integrantes: [], problemas: [] } // listas dinámicas: { id, value }[]
+  lists: { integrantes: [] } // listas dinámicas: { id, value }[]
 };
 
 /* ============================================================
@@ -754,16 +738,11 @@ function initInputRestrictions(){
    ============================================================ */
 /* Los criterios de exclusión ("no se puede atribuir a…", "no se explica mejor
    por…") no se pueden evidenciar desde un video: que algo no se mencione no lo
-   descarta. Pedirles "evidencia" produce respuestas como "no se menciona consumo",
-   que es un error lógico. Se les pide entonces lo que sí corresponde a esta altura
-   del proceso: qué habría que averiguar para poder sostenerlos. */
+   descarta, y pedirles "evidencia" produce respuestas como "no se menciona
+   consumo", que es un error lógico. Por eso se marcan sin campo de escritura:
+   la decisión queda en la casilla, y el tablero docente la pone en discusión. */
 function esCriterioDeExclusion(texto){
   return /no se (puede atribuir|explica mejor|explican mejor)/i.test(texto || "");
-}
-function etiquetaEvidencia(texto){
-  return esCriterioDeExclusion(texto)
-    ? "¿Qué habría que preguntar o descartar para sostener este criterio?"
-    : "Evidencia en el caso (escribí con tus palabras)";
 }
 
 function updateCriterionState(stateKey, checked, evidence){
@@ -800,6 +779,13 @@ function updateConditionStatus(condKey){
 
   const poolCounterEl = document.getElementById(`poolcounter-${condKey}`);
   if (poolCounterEl) poolCounterEl.textContent = `${poolCount} / ${cond.poolItems.length} (mínimo ${cond.poolMin})`;
+
+  // La evidencia de los síntomas es obligatoria en cuanto se marca alguno:
+  // la rúbrica califica "criterio marcado sin evidencia", no "casilla vacía".
+  const poolEvid = document.getElementById(`poolevid-${condKey}`);
+  if (poolEvid) poolEvid.dataset.required = poolCount > 0 ? "true" : "false";
+  const poolMarca = document.getElementById(`poolreq-${condKey}`);
+  if (poolMarca) poolMarca.hidden = poolCount === 0;
 
   let requiredMet = 0;
   cond.required.forEach((_, ridx) => {
@@ -879,7 +865,7 @@ function renderConditionChecklists(){
       </div>
       <div class="pool-items"></div>
       <div class="pool-evidence">
-        <label for="poolevid-${cond.key}">Evidencia general de los síntomas marcados (opcional)</label>
+        <label for="poolevid-${cond.key}">Evidencia de los síntomas marcados: una línea por síntoma <span class="required-mark" id="poolreq-${cond.key}" hidden>*</span></label>
         <textarea class="evidence-box" id="poolevid-${cond.key}" rows="2"></textarea>
       </div>
     `;
@@ -901,6 +887,7 @@ function renderConditionChecklists(){
       checkbox.addEventListener("change", () => {
         updateCriterionState(stateKey, checkbox.checked, "");
         updateConditionStatus(cond.key);
+        updateProgress();
         persistToLocalStorage();
       });
     });
@@ -910,6 +897,7 @@ function renderConditionChecklists(){
     poolEvidBox.value = state.text[poolEvidId] || "";
     poolEvidBox.addEventListener("input", () => {
       state.text[poolEvidId] = poolEvidBox.value;
+      updateProgress();
       persistToLocalStorage();
     });
 
@@ -922,36 +910,50 @@ function renderConditionChecklists(){
       const row = document.createElement("div");
       row.className = "criterion";
       row.dataset.key = stateKey;
+      // Los criterios de exclusión solo se marcan: no llevan campo de escritura
+      // (ver esCriterioDeExclusion).
+      const exclusion = esCriterioDeExclusion(text);
       row.innerHTML = `
         <div class="criterion-main">
           <input type="checkbox" id="crit-${stateKey}">
           <span class="criterion-num">${letter}.</span>
           <label class="criterion-text" for="crit-${stateKey}">${text}</label>
         </div>
+        ${exclusion ? "" : `
         <div class="criterion-evidence">
-          <label for="evid-${stateKey}">${etiquetaEvidencia(text)}</label>
+          <label for="evid-${stateKey}">Evidencia en el caso (escribí con tus palabras) <span class="required-mark">*</span></label>
           <textarea class="evidence-box" id="evid-${stateKey}" rows="2"></textarea>
-        </div>
+        </div>`}
       `;
       inner.appendChild(row);
 
       const checkbox = row.querySelector(`#crit-${stateKey}`);
-      const evidenceBox = row.querySelector(`#evid-${stateKey}`);
+      const evidenceBox = row.querySelector(`#evid-${stateKey}`);   // null en los de exclusión
+      const evidencia = () => evidenceBox ? evidenceBox.value : "";
+      // La evidencia es obligatoria mientras el criterio esté marcado: así la
+      // barra de progreso y el envío piden lo mismo que califica la rúbrica.
+      const exigir = () => {
+        if (evidenceBox) evidenceBox.dataset.required = checkbox.checked ? "true" : "false";
+      };
 
       if (saved) {
         checkbox.checked = !!saved.checked;
-        evidenceBox.value = saved.evidence || "";
+        if (evidenceBox) evidenceBox.value = saved.evidence || "";
         row.classList.toggle("is-checked", !!saved.checked);
       }
+      exigir();
 
       checkbox.addEventListener("change", () => {
         row.classList.toggle("is-checked", checkbox.checked);
-        updateCriterionState(stateKey, checkbox.checked, evidenceBox.value);
+        exigir();
+        updateCriterionState(stateKey, checkbox.checked, evidencia());
         updateConditionStatus(cond.key);
+        updateProgress();
         persistToLocalStorage();
       });
-      evidenceBox.addEventListener("input", () => {
-        updateCriterionState(stateKey, checkbox.checked, evidenceBox.value);
+      if (evidenceBox) evidenceBox.addEventListener("input", () => {
+        updateCriterionState(stateKey, checkbox.checked, evidencia());
+        updateProgress();
         persistToLocalStorage();
       });
     });
@@ -980,11 +982,11 @@ function renderConditionChecklists(){
 }
 
 /* ============================================================
-   5. LISTA DINÁMICA REUTILIZABLE (integrantes, lista de problemas, etc.)
+   5. LISTA DINÁMICA REUTILIZABLE (integrantes)
    ============================================================ */
 let dynamicListCounter = 0;
 
-// state.lists = { integrantes: [{id, value}], problemas: [{id, value}] }
+// state.lists = { integrantes: [{id, value}] }
 
 function createDynamicListRow(listKey, id, value, placeholder, removeTitle){
   const row = document.createElement("div");
@@ -1128,11 +1130,9 @@ function initGrupoNumerico(){
 function computeProgress(){
   let total = 0, filled = 0;
 
-  // Listas dinámicas obligatorias: integrantes del grupo y lista de problemas
+  // Lista dinámica obligatoria: integrantes del grupo
   total++;
   if (listHasContent("integrantes")) filled++;
-  total++;
-  if (listHasContent("problemas")) filled++;
 
   // Campos de texto obligatorios
   document.querySelectorAll('[data-required="true"]').forEach(el => {
@@ -1169,10 +1169,6 @@ function updateProgress(){
       requiredCount++;
       if (!listHasContent("integrantes")) done = false;
     }
-    if (section.id === "bloque-1") {
-      requiredCount++;
-      if (!listHasContent("problemas")) done = false;
-    }
     requiredEls.forEach(el => {
       if (el.classList.contains("option-list")) {
         const name = el.dataset.group;
@@ -1195,7 +1191,9 @@ function updateProgress(){
 // genera una sesión nueva y limpia cada vez que se abre por primera vez, de modo que la
 // plantilla repartida NUNCA hereda respuestas de una sesión anterior en el mismo navegador.
 // Un archivo ya guardado (con datos incrustados) reabre su propia sesión y conserva el respaldo.
-const STORAGE_PREFIX = "caso_susana_actividad_v1:";
+// v2: la actividad pasó a checklist + veredicto. Con otra clave, un navegador que
+// guardó la versión anterior no le rehidrata a nadie campos que ya no existen.
+const STORAGE_PREFIX = "caso_susana_actividad_v2:";
 let SESSION_KEY = null;
 
 function computeSessionKey(embeddedRaw){
@@ -1372,7 +1370,6 @@ function loadInitialState(){
     Object.assign(state.criteria, loaded.criteria || {});
     Object.assign(state.conditionOpen, loaded.conditionOpen || {});
     state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
-    state.lists.problemas = Array.isArray(loaded.lists && loaded.lists.problemas) ? loaded.lists.problemas : [];
   }
 }
 
@@ -1519,6 +1516,9 @@ function gruposDeCriterios(){
 }
 
 function etiquetaDeCampo(el){
+  // Una tarjeta con dos respuestas (la opción y su línea) le da a la segunda un
+  // rótulo propio; si no, las dos caerían en la misma columna de la hoja.
+  if (el.dataset && el.dataset.etiqueta) return el.dataset.etiqueta;
   const card = el.closest(".card");
   const label = card && card.querySelector(".card-label");
   return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
@@ -1565,6 +1565,12 @@ function recogerEnvio(){
     if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
   });
 
+  // Selección única (el veredicto): se vuelca el texto de la opción elegida.
+  document.querySelectorAll(".option-list[data-group]").forEach(grupo => {
+    const elegido = grupo.querySelector("input:checked");
+    if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
+  });
+
   // Listas dinámicas (menos integrantes, que también tiene columna propia)
   Object.keys(state.lists).forEach(listKey => {
     if (listKey === "integrantes") return;
@@ -1598,7 +1604,7 @@ function recogerEnvio(){
 
     Object.keys(state.text).forEach(k => {
       if (k.indexOf("poolevid-" + g.key) === 0 && (state.text[k] || "").trim()) {
-        evidencias.push("• Evidencia general de los síntomas: " + state.text[k].trim());
+        evidencias.push("• Evidencia de los síntomas: " + state.text[k].trim());
       }
     });
 
@@ -1723,40 +1729,30 @@ function highlightInvalidFields(){
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
-// Los tres criterios de 2-Caso-personalidad-Susana-rubrica.html, condensados
+// Los dos criterios de 2-Caso-personalidad-Susana-rubrica.html, condensados
 // y colgados de la consigna que cada uno evalúa. Si cambian allá hay que
 // cambiarlos acá también: no hay una sola fuente, porque la rúbrica es una
 // página aparte y este recurso tiene que seguir funcionando sin conexión.
 const RUBRICA_CAMPOS = {
-  "f-primeras-hipotesis": {
-    peso: "25%",
-    rotulo: "Ver cómo se evalúan las tres primeras respuestas",
-    niveles: [
-      "El motivo de consulta se confunde con el diagnóstico, o la lista de problemas repite una sola queja.",
-      "Registra el motivo y algunos problemas, pero la hipótesis no se desprende de ellos.",
-      "Distingue lo que Susana consulta de lo que el grupo infiere, y la lista recoge problemas de distinto orden: conducta, afecto, vínculos, historia.",
-      "Además señala qué información falta, o de qué sesión salió cada problema de la lista."
-    ]
-  },
-  "bloque-2": {
-    peso: "40%",
+  "bloque-1": {
+    peso: "70%",
     rotulo: "Ver cómo se evalúan los dos checklists",
     destino: "seccion",
     niveles: [
       "Hay criterios marcados sin evidencia, o la evidencia no corresponde al criterio que acompaña.",
-      "Escribe evidencia sólo para algunos criterios, o uno de los dos checklists queda sin trabajar.",
+      "La evidencia repite el enunciado del criterio en lugar de traer un dato del caso, o uno de los dos checklists queda sin trabajar.",
       "Recorre los dos; cada criterio marcado va con evidencia del caso en palabras propias, y no quedan sin marcar los que el caso documenta.",
-      "Además separa lo que el caso permite afirmar de lo que habría que preguntar, o advierte que un mismo hecho sostiene criterios de las dos listas."
+      "Además advierte que un mismo hecho sostiene criterios de las dos listas, o separa lo que el caso permite afirmar de lo que habría que preguntar."
     ]
   },
-  "f-analisis": {
-    peso: "35%",
-    rotulo: "Ver cómo se evalúan las conclusiones",
+  "f-veredicto-dato": {
+    peso: "30%",
+    rotulo: "Ver cómo se evalúa el veredicto",
     niveles: [
-      "No hay conclusión, o la que hay contradice los criterios que el grupo marcó.",
-      "Enuncia una conclusión, pero la sostiene por afirmación: no se apoya en los criterios elegidos ni en la evidencia escrita.",
-      "La conclusión se desprende de los criterios marcados y de su evidencia, y el grupo dice qué lo llevó a sostenerla.",
-      "Además reconoce los límites de esa conclusión: qué queda por descartar, qué información falta o qué la haría cambiar."
+      "No hay veredicto, o la línea no trae ningún dato del caso.",
+      "La línea repite el veredicto con otras palabras, o trae un dato que el grupo no sostuvo en su checklist.",
+      "La línea trae el dato del caso que decidió el veredicto, y ese dato está entre los que el grupo sostuvo en su checklist.",
+      "Además, cuando el veredicto no coincide con lo que dice su checklist, la línea deja ver por qué."
     ]
   }
 };
@@ -1814,7 +1810,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initRubricaEnLinea();
     renderConditionChecklists();
     initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
-    initDynamicList("problemas", "list-problemas", "btn-add-problema", "Describí un problema identificado", "Quitar problema", 2);
     initSimpleFields();
     initGrupoNumerico();
     initClavePorGrupo();
