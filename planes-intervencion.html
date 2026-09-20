@@ -274,7 +274,7 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
   padding:9px 12px; font-size:13px; line-height:1.5; color:var(--ink-soft);
 }
 
-.cierre{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 16px; padding-top:18px; border-top:1px solid var(--border);}
+.cierre{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; margin:6px 0 16px; padding-top:18px; border-top:1px solid var(--border);}
 .cierre ul{margin:0; padding-left:18px;}
 .cierre li{margin-bottom:6px;}
 .cierre li:last-child{margin-bottom:0;}
@@ -313,12 +313,95 @@ footer li{margin-bottom:6px;}
   .controles-r{min-width:0; width:100%;}
 }
 
+/* ============================================================
+   MODELO TEÓRICO E INSTRUMENTOS
+   Los dos componentes que, con la variable y las actividades, arman
+   la estructura de un proyecto: marco, medida e intervención.
+   ============================================================ */
+.modelo{
+  margin-top:16px; padding:15px 18px; border-radius:10px;
+  background:var(--enf-soft); border:1px solid var(--border); border-left:4px solid var(--enf);
+}
+.modelo h5{font-family:var(--font-display); font-size:17px; line-height:1.3; margin:2px 0 0; color:var(--ink);}
+.modelo .autor{font-size:13px; color:var(--ink-soft); margin:2px 0 0;}
+.modelo p.d{margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+.dims{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.dims .d{
+  font-size:12px; color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:6px; padding:3px 9px;
+}
+.inst-l{list-style:none; margin:0; padding:0;}
+.inst-l li{margin-bottom:9px; font-size:13.5px; line-height:1.55;}
+.inst-l li:last-child{margin-bottom:0;}
+.inst-l .s{font-weight:700; color:var(--ink);}
+.inst-l .rol{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--enf);}
+.inst-l .med{color:var(--ink-faint); font-size:12.5px;}
+
+/* ============================================================
+   EXPORTADOR DE UN PLAN
+   ============================================================ */
+.exp-boton{
+  font:inherit; font-size:13px; font-weight:600; cursor:pointer;
+  border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+  border-radius:8px; padding:6px 13px;
+}
+.exp-boton:hover{border-color:var(--enf); color:var(--enf);}
+.exportador{
+  margin-top:14px; padding:15px 18px; border:1px dashed var(--border);
+  border-radius:10px; background:var(--surface);
+}
+.exportador[hidden]{display:none;}
+.exportador .r{margin-bottom:9px;}
+.exp-ops{display:flex; flex-wrap:wrap; gap:8px 18px;}
+.exp-ops label{display:flex; align-items:center; gap:7px; font-size:13.5px; color:var(--ink-soft); cursor:pointer;}
+.exportador textarea{
+  width:100%; margin-top:12px; min-height:74px; resize:vertical;
+  font:inherit; font-size:13.5px; line-height:1.55; color:var(--ink);
+  border:1px solid var(--border); border-radius:8px; padding:9px 11px; background:var(--bg);
+}
+.exp-pie{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:12px;}
+.exp-pie button{
+  font:inherit; font-size:13.5px; cursor:pointer; border-radius:8px; padding:8px 16px;
+  border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);
+}
+.exp-pie button.principal{background:var(--enf); border-color:var(--enf); color:#fff; font-weight:600;}
+.exp-pie .nota{font-size:12.5px; color:var(--ink-faint);}
+
+/* ============================================================
+   HOJA DE EXPORTACIÓN
+   Se arma con los componentes marcados y solo existe al imprimir.
+   ============================================================ */
+#hoja{display:none;}
+#hoja .h-cab{border-bottom:2px solid var(--enf); padding-bottom:6px; margin-bottom:9px;}
+#hoja .h-var{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--enf);}
+#hoja h1{font-family:var(--font-display); font-size:18px; line-height:1.22; margin:2px 0 0;}
+#hoja .h-sub{font-size:11.5px; color:var(--ink-faint); margin-top:3px;}
+#hoja h2{
+  font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--enf); margin:9px 0 3px; break-after:avoid;
+}
+#hoja p, #hoja li{font-size:9.5px; line-height:1.36; color:var(--ink); margin:0 0 2px;}
+#hoja .h-mod{font-weight:600;}
+#hoja ul, #hoja ol{margin:0; padding-left:14px;}
+#hoja .h-acts{columns:2; column-gap:15px; margin-top:2px;}
+#hoja .h-act{break-inside:avoid; margin-bottom:6px;}
+#hoja .h-act .t{font-weight:700; font-size:10px;}
+#hoja .h-act .tec{font-size:9.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint);}
+#hoja .h-act ul{padding-left:13px;}
+#hoja .h-notas{white-space:pre-wrap; border:1px solid var(--border); border-radius:6px; padding:8px 10px;}
+#hoja .h-refs li{font-size:9.5px; line-height:1.4; color:var(--ink-soft); margin-bottom:3px;}
+#hoja .h-pie{margin-top:10px; padding-top:6px; border-top:1px solid var(--border); font-size:9px; color:var(--ink-faint);}
+
 @media print{
-  .controles, .indice, .tabs{display:none;}
+  .controles, .indice, .tabs, .exp-boton, .exportador{display:none !important;}
   /* Todos los planes de la variable, salvo los que el filtro dejó fuera. */
   .plan[hidden]:not([data-oculto="1"]){display:block;}
   .plan{box-shadow:none; break-inside:auto;}
   .act{break-inside:avoid;}
+  /* Con un plan exportándose, la página entera cede su lugar a la hoja. */
+  body[data-hoja="1"] .pagina{display:none !important;}
+  body[data-hoja="1"] #hoja{display:block !important;}
+  @page{margin:13mm;}
 }
 </style>
 </head>
@@ -344,8 +427,13 @@ footer li{margin-bottom:6px;}
           enfoque; donde el modelo admite otro orden, el plan lo indica.</li>
       <li><strong>Si aparece riesgo suicida, la valoración del riesgo y la ruta de atención van
           antes que cualquier plan.</strong></li>
-      <li><strong>Midan antes y después.</strong> Cada plan propone con qué hacerlo; varios de
-          esos instrumentos están en la <a href="pruebas-tamizaje.html">guía de pruebas de tamizaje</a>.</li>
+      <li><strong>Midan antes y después.</strong> Cada plan trae los instrumentos con que se
+          evalúa la variable: uno de tamizaje y, cuando la fuente lo respalda, una prueba
+          específica. Varios están en la <a href="pruebas-tamizaje.html">guía de pruebas de tamizaje</a>.</li>
+      <li><strong>Cada plan se puede exportar solo.</strong> El botón «Exportar este plan» arma
+          un PDF de una o dos hojas con los componentes que marquen —modelo teórico,
+          instrumentos, actividades, precauciones, notas— y cierra con las referencias en
+          formato APA de lo que quedó incluido.</li>
       <li><strong>Se aplica con supervisión.</strong> La guía orienta la planificación; la
           ejecución se ajusta al caso con el acompañamiento del supervisor del sitio de práctica.</li>
     </ul>
@@ -375,6 +463,9 @@ footer li{margin-bottom:6px;}
   <footer id="pie"></footer>
 </div>
 
+<!-- La hoja de un plan: se arma al exportar y solo se ve en el papel. -->
+<div id="hoja" aria-hidden="true"></div>
+
 <script>
 /* ============================================================
    CÓMO ESTÁ ARMADA ESTA GUÍA
@@ -383,6 +474,15 @@ footer li{margin-bottom:6px;}
    cada variable hay un plan por cada enfoque que tenga respaldo en las
    fuentes para esa variable: no todas las combinaciones existen, y un
    enfoque sin fuente para una variable no aparece en ella.
+
+   Cada plan se sostiene en cuatro componentes, que son los que pide el
+   marco de un proyecto de investigación: la variable, el modelo teórico
+   que la explica, las actividades con su base terapéutica y el
+   instrumento que la mide. Los modelos y los instrumentos viven en
+   MODELOS e INSTRUMENTOS y los planes los referencian por clave: varios
+   planes comparten modelo, y así se escribe una vez. El autor del
+   modelo no siempre es el de las técnicas del plan; cuando no coinciden
+   manda la variable, no la técnica.
 
    Cada plan trae seis actividades por defecto. El número lo fija el
    enfoque, no una plantilla: el hexágono de ACT tiene seis procesos,
@@ -429,6 +529,173 @@ const ENFOQUES = {
   cft: { et: "Compasión",               largo: "Terapia centrada en la compasión" }
 };
 
+/* Modelos teóricos: el marco desde el que se explica la variable. Un plan
+   los referencia por clave. El autor del modelo no siempre coincide con el
+   de las técnicas del plan: cuando no coincide, se elige el modelo que
+   sostiene la variable, no el que sostiene la técnica. */
+const MODELOS = {
+  flex: {
+    t: "Flexibilidad psicológica",
+    autor: "Hayes, Strosahl y Wilson",
+    d: "El sufrimiento se vuelve trastorno cuando la persona organiza su vida alrededor de no tener ciertos pensamientos, emociones o sensaciones. Esa evitación experiencial, sostenida por la fusión con el lenguaje, estrecha el repertorio de conducta. La meta no es cambiar los eventos privados, sino la flexibilidad psicológica: estar en contacto con el presente y actuar según los valores con esos eventos presentes.",
+    dim: ["Aceptación", "Defusión cognitiva", "Yo como contexto", "Contacto con el momento presente", "Valores", "Acción comprometida"],
+    fuente: "Díaz Corbobés, caps. 1 y 3 · Ruiz et al., cap. 11 (§2.1 y §3.1)"
+  },
+  biosocial: {
+    t: "Teoría biosocial de la desregulación emocional",
+    autor: "Linehan",
+    d: "La desregulación emocional persistente surge de la transacción entre una vulnerabilidad emocional de origen biológico —alta sensibilidad a los estímulos emocionales, reacciones intensas y retorno lento a la línea de base— y un ambiente invalidante que no enseña a nombrar ni a modular lo que se siente. Las conductas problema son intentos, eficaces a corto plazo, de regular ese afecto.",
+    dim: ["Vulnerabilidad emocional biológica", "Ambiente invalidante", "Transacción entre ambos a lo largo del tiempo", "Conductas problema como intento de regulación"],
+    fuente: "Elices, cap. 1 (§1.2) · Ruiz et al., cap. 11 (§4.1)"
+  },
+  "beck-ans": {
+    t: "Modelo cognitivo de la ansiedad",
+    autor: "Beck",
+    d: "Las creencias nucleares de amenaza y peligro sesgan el procesamiento: la persona restringe su atención a las posibles amenazas, interpreta de forma catastrófica lo ambiguo, subestima sus recursos de afrontamiento y la ayuda que podría recibir, y recurre a conductas de seguridad y evitación que impiden corregir esa lectura.",
+    dim: ["Creencias nucleares de peligro", "Sesgo atencional hacia la amenaza", "Interpretación catastrófica", "Subestimación de los propios recursos", "Conductas de seguridad y evitación"],
+    fuente: "Ruiz et al., cap. 8 (§2.2.2)"
+  },
+  foa: {
+    t: "Teoría del procesamiento emocional",
+    autor: "Foa y Kozak",
+    d: "El miedo se almacena como una estructura en red con tres tipos de información: el estímulo temido, las respuestas que evoca y el significado del estímulo y de esas respuestas. La exposición funciona porque activa esa memoria de miedo y aporta información incompatible con ella. La evitación, explicada por la teoría bifactorial de Mowrer, impide que esa información llegue.",
+    dim: ["Información sobre el estímulo temido", "Información sobre las respuestas", "Significado del estímulo y de las respuestas", "Activación de la memoria de miedo", "Codificación de información incompatible"],
+    fuente: "Ruiz et al., cap. 4 (§2.1 y §2.2) y cap. 1 (§3.4)"
+  },
+  "beck-dep": {
+    t: "Modelo cognitivo de la depresión",
+    autor: "Beck",
+    d: "Los esquemas y las creencias nucleares de derrota, pérdida o privación se activan ante determinados acontecimientos y sesgan el procesamiento de la información. De ahí la tríada cognitiva —visión negativa de sí mismo, del mundo y del futuro— que se expresa en pensamientos automáticos y distorsiones, y sostiene la inactividad y el ánimo bajo.",
+    dim: ["Esquemas y creencias nucleares", "Tríada cognitiva", "Distorsiones en el procesamiento", "Pensamientos automáticos"],
+    fuente: "Ruiz et al., cap. 8 (§2.1 y §2.2.1)"
+  },
+  dzurilla: {
+    t: "Modelo de solución de problemas sociales y modelo relacional de estrés",
+    autor: "D'Zurilla y Nezu",
+    d: "El malestar depende de la relación entre los problemas de la vida diaria y la forma de afrontarlos. Lo que predice el resultado es la orientación hacia el problema —un sistema de creencias que lo ve como reto o como amenaza— y el estilo de solución que la persona pone en marcha. Resolver problemas es a la vez un aprendizaje, una estrategia general de afrontamiento y un método de autocontrol.",
+    dim: ["Orientación positiva al problema", "Orientación negativa al problema", "Definición y formulación", "Generación de alternativas", "Toma de decisiones", "Puesta en práctica y verificación"],
+    fuente: "Ruiz et al., cap. 9 (§4.2)"
+  },
+  "ac-refuerzo": {
+    t: "Modelo conductual de la depresión: evitación y pérdida de refuerzo",
+    autor: "Jacobson, Martell y Dimidjian, sobre principios operantes",
+    d: "La persona deprimida evita las situaciones y actividades que le generan malestar, y con ello pierde el contacto con las fuentes de refuerzo positivo del ambiente, lo que mantiene o agrava los síntomas. La intervención usa la programación de actividades para reconectar con ese refuerzo y romper el ciclo de inactividad y evitación.",
+    dim: ["Evitación de situaciones y actividades", "Pérdida de refuerzo positivo del ambiente", "Ciclo de inactividad", "Reconexión programada con el refuerzo"],
+    fuente: "Ekers et al., 2014 · Cifuentes"
+  },
+  teasdale: {
+    t: "Activación diferencial y respuesta rumiante",
+    autor: "Teasdale; Nolen-Hoeksema",
+    d: "En quien ya tuvo episodios depresivos, un descenso leve del ánimo reactiva patrones de pensamiento disfuncionales y autoevaluaciones globales y negativas: es la hipótesis de activación diferencial. El estilo de respuesta rumiante mantiene esa reactivación. Prevenir la recaída exige cambiar la relación con esos pensamientos, no su contenido.",
+    dim: ["Activación diferencial ante bajones leves", "Estilo de respuesta rumiante", "Descentramiento de los pensamientos", "Conciencia de las señales tempranas"],
+    fuente: "Ruiz et al., cap. 10 (§7.2)"
+  },
+  seligman: {
+    t: "Las tres vías hacia la felicidad",
+    autor: "Seligman",
+    d: "El bienestar no es solo ausencia de síntomas. Se construye por tres vías: la vida placentera, que aumenta la emoción positiva; la vida comprometida, que usa las fortalezas personales en lo que se hace; y la vida con sentido, que pone esas fortalezas al servicio de algo más grande que uno mismo. La intervención trabaja esas vías en lugar de atacar el síntoma.",
+    dim: ["Vida placentera: emoción positiva", "Vida comprometida: fortalezas", "Vida con sentido"],
+    fuente: "Seligman et al., 2006"
+  },
+  gross: {
+    t: "Modelo de regulación emocional",
+    autor: "Gross",
+    d: "Regular las emociones es influir en qué emociones se tienen, cuándo se tienen y cómo se experimentan y expresan, de modo que no interfieran con la conducta dirigida a objetivos. Un buen sistema de regulación reconoce el estado emocional, lo discrimina, lo acepta, dispone de recursos para modular su intensidad y permite actuar e inhibir impulsos con la emoción presente.",
+    dim: ["Reconocimiento del estado emocional", "Discriminación", "Aceptación de la respuesta emocional", "Modulación de la intensidad", "Conducta dirigida a objetivos", "Inhibición de conductas impulsivas"],
+    fuente: "Ruiz et al., cap. 12 (§10)"
+  },
+  lazarus: {
+    t: "Modelo transaccional del estrés y el afrontamiento",
+    autor: "Lazarus y Folkman",
+    d: "El estrés no está en la situación ni en la persona, sino en la transacción: aparece cuando la persona percibe que las demandas superan sus recursos de afrontamiento. Por eso la intervención trabaja a la vez la valoración de la situación y el repertorio de afrontamiento, y distingue lo que se puede cambiar de lo que solo se puede tolerar.",
+    dim: ["Valoración de las demandas", "Valoración de los recursos propios", "Afrontamiento centrado en el problema", "Afrontamiento paliativo", "Apoyo social"],
+    fuente: "Ruiz et al., cap. 9 (§3.2)"
+  },
+  kabat: {
+    t: "Reacción al estrés y respuesta al estrés",
+    autor: "Kabat-Zinn",
+    d: "La reacción al estrés es automática: el cuerpo se activa en desequilibrio y aparecen intentos poco eficaces de manejarlo. La respuesta al estrés supone darse cuenta de lo que ocurre mientras ocurre, y esa conciencia produce un cambio interno que reduce la fuerza de la reacción y su efecto dañino. La meta es aumentar la conciencia del momento presente, sin juzgarla.",
+    dim: ["Reacción automática al estrés", "Conciencia del momento presente", "Actitud sin juicio", "Respuesta elegida"],
+    fuente: "Ruiz et al., cap. 10 (§7.1)"
+  },
+  ttm: {
+    t: "Modelo transteórico del cambio",
+    autor: "Prochaska y DiClemente",
+    d: "El cambio de una conducta problemática no ocurre de una vez: pasa por estadios, y cada uno pide una estrategia distinta. La intervención se ajusta al estadio en que está la persona —y puede ser distinto para cada conducta—, con la entrevista motivacional como método para resolver la ambivalencia.",
+    dim: ["Precontemplación", "Contemplación", "Preparación", "Acción", "Mantenimiento"],
+    fuente: "Cifuentes · Marlatt y Donovan, cap. 9"
+  },
+  "marlatt-rp": {
+    t: "Modelo cognitivo-conductual de la recaída",
+    autor: "Marlatt y Gordon",
+    d: "La recaída no es un fallo de voluntad sino una secuencia: en una situación de alto riesgo, si la persona no dispone de una respuesta de afrontamiento eficaz, baja su autoeficacia y pesan las expectativas positivas sobre la conducta. Aparece el desliz y, con él, el efecto de violación de la abstinencia —culpa y sensación de descontrol— que lo convierte en recaída completa.",
+    dim: ["Situación de alto riesgo", "Respuesta de afrontamiento", "Autoeficacia", "Expectativas de resultado", "Efecto de violación de la abstinencia", "Equilibrio del estilo de vida"],
+    fuente: "Marlatt y Donovan, cap. 1"
+  },
+  fairburn: {
+    t: "Modelo cognitivo-conductual de la bulimia nerviosa",
+    autor: "Fairburn; teoría de la restricción de Herman y Polivy",
+    d: "La sobrevaloración de la figura y el peso lleva a dietas y reglas rígidas. Esa restricción se rompe ante un alimento prohibido o una emoción negativa y da paso al atracón, seguido de conductas compensatorias que refuerzan la restricción. El tratamiento rompe el ciclo normalizando la alimentación antes de trabajar las creencias.",
+    dim: ["Sobrevaloración de la figura y el peso", "Restricción dietética y reglas rígidas", "Atracón", "Conductas compensatorias"],
+    fuente: "Marlatt y Donovan, cap. 9"
+  },
+  caplan: {
+    t: "Teoría de la crisis e intervención en crisis",
+    autor: "Caplan; Slaikeu",
+    d: "Una crisis es un estado temporal de desorganización en el que los métodos habituales de solución de problemas no alcanzan. Tiene fases y duración limitada, y su desenlace puede ser de crecimiento o de deterioro, según la ayuda que llegue y cuándo llegue. Por eso la intervención es inmediata, breve y centrada en restablecer el equilibrio y conectar con apoyo.",
+    dim: ["Fase de impacto", "Fase de retiro", "Fase de adaptación", "Fase de reorganización"],
+    fuente: "Deza, 2007 · Cifuentes"
+  },
+  "bandura-hs": {
+    t: "Teoría del aprendizaje social aplicada a las habilidades sociales",
+    autor: "Bandura; Kelly",
+    d: "Las habilidades sociales son conducta aprendida. Se adquieren y se mantienen por el refuerzo directo de lo que funciona, por la observación de modelos, por la retroalimentación que dan los demás y por las expectativas cognitivas que la persona construye sobre las situaciones interpersonales. Si se aprenden así, así se entrenan.",
+    dim: ["Reforzamiento directo", "Aprendizaje vicario u observacional", "Retroalimentación interpersonal", "Expectativas cognitivas"],
+    fuente: "Ruiz et al., cap. 6 (§3.1.1)"
+  },
+  "ellis-abc": {
+    t: "Modelo ABC de la Terapia Racional Emotiva Conductual",
+    autor: "Ellis",
+    d: "Entre el acontecimiento activador y la consecuencia emocional está la creencia. Las creencias racionales, formuladas como preferencias, producen emociones negativas sanas como el enfado; las irracionales, formuladas como exigencias absolutas sobre cómo deben comportarse los demás, producen emociones perturbadoras como la ira, que bloquean el afrontamiento.",
+    dim: ["A: acontecimiento activador", "B: creencia racional o irracional", "C: consecuencia emocional y conductual", "D: debate de la creencia"],
+    fuente: "Ruiz et al., cap. 7 (§3.1 y §3.4)"
+  }
+};
+
+/* Instrumentos: el componente psicométrico del plan. «guia: true» marca los
+   que están en la guía de tamizaje; los demás vienen de las fuentes del plan
+   y se nombran igual, aunque no estén en esa guía. */
+const INSTRUMENTOS = {
+  "GAD-7":  { n: "Escala del Trastorno de Ansiedad Generalizada", rol: "Tamizaje", d: "Síntomas de ansiedad generalizada en las dos últimas semanas.", med: "7 ítems · 3 min", guia: true },
+  "BAI":    { n: "Inventario de Ansiedad de Beck", rol: "Prueba específica", d: "Gravedad de la ansiedad, con énfasis en los síntomas fisiológicos.", med: "21 ítems · 10 min", guia: true },
+  "PCL-5":  { n: "Lista Verificada de Estrés Postraumático", rol: "Tamizaje", d: "Síntomas de estrés postraumático según los criterios vigentes.", med: "20 ítems · 10 min", guia: true },
+  "PHQ-9":  { n: "Cuestionario sobre la Salud del Paciente", rol: "Tamizaje", d: "Síntomas depresivos en las dos últimas semanas; su ítem 9 indaga ideación suicida.", med: "9 ítems · 5 min", guia: true },
+  "BDI-II": { n: "Inventario de Depresión de Beck", rol: "Prueba específica", d: "Gravedad de la depresión, con puntos de corte establecidos.", med: "21 ítems · 10 min", guia: true },
+  "GDS-15": { n: "Escala de Depresión Geriátrica", rol: "Tamizaje en adultos mayores", d: "Síntomas depresivos con formato de respuesta simplificado.", med: "15 ítems · 5 min", guia: true },
+  "SWLS":   { n: "Escala de Satisfacción con la Vida", rol: "Medida de resultado", d: "Satisfacción global con la propia vida; se usó en los estudios de psicoterapia positiva.", med: "5 ítems", guia: false, fuente: "Seligman et al., 2006" },
+  "C-SSRS": { n: "Escala Columbia para Evaluar el Riesgo de Suicidio", rol: "Entrevista de riesgo", d: "Gravedad e intensidad de la ideación, conductas suicidas y letalidad.", med: "Versión de tamizaje de 6 ítems", guia: true },
+  "ASQ":    { n: "Preguntas de Tamizaje de Riesgo Suicida", rol: "Tamizaje rápido", d: "Cuatro preguntas, más una de urgencia si alguna resulta positiva.", med: "4 ítems · 20 segundos", guia: true },
+  "AUDIT":  { n: "Prueba de Identificación de Trastornos por Consumo de Alcohol", rol: "Tamizaje", d: "Consumo de riesgo, consumo perjudicial y dependencia de alcohol.", med: "10 ítems · 5 min", guia: true },
+  "ASSIST": { n: "Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias", rol: "Tamizaje por sustancia", d: "Consumo y riesgo para diez clases de sustancias, con nivel de riesgo en cada una.", med: "8 ítems por sustancia", guia: true },
+  "AASE":   { n: "Escala de Autoeficacia para la Abstinencia de Alcohol", rol: "Medida de proceso", d: "Confianza en poder no consumir en cada tipo de situación de riesgo; la autoeficacia predice el resultado del tratamiento.", med: "Autoinforme", guia: false, fuente: "DiClemente et al., 1994, en Marlatt y Donovan, cap. 1" },
+  "SCOFF":  { n: "Cuestionario SCOFF", rol: "Tamizaje", d: "Cinco preguntas de cribado de anorexia y bulimia.", med: "5 ítems · 2 min", guia: true },
+  "EAT-26": { n: "Prueba de Actitudes ante la Alimentación", rol: "Prueba específica", d: "Actitudes y conductas de riesgo respecto a la alimentación y el peso.", med: "26 ítems · 10 min", guia: true },
+  "EDE":    { n: "Examen de Trastornos Alimentarios", rol: "Entrevista específica", d: "Frecuencia y gravedad de los síntomas alimentarios; es la referencia diagnóstica del campo.", med: "Entrevista", guia: false, fuente: "Cooper y Fairburn, 1987, en Marlatt y Donovan, cap. 9" },
+  "WEL":    { n: "Cuestionario de Eficacia del Peso en el Estilo de Vida", rol: "Medida de proceso", d: "Autoeficacia para resistirse a comer en cinco tipos de situación de riesgo.", med: "20 ítems", guia: false, fuente: "Clark et al., 1991, en Marlatt y Donovan, cap. 9" },
+  "K-10":   { n: "Escala de Malestar Psicológico de Kessler", rol: "Tamizaje", d: "Malestar psicológico general de las últimas cuatro semanas.", med: "10 ítems · 5 min", guia: true },
+  "CBI":    { n: "Inventario de Burnout de Copenhague", rol: "Prueba específica", d: "Agotamiento personal, relacionado con el trabajo y relacionado con los usuarios.", med: "19 ítems", guia: true },
+  "MBI":    { n: "Inventario de Burnout de Maslach", rol: "Prueba específica", d: "Agotamiento emocional, despersonalización y realización personal.", med: "22 ítems", guia: true },
+  "BPI":    { n: "Inventario Breve de Dolor", rol: "Prueba específica", d: "Intensidad del dolor y su interferencia con la vida diaria.", med: "9 ítems", guia: true },
+  "Zarit":  { n: "Escala de Sobrecarga del Cuidador de Zarit", rol: "Prueba específica", d: "Sobrecarga percibida por quien cuida a una persona dependiente.", med: "22 ítems · 10 min", guia: true },
+  "CSI":    { n: "Índice de Esfuerzo del Cuidador", rol: "Tamizaje", d: "Esfuerzo asociado al cuidado, en versión breve.", med: "13 ítems", guia: true },
+  "MSPSS":  { n: "Escala Multidimensional de Apoyo Social Percibido", rol: "Medida de resultado", d: "Apoyo percibido desde la familia, los amigos y una persona significativa.", med: "12 ítems", guia: true },
+  "LSNS-6": { n: "Escala de Red Social de Lubben", rol: "Medida de resultado", d: "Tamaño y frecuencia de contacto de la red de familiares y amigos.", med: "6 ítems", guia: true },
+  "RAS":    { n: "Inventario de Asertividad de Rathus", rol: "Prueba específica", d: "Frecuencia y grado de dificultad de la conducta asertiva.", med: "30 ítems", guia: false, fuente: "Rathus, 1973, en Ruiz et al., cap. 6 (§3.3.1)" },
+  "EMES-M": { n: "Escala Multidimensional de Expresión Social, parte motora", rol: "Prueba específica", d: "Conducta social manifiesta en distintos tipos de situación.", med: "Autoinforme", guia: false, fuente: "Caballo, en Ruiz et al., cap. 6 (§3.3.1)" },
+  "SAD":    { n: "Escala de Ansiedad y Evitación Sociales", rol: "Prueba específica", d: "Ansiedad y evitación de situaciones sociales.", med: "28 ítems", guia: false, fuente: "Watson y Friend, 1969, en Ruiz et al., cap. 6 (§3.3.1)" },
+  "DIARIO-DBT": { n: "Diario dialéctico-conductual", rol: "Medida de proceso", d: "Registro diario de conductas problema, emociones, impulsos y habilidades usadas; organiza cada sesión.", med: "Registro diario", guia: false, fuente: "Elices, cap. 2 (§2.4.3)" }
+};
+
 const CATEGORIAS = [
   { t: "Ansiedad y miedo", d: "Lo que comparten es la evitación: de situaciones, de sensaciones, de pensamientos o de recuerdos. Cambia qué se evita y, con eso, cómo se interviene." },
   { t: "Ánimo y regulación emocional", d: "Lo que comparten es la relación con la emoción: se apaga, se desborda o se descarga en la conducta. Los planes trabajan sobre lo que la persona hace con lo que siente." },
@@ -444,7 +711,10 @@ const REFERENCIAS = [
   { k: "Cifuentes", ref: "Cifuentes, A. (s. f.). <em>Diseños de programas de intervención en psicología clínica y de la salud</em> [Diapositivas de clase]." },
   { k: "Deza, 2007", ref: "Deza Villanueva, S. (2007). Intervención en crisis: primeros auxilios psicológicos. <em>Temática Psicológica, 3</em>(1), 37–43." },
   { k: "Díaz Corbobés", ref: "Díaz Corbobés, J. L. (s. f.). <em>Terapia de aceptación y compromiso</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
+  { k: "Ekers et al., 2014", ref: "Ekers, D., Webster, L., Van Straten, A., Cuijpers, P., Richards, D. y Gilbody, S. (2014). Behavioural activation for depression: An update of meta-analysis of effectiveness and sub group analysis. <em>PLoS ONE, 9</em>(6), e100100. https://doi.org/10.1371/journal.pone.0100100" },
   { k: "Elices", ref: "Elices, M. (s. f.). <em>Terapia dialéctico-conductual</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
+  { k: "Gloster et al., 2020", ref: "Gloster, A. T., Walder, N., Levin, M. E., Twohig, M. P. y Karekla, M. (2020). The empirical status of acceptance and commitment therapy: A review of meta-analyses. <em>Journal of Contextual Behavioral Science, 18</em>, 181–192. https://doi.org/10.1016/j.jcbs.2020.09.009" },
+  { k: "Kuyken et al., 2016", ref: "Kuyken, W., Warren, F. C., Taylor, R. S., Whalley, B., Crane, C., Bondolfi, G., … Dalgleish, T. (2016). Efficacy of mindfulness-based cognitive therapy in prevention of depressive relapse: An individual patient data meta-analysis from randomized trials. <em>JAMA Psychiatry, 73</em>(6), 565–574. https://doi.org/10.1001/jamapsychiatry.2016.0076" },
   { k: "Linehan, 2020", ref: "Linehan, M. M. (2020). <em>Manual de entrenamiento en habilidades DBT para el/la terapeuta</em> (P. Gagliesi, Rev. y Trad.). Editorial de la Universidad Nacional de La Plata. (Trabajo original publicado en 2014)." },
   { k: "Marlatt y Donovan", ref: "Marlatt, G. A. y Donovan, D. M. (Eds.). (2005). <em>Relapse prevention: Maintenance strategies in the treatment of addictive behaviors</em> (2.ª ed.). Guilford Press." },
   { k: "OMS, 2017", ref: "Organización Mundial de la Salud. (2017). <em>Integrated care for older people: Guidelines on community-level interventions to manage declines in intrinsic capacity</em>. OMS." },
@@ -454,6 +724,7 @@ const REFERENCIAS = [
   { k: "Saldivia et al.", ref: "Saldivia, S., Aslan, J., Castillo-Carreño, A., Petkari, E. y Pietschnig, J. (2026). A meta-analysis of preventive psychosocial interventions against depressive and anxiety symptoms in older adults. <em>Psychological Medicine, 56</em>, e151. https://doi.org/10.1017/S0033291726104607" },
   { k: "Seligman et al., 2005", ref: "Seligman, M. E. P., Steen, T. A., Park, N. y Peterson, C. (2005). Positive psychology progress: Empirical validation of interventions. <em>American Psychologist, 60</em>(5), 410–421. https://doi.org/10.1037/0003-066X.60.5.410" },
   { k: "Seligman et al., 2006", ref: "Seligman, M. E. P., Rashid, T. y Parks, A. C. (2006). Positive psychotherapy. <em>American Psychologist, 61</em>(8), 774–788. https://doi.org/10.1037/0003-066X.61.8.774" },
+  { k: "Stoffers-Winterling et al., 2022", ref: "Stoffers-Winterling, J. M., Storebø, O. J., Kongerslev, M. T., Faltinsen, E., Todorovac, A., Sedoc Jørgensen, M., … Lieb, K. (2022). Psychotherapies for borderline personality disorder: A focused systematic review and meta-analysis. <em>The British Journal of Psychiatry, 221</em>(3), 538–552. https://doi.org/10.1192/bjp.2021.204" },
   { k: "White et al.", ref: "White, C. A., Uttl, B. y Holder, M. D. (2019). Meta-analyses of positive psychology interventions: The effects are much smaller than previously reported. <em>PLoS ONE, 14</em>(5), e0216588. https://doi.org/10.1371/journal.pone.0216588" }
 ];
 
@@ -470,11 +741,13 @@ const VARIABLES = [
   planes: [
     {
       id: "ans-act",
+      mod: "flex",
+      inst: ["GAD-7", "BAI"],
       enf: "act",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 2 a 4 · Ruiz et al., cap. 11",
       cuando: "La persona lleva tiempo intentando controlar la ansiedad —evitar, distraerse, pedir compañía, medicarse, esperar a estar tranquila para actuar— y cada vez más ámbitos de su vida se organizan alrededor de no sentirla. Su meta declarada es <strong>dejar de sentir ansiedad para poder vivir</strong>. El plan cambia esa meta: vivir hacia lo que le importa, con la ansiedad presente.",
-      respaldo: "Además de numerosos estudios de caso, la terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en ansiedad y fobia social, miedos y preocupaciones y patrones obsesivo-compulsivos, en formato breve o amplio, individual o grupal, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial está descrita en los trastornos de ansiedad, afectivos y adictivos, y en el dolor (Díaz Corbobés, cap. 1.3).",
+      respaldo: "Además de numerosos estudios de caso, la terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en ansiedad y fobia social, miedos y preocupaciones y patrones obsesivo-compulsivos, en formato breve o amplio, individual o grupal, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial está descrita en los trastornos de ansiedad, afectivos y adictivos, y en el dolor (Díaz Corbobés, cap. 1.3). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas —ansiedad, depresión, consumo de sustancias, dolor y muestras transdiagnósticas— y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020).",
       secuencia: "<strong>Secuencia:</strong> sigue las fases del manual de Díaz Corbobés, que no son estrictamente secuenciales. Los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso; el orden de abajo es el de partida y se ajusta a lo que la persona trae a cada sesión.",
       esc: ["hospital","salud-mental","primer-nivel"],
       actividades: [
@@ -583,6 +856,8 @@ const VARIABLES = [
     },
     {
       id: "ans-tcc",
+      mod: "beck-ans",
+      inst: ["GAD-7", "BAI"],
       enf: "tcc",
       t: "Exposición graduada con reestructuración cognitiva",
       fuente: "Ruiz et al., caps. 2, 4, 5 y 8 · Cifuentes",
@@ -709,6 +984,8 @@ const VARIABLES = [
   planes: [
     {
       id: "toc-tcc",
+      mod: "foa",
+      inst: [],
       enf: "tcc",
       t: "Exposición con prevención de respuesta",
       fuente: "Ruiz et al., caps. 2, 4 y 12 · Cifuentes",
@@ -820,11 +1097,13 @@ const VARIABLES = [
     },
     {
       id: "toc-act",
+      mod: "flex",
+      inst: [],
       enf: "act",
       t: "Defusión y disposición frente a las obsesiones",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "La persona <strong>toma sus obsesiones como verdades o como órdenes</strong> que hay que obedecer, dedica cada vez más tiempo a neutralizarlas y su vida se ha ido organizando alrededor de no sentir la duda o la ansiedad que traen. La lucha contra el propio pensamiento es el centro del problema.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en patrones obsesivo-compulsivos (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial —actuar para controlar pensamientos y sensaciones— es el proceso que el modelo describe en estos cuadros (Díaz Corbobés, cap. 1.3).",
+      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en patrones obsesivo-compulsivos (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial —actuar para controlar pensamientos y sensaciones— es el proceso que el modelo describe en estos cuadros (Díaz Corbobés, cap. 1.3). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020).",
       secuencia: "<strong>Secuencia:</strong> sigue las fases del manual de Díaz Corbobés, que no son estrictamente secuenciales. Los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso.",
       esc: ["salud-mental","primer-nivel"],
       actividades: [
@@ -941,6 +1220,8 @@ const VARIABLES = [
   planes: [
     {
       id: "tept-tcc-ep",
+      mod: "foa",
+      inst: ["PCL-5"],
       enf: "tcc",
       t: "Terapia de exposición prolongada",
       fuente: "Ruiz et al., cap. 4 (§3.2 y §6.3)",
@@ -1051,6 +1332,8 @@ const VARIABLES = [
     },
     {
       id: "tept-tcc-eie",
+      mod: "lazarus",
+      inst: ["PCL-5"],
       enf: "tcc",
       t: "Inoculación de estrés",
       fuente: "Ruiz et al., cap. 9 (§3)",
@@ -1155,6 +1438,8 @@ const VARIABLES = [
     },
     {
       id: "tept-dbt",
+      mod: "biosocial",
+      inst: ["PCL-5", "C-SSRS"],
       enf: "dbt",
       t: "Estabilización dialéctico-conductual y exposición prolongada",
       fuente: "Elices, caps. 2 y 4.3",
@@ -1274,6 +1559,8 @@ const VARIABLES = [
   planes: [
     {
       id: "dep-tcc-tc",
+      mod: "beck-dep",
+      inst: ["PHQ-9", "BDI-II"],
       enf: "tcc",
       t: "Terapia cognitiva de Beck",
       fuente: "Ruiz et al., cap. 8",
@@ -1384,6 +1671,8 @@ const VARIABLES = [
     },
     {
       id: "dep-tcc-tsp",
+      mod: "dzurilla",
+      inst: ["PHQ-9", "BDI-II"],
       enf: "tcc",
       t: "Terapia de solución de problemas",
       fuente: "Ruiz et al., cap. 9 (§4) · OMS, 2017",
@@ -1494,11 +1783,13 @@ const VARIABLES = [
     },
     {
       id: "dep-ac",
+      mod: "ac-refuerzo",
+      inst: ["PHQ-9", "GDS-15"],
       enf: "ac",
       t: "Activación conductual",
       fuente: "Cifuentes · Ruiz et al., cap. 8 (§3.3.1) · OMS, 2017",
       cuando: "La depresión se sostiene en <strong>la inactividad y la retirada</strong>: la persona dejó actividades que le daban agrado o sentido y evita lo que le genera malestar, lo que a su vez mantiene el ánimo bajo. Útil cuando hay poca energía para el trabajo con registros de pensamiento.",
-      respaldo: "La OMS la incluye entre las intervenciones psicológicas breves y estructuradas para la depresión en la atención no especializada; en adultos mayores redujo los síntomas depresivos, con certeza muy baja. Es relativamente sencilla y se aprende más rápido que la mayoría de los tratamientos con evidencia (OMS, 2017). En la depresión moderada a grave, la OMS la incluye entre las intervenciones psicológicas estructuradas que recomienda ofrecer (recomendación fuerte, certeza moderada; OMS, 2023, DEP3).",
+      respaldo: "La OMS la incluye entre las intervenciones psicológicas breves y estructuradas para la depresión en la atención no especializada; en adultos mayores redujo los síntomas depresivos, con certeza muy baja. Es relativamente sencilla y se aprende más rápido que la mayoría de los tratamientos con evidencia (OMS, 2017). En la depresión moderada a grave, la OMS la incluye entre las intervenciones psicológicas estructuradas que recomienda ofrecer (recomendación fuerte, certeza moderada; OMS, 2023, DEP3). En un metaanálisis de 26 ensayos con 1.524 participantes fue superior a las condiciones de control, con un tamaño del efecto grande, y superior a la medicación; la calidad de la mayoría de los estudios era baja y los seguimientos, cortos (Ekers et al., 2014).",
       secuencia: "<strong>Secuencia:</strong> sigue los pasos de la activación conductual: psicoeducación, identificación de actividades significativas, jerarquización, metas pequeñas, y monitoreo y ajuste (Cifuentes).",
       esc: ["salud-mental","primer-nivel","mayores"],
       actividades: [
@@ -1598,11 +1889,13 @@ const VARIABLES = [
     },
     {
       id: "dep-act",
+      mod: "flex",
+      inst: ["PHQ-9", "BDI-II"],
       enf: "act",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "La persona está <strong>atrapada en la lucha contra la tristeza</strong> —aislarse, dormir, distraerse, esperar a sentirse mejor para hacer algo— y fusionada con pensamientos como «soy un fracasado» o «no vale la pena», mientras su vida se vacía de lo que le importa.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en depresión, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en los trastornos afectivos (Díaz Corbobés, cap. 1.3). La OMS incluye las terapias de tercera ola entre las intervenciones psicológicas estructuradas que recomienda en la depresión moderada a grave (recomendación fuerte, certeza moderada; OMS, 2023, DEP3).",
+      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en depresión, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en los trastornos afectivos (Díaz Corbobés, cap. 1.3). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas —ansiedad, depresión, consumo de sustancias, dolor y muestras transdiagnósticas— y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020). La OMS incluye las terapias de tercera ola entre las intervenciones psicológicas estructuradas que recomienda en la depresión moderada a grave (recomendación fuerte, certeza moderada; OMS, 2023, DEP3).",
       secuencia: "<strong>Secuencia:</strong> sigue las fases del manual de Díaz Corbobés, que no son estrictamente secuenciales. Los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso.",
       esc: ["hospital","salud-mental","primer-nivel"],
       actividades: [
@@ -1705,11 +1998,13 @@ const VARIABLES = [
     },
     {
       id: "dep-mbct",
+      mod: "teasdale",
+      inst: ["PHQ-9", "BDI-II"],
       enf: "mind",
       t: "Terapia cognitiva basada en mindfulness para prevenir recaídas",
       fuente: "Ruiz et al., cap. 10 (§7.2)",
       cuando: "La persona <strong>ya se recuperó de la depresión, pero ha tenido varios episodios</strong>; cuando el ánimo baja, se engancha en rumiaciones y en autoevaluaciones globales negativas. El plan enseña a reconocer ese modo mental y a salir de él antes de que arrastre una recaída.",
-      respaldo: "Recomendada por la guía clínica de depresión del Instituto Nacional para la Excelencia Clínica del Reino Unido para prevenir la depresión recurrente; en un ensayo previno recaídas en pacientes con más de dos episodios previos, con 60 semanas de seguimiento, frente al tratamiento habitual (Teasdale et al., 2000, en Ruiz et al., cap. 10).",
+      respaldo: "Recomendada por la guía clínica de depresión del Instituto Nacional para la Excelencia Clínica del Reino Unido para prevenir la depresión recurrente; en un ensayo previno recaídas en pacientes con más de dos episodios previos, con 60 semanas de seguimiento, frente al tratamiento habitual (Teasdale et al., 2000, en Ruiz et al., cap. 10). Un metaanálisis de datos individuales de nueve ensayos encontró menor riesgo de recaída en 60 semanas frente a quienes no recibieron el programa, y también frente a tratamientos activos (Kuyken et al., 2016).",
       secuencia: "<strong>Secuencia:</strong> sigue las ocho sesiones grupales del programa de Segal, Williams y Teasdale, con práctica diaria entre sesiones y sesiones de refuerzo durante el año siguiente. Las seis actividades agrupan esas ocho sesiones (Ruiz et al., cap. 10, §7.2.1).",
       esc: ["salud-mental","primer-nivel"],
       actividades: [
@@ -1810,6 +2105,8 @@ const VARIABLES = [
     },
     {
       id: "dep-pp",
+      mod: "seligman",
+      inst: ["PHQ-9", "SWLS"],
       enf: "pp",
       t: "Psicoterapia positiva",
       fuente: "Seligman et al., 2006 · Seligman et al., 2005 · Bolier et al. · Chakhssi et al. · White et al.",
@@ -1925,11 +2222,13 @@ const VARIABLES = [
   planes: [
     {
       id: "desreg-dbt",
+      mod: "biosocial",
+      inst: ["DIARIO-DBT", "C-SSRS"],
       enf: "dbt",
       t: "Entrenamiento en habilidades dialéctico-conductuales",
       fuente: "Elices, caps. 1 a 4 · Linehan, 2020, caps. 7 a 10",
       cuando: "La persona describe <strong>emociones que se disparan con poco, llegan muy alto y tardan en volver a la calma</strong>, y conductas con que intenta aliviarlas y que le cuestan caro después: autolesiones, consumo, atracones, estallidos, rupturas. Suele haber relaciones intensas e inestables y una historia de invalidación de lo que siente. Es el perfil para el que se creó la terapia dialéctico-conductual: el trastorno límite de la personalidad y otros cuadros con desregulación grave.",
-      respaldo: "En un ensayo de componentes con 99 mujeres con trastorno límite, las condiciones que incluían el entrenamiento en habilidades redujeron más las autolesiones, la depresión y la ansiedad que la terapia individual sola (Linehan et al., 2015, en Elices, cap. 3). El grupo de habilidades como único componente, durante trece semanas, redujo más la depresión, la ansiedad, la irritabilidad, la ira y la inestabilidad afectiva que el tratamiento grupal estándar, con 34,5 % de abandonos frente a 63,4 % (Soler et al., 2009, en Elices, cap. 3). La evidencia sobre estrategias de regulación emocional proviene sobre todo de esta terapia, y abarca también adicciones, depresión, ansiedad, trastornos alimentarios y agresión (Ruiz et al., cap. 12, §10.2).",
+      respaldo: "En un ensayo de componentes con 99 mujeres con trastorno límite, las condiciones que incluían el entrenamiento en habilidades redujeron más las autolesiones, la depresión y la ansiedad que la terapia individual sola (Linehan et al., 2015, en Elices, cap. 3). El grupo de habilidades como único componente, durante trece semanas, redujo más la depresión, la ansiedad, la irritabilidad, la ira y la inestabilidad afectiva que el tratamiento grupal estándar, con 34,5 % de abandonos frente a 63,4 % (Soler et al., 2009, en Elices, cap. 3). La evidencia sobre estrategias de regulación emocional proviene sobre todo de esta terapia, y abarca también adicciones, depresión, ansiedad, trastornos alimentarios y agresión (Ruiz et al., cap. 12, §10.2). Un metaanálisis posterior encontró, frente al tratamiento habitual, evidencia de certeza moderada a favor de la terapia dialéctico-conductual en autolesiones y en funcionamiento psicosocial (Stoffers-Winterling et al., 2022).",
       secuencia: "<strong>Secuencia:</strong> el formato estándar es grupal: de seis a ocho personas con dos terapeutas, una sesión semanal de unas dos horas y media, durante unos seis meses. La primera sesión presenta al grupo, explica la lógica de las habilidades y fija las normas. Mindfulness se enseña primero y se practica durante todo el entrenamiento, porque las demás habilidades parten de observar y describir; tolerancia al malestar favorece la aceptación, y regulación emocional y efectividad interpersonal, el cambio. El análisis en cadena de la última actividad corresponde a la terapia individual, que en el formato estándar acompaña al grupo (Elices, cap. 2, §2.2 y §2.5).",
       esc: ["salud-mental","primer-nivel","consumo"],
       actividades: [
@@ -2042,6 +2341,8 @@ const VARIABLES = [
     },
     {
       id: "desreg-tcc",
+      mod: "gross",
+      inst: ["GAD-7"],
       enf: "tcc",
       t: "Entrenamiento en regulación emocional",
       fuente: "Ruiz et al., cap. 12 (§10)",
@@ -2159,6 +2460,8 @@ const VARIABLES = [
   planes: [
     {
       id: "ira-tcc",
+      mod: "ellis-abc",
+      inst: [],
       enf: "tcc",
       t: "Inoculación de estrés para el control de la ira",
       fuente: "Ruiz et al., cap. 9 (§2 y §3) y cap. 7",
@@ -2265,6 +2568,8 @@ const VARIABLES = [
     },
     {
       id: "ira-dbt",
+      mod: "biosocial",
+      inst: ["DIARIO-DBT"],
       enf: "dbt",
       t: "Habilidades dialéctico-conductuales para la ira",
       fuente: "Linehan, 2020, caps. 8 a 10 · Elices, caps. 2 y 3",
@@ -2382,6 +2687,8 @@ const VARIABLES = [
   planes: [
     {
       id: "sui-est",
+      mod: "caplan",
+      inst: ["ASQ", "C-SSRS"],
       enf: "est",
       t: "Intervención en crisis y plan de seguridad",
       fuente: "Deza, 2007 · OPS, 2017, módulo SUI · OMS, 2023 · Cifuentes",
@@ -2492,11 +2799,13 @@ const VARIABLES = [
     },
     {
       id: "sui-dbt",
+      mod: "biosocial",
+      inst: ["C-SSRS", "DIARIO-DBT"],
       enf: "dbt",
       t: "Programa para la conducta suicida y las autolesiones",
       fuente: "Elices, caps. 2 y 3 · Linehan, 2020",
       cuando: "Las conductas suicidas o las autolesiones <strong>se repiten</strong> y funcionan como una forma, costosa pero eficaz a corto plazo, de aliviar emociones intensas, casi siempre dentro de una desregulación emocional persistente. La persona está fuera de riesgo inminente y puede comprometerse con un tratamiento de alrededor de un año.",
-      respaldo: "La mayoría de los estudios de eficacia se han centrado en reducir las conductas que atentan contra la vida; frente a otras condiciones de tratamiento, el primer año redujo los intentos de suicidio, las hospitalizaciones y los abandonos (Elices, caps. 2 y 3). En el ensayo de componentes de Linehan et al. (2015), las tres condiciones —estándar, solo habilidades y solo terapia individual— mejoraron la frecuencia y gravedad de los intentos, la ideación y el uso de servicios de crisis, y las que incluían habilidades redujeron más las autolesiones. En todas se usó el protocolo de evaluación y manejo del riesgo, al que algunos estudios atribuyen buena parte de la eficacia (McMain et al., 2009; Linehan et al., 2015; en Elices, caps. 2 y 3).",
+      respaldo: "La mayoría de los estudios de eficacia se han centrado en reducir las conductas que atentan contra la vida; frente a otras condiciones de tratamiento, el primer año redujo los intentos de suicidio, las hospitalizaciones y los abandonos (Elices, caps. 2 y 3). En el ensayo de componentes de Linehan et al. (2015), las tres condiciones —estándar, solo habilidades y solo terapia individual— mejoraron la frecuencia y gravedad de los intentos, la ideación y el uso de servicios de crisis, y las que incluían habilidades redujeron más las autolesiones. En todas se usó el protocolo de evaluación y manejo del riesgo, al que algunos estudios atribuyen buena parte de la eficacia (McMain et al., 2009; Linehan et al., 2015; en Elices, caps. 2 y 3). Un metaanálisis posterior encontró, frente al tratamiento habitual, evidencia de certeza moderada a favor de la terapia dialéctico-conductual en autolesiones y en funcionamiento psicosocial (Stoffers-Winterling et al., 2022).",
       secuencia: "<strong>Secuencia:</strong> el pretratamiento orienta y obtiene el compromiso. La primera etapa, de alrededor de un año, sigue una jerarquía de metas que se comparte con la persona: primero las conductas suicidas y autolesivas, luego las que interfieren con la terapia y después las que afectan la calidad de vida, mientras se entrenan habilidades. Cada sesión se organiza según esa jerarquía, a partir del diario (Elices, cap. 2, §2.3 y §2.4).",
       esc: ["salud-mental","primer-nivel"],
       actividades: [
@@ -2614,6 +2923,8 @@ const VARIABLES = [
   planes: [
     {
       id: "cons-est",
+      mod: "ttm",
+      inst: ["AUDIT", "ASSIST"],
       enf: "est",
       t: "Intervención motivacional por estadios de cambio",
       fuente: "Cifuentes · Marlatt y Donovan, caps. 1 y 9 · OMS, 2023",
@@ -2719,6 +3030,8 @@ const VARIABLES = [
     },
     {
       id: "cons-pr",
+      mod: "marlatt-rp",
+      inst: ["ASSIST", "AASE"],
       enf: "tcc",
       t: "Prevención de recaídas",
       fuente: "Marlatt y Donovan, caps. 1 y 5 · OMS, 2023",
@@ -2828,6 +3141,8 @@ const VARIABLES = [
     },
     {
       id: "cons-dbt",
+      mod: "biosocial",
+      inst: ["ASSIST", "DIARIO-DBT"],
       enf: "dbt",
       t: "Habilidades dialéctico-conductuales para conductas adictivas",
       fuente: "Linehan, 2020, cap. 10 · Elices, cap. 4.2",
@@ -2930,11 +3245,13 @@ const VARIABLES = [
     },
     {
       id: "cons-act",
+      mod: "flex",
+      inst: ["ASSIST"],
       enf: "act",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "El consumo funciona sobre todo como una <strong>forma de no sentir</strong>: la persona consume para no tener ansiedad, tristeza, recuerdos o deseo, y cada intento de controlar esas experiencias estrecha más su vida. Ya intentó dejarlo a fuerza de voluntad o de distraerse, sin resultado estable.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en consumo de drogas y de tabaco, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en las adicciones (Díaz Corbobés, cap. 1.3).",
+      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en consumo de drogas y de tabaco, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en las adicciones (Díaz Corbobés, cap. 1.3). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas —ansiedad, depresión, consumo de sustancias, dolor y muestras transdiagnósticas— y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020).",
       secuencia: "<strong>Secuencia:</strong> sigue las fases del manual de Díaz Corbobés, que no son estrictamente secuenciales. Los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso.",
       esc: ["consumo","salud-mental","primer-nivel"],
       actividades: [
@@ -3046,6 +3363,8 @@ const VARIABLES = [
   planes: [
     {
       id: "alim-est",
+      mod: "ttm",
+      inst: ["SCOFF", "EAT-26"],
       enf: "est",
       t: "Intervención motivacional por síntoma",
       fuente: "Marlatt y Donovan, cap. 9 · Cifuentes",
@@ -3148,6 +3467,8 @@ const VARIABLES = [
     },
     {
       id: "alim-tcc",
+      mod: "fairburn",
+      inst: ["EAT-26", "EDE"],
       enf: "tcc",
       t: "Terapia cognitivo-conductual para bulimia y atracones",
       fuente: "Fairburn et al., 1993, en Marlatt y Donovan, cap. 9",
@@ -3251,6 +3572,8 @@ const VARIABLES = [
     },
     {
       id: "alim-pr",
+      mod: "marlatt-rp",
+      inst: ["EAT-26", "WEL"],
       enf: "tcc",
       t: "Prevención de recaídas",
       fuente: "Collins, en Marlatt y Donovan, cap. 9",
@@ -3367,6 +3690,8 @@ const VARIABLES = [
   planes: [
     {
       id: "estres-tcc",
+      mod: "lazarus",
+      inst: ["K-10", "CBI"],
       enf: "tcc",
       t: "Inoculación de estrés",
       fuente: "Ruiz et al., cap. 9 (§3) · OMS, 2023",
@@ -3474,6 +3799,8 @@ const VARIABLES = [
     },
     {
       id: "estres-mind",
+      mod: "kabat",
+      inst: ["K-10", "BPI"],
       enf: "mind",
       t: "Reducción del estrés basada en mindfulness",
       fuente: "Ruiz et al., cap. 10 (§7.1) · OMS, 2023",
@@ -3579,11 +3906,13 @@ const VARIABLES = [
     },
     {
       id: "estres-act",
+      mod: "flex",
+      inst: ["K-10", "MBI"],
       enf: "act",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "La persona lleva tiempo <strong>luchando por no sentir el estrés</strong> —evitar, postergar, controlar cada detalle, desconectarse— y esa lucha ya le cuesta en el trabajo, la salud o las relaciones. Hay estresores que no se pueden eliminar, como una enfermedad crónica o un trabajo exigente.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en estrés laboral, con profesionales, en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico, y con padres de niños con limitaciones, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en el afrontamiento de enfermedades (Díaz Corbobés, cap. 1.3).",
+      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en estrés laboral, con profesionales, en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico, y con padres de niños con limitaciones, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial se ha descrito en el afrontamiento de enfermedades (Díaz Corbobés, cap. 1.3). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas —ansiedad, depresión, consumo de sustancias, dolor y muestras transdiagnósticas— y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020).",
       secuencia: "<strong>Secuencia:</strong> sigue las fases del manual de Díaz Corbobés, que no son estrictamente secuenciales. Los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso.",
       esc: ["hospital","primer-nivel","comunidad","cuidadores"],
       actividades: [
@@ -3683,6 +4012,8 @@ const VARIABLES = [
     },
     {
       id: "estres-cuid",
+      mod: "lazarus",
+      inst: ["Zarit", "CSI"],
       enf: "tcc",
       t: "Apoyo psicológico a cuidadores",
       fuente: "OMS, 2017 (recomendación 13) · OMS, 2023 (DEM1 y OVE1)",
@@ -3797,6 +4128,8 @@ const VARIABLES = [
   planes: [
     {
       id: "hhss-tcc",
+      mod: "bandura-hs",
+      inst: ["RAS", "EMES-M"],
       enf: "tcc",
       t: "Entrenamiento en habilidades sociales",
       fuente: "Ruiz et al., cap. 6 (§3)",
@@ -3907,6 +4240,8 @@ const VARIABLES = [
     },
     {
       id: "hhss-dbt",
+      mod: "biosocial",
+      inst: ["SAD", "MSPSS"],
       enf: "dbt",
       t: "Efectividad interpersonal",
       fuente: "Linehan, 2020, cap. 8 · Elices, cap. 2 (§2.5.4)",
@@ -4052,9 +4387,45 @@ function lista(items){
   return '<ul>' + items.map(x => '<li>' + x + '</li>').join("") + '</ul>';
 }
 
+/* El modelo teórico y los instrumentos son datos compartidos: varios planes
+   citan el mismo modelo y el mismo instrumento, y así se escriben una vez. */
+const modeloDe = p => MODELOS[p.mod] || null;
+const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
+
+function pintarModelo(p){
+  const m = modeloDe(p);
+  if (!m) return "";
+  return '<div class="modelo">' +
+    '<span class="r">Modelo teórico que lo sustenta</span>' +
+    '<h5>' + escapar(m.t) + '</h5>' +
+    '<p class="autor">' + escapar(m.autor) + '</p>' +
+    '<p class="d">' + escapar(m.d) + '</p>' +
+    (m.dim ? '<div class="dims">' + m.dim.map(d => '<span class="d">' + escapar(d) + '</span>').join("") + '</div>' : "") +
+    '<p class="autor" style="margin-top:9px"><strong>Fuente:</strong> ' + escapar(m.fuente) + '</p>' +
+  '</div>';
+}
+
+function pintarInstrumentos(p){
+  const ins = instrumentosDe(p);
+  const cuerpo = ins.length
+    ? '<ul class="inst-l">' + ins.map(i =>
+        '<li><span class="rol">' + escapar(i.rol) + '</span><br>' +
+        '<span class="s">' + escapar(i.s) + '</span> · ' + escapar(i.n) + '<br>' +
+        escapar(i.d) + ' <span class="med">(' + escapar(i.med) + ')</span>' +
+        (i.guia ? '' : '<br><span class="med">Fuente: ' + escapar(i.fuente || "") + '</span>') +
+        '</li>').join("") + '</ul>'
+    : '<p style="margin:0">Ninguna de las fuentes de esta guía describe un instrumento para esta variable. El vacío es información: antes de usar uno, hay que respaldarlo.</p>';
+  return '<div class="caja"><span class="r">Instrumentos de evaluación</span>' + cuerpo +
+    (ins.some(i => i.guia) ? '<p style="margin:8px 0 0; font-size:12.5px">Los que están en la <a href="pruebas-tamizaje.html">guía de tamizaje</a> traen allí su acceso y sus notas de uso.</p>' : "") +
+    '</div>';
+}
+
 function textoPlan(v, p){
+  const m = modeloDe(p);
   const partes = [v.t, ENFOQUES[p.enf].et, ENFOQUES[p.enf].largo, p.t, p.cuando, p.respaldo,
     p.medir.join(" "), p.adapt.join(" "), p.cuidado.join(" ")];
+  if (m) partes.push(m.t, m.autor, m.d, (m.dim || []).join(" "));
+  instrumentosDe(p).forEach(i => partes.push(i.s, i.n, i.d));
   p.actividades.forEach(a => partes.push(a.t, a.tec, a.obj, a.pasos.join(" ")));
   return normalizar(partes.join(" "));
 }
@@ -4067,20 +4438,23 @@ function pintarPlan(v, p, vi){
     '<div class="plan-cab">' +
       '<span class="insignia">' + escapar(enf.largo) + '</span>' +
       '<h4>' + escapar(p.t) + '</h4>' +
+      '<button class="exp-boton" type="button" data-exp="' + p.id + '">Exportar este plan</button>' +
     '</div>' +
     '<div class="plan-fuente"><strong>Fuente principal:</strong> ' + escapar(p.fuente) + '</div>' +
+    '<div class="exportador" id="exp-' + p.id + '" hidden></div>' +
     '<div class="meta">' +
       '<div class="caja"><span class="r">Cuándo elegirlo</span>' + p.cuando + '</div>' +
       '<div class="caja"><span class="r">Qué lo respalda</span>' + p.respaldo + '</div>' +
     '</div>' +
+    pintarModelo(p) +
     '<p class="secuencia">' + p.secuencia + '</p>' +
     '<div class="escs"><span class="r" style="margin:0 4px 0 0">Escenarios con respaldo</span>' +
       p.esc.map(e => '<span class="e">' + escapar(ET_ESC[e]) + '</span>').join("") +
     '</div>' +
     '<ol class="acts">' + p.actividades.map(pintarActividad).join("") + '</ol>' +
     '<div class="cierre">' +
-      '<div class="caja"><span class="r">Cómo medir el cambio</span>' + lista(p.medir) +
-        '<p style="margin:8px 0 0; font-size:13px">Los instrumentos en negrita están en la <a href="pruebas-tamizaje.html">guía de tamizaje</a>.</p></div>' +
+      pintarInstrumentos(p) +
+      '<div class="caja"><span class="r">Cómo medir el cambio</span>' + lista(p.medir) + '</div>' +
       '<div class="caja"><span class="r">Adaptaciones por escenario</span>' + lista(p.adapt) + '</div>' +
       '<div class="caja"><span class="r">Precauciones</span>' + lista(p.cuidado) + '</div>' +
     '</div>' +
@@ -4280,6 +4654,163 @@ window.addEventListener("afterprint", () => {
   document.querySelectorAll(".variable").forEach((v, i) => v.open = estadoPrevio[i]);
   estadoPrevio = null;
 });
+
+/* ============================================================
+   EXPORTADOR DE UN PLAN
+
+   Un plan se comparte con quien va a trabajar esa variable, y no
+   siempre completo: a veces bastan las actividades. Por eso cada
+   componente entra o sale con una casilla, como las notas en las
+   herramientas. La hoja se arma con lo marcado, se imprime sola y
+   cierra con las referencias en APA de lo que quedó dentro.
+   ============================================================ */
+const COMPONENTES = [
+  { k: "cuando",  et: "Cuándo elegirlo y respaldo", def: true },
+  { k: "modelo",  et: "Modelo teórico",             def: true },
+  { k: "inst",    et: "Instrumentos",               def: true },
+  { k: "acts",    et: "Actividades",                def: true },
+  { k: "medir",   et: "Cómo medir el cambio",       def: false },
+  { k: "adapt",   et: "Adaptaciones",               def: false },
+  { k: "cuidado", et: "Precauciones",               def: true },
+  { k: "notas",   et: "Notas del profesional",      def: false },
+  { k: "refs",    et: "Referencias en APA",         def: true }
+];
+
+const planPorId = id => {
+  for (const v of VARIABLES){
+    const p = v.planes.find(x => x.id === id);
+    if (p) return { v, p };
+  }
+  return null;
+};
+
+const LLAVE_NOTAS = id => "planes-notas-" + id;
+function leerNotas(id){
+  try { return localStorage.getItem(LLAVE_NOTAS(id)) || ""; } catch (e) { return ""; }
+}
+function guardarNotas(id, txt){
+  try { txt ? localStorage.setItem(LLAVE_NOTAS(id), txt) : localStorage.removeItem(LLAVE_NOTAS(id)); } catch (e) {}
+}
+
+function pintarExportador(id){
+  const caja = $("exp-" + id);
+  if (caja.dataset.listo) return caja;
+  caja.innerHTML =
+    '<span class="r">Qué incluir en el PDF</span>' +
+    '<div class="exp-ops">' +
+      COMPONENTES.map(c =>
+        '<label><input type="checkbox" data-c="' + c.k + '"' + (c.def ? " checked" : "") + '>' + c.et + '</label>'
+      ).join("") +
+    '</div>' +
+    '<textarea data-notas placeholder="Notas del profesional: para qué se comparte, qué ajustar al caso, qué revisar en la próxima supervisión."></textarea>' +
+    '<div class="exp-pie">' +
+      '<button type="button" class="principal" data-imprimir>Imprimir / Guardar PDF</button>' +
+      '<button type="button" data-cerrar>Cerrar</button>' +
+      '<span class="nota">En el diálogo de impresión, elijan «Guardar como PDF».</span>' +
+    '</div>';
+  caja.querySelector("[data-notas]").value = leerNotas(id);
+  caja.dataset.listo = "1";
+  return caja;
+}
+
+function opcionesDe(caja){
+  const o = {};
+  caja.querySelectorAll("[data-c]").forEach(c => { o[c.dataset.c] = c.checked; });
+  return o;
+}
+
+function hojaActividad(a){
+  return '<div class="h-act">' +
+    '<div class="tec">' + escapar(a.tec) + '</div>' +
+    '<div class="t">' + escapar(a.t) + '</div>' +
+    '<div>' + escapar(a.obj) + '</div>' +
+    '<ul>' + a.pasos.map(s => '<li>' + escapar(s) + '</li>').join("") + '</ul>' +
+    '<div><em>Entre sesiones:</em> ' + escapar(a.casa) + '</div>' +
+  '</div>';
+}
+
+/* Las referencias del PDF son las de lo que se exportó, no las de toda
+   la guía: se buscan las claves de REFERENCIAS dentro del texto incluido. */
+function referenciasDe(texto){
+  return REFERENCIAS.filter(r => texto.indexOf(r.k) !== -1);
+}
+
+function construirHoja(id, o, notas){
+  const par = planPorId(id); if (!par) return;
+  const v = par.v, p = par.p, enf = ENFOQUES[p.enf], m = modeloDe(p), ins = instrumentosDe(p);
+  const trozos = [];   // texto plano para rastrear las referencias citadas
+  let h = '<div class="h-cab">' +
+      '<div class="h-var">' + escapar(v.t) + '</div>' +
+      '<h1>' + escapar(p.t) + '</h1>' +
+      '<div class="h-sub">' + escapar(enf.largo) + ' · Fuente principal: ' + escapar(p.fuente) + '</div>' +
+    '</div>';
+  trozos.push(p.fuente);
+
+  if (o.cuando){
+    h += '<h2>Cuándo elegirlo</h2><p>' + p.cuando + '</p>' +
+         '<h2>Qué lo respalda</h2><p>' + p.respaldo + '</p>';
+    trozos.push(p.cuando, p.respaldo);
+  }
+  if (o.modelo && m){
+    h += '<h2>Modelo teórico</h2>' +
+      '<p><span class="h-mod">' + escapar(m.t) + '</span> · ' + escapar(m.autor) + '</p>' +
+      '<p>' + escapar(m.d) + '</p>' +
+      (m.dim ? '<p><em>Dimensiones:</em> ' + escapar(m.dim.join(" · ")) + '</p>' : "") +
+      '<p><em>Fuente:</em> ' + escapar(m.fuente) + '</p>';
+    trozos.push(m.fuente);
+  }
+  if (o.inst){
+    h += '<h2>Instrumentos</h2>';
+    h += ins.length
+      ? '<ul>' + ins.map(i => '<li><strong>' + escapar(i.s) + '</strong> · ' + escapar(i.n) +
+          ' — ' + escapar(i.rol.toLowerCase()) + '. ' + escapar(i.d) + ' (' + escapar(i.med) + ')' +
+          (i.guia ? "" : ' <em>' + escapar(i.fuente || "") + '</em>') + '</li>').join("") + '</ul>'
+      : '<p>Ninguna de las fuentes de esta guía describe un instrumento para esta variable.</p>';
+    ins.forEach(i => trozos.push(i.fuente || ""));
+  }
+  if (o.acts){
+    h += '<h2>Actividades</h2><div class="h-acts">' + p.actividades.map(hojaActividad).join("") + '</div>';
+    p.actividades.forEach(a => trozos.push(a.fuente));
+  }
+  if (o.medir){ h += '<h2>Cómo medir el cambio</h2><ul>' + p.medir.map(x => '<li>' + x + '</li>').join("") + '</ul>'; trozos.push(p.medir.join(" ")); }
+  if (o.adapt){ h += '<h2>Adaptaciones por escenario</h2><ul>' + p.adapt.map(x => '<li>' + x + '</li>').join("") + '</ul>'; trozos.push(p.adapt.join(" ")); }
+  if (o.cuidado){ h += '<h2>Precauciones</h2><ul>' + p.cuidado.map(x => '<li>' + x + '</li>').join("") + '</ul>'; trozos.push(p.cuidado.join(" ")); }
+  if (o.notas && notas.trim()){ h += '<h2>Notas del profesional</h2><div class="h-notas">' + escapar(notas.trim()) + '</div>'; }
+
+  if (o.refs){
+    const refs = referenciasDe(trozos.join(" "));
+    if (refs.length) h += '<h2>Referencias</h2><ol class="h-refs">' + refs.map(r => '<li>' + r.ref + '</li>').join("") + '</ol>';
+  }
+  h += '<div class="h-pie">Guía de planes de intervención por variable psicológica · ' +
+       'Escenarios con respaldo: ' + p.esc.map(e => escapar(ET_ESC[e])).join(", ") + '.</div>';
+  $("hoja").innerHTML = h;
+}
+
+document.addEventListener("click", ev => {
+  const abrir = ev.target.closest("[data-exp]");
+  if (abrir){
+    const caja = pintarExportador(abrir.dataset.exp);
+    caja.hidden = !caja.hidden;
+    if (!caja.hidden) caja.querySelector("[data-notas]").focus({ preventScroll: true });
+    return;
+  }
+  const caja = ev.target.closest(".exportador");
+  if (!caja) return;
+  const id = caja.id.replace("exp-", "");
+  if (ev.target.closest("[data-cerrar]")){ caja.hidden = true; return; }
+  if (ev.target.closest("[data-imprimir]")){
+    const notas = caja.querySelector("[data-notas]").value;
+    guardarNotas(id, notas);
+    construirHoja(id, opcionesDe(caja), notas);
+    document.body.dataset.hoja = "1";
+    window.print();
+  }
+});
+document.addEventListener("change", ev => {
+  const t = ev.target.closest(".exportador [data-notas]");
+  if (t) guardarNotas(t.closest(".exportador").id.replace("exp-", ""), t.value);
+});
+window.addEventListener("afterprint", () => { delete document.body.dataset.hoja; });
 
 /* ============================================================
    PIE
