@@ -373,6 +373,9 @@ footer li{margin-bottom:6px;}
    HOJA DE EXPORTACIÓN
    Se arma con los componentes marcados y solo existe al imprimir.
    ============================================================ */
+a.cita{color:inherit; text-decoration:underline; text-decoration-color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px;}
+a.cita:hover{color:var(--accent-dark);}
+#hoja a{color:var(--accent-dark);}
 #hoja{display:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
 #hoja .h-cab{border-bottom:2px solid var(--enf); padding-bottom:6px; margin-bottom:9px;}
 #hoja .h-var{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--enf);}
@@ -777,39 +780,39 @@ const CATEGORIAS = [
 /* Claves de las fuentes: la cita corta de cada actividad remite a la
    lista de referencias del pie. */
 const REFERENCIAS = [
-  { k: "Applebaum et al., 2026", ref: "Applebaum, A. J., Walsh, L. E., Zaider, T., Baser, R. E., Loschiavo, M. J., Breitbart, W. S. y Lichtenthal, W. G. (2026). Meaning-Centered Psychotherapy for Cancer Caregivers: Study protocol of a randomized controlled trial. <em>Trials, 27</em>, 336. https://doi.org/10.1186/s13063-026-09621-7" },
-  { k: "Bolier et al.", ref: "Bolier, L., Haverman, M., Westerhof, G. J., Riper, H., Smit, F. y Bohlmeijer, E. (2013). Positive psychology interventions: A meta-analysis of randomized controlled studies. <em>BMC Public Health, 13</em>, 119. https://doi.org/10.1186/1471-2458-13-119" },
-  { k: "Breitbart et al., 2015", ref: "Breitbart, W., Rosenfeld, B., Pessin, H., Applebaum, A., Kulikowski, J. y Lichtenthal, W. G. (2015). Meaning-centered group psychotherapy: An effective intervention for improving psychological well-being in patients with advanced cancer. <em>Journal of Clinical Oncology, 33</em>(7), 749–754. https://doi.org/10.1200/JCO.2014.57.2198" },
-  { k: "Cerón et al., 2011", ref: "Cerón Perdomo, D. M., Pérez-Olmos, I. e Ibáñez Pinilla, M. (2011). Inteligencia emocional en adolescentes de dos colegios de Bogotá. <em>Revista Colombiana de Psiquiatría, 40</em>(1), 49–64." },
-  { k: "Chakhssi et al.", ref: "Chakhssi, F., Kraiss, J. T., Sommers-Spijkerman, M. y Bohlmeijer, E. T. (2018). The effect of positive psychology interventions on well-being and distress in clinical samples with psychiatric or somatic disorders: A systematic review and meta-analysis. <em>BMC Psychiatry, 18</em>, 211. https://doi.org/10.1186/s12888-018-1739-2" },
+  { k: "Applebaum et al., 2026", url: "https://doi.org/10.1186/s13063-026-09621-7", ref: "Applebaum, A. J., Walsh, L. E., Zaider, T., Baser, R. E., Loschiavo, M. J., Breitbart, W. S. y Lichtenthal, W. G. (2026). Meaning-Centered Psychotherapy for Cancer Caregivers: Study protocol of a randomized controlled trial. <em>Trials, 27</em>, 336. https://doi.org/10.1186/s13063-026-09621-7" },
+  { k: "Bolier et al.", url: "https://doi.org/10.1186/1471-2458-13-119", ref: "Bolier, L., Haverman, M., Westerhof, G. J., Riper, H., Smit, F. y Bohlmeijer, E. (2013). Positive psychology interventions: A meta-analysis of randomized controlled studies. <em>BMC Public Health, 13</em>, 119. https://doi.org/10.1186/1471-2458-13-119" },
+  { k: "Breitbart et al., 2015", url: "https://doi.org/10.1200/JCO.2014.57.2198", ref: "Breitbart, W., Rosenfeld, B., Pessin, H., Applebaum, A., Kulikowski, J. y Lichtenthal, W. G. (2015). Meaning-centered group psychotherapy: An effective intervention for improving psychological well-being in patients with advanced cancer. <em>Journal of Clinical Oncology, 33</em>(7), 749–754. https://doi.org/10.1200/JCO.2014.57.2198" },
+  { k: "Cerón et al., 2011", url: "https://doi.org/10.1016/S0034-7450(14)60104-9", ref: "Cerón Perdomo, D. M., Pérez-Olmos, I. e Ibáñez Pinilla, M. (2011). Inteligencia emocional en adolescentes de dos colegios de Bogotá. <em>Revista Colombiana de Psiquiatría, 40</em>(1), 49–64. https://doi.org/10.1016/S0034-7450(14)60104-9" },
+  { k: "Chakhssi et al.", url: "https://doi.org/10.1186/s12888-018-1739-2", ref: "Chakhssi, F., Kraiss, J. T., Sommers-Spijkerman, M. y Bohlmeijer, E. T. (2018). The effect of positive psychology interventions on well-being and distress in clinical samples with psychiatric or somatic disorders: A systematic review and meta-analysis. <em>BMC Psychiatry, 18</em>, 211. https://doi.org/10.1186/s12888-018-1739-2" },
   { k: "Cifuentes", ref: "Cifuentes, A. (s. f.). <em>Diseños de programas de intervención en psicología clínica y de la salud</em> [Diapositivas de clase]." },
   { k: "Deza, 2007", ref: "Deza Villanueva, S. (2007). Intervención en crisis: primeros auxilios psicológicos. <em>Temática Psicológica, 3</em>(1), 37–43." },
   { k: "Díaz Corbobés", ref: "Díaz Corbobés, J. L. (s. f.). <em>Terapia de aceptación y compromiso</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
-  { k: "Díaz et al., 2006", ref: "Díaz, D., Rodríguez-Carvajal, R., Blanco, A., Moreno-Jiménez, B., Gallardo, I., Valle, C. y van Dierendonck, D. (2006). Adaptación española de las escalas de bienestar psicológico de Ryff. <em>Psicothema, 18</em>(3), 572–577." },
-  { k: "Ekers et al., 2014", ref: "Ekers, D., Webster, L., Van Straten, A., Cuijpers, P., Richards, D. y Gilbody, S. (2014). Behavioural activation for depression: An update of meta-analysis of effectiveness and sub group analysis. <em>PLoS ONE, 9</em>(6), e100100. https://doi.org/10.1371/journal.pone.0100100" },
+  { k: "Díaz et al., 2006", url: "https://www.redalyc.org/articulo.oa?id=72718337", ref: "Díaz, D., Rodríguez-Carvajal, R., Blanco, A., Moreno-Jiménez, B., Gallardo, I., Valle, C. y van Dierendonck, D. (2006). Adaptación española de las escalas de bienestar psicológico de Ryff. <em>Psicothema, 18</em>(3), 572–577. https://www.redalyc.org/articulo.oa?id=72718337" },
+  { k: "Ekers et al., 2014", url: "https://doi.org/10.1371/journal.pone.0100100", ref: "Ekers, D., Webster, L., Van Straten, A., Cuijpers, P., Richards, D. y Gilbody, S. (2014). Behavioural activation for depression: An update of meta-analysis of effectiveness and sub group analysis. <em>PLoS ONE, 9</em>(6), e100100. https://doi.org/10.1371/journal.pone.0100100" },
   { k: "Elices", ref: "Elices, M. (s. f.). <em>Terapia dialéctico-conductual</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
-  { k: "FICR, 2022", ref: "Centro de Referencia para el Apoyo Psicosocial de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. (2022). <em>Thinking Healthy: A training guide for psychosocial management of perinatal depression</em>. Basada en Organización Mundial de la Salud (2015), <em>Thinking healthy: A manual for psychosocial management of perinatal depression</em> (versión genérica de prueba de campo 1.0)." },
-  { k: "Gloster et al., 2020", ref: "Gloster, A. T., Walder, N., Levin, M. E., Twohig, M. P. y Karekla, M. (2020). The empirical status of acceptance and commitment therapy: A review of meta-analyses. <em>Journal of Contextual Behavioral Science, 18</em>, 181–192. https://doi.org/10.1016/j.jcbs.2020.09.009" },
-  { k: "González et al., 2020", ref: "González, R., Custodio, J. y Abal, F. (2020). Propiedades psicométricas del Trait Meta-Mood Scale-24 en estudiantes universitarios argentinos. <em>Psicogente, 23</em>(44), 1–26. https://doi.org/10.17081/psico.23.44.3469" },
-  { k: "Kuyken et al., 2016", ref: "Kuyken, W., Warren, F. C., Taylor, R. S., Whalley, B., Crane, C., Bondolfi, G., … Dalgleish, T. (2016). Efficacy of mindfulness-based cognitive therapy in prevention of depressive relapse: An individual patient data meta-analysis from randomized trials. <em>JAMA Psychiatry, 73</em>(6), 565–574. https://doi.org/10.1001/jamapsychiatry.2016.0076" },
+  { k: "FICR, 2022", url: "https://mhpsshub.org/wp-content/uploads/2023/01/Thinking-Healthy-Interractive-for-web.pdf", ref: "Centro de Referencia para el Apoyo Psicosocial de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. (2022). <em>Thinking Healthy: A training guide for psychosocial management of perinatal depression</em>. Basada en Organización Mundial de la Salud (2015), <em>Thinking healthy: A manual for psychosocial management of perinatal depression</em> (versión genérica de prueba de campo 1.0). https://mhpsshub.org/wp-content/uploads/2023/01/Thinking-Healthy-Interractive-for-web.pdf" },
+  { k: "Gloster et al., 2020", url: "https://doi.org/10.1016/j.jcbs.2020.09.009", ref: "Gloster, A. T., Walder, N., Levin, M. E., Twohig, M. P. y Karekla, M. (2020). The empirical status of acceptance and commitment therapy: A review of meta-analyses. <em>Journal of Contextual Behavioral Science, 18</em>, 181–192. https://doi.org/10.1016/j.jcbs.2020.09.009" },
+  { k: "González et al., 2020", url: "https://doi.org/10.17081/psico.23.44.3469", ref: "González, R., Custodio, J. y Abal, F. (2020). Propiedades psicométricas del Trait Meta-Mood Scale-24 en estudiantes universitarios argentinos. <em>Psicogente, 23</em>(44), 1–26. https://doi.org/10.17081/psico.23.44.3469" },
+  { k: "Kuyken et al., 2016", url: "https://doi.org/10.1001/jamapsychiatry.2016.0076", ref: "Kuyken, W., Warren, F. C., Taylor, R. S., Whalley, B., Crane, C., Bondolfi, G., … Dalgleish, T. (2016). Efficacy of mindfulness-based cognitive therapy in prevention of depressive relapse: An individual patient data meta-analysis from randomized trials. <em>JAMA Psychiatry, 73</em>(6), 565–574. https://doi.org/10.1001/jamapsychiatry.2016.0076" },
   { k: "Linehan, 2020", ref: "Linehan, M. M. (2020). <em>Manual de entrenamiento en habilidades DBT para el/la terapeuta</em> (P. Gagliesi, Rev. y Trad.). Editorial de la Universidad Nacional de La Plata. (Trabajo original publicado en 2014)." },
-  { k: "Livneh y Antonak, 2005", ref: "Livneh, H. y Antonak, R. F. (2005). Psychosocial adaptation to chronic illness and disability: A primer for counselors. <em>Journal of Counseling &amp; Development, 83</em>(1), 12–20. https://doi.org/10.1002/j.1556-6678.2005.tb00575.x" },
+  { k: "Livneh y Antonak, 2005", url: "https://doi.org/10.1002/j.1556-6678.2005.tb00575.x", ref: "Livneh, H. y Antonak, R. F. (2005). Psychosocial adaptation to chronic illness and disability: A primer for counselors. <em>Journal of Counseling &amp; Development, 83</em>(1), 12–20. https://doi.org/10.1002/j.1556-6678.2005.tb00575.x" },
   { k: "Marlatt y Donovan", ref: "Marlatt, G. A. y Donovan, D. M. (Eds.). (2005). <em>Relapse prevention: Maintenance strategies in the treatment of addictive behaviors</em> (2.ª ed.). Guilford Press." },
-  { k: "Maroto Navarro et al., 2005", ref: "Maroto Navarro, G., García Calvente, M. M. y Fernández Parra, A. (2005). Evaluación del estado de ánimo en el puerperio con la Escala de Depresión Postnatal de Edimburgo. <em>International Journal of Clinical and Health Psychology, 5</em>(2), 305–318." },
-  { k: "OMS, 2003", ref: "Organización Mundial de la Salud. (2003). <em>Adherence to long-term therapies: Evidence for action</em> (E. Sabaté, Ed.). OMS." },
-  { k: "OMS, 2017", ref: "Organización Mundial de la Salud. (2017). <em>Integrated care for older people: Guidelines on community-level interventions to manage declines in intrinsic capacity</em>. OMS." },
-  { k: "OMS, 2023", ref: "Organización Mundial de la Salud. (2023). <em>Mental Health Gap Action Programme (mhGAP) guideline for mental, neurological and substance use disorders</em>. OMS." },
-  { k: "OPS, 2017", ref: "Organización Panamericana de la Salud. (2017). <em>Guía de intervención mhGAP para los trastornos mentales, neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada</em> (versión 2.0). OPS." },
-  { k: "Rodríguez de Behrends y Brenlla, 2015", ref: "Rodríguez de Behrends, M. y Brenlla, M. E. (2015). Adaptación para Buenos Aires de la Escala de Intolerancia a la Incertidumbre. <em>Interdisciplinaria, 32</em>(2), 261–274." },
+  { k: "Maroto Navarro et al., 2005", url: "https://www.aepc.es/ijchp/articulos_pdf/ijchp-146.pdf", ref: "Maroto Navarro, G., García Calvente, M. M. y Fernández Parra, A. (2005). Evaluación del estado de ánimo en el puerperio con la Escala de Depresión Postnatal de Edimburgo. <em>International Journal of Clinical and Health Psychology, 5</em>(2), 305–318. https://www.aepc.es/ijchp/articulos_pdf/ijchp-146.pdf" },
+  { k: "OMS, 2003", url: "https://iris.who.int/handle/10665/42682", ref: "Organización Mundial de la Salud. (2003). <em>Adherence to long-term therapies: Evidence for action</em> (E. Sabaté, Ed.). OMS. https://iris.who.int/handle/10665/42682" },
+  { k: "OMS, 2017", url: "https://iris.who.int/handle/10665/258981", ref: "Organización Mundial de la Salud. (2017). <em>Integrated care for older people: Guidelines on community-level interventions to manage declines in intrinsic capacity</em>. OMS. https://iris.who.int/handle/10665/258981" },
+  { k: "OMS, 2023", url: "https://www.who.int/publications/i/item/9789240084278", ref: "Organización Mundial de la Salud. (2023). <em>Mental Health Gap Action Programme (mhGAP) guideline for mental, neurological and substance use disorders</em>. OMS. https://www.who.int/publications/i/item/9789240084278" },
+  { k: "OPS, 2017", url: "https://iris.paho.org/items/732dc5f7-fbc2-48eb-8022-1aecbfe99daa", ref: "Organización Panamericana de la Salud. (2017). <em>Guía de intervención mhGAP para los trastornos mentales, neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada</em> (versión 2.0). OPS. https://iris.paho.org/items/732dc5f7-fbc2-48eb-8022-1aecbfe99daa" },
+  { k: "Rodríguez de Behrends y Brenlla, 2015", url: "https://doi.org/10.16888/interd.2015.32.2.4", ref: "Rodríguez de Behrends, M. y Brenlla, M. E. (2015). Adaptación para Buenos Aires de la Escala de Intolerancia a la Incertidumbre. <em>Interdisciplinaria, 32</em>(2), 261–274. https://doi.org/10.16888/interd.2015.32.2.4" },
   { k: "Ruiz et al.", ref: "Ruiz Fernández, M. Á., Díaz García, M. I. y Villalobos Crespo, A. (2012). <em>Manual de técnicas de intervención cognitivo conductuales</em>. Desclée De Brouwer." },
-  { k: "Saldivia et al.", ref: "Saldivia, S., Aslan, J., Castillo-Carreño, A., Petkari, E. y Pietschnig, J. (2026). A meta-analysis of preventive psychosocial interventions against depressive and anxiety symptoms in older adults. <em>Psychological Medicine, 56</em>, e151. https://doi.org/10.1017/S0033291726104607" },
-  { k: "Salovey y Mayer, 1990", ref: "Salovey, P. y Mayer, J. D. (1990). Emotional intelligence. <em>Imagination, Cognition and Personality, 9</em>(3), 185–211. https://doi.org/10.2190/DUGG-P24E-52WK-6CDG" },
-  { k: "Seidah et al., 2007", ref: "Seidah, A., Dugas, M. J. y Leblanc, R. (2007). El tratamiento cognitivo comportamental del TAG: modelo conceptual y casos clínicos. <em>Revista Argentina de Clínica Psicológica, 16</em>(1), 39–48." },
-  { k: "Seligman et al., 2005", ref: "Seligman, M. E. P., Steen, T. A., Park, N. y Peterson, C. (2005). Positive psychology progress: Empirical validation of interventions. <em>American Psychologist, 60</em>(5), 410–421. https://doi.org/10.1037/0003-066X.60.5.410" },
-  { k: "Seligman et al., 2006", ref: "Seligman, M. E. P., Rashid, T. y Parks, A. C. (2006). Positive psychotherapy. <em>American Psychologist, 61</em>(8), 774–788. https://doi.org/10.1037/0003-066X.61.8.774" },
-  { k: "Stoffers-Winterling et al., 2022", ref: "Stoffers-Winterling, J. M., Storebø, O. J., Kongerslev, M. T., Faltinsen, E., Todorovac, A., Sedoc Jørgensen, M., … Lieb, K. (2022). Psychotherapies for borderline personality disorder: A focused systematic review and meta-analysis. <em>The British Journal of Psychiatry, 221</em>(3), 538–552. https://doi.org/10.1192/bjp.2021.204" },
-  { k: "Vergara-Romero et al., 2017", ref: "Vergara-Romero, M., Morales-Asencio, J. M., Morales-Fernández, A., Canca-Sánchez, J. C., Rivas-Ruiz, F. y Reinaldo-Lapuerta, J. A. (2017). Validation of the Spanish version of the Amsterdam Preoperative Anxiety and Information Scale (APAIS). <em>Health and Quality of Life Outcomes, 15</em>, 120. https://doi.org/10.1186/s12955-017-0695-8" },
-  { k: "White et al.", ref: "White, C. A., Uttl, B. y Holder, M. D. (2019). Meta-analyses of positive psychology interventions: The effects are much smaller than previously reported. <em>PLoS ONE, 14</em>(5), e0216588. https://doi.org/10.1371/journal.pone.0216588" }
+  { k: "Saldivia et al.", url: "https://doi.org/10.1017/S0033291726104607", ref: "Saldivia, S., Aslan, J., Castillo-Carreño, A., Petkari, E. y Pietschnig, J. (2026). A meta-analysis of preventive psychosocial interventions against depressive and anxiety symptoms in older adults. <em>Psychological Medicine, 56</em>, e151. https://doi.org/10.1017/S0033291726104607" },
+  { k: "Salovey y Mayer, 1990", url: "https://doi.org/10.2190/DUGG-P24E-52WK-6CDG", ref: "Salovey, P. y Mayer, J. D. (1990). Emotional intelligence. <em>Imagination, Cognition and Personality, 9</em>(3), 185–211. https://doi.org/10.2190/DUGG-P24E-52WK-6CDG" },
+  { k: "Seidah et al., 2007", url: "https://www.redalyc.org/articulo.oa?id=281921832005", ref: "Seidah, A., Dugas, M. J. y Leblanc, R. (2007). El tratamiento cognitivo comportamental del TAG: modelo conceptual y casos clínicos. <em>Revista Argentina de Clínica Psicológica, 16</em>(1), 39–48. https://www.redalyc.org/articulo.oa?id=281921832005" },
+  { k: "Seligman et al., 2005", url: "https://doi.org/10.1037/0003-066X.60.5.410", ref: "Seligman, M. E. P., Steen, T. A., Park, N. y Peterson, C. (2005). Positive psychology progress: Empirical validation of interventions. <em>American Psychologist, 60</em>(5), 410–421. https://doi.org/10.1037/0003-066X.60.5.410" },
+  { k: "Seligman et al., 2006", url: "https://doi.org/10.1037/0003-066X.61.8.774", ref: "Seligman, M. E. P., Rashid, T. y Parks, A. C. (2006). Positive psychotherapy. <em>American Psychologist, 61</em>(8), 774–788. https://doi.org/10.1037/0003-066X.61.8.774" },
+  { k: "Stoffers-Winterling et al., 2022", url: "https://doi.org/10.1192/bjp.2021.204", ref: "Stoffers-Winterling, J. M., Storebø, O. J., Kongerslev, M. T., Faltinsen, E., Todorovac, A., Sedoc Jørgensen, M., … Lieb, K. (2022). Psychotherapies for borderline personality disorder: A focused systematic review and meta-analysis. <em>The British Journal of Psychiatry, 221</em>(3), 538–552. https://doi.org/10.1192/bjp.2021.204" },
+  { k: "Vergara-Romero et al., 2017", url: "https://doi.org/10.1186/s12955-017-0695-8", ref: "Vergara-Romero, M., Morales-Asencio, J. M., Morales-Fernández, A., Canca-Sánchez, J. C., Rivas-Ruiz, F. y Reinaldo-Lapuerta, J. A. (2017). Validation of the Spanish version of the Amsterdam Preoperative Anxiety and Information Scale (APAIS). <em>Health and Quality of Life Outcomes, 15</em>, 120. https://doi.org/10.1186/s12955-017-0695-8" },
+  { k: "White et al.", url: "https://doi.org/10.1371/journal.pone.0216588", ref: "White, C. A., Uttl, B. y Holder, M. D. (2019). Meta-analyses of positive psychology interventions: The effects are much smaller than previously reported. <em>PLoS ONE, 14</em>(5), e0216588. https://doi.org/10.1371/journal.pone.0216588" }
 ];
 
 const VARIABLES = [
@@ -5416,6 +5419,42 @@ function lista(items){
 
 /* El modelo teórico y los instrumentos son datos compartidos: varios planes
    citan el mismo modelo y el mismo instrumento, y así se escriben una vez. */
+/* Enlaces a las fuentes. Cada cita con DOI o página oficial se vuelve un
+   enlace, en la guía y en la hoja exportada; los manuales comerciales o de
+   uso restringido no tienen enlace público y quedan como texto. Se hace
+   sobre los nodos de texto ya pintados para no tocar los datos ni el HTML
+   de cada campo. */
+const REF_URL = Object.fromEntries(REFERENCIAS.filter(r => r.url).map(r => [r.k, r.url]));
+const CITA_RE = new RegExp(Object.keys(REF_URL).sort((a, b) => b.length - a.length)
+  .map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
+
+function enlazarCitas(raiz){
+  const recorrido = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => n.parentElement.closest("a, .h-refs, textarea, button")
+      ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+  });
+  const nodos = [];
+  while (recorrido.nextNode()) if (recorrido.currentNode.data.search(CITA_RE) !== -1) nodos.push(recorrido.currentNode);
+  nodos.forEach(n => {
+    const frag = document.createDocumentFragment();
+    let ultimo = 0;
+    n.data.replace(CITA_RE, (k, pos) => {
+      frag.append(n.data.slice(ultimo, pos));
+      const a = document.createElement("a");
+      a.href = REF_URL[k]; a.target = "_blank"; a.rel = "noopener"; a.className = "cita";
+      a.textContent = k;
+      frag.append(a);
+      ultimo = pos + k.length;
+    });
+    frag.append(n.data.slice(ultimo));
+    n.replaceWith(frag);
+  });
+  CITA_RE.lastIndex = 0;
+}
+
+// En la lista de referencias, el DOI o la dirección se vuelve enlace.
+const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.url + '</a>') : r.ref;
+
 const modeloDe = p => MODELOS[p.mod] || null;
 const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
 
@@ -5528,6 +5567,7 @@ $("variables").innerHTML = VARIABLES.map((v, vi) => {
   }
   return cab + pintarVariable(v, vi);
 }).join("");
+enlazarCitas($("variables"));
 
 $("indice").innerHTML = CATEGORIAS.map((c, i) =>
   '<a href="#cat' + i + '" data-cat="' + escapar(c.t) + '">' + escapar(c.t) +
@@ -5810,11 +5850,12 @@ function construirHoja(id, o, notas){
 
   if (o.refs){
     const refs = referenciasDe(trozos.join(" "));
-    if (refs.length) h += '<h2>Referencias</h2><ol class="h-refs">' + refs.map(r => '<li>' + r.ref + '</li>').join("") + '</ol>';
+    if (refs.length) h += '<h2>Referencias</h2><ol class="h-refs">' + refs.map(r => '<li>' + refHTML(r) + '</li>').join("") + '</ol>';
   }
   h += '<div class="h-pie">Guía de planes de intervención por variable psicológica · ' +
        'Escenarios con respaldo: ' + p.esc.map(e => escapar(ET_ESC[e])).join(", ") + '.</div>';
   $("hoja").innerHTML = h;
+  enlazarCitas($("hoja"));
 }
 
 document.addEventListener("click", ev => {
@@ -5857,7 +5898,7 @@ $("pie").innerHTML =
   "<br><br>La guía orienta la planificación y no reemplaza la formulación del caso: " +
   "<strong>un plan se ajusta a la persona</strong>, se aplica con supervisión y se evalúa " +
   "con medidas antes y después." +
-  "<h2>Referencias</h2><ol>" + REFERENCIAS.map(r => "<li>" + r.ref + "</li>").join("") + "</ol>";
+  "<h2>Referencias</h2><ol>" + REFERENCIAS.map(r => "<li>" + refHTML(r) + "</li>").join("") + "</ol>";
 
 aplicar();
 </script>
