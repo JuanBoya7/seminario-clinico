@@ -76,6 +76,76 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .aviso li:last-child{margin-bottom:0;}
 
 /* ============================================================
+   DISTRIBUCIÓN
+   En pantallas anchas la página usa todo el ancho: los filtros van
+   en la columna izquierda y el mapa de la guía en la derecha, las dos
+   fijas mientras se recorre el centro. En pantallas medianas y en el
+   teléfono vuelve la barra de filtros arriba y el mapa se oculta.
+   ============================================================ */
+.pagina{display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:"cab" "izq" "centro";}
+.cab{grid-area:cab;}
+/* En angosto el riel no existe como caja: la barra de filtros es hija
+   directa de la página y puede quedar fija arriba, como antes. */
+.riel-izq{display:contents;}
+.riel-izq > .controles{grid-area:izq;}
+.centro{grid-area:centro; min-width:0;}
+.riel-der{display:none;}
+
+@media (min-width:1280px){
+  .pagina{
+    max-width:none; padding-left:clamp(20px,2vw,36px); padding-right:clamp(20px,2vw,36px);
+    grid-template-columns:clamp(236px,17vw,290px) minmax(0,1fr) clamp(236px,17vw,290px);
+    grid-template-areas:"izq cab der" "izq centro der";
+    grid-template-rows:auto 1fr;
+    column-gap:clamp(24px,2.4vw,44px);
+  }
+  .riel-izq, .riel-der{display:block;}
+  .riel-izq{grid-area:izq;}
+  .riel-der{grid-area:der;}
+  .riel-izq .controles, .riel-der .mapa{
+    position:sticky; top:20px; max-height:calc(100vh - 40px); overflow-y:auto;
+    overscroll-behavior:contain; scrollbar-width:thin;
+  }
+  .riel-izq .controles{
+    margin:0; padding:18px 16px; border:1px solid var(--border); border-radius:var(--radius);
+    background:var(--surface);
+  }
+  .riel-izq .controles-fila{gap:6px;}
+  .riel-izq .controles-fila + .controles-fila{margin-top:16px !important;}
+  .riel-izq .controles-r{width:100%; margin:0 0 2px;}
+  .riel-izq .chip{font-size:12.5px; padding:5px 11px; background:var(--bg);}
+  .riel-izq .chip[aria-pressed="true"]{background:var(--accent);}
+  .riel-izq .buscador{flex-basis:100%; min-width:0; font-size:13px; padding:8px 12px;}
+  .riel-izq #bt-todo{width:100%;}
+  .riel-izq .cuenta{margin-top:14px; line-height:1.45;}
+  .centro .indice{display:none;}
+  .categoria{scroll-margin-top:24px;}
+  .grupo{scroll-margin-top:18px;}
+}
+
+/* Mapa de la guía: categorías y variables, con los instrumentos visibles. */
+.mapa{padding:4px 2px 12px;}
+.mapa-r{
+  display:block; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint); margin:2px 0 10px;
+}
+.mapa-cat{margin-top:14px;}
+.mapa-cat[hidden], .mapa li[hidden]{display:none;}
+.mapa-cat > a{
+  display:block; font-family:var(--font-display); font-weight:600; font-size:14px; line-height:1.3;
+  color:var(--ink); text-decoration:none; margin-bottom:4px;
+}
+.mapa ul{list-style:none; margin:0; padding:0 0 0 10px; border-left:2px solid var(--border);}
+.mapa li a{
+  display:flex; justify-content:space-between; gap:8px;
+  font-size:13px; line-height:1.35; color:var(--ink-soft); text-decoration:none;
+  padding:4px 8px; border-radius:6px; margin-left:-2px; border-left:2px solid transparent;
+}
+.mapa li a .n{font-size:11.5px; font-weight:700; color:var(--ink-faint);}
+.mapa a:hover{color:var(--accent-dark); background:var(--accent-soft);}
+.mapa li a.actual{color:var(--accent-dark); border-left-color:var(--accent); background:var(--accent-soft); font-weight:600;}
+
+/* ============================================================
    CONTROLES
    ============================================================ */
 .controles{
@@ -243,6 +313,8 @@ footer strong{color:var(--ink-soft); font-weight:600;}
 
 @media print{
   .controles{position:static;}
+  .riel-der{display:none !important;}
+  .pagina{display:block;}
   .inst{break-inside:avoid; box-shadow:none;}
 }
 </style>
@@ -251,6 +323,7 @@ footer strong{color:var(--ink-soft); font-weight:600;}
 
 <div class="pagina">
 
+  <header class="cab">
   <div class="rotulo">Guía de consulta</div>
   <h1>Pruebas de tamizaje por variable psicológica</h1>
   <p class="lead">
@@ -270,12 +343,15 @@ footer strong{color:var(--ink-soft); font-weight:600;}
       <li>Los marcados como <strong>con licencia</strong> no se pueden fotocopiar ni
           descargar: hay que adquirirlos con su editor. Circular copias es una infracción,
           y además suele implicar usar versiones desactualizadas o mal traducidas.</li>
-      <li>Verificá que exista <strong>validación en población colombiana</strong> o
+      <li>Verifiquen que exista <strong>validación en población colombiana</strong> o
           latinoamericana antes de sostener un punto de corte. La traducción de un
           instrumento no traslada sus propiedades psicométricas.</li>
     </ul>
   </div>
 
+  </header>
+
+  <aside class="riel-izq" aria-label="Filtros">
   <div class="controles">
     <div class="controles-fila" id="filtros">
       <span class="controles-r">Escenario</span>
@@ -287,7 +363,9 @@ footer strong{color:var(--ink-soft); font-weight:600;}
     </div>
     <div class="cuenta" id="cuenta"></div>
   </div>
+  </aside>
 
+  <main class="centro">
   <nav class="indice" id="indice" aria-label="Categorías"></nav>
 
   <div id="grupos"></div>
@@ -297,6 +375,11 @@ footer strong{color:var(--ink-soft); font-weight:600;}
   </div>
 
   <footer id="pie"></footer>
+  </main>
+
+  <aside class="riel-der">
+    <nav class="mapa" id="mapa" aria-label="Mapa de la guía"></nav>
+  </aside>
 </div>
 
 <script>
@@ -1378,6 +1461,49 @@ $("indice").innerHTML = CATEGORIAS.map((c, i) =>
   '<a href="#cat' + i + '" data-cat="' + escapar(c.t) + '">' + escapar(c.t) +
     '<span class="n"></span></a>').join("");
 
+// Mapa del riel derecho: cada categoría con sus variables.
+$("mapa").innerHTML = '<span class="mapa-r">En esta guía</span>' + CATEGORIAS.map((c, ci) => {
+  const gs = GRUPOS.map((g, gi) => ({ g, gi })).filter(x => x.g.cat === c.t);
+  if (!gs.length) return "";
+  return '<div class="mapa-cat" data-cat="' + escapar(c.t) + '">' +
+    '<a href="#cat' + ci + '">' + escapar(c.t) + '</a><ul>' +
+    gs.map(x => '<li><a href="#g' + x.gi + '" data-g="' + x.gi + '">' +
+      '<span>' + escapar(x.g.t) + '</span><span class="n"></span></a></li>').join("") +
+    '</ul></div>';
+}).join("");
+
+// Ir a una variable desde el mapa la abre, además de llevar hasta ella.
+$("mapa").addEventListener("click", ev => {
+  const a = ev.target.closest("a[data-g]");
+  if (a) $("g" + a.dataset.g).open = true;
+});
+
+// La variable que está en pantalla se marca en el mapa: es la última
+// cuyo comienzo ya pasó por el tercio superior de la ventana.
+function marcarActual(){
+  const limite = innerHeight / 3;
+  let actual = null;
+  document.querySelectorAll(".grupo:not([hidden])").forEach(g => {
+    if (g.getBoundingClientRect().top <= limite) actual = g;
+  });
+  const m = $("mapa");
+  const previo = m.querySelector("a.actual");
+  const a = actual ? m.querySelector('a[data-g="' + actual.id.slice(1) + '"]') : null;
+  if (a === previo) return;
+  if (previo) previo.classList.remove("actual");
+  if (!a) return;
+  a.classList.add("actual");
+  // Solo se desplaza el mapa, nunca la página.
+  const r = a.getBoundingClientRect(), rm = m.getBoundingClientRect();
+  if (r.top < rm.top || r.bottom > rm.bottom) m.scrollTop += r.top - rm.top - rm.height / 3;
+}
+let marcaPendiente = false;
+addEventListener("scroll", () => {
+  if (marcaPendiente) return;
+  marcaPendiente = true;
+  requestAnimationFrame(() => { marcaPendiente = false; marcarActual(); });
+}, { passive: true });
+
 $("filtros").insertAdjacentHTML("beforeend", ESCENARIOS.map(e =>
   '<button class="chip" type="button" data-esc="' + e.id + '"' +
     (e.id === "todos" ? ' aria-pressed="true"' : ' aria-pressed="false"') +
@@ -1425,6 +1551,16 @@ function aplicar(){
       link.hidden = c.hidden;
       link.querySelector(".n").textContent = suyas.length;
     }
+  });
+
+  // El mapa sigue a los filtros: esconde lo que no quedó y cuenta los instrumentos.
+  document.querySelectorAll(".mapa a[data-g]").forEach(a => {
+    const g = $("g" + a.dataset.g);
+    a.parentElement.hidden = g.hidden;
+    a.querySelector(".n").textContent = g.querySelector(".n").textContent;
+  });
+  document.querySelectorAll(".mapa-cat").forEach(c => {
+    c.hidden = !c.querySelector("li:not([hidden])");
   });
 
   // Al limpiar todo se vuelve a la lectura panorámica.
