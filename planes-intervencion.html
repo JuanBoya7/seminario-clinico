@@ -31,6 +31,7 @@
   --ac:#6b7a1f;   --ac-soft:#f0f3df;
   --mind:#1d7a6a; --mind-soft:#e2f2ee;
   --cft:#a34d6d;  --cft-soft:#f7e8ee;
+  --sent:#6b4a2e; --sent-soft:#f3ece4;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --radius:12px;
@@ -199,6 +200,7 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .enf-ac {--enf:var(--ac);  --enf-soft:var(--ac-soft);}
 .enf-mind{--enf:var(--mind); --enf-soft:var(--mind-soft);}
 .enf-cft{--enf:var(--cft); --enf-soft:var(--cft-soft);}
+.enf-sent{--enf:var(--sent); --enf-soft:var(--sent-soft);}
 .insignia{
   display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
   color:var(--enf); background:var(--enf-soft); border-radius:999px; padding:3px 9px; white-space:nowrap;
@@ -371,7 +373,7 @@ footer li{margin-bottom:6px;}
    HOJA DE EXPORTACIÓN
    Se arma con los componentes marcados y solo existe al imprimir.
    ============================================================ */
-#hoja{display:none;}
+#hoja{display:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
 #hoja .h-cab{border-bottom:2px solid var(--enf); padding-bottom:6px; margin-bottom:9px;}
 #hoja .h-var{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--enf);}
 #hoja h1{font-family:var(--font-display); font-size:18px; line-height:1.22; margin:2px 0 0;}
@@ -384,10 +386,18 @@ footer li{margin-bottom:6px;}
 #hoja .h-mod{font-weight:600;}
 #hoja ul, #hoja ol{margin:0; padding-left:14px;}
 #hoja .h-acts{columns:2; column-gap:15px; margin-top:2px;}
-#hoja .h-act{break-inside:avoid; margin-bottom:6px;}
-#hoja .h-act .t{font-weight:700; font-size:10px;}
-#hoja .h-act .tec{font-size:9.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint);}
+#hoja .h-act{
+  break-inside:avoid; margin-bottom:5px; padding:4px 8px 4px 7px;
+  font-size:9.5px; line-height:1.32; color:var(--ink);
+  border:1px solid var(--border); border-left:3px solid var(--enf); border-radius:6px;
+}
+#hoja .h-act-cab{display:flex; gap:7px; align-items:flex-start; margin-bottom:1px;}
+#hoja .h-act .n{font-family:var(--font-display); font-size:16px; line-height:1; font-weight:600; color:var(--enf); padding-top:1px;}
+#hoja .h-act .t{font-weight:700; font-size:10px; line-height:1.25;}
+#hoja .h-act .tec{font-size:8.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint);}
+#hoja .h-act .casa{font-size:8px; line-height:1.3; color:var(--ink-soft); margin-top:2px;}
 #hoja .h-act ul{padding-left:13px;}
+#hoja .h-act li{line-height:1.32; margin-bottom:1px;}
 #hoja .h-notas{white-space:pre-wrap; border:1px solid var(--border); border-radius:6px; padding:8px 10px;}
 #hoja .h-refs li{font-size:9.5px; line-height:1.4; color:var(--ink-soft); margin-bottom:3px;}
 #hoja .h-pie{margin-top:10px; padding-top:6px; border-top:1px solid var(--border); font-size:9px; color:var(--ink-faint);}
@@ -526,7 +536,8 @@ const ENFOQUES = {
   est: { et: "Modelos de estadios",     largo: "Modelos de estadios de intervención" },
   ac:  { et: "Activación conductual",   largo: "Activación conductual" },
   mind:{ et: "Mindfulness",             largo: "Intervenciones basadas en mindfulness" },
-  cft: { et: "Compasión",               largo: "Terapia centrada en la compasión" }
+  cft: { et: "Compasión",               largo: "Terapia centrada en la compasión" },
+  sent:{ et: "Centrada en el sentido",  largo: "Psicoterapia centrada en el sentido" }
 };
 
 /* Modelos teóricos: el marco desde el que se explica la variable. Un plan
@@ -659,6 +670,55 @@ const MODELOS = {
     d: "Entre el acontecimiento activador y la consecuencia emocional está la creencia. Las creencias racionales, formuladas como preferencias, producen emociones negativas sanas como el enfado; las irracionales, formuladas como exigencias absolutas sobre cómo deben comportarse los demás, producen emociones perturbadoras como la ira, que bloquean el afrontamiento.",
     dim: ["A: acontecimiento activador", "B: creencia racional o irracional", "C: consecuencia emocional y conductual", "D: debate de la creencia"],
     fuente: "Ruiz et al., cap. 7 (§3.1 y §3.4)"
+  },
+  dugas: {
+    t: "Modelo de intolerancia a la incertidumbre de la ansiedad generalizada",
+    autor: "Dugas, Gagnon, Ladouceur y Freeston",
+    d: "La preocupación excesiva se sostiene en cuatro procesos cognitivos. El central es la intolerancia a la incertidumbre: la tendencia a reaccionar de forma negativa, en lo cognitivo, lo emocional y lo conductual, ante lo ambiguo e incierto, que funciona como motor de las preguntas «¿y si…?». A su alrededor actúan la creencia de que preocuparse es útil, una orientación ineficaz ante los problemas y la evitación cognitiva de las imágenes temidas.",
+    dim: ["Intolerancia a la incertidumbre", "Creencias positivas sobre la preocupación", "Orientación ineficaz ante los problemas", "Evitación cognitiva"],
+    fuente: "Seidah et al., 2007"
+  },
+  rahman: {
+    t: "Modelo cognitivo-conductual de la depresión perinatal de Thinking Healthy",
+    autor: "Rahman; Organización Mundial de la Salud",
+    d: "Bajo el estrés, la madre tiende a estilos de pensamiento poco saludables que producen emociones y conductas que la dañan a ella y al bebé: descuida su salud, se retrae del vínculo y pierde apoyo, en un ciclo de inactividad. El programa aplica el ciclo pensamiento, emoción y conducta de la terapia cognitivo-conductual a tres áreas de la vida de la madre que la investigación mostró decisivas para su salud y la del bebé.",
+    dim: ["Salud personal de la madre", "Relación de la madre con el bebé", "Relación con las personas de su entorno"],
+    fuente: "FICR, 2022"
+  },
+  salovey: {
+    t: "Inteligencia emocional y experiencia de metaconocimiento emocional",
+    autor: "Salovey y Mayer",
+    d: "La inteligencia emocional es la capacidad de percibir las emociones propias y ajenas, discriminarlas y usar esa información para guiar el pensamiento y la acción; incluye valorar y expresar la emoción, regularla y usarla. La experiencia de metaconocimiento emocional es el proceso reflexivo con el que la persona percibe, valora y regula sus estados de ánimo, y de ella salen las tres dimensiones de la inteligencia emocional percibida.",
+    dim: ["Atención emocional", "Claridad emocional", "Reparación emocional"],
+    fuente: "Salovey y Mayer, 1990 · González et al., 2020"
+  },
+  ryff: {
+    t: "Modelo multidimensional del bienestar psicológico",
+    autor: "Ryff",
+    d: "El bienestar psicológico, de tradición eudaimónica, no es sentirse bien sino funcionar bien: desarrollar las propias capacidades y crecer como persona. Se distingue del bienestar subjetivo, que es satisfacción con la vida y balance de afectos. Ryff lo organizó en seis dimensiones, buscando lo común a conceptos previos como la autorrealización, el funcionamiento pleno y la madurez.",
+    dim: ["Autoaceptación", "Relaciones positivas con otras personas", "Autonomía", "Dominio del entorno", "Propósito en la vida", "Crecimiento personal"],
+    fuente: "Díaz et al., 2006"
+  },
+  "oms-adh": {
+    t: "Modelo de las cinco dimensiones de la adherencia",
+    autor: "Organización Mundial de la Salud",
+    d: "La adherencia es el grado en que la conducta de la persona —tomar la medicación, seguir una dieta, cambiar hábitos— corresponde con lo acordado con el profesional de salud. No es un problema solo del paciente: la determinan cinco dimensiones que interactúan. En la del paciente, la información es necesaria pero no suficiente: también hacen falta motivación y habilidades de conducta.",
+    dim: ["Factores sociales y económicos", "Equipo y sistema de salud", "Factores de la enfermedad", "Factores del tratamiento", "Factores del paciente"],
+    fuente: "OMS, 2003, caps. I y V"
+  },
+  livneh: {
+    t: "Reacciones psicosociales ante la enfermedad crónica y la discapacidad",
+    autor: "Livneh y Antonak",
+    d: "El inicio súbito de una lesión, una amputación o un diagnóstico grave es una crisis psicosocial: rompe el equilibrio y amenaza la vida, la integridad del cuerpo, la autonomía, los roles y los planes. La persona atraviesa reacciones reconocibles, desde el choque inicial hasta el ajuste, pero no en un orden fijo: la secuencia es objeto de debate. Por eso la intervención se ajusta a la reacción que predomina, no a una etapa esperada.",
+    dim: ["Choque", "Ansiedad", "Negación", "Depresión", "Ira interiorizada y hostilidad exteriorizada", "Reconocimiento y ajuste"],
+    fuente: "Livneh y Antonak, 2005"
+  },
+  breitbart: {
+    t: "Psicoterapia centrada en el sentido",
+    autor: "Breitbart, sobre la obra de Frankl",
+    d: "Ante una enfermedad avanzada, el malestar no es solo depresión o ansiedad: también es pérdida de sentido, desesperanza y, a veces, deseo de adelantar la muerte. Siguiendo a Frankl, el sentido puede encontrarse o recuperarse aun con los límites de la enfermedad, y tiene fuentes que se pueden identificar. La intervención ayuda a la persona a reconectar con ellas.",
+    dim: ["Fuentes históricas: el legado", "Fuentes actitudinales: la actitud ante los límites", "Fuentes creativas: crear la propia vida", "Fuentes experienciales: amor, belleza y humor"],
+    fuente: "Breitbart et al., 2015 · Applebaum et al., 2026"
   }
 };
 
@@ -693,38 +753,62 @@ const INSTRUMENTOS = {
   "RAS":    { n: "Inventario de Asertividad de Rathus", rol: "Prueba específica", d: "Frecuencia y grado de dificultad de la conducta asertiva.", med: "30 ítems", guia: false, fuente: "Rathus, 1973, en Ruiz et al., cap. 6 (§3.3.1)" },
   "EMES-M": { n: "Escala Multidimensional de Expresión Social, parte motora", rol: "Prueba específica", d: "Conducta social manifiesta en distintos tipos de situación.", med: "Autoinforme", guia: false, fuente: "Caballo, en Ruiz et al., cap. 6 (§3.3.1)" },
   "SAD":    { n: "Escala de Ansiedad y Evitación Sociales", rol: "Prueba específica", d: "Ansiedad y evitación de situaciones sociales.", med: "28 ítems", guia: false, fuente: "Watson y Friend, 1969, en Ruiz et al., cap. 6 (§3.3.1)" },
-  "DIARIO-DBT": { n: "Diario dialéctico-conductual", rol: "Medida de proceso", d: "Registro diario de conductas problema, emociones, impulsos y habilidades usadas; organiza cada sesión.", med: "Registro diario", guia: false, fuente: "Elices, cap. 2 (§2.4.3)" }
+  "DIARIO-DBT": { n: "Diario dialéctico-conductual", rol: "Medida de proceso", d: "Registro diario de conductas problema, emociones, impulsos y habilidades usadas; organiza cada sesión.", med: "Registro diario", guia: false, fuente: "Elices, cap. 2 (§2.4.3)" },
+  "EII":    { n: "Escala de Intolerancia a la Incertidumbre", rol: "Prueba específica", d: "Reacciones ante la incertidumbre, de 1 a 5. En la adaptación argentina tuvo un alfa de 0,93, se correlacionó con la preocupación y su estabilidad a cinco semanas fue moderada.", med: "27 ítems", guia: false, fuente: "Freeston et al., 1994, en Rodríguez de Behrends y Brenlla, 2015" },
+  "EPDS":   { n: "Escala de Depresión Posparto de Edimburgo", rol: "Tamizaje", d: "Síntomas depresivos de la última semana, de 0 a 30, sin ítems somáticos que se confundan con el puerperio. El ítem 10 pregunta por pensamientos de hacerse daño.", med: "10 ítems · 5 min", guia: true, fuente: "Maroto Navarro et al., 2005" },
+  "TMMS-24":{ n: "Escala Rasgo de Metaconocimiento Emocional", rol: "Prueba específica", d: "Atención, claridad y reparación emocional, con ocho ítems cada una, de 1 a 5. Los puntos de corte cambian según el sexo; en atención, el problema puede estar en los dos extremos.", med: "24 ítems", guia: false, fuente: "Fernández-Berrocal et al., 2004, en González et al., 2020 · Cerón et al., 2011" },
+  "EBP":    { n: "Escalas de Bienestar Psicológico de Ryff, versión española", rol: "Prueba específica", d: "Las seis dimensiones del modelo, de 1 a 6. La versión reducida española ajusta mejor que la de 39 ítems, con alfas entre 0,70 y 0,84.", med: "29 ítems", guia: false, fuente: "Díaz et al., 2006" },
+  "APAIS":  { n: "Escala de Ansiedad e Información Preoperatoria de Ámsterdam", rol: "Prueba específica", d: "Ansiedad ante la anestesia y la cirugía y necesidad de información, de 1 a 5. En la versión española, el punto de corte 14 dio un área bajo la curva de 0,85.", med: "6 ítems", guia: false, fuente: "Vergara-Romero et al., 2017" },
+  "ADH-MM": { n: "Medición combinada de la adherencia", rol: "Medida de resultado", d: "Ninguna medida es óptima por sí sola: se combina el autoinforme con una medida objetiva viable, como los registros de la farmacia. Retirar el medicamento no garantiza tomarlo.", med: "Autoinforme y registro", guia: false, fuente: "OMS, 2003, cap. I" },
+  "RIDI":   { n: "Inventario de Reacciones ante la Deficiencia y la Discapacidad", rol: "Medida de proceso", d: "Ocho escalas que corresponden a las reacciones del modelo: choque, ansiedad, negación, depresión, ira interiorizada, hostilidad exteriorizada, reconocimiento y ajuste. Tiene pocos datos de validez concurrente y no tiene normas por condición.", med: "60 ítems", guia: false, fuente: "Livneh y Antonak, 2005" },
+  "PAIS":   { n: "Escala de Adaptación Psicosocial a la Enfermedad", rol: "Prueba específica", d: "Adaptación en siete áreas: cuidado de la salud, trabajo, hogar, sexualidad, familia extensa, vida social y malestar psicológico. Se aplica como entrevista o como autoinforme y tiene normas para cáncer, esclerosis múltiple e insuficiencia renal.", med: "46 ítems", guia: false, fuente: "Derogatis, 1977, en Livneh y Antonak, 2005" },
+  "FACIT-Sp": { n: "Escala de Bienestar Espiritual de la Evaluación Funcional de la Terapia de Enfermedades Crónicas", rol: "Medida de resultado", d: "Bienestar espiritual y sentido; fue una de las dos medidas principales del ensayo de la psicoterapia grupal centrada en el sentido.", med: "Autoinforme", guia: false, fuente: "Breitbart et al., 2015" },
+  "SAHD":   { n: "Escala de Actitudes ante la Muerte Adelantada", rol: "Prueba específica", d: "Deseo de adelantar la muerte, una forma grave de desesperanza. En el ensayo, entre quienes asistieron a tres sesiones o más, solo bajó con la psicoterapia centrada en el sentido.", med: "Autoinforme", guia: false, fuente: "Breitbart et al., 2015" }
 };
 
 const CATEGORIAS = [
   { t: "Ansiedad y miedo", d: "Lo que comparten es la evitación: de situaciones, de sensaciones, de pensamientos o de recuerdos. Cambia qué se evita y, con eso, cómo se interviene." },
   { t: "Ánimo y regulación emocional", d: "Lo que comparten es la relación con la emoción: se apaga, se desborda o se descarga en la conducta. Los planes trabajan sobre lo que la persona hace con lo que siente." },
   { t: "Conductas adictivas y alimentarias", d: "Conductas que alivian a corto plazo y cuestan a largo plazo. La ambivalencia forma parte del cuadro: antes de cambiar, la persona tiene que querer hacerlo, y el trabajo empieza por el estadio en que está. Por eso comparten modelos: la intervención motivacional por estadios y la prevención de recaídas." },
-  { t: "Afrontamiento y relaciones", d: "Más recursos que síntomas: lo que la persona hace ante las demandas y ante los demás. Se entrenan como habilidades, en sesión individual o en grupo." }
+  { t: "Afrontamiento y relaciones", d: "Más recursos que síntomas: lo que la persona hace ante las demandas y ante los demás. Se entrenan como habilidades, en sesión individual o en grupo." },
+  { t: "Enfermedad médica y final de la vida", d: "Variables que aparecen porque hay una enfermedad, una cirugía o un tratamiento de por medio. El acontecimiento médico marca los tiempos, el trabajo ocurre en el hospital o cerca de él y se coordina con el equipo de salud." }
 ];
 
 /* Claves de las fuentes: la cita corta de cada actividad remite a la
    lista de referencias del pie. */
 const REFERENCIAS = [
+  { k: "Applebaum et al., 2026", ref: "Applebaum, A. J., Walsh, L. E., Zaider, T., Baser, R. E., Loschiavo, M. J., Breitbart, W. S. y Lichtenthal, W. G. (2026). Meaning-Centered Psychotherapy for Cancer Caregivers: Study protocol of a randomized controlled trial. <em>Trials, 27</em>, 336. https://doi.org/10.1186/s13063-026-09621-7" },
   { k: "Bolier et al.", ref: "Bolier, L., Haverman, M., Westerhof, G. J., Riper, H., Smit, F. y Bohlmeijer, E. (2013). Positive psychology interventions: A meta-analysis of randomized controlled studies. <em>BMC Public Health, 13</em>, 119. https://doi.org/10.1186/1471-2458-13-119" },
+  { k: "Breitbart et al., 2015", ref: "Breitbart, W., Rosenfeld, B., Pessin, H., Applebaum, A., Kulikowski, J. y Lichtenthal, W. G. (2015). Meaning-centered group psychotherapy: An effective intervention for improving psychological well-being in patients with advanced cancer. <em>Journal of Clinical Oncology, 33</em>(7), 749–754. https://doi.org/10.1200/JCO.2014.57.2198" },
+  { k: "Cerón et al., 2011", ref: "Cerón Perdomo, D. M., Pérez-Olmos, I. e Ibáñez Pinilla, M. (2011). Inteligencia emocional en adolescentes de dos colegios de Bogotá. <em>Revista Colombiana de Psiquiatría, 40</em>(1), 49–64." },
   { k: "Chakhssi et al.", ref: "Chakhssi, F., Kraiss, J. T., Sommers-Spijkerman, M. y Bohlmeijer, E. T. (2018). The effect of positive psychology interventions on well-being and distress in clinical samples with psychiatric or somatic disorders: A systematic review and meta-analysis. <em>BMC Psychiatry, 18</em>, 211. https://doi.org/10.1186/s12888-018-1739-2" },
   { k: "Cifuentes", ref: "Cifuentes, A. (s. f.). <em>Diseños de programas de intervención en psicología clínica y de la salud</em> [Diapositivas de clase]." },
   { k: "Deza, 2007", ref: "Deza Villanueva, S. (2007). Intervención en crisis: primeros auxilios psicológicos. <em>Temática Psicológica, 3</em>(1), 37–43." },
   { k: "Díaz Corbobés", ref: "Díaz Corbobés, J. L. (s. f.). <em>Terapia de aceptación y compromiso</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
+  { k: "Díaz et al., 2006", ref: "Díaz, D., Rodríguez-Carvajal, R., Blanco, A., Moreno-Jiménez, B., Gallardo, I., Valle, C. y van Dierendonck, D. (2006). Adaptación española de las escalas de bienestar psicológico de Ryff. <em>Psicothema, 18</em>(3), 572–577." },
   { k: "Ekers et al., 2014", ref: "Ekers, D., Webster, L., Van Straten, A., Cuijpers, P., Richards, D. y Gilbody, S. (2014). Behavioural activation for depression: An update of meta-analysis of effectiveness and sub group analysis. <em>PLoS ONE, 9</em>(6), e100100. https://doi.org/10.1371/journal.pone.0100100" },
   { k: "Elices", ref: "Elices, M. (s. f.). <em>Terapia dialéctico-conductual</em>. Módulo II: Aplicación clínica de las terapias de tercera generación. Máster Universitario en Terapias Psicológicas de Tercera Generación, Universidad Internacional de Valencia." },
+  { k: "FICR, 2022", ref: "Centro de Referencia para el Apoyo Psicosocial de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. (2022). <em>Thinking Healthy: A training guide for psychosocial management of perinatal depression</em>. Basada en Organización Mundial de la Salud (2015), <em>Thinking healthy: A manual for psychosocial management of perinatal depression</em> (versión genérica de prueba de campo 1.0)." },
   { k: "Gloster et al., 2020", ref: "Gloster, A. T., Walder, N., Levin, M. E., Twohig, M. P. y Karekla, M. (2020). The empirical status of acceptance and commitment therapy: A review of meta-analyses. <em>Journal of Contextual Behavioral Science, 18</em>, 181–192. https://doi.org/10.1016/j.jcbs.2020.09.009" },
+  { k: "González et al., 2020", ref: "González, R., Custodio, J. y Abal, F. (2020). Propiedades psicométricas del Trait Meta-Mood Scale-24 en estudiantes universitarios argentinos. <em>Psicogente, 23</em>(44), 1–26. https://doi.org/10.17081/psico.23.44.3469" },
   { k: "Kuyken et al., 2016", ref: "Kuyken, W., Warren, F. C., Taylor, R. S., Whalley, B., Crane, C., Bondolfi, G., … Dalgleish, T. (2016). Efficacy of mindfulness-based cognitive therapy in prevention of depressive relapse: An individual patient data meta-analysis from randomized trials. <em>JAMA Psychiatry, 73</em>(6), 565–574. https://doi.org/10.1001/jamapsychiatry.2016.0076" },
   { k: "Linehan, 2020", ref: "Linehan, M. M. (2020). <em>Manual de entrenamiento en habilidades DBT para el/la terapeuta</em> (P. Gagliesi, Rev. y Trad.). Editorial de la Universidad Nacional de La Plata. (Trabajo original publicado en 2014)." },
+  { k: "Livneh y Antonak, 2005", ref: "Livneh, H. y Antonak, R. F. (2005). Psychosocial adaptation to chronic illness and disability: A primer for counselors. <em>Journal of Counseling &amp; Development, 83</em>(1), 12–20. https://doi.org/10.1002/j.1556-6678.2005.tb00575.x" },
   { k: "Marlatt y Donovan", ref: "Marlatt, G. A. y Donovan, D. M. (Eds.). (2005). <em>Relapse prevention: Maintenance strategies in the treatment of addictive behaviors</em> (2.ª ed.). Guilford Press." },
+  { k: "Maroto Navarro et al., 2005", ref: "Maroto Navarro, G., García Calvente, M. M. y Fernández Parra, A. (2005). Evaluación del estado de ánimo en el puerperio con la Escala de Depresión Postnatal de Edimburgo. <em>International Journal of Clinical and Health Psychology, 5</em>(2), 305–318." },
+  { k: "OMS, 2003", ref: "Organización Mundial de la Salud. (2003). <em>Adherence to long-term therapies: Evidence for action</em> (E. Sabaté, Ed.). OMS." },
   { k: "OMS, 2017", ref: "Organización Mundial de la Salud. (2017). <em>Integrated care for older people: Guidelines on community-level interventions to manage declines in intrinsic capacity</em>. OMS." },
   { k: "OMS, 2023", ref: "Organización Mundial de la Salud. (2023). <em>Mental Health Gap Action Programme (mhGAP) guideline for mental, neurological and substance use disorders</em>. OMS." },
   { k: "OPS, 2017", ref: "Organización Panamericana de la Salud. (2017). <em>Guía de intervención mhGAP para los trastornos mentales, neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada</em> (versión 2.0). OPS." },
+  { k: "Rodríguez de Behrends y Brenlla, 2015", ref: "Rodríguez de Behrends, M. y Brenlla, M. E. (2015). Adaptación para Buenos Aires de la Escala de Intolerancia a la Incertidumbre. <em>Interdisciplinaria, 32</em>(2), 261–274." },
   { k: "Ruiz et al.", ref: "Ruiz Fernández, M. Á., Díaz García, M. I. y Villalobos Crespo, A. (2012). <em>Manual de técnicas de intervención cognitivo conductuales</em>. Desclée De Brouwer." },
   { k: "Saldivia et al.", ref: "Saldivia, S., Aslan, J., Castillo-Carreño, A., Petkari, E. y Pietschnig, J. (2026). A meta-analysis of preventive psychosocial interventions against depressive and anxiety symptoms in older adults. <em>Psychological Medicine, 56</em>, e151. https://doi.org/10.1017/S0033291726104607" },
+  { k: "Salovey y Mayer, 1990", ref: "Salovey, P. y Mayer, J. D. (1990). Emotional intelligence. <em>Imagination, Cognition and Personality, 9</em>(3), 185–211. https://doi.org/10.2190/DUGG-P24E-52WK-6CDG" },
+  { k: "Seidah et al., 2007", ref: "Seidah, A., Dugas, M. J. y Leblanc, R. (2007). El tratamiento cognitivo comportamental del TAG: modelo conceptual y casos clínicos. <em>Revista Argentina de Clínica Psicológica, 16</em>(1), 39–48." },
   { k: "Seligman et al., 2005", ref: "Seligman, M. E. P., Steen, T. A., Park, N. y Peterson, C. (2005). Positive psychology progress: Empirical validation of interventions. <em>American Psychologist, 60</em>(5), 410–421. https://doi.org/10.1037/0003-066X.60.5.410" },
   { k: "Seligman et al., 2006", ref: "Seligman, M. E. P., Rashid, T. y Parks, A. C. (2006). Positive psychotherapy. <em>American Psychologist, 61</em>(8), 774–788. https://doi.org/10.1037/0003-066X.61.8.774" },
   { k: "Stoffers-Winterling et al., 2022", ref: "Stoffers-Winterling, J. M., Storebø, O. J., Kongerslev, M. T., Faltinsen, E., Todorovac, A., Sedoc Jørgensen, M., … Lieb, K. (2022). Psychotherapies for borderline personality disorder: A focused systematic review and meta-analysis. <em>The British Journal of Psychiatry, 221</em>(3), 538–552. https://doi.org/10.1192/bjp.2021.204" },
+  { k: "Vergara-Romero et al., 2017", ref: "Vergara-Romero, M., Morales-Asencio, J. M., Morales-Fernández, A., Canca-Sánchez, J. C., Rivas-Ruiz, F. y Reinaldo-Lapuerta, J. A. (2017). Validation of the Spanish version of the Amsterdam Preoperative Anxiety and Information Scale (APAIS). <em>Health and Quality of Life Outcomes, 15</em>, 120. https://doi.org/10.1186/s12955-017-0695-8" },
   { k: "White et al.", ref: "White, C. A., Uttl, B. y Holder, M. D. (2019). Meta-analyses of positive psychology interventions: The effects are much smaller than previously reported. <em>PLoS ONE, 14</em>(5), e0216588. https://doi.org/10.1371/journal.pone.0216588" }
 ];
 
@@ -968,6 +1052,125 @@ const VARIABLES = [
         "En ansiedad generalizada, la relajación puede aumentar la tensión en lugar de bajarla; si ocurre, no se insiste.",
         "Las conductas de seguridad no se retiran de golpe: se evalúa qué función cumplen en cada caso y se reducen de forma gradual.",
         "La desensibilización sistemática no es la opción en ansiedad generalizada, fobia social, agorafobia ni trastorno obsesivo-compulsivo: los estímulos temidos son demasiado numerosos o variables."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ansiedad y miedo",
+  t: "Intolerancia a la incertidumbre",
+  sub: "La tendencia a reaccionar de forma negativa ante lo ambiguo e incierto, en lo que se piensa, se siente y se hace. Es el motor de la preocupación excesiva: cada incertidumbre abre una cadena de «¿y si…?». Aplica a la ansiedad generalizada y a la preocupación crónica; los miedos concretos están en la variable Ansiedad.",
+  elegir: [
+    "<strong>Si la queja es preocuparse por todo</strong> —la salud, la familia, el trabajo, lo que podría pasar— y la persona intenta eliminar la incertidumbre con reaseguro, comprobaciones, evitación o postergando decisiones, este plan apunta al proceso que sostiene esa preocupación.",
+    "Si la ansiedad se organiza alrededor de un objeto, una situación o una sensación concreta, corresponde un plan de la variable Ansiedad."
+  ],
+  planes: [
+    {
+      id: "inc-tcc",
+      mod: "dugas",
+      inst: ["GAD-7", "EII"],
+      enf: "tcc",
+      t: "Tolerar la incertidumbre: protocolo cognitivo-conductual de Dugas",
+      fuente: "Seidah et al., 2007",
+      cuando: "La persona se preocupa de forma excesiva y difícil de controlar, por problemas reales y por situaciones hipotéticas, y organiza su día para reducir la incertidumbre: pide reaseguro, consulta a varios médicos, no delega, tarda en decidir por miedo a equivocarse. El plan no busca eliminar la incertidumbre, que es parte de la vida, sino <strong>aumentar la tolerancia a ella</strong>.",
+      respaldo: "El protocolo se validó en dos estudios con grupo de control: 20 de 26 pacientes en terapia individual dejaron de cumplir los criterios de ansiedad generalizada al terminar y seguían así un año después; en terapia grupal remitió el 60 % al final y el 95 % a los dos años (Seidah et al., 2007). Los síntomas somáticos mejoraron sin tratarse de forma directa, como consecuencia de preocuparse menos (Seidah et al., 2007).",
+      secuencia: "<strong>Secuencia:</strong> las actividades siguen los seis módulos del protocolo, en 12 a 16 sesiones semanales de una hora, individuales o en grupo. Cuatro módulos corresponden a los cuatro procesos del modelo; los otros dos abren y cierran el tratamiento. Los conceptos se agregan al modelo de a uno, para no saturar a la persona, y la exposición a la incertidumbre continúa en todos los módulos (Seidah et al., 2007).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Psicoeducación y toma de conciencia de las preocupaciones",
+          tec: "Círculo de la preocupación y autorregistro",
+          obj: "Que la persona reconozca el círculo de su preocupación y distinga dos tipos de preocupación.",
+          pasos: [
+            "Presentar el eje del modelo: un desencadenante externo o interno abre preguntas «¿y si…?», que llevan a la preocupación, a la ansiedad y, con el tiempo, al agotamiento y la desmoralización.",
+            "Distinguir la preocupación, que es un fenómeno cognitivo, de la ansiedad que produce.",
+            "Clasificar las preocupaciones en dos tipos: sobre problemas reales y actuales, y sobre situaciones hipotéticas o improbables. Cada tipo recibirá estrategias distintas."
+          ],
+          casa: "Anotar las preocupaciones tres veces al día, a horas fijas, y marcar si son reales o hipotéticas.",
+          avance: "La persona detecta sus preocupaciones en el momento en que aparecen y reconoce los temas que se repiten.",
+          fuente: "Seidah et al., 2007 (módulo 1)"
+        },
+        {
+          t: "Reconocer la intolerancia a la incertidumbre",
+          tec: "Lista de conductas de control y exposición conductual graduada",
+          obj: "Mostrar que la intolerancia a la incertidumbre es el motor de la preocupación y empezar a exponerse a ella.",
+          pasos: [
+            "Plantear el dilema: se puede intentar reducir la incertidumbre de la vida o aumentar la tolerancia a ella; como casi siempre es incontrolable, conviene lo segundo.",
+            "Revisar las conductas que buscan controlarla: evitar lo de resultado incierto, no delegar, comprometerse a medias, pedir reaseguro, sobreproteger, hacer las cosas por los demás.",
+            "Identificar las propias y diseñar ejercicios graduales para dejarlas: no pedir reaseguro, delegar una tarea, decidir sin garantía."
+          ],
+          casa: "Un ejercicio de exposición a la incertidumbre por día, registrando qué pasó y cuánto malestar produjo.",
+          avance: "La persona reduce las conductas de reaseguro y comprueba que la incertidumbre es tolerable.",
+          fuente: "Seidah et al., 2007 (módulo 2)"
+        },
+        {
+          t: "Reevaluar la utilidad de preocuparse",
+          tec: "Análisis de creencias positivas y juego de roles de defensor y fiscal",
+          obj: "Sembrar la duda sobre la idea de que preocuparse sirve, para reducir la ambivalencia ante el cambio.",
+          pasos: [
+            "Presentar las creencias habituales: preocuparse ayuda a resolver problemas, motiva, protege de emociones negativas futuras, evita que ocurran cosas malas o es un rasgo positivo.",
+            "Pedir a la persona sus propios ejemplos de utilidad de la preocupación.",
+            "Hacer el juego de roles: primero defiende ante un jurado que preocuparse es útil; después, como parte contraria, que no lo es.",
+            "Hacer el balance de ventajas e inconvenientes de la preocupación excesiva cotidiana."
+          ],
+          casa: "Registrar durante una semana qué preocupaciones sirvieron de algo y cuáles solo produjeron malestar.",
+          avance: "La persona concluye que la preocupación moderada puede servir, pero la excesiva le resulta contraproducente.",
+          fuente: "Seidah et al., 2007 (módulo 3)"
+        },
+        {
+          t: "Orientación ante los problemas y solución de problemas",
+          tec: "Entrenamiento en solución de problemas en cinco pasos",
+          obj: "Para las preocupaciones sobre problemas reales: cambiar la reacción inicial ante el problema y enseñar un método para abordarlo.",
+          pasos: [
+            "Tomar conciencia de la orientación ineficaz: ver el problema como amenaza, dudar de la propia capacidad, anticipar un mal resultado.",
+            "Distinguir la situación problemática de las emociones negativas que produce, para definir mejor el problema.",
+            "Entrenar los pasos: definir el problema de forma concreta, formular un objetivo realista, generar alternativas sin evaluarlas, decidir, y ponerla en práctica evaluando el resultado.",
+            "Insistir en elegir la mejor solución disponible, no la perfecta ni la segura."
+          ],
+          casa: "Cada día, escribir cómo ver un problema como desafío en lugar de amenaza; aplicar los pasos a uno de ellos.",
+          avance: "La persona pasa antes a la acción en lugar de quedar paralizada y elige soluciones sin garantía del resultado.",
+          fuente: "Seidah et al., 2007 (módulo 4) · Ruiz et al., cap. 9 (§4.2)"
+        },
+        {
+          t: "Exposición en imaginación",
+          tec: "Escenario de exposición cognitiva grabado",
+          obj: "Para las preocupaciones sobre situaciones hipotéticas: abordar la evitación cognitiva exponiéndose al miedo de fondo.",
+          pasos: [
+            "Explicar la razón de la técnica con las curvas de evitación, neutralización y exposición, para favorecer la adherencia.",
+            "Elegir una preocupación hipotética recurrente y encontrar el miedo fundamental que hay detrás.",
+            "Redactar el escenario en presente y en primera persona, sin elementos de reaseguro, creíble y hasta el fondo del miedo.",
+            "Grabarlo con la voz de la persona y escucharlo en sesión la primera vez."
+          ],
+          casa: "Escuchar el escenario una vez al día durante unas dos semanas, anotando el malestar de 0 a 100 antes y después.",
+          avance: "Baja la preocupación sobre el tema del escenario y la persona tolera mejor las sensaciones inciertas sin buscar reaseguro.",
+          fuente: "Seidah et al., 2007 (módulo 5)"
+        },
+        {
+          t: "Prevención de recaídas",
+          tec: "Repaso de estrategias y distinción entre caída y recaída",
+          obj: "Consolidar lo aprendido y preparar a la persona para las dificultades futuras.",
+          pasos: [
+            "Repasar las estrategias trabajadas en cada módulo.",
+            "Distinguir una caída —aumento pasajero de síntomas ante un estresor puntual— de una recaída, que es volver al estado previo al tratamiento.",
+            "Acordar que, si la preocupación vuelve a ser difícil de controlar, esa es la ocasión de aplicar las herramientas y no un motivo para desanimarse."
+          ],
+          casa: "Escribir el plan personal: señales de alarma y qué estrategia aplicar ante cada una.",
+          avance: "La persona describe qué hacer ante una caída sin interpretarla como fracaso del tratamiento.",
+          fuente: "Seidah et al., 2007 (módulo 6)"
+        }
+      ],
+      medir: [
+        "<strong>GAD-7</strong> al inicio, a mitad del tratamiento y al final.",
+        "Escala de Intolerancia a la Incertidumbre al inicio y al final: en el modelo, los cambios en la tolerancia a la incertidumbre preceden a los cambios en la preocupación (Seidah et al., 2007).",
+        "Registro semanal de preocupaciones y de conductas de reaseguro."
+      ],
+      adapt: [
+        "<strong>Salud mental y consulta externa:</strong> el protocolo se aplica en terapia individual o en grupo, en 12 a 16 sesiones (Seidah et al., 2007)."
+      ],
+      cuidado: [
+        "La persona puede temer que la exposición en imaginación le haga más presentes sus miedos: ese temor se valida como normal y se la anima a probar, empezando en sesión (Seidah et al., 2007).",
+        "Una frase tranquilizadora que la persona necesita repetir muchas veces deja de ser una estrategia y se vuelve reaseguro: se revisa cómo la usa.",
+        "El objetivo no es resolver todos los problemas ni alcanzar la certeza, sino actuar sin ella."
       ]
     }
   ]
@@ -2212,6 +2415,129 @@ const VARIABLES = [
 },
 {
   cat: "Ánimo y regulación emocional",
+  t: "Depresión posparto",
+  sub: "Depresión que empieza en el embarazo o en el año siguiente al parto. Afecta a la madre, al vínculo con el bebé y al crecimiento del niño, y suele pasar inadvertida porque se confunde con el cansancio del puerperio. Aplica a gestantes desde el cuarto mes y a madres durante el primer año del bebé.",
+  elegir: [
+    "<strong>El plan trabaja la depresión perinatal desde tres áreas</strong> —la salud de la madre, su relación con el bebé y su red de apoyo— y con la familia presente. Está pensado para aplicarse dentro de la atención materno-infantil, en casa o en el centro de salud.",
+    "Si la depresión no está ligada al periodo perinatal, corresponden los planes de la variable Depresión; si hay ideación suicida, primero el plan de riesgo suicida."
+  ],
+  planes: [
+    {
+      id: "pos-tcc",
+      mod: "rahman",
+      inst: ["EPDS", "BDI-II"],
+      enf: "tcc",
+      t: "Pensar saludable: manejo psicosocial de la depresión perinatal",
+      fuente: "FICR, 2022 · Maroto Navarro et al., 2005",
+      cuando: "Una gestante o una madre en el primer año del bebé tiene síntomas depresivos confirmados con un tamizaje y una entrevista: tristeza, pérdida de interés —también por el bebé—, cansancio, alteraciones del sueño y del apetito, culpa o desesperanza. El plan <strong>se centra en la salud de la madre y del bebé más que en la depresión</strong>, y entrena habilidades en lugar de ofrecer terapia en sentido estricto.",
+      respaldo: "Thinking Healthy se desarrolló en cinco años de investigación en zonas rurales de Pakistán, donde se tamizó a unas 4000 gestantes y se identificó a 903 con depresión perinatal. Es uno de los mayores ensayos controlados de intervenciones psicológicas hechos en países de ingresos bajos y medios, y la Organización Mundial de la Salud lo adoptó para difundirlo en todo el mundo (FICR, 2022). Usa técnicas cognitivo-conductuales recomendadas por el Programa de Acción para Superar las Brechas en Salud Mental, y puede aplicarlo personal de salud no especializado con formación y supervisión (FICR, 2022). La guía de formación no informa el tamaño del efecto del ensayo.",
+      secuencia: "<strong>Secuencia:</strong> una sesión inicial y quince sesiones en cinco módulos, desde el embarazo hasta los diez meses del bebé: semanales en el embarazo, quincenales al inicio del posparto y mensuales después. Cada sesión trabaja una de las tres áreas con los mismos tres pasos. Si la madre ya dio a luz, se omite el primer módulo y se empieza en el que corresponde a la edad del bebé (FICR, 2022).",
+      esc: ["hospital","primer-nivel","comunidad"],
+      actividades: [
+        {
+          t: "Sesión inicial con la madre y la familia",
+          tec: "Enganche familiar y paso de los problemas a las soluciones",
+          obj: "Que la madre y su familia acepten el programa como un entrenamiento en el que participan de forma activa.",
+          pasos: [
+            "Presentar las tres áreas con imágenes y preguntar a la familia si las considera importantes.",
+            "Mostrar dos imágenes, una madre abrumada y otra que mantiene en equilibrio los mismos problemas, y preguntar en cuál preferiría estar: los problemas no desaparecen, pero se vuelven manejables.",
+            "Acordar las reglas: participación activa, puntualidad, práctica entre sesiones y avisar si se está mal.",
+            "Entregar el calendario de salud, ubicarlo en un lugar visible de la casa y elegir a un familiar o amigo que acompañe la práctica."
+          ],
+          casa: "Registrar el estado de ánimo en el calendario y notar la relación entre pensamientos y sentimientos.",
+          avance: "La madre y al menos un familiar se comprometen con el programa y el calendario queda instalado en casa.",
+          fuente: "FICR, 2022 (sesión inicial)"
+        },
+        {
+          t: "Los tres pasos de pensar saludable",
+          tec: "Ciclo pensamiento, emoción y conducta",
+          obj: "Enseñar el método que se repite en todas las sesiones.",
+          pasos: [
+            "Explicar que toda acción empieza como un pensamiento, que el pensamiento influye en lo que se siente y se hace, y que la conducta tiene consecuencias.",
+            "Paso 1: identificar pensamientos poco saludables, con láminas que muestran a otra madre, sin culparla.",
+            "Paso 2: reemplazarlos por pensamientos saludables, buscando alternativas con la madre y la familia y evitando el todo o nada: los cambios pequeños cuentan.",
+            "Paso 3: practicar la conversión de esos pensamientos en acciones concretas."
+          ],
+          casa: "Anotar en la tabla de ánimo un pensamiento poco saludable de la semana y la alternativa que se ensayó.",
+          avance: "La madre identifica un pensamiento poco saludable y propone una alternativa sin ayuda.",
+          fuente: "FICR, 2022 (secciones 8 y 15)"
+        },
+        {
+          t: "Área 1: salud personal de la madre",
+          tec: "Plan de alimentación, descanso y relajación",
+          obj: "Romper el ciclo de inactividad en el que la madre descuida su alimentación, su descanso y su control prenatal.",
+          pasos: [
+            "Revisar la tabla de ánimo y los pensamientos de la semana sobre su propia salud.",
+            "Preparar con la madre y la familia un plan de alimentación con lo que hay en casa: equilibrado no quiere decir caro.",
+            "Enseñar respiración lenta y otras formas de relajarse, y organizar las tareas para liberar tiempo de descanso.",
+            "Promover el control prenatal: dónde queda el centro de salud, cómo llegar y qué señales de alarma exigen consultar."
+          ],
+          casa: "Seguir el plan de alimentación y descanso, marcándolo en el calendario de salud.",
+          avance: "La madre cumple la mayoría de los días el plan de descanso y asiste a sus controles.",
+          fuente: "FICR, 2022 (módulo 1, sesión 1.1)"
+        },
+        {
+          t: "Área 2: relación de la madre con el bebé",
+          tec: "Tres pasos aplicados al vínculo",
+          obj: "Mejorar la respuesta de la madre a las necesidades físicas y emocionales del bebé.",
+          pasos: [
+            "Identificar pensamientos poco saludables sobre el bebé o sobre sí misma como madre.",
+            "Buscar alternativas y recordar que cada bebé es distinto y no se compara con sus hermanos.",
+            "Practicar acciones concretas: alimentación adecuada, respuesta a las necesidades emocionales del bebé, contacto físico frecuente y un entorno que lo estimule."
+          ],
+          casa: "Una actividad diaria de interacción con el bebé, registrada en el calendario.",
+          avance: "Aumenta la interacción cotidiana de la madre con el bebé.",
+          fuente: "FICR, 2022 (sección 13)"
+        },
+        {
+          t: "Área 3: relación con las personas del entorno",
+          tec: "Tres pasos aplicados a la red de apoyo",
+          obj: "Que la madre y la familia aprovechen el apoyo formal e informal disponible.",
+          pasos: [
+            "Identificar los pensamientos que la alejan de los demás, frecuentes en madres estresadas o deprimidas.",
+            "Revisar con la familia quién puede ayudar y en qué.",
+            "Planificar un paso concreto para pedir o aceptar ayuda, y abordar las barreras —emocionales, físicas o sociales— con solución de problemas: entender el problema, explorar soluciones y hacer un plan."
+          ],
+          casa: "Pedir o aceptar una ayuda concreta de alguien de la red durante la semana.",
+          avance: "La madre cuenta con al menos una persona que la apoya de forma regular.",
+          fuente: "FICR, 2022 (secciones 13 y 22)"
+        },
+        {
+          t: "Continuidad por módulos según la edad del bebé",
+          tec: "Estructura fija de cuatro tareas por sesión",
+          obj: "Sostener el cambio desde el embarazo hasta el final del primer año, con la misma estructura en cada encuentro.",
+          pasos: [
+            "Tarea 1: repasar los mensajes clave de la sesión anterior.",
+            "Tarea 2: revisar la tabla de ánimo.",
+            "Tarea 3: aplicar los tres pasos al área que corresponde a la sesión.",
+            "Tarea 4: acordar la práctica entre sesiones. El contenido de cada módulo se ajusta a la etapa: preparación para el bebé, llegada del bebé y primera, media y última parte de su primer año."
+          ],
+          casa: "Mantener el calendario de salud al día hasta el final del programa.",
+          avance: "La madre completa los módulos y el calendario queda como registro de su salud y la del bebé.",
+          fuente: "FICR, 2022 (secciones 8 y 21)"
+        }
+      ],
+      medir: [
+        "<strong>EPDS</strong> antes de empezar y al terminar cada módulo. En la validación española el mejor punto de corte fue 10/11; en madres evaluadas al alta hospitalaria tras el parto, un estudio encontró más adecuado el 8 (Maroto Navarro et al., 2005).",
+        "<strong>BDI-II</strong> como medida de gravedad; frente al inventario de Beck, la escala de Edimburgo mostró más capacidad diagnóstica en el puerperio (Maroto Navarro et al., 2005).",
+        "<strong>PHQ-9</strong>, que el programa propone como una de las opciones de tamizaje para el ingreso (FICR, 2022).",
+        "Tabla de ánimo del calendario de salud, revisada en cada sesión."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> el tamizaje con la escala de Edimburgo puede hacerse al alta tras el parto (Maroto Navarro et al., 2005).",
+        "<strong>Consulta externa y comunidad:</strong> el programa se integra a la atención materno-infantil y lo aplican trabajadores comunitarios de salud formados, en casa o en el centro (FICR, 2022)."
+      ],
+      cuidado: [
+        "Si quien acompaña cree que la madre planea quitarse la vida o dañar a alguien, avisa al supervisor y al personal médico aunque ella no dé permiso: es un límite de la confidencialidad que se explica desde el consentimiento (FICR, 2022).",
+        "El ítem 10 de la escala de Edimburgo pregunta por pensamientos de hacerse daño y se revisa siempre, aparte del puntaje.",
+        "El programa no ofrece ayuda económica ni atención médica, y pide participación activa de la madre y la familia: conviene aclararlo desde el inicio (FICR, 2022).",
+        "Toda madre tiene derecho a no participar; ante la negativa, se escucha sin presionar (FICR, 2022)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ánimo y regulación emocional",
   t: "Desregulación emocional",
   sub: "Lo que se interviene no es sentir con intensidad, sino no poder aceptar ni modular lo que se siente: emociones que se disparan con poco, llegan muy alto y tardan en bajar, y conductas impulsivas con que la persona intenta apagarlas. Es el núcleo del trastorno límite de la personalidad y aparece también en el consumo, los trastornos alimentarios, la ansiedad y la depresión. Si hay autolesiones o conducta suicida, su manejo va primero.",
   elegir: [
@@ -2445,6 +2771,122 @@ const VARIABLES = [
         "Sentir una emoción intensa no es, por sí solo, desregulación: se interviene cuando la persona no puede aceptarla ni modularla, o cuando su intensidad interfiere con el autocontrol (Ruiz et al., cap. 12, §10).",
         "Con autolesiones, consumo o impulsividad grave, este plan no alcanza: se prioriza el manejo del riesgo y el plan dialéctico-conductual.",
         "No hay datos sobre qué componente produce el cambio."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ánimo y regulación emocional",
+  t: "Estados emocionales",
+  sub: "Lo que la persona cree saber de sus propias emociones: cuánta atención les presta, con qué claridad las distingue y qué tan capaz se siente de reparar un estado negativo. Es la inteligencia emocional percibida. A diferencia de la desregulación emocional, aquí no hace falta un desborde: basta con no ver, no entender o no saber qué hacer con lo que se siente.",
+  elegir: [
+    "<strong>El plan se organiza por las tres dimensiones de la escala</strong> y trabaja la que salió fuera del rango adecuado. En atención, el problema puede ser tanto la falta como el exceso; en claridad y reparación, solo la falta.",
+    "Si hay conductas impulsivas o autolesivas para regular la emoción, corresponde un plan de la variable Desregulación emocional."
+  ],
+  planes: [
+    {
+      id: "emo-dbt",
+      mod: "salovey",
+      inst: ["TMMS-24"],
+      enf: "dbt",
+      t: "Atender, comprender y reparar las emociones",
+      fuente: "Linehan, 2020, caps. 7 y 9 · González et al., 2020",
+      cuando: "La evaluación con la escala muestra un perfil concreto: la persona casi no registra lo que siente, o no deja de darle vueltas; confunde unas emociones con otras o no sabe nombrarlas; o, aunque las reconoce, no encuentra cómo salir de un estado negativo. El plan <strong>entrena la habilidad que falla</strong>, con ejercicios de las habilidades de mindfulness y de regulación emocional.",
+      respaldo: "Las tres dimensiones de la escala se relacionan con criterios clásicos como la depresión, la ansiedad, la rumiación y la satisfacción vital, y la inteligencia emocional percibida se concibe como un conjunto de habilidades que se pueden aprender, no como un rasgo fijo (González et al., 2020). Las habilidades de regulación emocional reorganizan en fichas y hojas de trabajo lo que los terapeutas indican en muchos tratamientos conductuales eficaces (Linehan, 2020). Las fuentes de esta guía no reportan ensayos que midan con esta escala el efecto de estas habilidades.",
+      secuencia: "<strong>Secuencia:</strong> las dos primeras actividades trabajan la atención, las dos siguientes la claridad y las dos últimas la reparación. Si solo una dimensión está fuera de rango, se empieza por ella; si fallan todas, va primero la atención, porque sin registrar la emoción no se la puede nombrar ni regular.",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Atención: observar la emoción",
+          tec: "Habilidades de mindfulness observar y describir",
+          obj: "Que la persona que casi no registra sus emociones empiece a notar las sensaciones, impulsos y pensamientos que las acompañan.",
+          pasos: [
+            "Practicar en sesión la observación de sensaciones corporales, sin ponerles palabras ni juzgarlas.",
+            "Pasar a describir: poner en palabras lo observado, solo los hechos.",
+            "Llevar la práctica a momentos breves del día."
+          ],
+          casa: "Tres pausas diarias para observar y describir qué se siente en el cuerpo.",
+          avance: "La persona informa sensaciones y estados que antes le pasaban inadvertidos.",
+          fuente: "Linehan, 2020, cap. 7"
+        },
+        {
+          t: "Atención: salir del exceso",
+          tec: "Mindfulness de las emociones actuales",
+          obj: "Que la persona que no deja de pensar en lo que siente pueda notar la emoción sin quedar atrapada en ella.",
+          pasos: [
+            "Explicar que una atención muy alta a las propias emociones puede ser rumiación o hipervigilancia, y perpetuar el malestar.",
+            "Practicar experimentar la emoción sin juzgarla, bloquearla ni aferrarse a ella: sube y baja como una ola.",
+            "Notar cómo juzgar una emoción como mala agrega culpa, vergüenza o enojo a la emoción inicial."
+          ],
+          casa: "Ante una emoción intensa, un minuto de observarla subir y bajar, anotando qué pasó con su intensidad.",
+          avance: "Disminuye el tiempo que la persona pasa dándole vueltas a cómo se siente.",
+          fuente: "González et al., 2020 · Linehan, 2020, cap. 9"
+        },
+        {
+          t: "Claridad: de qué está hecha una emoción",
+          tec: "Modelo para describir las emociones",
+          obj: "Mostrar que una emoción tiene componentes y que conocerlos permite identificarla.",
+          pasos: [
+            "Presentar los componentes: evento desencadenante, interpretación, factores de vulnerabilidad, cambios biológicos, sensaciones e impulsos, expresión, acciones y nombre.",
+            "Analizar con ese modelo una emoción reciente de la persona.",
+            "Revisar para qué sirven las emociones: motivan la acción, comunican a los demás y nos comunican a nosotros mismos."
+          ],
+          casa: "Completar el modelo con una emoción de la semana.",
+          avance: "La persona descompone una emoción en sus componentes sin ayuda.",
+          fuente: "Linehan, 2020, cap. 9"
+        },
+        {
+          t: "Claridad: nombrar con precisión",
+          tec: "Observar, describir y etiquetar emociones",
+          obj: "Que la persona distinga emociones parecidas y las nombre bien.",
+          pasos: [
+            "Con la ficha que describe diez emociones, comparar las que la persona confunde: por ejemplo, tristeza y culpa, o miedo y enojo.",
+            "Buscar en cada una sus señales típicas: interpretaciones, sensaciones e impulsos.",
+            "Etiquetar la emoción de un episodio reciente y revisar si el nombre encaja."
+          ],
+          casa: "Registrar cada día la emoción más intensa, con su nombre y las señales que llevaron a elegirlo.",
+          avance: "La persona usa un vocabulario emocional más preciso.",
+          fuente: "Linehan, 2020, cap. 9"
+        },
+        {
+          t: "Reparación: cambiar la respuesta emocional",
+          tec: "Verificar los hechos, acción opuesta y resolución de problemas",
+          obj: "Dar a la persona formas deliberadas de salir de un estado emocional negativo.",
+          pasos: [
+            "Verificar los hechos: comprobar si la emoción y su intensidad encajan con la situación.",
+            "Si no encajan, practicar la acción opuesta al impulso de la emoción.",
+            "Si encajan y el problema tiene solución, aplicar resolución de problemas."
+          ],
+          casa: "Aplicar una de las tres habilidades ante una emoción negativa y registrar el resultado.",
+          avance: "La persona usa una estrategia deliberada, en lugar de esperar a que el malestar pase solo.",
+          fuente: "Linehan, 2020, cap. 9 · Ruiz et al., cap. 12 (§10)"
+        },
+        {
+          t: "Reparación: reducir la vulnerabilidad",
+          tec: "Acumular experiencias positivas, construir competencia y anticiparse",
+          obj: "Hacer menos probable que las emociones negativas se instalen.",
+          pasos: [
+            "Programar experiencias positivas a corto plazo y avanzar hacia metas de largo plazo según los propios valores.",
+            "Elegir una actividad que dé sensación de competencia y aumentarla de forma gradual.",
+            "Ensayar de antemano cómo afrontar una situación emocional previsible.",
+            "Cuidar el cuerpo: sueño, alimentación y actividad física."
+          ],
+          casa: "Una experiencia positiva diaria y una actividad de competencia por semana.",
+          avance: "Mejora el puntaje de reparación y la persona informa menos días dominados por el ánimo negativo.",
+          fuente: "Linehan, 2020, cap. 9"
+        }
+      ],
+      medir: [
+        "Escala Rasgo de Metaconocimiento Emocional al inicio y al final, con los puntos de corte por sexo. En atención, el rango adecuado es de 22 a 32 en hombres y de 25 a 35 en mujeres; por encima es demasiada (Cerón et al., 2011).",
+        "Registro diario de emociones, con nombre, intensidad y habilidad usada."
+      ],
+      adapt: [
+        "<strong>Salud mental y consulta externa:</strong> las habilidades se enseñan en grupo o en sesión individual y se practican entre sesiones con hojas de trabajo (Linehan, 2020)."
+      ],
+      cuidado: [
+        "En atención, un puntaje alto no es mejor: puntuaciones muy altas pueden reflejar rumiación o hipervigilancia de las emociones (González et al., 2020).",
+        "La escala mide lo que la persona cree de sí misma, no su habilidad real: se contrasta con lo que se observa en sesión.",
+        "Cuando la emoción es tan intensa que la persona no puede usar estas habilidades, llegó a su punto de quiebre: primero van las de supervivencia a la crisis (Linehan, 2020, cap. 9)."
       ]
     }
   ]
@@ -4347,6 +4789,591 @@ const VARIABLES = [
     }
   ]
 },
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Bienestar psicológico",
+  sub: "El funcionamiento positivo: aceptarse, tener relaciones de confianza, sostener las propias convicciones, sentir que se influye en el entorno, tener un propósito y seguir creciendo. No es lo mismo que sentirse bien ni que no tener síntomas; se trabaja como meta en sí misma, haya o no un trastorno de por medio.",
+  elegir: [
+    "<strong>El plan se organiza por las seis dimensiones de Ryff</strong>, con un ejercicio de psicología positiva para cada una. Se empieza por la dimensión más baja en la escala.",
+    "Si lo que predomina es la depresión, el plan de psicología positiva de la variable Depresión tiene un respaldo más directo sobre los síntomas."
+  ],
+  planes: [
+    {
+      id: "bien-pp",
+      mod: "ryff",
+      inst: ["SWLS", "EBP"],
+      enf: "pp",
+      t: "Seis dimensiones del bienestar desde la psicología positiva",
+      fuente: "Seligman et al., 2005 · Seligman et al., 2006 · Díaz et al., 2006",
+      cuando: "La persona no tiene necesariamente un trastorno, o ya lo superó, pero describe una vida con poco propósito, relaciones pobres, poca confianza en sí misma o la sensación de no crecer. También sirve en muestras clínicas como complemento del tratamiento principal. El plan <strong>construye recursos en lugar de reducir síntomas</strong>.",
+      respaldo: "En un metaanálisis de 39 estudios aleatorizados con 6139 participantes, las intervenciones de psicología positiva mejoraron el bienestar psicológico con un efecto pequeño (diferencia de medias estandarizada de 0,20), que seguía siendo significativo de tres a seis meses después (Bolier et al.). En 30 estudios con 1864 pacientes con trastornos psiquiátricos o somáticos, el efecto sobre el bienestar también fue pequeño (g = 0,24), con estudios de calidad baja a moderada (Chakhssi et al.). Corregido el sesgo de los estudios pequeños, el efecto sobre el bienestar se mantiene (White et al.).",
+      secuencia: "<strong>Secuencia:</strong> una actividad por dimensión, en el orden del modelo; en la práctica se empieza por la dimensión con el puntaje más bajo. Las fuentes validan los ejercicios; <strong>la correspondencia de cada ejercicio con una dimensión de Ryff es una propuesta de organización de esta guía</strong>, no un resultado de esos estudios.",
+      esc: ["hospital","salud-mental","primer-nivel","comunidad"],
+      actividades: [
+        {
+          t: "Autoaceptación: mi mejor momento y mis fortalezas",
+          tec: "Relato en el mejor momento e identificación de fortalezas",
+          obj: "Que la persona se reconozca en sus fortalezas más características.",
+          pasos: [
+            "Pedirle que se presente con una historia real que la muestre en su mejor momento.",
+            "Identificar sus cinco fortalezas principales con un cuestionario de fortalezas del carácter.",
+            "Relacionar la historia con esas fortalezas: qué de lo que hizo entonces sigue siendo suyo."
+          ],
+          casa: "Anotar cada día un momento en que usó alguna de sus fortalezas.",
+          avance: "La persona describe sus fortalezas como propias, sin minimizarlas.",
+          fuente: "Seligman et al., 2006"
+        },
+        {
+          t: "Relaciones positivas: gratitud y respuesta activa",
+          tec: "Visita de gratitud y respuesta activa-constructiva",
+          obj: "Fortalecer los vínculos de confianza a través de la gratitud y de la forma de responder a los demás.",
+          pasos: [
+            "Elegir a alguien a quien la persona está muy agradecida y nunca le dio las gracias como correspondía.",
+            "Escribirle una carta que describa esa gratitud y leérsela en persona o por teléfono.",
+            "Practicar la respuesta activa-constructiva: reaccionar con interés y entusiasmo visibles ante las buenas noticias de otros."
+          ],
+          casa: "Una respuesta activa-constructiva al día a alguien cercano.",
+          avance: "La persona informa más cercanía en al menos una relación importante.",
+          fuente: "Seligman et al., 2005 · Seligman et al., 2006"
+        },
+        {
+          t: "Autonomía: suficientemente bueno",
+          tec: "Satisfacer en lugar de maximizar",
+          obj: "Que la persona decida con un criterio propio de lo que es suficiente, en lugar de buscar sin fin la mejor opción posible.",
+          pasos: [
+            "Revisar decisiones recientes en las que buscó la opción perfecta y cómo se sintió después.",
+            "Presentar la alternativa: elegir lo que es suficientemente bueno según sus propios criterios.",
+            "Identificar los ámbitos donde maximizar le quita más de lo que le da."
+          ],
+          casa: "Escribir formas de elegir lo suficientemente bueno y un plan personal para aplicarlas.",
+          avance: "La persona toma decisiones con criterios propios y menos comparación con los demás.",
+          fuente: "Seligman et al., 2006"
+        },
+        {
+          t: "Dominio del entorno: puertas que se cierran y se abren",
+          tec: "Optimismo y esperanza",
+          obj: "Que la persona vea en los reveses momentos en los que también se abrieron opciones sobre las que pudo actuar.",
+          pasos: [
+            "Recordar momentos en que perdió algo importante, un plan se vino abajo o alguien la rechazó.",
+            "Revisar qué puerta se abrió después de cada una.",
+            "Identificar lo que hizo ella para aprovechar esas nuevas opciones."
+          ],
+          casa: "Identificar tres puertas que se cerraron y tres que se abrieron después.",
+          avance: "La persona describe los reveses con más sensación de poder influir en lo que viene.",
+          fuente: "Seligman et al., 2006"
+        },
+        {
+          t: "Propósito en la vida: la biografía",
+          tec: "Obituario o biografía",
+          obj: "Aclarar por qué quiere ser recordada la persona, para orientar sus metas.",
+          pasos: [
+            "Imaginar que ha muerto después de una vida plena y satisfactoria.",
+            "Escribir en una o dos páginas qué le gustaría que dijera su biografía.",
+            "Extraer de ese texto las metas que hoy le dan dirección."
+          ],
+          casa: "Elegir una meta que se desprenda de la biografía y dar un primer paso.",
+          avance: "La persona formula metas concretas que expresan lo que le da propósito.",
+          fuente: "Seligman et al., 2006"
+        },
+        {
+          t: "Crecimiento personal: usar las fortalezas de una forma nueva",
+          tec: "Fortalezas personales en uso nuevo",
+          obj: "Desarrollar las propias capacidades llevando las fortalezas a terrenos nuevos.",
+          pasos: [
+            "Retomar las cinco fortalezas principales.",
+            "Elegir una y planificar cómo usarla de una forma distinta a la habitual.",
+            "Revisar al final de la semana qué aprendió de sí misma."
+          ],
+          casa: "Usar cada día de la semana una fortaleza principal de una forma nueva.",
+          avance: "La persona amplía el repertorio de situaciones en que usa sus fortalezas.",
+          fuente: "Seligman et al., 2005"
+        }
+      ],
+      medir: [
+        "Escalas de Bienestar Psicológico de Ryff al inicio y al final, con el puntaje de cada dimensión: indican por dónde empezar y qué cambió.",
+        "Escala de Satisfacción con la Vida como medida breve complementaria: evalúa bienestar subjetivo, no bienestar psicológico (Díaz et al., 2006)."
+      ],
+      adapt: [
+        "<strong>Hospital general y salud mental:</strong> el efecto sobre el bienestar se ha encontrado también en pacientes con trastornos psiquiátricos o somáticos (Chakhssi et al.).",
+        "<strong>Consulta externa y comunidad:</strong> los estudios incluyen formatos de autoayuda, grupo y terapia individual (Bolier et al.)."
+      ],
+      cuidado: [
+        "Identificar las fortalezas sin llevarlas a la práctica tuvo efectos solo pasajeros; usarlas de una forma nueva mantuvo el efecto seis meses (Seligman et al., 2005). La primera actividad no se deja sola.",
+        "En quien sufre, centrarse solo en lo positivo puede vivirse como que no se toma en serio su malestar; con depresión, se equilibra con el trabajo sobre los síntomas (Seligman et al., 2006).",
+        "En la versión española, el modelo de seis factores no ajustó bien con 39 ítems y sí con la versión reducida: conviene usar esta última e interpretar las dimensiones con cautela (Díaz et al., 2006)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
+  t: "Ansiedad prequirúrgica",
+  sub: "La ansiedad ante una cirugía programada: miedo a la anestesia, a la operación y a sus resultados, junto con la necesidad de saber qué va a pasar. Es frecuente —entre el 11 % y el 92 % de los pacientes, según los estudios— y puede afectar el desarrollo de la cirugía y la recuperación.",
+  elegir: [
+    "<strong>El plan tiene un tiempo definido: el que queda hasta la cirugía.</strong> Se organiza por las dos dimensiones de la escala —ansiedad y necesidad de información— y por las fases de la inoculación de estrés, comprimidas a ese plazo.",
+    "Si la ansiedad es previa y generalizada, y la cirugía es solo uno de sus temas, corresponde un plan de las variables Ansiedad o Intolerancia a la incertidumbre."
+  ],
+  planes: [
+    {
+      id: "preq-tcc",
+      mod: "lazarus",
+      inst: ["APAIS"],
+      enf: "tcc",
+      t: "Preparación psicológica para la cirugía",
+      fuente: "Ruiz et al., caps. 6 y 9 · Vergara-Romero et al., 2017",
+      cuando: "La persona tiene una cirugía programada y la escala muestra ansiedad elevada ante la anestesia o la operación, o mucha necesidad de información. El plan <strong>ajusta la información a lo que la persona necesita saber y la entrena para afrontar los momentos concretos</strong> del procedimiento: la espera, el ingreso, el quirófano y el despertar.",
+      respaldo: "Las visitas preoperatorias de enfermería y las intervenciones psicoeducativas y audiovisuales que informan sobre el procedimiento han mostrado reducir la ansiedad (Vergara-Romero et al., 2017). La inoculación de estrés se usa en medicina conductual para preparar a las personas ante intervenciones y pruebas médicas diagnósticas (Ruiz et al., cap. 9, §3.1), y el modelado se ha aplicado a los miedos a procedimientos médicos e intervenciones quirúrgicas (Ruiz et al., cap. 6, §2.6). El manual advierte que hay pocas investigaciones controladas que comparen la inoculación de estrés con otros tratamientos (Ruiz et al., cap. 9, §3.1).",
+      secuencia: "<strong>Secuencia:</strong> las fases de la inoculación de estrés —conceptualización, adquisición de habilidades y aplicación— se solapan entre sí y aquí se comprimen al tiempo disponible antes de la cirugía (Ruiz et al., cap. 9, §3.3). Las dos primeras actividades responden a la necesidad de información; las siguientes, a la ansiedad.",
+      esc: ["hospital"],
+      actividades: [
+        {
+          t: "Valorar la amenaza y lo que la persona necesita saber",
+          tec: "Evaluación con la escala y entrevista",
+          obj: "Distinguir si pesa más el miedo a la anestesia, a la operación o la falta de información, y qué partes de la situación se pueden cambiar.",
+          pasos: [
+            "Aplicar la escala y revisar por separado los ítems de ansiedad y los de necesidad de información.",
+            "Pedir a la persona que describa de forma concreta lo que teme, sin quedarse en descripciones generales.",
+            "Separar lo que puede cambiar —cómo se prepara, qué pregunta, quién la acompaña— de lo que no puede cambiar, para dirigir allí el esfuerzo."
+          ],
+          casa: "Escribir las preguntas que quiere hacerle al equipo de cirugía o de anestesia.",
+          avance: "La persona formula sus temores en términos concretos y tiene su lista de preguntas.",
+          fuente: "Vergara-Romero et al., 2017 · Ruiz et al., cap. 9 (§3.3.1)"
+        },
+        {
+          t: "Información ajustada sobre el procedimiento",
+          tec: "Psicoeducación y enlace con el equipo de salud",
+          obj: "Reducir la ansiedad que viene de no saber qué va a pasar.",
+          pasos: [
+            "Coordinar con el equipo quién explica el procedimiento, la anestesia y la recuperación.",
+            "Ordenar la información como la persona la vivirá: ingreso, preparación, quirófano, despertar y primeros días.",
+            "Comprobar qué entendió y resolver sus preguntas."
+          ],
+          casa: "Repasar con un acompañante la secuencia del día de la cirugía.",
+          avance: "Baja el puntaje de necesidad de información y la persona puede contar qué va a pasar.",
+          fuente: "Vergara-Romero et al., 2017 · Livneh y Antonak, 2005"
+        },
+        {
+          t: "Ver a otro pasar por el procedimiento",
+          tec: "Modelado filmado o en vivo con un modelo de afrontamiento",
+          obj: "Que la persona observe a alguien que afronta el procedimiento y aprenda de él qué hacer.",
+          pasos: [
+            "Elegir un modelo de afrontamiento: alguien que al principio se muestra temeroso, como la persona, y poco a poco afronta la situación con más destreza.",
+            "Ver el video o la situación con ella, comentando qué hace el modelo en cada momento.",
+            "Pedirle que ensaye lo que vio."
+          ],
+          casa: "Volver a ver el material y anotar qué conductas del modelo quiere repetir.",
+          avance: "La persona describe qué va a hacer en cada momento del procedimiento.",
+          fuente: "Ruiz et al., cap. 6 (§2.4 a §2.6)"
+        },
+        {
+          t: "Control de la activación",
+          tec: "Respiración profunda y relajación",
+          obj: "Dar a la persona una forma de bajar la activación que pueda usar en la espera y en el quirófano.",
+          pasos: [
+            "Enseñar respiración profunda y un procedimiento breve de relajación.",
+            "Entrenarla en detectar los primeros indicios del aumento de la activación, para aplicarla desde el principio.",
+            "Practicar en sesión hasta que pueda hacerlo sin guía."
+          ],
+          casa: "Practicar dos veces al día y registrar la tensión de 0 a 10 antes y después.",
+          avance: "La persona baja su activación en pocos minutos sin ayuda.",
+          fuente: "Ruiz et al., cap. 9 (§3.3.2)"
+        },
+        {
+          t: "Autoinstrucciones para cada momento",
+          tec: "Entrenamiento autoinstruccional en cuatro momentos",
+          obj: "Preparar frases propias para guiarse antes, durante y después.",
+          pasos: [
+            "Preparación: centrarse en lo que hay que hacer, no en los nervios.",
+            "Confrontación: tomar la tensión como señal para usar lo entrenado; respirar e ir paso a paso.",
+            "Momentos de más malestar: aceptarlo, esperar a que baje y centrarse en lo que se puede hacer.",
+            "Valoración: reconocer lo que se hizo bien, aunque haya sido poco."
+          ],
+          casa: "Escribir las autoinstrucciones en una tarjeta para llevar al hospital.",
+          avance: "La persona tiene frases propias para cada momento y las usa en los ensayos.",
+          fuente: "Ruiz et al., cap. 9 (§3.3.2)"
+        },
+        {
+          t: "Ensayo y afrontamiento paliativo",
+          tec: "Ensayo en imaginación, apoyo social y desviación de la atención",
+          obj: "Integrar lo aprendido y preparar lo que no se puede controlar.",
+          pasos: [
+            "Ensayar en imaginación la secuencia del día de la cirugía, de lo menos a lo más difícil, con la relajación y las autoinstrucciones.",
+            "Para lo que no se puede cambiar, entrenar afrontamiento paliativo: desviar la atención, apoyarse en otros y expresar lo que se siente.",
+            "Acordar con la familia cómo acompañar."
+          ],
+          casa: "Un ensayo en imaginación diario hasta el día de la cirugía.",
+          avance: "La persona recorre el ensayo completo con una ansiedad que considera manejable.",
+          fuente: "Ruiz et al., cap. 9 (§3.3.2 y §3.3.3)"
+        }
+      ],
+      medir: [
+        "Escala de Ansiedad e Información Preoperatoria de Ámsterdam al inicio y el día previo a la cirugía, con sus dos puntajes por separado. En la versión española, el punto de corte 14 dio un área bajo la curva de 0,85; los autores originales proponen entre 11 y 13 (Vergara-Romero et al., 2017).",
+        "Tensión de 0 a 10 antes y después de cada práctica de relajación."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> la escala es breve y puede aplicarla personal de enfermería entrenado; en la validación española la aplicaron enfermeras quirúrgicas (Vergara-Romero et al., 2017)."
+      ],
+      cuidado: [
+        "Una operación grave inminente es una amenaza sostenida y poco controlable: además de las estrategias activas, hacen falta las de afrontamiento paliativo (Ruiz et al., cap. 9, §3.3.2).",
+        "La información médica la da el equipo que opera y anestesia; el psicólogo facilita que llegue y se entienda, no la sustituye.",
+        "En la validación española, los niveles de ansiedad fueron bajos pese a medirse justo antes de la cirugía, y el mejor punto de corte quedó por encima del original: el corte se interpreta según el momento de aplicación (Vergara-Romero et al., 2017)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
+  t: "Adherencia al tratamiento",
+  sub: "El grado en que lo que hace la persona —tomar la medicación, seguir una dieta, cambiar hábitos— corresponde con lo acordado con el profesional de salud. Acordado es la palabra clave: a diferencia del simple cumplimiento, la adherencia requiere que la persona esté de acuerdo. Aplica a cualquier enfermedad de largo plazo.",
+  elegir: [
+    "<strong>El plan evalúa las cinco dimensiones antes de intervenir</strong>, porque ninguna intervención funciona en todos los pacientes, enfermedades y contextos. El psicólogo trabaja sobre todo en los factores del paciente y de la enfermedad, y lleva al equipo los demás.",
+    "Si la baja adherencia es parte de un consumo de sustancias o de un trastorno alimentario, corresponden primero esos planes."
+  ],
+  planes: [
+    {
+      id: "adh-tcc",
+      mod: "oms-adh",
+      inst: ["PHQ-9", "ADH-MM"],
+      enf: "tcc",
+      t: "Adherencia por dimensiones: información, motivación y habilidades",
+      fuente: "OMS, 2003 · Ruiz et al., cap. 9 · Cifuentes",
+      cuando: "La persona tiene una enfermedad de largo plazo —diabetes, hipertensión, VIH, asma, epilepsia, depresión— y no sigue el tratamiento acordado: olvida dosis, lo abandona cuando se siente bien, no hace los cambios de hábitos o falta a los controles. El plan <strong>parte de por qué no lo sigue</strong>, que casi nunca es una sola razón.",
+      respaldo: "Según la Organización Mundial de la Salud, aumentar la eficacia de las intervenciones de adherencia puede tener más impacto en la salud de la población que cualquier mejora de los tratamientos médicos específicos (OMS, 2003). Un metaanálisis citado en su informe concluye que ninguna estrategia aislada muestra ventaja clara y que las intervenciones que combinan componentes cognitivos, conductuales y motivacionales son más eficaces que las de un solo foco: la información sola no basta (OMS, 2003, cap. V). La terapia de solución de problemas se ha usado para superar las barreras que impiden la adherencia a tratamientos médicos y psicológicos (Ruiz et al., cap. 9, §4.1).",
+      secuencia: "<strong>Secuencia:</strong> la primera actividad evalúa las cinco dimensiones y decide cuáles de las siguientes hacen falta. La adherencia es un proceso que se sigue en el tiempo, no un resultado que se consigue una vez (OMS, 2003).",
+      esc: ["hospital","primer-nivel","comunidad"],
+      actividades: [
+        {
+          t: "Evaluar las cinco dimensiones",
+          tec: "Entrevista de barreras y medición combinada",
+          obj: "Saber qué tan adherente es la persona y qué factores lo explican antes de elegir la intervención.",
+          pasos: [
+            "Medir la adherencia combinando lo que informa la persona con una medida objetiva disponible, como los registros de la farmacia.",
+            "Recorrer las cinco dimensiones: situación social y económica, relación con el equipo y acceso al servicio, enfermedad, tratamiento y factores propios.",
+            "Priorizar los factores que se pueden modificar y acordar con la persona por dónde empezar."
+          ],
+          casa: "Registrar durante una semana cada toma o conducta del tratamiento y lo que pasó cuando no se hizo.",
+          avance: "Hay una lista priorizada de barreras que la persona reconoce como suyas.",
+          fuente: "OMS, 2003, caps. I y V"
+        },
+        {
+          t: "Creencias sobre el tratamiento",
+          tec: "Balance entre necesidad y preocupaciones",
+          obj: "Hacer explícito cuánto cree la persona que necesita el tratamiento y qué le preocupa de él.",
+          pasos: [
+            "Preguntar para qué cree que sirve el tratamiento y qué pasaría si lo dejara.",
+            "Explorar sus preocupaciones: efectos secundarios, costo, lo que dicen otros.",
+            "Corregir la información equivocada y llevar al equipo las preocupaciones legítimas."
+          ],
+          casa: "Escribir las dudas sobre el tratamiento para la próxima consulta médica.",
+          avance: "La persona puede explicar por qué necesita el tratamiento y sus preocupaciones tienen respuesta.",
+          fuente: "OMS, 2003, cap. IV"
+        },
+        {
+          t: "Motivación según la disposición al cambio",
+          tec: "Entrevista motivacional por estadios",
+          obj: "Ajustar la intervención a la disposición de la persona a seguir el tratamiento.",
+          pasos: [
+            "Identificar el estadio de la persona para cada conducta del tratamiento, que puede ser distinto en cada una.",
+            "Con quien aún no ve el problema, explorar la ambivalencia sin confrontar.",
+            "Con quien ya decidió, pasar a un plan concreto."
+          ],
+          casa: "Escribir los pros y contras de seguir el tratamiento tal como se acordó.",
+          avance: "La persona avanza al menos un estadio en la conducta objetivo.",
+          fuente: "OMS, 2003, cap. V · Cifuentes"
+        },
+        {
+          t: "Habilidades de autorregulación",
+          tec: "Claves, autorregistro, autorrefuerzo y solución de problemas",
+          obj: "Convertir la intención en un hábito que se mantenga.",
+          pasos: [
+            "Asociar la conducta a una rutina diaria y usar recordatorios.",
+            "Llevar un autorregistro sencillo y reforzar los avances.",
+            "Ante cada barrera, aplicar solución de problemas: definirla, generar alternativas, elegir una y probarla."
+          ],
+          casa: "Mantener el autorregistro y aplicar la solución de problemas a la barrera principal.",
+          avance: "Mejora el porcentaje de tomas o conductas cumplidas, en el autorregistro y en la medida objetiva.",
+          fuente: "OMS, 2003, cap. V · Ruiz et al., cap. 9 (§4.1)"
+        },
+        {
+          t: "Tamizaje de depresión y consumo",
+          tec: "Tamizaje sistemático",
+          obj: "Detectar una depresión o un consumo que estén frenando la adherencia.",
+          pasos: [
+            "Aplicar un tamizaje de depresión a toda persona con baja adherencia, como recomienda la Organización Mundial de la Salud.",
+            "Si es positivo, evaluar y abrir el plan correspondiente de la variable Depresión.",
+            "Revisar también el consumo de alcohol y otras sustancias, que modifica la adherencia."
+          ],
+          casa: "No aplica: se hace en la consulta.",
+          avance: "La depresión o el consumo, si existen, están identificados y en tratamiento.",
+          fuente: "OMS, 2003, cap. V"
+        },
+        {
+          t: "Apoyo social y trabajo con el equipo",
+          tec: "Red de apoyo, grupos de pares y comunicación con el equipo",
+          obj: "Actuar sobre las dimensiones que no dependen solo de la persona.",
+          pasos: [
+            "Identificar quién de la familia o de la comunidad puede apoyar la adherencia y cómo.",
+            "Informar a la persona de los grupos de pares o de pacientes disponibles.",
+            "Llevar al equipo las barreras del tratamiento —complejidad, efectos secundarios— y de la atención —consultas cortas, falta de continuidad— para buscar ajustes."
+          ],
+          casa: "Hablar con la persona de apoyo elegida sobre cómo puede ayudar.",
+          avance: "La persona cuenta con un apoyo concreto y el equipo conoce sus barreras.",
+          fuente: "OMS, 2003, caps. IV y V"
+        }
+      ],
+      medir: [
+        "Medición combinada de la adherencia al inicio y en cada seguimiento: autoinforme más una medida objetiva disponible (OMS, 2003, cap. I).",
+        "<strong>PHQ-9</strong> al inicio, porque la depresión es un modificador importante de la adherencia (OMS, 2003, cap. V).",
+        "Indicadores clínicos de la enfermedad que el equipo ya registra."
+      ],
+      adapt: [
+        "<strong>Hospital general y consulta externa:</strong> la intervención se coordina con el equipo tratante; la continuidad con el mismo profesional se asocia a mejor adherencia (OMS, 2003, cap. IV).",
+        "<strong>Comunidad:</strong> el apoyo entre pares mejora la adherencia y reduce el tiempo que el personal dedica a cada paciente (OMS, 2003, cap. V)."
+      ],
+      cuidado: [
+        "La baja adherencia no es solo un problema del paciente: atribuírsela en exclusiva deja fuera cuatro de las cinco dimensiones (OMS, 2003, cap. V).",
+        "Los umbrales de «buena» y «mala» adherencia se usan mucho pero tienen poco respaldo: la relación entre dosis y respuesta es continua (OMS, 2003, cap. I).",
+        "Dejar un tratamiento puede traer recaídas más intensas, resistencia a los fármacos o, si se toma de más, toxicidad: cualquier cambio en la medicación lo decide el equipo médico (OMS, 2003, cap. IV)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
+  t: "Impacto psicológico de una pérdida corporal o un diagnóstico grave",
+  sub: "La reacción inmediata ante un acontecimiento médico que cambia la vida de golpe: una amputación por pie diabético, una lesión medular, un infarto, un diagnóstico de cáncer o la pérdida de la visión. La variable es la reacción al hecho —choque, ansiedad, negación, duelo, ira— y su evolución hacia el ajuste, no el repertorio de afrontamiento de la persona.",
+  elegir: [
+    "<strong>El plan se organiza por la reacción que predomina en cada momento</strong>, no por una secuencia fija: al principio, estrategias de apoyo y de expresión; más adelante, estrategias activas y dirigidas a metas.",
+    "Cuando lo que se quiere evaluar o entrenar es el afrontamiento en sí, corresponde la variable Estrés y afrontamiento. Si hay ideación suicida, primero el plan de riesgo suicida."
+  ],
+  planes: [
+    {
+      id: "perd-est",
+      mod: "livneh",
+      inst: ["RIDI", "PAIS"],
+      enf: "est",
+      t: "Intervención ajustada a la reacción ante la pérdida",
+      fuente: "Livneh y Antonak, 2005 · Deza, 2007",
+      cuando: "La persona acaba de perder una parte del cuerpo o una función, o de recibir un diagnóstico grave, y está hospitalizada o en rehabilitación. El plan <strong>empieza en el hecho inmediato</strong> —la crisis— y acompaña la reacción que aparezca, sin esperar que la persona pase por etapas en un orden determinado.",
+      respaldo: "Las intervenciones específicas por reacción emparejan la estrategia con la reacción observada: las de apoyo y expresión son más útiles al principio de la adaptación, y las activas, cognitivo-conductuales y dirigidas a metas, más adelante (Livneh y Antonak, 2005). Los autores reseñan un programa grupal cognitivo-conductual para personas con lesión medular —relajación, visualización, reestructuración cognitiva y entrenamiento social y asertivo— evaluado en un ensayo controlado (Livneh y Antonak, 2005). Es un artículo de revisión para profesionales y no informa tamaños de efecto.",
+      secuencia: "<strong>Secuencia:</strong> las dos primeras actividades corresponden al momento inmediato; las demás se usan según la reacción que predomine. El orden de las reacciones es objeto de debate en la investigación, así que el de abajo es solo orientativo (Livneh y Antonak, 2005).",
+      esc: ["hospital"],
+      actividades: [
+        {
+          t: "Choque: primer contacto en la crisis",
+          tec: "Primeros auxilios psicológicos",
+          obj: "Acompañar el choque inicial —embotamiento, desorganización, dificultad para hablar— y restablecer un mínimo de equilibrio.",
+          pasos: [
+            "Hacer contacto psicológico: escuchar, reflejar hechos y sentimientos, comunicar aceptación.",
+            "Explorar el presente, el pasado inmediato y el futuro inmediato, incluidos los riesgos.",
+            "Identificar la pérdida y qué significa para la persona.",
+            "Dar el mejor paso próximo y acordar un nuevo contacto."
+          ],
+          casa: "No aplica: ocurre junto a la cama o en el primer encuentro.",
+          avance: "La persona puede hablar de lo ocurrido y hay un seguimiento acordado.",
+          fuente: "Deza, 2007 · Livneh y Antonak, 2005"
+        },
+        {
+          t: "Ansiedad: información médica ajustada",
+          tec: "Información sobre la condición, el pronóstico y las limitaciones",
+          obj: "Reducir la ansiedad inicial y los efectos dañinos de una negación que no cede.",
+          pasos: [
+            "Coordinar con el equipo una explicación clara del estado actual, el pronóstico y las limitaciones funcionales previstas.",
+            "Dar la información por partes, comprobando qué entendió.",
+            "Cuando aplique, anticipar las implicaciones laborales y para la vida diaria."
+          ],
+          casa: "Anotar las preguntas que surjan para el equipo.",
+          avance: "La persona describe su situación médica con precisión y con menos ansiedad.",
+          fuente: "Livneh y Antonak, 2005"
+        },
+        {
+          t: "Negación: respetar su función y vigilar su costo",
+          tec: "Acompañamiento sin confrontación",
+          obj: "Permitir que la negación proteja al principio sin que ponga en riesgo el tratamiento.",
+          pasos: [
+            "No confrontar ni interpretar mientras no haya un vínculo de confianza.",
+            "Observar si la negación lleva a descuidar las indicaciones médicas o de rehabilitación.",
+            "Si lo hace, volver a la información médica y a sus consecuencias concretas, con apoyo del equipo."
+          ],
+          casa: "No aplica en la fase inicial.",
+          avance: "La persona sigue las indicaciones médicas, aunque aún no hable de la pérdida en toda su dimensión.",
+          fuente: "Livneh y Antonak, 2005 · Deza, 2007"
+        },
+        {
+          t: "Depresión: duelo por la función perdida",
+          tec: "Expresión del duelo y búsqueda de sentido",
+          obj: "Acompañar la tristeza que llega cuando la persona dimensiona la permanencia de la pérdida.",
+          pasos: [
+            "Invitar a expresar el duelo, el aislamiento, la culpa y la vergüenza por lo perdido: la movilidad, la visión, la salud.",
+            "Explorar qué significa la pérdida para su vida y para su imagen corporal.",
+            "Si la tristeza se prolonga, reforzar el contacto social y las actividades, la autodeterminación y las habilidades para la vida independiente."
+          ],
+          casa: "Una actividad social o de autonomía por semana, acordada según lo que permita la condición.",
+          avance: "La persona habla de la pérdida y retoma alguna actividad.",
+          fuente: "Livneh y Antonak, 2005"
+        },
+        {
+          t: "Ira: expresión aceptable y atribuciones",
+          tec: "Canalización de la ira y modificación de conducta",
+          obj: "Manejar la ira contra sí mismo —resentimiento, culpa— o contra otros —el equipo, la familia— que puede obstaculizar el tratamiento.",
+          pasos: [
+            "Identificar hacia dónde se dirige la ira y qué atribución de responsabilidad la sostiene.",
+            "Entrenar formas socialmente aceptadas de expresarla, como actividades artísticas o, si es posible, deportivas.",
+            "Si hay agresión verbal o física, aplicar técnicas de modificación de conducta."
+          ],
+          casa: "Registrar los episodios de ira y la forma de expresión usada.",
+          avance: "Disminuyen los episodios de hostilidad hacia el equipo o la familia.",
+          fuente: "Livneh y Antonak, 2005"
+        },
+        {
+          t: "Hacia el ajuste: grupo y habilidades para la vida",
+          tec: "Grupos de personas en la misma situación y entrenamiento en habilidades",
+          obj: "Acompañar la aceptación de la condición, un sentido de sí mismo renovado y la búsqueda activa de metas.",
+          pasos: [
+            "Ofrecer un grupo con personas en situación similar y, si aplica, con la familia, para compartir temores, necesidades e información.",
+            "Entrenar habilidades para la vida en la comunidad: asertividad, relaciones, toma de decisiones, solución de problemas y manejo del estigma.",
+            "Definir metas personales, sociales o laborales y los obstáculos previsibles."
+          ],
+          casa: "Un paso concreto hacia una meta personal, social o laboral.",
+          avance: "La persona se plantea metas y se describe incluyendo la condición, sin reducirse a ella.",
+          fuente: "Livneh y Antonak, 2005"
+        }
+      ],
+      medir: [
+        "Inventario de Reacciones ante la Deficiencia y la Discapacidad, para ver qué reacción predomina y cómo cambia.",
+        "Escala de Adaptación Psicosocial a la Enfermedad al inicio de la rehabilitación y al alta.",
+        "<strong>PHQ-9</strong> si la tristeza se prolonga."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> el primer contacto ocurre en la hospitalización; el grupo y el entrenamiento en habilidades, en rehabilitación o consulta externa. Un modelo grupal para pacientes cardiacos combina información sobre la enfermedad, entrenamiento en afrontamiento y habilidades cognitivas para manejar las emociones (Livneh y Antonak, 2005)."
+      ],
+      cuidado: [
+        "No se espera que la persona pase por etapas en orden, ni que aparezcan todas: se interviene sobre lo que se observa.",
+        "La negación puede aliviar la ansiedad y la depresión al principio, pero sostenida es desadaptativa y puede poner en riesgo la vida, por ejemplo si lleva a abandonar el tratamiento (Livneh y Antonak, 2005).",
+        "No está claro que la depresión sea un paso necesario para aceptar la condición: no se la espera ni se la induce (Livneh y Antonak, 2005).",
+        "Las consecuencias de una crisis pueden durar y convertirse en estrés postraumático: si aparecen, corresponde la variable Trauma y estrés postraumático (Livneh y Antonak, 2005)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
+  t: "Sufrimiento y sentido al final de la vida",
+  sub: "El malestar de la persona con una enfermedad avanzada o terminal que no se agota en la depresión o la ansiedad: pérdida de sentido, desesperanza, bienestar espiritual disminuido y, a veces, deseo de adelantar la muerte. Aplica a cuidados paliativos y, con adaptaciones, a quienes cuidan.",
+  elegir: [
+    "<strong>El plan se organiza por las cuatro fuentes de sentido</strong> que describe la psicoterapia centrada en el sentido: histórica, actitudinal, creativa y experiencial.",
+    "Si hay un episodio depresivo o ideación suicida, se atienden primero con los planes de esas variables."
+  ],
+  planes: [
+    {
+      id: "fin-sent",
+      mod: "breitbart",
+      inst: ["FACIT-Sp", "SAHD"],
+      enf: "sent",
+      t: "Psicoterapia centrada en el sentido",
+      fuente: "Breitbart et al., 2015 · Applebaum et al., 2026",
+      cuando: "La persona tiene un cáncer avanzado u otra enfermedad que limita la vida y expresa que su vida ya no tiene sentido, que es una carga, que no hay nada que esperar o que preferiría que todo terminara pronto. El plan <strong>no busca que acepte la muerte ni que piense en positivo</strong>: busca que reconecte con lo que le da sentido, aun con los límites que impone la enfermedad.",
+      respaldo: "En un ensayo aleatorizado con 253 pacientes con cáncer avanzado, ocho sesiones de psicoterapia grupal centrada en el sentido mejoraron más que una psicoterapia grupal de apoyo el bienestar espiritual y la calidad de vida, y redujeron más la depresión, la desesperanza, el deseo de adelantar la muerte y el malestar por síntomas físicos; en ansiedad no hubo diferencias (Breitbart et al., 2015). En el análisis por intención de tratar, las diferencias se mantuvieron en calidad de vida, depresión y desesperanza (Breitbart et al., 2015). Una adaptación de siete sesiones individuales para cuidadores mostró en un piloto efectos preliminares sobre el sentido personal y el bienestar espiritual, y se evalúa en un ensayo completo (Applebaum et al., 2026).",
+      secuencia: "<strong>Secuencia:</strong> la versión grupal para pacientes tiene ocho sesiones (Breitbart et al., 2015). Las actividades siguen la estructura por temas que describe el protocolo de la adaptación para cuidadores, derivada de la misma intervención: conceptos, identidad, cuatro fuentes de sentido y cierre (Applebaum et al., 2026). Al final de cada sesión se dejan preguntas sobre el tema de la siguiente.",
+      esc: ["hospital","cuidadores"],
+      actividades: [
+        {
+          t: "Conceptos y fuentes de sentido",
+          tec: "Exposición, discusión y ejercicio experiencial",
+          obj: "Presentar la idea de que el sentido puede encontrarse aun en la enfermedad y que tiene fuentes identificables.",
+          pasos: [
+            "Presentar el enfoque, basado en Frankl: el sentido no se pierde con la enfermedad; se puede buscar y reconectar con él.",
+            "Pedir a la persona que cuente su recorrido con la enfermedad.",
+            "Explorar qué le ha dado sentido a su vida hasta ahora."
+          ],
+          casa: "Reflexionar sobre las preguntas de la próxima sesión: quién era antes del diagnóstico y quién es ahora.",
+          avance: "La persona nombra al menos un momento o una relación que le dio sentido.",
+          fuente: "Breitbart et al., 2015 · Applebaum et al., 2026"
+        },
+        {
+          t: "Identidad antes y después de la enfermedad",
+          tec: "Reflexión guiada",
+          obj: "Revisar cómo la enfermedad cambió la identidad, distinguiendo lo que no cambia de lo que todavía puede crecer.",
+          pasos: [
+            "Explorar quién era la persona antes del diagnóstico y quién es ahora.",
+            "Separar los aspectos de la identidad que se mantienen de los que la enfermedad modificó.",
+            "Buscar dónde hay posibilidad de crecimiento."
+          ],
+          casa: "Escribir tres rasgos de sí misma que la enfermedad no ha cambiado.",
+          avance: "La persona se describe con algo más que la enfermedad.",
+          fuente: "Applebaum et al., 2026"
+        },
+        {
+          t: "Fuentes históricas: el legado",
+          tec: "Revisión del legado pasado, presente y futuro",
+          obj: "Encontrar sentido en la propia historia y en lo que la persona deja a otros.",
+          pasos: [
+            "Revisar el legado recibido: la historia familiar y las experiencias que no eligió.",
+            "Identificar el legado que está construyendo ahora.",
+            "Pensar qué legado quiere dejar y a quién."
+          ],
+          casa: "Elegir una forma concreta de transmitir parte de su legado: una carta, una grabación, una conversación.",
+          avance: "La persona identifica algo que quiere dejar y empieza a hacerlo.",
+          fuente: "Applebaum et al., 2026"
+        },
+        {
+          t: "Fuentes actitudinales: ante los límites",
+          tec: "Reflexión sobre la elección de la actitud",
+          obj: "Reconocer que, aunque la situación no se pueda cambiar, se puede elegir cómo responder a ella.",
+          pasos: [
+            "Revisar los límites que impone la enfermedad.",
+            "Identificar dónde sí hay elección.",
+            "Reflexionar sobre cómo quiere enfrentar esos límites, incluida la posibilidad de la muerte."
+          ],
+          casa: "Anotar una situación de la semana en la que eligió cómo responder a un límite.",
+          avance: "La persona habla de sus límites sin quedar reducida a ellos.",
+          fuente: "Applebaum et al., 2026"
+        },
+        {
+          t: "Fuentes creativas: crear la propia vida",
+          tec: "Revisión de actividades, proyectos y responsabilidad",
+          obj: "Recuperar el sentido que viene de lo que la persona hace y crea.",
+          pasos: [
+            "Identificar las actividades, intereses y proyectos que la hacen ser quien es.",
+            "Ver cuáles pueden continuar o adaptarse a sus condiciones actuales.",
+            "Incluir el cuidado de sí misma como una forma de seguir creando la propia vida."
+          ],
+          casa: "Retomar o adaptar una actividad valiosa, en la medida en que la condición física lo permita.",
+          avance: "La persona hace algo que siente como propio y valioso.",
+          fuente: "Applebaum et al., 2026"
+        },
+        {
+          t: "Fuentes experienciales y cierre",
+          tec: "Amor, belleza y humor; transiciones",
+          obj: "Reconectar con el sentido que dan las experiencias y consolidar lo trabajado.",
+          pasos: [
+            "Explorar experiencias de amor, belleza y humor, y el contacto con la vida a través de los cinco sentidos.",
+            "Revisar lo trabajado en las sesiones anteriores.",
+            "Reflexionar sobre cómo seguir usando estas fuentes de sentido como recursos y qué espera del tiempo que viene."
+          ],
+          casa: "Buscar cada día una experiencia de belleza, afecto o humor y anotarla.",
+          avance: "La persona cuenta con fuentes de sentido concretas a las que puede recurrir.",
+          fuente: "Applebaum et al., 2026"
+        }
+      ],
+      medir: [
+        "Escala de Bienestar Espiritual al inicio, al terminar y dos meses después, como en el ensayo (Breitbart et al., 2015).",
+        "Escala de Actitudes ante la Muerte Adelantada al inicio y siempre que la persona exprese que quiere que todo termine.",
+        "<strong>BDI-II</strong> para la depresión; el ensayo la midió con el inventario de Beck (Breitbart et al., 2015)."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> la versión evaluada es grupal y ambulatoria, para personas con cáncer avanzado, dirigida por psiquiatras, psicólogos clínicos o trabajadores sociales con experiencia en oncología y con supervisión semanal (Breitbart et al., 2015).",
+        "<strong>Cuidadores y familia:</strong> existe una adaptación individual de siete sesiones por telesalud para cuidadores de personas con cáncer avanzado (Applebaum et al., 2026)."
+      ],
+      cuidado: [
+        "La deserción es alta: en el ensayo, el 70,5 % de los asignados asistió al menos a una sesión, y los efectos fueron mayores en quienes asistieron a tres o más (Breitbart et al., 2015).",
+        "Las expresiones de querer que todo termine se exploran siempre; si hay ideación, plan o intención suicida, se activa el plan de riesgo suicida.",
+        "La evidencia viene sobre todo de cáncer avanzado y de un ensayo en Nueva York con participantes mayoritariamente blancos: en otras enfermedades y contextos culturales se aplica con más cautela (Breitbart et al., 2015).",
+        "El ensayo no exigió un nivel mínimo de malestar para ingresar, lo que pudo reducir el margen de mejora (Breitbart et al., 2015)."
+      ]
+    }
+  ]
+},
 /* FIN DE VARIABLES: cada variable nueva se inserta antes de esta línea,
    en el orden de CATEGORIAS. */
 ];
@@ -4719,13 +5746,17 @@ function opcionesDe(caja){
   return o;
 }
 
-function hojaActividad(a){
+// Cada actividad va numerada y en su recuadro, como en la guía; la tarea
+// entre sesiones va en letra menor porque es un recordatorio, no el cuerpo.
+function hojaActividad(a, i){
   return '<div class="h-act">' +
-    '<div class="tec">' + escapar(a.tec) + '</div>' +
-    '<div class="t">' + escapar(a.t) + '</div>' +
+    '<div class="h-act-cab"><span class="n">' + (i + 1) + '</span><div>' +
+      '<div class="tec">' + escapar(a.tec) + '</div>' +
+      '<div class="t">' + escapar(a.t) + '</div>' +
+    '</div></div>' +
     '<div>' + escapar(a.obj) + '</div>' +
     '<ul>' + a.pasos.map(s => '<li>' + escapar(s) + '</li>').join("") + '</ul>' +
-    '<div><em>Entre sesiones:</em> ' + escapar(a.casa) + '</div>' +
+    '<div class="casa"><em>Entre sesiones:</em> ' + escapar(a.casa) + '</div>' +
   '</div>';
 }
 
