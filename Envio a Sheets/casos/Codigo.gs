@@ -239,7 +239,7 @@ function doGet(e) {
 
 // Casos con tablero. La pestaña que se lee es "<grupo del curso> <caso>", la
 // misma que escribe doPost.
-var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio'];
+var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio', 'Informe'];
 
 /**
  * Por cada grupo de trabajo devuelve su ÚLTIMA entrega —si un grupo envió dos
@@ -292,6 +292,25 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
       Object.keys(ultima).forEach(function (grupo) {
         var estado = {};
         try { estado = JSON.parse(ultima[grupo].json) || {}; } catch (err) { estado = {}; }
+        // El informe no tiene veredicto ni criterios: su tablero proyecta la
+        // autoauditoría (cómo clasificó cada equipo las siete trampas) y las
+        // frases de su informe que el recurso encontró para cada una.
+        if (caso === 'Informe') {
+          var radios = estado.radio || {}, aud = {};
+          Object.keys(radios).forEach(function (k) {
+            if (k.indexOf('aud-') === 0) aud[k.substring(4)] = String(radios[k] || '');
+          });
+          entregas.push({
+            cursoGrupo: g,
+            grupo: grupo,
+            enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
+            expediente: String((estado.text || {})['ct-caso'] || ''),
+            aud: aud,
+            hallazgos: estado.hallazgos || {},
+            frase: String((estado.text || {})['f-aud-frase'] || '').substring(0, 400)
+          });
+          return;
+        }
         var criterios = estado.criteria || {};
         entregas.push({
           cursoGrupo: g,

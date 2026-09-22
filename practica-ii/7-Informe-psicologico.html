@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe psicológico — Construcción del informe</title>
+<style>
+/* ============================================================
+   TOKENS — los mismos de los recursos de caso clínico
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --paper:#fffdf8;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-soft);}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.app-shell{display:grid; grid-template-columns:260px minmax(0,1fr); min-height:100vh;}
+@media (max-width:900px){ .app-shell{grid-template-columns:1fr;} }
+
+.sidebar{
+  border-right:1px solid var(--border); padding:28px 20px;
+  position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--surface);
+}
+@media (max-width:900px){
+  .sidebar{position:relative; height:auto; border-right:none; border-bottom:1px solid var(--border); padding:18px 16px;}
+}
+.sidebar-brand{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
+.sidebar-title{font-size:19px; margin-bottom:22px; line-height:1.3;}
+.nav-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+@media (max-width:900px){ .nav-list{flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:4px;} }
+.nav-item{
+  font-size:13.5px; color:var(--ink-soft); text-decoration:none; padding:9px 12px; border-radius:8px;
+  display:flex; align-items:center; gap:9px; white-space:nowrap; transition:background 0.15s ease, color 0.15s ease;
+}
+.nav-item:hover{background:var(--surface-alt); color:var(--ink);}
+.nav-item.is-complete .nav-dot{background:var(--accent); border-color:var(--accent);}
+.nav-item.is-locked{opacity:0.55;}
+.nav-dot{width:7px; height:7px; border-radius:50%; border:1.5px solid var(--ink-faint); flex-shrink:0;}
+
+.progress-block{margin-top:26px; padding-top:20px; border-top:1px solid var(--border);}
+.progress-label{display:flex; justify-content:space-between; align-items:baseline; font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+.progress-pct{font-family:var(--font-mono); font-size:15px; color:var(--accent-dark); font-weight:600;}
+.progress-track{height:6px; border-radius:99px; background:var(--surface-alt); overflow:hidden;}
+.progress-fill{height:100%; background:var(--accent); border-radius:99px; transition:width 0.4s cubic-bezier(.4,0,.2,1); width:0%;}
+.autosave-note{font-size:11.5px; color:var(--ink-faint); margin-top:10px;}
+
+.main{padding:36px clamp(20px,4vw,64px) 100px; max-width:900px;}
+.masthead{margin-bottom:34px;}
+.masthead-eyebrow{font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+.masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); font-size:15px; max-width:62ch;}
+
+section.block{margin-bottom:44px; scroll-margin-top:24px;}
+.block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+.block-heading h2{font-size:20px;}
+.block-index{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint);}
+.block-sub{color:var(--ink-soft); font-size:14px; margin-bottom:18px; max-width:66ch;}
+
+.card{background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin-bottom:16px; box-shadow:var(--shadow-card);}
+.card-label{font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:6px;}
+.required-mark{color:var(--severe); font-size:13px;}
+.card-help{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
+
+input[type="text"], textarea, select{
+  width:100%; font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:11px 13px;
+  transition:border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-prefixed{display:flex; align-items:stretch;}
+.input-prefix{
+  display:flex; align-items:center; white-space:nowrap; padding:0 14px; font-size:14.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft); border:1px solid var(--border); border-right:none; border-radius:8px 0 0 8px;
+}
+.input-prefixed input[type="text"]{border-radius:0 8px 8px 0; flex:1 1 auto; min-width:0;}
+input[type="text"]:focus, textarea:focus, select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); background:var(--bg);}
+textarea{resize:vertical; min-height:76px; line-height:1.55;}
+textarea[readonly]{background:var(--surface-alt); color:var(--ink-soft); cursor:default;}
+select:disabled{opacity:0.7;}
+
+.option-list{display:flex; flex-direction:column; gap:8px;}
+.option-row{
+  display:flex; align-items:flex-start; gap:10px; padding:10px 12px; border:1px solid var(--border); border-radius:8px;
+  cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease; font-size:14px;
+}
+.option-row:hover{border-color:var(--accent); background:var(--accent-soft);}
+.option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
+.option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
+
+.dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
+.dynamic-list-row input{flex:1;}
+.btn-remove-item{
+  flex-shrink:0; width:40px; height:40px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--ink-faint); font-size:18px; line-height:1; cursor:pointer; transition:all 0.15s ease;
+}
+.btn-remove-item:hover{border-color:var(--severe); color:var(--severe); background:var(--severe-soft);}
+.btn-add-item{
+  margin-top:4px; font-family:var(--font-body); font-size:13.5px; font-weight:600; color:var(--accent);
+  background:var(--accent-soft); border:1px solid transparent; border-radius:8px; padding:9px 16px; cursor:pointer;
+}
+.btn-add-item:hover{background:var(--accent); color:#fff;}
+
+.btn{
+  font-family:var(--font-body); font-size:14.5px; font-weight:600; padding:13px 26px; border-radius:9px;
+  border:1px solid transparent; cursor:pointer; transition:transform 0.1s ease, background 0.15s ease;
+}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-secondary{background:#fff; color:var(--accent); border-color:var(--accent);}
+.btn-secondary:hover{background:var(--accent-soft);}
+.btn:active{transform:scale(0.98);}
+.btn:disabled{opacity:0.5; cursor:not-allowed;}
+
+/* ============================================================
+   EXPEDIENTE
+   ============================================================ */
+.vacio{
+  border:1px dashed var(--border); border-radius:var(--radius); padding:26px; text-align:center;
+  color:var(--ink-faint); font-size:14px; background:var(--surface);
+}
+.exp-ficha{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px 22px; margin-bottom:16px; font-size:14px; color:var(--ink-soft);
+}
+.exp-ficha p{margin:0 0 6px;}
+.exp-ficha p:last-child{margin-bottom:0;}
+.exp-parte{
+  border:1px solid var(--border); border-radius:var(--radius); margin-bottom:14px; background:var(--bg);
+  box-shadow:var(--shadow-card); overflow:hidden;
+}
+.exp-parte-head{
+  display:flex; align-items:center; gap:12px; padding:13px 20px; background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.exp-parte-num{
+  font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--accent-dark); background:var(--accent-soft); padding:3px 9px; border-radius:99px; white-space:nowrap;
+}
+.exp-parte-head h3{font-size:16px;}
+.exp-parte-body{padding:16px 20px; font-size:14px; color:var(--ink);}
+.exp-parte-body p{margin:0 0 10px;}
+.exp-parte-body ul{margin:0 0 10px; padding-left:20px;}
+.exp-parte-body li{margin-bottom:6px;}
+.exp-parte-body blockquote{
+  margin:0 0 10px; padding:10px 14px; border-left:3px solid var(--accent);
+  background:var(--surface); border-radius:0 8px 8px 0; color:var(--ink);
+}
+.exp-parte-body blockquote p{margin:0 0 6px;}
+.exp-parte-body blockquote p:last-child{margin-bottom:0;}
+.exp-parte-body table{width:100%; border-collapse:collapse; font-size:13px; margin:4px 0 10px;}
+.exp-parte-body th, .exp-parte-body td{border:1px solid var(--border); padding:7px 9px; vertical-align:top; text-align:left;}
+.exp-parte-body th{background:var(--surface); font-weight:600;}
+.tabla-scroll{overflow-x:auto;}
+
+/* ============================================================
+   INFORME — hoja con plantilla
+   ============================================================ */
+.hoja{
+  background:var(--paper); border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow-card); padding:30px clamp(18px,4vw,40px);
+}
+.hoja-titulo{text-align:center; margin-bottom:22px;}
+.hoja-titulo .tipo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint);}
+.hoja-titulo h3{font-size:21px; margin-top:4px;}
+.hoja-sec{margin-bottom:22px;}
+.hoja-sec:last-child{margin-bottom:0;}
+.hoja-sec-titulo{
+  display:flex; align-items:baseline; gap:10px; font-family:var(--font-display); font-weight:600;
+  font-size:16px; color:var(--ink); border-bottom:1px solid var(--border); padding-bottom:5px; margin-bottom:10px;
+}
+.hoja-sec-titulo .n{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint); font-weight:600;}
+.hoja-fija{font-size:14px; color:var(--ink-soft);}
+.hoja-fija p{margin:0 0 6px;}
+.hoja-fija table{border-collapse:collapse; font-size:13.5px;}
+.hoja-fija td{padding:3px 14px 3px 0; vertical-align:top;}
+.hoja-fija td:first-child{color:var(--ink-faint); white-space:nowrap;}
+.hoja-fija ul{margin:0; padding-left:20px;}
+.hoja-escribe .card-help{margin-bottom:8px;}
+.hoja-escribe textarea{min-height:120px; background:#fff;}
+.contador{
+  display:flex; justify-content:flex-end; margin-top:5px; font-family:var(--font-mono);
+  font-size:11.5px; color:var(--ink-faint);
+}
+.contador.pasado{color:var(--moderate); font-weight:600;}
+.hoja-firma{margin-top:8px; font-size:13.5px; color:var(--ink-soft);}
+.hoja-firma .linea{border-top:1px solid var(--ink-faint); width:240px; margin:26px 0 4px;}
+
+.cierre-informe{
+  margin-top:18px; padding:18px 22px; border-radius:var(--radius);
+  border:1px solid var(--moderate); background:var(--moderate-soft);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.cierre-informe p{margin:0; font-size:13.5px; color:var(--ink); flex:1 1 320px;}
+.cierre-informe.is-cerrado{border-color:var(--mild); background:var(--mild-soft);}
+/* En móvil la franja se apila; flex:0 0 auto evita que el flex-basis de
+   escritorio (320px) se vuelva alto, y la columna evita que el párrafo quede
+   en una sola línea que se sale de la pantalla. */
+@media (max-width:900px){
+  .cierre-informe{flex-direction:column; align-items:stretch;}
+  .cierre-informe p{flex:0 0 auto;}
+}
+
+/* ============================================================
+   PANEL DEL EXPEDIENTE (al lado del informe)
+   ============================================================ */
+.btn-expediente{
+  position:fixed; right:22px; bottom:96px; z-index:40;
+  font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  background:var(--ink); color:#fff; border:none; border-radius:99px; padding:12px 18px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.22); cursor:pointer; display:none;
+}
+.btn-expediente.is-visible{display:block;}
+.panel{
+  position:fixed; top:0; right:0; bottom:0; width:min(500px,100%); z-index:60;
+  background:var(--bg); border-left:1px solid var(--border); box-shadow:-12px 0 32px rgba(0,0,0,0.12);
+  transform:translateX(105%); transition:transform 0.25s ease; display:flex; flex-direction:column;
+}
+.panel.is-open{transform:translateX(0);}
+.panel-head{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:14px 18px; border-bottom:1px solid var(--border); background:var(--surface);
+}
+.panel-head h3{font-size:16px;}
+.panel-cerrar{
+  font-size:13px; font-weight:600; background:#fff; border:1px solid var(--border);
+  border-radius:8px; padding:8px 12px; cursor:pointer; color:var(--ink-soft);
+}
+.panel-body{overflow-y:auto; padding:16px 18px 40px;}
+
+/* ============================================================
+   AUTOAUDITORÍA
+   ============================================================ */
+.bloqueado{
+  border:1px dashed var(--border); border-radius:var(--radius); padding:22px; background:var(--surface);
+  color:var(--ink-soft); font-size:14px;
+}
+.aud{
+  border:1px solid var(--border); border-radius:var(--radius); margin-bottom:18px; overflow:hidden;
+  box-shadow:var(--shadow-card); background:var(--bg);
+}
+.aud-head{padding:15px 22px; background:var(--surface); border-bottom:1px solid var(--border);}
+.aud-head .aud-n{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); font-weight:700; letter-spacing:0.06em;}
+.aud-head h3{font-size:17px; margin-top:2px;}
+.aud-body{padding:16px 22px 20px;}
+.aud-donde{font-size:13.5px; color:var(--ink-soft); margin-bottom:12px;}
+.aud-hallazgo{
+  font-size:13.5px; border-radius:8px; padding:11px 14px; margin-bottom:14px;
+  background:var(--accent-soft); color:var(--ink);
+}
+.aud-hallazgo b{display:block; font-size:11.5px; font-family:var(--font-mono); letter-spacing:0.05em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.aud-hallazgo.sin{background:var(--surface-alt); color:var(--ink-soft);}
+.aud-frase{margin:0 0 8px; padding-left:10px; border-left:2px solid var(--accent);}
+.aud-frase:last-child{margin-bottom:0;}
+.aud-frase small{display:block; color:var(--ink-faint); font-size:11.5px;}
+.aud-frase mark{background:#fde9b8; padding:0 2px; border-radius:3px;}
+.aud-pregunta{font-size:14px; font-weight:600; margin:4px 0 8px;}
+.aud-reco{
+  margin-top:14px; border-radius:8px; padding:12px 15px; border:1px solid var(--mild);
+  background:var(--mild-soft); font-size:13.5px; color:var(--ink); display:none;
+}
+.aud-reco.is-visible{display:block;}
+.aud-reco b{display:block; font-size:11.5px; font-family:var(--font-mono); letter-spacing:0.05em; text-transform:uppercase; color:var(--mild); margin-bottom:5px;}
+.aud textarea{min-height:64px;}
+.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
+
+/* ============================================================
+   BARRA DE GUARDADO
+   ============================================================ */
+.save-actions{display:flex; gap:10px; flex-wrap:wrap;}
+.save-bar{
+  position:sticky; bottom:0; left:0; right:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px);
+  border-top:1px solid var(--border); padding:16px clamp(20px,4vw,64px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; z-index:30;
+}
+.save-status{font-size:12.5px; color:var(--ink-faint); flex:1 1 200px; min-width:0;}
+.save-status.ok{color:var(--mild);}
+.save-status.warn{color:var(--severe);}
+@media (max-width:900px){
+  .save-bar{position:static; margin:0; padding:20px 16px 30px; background:var(--surface); backdrop-filter:none; flex-direction:column; align-items:stretch; gap:12px;}
+  /* flex:0 0 auto: en columna, un flex-basis de escritorio se vuelve ALTO. */
+  .save-status{order:-1; text-align:center; font-size:12px; flex:0 0 auto;}
+  .save-actions{flex-direction:row; gap:10px;}
+  .save-actions .btn{flex:1 1 0; min-width:0; padding:13px 8px; font-size:13.5px;}
+  .main{padding-bottom:8px;}
+  .btn-expediente{bottom:18px; right:14px;}
+}
+@media (max-width:360px){ .save-actions{flex-direction:column;} }
+
+.toast{
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff;
+  padding:11px 20px; border-radius:99px; font-size:13px; opacity:0; pointer-events:none; transition:all 0.25s ease; z-index:999;
+  box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+.option-list.invalid{border-radius:8px;}
+.js-warning{
+  background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 18px; border-radius:var(--radius); font-size:14px; margin-bottom:24px; line-height:1.5;
+}
+@media print{.sidebar,.save-bar,.btn-expediente,.panel{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- Al guardar la actividad, este bloque se reescribe con las respuestas del
+     grupo para que el archivo, al reabrirse, se rehidrate solo. -->
+<script id="saved-data" type="application/json">{}</script>
+
+<div class="app-shell">
+
+  <nav class="sidebar">
+    <div class="sidebar-brand">INFORME PSICOLÓGICO CLÍNICO</div>
+    <div class="sidebar-title">Construcción<br>del informe</div>
+    <ul class="nav-list" id="nav-list">
+      <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Expediente</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Informe</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Autoauditoría</a></li>
+    </ul>
+    <div class="progress-block">
+      <div class="progress-label"><span>Progreso</span><span class="progress-pct" id="progress-pct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="autosave-note">Guardado automático activo</div>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <noscript>
+      <div class="js-warning">
+        Este recurso necesita JavaScript para funcionar. Ábrelo en un navegador
+        (Chrome, Edge, Firefox o Safari), no dentro de un visor de archivos ni de la
+        vista previa de una app de mensajería.
+      </div>
+    </noscript>
+    <div class="js-warning" id="js-warning-fallback">
+      Si ves este mensaje, el recurso no se está ejecutando. Ábrelo en un navegador real
+      (Chrome, Edge, Firefox o Safari) — no dentro de un visor de archivos ni de la vista
+      previa de una app de mensajería.
+    </div>
+
+    <header class="masthead">
+      <div class="masthead-eyebrow">Informe psicológico clínico</div>
+      <h1>Construcción del informe</h1>
+      <p>
+        Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
+        Al presionar «Guardar actividad» desde el celular, puede abrirse el cuadro para compartir o
+        guardar el archivo — elijan «Guardar en Archivos» (iPhone) o la carpeta de Descargas (Android).
+        Al terminar, presionen además «Enviar al docente»: se abrirá una pestaña confirmando que las
+        respuestas llegaron.
+      </p>
+    </header>
+
+    <!-- ============ BLOQUE 0 — DATOS DEL GRUPO ============ -->
+    <section class="block" id="bloque-0">
+      <div class="block-heading"><h2>Datos del grupo</h2></div>
+      <div class="card">
+        <div class="card-label">Grupo del curso <span class="required-mark">*</span></div>
+        <div class="card-help">Viene fijo para este recurso.</div>
+        <select id="ct-curso" data-required="true">
+          <option value="Práctica II">Práctica II</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="card-label">Grupo de trabajo <span class="required-mark">*</span></div>
+        <div class="card-help">Escriban únicamente el número.</div>
+        <div class="input-prefixed">
+          <span class="input-prefix">Grupo</span>
+          <input type="text" id="f-grupo" data-required="true" inputmode="numeric" maxlength="3" placeholder="4">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Integrantes <span class="required-mark">*</span></div>
+        <div class="card-help">Agreguen el nombre de cada integrante del grupo.</div>
+        <div class="dynamic-list" id="list-integrantes"></div>
+        <button type="button" class="btn-add-item" id="btn-add-integrante">+ Agregar integrante</button>
+      </div>
+      <div class="card">
+        <div class="card-label">Expediente asignado <span class="required-mark">*</span></div>
+        <div class="card-help">El que les indicó el docente.</div>
+        <select id="ct-caso" data-required="true">
+          <option value="">— Seleccionar —</option>
+          <option value="A">Samuel · 8 años · remitido por el colegio</option>
+          <option value="B">Daniela · 15 años · remitida por la comisaría de familia</option>
+          <option value="C">Jairo · 38 años · remitido por medicina general</option>
+          <option value="D">Mercedes · 72 años · remitida por neurología</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 1 — EXPEDIENTE ============ -->
+    <section class="block" id="bloque-1">
+      <div class="block-heading"><span class="block-index">01</span><h2>Expediente</h2></div>
+      <p class="block-sub">
+        Repártanse la lectura: cada integrante toma una parte y se la cuenta al resto del grupo.
+      </p>
+      <div id="expediente"><div class="vacio">Elijan el expediente asignado en los datos del grupo.</div></div>
+    </section>
+
+    <!-- ============ BLOQUE 2 — INFORME ============ -->
+    <section class="block" id="bloque-2">
+      <div class="block-heading"><span class="block-index">02</span><h2>Informe</h2></div>
+      <p class="block-sub">
+        Las partes administrativas del informe ya están redactadas. Ustedes escriben las cuatro secciones
+        en blanco. El expediente sigue a mano con el botón «Ver expediente».
+      </p>
+      <div id="informe"><div class="vacio">Elijan el expediente asignado en los datos del grupo.</div></div>
+      <div class="cierre-informe" id="cierre-informe" hidden>
+        <p id="cierre-texto">Cuando el informe esté terminado, ciérrenlo para pasar a la autoauditoría. Después de cerrarlo ya no se puede editar.</p>
+        <button type="button" class="btn btn-primary" id="btn-cerrar">Cerrar el informe</button>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 3 — AUTOAUDITORÍA ============ -->
+    <section class="block" id="bloque-3">
+      <div class="block-heading"><span class="block-index">03</span><h2>Autoauditoría</h2></div>
+      <p class="block-sub" id="aud-sub">Se abre al cerrar el informe.</p>
+      <div id="auditoria"><div class="bloqueado">Se abre al cerrar el informe.</div></div>
+    </section>
+
+  </main>
+</div>
+
+<button type="button" class="btn-expediente" id="btn-expediente">Ver expediente</button>
+<aside class="panel" id="panel" aria-hidden="true">
+  <div class="panel-head">
+    <h3 id="panel-titulo">Expediente</h3>
+    <button type="button" class="panel-cerrar" id="panel-cerrar">Cerrar</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<div class="save-bar">
+  <div class="save-status" id="save-status">Los cambios se guardan automáticamente en este navegador.</div>
+  <div class="save-actions">
+    <button class="btn btn-secondary" id="btn-guardar">Guardar actividad</button>
+    <button class="btn btn-primary" id="btn-enviar">Enviar al docente</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Pegar y cortar están deshabilitados: escriban la respuesta manualmente.</div>
+
+<script>
+/* ============================================================
+   1. DATOS DE CONTENIDO
+   ============================================================
+   Los cuatro expedientes salen de los .md de _informe-4.1/expedientes/ y los
+   arma construir_informe.py: para corregir un expediente se edita el .md y se
+   vuelve a construir, no este archivo.
+
+   La autoauditoría (trampas, marcas y prácticas recomendadas) viaja codificada
+   en base64. No es seguridad: solo evita que el mapa de trampas se lea con un
+   vistazo al código fuente antes de cerrar el informe.
+   ============================================================ */
+const CASOS = [{"id": "A", "nombre": "Samuel Gutiérrez", "etiqueta": "Samuel · 8 años · remitido por el colegio", "ficha": "<p><strong>Samuel Gutiérrez<\/strong>, 8 años y 7 meses. Cursa tercero de primaria en un colegio distrital de Bogotá. Vive con su madre, Paola (31), y su abuela materna. Sus padres se separaron hace seis meses; ve a su padre, Hernán, cada quince días.<\/p><p>Cuatro sesiones: dos con Samuel, una con la madre y una observación en el aula. <strong>Consentimiento firmado por la madre<\/strong>, con asentimiento de Samuel. Autoriza la evaluación y el envío del informe <strong>a la orientadora del colegio y a los padres<\/strong>.<\/p>", "partes": [{"titulo": "Remisión de orientación escolar", "html": "<blockquote><p><strong>Remisión a psicología<\/strong><\/p><p>Estudiante de tercero de primaria. La docente reporta dificultades persistentes en lectura, poca atención en clase, que no copia del tablero y que se levanta del puesto con frecuencia. Recibe refuerzo de lectura dos veces por semana desde hace ocho meses, con avances mínimos.<\/p><p>La docente sospecha TDAH. Se evaluará si requiere PIAR y ajustes desde el DUA.<\/p><p><strong>Se solicita evaluación psicológica y concepto sobre si las dificultades de Samuel corresponden a un problema de atención, a una dificultad específica del aprendizaje o a otra situación, y recomendaciones de ajustes razonables para el aula.<\/strong><\/p><\/blockquote>"}, {"titulo": "Entrevistas con Samuel", "html": "<p>Entra de la mano de la madre y se suelta rápido. Pregunta si puede usar los colores de la mesa.<\/p><blockquote><p>«Leer es aburrido. Las letras se me revuelven y los otros se ríen.»<\/p><p>«Cuando toca leer en voz alta me duele la barriga.»<\/p><\/blockquote><ul><li>Dice que le gusta el colegio «cuando es de números o de dibujar» y que su mejor amigo es Tomás.<\/li><li>En casa arma construcciones de Lego durante más de una hora «sin que nadie lo moleste»; en la segunda sesión arma de memoria un camión que vio en un video.<\/li><li>Sobre la separación: «Mi papá vive en otra casa. Los sábados vamos a comer pollo». No se muestra angustiado al hablar del tema.<\/li><li>Cuando se le pide leer un párrafo corto, lee despacio, silabeando, y confunde «b» con «d» dos veces. Pide parar a la tercera línea.<\/li><\/ul>"}, {"titulo": "Entrevista a Paola, la madre", "html": "<blockquote><p>«En la casa no es así como dice la profe. Con los Lego o con los videojuegos se queda quieto horas.»<\/p><\/blockquote><ul><li>Embarazo y parto sin complicaciones. Habló «un poquito tarde, como a los dos años y medio».<\/li><li>Las tareas de lectura terminan en llanto: «Se sienta, lee dos renglones y dice que está cansado».<\/li><li>Su padre, Hernán, «también era malo para leer; dejó el colegio en séptimo».<\/li><li>La separación fue «por diferencias», sin episodios de violencia según ella.<\/li><li>Al final agrega: «Le cuento algo, pero que no lo sepa el colegio: yo tomo sertralina por depresión hace años. Eso no tiene que ver con Samuel, ¿cierto?».<\/li><\/ul>"}, {"titulo": "Observación en el aula y comentario de la docente", "html": "<p><strong>Observación (clase de lenguaje, 45 minutos).<\/strong> Durante la lectura en grupo, Samuel se levanta tres veces (a sacar punta, a botar un papel, a pedir permiso para el baño) y conversa con el compañero de al lado. En la segunda parte de la clase, cuando la docente explica con material concreto, participa y responde bien dos preguntas orales.<\/p><p><strong>Comentario de la docente al terminar la observación:<\/strong> «Es un niño querido, pero no rinde. Y le digo algo en confianza: otra mamá del curso me contó que el papá le pegaba a la mamá, por eso se separaron. Yo creo que por ahí viene todo».<\/p>"}, {"titulo": "Pruebas", "html": "<div class='tabla-scroll'><table><thead><tr><th>Prueba<\/th><th>Resultado<\/th><th>Cómo se lee<\/th><\/tr><\/thead><tbody><tr><td><strong>WISC-V<\/strong> (Escala de Inteligencia de Wechsler para Niños)<\/td><td>Comprensión verbal (ICV) 102 · Visoespacial (IVE) 108 · Razonamiento fluido (IRF) 104 · <strong>Memoria de trabajo (IMT) 82<\/strong> · <strong>Velocidad de procesamiento (IVP) 85<\/strong> · <strong>CI total (CIT) 96<\/strong><\/td><td>110–119 promedio alto · 90–109 promedio · 80–89 promedio bajo · 70–79 limítrofe<\/td><\/tr><tr><td><\/td><td><strong>Nota de aplicación:<\/strong> la subprueba de Dígitos se interrumpió a la mitad por un simulacro de evacuación del colegio y se retomó veinte minutos después.<\/td><td><\/td><\/tr><tr><td><strong>Conners 3<\/strong> · versión docente<\/td><td>Inatención (IN) <strong>72<\/strong> · Hiperactividad/impulsividad (HI) <strong>68<\/strong> · Problemas de aprendizaje (PA) <strong>74<\/strong> · Funcionamiento ejecutivo (FE) 63 · Agresión (AG) 48 · Relaciones con pares (RP) 52<\/td><td>Puntuaciones T. ≥ 70 muy elevado · 65–69 elevado · 60–64 ligeramente elevado · &lt; 60 promedio<\/td><\/tr><tr><td><strong>Conners 3<\/strong> · versión padres<\/td><td>Inatención (IN) 56 · Hiperactividad/impulsividad (HI) 52 · <strong>Problemas de aprendizaje (PA) 66<\/strong> · Funcionamiento ejecutivo (FE) 55 · Agresión (AG) 45 · Relaciones con pares (RP) 50<\/td><td><\/td><\/tr><tr><td><strong>PROLEC-R<\/strong> (Evaluación de los procesos lectores)<\/td><td>Nombre de letras: normal · Igual-diferente: normal · <strong>Lectura de palabras: dificultad<\/strong> · <strong>Lectura de pseudopalabras: dificultad severa<\/strong> · Estructuras gramaticales: normal · Signos de puntuación: dificultad · Comprensión de oraciones: normal · Comprensión de textos: dificultad · <strong>Comprensión oral: normal<\/strong><\/td><td>Normal · dificultad · dificultad severa, según la edad y el curso<\/td><\/tr><\/tbody><\/table><\/div>"}], "plantilla": {"identificacion": "<table><tr><td>Nombre<\/td><td>Samuel Gutiérrez<\/td><\/tr><tr><td>Edad<\/td><td>8 años y 7 meses<\/td><\/tr><tr><td>Escolaridad<\/td><td>Tercero de primaria<\/td><\/tr><tr><td>Remite<\/td><td>Orientación escolar<\/td><\/tr><tr><td>Destinatario<\/td><td>Orientadora del colegio y padres<\/td><\/tr><\/table>", "instrumentos": "<p>Cuatro sesiones: dos entrevistas con Samuel, una entrevista con su madre y una observación en el aula (clase de lenguaje).<\/p><ul><li>Escala de Inteligencia de Wechsler para Niños, quinta edición (WISC-V)<\/li><li>Escalas de Conners, tercera edición (Conners 3), versiones para docente y para padres<\/li><li>Batería de Evaluación de los Procesos Lectores, revisada (PROLEC-R)<\/li><\/ul>", "consentimiento": "<p>La madre, como representante legal, firmó el consentimiento informado, y Samuel dio su asentimiento. Este informe se dirige exclusivamente a la orientadora del colegio y a los padres.<\/p>"}}, {"id": "B", "nombre": "Daniela Rincón", "etiqueta": "Daniela · 15 años · remitida por la comisaría de familia", "ficha": "<p><strong>Daniela Rincón<\/strong>, 15 años. Cursa noveno en un colegio público de Soacha. Vive con su madre, Gloria (37), y su hermano Kevin (9). Hasta hace cuatro meses vivía con ellos Wilson, pareja de la madre desde hace seis años.<\/p><p>Tres sesiones: dos con Daniela y una con su madre. <strong>Consentimiento firmado por la madre<\/strong>, como representante legal, y asentimiento de Daniela. Autorizan el envío del informe <strong>a la comisaría de familia que lo solicitó<\/strong>.<\/p>", "partes": [{"titulo": "Oficio de la comisaría de familia", "html": "<blockquote><p><strong>Solicitud de valoración psicológica<\/strong><\/p><p>Dentro del trámite por VIF iniciado hace cuatro meses por denuncia de la señora Gloria contra su compañero permanente, el despacho otorgó MP a su favor y a favor de sus hijos, con orden de desalojo del agresor y prohibición de acercamiento. La NNA Daniela Rincón presenció el episodio que dio origen a la denuncia.<\/p><p>Se remitirá copia al ICBF si del informe se desprende la necesidad de otras medidas.<\/p><p><strong>Se solicita valoración psicológica de la adolescente que informe: (1) su estado emocional actual; (2) la afectación asociada a los hechos de violencia que presenció; (3) recomendaciones de atención.<\/strong><\/p><\/blockquote>"}, {"titulo": "Entrevistas con Daniela", "html": "<p>Llega con audífonos y se los quita al sentarse. Al comienzo contesta con monosílabos.<\/p><blockquote><p>«Yo estoy bien. Eso ya pasó.»<\/p><p>«¿Esto lo va a leer Wilson?»<\/p><\/blockquote><ul><li>Aquella noche, Wilson golpeó a su madre en la cocina, delante de ella y de Kevin. Daniela sacó a Kevin a la calle y llamó a la línea 123.<\/li><li>Desde entonces tiene pesadillas «casi todas las semanas» y se despierta sobresaltada. Evita entrar a la cocina cuando está sola: «Como que la veo otra vez».<\/li><li>Se asusta cuando suena el timbre o cuando alguien grita en la calle.<\/li><li>«Si yo no le hubiera contestado esa noche, él no se hubiera puesto así.»<\/li><li>Sus notas bajaron de 4,2 a 3,1 este periodo. Dice que no se concentra.<\/li><li>Sigue yendo tres tardes por semana a un grupo de danza urbana: «Es lo único donde no pienso en nada». Además recoge a Kevin del colegio todos los días.<\/li><li>En la segunda sesión, más confiada, cuenta en voz baja: «Tengo novia, es del grupo de danza. Mi mamá no sabe. No le vaya a decir a nadie ni a poner eso en ningún lado».<\/li><li>Niega consumo de sustancias. Niega ideas de muerte: «Yo tengo que estar bien por Kevin».<\/li><\/ul>"}, {"titulo": "Entrevista a Gloria, la madre", "html": "<blockquote><p>«Ella se hace la fuerte, pero yo la oigo llorar en el baño.»<\/p><\/blockquote><ul><li>Confirma las pesadillas y que Daniela «ya no se sienta en la cocina a hacer tareas, como antes».<\/li><li>Dice que Daniela «siempre ha sido la responsable de la casa», y que desde el episodio cuida a Kevin «como si fuera la mamá».<\/li><li>Al final agrega: «Mi hermana me dijo que en el barrio dicen que Daniela anda con un muchacho mayor que vende vicio. Yo nunca la he visto con nadie así, pero me dejó preocupada».<\/li><\/ul>"}, {"titulo": "Observación", "html": "<p>Aspecto cuidado; lleva la sudadera del grupo de danza. Al inicio, actitud distante y respuestas cortas; en la segunda sesión conversa con más fluidez. Mira hacia la puerta cuando se oyen pasos en el pasillo. Habla con volumen bajo y ritmo normal. Afecto restringido, que se vuelve ansioso al hablar de esa noche; se le humedecen los ojos sin llegar al llanto. Pensamiento coherente. Orientada, atención conservada. Pregunta dos veces quién va a leer el informe.<\/p>"}, {"titulo": "Pruebas", "html": "<div class='tabla-scroll'><table><thead><tr><th>Prueba<\/th><th>Resultado<\/th><th>Cómo se lee<\/th><\/tr><\/thead><tbody><tr><td><strong>MMPI-A<\/strong> (Inventario Multifásico de Personalidad de Minnesota para Adolescentes)<\/td><td><strong>Validez:<\/strong> Inconsistencia de respuestas variables (VRIN) 50 · Inconsistencia de respuestas verdaderas (TRIN) 54 · Infrecuencia (F) 46 · <strong>Mentira (L) 72<\/strong> · <strong>Corrección (K) 68<\/strong><\/td><td>Puntuaciones T. T ≥ 65: elevación clínicamente significativa; 60–64, zona limítrofe. L y K elevadas indican una tendencia a presentarse de manera favorable y a minimizar los problemas.<\/td><\/tr><tr><td><\/td><td><strong>Clínicas:<\/strong> todas entre 40 y 58<\/td><td><\/td><\/tr><tr><td><strong>CPSS-5<\/strong> (Escala de Síntomas de Estrés Postraumático para Niños y Adolescentes)<\/td><td><strong>29<\/strong><\/td><td>Rango 0–80. Punto de corte para probable estrés postraumático: 31.<\/td><\/tr><tr><td><\/td><td>Reexperimentación (pesadillas, recuerdos intrusivos) y activación (sobresalto, sueño, concentración) son las áreas más altas.<\/td><td><\/td><\/tr><\/tbody><\/table><\/div>"}], "plantilla": {"identificacion": "<table><tr><td>Nombre<\/td><td>Daniela Rincón<\/td><\/tr><tr><td>Edad<\/td><td>15 años<\/td><\/tr><tr><td>Escolaridad<\/td><td>Noveno grado<\/td><\/tr><tr><td>Remite<\/td><td>Comisaría de familia<\/td><\/tr><tr><td>Destinatario<\/td><td>Comisaría de familia que solicitó la valoración<\/td><\/tr><\/table>", "instrumentos": "<p>Tres sesiones: dos entrevistas con Daniela y una entrevista con su madre, con observación durante las sesiones.<\/p><ul><li>Inventario Multifásico de Personalidad de Minnesota para Adolescentes (MMPI-A)<\/li><li>Escala de Síntomas de Estrés Postraumático para Niños y Adolescentes (CPSS-5)<\/li><\/ul>", "consentimiento": "<p>La madre, como representante legal, firmó el consentimiento informado, y Daniela dio su asentimiento. Este informe se dirige exclusivamente a la comisaría de familia que lo solicitó.<\/p>"}}, {"id": "C", "nombre": "Jairo Castañeda", "etiqueta": "Jairo · 38 años · remitido por medicina general", "ficha": "<p><strong>Jairo Castañeda<\/strong>, 38 años. Casado con Liliana (35); dos hijos, Sofía (11) y Mateo (6). Tecnólogo en logística, supervisor de bodega en una empresa de distribución. Vive en Bogotá.<\/p><p>Tres sesiones: dos con Jairo y una con su esposa, autorizada por él. <strong>Consentimiento firmado:<\/strong> autoriza la evaluación, la entrevista a su esposa y el envío del informe <strong>a su médica tratante<\/strong>, no a otras personas.<\/p>", "partes": [{"titulo": "Remisión de medicina general", "html": "<blockquote><p><strong>Remisión a psicología<\/strong><\/p><p>Paciente masculino de 38 años. Consulta por dolor en el pecho de características atípicas, ardor en la boca del estómago y dolor de cabeza de tipo tensional. Siete consultas en los últimos seis meses, dos de ellas por urgencias.<\/p><p>EKG normal en dos ocasiones. Enzimas cardíacas negativas en urgencias. Endoscopia digestiva: gastritis crónica leve, no erosiva. Función tiroidea normal. Valorado por cardiología: prueba de esfuerzo normal.<\/p><p>Sin hipertensión ni diabetes. Antecedente familiar: padre fallecido por IAM a los 61 años.<\/p><p><strong>IDx:<\/strong> síntomas físicos persistentes sin causa orgánica que los explique. Descartar TAG o TDM.<\/p><p><strong>Tratamiento actual:<\/strong> omeprazol 20 mg diarios; acetaminofén 500 mg cuando hay dolor.<\/p><p><strong>Se solicita valoración por psicología y concepto sobre si existe un componente ansioso o depresivo que explique los síntomas, y si el paciente requiere manejo por psicología o remisión a psiquiatría.<\/strong><\/p><\/blockquote>"}, {"titulo": "Entrevistas con Jairo", "html": "<p>Hace poco más de un año empezó con dolor en el pecho, «como un corrientazo que se queda ahí»; después vinieron el ardor en el estómago y los dolores de cabeza.<\/p><blockquote><p>«Me hicieron de todo y todo sale bien. Pero el dolor está ahí. Uno no se inventa un dolor.»<\/p><p>«Yo no estoy deprimido. Lo mío es físico. Duermo mal es por el dolor.»<\/p><\/blockquote><ul><li>Revisa el pulso en el reloj «varias veces al día, por si acaso» y de noche busca en internet los síntomas del infarto.<\/li><li>En el último mes tuvo dos episodios de madrugada: corazón acelerado, sudor, falta de aire y «la sensación de que me iba a morir ahí mismo». Duraron unos veinte minutos.<\/li><li><strong>Su padre<\/strong> murió de un infarto hace un año y cuatro meses, a los 61, almorzando en la casa. Jairo le hizo reanimación mientras llegaba la ambulancia. Llora al contarlo: «Mi papá tampoco tenía nada. Todos los exámenes le salían bien».<\/li><li><strong>Trabajo:<\/strong> lo ascendieron hace ocho meses; tiene doce personas a cargo. Ha faltado cinco días este semestre por los síntomas.<\/li><li>Dejó de trotar y de jugar con los niños «por miedo a que me dé algo». Lo único que mantiene es entrenar los sábados el equipo de microfútbol de Sofía: «Cuando estoy allá se me olvida todo. Ni me acuerdo del pecho».<\/li><li><strong>Consumo:<\/strong> cerveza cada quince días, «cuatro o cinco». No fuma desde hace seis años.<\/li><li>Al hablar de su matrimonio agrega, bajando la voz: «Esto no tiene nada que ver, pero hace doce años tuve una relación con una compañera del trabajo anterior. Liliana nunca supo. Eso ya se acabó. Por favor, no lo vaya a poner en ningún papel».<\/li><li>Niega ideas de muerte: «Yo lo que quiero es vivir, por eso me asusto tanto».<\/li><\/ul>"}, {"titulo": "Entrevista a Liliana, su esposa", "html": "<blockquote><p>«Se levanta a las tres de la mañana a mirarse el pulso. Yo ya no sé si es el corazón o es la cabeza.»<\/p><\/blockquote><ul><li>El cambio empezó después de la muerte del suegro: más irritable con los niños, cansado todo el tiempo. «Antes era el alma de las fiestas.»<\/li><li>Jairo no quería venir porque «psicología es para locos».<\/li><li>«En el trabajo lo buscan para todo: es el que sabe dónde está todo.»<\/li><li>Al final agrega: «Yolanda, la hermana de él, me dijo que un compañero de Jairo le contó que lo han visto tomando en la bodega, en horas de trabajo. Yo nunca lo he visto borracho, pero uno no sabe».<\/li><\/ul>"}, {"titulo": "Observación", "html": "<p>Puntual y colaborador, aunque desconfía cuando se nombran la ansiedad o la depresión. Se sienta en el borde de la silla, se frota el pecho y revisa el pulso (cuatro veces en la primera sesión). Habla rápido, más lento al hablar del padre. Afecto ansioso, congruente; llanto breve. Pensamiento coherente, centrado en los síntomas y en el miedo al infarto. Orientado, atención conservada. Reconoce el malestar, pero lo atribuye solo a una causa física.<\/p>"}, {"titulo": "Pruebas", "html": "<div class='tabla-scroll'><table><thead><tr><th>Prueba<\/th><th>Resultado<\/th><th>Cómo se lee<\/th><\/tr><\/thead><tbody><tr><td><strong>MMPI-2<\/strong><\/td><td><strong>36 ítems sin contestar<\/strong>, 31 de ellos después del ítem 370. Al entregarlo: «las últimas me dio pereza».<\/td><td>30 o más omisiones: interpretar con reservas. Las escalas básicas salen de los primeros 370 ítems; las de contenido, de toda la prueba.<\/td><\/tr><tr><td><\/td><td><strong>Validez:<\/strong> Inconsistencia de respuestas variables (VRIN) 48 · Inconsistencia de respuestas verdaderas (TRIN) 55 · Infrecuencia (F) 62 · Infrecuencia posterior (Fb) 71 · Infrecuencia psicopatológica (Fp) 50 · Mentira (L) 56 · Corrección (K) 50<\/td><td>Puntuaciones T. T ≥ 65: elevación clínicamente significativa.<\/td><\/tr><tr><td><\/td><td><strong>Básicas:<\/strong> <strong>Hipocondría (Hs) 78<\/strong> · <strong>Depresión (D) 72<\/strong> · <strong>Histeria (Hy) 80<\/strong> · Desviación psicopática (Pd) 55 · Masculinidad-feminidad (Mf) 48 · Paranoia (Pa) 58 · <strong>Psicastenia (Pt) 66<\/strong> · Esquizofrenia (Sc) 60 · Hipomanía (Ma) 45 · Introversión social (Si) 62<\/td><td><\/td><\/tr><tr><td><\/td><td><strong>Contenido:<\/strong> Ansiedad (ANX) 75 · Depresión (DEP) 74 · Preocupaciones por la salud (HEA) 82 · Dificultades en el trabajo (WRK) 66 · Indicadores negativos de tratamiento (TRT) 70 · las diez restantes, por debajo de 65<\/td><td><\/td><\/tr><tr><td><strong>BDI-II<\/strong><\/td><td><strong>24<\/strong>. Ítems más altos: sueño 3; pérdida de placer, agitación, energía, irritabilidad, concentración y cansancio 2. Pensamientos suicidas 0, fracaso 0, desvalorización 0.<\/td><td>0–13 mínima · 14–19 leve · 20–28 moderada · 29–63 grave<\/td><\/tr><tr><td><strong>BAI<\/strong><\/td><td><strong>22<\/strong>. Más altos: palpitaciones, dolor de estómago, sensación de ahogo.<\/td><td>0–7 mínima · 8–15 leve · 16–25 moderada · 26–63 grave<\/td><\/tr><tr><td><strong>AUDIT<\/strong><\/td><td><strong>6<\/strong><\/td><td>0–7 bajo riesgo · 8–15 riesgo · 16–19 perjudicial · 20–40 probable dependencia<\/td><\/tr><\/tbody><\/table><\/div><p><strong>Exámenes médicos:<\/strong> electrocardiogramas, enzimas cardíacas, prueba de esfuerzo, función tiroidea, hemograma y perfil lipídico normales. Endoscopia: gastritis crónica leve, no erosiva.<\/p>"}], "plantilla": {"identificacion": "<table><tr><td>Nombre<\/td><td>Jairo Castañeda<\/td><\/tr><tr><td>Edad<\/td><td>38 años<\/td><\/tr><tr><td>Escolaridad<\/td><td>Tecnólogo en logística<\/td><\/tr><tr><td>Ocupación<\/td><td>Supervisor de bodega<\/td><\/tr><tr><td>Remite<\/td><td>Medicina general<\/td><\/tr><tr><td>Destinatario<\/td><td>Médica tratante<\/td><\/tr><\/table>", "instrumentos": "<p>Tres sesiones: dos entrevistas con Jairo y una entrevista con su esposa, con observación durante las sesiones.<\/p><ul><li>Inventario Multifásico de Personalidad de Minnesota, segunda edición (MMPI-2)<\/li><li>Inventario de Depresión de Beck, segunda edición (BDI-II)<\/li><li>Inventario de Ansiedad de Beck (BAI)<\/li><li>Test de Identificación de Trastornos por Consumo de Alcohol (AUDIT)<\/li><\/ul>", "consentimiento": "<p>Jairo firmó el consentimiento informado y autorizó la entrevista a su esposa. Este informe se dirige exclusivamente a su médica tratante.<\/p>"}}, {"id": "D", "nombre": "Mercedes Varón", "etiqueta": "Mercedes · 72 años · remitida por neurología", "ficha": "<p><strong>Mercedes Varón<\/strong>, 72 años. Viuda desde hace diez meses. Estudió hasta quinto de primaria; trabajó toda la vida como modista. Vivía en Honda (Tolima) y, desde que enviudó, vive en Bogotá en el apartamento de su hija Claudia (45). Tiene otros dos hijos, que viven fuera del país.<\/p><p>Tres sesiones: dos con Mercedes y una con Claudia. <strong>Consentimiento firmado por Mercedes.<\/strong> Autoriza la evaluación, la entrevista a su hija y el envío del informe <strong>a su neurólogo tratante<\/strong>.<\/p>", "partes": [{"titulo": "Remisión de neurología", "html": "<blockquote><p><strong>Remisión a neuropsicología<\/strong><\/p><p>Paciente femenina de 72 años con HTA controlada con losartán. Consulta traída por su hija por quejas de memoria de ocho meses de evolución: olvida conversaciones recientes y dónde deja las cosas.<\/p><p>RMN cerebral: atrofia cortical leve acorde con la edad y cambios leves de sustancia blanca. Vitamina B12 y función tiroidea normales.<\/p><p><strong>IDx:<\/strong> DCL frente a síntomas depresivos. Descartar EA en fase inicial.<\/p><p><strong>Se solicita evaluación neuropsicológica y concepto sobre si el perfil cognitivo es compatible con un deterioro cognitivo o con un cuadro depresivo, con recomendaciones.<\/strong><\/p><\/blockquote>"}, {"titulo": "Entrevistas con Mercedes", "html": "<p>Llega con Claudia, que responde varias preguntas por ella hasta que se le pide esperar afuera.<\/p><blockquote><p>«Tengo la cabeza como un colador. Todo se me olvida.»<\/p><p>«Desde que Rogelio se murió no me hallo. Allá en Honda yo tenía mis clientas, mis vecinas. Aquí me paso el día mirando por la ventana.»<\/p><\/blockquote><ul><li>Sabe la fecha, el lugar y el motivo de la consulta. Recuerda con detalle el día del entierro y los nombres de sus seis nietos.<\/li><li>Duerme mal, se despierta a las cuatro de la mañana «a pensar». Bajó cuatro kilos en los últimos meses: «No me da hambre».<\/li><li>Dejó de coser: «¿Para qué, si ya nadie me encarga?».<\/li><li>Maneja sola sus medicamentos con un pastillero semanal, sin errores según la hija. Los domingos canta en el coro de la parroquia: «Ahí sí me olvido de todo un rato».<\/li><li>Muchas respuestas empiezan con «no sé» o «no me acuerdo», pero con un poco de tiempo o una pista, responde.<\/li><li>En la segunda sesión cuenta, en voz baja: «Rogelio tuvo otra familia en Mariquita, dos hijos. Mis hijos no saben. Al entierro llegó la otra. Eso ya lo tengo perdonado, no es por eso que estoy así. No lo vaya a poner en nada, por favor».<\/li><li>Niega deseos de morir: «Uno se muere cuando Dios quiera, pero sí me siento muy sola».<\/li><\/ul>"}, {"titulo": "Entrevista a Claudia, la hija", "html": "<blockquote><p>«Mi mamá ya no se acuerda de nada. Está perdida.»<\/p><\/blockquote><ul><li>Dice que el cambio empezó «unos dos meses después de que murió mi papá».<\/li><li>Su madre ya no cocina ni maneja plata. Cuando se le pregunta, aclara que en su casa cocina la empleada, y que las cuentas siempre las llevó su padre.<\/li><li>Al final agrega: «La señora del apartamento de al lado me dijo que ha visto a mi mamá sola, de noche, perdida en el parque. Yo nunca la he visto salir de noche. El portero dice que solo baja a la misa de las seis y vuelve».<\/li><\/ul>"}, {"titulo": "Observación", "html": "<p>Aspecto cuidado, bien arreglada; llegó sin sus lentes de lectura («se me quedaron en la mesa de noche»). Colaboradora y amable, aunque se desanima ante las tareas: «eso yo no lo sé hacer». Habla despacio y con volumen bajo. Afecto triste, congruente con el discurso; llanto al hablar del esposo. Pensamiento coherente y centrado en la pérdida y en la soledad. Orientada en las tres esferas. Mantiene la atención, pero tarda en empezar las tareas.<\/p>"}, {"titulo": "Pruebas", "html": "<div class='tabla-scroll'><table><thead><tr><th>Prueba<\/th><th>Resultado<\/th><th>Cómo se lee<\/th><\/tr><\/thead><tbody><tr><td><strong>MoCA<\/strong> (Evaluación Cognitiva de Montreal)<\/td><td><strong>21/30<\/strong> (20 más 1 punto por tener 12 años de escolaridad o menos)<\/td><td>≥ 26: normal.<\/td><\/tr><tr><td><\/td><td>Visoespacial/ejecutiva <strong>2/5<\/strong> · Identificación <strong>2/3<\/strong> · Atención 4/6 · Lenguaje 2/3 · Abstracción 2/2 · <strong>Recuerdo diferido 2/5, que sube a 5/5 con pistas<\/strong> · <strong>Orientación 6/6<\/strong><\/td><td><\/td><\/tr><tr><td><\/td><td><strong>Nota de aplicación:<\/strong> se aplicó sin los lentes de lectura.<\/td><td><\/td><\/tr><tr><td><strong>GDS-15<\/strong> (Escala de Depresión Geriátrica de Yesavage)<\/td><td><strong>9<\/strong><\/td><td>0–5 normal · 6–9 probable depresión · ≥ 10 depresión establecida<\/td><\/tr><tr><td><strong>Índice de Barthel<\/strong> (actividades básicas)<\/td><td><strong>100/100<\/strong><\/td><td>100: independiente<\/td><\/tr><tr><td><strong>Escala de Lawton y Brody<\/strong> (actividades instrumentales)<\/td><td><strong>6/8<\/strong>. No maneja dinero ni prepara comidas.<\/td><td>8: independiente<\/td><\/tr><\/tbody><\/table><\/div>"}], "plantilla": {"identificacion": "<table><tr><td>Nombre<\/td><td>Mercedes Varón<\/td><\/tr><tr><td>Edad<\/td><td>72 años<\/td><\/tr><tr><td>Escolaridad<\/td><td>Quinto de primaria<\/td><\/tr><tr><td>Ocupación<\/td><td>Modista<\/td><\/tr><tr><td>Remite<\/td><td>Neurología<\/td><\/tr><tr><td>Destinatario<\/td><td>Neurólogo tratante<\/td><\/tr><\/table>", "instrumentos": "<p>Tres sesiones: dos entrevistas con Mercedes y una entrevista con su hija, con observación durante las sesiones.<\/p><ul><li>Evaluación Cognitiva de Montreal (MoCA)<\/li><li>Escala de Depresión Geriátrica de Yesavage, versión de 15 ítems (GDS-15)<\/li><li>Índice de Barthel (actividades básicas de la vida diaria)<\/li><li>Escala de Lawton y Brody (actividades instrumentales de la vida diaria)<\/li><\/ul>", "consentimiento": "<p>Mercedes firmó el consentimiento informado y autorizó la entrevista a su hija. Este informe se dirige exclusivamente a su neurólogo tratante.<\/p>"}}];
+const AUDITORIA_B64 = "eyJBIjogW3siaWQiOiAicnVtb3IiLCAidGlwbyI6ICJydW1vciIsICJ0aXR1bG8iOiAiVW4gZGF0byBkZSBvw61kYXM6IGxhIHZpb2xlbmNpYSBlbiBsYSBjYXNhIiwgImRvbmRlIjogIkxhIGRvY2VudGUgY29udMOzIHF1ZSBvdHJhIG1hbcOhIGRlbCBjdXJzbyBsZSBkaWpvIHF1ZSBlbCBwYWRyZSBsZSBwZWdhYmEgYSBsYSBtYWRyZS4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBydW1vciBubyBzZSBwcmVzZW50YSBjb21vIHVuIGhlY2hvIG5pIGNvbW8gY2F1c2EuIExhIG1hZHJlIGxvIG5pZWdhIHkgU2FtdWVsIG5vIG11ZXN0cmEgaW5kaWNhZG9yZXMuIFNpIGh1YmllcmEgdW5hIHNvc3BlY2hhIHJlYWwgZGUgdmlvbGVuY2lhLCBzZSBleHBsb3JhIHkgc2UgYWN0aXZhIGxhIHJ1dGEgcXVlIGNvcnJlc3BvbmRlOyBubyBzZSBhZmlybWEgZW4gdW4gaW5mb3JtZSBkaXJpZ2lkbyBhbCBjb2xlZ2lvLiIsICJwcmVndW50YSI6ICLCv0PDs21vIHRyYXRhcm9uIGVzdGUgZGF0byBlbiBzdSBpbmZvcm1lPyIsICJvcGNpb25lcyI6IFtbImhlY2hvIiwgIkxvIHByZXNlbnRhbW9zIGNvbW8gdW4gaGVjaG8iXSwgWyJhdHJpYnVpZG8iLCAiTG8gbWVuY2lvbmFtb3MgY29tbyB1biBkYXRvIGRlIHVuIHRlcmNlcm8sIHNpbiB2ZXJpZmljYXIiXSwgWyJleGNsdWlkbyIsICJObyBsbyBpbmNsdWltb3MsIGEgcHJvcMOzc2l0byJdLCBbIm5vLXZpc3RvIiwgIk5vIGxvIGluY2x1aW1vcyBwb3JxdWUgbm8gbG8gdmltb3MiXV0sICJtYXJjYXMiOiBbIm90cmEgbWFtYSIsICJwZWdhYmEiLCAidmlvbGVuY2lhIiwgIm1hbHRyYXQiLCAiZ29scGUiLCAiYWdyZXNpIl19LCB7ImlkIjogImNvbnRyYWRpY2Npb24iLCAidGlwbyI6ICJjb250cmFkaWNjaW9uIiwgInRpdHVsbyI6ICJEb3MgZnVlbnRlcyBxdWUgbm8gZGljZW4gbG8gbWlzbW86IGxhIGRvY2VudGUgeSBsb3MgcGFkcmVzIiwgImRvbmRlIjogIkVuIGVsIENvbm5lcnMgMywgbGEgZG9jZW50ZSBwdW50w7phIGFsdG8gZW4gaW5hdGVuY2nDs24gZSBoaXBlcmFjdGl2aWRhZDsgbG9zIHBhZHJlcywgbm8uIExvIHF1ZSBjb2luY2lkZSBlbiBsYXMgZG9zIHZlcnNpb25lcyBzb24gbG9zIHByb2JsZW1hcyBkZSBhcHJlbmRpemFqZS4iLCAicmVjb21lbmRhY2lvbiI6ICJMYSBkaWZlcmVuY2lhIHNlIGV4cGxpY2E7IG5vIHNlIGVsaWdlIHVuYSBmdWVudGUuIExvcyBzw61udG9tYXMgYXBhcmVjZW4gZW4gbGFzIHRhcmVhcyBkZSBsZWN0dXJhOiBlbiBjYXNhIHNvc3RpZW5lIGxhIGF0ZW5jacOzbiBwb3IgaG9yYXMgeSBlbiBjbGFzZSBwYXJ0aWNpcGEgYmllbiBjb24gbWF0ZXJpYWwgY29uY3JldG8uIEVsIFREQUggZXhpZ2Ugc8OtbnRvbWFzIGVuIGRvcyBvIG3DoXMgY29udGV4dG9zOyBsbyBxdWUgY29tcGFydGVuIGxhcyBkb3MgZnVlbnRlcyBhcHVudGEgYSBsYSBkaWZpY3VsdGFkIHBhcmEgbGVlci4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIGRpZmVyZW5jaWE/IiwgIm9wY2lvbmVzIjogW1sidW5hIiwgIkluZm9ybWFtb3Mgc29sbyB1bmEgZGUgbGFzIGRvcyBmdWVudGVzIl0sIFsic2VwYXJhZGFzIiwgIkluZm9ybWFtb3MgbGFzIGRvcywgcGVybyBwb3Igc2VwYXJhZG8iXSwgWyJpbnRlZ3JhZGFzIiwgIkxhcyBpbnRlZ3JhbW9zIHkgZXhwbGljYW1vcyBsYSBkaWZlcmVuY2lhIl0sIFsibm8tdHJhdGFkbyIsICJObyBsbyB0cmF0YW1vcyJdXSwgIm1hcmNhcyI6IFsiY29ubmVycyIsICJkb2NlbnRlIiwgInByb2Zlc29yYSIsICJwYWRyZXMiLCAidGRhaCIsICJoaXBlcmFjdGl2IiwgImluYXRlbmNpb24iXX0sIHsiaWQiOiAidmFsaWRleiIsICJ0aXBvIjogInZhbGlkZXoiLCAidGl0dWxvIjogIlVuYSBwcnVlYmEgY29uIHVuIHByb2JsZW1hIGRlIGFwbGljYWNpw7NuOiBEw61naXRvcyIsICJkb25kZSI6ICJMYSBzdWJwcnVlYmEgZGUgRMOtZ2l0b3MgZGVsIFdJU0MtViBzZSBpbnRlcnJ1bXBpw7MgYSBsYSBtaXRhZCBwb3IgdW4gc2ltdWxhY3JvIGRlIGV2YWN1YWNpw7NuLiIsICJyZWNvbWVuZGFjaW9uIjogIlVuYSBhcGxpY2FjacOzbiBpbnRlcnJ1bXBpZGEgc2UgaW5mb3JtYS4gRWwgw61uZGljZSBkZSBtZW1vcmlhIGRlIHRyYWJham8gKDgyKSBzZSBpbnRlcnByZXRhIGNvbiBjYXV0ZWxhIHkgc2UgcmVjb21pZW5kYSByZXBldGlyIGxhIHN1YnBydWViYS4gTm8gc2UgdXNhIGNvbW8gcHJ1ZWJhIGRlIHVuIGTDqWZpY2l0IGRlIGF0ZW5jacOzbi4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIHBydWViYT8iLCAib3BjaW9uZXMiOiBbWyJzaW4tYWR2ZXJ0aXIiLCAiSW50ZXJwcmV0YW1vcyBsYSBwcnVlYmEgc2luIGFkdmVydGlyIGVsIHByb2JsZW1hIl0sIFsiYWR2ZXJ0aWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEsIHBlcm8gaWd1YWwgaW50ZXJwcmV0YW1vcyB0b2RvcyBsb3MgcmVzdWx0YWRvcyJdLCBbImxpbWl0YWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEgeSBsaW1pdGFtb3MgbGEgaW50ZXJwcmV0YWNpw7NuIl0sIFsibm8tdXNhZGEiLCAiTm8gdXNhbW9zIGVzYSBwcnVlYmEiXV0sICJtYXJjYXMiOiBbInNpbXVsYWNybyIsICJpbnRlcnJ1bXAiLCAiZGlnaXRvcyIsICJtZW1vcmlhIGRlIHRyYWJham8iLCAiXFxiaW10XFxiIl19LCB7ImlkIjogImZvcnRhbGV6YSIsICJ0aXBvIjogImZvcnRhbGV6YSIsICJ0aXR1bG8iOiAiVW5hIGZvcnRhbGV6YSBxdWUgYXBhcmVjZSBkZSBwYXNhZGEiLCAiZG9uZGUiOiAiU2FtdWVsIGFybWEgY29uc3RydWNjaW9uZXMgZGUgTGVnbyBwb3IgbcOhcyBkZSB1bmEgaG9yYSB5IGRlIG1lbW9yaWE7IHN1IMOtbmRpY2UgbcOhcyBhbHRvIGVzIGVsIHZpc29lc3BhY2lhbCAoMTA4KSwgeSBwYXJ0aWNpcGEgYmllbiBjb24gbWF0ZXJpYWwgY29uY3JldG8uIiwgInJlY29tZW5kYWNpb24iOiAiTGEgZm9ydGFsZXphIG9yaWVudGEgbG9zIGFqdXN0ZXM6IGFwb3lvcyB2aXN1YWxlcywgbWF0ZXJpYWwgbWFuaXB1bGFibGUgeSBldmFsdWFjacOzbiBvcmFsLiBVbiBpbmZvcm1lIHBhcmEgZWwgY29sZWdpbyBxdWUgc29sbyBlbnVtZXJhIGRpZmljdWx0YWRlcyBkZWphIGEgbGEgZG9jZW50ZSBzaW4gcG9yIGTDs25kZSBlbXBlemFyLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGVsbGE/IiwgIm9wY2lvbmVzIjogW1sibm8iLCAiTm8gbGEgbWVuY2lvbmFtb3MiXSwgWyJtZW5jaW9uIiwgIkxhIG1lbmNpb25hbW9zLCBzaW4gdXNhcmxhIl0sIFsidXNhZGEiLCAiTGEgdXNhbW9zIGVuIGVsIHByb27Ds3N0aWNvIG8gZW4gbGFzIHJlY29tZW5kYWNpb25lcyJdXSwgIm1hcmNhcyI6IFsibGVnbyIsICJjb25zdHJ1IiwgInZpc29lc3BhY2lhbCIsICJkaWJ1aiIsICJmb3J0YWxleiIsICJyZWN1cnNvIiwgIm1hdGVyaWFsIGNvbmNyZXRvIl19LCB7ImlkIjogImludGltbyIsICJ0aXBvIjogImludGltbyIsICJ0aXR1bG8iOiAiVW4gZGF0byDDrW50aW1vIHF1ZSBubyByZXNwb25kZSBsYSByZW1pc2nDs24iLCAiZG9uZGUiOiAiTGEgbWFkcmUgY29udMOzIHF1ZSB0b21hIHNlcnRyYWxpbmEgcG9yIGRlcHJlc2nDs24gaGFjZSBhw7FvcyB5IHBpZGnDsyBxdWUgZWwgY29sZWdpbyBubyBsbyBzdXBpZXJhLiIsICJyZWNvbWVuZGFjaW9uIjogIkVsIGluZm9ybWUgdmEgYWwgY29sZWdpby4gVW4gYW50ZWNlZGVudGUgZmFtaWxpYXIgcHVlZGUgdGVuZXIgdmFsb3IgY2zDrW5pY28gZW4gb3RybyBjb250ZXh0bywgcGVybyBhcXXDrSBubyByZXNwb25kZSBsYSBwcmVndW50YSB5IGxhIG1hZHJlIHBpZGnDsyByZXNlcnZhLiBRdWVkYSBlbiBsYSBoaXN0b3JpYSBjbMOtbmljYSwgbm8gZW4gZWwgaW5mb3JtZS4iLCAicHJlZ3VudGEiOiAiwr9RdcOpIGhpY2llcm9uIGNvbiBlc3RlIGRhdG8/IiwgIm9wY2lvbmVzIjogW1siaW5jbHVpZG8iLCAiTG8gaW5jbHVpbW9zIl0sIFsic3Vhdml6YWRvIiwgIkxvIGluY2x1aW1vcyBkZSBmb3JtYSBpbmRpcmVjdGEgbyBzdWF2aXphZGEiXSwgWyJleGNsdWlkbyIsICJObyBsbyBpbmNsdWltb3MsIGEgcHJvcMOzc2l0byJdLCBbIm5vLXZpc3RvIiwgIk5vIGxvIGluY2x1aW1vcyBwb3JxdWUgbm8gbG8gdmltb3MiXV0sICJtYXJjYXMiOiBbInNlcnRyYWxpbmEiLCAiZGVwcmVzaW9uIGRlIGxhIG1hZHJlIiwgIm1hZHJlLnswLDQwfWRlcHJlc2kiLCAiYW50ZWNlZGVudGUgcHNpcXVpYXRyaWNvIiwgImFudGlkZXByZXNpdiJdfSwgeyJpZCI6ICJzaWdsYXMiLCAidGlwbyI6ICJzaWdsYXMiLCAidGl0dWxvIjogIkxhcyBzaWdsYXMgZGUgbGEgcmVtaXNpw7NuIiwgImRvbmRlIjogIkxhIHJlbWlzacOzbiB1c2FiYSBUREFILCBQSUFSIHkgRFVBLiIsICJyZWNvbWVuZGFjaW9uIjogIkVsIGluZm9ybWUgbG8gcHVlZGVuIGxlZXIgZWwgY29uc3VsdGFudGUgdSBvdHJvcyBwcm9mZXNpb25hbGVzLiBMYXMgc2lnbGFzIHNlIGVzY3JpYmVuIGNvbXBsZXRhcywgbyBjb21wbGV0YXMgbGEgcHJpbWVyYSB2ZXogY29uIGxhIHNpZ2xhIGVudHJlIHBhcsOpbnRlc2lzOiDCq1BsYW4gSW5kaXZpZHVhbCBkZSBBanVzdGVzIFJhem9uYWJsZXMgKFBJQVIpwrsuIFZhbGUgdGFtYmnDqW4gcGFyYSBsYXMgZXNjYWxhcyBkZSBsYXMgcHJ1ZWJhcy4iLCAicHJlZ3VudGEiOiAiwr9RdcOpIGhpY2llcm9uIGNvbiBsYXMgc2lnbGFzPyIsICJvcGNpb25lcyI6IFtbInNpbi1leHBsaWNhciIsICJVc2Ftb3Mgc2lnbGFzIHNpbiBleHBsaWNhcmxhcyJdLCBbImFsZ3VuYXMiLCAiRXhwbGljYW1vcyBhbGd1bmFzIl0sIFsidG9kYXMiLCAiTGFzIGV4cGxpY2Ftb3MgdG9kYXMsIG8gbm8gbGFzIHVzYW1vcyJdXSwgInNpZ2xhcyI6IHsiVERBSCI6IFsiZGVmaWNpdCBkZSBhdGVuY2lvbiJdLCAiUElBUiI6IFsicGxhbiBpbmRpdmlkdWFsIl0sICJEVUEiOiBbImRpc2VubyB1bml2ZXJzYWwiXX19LCB7ImlkIjogInByZWd1bnRhIiwgInRpcG8iOiAicHJlZ3VudGEiLCAidGl0dWxvIjogIkxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiIsICJkb25kZSI6ICJMYSBvcmllbnRhZG9yYSBwcmVndW50w7MgZG9zIGNvc2FzOiBzaSBsYXMgZGlmaWN1bHRhZGVzIGNvcnJlc3BvbmRlbiBhIHVuIHByb2JsZW1hIGRlIGF0ZW5jacOzbiwgYSB1bmEgZGlmaWN1bHRhZCBlc3BlY8OtZmljYSBkZWwgYXByZW5kaXphamUgbyBhIG90cmEgc2l0dWFjacOzbiwgeSBxdcOpIGFqdXN0ZXMgcmF6b25hYmxlcyBoYWNlciBlbiBlbCBhdWxhLiIsICJyZWNvbWVuZGFjaW9uIjogIkxhIGNvbmNsdXNpw7NuIHJlc3BvbmRlIGxhcyBkb3MgcGFydGVzLiBFbCBwZXJmaWwgYXB1bnRhIGEgdW5hIGRpZmljdWx0YWQgZXNwZWPDrWZpY2EgZGUgbGEgbGVjdHVyYSAocHNldWRvcGFsYWJyYXMgY29uIGRpZmljdWx0YWQgc2V2ZXJhLCBjb21wcmVuc2nDs24gb3JhbCBub3JtYWwsIGFudGVjZWRlbnRlIGVuIGVsIHBhZHJlLCBvY2hvIG1lc2VzIGRlIHJlZnVlcnpvIHNpbiBhdmFuY2UpLCBubyBhIHVuIFREQUguIFkgbG9zIGFqdXN0ZXMgc29uIGNvbmNyZXRvczogbcOhcyB0aWVtcG8sIGV2YWx1YWNpw7NuIG9yYWwsIG5vIGhhY2VybG8gbGVlciBlbiB2b3ogYWx0YSBhbnRlIGVsIGdydXBvIHNpbiBwcmVwYXJhY2nDs24sIGFwb3lvcyB2aXN1YWxlcywgeSB2YWxvcmFyIGxhIHBlcnRpbmVuY2lhIGRlbCBQSUFSLiIsICJwcmVndW50YSI6ICJMZcOtZGEgZXNhIGZyYXNlLCDCv3F1w6kgdGFudG8gcmVzcG9uZGUgbG8gcXVlIHNlIHByZWd1bnTDsz8iLCAib3BjaW9uZXMiOiBbWyJjb21wbGV0YSIsICJSZXNwb25kZSB0b2RhcyBsYXMgcGFydGVzIGRlIGxhIHByZWd1bnRhIl0sIFsicGFyY2lhbCIsICJSZXNwb25kZSBzb2xvIHVuYSBwYXJ0ZSJdLCBbIm5vIiwgIk5vIGxhIHJlc3BvbmRlIGRlIGZvcm1hIGRpcmVjdGEiXV19XSwgIkIiOiBbeyJpZCI6ICJydW1vciIsICJ0aXBvIjogInJ1bW9yIiwgInRpdHVsbyI6ICJVbiBkYXRvIGRlIG/DrWRhczogZWwgbXVjaGFjaG8gbWF5b3IiLCAiZG9uZGUiOiAiR2xvcmlhIGNvbnTDsyBxdWUgc3UgaGVybWFuYSBsZSBkaWpvIHF1ZSBlbiBlbCBiYXJyaW8gZGljZW4gcXVlIERhbmllbGEgYW5kYSBjb24gdW4gbXVjaGFjaG8gbWF5b3IgcXVlIHZlbmRlIHZpY2lvLiIsICJyZWNvbWVuZGFjaW9uIjogIlVuIHJ1bW9yIG5vIHNlIHByZXNlbnRhIGNvbW8gdW4gaGVjaG8sIHkgbWVub3MgZW4gdW4gaW5mb3JtZSBwYXJhIHVuYSBjb21pc2Fyw61hLCBkb25kZSBwdWVkZSB0ZW5lciBjb25zZWN1ZW5jaWFzIGxlZ2FsZXMuIExhIG1hZHJlIG51bmNhIGxvIHZpbyB5IERhbmllbGEgbmllZ2EgY29uc3Vtby4gU2kgcHJlb2N1cGEsIHNlIHJlY29taWVuZGEgZXhwbG9yYXJsbzsgbm8gc2UgYWZpcm1hLiIsICJwcmVndW50YSI6ICLCv0PDs21vIHRyYXRhcm9uIGVzdGUgZGF0byBlbiBzdSBpbmZvcm1lPyIsICJvcGNpb25lcyI6IFtbImhlY2hvIiwgIkxvIHByZXNlbnRhbW9zIGNvbW8gdW4gaGVjaG8iXSwgWyJhdHJpYnVpZG8iLCAiTG8gbWVuY2lvbmFtb3MgY29tbyB1biBkYXRvIGRlIHVuIHRlcmNlcm8sIHNpbiB2ZXJpZmljYXIiXSwgWyJleGNsdWlkbyIsICJObyBsbyBpbmNsdWltb3MsIGEgcHJvcMOzc2l0byJdLCBbIm5vLXZpc3RvIiwgIk5vIGxvIGluY2x1aW1vcyBwb3JxdWUgbm8gbG8gdmltb3MiXV0sICJtYXJjYXMiOiBbIm11Y2hhY2hvIiwgInZpY2lvIiwgImVuIGVsIGJhcnJpbyIsICJkcm9nYSIsICJzdXN0YW5jaWEiLCAidmVuZGUiXX0sIHsiaWQiOiAiY29udHJhZGljY2lvbiIsICJ0aXBvIjogImNvbnRyYWRpY2Npb24iLCAidGl0dWxvIjogIkRvcyBmdWVudGVzIHF1ZSBubyBkaWNlbiBsbyBtaXNtbzogwqt5byBlc3RveSBiaWVuwrsgeSBsb3Mgc8OtbnRvbWFzIiwgImRvbmRlIjogIkRhbmllbGEgZGljZSDCq1lvIGVzdG95IGJpZW4uIEVzbyB5YSBwYXPDs8K7LCBwZXJvIGN1ZW50YSBwZXNhZGlsbGFzLCBldml0YSBsYSBjb2NpbmEsIHNlIHNvYnJlc2FsdGEsIHN1cyBub3RhcyBiYWphcm9uLCB5IGxhIENQU1MtNSBkaW8gMjkuIiwgInJlY29tZW5kYWNpb24iOiAiRWwgcmVsYXRvIHF1ZSBtaW5pbWl6YSB5IGxvcyBzw61udG9tYXMgc2UgaW5mb3JtYW4ganVudG9zLCB5IHNlIGV4cGxpY2EgbGEgZGlmZXJlbmNpYS4gVW4gcHVudGFqZSBkb3MgcHVudG9zIHBvciBkZWJham8gZGVsIGNvcnRlIG5vIGVxdWl2YWxlIGEgYXVzZW5jaWEgZGUgYWZlY3RhY2nDs246IGxvIHF1ZSBlbGxhIGN1ZW50YSwgbG8gcXVlIHZlIHN1IG1hZHJlIHkgbG8gcXVlIHNlIG9ic2VydsOzIGVuIHNlc2nDs24gYXB1bnRhbiBhIHPDrW50b21hcyBkZSBlc3Ryw6lzIHBvc3RyYXVtw6F0aWNvLiIsICJwcmVndW50YSI6ICLCv0PDs21vIHRyYXRhcm9uIGVzdGEgZGlmZXJlbmNpYT8iLCAib3BjaW9uZXMiOiBbWyJ1bmEiLCAiSW5mb3JtYW1vcyBzb2xvIHVuYSBkZSBsYXMgZG9zIGZ1ZW50ZXMiXSwgWyJzZXBhcmFkYXMiLCAiSW5mb3JtYW1vcyBsYXMgZG9zLCBwZXJvIHBvciBzZXBhcmFkbyJdLCBbImludGVncmFkYXMiLCAiTGFzIGludGVncmFtb3MgeSBleHBsaWNhbW9zIGxhIGRpZmVyZW5jaWEiXSwgWyJuby10cmF0YWRvIiwgIk5vIGxvIHRyYXRhbW9zIl1dLCAibWFyY2FzIjogWyJlc3RveSBiaWVuIiwgInlhIHBhc28iLCAiY3BzcyIsICJwZXNhZGlsbGEiLCAibWluaW1peiJdfSwgeyJpZCI6ICJ2YWxpZGV6IiwgInRpcG8iOiAidmFsaWRleiIsICJ0aXR1bG8iOiAiVW5hIHBydWViYSBjb24gdW4gcHJvYmxlbWEgZGUgdmFsaWRlejogZWwgTU1QSS1BIiwgImRvbmRlIjogIkVuIGVsIE1NUEktQSwgTWVudGlyYSAoTCkgNzIgeSBDb3JyZWNjacOzbiAoSykgNjgsIGNvbiB0b2RhcyBsYXMgZXNjYWxhcyBjbMOtbmljYXMgZGVudHJvIGRlIGxvIG5vcm1hbC4gRGFuaWVsYSBwcmVndW50w7MgZG9zIHZlY2VzIHF1acOpbiBpYmEgYSBsZWVyIGVsIGluZm9ybWUuIiwgInJlY29tZW5kYWNpb24iOiAiVW4gcGVyZmlsIGRlZmVuc2l2byBubyBzZSBsZWUgY29tbyDCq3NpbiBwc2ljb3BhdG9sb2fDrWHCuy4gTGFzIGVzY2FsYXMgZGUgdmFsaWRleiBpbmRpY2FuIHF1ZSBEYW5pZWxhIG1pbmltaXrDsyBzdXMgZGlmaWN1bHRhZGVzLCBhbGdvIGNvbXByZW5zaWJsZSBzaSB0ZW1lIHF1ZSBlbCBwYWRyYXN0cm8gbGVhIGVsIGluZm9ybWUuIExhIGRlZmVuc2l2aWRhZCBzZSBpbmZvcm1hIGNvbW8gaGFsbGF6Z28sIHkgbGFzIGVzY2FsYXMgY2zDrW5pY2FzIG5vcm1hbGVzIG5vIHNlIHVzYW4gcGFyYSBjb25jbHVpciBxdWUgZXN0w6EgYmllbi4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIHBydWViYT8iLCAib3BjaW9uZXMiOiBbWyJzaW4tYWR2ZXJ0aXIiLCAiSW50ZXJwcmV0YW1vcyBsYSBwcnVlYmEgc2luIGFkdmVydGlyIGVsIHByb2JsZW1hIl0sIFsiYWR2ZXJ0aWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEsIHBlcm8gaWd1YWwgaW50ZXJwcmV0YW1vcyB0b2RvcyBsb3MgcmVzdWx0YWRvcyJdLCBbImxpbWl0YWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEgeSBsaW1pdGFtb3MgbGEgaW50ZXJwcmV0YWNpw7NuIl0sIFsibm8tdXNhZGEiLCAiTm8gdXNhbW9zIGVzYSBwcnVlYmEiXV0sICJtYXJjYXMiOiBbIm1tcGkiLCAibWVudGlyYSIsICJjb3JyZWNjaW9uIiwgImRlZmVuc2l2IiwgInZhbGlkZXoiLCAiZGVudHJvIGRlIGxvIG5vcm1hbCIsICJzaW4gcHNpY29wYXRvbG9nIiwgImVzY2FsYXMgY2xpbmljYXMiXX0sIHsiaWQiOiAiZm9ydGFsZXphIiwgInRpcG8iOiAiZm9ydGFsZXphIiwgInRpdHVsbyI6ICJVbmEgZm9ydGFsZXphIHF1ZSBhcGFyZWNlIGRlIHBhc2FkYSIsICJkb25kZSI6ICJEYW5pZWxhIHNpZ3VlIGVuIHN1IGdydXBvIGRlIGRhbnphIHVyYmFuYSAowqtlcyBsbyDDum5pY28gZG9uZGUgbm8gcGllbnNvIGVuIG5hZGHCuyksIHJlY29nZSBhIHN1IGhlcm1hbm8gY2FkYSBkw61hLCB5IGVzYSBub2NoZSBhY3R1w7MgY29uIHNlcmVuaWRhZDogc2Fjw7MgYSBLZXZpbiB5IGxsYW3DsyBhbCAxMjMuIiwgInJlY29tZW5kYWNpb24iOiAiTG9zIHJlY3Vyc29zIGRlIERhbmllbGEgYXBveWFuIGVsIHByb27Ds3N0aWNvIHkgb3JpZW50YW4gbGEgYXRlbmNpw7NuLiBFbCBjdWlkYWRvIGRlIEtldmluIHRhbWJpw6luIHNlIGxlZSBjb24gbWF0aXo6IHB1ZWRlIHNlciB1bmEgc29icmVjYXJnYSBkZSByb2wgcGFyYSB1bmEgYWRvbGVzY2VudGUsIHkgY29udmllbmUgcmVjb21lbmRhciBxdWUgc2UgdmlnaWxlLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGVsbGE/IiwgIm9wY2lvbmVzIjogW1sibm8iLCAiTm8gbGEgbWVuY2lvbmFtb3MiXSwgWyJtZW5jaW9uIiwgIkxhIG1lbmNpb25hbW9zLCBzaW4gdXNhcmxhIl0sIFsidXNhZGEiLCAiTGEgdXNhbW9zIGVuIGVsIHByb27Ds3N0aWNvIG8gZW4gbGFzIHJlY29tZW5kYWNpb25lcyJdXSwgIm1hcmNhcyI6IFsiZGFuemEiLCAiYmFpbGUiLCAia2V2aW4iLCAiaGVybWFubyIsICIxMjMiLCAiZm9ydGFsZXoiLCAicmVjdXJzbyJdfSwgeyJpZCI6ICJpbnRpbW8iLCAidGlwbyI6ICJpbnRpbW8iLCAidGl0dWxvIjogIlVuIGRhdG8gw61udGltbyBxdWUgbm8gcmVzcG9uZGUgbGEgcmVtaXNpw7NuIiwgImRvbmRlIjogIkRhbmllbGEgY29udMOzIHF1ZSB0aWVuZSBub3ZpYSwgcXVlIHN1IG1hZHJlIG5vIGxvIHNhYmUsIHkgcGlkacOzIHF1ZSBubyBzZSBsbyBkaWplcmFuIGEgbmFkaWUuIiwgInJlY29tZW5kYWNpb24iOiAiTm8gcmVzcG9uZGUgbmluZ3VuYSBkZSBsYXMgdHJlcyBwcmVndW50YXMgZGUgbGEgY29taXNhcsOtYSwgeSByZXZlbGFybG8gYSB0ZXJjZXJvcyBwb2Ryw61hIGhhY2VybGUgZGHDsW8uIFF1ZWRhIGZ1ZXJhIGRlbCBpbmZvcm1lLiBFcyBlbCBlamVtcGxvIG3DoXMgY2xhcm8gZGUgcG9yIHF1w6kgdW4gaW5mb3JtZSBubyB0cmFuc2NyaWJlIHRvZG8gbG8gcXVlIHNlIHN1cG8uIiwgInByZWd1bnRhIjogIsK/UXXDqSBoaWNpZXJvbiBjb24gZXN0ZSBkYXRvPyIsICJvcGNpb25lcyI6IFtbImluY2x1aWRvIiwgIkxvIGluY2x1aW1vcyJdLCBbInN1YXZpemFkbyIsICJMbyBpbmNsdWltb3MgZGUgZm9ybWEgaW5kaXJlY3RhIG8gc3Vhdml6YWRhIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJub3ZpYSIsICJvcmllbnRhY2lvbiBzZXh1YWwiLCAibGUgZ3VzdGFuIiwgIm1pc21vIHNleG8iLCAiaG9tb3NleCIsICJsZXNiaSIsICJiaXNleCJdfSwgeyJpZCI6ICJzaWdsYXMiLCAidGlwbyI6ICJzaWdsYXMiLCAidGl0dWxvIjogIkxhcyBzaWdsYXMgZGUgbGEgcmVtaXNpw7NuIiwgImRvbmRlIjogIkVsIG9maWNpbyB1c2FiYSBWSUYsIE1QLCBOTkEgZSBJQ0JGLiIsICJyZWNvbWVuZGFjaW9uIjogIkVsIGluZm9ybWUgbG8gcHVlZGVuIGxlZXIgZWwgY29uc3VsdGFudGUgdSBvdHJvcyBwcm9mZXNpb25hbGVzLiBMYXMgc2lnbGFzIHNlIGVzY3JpYmVuIGNvbXBsZXRhcywgbyBjb21wbGV0YXMgbGEgcHJpbWVyYSB2ZXogY29uIGxhIHNpZ2xhIGVudHJlIHBhcsOpbnRlc2lzOiDCq3Zpb2xlbmNpYSBpbnRyYWZhbWlsaWFyIChWSUYpwrsuIFZhbGUgdGFtYmnDqW4gcGFyYSBsYXMgZXNjYWxhcyBkZSBsYXMgcHJ1ZWJhcy4iLCAicHJlZ3VudGEiOiAiwr9RdcOpIGhpY2llcm9uIGNvbiBsYXMgc2lnbGFzPyIsICJvcGNpb25lcyI6IFtbInNpbi1leHBsaWNhciIsICJVc2Ftb3Mgc2lnbGFzIHNpbiBleHBsaWNhcmxhcyJdLCBbImFsZ3VuYXMiLCAiRXhwbGljYW1vcyBhbGd1bmFzIl0sIFsidG9kYXMiLCAiTGFzIGV4cGxpY2Ftb3MgdG9kYXMsIG8gbm8gbGFzIHVzYW1vcyJdXSwgInNpZ2xhcyI6IHsiVklGIjogWyJ2aW9sZW5jaWEgaW50cmFmYW1pbGlhciJdLCAiTVAiOiBbIm1lZGlkYSBkZSBwcm90ZWNjaW9uIl0sICJOTkEiOiBbIm5pbm9zLCBuaW5hcyIsICJuaW5hcyB5IGFkb2xlc2NlbnRlcyJdLCAiSUNCRiI6IFsiYmllbmVzdGFyIGZhbWlsaWFyIl19fSwgeyJpZCI6ICJwcmVndW50YSIsICJ0aXBvIjogInByZWd1bnRhIiwgInRpdHVsbyI6ICJMYSBwcmVndW50YSBkZSByZW1pc2nDs24iLCAiZG9uZGUiOiAiTGEgY29taXNhcsOtYSBwaWRpw7MgdHJlcyBjb3NhczogZWwgZXN0YWRvIGVtb2Npb25hbCBhY3R1YWwgZGUgRGFuaWVsYSwgbGEgYWZlY3RhY2nDs24gYXNvY2lhZGEgYSBsb3MgaGVjaG9zIHF1ZSBwcmVzZW5jacOzIHkgcmVjb21lbmRhY2lvbmVzIGRlIGF0ZW5jacOzbi4iLCAicmVjb21lbmRhY2lvbiI6ICJMYSBjb25jbHVzacOzbiByZXNwb25kZSBsYXMgdHJlcyBwcmVndW50YXMsIHkgc29sbyBlc2FzLiBFbCBpbmZvcm1lIGRlc2NyaWJlIGPDs21vIGVzdMOhIERhbmllbGE7IG5vIHNlIHByb251bmNpYSBzb2JyZSBzaSBsb3MgaGVjaG9zIG9jdXJyaWVyb24gbmkgc29icmUgbGEgcmVzcG9uc2FiaWxpZGFkIGRlbCBwYWRyYXN0cm8sIHF1ZSBubyBlcyBsYSBmdW5jacOzbiBkZWwgcHNpY8OzbG9nbyBlbiBlc3RlIHRyw6FtaXRlLiBSZWNvbWVuZGFjaW9uZXM6IGF0ZW5jacOzbiBwc2ljb2zDs2dpY2EgY2VudHJhZGEgZW4gZWwgdHJhdW1hLCBhcG95byBlbiBlbCBjb2xlZ2lvIHkgc2VndWltaWVudG8gZGUgbGEgY2FyZ2EgZGUgY3VpZGFkby4iLCAicHJlZ3VudGEiOiAiTGXDrWRhIGVzYSBmcmFzZSwgwr9xdcOpIHRhbnRvIHJlc3BvbmRlIGxvIHF1ZSBzZSBwcmVndW50w7M/IiwgIm9wY2lvbmVzIjogW1siY29tcGxldGEiLCAiUmVzcG9uZGUgdG9kYXMgbGFzIHBhcnRlcyBkZSBsYSBwcmVndW50YSJdLCBbInBhcmNpYWwiLCAiUmVzcG9uZGUgc29sbyB1bmEgcGFydGUiXSwgWyJubyIsICJObyBsYSByZXNwb25kZSBkZSBmb3JtYSBkaXJlY3RhIl1dfV0sICJDIjogW3siaWQiOiAicnVtb3IiLCAidGlwbyI6ICJydW1vciIsICJ0aXR1bG8iOiAiVW4gZGF0byBkZSBvw61kYXM6IGVsIGFsY29ob2wgZW4gbGEgYm9kZWdhIiwgImRvbmRlIjogIkxpbGlhbmEgY29udMOzIHF1ZSBZb2xhbmRhIGxlIGRpam8gcXVlIHVuIGNvbXBhw7Flcm8gbGUgY29udMOzIHF1ZSBhIEphaXJvIGxvIGhhbiB2aXN0byB0b21hbmRvIGVuIGxhIGJvZGVnYS4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBkYXRvIGRlIG/DrWRhcyBubyBzZSBwcmVzZW50YSBjb21vIHVuIGhlY2hvLiBBcXXDrSBwYXPDsyBwb3IgdHJlcyBwZXJzb25hcywgeSBuaW5ndW5hIGxvIHZpby4gU2kgc2UgaW5jbHV5ZSwgc2UgZGljZSBkZSBkw7NuZGUgdmllbmUgeSBzZSBjb250cmFzdGEgY29uIGxvIGV2YWx1YWRvOiBKYWlybyByZXBvcnRhIGNlcnZlemEgY2FkYSBxdWluY2UgZMOtYXMgeSBlbCBBVURJVCBkaW8gNiwgYmFqbyByaWVzZ28uIFNpIG5vIGFwb3J0YSBhIGxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiwgbG8gcHJ1ZGVudGUgZXMgZGVqYXJsbyBmdWVyYSBvIHJlY29tZW5kYXIgZXhwbG9yYXJsby4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RlIGRhdG8gZW4gc3UgaW5mb3JtZT8iLCAib3BjaW9uZXMiOiBbWyJoZWNobyIsICJMbyBwcmVzZW50YW1vcyBjb21vIHVuIGhlY2hvIl0sIFsiYXRyaWJ1aWRvIiwgIkxvIG1lbmNpb25hbW9zIGNvbW8gdW4gZGF0byBkZSB1biB0ZXJjZXJvLCBzaW4gdmVyaWZpY2FyIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJib2RlZ2EiLCAidG9tYW5kbyIsICJ5b2xhbmRhIiwgImFsY29ob2wiLCAiYmViIiwgImVtYnJpYWciLCAibGljb3IiXX0sIHsiaWQiOiAiY29udHJhZGljY2lvbiIsICJ0aXBvIjogImNvbnRyYWRpY2Npb24iLCAidGl0dWxvIjogIkRvcyBmdWVudGVzIHF1ZSBubyBkaWNlbiBsbyBtaXNtbzogwqtubyBlc3RveSBkZXByaW1pZG/CuyB5IGVsIEJESS1JSSIsICJkb25kZSI6ICJKYWlybyBkaWNlIMKrWW8gbm8gZXN0b3kgZGVwcmltaWRvLiBMbyBtw61vIGVzIGbDrXNpY2/CuywgcGVybyBlbCBCREktSUkgZGlvIDI0LCBlbiBlbCByYW5nbyBtb2RlcmFkby4iLCAicmVjb21lbmRhY2lvbiI6ICJMYXMgZG9zIGZ1ZW50ZXMgc2UgaW5mb3JtYW4ganVudGFzIHkgc2UgZXhwbGljYSBsYSBkaWZlcmVuY2lhLiBFbCBwdW50YWplIHNhbGUgc29icmUgdG9kbyBkZSDDrXRlbXMgY29ycG9yYWxlcyAoc3Vlw7FvLCBlbmVyZ8OtYSwgY2Fuc2FuY2lvLCBhZ2l0YWNpw7NuKSwgeSBsb3MgY29nbml0aXZvcyBlc3TDoW4gZW4gY2VybyAoZnJhY2FzbywgZGVzdmFsb3JpemFjacOzbiwgaWRlYXMgc3VpY2lkYXMpLiBFc28gZXMgY29oZXJlbnRlIGNvbiBhbGd1aWVuIHF1ZSB2aXZlIHN1IG1hbGVzdGFyIGEgdHJhdsOpcyBkZWwgY3VlcnBvLCB5IHBpZGUgY2F1dGVsYSBhbnRlcyBkZSBoYWJsYXIgZGUgdW5hIGRlcHJlc2nDs24gbWF5b3IuIiwgInByZWd1bnRhIjogIsK/Q8OzbW8gdHJhdGFyb24gZXN0YSBkaWZlcmVuY2lhPyIsICJvcGNpb25lcyI6IFtbInVuYSIsICJJbmZvcm1hbW9zIHNvbG8gdW5hIGRlIGxhcyBkb3MgZnVlbnRlcyJdLCBbInNlcGFyYWRhcyIsICJJbmZvcm1hbW9zIGxhcyBkb3MsIHBlcm8gcG9yIHNlcGFyYWRvIl0sIFsiaW50ZWdyYWRhcyIsICJMYXMgaW50ZWdyYW1vcyB5IGV4cGxpY2Ftb3MgbGEgZGlmZXJlbmNpYSJdLCBbIm5vLXRyYXRhZG8iLCAiTm8gbG8gdHJhdGFtb3MiXV0sICJtYXJjYXMiOiBbImJkaSIsICJiZWNrIiwgImRlcHJpbWlkIiwgImRlcHJlc2kiXX0sIHsiaWQiOiAidmFsaWRleiIsICJ0aXBvIjogInZhbGlkZXoiLCAidGl0dWxvIjogIlVuYSBwcnVlYmEgY29uIHVuIHByb2JsZW1hIGRlIHZhbGlkZXo6IGVsIE1NUEktMiIsICJkb25kZSI6ICJFbiBlbCBNTVBJLTIsIEphaXJvIGRlasOzIDM2IMOtdGVtcyBzaW4gY29udGVzdGFyLCAzMSBkZSBlbGxvcyBkZXNwdcOpcyBkZWwgMzcwLCB5IGRpam8gcXVlIMKrbGFzIMO6bHRpbWFzIGxlIGRpbyBwZXJlemHCuy4iLCAicmVjb21lbmRhY2lvbiI6ICJDb24gMzAgbyBtw6FzIG9taXNpb25lcywgZWwgcHJvdG9jb2xvIHNlIGludGVycHJldGEgY29uIHJlc2VydmFzLCB5IGVzbyBzZSBkaWNlIGVuIGVsIGluZm9ybWUuIENvbW8gY2FzaSB0b2RhcyBlc3TDoW4gZGVzcHXDqXMgZGVsIMOtdGVtIDM3MCwgbGFzIGVzY2FsYXMgYsOhc2ljYXMgc8OtIHNlIHB1ZWRlbiBsZWVyIChIaXBvY29uZHLDrWEgZSBIaXN0ZXJpYSBwb3IgZW5jaW1hIGRlIERlcHJlc2nDs246IGV4cHJlc2nDs24gY29ycG9yYWwgZGVsIG1hbGVzdGFyKS4gTGFzIGVzY2FsYXMgZGUgY29udGVuaWRvLCBlbiBjYW1iaW8sIG5vIHNlIGludGVycHJldGFuLCBhdW5xdWUgbGEgaG9qYSBsYXMgbXVlc3RyZSBlbGV2YWRhcy4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIHBydWViYT8iLCAib3BjaW9uZXMiOiBbWyJzaW4tYWR2ZXJ0aXIiLCAiSW50ZXJwcmV0YW1vcyBsYSBwcnVlYmEgc2luIGFkdmVydGlyIGVsIHByb2JsZW1hIl0sIFsiYWR2ZXJ0aWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEsIHBlcm8gaWd1YWwgaW50ZXJwcmV0YW1vcyB0b2RvcyBsb3MgcmVzdWx0YWRvcyJdLCBbImxpbWl0YWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEgeSBsaW1pdGFtb3MgbGEgaW50ZXJwcmV0YWNpw7NuIl0sIFsibm8tdXNhZGEiLCAiTm8gdXNhbW9zIGVzYSBwcnVlYmEiXV0sICJtYXJjYXMiOiBbIm1tcGkiLCAib21pdCIsICJzaW4gY29udGVzdGFyIiwgIm5vIGNvbnRlc3QiLCAidmFsaWRleiIsICJcXGJhbnhcXGIiLCAiXFxiaGVhXFxiIiwgImNvbnRlbmlkbyIsICJoaXBvY29uZHIiLCAiaGlzdGVyaWEiLCAiY29udmVyc2lvbiJdfSwgeyJpZCI6ICJmb3J0YWxlemEiLCAidGlwbyI6ICJmb3J0YWxlemEiLCAidGl0dWxvIjogIlVuYSBmb3J0YWxlemEgcXVlIGFwYXJlY2UgZGUgcGFzYWRhIiwgImRvbmRlIjogIkphaXJvIHNpZ3VlIGVudHJlbmFuZG8gZWwgZXF1aXBvIGRlIG1pY3JvZsO6dGJvbCBkZSBzdSBoaWphICjCq25pIG1lIGFjdWVyZG8gZGVsIHBlY2hvwrspLCB5IGVuIGVsIHRyYWJham8gwqtlcyBlbCBxdWUgc2FiZSBkw7NuZGUgZXN0w6EgdG9kb8K7LiIsICJyZWNvbWVuZGFjaW9uIjogIkxhcyDDoXJlYXMgbGlicmVzIGRlIGNvbmZsaWN0byBzb24gcGFydGUgZGVsIGluZm9ybWUsIG5vIHVuIGFkb3Juby4gQXF1w60gbXVlc3RyYW4gcXVlIGVsIG1hbGVzdGFyIGNlZGUgZW4gY29udGV4dG9zIGRlIGxvZ3JvIHkgZGUgdsOtbmN1bG8sIHkgcXVlIEphaXJvIHNvc3RpZW5lIGNvbXByb21pc29zOiBlc28gYXBveWEgdW4gcHJvbsOzc3RpY28gZmF2b3JhYmxlIHkgb3JpZW50YSBsYSBpbnRlcnZlbmNpw7NuLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGVsbGE/IiwgIm9wY2lvbmVzIjogW1sibm8iLCAiTm8gbGEgbWVuY2lvbmFtb3MiXSwgWyJtZW5jaW9uIiwgIkxhIG1lbmNpb25hbW9zLCBzaW4gdXNhcmxhIl0sIFsidXNhZGEiLCAiTGEgdXNhbW9zIGVuIGVsIHByb27Ds3N0aWNvIG8gZW4gbGFzIHJlY29tZW5kYWNpb25lcyJdXSwgIm1hcmNhcyI6IFsibWljcm9mIiwgImZ1dGJvbCIsICJlbnRyZW5hIiwgImZvcnRhbGV6IiwgInJlY3Vyc28iLCAic2FiZSBkb25kZSBlc3RhIl19LCB7ImlkIjogImludGltbyIsICJ0aXBvIjogImludGltbyIsICJ0aXR1bG8iOiAiVW4gZGF0byDDrW50aW1vIHF1ZSBubyByZXNwb25kZSBsYSByZW1pc2nDs24iLCAiZG9uZGUiOiAiSmFpcm8gY29udMOzIHVuYSByZWxhY2nDs24gZGUgaGFjZSBkb2NlIGHDsW9zIHkgcGlkacOzIGV4cGzDrWNpdGFtZW50ZSBxdWUgbm8gcXVlZGFyYSDCq2VuIG5pbmfDum4gcGFwZWzCuy4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBpbmZvcm1lIGluY2x1eWUgbG8gcXVlIHJlc3BvbmRlIGxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiwgbm8gdG9kbyBsbyBxdWUgc2Ugc3Vwby4gRXN0ZSBkYXRvIG5vIGV4cGxpY2EgbG9zIHPDrW50b21hcywgw6lsIG1pc21vIGxvIGRlc3ZpbmN1bMOzLCBwaWRpw7MgcmVzZXJ2YSwgeSBlbCBpbmZvcm1lIHZhIGEgc3UgbcOpZGljYS4gSW5jbHVpcmxvLCBhdW5xdWUgc2VhIHN1YXZpemFkbywgdnVsbmVyYSBsYSBjb25maWRlbmNpYWxpZGFkIHNpbiBhcG9ydGFyIG5hZGEuIiwgInByZWd1bnRhIjogIsK/UXXDqSBoaWNpZXJvbiBjb24gZXN0ZSBkYXRvPyIsICJvcGNpb25lcyI6IFtbImluY2x1aWRvIiwgIkxvIGluY2x1aW1vcyJdLCBbInN1YXZpemFkbyIsICJMbyBpbmNsdWltb3MgZGUgZm9ybWEgaW5kaXJlY3RhIG8gc3Vhdml6YWRhIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJyZWxhY2lvbiBleHRyYSIsICJleHRyYW1hdHJpbW9uaWFsIiwgImluZmlkZWwiLCAib3RyYSBtdWplciIsICJjb21wYW5lcmEiLCAiZG9jZSBhbm9zIiwgIjEyIGFub3MiLCAiYW1hbnRlIl19LCB7ImlkIjogInNpZ2xhcyIsICJ0aXBvIjogInNpZ2xhcyIsICJ0aXR1bG8iOiAiTGFzIHNpZ2xhcyBkZSBsYSByZW1pc2nDs24iLCAiZG9uZGUiOiAiTGEgcmVtaXNpw7NuIHVzYWJhIElEeCwgVEFHLCBURE0sIElBTSB5IEVLRy4iLCAicmVjb21lbmRhY2lvbiI6ICJFbCBpbmZvcm1lIGxvIHB1ZWRlbiBsZWVyIGVsIGNvbnN1bHRhbnRlIHUgb3Ryb3MgcHJvZmVzaW9uYWxlcy4gTGFzIHNpZ2xhcyBzZSBlc2NyaWJlbiBjb21wbGV0YXMsIG8gY29tcGxldGFzIGxhIHByaW1lcmEgdmV6IGNvbiBsYSBzaWdsYSBlbnRyZSBwYXLDqW50ZXNpczogwqt0cmFzdG9ybm8gZGUgYW5zaWVkYWQgZ2VuZXJhbGl6YWRhIChUQUcpwrsuIFZhbGUgdGFtYmnDqW4gcGFyYSBsYXMgZXNjYWxhcyBkZSBsYXMgcHJ1ZWJhcy4iLCAicHJlZ3VudGEiOiAiwr9RdcOpIGhpY2llcm9uIGNvbiBsYXMgc2lnbGFzPyIsICJvcGNpb25lcyI6IFtbInNpbi1leHBsaWNhciIsICJVc2Ftb3Mgc2lnbGFzIHNpbiBleHBsaWNhcmxhcyJdLCBbImFsZ3VuYXMiLCAiRXhwbGljYW1vcyBhbGd1bmFzIl0sIFsidG9kYXMiLCAiTGFzIGV4cGxpY2Ftb3MgdG9kYXMsIG8gbm8gbGFzIHVzYW1vcyJdXSwgInNpZ2xhcyI6IHsiSUR4IjogWyJpbXByZXNpb24gZGlhZ25vc3RpY2EiXSwgIlRBRyI6IFsiYW5zaWVkYWQgZ2VuZXJhbGl6YWRhIl0sICJURE0iOiBbImRlcHJlc2l2byBtYXlvciJdLCAiSUFNIjogWyJpbmZhcnRvIl0sICJFS0ciOiBbImVsZWN0cm9jYXJkaW9ncmFtYSJdfX0sIHsiaWQiOiAicHJlZ3VudGEiLCAidGlwbyI6ICJwcmVndW50YSIsICJ0aXR1bG8iOiAiTGEgcHJlZ3VudGEgZGUgcmVtaXNpw7NuIiwgImRvbmRlIjogIkxhIG3DqWRpY2EgcHJlZ3VudMOzIGRvcyBjb3Nhczogc2kgaGF5IHVuIGNvbXBvbmVudGUgYW5zaW9zbyBvIGRlcHJlc2l2byBxdWUgZXhwbGlxdWUgbG9zIHPDrW50b21hcywgeSBzaSBKYWlybyByZXF1aWVyZSBtYW5lam8gcG9yIHBzaWNvbG9nw61hIG8gcmVtaXNpw7NuIGEgcHNpcXVpYXRyw61hLiIsICJyZWNvbWVuZGFjaW9uIjogIkxhIGNvbmNsdXNpw7NuIHJlc3BvbmRlIGxhcyBkb3MgcGFydGVzLCBjb24gcGFsYWJyYXMgcXVlIGxhIG3DqWRpY2EgcHVlZGEgdXNhcjogc8OtIGhheSB1biBjb21wb25lbnRlICh1bmEgYW5zaWVkYWQgY2VudHJhZGEgZW4gbGEgc2FsdWQgcXVlIGVtcGV6w7MgY29uIGVsIGR1ZWxvIHBvciBsYSBtdWVydGUgZGUgc3UgcGFkcmUpLCB5IGVsIG1hbmVqbyBpbmRpY2FkbyBlcyBsYSBwc2ljb3RlcmFwaWEsIHNpbiBjcml0ZXJpbyBhY3R1YWwgZGUgcmVtaXNpw7NuIHVyZ2VudGUgYSBwc2lxdWlhdHLDrWEg4oCUbmllZ2EgaWRlYXMgZGUgbXVlcnRl4oCULCBhIHJldmlzYXIgc2Vnw7puIGxhIGV2b2x1Y2nDs24uIiwgInByZWd1bnRhIjogIkxlw61kYSBlc2EgZnJhc2UsIMK/cXXDqSB0YW50byByZXNwb25kZSBsbyBxdWUgc2UgcHJlZ3VudMOzPyIsICJvcGNpb25lcyI6IFtbImNvbXBsZXRhIiwgIlJlc3BvbmRlIHRvZGFzIGxhcyBwYXJ0ZXMgZGUgbGEgcHJlZ3VudGEiXSwgWyJwYXJjaWFsIiwgIlJlc3BvbmRlIHNvbG8gdW5hIHBhcnRlIl0sIFsibm8iLCAiTm8gbGEgcmVzcG9uZGUgZGUgZm9ybWEgZGlyZWN0YSJdXX1dLCAiRCI6IFt7ImlkIjogInJ1bW9yIiwgInRpcG8iOiAicnVtb3IiLCAidGl0dWxvIjogIlVuIGRhdG8gZGUgb8OtZGFzOiBzb2xhLCBkZSBub2NoZSwgZW4gZWwgcGFycXVlIiwgImRvbmRlIjogIkNsYXVkaWEgY29udMOzIHF1ZSBsYSB2ZWNpbmEgbGUgZGlqbyBoYWJlciB2aXN0byBhIHN1IG1hZHJlIHNvbGEgeSBwZXJkaWRhIGVuIGVsIHBhcnF1ZSwgZGUgbm9jaGUuIENsYXVkaWEgbnVuY2EgbGEgdmlvIHNhbGlyLCB5IGVsIHBvcnRlcm8gZGljZSBxdWUgc29sbyBiYWphIGEgbGEgbWlzYSBkZSBsYXMgc2Vpcy4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBydW1vciBubyBzZSBwcmVzZW50YSBjb21vIHVuIGhlY2hvLiBFc3RlLCBhZGVtw6FzLCBpbmNsaW5hcsOtYSBsYSBldmFsdWFjacOzbiBoYWNpYSB1bmEgZGVtZW5jaWEgKGRlYW1idWxhY2nDs24gbm9jdHVybmEpLCB5IGVsIHBvcnRlcm8gbG8gY29udHJhZGljZS4gU2kgc2UgbWVuY2lvbmEsIHNlIGF0cmlidXllIHkgc2UgZGljZSBxdWUgbm8gc2UgY29uZmlybcOzLiIsICJwcmVndW50YSI6ICLCv0PDs21vIHRyYXRhcm9uIGVzdGUgZGF0byBlbiBzdSBpbmZvcm1lPyIsICJvcGNpb25lcyI6IFtbImhlY2hvIiwgIkxvIHByZXNlbnRhbW9zIGNvbW8gdW4gaGVjaG8iXSwgWyJhdHJpYnVpZG8iLCAiTG8gbWVuY2lvbmFtb3MgY29tbyB1biBkYXRvIGRlIHVuIHRlcmNlcm8sIHNpbiB2ZXJpZmljYXIiXSwgWyJleGNsdWlkbyIsICJObyBsbyBpbmNsdWltb3MsIGEgcHJvcMOzc2l0byJdLCBbIm5vLXZpc3RvIiwgIk5vIGxvIGluY2x1aW1vcyBwb3JxdWUgbm8gbG8gdmltb3MiXV0sICJtYXJjYXMiOiBbInZlY2luYSIsICJwYXJxdWUiLCAiZGUgbm9jaGUiLCAic2FsZSBzb2xhIiwgImRlYW1idWwiLCAic2UgcGllcmRlIl19LCB7ImlkIjogImNvbnRyYWRpY2Npb24iLCAidGlwbyI6ICJjb250cmFkaWNjaW9uIiwgInRpdHVsbyI6ICJEb3MgZnVlbnRlcyBxdWUgbm8gZGljZW4gbG8gbWlzbW86IGxhIGhpamEgeSBsYXMgcHJ1ZWJhcyIsICJkb25kZSI6ICJDbGF1ZGlhIGRpY2UgwqtZYSBubyBzZSBhY3VlcmRhIGRlIG5hZGEsIGVzdMOhIHBlcmRpZGHCuywgcGVybyBNZXJjZWRlcyBlc3TDoSBvcmllbnRhZGEgKDYvNikgeSByZWN1cGVyYSBsYXMgY2luY28gcGFsYWJyYXMgY29uIHBpc3Rhcy4iLCAicmVjb21lbmRhY2lvbiI6ICJMYSBkaWZlcmVuY2lhIHNlIGV4cGxpY2EuIEVsIHJlY3VlcmRvIG1lam9yYSBjb24gcGlzdGFzOiBsYSBkaWZpY3VsdGFkIGVzdMOhIGVuIGV2b2Nhciwgbm8gZW4gYWxtYWNlbmFyLiBZIGxhIHF1ZWphIGRlIE1lcmNlZGVzICjCq2xhIGNhYmV6YSBjb21vIHVuIGNvbGFkb3LCuykgZXMgbWF5b3IgcXVlIGVsIGTDqWZpY2l0IG1lZGlkby4gTGFzIGRvcyBjb3NhcyBzb24gbcOhcyB0w61waWNhcyBkZSB1biBjdWFkcm8gZGVwcmVzaXZvIHF1ZSBkZSB1biBpbmljaW8gZGUgQWx6aGVpbWVyLiIsICJwcmVndW50YSI6ICLCv0PDs21vIHRyYXRhcm9uIGVzdGEgZGlmZXJlbmNpYT8iLCAib3BjaW9uZXMiOiBbWyJ1bmEiLCAiSW5mb3JtYW1vcyBzb2xvIHVuYSBkZSBsYXMgZG9zIGZ1ZW50ZXMiXSwgWyJzZXBhcmFkYXMiLCAiSW5mb3JtYW1vcyBsYXMgZG9zLCBwZXJvIHBvciBzZXBhcmFkbyJdLCBbImludGVncmFkYXMiLCAiTGFzIGludGVncmFtb3MgeSBleHBsaWNhbW9zIGxhIGRpZmVyZW5jaWEiXSwgWyJuby10cmF0YWRvIiwgIk5vIGxvIHRyYXRhbW9zIl1dLCAibWFyY2FzIjogWyJlc3RhIHBlcmRpZGEiLCAibm8gc2UgYWN1ZXJkYSIsICJvcmllbnRhZCIsICJvcmllbnRhY2lvbiIsICJwaXN0YXMiLCAiY2xhdmVzIiwgInJlY3VlcmRvIl19LCB7ImlkIjogInZhbGlkZXoiLCAidGlwbyI6ICJ2YWxpZGV6IiwgInRpdHVsbyI6ICJVbmEgcHJ1ZWJhIGNvbiB1biBwcm9ibGVtYSBkZSBhcGxpY2FjacOzbjogbGEgTW9DQSBzaW4gbGVudGVzIiwgImRvbmRlIjogIkxhIE1vQ0Egc2UgYXBsaWPDsyBzaW4gbG9zIGxlbnRlcyBkZSBsZWN0dXJhOiBNZXJjZWRlcyBsb3MgZGVqw7MgZW4gbGEgbWVzYSBkZSBub2NoZS4iLCAicmVjb21lbmRhY2lvbiI6ICJVbmEgY29uZGljacOzbiBkZSBhcGxpY2FjacOzbiBxdWUgYWZlY3RhIGVsIHJlc3VsdGFkbyBzZSBpbmZvcm1hLiBMYXMgw6FyZWFzIHZpc29lc3BhY2lhbCAoMi81KSBlIGlkZW50aWZpY2FjacOzbiAoMi8zKSBkZXBlbmRlbiBkZSBsYSB2aXN0YSwgYXPDrSBxdWUgc2UgaW50ZXJwcmV0YW4gY29uIGNhdXRlbGEsIHkgc2UgcmVjb21pZW5kYSByZXBldGlyIGxhIE1vQ0EgY29uIGxlbnRlcy4gTm8gc2UgY29uY2x1eWUgZGV0ZXJpb3JvIGEgcGFydGlyIGRlIGVzYXMgZG9zIMOhcmVhcy4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIHBydWViYT8iLCAib3BjaW9uZXMiOiBbWyJzaW4tYWR2ZXJ0aXIiLCAiSW50ZXJwcmV0YW1vcyBsYSBwcnVlYmEgc2luIGFkdmVydGlyIGVsIHByb2JsZW1hIl0sIFsiYWR2ZXJ0aWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEsIHBlcm8gaWd1YWwgaW50ZXJwcmV0YW1vcyB0b2RvcyBsb3MgcmVzdWx0YWRvcyJdLCBbImxpbWl0YWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEgeSBsaW1pdGFtb3MgbGEgaW50ZXJwcmV0YWNpw7NuIl0sIFsibm8tdXNhZGEiLCAiTm8gdXNhbW9zIGVzYSBwcnVlYmEiXV0sICJtYXJjYXMiOiBbImxlbnRlcyIsICJnYWZhcyIsICJhbnRlb2pvcyIsICJ2aXNvZXNwYWNpYWwiLCAibW9jYSIsICJyZXBldGlyIiwgInJlYXBsaWNhciJdfSwgeyJpZCI6ICJmb3J0YWxlemEiLCAidGlwbyI6ICJmb3J0YWxlemEiLCAidGl0dWxvIjogIlVuYSBmb3J0YWxlemEgcXVlIGFwYXJlY2UgZGUgcGFzYWRhIiwgImRvbmRlIjogIk1lcmNlZGVzIG1hbmVqYSBzb2xhIHN1cyBtZWRpY2FtZW50b3MgY29uIHVuIHBhc3RpbGxlcm8sIHNpbiBlcnJvcmVzOyBjYW50YSBlbiBlbCBjb3JvIGRlIGxhIHBhcnJvcXVpYSwgeSBlbCDDrW5kaWNlIGRlIEJhcnRoZWwgZXMgMTAwLiIsICJyZWNvbWVuZGFjaW9uIjogIkxhIGF1dG9ub23DrWEgY29uc2VydmFkYSB5IGVsIGVzcGFjaW8gZGVsIGNvcm8gc29uIHJlY3Vyc29zOiBhcG95YW4gZWwgcHJvbsOzc3RpY28geSBvcmllbnRhbiBsYSBpbnRlcnZlbmNpw7NuLCBxdWUgcHVlZGUgYXBveWFyc2UgZW4gc3UgcmVkIHkgZW4gc3VzIGFjdGl2aWRhZGVzLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGVsbGE/IiwgIm9wY2lvbmVzIjogW1sibm8iLCAiTm8gbGEgbWVuY2lvbmFtb3MiXSwgWyJtZW5jaW9uIiwgIkxhIG1lbmNpb25hbW9zLCBzaW4gdXNhcmxhIl0sIFsidXNhZGEiLCAiTGEgdXNhbW9zIGVuIGVsIHByb27Ds3N0aWNvIG8gZW4gbGFzIHJlY29tZW5kYWNpb25lcyJdXSwgIm1hcmNhcyI6IFsicGFzdGlsbGVybyIsICJjb3JvIiwgImNhbnRhIiwgIm1lZGljYW1lbnRvcyIsICJpbmRlcGVuZGllbiIsICJiYXJ0aGVsIiwgImZvcnRhbGV6IiwgInJlY3Vyc28iXX0sIHsiaWQiOiAiaW50aW1vIiwgInRpcG8iOiAiaW50aW1vIiwgInRpdHVsbyI6ICJVbiBkYXRvIMOtbnRpbW8gcXVlIG5vIHJlc3BvbmRlIGxhIHJlbWlzacOzbiIsICJkb25kZSI6ICJNZXJjZWRlcyBjb250w7MgcXVlIHN1IGVzcG9zbyB0dXZvIG90cmEgZmFtaWxpYSBlbiBNYXJpcXVpdGEsIHF1ZSBzdXMgaGlqb3Mgbm8gbG8gc2FiZW4sIHkgcGlkacOzIHF1ZSBubyBxdWVkYXJhIGVuIG5pbmfDum4gcGFwZWwuIiwgInJlY29tZW5kYWNpb24iOiAiRWxsYSBtaXNtYSBsbyBkZXN2aW5jdWxhIGRlIHN1IGVzdGFkbywgcGlkacOzIHJlc2VydmEsIHkgZWwgaW5mb3JtZSB2YSBhbCBuZXVyw7Nsb2dvLiBObyByZXNwb25kZSBsYSBwcmVndW50YSwgYXPDrSBxdWUgcXVlZGEgZnVlcmEuIiwgInByZWd1bnRhIjogIsK/UXXDqSBoaWNpZXJvbiBjb24gZXN0ZSBkYXRvPyIsICJvcGNpb25lcyI6IFtbImluY2x1aWRvIiwgIkxvIGluY2x1aW1vcyJdLCBbInN1YXZpemFkbyIsICJMbyBpbmNsdWltb3MgZGUgZm9ybWEgaW5kaXJlY3RhIG8gc3Vhdml6YWRhIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJtYXJpcXVpdGEiLCAib3RyYSBmYW1pbGlhIiwgIm90cmEgbXVqZXIiLCAiaGlqb3MgZGVsIGVzcG9zbyIsICJpbmZpZGVsIiwgImFtYW50ZSJdfSwgeyJpZCI6ICJzaWdsYXMiLCAidGlwbyI6ICJzaWdsYXMiLCAidGl0dWxvIjogIkxhcyBzaWdsYXMgZGUgbGEgcmVtaXNpw7NuIiwgImRvbmRlIjogIkxhIHJlbWlzacOzbiB1c2FiYSBIVEEsIFJNTiwgSUR4LCBEQ0wgeSBFQS4iLCAicmVjb21lbmRhY2lvbiI6ICJFbCBpbmZvcm1lIGxvIHB1ZWRlbiBsZWVyIGVsIGNvbnN1bHRhbnRlIHUgb3Ryb3MgcHJvZmVzaW9uYWxlcy4gTGFzIHNpZ2xhcyBzZSBlc2NyaWJlbiBjb21wbGV0YXMsIG8gY29tcGxldGFzIGxhIHByaW1lcmEgdmV6IGNvbiBsYSBzaWdsYSBlbnRyZSBwYXLDqW50ZXNpczogwqtkZXRlcmlvcm8gY29nbml0aXZvIGxldmUgKERDTCnCuy4gVmFsZSB0YW1iacOpbiBwYXJhIGxhcyBlc2NhbGFzIGRlIGxhcyBwcnVlYmFzLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGxhcyBzaWdsYXM/IiwgIm9wY2lvbmVzIjogW1sic2luLWV4cGxpY2FyIiwgIlVzYW1vcyBzaWdsYXMgc2luIGV4cGxpY2FybGFzIl0sIFsiYWxndW5hcyIsICJFeHBsaWNhbW9zIGFsZ3VuYXMiXSwgWyJ0b2RhcyIsICJMYXMgZXhwbGljYW1vcyB0b2RhcywgbyBubyBsYXMgdXNhbW9zIl1dLCAic2lnbGFzIjogeyJIVEEiOiBbImhpcGVydGVuc2lvbiJdLCAiUk1OIjogWyJyZXNvbmFuY2lhIl0sICJJRHgiOiBbImltcHJlc2lvbiBkaWFnbm9zdGljYSJdLCAiRENMIjogWyJkZXRlcmlvcm8gY29nbml0aXZvIGxldmUiXSwgIkVBIjogWyJhbHpoZWltZXIiXX19LCB7ImlkIjogInByZWd1bnRhIiwgInRpcG8iOiAicHJlZ3VudGEiLCAidGl0dWxvIjogIkxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiIsICJkb25kZSI6ICJFbCBuZXVyw7Nsb2dvIHByZWd1bnTDsyBzaSBlbCBwZXJmaWwgY29nbml0aXZvIGVzIGNvbXBhdGlibGUgY29uIHVuIGRldGVyaW9ybyBjb2duaXRpdm8gbyBjb24gdW4gY3VhZHJvIGRlcHJlc2l2bywgeSBwaWRpw7MgcmVjb21lbmRhY2lvbmVzLiIsICJyZWNvbWVuZGFjaW9uIjogIkxhIGNvbmNsdXNpw7NuIHNlIGluY2xpbmEgY29uIGZ1bmRhbWVudG8geSBzaW4gY2VycmFyIGxhIHB1ZXJ0YTogZWwgcGVyZmlsIGVzIG3DoXMgY29tcGF0aWJsZSBjb24gdW4gY3VhZHJvIGRlcHJlc2l2byAoZW1wZXrDsyBkZXNwdcOpcyBkZWwgZHVlbG8sIEdEUy0xNSBkZSA5LCBww6lyZGlkYSBkZSBwZXNvLCBpbnNvbW5pbywgcmVjdWVyZG8gcXVlIG1lam9yYSBjb24gcGlzdGFzLCBxdWVqYSBtYXlvciBxdWUgZWwgZMOpZmljaXQpLCBzaW4gZGVzY2FydGFyIHVuIGRldGVyaW9ybyBjb2duaXRpdm8uIFJlY29tZW5kYWNpb25lczogcmVwZXRpciBsYSBNb0NBIGNvbiBsZW50ZXMsIHRyYXRhciBlbCBjdWFkcm8gZGVwcmVzaXZvLCBmb3J0YWxlY2VyIHN1IHJlZCBzb2NpYWwgeSByZWV2YWx1YXIgZW4gc2VpcyBtZXNlcy4iLCAicHJlZ3VudGEiOiAiTGXDrWRhIGVzYSBmcmFzZSwgwr9xdcOpIHRhbnRvIHJlc3BvbmRlIGxvIHF1ZSBzZSBwcmVndW50w7M/IiwgIm9wY2lvbmVzIjogW1siY29tcGxldGEiLCAiUmVzcG9uZGUgdG9kYXMgbGFzIHBhcnRlcyBkZSBsYSBwcmVndW50YSJdLCBbInBhcmNpYWwiLCAiUmVzcG9uZGUgc29sbyB1bmEgcGFydGUiXSwgWyJubyIsICJObyBsYSByZXNwb25kZSBkZSBmb3JtYSBkaXJlY3RhIl1dfV19";
+
+// Las cuatro secciones que escribe el grupo. El tope de palabras es orientativo:
+// el contador avisa cuando se pasa, pero no bloquea.
+const SECCIONES = [
+  { id: "f-motivo",     orden: 2, titulo: "Motivo de consulta",
+    ayuda: "Quién remite, por qué y qué pregunta hace.", tope: 60 },
+  { id: "f-historia",   orden: 4, titulo: "Historia y observación",
+    ayuda: "Lo relevante de la historia y cómo se presentó el consultante durante la evaluación.", tope: 100 },
+  { id: "f-resultados", orden: 5, titulo: "Resultados integrados",
+    ayuda: "Qué muestran las pruebas, leídas junto con la entrevista y la observación.", tope: 120 },
+  { id: "f-conclusion", orden: 6, titulo: "Impresión diagnóstica, respuesta a la remisión y pronóstico",
+    ayuda: "Impresión diagnóstica, respuesta a la pregunta de remisión, pronóstico y recomendaciones.", tope: 150 }
+];
+
+function decodificarAuditoria(){
+  try {
+    const bin = atob(AUDITORIA_B64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder("utf-8").decode(bytes));
+  } catch (e) { return {}; }
+}
+let AUDITORIA = null;   // se decodifica recién al cerrar el informe
+
+// Rótulos de columna en la hoja. Son los mismos para los cuatro expedientes:
+// todos escriben en la pestaña «<grupo> Informe», y un título propio de cada
+// caso crearía siete columnas por expediente en vez de siete en total.
+const ETIQUETA_AUD = {
+  rumor: "Autoauditoría — Dato de oídas",
+  contradiccion: "Autoauditoría — Fuentes que no coinciden",
+  validez: "Autoauditoría — Problema de la prueba",
+  fortaleza: "Autoauditoría — Fortaleza",
+  intimo: "Autoauditoría — Dato íntimo",
+  siglas: "Autoauditoría — Siglas",
+  pregunta: "Autoauditoría — Pregunta de remisión"
+};
+
+/* ============================================================
+   2. ESTADO DE LA APLICACIÓN
+   ============================================================ */
+const state = {
+  text: {},       // inputs / textareas,   { id: valor }
+  radio: {},      // selección única,      { grupo: valor }
+  checkbox: {},
+  lists: { integrantes: [] },
+  cerrado: false, // el informe ya no se edita; la autoauditoría está abierta
+  hallazgos: {}   // lo que encontró la autoauditoría en el informe, para el tablero
+};
+
+/* ============================================================
+   3. RESTRICCIÓN DE PEGAR / CORTAR
+   ============================================================ */
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg || "Pegar y cortar están deshabilitados: escriban la respuesta manualmente.";
+  t.classList.add("is-visible");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove("is-visible"), 2400);
+}
+
+function initInputRestrictions(){
+  const block = (e) => { e.preventDefault(); showToast(); };
+  // «copy» queda habilitado a propósito: el docente copia respuestas para evaluar.
+  ["cut","paste","drop"].forEach(evt => document.addEventListener(evt, block));
+  document.addEventListener("keydown", (e) => {
+    const key = e.key.toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && ["v","x"].includes(key)) { e.preventDefault(); showToast(); }
+  });
+}
+
+/* ============================================================
+   4. EXPEDIENTE
+   ============================================================ */
+function casoActual(){ return CASOS.find(c => c.id === state.text["ct-caso"]) || null; }
+
+function htmlExpediente(caso){
+  let html = `<div class="exp-ficha">${caso.ficha}</div>`;
+  caso.partes.forEach((p, i) => {
+    html += `<div class="exp-parte">
+      <div class="exp-parte-head"><span class="exp-parte-num">Parte ${i + 1}</span><h3>${p.titulo}</h3></div>
+      <div class="exp-parte-body">${p.html}</div>
+    </div>`;
+  });
+  return html;
+}
+
+function renderExpediente(){
+  const caso = casoActual();
+  const cont = document.getElementById("expediente");
+  const panel = document.getElementById("panel-body");
+  const boton = document.getElementById("btn-expediente");
+  if (!caso) {
+    cont.innerHTML = `<div class="vacio">Elijan el expediente asignado en los datos del grupo.</div>`;
+    panel.innerHTML = "";
+    boton.classList.remove("is-visible");
+    return;
+  }
+  const html = htmlExpediente(caso);
+  cont.innerHTML = html;
+  panel.innerHTML = html;
+  document.getElementById("panel-titulo").textContent = "Expediente · " + caso.nombre;
+  boton.classList.add("is-visible");
+}
+
+function initPanel(){
+  const panel = document.getElementById("panel");
+  const abrir = () => { panel.classList.add("is-open"); panel.setAttribute("aria-hidden", "false"); };
+  const cerrar = () => { panel.classList.remove("is-open"); panel.setAttribute("aria-hidden", "true"); };
+  document.getElementById("btn-expediente").addEventListener("click", () =>
+    panel.classList.contains("is-open") ? cerrar() : abrir());
+  document.getElementById("panel-cerrar").addEventListener("click", cerrar);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") cerrar(); });
+}
+
+/* ============================================================
+   5. INFORME — plantilla con cuatro secciones en blanco
+   ============================================================ */
+function contarPalabras(txt){ return (txt || "").trim().split(/\s+/).filter(Boolean).length; }
+
+function actualizarContador(sec){
+  const el = document.getElementById("cont-" + sec.id);
+  if (!el) return;
+  const n = contarPalabras(state.text[sec.id]);
+  el.textContent = `${n} / ≈${sec.tope} palabras`;
+  el.classList.toggle("pasado", n > Math.round(sec.tope * 1.25));
+}
+
+function seccionEscrita(sec){
+  return `<div class="hoja-sec hoja-escribe card-sin-marco">
+    <div class="hoja-sec-titulo"><span class="n">${sec.orden}.</span><span class="card-label-texto">${sec.titulo}</span></div>
+    <div class="card-help">${sec.ayuda}</div>
+    <textarea id="${sec.id}" data-required="true" data-etiqueta="${sec.titulo}" rows="5" maxlength="${sec.tope * 12}"></textarea>
+    <div class="contador" id="cont-${sec.id}"></div>
+  </div>`;
+}
+
+function seccionFija(orden, titulo, html){
+  return `<div class="hoja-sec">
+    <div class="hoja-sec-titulo"><span class="n">${orden}.</span><span>${titulo}</span></div>
+    <div class="hoja-fija">${html}</div>
+  </div>`;
+}
+
+function renderInforme(){
+  const caso = casoActual();
+  const cont = document.getElementById("informe");
+  const cierre = document.getElementById("cierre-informe");
+  if (!caso) {
+    cont.innerHTML = `<div class="vacio">Elijan el expediente asignado en los datos del grupo.</div>`;
+    cierre.hidden = true;
+    return;
+  }
+  const integrantes = state.lists.integrantes.map(i => (i.value || "").trim()).filter(Boolean);
+  const porOrden = {};
+  SECCIONES.forEach(s => porOrden[s.orden] = seccionEscrita(s));
+
+  cont.innerHTML = `<div class="hoja">
+    <div class="hoja-titulo"><div class="tipo">Informe de evaluación psicológica</div><h3>${caso.nombre}</h3></div>
+    ${seccionFija(1, "Datos de identificación", caso.plantilla.identificacion)}
+    ${porOrden[2]}
+    ${seccionFija(3, "Procedimiento e instrumentos", caso.plantilla.instrumentos)}
+    ${porOrden[4]}
+    ${porOrden[5]}
+    ${porOrden[6]}
+    ${seccionFija(7, "Consentimiento y destinatario", caso.plantilla.consentimiento)}
+    <div class="hoja-firma">
+      <div class="linea"></div>
+      <div id="firma-equipo">Equipo evaluador: ${integrantes.length ? integrantes.join(", ") : "—"}</div>
+      <div>Psicólogos en formación · Práctica supervisada</div>
+    </div>
+  </div>`;
+
+  SECCIONES.forEach(sec => {
+    const ta = document.getElementById(sec.id);
+    ta.value = state.text[sec.id] || "";
+    ta.readOnly = !!state.cerrado;
+    ta.addEventListener("input", () => {
+      state.text[sec.id] = ta.value;
+      actualizarContador(sec);
+      updateProgress();
+      persistToLocalStorage();
+    });
+    actualizarContador(sec);
+  });
+  cierre.hidden = false;
+  pintarEstadoCierre();
+}
+
+function actualizarFirma(){
+  const el = document.getElementById("firma-equipo");
+  if (!el) return;
+  const integrantes = state.lists.integrantes.map(i => (i.value || "").trim()).filter(Boolean);
+  el.textContent = "Equipo evaluador: " + (integrantes.length ? integrantes.join(", ") : "—");
+}
+
+function pintarEstadoCierre(){
+  const cierre = document.getElementById("cierre-informe");
+  const texto = document.getElementById("cierre-texto");
+  const boton = document.getElementById("btn-cerrar");
+  cierre.classList.toggle("is-cerrado", !!state.cerrado);
+  if (state.cerrado) {
+    texto.textContent = "Informe cerrado. Sigan con la autoauditoría.";
+    boton.hidden = true;
+  } else {
+    texto.textContent = "Cuando el informe esté terminado, ciérrenlo para pasar a la autoauditoría. Después de cerrarlo ya no se puede editar.";
+    boton.hidden = false;
+  }
+  document.getElementById("ct-caso").disabled = !!state.cerrado;
+  const nav = document.querySelector('.nav-item[data-target="bloque-3"]');
+  if (nav) nav.classList.toggle("is-locked", !state.cerrado);
+}
+
+function initCierre(){
+  document.getElementById("btn-cerrar").addEventListener("click", () => {
+    const faltante = highlightInvalidFields(["bloque-0", "bloque-2"]);
+    if (faltante) {
+      faltante.scrollIntoView({ behavior: "smooth", block: "center" });
+      showToast("Completen los datos del grupo y las cuatro secciones antes de cerrar.");
+      return;
+    }
+    const ok = window.confirm("Al cerrar el informe ya no podrán modificarlo.\n\n¿Lo cierran y pasan a la autoauditoría?");
+    if (!ok) return;
+    state.cerrado = true;
+    SECCIONES.forEach(sec => { const ta = document.getElementById(sec.id); if (ta) ta.readOnly = true; });
+    pintarEstadoCierre();
+    renderAuditoria();
+    updateProgress();
+    persistToLocalStorage();
+    document.getElementById("bloque-3").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+// Cambiar de expediente con el informe empezado deja texto escrito para otro
+// caso: se pregunta antes.
+function initCambioDeCaso(){
+  const sel = document.getElementById("ct-caso");
+  let previo = state.text["ct-caso"] || "";
+  sel.addEventListener("change", () => {
+    const escrito = SECCIONES.some(s => (state.text[s.id] || "").trim());
+    if (escrito && previo && sel.value !== previo) {
+      const seguir = window.confirm("Ya empezaron el informe de otro expediente. Si cambian, el texto escrito queda, pero ya no corresponde al caso.\n\n¿Cambiar de expediente?");
+      if (!seguir) { sel.value = previo; state.text["ct-caso"] = previo; return; }
+    }
+    previo = sel.value;
+    state.text["ct-caso"] = sel.value;
+    renderExpediente();
+    renderInforme();
+    updateProgress();
+    persistToLocalStorage();
+  });
+}
+
+/* ============================================================
+   6. AUTOAUDITORÍA
+   ============================================================
+   Busca en el informe cerrado las marcas de cada trampa y le muestra al grupo
+   las frases exactas donde aparecen. El recurso NO califica: una búsqueda de
+   palabras no distingue «la vecina dice que…» de «lo que dijo la vecina no se
+   incluyó por no estar verificado». Clasificar su propia frase es el ejercicio.
+   Al elegir una opción aparece la práctica recomendada.
+   ============================================================ */
+function normalizar(t){
+  return (t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
+function frasesDelInforme(){
+  const frases = [];
+  SECCIONES.forEach(sec => {
+    const txt = (state.text[sec.id] || "").replace(/\s+/g, " ").trim();
+    if (!txt) return;
+    // Corta en punto, signo de cierre o punto y coma seguidos de espacio.
+    txt.split(/(?<=[.!?;])\s+/).forEach(f => { if (f.trim()) frases.push({ sec: sec.titulo, frase: f.trim() }); });
+  });
+  return frases;
+}
+
+function buscarMarcas(marcas){
+  const res = [];
+  const exps = marcas.map(m => new RegExp(m, "i"));
+  frasesDelInforme().forEach(f => {
+    const n = normalizar(f.frase);
+    if (exps.some(re => re.test(n))) res.push(f);
+  });
+  return res;
+}
+
+function siglasSinDesarrollar(siglas){
+  const todo = SECCIONES.map(s => state.text[s.id] || "").join(" \n ");
+  const norm = normalizar(todo);
+  const faltan = [];
+  Object.keys(siglas).forEach(sigla => {
+    const aparece = new RegExp("(^|[^A-Za-zÁÉÍÓÚÑáéíóúñ])" + sigla + "([^A-Za-zÁÉÍÓÚÑáéíóúñ]|$)").test(todo);
+    if (!aparece) return;
+    const desarrollada = siglas[sigla].some(forma => norm.indexOf(normalizar(forma)) !== -1);
+    if (!desarrollada) faltan.push(sigla);
+  });
+  return faltan;
+}
+
+function resaltar(frase, marcas){
+  // Resalta sobre el texto original ubicando la coincidencia en la versión
+  // normalizada (misma longitud: solo se quitaron tildes).
+  const norm = normalizar(frase);
+  const tramos = [];
+  marcas.forEach(m => {
+    const re = new RegExp(m, "ig"); let r;
+    while ((r = re.exec(norm)) && r[0].length) tramos.push([r.index, r.index + r[0].length]);
+  });
+  if (!tramos.length || norm.length !== frase.length) return esc(frase);
+  tramos.sort((a, b) => a[0] - b[0]);
+  let out = "", pos = 0;
+  tramos.forEach(([a, b]) => {
+    if (a < pos) return;
+    out += esc(frase.slice(pos, a)) + "<mark>" + esc(frase.slice(a, b)) + "</mark>";
+    pos = b;
+  });
+  return out + esc(frase.slice(pos));
+}
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[c])); }
+
+function renderAuditoria(){
+  const cont = document.getElementById("auditoria");
+  const sub = document.getElementById("aud-sub");
+  const caso = casoActual();
+  if (!state.cerrado || !caso) {
+    cont.innerHTML = `<div class="bloqueado">Se abre al cerrar el informe.</div>`;
+    sub.textContent = "Se abre al cerrar el informe.";
+    return;
+  }
+  if (!AUDITORIA) AUDITORIA = decodificarAuditoria();
+  const datos = AUDITORIA[caso.id];
+  if (!datos) { cont.innerHTML = `<div class="bloqueado">No se encontró la autoauditoría de este expediente.</div>`; return; }
+
+  sub.textContent = "El expediente traía siete puntos delicados. Para cada uno, revisen lo que escribieron y elijan la opción que describe lo que hicieron. Al elegir, aparece la práctica recomendada.";
+
+  state.hallazgos = {};
+  let html = "";
+  datos.forEach((t, i) => {
+    let hallazgo = "";
+    if (t.tipo === "siglas") {
+      const faltan = siglasSinDesarrollar(t.siglas);
+      state.hallazgos[t.id] = faltan;
+      hallazgo = faltan.length
+        ? `<div class="aud-hallazgo"><b>En su informe</b>Aparecen sin su forma completa: ${faltan.map(esc).join(", ")}.</div>`
+        : `<div class="aud-hallazgo sin"><b>En su informe</b>No aparecen siglas de la remisión sin su forma completa.</div>`;
+    } else if (t.tipo !== "pregunta") {
+      const encontradas = buscarMarcas(t.marcas);
+      state.hallazgos[t.id] = encontradas.map(f => f.frase).slice(0, 4);
+      hallazgo = encontradas.length
+        ? `<div class="aud-hallazgo"><b>En su informe</b>${encontradas.slice(0, 4).map(f =>
+            `<p class="aud-frase"><small>${esc(f.sec)}</small>«${resaltar(f.frase, t.marcas)}»</p>`).join("")}</div>`
+        : `<div class="aud-hallazgo sin"><b>En su informe</b>${esc(t.sinHallazgo || "Su informe no lo menciona.")}</div>`;
+    }
+
+    const grupo = "aud-" + t.id;
+    const opciones = t.opciones.map(o =>
+      `<label class="option-row"><input type="radio" name="${grupo}" value="${o[0]}"><span>${esc(o[1])}</span></label>`).join("");
+    const frase = t.tipo === "pregunta"
+      ? `<label class="campo-sub" for="f-aud-frase">Copien aquí, tal como la escribieron, la frase de su informe que responde la pregunta de remisión.</label>
+         <textarea id="f-aud-frase" data-required="true" data-etiqueta="Autoauditoría — Frase que responde la remisión" rows="3" maxlength="900"></textarea>`
+      : "";
+
+    html += `<div class="aud card-sin-marco">
+      <div class="aud-head"><div class="aud-n">PUNTO ${i + 1} DE ${datos.length}</div><h3>${esc(t.titulo)}</h3></div>
+      <div class="aud-body">
+        <div class="aud-donde">${t.donde}</div>
+        ${hallazgo}
+        ${frase}
+        <div class="aud-pregunta">${esc(t.pregunta)}</div>
+        <div class="option-list" data-group="${grupo}" data-required="true" data-etiqueta="${ETIQUETA_AUD[t.id] || "Autoauditoría — " + esc(t.titulo)}">${opciones}</div>
+        <div class="aud-reco" id="reco-${t.id}"><b>Práctica recomendada</b>${t.recomendacion}</div>
+      </div>
+    </div>`;
+  });
+  cont.innerHTML = html;
+
+  // Enlazar radios y la frase, y reponer lo ya contestado.
+  datos.forEach(t => {
+    const grupo = "aud-" + t.id;
+    const lista = cont.querySelector(`.option-list[data-group="${grupo}"]`);
+    lista.querySelectorAll("input").forEach(inp => {
+      if (state.radio[grupo] === inp.value) { inp.checked = true; inp.closest(".option-row").classList.add("is-checked"); }
+      inp.addEventListener("change", () => {
+        lista.querySelectorAll(".option-row").forEach(r => r.classList.toggle("is-checked", r.querySelector("input").checked));
+        state.radio[grupo] = inp.value;
+        document.getElementById("reco-" + t.id).classList.add("is-visible");
+        updateProgress();
+        persistToLocalStorage();
+      });
+    });
+    if (state.radio[grupo]) document.getElementById("reco-" + t.id).classList.add("is-visible");
+  });
+  const fr = document.getElementById("f-aud-frase");
+  if (fr) {
+    fr.value = state.text["f-aud-frase"] || "";
+    fr.addEventListener("input", () => { state.text["f-aud-frase"] = fr.value; updateProgress(); persistToLocalStorage(); });
+  }
+}
+
+/* ============================================================
+   7. LISTA DINÁMICA (integrantes)
+   ============================================================ */
+let dynamicListCounter = 0;
+
+function createDynamicListRow(listKey, id, value, placeholder, removeTitle){
+  const row = document.createElement("div");
+  row.className = "dynamic-list-row";
+  const input = document.createElement("input");
+  input.type = "text"; input.placeholder = placeholder; input.value = value || "";
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button"; removeBtn.className = "btn-remove-item"; removeBtn.title = removeTitle; removeBtn.textContent = "×";
+  input.addEventListener("input", () => {
+    const item = state.lists[listKey].find(i => i.id === id);
+    if (item) item.value = input.value;
+    actualizarFirma(); updateProgress(); persistToLocalStorage();
+  });
+  removeBtn.addEventListener("click", () => {
+    state.lists[listKey] = state.lists[listKey].filter(i => i.id !== id);
+    row.remove(); actualizarFirma(); updateProgress(); persistToLocalStorage();
+  });
+  row.appendChild(input); row.appendChild(removeBtn);
+  return row;
+}
+
+function addDynamicListItem(listKey, containerId, placeholder, removeTitle, value){
+  dynamicListCounter++;
+  const id = "item" + dynamicListCounter;
+  state.lists[listKey].push({ id, value: value || "" });
+  document.getElementById(containerId).appendChild(createDynamicListRow(listKey, id, value || "", placeholder, removeTitle));
+  updateProgress(); persistToLocalStorage();
+}
+
+function initDynamicList(listKey, containerId, addButtonId, placeholder, removeTitle, minRows){
+  const loaded = (state.lists[listKey] && state.lists[listKey].length > 0) ? state.lists[listKey].slice() : null;
+  state.lists[listKey] = [];
+  document.getElementById(containerId).innerHTML = "";
+  if (loaded) loaded.forEach(item => addDynamicListItem(listKey, containerId, placeholder, removeTitle, item.value));
+  else for (let i = 0; i < minRows; i++) addDynamicListItem(listKey, containerId, placeholder, removeTitle, "");
+  document.getElementById(addButtonId).addEventListener("click", () => addDynamicListItem(listKey, containerId, placeholder, removeTitle, ""));
+}
+
+function listHasContent(listKey){
+  return state.lists[listKey] && state.lists[listKey].some(i => i.value && i.value.trim().length > 0);
+}
+
+/* ============================================================
+   8. CAMPOS SIMPLES Y NÚMERO DE GRUPO
+   ============================================================ */
+function initSimpleFields(){
+  document.querySelectorAll('#f-grupo, #ct-curso').forEach(el => {
+    // Un desplegable con una sola opción ya viene elegido y nunca dispara
+    // «change»: sin esto su valor no entra al estado. Solo siembra lo que falta.
+    if (!state.text[el.id] && el.value) state.text[el.id] = el.value;
+    ["input", "change"].forEach(evt => el.addEventListener(evt, () => {
+      state.text[el.id] = el.value; updateProgress(); persistToLocalStorage();
+    }));
+  });
+}
+
+function initGrupoNumerico(){
+  const el = document.getElementById("f-grupo");
+  el.addEventListener("input", () => {
+    const limpio = el.value.replace(/\D/g, "");
+    if (el.value !== limpio) el.value = limpio;
+    state.text["f-grupo"] = limpio; updateProgress(); persistToLocalStorage();
+  });
+}
+
+/* ============================================================
+   9. PROGRESO
+   ============================================================ */
+function campoCompleto(el){
+  if (el.classList.contains("option-list")) return !!state.radio[el.dataset.group];
+  return !!(el.value && el.value.trim());
+}
+
+function updateProgress(){
+  let total = 1, filled = listHasContent("integrantes") ? 1 : 0;
+  document.querySelectorAll('[data-required="true"]').forEach(el => { total++; if (campoCompleto(el)) filled++; });
+  // Mientras la autoauditoría está cerrada, sus siete puntos y la frase cuentan
+  // como pendientes: el 100% es con todo.
+  if (!state.cerrado) total += 8;
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-pct").textContent = pct + "%";
+
+  document.querySelectorAll(".block").forEach(section => {
+    const req = section.querySelectorAll('[data-required="true"]');
+    let done = req.length > 0;
+    req.forEach(el => { if (!campoCompleto(el)) done = false; });
+    if (section.id === "bloque-0" && !listHasContent("integrantes")) done = false;
+    if (section.id === "bloque-1") done = !!casoActual();
+    const nav = document.querySelector(`.nav-item[data-target="${section.id}"]`);
+    if (nav) nav.classList.toggle("is-complete", done);
+  });
+}
+
+/* ============================================================
+   10. PERSISTENCIA — localStorage + JSON incrustado
+   ============================================================
+   Igual que en los recursos de caso: archivo en blanco → sesión por pestaña;
+   en cuanto el grupo se identifica, clave estable por curso y grupo.
+   ============================================================ */
+const STORAGE_PREFIX = "informe_psicologico_v1:";
+let SESSION_KEY = null;
+let ARCHIVO_GUARDADO = false;
+
+function computeSessionKey(embeddedRaw){
+  if (embeddedRaw && embeddedRaw !== "{}") {
+    let hash = 0;
+    for (let i = 0; i < embeddedRaw.length; i++) hash = ((hash << 5) - hash + embeddedRaw.charCodeAt(i)) | 0;
+    return STORAGE_PREFIX + "saved_" + Math.abs(hash);
+  }
+  try {
+    const fijada = sessionStorage.getItem(STORAGE_PREFIX + "clave");
+    if (fijada) return fijada;
+    let sid = sessionStorage.getItem(STORAGE_PREFIX + "sid");
+    if (!sid) { sid = "s" + Date.now() + "_" + Math.random().toString(36).slice(2, 8); sessionStorage.setItem(STORAGE_PREFIX + "sid", sid); }
+    return STORAGE_PREFIX + sid;
+  } catch (e) { return STORAGE_PREFIX + "fallback"; }
+}
+
+function claveDeGrupo(){
+  const curso = (state.text["ct-curso"] || "").trim();
+  const grupo = (state.text["f-grupo"] || "").trim();
+  if (!curso || !grupo) return null;
+  return STORAGE_PREFIX + "g" + curso + "-" + grupo;
+}
+
+function hayRespuestas(datos){
+  if (!datos) return false;
+  const textos = datos.text || {};
+  if (Object.keys(textos).some(k => k !== "ct-curso" && k !== "f-grupo" && (textos[k] || "").trim().length > 0)) return true;
+  const listas = datos.lists || {};
+  return Object.keys(listas).some(k => (listas[k] || []).some(i => (i.value || "").trim().length > 0));
+}
+
+// Al salir del campo, no por tecla: «12» pasaría por el grupo «1».
+function vincularClaveAlGrupo(){
+  if (ARCHIVO_GUARDADO) return;
+  const clave = claveDeGrupo();
+  if (!clave || clave === SESSION_KEY) return;
+  let guardado = null;
+  try { const bruto = localStorage.getItem(clave); if (bruto) guardado = JSON.parse(bruto); } catch (e) { guardado = null; }
+  if (hayRespuestas(guardado) && !hayRespuestas(state)) {
+    const seguir = window.confirm(
+      "Encontramos una actividad guardada en este navegador para el grupo " +
+      state.text["f-grupo"] + " del " + state.text["ct-curso"] + ".\n\n" +
+      "Aceptar: continuar esa actividad.\nCancelar: empezar de cero (se reemplaza lo anterior).");
+    if (seguir) {
+      try {
+        sessionStorage.setItem(STORAGE_PREFIX + "clave", clave);
+        sessionStorage.setItem(STORAGE_PREFIX + "recuperado", "1");
+        location.reload();
+        return;
+      } catch (e) {}
+    }
+  }
+  const anterior = SESSION_KEY;
+  SESSION_KEY = clave;
+  try { sessionStorage.setItem(STORAGE_PREFIX + "clave", clave); } catch (e) {}
+  persistToLocalStorage();
+  try {
+    const esTemporal = anterior && anterior !== clave &&
+      anterior.indexOf(STORAGE_PREFIX + "saved_") !== 0 && anterior.indexOf(STORAGE_PREFIX + "g") !== 0;
+    if (esTemporal) localStorage.removeItem(anterior);
+  } catch (e) {}
+}
+
+function initClavePorGrupo(){
+  const curso = document.getElementById("ct-curso");
+  const grupo = document.getElementById("f-grupo");
+  curso.addEventListener("change", vincularClaveAlGrupo);
+  grupo.addEventListener("change", vincularClaveAlGrupo);
+  grupo.addEventListener("blur", vincularClaveAlGrupo);
+  vincularClaveAlGrupo();
+}
+
+function avisarSiSeRecupero(){
+  try {
+    if (sessionStorage.getItem(STORAGE_PREFIX + "recuperado") !== "1") return;
+    sessionStorage.removeItem(STORAGE_PREFIX + "recuperado");
+    const status = document.getElementById("save-status");
+    status.textContent = "Se recuperó la actividad guardada de este grupo.";
+    status.classList.remove("warn"); status.classList.add("ok");
+  } catch (e) {}
+}
+
+function persistToLocalStorage(){
+  const status = document.getElementById("save-status");
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(state));
+    status.textContent = "Cambios guardados automáticamente · " + new Date().toLocaleTimeString();
+    status.classList.remove("warn"); status.classList.add("ok");
+  } catch (err) {
+    status.textContent = "No se pudo autoguardar en este navegador.";
+    status.classList.add("warn");
+  }
+}
+
+function loadInitialState(){
+  const embedded = document.getElementById("saved-data").textContent.trim();
+  ARCHIVO_GUARDADO = !!(embedded && embedded !== "{}");
+  SESSION_KEY = computeSessionKey(embedded);
+  let loaded = null;
+  if (ARCHIVO_GUARDADO) { try { loaded = JSON.parse(embedded); } catch (e) { loaded = null; } }
+  if (!loaded) { try { const raw = localStorage.getItem(SESSION_KEY); if (raw) loaded = JSON.parse(raw); } catch (e) { loaded = null; } }
+  if (loaded) {
+    Object.assign(state.text, loaded.text || {});
+    Object.assign(state.radio, loaded.radio || {});
+    state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
+    state.cerrado = !!loaded.cerrado;
+    state.hallazgos = loaded.hallazgos || {};
+  }
+}
+
+function applyStateToDOM(){
+  ["ct-curso", "f-grupo", "ct-caso"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && state.text[id] !== undefined) el.value = state.text[id];
+  });
+}
+
+/* ============================================================
+   11. GUARDAR ACTIVIDAD (descarga un HTML autocontenido)
+   ============================================================ */
+function buildDownloadableHTML(){
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelector("#saved-data").textContent = JSON.stringify(state);
+  return "<!DOCTYPE html>\n" + clone.outerHTML;
+}
+
+function slugCurso(){
+  return (state.text["ct-curso"] || "sin-curso").normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().trim().replace(/\s+/g, "-");
+}
+
+function initSaveButton(){
+  document.getElementById("btn-guardar").addEventListener("click", async () => {
+    const html = buildDownloadableHTML();
+    const numero = (state.text["f-grupo"] || "").trim() || "sin-numero";
+    const filename = `${slugCurso()}-informe-psicologico-grupo-${numero}.html`;
+    const status = document.getElementById("save-status");
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+      (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
+    if (isMobile) {
+      try {
+        const file = new File([html], filename, { type: "text/html" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: filename });
+          status.textContent = "Actividad guardada · " + new Date().toLocaleTimeString();
+          status.classList.remove("warn"); status.classList.add("ok");
+          return;
+        }
+      } catch (err) {
+        if (err && err.name === "AbortError") return;   // cerró el cuadro a propósito
+      }
+    }
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    status.textContent = "Actividad guardada y descargada · " + new Date().toLocaleTimeString();
+    status.classList.remove("warn"); status.classList.add("ok");
+  });
+}
+
+/* ============================================================
+   12. ENVÍO AL DOCENTE (Apps Script → hoja de cálculo)
+   ============================================================
+   Formulario oculto, no fetch(): desde file:// fetch queda bloqueado por CORS.
+   Se sondea la emergente antes de elegir el destino: con la emergente
+   bloqueada, un submit a una pestaña nueva no envía nada.
+   ============================================================ */
+const ENVIO = {
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec",
+  curso: "PII-2026-B",
+  caso: "informe",
+  casoLabel: "Informe"
+};
+
+function etiquetaDeCampo(el){
+  if (el.dataset && el.dataset.etiqueta) return el.dataset.etiqueta;
+  const card = el.closest(".card");
+  const label = card && card.querySelector(".card-label");
+  return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
+}
+
+function recogerEnvio(){
+  const campos = {};
+  const caso = casoActual();
+  campos["Expediente"] = caso ? caso.etiqueta : "";
+  SECCIONES.forEach(sec => { const v = (state.text[sec.id] || "").trim(); if (v) campos[sec.titulo] = v; });
+  document.querySelectorAll("#auditoria .option-list[data-group]").forEach(grupo => {
+    const elegido = grupo.querySelector("input:checked");
+    if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
+  });
+  const frase = (state.text["f-aud-frase"] || "").trim();
+  if (frase) campos["Autoauditoría — Frase que responde la remisión"] = frase;
+  return {
+    curso: ENVIO.curso, caso: ENVIO.caso, casoLabel: ENVIO.casoLabel,
+    cursoGrupo: (state.text["ct-curso"] || "").trim(),
+    grupo: (state.text["f-grupo"] || "").trim() ? "Grupo " + state.text["f-grupo"].trim() : "",
+    integrantes: state.lists.integrantes.map(i => (i.value || "").trim()).filter(Boolean).join("; "),
+    campos: campos,
+    estado: JSON.stringify(state)
+  };
+}
+
+function initSendButton(){
+  document.getElementById("btn-enviar").addEventListener("click", () => {
+    const status = document.getElementById("save-status");
+    const avisar = (msg, ok) => { status.textContent = msg; status.classList.toggle("ok", !!ok); status.classList.toggle("warn", !ok); };
+    if (!/^https?:\/\//.test(ENVIO.url)) {
+      avisar("El envío en línea no está configurado en este archivo: guarden la actividad y entréguenla como archivo.", false);
+      return;
+    }
+    if (!state.cerrado) {
+      avisar("Primero cierren el informe y completen la autoauditoría.", false);
+      document.getElementById("cierre-informe").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    const faltante = highlightInvalidFields();
+    if (faltante) {
+      faltante.scrollIntoView({ behavior: "smooth", block: "center" });
+      avisar("Faltan campos obligatorios por completar antes de enviar.", false);
+      return;
+    }
+    let destino = "_self";
+    try { const ventana = window.open("", "entrega-actividad"); if (ventana) destino = "entrega-actividad"; } catch (e) { destino = "_self"; }
+    const form = document.createElement("form");
+    form.method = "POST"; form.action = ENVIO.url; form.target = destino;
+    const campo = document.createElement("input");
+    campo.type = "hidden"; campo.name = "payload"; campo.value = JSON.stringify(recogerEnvio());
+    form.appendChild(campo); document.body.appendChild(form); form.submit(); document.body.removeChild(form);
+    avisar("Actividad enviada · " + new Date().toLocaleTimeString() + " — revisen la pestaña de confirmación que se abrió.", true);
+  });
+}
+
+/* ============================================================
+   13. NAVEGACIÓN Y VALIDACIÓN
+   ============================================================ */
+function initNav(){
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.getElementById(item.dataset.target);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+// Con una lista de bloques, valida solo esos (el cierre del informe no exige
+// la autoauditoría, que todavía no existe).
+function highlightInvalidFields(bloques){
+  let firstInvalid = null;
+  const alcance = bloques ? bloques.map(b => "#" + b + ' [data-required="true"]').join(", ") : '[data-required="true"]';
+  document.querySelectorAll(alcance).forEach(el => {
+    const ok = campoCompleto(el);
+    el.classList.toggle("invalid", !ok);
+    if (!ok && !firstInvalid) firstInvalid = el;
+  });
+  if (!listHasContent("integrantes") && (!bloques || bloques.includes("bloque-0"))) {
+    const lista = document.getElementById("list-integrantes");
+    const primero = lista.querySelector("input");
+    if (primero) { primero.classList.add("invalid"); if (!firstInvalid) firstInvalid = primero; }
+  }
+  return firstInvalid;
+}
+
+/* ============================================================
+   14. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const warn = document.getElementById("js-warning-fallback");
+  if (warn) warn.style.display = "none";
+  try {
+    loadInitialState();
+    applyStateToDOM();
+    initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 4);
+    initSimpleFields();
+    initGrupoNumerico();
+    initClavePorGrupo();
+    avisarSiSeRecupero();
+    renderExpediente();
+    renderInforme();
+    renderAuditoria();
+    initCambioDeCaso();
+    initCierre();
+    initPanel();
+    initInputRestrictions();
+    initSaveButton();
+    initSendButton();
+    initNav();
+    updateProgress();
+    setInterval(persistToLocalStorage, 15000);
+  } catch (err) {
+    if (warn) {
+      warn.style.display = "block";
+      warn.textContent = "Ocurrió un error al iniciar el recurso: " + (err && err.message ? err.message : err) +
+        ". Intenta recargar la página en un navegador actualizado.";
+    }
+  }
+});
+</script>
+</body>
+</html>
