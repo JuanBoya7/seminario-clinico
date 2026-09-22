@@ -22,7 +22,7 @@
  * las preguntas que trae el envío. Si mañana se agrega una pregunta nueva al
  * HTML, aparece una columna nueva sin tocar este script.
  *
- * Modo de lectura para el tablero docente (hoy, solo el caso Susana):
+ * Modo de lectura para el tablero docente (los tres casos):
  * doGet con ?tablero=Susana&curso=…&grupo=… devuelve, por grupo de trabajo, su
  * última entrega resumida —criterios marcados, veredicto y la línea que lo
  * sostiene—. No escribe nada y no toca doPost: publicar esta versión no cambia
@@ -234,7 +234,7 @@ function doGet(e) {
 
 // Casos con tablero. La pestaña que se lee es "<grupo del curso> <caso>", la
 // misma que escribe doPost.
-var CASOS_CON_TABLERO = ['Susana'];
+var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio'];
 
 /**
  * Por cada grupo de trabajo devuelve su ÚLTIMA entrega —si un grupo envió dos

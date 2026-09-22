@@ -142,6 +142,9 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
 .masthead p{color:var(--ink-soft); font-size:15px; max-width:60ch;}
 
+/* Enlace a la rúbrica, en el encabezado. Apunta a la URL absoluta de Pages y no
+   al archivo vecino: el recurso se guarda y viaja solo, y un enlace relativo
+   quedaría roto en cuanto el grupo descarga su copia. */
 .link-rubrica{
   display:inline-block; margin-top:14px;
   font-size:14px; font-weight:600; color:var(--accent); text-decoration:none;
@@ -196,6 +199,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   .rubrica-nivel{flex-direction:column; gap:3px;}
   .rubrica-nivel b{flex:none;}
 }
+
 
 section.block{margin-bottom:40px; scroll-margin-top:24px;}
 .block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
@@ -264,24 +268,33 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
 .option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
 
-/* ---- DSM criteria checklist ---- */
-.substance-card{
+/* ---- Checklist diagnóstico (dos condiciones evaluadas en paralelo) ---- */
+.condition-card{
   border:1px solid var(--border); border-radius:var(--radius);
   margin-bottom:20px; overflow:hidden; box-shadow:var(--shadow-card);
 }
-.substance-header{
+.condition-header{
   display:flex; align-items:center; justify-content:space-between;
   gap:16px; padding:18px 22px; background:var(--surface); cursor:pointer;
   user-select:none;
 }
-.substance-header h3{font-size:17px;}
-.substance-header-left{display:flex; align-items:center; gap:12px;}
+.condition-header h3{font-size:17px;}
+.condition-header-left{display:flex; align-items:center; gap:12px;}
 .chevron{
   width:9px; height:9px; border-right:2px solid var(--ink-faint); border-bottom:2px solid var(--ink-faint);
   transform:rotate(45deg); transition:transform 0.2s ease; flex-shrink:0;
 }
-.substance-card.is-open .chevron{transform:rotate(-135deg);}
+.condition-card.is-open .chevron{transform:rotate(-135deg);}
 
+/* Insignia neutra (explosivo intermitente: solo cuenta criterios, sin gravedad oficial del DSM-5) */
+.count-badge{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  padding:6px 12px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+
+/* Insignia de gravedad (solo trastorno por consumo: el DSM-5 sí define
+   leve/moderado/grave por conteo de criterios, a diferencia del explosivo intermitente) */
 .severity-badge{
   font-family:var(--font-mono); font-size:12.5px; font-weight:600;
   padding:6px 12px; border-radius:99px; white-space:nowrap;
@@ -291,11 +304,25 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .severity-badge[data-level="moderada"]{background:var(--moderate-soft); color:var(--moderate);}
 .severity-badge[data-level="grave"]{background:var(--severe-soft); color:var(--severe);}
 
-.substance-body{
+.condition-body{
   max-height:0; overflow:hidden; transition:max-height 0.35s ease;
 }
-.substance-card.is-open .substance-body{max-height:6000px;}
-.substance-body-inner{padding:20px 22px 22px;}
+.condition-card.is-open .condition-body{max-height:8000px;}
+.condition-body-inner{padding:20px 22px 22px;}
+
+/* Alerta de cumplimiento de criterios (explosivo intermitente: sin gravedad oficial, se
+   informa en cambio si el patrón completo queda o no diagnósticamente
+   cumplido con lo marcado hasta el momento) */
+.criteria-alert{
+  margin-bottom:18px; padding:13px 16px; border-radius:8px;
+  border:1px solid var(--border); background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;
+}
+.criteria-alert .alert-dot{width:9px; height:9px; border-radius:50%; background:var(--ink-faint); flex-shrink:0;}
+.criteria-alert strong{color:var(--ink);}
+.criteria-alert.is-met{background:var(--mild-soft); border-color:var(--mild);}
+.criteria-alert.is-met .alert-dot{background:var(--mild);}
+.criteria-alert.is-met strong{color:var(--mild);}
 
 .criterion{
   border-top:1px solid var(--border); padding:16px 0;
@@ -308,8 +335,6 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .criterion-evidence{margin-top:10px; margin-left:29px; display:none;}
 .criterion.is-checked .criterion-evidence{display:block;}
 .criterion-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
-.pool-evidence{margin-top:14px; margin-left:29px;}
-.pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
 
 .severity-summary{
   margin-top:8px; padding:14px 16px; border-radius:8px; background:var(--surface);
@@ -317,7 +342,23 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 }
 .severity-summary strong{color:var(--ink); font-family:var(--font-mono);}
 
-/* ---- Dynamic list (integrantes, lista de problemas, etc.) ---- */
+/* ---- Bloque "pool": un mínimo de N síntomas dentro de un mismo criterio ---- */
+.pool-block{border-top:1px solid var(--border); padding:16px 0;}
+.pool-block:first-child{border-top:none; padding-top:6px;}
+.pool-heading{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.pool-heading-text{font-size:14px; color:var(--ink); flex:1; min-width:200px;}
+.pool-counter{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+.pool-items{display:flex; flex-direction:column; gap:2px; margin-left:29px;}
+.pool-item{display:flex; align-items:flex-start; gap:10px; padding:6px 0; font-size:13.5px; color:var(--ink); cursor:pointer;}
+.pool-item input{margin-top:3px; width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.pool-evidence{margin-top:10px; margin-left:29px;}
+.pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+/* ---- Lista dinámica (integrantes) ---- */
 .dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
 .dynamic-list-row input{flex:1;}
 .btn-remove-item{
@@ -409,6 +450,10 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
   line-height:1.5;
 }
 
+/* ---- Veredicto: una opción y una línea ---- */
+.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
+.option-list.invalid{border-radius:8px;}
+
 @media print{.sidebar,.save-bar{display:none;}}
 </style>
 </head>
@@ -433,9 +478,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 
     <ul class="nav-list" id="nav-list">
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
-      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Primeras impresiones</a></li>
-      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Comprensión del caso</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Veredicto</a></li>
     </ul>
 
     <div class="progress-block">
@@ -469,7 +513,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
     </div>
 
     <header class="masthead">
-      <div class="masthead-eyebrow">Trastorno por consumo de sustancias · DSM-5</div>
+      <div class="masthead-eyebrow">Consumo de sustancias y control de impulsos · DSM-5</div>
       <h1>Caso Sergio — Evaluación diagnóstica</h1>
       <p>
         Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
@@ -514,71 +558,51 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
     </section>
 
-    <!-- ============ BLOQUE 1 — PRIMERAS IMPRESIONES ============ -->
+    <!-- ============ BLOQUE 1 — DIAGNÓSTICO DSM-5 ============ -->
     <section class="block" id="bloque-1">
       <div class="block-heading">
         <span class="block-index">01</span>
-        <h2>Primeras impresiones</h2>
-      </div>
-      <p class="block-sub">
-        Antes de aplicar el checklist diagnóstico, registren su primera lectura del caso: motivo de
-        consulta, lista de problemas e hipótesis iniciales basadas en impresiones.
-      </p>
-
-      <div class="card">
-        <div class="card-label">¿Cuál es el motivo de consulta de Sergio? <span class="required-mark">*</span></div>
-        <textarea data-required="true" id="f-primeras-motivo" rows="3"></textarea>
-      </div>
-
-      <div class="card">
-        <div class="card-label">Lista de problemas <span class="required-mark">*</span></div>
-        <div class="card-help">Comiencen a elaborar la lista de problemas que identifican en el caso, uno por casilla.</div>
-        <div class="dynamic-list" id="list-problemas"></div>
-        <button type="button" class="btn-add-item" id="btn-add-problema">+ Agregar problema</button>
-      </div>
-
-      <div class="card">
-        <div class="card-label">Primeras hipótesis, basadas en impresiones <span class="required-mark">*</span></div>
-        <div class="card-help">Todavía sin aplicar criterios formales: ¿qué hipótesis diagnóstica les sugiere esta primera impresión del caso?</div>
-        <textarea data-required="true" id="f-primeras-hipotesis" rows="4"></textarea>
-      </div>
-      <div class="card">
-        <div class="card-label">La explicación de Sergio <span class="required-mark">*</span></div>
-        <div class="card-help">¿A qué atribuye Sergio los conflictos que lo traen a consulta?</div>
-        <textarea data-required="true" id="f-atribucion" rows="3"></textarea>
-      </div>
-    </section>
-
-    <!-- ============ BLOQUE 2 — CHECKLIST DIAGNÓSTICO ============ -->
-    <section class="block" id="bloque-2">
-      <div class="block-heading">
-        <span class="block-index">02</span>
         <h2>Diagnóstico DSM-5</h2>
       </div>
       <p class="block-sub">
-        Evalúen el <strong>trastorno por consumo de cocaína</strong>. Marquen únicamente los criterios que
-        puedan sostener con lo que el caso muestra, y escriban con sus propias palabras la evidencia que
-        los respalda: una casilla sin marcar también es una decisión del grupo. La gravedad se calcula
-        automáticamente según la cantidad de criterios marcados (2–3 leve · 4–5 moderada · 6 o más grave,
-        DSM-5).
+        Evalúen por separado el <strong>trastorno por consumo de cocaína</strong> y el
+        <strong>trastorno explosivo intermitente</strong>. Marquen cada criterio que consideren presente y
+        escriban, con sus propias palabras, la evidencia que lo sustenta; los criterios de exclusión
+        solo se marcan. La gravedad automática (leve/moderado/grave) solo aparece en el trastorno por
+        consumo, porque es el único de los dos que el DSM-5 gradúa así — el explosivo intermitente no
+        tiene una gravedad oficial, así que en su lugar van a ver un aviso de cumplimiento de criterios.
       </p>
-      <div id="substance-checklists"></div>
+      <div id="condition-checklists"></div>
     </section>
 
-    <!-- ============ BLOQUE 3 — COMPRENSIÓN DEL CASO ============ -->
-    <section class="block" id="bloque-3">
+    <!-- ============ BLOQUE 2 — VEREDICTO ============ -->
+    <!-- Es lo que se proyecta: el tablero docente lo pone al lado del de los
+         demás grupos y de lo que dice el checklist de cada uno. Por eso acá no
+         hay ningún aviso de si el veredicto coincide con el checklist: esa
+         diferencia es material del debate, y avisarla la borraría. -->
+    <section class="block" id="bloque-2">
       <div class="block-heading">
-        <span class="block-index">03</span>
-        <h2>Comprensión del caso</h2>
+        <span class="block-index">02</span>
+        <h2>Veredicto</h2>
       </div>
-      <p class="block-sub">Cierren el análisis con las conclusiones del grupo.</p>
+      <p class="block-sub">
+        Con los dos checklists resueltos, elijan el veredicto del grupo. El veredicto y su línea se
+        proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen al
+        tablero, al terminar presionen «Enviar al docente».
+      </p>
 
       <div class="card">
-        <div class="card-label">Conclusiones del grupo <span class="required-mark">*</span></div>
-        <div class="card-help">
-          ¿A qué conclusiones llegaron sobre el caso después de elegir y justificar los criterios?
+        <div class="card-label">Veredicto del grupo <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué sostiene la evidencia del caso?</div>
+        <div class="option-list" data-group="veredicto" data-required="true">
+          <label class="option-row"><input type="radio" name="veredicto" value="cocaina"><span>Trastorno por consumo de cocaína</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="tei"><span>Trastorno explosivo intermitente</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="ambos"><span>Los dos a la vez</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="ninguno"><span>Ninguno, con la información disponible</span></label>
         </div>
-        <textarea data-required="true" id="f-analisis" rows="5"></textarea>
+        <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
+        <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
+                  rows="2" maxlength="280"></textarea>
       </div>
     </section>
 
@@ -601,29 +625,68 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
    1. DATOS DE CONTENIDO
    ============================================================ */
 
-// Los once criterios DSM-5 de trastorno por consumo de sustancia
-// (fuente: Morrison, DSM-5 — Guía para el diagnóstico clínico, cap. 15)
-const DSM_CRITERIA = [
-  "Se consume la sustancia con frecuencia en cantidades mayores o durante un tiempo más prolongado del previsto.",
-  "Deseo persistente o esfuerzos fracasados por controlar o reducir el consumo.",
-  "Se emplea mucho tiempo en actividades necesarias para conseguir la sustancia, consumirla o recuperarse de sus efectos.",
-  "Deseo intenso o necesidad urgente de consumir la sustancia (craving).",
-  "Consumo recurrente que lleva al incumplimiento de obligaciones importantes en el trabajo, la escuela o el hogar.",
-  "Consumo continuado a pesar de problemas sociales o interpersonales persistentes causados o agravados por sus efectos.",
-  "Abandono o reducción de actividades sociales, laborales o recreativas importantes debido al consumo.",
-  "Consumo recurrente en situaciones en las que hacerlo es físicamente peligroso.",
-  "Consumo continuado a pesar de saber que se sufre un problema físico o psicológico causado o agravado por la sustancia.",
-  "Tolerancia: necesidad de cantidades cada vez mayores para lograr el efecto deseado, o efecto notablemente reducido con el consumo continuado de la misma cantidad.",
-  "Abstinencia: síndrome propio de la sustancia al reducir o suspender el consumo, o se consume la misma sustancia (u otra similar) para aliviar o evitar esos síntomas."
-];
-
-// El checklist corre sobre una sola sustancia. Los once criterios son idénticos
-// para cualquiera, así que repetirlos por sustancia es transcribir dos veces, no
-// diagnosticar dos veces; y de las dos que el caso documenta, la cocaína es la
-// que aparece en las tres secuencias del autorregistro. El lugar del cannabis se
-// trabaja como pregunta abierta en el bloque 4.
-const SUBSTANCES = [
-  { key: "cocaina",  label: "Cocaína" }
+// Las dos hipótesis que se evalúan en paralelo. No son alternativas
+// excluyentes: el DSM-5 admite los dos diagnósticos juntos si hay estallidos
+// fuera del consumo. El caso las plantea a su modo: la psicóloga atribuye las
+// discusiones a la cocaína, y Sergio a «cómo se toman las cosas».
+// Fuente: Morrison, DSM-5 — Guía para el diagnóstico clínico, cap. 14
+// "Trastornos disruptivos, del control de los impulsos y de la conducta" y
+// cap. 15 "Trastornos relacionados con sustancias y adicciones".
+//
+// Cada condición tiene:
+//   - poolItems: criterios que se cuentan (se necesita un mínimo poolMin)
+//   - mustIncludeAny: si existe, al menos uno de esos índices del pool
+//     debe estar marcado para que el criterio cuente como cumplido
+//   - required: criterios que deben cumplirse todos, sin excepción
+//   - hasSeverity: si el DSM-5 define gravedad oficial para ese trastorno
+//     (el trastorno por consumo sí, por conteo de criterios; el explosivo
+//     intermitente no)
+//   - severityBands: los tramos de gravedad del DSM-5 para ese trastorno
+const CONDITIONS = [
+  {
+    key: "cocaina",
+    label: "Trastorno por consumo de cocaína",
+    code: "F14.x [304.20 / 305.60]",
+    hasSeverity: true,
+    severityBands: [[2, 3, "leve", "Leve"], [4, 5, "moderada", "Moderado"], [6, 11, "grave", "Grave"]],
+    poolMin: 2,
+    mustIncludeAny: null,
+    poolIntro: "Un patrón problemático de consumo de cocaína que provoca un deterioro o malestar clínicamente significativo, y que se manifiesta al menos por dos de los hechos siguientes en un plazo de 12 meses:",
+    poolItems: [
+      "Se consume la sustancia con frecuencia en cantidades mayores o durante un tiempo más prolongado del previsto.",
+      "Deseo persistente o esfuerzos fracasados por controlar o reducir el consumo.",
+      "Se emplea mucho tiempo en actividades necesarias para conseguir la sustancia, consumirla o recuperarse de sus efectos.",
+      "Deseo intenso o necesidad urgente de consumir la sustancia (craving).",
+      "Consumo recurrente que lleva al incumplimiento de obligaciones importantes en el trabajo, la escuela o el hogar.",
+      "Consumo continuado a pesar de problemas sociales o interpersonales persistentes causados o agravados por sus efectos.",
+      "Abandono o reducción de actividades sociales, laborales o recreativas importantes debido al consumo.",
+      "Consumo recurrente en situaciones en las que hacerlo es físicamente peligroso.",
+      "Consumo continuado a pesar de saber que se sufre un problema físico o psicológico causado o agravado por la sustancia.",
+      "Tolerancia: necesidad de cantidades cada vez mayores para lograr el efecto deseado, o efecto notablemente reducido con el consumo continuado de la misma cantidad.",
+      "Abstinencia: síndrome propio de la sustancia al reducir o suspender el consumo, o se consume la misma sustancia (u otra similar) para aliviar o evitar esos síntomas."
+    ],
+    required: []
+  },
+  {
+    key: "tei",
+    label: "Trastorno explosivo intermitente",
+    code: "F63.81 [312.34]",
+    hasSeverity: false,
+    poolMin: 1,
+    mustIncludeAny: null,
+    poolIntro: "Arrebatos recurrentes en el comportamiento que reflejan una falta de control de los impulsos de agresividad, manifestada por una de las siguientes:",
+    poolItems: [
+      "Agresión verbal (berrinches, diatribas, discusiones o peleas verbales) o agresión física contra la propiedad, los animales u otras personas, en promedio dos veces por semana durante un período de tres meses. La agresión física no provoca daños ni destrucción de la propiedad, ni lesiones a animales u otras personas.",
+      "Tres arrebatos en los últimos doce meses que provocan daños o destrucción de la propiedad, o agresión física con lesiones a animales u otras personas."
+    ],
+    required: [
+      "La magnitud de la agresividad expresada durante los arrebatos es bastante desproporcionada con respecto a la provocación o a cualquier factor estresante psicosocial desencadenante.",
+      "Los arrebatos no son premeditados (son impulsivos o provocados por la ira) ni persiguen ningún objetivo tangible (dinero, poder, intimidación).",
+      "Los arrebatos provocan un marcado malestar en el individuo, alteran su rendimiento laboral o sus relaciones interpersonales, o tienen consecuencias económicas o legales.",
+      "La edad cronológica es de seis años como mínimo (o un grado de desarrollo equivalente).",
+      "Los arrebatos no se explican mejor por otro trastorno mental ni se pueden atribuir a otra afección médica o a los efectos fisiológicos de una sustancia (drogas, medicamentos)."
+    ]
+  }
 ];
 
 /* ============================================================
@@ -633,9 +696,9 @@ const state = {
   text: {},      // inputs / textareas simples,  { id: valor }
   radio: {},     // grupos de selección única,   { groupName: valor }
   checkbox: {},  // grupos de selección múltiple,{ groupName: [valores] }
-  criteria: {},  // checklist DSM-5,             { "cocaina-0": {checked, evidence}, ... }
-  substanceOpen: {}, // qué acordeón de sustancia está abierto
-  lists: { integrantes: [], problemas: [] } // listas dinámicas: { id, value }[]
+  criteria: {},  // checklist DSM-5,             { "cocaina-pool-0": {checked, evidence}, ... }
+  conditionOpen: {}, // qué acordeón de condición está abierto
+  lists: { integrantes: [] } // listas dinámicas: { id, value }[]
 };
 
 /* ============================================================
@@ -669,163 +732,165 @@ function initInputRestrictions(){
 }
 
 /* ============================================================
-   4. RENDERIZADO — CHECKLIST DSM-5 POR SUSTANCIA
+   4. RENDERIZADO — CHECKLIST DSM-5 POR CONDICIÓN
    ============================================================ */
-function severityFromCount(count){
-  if (count >= 6) return { level: "grave",    label: "Grave (6 o más criterios)" };
-  if (count >= 4) return { level: "moderada", label: "Moderada (4–5 criterios)" };
-  if (count >= 2) return { level: "leve",     label: "Leve (2–3 criterios)" };
-  return { level: "ninguna", label: "No se cumplen los criterios mínimos (0–1)" };
+/* Los criterios de exclusión ("no se puede atribuir a…", "no se explica mejor
+   por…") no se pueden evidenciar desde un video: que algo no se mencione no lo
+   descarta, y pedirles "evidencia" produce respuestas como "no se menciona
+   consumo", que es un error lógico. Por eso se marcan sin campo de escritura:
+   la decisión queda en la casilla, y el tablero docente la pone en discusión. */
+function esCriterioDeExclusion(texto){
+  return /no se (puede atribuir|explica mejor|explican mejor)/i.test(texto || "");
 }
 
-/* Los tres criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados y colgados de
-   la consigna que cada uno evalúa. Si cambian allá hay que cambiarlos acá también:
-   la rúbrica es una página aparte y este recurso tiene que seguir funcionando sin
-   conexión. */
-const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobresaliente"];
+function updateCriterionState(stateKey, checked, evidence){
+  state.criteria[stateKey] = { checked, evidence };
+}
 
-const RUBRICA_CAMPOS = {
-  "f-primeras-hipotesis": {
-    peso: "25%",
-    rotulo: "Ver cómo se evalúan las primeras respuestas",
-    niveles: [
-      "El motivo de consulta se da por sentado —«consume drogas»— o se confunde con el diagnóstico.",
-      "Registra el motivo y algunos problemas, pero la hipótesis no se desprende de ellos.",
-      "Distingue lo que Sergio consulta de lo que trae su pareja, y reconstruye la explicación de él sin adoptarla ni descartarla.",
-      "Además señala qué información falta, o registra que la falta de conciencia de problema es en sí un dato."
-    ]
-  },
-  "f-analisis": {
-    peso: "35%",
-    rotulo: "Ver cómo se evalúan las conclusiones",
-    niveles: [
-      "No hay conclusión, o la que hay contradice los criterios que el grupo marcó.",
-      "Enuncia una conclusión, pero la sostiene por afirmación: no se apoya en los criterios elegidos ni en la evidencia escrita.",
-      "La conclusión se desprende de los criterios marcados y de su evidencia, y el grupo dice qué lo llevó a sostenerla.",
-      "Además reconoce los límites de esa conclusión: qué queda por descartar, qué información falta o qué la haría cambiar."
-    ]
+function isCriterionChecked(stateKey){
+  return !!(state.criteria[stateKey] && state.criteria[stateKey].checked);
+}
+
+// Gravedad: solo la llevan los trastornos para los que el DSM-5 define un
+// especificador oficial. En el trastorno por consumo es el conteo de los once
+// criterios: 2–3 leve, 4–5 moderado, 6 o más grave. El explosivo intermitente
+// no tiene gravedad oficial y muestra en su lugar el aviso de cumplimiento.
+function severityFromPoolCount(cond, poolCount, mustOk){
+  if (poolCount < cond.poolMin || !mustOk) return { level: "ninguna", label: "No se cumplen los criterios mínimos" };
+  const tramo = cond.severityBands.find(b => poolCount >= b[0] && poolCount <= b[1]);
+  const rango = tramo[0] === tramo[1] ? `${tramo[0]}` : (tramo[1] >= cond.poolItems.length ? `${tramo[0]} o más` : `${tramo[0]}–${tramo[1]}`);
+  return { level: tramo[2], label: `${tramo[3]} (${rango} criterios)` };
+}
+
+function updateConditionStatus(condKey){
+  const cond = CONDITIONS.find(c => c.key === condKey);
+  if (!cond) return;
+
+  const poolCheckedIdx = [];
+  cond.poolItems.forEach((_, idx) => {
+    if (isCriterionChecked(`${condKey}-pool-${idx}`)) poolCheckedIdx.push(idx);
+  });
+  const poolCount = poolCheckedIdx.length;
+  const mustOk = !cond.mustIncludeAny || cond.mustIncludeAny.some(i => poolCheckedIdx.includes(i));
+  const poolMet = poolCount >= cond.poolMin && mustOk;
+
+  const poolCounterEl = document.getElementById(`poolcounter-${condKey}`);
+  if (poolCounterEl) poolCounterEl.textContent = `${poolCount} / ${cond.poolItems.length} (mínimo ${cond.poolMin})`;
+
+  // La evidencia de los síntomas es obligatoria en cuanto se marca alguno:
+  // la rúbrica califica "criterio marcado sin evidencia", no "casilla vacía".
+  const poolEvid = document.getElementById(`poolevid-${condKey}`);
+  if (poolEvid) poolEvid.dataset.required = poolCount > 0 ? "true" : "false";
+  const poolMarca = document.getElementById(`poolreq-${condKey}`);
+  if (poolMarca) poolMarca.hidden = poolCount === 0;
+
+  let requiredMet = 0;
+  cond.required.forEach((_, ridx) => {
+    if (isCriterionChecked(`${condKey}-req-${ridx}`)) requiredMet++;
+  });
+
+  const totalItems = cond.poolItems.length + cond.required.length;
+  const totalChecked = poolCount + requiredMet;
+  const totalBlocks = 1 + cond.required.length;
+  const metBlocks = (poolMet ? 1 : 0) + requiredMet;
+  const isMet = poolMet && requiredMet === cond.required.length;
+
+  const badge = document.getElementById(`badge-${condKey}`);
+  if (badge) badge.textContent = `${totalChecked} / ${totalItems} criterios`;
+
+  if (cond.hasSeverity) {
+    const { level, label } = severityFromPoolCount(cond, poolCount, mustOk);
+    if (badge) badge.dataset.level = level;
+    const summary = document.getElementById(`summary-${condKey}`);
+    if (summary) summary.textContent = label;
+  } else {
+    const alertEl = document.getElementById(`alert-${condKey}`);
+    if (alertEl) {
+      alertEl.classList.toggle("is-met", isMet);
+      alertEl.innerHTML = isMet
+        ? `<span class="alert-dot"></span><span>Con lo marcado hasta ahora, <strong>se cumplen los criterios diagnósticos</strong> de este trastorno.</span>`
+        : `<span class="alert-dot"></span><span><strong>${metBlocks} / ${totalBlocks}</strong> bloques de criterios cumplidos por ahora — todavía faltan requisitos por marcar.</span>`;
+    }
   }
-};
-
-function construirPlegableRubrica(criterio){
-  const det = document.createElement("details");
-  det.className = "rubrica-inline";
-
-  const sum = document.createElement("summary");
-  sum.innerHTML = "<span>" + criterio.rotulo + "</span>" +
-                  "<span class=\"rubrica-peso\">" + criterio.peso + "</span>";
-  det.appendChild(sum);
-
-  const cont = document.createElement("div");
-  cont.className = "rubrica-niveles";
-  criterio.niveles.forEach((texto, i) => {
-    const fila = document.createElement("div");
-    fila.className = "rubrica-nivel";
-    fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
-    cont.appendChild(fila);
-  });
-  det.appendChild(cont);
-  return det;
 }
 
-function initRubricaEnLinea(){
-  Object.keys(RUBRICA_CAMPOS).forEach(id => {
-    const campo = document.getElementById(id);
-    // El plegable va dentro de la tarjeta de la consigna, no suelto en el
-    // margen, para que quede alineado con el resto del bloque.
-    const card = campo && campo.closest(".card");
-    if (!card) return;
-    card.appendChild(construirPlegableRubrica(RUBRICA_CAMPOS[id]));
-  });
-}
-
-/* El checklist de sustancias no tiene una tarjeta de consigna propia donde colgar
-   su plegable —renderSubstanceChecklists reescribe el contenedor entero—, así que
-   el criterio de evidencia se agrega al final de la sección del bloque 2. */
-function initRubricaChecklist(){
-  const seccion = document.getElementById("bloque-2");
-  if (!seccion) return;
-  seccion.appendChild(construirPlegableRubrica({
-    peso: "40%",
-    rotulo: "Ver cómo se evalúa el checklist",
-    niveles: [
-      "Hay criterios marcados y ninguna evidencia escrita, o la evidencia no corresponde a lo marcado.",
-      "Escribe evidencia para algunos criterios, o repite el enunciado en lugar de traer un dato del caso.",
-      "Cada criterio marcado va con evidencia del caso en palabras propias, y los que quedan sin marcar están sostenidos como decisión.",
-      "Además distingue los criterios que se observan de los que exigen atribuir una causa, y resuelve estos últimos con el autorregistro."
-    ]
-  }));
-}
-
-function renderSubstanceChecklists(){
-  const container = document.getElementById("substance-checklists");
+function renderConditionChecklists(){
+  const container = document.getElementById("condition-checklists");
   container.innerHTML = "";
 
-  SUBSTANCES.forEach(sub => {
+  CONDITIONS.forEach(cond => {
     const card = document.createElement("div");
-    card.className = "substance-card";
-    card.dataset.substance = sub.key;
+    card.className = "condition-card";
+    card.dataset.condition = cond.key;
 
+    const totalItems = cond.poolItems.length + cond.required.length;
     const header = document.createElement("div");
-    header.className = "substance-header";
+    header.className = "condition-header";
     header.innerHTML = `
-      <div class="substance-header-left">
+      <div class="condition-header-left">
         <span class="chevron"></span>
-        <h3>${sub.label}</h3>
+        <h3>${cond.label}</h3>
       </div>
-      <span class="severity-badge" id="badge-${sub.key}">0 / 11 criterios</span>
+      <span class="${cond.hasSeverity ? "severity-badge" : "count-badge"}" id="badge-${cond.key}">0 / ${totalItems} criterios</span>
     `;
     header.addEventListener("click", () => {
       card.classList.toggle("is-open");
-      state.substanceOpen[sub.key] = card.classList.contains("is-open");
+      state.conditionOpen[cond.key] = card.classList.contains("is-open");
       persistToLocalStorage();
     });
 
     const body = document.createElement("div");
-    body.className = "substance-body";
+    body.className = "condition-body";
     const inner = document.createElement("div");
-    inner.className = "substance-body-inner";
+    inner.className = "condition-body-inner";
 
-    DSM_CRITERIA.forEach((text, idx) => {
-      const stateKey = `${sub.key}-${idx}`;
-      const row = document.createElement("div");
-      row.className = "criterion";
-      row.dataset.key = stateKey;
-      row.innerHTML = `
-        <div class="criterion-main">
-          <input type="checkbox" id="crit-${stateKey}">
-          <span class="criterion-num">${idx + 1}.</span>
-          <label class="criterion-text" for="crit-${stateKey}">${text}</label>
-        </div>
-      `;
-      inner.appendChild(row);
+    if (!cond.hasSeverity) {
+      const alertBox = document.createElement("div");
+      alertBox.className = "criteria-alert";
+      alertBox.id = `alert-${cond.key}`;
+      inner.appendChild(alertBox);
+    }
 
-      const checkbox = row.querySelector(`#crit-${stateKey}`);
+    // Bloque "pool" — síntomas contables con umbral mínimo
+    const poolBlock = document.createElement("div");
+    poolBlock.className = "pool-block";
+    poolBlock.innerHTML = `
+      <div class="pool-heading">
+        <span class="criterion-num">A.</span>
+        <span class="pool-heading-text">${cond.poolIntro}</span>
+        <span class="pool-counter" id="poolcounter-${cond.key}">0 / ${cond.poolItems.length} (mínimo ${cond.poolMin})</span>
+      </div>
+      <div class="pool-items"></div>
+      <div class="pool-evidence">
+        <label for="poolevid-${cond.key}">Evidencia de los síntomas marcados: una línea por síntoma <span class="required-mark" id="poolreq-${cond.key}" hidden>*</span></label>
+        <textarea class="evidence-box" id="poolevid-${cond.key}" rows="2"></textarea>
+      </div>
+    `;
+    inner.appendChild(poolBlock);
+
+    const itemsContainer = poolBlock.querySelector(".pool-items");
+    cond.poolItems.forEach((text, idx) => {
+      const stateKey = `${cond.key}-pool-${idx}`;
+      const saved = state.criteria[stateKey];
+
+      const label = document.createElement("label");
+      label.className = "pool-item";
+      label.innerHTML = `<input type="checkbox" id="crit-${stateKey}"><span>${text}</span>`;
+      itemsContainer.appendChild(label);
+
+      const checkbox = label.querySelector("input");
+      if (saved) checkbox.checked = !!saved.checked;
 
       checkbox.addEventListener("change", () => {
-        row.classList.toggle("is-checked", checkbox.checked);
-        updateCriterionState(sub.key, idx, checkbox.checked, "");
-        updateSeverityBadge(sub.key);
+        updateCriterionState(stateKey, checkbox.checked, "");
+        updateConditionStatus(cond.key);
         updateProgress();
         persistToLocalStorage();
       });
     });
 
-    // Los once criterios son las caras de un mismo criterio A ("un patrón
-    // problemático manifestado por al menos 2 de los siguientes"), no once
-    // criterios independientes. Por eso la evidencia se pide una vez por
-    // sustancia y no una vez por casilla: veintidós campos para una sola
-    // afirmación diagnóstica es lo que volvía el llenado repetitivo.
-    const poolEvid = document.createElement("div");
-    poolEvid.className = "pool-evidence";
-    poolEvid.innerHTML = `
-      <label for="poolevid-${sub.key}">Evidencia en el caso de los criterios marcados (escribí con tus palabras)</label>
-      <textarea class="evidence-box" id="poolevid-${sub.key}" rows="3"></textarea>
-    `;
-    inner.appendChild(poolEvid);
-
-    const poolEvidId = `poolevid-${sub.key}`;
-    const poolEvidBox = poolEvid.querySelector(`#${poolEvidId}`);
+    const poolEvidId = `poolevid-${cond.key}`;
+    const poolEvidBox = poolBlock.querySelector(`#${poolEvidId}`);
     poolEvidBox.value = state.text[poolEvidId] || "";
     poolEvidBox.addEventListener("input", () => {
       state.text[poolEvidId] = poolEvidBox.value;
@@ -833,56 +898,92 @@ function renderSubstanceChecklists(){
       persistToLocalStorage();
     });
 
-    const summary = document.createElement("div");
-    summary.className = "severity-summary";
-    summary.innerHTML = `<span>Clasificación de gravedad</span><strong id="summary-${sub.key}">No se cumplen los criterios mínimos (0–1)</strong>`;
-    inner.appendChild(summary);
+    // Criterios obligatorios (letras B, C, D...)
+    cond.required.forEach((text, ridx) => {
+      const letter = String.fromCharCode(66 + ridx); // B, C, D...
+      const stateKey = `${cond.key}-req-${ridx}`;
+      const saved = state.criteria[stateKey];
+
+      const row = document.createElement("div");
+      row.className = "criterion";
+      row.dataset.key = stateKey;
+      // Los criterios de exclusión solo se marcan: no llevan campo de escritura
+      // (ver esCriterioDeExclusion).
+      const exclusion = esCriterioDeExclusion(text);
+      row.innerHTML = `
+        <div class="criterion-main">
+          <input type="checkbox" id="crit-${stateKey}">
+          <span class="criterion-num">${letter}.</span>
+          <label class="criterion-text" for="crit-${stateKey}">${text}</label>
+        </div>
+        ${exclusion ? "" : `
+        <div class="criterion-evidence">
+          <label for="evid-${stateKey}">Evidencia en el caso (escribí con tus palabras) <span class="required-mark">*</span></label>
+          <textarea class="evidence-box" id="evid-${stateKey}" rows="2"></textarea>
+        </div>`}
+      `;
+      inner.appendChild(row);
+
+      const checkbox = row.querySelector(`#crit-${stateKey}`);
+      const evidenceBox = row.querySelector(`#evid-${stateKey}`);   // null en los de exclusión
+      const evidencia = () => evidenceBox ? evidenceBox.value : "";
+      // La evidencia es obligatoria mientras el criterio esté marcado: así la
+      // barra de progreso y el envío piden lo mismo que califica la rúbrica.
+      const exigir = () => {
+        if (evidenceBox) evidenceBox.dataset.required = checkbox.checked ? "true" : "false";
+      };
+
+      if (saved) {
+        checkbox.checked = !!saved.checked;
+        if (evidenceBox) evidenceBox.value = saved.evidence || "";
+        row.classList.toggle("is-checked", !!saved.checked);
+      }
+      exigir();
+
+      checkbox.addEventListener("change", () => {
+        row.classList.toggle("is-checked", checkbox.checked);
+        exigir();
+        updateCriterionState(stateKey, checkbox.checked, evidencia());
+        updateConditionStatus(cond.key);
+        updateProgress();
+        persistToLocalStorage();
+      });
+      if (evidenceBox) evidenceBox.addEventListener("input", () => {
+        updateCriterionState(stateKey, checkbox.checked, evidencia());
+        updateProgress();
+        persistToLocalStorage();
+      });
+    });
+
+    if (cond.hasSeverity) {
+      const summary = document.createElement("div");
+      summary.className = "severity-summary";
+      summary.innerHTML = `<span>Clasificación de gravedad</span><strong id="summary-${cond.key}">No se cumplen los criterios mínimos</strong>`;
+      inner.appendChild(summary);
+    }
 
     body.appendChild(inner);
     card.appendChild(header);
     card.appendChild(body);
     container.appendChild(card);
 
-    // Abrimos el primer acordeón (Cocaína) por defecto, salvo que ya haya un estado
-    // guardado que indique lo contrario, para que se vea de entrada que los criterios
-    // son desplegables e interactivos.
-    if (sub.key === SUBSTANCES[0].key && state.substanceOpen[sub.key] === undefined) {
+    // Abrimos el primer acordeón (cocaína) por defecto, salvo que ya haya un
+    // estado guardado que indique lo contrario.
+    if (cond.key === CONDITIONS[0].key && state.conditionOpen[cond.key] === undefined) {
       card.classList.add("is-open");
-      state.substanceOpen[sub.key] = true;
+      state.conditionOpen[cond.key] = true;
     }
   });
-}
 
-function updateCriterionState(substanceKey, idx, checked, evidence){
-  const k = `${substanceKey}-${idx}`;
-  state.criteria[k] = { checked, evidence };
-}
-
-function countChecked(substanceKey){
-  let count = 0;
-  DSM_CRITERIA.forEach((_, idx) => {
-    const k = `${substanceKey}-${idx}`;
-    if (state.criteria[k] && state.criteria[k].checked) count++;
-  });
-  return count;
-}
-
-function updateSeverityBadge(substanceKey){
-  const count = countChecked(substanceKey);
-  const { level, label } = severityFromCount(count);
-  const badge = document.getElementById(`badge-${substanceKey}`);
-  const summary = document.getElementById(`summary-${substanceKey}`);
-  badge.textContent = `${count} / 11 criterios`;
-  badge.dataset.level = level;
-  if (summary) summary.textContent = label;
+  CONDITIONS.forEach(cond => updateConditionStatus(cond.key));
 }
 
 /* ============================================================
-   5. LISTA DINÁMICA REUTILIZABLE (integrantes, lista de problemas, etc.)
+   5. LISTA DINÁMICA REUTILIZABLE (integrantes)
    ============================================================ */
 let dynamicListCounter = 0;
 
-// state.lists = { integrantes: [{id, value}], problemas: [{id, value}] }
+// state.lists = { integrantes: [{id, value}] }
 
 function createDynamicListRow(listKey, id, value, placeholder, removeTitle){
   const row = document.createElement("div");
@@ -1020,11 +1121,9 @@ function initGrupoNumerico(){
 function computeProgress(){
   let total = 0, filled = 0;
 
-  // Listas dinámicas obligatorias: integrantes del grupo y lista de problemas
+  // Lista dinámica obligatoria: integrantes del grupo
   total++;
   if (listHasContent("integrantes")) filled++;
-  total++;
-  if (listHasContent("problemas")) filled++;
 
   // Campos de texto obligatorios
   document.querySelectorAll('[data-required="true"]').forEach(el => {
@@ -1037,7 +1136,7 @@ function computeProgress(){
       } else {
         if (state.radio[name]) filled++;
       }
-    } else if (el.tagName === "TEXTAREA" || el.tagName === "INPUT") {
+    } else if (el.tagName === "TEXTAREA" || el.tagName === "INPUT" || el.tagName === "SELECT") {
       total++;
       if (el.value && el.value.trim().length > 0) filled++;
     }
@@ -1061,10 +1160,6 @@ function updateProgress(){
       requiredCount++;
       if (!listHasContent("integrantes")) done = false;
     }
-    if (section.id === "bloque-1") {
-      requiredCount++;
-      if (!listHasContent("problemas")) done = false;
-    }
     requiredEls.forEach(el => {
       if (el.classList.contains("option-list")) {
         const name = el.dataset.group;
@@ -1087,7 +1182,9 @@ function updateProgress(){
 // genera una sesión nueva y limpia cada vez que se abre por primera vez, de modo que la
 // plantilla repartida NUNCA hereda respuestas de una sesión anterior en el mismo navegador.
 // Un archivo ya guardado (con datos incrustados) reabre su propia sesión y conserva el respaldo.
-const STORAGE_PREFIX = "caso_sergio_actividad_v2:";
+// v2: la actividad pasó a checklist + veredicto. Con otra clave, un navegador que
+// guardó la versión anterior no le rehidrata a nadie campos que ya no existen.
+const STORAGE_PREFIX = "caso_sergio_actividad_v3:";
 let SESSION_KEY = null;
 
 function computeSessionKey(embeddedRaw){
@@ -1262,9 +1359,8 @@ function loadInitialState(){
     Object.assign(state.radio, loaded.radio || {});
     Object.assign(state.checkbox, loaded.checkbox || {});
     Object.assign(state.criteria, loaded.criteria || {});
-    Object.assign(state.substanceOpen, loaded.substanceOpen || {});
+    Object.assign(state.conditionOpen, loaded.conditionOpen || {});
     state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
-    state.lists.problemas = Array.isArray(loaded.lists && loaded.lists.problemas) ? loaded.lists.problemas : [];
   }
 }
 
@@ -1298,26 +1394,15 @@ function applyStateToDOM(){
     });
   });
 
-  // criterios DSM-5
-  Object.keys(state.criteria).forEach(key => {
-    const data = state.criteria[key];
-    const checkbox = document.getElementById(`crit-${key}`);
-    const evidence = document.getElementById(`evid-${key}`);
-    if (checkbox) checkbox.checked = !!data.checked;
-    if (evidence) evidence.value = data.evidence || "";
-    const row = document.querySelector(`.criterion[data-key="${key}"]`);
-    if (row) row.classList.toggle("is-checked", !!data.checked);
-  });
-
   // acordeones abiertos
-  Object.keys(state.substanceOpen).forEach(key => {
-    if (state.substanceOpen[key]) {
-      const card = document.querySelector(`.substance-card[data-substance="${key}"]`);
+  Object.keys(state.conditionOpen).forEach(key => {
+    if (state.conditionOpen[key]) {
+      const card = document.querySelector(`.condition-card[data-condition="${key}"]`);
       if (card) card.classList.add("is-open");
     }
   });
 
-  SUBSTANCES.forEach(sub => updateSeverityBadge(sub.key));
+  CONDITIONS.forEach(cond => updateConditionStatus(cond.key));
 }
 
 /* ============================================================
@@ -1416,10 +1501,13 @@ const ENVIO = {
 // Grupos de criterios que se vuelcan a la hoja. Es lo único que cambia entre
 // los recursos de cada caso.
 function gruposDeCriterios(){
-  return SUBSTANCES.map(s => ({ key: s.key, label: s.label }));
+  return CONDITIONS.map(c => ({ key: c.key, label: c.label }));
 }
 
 function etiquetaDeCampo(el){
+  // Una tarjeta con dos respuestas (la opción y su línea) le da a la segunda un
+  // rótulo propio; si no, las dos caerían en la misma columna de la hoja.
+  if (el.dataset && el.dataset.etiqueta) return el.dataset.etiqueta;
   const card = el.closest(".card");
   const label = card && card.querySelector(".card-label");
   return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
@@ -1466,6 +1554,12 @@ function recogerEnvio(){
     if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
   });
 
+  // Selección única (el veredicto): se vuelca el texto de la opción elegida.
+  document.querySelectorAll(".option-list[data-group]").forEach(grupo => {
+    const elegido = grupo.querySelector("input:checked");
+    if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
+  });
+
   // Listas dinámicas (menos integrantes, que también tiene columna propia)
   Object.keys(state.lists).forEach(listKey => {
     if (listKey === "integrantes") return;
@@ -1499,7 +1593,7 @@ function recogerEnvio(){
 
     Object.keys(state.text).forEach(k => {
       if (k.indexOf("poolevid-" + g.key) === 0 && (state.text[k] || "").trim()) {
-        evidencias.push("• Evidencia general de los criterios marcados: " + state.text[k].trim());
+        evidencias.push("• Evidencia de los síntomas: " + state.text[k].trim());
       }
     });
 
@@ -1619,6 +1713,79 @@ function highlightInvalidFields(){
   return firstInvalid;
 }
 
+
+/* ============================================================
+   11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
+   ============================================================ */
+
+// Los dos criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados
+// y colgados de la consigna que cada uno evalúa. Si cambian allá hay que
+// cambiarlos acá también: no hay una sola fuente, porque la rúbrica es una
+// página aparte y este recurso tiene que seguir funcionando sin conexión.
+const RUBRICA_CAMPOS = {
+  "bloque-1": {
+    peso: "70%",
+    rotulo: "Ver cómo se evalúan los dos checklists",
+    destino: "seccion",
+    niveles: [
+      "Hay criterios marcados sin evidencia, o la evidencia no corresponde al criterio que acompaña.",
+      "La evidencia repite el enunciado del criterio en lugar de traer un dato del caso, o uno de los dos checklists queda sin trabajar.",
+      "Recorre los dos; cada criterio marcado va con evidencia del caso en palabras propias, y no quedan sin marcar los que el caso documenta.",
+      "Además advierte que un mismo hecho sostiene criterios de las dos listas, o separa lo que el caso permite afirmar de lo que habría que preguntar."
+    ]
+  },
+  "f-veredicto-dato": {
+    peso: "30%",
+    rotulo: "Ver cómo se evalúa el veredicto",
+    niveles: [
+      "No hay veredicto, o la línea no trae ningún dato del caso.",
+      "La línea repite el veredicto con otras palabras, o trae un dato que el grupo no sostuvo en su checklist.",
+      "La línea trae el dato del caso que decidió el veredicto, y ese dato está entre los que el grupo sostuvo en su checklist.",
+      "Además, cuando el veredicto no coincide con lo que dice su checklist, la línea deja ver por qué."
+    ]
+  }
+};
+
+const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobresaliente"];
+
+function construirPlegableRubrica(criterio){
+  const det = document.createElement("details");
+  det.className = "rubrica-inline";
+
+  const sum = document.createElement("summary");
+  sum.innerHTML = "<span>" + criterio.rotulo + "</span>" +
+                  "<span class=\"rubrica-peso\">" + criterio.peso + "</span>";
+  det.appendChild(sum);
+
+  const cont = document.createElement("div");
+  cont.className = "rubrica-niveles";
+  criterio.niveles.forEach((texto, i) => {
+    const fila = document.createElement("div");
+    fila.className = "rubrica-nivel";
+    fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
+    cont.appendChild(fila);
+  });
+  det.appendChild(cont);
+  return det;
+}
+
+function initRubricaEnLinea(){
+  Object.keys(RUBRICA_CAMPOS).forEach(id => {
+    const criterio = RUBRICA_CAMPOS[id];
+    const ancla = document.getElementById(id);
+    if (!ancla) return;
+    // El plegable de los checklists se cuelga del final de la sección, no de
+    // una tarjeta: los dos checklists los dibuja renderConditionChecklists
+    // dentro de #condition-checklists y cualquier cosa que quede ahí adentro
+    // se pierde en el siguiente redibujado.
+    const destino = criterio.destino === "seccion" ? ancla : ancla.closest(".card");
+    if (!destino) return;
+    const plegable = construirPlegableRubrica(criterio);
+    if (criterio.destino === "seccion") plegable.style.marginTop = "22px";
+    destino.appendChild(plegable);
+  });
+}
+
 /* ============================================================
    12. INICIALIZACIÓN
    ============================================================ */
@@ -1629,15 +1796,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     loadInitialState();
-    renderSubstanceChecklists();
+    initRubricaEnLinea();
+    renderConditionChecklists();
     initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
-    initDynamicList("problemas", "list-problemas", "btn-add-problema", "Describí un problema identificado", "Quitar problema", 2);
     initSimpleFields();
     initGrupoNumerico();
     initClavePorGrupo();
     avisarSiSeRecupero();
-    initRubricaEnLinea();
-    initRubricaChecklist();
     initInputRestrictions();
     initSaveButton();
     initSendButton();
