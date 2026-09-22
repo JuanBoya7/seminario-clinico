@@ -141,6 +141,11 @@ function escribirFila(nombreHoja, datos, fijas, valoresFijos) {
     if (posJson === -1) {
       encabezados = encabezados.concat(nuevas);
     } else {
+      // Se insertan columnas enteras, no solo rótulos: así las filas que ya
+      // existen corren su JSON a la derecha junto con el encabezado. Reescribir
+      // solo la fila 1 dejaba el JSON de las entregas anteriores debajo del
+      // rótulo de la primera pregunta nueva.
+      hoja.insertColumnsBefore(posJson + 1, nuevas.length);
       encabezados = encabezados.slice(0, posJson)
         .concat(nuevas)
         .concat(encabezados.slice(posJson));
@@ -316,4 +321,51 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
   }
   return ContentService.createTextOutput(cuerpo)
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+
+/* ------------------------------------------------------------------
+   Reparación de filas con el JSON corrido (se corre a mano, una vez)
+   ------------------------------------------------------------------
+   Hasta el 2026-09-22, cuando llegaba una pregunta nueva, escribirFila
+   reescribía solo el encabezado: las filas anteriores dejaban su JSON debajo
+   del rótulo de la primera pregunta nueva, y la columna «JSON completo»
+   quedaba vacía para ellas. No se perdió nada: el JSON sigue en la fila.
+
+   revisarJSONDesplazado()  solo informa (Ver → Registros de ejecución).
+   repararJSONDesplazado()  lo mueve a su columna. Se puede correr dos veces:
+                            una fila que ya está bien no se toca.
+   ------------------------------------------------------------------ */
+function revisarJSONDesplazado() { recorrerJSONDesplazado_(false); }
+function repararJSONDesplazado() { recorrerJSONDesplazado_(true); }
+
+function recorrerJSONDesplazado_(mover) {
+  var libro = SpreadsheetApp.getActiveSpreadsheet();
+  var total = 0;
+  libro.getSheets().forEach(function (hoja) {
+    if (hoja.getLastRow() < 2) return;
+    var ancho = hoja.getLastColumn();
+    var tabla = hoja.getRange(1, 1, hoja.getLastRow(), ancho).getValues();
+    var cJson = tabla[0].indexOf(COLUMNA_JSON);
+    if (cJson === -1) return;
+    for (var f = 1; f < tabla.length; f++) {
+      if (String(tabla[f][cJson] || '').trim()) continue;
+      for (var c = ancho - 1; c >= COLUMNAS_FIJAS.length; c--) {
+        var v = String(tabla[f][c] || '').trim();
+        if (c === cJson || v.charAt(0) !== '{') continue;
+        var ok = false;
+        try { var o = JSON.parse(v); ok = o && typeof o === 'object' && ('criteria' in o || 'text' in o); } catch (err) {}
+        if (!ok) continue;
+        total++;
+        Logger.log(hoja.getName() + ' · fila ' + (f + 1) + ' · ' + tabla[f][2] + ': JSON en la columna «' +
+                   tabla[0][c] + '»' + (mover ? ' → movido a «' + COLUMNA_JSON + '»' : ''));
+        if (mover) {
+          hoja.getRange(f + 1, cJson + 1).setValue(tabla[f][c]);
+          hoja.getRange(f + 1, c + 1).setValue('');
+        }
+        break;
+      }
+    }
+  });
+  Logger.log(total + (mover ? ' filas reparadas.' : ' filas con el JSON corrido.'));
 }

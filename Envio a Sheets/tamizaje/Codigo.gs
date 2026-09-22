@@ -163,6 +163,9 @@ function escribirFila(nombreHoja, datos, valoresFijos, alerta) {
     if (posJson === -1) {
       encabezados = encabezados.concat(nuevas);
     } else {
+      // Columnas enteras, no solo rótulos: las filas anteriores corren su JSON
+      // junto con el encabezado (ver casos/Codigo.gs, 2026-09-22).
+      hoja.insertColumnsBefore(posJson + 1, nuevas.length);
       encabezados = encabezados.slice(0, posJson)
         .concat(nuevas)
         .concat(encabezados.slice(posJson));
