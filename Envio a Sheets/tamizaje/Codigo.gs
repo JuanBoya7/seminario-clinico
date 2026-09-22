@@ -261,3 +261,49 @@ function doGet() {
     '<p class="nota">Esta página es solo de comprobación. Las fichas se envían ' +
     'desde el recurso del tamizaje.</p>');
 }
+
+
+/* ------------------------------------------------------------------
+   Reparación de filas con el JSON corrido (se corre a mano, una vez)
+   ------------------------------------------------------------------
+   Hasta el 2026-09-22, cuando llegaba una pregunta nueva, escribirFila
+   reescribía solo el encabezado: las filas anteriores dejaban su JSON debajo
+   del rótulo de la primera pregunta nueva. No se perdía nada.
+
+   revisarJSONDesplazado()  solo informa (Registro de ejecución).
+   repararJSONDesplazado()  lo mueve a su columna; una fila sana no se toca.
+   ------------------------------------------------------------------ */
+function revisarJSONDesplazado() { recorrerJSONDesplazado_(false); }
+function repararJSONDesplazado() { recorrerJSONDesplazado_(true); }
+
+function recorrerJSONDesplazado_(mover) {
+  var libro = libroDeCalculo();
+  var total = 0;
+  libro.getSheets().forEach(function (hoja) {
+    if (hoja.getLastRow() < 2) return;
+    var ancho = hoja.getLastColumn();
+    var tabla = hoja.getRange(1, 1, hoja.getLastRow(), ancho).getValues();
+    var cJson = tabla[0].indexOf(COLUMNA_JSON);
+    var cGrupo = tabla[0].indexOf('Grupo');
+    if (cJson === -1) return;
+    for (var f = 1; f < tabla.length; f++) {
+      if (String(tabla[f][cJson] || '').trim()) continue;
+      for (var c = ancho - 1; c >= COLUMNAS_FIJAS.length; c--) {
+        var v = String(tabla[f][c] || '').trim();
+        if (c === cJson || v.charAt(0) !== '{') continue;
+        var ok = false;
+        try { var o = JSON.parse(v); ok = !!o && typeof o === 'object'; } catch (err) {}
+        if (!ok) continue;
+        total++;
+        Logger.log(hoja.getName() + ' · fila ' + (f + 1) + ' · ' + (cGrupo > -1 ? tabla[f][cGrupo] : '') +
+                   ': JSON en la columna «' + tabla[0][c] + '»' + (mover ? ' → movido a «' + COLUMNA_JSON + '»' : ''));
+        if (mover) {
+          hoja.getRange(f + 1, cJson + 1).setValue(tabla[f][c]);
+          hoja.getRange(f + 1, c + 1).setValue('');
+        }
+        break;
+      }
+    }
+  });
+  Logger.log(total + (mover ? ' filas reparadas.' : ' filas con el JSON corrido.'));
+}
