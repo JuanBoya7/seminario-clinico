@@ -852,7 +852,8 @@ const ENFOQUES = {
   cond: { et: "Conductual",               largo: "Intervención conductual" },
   col:  { et: "Escolar",                  largo: "Intervención en el colegio" },
   est:  { et: "Intervención en crisis",   largo: "Intervención en crisis" },
-  em:   { et: "Entrevista motivacional",  largo: "Entrevista motivacional" }
+  em:   { et: "Entrevista motivacional",  largo: "Entrevista motivacional" },
+  pp:   { et: "Psicología positiva",      largo: "Intervenciones de psicología positiva" }
 };
 
 const MODELOS = {};
@@ -1336,6 +1337,46 @@ Object.assign(INSTRUMENTOS, {
 });
 REFERENCIAS.push(
   { k: "Robin y Le Grange, 2010", ref: "Robin, A. L. y Le Grange, D. (2010). Family therapy for adolescents with anorexia nervosa. En J. R. Weisz y A. E. Kazdin (Eds.), <em>Evidence-based psychotherapies for children and adolescents</em> (2.ª ed.). Guilford Press." }
+);
+
+/* Psicología positiva: educación en el perdón (Enright), terapia de bienestar
+   para niños, adolescentes y el colegio (Fava) y fortalezas del carácter en la
+   discapacidad intelectual (Niemiec y Tomasulo). */
+Object.assign(MODELOS, {
+  "educacion-perdon": {
+    t: "Educación en el perdón",
+    autor: "Enright",
+    d: "Aprender a perdonar lleva años, como entrenarse para una carrera larga; por eso conviene empezar en la infancia. El perdón se enseña primero con personajes de cuentos, en un ambiente sin tensión, y solo después se aplica a una herida real y pequeña. Descansa en cinco bases: el valor que toda persona tiene por el solo hecho de serlo, el amor, la bondad, el respeto y la generosidad. Con los años se pasa de perdonar a una persona por algo concreto a sentirse una persona que perdona.",
+    dim: ["Valor de toda persona", "Amor", "Bondad", "Respeto", "Generosidad", "Perdonar una herida real"],
+    fuente: "Enright y Fitzgibbons, 2015, cap. 12 · Enright y Knutson Enright, 2008"
+  },
+  "bienestar-ninos": {
+    t: "Modelo clínico del bienestar psicológico en la infancia",
+    autor: "Fava, a partir de Jahoda y Ryff",
+    d: "Además de reducir el malestar, se trabaja el bienestar psicológico: dominio del entorno, crecimiento personal, propósito, autonomía, autoaceptación y relaciones positivas. En lugar de registrar solo lo que va mal, el niño o el adolescente registra lo que va bien y lo que lo interrumpe. Con niños, las dimensiones se presentan de forma planeada y no solo cuando aparecen en el material, y la flexibilidad propia de la edad favorece nuevos equilibrios.",
+    dim: ["Dominio del entorno", "Crecimiento personal", "Propósito", "Autonomía", "Autoaceptación", "Relaciones positivas"],
+    fuente: "Fava, 2016, cap. 19"
+  },
+  "fortalezas-caracter": {
+    t: "Fortalezas del carácter",
+    autor: "Niemiec y Tomasulo",
+    d: "Todas las personas tienen las 24 fortalezas del carácter de la clasificación VIA en distintos grados, se expresan según la situación y pueden desarrollarse. En la discapacidad, un enfoque basado en fortalezas pone el foco en lo que la persona es en su núcleo, en lugar de en sus déficits, y la evaluación misma ya es una intervención: nombrar cualidades que suelen pasar inadvertidas.",
+    dim: ["Ser consciente de las fortalezas", "Explorarlas", "Aplicarlas"],
+    fuente: "Niemiec y Tomasulo, 2023, caps. 2 y 3"
+  }
+});
+
+Object.assign(INSTRUMENTOS, {
+  "EFI-N":  { n: "Inventario de Perdón de Enright para niños", rol: "Medida de resultado", d: "Grado de perdón hacia una persona concreta que hirió al niño: afectos, pensamientos y conductas. Se usó en los estudios de educación en el perdón.", med: "Autoinforme", guia: false, fuente: "Enright y Fitzgibbons, 2015, cap. 13" },
+  "VIA-J":  { n: "Inventario de Fortalezas VIA para jóvenes", rol: "Evaluación de fortalezas", d: "Las 24 fortalezas del carácter, para 8 a 17 años. Con discapacidad intelectual puede aplicarse con apoyo, con una lista en lenguaje sencillo o con el aporte de padres y docentes.", med: "98 ítems", guia: false, fuente: "Niemiec y Tomasulo, 2023, cap. 3" },
+  "SQ-K":   { n: "Cuestionario de Síntomas de Kellner", rol: "Medida de resultado", d: "Mide a la vez malestar, como la ansiedad y la somatización, y bienestar, como la cordialidad; se usó en los estudios escolares de la terapia de bienestar.", med: "Autoinforme breve", guia: false, fuente: "Fava, 2016, caps. 3 y 19" }
+});
+
+REFERENCIAS.push(
+  { k: "Enright y Fitzgibbons, 2015", url: "https://doi.org/10.1037/14526-000", ref: "Enright, R. D. y Fitzgibbons, R. P. (2015). <em>Forgiveness therapy: An empirical guide for resolving anger and restoring hope</em>. American Psychological Association. https://doi.org/10.1037/14526-000" },
+  { k: "Enright y Knutson Enright, 2008", ref: "Enright, R. D. y Knutson Enright, J. A. (2008). Discovering forgiveness: A guided curriculum for children ages 6–8. En C. W. LeCroy (Ed.), <em>Handbook of evidence-based treatment manuals for children and adolescents</em> (2.ª ed.). Oxford University Press." },
+  { k: "Fava, 2016", ref: "Fava, G. A. (2016). <em>Well-being therapy: Treatment manual and clinical applications</em>. Karger." },
+  { k: "Niemiec y Tomasulo, 2023", url: "https://doi.org/10.1007/978-3-031-36294-1", ref: "Niemiec, R. M. y Tomasulo, D. (2023). <em>Character strengths and abilities within disabilities: Advances in science and practice</em>. Springer. https://doi.org/10.1007/978-3-031-36294-1" }
 );
 
 // Las referencias van en orden alfabético, como en una lista APA.
@@ -2099,7 +2140,8 @@ const VARIABLES = [
   elegir: [
     "<strong>En la adolescencia, la terapia cognitivo-conductual y la psicoterapia interpersonal son tratamientos bien establecidos</strong>, y la combinación de terapia cognitivo-conductual con medicación también lo es en la depresión moderada a grave (Curry y Meyer, 2019).",
     "<strong>En la niñez la evidencia es más débil</strong>: la terapia cognitivo-conductual es probablemente eficaz, sobre todo en grupo y en el colegio. La activación conductual es una opción posiblemente eficaz para adolescentes, con resultados comparables a la terapia cognitivo-conductual en el único estudio que las comparó. ACT tiene todavía evidencia experimental (Curry y Meyer, 2019).",
-    "<strong>La desesperanza y la ideación suicida se evalúan desde el primer encuentro</strong> y predicen peor respuesta; si hay riesgo, va primero el plan de seguridad (Curry y Meyer, 2019). Si hay autolesiones repetidas, corresponde también Autolesión y riesgo suicida. Si la depresión viene con ansiedad marcada, el protocolo unificado de Ansiedad y miedos trabaja ambas."
+    "<strong>La desesperanza y la ideación suicida se evalúan desde el primer encuentro</strong> y predicen peor respuesta; si hay riesgo, va primero el plan de seguridad (Curry y Meyer, 2019). Si hay autolesiones repetidas, corresponde también Autolesión y riesgo suicida. Si la depresión viene con ansiedad marcada, el protocolo unificado de Ansiedad y miedos trabaja ambas.",
+    "<strong>Si la depresión ya respondió a la medicación</strong>, la prevención de recaídas con terapia cognitivo-conductual y de bienestar redujo las recaídas en un ensayo con niños y adolescentes."
   ],
   planes: [
     {
@@ -2422,6 +2464,230 @@ const VARIABLES = [
       cuidado: [
         "La evidencia en adolescentes es todavía limitada: no hay pruebas de que sea superior a otras terapias (Curry y Meyer, 2019).",
         "Terminar justo antes de una transición estresante o una ruptura no suele ser buena idea (McCauley et al., 2016, cap. 3)."
+      ]
+    },
+    {
+      id: "dep-bienestar",
+      mod: "bienestar-ninos",
+      inst: ["SMFQ", "PHQ-A"],
+      enf: "pp",
+      t: "Prevención de recaídas con terapia cognitivo-conductual y de bienestar",
+      fuente: "Curry y Meyer, 2019 · Fava, 2016, caps. 3 y 19",
+      cuando: "Niños y adolescentes con <strong>depresión mayor que respondieron a la medicación</strong> y siguen con ella, con riesgo de recaer. El objetivo no es solo sostener la mejoría sino recuperar el bienestar.",
+      respaldo: "En un ensayo con 144 niños y adolescentes con depresión mayor tratados con fluoxetina, quienes respondieron se asignaron al azar a seguir solo con el manejo de la medicación o a sumarle una terapia cognitivo-conductual de prevención de recaídas con elementos de psicología positiva —autocuidado, valores, autoaceptación— y de terapia de bienestar. En 30 semanas recayó el 9 % frente al 26,5 % (Curry y Meyer, 2019; Fava, 2016, cap. 3). La medicación se mantuvo en ambos grupos.",
+      secuencia: "<strong>Secuencia:</strong> de seis a once sesiones a lo largo de 30 semanas (Curry y Meyer, 2019). Con adolescentes puede seguirse el protocolo de adultos; con niños, el de ocho sesiones de una hora cada dos semanas, con juegos y juego de roles y los últimos 15 minutos con los padres cuando hace falta (Fava, 2016, cap. 19).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Evaluación de la vida diaria",
+          tecs: ["registro-animo"],
+          obj: "Conocer cómo es el día del niño y qué quedó de la depresión, con él y con sus padres.",
+          pasos: [
+            "Ver primero al niño solo y repasar su día en orden: despertar, colegio, regreso, tarde, comida, noche y sueño.",
+            "Volver a recorrer el día una segunda y una tercera vez: aparece más información cada vez.",
+            "Hablar después con uno o ambos padres.",
+            "Empezar el registro del ánimo."
+          ],
+          casa: "Registro diario del ánimo.",
+          avance: "Hay un panorama claro de los síntomas que quedan y de la vida diaria del niño.",
+          fuente: "Fava, 2016, cap. 19 · Curry y Meyer, 2019"
+        },
+        {
+          t: "Habilidades para lo que quedó",
+          tecs: ["pasos-solucion-problemas", "registro-animo"],
+          obj: "Trabajar los síntomas residuales con el registro del ánimo y la solución de problemas.",
+          pasos: [
+            "Revisar el registro del ánimo y buscar lo que lo hace subir o bajar.",
+            "Practicar los pasos de solución de problemas con situaciones reales.",
+            "Incluir el autocuidado: sueño, actividad y rutinas."
+          ],
+          casa: "Registro del ánimo y un problema resuelto con los pasos.",
+          avance: "El niño usa los pasos ante un problema real.",
+          fuente: "Curry y Meyer, 2019"
+        },
+        {
+          t: "El diario de bienestar",
+          tecs: ["diario-bienestar", "educacion-emocional"],
+          obj: "Aprender a reconocer y expresar las emociones positivas y a registrar los buenos momentos.",
+          pasos: [
+            "Enseñar a identificar y expresar emociones positivas con cuentos, animales, colores, caras y gestos.",
+            "Pedir que anote en el diario las cosas buenas que le pasan y cuánto le gustaron.",
+            "En la sesión siguiente, recordar elogios que recibió y cómo se sintió.",
+            "Buscar juntos en qué es bueno y qué puede mejorar."
+          ],
+          casa: "Diario de bienestar entre sesiones.",
+          avance: "El niño registra momentos buenos y reconoce cosas que hace bien.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 1 y 2)",
+          fichas: ["diario-bienestar-nino"]
+        },
+        {
+          t: "Lo que pienso cambia lo que siento",
+          tecs: ["diario-bienestar"],
+          obj: "Ver que la forma de interpretar las situaciones influye en las emociones.",
+          pasos: [
+            "Agregar al diario algunas situaciones que lo hicieron sentir mal.",
+            "Comparar situaciones agradables y difíciles y mostrar cómo influye lo que uno piensa de ellas.",
+            "Volver después a registrar solo las situaciones positivas."
+          ],
+          casa: "Diario con situaciones buenas y, esta semana, algunas difíciles.",
+          avance: "El niño da un ejemplo de cómo una interpretación cambió lo que sintió.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 3 y 4)"
+        },
+        {
+          t: "Lo que manejo bien, lo que quiero aprender y cómo me llevo con los demás",
+          tecs: ["dimensiones-bienestar"],
+          obj: "Trabajar el dominio del entorno, el crecimiento y las relaciones, junto con los valores y la aceptación de sí.",
+          pasos: [
+            "Hacer una lista de situaciones en que el niño se maneja bien.",
+            "Pensar qué habilidades ya tiene y cuáles quiere desarrollar, con pasos sencillos para lograrlo.",
+            "Reflexionar sobre las conductas que mejoran cómo se siente y cómo se lleva con los demás.",
+            "Escribir en el diario los cambios de conducta que se le piden."
+          ],
+          casa: "Los cambios de conducta acordados, anotados en el diario.",
+          avance: "El niño pone en práctica al menos un cambio y habla de sí con más aceptación.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 5 a 7) · Curry y Meyer, 2019"
+        },
+        {
+          t: "Cierre con la familia y plan ante señales de recaída",
+          tecs: ["prevencion-recaidas"],
+          obj: "Revisar con el niño y sus padres lo logrado y dejar un plan si reaparecen señales de depresión.",
+          pasos: [
+            "Hacer una sesión conjunta con el niño y los padres para repasar lo logrado.",
+            "Identificar las señales tempranas de recaída y qué hacer si aparecen.",
+            "Dar consejos prácticos para mantener los cambios y dejar abierta la puerta para volver."
+          ],
+          casa: "Plan escrito de mantenimiento en familia.",
+          avance: "La familia sabe reconocer las señales tempranas y a quién acudir.",
+          fuente: "Fava, 2016, cap. 19 (sesión 8) · Curry y Meyer, 2019"
+        }
+      ],
+      medir: [
+        "<strong>SMFQ</strong> o <strong>PHQ-A</strong> al inicio, en cada fase y durante el seguimiento, atentos a señales de recaída.",
+        "El diario de bienestar, como registro de proceso."
+      ],
+      adapt: [
+        "<strong>Salud mental:</strong> la medicación la maneja el psiquiatra; en el ensayo se mantuvo en ambos grupos (Curry y Meyer, 2019).",
+        "<strong>Consulta externa:</strong> con adolescentes se usa el protocolo de adultos; con niños menores, más juegos, más participación de los padres y las dimensiones del bienestar presentadas de forma planeada (Fava, 2016, cap. 19)."
+      ],
+      cuidado: [
+        "Fuera de este ensayo, la terapia de bienestar con niños tiene solo estudios preliminares; el protocolo infantil se considera una herramienta inicial (Fava, 2016, cap. 19).",
+        "La desesperanza y la ideación suicida se siguen evaluando durante la prevención de recaídas; si hay riesgo, va primero el plan de seguridad."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones emocionales",
+  t: "Bienestar psicológico",
+  sub: "No es solo la ausencia de síntomas: sentirse capaz de manejar lo de cada día, seguir aprendiendo, tener metas, decidir por uno mismo, aceptarse y llevarse bien con los demás. Se trabaja para promover el bienestar de todo un grupo en el colegio y, a la vez, para proteger frente a la ansiedad y el malestar físico sin causa médica.",
+  elegir: [
+    "<strong>En el colegio, con todo un curso</strong>, la terapia de bienestar adaptada al aula tiene ensayos aleatorizados en secundaria.",
+    "Si un niño o adolescente ya tuvo una depresión y respondió al tratamiento, el plan de prevención de recaídas de Depresión usa la terapia de bienestar de forma individual. Con discapacidad intelectual, el plan de fortalezas del carácter de Discapacidad intelectual."
+  ],
+  planes: [
+    {
+      id: "bien-escolar",
+      mod: "bienestar-ninos",
+      inst: ["SQ-K"],
+      enf: "pp",
+      t: "Terapia de bienestar en el colegio",
+      fuente: "Fava, 2016, cap. 19",
+      cuando: "Cursos completos de <strong>secundaria</strong>, sin selección por síntomas, para promover el bienestar psicológico y la resiliencia; los estudiantes de bachillerato se consideran más expuestos a la ansiedad y la depresión.",
+      respaldo: "En un primer estudio con 111 estudiantes de secundaria, cuatro sesiones de clase basadas en la terapia de bienestar mejoraron los síntomas y el bienestar tanto como un protocolo cognitivo-conductual. En un segundo estudio con 162 estudiantes, la terapia de bienestar mejoró la autonomía y la cordialidad, mientras que el manejo de la ansiedad solo mejoró la ansiedad. En 227 estudiantes de bachillerato, frente a un placebo de atención, mejoró el bienestar, sobre todo el crecimiento personal, y redujo la ansiedad y la somatización, con efectos mantenidos en el seguimiento, mientras que los del placebo se desvanecieron (Fava, 2016, cap. 19). Son pocos estudios, del mismo grupo de investigación.",
+      secuencia: "<strong>Secuencia:</strong> el libro no detalla el protocolo escolar: el primer estudio usó cuatro sesiones de clase de un par de horas y los siguientes, más sesiones con seguimiento. <strong>Las actividades de este plan adaptan al aula el protocolo de ocho sesiones para niños que describe el mismo capítulo; esa adaptación es una propuesta de organización de esta guía</strong> (Fava, 2016, cap. 19).",
+      esc: ["colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Reconocer las emociones positivas",
+          tecs: ["educacion-emocional", "diario-bienestar"],
+          obj: "Aprender a identificar, reconocer y expresar las emociones positivas.",
+          pasos: [
+            "Trabajar las emociones positivas con historias, colores, expresiones de la cara y gestos.",
+            "Presentar el diario de bienestar: situación, lo que sentí y cuánto, de 0 a 100.",
+            "Aclarar que no hay una respuesta correcta sobre qué es sentirse bien."
+          ],
+          casa: "Anotar en el diario las cosas buenas que pasen.",
+          avance: "Los estudiantes registran situaciones positivas.",
+          fuente: "Fava, 2016, cap. 19 (sesión 1)",
+          fichas: ["diario-bienestar-nino"]
+        },
+        {
+          t: "Los elogios y lo que hago bien",
+          tecs: ["diario-bienestar"],
+          obj: "Reconocer las áreas en que cada estudiante es bueno y las que puede mejorar.",
+          pasos: [
+            "Recordar elogios recibidos y conversar sobre cómo se sintieron.",
+            "Reflexionar sobre lo difícil que a veces es ser amable y lo gratificante de un elogio inesperado.",
+            "Buscar momentos de disfrute intenso en alguna actividad."
+          ],
+          casa: "Seguir el diario y hacer un elogio sincero a alguien.",
+          avance: "Cada estudiante nombra algo en lo que es bueno.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 2 y 3)"
+        },
+        {
+          t: "Lo que pienso cambia lo que siento",
+          tecs: ["diario-bienestar", "educacion-emocional"],
+          obj: "Ver cómo la interpretación de las situaciones influye en las emociones.",
+          pasos: [
+            "Agregar al diario algunas situaciones que hicieron sentir mal.",
+            "Comparar situaciones agradables y difíciles y mostrar cómo influye lo que uno piensa.",
+            "Volver al registro de lo positivo."
+          ],
+          casa: "Diario con situaciones positivas y alguna difícil.",
+          avance: "Los estudiantes dan ejemplos de cómo una interpretación cambió una emoción.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 3 y 4)"
+        },
+        {
+          t: "Situaciones que manejo bien",
+          tecs: ["dimensiones-bienestar"],
+          obj: "Reconocer el dominio del entorno: las situaciones en que cada estudiante se maneja bien.",
+          pasos: [
+            "Armar entre todos una lista de situaciones de la vida escolar y familiar que manejan bien.",
+            "Pedir que cada uno agregue las suyas al diario.",
+            "Escribir un pequeño cambio de conducta como tarea."
+          ],
+          casa: "El cambio de conducta acordado.",
+          avance: "Cada estudiante identifica situaciones que maneja con soltura.",
+          fuente: "Fava, 2016, cap. 19 (sesión 5)"
+        },
+        {
+          t: "Lo que sé hacer y lo que quiero aprender",
+          tecs: ["dimensiones-bienestar", "pasos-solucion-problemas"],
+          obj: "Trabajar el crecimiento personal con técnicas sencillas de solución de problemas.",
+          pasos: [
+            "Reflexionar sobre las habilidades que ya se tienen y las que se quieren desarrollar.",
+            "Enseñar pasos sencillos para resolver problemas.",
+            "Escribir un paso concreto hacia una habilidad nueva."
+          ],
+          casa: "Dar el paso acordado.",
+          avance: "Cada estudiante da un paso hacia una habilidad que quiere aprender.",
+          fuente: "Fava, 2016, cap. 19 (sesión 6)"
+        },
+        {
+          t: "Cómo me llevo con los demás",
+          tecs: ["dimensiones-bienestar"],
+          obj: "Reflexionar sobre las conductas que mejoran cómo se sienten y cómo se relacionan, y cerrar el ciclo.",
+          pasos: [
+            "Pensar qué conductas mejoran el ánimo propio y las relaciones con los demás.",
+            "Elegir una para practicar.",
+            "Cerrar repasando lo aprendido; si es posible, con una actividad para las familias."
+          ],
+          casa: "Practicar la conducta elegida.",
+          avance: "Los estudiantes describen cambios en sus relaciones.",
+          fuente: "Fava, 2016, cap. 19 (sesiones 7 y 8)"
+        }
+      ],
+      medir: [
+        "<strong>Cuestionario de Síntomas de Kellner</strong>, que mide malestar y bienestar, y las escalas de bienestar psicológico de Ryff, antes, después y en un seguimiento, como en los estudios (Fava, 2016, cap. 19)."
+      ],
+      adapt: [
+        "<strong>Consulta externa:</strong> el protocolo de ocho sesiones de una hora cada dos semanas se usa también de forma individual, con los últimos 15 minutos para los padres; con niños solo tiene un estudio piloto (Fava, 2016, cap. 19)."
+      ],
+      cuidado: [
+        "Es un programa de promoción para cursos completos: no reemplaza el tratamiento de un estudiante con un trastorno, que se deriva a su plan.",
+        "Los estudios son pocos y del mismo grupo; la adaptación de las actividades al aula es una propuesta de esta guía."
       ]
     }
   ]
@@ -3282,7 +3548,8 @@ const VARIABLES = [
   sub: "Peleas, golpes, amenazas, insultos o intimidación, con enojo que escala rápido ante provocaciones o conflictos con compañeros, docentes o familiares. Lo que se interviene es cómo el niño o el adolescente percibe e interpreta la provocación, cómo maneja la activación y qué alternativas tiene a la agresión.",
   elegir: [
     "<strong>Los programas cognitivo-conductuales de manejo de la ira</strong> trabajan la percepción de la provocación, la activación, las autoinstrucciones y la solución de problemas, casi siempre en grupo y a menudo en el colegio. Para los niños de 9 a 12 años, el programa de Lochman tiene varios ensayos aleatorizados; para los adolescentes, el programa de Feindler se basa en el modelo de la ira como reacción de estrés (Lochman et al., 2010; Feindler y Gerber, 2008).",
-    "Para obtener efectos duraderos sobre la delincuencia, parece necesario sumar el trabajo con los padres (Lochman et al., 2010). En niños menores o cuando la agresión ocurre sobre todo en casa, corresponde el entrenamiento a padres de Conducta oposicionista y desafiante. Si las explosiones de rabia son frecuentes e intensas, conviene revisar también Irritabilidad y explosiones de rabia; si la agresión es acoso, Acoso escolar."
+    "Para obtener efectos duraderos sobre la delincuencia, parece necesario sumar el trabajo con los padres (Lochman et al., 2010). En niños menores o cuando la agresión ocurre sobre todo en casa, corresponde el entrenamiento a padres de Conducta oposicionista y desafiante. Si las explosiones de rabia son frecuentes e intensas, conviene revisar también Irritabilidad y explosiones de rabia; si la agresión es acoso, Acoso escolar.",
+    "<strong>Si el enojo viene de injusticias que el niño vivió</strong> y no sabe qué hacer con él, además de negarlo o descargarlo, la educación en el perdón, para 6 a 11 años, redujo el enojo en ensayos en el aula."
   ],
   planes: [
     {
@@ -3499,6 +3766,118 @@ const VARIABLES = [
       cuidado: [
         "Antes de empezar se confirma que el problema es de manejo de la activación, control de impulsos y respuestas prosociales, y se evalúan el diagnóstico, el nivel cognitivo, la madurez y la motivación (Feindler y Gerber, 2008).",
         "Los autoinformes de ira están sesgados por la deseabilidad social: se completan con observación e informes de otros (Feindler y Gerber, 2008)."
+      ]
+    },
+    {
+      id: "ira-perdon",
+      mod: "educacion-perdon",
+      inst: ["EFI-N"],
+      enf: "pp",
+      t: "Educación en el perdón para niños",
+      fuente: "Enright y Knutson Enright, 2008 · Enright y Fitzgibbons, 2015, cap. 12",
+      cuando: "Niños de <strong>6 a 11 años</strong> con enojo por injusticias que vivieron —en la familia, con compañeros— o que crecen en contextos de mucho conflicto o pobreza. Se aplica a un aula completa, en grupo o en consulta, y enseña una tercera forma de responder al enojo, además de negarlo o descargarlo.",
+      respaldo: "En Belfast, aulas de primer grado asignadas al azar redujeron el enojo más que las de control; los niños empezaron por encima del punto de corte clínico de enojo y terminaron en el rango promedio. En tercer grado disminuyeron también la depresión y aumentó el perdón. En el centro de Milwaukee, el enojo bajó más que en los controles en primero y quinto grado; en tercero bajó en ambos grupos. Las lecciones las dieron los propios docentes (Enright y Fitzgibbons, 2015, cap. 12). Un metaanálisis de intervenciones de perdón encontró efectos grandes, mayores en formato individual que grupal (en Enright y Knutson Enright, 2008). La mayoría de los estudios son del grupo que creó el programa.",
+      secuencia: "<strong>Secuencia:</strong> quince lecciones semanales de una hora aproximadamente para niños de 6 a 8 años; las guías para otras edades siguen el mismo formato. Las seis primeras enseñan las bases del perdón con cuentos y películas, sin hablar todavía de perdonar; de la séptima a la décima se ven esas bases dentro del perdón; en las últimas cinco, cada niño, si lo desea, intenta perdonar a alguien que fue injusto con él, empezando por una herida pequeña (Enright y Knutson Enright, 2008).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Todas las personas tienen valor",
+          tecs: ["valor-inherente", "cuentos-perdon"],
+          obj: "Que el niño entienda que toda persona vale por el solo hecho de serlo, aunque sea distinta o actúe mal.",
+          pasos: [
+            "Conversar sobre cómo nos diferenciamos: aspecto, cosas, habilidades, lugar donde vivimos.",
+            "Leer o ver un cuento con personajes muy distintos entre sí y preguntar qué hace valiosa a una persona.",
+            "Hacer una actividad que muestre que el valor no depende de lo de afuera.",
+            "Cerrar con la idea: nadie debe ser usado ni despreciado."
+          ],
+          casa: "Contarle a alguien de la familia lo que aprendió sobre el valor de las personas.",
+          avance: "El niño explica con sus palabras que el valor de una persona no depende de lo que tiene o de cómo se ve.",
+          fuente: "Enright y Knutson Enright, 2008, lecciones 1 y 2"
+        },
+        {
+          t: "Amor, bondad, respeto y generosidad",
+          tecs: ["cuentos-perdon"],
+          obj: "Practicar las cuatro virtudes que preparan el camino para perdonar.",
+          pasos: [
+            "Dedicar una lección a cada virtud, con un cuento y preguntas.",
+            "Explicar el amor como una decisión de tratar bien a los demás, no solo como un sentimiento.",
+            "Buscar en los cuentos ejemplos de bondad, de respeto y de generosidad, y también de lo contrario.",
+            "Hacer una actividad práctica con cada virtud."
+          ],
+          casa: "Hacer cada semana un acto de la virtud trabajada y contarlo en la siguiente lección.",
+          avance: "El niño da ejemplos propios de bondad, respeto y generosidad.",
+          fuente: "Enright y Knutson Enright, 2008, lecciones 3 a 6"
+        },
+        {
+          t: "Qué es y qué no es perdonar",
+          tecs: ["que-es-perdonar", "cuentos-perdon"],
+          obj: "Que el niño entienda qué es perdonar y lo distinga de excusar, olvidar o volver a ser amigos.",
+          pasos: [
+            "Leer un cuento en que un personaje perdona a otro.",
+            "Preguntar qué hizo el personaje y qué no hizo: no dijo que estuvo bien, no se olvidó.",
+            "Aclarar que se puede perdonar sin volver a ser amigos y sin dejar que el otro vuelva a hacer daño.",
+            "Recordar que perdonar es una elección."
+          ],
+          casa: "Buscar un ejemplo de perdón en un cuento, una película o una historia familiar.",
+          avance: "El niño distingue perdonar de hacer como si nada hubiera pasado.",
+          fuente: "Enright y Knutson Enright, 2008, lecciones 7 a 10 y 13"
+        },
+        {
+          t: "Lo que sentimos cuando alguien es injusto",
+          tecs: ["educacion-emocional"],
+          obj: "Reconocer el enojo y la tristeza ante la injusticia y ver que el enojo que se queda hace daño.",
+          pasos: [
+            "Hablar de las emociones, sobre todo el enojo y la tristeza que trae una injusticia.",
+            "Explicar que el enojo es una respuesta sana, pero que cuando se queda mucho tiempo daña la salud y las relaciones.",
+            "Pedir a cada niño que piense en privado en una persona que fue injusta con él, en una sola situación y no la más grave.",
+            "Explorar cuánto enojo siente todavía."
+          ],
+          casa: "Nada que contar a otros: la herida elegida es privada.",
+          avance: "El niño nombra lo que siente sin tener que contar la situación.",
+          fuente: "Enright y Knutson Enright, 2008, lecciones 11 y 12"
+        },
+        {
+          t: "Ver con ojos nuevos",
+          tecs: ["ojos-nuevos"],
+          obj: "Mirar a quien fue injusto y reconocer su valor, sin exponerse a que vuelva a hacer daño.",
+          pasos: [
+            "Repasar el cuento de la lección de perdón.",
+            "Preguntar qué podría estar viviendo la persona que fue injusta y si también puede ser buena.",
+            "Aplicarlo en privado a la persona elegida, al ritmo de cada niño."
+          ],
+          casa: "Pensar en algo bueno de la persona elegida, si ya se siente listo.",
+          avance: "El niño describe a esa persona con algo más que la injusticia que cometió.",
+          fuente: "Enright y Knutson Enright, 2008, lección 14"
+        },
+        {
+          t: "Regalos del perdón",
+          tecs: ["regalos-perdon"],
+          obj: "Profundizar el perdón con un gesto de bondad, respeto o generosidad, cuando el niño esté listo.",
+          pasos: [
+            "Explicar que perdonar puede llevar a dar regalos de bondad, respeto o generosidad, aunque cueste.",
+            "Pensar qué regalo sería posible y seguro, sin obligación de darlo.",
+            "Respetar que cada niño esté en un punto distinto."
+          ],
+          casa: "Completar la ficha de ojos nuevos y regalos del perdón.",
+          avance: "Baja el enojo del niño hacia la persona elegida.",
+          fuente: "Enright y Knutson Enright, 2008, lección 15",
+          fichas: ["ojos-nuevos"]
+        }
+      ],
+      medir: [
+        "<strong>Inventario de Perdón de Enright para niños</strong> antes y después, desde tercer grado.",
+        "Un inventario de enojo infantil antes y un mes después; en los estudios se usó el de Beck, leído a cada niño (Enright y Fitzgibbons, 2015, cap. 12)."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> los docentes asisten antes a un taller en que discuten qué es perdonar e intentan perdonar ellos mismos a alguien, porque quien ha perdonado enseña mejor (Enright y Fitzgibbons, 2015, cap. 12).",
+        "<strong>Consulta externa:</strong> el profesional puede usar los cuentos, individualmente o en grupo, para introducir las ideas y después aplicarlas a la injusticia concreta del niño (Enright y Fitzgibbons, 2015, cap. 12).",
+        "<strong>Familia:</strong> existe una guía de catorce lecciones para que los padres enseñen el perdón en casa, y reuniones familiares sobre el perdón; en un piloto pequeño, los más beneficiados fueron los padres (Enright y Fitzgibbons, 2015, cap. 12)."
+      ],
+      cuidado: [
+        "Perdonar es una elección: nunca se exige, no se convierte en competencia ni se califica (Enright y Knutson Enright, 2008).",
+        "Perdonar no significa volver a relacionarse con quien acosa o pone en peligro al niño. Si la herida es maltrato, la protección va primero: ver Maltrato infantil.",
+        "En el aula, la herida que cada niño elige es privada; en grupos terapéuticos, el profesional decide qué se comparte (Enright y Knutson Enright, 2008, lección 11)."
       ]
     }
   ]
@@ -3737,7 +4116,8 @@ const VARIABLES = [
   sub: "Uno o varios estudiantes agreden de forma repetida a un compañero con menos poder, con golpes, insultos, exclusión, rumores o a través de las redes. El acoso no es solo un problema del agresor y la víctima: se mantiene por los compañeros que lo refuerzan o lo presencian en silencio y por la falta de supervisión de los adultos. Se interviene sobre el colegio entero, el aula, los compañeros y cada caso.",
   elegir: [
     "<strong>Se aborda mejor con un sistema escalonado en el colegio, con componentes para todos y componentes focalizados.</strong> Los programas que abarcan todo el colegio han reducido el acoso y la victimización; los metaanálisis muestran efectos positivos pero pequeños y variables. Tienen buen respaldo desde preescolar hasta séptimo grado y menos desde octavo en adelante (McMahon y Frick, 2019).",
-    "A la víctima se le ofrece además el plan de lo que presente —ansiedad, depresión, rechazo escolar o riesgo suicida— y al agresor, el de Agresividad e ira o Conducta oposicionista y desafiante. En los estudiantes con autismo que sufren acoso sirve también el entrenamiento en habilidades sociales de Autismo."
+    "A la víctima se le ofrece además el plan de lo que presente —ansiedad, depresión, rechazo escolar o riesgo suicida— y al agresor, el de Agresividad e ira o Conducta oposicionista y desafiante. En los estudiantes con autismo que sufren acoso sirve también el entrenamiento en habilidades sociales de Autismo.",
+    "<strong>Si quien acosa también ha sido agredido</strong> y carga mucho enojo, el programa de perdón para adolescentes complementa las medidas del colegio."
   ],
   planes: [
     {
@@ -3829,6 +4209,112 @@ const VARIABLES = [
       cuidado: [
         "Desde octavo grado el respaldo es débil: en secundaria los efectos son menores (McMahon y Frick, 2019).",
         "Los estudios tienen limitaciones: pocos ensayos aleatorizados y definiciones de acoso que se confunden con otras formas de agresión (McMahon y Frick, 2019)."
+      ]
+    },
+    {
+      id: "acoso-perdon",
+      mod: "educacion-perdon",
+      inst: ["EFI-N"],
+      enf: "pp",
+      t: "Perdón para adolescentes que acosan y son acosados",
+      fuente: "Enright y Fitzgibbons, 2015, cap. 12",
+      cuando: "Adolescentes que <strong>acosan y a la vez han sido agredidos</strong>, o estudiantes con mucho enojo, en riesgo de fracaso escolar y con heridas profundas de otras personas. Parte de la idea de que quien acosa suele haber sido tratado injustamente y desplaza ese enojo hacia otros más débiles. Complementa, no reemplaza, el sistema escolar contra el acoso.",
+      respaldo: "En Corea, 72 adolescentes que agredían y eran agredidos, de un colegio y de un centro de reclusión juvenil, se asignaron al azar a doce sesiones grupales de perdón, a un entrenamiento en habilidades sociales o a ningún contacto. El grupo de perdón aumentó más el perdón, la empatía y las notas, y redujo más el enojo, la atribución de hostilidad, la agresión y la delincuencia autoinformadas, con varias mejoras mantenidas a las ocho semanas. En un colegio rural, quince semanas de perdón con estudiantes en riesgo mejoraron la conducta escolar y las notas frente a la consejería de apoyo, en una muestra muy pequeña (Enright y Fitzgibbons, 2015, cap. 12).",
+      secuencia: "<strong>Secuencia:</strong> la guía contra el acoso para 11 a 14 años tiene ocho lecciones, con la historia de un adolescente que desplaza su enojo en el colegio. En el estudio coreano, los grupos de ocho se reunieron doce semanas: las siete primeras sobre quienes les hicieron daño y las cinco últimas sobre quienes ellos dañaron (Enright y Fitzgibbons, 2015, cap. 12).",
+      esc: ["colegio", "proteccion"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Mi enojo",
+          tecs: ["educacion-emocional"],
+          obj: "Que el adolescente cuente su propia historia de haber sido tratado injustamente y reconozca el enojo que carga.",
+          pasos: [
+            "Presentar la idea de que quien hace daño suele haber sido dañado.",
+            "Invitar a contar, si lo desea, una historia en que lo trataron injustamente.",
+            "Reconocer que a muchos nunca les preguntaron por eso."
+          ],
+          casa: "Escribir en privado lo que le ha costado cargar con ese enojo.",
+          avance: "El adolescente nombra su enojo y de dónde viene.",
+          fuente: "Enright y Fitzgibbons, 2015, cap. 12 (lección 1)"
+        },
+        {
+          t: "El perdón calma el enojo",
+          tecs: ["que-es-perdonar"],
+          obj: "Presentar el perdón como una forma de calmar el enojo de adentro, distinta de negarlo o descargarlo.",
+          pasos: [
+            "Explorar las tres formas de manejar el enojo: negarlo, expresarlo o perdonar.",
+            "Aclarar qué no es perdonar: no es ser débil, dejarse pisar ni dejar de defender los propios derechos.",
+            "Recordar que es una elección."
+          ],
+          casa: "Pensar en una persona a quien le costaría perdonar.",
+          avance: "El adolescente distingue perdonar de dejarse maltratar.",
+          fuente: "Enright y Fitzgibbons, 2015, caps. 10 y 12"
+        },
+        {
+          t: "Todos tenemos valor",
+          tecs: ["valor-inherente"],
+          obj: "Reconocer el valor de todas las personas, tanto de quien acosa como de quien es acosado.",
+          pasos: [
+            "Trabajar con la historia del personaje y con una canción o un texto contra la burla.",
+            "Ayudar a ver que uno puede haber sido víctima y también haber hecho daño.",
+            "Nombrar el acoso como lo que es, sin quitarle valor a la persona."
+          ],
+          casa: "Observar durante la semana cómo se trata a los demás en el colegio.",
+          avance: "El adolescente reconoce el daño que hizo sin sentirse sin valor.",
+          fuente: "Enright y Fitzgibbons, 2015, cap. 12 (lecciones 3 y 4)"
+        },
+        {
+          t: "Ablandar el corazón",
+          tecs: ["ojos-nuevos"],
+          obj: "Desarrollar compasión hacia quienes le hicieron daño y hacia quienes recibieron su enojo.",
+          pasos: [
+            "Mirar a quien lo hirió con ojos nuevos: qué vivía esa persona.",
+            "Pensar después en quienes recibieron su enojo desplazado y qué sintieron.",
+            "Validar a quien todavía no puede sentir compasión."
+          ],
+          casa: "Escribir sobre una de esas personas desde su punto de vista.",
+          avance: "Aparece empatía hacia al menos una persona.",
+          fuente: "Enright y Fitzgibbons, 2015, cap. 12 (lección 5)"
+        },
+        {
+          t: "Soportar el dolor sin pasárselo a otros",
+          tecs: ["soportar-dolor"],
+          obj: "Aceptar el propio dolor en lugar de descargarlo en otros más débiles.",
+          pasos: [
+            "Mostrar con la historia cómo el dolor no resuelto se pasa a otros.",
+            "Buscar juntos formas de cargar el dolor sin hacer daño.",
+            "Relacionarlo con situaciones concretas del colegio."
+          ],
+          casa: "Notar un momento en que sintió ganas de descargarse en alguien y qué hizo.",
+          avance: "Disminuyen los episodios en que descarga el enojo en otros.",
+          fuente: "Enright y Fitzgibbons, 2015, cap. 12 (lección 6)"
+        },
+        {
+          t: "Juntar las piezas y ofrecer misericordia",
+          tecs: ["regalos-perdon"],
+          obj: "Integrar lo aprendido y comprometerse a dejar de desplazar el enojo.",
+          pasos: [
+            "Repasar el camino recorrido con la historia completa del personaje.",
+            "Invitar a extender a otros la misericordia que se ha recibido o se ha dado.",
+            "Acordar un compromiso concreto con los compañeros."
+          ],
+          casa: "Cumplir el compromiso y contarlo en el cierre.",
+          avance: "Bajan el enojo y la agresión según el propio adolescente y sus docentes.",
+          fuente: "Enright y Fitzgibbons, 2015, cap. 12 (lecciones 7 y 8)",
+          fichas: ["ojos-nuevos"]
+        }
+      ],
+      medir: [
+        "Una medida de perdón, como el <strong>Inventario de Perdón de Enright</strong>, y reportes de agresión del propio adolescente y de sus docentes, antes y después; las notas escolares como dato complementario (Enright y Fitzgibbons, 2015, cap. 12)."
+      ],
+      adapt: [
+        "<strong>Protección:</strong> el estudio coreano incluyó un centro de reclusión juvenil, con resultados similares en ambos lugares (Enright y Fitzgibbons, 2015, cap. 12).",
+        "<strong>Colegio:</strong> en el estudio rural lo aplicó el consejero escolar en grupo (Enright y Fitzgibbons, 2015, cap. 12)."
+      ],
+      cuidado: [
+        "No reemplaza las medidas del colegio contra el acoso: los autores lo presentan como complemento de la modificación de la conducta, no como alternativa (Enright y Fitzgibbons, 2015, cap. 12).",
+        "Perdonar no implica que la víctima vuelva a relacionarse con quien la acosa ni que se le quite importancia al acoso.",
+        "Los estudios son pocos y pequeños, y del grupo que creó el programa."
       ]
     }
   ]
@@ -4562,7 +5048,8 @@ const VARIABLES = [
   sub: "Limitaciones en el funcionamiento intelectual y en la conducta adaptativa —comunicación, cuidado personal, vida en casa y en la comunidad, habilidades sociales— desde el desarrollo temprano. Con frecuencia se suman conductas desafiantes, como agresión, autolesiones o estereotipias, más probables a menor edad y con mayores dificultades cognitivas y de comunicación. Lo que se interviene es lo que el niño puede hacer por sí mismo y la función que cumplen sus conductas desafiantes.",
   elegir: [
     "<strong>Para las conductas desafiantes, la intervención conductual basada en un análisis funcional es la de mejor respaldo</strong>, y se recomienda antes de recurrir a la medicación. Las habilidades adaptativas y sociales se enseñan con técnicas conductuales, que tienen respaldo; la evidencia sobre la psicoterapia en esta población es escasa y no permite recomendarla todavía (Matson et al., 2019).",
-    "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo."
+    "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo.",
+    "Como complemento, el plan de fortalezas del carácter ayuda a que el niño se conozca por sus cualidades y a llevarlas al plan educativo individual; su evidencia es todavía inicial."
   ],
   planes: [
     {
@@ -4734,6 +5221,87 @@ const VARIABLES = [
       ],
       cuidado: [
         "Buena parte de la investigación en habilidades sociales incluyó personas con discapacidad intelectual y autismo; sus resultados pueden no aplicarse igual a quienes solo tienen discapacidad intelectual (Matson et al., 2019)."
+      ]
+    },
+    {
+      id: "di-fortalezas",
+      mod: "fortalezas-caracter",
+      inst: ["VIA-J"],
+      enf: "pp",
+      t: "Fortalezas del carácter en la discapacidad intelectual",
+      fuente: "Niemiec y Tomasulo, 2023, cap. 3",
+      cuando: "Niños y adolescentes con <strong>discapacidad intelectual o del desarrollo</strong>, incluido el autismo, como complemento de los apoyos educativos y conductuales. Busca que se conozcan por sus cualidades y no solo por sus déficits, y que sus fortalezas entren en las metas escolares.",
+      respaldo: "La evidencia es inicial. El inventario juvenil de fortalezas mostró respaldo psicométrico en jóvenes con discapacidad, aunque estos se puntúan más bajo, posiblemente por el entorno. En autismo, usar más las fortalezas se asocia con mejor calidad de vida y bienestar. En un estudio controlado con niños neurodivergentes de educación inicial, ocho sesiones de 30 minutos en el aula mostraron beneficios iniciales en funciones ejecutivas según los docentes; un programa de 16 semanas en cuarto a sexto grado mejoró la cohesión del grupo y el clima del aula (Niemiec y Tomasulo, 2023, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> sigue el modelo consciente-explorar-aplicar: evaluar las fortalezas con el nivel de apoyo que la persona necesite, nombrarlas y apreciarlas, dar primeros pasos concretos con cada una, practicar actividades adaptadas y llevarlas a un plan individual (Niemiec y Tomasulo, 2023, cap. 3).",
+      esc: ["colegio", "primer-nivel", "comunidad"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Conocer las fortalezas con los apoyos necesarios",
+          tecs: ["fortalezas-caracter", "fortalezas-360"],
+          obj: "Identificar las fortalezas del niño con el método que mejor se ajuste a su nivel de apoyo.",
+          pasos: [
+            "Elegir el nivel: el inventario juvenil solo, con una persona de apoyo que no influya en las respuestas, una medida breve, o una lista de las 24 fortalezas en lenguaje sencillo para marcar las que lo describen.",
+            "Si el niño no puede responder, pedir a padres, docentes y hermanos que nombren sus fortalezas con ejemplos.",
+            "Reunir los datos y quedarse con las fortalezas que más se repiten."
+          ],
+          casa: "Que la familia anote durante la semana momentos en que vio esas fortalezas.",
+          avance: "Hay un perfil de fortalezas del niño con ejemplos concretos.",
+          fuente: "Niemiec y Tomasulo, 2023, cap. 3",
+          fichas: ["mis-fortalezas"]
+        },
+        {
+          t: "Nombrar y apreciar",
+          tecs: ["deteccion-fortalezas"],
+          obj: "Que el niño y quienes lo rodean vean, expliquen y valoren sus fortalezas.",
+          pasos: [
+            "Enseñar a los adultos a detectar fortalezas: nombrarla, decir la conducta en que se vio y valorarla.",
+            "Practicarlo con el niño en la sesión y en el aula.",
+            "Invitar al niño a detectar fortalezas en sus compañeros."
+          ],
+          casa: "Detectar y nombrar cada día una fortaleza del niño.",
+          avance: "El niño reconoce al menos dos fortalezas propias.",
+          fuente: "Niemiec y Tomasulo, 2023, cap. 3"
+        },
+        {
+          t: "Primeros pasos con cada fortaleza",
+          tecs: ["fortalezas-caracter"],
+          obj: "Traducir cada fortaleza en una acción concreta y sencilla.",
+          pasos: [
+            "Tomar una fortaleza principal y su acción práctica: por ejemplo, para la bondad, ayudar o dar tiempo a otro.",
+            "Elegir actividades adaptadas: usar una fortaleza de una forma nueva, contar actos de bondad durante una semana, anotar tres cosas por las que está agradecido, moverse más cada día.",
+            "Hacer la actividad con los apoyos que necesite: imágenes, video, acompañamiento."
+          ],
+          casa: "Practicar la acción elegida durante la semana.",
+          avance: "El niño realiza la acción varias veces en la semana.",
+          fuente: "Niemiec y Tomasulo, 2023, cap. 3 (tablas 3.3 y 3.4)"
+        },
+        {
+          t: "Las fortalezas en el plan individual",
+          tecs: ["deteccion-fortalezas"],
+          obj: "Llevar las fortalezas a las metas escolares y al plan educativo individual.",
+          pasos: [
+            "Invitar al estudiante a las reuniones de su plan, si es apropiado, y empezarlas nombrando sus fortalezas distintivas con ejemplos.",
+            "Poner metas en que la fortaleza sea el objetivo («usar mi valentía para hablar en clase») o el camino («usar mi curiosidad cuando me cuesta un problema de matemáticas»).",
+            "Llevar el plan a casa para que la familia lo conozca y lo apoye.",
+            "Hacer reuniones breves de seguimiento cada una o dos semanas."
+          ],
+          casa: "Revisar el plan con la familia.",
+          avance: "El plan del estudiante incluye al menos una meta con sus fortalezas.",
+          fuente: "Niemiec y Tomasulo, 2023, cap. 3"
+        }
+      ],
+      medir: [
+        "<strong>Inventario de Fortalezas VIA para jóvenes</strong>, con los apoyos que haga falta, al inicio.",
+        "El avance en las metas del plan individual en las reuniones de seguimiento."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> en un aula inclusiva se aplicó para mejorar el clima y reducir la discriminación entre niños con y sin discapacidad, con buena viabilidad (Niemiec y Tomasulo, 2023, cap. 3).",
+        "<strong>Comunidad:</strong> la participación en actividades comunitarias se asocia con más fortalezas percibidas; conviene fomentar la inclusión y la pertenencia (Niemiec y Tomasulo, 2023, cap. 3)."
+      ],
+      cuidado: [
+        "La evidencia de resultados es todavía inicial: se usa como complemento de las intervenciones conductuales y educativas con respaldo, no en su lugar.",
+        "Las fortalezas más abstractas, como la creatividad, la justicia, la esperanza o la espiritualidad, pueden ser más difíciles de entender; se explican con ejemplos concretos (Niemiec y Tomasulo, 2023, cap. 3)."
       ]
     }
   ]
@@ -7180,7 +7748,52 @@ const GLOSARIO = [
 { k: "registro-comidas", t: "Registro de comidas", tipo: "Técnica", enf: ["fam", "tcc"],
   d: "Anotación de todo lo que come el adolescente, por lo general hecha por los padres. Sirve para evaluar, para revisar cómo son las comidas en casa y para seguir el programa.",
   ficha: "registro-comidas",
-  fuente: "Robin y Le Grange, 2010, «Phase 1: Assessment»" }
+  fuente: "Robin y Le Grange, 2010, «Phase 1: Assessment»" },
+{ k: "valor-inherente", t: "Valor de toda persona", alias: ["valor inherente", "valor profundo"], tipo: "Concepto", enf: ["pp"],
+  d: "Idea central de la educación en el perdón: toda persona tiene un valor que no se gana ni se pierde, que no depende de su aspecto, sus cosas, sus capacidades ni su grupo. Verlo también en quien actuó mal es lo que después permite perdonar, sin decir que lo que hizo estuvo bien.",
+  ej: "«¿Por qué este juguete vale para ti? ¿Vale más porque tiene casa? ¿Y las personas, por qué valen?»",
+  fuente: "Enright y Knutson Enright, 2008, lecciones 1 y 2" },
+{ k: "cuentos-perdon", t: "Aprender el perdón con cuentos", tipo: "Técnica", enf: ["pp"],
+  d: "El perdón se enseña primero a través de personajes: el niño ve que los personajes tienen conflictos, que hay muchas formas de responder y que perdonar es una de ellas, en un ambiente sin tensión y sin hablar todavía de su propia vida. Cada lección tiene ideas principales, un cuento o una película, preguntas para conversar y una actividad.",
+  como: ["Presentar la idea principal de la lección con palabras sencillas.",
+         "Leer el cuento o ver la escena y conversar con preguntas abiertas.",
+         "Hacer la actividad: dibujo, juego o manualidad.",
+         "Cerrar repasando la idea principal."],
+  fuente: "Enright y Knutson Enright, 2008 · Enright y Fitzgibbons, 2015, cap. 12" },
+{ k: "que-es-perdonar", t: "Qué es y qué no es perdonar", tipo: "Concepto", enf: ["pp"],
+  d: "Perdonar es dejar de lado el enojo contra quien fue injusto y ofrecerle bondad, aunque no se lo haya ganado. No es decir que lo que hizo estuvo bien, ni olvidar, ni hacer como si no hubiera pasado, ni culparse. Tampoco es reconciliarse: se puede perdonar sin volver a ser amigos y sin ponerse en riesgo de que vuelva a hacer daño. Perdonar es una elección: nunca se obliga.",
+  fuente: "Enright y Knutson Enright, 2008, lecciones 7 y 13" },
+{ k: "ojos-nuevos", t: "Ver con ojos nuevos", tipo: "Técnica", enf: ["pp"],
+  d: "Mirar a quien fue injusto y reconocer que también tiene valor, que puede ser bueno y que quizá también está sufriendo. Es el paso que ablanda el corazón y prepara para perdonar, sin exponerse a que vuelva a hacer daño.",
+  fuente: "Enright y Knutson Enright, 2008, lección 14" },
+{ k: "regalos-perdon", t: "Regalos del perdón", tipo: "Técnica", enf: ["pp"],
+  d: "Cuando el niño está listo, pensar un gesto de bondad, respeto o generosidad hacia quien fue injusto. Cada niño llega a su ritmo: depende de qué tan profunda fue la herida y del tiempo que pasó.",
+  ficha: "ojos-nuevos",
+  fuente: "Enright y Knutson Enright, 2008, lección 15" },
+{ k: "reunion-familiar-perdon", t: "Reunión familiar sobre el perdón", alias: ["reuniones familiares sobre el perdón"], tipo: "Técnica", enf: ["pp"],
+  d: "Espacio semanal, o durante las comidas, en que la familia conversa sobre quién fue amable, quién fue injusto, qué se siente al perdonar y qué cuesta. Los padres enseñan con el ejemplo pidiendo perdón y perdonando, sin esperar que las heridas profundas se perdonen de inmediato.",
+  fuente: "Enright y Fitzgibbons, 2015, cap. 12" },
+{ k: "diario-bienestar", t: "Diario de bienestar", tipo: "Técnica", enf: ["pp"],
+  d: "El niño o el adolescente anota las situaciones en que se sintió bien y cuánto, de 0 a 100. Más adelante agrega algunas situaciones difíciles para compararlas y ver que la forma de interpretar lo que pasa cambia cómo se siente. Con adolescentes se usa el diario de los adultos, con la columna de lo que interrumpió el bienestar.",
+  ficha: "diario-bienestar-nino",
+  fuente: "Fava, 2016, cap. 19" },
+{ k: "dimensiones-bienestar", t: "Dimensiones del bienestar", tipo: "Concepto", enf: ["pp"],
+  d: "Las seis áreas del bienestar psicológico: sentirse capaz de manejar lo de cada día, seguir creciendo, tener metas, decidir por uno mismo, aceptarse y tener buenas relaciones. Con niños se trabajan de forma planeada: primero las situaciones en que muestran dominio del entorno, después las habilidades que ya tienen y las que quieren desarrollar, y luego las conductas que mejoran sus relaciones.",
+  fuente: "Fava, 2016, cap. 19" },
+{ k: "fortalezas-caracter", t: "Fortalezas del carácter", alias: ["fortalezas personales"], tipo: "Concepto", enf: ["pp"],
+  d: "Las 24 cualidades positivas de la clasificación VIA, como la bondad, el humor, la perseverancia o la curiosidad. Todas las personas las tienen en distinto grado; las más altas y propias son las fortalezas distintivas. Se pueden describir en lenguaje sencillo, con un ejemplo y una acción concreta para cada una.",
+  ficha: "mis-fortalezas",
+  fuente: "Niemiec y Tomasulo, 2023, caps. 2 y 3" },
+{ k: "deteccion-fortalezas", t: "Detección de fortalezas", alias: ["detectar fortalezas"], tipo: "Técnica", enf: ["pp"],
+  d: "Ver, explicar y apreciar las fortalezas en uno mismo o en otros: nombrar la fortaleza, dar la conducta concreta en que se vio y valorarla. En la discapacidad cambia el foco de lo que falta a lo que la persona es.",
+  ej: "«Cuando ayudaste a tu compañera a recoger sus cosas, vi mucha bondad. Eso dice algo bonito de ti.»",
+  fuente: "Niemiec y Tomasulo, 2023, cap. 3" },
+{ k: "fortalezas-360", t: "Fortalezas 360°", tipo: "Técnica", enf: ["pp"],
+  d: "Padres, docentes, hermanos o compañeros nombran las principales fortalezas del niño con ejemplos, y se buscan las que se repiten entre personas y contextos. Sirve también cuando el niño no puede responder por sí mismo un cuestionario.",
+  fuente: "Niemiec y Tomasulo, 2023, cap. 3" },
+{ k: "soportar-dolor", t: "Soportar el dolor", tipo: "Técnica", enf: ["pp"],
+  d: "Aceptar el dolor de una injusticia en lugar de pasárselo a otros, por ejemplo a compañeros más débiles. En la guía contra el acoso, es lo que permite cortar la cadena de quien fue herido y ahora hiere.",
+  fuente: "Enright y Fitzgibbons, 2015, cap. 12" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -7246,6 +7859,9 @@ const FICHAS = {
   "acuerdo-cama-seca": { t: "Acuerdo familiar para la cama seca", d: "Aprender a estar seco en la noche toma tiempo y paciencia. Este acuerdo deja por escrito lo que cada uno hará durante el tratamiento con la alarma.", n: 37, q: "M0 0.5h7m2 0h4m5 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m4 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h2m1 0h1m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h6m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m2 0h1m3 0h1m4 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h2m4 0h3m1 0h2m1 0h2m-28 1h1m1 0h5m2 0h2m1 0h1m4 0h1m1 0h2m1 0h1m2 0h2m3 0h5m-34 1h1m1 0h3m5 0h2m1 0h2m2 0h3m2 0h1m4 0h2m1 0h1m2 0h2m-34 1h5m2 0h1m1 0h5m1 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-34 1h3m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h3m3 0h2m5 0h1m2 0h1m-36 1h2m2 0h3m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h4m1 0h5m-36 1h2m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m1 0h2m1 0h3m7 0h4m1 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-28 1h1m3 0h1m1 0h1m5 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-31 1h2m1 0h1m1 0h1m3 0h1m2 0h1m1 0h1m4 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m3 0h1m1 0h1m1 0h4m1 0h3m3 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h1m1 0h4m4 0h3m1 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-36 1h3m9 0h2m1 0h1m4 0h2m5 0h3m1 0h1m3 0h1m-36 1h1m2 0h3m1 0h4m1 0h3m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h1m1 0h4m1 0h3m6 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-33 1h7m2 0h1m3 0h2m2 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h2m2 0h1m2 0h1m1 0h1m4 0h2m3 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-35 1h3m1 0h1m1 0h1m8 0h3m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m4 0h1m2 0h2m4 0h5m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h1m3 0h2m1 0h2m3 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m2 0h3m2 0h3m1 0h1m1 0h3m3 0h5m1 0h1m1 0h3m4 0h1m-36 1h1m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m2 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m1 0h1m5 0h8m1 0h1m1 0h2m3 0h2m-34 1h7m3 0h4m1 0h3m2 0h1m3 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h2m6 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h2m3 0h3m1 0h1m4 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h3m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h2m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m4 0h1m1 0h3m5 0h2m1 0h1m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m6 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
   "calendario-noches-secas": { t: "Mi calendario de noches secas", d: "Cada mañana colorea el día: de un color si amaneciste seco y de otro si mojaste. Mira cómo crecen tus rachas de noches secas.", n: 41, q: "M0 0.5h7m3 0h4m1 0h2m1 0h2m1 0h4m1 0h2m2 0h2m2 0h7m-41 1h1m5 0h1m2 0h5m1 0h3m5 0h2m2 0h2m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m1 0h6m3 0h2m3 0h2m1 0h4m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m4 0h3m1 0h1m1 0h1m3 0h2m2 0h1m3 0h1m4 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h3m1 0h3m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h6m3 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-31 1h2m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m2 0h1m1 0h2m1 0h3m1 0h1m3 0h1m1 0h2m1 0h1m2 0h5m4 0h1m1 0h1m-36 1h2m2 0h1m5 0h1m1 0h3m2 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h4m-40 1h6m1 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h2m1 0h3m3 0h2m5 0h3m-37 1h2m2 0h9m2 0h2m1 0h5m4 0h1m3 0h3m1 0h1m1 0h1m-41 1h1m2 0h2m1 0h2m3 0h3m3 0h1m2 0h2m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h1m2 0h1m-40 1h1m3 0h1m3 0h2m2 0h6m1 0h1m1 0h2m3 0h1m1 0h1m1 0h3m3 0h3m-40 1h1m2 0h1m2 0h1m2 0h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h3m1 0h1m3 0h1m1 0h5m-40 1h1m2 0h2m7 0h6m1 0h4m1 0h1m2 0h5m1 0h1m1 0h1m-35 1h1m2 0h2m3 0h1m5 0h2m2 0h3m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m4 0h1m-41 1h3m1 0h2m2 0h1m2 0h1m2 0h1m2 0h2m2 0h1m1 0h2m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m-41 1h2m1 0h5m1 0h1m2 0h2m1 0h3m4 0h1m2 0h1m4 0h1m5 0h1m3 0h1m-40 1h2m1 0h1m2 0h2m2 0h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m4 0h2m1 0h1m-38 1h2m1 0h6m1 0h1m2 0h2m2 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h3m3 0h2m-38 1h2m1 0h1m1 0h3m1 0h2m1 0h1m5 0h1m1 0h1m1 0h1m3 0h2m2 0h3m4 0h2m-40 1h1m2 0h4m1 0h6m1 0h2m1 0h1m5 0h2m1 0h1m2 0h1m3 0h2m1 0h2m-39 1h1m2 0h1m2 0h1m4 0h1m3 0h1m3 0h4m1 0h1m4 0h3m1 0h1m3 0h1m-38 1h2m1 0h3m3 0h1m2 0h1m2 0h2m3 0h1m2 0h2m2 0h2m2 0h3m-33 1h1m2 0h1m1 0h4m1 0h1m1 0h1m1 0h2m1 0h3m3 0h1m5 0h1m1 0h1m3 0h1m-38 1h5m1 0h2m1 0h2m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h2m2 0h1m2 0h2m-41 1h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h2m1 0h3m1 0h1m2 0h2m2 0h3m1 0h4m-36 1h1m1 0h3m1 0h4m1 0h1m2 0h2m1 0h2m2 0h2m1 0h1m2 0h4m1 0h2m5 0h2m-40 1h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m3 0h2m3 0h4m6 0h2m1 0h4m-41 1h1m1 0h1m1 0h3m1 0h4m2 0h5m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m2 0h3m1 0h2m-38 1h3m2 0h1m2 0h1m1 0h6m2 0h2m1 0h1m1 0h5m2 0h1m3 0h1m2 0h1m-41 1h1m3 0h6m2 0h5m1 0h1m2 0h1m2 0h3m1 0h1m3 0h5m1 0h2m-32 1h3m2 0h1m2 0h2m2 0h1m3 0h3m1 0h1m2 0h2m3 0h1m2 0h2m-41 1h7m4 0h3m1 0h1m2 0h2m1 0h2m1 0h3m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m-40 1h1m5 0h1m1 0h3m1 0h2m4 0h1m4 0h1m1 0h1m1 0h3m2 0h1m3 0h1m1 0h1m-39 1h1m1 0h3m1 0h1m2 0h3m3 0h2m1 0h3m3 0h1m1 0h3m3 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m2 0h2m2 0h1m2 0h1m2 0h1m5 0h2m1 0h1m3 0h5m-41 1h1m5 0h1m3 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h8m1 0h2m3 0h1m-40 1h7m1 0h2m2 0h1m1 0h2m4 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
   "registro-comidas": { t: "Registro de comidas", d: "Anotar todo lo que come su hijo durante una semana permite revisar cómo son las comidas en casa y cómo reacciona la familia. Tráigalo a la sesión.", n: 37, q: "M0 0.5h7m3 0h5m1 0h1m1 0h3m1 0h2m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h3m1 0h3m2 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h1m7 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h5m2 0h1m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m2 0h2m3 0h1m2 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h4m3 0h1m3 0h3m1 0h2m1 0h2m-28 1h1m1 0h5m7 0h2m1 0h1m1 0h1m2 0h1m2 0h2m3 0h5m-34 1h1m2 0h2m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m4 0h2m1 0h1m2 0h2m-35 1h1m2 0h3m3 0h5m2 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-35 1h2m1 0h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h2m2 0h1m1 0h1m1 0h1m4 0h2m2 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-37 1h2m1 0h3m2 0h1m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-28 1h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m6 0h2m1 0h4m1 0h2m-37 1h2m1 0h2m4 0h3m3 0h1m5 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-35 1h3m2 0h1m1 0h1m1 0h3m1 0h1m2 0h3m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h4m1 0h1m1 0h5m2 0h2m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h3m1 0h1m1 0h3m6 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-37 1h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m4 0h4m4 0h3m1 0h1m3 0h1m-36 1h1m4 0h2m4 0h1m2 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-34 1h1m2 0h1m2 0h8m1 0h5m2 0h1m4 0h1m4 0h1m-34 1h4m1 0h3m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-35 1h3m2 0h1m1 0h2m1 0h5m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m3 0h3m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m4 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h2m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h2m2 0h2m4 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h1m1 0h1m4 0h1m1 0h1m2 0h1m1 0h1m2 0h4m3 0h1m1 0h3m-31 1h1m1 0h1m3 0h1m2 0h1m1 0h1m2 0h2m1 0h3m2 0h1m1 0h3m1 0h7m1 0h1m-29 1h4m2 0h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m2 0h5m1 0h1m1 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m5 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m4 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h3m1 0h2m2 0h6m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m3 0h1m4 0h2m2 0h1m1 0h4m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
+  "ojos-nuevos": { t: "Ojos nuevos y regalos del perdón", d: "Cuando alguien fue injusto contigo, puedes elegir mirarlo con ojos nuevos: ver que también tiene valor y que quizá también sufre. Perdonar no es decir que estuvo bien, ni olvidar, ni volver a ser amigos. Tú decides si quieres hacerlo, y cuándo.", n: 37, q: "M0 0.5h7m4 0h3m1 0h2m1 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h2m3 0h2m2 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m5 0h3m3 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h3m2 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h3m2 0h2m4 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h2m1 0h2m1 0h1m1 0h4m1 0h2m1 0h2m-28 1h1m1 0h5m2 0h1m1 0h6m1 0h2m2 0h1m1 0h3m3 0h5m-35 1h2m1 0h2m6 0h1m2 0h2m2 0h3m1 0h3m3 0h2m1 0h1m2 0h2m-33 1h1m1 0h4m2 0h8m2 0h1m3 0h4m2 0h1m2 0h3m-36 1h1m1 0h3m2 0h8m2 0h1m2 0h4m1 0h2m5 0h1m2 0h1m-37 1h3m1 0h1m1 0h1m3 0h3m1 0h2m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h1m1 0h1m1 0h2m4 0h3m3 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m1 0h1m2 0h3m2 0h2m1 0h3m1 0h1m1 0h3m4 0h2m1 0h4m1 0h2m-35 1h3m4 0h7m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m3 0h1m1 0h1m3 0h1m7 0h3m1 0h1m2 0h2m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h1m5 0h1m1 0h1m2 0h1m1 0h6m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h1m2 0h3m1 0h2m8 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h3m4 0h3m1 0h2m1 0h1m1 0h1m2 0h5m4 0h3m1 0h1m3 0h1m-36 1h2m1 0h3m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m3 0h1m1 0h3m1 0h2m1 0h3m-35 1h2m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h6m1 0h1m4 0h1m4 0h1m-32 1h3m1 0h3m5 0h2m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-34 1h1m3 0h4m1 0h7m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h3m2 0h2m1 0h5m3 0h1m2 0h1m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h2m1 0h1m1 0h1m4 0h2m1 0h1m1 0h3m2 0h2m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h4m2 0h7m-37 1h1m1 0h2m5 0h2m3 0h2m3 0h1m1 0h4m1 0h1m1 0h3m4 0h2m-37 1h1m5 0h5m3 0h2m1 0h2m3 0h5m1 0h8m-28 1h2m4 0h1m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h2m1 0h1m1 0h2m5 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h3m1 0h4m2 0h1m1 0h1m1 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h3m1 0h3m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h1m8 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m2 0h6m1 0h1m2 0h5m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
+  "diario-bienestar-nino": { t: "Mi diario de cosas buenas", d: "Cada día pasan cosas que te hacen sentir bien, aunque sean pequeñitas. En este diario puedes guardarlas y ver cuánto te gustaron, de 0 (nada) a 100 (muchísimo).", n: 41, q: "M0 0.5h7m2 0h2m4 0h2m2 0h1m1 0h3m2 0h2m1 0h3m2 0h7m-41 1h1m5 0h1m3 0h3m4 0h1m2 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m5 0h2m3 0h3m2 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h6m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h7m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-30 1h1m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m2 0h1m1 0h2m1 0h3m2 0h2m1 0h1m1 0h2m1 0h1m2 0h5m4 0h1m1 0h1m-35 1h3m3 0h1m4 0h2m3 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h4m-40 1h7m1 0h1m1 0h2m1 0h1m3 0h2m1 0h2m1 0h3m3 0h2m5 0h3m-40 1h2m1 0h3m1 0h1m1 0h3m1 0h3m2 0h2m1 0h5m4 0h1m2 0h1m1 0h2m1 0h1m-38 1h3m1 0h2m5 0h2m1 0h3m2 0h2m1 0h1m1 0h1m2 0h2m1 0h4m2 0h1m-37 1h1m2 0h2m3 0h3m2 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m3 0h3m-40 1h1m2 0h1m1 0h2m5 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h5m4 0h1m1 0h5m-40 1h1m7 0h3m2 0h1m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m-37 1h3m3 0h1m4 0h1m1 0h6m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m4 0h1m-41 1h1m3 0h2m1 0h1m3 0h1m2 0h4m3 0h1m1 0h2m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m-41 1h3m1 0h4m1 0h4m2 0h3m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h1m3 0h1m-40 1h1m2 0h1m3 0h1m2 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m2 0h3m3 0h2m1 0h1m-38 1h2m2 0h3m2 0h1m1 0h1m2 0h2m1 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h3m3 0h2m-40 1h1m1 0h1m2 0h1m2 0h5m7 0h1m1 0h1m1 0h1m3 0h3m1 0h3m3 0h3m-41 1h2m4 0h3m1 0h3m1 0h1m1 0h2m1 0h1m5 0h2m1 0h1m2 0h1m5 0h1m1 0h1m-40 1h1m3 0h1m2 0h2m3 0h3m1 0h1m3 0h4m1 0h1m4 0h3m1 0h3m1 0h1m1 0h1m-39 1h1m2 0h2m1 0h2m2 0h1m3 0h2m3 0h1m2 0h2m2 0h2m2 0h3m4 0h2m-41 1h2m2 0h1m4 0h2m3 0h1m2 0h1m1 0h3m3 0h1m5 0h1m1 0h1m3 0h1m1 0h1m-39 1h4m1 0h1m1 0h4m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h3m1 0h1m2 0h2m-40 1h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h2m1 0h3m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m3 0h2m-39 1h5m1 0h2m1 0h1m2 0h1m1 0h3m2 0h2m1 0h1m2 0h4m1 0h2m5 0h2m-39 1h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h3m2 0h1m1 0h2m1 0h1m1 0h5m1 0h4m-41 1h1m1 0h1m2 0h2m1 0h4m1 0h2m8 0h2m5 0h1m1 0h1m2 0h3m1 0h2m-38 1h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m2 0h1m1 0h8m3 0h1m2 0h1m-41 1h1m2 0h6m1 0h4m1 0h2m3 0h2m2 0h3m5 0h5m1 0h2m-32 1h1m1 0h1m1 0h6m2 0h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m2 0h2m-41 1h7m6 0h1m1 0h1m2 0h2m1 0h2m1 0h3m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-40 1h1m5 0h1m1 0h1m1 0h1m2 0h2m3 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m-39 1h1m1 0h3m1 0h1m3 0h2m3 0h2m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h2m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m3 0h1m2 0h2m1 0h1m2 0h1m5 0h2m1 0h1m3 0h5m-41 1h1m5 0h1m3 0h1m2 0h1m5 0h1m1 0h1m1 0h1m1 0h8m1 0h2m1 0h1m1 0h1m-40 1h7m1 0h3m1 0h4m1 0h1m2 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
+  "mis-fortalezas": { t: "Mis fortalezas", d: "Todos tenemos cualidades que nos hacen especiales. Aquí puedes marcar las que más se parecen a ti y pedirle a tu familia y a tus profes que te cuenten cuándo las han visto.", n: 37, q: "M0 0.5h7m2 0h1m2 0h2m1 0h2m1 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h4m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h4m1 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m2 0h2m1 0h2m4 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m4 0h2m1 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m2 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h3m3 0h5m-35 1h3m1 0h1m3 0h1m2 0h1m1 0h1m1 0h2m2 0h2m1 0h2m4 0h2m1 0h1m2 0h2m-35 1h1m1 0h4m1 0h2m1 0h1m2 0h1m2 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-33 1h1m5 0h1m1 0h2m2 0h1m1 0h1m2 0h2m3 0h2m5 0h1m2 0h1m-37 1h1m2 0h6m2 0h2m4 0h1m4 0h4m1 0h4m1 0h5m-36 1h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m3 0h4m3 0h6m1 0h1m1 0h1m6 0h2m1 0h4m1 0h2m-37 1h1m1 0h2m3 0h1m1 0h4m2 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-36 1h2m1 0h2m1 0h1m3 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h4m1 0h4m2 0h1m2 0h1m2 0h2m-34 1h3m1 0h2m1 0h1m1 0h6m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m3 0h1m2 0h1m4 0h3m3 0h1m1 0h4m3 0h3m1 0h1m3 0h1m-37 1h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-34 1h1m1 0h1m1 0h1m2 0h2m2 0h1m3 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-33 1h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m4 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h3m3 0h2m1 0h4m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-37 1h2m3 0h3m1 0h2m1 0h3m2 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m2 0h1m5 0h3m1 0h6m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h1m1 0h1m1 0h6m5 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h2m3 0h8m1 0h1m3 0h3m1 0h1m1 0h1m1 0h3m5 0h1m-37 1h1m3 0h3m1 0h2m2 0h2m3 0h2m3 0h5m1 0h7m1 0h1m-29 1h1m2 0h1m2 0h1m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m1 0h7m2 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m3 0h2m4 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h1m1 0h5m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m3 0h3m12 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m4 0h2m4 0h3m3 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m3 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
 };
 /* @@FIN-DATOS@@ */
 const $ = id => document.getElementById(id);
