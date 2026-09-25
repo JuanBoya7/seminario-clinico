@@ -638,10 +638,6 @@ a.cita:hover{color:var(--accent-dark);}
 #hoja .h-act li{line-height:1.32; margin-bottom:1px;}
 #hoja .h-notas{white-space:pre-wrap; border:1px solid var(--border); border-radius:6px; padding:8px 10px;}
 #hoja .h-refs li{font-size:9.5px; line-height:1.4; color:var(--ink-soft); margin-bottom:3px;}
-#hoja .h-firma{margin:26px 0 0 auto; width:62mm; text-align:center; break-inside:avoid;}
-#hoja .h-firma .linea{border-top:1px solid var(--ink); margin-bottom:4px;}
-#hoja .h-firma .nom{font-weight:700; font-size:10.5px; color:var(--ink);}
-#hoja .h-firma .rol{font-size:8.5px; color:var(--ink-soft);}
 #hoja .h-pie{margin-top:10px; padding-top:6px; border-top:1px solid var(--border); font-size:9px; color:var(--ink-faint);}
 
 @media print{
@@ -656,6 +652,15 @@ a.cita:hover{color:var(--accent-dark);}
   body[data-hoja="1"] .pagina{display:none !important;}
   body[data-hoja="1"] #hoja{display:block !important;}
   @page{margin:13mm;}
+  body[data-hoja="1"] #hoja{page:hoja;}
+  /* Pie de cada página de la hoja, como el de las fichas. */
+  @page hoja{
+    margin:13mm 13mm 16mm;
+    @bottom-left{content:"Plan elaborado por Juan Boya Guerra para la guía de planes de intervención"; vertical-align:top; padding-top:5px;
+      border-top:0.6pt solid #c9d6d6; font:700 7.5pt Helvetica,Arial,sans-serif; color:#7d8c91;}
+    @bottom-right{content:counter(page); width:12mm; vertical-align:top; padding-top:5px; text-align:right;
+      border-top:0.6pt solid #c9d6d6; font:700 7.5pt Helvetica,Arial,sans-serif; color:#7d8c91;}
+  }
 }
 </style>
 </head>
@@ -12048,10 +12053,7 @@ function construirHoja(id, o, notas){
     const refs = referenciasDe(trozos.join(" "));
     if (refs.length) h += '<h2>Referencias</h2><ol class="h-refs">' + refs.map(r => '<li>' + refHTML(r) + '</li>').join("") + '</ol>';
   }
-  h += '<div class="h-firma"><div class="linea"></div><div class="nom">Juan Boya Guerra</div>' +
-       '<div class="rol">Autor de la guía de planes de intervención</div></div>';
-  h += '<div class="h-pie">Guía de planes de intervención por variable psicológica, elaborada por Juan Boya Guerra · ' +
-       'Escenarios con respaldo: ' + p.esc.map(e => escapar(ET_ESC[e])).join(", ") + '.</div>';
+  h += '<div class="h-pie">Escenarios con respaldo: ' + p.esc.map(e => escapar(ET_ESC[e])).join(", ") + '.</div>';
   $("hoja").innerHTML = h;
   enlazarCitas($("hoja"));
 }
