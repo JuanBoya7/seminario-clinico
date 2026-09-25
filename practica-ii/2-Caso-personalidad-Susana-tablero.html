@@ -121,7 +121,6 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
   text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
 .col-afirm .fuente-col{font-size:12px; color:var(--ink-faint); margin-top:6px;}
 .col-afirm .fuente-col strong{color:var(--ink-soft); font-weight:600;}
-.sin-votos{font-size:14.5px; color:var(--ink-faint); font-style:italic; margin-bottom:10px;}
 
 /* ---- Cierre: una sola afirmación, con el video completo ----
    Aparece recién cuando el docente la pide: primero se discuten las voces y
@@ -209,8 +208,8 @@ const VEREDICTOS = [
 /* ============================================================
    2. LAS AFIRMACIONES
    ============================================================
-   AFIRMACIONES: una por veredicto, siempre visible debajo de su columna en
-   «Voces y cierre». Cada una dice lo que ESE veredicto exige, no que la
+   AFIRMACIONES: una por veredicto, visible debajo de su columna en «Voces y
+   cierre». Un veredicto que ningún grupo eligió no tiene columna ni afirmación. Cada una dice lo que ESE veredicto exige, no que la
    mayoría acertó: así sigue siendo cierta aunque el curso se equivoque, y el
    cierre no contradice a la rúbrica, que no califica acertar el trastorno.
    Están escritas sobre los dos
@@ -413,13 +412,12 @@ function pantallaVoces(E){
   if (!E.length) return `<section class="panel"><h2>Las voces</h2>${sinEntregas}</section>`;
   const columnas = VEREDICTOS.map(v => {
     const suyas = E.filter(e => e.veredicto === v.v).sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
+    if (!suyas.length) return "";
     const a = AFIRMACIONES[v.v];
     return `<div class="col-voz">
       <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
-      ${suyas.length
-        ? suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
-            e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")
-        : '<div class="sin-votos">Ningún grupo.</div>'}
+      ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
+        e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")}
       ${a ? `<div class="col-afirm" style="border-left-color:${v.color}">
         <div class="rot-col">Con los fragmentos</div>${esc(a.texto)}
         <div class="fuente-col">${a.fuente}</div></div>` : ""}
