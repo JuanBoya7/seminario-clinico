@@ -115,8 +115,10 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
   text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
 
 /* ---- Lo que exige cada veredicto: siempre a la vista, bajo su columna ---- */
-.col-afirm{border-left:4px solid var(--border); background:var(--bg); padding:10px 12px 10px 14px;
-  margin-top:6px; font-size:15px; line-height:1.45; color:var(--ink);}
+/* El fondo es el color de su veredicto aclarado: la tira lateral y el fondo
+   dicen lo mismo, uno fuerte y otro suave. */
+.col-afirm{border-left:4px solid var(--border); background:var(--surface); border-radius:0 8px 8px 0;
+  padding:10px 12px 10px 14px; margin-top:6px; font-size:15px; line-height:1.45; color:var(--ink);}
 .col-afirm .rot-col{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
 .col-afirm .fuente-col{font-size:12px; color:var(--ink-faint); margin-top:6px;}
@@ -419,7 +421,7 @@ function pantallaVoces(E){
       <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
       ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
         e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")}
-      ${a ? `<div class="col-afirm" style="border-left-color:${v.color}">
+      ${a ? `<div class="col-afirm" style="border-left-color:${v.color};background:color-mix(in srgb, ${v.color} 13%, #fff)">
         <div class="rot-col">Con los fragmentos</div>${esc(a.texto)}
         <div class="fuente-col">${a.fuente}</div></div>` : ""}
     </div>`;
