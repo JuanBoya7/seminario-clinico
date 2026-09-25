@@ -114,25 +114,26 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .voz .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em;
   text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
 
-/* ---- Cierre: una afirmación, la del veredicto que predomina ----
-   Aparece recién cuando el docente la pide: primero se discuten las voces, y
-   la afirmación llega para cerrar, no para adelantar la conclusión. */
+/* ---- Lo que exige cada veredicto: siempre a la vista, bajo su columna ---- */
+.col-afirm{border-left:4px solid var(--border); background:var(--bg); padding:10px 12px 10px 14px;
+  margin-top:6px; font-size:15px; line-height:1.45; color:var(--ink);}
+.col-afirm .rot-col{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
+.col-afirm .fuente-col{font-size:12px; color:var(--ink-faint); margin-top:6px;}
+.col-afirm .fuente-col strong{color:var(--ink-soft); font-weight:600;}
+.sin-votos{font-size:14.5px; color:var(--ink-faint); font-style:italic; margin-bottom:10px;}
+
+/* ---- Cierre: una sola afirmación, con el video completo ----
+   Aparece recién cuando el docente la pide: primero se discuten las voces y
+   las cuatro afirmaciones, y el cierre llega para integrar, no para adelantar. */
 .cierre{margin-top:30px; border-top:1px solid var(--border); padding-top:24px;}
 .cierre .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--accent-dark); margin-bottom:12px;}
-.empate{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px;
-  font-size:14px; color:var(--ink-soft);}
-.afirmacion{font-family:var(--font-display); font-size:clamp(22px,2.6vw,32px); line-height:1.35;
+.afirmacion{font-family:var(--font-display); font-size:clamp(20px,2.3vw,28px); line-height:1.4;
   color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:20px 24px;
-  max-width:60ch;}
+  max-width:70ch;}
 .afirmacion-fuente{font-size:12.5px; color:var(--ink-faint); margin-top:10px;}
 .afirmacion-fuente strong{color:var(--ink-soft); font-weight:600;}
-/* La ampliada: más chica y sin fondo, para que no compita con la breve. */
-.afirmacion-ampliada{font-size:clamp(17px,1.7vw,21px); line-height:1.5; color:var(--ink);
-  border-left:3px solid var(--accent-dark); padding:4px 0 4px 18px; margin-top:22px; max-width:70ch;}
-.btn-ampliar{margin-top:16px; background:none; border:1px solid var(--border); border-radius:8px;
-  padding:7px 14px; font:inherit; font-size:13px; color:var(--ink-soft); cursor:pointer;}
-.btn-ampliar:hover{color:var(--accent-dark); border-color:var(--accent-dark);}
 
 .pie{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
 .pie[hidden]{display:none;}
@@ -206,42 +207,42 @@ const VEREDICTOS = [
 ];
 
 /* ============================================================
-   2. LA AFIRMACIÓN DE CIERRE
+   2. LAS AFIRMACIONES
    ============================================================
-   Una por veredicto, y se proyecta solo la del que predomina. Está escrita
-   como lo que ESE veredicto exige, no como que la mayoría acertó: así sigue
-   siendo cierta aunque el curso se equivoque, y el cierre no contradice a la
-   rúbrica, que no califica acertar el trastorno. Están escritas sobre los dos
+   AFIRMACIONES: una por veredicto, siempre visible debajo de su columna en
+   «Voces y cierre». Cada una dice lo que ESE veredicto exige, no que la
+   mayoría acertó: así sigue siendo cierta aunque el curso se equivoque, y el
+   cierre no contradice a la rúbrica, que no califica acertar el trastorno.
+   Están escritas sobre los dos
    fragmentos que se proyectan (A: primera sesión, 0:36–12:19; B: secuencia
    de ira, 17:50–20:54) y vuelven al eje del caso: desde cuándo le pasa a
    Susana lo que le pasa.
+   CIERRE: una sola, con todo el video. Queda oculta hasta que el docente la
+   pide y es la misma cualquiera sea el veredicto que predomine.
    Fuente: Morrison, DSM-5: Guía para el diagnóstico clínico.
    ============================================================ */
 const AFIRMACIONES = {
   tdm: {
     texto: "Un episodio depresivo necesita un antes distinto, y Susana da dos: «antes era muy feliz» y «siempre me he sentido sola». El episodio se sostiene solo si se sabe a cuál de los dos creerle.",
-    fuente: "Fragmento A, 3:53 y 11:37 · <strong>Morrison</strong>, cap. 3: el episodio depresivo mayor exige un cambio respecto de la actividad previa.",
-    ampliada: "Con el video completo, el antes distinto sí aparece: desde la muerte de la madre pierde peso, duerme mal y deja el deporte que disfrutaba. Pero ocurre sobre un malestar «desde que tengo uso de razón», y eso se parece más a un episodio encima de lo de siempre que a un episodio a secas.",
-    fuenteAmpliada: "Video completo: 11:37, 27:26, 28:01 y 32:15 · <strong>Morrison</strong>, cap. 3: episodio depresivo mayor y trastorno depresivo persistente."
+    fuente: "Fragmento A, 3:53 y 11:37 · <strong>Morrison</strong>, cap. 3: el episodio depresivo mayor exige un cambio respecto de la actividad previa."
   },
   tlp: {
     texto: "La ira y los cortes de la secuencia no alcanzan: un trastorno de la personalidad pide que el patrón estuviera antes de la muerte de la madre, y eso hay que mostrarlo, no suponerlo.",
-    fuente: "Fragmento A, 9:13 · Fragmento B · <strong>Morrison</strong>, cap. 17: el patrón empieza en la adolescencia o al comienzo de la edad adulta (pp. 531–532).",
-    ampliada: "Con el video completo, lo anterior a la muerte de la madre es la soledad, la exclusión en el colegio y relaciones que no prosperan; la ira y los cortes llegan después, hacia los 19 años. El TLP no queda descartado, porque el DSM admite el inicio al comienzo de la edad adulta, pero pide más patrón del que Susana cuenta.",
-    fuenteAmpliada: "Video completo: 9:13, 32:48, 34:04 y 34:45 · <strong>Morrison</strong>, cap. 17: inicio en la adolescencia o al comienzo de la edad adulta (pp. 531–532)."
+    fuente: "Fragmento A, 9:13 · Fragmento B · <strong>Morrison</strong>, cap. 17: el patrón empieza en la adolescencia o al comienzo de la edad adulta (pp. 531–532)."
   },
   ambos: {
     texto: "Los dos a la vez piden dos historias separadas: una de antes de la muerte de la madre y otra de después. Si solo se cuenta la de después, es un solo diagnóstico.",
-    fuente: "Fragmento A, 3:53, 7:34 y 11:37 · <strong>Morrison</strong>, cap. 17 (p. 547) y cap. 3: criterios de duración del episodio.",
-    ampliada: "La psicóloga llega a esta misma lectura: un funcionamiento de años que ya causaba malestar y, encima, la muerte de la madre como desencadenante. Por eso sus hipótesis son depresión y TLP, y por eso no las da por confirmadas sin el MMPI-2 y más entrevistas.",
-    fuenteAmpliada: "Video completo: 36:33 y 39:39 · <strong>Morrison</strong>, cap. 17 (p. 547)."
+    fuente: "Fragmento A, 3:53, 7:34 y 11:37 · <strong>Morrison</strong>, cap. 17 (p. 547) y cap. 3: criterios de duración del episodio."
   },
   ninguno: {
     texto: "Suspender el juicio también es una conclusión clínica, y se sostiene igual que un diagnóstico: nombrando el dato que estos fragmentos no dan.",
-    fuente: "<strong>Morrison</strong>, cap. 17: esquema para el diagnóstico de los trastornos de la personalidad (pp. 531–532).",
-    ampliada: "La psicóloga hace lo mismo: recibe un diagnóstico de TLP del psiquiatra, no se queda con la etiqueta y propone el MMPI-2 y más entrevistas antes de concluir. Suspender el juicio no fue su punto de llegada, sino su punto de partida.",
-    fuenteAmpliada: "Video completo: 36:33 y 38:14 · <strong>Morrison</strong>, cap. 17 (pp. 531–532)."
+    fuente: "<strong>Morrison</strong>, cap. 17: esquema para el diagnóstico de los trastornos de la personalidad (pp. 531–532)."
   }
+};
+
+const CIERRE = {
+  texto: "El video completo sostiene un episodio depresivo: desde la muerte de la madre, Susana duerme mal, casi no come, pierde peso y deja el deporte. Ese episodio cae sobre un malestar de años —soledad y exclusión desde la infancia—, pero la ira y los cortes empiezan con el duelo, hacia los 19. Por eso el trastorno límite queda como hipótesis: la psicóloga trabaja con las dos y pide el MMPI-2 y más entrevistas antes de concluir.",
+  fuente: "Video completo: 0:03, 11:37, 27:26, 28:01, 32:15, 32:48, 36:33 y 39:39 · <strong>Morrison</strong>, cap. 3: episodio depresivo mayor; cap. 17: inicio del patrón en la adolescencia o al comienzo de la edad adulta (pp. 531–532)."
 };
 
 /* ============================================================
@@ -349,13 +350,6 @@ function contar(E){
   return VEREDICTOS.map(v => Object.assign({ n: E.filter(e => e.veredicto === v.v).length }, v));
 }
 
-// El veredicto que predomina; con empate, todos los empatados.
-function predominantes(E){
-  const cuenta = contar(E);
-  const max = Math.max(0, ...cuenta.map(c => c.n));
-  return max ? cuenta.filter(c => c.n === max).map(c => c.v) : [];
-}
-
 const sinEntregas = `<div class="vacio-msg">Todavía no llegó ninguna entrega de este grupo.</div>`;
 
 function pantallaEnvios(E){
@@ -404,31 +398,13 @@ function pantallaVeredictos(E){
   </section>`;
 }
 
-let cierreElegido = null;   // con empate, cuál de los empatados se está mostrando
-let mostrada = false;       // si la afirmación ya se destapó
-let ampliada = false;       // si además se pidió la versión con el video completo
+let mostrada = false;       // si la afirmación de cierre ya se destapó
 
-function bloqueCierre(E){
-  const tope = predominantes(E);
-  if (!tope.length) return "";
-  if (!tope.includes(cierreElegido)) { cierreElegido = tope[0]; mostrada = false; ampliada = false; }
-  const a = AFIRMACIONES[cierreElegido];
-  if (!a) return "";
-
-  const empate = tope.length > 1
-    ? `<div class="empate">Empate entre ${tope.map(v => "«" + esc(veredicto(v).corto) + "»").join(" y ")}. Cerrar con:
-        ${tope.map(v => `<button class="pill${v === cierreElegido ? " is-on" : ""}" data-cierre="${v}">${esc(veredicto(v).nombre)}</button>`).join("")}
-      </div>`
-    : "";
-
+function bloqueCierre(){
   return `<div class="cierre">
-    <div class="rot">Para cerrar · ${esc(veredicto(cierreElegido).nombre)}</div>
-    ${empate}
+    <div class="rot">Para cerrar · con el video completo</div>
     ${mostrada
-      ? `<div class="afirmacion">${esc(a.texto)}</div><div class="afirmacion-fuente">${a.fuente}</div>` +
-        (ampliada
-          ? `<div class="afirmacion-ampliada">${esc(a.ampliada)}</div><div class="afirmacion-fuente">${a.fuenteAmpliada}</div>`
-          : `<button class="btn-ampliar" id="bt-ampliar">Ampliar con el video completo</button>`)
+      ? `<div class="afirmacion">${esc(CIERRE.texto)}</div><div class="afirmacion-fuente">${CIERRE.fuente}</div>`
       : `<button class="btn-principal" id="bt-afirmacion">Mostrar la afirmación de cierre</button>`}
   </div>`;
 }
@@ -437,18 +413,24 @@ function pantallaVoces(E){
   if (!E.length) return `<section class="panel"><h2>Las voces</h2>${sinEntregas}</section>`;
   const columnas = VEREDICTOS.map(v => {
     const suyas = E.filter(e => e.veredicto === v.v).sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
-    if (!suyas.length) return "";
+    const a = AFIRMACIONES[v.v];
     return `<div class="col-voz">
       <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
-      ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
-        e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")}
+      ${suyas.length
+        ? suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
+            e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")
+        : '<div class="sin-votos">Ningún grupo.</div>'}
+      ${a ? `<div class="col-afirm" style="border-left-color:${v.color}">
+        <div class="rot-col">Con los fragmentos</div>${esc(a.texto)}
+        <div class="fuente-col">${a.fuente}</div></div>` : ""}
     </div>`;
   }).join("");
   return `<section class="panel">
     <h2>Las voces</h2>
-    <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.</div>
+    <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.
+      Debajo de cada columna, lo que ese veredicto exige con los fragmentos vistos en clase.</div>
     <div class="voces">${columnas}</div>
-    ${bloqueCierre(E)}
+    ${bloqueCierre()}
   </section>`;
 }
 
@@ -508,7 +490,7 @@ function ir(i){
 }
 
 function mostrarAfirmacion(){
-  if (mostrada || !AFIRMACIONES[cierreElegido]) return;
+  if (mostrada) return;
   mostrada = true;
   pintar();
   const caja = document.querySelector(".afirmacion");
@@ -567,7 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (e) {}
     sel.addEventListener("change", () => {
       try { localStorage.setItem("susana_tablero_grupo:" + FUENTE.curso, sel.value); } catch (e) {}
-      actual = 0; cierreElegido = null; mostrada = false; ampliada = false; firma = ""; entregas = [];
+      actual = 0; mostrada = false; firma = ""; entregas = [];
       pintar();
       actualizar();
     });
@@ -590,12 +572,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", ev => {
       const b = ev.target.closest("button");
       if (!b) return;
-      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; mostrada = false; ampliada = false; pintar(); }
+      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; mostrada = false; pintar(); }
       else if (b.id === "bt-afirmacion") mostrarAfirmacion();
-      else if (b.id === "bt-ampliar") { ampliada = true; pintar();
-        const c = document.querySelector(".afirmacion-ampliada"); if (c) c.scrollIntoView({ behavior: "smooth", block: "center" }); }
       else if (b.dataset.ir !== undefined) ir(Number(b.dataset.ir));
-      else if (b.dataset.cierre) { cierreElegido = b.dataset.cierre; mostrada = false; ampliada = false; pintar(); }
     });
     document.getElementById("bt-ant").addEventListener("click", () => ir(actual - 1));
     document.getElementById("bt-sig").addEventListener("click", () => ir(actual + 1));

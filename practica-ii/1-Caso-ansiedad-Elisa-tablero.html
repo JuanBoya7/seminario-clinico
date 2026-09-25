@@ -114,25 +114,26 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .voz .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em;
   text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
 
-/* ---- Cierre: una afirmación, la del veredicto que predomina ----
-   Aparece recién cuando el docente la pide: primero se discuten las voces, y
-   la afirmación llega para cerrar, no para adelantar la conclusión. */
+/* ---- Lo que exige cada veredicto: siempre a la vista, bajo su columna ---- */
+.col-afirm{border-left:4px solid var(--border); background:var(--bg); padding:10px 12px 10px 14px;
+  margin-top:6px; font-size:15px; line-height:1.45; color:var(--ink);}
+.col-afirm .rot-col{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px;}
+.col-afirm .fuente-col{font-size:12px; color:var(--ink-faint); margin-top:6px;}
+.col-afirm .fuente-col strong{color:var(--ink-soft); font-weight:600;}
+.sin-votos{font-size:14.5px; color:var(--ink-faint); font-style:italic; margin-bottom:10px;}
+
+/* ---- Cierre: una sola afirmación, con el video completo ----
+   Aparece recién cuando el docente la pide: primero se discuten las voces y
+   las cuatro afirmaciones, y el cierre llega para integrar, no para adelantar. */
 .cierre{margin-top:30px; border-top:1px solid var(--border); padding-top:24px;}
 .cierre .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--accent-dark); margin-bottom:12px;}
-.empate{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px;
-  font-size:14px; color:var(--ink-soft);}
-.afirmacion{font-family:var(--font-display); font-size:clamp(22px,2.6vw,32px); line-height:1.35;
+.afirmacion{font-family:var(--font-display); font-size:clamp(20px,2.3vw,28px); line-height:1.4;
   color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:20px 24px;
-  max-width:60ch;}
+  max-width:70ch;}
 .afirmacion-fuente{font-size:12.5px; color:var(--ink-faint); margin-top:10px;}
 .afirmacion-fuente strong{color:var(--ink-soft); font-weight:600;}
-/* La ampliada: más chica y sin fondo, para que no compita con la breve. */
-.afirmacion-ampliada{font-size:clamp(17px,1.7vw,21px); line-height:1.5; color:var(--ink);
-  border-left:3px solid var(--accent-dark); padding:4px 0 4px 18px; margin-top:22px; max-width:70ch;}
-.btn-ampliar{margin-top:16px; background:none; border:1px solid var(--border); border-radius:8px;
-  padding:7px 14px; font:inherit; font-size:13px; color:var(--ink-soft); cursor:pointer;}
-.btn-ampliar:hover{color:var(--accent-dark); border-color:var(--accent-dark);}
 
 .pie{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
 .pie[hidden]{display:none;}
@@ -206,43 +207,43 @@ const VEREDICTOS = [
 ];
 
 /* ============================================================
-   2. LA AFIRMACIÓN DE CIERRE
+   2. LAS AFIRMACIONES
    ============================================================
-   Una por veredicto, y se proyecta solo la del que predomina. Está escrita
-   como lo que ESE veredicto exige, no como que la mayoría acertó: así sigue
-   siendo cierta aunque el curso se equivoque, y el cierre no contradice a la
-   rúbrica, que no califica acertar el trastorno. Están escritas sobre los tres
+   AFIRMACIONES: una por veredicto, siempre visible debajo de su columna en
+   «Voces y cierre». Cada una dice lo que ESE veredicto exige, no que la
+   mayoría acertó: así sigue siendo cierta aunque el curso se equivoque, y el
+   cierre no contradice a la rúbrica, que no califica acertar el trastorno.
+   Están escritas sobre los tres
    fragmentos que se proyectan (A: primera sesión, 0:06–8:39, más 9:16–9:29; B: secuencias,
    19:13–24:54; C: desde cuándo, 30:47–31:30) y vuelven al eje del caso: si
    la preocupación de Elisa tiene muchos focos o uno solo, los suyos. Los
    minutos son los del video completo.
+   CIERRE: una sola, con todo el video. Queda oculta hasta que el docente la
+   pide y es la misma cualquiera sea el veredicto que predomine.
    Fuente: Morrison, DSM-5: Guía para el diagnóstico clínico.
    ============================================================ */
 const AFIRMACIONES = {
   tag: {
     texto: "El TAG pide preocupaciones por varios temas que no se reduzcan a uno. Elisa habla de sus padres, su abuela, los exámenes y sus amigas: el diagnóstico se sostiene si esas preocupaciones no son, en el fondo, una sola —que les pase algo a los suyos.",
-    fuente: "Fragmento A, 0:06, 3:45 y 4:19 · Fragmento B, 19:17 y 23:48 · <strong>Morrison</strong>, cap. 4: el criterio F del TAG excluye la preocupación limitada a la separación de las figuras de apego.",
-    ampliada: "La psicóloga llega a esta lectura: ansiedad elevada en distintas áreas y contextos, preocupación y anticipación que parecen venir «de toda la vida». Pero la plantea como una hipótesis que va a contrastar con test y cuestionarios, no como un diagnóstico cerrado.",
-    fuenteAmpliada: "Video completo: 38:22 y 39:59 · <strong>Morrison</strong>, cap. 4."
+    fuente: "Fragmento A, 0:06, 3:45 y 4:19 · Fragmento B, 19:17 y 23:48 · <strong>Morrison</strong>, cap. 4: el criterio F del TAG excluye la preocupación limitada a la separación de las figuras de apego."
   },
   separacion: {
     texto: "La ansiedad por separación pide que el miedo gire en torno a las figuras de apego. Elisa llama a sus padres para calmarse, vigila el móvil por si le pasa algo a su padre y dice que su semana mejoró porque su madre estuvo más en casa: el diagnóstico se sostiene si los exámenes y las amigas también terminan en ese mismo miedo.",
-    fuente: "Fragmento A, 2:12, 3:45, 4:50 y 9:16 · Fragmento B, 20:28 · <strong>Morrison</strong>, cap. 4: tres de ocho síntomas y, en el adulto, típicamente seis meses.",
-    ampliada: "Con el video completo aparecen más datos de este lado: a los 9 años se ponía «fatal» cuando su padre se iba, la abuela le pedía despedirse de él, y hoy está peor porque ya no tiene siempre a sus padres para calmarla. La psicóloga, sin embargo, no incluye la ansiedad por separación entre sus hipótesis.",
-    fuenteAmpliada: "Video completo: 27:05, 28:06 y 31:30 · <strong>Morrison</strong>, cap. 4."
+    fuente: "Fragmento A, 2:12, 3:45, 4:50 y 9:16 · Fragmento B, 20:28 · <strong>Morrison</strong>, cap. 4: tres de ocho síntomas y, en el adulto, típicamente seis meses."
   },
   ambos: {
     texto: "Los dos a la vez piden dos focos independientes: uno en los suyos y otro en el resto de su vida. Si los exámenes y las amigas le preocupan por sí mismos, y no solo por decepcionar a sus padres, hay lugar para los dos.",
-    fuente: "Fragmento B, 19:50 y 23:48 · <strong>Morrison</strong>, cap. 4: el TAG puede coexistir con otro trastorno de ansiedad si sus síntomas son independientes de él.",
-    ampliada: "La formulación de la psicóloga reúne todo bajo una sola ansiedad general, con la familia como una de sus áreas. El grupo que ve dos trastornos tiene que mostrar dónde se separan.",
-    fuenteAmpliada: "Video completo: 40:01 y 42:42 · <strong>Morrison</strong>, cap. 4."
+    fuente: "Fragmento B, 19:50 y 23:48 · <strong>Morrison</strong>, cap. 4: el TAG puede coexistir con otro trastorno de ansiedad si sus síntomas son independientes de él."
   },
   ninguno: {
     texto: "Suspender el juicio también es una conclusión clínica, y se sostiene nombrando el dato que falta. Elisa cuenta que estuvo mejor porque no pasó tanto tiempo sola, pero no qué siente cuando se queda sola sin que haya pasado nada.",
-    fuente: "Fragmento A, 9:16 · <strong>Morrison</strong>, cap. 4: trastorno de ansiedad por separación, criterio A.",
-    ampliada: "La psicóloga también se reserva el diagnóstico: habla de una hipótesis que va a contrastar con test y cuestionarios antes de la devolución.",
-    fuenteAmpliada: "Video completo: 38:22 · <strong>Morrison</strong>, cap. 4."
+    fuente: "Fragmento A, 9:16 · <strong>Morrison</strong>, cap. 4: trastorno de ansiedad por separación, criterio A."
   }
+};
+
+const CIERRE = {
+  texto: "El video completo muestra una preocupación con varios focos —los exámenes, las amigas, sus padres, la abuela— que Elisa describe como de toda la vida y que sigue siempre el mismo ciclo: anticipación, rumia, síntomas físicos y huida. Con eso la psicóloga formula un trastorno de ansiedad generalizada, contrastado con test y cuestionarios. El miedo a que le pase algo al padre es real y viene de los 9 años, pero en esa formulación es una de las áreas de la preocupación, no su centro.",
+  fuente: "Video completo: 27:05, 31:30, 37:41, 38:22, 39:29, 40:01 y 40:33 · <strong>Morrison</strong>, cap. 4: trastorno de ansiedad generalizada y trastorno de ansiedad por separación."
 };
 
 /* ============================================================
@@ -350,13 +351,6 @@ function contar(E){
   return VEREDICTOS.map(v => Object.assign({ n: E.filter(e => e.veredicto === v.v).length }, v));
 }
 
-// El veredicto que predomina; con empate, todos los empatados.
-function predominantes(E){
-  const cuenta = contar(E);
-  const max = Math.max(0, ...cuenta.map(c => c.n));
-  return max ? cuenta.filter(c => c.n === max).map(c => c.v) : [];
-}
-
 const sinEntregas = `<div class="vacio-msg">Todavía no llegó ninguna entrega de este grupo.</div>`;
 
 function pantallaEnvios(E){
@@ -405,31 +399,13 @@ function pantallaVeredictos(E){
   </section>`;
 }
 
-let cierreElegido = null;   // con empate, cuál de los empatados se está mostrando
-let mostrada = false;       // si la afirmación ya se destapó
-let ampliada = false;       // si además se pidió la versión con el video completo
+let mostrada = false;       // si la afirmación de cierre ya se destapó
 
-function bloqueCierre(E){
-  const tope = predominantes(E);
-  if (!tope.length) return "";
-  if (!tope.includes(cierreElegido)) { cierreElegido = tope[0]; mostrada = false; ampliada = false; }
-  const a = AFIRMACIONES[cierreElegido];
-  if (!a) return "";
-
-  const empate = tope.length > 1
-    ? `<div class="empate">Empate entre ${tope.map(v => "«" + esc(veredicto(v).corto) + "»").join(" y ")}. Cerrar con:
-        ${tope.map(v => `<button class="pill${v === cierreElegido ? " is-on" : ""}" data-cierre="${v}">${esc(veredicto(v).nombre)}</button>`).join("")}
-      </div>`
-    : "";
-
+function bloqueCierre(){
   return `<div class="cierre">
-    <div class="rot">Para cerrar · ${esc(veredicto(cierreElegido).nombre)}</div>
-    ${empate}
+    <div class="rot">Para cerrar · con el video completo</div>
     ${mostrada
-      ? `<div class="afirmacion">${esc(a.texto)}</div><div class="afirmacion-fuente">${a.fuente}</div>` +
-        (ampliada
-          ? `<div class="afirmacion-ampliada">${esc(a.ampliada)}</div><div class="afirmacion-fuente">${a.fuenteAmpliada}</div>`
-          : `<button class="btn-ampliar" id="bt-ampliar">Ampliar con el video completo</button>`)
+      ? `<div class="afirmacion">${esc(CIERRE.texto)}</div><div class="afirmacion-fuente">${CIERRE.fuente}</div>`
       : `<button class="btn-principal" id="bt-afirmacion">Mostrar la afirmación de cierre</button>`}
   </div>`;
 }
@@ -438,18 +414,24 @@ function pantallaVoces(E){
   if (!E.length) return `<section class="panel"><h2>Las voces</h2>${sinEntregas}</section>`;
   const columnas = VEREDICTOS.map(v => {
     const suyas = E.filter(e => e.veredicto === v.v).sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
-    if (!suyas.length) return "";
+    const a = AFIRMACIONES[v.v];
     return `<div class="col-voz">
       <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
-      ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
-        e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")}
+      ${suyas.length
+        ? suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
+            e.dato ? "«" + esc(e.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`).join("")
+        : '<div class="sin-votos">Ningún grupo.</div>'}
+      ${a ? `<div class="col-afirm" style="border-left-color:${v.color}">
+        <div class="rot-col">Con los fragmentos</div>${esc(a.texto)}
+        <div class="fuente-col">${a.fuente}</div></div>` : ""}
     </div>`;
   }).join("");
   return `<section class="panel">
     <h2>Las voces</h2>
-    <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.</div>
+    <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.
+      Debajo de cada columna, lo que ese veredicto exige con los fragmentos vistos en clase.</div>
     <div class="voces">${columnas}</div>
-    ${bloqueCierre(E)}
+    ${bloqueCierre()}
   </section>`;
 }
 
@@ -509,7 +491,7 @@ function ir(i){
 }
 
 function mostrarAfirmacion(){
-  if (mostrada || !AFIRMACIONES[cierreElegido]) return;
+  if (mostrada) return;
   mostrada = true;
   pintar();
   const caja = document.querySelector(".afirmacion");
@@ -568,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (e) {}
     sel.addEventListener("change", () => {
       try { localStorage.setItem("elisa_tablero_grupo:" + FUENTE.curso, sel.value); } catch (e) {}
-      actual = 0; cierreElegido = null; mostrada = false; ampliada = false; firma = ""; entregas = [];
+      actual = 0; mostrada = false; firma = ""; entregas = [];
       pintar();
       actualizar();
     });
@@ -591,12 +573,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", ev => {
       const b = ev.target.closest("button");
       if (!b) return;
-      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; mostrada = false; ampliada = false; pintar(); }
+      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; mostrada = false; pintar(); }
       else if (b.id === "bt-afirmacion") mostrarAfirmacion();
-      else if (b.id === "bt-ampliar") { ampliada = true; pintar();
-        const c = document.querySelector(".afirmacion-ampliada"); if (c) c.scrollIntoView({ behavior: "smooth", block: "center" }); }
       else if (b.dataset.ir !== undefined) ir(Number(b.dataset.ir));
-      else if (b.dataset.cierre) { cierreElegido = b.dataset.cierre; mostrada = false; ampliada = false; pintar(); }
     });
     document.getElementById("bt-ant").addEventListener("click", () => ir(actual - 1));
     document.getElementById("bt-sig").addEventListener("click", () => ir(actual + 1));
