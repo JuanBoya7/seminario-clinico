@@ -789,17 +789,17 @@ const GRUPOS = [
         n: "Índice de Calidad de Sueño de Pittsburgh", s: "PSQI",
         d: "Calidad del sueño del último mes en siete componentes: latencia, duración, eficiencia, alteraciones, medicación y disfunción diurna.",
         responde: "Autoinforme", pob: "Adultos",
-        med: "19 ítems · 10 min", acceso: "libre",
+        med: "19 ítems · 10 min", acceso: "registro",
         esc: ["salud-mental","hospital","primer-nivel","comunidad","mayores"],
-        nota: "El más usado en investigación sobre sueño. Libre para uso clínico y académico citando a sus autores; el uso comercial sí requiere licencia."
+        nota: "El más usado en investigación sobre sueño. Sus derechos son de la Universidad de Pittsburgh: el uso clínico y académico sin fines de lucro suele autorizarse, pero <strong>hay que solicitarlo</strong>."
       },
       {
         n: "Índice de Severidad del Insomnio", s: "ISI",
         d: "Gravedad del insomnio, satisfacción con el sueño e interferencia en el funcionamiento diurno.",
         responde: "Autoinforme", pob: "Adolescentes y adultos",
-        med: "7 ítems · 5 min", acceso: "libre",
+        med: "7 ítems · 5 min", acceso: "registro",
         esc: ["salud-mental","primer-nivel","comunidad","hospital"],
-        nota: "Muy breve y sensible al cambio, lo que lo hace útil como <strong>medida antes y después</strong> de una intervención. De uso libre para fines clínicos y de investigación citando a su autor."
+        nota: "Muy breve y sensible al cambio, lo que lo hace útil como <strong>medida antes y después</strong> de una intervención. Su distribución la gestiona Mapi Research Trust: el uso académico suele autorizarse, pero <strong>hay que solicitarlo</strong>."
       },
       {
         n: "Escala de Somnolencia de Epworth", s: "ESS",
@@ -821,9 +821,9 @@ const GRUPOS = [
         n: "Cuestionario SCOFF", s: "SCOFF",
         d: "Cinco preguntas de cribado de anorexia y bulimia.",
         responde: "Autoinforme o entrevista", pob: "Adolescentes y adultos",
-        med: "5 ítems · 2 min", acceso: "libre",
+        med: "5 ítems · 2 min", acceso: "registro",
         esc: ["ninez","salud-mental","primer-nivel","comunidad"],
-        nota: "Dos respuestas afirmativas ya indican necesidad de valoración. Su brevedad lo hace aplicable en tamizajes colectivos."
+        nota: "Dos respuestas afirmativas ya indican necesidad de valoración. Su brevedad lo hace aplicable en tamizajes colectivos. La versión española se obtiene con <strong>sublicencia gratuita de BiblioPRO</strong>, previo registro."
       },
       {
         n: "Prueba de Actitudes ante la Alimentación", s: "EAT-26",
@@ -1291,9 +1291,9 @@ const GRUPOS = [
         n: "Escala de Sobrecarga del Cuidador de Zarit", s: "Zarit",
         d: "Sobrecarga percibida por quien cuida a una persona dependiente, en su dimensión objetiva y subjetiva.",
         responde: "Autoinforme del cuidador", pob: "Cuidadores adultos",
-        med: "22 ítems · 10 min", acceso: "libre",
+        med: "22 ítems · 10 min", acceso: "registro",
         esc: ["cuidadores","mayores","hospital","comunidad","salud-mental"],
-        nota: "Ampliamente reproducida y validada en español. Hay versión abreviada de 7 ítems para tamizaje rápido."
+        nota: "Circula mucho, pero su distribución la gestiona Mapi Research Trust: el uso académico suele autorizarse, <strong>hay que solicitarlo</strong>. Hay versión abreviada de 7 ítems para tamizaje rápido."
       },
       {
         n: "Índice de Esfuerzo del Cuidador", s: "CSI",
@@ -1555,7 +1555,13 @@ const INST_FICHAS = {
   "BADS-SF": {"a": "bads-sf", "tipo": "completa"},
   "ERQ": {"a": "erq", "tipo": "completa"},
   "DAS-R": {"a": "das-r", "tipo": "completa"},
-  "GHQ-12": {"a": "ghq-12", "tipo": "tecnica"}
+  "GHQ-12": {"a": "ghq-12", "tipo": "tecnica"},
+  "ASQ": {"a": "asq", "tipo": "completa"},
+  "GDS-15": {"a": "gds-15", "tipo": "completa"},
+  "HADS": {"a": "hads", "tipo": "tecnica"},
+  "ISI": {"a": "isi", "tipo": "tecnica"},
+  "Zarit": {"a": "zarit", "tipo": "tecnica"},
+  "PSQI": {"a": "psqi", "tipo": "tecnica"}
 };
 /* @@FIN-FICHAS-INST@@ */
 
