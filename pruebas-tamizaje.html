@@ -296,6 +296,18 @@ a.inst-n:hover{color:var(--accent);}
 }
 .inst-nota strong{color:var(--ink-soft); font-weight:600;}
 .inst-pie{margin-top:auto;}
+a.inst-ficha{
+  display:inline-flex; align-items:center; gap:8px; margin-top:12px; text-decoration:none;
+  font-size:13px; font-weight:600; color:var(--accent-dark);
+  background:var(--bg); border:1px solid var(--accent); border-radius:8px; padding:6px 12px;
+}
+a.inst-ficha::before{
+  content:""; width:12px; height:14px; flex:none; background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M5 0h2v7.6l2.3-2.3 1.4 1.4L6 11.4 1.3 6.7l1.4-1.4L5 7.6z M0 12h12v2H0z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M5 0h2v7.6l2.3-2.3 1.4 1.4L6 11.4 1.3 6.7l1.4-1.4L5 7.6z M0 12h12v2H0z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+a.inst-ficha:hover{background:var(--accent-soft);}
+a.inst-ficha .fmt{font-weight:500; font-size:11.5px; color:var(--ink-faint);}
 
 .vacio{
   margin-top:40px; padding:28px; text-align:center;
@@ -1403,6 +1415,33 @@ function escapar(s){
 
 const ET_ACCESO = { libre:"Libre", registro:"Con registro", licencia:"Con licencia" };
 
+/* Fichas descargables de los instrumentos (carpeta instrumentos/), por sigla.
+   completa: los ítems transcritos de la versión oficial (solo acceso libre).
+   tecnica: sin ítems; qué mide, cómo se califica, cómo se consigue y la
+   alternativa libre (instrumentos con licencia o con registro). */
+/* @@FICHAS-INST@@ Bloque generado por _planes-fuente/instrumentos/generar.py. No se edita aquí. */
+const INST_FICHAS = {
+  "PHQ-9": {"a": "phq-9", "tipo": "completa"},
+  "GAD-7": {"a": "gad-7", "tipo": "completa"},
+  "AUDIT": {"a": "audit", "tipo": "completa"},
+  "ASSIST": {"a": "assist", "tipo": "completa"},
+  "BDI-II": {"a": "bdi-ii", "tipo": "tecnica"},
+  "BAI": {"a": "bai", "tipo": "tecnica"},
+  "C-SSRS": {"a": "c-ssrs", "tipo": "tecnica"}
+};
+/* @@FIN-FICHAS-INST@@ */
+
+function botonFicha(sigla){
+  const f = INST_FICHAS[sigla];
+  if (!f) return "";
+  const et = f.tipo === "completa" ? "Descargar instrumento" : "Descargar ficha técnica";
+  const ayuda = f.tipo === "completa"
+    ? "Ítems de la versión oficial, calificación y puntos de corte"
+    : "Sin ítems: qué mide, cómo se califica, cómo se consigue y su alternativa libre";
+  return '<a class="inst-ficha" href="instrumentos/' + f.a + '.pdf" download title="' + ayuda + '">' +
+    et + ' <span class="fmt">PDF</span></a>';
+}
+
 // El nombre es enlace solo cuando hay fuente oficial verificada. Sin url se
 // pinta como texto: un enlace roto en un instrumento clínico es peor que
 // ninguno.
@@ -1424,7 +1463,7 @@ function pintarInstrumento(i){
       '<span>' + escapar(i.pob) + '</span>' +
       '<span>' + escapar(i.med) + '</span>' +
     '</div>' +
-    '<div class="inst-pie"><div class="inst-nota">' + i.nota + '</div></div>' +
+    '<div class="inst-pie"><div class="inst-nota">' + i.nota + '</div>' + botonFicha(i.s) + '</div>' +
   '</div>';
 }
 
