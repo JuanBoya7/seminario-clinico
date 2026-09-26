@@ -112,7 +112,7 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .sit summary{list-style:none; cursor:pointer;}
 .sit summary::-webkit-details-marker{display:none;}
 .sit .fila{margin-bottom:0;}
-.sit .nom small{display:block; font-size:12px; color:var(--ink-faint);}
+.sit .nom small, .sit-plana .nom small{display:block; font-size:12px; color:var(--ink-faint);}
 .sit-voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; margin-top:12px;}
 .sit-voz{border-left:4px solid var(--border); border-radius:0 8px 8px 0; padding:9px 12px;
   font-size:15px; line-height:1.4; background:var(--surface);}
@@ -452,6 +452,11 @@ function pantallaSituaciones(E){
       return `<div class="sit-voz" style="border-left-color:${v.color}"><span class="de">${esc(quien(e))} · ${esc(v.corto)}</span>${
         r.dato ? "«" + esc(r.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`;
     }).join("");
+    if (!MOSTRAR_VOCES) return `<div class="fila sit-plana">
+        <div class="nom">${esc(s.dia)}<small>${esc(s.que)}</small></div>
+        <div class="bar">${barra}</div>
+        <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
+      </div>`;
     return `<details class="sit" data-sit="${s.k}"${abiertas.has(s.k) ? " open" : ""}>
       <summary><div class="fila">
         <div class="nom">${esc(s.dia)}<small>${esc(s.que)}</small></div>
@@ -468,7 +473,7 @@ function pantallaSituaciones(E){
   return `<section class="panel">
     <h2>Las situaciones</h2>
     <div class="sub">Qué explica, para cada grupo, cada una de las cuatro situaciones del autorregistro.
-      Toquen una situación para ver las líneas de los grupos.</div>
+      ${MOSTRAR_VOCES ? "Toquen una situación para ver las líneas de los grupos." : "Cada grupo explica en voz alta su lectura."}</div>
     <div class="leyenda">${leyenda}</div>
     ${filas}
     <div class="frase">${frase}</div>

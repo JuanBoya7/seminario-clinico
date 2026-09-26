@@ -584,7 +584,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
       <p class="block-sub">
         En el autorregistro, Sergio anotó cuatro situaciones de su semana. Para cada una, elijan qué la
-        explica y escriban el dato del video que lo decidió.
+        explica<span data-con-linea> y escriban el dato del video que lo decidió</span>.<span data-sin-linea>
+        En el tablero se verá cómo leyó cada grupo cada situación, y en clase lo explicarán en voz alta.</span>
       </p>
 
       <div class="card">
@@ -597,9 +598,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-viernes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-viernes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-viernes">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-viernes" data-etiqueta="Viernes — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-viernes">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-viernes" data-etiqueta="Viernes — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -612,9 +615,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-sabado" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-sabado" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-sabado">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-sabado" data-etiqueta="Sábado — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-sabado">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-sabado" data-etiqueta="Sábado — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -627,9 +632,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-domingo" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-domingo" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-domingo">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-domingo" data-etiqueta="Domingo — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-domingo">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-domingo" data-etiqueta="Domingo — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -642,9 +649,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-martes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-martes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-martes">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-martes" data-etiqueta="Martes — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-martes">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-martes" data-etiqueta="Martes — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
     </section>
 
@@ -1608,7 +1617,7 @@ function recogerEnvio(){
     'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
   ).forEach(el => {
     if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
-    if (el.id === "f-veredicto-dato" && !PEDIR_LINEA_VEREDICTO) return; // apagada: ver 11.4
+    if ((el.id === "f-veredicto-dato" || el.id.startsWith("f-sit-")) && !PEDIR_LINEA_VEREDICTO) return; // apagadas: ver 11.4
     let valor = el.value;
     if (el.tagName === "SELECT" && el.selectedIndex >= 0) valor = el.options[el.selectedIndex].text;
     if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
@@ -1778,7 +1787,7 @@ function highlightInvalidFields(){
    11.4 LÍNEA ESCRITA DEL VEREDICTO (apagada)
    ============================================================ */
 
-// false: el veredicto es solo la opción elegida. La línea «¿Qué dato del caso
+// false: el veredicto y las cuatro situaciones son solo la opción elegida. La línea «¿Qué dato del caso
 // decidió su veredicto?» queda oculta, no es obligatoria, no cuenta en el
 // progreso y su criterio sale de la rúbrica plegable (el peso pasa a lo que sí
 // se escribe). El porqué se dice en voz alta en el cierre.
@@ -1794,7 +1803,14 @@ function aplicarLineaVeredicto(){
   if (PEDIR_LINEA_VEREDICTO) return;
   if (caja) caja.hidden = true;
   if (campo) campo.dataset.required = "false";
+  // Las cuatro situaciones también quedan solo con la opción.
+  document.querySelectorAll(".linea-situacion").forEach(c => {
+    c.hidden = true;
+    const t = c.querySelector("textarea");
+    if (t) t.dataset.required = "false";
+  });
   delete RUBRICA_CAMPOS["f-veredicto-dato"];
+  delete RUBRICA_CAMPOS["bloque-2"];
   Object.keys(RUBRICA_CAMPOS).forEach(id => {
     const c = RUBRICA_CAMPOS[id];
     if (c.pesoSinLinea) c.peso = c.pesoSinLinea;
@@ -1812,7 +1828,7 @@ function aplicarLineaVeredicto(){
 const RUBRICA_CAMPOS = {
   "bloque-1": {
     peso: "40%",
-    pesoSinLinea: "55%",
+    pesoSinLinea: "100%",
     rotulo: "Ver cómo se evalúa el checklist",
     destino: "seccion",
     niveles: [
