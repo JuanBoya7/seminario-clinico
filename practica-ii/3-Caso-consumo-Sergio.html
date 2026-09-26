@@ -286,7 +286,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 }
 .condition-card.is-open .chevron{transform:rotate(-135deg);}
 
-/* Insignia neutra (explosivo intermitente: solo cuenta criterios, sin gravedad oficial del DSM-5) */
+/* Insignia neutra (trastornos sin gravedad oficial del DSM-5: solo cuenta criterios) */
 .count-badge{
   font-family:var(--font-mono); font-size:12.5px; font-weight:600;
   padding:6px 12px; border-radius:99px; white-space:nowrap;
@@ -294,7 +294,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 }
 
 /* Insignia de gravedad (solo trastorno por consumo: el DSM-5 sí define
-   leve/moderado/grave por conteo de criterios, a diferencia del explosivo intermitente) */
+   leve/moderado/grave por conteo de criterios) */
 .severity-badge{
   font-family:var(--font-mono); font-size:12.5px; font-weight:600;
   padding:6px 12px; border-radius:99px; white-space:nowrap;
@@ -310,7 +310,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .condition-card.is-open .condition-body{max-height:8000px;}
 .condition-body-inner{padding:20px 22px 22px;}
 
-/* Alerta de cumplimiento de criterios (explosivo intermitente: sin gravedad oficial, se
+/* Alerta de cumplimiento de criterios (trastornos sin gravedad oficial: se
    informa en cambio si el patrón completo queda o no diagnósticamente
    cumplido con lo marcado hasta el momento) */
 .criteria-alert{
@@ -479,7 +479,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
     <ul class="nav-list" id="nav-list">
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
       <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
-      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Veredicto</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Las cuatro situaciones</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Veredicto</a></li>
     </ul>
 
     <div class="progress-block">
@@ -562,40 +563,112 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <h2>Diagnóstico DSM-5</h2>
       </div>
       <p class="block-sub">
-        Evalúen por separado el <strong>trastorno por consumo de cocaína</strong> y el
-        <strong>trastorno explosivo intermitente</strong>. Marquen cada criterio que consideren presente y
-        escriban, con sus propias palabras, la evidencia que lo sustenta; los criterios de exclusión
-        solo se marcan. La gravedad automática (leve/moderado/grave) solo aparece en el trastorno por
-        consumo, porque es el único de los dos que el DSM-5 gradúa así — el explosivo intermitente no
-        tiene una gravedad oficial, así que en su lugar van a ver un aviso de cumplimiento de criterios.
+        Evalúen el <strong>trastorno por consumo de cocaína</strong>. Marquen cada criterio que consideren
+        presente y escriban, con sus propias palabras, la evidencia que lo sustenta. La gravedad (leve,
+        moderado o grave) se calcula sola con los criterios marcados, como la define el DSM-5.
       </p>
       <div id="condition-checklists"></div>
     </section>
 
-    <!-- ============ BLOQUE 2 — VEREDICTO ============ -->
-    <!-- Es lo que se proyecta: el tablero docente lo pone al lado del de los
-         demás grupos y de lo que dice el checklist de cada uno. Por eso acá no
-         hay ningún aviso de si el veredicto coincide con el checklist: esa
-         diferencia es material del debate, y avisarla la borraría. -->
+    <!-- ============ BLOQUE 2 — LAS CUATRO SITUACIONES ============ -->
+    <!-- Las cuatro que Sergio anotó en su autorregistro (fragmento C). Cada una
+         se decide por separado: el tablero pone lado a lado cómo las leyó cada
+         grupo, y el debate empieza donde se dividen. -->
     <section class="block" id="bloque-2">
       <div class="block-heading">
         <span class="block-index">02</span>
+        <h2>Las cuatro situaciones</h2>
+      </div>
+      <p class="block-sub">
+        En el autorregistro, Sergio anotó cuatro situaciones de su semana. Para cada una, elijan qué la
+        explica y escriban el dato del video que lo decidió.
+      </p>
+
+      <div class="card">
+        <div class="card-label">Viernes · La discoteca: el chico que pidió fuego <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué explica esta situación?</div>
+        <div class="option-list" data-group="sit-viernes" data-required="true">
+          <label class="option-row"><input type="radio" name="sit-viernes" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="motivo"><span>El consumo como tema de la discusión</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
+        </div>
+        <label class="campo-sub" for="f-sit-viernes">¿Qué dato del video lo decidió?</label>
+        <textarea data-required="true" id="f-sit-viernes" data-etiqueta="Viernes — dato que lo decidió"
+                  rows="2" maxlength="220"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Sábado · El baño de la discoteca <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué explica esta situación?</div>
+        <div class="option-list" data-group="sit-sabado" data-required="true">
+          <label class="option-row"><input type="radio" name="sit-sabado" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="motivo"><span>El consumo como tema de la discusión</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
+        </div>
+        <label class="campo-sub" for="f-sit-sabado">¿Qué dato del video lo decidió?</label>
+        <textarea data-required="true" id="f-sit-sabado" data-etiqueta="Sábado — dato que lo decidió"
+                  rows="2" maxlength="220"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Domingo · La barra, con sus amigos <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué explica esta situación?</div>
+        <div class="option-list" data-group="sit-domingo" data-required="true">
+          <label class="option-row"><input type="radio" name="sit-domingo" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="motivo"><span>El consumo como tema de la discusión</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
+        </div>
+        <label class="campo-sub" for="f-sit-domingo">¿Qué dato del video lo decidió?</label>
+        <textarea data-required="true" id="f-sit-domingo" data-etiqueta="Domingo — dato que lo decidió"
+                  rows="2" maxlength="220"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Martes · El canal de televisión <span class="required-mark">*</span></div>
+        <div class="card-help">¿Qué explica esta situación?</div>
+        <div class="option-list" data-group="sit-martes" data-required="true">
+          <label class="option-row"><input type="radio" name="sit-martes" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="motivo"><span>El consumo como tema de la discusión</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
+        </div>
+        <label class="campo-sub" for="f-sit-martes">¿Qué dato del video lo decidió?</label>
+        <textarea data-required="true" id="f-sit-martes" data-etiqueta="Martes — dato que lo decidió"
+                  rows="2" maxlength="220"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 3 — VEREDICTO ============ -->
+    <!-- Es lo que se proyecta: el tablero docente lo pone al lado del de los
+         demás grupos. Por eso acá no hay ningún aviso de si el veredicto coincide
+         con las situaciones: esa diferencia es material del debate. -->
+    <section class="block" id="bloque-3">
+      <div class="block-heading">
+        <span class="block-index">03</span>
         <h2>Veredicto</h2>
       </div>
       <p class="block-sub">
-        Con los dos checklists resueltos, elijan el veredicto del grupo. El veredicto y su línea se
-        proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen al
-        tablero, al terminar presionen «Enviar al docente».
+        Con el checklist y las cuatro situaciones resueltos, elijan el veredicto del grupo. El veredicto y
+        su línea se proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen
+        al tablero, al terminar presionen «Enviar al docente».
       </p>
 
       <div class="card">
         <div class="card-label">Veredicto del grupo <span class="required-mark">*</span></div>
-        <div class="card-help">¿Qué sostiene la evidencia del caso?</div>
+        <div class="card-help">¿Qué explica la mayor parte de los conflictos de Sergio?</div>
         <div class="option-list" data-group="veredicto" data-required="true">
-          <label class="option-row"><input type="radio" name="veredicto" value="cocaina"><span>Trastorno por consumo de cocaína</span></label>
-          <label class="option-row"><input type="radio" name="veredicto" value="tei"><span>Trastorno explosivo intermitente</span></label>
-          <label class="option-row"><input type="radio" name="veredicto" value="ambos"><span>Los dos a la vez</span></label>
-          <label class="option-row"><input type="radio" name="veredicto" value="ninguno"><span>Ninguno, con la información disponible</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="motivo"><span>El consumo como tema de la discusión</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
         <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
@@ -622,13 +695,13 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
    1. DATOS DE CONTENIDO
    ============================================================ */
 
-// Las dos hipótesis que se evalúan en paralelo. No son alternativas
-// excluyentes: el DSM-5 admite los dos diagnósticos juntos si hay estallidos
-// fuera del consumo. El caso las plantea a su modo: la psicóloga atribuye las
-// discusiones a la cocaína, y Sergio a «cómo se toman las cosas».
-// Fuente: Morrison, DSM-5 — Guía para el diagnóstico clínico, cap. 14
-// "Trastornos disruptivos, del control de los impulsos y de la conducta" y
-// cap. 15 "Trastornos relacionados con sustancias y adicciones".
+// El trastorno por consumo de cocaína, con la gravedad que define el DSM-5
+// por conteo de criterios. Lo que el caso discute después no es si hay un
+// segundo diagnóstico, sino qué explica cada conflicto: el efecto de la
+// sustancia mientras está, lo que deja cuando se va, el consumo como tema de
+// la discusión o la relación (bloque 2).
+// Fuente: Morrison, DSM-5 — Guía para el diagnóstico clínico, cap. 15
+// "Trastornos relacionados con sustancias y adicciones".
 //
 // Cada condición tiene:
 //   - poolItems: criterios que se cuentan (se necesita un mínimo poolMin)
@@ -636,8 +709,6 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 //     debe estar marcado para que el criterio cuente como cumplido
 //   - required: criterios que deben cumplirse todos, sin excepción
 //   - hasSeverity: si el DSM-5 define gravedad oficial para ese trastorno
-//     (el trastorno por consumo sí, por conteo de criterios; el explosivo
-//     intermitente no)
 //   - severityBands: los tramos de gravedad del DSM-5 para ese trastorno
 const CONDITIONS = [
   {
@@ -663,26 +734,6 @@ const CONDITIONS = [
       "Abstinencia: síndrome propio de la sustancia al reducir o suspender el consumo, o se consume la misma sustancia (u otra similar) para aliviar o evitar esos síntomas."
     ],
     required: []
-  },
-  {
-    key: "tei",
-    label: "Trastorno explosivo intermitente",
-    code: "F63.81 [312.34]",
-    hasSeverity: false,
-    poolMin: 1,
-    mustIncludeAny: null,
-    poolIntro: "Arrebatos recurrentes en el comportamiento que reflejan una falta de control de los impulsos de agresividad, manifestada por una de las siguientes:",
-    poolItems: [
-      "Agresión verbal (berrinches, diatribas, discusiones o peleas verbales) o agresión física contra la propiedad, los animales u otras personas, en promedio dos veces por semana durante un período de tres meses. La agresión física no provoca daños ni destrucción de la propiedad, ni lesiones a animales u otras personas.",
-      "Tres arrebatos en los últimos doce meses que provocan daños o destrucción de la propiedad, o agresión física con lesiones a animales u otras personas."
-    ],
-    required: [
-      "La magnitud de la agresividad expresada durante los arrebatos es bastante desproporcionada con respecto a la provocación o a cualquier factor estresante psicosocial desencadenante.",
-      "Los arrebatos no son premeditados (son impulsivos o provocados por la ira) ni persiguen ningún objetivo tangible (dinero, poder, intimidación).",
-      "Los arrebatos provocan un marcado malestar en el individuo, alteran su rendimiento laboral o sus relaciones interpersonales, o tienen consecuencias económicas o legales.",
-      "La edad cronológica es de seis años como mínimo (o un grado de desarrollo equivalente).",
-      "Los arrebatos no se explican mejor por otro trastorno mental ni se pueden atribuir a otra afección médica o a los efectos fisiológicos de una sustancia (drogas, medicamentos)."
-    ]
   }
 ];
 
@@ -750,8 +801,8 @@ function isCriterionChecked(stateKey){
 
 // Gravedad: solo la llevan los trastornos para los que el DSM-5 define un
 // especificador oficial. En el trastorno por consumo es el conteo de los once
-// criterios: 2–3 leve, 4–5 moderado, 6 o más grave. El explosivo intermitente
-// no tiene gravedad oficial y muestra en su lugar el aviso de cumplimiento.
+// criterios: 2–3 leve, 4–5 moderado, 6 o más grave. Un trastorno sin gravedad
+// oficial muestra en su lugar el aviso de cumplimiento.
 function severityFromPoolCount(cond, poolCount, mustOk){
   if (poolCount < cond.poolMin || !mustOk) return { level: "ninguna", label: "No se cumplen los criterios mínimos" };
   const tramo = cond.severityBands.find(b => poolCount >= b[0] && poolCount <= b[1]);
@@ -1185,9 +1236,10 @@ function updateProgress(){
 // genera una sesión nueva y limpia cada vez que se abre por primera vez, de modo que la
 // plantilla repartida NUNCA hereda respuestas de una sesión anterior en el mismo navegador.
 // Un archivo ya guardado (con datos incrustados) reabre su propia sesión y conserva el respaldo.
-// v2: la actividad pasó a checklist + veredicto. Con otra clave, un navegador que
-// guardó la versión anterior no le rehidrata a nadie campos que ya no existen.
-const STORAGE_PREFIX = "caso_sergio_actividad_v3:";
+// Cada vez que cambian los campos de la actividad cambia la clave: así un
+// navegador que guardó la versión anterior no le rehidrata a nadie campos que
+// ya no existen.
+const STORAGE_PREFIX = "caso_sergio_actividad_v4:";
 let SESSION_KEY = null;
 
 function computeSessionKey(embeddedRaw){
@@ -1723,30 +1775,41 @@ function highlightInvalidFields(){
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
-// Los dos criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados
-// y colgados de la consigna que cada uno evalúa. Si cambian allá hay que
+// Los tres criterios de 3-Caso-consumo-Sergio-rubrica.html, condensados
+// y colgados del bloque que cada uno evalúa. Si cambian allá hay que
 // cambiarlos acá también: no hay una sola fuente, porque la rúbrica es una
 // página aparte y este recurso tiene que seguir funcionando sin conexión.
 const RUBRICA_CAMPOS = {
   "bloque-1": {
-    peso: "70%",
-    rotulo: "Ver cómo se evalúan los dos checklists",
+    peso: "40%",
+    rotulo: "Ver cómo se evalúa el checklist",
     destino: "seccion",
     niveles: [
       "Hay criterios marcados sin evidencia, o la evidencia no corresponde al criterio que acompaña.",
-      "La evidencia repite el enunciado del criterio en lugar de traer un dato del caso, o uno de los dos checklists queda sin trabajar.",
-      "Recorre los dos; cada criterio marcado va con evidencia del caso en palabras propias, y no quedan sin marcar los que el caso documenta.",
-      "Además advierte que un mismo hecho sostiene criterios de las dos listas, o separa lo que el caso permite afirmar de lo que habría que preguntar."
+      "La evidencia repite el enunciado del criterio en lugar de traer un dato del caso.",
+      "Cada criterio marcado va con evidencia del caso en palabras propias, y no quedan sin marcar los que el caso documenta.",
+      "Además separa lo que Sergio dice de lo que el caso muestra, o lo que el caso permite afirmar de lo que habría que preguntar."
+    ]
+  },
+  "bloque-2": {
+    peso: "35%",
+    rotulo: "Ver cómo se evalúan las cuatro situaciones",
+    destino: "seccion",
+    niveles: [
+      "Faltan situaciones, o las líneas no traen ningún dato del video.",
+      "Las líneas repiten la opción elegida con otras palabras, o el dato no corresponde a la situación que acompaña.",
+      "Cada situación lleva el dato del video que decidió la opción: qué había pasado antes, qué pasó y cómo estaba Sergio.",
+      "Además distingue lo que el video muestra de lo que Sergio atribuye, o reconoce qué situación no alcanza a decidirse y qué dato faltaría."
     ]
   },
   "f-veredicto-dato": {
-    peso: "30%",
+    peso: "25%",
     rotulo: "Ver cómo se evalúa el veredicto",
     niveles: [
       "No hay veredicto, o la línea no trae ningún dato del caso.",
-      "La línea repite el veredicto con otras palabras, o trae un dato que el grupo no sostuvo en su checklist.",
-      "La línea trae el dato del caso que decidió el veredicto, y ese dato está entre los que el grupo sostuvo en su checklist.",
-      "Además, cuando el veredicto no coincide con lo que dice su checklist, la línea deja ver por qué."
+      "La línea repite el veredicto con otras palabras, o no se apoya en lo que el grupo respondió en las situaciones.",
+      "La línea trae el dato que decidió el veredicto, y es coherente con cómo el grupo leyó las cuatro situaciones.",
+      "Además, cuando el veredicto no coincide con la mayoría de sus situaciones, la línea deja ver por qué."
     ]
   }
 };
@@ -1779,10 +1842,10 @@ function initRubricaEnLinea(){
     const criterio = RUBRICA_CAMPOS[id];
     const ancla = document.getElementById(id);
     if (!ancla) return;
-    // El plegable de los checklists se cuelga del final de la sección, no de
-    // una tarjeta: los dos checklists los dibuja renderConditionChecklists
-    // dentro de #condition-checklists y cualquier cosa que quede ahí adentro
-    // se pierde en el siguiente redibujado.
+    // Los plegables de bloque se cuelgan del final de la sección, no de una
+    // tarjeta: el checklist lo dibuja renderConditionChecklists dentro de
+    // #condition-checklists y cualquier cosa que quede ahí adentro se pierde en
+    // el siguiente redibujado; el de las situaciones evalúa las cuatro juntas.
     const destino = criterio.destino === "seccion" ? ancla : ancla.closest(".card");
     if (!destino) return;
     const plegable = construirPlegableRubrica(criterio);

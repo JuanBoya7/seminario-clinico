@@ -25,7 +25,7 @@
  * Modo de lectura para el tablero docente (los tres casos):
  * doGet con ?tablero=Susana&curso=…&grupo=… devuelve, por grupo de trabajo, su
  * última entrega resumida —criterios marcados, veredicto y la línea que lo
- * sostiene—. No escribe nada y no toca doPost: publicar esta versión no cambia
+ * sostiene, y en Sergio también cómo leyó cada situación del autorregistro—. No escribe nada y no toca doPost: publicar esta versión no cambia
  * cómo se reciben las entregas de ningún caso.
  *
  * Para publicarla: reemplazar el contenido de Codigo.gs por este archivo, y en
@@ -312,6 +312,18 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
           return;
         }
         var criterios = estado.criteria || {};
+        // Situaciones (caso Sergio): cada una es un grupo de opción única
+        // «sit-<día>» con su línea «f-sit-<día>». Los casos que no las tienen
+        // mandan un objeto vacío y su tablero no cambia.
+        var situaciones = {};
+        var radios = estado.radio || {}, textos = estado.text || {};
+        Object.keys(radios).forEach(function (k) {
+          if (k.indexOf('sit-') !== 0) return;
+          situaciones[k.substring(4)] = {
+            opcion: String(radios[k] || ''),
+            dato: String(textos['f-' + k] || '').substring(0, 300)
+          };
+        });
         entregas.push({
           cursoGrupo: g,
           grupo: grupo,
@@ -320,7 +332,8 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
           dato: String((estado.text || {})['f-veredicto-dato'] || '').substring(0, 400),
           marcados: Object.keys(criterios).filter(function (k) {
             return criterios[k] && criterios[k].checked;
-          })
+          }),
+          situaciones: situaciones
         });
       });
     });

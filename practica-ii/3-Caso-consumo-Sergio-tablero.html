@@ -25,10 +25,11 @@
   --severe-soft:#fbeae6;
   /* Un color por veredicto. Ninguno sugiere "correcto": la rúbrica no
      califica acertar el trastorno, y el tablero tampoco debe insinuarlo. */
-  --c-cocaina:#1f6f78;
-  --c-tei:#b0503a;
-  --c-ambos:#b8722a;
-  --c-ninguno:#8a97a0;
+  --c-intox:#1f6f78;
+  --c-bajon:#6d5a9c;
+  --c-motivo:#b8722a;
+  --c-relacion:#b0503a;
+  --c-nodecide:#8a97a0;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
@@ -104,10 +105,24 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .btn-principal:hover{background:var(--accent-dark);}
 .btn-principal[hidden]{display:none;}
 
+/* ---- Las situaciones: una barra por situación, repartida por explicación ---- */
+.leyenda{display:flex; gap:8px 18px; flex-wrap:wrap; margin:0 0 16px; font-size:14px; color:var(--ink-soft);}
+.leyenda i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+.sit{border-top:1px solid var(--border); padding:12px 0 10px;}
+.sit summary{list-style:none; cursor:pointer;}
+.sit summary::-webkit-details-marker{display:none;}
+.sit .fila{margin-bottom:0;}
+.sit .nom small{display:block; font-size:12px; color:var(--ink-faint);}
+.sit-voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; margin-top:12px;}
+.sit-voz{border-left:4px solid var(--border); border-radius:0 8px 8px 0; padding:9px 12px;
+  font-size:15px; line-height:1.4; background:var(--surface);}
+.sit-voz .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
+
 /* ---- Voces ---- */
-/* 210px: con los cuatro veredictos presentes, entran las cuatro columnas en una
+/* 200px: con los cinco veredictos presentes, entran las cinco columnas en una
    pantalla de proyector en vez de mandar la última a una segunda fila. */
-.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px;}
+.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;}
 .col-voz h3{font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
 .voz{background:var(--surface); padding:12px 14px; border-radius:8px; margin-bottom:10px;
   font-size:16px; line-height:1.45;}
@@ -201,50 +216,69 @@ const FUENTE = {
 const GRUPOS_CURSO = ["Práctica II"];
 
 const VEREDICTOS = [
-  { v: "cocaina", nombre: "Trastorno por consumo de cocaína",       corto: "cocaína",   color: "var(--c-cocaina)" },
-  { v: "tei",     nombre: "Trastorno explosivo intermitente",       corto: "explosivo", color: "var(--c-tei)" },
-  { v: "ambos",   nombre: "Los dos a la vez",                       corto: "los dos",   color: "var(--c-ambos)" },
-  { v: "ninguno", nombre: "Ninguno, con la información disponible", corto: "ninguno",   color: "var(--c-ninguno)" }
+  { v: "intoxicacion", nombre: "Intoxicación: lo que hace mientras está", corto: "intoxicación",         color: "var(--c-intox)" },
+  { v: "bajon",        nombre: "El bajón: lo que deja cuando se va",      corto: "el bajón",             color: "var(--c-bajon)" },
+  { v: "motivo",       nombre: "El consumo como tema de la discusión",    corto: "el consumo como tema", color: "var(--c-motivo)" },
+  { v: "relacion",     nombre: "La relación",                             corto: "la relación",          color: "var(--c-relacion)" },
+  { v: "nodecide",     nombre: "No se puede decidir con lo que se vio",   corto: "no se puede decidir",  color: "var(--c-nodecide)" }
+];
+
+// Las cuatro situaciones que Sergio anotó en su autorregistro (fragmento C).
+// En la actividad, cada una es un grupo de opción única «sit-<clave>» con las
+// mismas cinco explicaciones que el veredicto.
+const SITUACIONES = [
+  { k: "viernes", dia: "Viernes", que: "La discoteca: el chico que pidió fuego" },
+  { k: "sabado",  dia: "Sábado",  que: "El baño de la discoteca" },
+  { k: "domingo", dia: "Domingo", que: "La barra, con sus amigos" },
+  { k: "martes",  dia: "Martes",  que: "El canal de televisión" }
 ];
 
 /* ============================================================
    2. LAS AFIRMACIONES
    ============================================================
    AFIRMACIONES: una por veredicto, visible debajo de su columna en «Voces y
-   cierre». Un veredicto que ningún grupo eligió no tiene columna ni afirmación. Cada una dice lo que ESE veredicto exige, no que la
-   mayoría acertó: así sigue siendo cierta aunque el curso se equivoque, y el
-   cierre no contradice a la rúbrica, que no califica acertar el trastorno.
-   Están escritas sobre los tres
+   cierre». Un veredicto que ningún grupo eligió no tiene columna ni afirmación.
+   Cada una dice lo que ESA explicación exige, no que la mayoría acertó: así
+   sigue siendo cierta aunque el curso se equivoque, y el cierre no contradice
+   a la rúbrica, que no califica acertar. Están escritas sobre los tres
    fragmentos que se proyectan (A: primera sesión, 0:06–8:37; B: el día
-   después, 28:55–30:31; C: autorregistro, 41:29–46:20) y vuelven al eje del
-   caso: si las discusiones las explica la cocaína o las trae Sergio. Los
-   minutos son los del video completo.
+   después, 28:55–30:31; C: autorregistro, 41:29–46:20). Los minutos son los
+   del video completo.
    CIERRE: una sola, con todo el video. Queda oculta hasta que el docente la
    pide y es la misma cualquiera sea el veredicto que predomine.
-   Fuente: Morrison, DSM-5: Guía para el diagnóstico clínico.
+   Fuente: Morrison, DSM-5: Guía para el diagnóstico clínico, cap. 15.
    ============================================================ */
+// En este caso el cierre se hace solo con la afirmación del video completo:
+// las de cada veredicto quedan escritas pero no se muestran. Para volver a
+// mostrarlas, poner true.
+const MOSTRAR_AFIRMACIONES = false;
+
 const AFIRMACIONES = {
-  cocaina: {
-    texto: "Que la cocaína explique las discusiones hay que mostrarlo en la secuencia: tres de las cuatro que Sergio registró empezaron con cocaína, y la cuarta llegó un martes, «cansado», después del fin de semana.",
-    fuente: "Fragmento C, 41:37, 42:09, 43:43 y 44:47 · Fragmento B, 29:24 · <strong>Morrison</strong>, cap. 15: dos de los criterios afirman que el problema lo causa o agrava la sustancia."
+  intoxicacion: {
+    texto: "Atribuirlo a la intoxicación pide que el conflicto llegue con la cocaína encima y con la forma de su efecto. El viernes, tras dos o tres rayas, vienen los celos y el puñetazo; el domingo, tras dos rayas, la barra. El martes no hubo rayas.",
+    fuente: "Fragmento C, 41:37, 43:43 y 44:47 · <strong>Morrison</strong>, cap. 15: la intoxicación por estimulantes incluye sensibilidad interpersonal y un desempeño social comprometido."
   },
-  tei: {
-    texto: "El explosivo intermitente pide estallidos que no se expliquen por una sustancia. El único que Sergio registró sin consumo es el del martes, y cuando trabajaba «no las tenía»: el patrón fuera de la cocaína hay que mostrarlo, no suponerlo.",
-    fuente: "Fragmento C, 44:47 y 45:53 · <strong>Morrison</strong>, cap. 14: el criterio F excluye los arrebatos atribuibles a los efectos de una sustancia."
+  bajon: {
+    texto: "El bajón explica el ánimo, no el acto: pide un conflicto en los días después de consumir, con cansancio e irritación. Sergio dice que al día siguiente está «más irascible», aunque lo atribuye a no dormir, y el martes llega «un poco cansado».",
+    fuente: "Fragmento B, 29:18 · Fragmento C, 44:47 · <strong>Morrison</strong>, cap. 15: la abstinencia de estimulantes trae disforia, fatiga y cambios del sueño."
   },
-  ambos: {
-    texto: "Los dos a la vez piden dos series de estallidos: una con cocaína y otra sin ella que alcance por sí sola la frecuencia del criterio A. Con una sola discusión sobria en la semana registrada, la segunda serie no está a la vista.",
-    fuente: "Fragmento C, 41:37–45:18 · <strong>Morrison</strong>, cap. 14: dos arrebatos por semana durante tres meses, o tres con daño en un año."
+  motivo: {
+    texto: "El consumo como tema pide que se discuta por la droga misma, no por lo que hace. El sábado lo echan por consumir en el baño, y su novio le dice que tiene un problema, que no puede salir sin consumir.",
+    fuente: "Fragmento C, 42:09–42:41 · <strong>Morrison</strong>, cap. 15: seguir consumiendo pese a los problemas con otros que el consumo causa es uno de los once criterios."
   },
-  ninguno: {
-    texto: "Suspender el juicio también es una conclusión clínica, y se sostiene nombrando el dato que falta. Para la cocaína cuesta: la tolerancia y el despido los cuenta Sergio en el primer fragmento, y bastan dos criterios.",
-    fuente: "Fragmento A, 4:17 y 7:25 · <strong>Morrison</strong>, cap. 15: dos de los once criterios en doce meses bastan para el diagnóstico."
+  relacion: {
+    texto: "La relación como explicación pide conflictos que no dependan de la sustancia. Es la tesis de Sergio —«es por cómo se toman las cosas»— y el martes es su mejor ejemplo, pero él mismo dice que cuando trabajaba no los tenía.",
+    fuente: "Fragmento A, 2:43 · Fragmento C, 44:47 y 45:49."
+  },
+  nodecide: {
+    texto: "Suspender el juicio también es una conclusión, y se sostiene nombrando el dato que falta. En los fragmentos no hay una semana sin cocaína ni sin cannabis con la que comparar.",
+    fuente: "Fragmento A, 6:53: el cannabis, casi a diario, para dormir · Fragmento C, 41:29–46:20."
   }
 };
 
 const CIERRE = {
-  texto: "El video completo explica las discusiones de pareja por el consumo: la mayor parte ocurre con cocaína o cannabis, o por la irritabilidad, el cansancio y el insomnio que dejan. El MMPI y el SCL-90 no muestran otro trastorno y la psicóloga descarta la patología dual, así que no queda una serie de estallidos ajena a la sustancia. Diagnostica trastorno por consumo de cocaína, de cannabis y de nicotina, y deja el alcohol por seguir evaluando.",
-  fuente: "Video completo: 50:13, 50:45, 51:16 y 51:47 · <strong>Morrison</strong>, cap. 15: trastornos relacionados con sustancias; cap. 14: el criterio F del trastorno explosivo intermitente."
+  texto: "Con el video completo, la psicóloga concluye que la mayor parte de las discusiones se explica por el consumo: directamente, con la cocaína encima, o por la irritabilidad, el cansancio y el no dormir que dejan la cocaína y el cannabis. Sergio fuma cannabis casi a diario, también «cuando me noto más alterado o enfadado», y ya no duerme sin él. En la devolución, ante los dos, dice que no ve un problema de pareja sino de consumo.",
+  fuente: "Video completo: 18:14, 26:11, 51:47 y 58:31 · <strong>Morrison</strong>, cap. 15: intoxicación y abstinencia de estimulantes; abstinencia de cannabis."
 };
 
 /* ============================================================
@@ -252,18 +286,28 @@ const CIERRE = {
    ============================================================
    Nueve grupos inventados. Se usan mientras FUENTE.url diga "PENDIENTE", o
    con ?demo=1 en la dirección, para ensayar el cierre antes de la clase.
-   Llegan de a uno, como llegarían en el aula.
+   Llegan de a uno, como llegarían en el aula. En cada uno: veredicto, línea,
+   y cómo leyó las cuatro situaciones (viernes, sábado, domingo, martes).
    ============================================================ */
 const DEMO = [
-  { g: 1, h: "10:31", v: "cocaina", d: "Tres de las cuatro discusiones empiezan después de meterse rayas." },
-  { g: 2, h: "10:33", v: "ambos",   d: "Lo del canal de televisión fue sin cocaína y explotó igual." },
-  { g: 3, h: "10:34", v: "cocaina", d: "Necesita cada vez más para el mismo efecto y lo echaron del trabajo." },
-  { g: 4, h: "10:36", v: "tei",     d: "Le dio un puñetazo a un chico solo porque le pidió fuego a su novio." },
-  { g: 5, h: "10:37", v: "cocaina", d: "El martes estaba cansado del fin de semana: también es la cocaína." },
-  { g: 6, h: "10:39", v: "ambos",   d: "Él mismo dice que discuten por cómo se toman las cosas." },
-  { g: 7, h: "10:40", v: "cocaina", d: "Cuando trabajaba no tenía esas discusiones." },
-  { g: 8, h: "10:42", v: "ninguno", d: "No sabemos cómo era con la pareja antes de consumir." },
-  { g: 9, h: "10:44", v: "cocaina", d: "Al día siguiente de consumir está más irascible y discuten." }
+  { g: 1, h: "10:31", v: "intoxicacion", d: "Tres de las cuatro situaciones empiezan después de meterse rayas.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "relacion"] },
+  { g: 2, h: "10:33", v: "relacion",     d: "Lo del canal de televisión fue sin cocaína y discutieron igual.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "relacion"] },
+  { g: 3, h: "10:34", v: "bajon",        d: "Al día siguiente de consumir está más irascible, y el martes estaba cansado.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "bajon"] },
+  { g: 4, h: "10:36", v: "intoxicacion", d: "Le pegó a un chico después de dos o tres rayas.",
+    s: ["intoxicacion", "intoxicacion", "intoxicacion", "nodecide"] },
+  { g: 5, h: "10:37", v: "motivo",       d: "Su novio se enoja porque no puede salir sin consumir.",
+    s: ["intoxicacion", "motivo", "motivo", "bajon"] },
+  { g: 6, h: "10:39", v: "relacion",     d: "Él mismo dice que discuten por cómo se toman las cosas.",
+    s: ["relacion", "motivo", "intoxicacion", "relacion"] },
+  { g: 7, h: "10:40", v: "bajon",        d: "Cuando trabajaba no tenía esas discusiones; ahora está cansado.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "bajon"] },
+  { g: 8, h: "10:42", v: "nodecide",     d: "No sabemos cómo sería una semana sin consumir nada.",
+    s: ["intoxicacion", "motivo", "nodecide", "nodecide"] },
+  { g: 9, h: "10:44", v: "intoxicacion", d: "Los celos aparecen justo cuando se mete las rayas.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "relacion"] }
 ];
 
 function entregasDemo(cuantas){
@@ -271,8 +315,10 @@ function entregasDemo(cuantas){
   return DEMO.slice(0, cuantas).map(x => {
     const [hh, mm] = x.h.split(":").map(Number);
     const fecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), hh, mm);
+    const situaciones = {};
+    SITUACIONES.forEach((s, i) => { situaciones[s.k] = { opcion: x.s[i], dato: "" }; });
     return { cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + x.g, enviado: fecha.toISOString(),
-             veredicto: x.v, dato: x.d };
+             veredicto: x.v, dato: x.d, situaciones };
   });
 }
 
@@ -343,7 +389,7 @@ const numeroDeGrupo = e => parseInt(String(e.grupo).replace(/\D/g, ""), 10) || 0
 const plural = (n, uno, varios) => n === 1 ? uno : varios;
 const pct = (n, d) => d ? Math.round(n / d * 100) : 0;
 const grupoElegido = () => document.getElementById("f-grupo").value;
-const veredicto = v => VEREDICTOS.find(x => x.v === v) || { v, nombre: v, corto: v, color: "var(--c-ninguno)" };
+const veredicto = v => VEREDICTOS.find(x => x.v === v) || { v, nombre: v, corto: v, color: "var(--c-nodecide)" };
 
 // "Grupo 4", o "901 · Grupo 4" cuando el tablero mezcla grupos del curso.
 const quien = e => (grupoElegido() ? "" : e.cursoGrupo + " · ") + e.grupo;
@@ -371,6 +417,57 @@ function pantallaEnvios(E){
   </section>`;
 }
 
+// Las situaciones abiertas siguen abiertas cuando el tablero se repinta.
+const abiertas = new Set();
+document.addEventListener("toggle", ev => {
+  const d = ev.target;
+  if (d && d.dataset && d.dataset.sit) { if (d.open) abiertas.add(d.dataset.sit); else abiertas.delete(d.dataset.sit); }
+}, true);
+
+function pantallaSituaciones(E){
+  if (!E.length) return `<section class="panel"><h2>Las situaciones</h2>${sinEntregas}</section>`;
+  const conDatos = E.filter(e => e.situaciones && Object.keys(e.situaciones).length);
+  if (!conDatos.length) return `<section class="panel"><h2>Las situaciones</h2>
+    <div class="vacio-msg">Las situaciones no llegaron al tablero: el receptor necesita la versión que las incluye.</div></section>`;
+
+  const leyenda = VEREDICTOS.map(v => `<span><i style="background:${v.color}"></i>${esc(v.corto)}</span>`).join("");
+  let masDividida = null;
+  const filas = SITUACIONES.map(s => {
+    const resp = conDatos.filter(e => e.situaciones[s.k] && e.situaciones[s.k].opcion);
+    const n = resp.length;
+    const partes = VEREDICTOS.map(v => ({ v, c: resp.filter(e => e.situaciones[s.k].opcion === v.v).length }));
+    const max = Math.max(0, ...partes.map(p => p.c));
+    if (n && (!masDividida || max / n < masDividida.r)) masDividida = { s, r: max / n };
+    const barra = partes.filter(p => p.c).map(p =>
+      `<span title="${esc(p.v.corto)}: ${p.c}" style="width:${pct(p.c, n)}%;background:${p.v.color}"></span>`).join("");
+    const voces = resp.slice().sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b)).map(e => {
+      const r = e.situaciones[s.k], v = veredicto(r.opcion);
+      return `<div class="sit-voz" style="border-left-color:${v.color}"><span class="de">${esc(quien(e))} · ${esc(v.corto)}</span>${
+        r.dato ? "«" + esc(r.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`;
+    }).join("");
+    return `<details class="sit" data-sit="${s.k}"${abiertas.has(s.k) ? " open" : ""}>
+      <summary><div class="fila">
+        <div class="nom">${esc(s.dia)}<small>${esc(s.que)}</small></div>
+        <div class="bar">${barra}</div>
+        <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
+      </div></summary>
+      <div class="sit-voces">${voces}</div>
+    </details>`;
+  }).join("");
+
+  const frase = masDividida && masDividida.r < 1
+    ? `Donde más se dividen: <em>${esc(masDividida.s.dia)}</em>. ¿Con qué dato del video sostiene cada grupo su lectura?`
+    : `En las cuatro situaciones, los grupos coinciden. ¿Con qué dato del video lo sostiene cada uno?`;
+  return `<section class="panel">
+    <h2>Las situaciones</h2>
+    <div class="sub">Qué explica, para cada grupo, cada una de las cuatro situaciones del autorregistro.
+      Toquen una situación para ver las líneas de los grupos.</div>
+    <div class="leyenda">${leyenda}</div>
+    ${filas}
+    <div class="frase">${frase}</div>
+  </section>`;
+}
+
 function pantallaVeredictos(E){
   if (!E.length) return `<section class="panel"><h2>Los veredictos</h2>${sinEntregas}</section>`;
   const n = E.length;
@@ -394,7 +491,7 @@ function pantallaVeredictos(E){
   }
   return `<section class="panel">
     <h2>Los veredictos</h2>
-    <div class="sub">Qué concluyó cada grupo después de aplicar los dos checklists.</div>
+    <div class="sub">Qué explica, para cada grupo, la mayor parte de los conflictos de Sergio.</div>
     ${filas}
     <div class="frase">${frase}</div>
   </section>`;
@@ -416,7 +513,7 @@ function pantallaVoces(E){
   const columnas = VEREDICTOS.map(v => {
     const suyas = E.filter(e => e.veredicto === v.v).sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
     if (!suyas.length) return "";
-    const a = AFIRMACIONES[v.v];
+    const a = MOSTRAR_AFIRMACIONES ? AFIRMACIONES[v.v] : null;
     return `<div class="col-voz">
       <h3 style="border-bottom-color:${v.color}">${esc(v.nombre)} · ${suyas.length}</h3>
       ${suyas.map(e => `<div class="voz"><span class="de">${esc(quien(e))}</span>${
@@ -429,13 +526,14 @@ function pantallaVoces(E){
   return `<section class="panel">
     <h2>Las voces</h2>
     <div class="sub">La línea que cada grupo escribió junto a su veredicto: el dato del caso que lo decidió.
-      Debajo de cada columna, lo que ese veredicto exige con los fragmentos vistos en clase.</div>
+</div>
     <div class="voces">${columnas}</div>
     ${bloqueCierre()}
   </section>`;
 }
 
 const PANTALLAS = [
+  { id: "situaciones", rotulo: "Las situaciones", pintar: pantallaSituaciones },
   { id: "veredictos", rotulo: "Veredictos",       pintar: pantallaVeredictos },
   { id: "voces",      rotulo: "Voces y cierre",   pintar: pantallaVoces }
 ];
