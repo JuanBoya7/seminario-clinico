@@ -344,6 +344,15 @@ footer strong{color:var(--ink-soft); font-weight:600;}
     Donde el instrumento es de distribución libre, <strong>el nombre es un enlace a su
     fuente oficial</strong>; donde no lo es, se indica cómo se consigue.
   </p>
+  <p class="lead">
+    Algunos traen una ficha para descargar. <strong>Descargar instrumento</strong> entrega la
+    versión oficial lista para aplicar, con su calificación y sus puntos de corte; solo existe
+    para los de acceso libre. <strong>Descargar ficha técnica</strong> resume, sin reproducir los
+    ítems, uno con licencia o con registro: qué mide, cómo se consigue y qué alternativa libre
+    tiene. Varios de los libres vienen del <a href="https://la.konradlorenz.edu.co/cliniklab-recursos/"
+    target="_blank" rel="noopener">ClinikLab de la Fundación Universitaria Konrad Lorenz</a>,
+    que publica sus validaciones colombianas para uso clínico, educativo e investigativo.
+  </p>
 
   <div class="aviso">
     <strong>Antes de repartir cualquiera de estos:</strong>
@@ -432,7 +441,8 @@ const CATEGORIAS = [
   { t: "Infancia y desarrollo", d: "Donde quien responde no es quien tiene el problema sino su cuidador o su docente. Comparar entre informantes suele decir más que cualquiera por separado." },
   { t: "Funcionamiento y salud física", d: "No qué siente la persona sino qué puede hacer, y con qué limitación física convive." },
   { t: "Contexto y vínculos", d: "Lo que rodea a la persona. Casi siempre es acá donde un programa de promoción de la salud puede intervenir de verdad." },
-  { t: "Recursos y resultado", d: "Con qué cuenta la persona y cómo le fue. Son las medidas de antes y después de un programa." }
+  { t: "Recursos y resultado", d: "Con qué cuenta la persona y cómo le fue. Son las medidas de antes y después de un programa." },
+  { t: "Procesos de cambio", d: "Qué mantiene el problema y si la intervención lo está moviendo. Son las medidas de proceso de las terapias contextuales y cognitivas." }
 ];
 
 const GRUPOS = [
@@ -474,6 +484,15 @@ const GRUPOS = [
         med: "10 ítems · 5 min", acceso: "libre",
         esc: ["primer-nivel","comunidad","hospital"],
         nota: "Sin repositorio oficial único: búsquenlo por su nombre junto con la validación que vayan a citar."
+      },
+      {
+        n: "Escalas de Depresión, Ansiedad y Estrés, versión de 21 ítems", s: "DASS-21",
+        d: "Tres puntajes en una hoja: depresión, ansiedad y estrés de la última semana, cada uno con su grado de gravedad.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "21 ítems · 5-10 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/dass-21-2.pdf",
+        esc: ["salud-mental","primer-nivel","comunidad","hospital"],
+        nota: "De dominio público, con <strong>validación colombiana del ClinikLab</strong> de la Konrad Lorenz. Separar ansiedad de estrés lo hace útil donde el GHQ-12 solo da un total."
       }
     ]
   },
@@ -523,6 +542,33 @@ const GRUPOS = [
         med: "21 ítems · 10 min", acceso: "licencia",
         esc: ["salud-mental","hospital","primer-nivel"],
         nota: "Se adquiere con su editor. <strong>No es un instrumento de tamizaje poblacional:</strong> está pensado para medir gravedad en quien ya consulta."
+      },
+      {
+        n: "Cuestionario de Pensamientos Automáticos, versión de 8 ítems", s: "ATQ-8",
+        d: "Frecuencia de pensamientos automáticos negativos de la última semana.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "8 ítems · 3 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/atq-8.pdf",
+        esc: ["salud-mental","primer-nivel"],
+        nota: "No es tamizaje de depresión sino <strong>medida de proceso</strong> de la terapia cognitiva: muestra si la reestructuración está moviendo los pensamientos. Validación colombiana del ClinikLab."
+      },
+      {
+        n: "Escala de Activación Conductual para la Depresión, versión breve", s: "BADS-SF",
+        d: "Cuánto se activó la persona en la última semana y cuánto evitó.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "9 ítems · 3 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/BADS-SF-Garcia-2019-1.pdf",
+        esc: ["salud-mental","primer-nivel"],
+        nota: "Medida de proceso de la <strong>activación conductual</strong>, sensible al cambio sesión a sesión. Validación colombiana en tesis de la Konrad Lorenz."
+      },
+      {
+        n: "Escala de Actitudes Disfuncionales, revisada", s: "DAS-R",
+        d: "Creencias de perfeccionismo y de dependencia de la aprobación, las que el modelo de Beck asocia con vulnerabilidad a la depresión.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "17 ítems · 5-10 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/das-r-1.pdf",
+        esc: ["salud-mental"],
+        nota: "Mide <strong>vulnerabilidad</strong>, no síntomas: sirve para formular el caso y para ver si cambian los esquemas, no para detectar depresión. Validación colombiana del ClinikLab."
       }
     ]
   },
@@ -586,6 +632,15 @@ const GRUPOS = [
         med: "21 ítems · 10 min", acceso: "licencia",
         esc: ["salud-mental","hospital"],
         nota: "Se adquiere con su editor. Lo mismo aplica al <strong>Inventario de Ansiedad Estado-Rasgo (STAI)</strong>."
+      },
+      {
+        n: "Cuestionario de Preocupación de Pensilvania, versión de 11 ítems", s: "PSWQ-11",
+        d: "Tendencia a preocuparse de forma excesiva e incontrolable, el rasgo central del trastorno de ansiedad generalizada.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "11 ítems · 3-5 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/pswq-11-3.pdf",
+        esc: ["salud-mental","primer-nivel","comunidad"],
+        nota: "Versión breve con <strong>puntos de corte colombianos</strong> para TAG moderado (33) y severo (38), del ClinikLab. Complementa al GAD-7: uno mide síntomas recientes, el otro el rasgo."
       }
     ]
   },
@@ -1399,6 +1454,67 @@ const GRUPOS = [
         med: "36 o 12 ítems · 5-15 min", acceso: "licencia",
         esc: ["hospital","primer-nivel","comunidad"],
         nota: "Se adquiere con su editor. Para uso libre conviene alguno de los anteriores."
+      },
+      {
+        n: "Escala de Satisfacción con la Vida", s: "SWLS",
+        d: "Satisfacción global con la propia vida, según los criterios de la persona.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "5 ítems · 2 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/swls-1.pdf",
+        esc: ["comunidad","primer-nivel","salud-mental","mayores"],
+        nota: "La excepción libre de este grupo: <strong>sin solicitud y con validación colombiana</strong> del ClinikLab. Mide bienestar subjetivo, no salud, así que acompaña a una medida de funcionamiento en vez de reemplazarla."
+      }
+    ]
+  },
+  {
+    cat: "Procesos de cambio",
+    t: "Procesos psicológicos transdiagnósticos",
+    sub: "No qué síntoma tiene la persona sino qué lo mantiene: evitación, fusión con los pensamientos, falta de atención plena, rumia, supresión emocional. Son medidas de proceso: se aplican al inicio y a lo largo de la intervención para ver si está moviendo lo que dice mover. Todas estas tienen validación colombiana del ClinikLab de la Fundación Universitaria Konrad Lorenz.",
+    inst: [
+      {
+        n: "Cuestionario de Aceptación y Acción II", s: "AAQ-II",
+        d: "Inflexibilidad psicológica y evitación experiencial: cuánto estorba la lucha contra lo que se siente.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "7 ítems · 3 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/aaq-ii-1.pdf",
+        esc: ["salud-mental","primer-nivel","comunidad"],
+        nota: "La medida de proceso central de la <strong>terapia de aceptación y compromiso</strong>. Validación colombiana del ClinikLab, con promedios clínicos y no clínicos de referencia."
+      },
+      {
+        n: "Cuestionario de Fusión Cognitiva", s: "CFQ-7",
+        d: "Cuánto se enreda la persona en sus pensamientos y los toma como verdades que dirigen su conducta.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "7 ítems · 3 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/cfq-1.pdf",
+        esc: ["salud-mental","primer-nivel"],
+        nota: "No confundir con el Cuestionario de Fallos Cognitivos, que comparte la sigla CFQ. Validación colombiana del ClinikLab."
+      },
+      {
+        n: "Escala de Atención y Conciencia Plena", s: "MAAS",
+        d: "Frecuencia con que la persona actúa en «piloto automático», sin darse cuenta de lo que hace o siente.",
+        responde: "Autoinforme", pob: "Adolescentes y adultos",
+        med: "15 ítems · 5 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/maas-1.pdf",
+        esc: ["salud-mental","comunidad","primer-nivel"],
+        nota: "Para evaluar programas basados en <strong>mindfulness</strong>. Ojo: la escala va de «casi siempre» a «casi nunca», así que un puntaje alto indica más atención plena."
+      },
+      {
+        n: "Escala de Respuestas Rumiativas, versión breve", s: "RRS-SF",
+        d: "Rumia ante el ánimo bajo, en dos formas: reflexión y reproches.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "10 ítems · 3 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/rrs-sf-2.pdf",
+        esc: ["salud-mental","primer-nivel"],
+        nota: "Los <strong>reproches</strong> se asocian más con la depresión que la reflexión; distinguirlos orienta el trabajo con la rumia. Validación colombiana del ClinikLab."
+      },
+      {
+        n: "Cuestionario de Regulación Emocional", s: "ERQ",
+        d: "Uso de dos estrategias de regulación: reevaluación cognitiva y supresión expresiva.",
+        responde: "Autoinforme", pob: "Adultos",
+        med: "10 ítems · 5 min", acceso: "libre",
+        url: "https://la.konradlorenz.edu.co/wp-content/uploads/2025/09/ERQ-instrumento.pdf",
+        esc: ["salud-mental","comunidad"],
+        nota: "Trae <strong>cuartiles de una muestra colombiana</strong>, separados por sexo en supresión. Útil en programas de regulación emocional y de habilidades."
       }
     ]
   }
@@ -1427,7 +1543,19 @@ const INST_FICHAS = {
   "ASSIST": {"a": "assist", "tipo": "completa"},
   "BDI-II": {"a": "bdi-ii", "tipo": "tecnica"},
   "BAI": {"a": "bai", "tipo": "tecnica"},
-  "C-SSRS": {"a": "c-ssrs", "tipo": "tecnica"}
+  "C-SSRS": {"a": "c-ssrs", "tipo": "tecnica"},
+  "AAQ-II": {"a": "aaq-ii", "tipo": "completa"},
+  "PSWQ-11": {"a": "pswq-11", "tipo": "completa"},
+  "SWLS": {"a": "swls", "tipo": "completa"},
+  "DASS-21": {"a": "dass-21", "tipo": "completa"},
+  "CFQ-7": {"a": "cfq-7", "tipo": "completa"},
+  "MAAS": {"a": "maas", "tipo": "completa"},
+  "RRS-SF": {"a": "rrs-sf", "tipo": "completa"},
+  "ATQ-8": {"a": "atq-8", "tipo": "completa"},
+  "BADS-SF": {"a": "bads-sf", "tipo": "completa"},
+  "ERQ": {"a": "erq", "tipo": "completa"},
+  "DAS-R": {"a": "das-r", "tipo": "completa"},
+  "GHQ-12": {"a": "ghq-12", "tipo": "tecnica"}
 };
 /* @@FIN-FICHAS-INST@@ */
 
