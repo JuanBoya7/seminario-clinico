@@ -88,6 +88,7 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
   align-items:center; margin-bottom:12px;}
 .fila .nom{font-size:16.5px; line-height:1.3;}
 .lectura{font-weight:700; font-size:15px;}
+.pista{display:block; font-size:14px; font-style:italic; color:var(--ink-soft);}
 .bar{display:flex; height:28px; background:var(--surface-alt); border-radius:6px; overflow:hidden;}
 .bar span{display:flex; align-items:center; justify-content:center; height:100%;
   color:#fff; font-family:var(--font-mono); font-size:14px; font-weight:700; overflow:hidden;}
@@ -241,12 +242,12 @@ const MOSTRAR_VEREDICTO_FINAL = false;
 // En la actividad, cada una es un grupo de opción única «sit-<clave>» con las
 // mismas cinco explicaciones que el veredicto.
 const SITUACIONES = [
-  { k: "viernes", dia: "Viernes", que: "La discoteca: el chico que pidió fuego", lectura: "intoxicacion" },
-  { k: "sabado",  dia: "Sábado",  que: "El baño de la discoteca",                lectura: "motivo" },
-  { k: "domingo", dia: "Domingo", que: "La barra, con sus amigos",               lectura: "intoxicacion" },
-  { k: "martes",  dia: "Martes",  que: "El canal de televisión",                 lectura: "bajon" }
+  { k: "viernes", dia: "Viernes", que: "La discoteca: el chico que pidió fuego", lectura: "intoxicacion", pista: "rayas antes del puñetazo" },
+  { k: "sabado",  dia: "Sábado",  que: "El baño de la discoteca",                lectura: "motivo",       pista: "lo echan por consumir" },
+  { k: "domingo", dia: "Domingo", que: "La barra, con sus amigos",               lectura: "intoxicacion", pista: "dos rayas antes" },
+  { k: "martes",  dia: "Martes",  que: "El canal de televisión",                 lectura: "bajon",        pista: "sin rayas, cansado, irascible" }
 ];
-// lectura: lo que explica cada situación según la conclusión de la psicóloga
+// lectura: lo que explica cada situación (pista: el porqué, en pocas palabras) según la conclusión de la psicóloga
 // con el video completo. Viernes y domingo, rayas antes del conflicto; sábado,
 // lo echan por consumir; martes, sin rayas, cansado e irascible. Se muestra
 // entre paréntesis junto al día solo después de destapar la afirmación de
@@ -254,7 +255,8 @@ const SITUACIONES = [
 function etiquetaLectura(s){
   if (!mostrada || !s.lectura) return "";
   const v = veredicto(s.lectura);
-  return ` <span class="lectura" style="color:${v.color}">(${esc(v.corto)})</span>`;
+  return ` <span class="lectura" style="color:${v.color}">(${esc(v.corto)})</span>` +
+    (s.pista ? `<span class="pista">${esc(s.pista)}</span>` : "");
 }
 
 /* ============================================================
