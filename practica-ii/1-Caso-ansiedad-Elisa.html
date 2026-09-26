@@ -581,9 +581,12 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <h2>Veredicto</h2>
       </div>
       <p class="block-sub">
-        Con los dos checklists resueltos, elijan el veredicto del grupo. El veredicto y su línea se
-        proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen al
-        tablero, al terminar presionen «Enviar al docente».
+        Con los dos checklists resueltos, elijan el veredicto del grupo.
+        <span data-con-linea>El veredicto y su línea se proyectan en clase junto con los de los demás
+        grupos, para el debate: para que lleguen al tablero, al terminar presionen «Enviar al docente».</span>
+        <span data-sin-linea>El veredicto se proyecta en clase junto con los de los demás grupos: en el
+        cierre, cada grupo explicará en voz alta por qué lo eligió. Para que llegue al tablero, al
+        terminar presionen «Enviar al docente».</span>
       </p>
 
       <div class="card">
@@ -595,9 +598,13 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="veredicto" value="ambos"><span>Los dos a la vez</span></label>
           <label class="option-row"><input type="radio" name="veredicto" value="ninguno"><span>Ninguno, con la información disponible</span></label>
         </div>
-        <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
-        <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
-                  rows="2" maxlength="280"></textarea>
+        <!-- La línea escrita queda apagada con PEDIR_LINEA_VEREDICTO (ver sección 11.4):
+             el porqué del veredicto se dice en voz alta en el cierre. -->
+        <div id="veredicto-linea">
+          <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
+          <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
+                    rows="2" maxlength="280"></textarea>
+        </div>
       </div>
     </section>
 
@@ -1559,6 +1566,7 @@ function recogerEnvio(){
     'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
   ).forEach(el => {
     if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
+    if (el.id === "f-veredicto-dato" && !PEDIR_LINEA_VEREDICTO) return; // apagada: ver 11.4
     let valor = el.value;
     if (el.tagName === "SELECT" && el.selectedIndex >= 0) valor = el.options[el.selectedIndex].text;
     if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
@@ -1725,6 +1733,33 @@ function highlightInvalidFields(){
 
 
 /* ============================================================
+   11.4 LÍNEA ESCRITA DEL VEREDICTO (apagada)
+   ============================================================ */
+
+// false: el veredicto es solo la opción elegida. La línea «¿Qué dato del caso
+// decidió su veredicto?» queda oculta, no es obligatoria, no cuenta en el
+// progreso y su criterio sale de la rúbrica plegable (el peso pasa a lo que sí
+// se escribe). El porqué se dice en voz alta en el cierre.
+// true: vuelve todo como estaba —campo, obligatoriedad, criterio y pesos—.
+// Si se cambia acá, cambiarlo también en la rúbrica y en el tablero.
+const PEDIR_LINEA_VEREDICTO = false;
+
+function aplicarLineaVeredicto(){
+  const caja = document.getElementById("veredicto-linea");
+  const campo = document.getElementById("f-veredicto-dato");
+  document.querySelectorAll("[data-con-linea]").forEach(el => { el.hidden = !PEDIR_LINEA_VEREDICTO; });
+  document.querySelectorAll("[data-sin-linea]").forEach(el => { el.hidden = PEDIR_LINEA_VEREDICTO; });
+  if (PEDIR_LINEA_VEREDICTO) return;
+  if (caja) caja.hidden = true;
+  if (campo) campo.dataset.required = "false";
+  delete RUBRICA_CAMPOS["f-veredicto-dato"];
+  Object.keys(RUBRICA_CAMPOS).forEach(id => {
+    const c = RUBRICA_CAMPOS[id];
+    if (c.pesoSinLinea) c.peso = c.pesoSinLinea;
+  });
+}
+
+/* ============================================================
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
@@ -1735,6 +1770,7 @@ function highlightInvalidFields(){
 const RUBRICA_CAMPOS = {
   "bloque-1": {
     peso: "70%",
+    pesoSinLinea: "100%",
     rotulo: "Ver cómo se evalúan los dos checklists",
     destino: "seccion",
     niveles: [
@@ -1805,6 +1841,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (warn) warn.style.display = "none";
 
   try {
+    aplicarLineaVeredicto();
     loadInitialState();
     initRubricaEnLinea();
     renderConditionChecklists();

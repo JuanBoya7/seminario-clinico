@@ -230,6 +230,11 @@ const VEREDICTOS = [
 // true: vuelve la pantalla de voces, con sus columnas y afirmaciones.
 const MOSTRAR_VOCES = false;
 
+// false: la actividad ya no pide veredicto final (ver PEDIR_VEREDICTO_FINAL).
+// Se oculta la pantalla «Veredictos» y la afirmación de cierre pasa a quedar
+// debajo de las situaciones. true: vuelve la pantalla de veredictos.
+const MOSTRAR_VEREDICTO_FINAL = false;
+
 // Las cuatro situaciones que Sergio anotó en su autorregistro (fragmento C).
 // En la actividad, cada una es un grupo de opción única «sit-<clave>» con las
 // mismas cinco explicaciones que el veredicto.
@@ -477,6 +482,7 @@ function pantallaSituaciones(E){
     <div class="leyenda">${leyenda}</div>
     ${filas}
     <div class="frase">${frase}</div>
+    ${MOSTRAR_VEREDICTO_FINAL ? "" : bloqueCierre()}
   </section>`;
 }
 
@@ -506,7 +512,7 @@ function pantallaVeredictos(E){
     <div class="sub">Qué explica, para cada grupo, la mayor parte de los conflictos de Sergio.</div>
     ${filas}
     <div class="frase">${frase}</div>
-    ${MOSTRAR_VOCES ? "" : bloqueCierre()}
+    ${MOSTRAR_VOCES || !MOSTRAR_VEREDICTO_FINAL ? "" : bloqueCierre()}
   </section>`;
 }
 
@@ -546,10 +552,10 @@ function pantallaVoces(E){
 }
 
 const PANTALLAS = [
-  { id: "situaciones", rotulo: "Las situaciones", pintar: pantallaSituaciones },
+  { id: "situaciones", rotulo: MOSTRAR_VEREDICTO_FINAL ? "Las situaciones" : "Situaciones y cierre", pintar: pantallaSituaciones },
   { id: "veredictos", rotulo: MOSTRAR_VOCES ? "Veredictos" : "Veredictos y cierre", pintar: pantallaVeredictos },
   { id: "voces",      rotulo: "Voces y cierre",   pintar: pantallaVoces }
-].filter(p => MOSTRAR_VOCES || p.id !== "voces");
+].filter(p => (MOSTRAR_VOCES || p.id !== "voces") && (MOSTRAR_VEREDICTO_FINAL || p.id === "situaciones"));
 
 /* ============================================================
    6. ESTADO Y PINTADO
@@ -696,7 +702,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (ev.key === "ArrowRight") { ev.preventDefault(); ir(actual + 1); }
       else if (ev.key === "ArrowLeft") { ev.preventDefault(); ir(actual - 1); }
       // Barra espaciadora: destapa la afirmación sin tener que ir al botón.
-      else if ((ev.key === " " || ev.code === "Space") && PANTALLAS[actual].id === (MOSTRAR_VOCES ? "voces" : "veredictos") && ev.target.tagName !== "BUTTON") {
+      else if ((ev.key === " " || ev.code === "Space") && PANTALLAS[actual].id === (!MOSTRAR_VEREDICTO_FINAL ? "situaciones" : MOSTRAR_VOCES ? "voces" : "veredictos") && ev.target.tagName !== "BUTTON") {
         ev.preventDefault(); mostrarAfirmacion();
       }
     });

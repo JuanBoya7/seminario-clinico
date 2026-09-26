@@ -480,7 +480,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
       <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
       <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Las cuatro situaciones</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Veredicto</a></li>
+      <li id="nav-veredicto"><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Veredicto</a></li>
     </ul>
 
     <div class="progress-block">
@@ -581,7 +581,9 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
       <p class="block-sub">
         En el autorregistro, Sergio anotó cuatro situaciones de su semana. Para cada una, elijan qué la
-        explica y escriban el dato del video que lo decidió.
+        explica<span data-con-linea> y escriban el dato del video que lo decidió</span>.<span data-sin-linea>
+        En el tablero se verá cómo leyó cada grupo cada situación, y en clase lo explicarán en voz alta.
+        Para que lleguen al tablero, al terminar presionen «Enviar al docente».</span>
       </p>
 
       <div class="card">
@@ -594,9 +596,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-viernes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-viernes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-viernes">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-viernes" data-etiqueta="Viernes — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-viernes">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-viernes" data-etiqueta="Viernes — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -609,9 +613,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-sabado" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-sabado" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-sabado">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-sabado" data-etiqueta="Sábado — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-sabado">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-sabado" data-etiqueta="Sábado — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -624,9 +630,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-domingo" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-domingo" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-domingo">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-domingo" data-etiqueta="Domingo — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-domingo">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-domingo" data-etiqueta="Domingo — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
 
       <div class="card">
@@ -639,9 +647,11 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="sit-martes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="sit-martes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-sit-martes">¿Qué dato del video lo decidió?</label>
-        <textarea data-required="true" id="f-sit-martes" data-etiqueta="Martes — dato que lo decidió"
-                  rows="2" maxlength="220"></textarea>
+        <div class="linea-situacion">
+          <label class="campo-sub" for="f-sit-martes">¿Qué dato del video lo decidió?</label>
+          <textarea data-required="true" id="f-sit-martes" data-etiqueta="Martes — dato que lo decidió"
+                    rows="2" maxlength="220"></textarea>
+        </div>
       </div>
     </section>
 
@@ -655,9 +665,12 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <h2>Veredicto</h2>
       </div>
       <p class="block-sub">
-        Con el checklist y las cuatro situaciones resueltos, elijan el veredicto del grupo. El veredicto y
-        su línea se proyectan en clase junto con los de los demás grupos, para el debate: para que lleguen
-        al tablero, al terminar presionen «Enviar al docente».
+        Con el checklist y las cuatro situaciones resueltos, elijan el veredicto del grupo.
+        <span data-con-linea>El veredicto y su línea se proyectan en clase junto con los de los demás
+        grupos, para el debate: para que lleguen al tablero, al terminar presionen «Enviar al docente».</span>
+        <span data-sin-linea>El veredicto se proyecta en clase junto con los de los demás grupos: en el
+        cierre, cada grupo explicará en voz alta por qué lo eligió. Para que llegue al tablero, al
+        terminar presionen «Enviar al docente».</span>
       </p>
 
       <div class="card">
@@ -670,9 +683,13 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <label class="option-row"><input type="radio" name="veredicto" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
           <label class="option-row"><input type="radio" name="veredicto" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
-        <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
-        <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
-                  rows="2" maxlength="280"></textarea>
+        <!-- La línea escrita queda apagada con PEDIR_LINEA_VEREDICTO (ver sección 11.4):
+             el porqué del veredicto se dice en voz alta en el cierre. -->
+        <div id="veredicto-linea">
+          <label class="campo-sub" for="f-veredicto-dato">¿Qué dato del caso decidió su veredicto?</label>
+          <textarea data-required="true" id="f-veredicto-dato" data-etiqueta="Veredicto — dato que lo decidió"
+                    rows="2" maxlength="280"></textarea>
+        </div>
       </div>
     </section>
 
@@ -1606,6 +1623,7 @@ function recogerEnvio(){
     'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
   ).forEach(el => {
     if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
+    if ((el.id === "f-veredicto-dato" || el.id.startsWith("f-sit-")) && !PEDIR_LINEA_VEREDICTO) return; // apagadas: ver 11.4
     let valor = el.value;
     if (el.tagName === "SELECT" && el.selectedIndex >= 0) valor = el.options[el.selectedIndex].text;
     if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
@@ -1613,6 +1631,7 @@ function recogerEnvio(){
 
   // Selección única (el veredicto): se vuelca el texto de la opción elegida.
   document.querySelectorAll(".option-list[data-group]").forEach(grupo => {
+    if (grupo.dataset.group === "veredicto" && !PEDIR_VEREDICTO_FINAL) return; // oculto: ver 11.4
     const elegido = grupo.querySelector("input:checked");
     if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
   });
@@ -1772,6 +1791,56 @@ function highlightInvalidFields(){
 
 
 /* ============================================================
+   11.4 LÍNEA ESCRITA DEL VEREDICTO (apagada)
+   ============================================================ */
+
+// false: el veredicto y las cuatro situaciones son solo la opción elegida. La línea «¿Qué dato del caso
+// decidió su veredicto?» queda oculta, no es obligatoria, no cuenta en el
+// progreso y su criterio sale de la rúbrica plegable (el peso pasa a lo que sí
+// se escribe). El porqué se dice en voz alta en el cierre.
+// true: vuelve todo como estaba —campo, obligatoriedad, criterio y pesos—.
+// Si se cambia acá, cambiarlo también en la rúbrica y en el tablero.
+const PEDIR_LINEA_VEREDICTO = false;
+
+// false: no hay veredicto final. Las cuatro situaciones ya orientan el caso,
+// así que el bloque 3 se oculta entero (y su enlace del menú), deja de ser
+// obligatorio y no viaja en el envío. true: vuelve el bloque 3.
+const PEDIR_VEREDICTO_FINAL = false;
+
+function aplicarVeredictoFinal(){
+  if (PEDIR_VEREDICTO_FINAL) return;
+  const bloque = document.getElementById("bloque-3");
+  const nav = document.getElementById("nav-veredicto");
+  if (bloque) {
+    bloque.hidden = true;
+    bloque.querySelectorAll('[data-required="true"]').forEach(el => { el.dataset.required = "false"; });
+  }
+  if (nav) nav.hidden = true;
+}
+
+function aplicarLineaVeredicto(){
+  const caja = document.getElementById("veredicto-linea");
+  const campo = document.getElementById("f-veredicto-dato");
+  document.querySelectorAll("[data-con-linea]").forEach(el => { el.hidden = !PEDIR_LINEA_VEREDICTO; });
+  document.querySelectorAll("[data-sin-linea]").forEach(el => { el.hidden = PEDIR_LINEA_VEREDICTO; });
+  if (PEDIR_LINEA_VEREDICTO) return;
+  if (caja) caja.hidden = true;
+  if (campo) campo.dataset.required = "false";
+  // Las cuatro situaciones también quedan solo con la opción.
+  document.querySelectorAll(".linea-situacion").forEach(c => {
+    c.hidden = true;
+    const t = c.querySelector("textarea");
+    if (t) t.dataset.required = "false";
+  });
+  delete RUBRICA_CAMPOS["f-veredicto-dato"];
+  delete RUBRICA_CAMPOS["bloque-2"];
+  Object.keys(RUBRICA_CAMPOS).forEach(id => {
+    const c = RUBRICA_CAMPOS[id];
+    if (c.pesoSinLinea) c.peso = c.pesoSinLinea;
+  });
+}
+
+/* ============================================================
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
@@ -1782,6 +1851,7 @@ function highlightInvalidFields(){
 const RUBRICA_CAMPOS = {
   "bloque-1": {
     peso: "40%",
+    pesoSinLinea: "100%",
     rotulo: "Ver cómo se evalúa el checklist",
     destino: "seccion",
     niveles: [
@@ -1793,6 +1863,7 @@ const RUBRICA_CAMPOS = {
   },
   "bloque-2": {
     peso: "35%",
+    pesoSinLinea: "45%",
     rotulo: "Ver cómo se evalúan las cuatro situaciones",
     destino: "seccion",
     niveles: [
@@ -1863,6 +1934,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (warn) warn.style.display = "none";
 
   try {
+    aplicarLineaVeredicto();
+    aplicarVeredictoFinal();
     loadInitialState();
     initRubricaEnLinea();
     renderConditionChecklists();

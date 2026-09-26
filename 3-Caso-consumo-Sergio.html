@@ -480,7 +480,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
       <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Diagnóstico DSM-5</a></li>
       <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Las cuatro situaciones</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Veredicto</a></li>
+      <li id="nav-veredicto"><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Veredicto</a></li>
     </ul>
 
     <div class="progress-block">
@@ -585,7 +585,8 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <p class="block-sub">
         En el autorregistro, Sergio anotó cuatro situaciones de su semana. Para cada una, elijan qué la
         explica<span data-con-linea> y escriban el dato del video que lo decidió</span>.<span data-sin-linea>
-        En el tablero se verá cómo leyó cada grupo cada situación, y en clase lo explicarán en voz alta.</span>
+        En el tablero se verá cómo leyó cada grupo cada situación, y en clase lo explicarán en voz alta.
+        Para que lleguen al tablero, al terminar presionen «Enviar al docente».</span>
       </p>
 
       <div class="card">
@@ -1625,6 +1626,7 @@ function recogerEnvio(){
 
   // Selección única (el veredicto): se vuelca el texto de la opción elegida.
   document.querySelectorAll(".option-list[data-group]").forEach(grupo => {
+    if (grupo.dataset.group === "veredicto" && !PEDIR_VEREDICTO_FINAL) return; // oculto: ver 11.4
     const elegido = grupo.querySelector("input:checked");
     if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
   });
@@ -1795,6 +1797,22 @@ function highlightInvalidFields(){
 // Si se cambia acá, cambiarlo también en la rúbrica y en el tablero.
 const PEDIR_LINEA_VEREDICTO = false;
 
+// false: no hay veredicto final. Las cuatro situaciones ya orientan el caso,
+// así que el bloque 3 se oculta entero (y su enlace del menú), deja de ser
+// obligatorio y no viaja en el envío. true: vuelve el bloque 3.
+const PEDIR_VEREDICTO_FINAL = false;
+
+function aplicarVeredictoFinal(){
+  if (PEDIR_VEREDICTO_FINAL) return;
+  const bloque = document.getElementById("bloque-3");
+  const nav = document.getElementById("nav-veredicto");
+  if (bloque) {
+    bloque.hidden = true;
+    bloque.querySelectorAll('[data-required="true"]').forEach(el => { el.dataset.required = "false"; });
+  }
+  if (nav) nav.hidden = true;
+}
+
 function aplicarLineaVeredicto(){
   const caja = document.getElementById("veredicto-linea");
   const campo = document.getElementById("f-veredicto-dato");
@@ -1912,6 +1930,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     aplicarLineaVeredicto();
+    aplicarVeredictoFinal();
     loadInitialState();
     initRubricaEnLinea();
     renderConditionChecklists();
