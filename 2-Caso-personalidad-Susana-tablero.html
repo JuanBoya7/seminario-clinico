@@ -87,7 +87,8 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
   align-items:center; margin-bottom:12px;}
 .fila .nom{font-size:16.5px; line-height:1.3;}
 .bar{display:flex; height:28px; background:var(--surface-alt); border-radius:6px; overflow:hidden;}
-.bar span{display:block; height:100%;}
+.bar span{display:flex; align-items:center; justify-content:center; height:100%;
+  color:#fff; font-family:var(--font-mono); font-size:14px; font-weight:700; overflow:hidden;}
 .fila .val{font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); text-align:right;
   white-space:nowrap;}
 
@@ -383,7 +384,7 @@ function pantallaVeredictos(E){
   const cuenta = contar(E);
   const filas = cuenta.map(c => `<div class="fila">
       <div class="nom">${esc(c.nombre)}</div>
-      <div class="bar"><span style="width:${pct(c.n, n)}%;background:${c.color}"></span></div>
+      <div class="bar"><span style="width:${pct(c.n, n)}%;background:${c.color}">${c.n || ""}</span></div>
       <div class="val">${c.n} de ${n}</div>
     </div>`).join("");
 
