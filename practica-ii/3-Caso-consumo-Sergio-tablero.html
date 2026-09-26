@@ -87,6 +87,7 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .fila{display:grid; grid-template-columns:minmax(180px,32%) minmax(0,1fr) 90px; gap:14px;
   align-items:center; margin-bottom:12px;}
 .fila .nom{font-size:16.5px; line-height:1.3;}
+.lectura{font-weight:700; font-size:15px;}
 .bar{display:flex; height:28px; background:var(--surface-alt); border-radius:6px; overflow:hidden;}
 .bar span{display:flex; align-items:center; justify-content:center; height:100%;
   color:#fff; font-family:var(--font-mono); font-size:14px; font-weight:700; overflow:hidden;}
@@ -240,11 +241,21 @@ const MOSTRAR_VEREDICTO_FINAL = false;
 // En la actividad, cada una es un grupo de opción única «sit-<clave>» con las
 // mismas cinco explicaciones que el veredicto.
 const SITUACIONES = [
-  { k: "viernes", dia: "Viernes", que: "La discoteca: el chico que pidió fuego" },
-  { k: "sabado",  dia: "Sábado",  que: "El baño de la discoteca" },
-  { k: "domingo", dia: "Domingo", que: "La barra, con sus amigos" },
-  { k: "martes",  dia: "Martes",  que: "El canal de televisión" }
+  { k: "viernes", dia: "Viernes", que: "La discoteca: el chico que pidió fuego", lectura: "intoxicacion" },
+  { k: "sabado",  dia: "Sábado",  que: "El baño de la discoteca",                lectura: "motivo" },
+  { k: "domingo", dia: "Domingo", que: "La barra, con sus amigos",               lectura: "intoxicacion" },
+  { k: "martes",  dia: "Martes",  que: "El canal de televisión",                 lectura: "bajon" }
 ];
+// lectura: lo que explica cada situación según la conclusión de la psicóloga
+// con el video completo. Viernes y domingo, rayas antes del conflicto; sábado,
+// lo echan por consumir; martes, sin rayas, cansado e irascible. Se muestra
+// entre paréntesis junto al día solo después de destapar la afirmación de
+// cierre: antes, les daría la respuesta a los grupos.
+function etiquetaLectura(s){
+  if (!mostrada || !s.lectura) return "";
+  const v = veredicto(s.lectura);
+  return ` <span class="lectura" style="color:${v.color}">(${esc(v.corto)})</span>`;
+}
 
 /* ============================================================
    2. LAS AFIRMACIONES
@@ -459,13 +470,13 @@ function pantallaSituaciones(E){
         r.dato ? "«" + esc(r.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`;
     }).join("");
     if (!MOSTRAR_VOCES) return `<div class="fila sit-plana">
-        <div class="nom">${esc(s.dia)}<small>${esc(s.que)}</small></div>
+        <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
         <div class="bar">${barra}</div>
         <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
       </div>`;
     return `<details class="sit" data-sit="${s.k}"${abiertas.has(s.k) ? " open" : ""}>
       <summary><div class="fila">
-        <div class="nom">${esc(s.dia)}<small>${esc(s.que)}</small></div>
+        <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
         <div class="bar">${barra}</div>
         <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
       </div></summary>
