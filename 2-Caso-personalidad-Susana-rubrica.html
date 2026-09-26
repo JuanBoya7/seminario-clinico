@@ -93,6 +93,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
   .nivel:last-child{border-bottom:none;}
 }
 @media print{.nav{display:none;}}
+[hidden]{display:none !important;}
 </style>
 </head>
 <body>
@@ -102,7 +103,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
     <div class="eyebrow">Caso Susana · Personalidad y estado de ánimo · DSM-5</div>
     <h1>Rúbrica de la actividad</h1>
     <p>
-      Dos criterios, los mismos para todos los grupos. Están escritos antes del
+      Un criterio, el mismo para todos los grupos. Está escrito antes del
       análisis y a la vista desde el comienzo: <b>saber contra qué se los mide es parte
       de la actividad</b>, no información reservada.
     </p>
@@ -115,11 +116,12 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
 
   <div class="pesos">
     <div class="peso-bloque">
-      <div class="peso-cifra">70%</div>
+      <div class="peso-cifra">100%</div><!-- antes 70% -->
       <h3>La aplicación de los criterios</h3>
       <p>Con qué evidencia sostuvieron cada criterio que marcaron en los dos checklists.</p>
     </div>
-    <div class="peso-bloque">
+    <!-- OCULTO: peso del veredicto cuando tenía línea escrita -->
+    <div class="peso-bloque" hidden>
       <div class="peso-cifra">30%</div>
       <h3>El veredicto del grupo</h3>
       <p>Qué concluyeron después de aplicar los dos checklists, y con qué dato del caso.</p>
@@ -138,7 +140,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
     <div class="criterio-cabeza">
       <div class="criterio-meta">
         <span class="criterio-num">CRITERIO 1</span>
-        <span class="criterio-peso">70%</span>
+        <span class="criterio-peso">100%</span><!-- antes 70% -->
       </div>
       <h2>Evidencia por criterio</h2>
       <p>Cada criterio marcado pide la evidencia que lo sustenta, escrita con palabras del grupo: una línea por síntoma, y un campo propio para cada criterio de duración y de malestar. Los criterios de exclusión solo se marcan. Este criterio mira la relación entre lo que se marcó y lo que el caso efectivamente muestra.</p>
@@ -163,8 +165,20 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
     </div>
   </div>
 
-  <!-- ============ CRITERIO 2 ============ -->
-  <div class="criterio">
+  <!-- El veredicto sin calificación. Lo anterior (la línea escrita y su
+       criterio) sigue en esta página, oculto con el atributo hidden: para
+       recuperarlo, quitar hidden de los bloques marcados «OCULTO» y volver a
+       poner los pesos que dicen sus comentarios. -->
+  <div class="nota" style="background:var(--accent-soft); border:1px solid var(--accent); margin-bottom:22px;">
+    <b>El veredicto no lleva calificación</b>
+    <p style="margin:0;">Al cerrar, el grupo solo elige su veredicto: es un clic y no suma a la nota. Sirve para
+    la socialización: el tablero muestra en qué se reparte el curso y, en el cierre, cada
+    grupo explica en voz alta por qué eligió lo que eligió. Toda la calificación está en
+    lo que el grupo escribe antes de llegar ahí.</p>
+  </div>
+
+  <!-- ============ OCULTO · CRITERIO 2 ============ -->
+  <div class="criterio" hidden>
     <div class="criterio-cabeza">
       <div class="criterio-meta">
         <span class="criterio-num">CRITERIO 2</span>
@@ -197,7 +211,8 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
     <b>Lo que no se califica</b>
     <ul>
       <li><b>Haber acertado el trastorno.</b> No se califica el diagnóstico en sí, sino el razonamiento que lo sostiene y los descartes que lo acompañan. Un diagnóstico discutible, bien argumentado, vale más que el correcto sin evidencia.</li>
-      <li><b>Que el veredicto coincida con el checklist.</b> Concluir distinto de lo que se marcó es legítimo y es material del debate: lo que se califica es que la línea lo sostenga.</li>
+      <li hidden><!-- OCULTO --><b>Que el veredicto coincida con el checklist.</b> Concluir distinto de lo que se marcó es legítimo y es material del debate: lo que se califica es que la línea lo sostenga.</li>
+      <li><b>El veredicto elegido.</b> Es un recurso para la socialización, no un producto evaluado: cuál se elige y si coincide con lo que se trabajó antes es material del debate, no de la nota.</li>
       <li><b>La redacción.</b> Se espera claridad, no estilo. Un argumento bien sostenido no pierde por estar escrito de forma simple.</li>
       <li><b>El reparto interno del trabajo.</b> Quién escribió qué casilla no entra en ningún criterio.</li>
     </ul>
