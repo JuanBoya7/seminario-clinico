@@ -1415,8 +1415,28 @@ REFERENCIAS.push(
   { k: "Barkley y Robin, 2014", ref: "Barkley, R. A. y Robin, A. L. (2014). <em>Your defiant teen: 10 steps to resolve conflict and rebuild your relationship</em> (2.ª ed.). Guilford Press." },
   { k: "OMS y UNICEF, 2023", ref: "Organización Mundial de la Salud y Fondo de las Naciones Unidas para la Infancia. (2023). <em>Early Adolescent Skills for Emotions (EASE): Group psychological help for young adolescents affected by distress in communities exposed to adversity</em>. OMS." },
   { k: "Monjas, 2009", ref: "Monjas Casares, M. I. (2009). <em>Programa de enseñanza de habilidades de interacción social (PEHIS) para niños y niñas en edad escolar</em>. CEPE." },
+  { k: "Kendall et al., 2013", ref: "Kendall, P. C., Crawley, S. A., Benjamin, C. L. y Mauro, C. F. (2013). <em>Brief Coping Cat: The 8-session therapist manual</em>. Workbook Publishing." },
+  { k: "Snel, 2013", ref: "Snel, E. (2013). <em>Tranquilos y atentos como una rana: la meditación para niños… con sus padres</em>. Kairós. (Obra original publicada en 2010)." },
+  { k: "Niemiec, 2018", ref: "Niemiec, R. M. (2018). <em>Character strengths interventions: A field guide for practitioners</em>. Hogrefe." },
   { k: "Cohen et al., 2017", ref: "Cohen, J. A., Mannarino, A. P. y Deblinger, E. (2017). <em>Treating trauma and traumatic grief in children and adolescents</em> (2.ª ed.). Guilford Press." }
 );
+
+Object.assign(MODELOS, {
+  "mindful-ninos": {
+    t: "Atención plena para niños y sus padres",
+    autor: "Snel, a partir de Kabat-Zinn",
+    d: "La atención plena es la capacidad de prestar atención a lo que hay, aquí y ahora, con amabilidad. En los niños de 5 a 12 años se entrena con ejercicios breves y concretos —la respiración, el cuerpo, el tiempo interior— que ayudan a calmarse, a concentrarse y a relacionarse de otra forma con las emociones difíciles. Los padres practican con ellos. La autora aclara que no es un tratamiento.",
+    dim: ["Atención a la respiración", "Atención al cuerpo", "Emociones difíciles", "Preocupaciones", "Amabilidad", "Padres que practican"],
+    fuente: "Snel, 2013, caps. 1 y 2"
+  },
+  "aea": {
+    t: "Modelo consciente, explorar y aplicar de las fortalezas",
+    autor: "Niemiec",
+    d: "Las fortalezas del carácter se trabajan en tres pasos: tomar conciencia de ellas, explorar cómo se han usado y cómo se relacionan con lo que la persona valora, y aplicarlas a metas y situaciones concretas. El trabajo se integra detectando y nombrando las fortalezas propias y de los demás.",
+    dim: ["Conciencia de las fortalezas", "Explorar", "Aplicar", "Detectar fortalezas en los demás"],
+    fuente: "Niemiec, 2018, cap. 3"
+  }
+});
 
 /* Fundamento del plan: tipo de cada entrada de MODELOS y fundamentos de los
    planes que no declaran un modelo teórico propio. Ver la nota en la guía
@@ -1454,8 +1474,8 @@ Object.assign(MODELOS, {
 
 (function(){
   const tipos = {
-    proceso: ["tareas-divorcio", "educacion-perdon", "familia-recurso"],
-    marco: ["manejo-conductual", "ensenanza-estructurada", "aprendizaje-explicito", "motivacion-pivote", "competencia-social"],
+    proceso: ["tareas-divorcio", "educacion-perdon", "familia-recurso", "aea"],
+    marco: ["manejo-conductual", "ensenanza-estructurada", "aprendizaje-explicito", "motivacion-pivote", "competencia-social", "mindful-ninos"],
     guia: ["guia-ease"]
   };
   for (const [t, ks] of Object.entries(tipos)) ks.forEach(k => { if (MODELOS[k]) MODELOS[k].tipo = t; });
@@ -1473,7 +1493,8 @@ const VARIABLES = [
   elegir: [
     "<strong>La terapia cognitivo-conductual es el tratamiento con más respaldo</strong> para la ansiedad infantil: responde cerca del 60 % de los niños, los beneficios se mantienen años después y la exposición gradual a lo temido es su componente clave (Palitz et al., 2019).",
     "<strong>Entre los 7 y los 13 años</strong>, el programa individual de Kendall es el más estudiado; hay versión para adolescentes. <strong>En grupo y con la familia</strong>, el programa de Barrett tiene versiones desde los 4 años y funciona también en el colegio. <strong>Si la ansiedad viene con tristeza o irritabilidad</strong>, el protocolo unificado trabaja todas las emociones a la vez. En adolescentes, ACT es una opción con evidencia todavía preliminar en esta edad.",
-    "Si la ansiedad se centra en ir al colegio, conviene revisar también Rechazo escolar; si hay rituales u obsesiones, Obsesiones y compulsiones; si empezó después de un evento traumático, Trauma y estrés postraumático."
+    "Si la ansiedad se centra en ir al colegio, conviene revisar también Rechazo escolar; si hay rituales u obsesiones, Obsesiones y compulsiones; si empezó después de un evento traumático, Trauma y estrés postraumático.",
+    "La ansiedad de separación se trata dentro de estos mismos programas. Si hace falta un formato más corto, la versión breve del programa de Kendall tiene ocho sesiones.",
   ],
   planes: [
     {
@@ -1958,6 +1979,69 @@ const VARIABLES = [
       cuidado: [
         "La evidencia en adolescentes con ansiedad es preliminar; si la terapia cognitivo-conductual es aceptable para la familia, tiene más respaldo (Palitz et al., 2019).",
         "Los procesos de ACT no son técnicas para enseñar: se cultivan con ejercicios experienciales, y el manual recomienda que el terapeuta practique mindfulness antes de usarlo (Turrell y Bell, 2016, introducción)."
+      ]
+    },
+    {
+      id: "ans-bcc",
+      mod: "ansiedad-infantil",
+      inst: ["SCARED", "RCADS"],
+      enf: "tcc",
+      t: "Versión breve del programa de Kendall (ocho sesiones)",
+      fuente: "Kendall et al., 2013",
+      cuando: "Niños y adolescentes jóvenes con <strong>ansiedad generalizada, ansiedad social o ansiedad de separación</strong> cuando no es posible un tratamiento de 16 sesiones: pocas sesiones disponibles, lista de espera larga o atención en consulta externa.",
+      respaldo: "La versión de 16 sesiones tiene varios ensayos aleatorizados en Estados Unidos y Australia, con logros que se mantienen a los 3 y a los 7 años. La versión breve se adaptó de ella con la literatura empírica, la experiencia clínica y un panel de expertos, conservando los componentes esenciales del plan de cuatro pasos; los autores no reportan ensayos propios de la versión breve (Kendall et al., 2013, introducción).",
+      secuencia: "<strong>Secuencia:</strong> ocho sesiones con el cuaderno del niño. Las primeras tres enseñan las habilidades —reconocer la ansiedad, el diálogo interno y su cuestionamiento, la solución de problemas, la autoevaluación y el autopremio— y las cinco siguientes son de práctica en situaciones de ansiedad baja, moderada y alta, con una reunión con los padres al inicio (Kendall et al., 2013).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Vínculo, orientación y reunión con los padres",
+          tecs: ["psicoeducacion", "educacion-emocional"],
+          obj: "Construir la relación, presentar el programa e involucrar a los padres.",
+          pasos: [
+            "Conocer al niño y presentar el programa y el cuaderno.",
+            "Reunirse con los padres para explicar el tratamiento y su papel.",
+            "Empezar a reconocer las emociones y las reacciones del cuerpo."
+          ],
+          casa: "Tarea «Muestra que puedo» de la sesión 1.",
+          avance: "El niño y los padres entienden el programa.",
+          fuente: "Kendall et al., 2013, sesión 1"
+        },
+        {
+          t: "Pensamientos ansiosos, solución de problemas y autopremio",
+          tecs: ["plan-cuatro-pasos", "pensamientos-afrontamiento", "solucion-problemas", "autorrefuerzo"],
+          obj: "Aprender el plan de cuatro pasos en forma condensada.",
+          pasos: [
+            "Identificar los sentimientos de ansiedad y el diálogo interno, y aprender a cuestionar los pensamientos.",
+            "Introducir la solución de problemas.",
+            "Enseñar la autoevaluación y el autopremio."
+          ],
+          casa: "Practicar el plan en una situación de la semana.",
+          avance: "El niño conoce los cuatro pasos.",
+          fuente: "Kendall et al., 2013, sesiones 2 y 3"
+        },
+        {
+          t: "Práctica en situaciones de ansiedad creciente",
+          tecs: ["exposicion-graduada", "jerarquia-exposicion"],
+          obj: "Aplicar el plan en situaciones reales, de menor a mayor ansiedad.",
+          pasos: [
+            "Repasar las habilidades y practicar en situaciones de ansiedad baja.",
+            "Hacer tareas de exposición en situaciones moderadas y luego altas, en imaginación y en vivo.",
+            "Premiar el esfuerzo y cerrar celebrando los logros."
+          ],
+          casa: "Tareas de exposición acordadas.",
+          avance: "El niño afronta las situaciones temidas usando el plan.",
+          fuente: "Kendall et al., 2013, sesiones 4 a 8"
+        }
+      ],
+      medir: [
+        "<strong>SCARED</strong> o <strong>RCADS</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> si el niño falta al colegio por evitación ansiosa, los autores dan recomendaciones específicas (Kendall et al., 2013, recursos para el terapeuta)."
+      ],
+      cuidado: [
+        "Con depresión u otros problemas asociados, los autores dan pautas de ajuste; si son graves, puede hacer falta la versión completa u otro plan (Kendall et al., 2013, recursos para el terapeuta)."
       ]
     }
   ]
@@ -2771,6 +2855,148 @@ const VARIABLES = [
       cuidado: [
         "Es un programa de promoción para cursos completos: no reemplaza el tratamiento de un estudiante con un trastorno, que se deriva a su plan.",
         "Los estudios son pocos y del mismo grupo; la adaptación de las actividades al aula es una propuesta de esta guía."
+      ]
+    },
+    {
+      id: "bien-mind",
+      mod: "mindful-ninos",
+      inst: ["SDQ"],
+      enf: "mind",
+      t: "Atención plena para niños con sus padres",
+      fuente: "Snel, 2013, caps. 2 a 10",
+      cuando: "Niños de <strong>5 a 12 años</strong> que quieren calmarse, concentrarse mejor, entender sus emociones o sentirse más seguros de sí mismos, con padres dispuestos a practicar con ellos. Se practica en casa.",
+      respaldo: "Los estudios con niños son cada vez más numerosos y se interesan por el equilibrio emocional, la resiliencia, la calidad de los intercambios familiares y la atención (Snel, 2013, prefacio). La autora aclara que la atención plena no es un tratamiento: con hiperactividad u otras dificultades ayuda a relacionarse de otra forma con ellas, pero no las cura (Snel, 2013, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> ejercicios breves y regulares, con audio, que los padres practican con los niños: primero la respiración y la atención, luego el cuerpo, las emociones difíciles, las preocupaciones, la amabilidad y la paciencia (Snel, 2013, caps. 2 a 10).",
+      esc: ["comunidad", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Padres que practican",
+          tecs: ["psicoeducacion"],
+          obj: "Que los padres practiquen la atención plena y acompañen al niño.",
+          pasos: [
+            "Explicar a los padres qué es la atención plena y que no se trata de detener las olas, sino de aprender a surfearlas.",
+            "Acordar una práctica sencilla y regular, sin exigencias.",
+            "Valorar al niño cuando practica y preguntarle cómo lo vivió."
+          ],
+          casa: "Practicar juntos unos minutos al día.",
+          avance: "La familia tiene una rutina de práctica.",
+          fuente: "Snel, 2013, cap. 2"
+        },
+        {
+          t: "Respiración y atención",
+          tecs: ["respiracion-diafragmatica", "escaner-corporal"],
+          obj: "Entrenar la atención empezando por la respiración y el cuerpo.",
+          pasos: [
+            "Practicar el ejercicio de la rana: quedarse quieto y notar la respiración.",
+            "Entrenar el «músculo de la atención» con ejercicios cortos.",
+            "Pasar de la cabeza al cuerpo: notar las sensaciones."
+          ],
+          casa: "Ejercicio de la rana cada día.",
+          avance: "El niño se calma con la respiración.",
+          fuente: "Snel, 2013, caps. 3 a 5"
+        },
+        {
+          t: "Emociones difíciles y preocupaciones",
+          tecs: ["educacion-emocional", "termometro-emociones"],
+          obj: "Relacionarse de otra forma con el enojo, la tristeza y las preocupaciones.",
+          pasos: [
+            "Usar el «parte meteorológico» interior: ¿hay tormenta o sol?",
+            "Notar las emociones difíciles en el cuerpo sin actuar de inmediato.",
+            "Observar la «fábrica de preocupaciones» y soltar los pensamientos que dan vueltas."
+          ],
+          casa: "El parte meteorológico al acostarse.",
+          avance: "El niño nombra sus emociones y se calma antes de reaccionar.",
+          fuente: "Snel, 2013, caps. 6 a 8"
+        },
+        {
+          t: "Amabilidad, paciencia y confianza",
+          tecs: ["autocompasion"],
+          obj: "Cultivar la amabilidad consigo mismo y con los demás.",
+          pasos: [
+            "Practicar ejercicios de amabilidad en familia.",
+            "Hablar de la paciencia, la confianza y soltar.",
+            "Acordar cómo seguir practicando."
+          ],
+          casa: "Un gesto amable cada día, en familia.",
+          avance: "El niño y la familia sostienen la práctica.",
+          fuente: "Snel, 2013, caps. 9 y 10"
+        }
+      ],
+      medir: [
+        "<strong>SDQ</strong> al inicio y al final, con la mirada de padres y docentes."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> los ejercicios están pensados para practicarse en familia, con el audio que acompaña el libro (Snel, 2013, cap. 2)."
+      ],
+      cuidado: [
+        "No es un tratamiento para trastornos: si hay ansiedad, depresión o TDAH, se atienden con el plan correspondiente (Snel, 2013, cap. 1)."
+      ]
+    },
+    {
+      id: "bien-fort",
+      mod: "aea",
+      inst: ["VIA-J"],
+      enf: "pp",
+      t: "Fortalezas del carácter en la infancia",
+      fuente: "Niemiec, 2018, caps. 2, 3 y 8 · Niemiec y Tomasulo, 2023, cap. 3",
+      cuando: "Niños de <strong>6 a 11 años</strong> en los que se quiere promover el bienestar, la autoestima y las relaciones, en consulta, en casa o en el colegio, sin que haya un trastorno.",
+      respaldo: "El trabajo con fortalezas complementa el enfoque centrado en los déficits o ofrece una alternativa. Niemiec reúne las intervenciones con fortalezas que tienen respaldo de investigación (Niemiec, 2018, caps. 3 y 8). En niños, la evidencia se ha estudiado menos que en adultos; el VIA para jóvenes se usa desde los 8 años (Niemiec y Tomasulo, 2023, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> tomar conciencia de las fortalezas, explorarlas y aplicarlas a metas concretas, con padres y docentes que detectan y nombran las fortalezas del niño en la vida diaria (Niemiec, 2018, cap. 3).",
+      esc: ["colegio", "primer-nivel", "comunidad"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Descubrir mis fortalezas",
+          tecs: ["fortalezas-caracter", "deteccion-fortalezas"],
+          obj: "Que el niño conozca sus fortalezas principales.",
+          pasos: [
+            "Presentar las fortalezas con ejemplos y dibujos.",
+            "Aplicar el VIA para jóvenes desde los 8 años, o identificar las fortalezas con el niño y sus padres.",
+            "Nombrar las fortalezas principales con la ficha «Mis fortalezas»."
+          ],
+          casa: "Contar a la familia una fortaleza propia.",
+          avance: "El niño nombra sus fortalezas principales.",
+          fuente: "Niemiec, 2018, cap. 2",
+          fichas: ["mis-fortalezas"]
+        },
+        {
+          t: "Detectar fortalezas en los demás",
+          tecs: ["fortalezas-360", "deteccion-fortalezas"],
+          obj: "Que padres, docentes y compañeros detecten y nombren las fortalezas del niño.",
+          pasos: [
+            "Enseñar a los padres y docentes a notar y nombrar las fortalezas cuando aparecen.",
+            "Pedirles que describan cuándo vieron al niño usar una fortaleza.",
+            "El niño detecta fortalezas en sus compañeros y familiares."
+          ],
+          casa: "Nombrar una fortaleza de alguien de la familia cada día.",
+          avance: "Las fortalezas se nombran con frecuencia en casa.",
+          fuente: "Niemiec, 2018, cap. 3"
+        },
+        {
+          t: "Usar las fortalezas de formas nuevas",
+          tecs: ["fortalezas-caracter"],
+          obj: "Aplicar las fortalezas en el colegio, en casa y en las relaciones.",
+          pasos: [
+            "Elegir una fortaleza y una forma nueva de usarla en la semana.",
+            "Unir las fortalezas con una meta concreta.",
+            "Revisar lo que pasó y cómo se sintió."
+          ],
+          casa: "Usar una fortaleza de una forma nueva.",
+          avance: "El niño usa sus fortalezas en situaciones nuevas.",
+          fuente: "Niemiec, 2018, caps. 3 y 8"
+        }
+      ],
+      medir: [
+        "<strong>VIA-J</strong> al inicio, desde los 8 años.",
+        "Registro de las fortalezas usadas y nombradas."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> las fortalezas pueden trabajarse con todo el curso."
+      ],
+      cuidado: [
+        "No sustituye el tratamiento de un trastorno; se usa como complemento.",
+        "Evitar el uso excesivo o fuera de contexto de una fortaleza (Niemiec, 2018, cap. 5)."
       ]
     }
   ]

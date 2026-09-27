@@ -1529,10 +1529,18 @@ REFERENCIAS.push(
   { k: "Caballo, 2007", ref: "Caballo, V. E. (2007). <em>Manual de evaluación y entrenamiento de las habilidades sociales</em> (7.ª ed.). Siglo XXI." },
   { k: "Moorey y Greer, 2012", ref: "Moorey, S. y Greer, S. (2012). <em>Oxford guide to CBT for people with cancer</em> (2.ª ed.). Oxford University Press." },
   { k: "Taylor, 2006", ref: "Taylor, R. R. (2006). <em>Cognitive behavioral therapy for chronic illness and disability</em>. Springer." },
+  { k: "Dahl et al., 2013", ref: "Dahl, J., Stewart, I., Martell, C. y Kaplan, J. S. (2013). <em>ACT and RFT in relationships: Helping clients deepen intimacy and maintain healthy commitments using acceptance and commitment therapy and relational frame theory</em>. New Harbinger." },
   { k: "Perlis et al., 2005", ref: "Perlis, M. L., Jungquist, C., Smith, M. T. y Posner, D. (2005). <em>Cognitive behavioral treatment of insomnia: A session-by-session guide</em>. Springer." }
 );
 
 Object.assign(MODELOS, {
+  "amor-valores": {
+    t: "El amor como acción valiosa",
+    autor: "Dahl, Stewart, Martell y Kaplan, desde la teoría de los marcos relacionales",
+    d: "La relación de pareja se estanca cuando cada uno se fusiona con historias sobre sí mismo y sobre el otro, con reglas y con roles, y organiza su conducta alrededor de evitar el malestar. La premisa de los autores es que quienes viven el amor como una acción que eligen según sus valores, y no solo como una emoción, pueden decepcionarse menos de sus relaciones.",
+    dim: ["Fusión con historias, reglas y roles", "Rigidez psicológica en la pareja", "La intimidad como valor", "Autocompasión", "Aceptación emocional"],
+    fuente: "Dahl et al., 2013, caps. 5 a 8 y 10"
+  },
   "moorey-ajuste": {
     t: "Modelo cognitivo de ajuste al cáncer",
     autor: "Moorey y Greer",
@@ -9395,6 +9403,7 @@ const VARIABLES = [
   elegir: [
     "<strong>El plan es la terapia integral de pareja</strong>, que combina estrategias de aceptación de las diferencias con estrategias de cambio. Se empieza por la aceptación, salvo que la pareja ya colabore y ambos quieran cambios concretos.",
     "Antes de empezar se evalúa siempre la violencia en la pareja: con violencia grave, la terapia conjunta puede estar contraindicada y la seguridad va primero. Si uno de los dos tiene un problema individual grave —consumo, riesgo suicida, un trastorno mental importante—, se atiende también por separado.",
+    "<strong>Si uno de los dos o ambos quedan atrapados en historias rígidas sobre sí mismos y sobre el otro</strong>, o evitan el malestar a costa de la cercanía, el plan de aceptación y compromiso para la pareja ofrece un marco para trabajarlo; su respaldo es conceptual.",
     "Si después de una infidelidad u otra herida lo que queda es el rencor de uno de los dos, la variable Resentimiento y perdón trabaja el perdón de forma individual o en grupo, sin obligación de reconciliarse."
   ],
   planes: [
@@ -9513,6 +9522,84 @@ const VARIABLES = [
         "El ensayo principal excluyó parejas con trastorno bipolar, esquizofrenia, riesgo suicida importante, consumo de sustancias, algunos trastornos de la personalidad o violencia física grave; en esos casos se requiere otro abordaje (Christensen et al., 2014).",
         "El terapeuta practica con ambos la misma aceptación que pide a la pareja: valida a los dos y no toma partido (Christensen et al., 2014)."
       ]
+    },
+    {
+      id: "par-act",
+      mod: "amor-valores",
+      inst: ["DAS", "AAQ-II"],
+      enf: "act",
+      t: "Aceptación y compromiso en la relación de pareja",
+      fuente: "Dahl et al., 2013, caps. 5 a 9",
+      cuando: "La relación está <strong>estancada en patrones rígidos</strong>: cada uno se aferra a su historia sobre el otro, evita las conversaciones difíciles, espera sentir amor para actuar con cariño o se castiga por los fracasos de la pareja.",
+      respaldo: "Es una aplicación de la terapia de aceptación y compromiso y de la teoría de los marcos relacionales a las relaciones íntimas. El libro ofrece un análisis conceptual y casos, no ensayos del plan: su respaldo es el de los procesos de flexibilidad psicológica en otros problemas (Dahl et al., 2013, caps. 3 y 10). Los autores muestran que la aceptación emocional de la terapia integral de pareja, que sí tiene ensayos, se puede leer desde el mismo marco (Dahl et al., 2013, cap. 9).",
+      secuencia: "<strong>Secuencia:</strong> no hay un número fijo de sesiones. Se identifican las historias y reglas con que cada uno está fusionado, los patrones de rigidez que mantienen el conflicto, lo que cada uno valora de la relación y la relación consigo mismo, y se pasa a acciones de cercanía elegidas según esos valores (Dahl et al., 2013, caps. 5 a 9).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Historias, reglas y roles",
+          tecs: ["fusion", "defusion"],
+          obj: "Reconocer las historias sobre uno mismo y sobre el otro que dirigen la conducta en la relación.",
+          pasos: [
+            "Identificar las historias que cada uno repite: «siempre me deja solo», «yo soy el que da».",
+            "Revisar las reglas sobre cómo debe ser la pareja y los roles a los que cada uno se aferra.",
+            "Practicar notarlas como pensamientos, no como hechos."
+          ],
+          casa: "Anotar las historias que aparecen en una discusión.",
+          avance: "Cada uno reconoce sus historias sin confundirlas con el otro.",
+          fuente: "Dahl et al., 2013, cap. 5"
+        },
+        {
+          t: "Patrones de rigidez",
+          tecs: ["evitacion-experiencial", "agenda-control"],
+          obj: "Ver cómo evitar el malestar mantiene el conflicto y aleja a la pareja.",
+          pasos: [
+            "Revisar las conductas con que cada uno evita el malestar: callar, retirarse, atacar, controlar.",
+            "Examinar su efecto a corto y a largo plazo sobre la cercanía.",
+            "Identificar cuándo la persona vive en el pasado o en el futuro de la relación en lugar del presente."
+          ],
+          casa: "Registrar una situación de evitación y su efecto.",
+          avance: "La pareja identifica sus patrones de evitación.",
+          fuente: "Dahl et al., 2013, cap. 6"
+        },
+        {
+          t: "La intimidad como valor",
+          tecs: ["valores", "accion-comprometida"],
+          obj: "Elegir la intimidad como un valor y actuar según él, sin esperar a sentirlo.",
+          pasos: [
+            "Distinguir entre perseguir sentimientos y perseguir valores en la relación.",
+            "Clarificar qué quiere ser cada uno como pareja.",
+            "Acordar acciones concretas de cercanía, incluso con el malestar presente."
+          ],
+          casa: "Una acción de cercanía guiada por los valores.",
+          avance: "Aumentan las acciones de cercanía elegidas.",
+          fuente: "Dahl et al., 2013, cap. 7",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Autocompasión y aceptación emocional",
+          tecs: ["pausa-autocompasion", "aceptacion"],
+          obj: "Tratarse con amabilidad y aceptar las emociones difíciles propias y del otro.",
+          pasos: [
+            "Acoger las emociones difíciles y observar los juicios sin quedar atrapado en ellos.",
+            "Validarse a uno mismo con compasión.",
+            "Llevar esa aceptación a las emociones del otro, como en la aceptación emocional de la terapia integral de pareja."
+          ],
+          casa: "Practicar la autocompasión después de un conflicto.",
+          avance: "Baja la autocrítica y la hostilidad en los conflictos.",
+          fuente: "Dahl et al., 2013, caps. 8 y 9"
+        }
+      ],
+      medir: [
+        "<strong>DAS</strong> para el ajuste de la pareja al inicio y al final.",
+        "<strong>AAQ-II</strong> para la evitación experiencial."
+      ],
+      adapt: [
+        "<strong>Consulta externa:</strong> los procesos que se trabajan —fusión, evitación, valores y autocompasión— son los mismos de la terapia de aceptación y compromiso individual (Dahl et al., 2013, cap. 3)."
+      ],
+      cuidado: [
+        "Antes de empezar se evalúa la violencia en la pareja: con violencia, la aceptación no aplica a la conducta violenta y la seguridad va primero.",
+        "Su respaldo es conceptual; si la pareja busca un tratamiento con ensayos, la terapia integral de pareja es la primera opción."
+      ]
     }
   ]
 },
@@ -9522,7 +9609,7 @@ const VARIABLES = [
   sub: "Formas de verse a sí mismo, de ver a los demás y de relacionarse que se repiten desde hace años y que la persona reconoce como «así soy»: elegir parejas que la abandonan, someterse, exigirse sin descanso, desconfiar, sentirse defectuosa. Suelen empezar en la infancia, cuando necesidades básicas —seguridad, afecto, autonomía, límites— no se cubrieron. Aparecen en los trastornos de la personalidad y en problemas crónicos que no responden a un tratamiento breve.",
   elegir: [
     "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica.",
-    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión."
+    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. En el trastorno límite de la personalidad, la terapia dialéctico-conductual tiene evidencia de certeza moderada frente al tratamiento habitual en autolesiones y funcionamiento psicosocial (Stoffers-Winterling et al., 2022)."
   ],
   planes: [
     {
