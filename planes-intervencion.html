@@ -1494,6 +1494,81 @@ Object.assign(MODELOS, {
   }
 });
 
+/* TDAH en adultos: Safren et al. (2017), Solanto (2011), Ramsay y Rostain (2008). */
+CATEGORIAS.push({ t: "Atención y funciones ejecutivas", d: "Dificultades para organizar el tiempo, planear, empezar y terminar tareas, y sostener la atención. No se tratan como un problema de voluntad: se entrenan habilidades compensatorias y se trabajan los pensamientos y las emociones que llevan a postergar." });
+
+Object.assign(INSTRUMENTOS, {
+  "ASRS v1.1": { n: "Escala de Autorreporte de TDAH en Adultos de la OMS", rol: "Tamizaje", d: "Síntomas de inatención e hiperactividad-impulsividad en la vida adulta; la parte A, de seis ítems, sirve como tamizaje. El programa de Safren la usa cada semana para seguir los síntomas.", med: "6 o 18 ítems · 5-10 min", guia: true, fuente: "Safren et al., 2017, cap. 2" }
+});
+
+REFERENCIAS.push(
+  { k: "Safren et al., 2017", ref: "Safren, S. A., Sprich, S. E., Perlman, C. A. y Otto, M. W. (2017). <em>Mastering your adult ADHD: A cognitive-behavioral treatment program. Client workbook</em> (2.ª ed.). Oxford University Press." },
+  { k: "Solanto, 2011", ref: "Solanto, M. V. (2011). <em>Cognitive-behavioral therapy for adult ADHD: Targeting executive dysfunction</em>. Guilford Press." },
+  { k: "Ramsay y Rostain, 2008", ref: "Ramsay, J. R. y Rostain, A. L. (2008). <em>Cognitive-behavioral therapy for adult ADHD: An integrative psychosocial and medical approach</em>. Routledge." }
+);
+
+Object.assign(MODELOS, {
+  "safren-tdah": {
+    t: "Modelo cognitivo-conductual del TDAH en adultos",
+    autor: "Safren, Sprich, Perlman y Otto; Ramsay y Rostain",
+    d: "Los síntomas centrales del TDAH, de base neurobiológica, dificultan desde la infancia usar habilidades compensatorias —organizar, planear, manejar la distracción—. Los fracasos repetidos generan pensamientos negativos y creencias de incapacidad, que a su vez llevan a evitar y postergar. El tratamiento enseña las habilidades que faltan y trabaja esos pensamientos, como complemento de la medicación.",
+    dim: ["Síntomas neurobiológicos de inatención e impulsividad", "Falta de habilidades compensatorias", "Historia de fracasos", "Pensamientos y creencias negativas", "Evitación y postergación"],
+    fuente: "Safren et al., 2017, cap. 10 · Ramsay y Rostain, 2008, caps. 1 y 2"
+  }
+});
+
+/* Ampliación de la biblioteca (septiembre de 2026): planes nuevos en variables
+   existentes y variables nuevas de adultos fuera del bloque de afrontamiento. */
+REFERENCIAS.push(
+  { k: "Michie et al., 2014", ref: "Michie, S., Atkins, L. y West, R. (2014). <em>The behaviour change wheel: A guide to designing interventions</em>. Silverback Publishing." },
+  { k: "OMS, 2025", ref: "Organización Mundial de la Salud. (2025). <em>From loneliness to social connection: Charting a path to healthier societies. Report of the WHO Commission on Social Connection</em>. OMS." },
+  { k: "Worden, 2013", ref: "Worden, J. W. (2013). <em>El tratamiento del duelo: asesoramiento psicológico y terapia</em> (4.ª ed. revisada y ampliada; G. Sánchez Barberán, trad.). Paidós. (Obra original publicada en 2008)." },
+  { k: "Thorn, 2017", ref: "Thorn, B. E. (2017). <em>Cognitive therapy for chronic pain: A step-by-step guide</em> (2.ª ed.). Guilford Press." },
+  { k: "Morrison, 2002", ref: "Morrison, A. P. (Ed.). (2002). <em>A casebook of cognitive therapy for psychosis</em>. Brunner-Routledge." },
+  { k: "Caballo, 2007", ref: "Caballo, V. E. (2007). <em>Manual de evaluación y entrenamiento de las habilidades sociales</em> (7.ª ed.). Siglo XXI." },
+  { k: "Moorey y Greer, 2012", ref: "Moorey, S. y Greer, S. (2012). <em>Oxford guide to CBT for people with cancer</em> (2.ª ed.). Oxford University Press." },
+  { k: "Taylor, 2006", ref: "Taylor, R. R. (2006). <em>Cognitive behavioral therapy for chronic illness and disability</em>. Springer." },
+  { k: "Perlis et al., 2005", ref: "Perlis, M. L., Jungquist, C., Smith, M. T. y Posner, D. (2005). <em>Cognitive behavioral treatment of insomnia: A session-by-session guide</em>. Springer." }
+);
+
+Object.assign(MODELOS, {
+  "moorey-ajuste": {
+    t: "Modelo cognitivo de ajuste al cáncer",
+    autor: "Moorey y Greer",
+    d: "Lo que determina la reacción emocional al cáncer no es solo la enfermedad, sino cómo la persona valora el diagnóstico (como amenaza, pérdida o reto), cuánto control cree tener y cómo ve el pronóstico. De esas valoraciones surgen estilos de ajuste relativamente estables: espíritu de lucha, negación, fatalismo, indefensión y desesperanza, y preocupación ansiosa. Los dos últimos se asocian con más malestar y son el foco de la terapia.",
+    dim: ["Valoración del diagnóstico", "Control percibido", "Visión del pronóstico", "Estilos de ajuste: espíritu de lucha, negación, fatalismo, indefensión y desesperanza, preocupación ansiosa"],
+    fuente: "Moorey y Greer, 2012, caps. 2 y 5"
+  },
+  "thorn-dolor": {
+    t: "Modelo de estrés, valoración y afrontamiento del dolor",
+    autor: "Thorn, a partir de Lazarus y Folkman y del modelo de la neuromatriz",
+    d: "El dolor crónico se procesa en el cerebro y está modulado por el estrés, la atención y las emociones. La valoración que la persona hace del dolor —como amenaza o como reto— y de sus recursos para afrontarlo influye en cuánto dolor percibe y en cuánto funciona. Reducir las valoraciones de amenaza, como la catastrofización, y aumentar la flexibilidad psicológica mejora la adaptación.",
+    dim: ["Procesamiento cerebral del dolor", "Valoración primaria: amenaza o reto", "Valoración secundaria: recursos de afrontamiento", "Creencias profundas", "Flexibilidad psicológica y aceptación del dolor"],
+    fuente: "Thorn, 2017, caps. 2 y 3"
+  },
+  "worden-tareas": {
+    t: "Modelo de las tareas del duelo",
+    autor: "Worden",
+    d: "El duelo es un proceso activo, no una sucesión de etapas que se atraviesan pasivamente: la persona tiene que realizar cuatro tareas, que no siguen un orden fijo y pueden retomarse con el tiempo. Cómo las realiza depende de mediadores como quién era el fallecido, el tipo de apego, cómo murió, los antecedentes, la personalidad y el apoyo social. Cuando una tarea queda sin realizar, el duelo se complica.",
+    dim: ["Aceptar la realidad de la pérdida", "Elaborar el dolor de la pérdida", "Adaptarse a un mundo sin el fallecido", "Hallar una conexión perdurable con el fallecido al embarcarse en una vida nueva", "Mediadores del duelo"],
+    fuente: "Worden, 2013, caps. 2 y 3"
+  },
+  "com-b": {
+    t: "Modelo COM-B y rueda del cambio de conducta",
+    autor: "Michie, Atkins y West",
+    d: "Toda conducta depende de tres condiciones que interactúan: la capacidad (física y psicológica), la oportunidad (física y social) y la motivación (reflexiva y automática). Para cambiar una conducta hay que diagnosticar cuál de ellas falla y elegir las funciones de intervención que la atacan —educación, persuasión, incentivos, coerción, entrenamiento, restricción, reestructuración del entorno, modelado y facilitación— y luego las técnicas concretas.",
+    dim: ["Capacidad física y psicológica", "Oportunidad física y social", "Motivación reflexiva y automática", "Funciones de intervención", "Técnicas de cambio de conducta"],
+    fuente: "Michie et al., 2014, introducción y caps. 1 y 2"
+  },
+  "spielman-3p": {
+    t: "Modelo conductual del insomnio (de los tres factores)",
+    autor: "Spielman",
+    d: "El insomnio crónico resulta de factores predisponentes, precipitantes y perpetuantes. Lo que lo mantiene no es lo que lo inició, sino lo que la persona hace para dormir más: pasar más tiempo en la cama y hacer en ella actividades distintas de dormir. Esas conductas desajustan la presión de sueño y asocian la cama con la vigilia.",
+    dim: ["Factores predisponentes", "Factores precipitantes", "Factores perpetuantes: exceso de tiempo en la cama", "Factores perpetuantes: conductas distintas de dormir en la cama"],
+    fuente: "Perlis et al., 2005, caps. 2 y 3"
+  }
+});
+
 /* Psicología positiva: manuales de psicoterapia positiva (Rashid y Seligman),
    terapia de bienestar (Fava), tratamiento del afecto positivo (Craske),
    terapia de perdón (Enright; Worthington), autocompasión consciente
@@ -4689,6 +4764,203 @@ const VARIABLES = [
         "El ítem 10 de la escala de Edimburgo pregunta por pensamientos de hacerse daño y se revisa siempre, aparte del puntaje.",
         "El programa no ofrece ayuda económica ni atención médica, y pide participación activa de la madre y la familia: conviene aclararlo desde el inicio (FICR, 2022).",
         "Toda madre tiene derecho a no participar; ante la negativa, se escucha sin presionar (FICR, 2022)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ánimo y regulación emocional",
+  t: "Duelo",
+  sub: "Lo que se interviene es la respuesta a la muerte de una persona significativa. La mayoría de las personas elaboran el duelo por su cuenta, con su red; la intervención se ofrece a quien la pide, a quien tiene factores de riesgo o a quien lleva tiempo con un duelo que no avanza. El duelo no es un trastorno, y la intervención no debe tratarlo como tal.",
+  elegir: [
+    "<strong>Si el duelo es reciente y sigue su curso</strong>, aunque sea muy doloroso, el asesoramiento en las cuatro tareas acompaña a la persona para que las realice.",
+    "<strong>Si el duelo se ha complicado</strong> —crónico, retrasado, exagerado o enmascarado en síntomas físicos o conductas—, la terapia del duelo identifica qué tarea quedó detenida y trabaja los conflictos de separación.",
+    "Si la muerte fue traumática y hay síntomas de estrés postraumático, ver <em>Trauma y estrés postraumático</em>. Si el duelo desencadenó una depresión, la psicoterapia interpersonal de <em>Depresión</em> tiene el duelo como una de sus áreas."
+  ],
+  planes: [
+    {
+      id: "duelo-ases",
+      mod: "worden-tareas",
+      inst: ["PHQ-9"],
+      enf: "est",
+      t: "Asesoramiento en el duelo: las cuatro tareas",
+      fuente: "Worden, 2013, caps. 2 y 4",
+      cuando: "La persona está en un <strong>duelo reciente y no complicado</strong> y busca ayuda, o tiene factores que predicen dificultades: ser joven con hijos pequeños en casa, tener pocas relaciones cercanas, haber perdido ingresos, una muerte repentina o una relación ambivalente con el fallecido.",
+      respaldo: "Worden distingue tres formas de ofrecer el asesoramiento: a todas las personas en duelo, a quienes lo piden o, de forma preventiva, a quienes tienen factores de riesgo. Los estudios de seguimiento de viudos y viudas identificaron predictores de problemas uno y dos años después de la pérdida, lo que permite una intervención temprana (Worden, 2013, cap. 4). La mayor parte del duelo se resuelve sin intervención formal; se benefician más las personas jóvenes, las mujeres, quienes sufrieron una pérdida repentina o violenta, quienes muestran indicios de duelo crónico y quienes buscan ayuda por una angustia que ellas mismas identifican (Worden, 2013, cap. 4).",
+      secuencia: "<strong>Secuencia:</strong> el asesoramiento sigue diez principios, que acompañan las cuatro tareas del duelo; no tiene un número fijo de sesiones y puede darse de forma individual o en grupo. Suele empezar no antes de una semana después del funeral (Worden, 2013, cap. 4).",
+      esc: ["primer-nivel","comunidad","hospital","mayores"],
+      actividades: [
+        {
+          t: "Aceptar la realidad de la pérdida",
+          tecs: ["facilitacion-duelo", "entrevista-clinica"],
+          obj: "Ayudar a la persona a asumir que la muerte ocurrió y es irreversible.",
+          pasos: [
+            "Invitar a hablar de la pérdida: dónde ocurrió, cómo, quién le dio la noticia, dónde estaba.",
+            "Hablar del funeral y de las visitas a la tumba, que ayudan a acercarse a la aceptación.",
+            "Identificar a las personas en riesgo por sus antecedentes y por las circunstancias de la muerte."
+          ],
+          casa: "Si la persona lo desea, visitar la tumba o un lugar que la conecte con el fallecido.",
+          avance: "La persona habla de la muerte como un hecho.",
+          fuente: "Worden, 2013, cap. 2 (tarea I) y cap. 4 (principio 1)"
+        },
+        {
+          t: "Identificar y vivir los sentimientos",
+          tecs: ["expresion-emocional", "validacion"],
+          obj: "Elaborar el dolor, incluidos los sentimientos que la persona no se permite.",
+          pasos: [
+            "Ayudar a expresar la tristeza, y también la rabia, la culpa, la ansiedad y el desamparo.",
+            "Dirigir la rabia hacia el fallecido si corresponde, en lugar de desplazarla a otros o volverla contra uno mismo.",
+            "Revisar la culpa con la realidad: qué se hizo, qué se dijo, qué se pudo hacer."
+          ],
+          casa: "Escribir una carta al fallecido o un diario de lo que siente.",
+          avance: "La persona expresa sentimientos diversos sobre la pérdida.",
+          fuente: "Worden, 2013, cap. 2 (tarea II) y cap. 4 (principio 2 y técnicas)"
+        },
+        {
+          t: "Adaptarse a un mundo sin el fallecido",
+          tecs: ["solucion-problemas", "analisis-decisiones"],
+          obj: "Asumir los roles y las habilidades que antes cubría el fallecido, y ajustar la identidad.",
+          pasos: [
+            "Identificar los roles que cumplía el fallecido y las tareas que ahora recaen en la persona.",
+            "Resolver problemas prácticos y aprender habilidades nuevas.",
+            "Aconsejar no tomar decisiones importantes —vender la casa, mudarse, cambiar de trabajo— en el duelo agudo.",
+            "Ayudar a dotar de significado la pérdida."
+          ],
+          casa: "Resolver un problema práctico derivado de la pérdida.",
+          avance: "La persona asume nuevos roles y habilidades.",
+          fuente: "Worden, 2013, cap. 2 (tarea III) y cap. 4 (principios 3 y 4)",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Una conexión perdurable y una vida nueva",
+          tecs: ["facilitacion-duelo", "apoyo-social"],
+          obj: "Encontrar un lugar para el fallecido en la vida emocional de la persona que le permita seguir viviendo.",
+          pasos: [
+            "Facilitar la recolocación emocional del fallecido: recordarlo sin que eso impida invertir en nuevas relaciones.",
+            "Dar tiempo al duelo y anticipar las fechas difíciles: aniversarios, festividades, cumpleaños.",
+            "Explicar que muchas reacciones son normales y respetar las diferencias individuales.",
+            "Examinar las defensas y los estilos de afrontamiento, y ofrecer apoyo continuo."
+          ],
+          casa: "Planear cómo vivir la próxima fecha difícil.",
+          avance: "La persona recuerda al fallecido y retoma su vida.",
+          fuente: "Worden, 2013, cap. 2 (tarea IV) y cap. 4 (principios 5 a 9)"
+        },
+        {
+          t: "Identificar patologías y derivar",
+          tecs: ["evaluacion-riesgo-suicida", "seguimiento-derivacion"],
+          obj: "Reconocer cuándo el duelo se complicó y requiere terapia o atención especializada.",
+          pasos: [
+            "Estar atento a los signos de duelo complicado, depresión o riesgo suicida.",
+            "Reconocer los propios límites como asesor.",
+            "Derivar a terapia del duelo o a atención especializada cuando haga falta."
+          ],
+          casa: "—",
+          avance: "Las complicaciones se detectan y se derivan a tiempo.",
+          fuente: "Worden, 2013, cap. 4 (principio 10) y cap. 5"
+        }
+      ],
+      medir: [
+        "Seguimiento de las cuatro tareas en la entrevista.",
+        "<strong>PHQ-9</strong> si hay síntomas depresivos."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> puede darse en grupos, con reglas básicas, expectativas definidas y selección de los participantes (Worden, 2013, cap. 4).",
+        "<strong>Adultos mayores:</strong> la viudez es la pérdida más estudiada; la soledad y el aislamiento son frecuentes después (Worden, 2013, caps. 2 y 4)."
+      ],
+      cuidado: [
+        "No todas las personas en duelo necesitan intervención: la mayoría lo elabora con su red (Worden, 2013, cap. 4).",
+        "Si hay ideación suicida, se sigue el protocolo de riesgo."
+      ]
+    },
+    {
+      id: "duelo-compl",
+      mod: "worden-tareas",
+      inst: ["PHQ-9", "PCL-5"],
+      enf: "est",
+      t: "Terapia del duelo complicado",
+      fuente: "Worden, 2013, caps. 5 y 6",
+      cuando: "El duelo se ha <strong>complicado</strong>: es crónico y no termina, se retrasó y aparece mucho después, es exagerado —con depresión, ansiedad o conductas de riesgo— o está enmascarado en síntomas físicos o conductas que la persona no relaciona con la pérdida.",
+      respaldo: "Worden la propone para identificar y resolver los conflictos de separación que impiden completar las tareas del duelo. Evalúa su resultado por la experiencia subjetiva de la persona, los cambios de conducta y el alivio de los síntomas (Worden, 2013, cap. 6).",
+      secuencia: "<strong>Secuencia:</strong> diez procedimientos, que se adaptan a cada caso: descartar enfermedad física; acordar el contrato y formar la alianza; revivir los recuerdos del fallecido; evaluar qué tareas plantean problemas; afrontar las emociones; explorar y desactivar los objetos de vinculación; aceptar que la pérdida es definitiva; proyectar una vida nueva; mejorar las relaciones sociales; y afrontar la fantasía de terminar el duelo (Worden, 2013, cap. 6).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Descartar enfermedad física y formar la alianza",
+          tecs: ["entrevista-clinica", "formulacion-caso"],
+          obj: "Asegurar que los síntomas no tienen otra causa y acordar el trabajo sobre la relación con el fallecido.",
+          pasos: [
+            "Descartar una enfermedad física, sobre todo si el duelo se expresa en síntomas corporales.",
+            "Acordar trabajar sobre la relación con el fallecido.",
+            "Explicar la relación entre los síntomas actuales y la pérdida."
+          ],
+          casa: "Anotar recuerdos del fallecido que aparezcan en la semana.",
+          avance: "La persona acepta explorar su relación con el fallecido.",
+          fuente: "Worden, 2013, cap. 6 (procedimientos 1 y 2)"
+        },
+        {
+          t: "Revivir los recuerdos y evaluar las tareas",
+          tecs: ["facilitacion-duelo"],
+          obj: "Hablar del fallecido con sus aspectos positivos y negativos e identificar qué tarea está detenida.",
+          pasos: [
+            "Empezar por los recuerdos positivos, luego los mixtos y, más tarde, los dolorosos o de rabia.",
+            "Evaluar cuál de las cuatro tareas plantea problemas.",
+            "Si falta dotar de significado la pérdida, trabajar el sentido."
+          ],
+          casa: "Traer fotografías u objetos del fallecido a la sesión siguiente.",
+          avance: "La persona describe una imagen equilibrada del fallecido.",
+          fuente: "Worden, 2013, cap. 6 (procedimientos 3 y 4)"
+        },
+        {
+          t: "Afrontar las emociones",
+          tecs: ["expresion-emocional", "ejercicio-experiencial"],
+          obj: "Elaborar las emociones que suscitan los recuerdos o su ausencia.",
+          pasos: [
+            "Ayudar a reconocer la rabia, la culpa, la tristeza y la ansiedad que no se habían expresado.",
+            "Usar la silla vacía o la imaginación: la persona le habla directamente al fallecido.",
+            "Recurrir a la escritura, el dibujo, los álbumes de recuerdos o el juego de roles."
+          ],
+          casa: "Escribir una carta al fallecido.",
+          avance: "La persona expresa y elabora las emociones detenidas.",
+          fuente: "Worden, 2013, cap. 6 (procedimiento 5 y técnicas) y cap. 4 (técnicas)"
+        },
+        {
+          t: "Objetos de vinculación y aceptación de que la pérdida es definitiva",
+          tecs: ["facilitacion-duelo"],
+          obj: "Revisar los objetos que mantienen la conexión de forma rígida y aceptar el final de la relación.",
+          pasos: [
+            "Explorar los objetos de vinculación: pertenencias, fotografías, lugares que la persona conserva o evita.",
+            "Desactivarlos de forma gradual cuando impiden avanzar.",
+            "Ayudar a aceptar que la pérdida es definitiva."
+          ],
+          casa: "Un paso acordado con un objeto de vinculación.",
+          avance: "La persona acepta que el fallecido no volverá.",
+          fuente: "Worden, 2013, cap. 6 (procedimientos 6 y 7)"
+        },
+        {
+          t: "Vida nueva, relaciones y final del duelo",
+          tecs: ["apoyo-social", "programacion-actividades", "prevencion-recaidas"],
+          obj: "Proyectar una vida sin el fallecido, mejorar las relaciones y despedirse.",
+          pasos: [
+            "Ayudar a proyectar una vida nueva sin el fallecido.",
+            "Evaluar las relaciones sociales y ayudar a mejorarlas.",
+            "Afrontar la fantasía de terminar el duelo: qué significaría para la persona dejar de estar en duelo.",
+            "Evaluar el resultado por la experiencia subjetiva, los cambios de conducta y el alivio de los síntomas."
+          ],
+          casa: "Un paso concreto hacia la vida nueva.",
+          avance: "La persona invierte en nuevas relaciones y proyectos.",
+          fuente: "Worden, 2013, cap. 6 (procedimientos 8 a 10 y evaluación de resultados)"
+        }
+      ],
+      medir: [
+        "<strong>PHQ-9</strong> al inicio y al final.",
+        "<strong>PCL-5</strong> si la muerte fue traumática."
+      ],
+      adapt: [
+        "<strong>Salud mental:</strong> el duelo complicado se confunde a menudo con depresión o trauma, con los que comparte características (Worden, 2013, caps. 1 y 5)."
+      ],
+      cuidado: [
+        "El duelo complicado puede venir con riesgo suicida: se evalúa y se sigue el protocolo.",
+        "Las técnicas de revivir emociones intensas requieren una alianza sólida y un ritmo que la persona pueda sostener."
       ]
     }
   ]
@@ -8585,6 +8857,97 @@ const VARIABLES = [
 },
 {
   cat: "Afrontamiento y relaciones",
+  t: "Soledad y aislamiento social",
+  sub: "Lo que se interviene es la desconexión social: la soledad —la experiencia dolorosa de que las relaciones que se tienen no alcanzan— y el aislamiento —tener pocas relaciones o pocos contactos—. Pueden ir juntos o por separado. Afecta a todas las edades, aunque se ha estudiado más en personas mayores. No es un diagnóstico, pero se asocia con peor salud física y mental.",
+  elegir: [
+    "<strong>Si predomina la soledad</strong>, con pensamientos negativos sobre uno mismo y sobre cómo lo ven los demás, las intervenciones psicológicas son las más prometedoras.",
+    "<strong>Si predomina el aislamiento</strong> —pocas relaciones, pocas ocasiones de contacto—, se combinan con entrenamiento en habilidades y con apoyos para participar: grupos comunitarios, apoyo entre pares, visitas.",
+    "Si la soledad empezó con un cambio de vida o una pérdida, ver también <em>Adaptación a cambios y transiciones vitales</em>; si viene de la ansiedad social, los planes de <em>Ansiedad</em>."
+  ],
+  planes: [
+    {
+      id: "sol-multi",
+      mod: "beck-dep",
+      inst: ["LSNS-6", "MSPSS"],
+      enf: "tcc",
+      t: "Intervención combinada para la soledad y el aislamiento",
+      fuente: "OMS, 2025, cap. 8",
+      cuando: "La persona se siente sola o está aislada, y eso le pesa: tiene pocas relaciones o no le satisfacen, evita el contacto por miedo al rechazo o perdió su red por una mudanza, una enfermedad, la jubilación o una pérdida.",
+      respaldo: "Las intervenciones individuales y de relación tienen en conjunto efectos pequeños a moderados sobre la soledad y el aislamiento. No se puede señalar con precisión cuál es la más eficaz, pero las intervenciones psicológicas —entre ellas la terapia cognitivo-conductual y la reducción del estrés basada en mindfulness— son las más prometedoras para la soledad, con efectos moderados a grandes. Combinar varios tipos de intervención es más eficaz que usar uno solo (OMS, 2025, cap. 8, §8.1).",
+      secuencia: "<strong>Secuencia:</strong> evaluar si predomina la soledad, el aislamiento o ambos; trabajar las cogniciones sociales negativas; entrenar las habilidades que falten; y facilitar contactos regulares y actividades compartidas. El orden y el peso de cada componente dependen de la evaluación (OMS, 2025, cap. 8).",
+      esc: ["mayores","comunidad","primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluar la soledad, el aislamiento y la red",
+          tecs: ["entrevista-clinica", "psicoeducacion"],
+          obj: "Distinguir la soledad del aislamiento y conocer la red de la persona.",
+          pasos: [
+            "Preguntar cuántas relaciones tiene, con qué frecuencia las ve y cuánto le satisfacen.",
+            "Identificar qué cambió: una mudanza, una pérdida, una enfermedad, la jubilación.",
+            "Explicar que la soledad es una experiencia común y que se puede trabajar."
+          ],
+          casa: "Registrar en la semana los contactos que tuvo y cómo se sintió en cada uno.",
+          avance: "Queda claro si predomina la soledad, el aislamiento o ambos.",
+          fuente: "OMS, 2025, caps. 1 y 8"
+        },
+        {
+          t: "Cambiar las cogniciones sociales negativas",
+          tecs: ["pensamientos-automaticos", "reestructuracion-cognitiva", "experimento-conductual"],
+          obj: "Revisar los pensamientos sobre el propio valor y sobre cómo lo ven los demás, que frenan las relaciones.",
+          pasos: [
+            "Identificar los pensamientos que aparecen antes y después del contacto social: «no le intereso a nadie», «me van a rechazar».",
+            "Examinar la evidencia y formular alternativas.",
+            "Proponer experimentos conductuales para comprobarlas en contactos reales."
+          ],
+          casa: "Un experimento conductual de contacto social y su registro.",
+          avance: "La persona pone a prueba sus predicciones sobre el rechazo.",
+          fuente: "OMS, 2025, cap. 8 (§8.1)",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Habilidades para iniciar y mantener relaciones",
+          tecs: ["entrenamiento-hhss", "juego-roles"],
+          obj: "Entrenar las habilidades que la persona necesita para conversar, iniciar y sostener relaciones.",
+          pasos: [
+            "Elegir las habilidades que faltan: iniciar una conversación, mantenerla, proponer un encuentro.",
+            "Entrenarlas con juego de roles y retroalimentación.",
+            "Practicarlas en situaciones reales graduadas."
+          ],
+          casa: "Practicar la habilidad entrenada en una situación real.",
+          avance: "La persona inicia y mantiene más contactos.",
+          fuente: "OMS, 2025, cap. 8 (§8.1)"
+        },
+        {
+          t: "Facilitar contactos regulares y actividades compartidas",
+          tecs: ["apoyo-social", "programacion-actividades"],
+          obj: "Aumentar las ocasiones de contacto de calidad.",
+          pasos: [
+            "Identificar grupos y actividades de la comunidad según los intereses de la persona: ejercicio, arte, voluntariado, grupos religiosos o culturales.",
+            "Vincular, si existen, con apoyo entre pares, programas de acompañamiento o visitas.",
+            "Programar la participación y revisar cómo le fue, prestando atención a la calidad de las relaciones más que al número."
+          ],
+          casa: "Participar en la actividad o el grupo elegido.",
+          avance: "La persona tiene contactos regulares y los valora.",
+          fuente: "OMS, 2025, caps. 7 y 8"
+        }
+      ],
+      medir: [
+        "<strong>LSNS-6</strong> para el tamaño de la red y <strong>MSPSS</strong> para el apoyo percibido, al inicio y al final.",
+        "Registro semanal de contactos y de su calidad."
+      ],
+      adapt: [
+        "<strong>Adultos mayores:</strong> la mayoría de los estudios se hicieron con personas mayores; las intervenciones combinadas tuvieron en ellas un efecto moderado sobre la soledad y pequeño sobre el aislamiento (OMS, 2025, cap. 8).",
+        "<strong>Comunidad:</strong> la prescripción social —derivar desde salud a servicios y actividades comunitarias— tiene algunas evaluaciones favorables, pero la evidencia todavía no es sólida (OMS, 2025, cap. 7)."
+      ],
+      cuidado: [
+        "La soledad se asocia con depresión y riesgo suicida: si aparecen, se atienden con el plan correspondiente.",
+        "Los programas dirigidos solo a personas solas pueden estigmatizarlas; conviene presentarlos como actividades abiertas (OMS, 2025, cap. 8)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
   t: "Habilidades sociales",
   sub: "Lo que se interviene es la competencia en las relaciones: conversar, pedir, negarse, expresar desacuerdo o afecto, hacer y recibir críticas. Su déficit se asocia al aislamiento, la depresión, la ansiedad social y los problemas de pareja, y puede ser central en muchos trastornos. Se entrena como cualquier habilidad: se explica, se muestra, se ensaya y se lleva a la vida real.",
   elegir: [
@@ -8599,7 +8962,7 @@ const VARIABLES = [
       inst: ["RAS", "EMES-M"],
       enf: "tcc",
       t: "Entrenamiento en habilidades sociales",
-      fuente: "Ruiz et al., cap. 6 (§3)",
+      fuente: "Ruiz et al., cap. 6 (§3) · Caballo, 2007, caps. 5 a 7",
       cuando: "La evaluación muestra un <strong>déficit en conductas sociales concretas</strong> —conversar, pedir, negarse, expresar desacuerdo o afecto, hacer y recibir críticas— que limita la vida de la persona o forma parte de un problema mayor, como el aislamiento, la ansiedad social o la depresión.",
       respaldo: "Numerosas investigaciones y estudios controlados muestran su efectividad en una amplia gama de problemas: consumo de alcohol y otras sustancias, depresión, esquizofrenia, ansiedad, problemas de pareja, dificultad para establecer relaciones íntimas, juego patológico y reinserción social (Ruiz et al., cap. 6, §3.5).",
       secuencia: "<strong>Secuencia:</strong> evaluación y selección de las habilidades, y luego los componentes básicos —instrucciones, modelado, ensayo de conducta, retroalimentación y refuerzo—, con tareas para casa y estrategias de generalización. Las etapas no siguen un orden estricto y pueden entrenarse a la vez; según el caso se suman la reducción de la ansiedad, la reestructuración cognitiva y la solución de problemas (Ruiz et al., cap. 6, §3.3).",
@@ -8617,7 +8980,7 @@ const VARIABLES = [
           ],
           casa: "Autorregistro diario de la situación social objetivo.",
           avance: "Quedan definidas las habilidades por entrenar, de la más fácil a la más difícil.",
-          fuente: "Ruiz et al., cap. 6 (§3.3.1)",
+          fuente: "Ruiz et al., cap. 6 (§3.3.1) · Caballo, 2007, cap. 5",
           fichas: ["registro-situaciones-sociales"]
         },
         {
@@ -8632,7 +8995,7 @@ const VARIABLES = [
           ],
           casa: "Lectura complementaria sobre la habilidad de la semana.",
           avance: "La persona describe los componentes de la habilidad que va a entrenar.",
-          fuente: "Ruiz et al., cap. 6 (§3.3.2)"
+          fuente: "Ruiz et al., cap. 6 (§3.3.2) · Caballo, 2007, cap. 6"
         },
         {
           t: "Modelado",
@@ -8646,7 +9009,7 @@ const VARIABLES = [
           ],
           casa: "Observar a otras personas realizando la habilidad en situaciones reales.",
           avance: "La persona identifica los componentes de la habilidad en el modelo.",
-          fuente: "Ruiz et al., cap. 6 (§3.3.2)"
+          fuente: "Ruiz et al., cap. 6 (§3.3.2) · Caballo, 2007, cap. 6"
         },
         {
           t: "Ensayo de conducta",
@@ -8660,7 +9023,7 @@ const VARIABLES = [
           ],
           casa: "Ensayar la conducta en casa, frente al espejo o con alguien de confianza.",
           avance: "La persona ejecuta la habilidad en el juego de roles con los componentes acordados.",
-          fuente: "Ruiz et al., cap. 6 (§3.3.2)"
+          fuente: "Ruiz et al., cap. 6 (§3.3.2) · Caballo, 2007, cap. 6"
         },
         {
           t: "Retroalimentación y refuerzo",
@@ -8674,7 +9037,7 @@ const VARIABLES = [
           ],
           casa: "Autorregistro del uso de la habilidad y autorrefuerzo.",
           avance: "La persona incorpora las correcciones en el siguiente ensayo.",
-          fuente: "Ruiz et al., cap. 6 (§3.3.2)"
+          fuente: "Ruiz et al., cap. 6 (§3.3.2) · Caballo, 2007, cap. 6"
         },
         {
           t: "Tareas y generalización",
@@ -8698,6 +9061,8 @@ const VARIABLES = [
         "<strong>LSNS-6</strong> o <strong>MSPSS</strong> cuando el objetivo es ampliar la red social."
       ],
       adapt: [
+        "<strong>Formato:</strong> el entrenamiento individual permite ajustar el programa a los problemas de la persona y conviene cuando la ansiedad es excesiva para el grupo; el grupal ofrece más modelos y compañeros para ensayar. La elección depende sobre todo de los recursos (Caballo, 2007, cap. 6, §6.4).",
+        "<strong>Salud mental:</strong> se ha aplicado a la soledad, la esquizofrenia y los trastornos por consumo de sustancias, entre otros problemas (Caballo, 2007, cap. 7).",
         "<strong>Formato grupal:</strong> el grupo ofrece una situación social ya establecida para practicar; conviene que los participantes tengan déficits y niveles de funcionamiento parecidos (Ruiz et al., cap. 6, §3.4).",
         "<strong>Formato individual:</strong> permite evaluar de forma continua y ajustar el contenido a medida que avanza el programa (Ruiz et al., cap. 6, §3.4).",
         "<strong>Consumo de sustancias:</strong> tiene respaldo en problemas de alcohol y otras sustancias (Monti y O'Leary, 1999, en Ruiz et al., cap. 6, §3.5)."
@@ -9580,6 +9945,87 @@ const VARIABLES = [
         "Con consumo de alcohol u otras sustancias se necesitan precauciones especiales, por sus efectos sobre el sueño (Kaplan y Harvey, 2014).",
         "La higiene del sueño sola no basta: se usa como parte del paquete, no como tratamiento único (Kaplan y Harvey, 2014)."
       ]
+    },
+    {
+      id: "ins-perlis",
+      mod: "spielman-3p",
+      inst: ["ISI", "PSQI"],
+      enf: "tcc",
+      t: "Tratamiento conductual del insomnio sesión por sesión",
+      fuente: "Perlis et al., 2005, caps. 3 y 4",
+      cuando: "Insomnio crónico en que la persona <strong>pasa mucho más tiempo en la cama del que duerme</strong> y la cama se ha asociado con la vigilia. Sirve en consulta con poco tiempo por sesión, porque se guía por los datos del diario de sueño.",
+      respaldo: "La terapia cognitivo-conductual del insomnio es tan eficaz como los hipnóticos durante el tratamiento agudo y más eficaz a largo plazo (Perlis et al., 2005, cap. 1). El control de estímulos es, según la Academia Americana de Medicina del Sueño, el tratamiento conductual de primera línea, porque se ha evaluado ampliamente como monoterapia (Perlis et al., 2005, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> ocho sesiones semanales de 30 a 120 minutos: evaluación inicial y diario de sueño de base (1); inicio de la restricción del sueño y el control de estímulos (2); ajuste del tiempo en cama e higiene del sueño (3); ajustes semanales con terapia cognitiva o relajación si la respuesta es parcial (4 a 7), y prevención de recaídas (8). En general se completa en cuatro a ocho semanas (Perlis et al., 2005, cap. 4).",
+      esc: ["primer-nivel","salud-mental","hospital"],
+      actividades: [
+        {
+          t: "Evaluación y diario de sueño de base",
+          tecs: ["diario-sueno", "entrevista-clinica"],
+          obj: "Confirmar que la TCC-I está indicada y registrar el sueño antes de intervenir.",
+          pasos: [
+            "Evaluar el insomnio y descartar otros trastornos del sueño y condiciones que contraindiquen la restricción.",
+            "Presentar las opciones de tratamiento: la TCC-I tarda unas cinco a ocho semanas y tiene efectos duraderos.",
+            "Enseñar a llenar el diario de sueño y explicar por qué se necesitan datos de base: en esta sesión no se interviene y la persona no cambia sus hábitos."
+          ],
+          casa: "Diario de sueño diario.",
+          avance: "Hay datos de base del diario de sueño.",
+          fuente: "Perlis et al., 2005, cap. 4 (sesión 1)",
+          fichas: ["diario-sueno"]
+        },
+        {
+          t: "Restricción del sueño y control de estímulos",
+          tecs: ["restriccion-sueno", "control-estimulos", "eficiencia-sueno"],
+          obj: "Ajustar el tiempo en cama a lo que la persona duerme y reasociar la cama con el sueño.",
+          pasos: [
+            "Calcular el promedio de sueño del diario: si la persona duerme 5,5 horas, ¿por qué pasa 7 en la cama?",
+            "Fijar una hora de levantarse todos los días y retrasar la hora de acostarse hasta que el tiempo en cama iguale el sueño promedio.",
+            "Control de estímulos: acostarse solo con sueño, usar la cama solo para dormir y la actividad sexual, salir del cuarto si pasan 15 minutos despierto y volver solo con sueño."
+          ],
+          casa: "Seguir el horario prescrito y las instrucciones de control de estímulos; diario de sueño.",
+          avance: "La persona cumple el horario prescrito.",
+          fuente: "Perlis et al., 2005, cap. 3 y cap. 4 (sesión 2)",
+          fichas: ["pautas-sueno"]
+        },
+        {
+          t: "Ajuste semanal del tiempo en cama",
+          tecs: ["eficiencia-sueno", "higiene-sueno"],
+          obj: "Aumentar el tiempo en cama a medida que el sueño se consolida.",
+          pasos: [
+            "Resumir y graficar el diario y revisar el cumplimiento; si no se cumplió, la sesión se centra en eso.",
+            "Si la eficiencia del sueño es del 90 % o más en la semana, sumar 15 minutos; entre 85 y 90 %, mantener; por debajo de 85 %, restar 15 minutos.",
+            "Revisar la higiene del sueño.",
+            "Si la respuesta es parcial, sumar relajación o terapia cognitiva."
+          ],
+          casa: "Nuevo horario prescrito y diario de sueño.",
+          avance: "La eficiencia del sueño llega al 85-90 % con más tiempo total de sueño.",
+          fuente: "Perlis et al., 2005, cap. 3 y cap. 4 (sesiones 3 a 7)",
+          fichas: ["diario-sueno"]
+        },
+        {
+          t: "Prevención de recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Evaluar los logros y preparar a la persona para una mala racha.",
+          pasos: [
+            "Revisar los valores semanales y los logros globales.",
+            "Explicar que una racha de insomnio puede volver y que responder durmiendo más o pasando más tiempo en la cama lo perpetúa.",
+            "Acordar qué hacer: volver al horario y al control de estímulos."
+          ],
+          casa: "Plan escrito ante una recaída.",
+          avance: "La persona sabe cómo responder a una mala racha.",
+          fuente: "Perlis et al., 2005, cap. 4 (sesión 8)",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "Diario de sueño cada semana: eficiencia del sueño, latencia y tiempo total de sueño.",
+        "<strong>ISI</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> si se espera que el insomnio se resuelva al estabilizar una enfermedad aguda, puede convenir esperar antes de iniciar la TCC-I (Perlis et al., 2005, cap. 4)."
+      ],
+      cuidado: [
+        "La restricción del sueño y el control de estímulos pueden estar contraindicados con antecedentes de manía, epilepsia, apnea obstructiva del sueño, parasomnias o riesgo de caídas: la pérdida de sueño inicial puede desencadenar manía o bajar el umbral convulsivo (Perlis et al., 2005, cap. 3)."
+      ]
     }
   ]
 },
@@ -9708,6 +10154,179 @@ const VARIABLES = [
         "El consumo de sustancias empeora el curso: aumenta las recaídas, las urgencias y el riesgo de violencia y de suicidio (Tarrier y Taylor, 2014).",
         "La terapia no cura la esquizofrenia: ayuda a afrontar una condición que puede ser crónica. No se discute de frente la idea delirante (Tarrier y Taylor, 2014).",
         "Requiere formación y supervisión: los autores advierten contra dejarla en manos de personal con poca preparación (Tarrier y Taylor, 2014)."
+      ]
+    },
+    {
+      id: "psi-morrison",
+      mod: "tarrier-psicosis",
+      inst: ["PSYRATS"],
+      enf: "tcc",
+      t: "Terapia cognitiva para voces y creencias persecutorias",
+      fuente: "Morrison, 2002, caps. 3, 4, 8 y 12",
+      cuando: "La persona oye voces o tiene creencias persecutorias que le causan <strong>malestar o limitan su vida</strong>, a pesar de la medicación, y está dispuesta a examinar cómo interpreta esas experiencias.",
+      respaldo: "La terapia cognitivo-conductual reduce los síntomas positivos residuales en atención ambulatoria y mantiene los logros en el seguimiento; ha superado al consejo de apoyo, al tratamiento habitual con medicación y a la atención psiquiátrica de rutina. Los beneficios específicos sobre las voces son menos claros: en algunos estudios mejoraron más tarde o menos que los delirios (Morrison, 2002, cap. 8).",
+      secuencia: "<strong>Secuencia:</strong> vínculo y evaluación; problemas y metas; formulación individual que normaliza las experiencias; trabajo con las interpretaciones de las voces y las creencias, con experimentos conductuales; ánimo, vida social y autoestima; y prevención de recaídas. El número de sesiones varía según el caso (Morrison, 2002, caps. 4 y 8).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Vínculo y evaluación",
+          tecs: ["entrevista-clinica", "validacion"],
+          obj: "Construir una relación de confianza antes de examinar las creencias.",
+          pasos: [
+            "Priorizar el vínculo: escuchar la experiencia de la persona sin discutir sus creencias.",
+            "Evaluar las voces y las creencias: frecuencia, malestar, contenido y qué hace la persona con ellas.",
+            "Acordar una lista de problemas y metas con la persona."
+          ],
+          casa: "Diario de las voces o de las situaciones que activan las creencias.",
+          avance: "Hay una relación de trabajo y metas compartidas.",
+          fuente: "Morrison, 2002, caps. 4 y 8",
+          fichas: ["registro-voces"]
+        },
+        {
+          t: "Formulación y normalización",
+          tecs: ["formulacion-caso", "psicoeducacion"],
+          obj: "Construir una explicación personal de los síntomas que reduzca el miedo y el estigma.",
+          pasos: [
+            "Relacionar las experiencias con los acontecimientos de vida, las creencias de fondo y los síntomas.",
+            "Normalizar: cuántas personas oyen voces, experiencias frecuentes como las del adormecimiento y el despertar, y el papel del estrés y la falta de sueño.",
+            "Integrar la perspectiva biológica o médica que la persona ya tenga en la formulación."
+          ],
+          casa: "Revisar la formulación y anotar lo que cambiaría.",
+          avance: "La persona comparte una formulación que le da sentido a sus experiencias.",
+          fuente: "Morrison, 2002, caps. 3, 5 y 8"
+        },
+        {
+          t: "Interpretaciones de las voces",
+          tecs: ["descubrimiento-guiado", "experimento-conductual"],
+          obj: "Examinar las creencias sobre el poder y el origen de las voces, que causan buena parte del malestar.",
+          pasos: [
+            "Generar las posibles explicaciones de las voces —un poder superior, una enfermedad, un proceso de pensamiento inusual— y la evidencia a favor y en contra de cada una.",
+            "Examinar los desencadenantes y moduladores de las voces para ver cuál explicación encaja mejor.",
+            "Diseñar experimentos conductuales para probar las creencias sobre el control o la omnisciencia de las voces.",
+            "Trabajar la atención centrada en uno mismo y las conductas de seguridad que mantienen la interpretación."
+          ],
+          casa: "Un experimento conductual y el registro de la evidencia.",
+          avance: "Baja la convicción en las creencias que causan malestar.",
+          fuente: "Morrison, 2002, cap. 8"
+        },
+        {
+          t: "Creencias persecutorias",
+          tecs: ["experimento-conductual", "conductas-seguridad"],
+          obj: "Poner a prueba las creencias paranoides con la persona como coinvestigadora.",
+          pasos: [
+            "Puntuar la convicción en la creencia de 0 a 100.",
+            "Revisar las pruebas y las interpretaciones alternativas de lo ocurrido.",
+            "Reducir las conductas de seguridad y la evitación que impiden comprobar la creencia.",
+            "Incorporar a la formulación lo aprendido en cada experimento."
+          ],
+          casa: "Experimento conductual acordado.",
+          avance: "La persona considera alternativas a la creencia persecutoria.",
+          fuente: "Morrison, 2002, caps. 3 y 10"
+        },
+        {
+          t: "Ánimo, autoestima y prevención de recaídas",
+          tecs: ["firma-recaida", "prevencion-recaidas"],
+          obj: "Atender el ánimo y la vida social, y preparar un plan ante las señales de recaída.",
+          pasos: [
+            "Trabajar la depresión, la vergüenza y la autoestima que acompañan a las voces.",
+            "Recuperar actividades y relaciones.",
+            "Identificar la firma de recaída y acordar qué hacer ante las señales tempranas."
+          ],
+          casa: "Plan de prevención de recaídas escrito.",
+          avance: "La persona reconoce sus señales tempranas y sabe qué hacer.",
+          fuente: "Morrison, 2002, caps. 7 y 8",
+          fichas: ["firma-recaida"]
+        }
+      ],
+      medir: [
+        "<strong>PSYRATS</strong> para las voces y los delirios, al inicio y al final.",
+        "Convicción en las creencias de 0 a 100 en cada sesión."
+      ],
+      adapt: [
+        "<strong>Salud mental:</strong> el libro incluye aplicaciones a personas en alto riesgo de transición a la psicosis, a la psicosis con consumo de sustancias y a la adherencia a la medicación (Morrison, 2002, caps. 12, 14 y 15)."
+      ],
+      cuidado: [
+        "No se trata de convencer a la persona de que sus creencias son falsas: se examinan juntos, a su ritmo.",
+        "Se coordina con psiquiatría: la terapia acompaña a la medicación, no la reemplaza."
+      ]
+    },
+    {
+      id: "psi-mhgap",
+      mod: "tarrier-psicosis",
+      inst: [],
+      enf: "fam",
+      t: "Manejo psicosocial de la psicosis en atención no especializada",
+      fuente: "OPS, 2017, módulo PSI",
+      cuando: "Una persona con psicosis se atiende en <strong>atención primaria o en la comunidad</strong>, con o sin apoyo de especialistas, y necesita que ella y su familia entiendan el trastorno, reduzcan el estrés y sostengan sus actividades.",
+      respaldo: "La guía de intervención mhGAP indica brindar siempre intervenciones psicosociales a la persona y a sus cuidadores, junto con la medicación antipsicótica (OPS, 2017, módulo PSI).",
+      secuencia: "<strong>Secuencia:</strong> psicoeducación a la persona y a sus cuidadores; reducción del estrés y fortalecimiento de los apoyos; promoción del funcionamiento en la vida diaria; consejos para los cuidadores; y seguimiento regular de la respuesta, los efectos secundarios y la adherencia (OPS, 2017, módulo PSI).",
+      esc: ["primer-nivel","comunidad","cuidadores"],
+      actividades: [
+        {
+          t: "Psicoeducación",
+          tecs: ["psicoeducacion"],
+          obj: "Que la persona y la familia entiendan el trastorno y su tratamiento.",
+          pasos: [
+            "Explicar que los síntomas se deben a un trastorno de salud mental, que se puede tratar y que la persona puede recuperarse; aclarar las ideas erróneas.",
+            "No culpar a la persona ni a la familia.",
+            "Explicar la importancia de la medicación y del seguimiento, y que las recaídas son comunes y deben reconocerse temprano.",
+            "Recomendar evitar el alcohol, el cannabis y otras drogas no recetadas, y un modo de vida saludable."
+          ],
+          casa: "Rutina que evite la privación de sueño y el estrés.",
+          avance: "La persona y la familia conocen el trastorno y las señales de alarma.",
+          fuente: "OPS, 2017, módulo PSI (2.1)"
+        },
+        {
+          t: "Reducir el estrés y fortalecer los apoyos",
+          tecs: ["apoyo-social"],
+          obj: "Movilizar los apoyos sociales y sanitarios disponibles.",
+          pasos: [
+            "Coordinar con los servicios sanitarios y sociales para atender las necesidades de la familia.",
+            "Identificar las actividades sociales previas de la persona y animarla a retomarlas.",
+            "Animar a la persona y a los cuidadores a mejorar sus redes de apoyo."
+          ],
+          casa: "Retomar una actividad social.",
+          avance: "La persona retoma contactos y actividades.",
+          fuente: "OPS, 2017, módulo PSI (2.2)"
+        },
+        {
+          t: "Funcionamiento en la vida diaria",
+          tecs: ["entrenamiento-hhss", "programacion-actividades"],
+          obj: "Mantener o recuperar las actividades sociales, educativas y laborales.",
+          pasos: [
+            "Mantener en lo posible las actividades habituales; es mejor tener un trabajo u otra ocupación importante.",
+            "Facilitar el empleo con apoyo y la vida independiente con apoyo, donde sea factible.",
+            "Entrenar aptitudes para la vida diaria y habilidades sociales."
+          ],
+          casa: "Una actividad ocupacional acordada.",
+          avance: "La persona sostiene una ocupación o actividad significativa.",
+          fuente: "OPS, 2017, módulo PSI (2.3)"
+        },
+        {
+          t: "Consejos para los cuidadores",
+          tecs: ["emocion-expresada", "entrenamiento-comunicacion"],
+          obj: "Reducir la crítica y la hostilidad en casa y proteger la autonomía de la persona.",
+          pasos: [
+            "No tratar de convencer a la persona de que sus creencias son falsas: mantenerse neutral y dar apoyo.",
+            "Evitar las críticas o la hostilidad severas o constantes.",
+            "Dar libertad de movimiento sin descuidar la seguridad; preferir que la persona viva con su familia o en la comunidad y evitar la hospitalización prolongada."
+          ],
+          casa: "Los cuidadores registran una situación difícil y cómo respondieron.",
+          avance: "Disminuyen la crítica y los conflictos en casa.",
+          fuente: "OPS, 2017, módulo PSI (2.4)",
+          fichas: ["comunicacion-familiar"]
+        }
+      ],
+      medir: [
+        "Seguimiento regular de los síntomas, la respuesta, los efectos secundarios y la adherencia.",
+        "Funcionamiento en las actividades diarias."
+      ],
+      adapt: [
+        "<strong>Cuidadores y familia:</strong> los mensajes están dirigidos a la persona y a sus cuidadores a la vez (OPS, 2017, módulo PSI)."
+      ],
+      cuidado: [
+        "La guía indica medicación antipsicótica para las personas con psicosis: el manejo psicosocial la acompaña.",
+        "Trate a la persona con respeto y dignidad; la confianza mutua es la base de la adherencia (OPS, 2017, módulo PSI)."
       ]
     }
   ]
@@ -9904,6 +10523,220 @@ const VARIABLES = [
       cuidado: [
         "En el trastorno bipolar I y II, el tratamiento farmacológico y el plan centrado en la familia van primero; este plan tiene respaldo solo en la ciclotimia.",
         "Los antidepresivos pueden empujar a estos pacientes hacia un curso bipolar; conviene que el médico conozca los rasgos ciclotímicos (Fava, 2016, cap. 15)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Atención y funciones ejecutivas",
+  t: "TDAH en adultos",
+  sub: "Lo que se interviene es el efecto de la inatención y la impulsividad en la vida adulta: citas olvidadas, tareas que no se terminan, desorden, postergación y la sensación de no rendir según las propias capacidades. Aplica a adultos con diagnóstico de TDAH, en general con tratamiento farmacológico estable que no ha resuelto todos los problemas.",
+  elegir: [
+    "<strong>Si la atención es individual</strong>, el programa de Safren enseña por módulos organización y planificación, manejo de la distracción y pensamiento adaptativo; es el que tiene más ensayos.",
+    "<strong>Si se puede armar un grupo</strong> y el problema principal es el manejo del tiempo, la terapia grupal de Solanto se centra en la disfunción ejecutiva: gestión del tiempo, organización y planificación de proyectos.",
+    "La terapia psicológica complementa la medicación, no la reemplaza: los dos programas se probaron sobre todo en personas medicadas."
+  ],
+  planes: [
+    {
+      id: "tdah-safren",
+      mod: "safren-tdah",
+      inst: ["ASRS v1.1"],
+      enf: "tcc",
+      t: "Terapia cognitivo-conductual para el TDAH en adultos",
+      fuente: "Safren et al., 2017, caps. 2 a 14 · Ramsay y Rostain, 2008",
+      cuando: "Un adulto con <strong>TDAH diagnosticado</strong>, por lo general con medicación estable, sigue teniendo problemas para organizarse, planear, sostener la atención y terminar lo que empieza, y ya se siente derrotado por fracasos repetidos.",
+      respaldo: "En un ensayo aleatorizado, quienes recibieron el programa además de la medicación tuvieron menos síntomas de TDAH que quienes solo siguieron con la medicación (Safren et al., 2005); en un segundo ensayo con 86 adultos, superó a la relajación con apoyo educativo, con más personas que mejoraron de forma significativa (Safren et al., 2010, en Safren et al., 2017, cap. 2). Los autores solo lo han probado en personas que ya tomaban medicación (Safren et al., 2017, cap. 2).",
+      secuencia: "<strong>Secuencia:</strong> sesiones semanales, con agenda y práctica en casa, «más parecido a un curso que a una psicoterapia de apoyo». Primero, información sobre el TDAH y el programa, y una sesión con la pareja o la familia si se puede. Luego tres módulos centrales —organización y planificación; reducción de la distracción; pensamiento adaptativo— y uno de habilidades adicionales: postergación (opcional) y manejo de las recaídas (Safren et al., 2017, cap. 2).",
+      esc: ["primer-nivel","salud-mental"],
+      actividades: [
+        {
+          t: "Información sobre el TDAH y sesión con la familia",
+          tecs: ["psicoeducacion", "formulacion-caso"],
+          obj: "Entender el TDAH y el modelo del tratamiento, y fijar metas concretas.",
+          pasos: [
+            "Revisar la información sobre el TDAH en adultos y el modelo cognitivo-conductual del programa.",
+            "Aplicar la lista de síntomas al inicio de cada sesión para seguir el avance.",
+            "Si la persona quiere, hacer una sesión informativa con la pareja o un familiar.",
+            "Revisar la adherencia a la medicación."
+          ],
+          casa: "Registrar los síntomas de la semana y leer el capítulo del programa.",
+          avance: "La persona conoce el modelo y tiene metas específicas y a su alcance.",
+          fuente: "Safren et al., 2017, caps. 1 a 3"
+        },
+        {
+          t: "Organización y planificación: calendario y lista de tareas",
+          tecs: ["lista-tareas-prioridades"],
+          obj: "Usar de forma constante un calendario y una sola lista de tareas con prioridades.",
+          pasos: [
+            "Elegir un solo sistema de calendario y de lista de tareas, en papel o electrónico.",
+            "Revisarlos todos los días, a la misma hora.",
+            "Asignar prioridades A, B y C, y ajustarlas a medida que se acercan los plazos.",
+            "Organizar varias tareas a la vez desde la lista maestra."
+          ],
+          casa: "Uso diario del calendario y la lista, con las prioridades.",
+          avance: "La persona usa a diario el calendario y la lista de tareas.",
+          fuente: "Safren et al., 2017, caps. 4 y 5"
+        },
+        {
+          t: "Tareas abrumadoras y sistemas de organización",
+          tecs: ["solucion-problemas", "sistema-organizacion"],
+          obj: "Dividir las tareas grandes en pasos y organizar los papeles y los objetos.",
+          pasos: [
+            "Usar la solución de problemas cuando una tarea parece demasiado grande: dividirla en pasos manejables.",
+            "Montar un sistema de organización para el correo, los papeles y los objetos de uso diario.",
+            "Revisar qué del sistema funciona y ajustarlo."
+          ],
+          casa: "Aplicar el sistema de organización a un área concreta.",
+          avance: "La persona empieza las tareas grandes por pasos y mantiene un área organizada.",
+          fuente: "Safren et al., 2017, caps. 6 y 7",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Reducir la distracción",
+          tecs: ["demora-distractibilidad", "control-estimulos"],
+          obj: "Sostener la atención en las tareas difíciles durante más tiempo.",
+          pasos: [
+            "Medir cuánto tiempo sostiene la atención en una tarea que le cuesta.",
+            "Dividir la tarea en partes de esa duración y usar un temporizador.",
+            "Cuando aparece una distracción, anotarla para atenderla después.",
+            "Modificar el entorno: retirar distractores y usar recordatorios visibles."
+          ],
+          casa: "Practicar la demora de la distracción en una tarea diaria.",
+          avance: "Aumenta el tiempo de trabajo sostenido en tareas difíciles.",
+          fuente: "Safren et al., 2017, caps. 8 y 9"
+        },
+        {
+          t: "Pensamiento adaptativo",
+          tecs: ["pensamientos-automaticos", "errores-pensamiento", "reestructuracion-cognitiva"],
+          obj: "Reconocer y cambiar los pensamientos negativos que llevan a evitar o a rendirse.",
+          pasos: [
+            "Presentar el modelo cognitivo del TDAH: cómo los fracasos repetidos dejan pensamientos negativos que a su vez frenan la acción.",
+            "Identificar los pensamientos automáticos y los errores de pensamiento en situaciones concretas.",
+            "Formular pensamientos más adaptativos y ensayarlos."
+          ],
+          casa: "Registro de pensamientos en situaciones en que postergó o se rindió.",
+          avance: "La persona responde a sus pensamientos negativos y sigue con la tarea.",
+          fuente: "Safren et al., 2017, caps. 10 a 12 · Ramsay y Rostain, 2008, cap. 2",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Postergación y manejo de las recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Aplicar las habilidades a la postergación y sostenerlas en el tiempo.",
+          pasos: [
+            "Aplicar a la postergación lo aprendido: dividir, priorizar, reducir distractores y responder a los pensamientos.",
+            "Anticipar los deslices como parte esperable y planear cómo volver a los sistemas.",
+            "Revisar qué habilidades usará después del programa."
+          ],
+          casa: "Plan personal de mantenimiento.",
+          avance: "La persona retoma sus sistemas después de un desliz.",
+          fuente: "Safren et al., 2017, caps. 13 y 14",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>ASRS v1.1</strong> al inicio de cada sesión, como propone el programa.",
+        "Uso semanal del calendario y la lista de tareas."
+      ],
+      adapt: [
+        "<strong>Consulta externa:</strong> se aplica como terapia individual semanal junto con el seguimiento médico de la medicación (Safren et al., 2017, cap. 2).",
+        "<strong>Salud mental:</strong> la ansiedad, la depresión, el consumo, el trastorno bipolar, los problemas de aprendizaje y las crisis vitales complican el tratamiento del TDAH en adultos y deben considerarse en la formulación (Ramsay y Rostain, 2008, cap. 5)."
+      ],
+      cuidado: [
+        "El programa se probó en personas medicadas; puede servir a quienes no toman medicación, pero no se ha probado en ellas (Safren et al., 2017, cap. 2).",
+        "El diagnóstico lo confirma una evaluación clínica completa: la escala de síntomas no basta."
+      ]
+    },
+    {
+      id: "tdah-solanto",
+      mod: "safren-tdah",
+      inst: ["ASRS v1.1", "BDI-II"],
+      enf: "tcc",
+      t: "Terapia grupal para la disfunción ejecutiva",
+      fuente: "Solanto, 2011, sesiones 1 a 12",
+      cuando: "Adultos con TDAH, sobre todo del tipo inatento o combinado, cuyo problema principal es la <strong>gestión del tiempo, la organización y la planificación</strong>, y que pueden asistir a un grupo semanal.",
+      respaldo: "En un ensayo aleatorizado con 88 adultos, el programa grupal superó a una psicoterapia de apoyo en grupo con la misma duración: el 42 % respondió frente al 12 %, según un evaluador independiente (Solanto et al., 2010, en Solanto, 2011). Fue, junto con el de Safren, uno de los primeros ensayos que controló los efectos inespecíficos del tratamiento (Solanto, 2011).",
+      secuencia: "<strong>Secuencia:</strong> doce sesiones semanales de dos horas para grupos de seis a ocho adultos. Cada sesión revisa el ejercicio para casa (limitado a la primera hora), presenta material nuevo con un ejercicio en la sesión y termina con el ejercicio de la semana siguiente (Solanto, 2011).",
+      esc: ["primer-nivel","salud-mental"],
+      actividades: [
+        {
+          t: "Hacer las paces con el diagnóstico",
+          tecs: ["psicoeducacion"],
+          obj: "Aceptar el diagnóstico y comprometerse con el cambio.",
+          pasos: [
+            "Presentar los objetivos y los métodos del programa.",
+            "Hablar de lo que ha significado el diagnóstico y de cómo cada uno llegó al grupo.",
+            "Acordar las normas del grupo y el compromiso con los ejercicios para casa."
+          ],
+          casa: "Ejercicio para casa de la sesión 1.",
+          avance: "Los participantes se comprometen con el programa.",
+          fuente: "Solanto, 2011, sesión 1"
+        },
+        {
+          t: "Gestión del tiempo: conciencia del tiempo y agenda",
+          tecs: ["programacion-actividades", "lista-tareas-prioridades"],
+          obj: "Estimar mejor el tiempo, agendar y priorizar.",
+          pasos: [
+            "Registrar cuánto tardan de verdad las tareas y compararlo con lo estimado.",
+            "Agendar todas las tareas, no solo las citas.",
+            "Dividir las tareas en pasos manejables y recompensarse al terminarlos.",
+            "Priorizar con una lista de pendientes."
+          ],
+          casa: "Uso diario de la agenda y la lista de pendientes.",
+          avance: "Los participantes agendan y priorizan sus tareas.",
+          fuente: "Solanto, 2011, sesiones 2 a 4"
+        },
+        {
+          t: "Obstáculos emocionales, activación y motivación",
+          tecs: ["pensamientos-automaticos", "autorrefuerzo"],
+          obj: "Reconocer y responder a los pensamientos que frenan el comienzo de las tareas.",
+          pasos: [
+            "Identificar los pensamientos que generan ansiedad o desánimo ante una tarea y responder a ellos.",
+            "Usar estrategias para ponerse en marcha con las tareas complejas o poco atractivas.",
+            "Recompensarse al avanzar."
+          ],
+          casa: "Registrar un pensamiento que frenó una tarea y la respuesta que funcionó.",
+          avance: "Los participantes empiezan tareas que antes postergaban.",
+          fuente: "Solanto, 2011, sesiones 5 y 6"
+        },
+        {
+          t: "Organización: montar, aplicar y mantener un sistema",
+          tecs: ["sistema-organizacion"],
+          obj: "Tener un sistema de organización que se sostenga.",
+          pasos: [
+            "Diseñar el sistema para los papeles y los objetos.",
+            "Ponerlo en práctica en casa.",
+            "Revisarlo y mantenerlo con una rutina."
+          ],
+          casa: "Aplicar y mantener el sistema en un área.",
+          avance: "El sistema se mantiene varias semanas.",
+          fuente: "Solanto, 2011, sesiones 7 a 9"
+        },
+        {
+          t: "Planear un proyecto y terminarlo",
+          tecs: ["tareas-graduadas", "prevencion-recaidas"],
+          obj: "Aplicar las habilidades a un proyecto real y preparar el futuro.",
+          pasos: [
+            "Elegir un proyecto y dividirlo en pasos con fechas.",
+            "Ponerlo en marcha y revisar el avance en el grupo.",
+            "Mirar al futuro: qué habilidades seguir usando y cómo."
+          ],
+          casa: "Avanzar en el proyecto según el plan.",
+          avance: "Los participantes completan o avanzan su proyecto con el plan.",
+          fuente: "Solanto, 2011, sesiones 10 a 12",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>ASRS v1.1</strong> al inicio y al final.",
+        "<strong>BDI-II</strong> si hay síntomas depresivos: el ensayo lo usó antes y después."
+      ],
+      adapt: [
+        "<strong>Consulta externa:</strong> los grupos del ensayo se programaban en la tarde para que los adultos que trabajan pudieran asistir (Solanto, 2011)."
+      ],
+      cuidado: [
+        "El ensayo excluyó a personas con consumo activo, riesgo suicida, trastorno límite de la personalidad o discapacidad intelectual: en esos casos, el formato grupal puede no ser el adecuado (Solanto, 2011).",
+        "El diagnóstico lo confirma una evaluación clínica completa."
       ]
     }
   ]
@@ -10154,6 +10987,72 @@ const VARIABLES = [
         "Se evalúa el riesgo suicida: una enfermedad grave lo aumenta (Jongsma et al., 2021, «Medical Issues», intervención 8).",
         "Si la ansiedad cumple criterios de un trastorno de ansiedad, se trata como tal con los planes de la variable Ansiedad."
       ]
+    },
+    {
+      id: "hosp-ans-apt",
+      mod: "moorey-ajuste",
+      inst: ["HADS"],
+      enf: "tcc",
+      t: "TCC para la ansiedad durante el tratamiento médico",
+      fuente: "Moorey y Greer, 2012, caps. 8 a 10",
+      cuando: "Una persona en tratamiento por una enfermedad grave —el cáncer es el ejemplo mejor estudiado— tiene <strong>preocupación ansiosa</strong>: vigila cada síntoma, teme la recaída, se preocupa sin parar o tiene ataques de pánico.",
+      respaldo: "La terapia psicológica adyuvante redujo la preocupación ansiosa y la ansiedad frente al tratamiento habitual en pacientes con cáncer (Greer et al., 1992, en Moorey y Greer, 2012, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> técnicas conductuales primero (relajación, actividad), luego técnicas cognitivas para la preocupación ansiosa: prueba de realidad, alternativas, descatastrofización, creencias sobre la preocupación, solución de problemas y tolerancia a la incertidumbre (Moorey y Greer, 2012, caps. 8 a 10).",
+      esc: ["hospital"],
+      actividades: [
+        {
+          t: "Relajación y control de síntomas",
+          tecs: ["relajacion", "respiracion-diafragmatica"],
+          obj: "Reducir la activación y la sensación de descontrol.",
+          pasos: [
+            "Enseñar relajación y respiración.",
+            "Usar técnicas conductuales para la náusea anticipatoria, el insomnio y la fatiga cuando aparezcan."
+          ],
+          casa: "Práctica diaria de relajación.",
+          avance: "La persona baja la activación en momentos de tensión.",
+          fuente: "Moorey y Greer, 2012, caps. 8 y 11",
+          fichas: ["registro-relajacion"]
+        },
+        {
+          t: "Preocupación ansiosa y miedo a la recaída",
+          tecs: ["preguntas-desafio", "pensamiento-catastrofico"],
+          obj: "Reevaluar la interpretación de los síntomas y los pronósticos catastróficos.",
+          pasos: [
+            "Prueba de realidad: qué evidencia hay de que el síntoma significa recaída.",
+            "Buscar interpretaciones alternativas.",
+            "Descatastrofizar: qué pasaría si ocurriera lo peor y cómo se afrontaría.",
+            "Acordar una estrategia general para el miedo a la recaída."
+          ],
+          casa: "Registro de los síntomas vigilados y de la interpretación alternativa.",
+          avance: "Baja la vigilancia de síntomas.",
+          fuente: "Moorey y Greer, 2012, cap. 10"
+        },
+        {
+          t: "Preocupación e incertidumbre",
+          tecs: ["creencias-positivas-preocupacion", "solucion-problemas", "exposicion-incertidumbre"],
+          obj: "Pasar de la preocupación a la acción y tolerar lo que no se sabe.",
+          pasos: [
+            "Examinar las creencias sobre la preocupación: que protege o prepara.",
+            "Convertir las preocupaciones solucionables en problemas y resolverlos.",
+            "Practicar la tolerancia a la incertidumbre y reducir la evitación cognitiva.",
+            "Si hay pánico, trabajar la interpretación catastrófica de las sensaciones."
+          ],
+          casa: "Tiempo de preocupación y solución de un problema.",
+          avance: "La persona dedica menos tiempo a preocuparse.",
+          fuente: "Moorey y Greer, 2012, cap. 10",
+          fichas: ["registro-preocupaciones"]
+        }
+      ],
+      medir: [
+        "<strong>HADS</strong> (subescala de ansiedad) al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> se integra en el tratamiento médico; las técnicas conductuales para la náusea, la fatiga y el insomnio se adaptan al tratamiento (Moorey y Greer, 2012, cap. 11)."
+      ],
+      cuidado: [
+        "No todo miedo es irracional: con pronósticos inciertos se trabaja la tolerancia a la incertidumbre más que la corrección del pensamiento (Moorey y Greer, 2012, cap. 10).",
+        "Se descartan causas orgánicas de la ansiedad con el equipo médico."
+      ]
     }
   ]
 },
@@ -10282,6 +11181,71 @@ const VARIABLES = [
         "Se pregunta siempre por la ideación suicida: una enfermedad grave, la desesperanza y el sentirse una carga aumentan el riesgo; si aparece, va primero la ruta de <a href=\"rutas-mhgap.html\">Rutas de atención mhGAP</a>.",
         "El cansancio, la falta de apetito o de sueño pueden deberse a la enfermedad o a la medicación: se revisan con el equipo médico.",
         "No se confunde la tristeza esperable ante una pérdida con un trastorno depresivo, ni se pasa por alto la depresión por considerarla «normal» en una persona enferma."
+      ]
+    },
+    {
+      id: "hosp-dep-apt",
+      mod: "moorey-ajuste",
+      inst: ["HADS", "PHQ-9"],
+      enf: "tcc",
+      t: "TCC para la indefensión y la depresión durante el tratamiento médico",
+      fuente: "Moorey y Greer, 2012, caps. 8 a 10 y 14",
+      cuando: "Una persona con una enfermedad grave —el cáncer es el ejemplo mejor estudiado— se siente <strong>indefensa y sin esperanza</strong>: cree que nada de lo que haga cambia la enfermedad ni su vida, filtra la información esperanzadora y se retira de sus actividades.",
+      respaldo: "La terapia psicológica adyuvante redujo la indefensión y aumentó el espíritu de lucha frente al tratamiento habitual en pacientes con cáncer (Greer et al., 1992, en Moorey y Greer, 2012, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> técnicas conductuales para recuperar actividad y sensación de dominio, y luego técnicas cognitivas para la indefensión y la desesperanza, incluido el trabajo con pensamientos negativos que son realistas (Moorey y Greer, 2012, caps. 8, 10 y 14).",
+      esc: ["hospital"],
+      actividades: [
+        {
+          t: "Actividad y dominio",
+          tecs: ["programacion-actividades", "dominio-agrado", "tareas-graduadas"],
+          obj: "Recuperar la sensación de control a través de lo que la persona todavía puede hacer.",
+          pasos: [
+            "Programar actividades de dominio y agrado adaptadas a la energía.",
+            "Dividir las tareas en pasos pequeños.",
+            "Registrar el efecto en el ánimo."
+          ],
+          casa: "Programa de actividades.",
+          avance: "Aumenta la actividad y la sensación de logro.",
+          fuente: "Moorey y Greer, 2012, cap. 8",
+          fichas: ["registro-actividad-animo"]
+        },
+        {
+          t: "Indefensión y desesperanza",
+          tecs: ["registro-pensamientos", "registro-datos-positivos"],
+          obj: "Cuestionar la creencia de que nada puede hacerse.",
+          pasos: [
+            "Identificar los pensamientos de indefensión y los errores que filtran la información esperanzadora.",
+            "Buscar áreas de control: la calidad de vida, las relaciones, el propio tratamiento.",
+            "Promover el espíritu de lucha sin negar la realidad."
+          ],
+          casa: "Registro de pensamientos y de pequeños datos de control.",
+          avance: "La persona identifica áreas en las que puede influir.",
+          fuente: "Moorey y Greer, 2012, cap. 10",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Pensamientos negativos realistas",
+          tecs: ["descentramiento", "solucion-problemas"],
+          obj: "Afrontar lo que es verdad —la enfermedad es grave— sin que domine toda la vida.",
+          pasos: [
+            "Entender el significado personal del pensamiento.",
+            "Explorar perspectivas alternativas y lo que sigue siendo valioso.",
+            "Usar la distracción, el descentramiento y la defusión cuando el pensamiento no se puede cambiar."
+          ],
+          casa: "Aplicar una estrategia a un pensamiento realista.",
+          avance: "La persona sostiene actividades valiosas con los pensamientos presentes.",
+          fuente: "Moorey y Greer, 2012, cap. 14"
+        }
+      ],
+      medir: [
+        "<strong>HADS</strong> (subescala de depresión) o <strong>PHQ-9</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> se integra en el tratamiento médico y puede darse en grupo (Moorey y Greer, 2012, caps. 5 y 16)."
+      ],
+      cuidado: [
+        "La desesperanza en la enfermedad grave se asocia con riesgo suicida: se evalúa y se sigue el protocolo.",
+        "La fatiga y otros síntomas físicos pueden confundirse con depresión; se revisan con el equipo médico."
       ]
     }
   ]
@@ -10523,6 +11487,242 @@ const VARIABLES = [
 },
 {
   cat: "Enfermedad médica y final de la vida",
+  t: "Dolor crónico",
+  sub: "Lo que se interviene es la forma en que la persona vive y afronta un dolor que dura más de tres meses: los pensamientos catastróficos, el estrés, la alternancia entre hacer demasiado y no hacer nada, el aislamiento y el ánimo. No se busca eliminar el dolor, que suele tratarse también desde la medicina, sino reducir su interferencia y mejorar el funcionamiento.",
+  elegir: [
+    "<strong>Si predominan los pensamientos de amenaza sobre el dolor</strong> —«esto no va a parar», «no puedo con esto»—, la terapia cognitiva de Thorn trabaja la valoración del dolor paso a paso, en grupo o de forma individual.",
+    "Si el dolor viene con mucho estrés y tensión, la reducción del estrés basada en mindfulness de <em>Estrés percibido</em> también se ha estudiado en dolor crónico."
+  ],
+  planes: [
+    {
+      id: "dolor-tc",
+      mod: "thorn-dolor",
+      inst: ["BPI", "PHQ-9"],
+      enf: "tcc",
+      t: "Terapia cognitiva para el dolor crónico",
+      fuente: "Thorn, 2017, caps. 3 y 5, módulos 1 a 10",
+      cuando: "Dolor crónico —lumbar, cefalea, fibromialgia, dolor por una enfermedad— que <strong>interfiere en el trabajo, la casa y las relaciones</strong>, con pensamientos catastróficos, estrés o ánimo bajo. La persona está en seguimiento médico.",
+      respaldo: "La reducción de las valoraciones de amenaza y el aumento de las valoraciones de reto se asocian con menos dolor percibido y mejor funcionamiento, y el aumento de la flexibilidad psicológica, con mejor adaptación al dolor (Thorn, 2017, cap. 3). La autora ha probado el programa en pacientes con dolor mixto, en ensayos con cefalea y en ensayos de una versión adaptada para personas con baja alfabetización y múltiples desventajas en centros de salud subsidiados (Thorn, 2017, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> diez módulos de 90 minutos, uno por sesión, en grupo o en formato individual. Cada sesión empieza con un ejercicio breve de relajación y la revisión de la semana, y termina con una tarea para casa. Los módulos pueden organizarse para que un participante entre a un grupo en curso (Thorn, 2017, cap. 5).",
+      esc: ["hospital","primer-nivel"],
+      actividades: [
+        {
+          t: "El cerebro en el dolor y las metas para vivir",
+          tecs: ["psicoeducacion", "entrevista-motivacional"],
+          obj: "Presentar el tratamiento con el modelo de la compuerta y la neuromatriz, y fijar metas de vida.",
+          pasos: [
+            "Explicar que el dolor se procesa en el cerebro y que el estrés, la atención y los pensamientos lo modulan.",
+            "Conocer las metas de cada participante y aumentar su motivación.",
+            "Definir metas para vivir, no solo para el dolor, con la hoja de metas."
+          ],
+          casa: "Completar la hoja de metas para vivir.",
+          avance: "La persona entiende la lógica del tratamiento y tiene metas concretas.",
+          fuente: "Thorn, 2017, módulo 1"
+        },
+        {
+          t: "La conexión estrés, juicio y dolor",
+          tecs: ["relajacion", "respiracion-diafragmatica", "autorregistro"],
+          obj: "Ver cómo el estrés y la forma de juzgar las situaciones aumentan el dolor.",
+          pasos: [
+            "Presentar la relación entre estrés y dolor, y entre juicio y estrés.",
+            "Completar la hoja de estrés, juicio y dolor con situaciones propias.",
+            "Aprender la respiración diafragmática como primera técnica de relajación."
+          ],
+          casa: "Registrar situaciones con la hoja de estrés, juicio y dolor, y practicar la respiración.",
+          avance: "La persona relaciona sus juicios con el aumento del dolor.",
+          fuente: "Thorn, 2017, módulo 2",
+          fichas: ["registro-estres"]
+        },
+        {
+          t: "Pensamientos automáticos: identificarlos, examinarlos y crear otros",
+          tecs: ["pensamientos-automaticos", "reestructuracion-cognitiva", "registro-pensamientos"],
+          obj: "Reconocer los pensamientos sobre el dolor y reemplazar los que no ayudan.",
+          pasos: [
+            "Presentar el modelo pensar, sentir y actuar.",
+            "Identificar los pensamientos o imágenes automáticos que aparecen con el dolor.",
+            "Examinarlos con preguntas y crear un pensamiento nuevo, más realista."
+          ],
+          casa: "Hojas de pensamientos automáticos y de pensamientos nuevos.",
+          avance: "La persona examina sus pensamientos catastróficos y formula alternativas.",
+          fuente: "Thorn, 2017, módulos 3 y 4",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Relajación muscular y autoinstrucciones de afrontamiento",
+          tecs: ["relajacion-progresiva", "autoinstrucciones"],
+          obj: "Aprender una relajación más profunda y frases de afrontamiento para los momentos de dolor.",
+          pasos: [
+            "Entrenar la relajación muscular.",
+            "Construir autoinstrucciones positivas de afrontamiento del dolor.",
+            "Escribirlas en tarjetas para tenerlas a mano."
+          ],
+          casa: "Practicar la relajación y usar las tarjetas de afrontamiento.",
+          avance: "La persona usa las autoinstrucciones en los momentos de más dolor.",
+          fuente: "Thorn, 2017, módulo 5",
+          fichas: ["autoinstrucciones", "registro-relajacion"]
+        },
+        {
+          t: "Creencias profundas",
+          tecs: ["creencias-nucleares", "flecha-descendente"],
+          obj: "Identificar las creencias negativas de fondo y construir otras.",
+          pasos: [
+            "Identificar las creencias profundas detrás de los pensamientos repetidos: sobre uno mismo, los demás y el futuro con dolor.",
+            "Formular creencias nuevas con la hoja de creencias profundas.",
+            "Practicar «actuar como si» la creencia nueva fuera verdad."
+          ],
+          casa: "Ejercicio de actuar como si.",
+          avance: "La persona formula y pone a prueba creencias más adaptativas.",
+          fuente: "Thorn, 2017, módulo 6"
+        },
+        {
+          t: "Observar y soltar",
+          tecs: ["meditacion-sedente", "descentramiento"],
+          obj: "Relacionarse con los pensamientos y el dolor desde la observación, sin engancharse.",
+          pasos: [
+            "Presentar la atención plena en relación con la terapia cognitiva.",
+            "Aprender un ejercicio de meditación sencillo.",
+            "Practicar observar los pensamientos y las sensaciones y dejarlos ir."
+          ],
+          casa: "Práctica diaria de la meditación.",
+          avance: "La persona observa el dolor y los pensamientos con más distancia.",
+          fuente: "Thorn, 2017, módulo 7"
+        },
+        {
+          t: "Expresión emocional y asertividad",
+          tecs: ["escritura-expresiva", "entrenamiento-comunicacion"],
+          obj: "Expresar lo que el dolor ha significado y comunicar las propias necesidades.",
+          pasos: [
+            "Hacer un ejercicio de revelación emocional por escrito sobre la experiencia con el dolor.",
+            "Aprender y practicar la comunicación asertiva, con la familia y con el equipo de salud."
+          ],
+          casa: "Escritura emocional y un intercambio asertivo.",
+          avance: "La persona expresa sus emociones y pide lo que necesita.",
+          fuente: "Thorn, 2017, módulos 8 y 9"
+        },
+        {
+          t: "Integrar y planear las recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Repasar lo aprendido y prepararse para las crisis de dolor.",
+          pasos: [
+            "Revisar los conceptos y las habilidades del programa.",
+            "Recoger lo que resultó más útil y lo más difícil.",
+            "Anticipar obstáculos para seguir practicando y planear qué hacer en una crisis de dolor."
+          ],
+          casa: "Plan personal para las crisis de dolor.",
+          avance: "La persona tiene un plan para las crisis.",
+          fuente: "Thorn, 2017, módulo 10",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>BPI</strong> para la intensidad y la interferencia del dolor, al inicio y al final.",
+        "<strong>PHQ-9</strong> para el ánimo; la autora incluye además un tamizaje breve de suicidio (P4)."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> puede integrarse en programas multidisciplinarios de dolor; las metas incluyen retomar actividades, dosificar la actividad física y usar de forma adecuada los servicios y la medicación (Thorn, 2017, cap. 5).",
+        "<strong>Consulta externa:</strong> la versión adaptada a baja alfabetización se probó en centros de salud con población desfavorecida (Thorn, 2017, cap. 3)."
+      ],
+      cuidado: [
+        "El dolor crónico se asocia con depresión y riesgo suicida: se evalúan al inicio.",
+        "El plan no sustituye la evaluación y el tratamiento médico del dolor."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
+  t: "Hábitos de salud",
+  sub: "Lo que se interviene es una conducta de salud concreta que la persona quiere o necesita cambiar: la actividad física, la alimentación, el tabaco, el sueño, el autocuidado de una enfermedad crónica. Aplica en prevención y en enfermedad médica. Si el problema es tomar la medicación, ver <em>Adherencia al tratamiento</em>; si es un consumo problemático, ver <em>Consumo de sustancias</em>.",
+  elegir: [
+    "<strong>Si no hay un protocolo listo para esa conducta en ese contexto</strong>, la rueda del cambio de conducta ofrece un método para diseñarlo: diagnosticar qué falla —capacidad, oportunidad o motivación— y elegir las intervenciones que corresponden.",
+    "Si la persona duda de si quiere cambiar, empezar por la entrevista motivacional del plan de <em>Consumo de sustancias</em> o de <em>Adherencia al tratamiento</em>."
+  ],
+  planes: [
+    {
+      id: "hab-comb",
+      mod: "com-b",
+      inst: ["K-10"],
+      enf: "tcc",
+      t: "Diseño del cambio de conducta con el modelo COM-B",
+      fuente: "Michie et al., 2014, caps. 1 a 3",
+      cuando: "Hay una <strong>conducta de salud concreta</strong> que cambiar —empezar a caminar, dejar de fumar, comer a horario, controlar la glucosa— y la persona lo ha intentado sin lograrlo, o el profesional necesita diseñar una intervención a la medida de su contexto.",
+      respaldo: "La rueda del cambio de conducta es un marco para diseñar intervenciones, no un tratamiento con ensayos propios: sintetiza 19 marcos previos y se apoya en una taxonomía de 93 técnicas de cambio de conducta. Su propósito no es decir qué funciona, sino ofrecer un método para averiguarlo en cada caso (Michie et al., 2014, introducción).",
+      secuencia: "<strong>Secuencia:</strong> ocho pasos en tres etapas. Entender la conducta: definir el problema en términos de conducta (1), elegir la conducta objetivo (2), especificarla (3) e identificar qué necesita cambiar con el COM-B (4). Identificar las opciones de intervención: funciones de intervención (5) y, si aplica, categorías de política (6). Identificar el contenido y la forma de aplicarla: técnicas de cambio de conducta (7) y modo de entrega (8) (Michie et al., 2014, introducción).",
+      esc: ["primer-nivel","hospital","comunidad"],
+      actividades: [
+        {
+          t: "Definir y especificar la conducta objetivo",
+          tecs: ["entrevista-conductual", "autorregistro"],
+          obj: "Pasar de un problema general a una conducta concreta y medible.",
+          pasos: [
+            "Definir el problema en términos de conducta: quién tiene que hacer qué distinto.",
+            "Listar las conductas posibles y elegir la que tenga más impacto, más probabilidad de cambiar y más efecto sobre otras conductas.",
+            "Especificarla: quién, qué, cuándo, dónde, con qué frecuencia y con quién."
+          ],
+          casa: "Registrar la conducta objetivo durante una semana.",
+          avance: "Hay una conducta objetivo específica y una línea de base.",
+          fuente: "Michie et al., 2014, cap. 1 (pasos 1 a 3)"
+        },
+        {
+          t: "Diagnóstico con el COM-B",
+          tecs: ["analisis-funcional"],
+          obj: "Identificar qué tiene que cambiar para que la conducta ocurra.",
+          pasos: [
+            "Capacidad: ¿la persona sabe y puede hacerlo, física y psicológicamente?",
+            "Oportunidad: ¿su entorno físico y social lo permite o lo facilita?",
+            "Motivación: ¿quiere hacerlo (reflexiva) y tiene hábitos, emociones e impulsos que la empujan a hacerlo (automática)?",
+            "Resumir el diagnóstico conductual: qué componentes fallan."
+          ],
+          casa: "Anotar las situaciones en que la conducta no ocurrió y qué faltó.",
+          avance: "Hay un diagnóstico de qué componentes del COM-B hay que cambiar.",
+          fuente: "Michie et al., 2014, cap. 1 (paso 4)"
+        },
+        {
+          t: "Elegir las funciones y las técnicas de intervención",
+          tecs: ["psicoeducacion", "reforzamiento-positivo", "control-estimulos", "modelado"],
+          obj: "Elegir las intervenciones que atacan los componentes que fallan.",
+          pasos: [
+            "Vincular cada componente con las funciones de intervención que lo modifican: por ejemplo, la falta de capacidad psicológica con educación o entrenamiento; la falta de oportunidad física con reestructuración del entorno o facilitación; la motivación automática con incentivos, modelado o reestructuración del entorno.",
+            "Elegir técnicas concretas de la taxonomía: fijar metas, planear la acción, autorregistro, retroalimentación, recordatorios, cambios en el entorno, recompensas.",
+            "Filtrar las opciones con los criterios APEASE: asequible, practicable, eficaz, aceptable, segura y equitativa."
+          ],
+          casa: "Poner en práctica el plan acordado.",
+          avance: "La persona tiene un plan con técnicas concretas para cada componente.",
+          fuente: "Michie et al., 2014, caps. 2 y 3 (pasos 5 y 7) e introducción",
+          fichas: ["plan-cambio"]
+        },
+        {
+          t: "Aplicar, revisar y mantener",
+          tecs: ["autorregistro", "prevencion-recaidas"],
+          obj: "Comprobar si la conducta cambia y ajustar el plan.",
+          pasos: [
+            "Revisar el autorregistro frente a la línea de base.",
+            "Si la conducta no cambia, volver al diagnóstico: tal vez falla otro componente.",
+            "Planear cómo mantener la conducta: hábitos, apoyos y recordatorios."
+          ],
+          casa: "Autorregistro continuo de la conducta objetivo.",
+          avance: "La conducta objetivo se sostiene.",
+          fuente: "Michie et al., 2014, caps. 1 a 3",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "Autorregistro de la conducta objetivo frente a la línea de base.",
+        "Indicadores de salud que correspondan: peso, glucosa, presión arterial, pasos diarios."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> sirve para diseñar programas para grupos de pacientes, no solo planes individuales (Michie et al., 2014, introducción).",
+        "<strong>Comunidad:</strong> el paso 6 incluye categorías de política —comunicación, regulación, planificación del entorno, provisión de servicios— para programas poblacionales (Michie et al., 2014, cap. 2)."
+      ],
+      cuidado: [
+        "Es un método de diseño, no una garantía de eficacia: el plan resultante se evalúa con datos de la propia persona.",
+        "Si la dificultad es la ambivalencia, la motivación se trabaja primero."
+      ]
+    }
+  ]
+},
+{
+  cat: "Enfermedad médica y final de la vida",
   t: "Impacto psicológico de una pérdida corporal o un diagnóstico grave",
   sub: "La reacción inmediata ante un acontecimiento médico que cambia la vida de golpe: una amputación por pie diabético, una lesión medular, un infarto, un diagnóstico de cáncer o la pérdida de la visión. La variable es la reacción al hecho —choque, ansiedad, negación, duelo, ira— y su evolución hacia el ajuste, no el repertorio de afrontamiento de la persona.",
   elegir: [
@@ -10638,6 +11838,190 @@ const VARIABLES = [
         "La negación puede aliviar la ansiedad y la depresión al principio, pero sostenida es desadaptativa y puede poner en riesgo la vida, por ejemplo si lleva a abandonar el tratamiento (Livneh y Antonak, 2005).",
         "No está claro que la depresión sea un paso necesario para aceptar la condición: no se la espera ni se la induce (Livneh y Antonak, 2005).",
         "Las consecuencias de una crisis pueden durar y convertirse en estrés postraumático: si aparecen, corresponde la variable Trauma y estrés postraumático (Livneh y Antonak, 2005)."
+      ]
+    },
+    {
+      id: "perd-apt",
+      mod: "moorey-ajuste",
+      inst: ["HADS", "PAIS"],
+      enf: "tcc",
+      t: "Terapia psicológica adyuvante en el cáncer",
+      fuente: "Moorey y Greer, 2012, caps. 3, 5 a 10 y 12",
+      cuando: "Una persona con <strong>diagnóstico reciente o recaída de cáncer</strong> tiene ansiedad o depresión, o un estilo de ajuste de indefensión o de preocupación ansiosa: siente que nada puede hacer, vive pendiente de cada síntoma o teme la recaída.",
+      respaldo: "En un ensayo aleatorizado con 174 pacientes con malestar al diagnóstico o la primera recaída, la terapia psicológica adyuvante aumentó el espíritu de lucha y redujo la indefensión, la preocupación ansiosa, el fatalismo y la ansiedad a las ocho semanas; a los cuatro meses, la ansiedad y los síntomas psicológicos seguían más bajos que en el grupo control (Greer et al., 1992, en Moorey y Greer, 2012, cap. 3). En otro ensayo, ocho sesiones superaron al consejo de apoyo a los dos meses (Moorey et al., 1998, en Moorey y Greer, 2012, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> se diseñó para usarse junto al tratamiento médico, como la quimioterapia adyuvante: unas ocho sesiones, con técnicas conductuales primero y cognitivas después, y trabajo con creencias de fondo si hace falta. Con malestar leve y reciente se empieza por facilitar la expresión emocional antes de la solución de problemas (Moorey y Greer, 2012, caps. 3 y 5).",
+      esc: ["hospital","primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluación y estilo de ajuste",
+          tecs: ["entrevista-clinica", "formulacion-caso"],
+          obj: "Conocer cómo la persona valora su enfermedad y qué estilo de ajuste predomina.",
+          pasos: [
+            "Evaluar el malestar con la HADS y el estilo de ajuste: espíritu de lucha, negación, fatalismo, indefensión o preocupación ansiosa.",
+            "Explorar el significado personal del cáncer: qué amenaza o qué pérdida representa.",
+            "Presentar el modelo cognitivo del ajuste y acordar los problemas y las metas."
+          ],
+          casa: "Registrar las situaciones de más malestar y los pensamientos que aparecen.",
+          avance: "Hay una formulación compartida y metas.",
+          fuente: "Moorey y Greer, 2012, caps. 2, 5 y 6"
+        },
+        {
+          t: "Expresión emocional y técnicas conductuales",
+          tecs: ["expresion-emocional", "programacion-actividades", "relajacion"],
+          obj: "Dar espacio a las emociones y recuperar actividad y sensación de control.",
+          pasos: [
+            "Facilitar la expresión de la tristeza, el miedo y la rabia por la enfermedad.",
+            "Programar actividades de dominio y agrado adaptadas a la energía disponible.",
+            "Enseñar relajación y otras técnicas para los síntomas del tratamiento."
+          ],
+          casa: "Programa de actividades y práctica de relajación.",
+          avance: "La persona retoma actividades y maneja mejor la tensión.",
+          fuente: "Moorey y Greer, 2012, caps. 7 y 8",
+          fichas: ["registro-actividad-animo", "registro-relajacion"]
+        },
+        {
+          t: "Pensamientos automáticos sobre la enfermedad",
+          tecs: ["registro-pensamientos", "reestructuracion-cognitiva"],
+          obj: "Identificar y poner a prueba los pensamientos que aumentan el malestar sin corresponder a la realidad.",
+          pasos: [
+            "Identificar los pensamientos automáticos sobre el cáncer, el tratamiento y el futuro.",
+            "Distinguir los pensamientos distorsionados de los que son realistas.",
+            "Probar alternativas y cerrar cada registro con una acción concreta."
+          ],
+          casa: "Registro de pensamientos.",
+          avance: "La persona responde a sus pensamientos catastróficos.",
+          fuente: "Moorey y Greer, 2012, cap. 9",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Miedo a la recaída e incertidumbre",
+          tecs: ["exposicion-incertidumbre", "solucion-problemas"],
+          obj: "Reducir la preocupación ansiosa y convivir con la incertidumbre.",
+          pasos: [
+            "Aplicar la prueba de realidad, las alternativas y la descatastrofización a los síntomas que se interpretan como recaída.",
+            "Pasar de la preocupación a la solución de problemas.",
+            "Trabajar la tolerancia a la incertidumbre y la evitación cognitiva."
+          ],
+          casa: "Posponer la preocupación y registrar qué pasó con el miedo.",
+          avance: "Baja el tiempo dedicado a vigilar síntomas y a preocuparse.",
+          fuente: "Moorey y Greer, 2012, cap. 10"
+        },
+        {
+          t: "Creencias de fondo e imagen corporal",
+          tecs: ["creencias-nucleares", "experimento-conductual"],
+          obj: "Trabajar las creencias que el cáncer activa sobre el propio valor, el cuerpo y el control.",
+          pasos: [
+            "Identificar los supuestos que la enfermedad pone en crisis: autonomía, atractivo, control, invulnerabilidad.",
+            "Examinar su origen y su utilidad ahora.",
+            "Trabajar los problemas de imagen corporal y de sexualidad derivados del tratamiento, incluida la pareja cuando corresponda."
+          ],
+          casa: "Experimento conductual sobre una creencia de fondo.",
+          avance: "La persona sostiene una visión de sí misma que incluye los cambios.",
+          fuente: "Moorey y Greer, 2012, caps. 12 y 13"
+        }
+      ],
+      medir: [
+        "<strong>HADS</strong> al inicio, a las ocho semanas y en el seguimiento, como en el ensayo.",
+        "<strong>PAIS</strong> para el ajuste psicosocial a la enfermedad."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> está pensada para integrarse en el tratamiento oncológico; también se ha aplicado en grupo (Moorey y Greer, 2012, caps. 5 y 16)."
+      ],
+      cuidado: [
+        "No es adecuada para personas con psicosis activa (Moorey y Greer, 2012, cap. 5).",
+        "Algunos síntomas psicológicos pueden tener una causa orgánica —metástasis cerebrales, fármacos, alteraciones metabólicas— que se descarta con el equipo médico (Moorey y Greer, 2012, cap. 14)."
+      ]
+    },
+    {
+      id: "perd-taylor",
+      mod: "livneh",
+      inst: ["PAIS", "PHQ-9"],
+      enf: "tcc",
+      t: "Terapia cognitivo-conductual para la enfermedad crónica y la discapacidad",
+      fuente: "Taylor, 2006, caps. 4 a 13",
+      cuando: "Una persona con <strong>enfermedad crónica o discapacidad</strong> —fatiga crónica, dolor, trastornos del sueño o digestivos, enfermedades de larga duración— tiene dificultades para adaptarse: aislamiento, pérdida de control y de recursos, cambios de rol, estigma o pensamientos negativos que son, en parte, realistas.",
+      respaldo: "Taylor adapta la terapia cognitivo-conductual a las condiciones crónicas y la ilustra con casos de fatiga, dolor, insomnio secundario y trastornos gastrointestinales, integrando la empatía, la esperanza y la motivación como parte del tratamiento (Taylor, 2006).",
+      secuencia: "<strong>Secuencia:</strong> evaluación inicial y orientación a la terapia; sesiones muy estructuradas en nueve pasos; técnicas para cogniciones poco realistas y para cogniciones realistas pero desadaptativas; técnicas conductuales; y atención a los temas propios de la enfermedad crónica (Taylor, 2006, caps. 4 a 10).",
+      esc: ["hospital","primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluación inicial y orientación",
+          tecs: ["entrevista-clinica", "psicoeducacion"],
+          obj: "Entender la enfermedad y su impacto, y explicar cómo funciona la terapia.",
+          pasos: [
+            "Recoger la historia de salud, la historia psicosocial reciente y el motivo de consulta.",
+            "Identificar los temas propios de la condición crónica: aislamiento, límites de energía, estigma, pérdida de control y de recursos, cambios de rol, imagen corporal, imprevisibilidad.",
+            "Orientar a la persona sobre la terapia y acordar metas."
+          ],
+          casa: "Registrar los síntomas y su relación con el ánimo y las actividades.",
+          avance: "Hay metas acordadas que tienen en cuenta los límites de la enfermedad.",
+          fuente: "Taylor, 2006, caps. 3, 4 y 10"
+        },
+        {
+          t: "Cogniciones poco realistas",
+          tecs: ["registro-pensamientos", "reestructuracion-cognitiva"],
+          obj: "Cuestionar los pensamientos distorsionados sobre la enfermedad y uno mismo.",
+          pasos: [
+            "Identificar los pensamientos automáticos en situaciones concretas.",
+            "Examinar la evidencia y buscar alternativas.",
+            "Registrar los cambios en la emoción."
+          ],
+          casa: "Registro de pensamientos.",
+          avance: "La persona reconoce y cuestiona sus distorsiones.",
+          fuente: "Taylor, 2006, cap. 7",
+          fichas: ["registro-pensamientos"]
+        },
+        {
+          t: "Cogniciones realistas pero desadaptativas",
+          tecs: ["solucion-problemas", "analisis-decisiones"],
+          obj: "Afrontar los pensamientos que son ciertos —la enfermedad sí limita— sin quedar atrapado en ellos.",
+          pasos: [
+            "Usar el registro de pensamientos adaptado, la búsqueda de beneficios y el adelanto en el tiempo para ver la situación desde otra perspectiva.",
+            "Planear el futuro y tomar decisiones de tratamiento con información.",
+            "Entrenar la solución de problemas y la autodefensa ante el sistema de salud."
+          ],
+          casa: "Aplicar una técnica a un pensamiento realista que pesa.",
+          avance: "La persona actúa pese a las limitaciones reales.",
+          fuente: "Taylor, 2006, cap. 8",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Técnicas conductuales y familia",
+          tecs: ["programacion-actividades", "relajacion", "apoyo-social"],
+          obj: "Ajustar la actividad a la energía disponible y sumar a la pareja y la familia.",
+          pasos: [
+            "Dosificar las actividades según la energía y los síntomas.",
+            "Usar la distracción, la meditación y la relajación para los síntomas.",
+            "Involucrar a la pareja o la familia en la terapia cuando ayude."
+          ],
+          casa: "Plan de actividades dosificadas.",
+          avance: "La persona sostiene actividades sin empeorar los síntomas.",
+          fuente: "Taylor, 2006, caps. 8 y 9"
+        },
+        {
+          t: "Empatía, esperanza y motivación",
+          tecs: ["validacion", "entrevista-motivacional"],
+          obj: "Sostener la alianza y la motivación a lo largo de una condición que no desaparece.",
+          pasos: [
+            "Validar la experiencia de la enfermedad, sin minimizarla.",
+            "Instilar esperanza realista en lo que sí puede cambiar.",
+            "Trabajar los dilemas de motivación cuando el cambio cuesta."
+          ],
+          casa: "Anotar un logro de la semana, aunque sea pequeño.",
+          avance: "La persona mantiene el compromiso con la terapia.",
+          fuente: "Taylor, 2006, caps. 11 a 13"
+        }
+      ],
+      medir: [
+        "<strong>PAIS</strong> al inicio y al final.",
+        "<strong>PHQ-9</strong> para el ánimo y registro de síntomas y actividades."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> incluye el trabajo con el contacto con el sistema de salud y la toma de decisiones de tratamiento (Taylor, 2006, caps. 8 y 10)."
+      ],
+      cuidado: [
+        "Las crisis y el riesgo suicida son un tema propio de la enfermedad crónica: se evalúan (Taylor, 2006, cap. 10).",
+        "Las sesiones pueden necesitar flexibilidad por la energía o los síntomas del día (Taylor, 2006, cap. 5)."
       ]
     }
   ]
@@ -10759,6 +12143,79 @@ const VARIABLES = [
         "Las expresiones de querer que todo termine se exploran siempre; si hay ideación, plan o intención suicida, se activa el plan de riesgo suicida.",
         "La evidencia viene sobre todo de cáncer avanzado y de un ensayo en Nueva York con participantes mayoritariamente blancos: en otras enfermedades y contextos culturales se aplica con más cautela (Breitbart et al., 2015).",
         "El ensayo no exigió un nivel mínimo de malestar para ingresar, lo que pudo reducir el margen de mejora (Breitbart et al., 2015)."
+      ]
+    },
+    {
+      id: "fin-apt",
+      mod: "moorey-ajuste",
+      inst: ["HADS", "FACIT-Sp"],
+      enf: "tcc",
+      t: "TCC en la enfermedad avanzada y terminal",
+      fuente: "Moorey y Greer, 2012, cap. 14",
+      cuando: "Una persona con <strong>enfermedad avanzada o terminal</strong> tiene malestar por los síntomas físicos, pensamientos negativos que son en buena parte realistas, miedo a morir o dificultades con la pareja y la familia, y quiere mejorar la calidad del tiempo que le queda.",
+      respaldo: "En pacientes con enfermedad avanzada, el foco pasa de cambiar pensamientos distorsionados a mejorar la calidad de vida y trabajar con pensamientos que son realistas; la terapia puede integrarse en los cuidados paliativos, junto con el trabajo sobre síntomas físicos, problemas emocionales, sociales y espirituales, y la familia (Moorey y Greer, 2012, cap. 14).",
+      secuencia: "<strong>Secuencia:</strong> los temas se eligen según el estado físico y el momento de la enfermedad: efectos psicológicos de los síntomas, calidad de vida, pensamientos negativos realistas, espíritu de lucha y evitación positiva, y, cuando llega el momento, afrontar la muerte y la despedida (Moorey y Greer, 2012, cap. 14).",
+      esc: ["hospital","cuidadores"],
+      actividades: [
+        {
+          t: "Síntomas físicos y calidad de vida",
+          tecs: ["programacion-actividades", "relajacion"],
+          obj: "Reducir el impacto psicológico de los síntomas y aprovechar el tiempo disponible.",
+          pasos: [
+            "Revisar cómo los síntomas —dolor, fatiga, náusea— se interpretan como señal de empeoramiento y aumentan la desesperanza.",
+            "Planear actividades valiosas y posibles con la energía disponible."
+          ],
+          casa: "Una actividad valiosa en la semana.",
+          avance: "La persona realiza actividades que valora.",
+          fuente: "Moorey y Greer, 2012, cap. 14"
+        },
+        {
+          t: "Pensamientos negativos realistas",
+          tecs: ["descentramiento", "defusion"],
+          obj: "Trabajar con pensamientos que son verdad sin quedar atrapado en ellos.",
+          pasos: [
+            "Entender el significado personal del pensamiento.",
+            "Probar con la realidad las partes distorsionadas y explorar perspectivas alternativas.",
+            "Usar la distracción, el descentramiento y la defusión para lo que no se puede cambiar."
+          ],
+          casa: "Practicar el descentramiento ante un pensamiento recurrente.",
+          avance: "Los pensamientos ocupan menos espacio.",
+          fuente: "Moorey y Greer, 2012, cap. 14"
+        },
+        {
+          t: "Luchar y aceptar",
+          tecs: ["aceptacion", "negacion-adaptativa"],
+          obj: "Equilibrar el espíritu de lucha con la aceptación, según el momento de la enfermedad.",
+          pasos: [
+            "Promover el espíritu de lucha y la evitación positiva cuando ayudan a vivir.",
+            "Acompañar el paso a la aceptación cuando la persona lo necesita."
+          ],
+          casa: "—",
+          avance: "La persona encuentra un equilibrio propio entre luchar y aceptar.",
+          fuente: "Moorey y Greer, 2012, cap. 14"
+        },
+        {
+          t: "Afrontar la muerte y trabajar con la pareja",
+          tecs: ["expresion-emocional", "entrenamiento-comunicacion"],
+          obj: "Hablar de la muerte y de lo que importa, con la persona y con su pareja o familia.",
+          pasos: [
+            "Explorar los miedos sobre el proceso de morir y la muerte.",
+            "Facilitar la comunicación con la pareja y la familia.",
+            "Coordinar con el equipo de cuidados paliativos las necesidades físicas, sociales y espirituales."
+          ],
+          casa: "Una conversación pendiente con una persona querida.",
+          avance: "La persona y su familia hablan de lo que importa.",
+          fuente: "Moorey y Greer, 2012, caps. 13 y 14"
+        }
+      ],
+      medir: [
+        "<strong>HADS</strong> y <strong>FACIT-Sp</strong> para el bienestar espiritual."
+      ],
+      adapt: [
+        "<strong>Cuidadores y familia:</strong> el libro incluye el trabajo con parejas y con el duelo prolongado de los cuidadores principales (Moorey y Greer, 2012, caps. 13 a 15)."
+      ],
+      cuidado: [
+        "Descarte causas orgánicas de los síntomas psicológicos con el equipo médico (Moorey y Greer, 2012, cap. 14)."
       ]
     }
   ]
@@ -12073,6 +13530,16 @@ const GLOSARIO = [
 { k: "desengancharse", t: "Desengancharse", tipo: "Técnica", enf: ["act"],
   d: "Habilidad de la guía «Haz lo que importa»: darse cuenta de que un pensamiento o sentimiento nos ha enganchado, ponerle nombre en silencio —«aquí hay un pensamiento», «aquí hay ira»— y volver a centrarse en lo que se está haciendo.",
   fuente: "OPS, 2022a, parte 2" },
+/* ---------- TDAH en adultos ---------- */
+{ k: "demora-distractibilidad", t: "Demora de la distracción", alias: ["distractibility delay"], tipo: "Técnica", enf: ["tcc"],
+  d: "Se mide cuánto tiempo puede la persona sostener la atención en una tarea que le cuesta, se divide la tarea en partes de esa duración y, cuando aparece una distracción, se anota para atenderla después en lugar de seguirla en el momento. El tiempo de trabajo se va alargando.",
+  fuente: "Safren et al., 2017, cap. 8" },
+{ k: "lista-tareas-prioridades", t: "Lista de tareas con prioridades", alias: ["prioridades A, B y C"], tipo: "Técnica", enf: ["tcc"],
+  d: "Una sola lista maestra de tareas, revisada a diario junto con el calendario, en la que cada tarea recibe una prioridad: A (hacer hoy o pronto), B y C. Las prioridades cambian a medida que se acercan los plazos. Es la base del módulo de organización y planificación.",
+  fuente: "Safren et al., 2017, caps. 4 y 5 · Solanto, 2011, sesión 4" },
+{ k: "sistema-organizacion", t: "Sistema de organización", tipo: "Técnica", enf: ["tcc"],
+  d: "Un lugar fijo para cada cosa —papeles, correo, objetos de uso diario— y una rutina para mantenerlo: montar el sistema, ponerlo en práctica y revisarlo con regularidad. Compensa la dificultad para recordar dónde quedó cada cosa.",
+  fuente: "Safren et al., 2017, cap. 7 · Solanto, 2011, sesiones 7 a 9" },
 { k: "presentacion-positiva", t: "Presentación positiva", alias: ["introducción positiva"], tipo: "Ejercicio", enf: ["pp"],
   d: "Primer ejercicio de la psicoterapia positiva: la persona se presenta con una historia real, con comienzo, desarrollo y final positivo, de un momento en que dio lo mejor de sí, sobre todo al superar una dificultad. Pone las fortalezas a la par de los síntomas desde el inicio y se retoma en la última sesión.",
   como: ["Pedir que recuerde una situación concreta en la que estuvo a la altura de algo difícil, grande o pequeño.",
@@ -12454,6 +13921,7 @@ const INST_FICHAS = {
   "YSQ": { a: "ysq", s: "YSQ", tipo: "tecnica", acceso: "licencia", t: "Cuestionario de Esquemas de Young", n: 37, q: "M0 0.5h7m2 0h1m3 0h1m1 0h1m2 0h1m1 0h1m3 0h1m5 0h7m-37 1h1m5 0h1m2 0h1m1 0h4m3 0h2m2 0h1m1 0h1m2 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h3m2 0h1m1 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h8m1 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h2m3 0h1m2 0h2m2 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h5m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h3m1 0h1m1 0h2m3 0h2m2 0h2m1 0h2m-28 1h1m1 0h5m11 0h5m1 0h3m1 0h1m1 0h5m-34 1h5m2 0h1m1 0h1m3 0h3m7 0h1m1 0h1m1 0h2m1 0h1m2 0h2m-36 1h2m4 0h1m1 0h1m2 0h1m1 0h2m2 0h2m1 0h2m2 0h5m3 0h1m1 0h3m-37 1h1m1 0h2m3 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h1m4 0h1m2 0h1m-37 1h2m4 0h1m1 0h3m3 0h1m2 0h1m4 0h1m1 0h2m2 0h3m1 0h5m-36 1h1m1 0h1m1 0h1m2 0h2m1 0h3m2 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-30 1h1m1 0h1m1 0h3m1 0h8m2 0h2m5 0h7m1 0h2m-36 1h5m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m2 0h2m3 0h1m1 0h5m2 0h1m-35 1h2m2 0h3m1 0h2m1 0h2m2 0h1m2 0h1m1 0h1m2 0h3m2 0h4m1 0h1m1 0h1m-37 1h1m1 0h1m7 0h2m3 0h1m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m2 0h2m-36 1h1m3 0h6m3 0h4m1 0h2m2 0h1m1 0h4m1 0h2m3 0h3m-34 1h3m1 0h2m6 0h1m3 0h4m4 0h5m4 0h1m-37 1h2m1 0h4m3 0h1m1 0h1m2 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-35 1h2m8 0h3m3 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-32 1h3m1 0h2m2 0h2m3 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m3 0h1m2 0h5m2 0h3m3 0h1m3 0h1m1 0h1m2 0h4m2 0h2m-37 1h2m1 0h1m2 0h1m1 0h2m8 0h15m1 0h1m-35 1h1m3 0h1m2 0h2m1 0h2m2 0h4m5 0h1m2 0h1m1 0h1m2 0h1m1 0h2m-35 1h1m1 0h1m1 0h4m2 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h4m2 0h3m2 0h2m-37 1h1m1 0h1m1 0h2m1 0h1m5 0h2m1 0h1m4 0h2m1 0h1m1 0h1m1 0h3m-31 1h1m2 0h1m1 0h2m3 0h2m1 0h2m2 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h3m2 0h2m1 0h8m3 0h2m3 0h2m-34 1h7m3 0h1m4 0h3m2 0h2m2 0h1m3 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h6m3 0h2m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h3m2 0h4m4 0h1m3 0h1m1 0h6m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m1 0h2m1 0h4m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m2 0h2m2 0h1m4 0h1m3 0h1m4 0h4m-37 1h1m5 0h1m3 0h2m3 0h1m3 0h5m2 0h5m1 0h1m3 0h1m-37 1h7m1 0h3m1 0h4m1 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h1m1 0h3" },
   "SRQ-20 / SRQ-30": { a: "srq-20-srq-30", s: "SRQ-30", tipo: "completa", nc: 37, qc: "M0 0.5h7m2 0h1m1 0h1m1 0h2m1 0h5m3 0h3m3 0h7m-37 1h1m5 0h1m1 0h1m2 0h5m2 0h1m2 0h2m7 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h3m4 0h1m4 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h4m1 0h2m2 0h2m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m3 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m3 0h2m1 0h3m2 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h2m1 0h1m1 0h3m2 0h2m1 0h1m-27 1h1m5 0h1m1 0h7m3 0h3m3 0h3m1 0h3m2 0h3m-36 1h3m4 0h2m1 0h1m2 0h2m3 0h4m1 0h2m1 0h2m3 0h3m1 0h1m-35 1h2m2 0h3m1 0h2m2 0h2m2 0h2m1 0h2m3 0h3m4 0h1m1 0h3m-36 1h2m2 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m4 0h1m-33 1h1m1 0h2m1 0h3m1 0h2m1 0h1m2 0h2m2 0h2m1 0h1m3 0h2m1 0h1m2 0h1m-37 1h1m4 0h1m1 0h2m1 0h3m1 0h7m2 0h1m1 0h1m1 0h3m1 0h1m1 0h1m-34 1h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h4m2 0h2m4 0h3m2 0h3m1 0h2m-37 1h2m1 0h1m1 0h1m2 0h3m1 0h3m1 0h3m1 0h1m1 0h1m3 0h2m1 0h3m1 0h3m-36 1h3m2 0h2m1 0h5m1 0h1m1 0h1m2 0h2m4 0h1m3 0h2m1 0h1m1 0h1m1 0h1m-37 1h3m1 0h2m2 0h1m2 0h2m4 0h3m1 0h1m1 0h1m1 0h4m2 0h1m1 0h3m-36 1h1m4 0h2m2 0h3m2 0h2m1 0h3m3 0h2m2 0h2m1 0h1m1 0h1m3 0h1m-35 1h1m5 0h1m1 0h3m7 0h1m1 0h3m2 0h4m1 0h2m2 0h1m-36 1h2m3 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m5 0h2m2 0h2m1 0h3m-35 1h1m2 0h1m5 0h2m2 0h3m2 0h2m1 0h3m1 0h3m4 0h1m1 0h1m-35 1h9m1 0h1m1 0h4m2 0h1m1 0h3m1 0h4m2 0h4m1 0h2m-36 1h1m1 0h3m3 0h1m4 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h2m-34 1h1m2 0h2m1 0h1m1 0h1m4 0h3m1 0h1m6 0h2m1 0h2m3 0h1m-36 1h2m1 0h1m3 0h2m2 0h3m2 0h2m1 0h1m1 0h3m3 0h1m3 0h1m-32 1h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m2 0h3m2 0h1m3 0h3m-37 1h1m1 0h1m1 0h2m2 0h1m1 0h3m2 0h1m4 0h1m2 0h2m2 0h5m1 0h2m1 0h1m-37 1h1m2 0h5m3 0h1m1 0h1m3 0h2m3 0h1m1 0h12m-28 1h2m1 0h1m1 0h1m1 0h6m1 0h2m1 0h1m2 0h1m3 0h1m-33 1h7m3 0h2m2 0h2m3 0h1m2 0h5m1 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m2 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h3m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m2 0h2m3 0h1m1 0h1m2 0h1m1 0h6m1 0h2m-36 1h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h4m3 0h1m1 0h1m3 0h2m3 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h1m3 0h2m11 0h1m6 0h2m-37 1h1m5 0h1m4 0h2m6 0h1m2 0h1m3 0h3m1 0h1m1 0h2m2 0h1m-37 1h7m1 0h3m1 0h2m1 0h2m2 0h2m7 0h1m1 0h2m1 0h1m2 0h1", tam: "srq-20-srq-30", col: "ms", colt: "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020).", acceso: "libre", t: "Cuestionario de Autorreporte de Síntomas (Self Report Questionnaire)", n: 37, q: "M0 0.5h7m1 0h2m1 0h1m4 0h1m1 0h1m3 0h2m6 0h7m-37 1h1m5 0h1m1 0h1m4 0h1m2 0h2m2 0h5m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m1 0h1m1 0h2m1 0h4m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h2m3 0h1m4 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m4 0h1m2 0h3m5 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m2 0h1m1 0h2m2 0h2m2 0h1m1 0h2m3 0h1m3 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m2 0h2m2 0h2m1 0h1m-20 1h1m1 0h2m1 0h3m3 0h3m1 0h2m4 0h1m2 0h1m1 0h2m2 0h1m2 0h1m1 0h2m-37 1h1m2 0h3m2 0h4m1 0h1m1 0h2m1 0h3m1 0h2m2 0h1m1 0h2m1 0h1m2 0h2m-36 1h4m2 0h2m2 0h2m1 0h1m1 0h1m4 0h1m2 0h3m2 0h3m2 0h2m-35 1h1m3 0h2m4 0h1m4 0h1m3 0h2m3 0h4m2 0h2m2 0h1m-34 1h1m3 0h5m7 0h1m4 0h4m2 0h3m1 0h5m-35 1h1m4 0h1m2 0h1m4 0h2m2 0h1m4 0h1m1 0h3m1 0h4m1 0h2m-35 1h2m1 0h3m1 0h1m1 0h1m5 0h4m1 0h1m1 0h1m4 0h1m2 0h1m1 0h2m-35 1h2m1 0h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m1 0h5m2 0h1m-36 1h2m1 0h4m1 0h1m1 0h1m2 0h1m1 0h7m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m-35 1h1m1 0h1m1 0h1m4 0h4m2 0h2m2 0h4m2 0h2m2 0h1m2 0h1m1 0h2m-37 1h2m2 0h1m1 0h1m2 0h1m1 0h3m1 0h2m1 0h1m3 0h1m1 0h4m1 0h2m3 0h3m-37 1h1m4 0h1m1 0h2m1 0h2m2 0h1m2 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h3m1 0h1m-36 1h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m1 0h4m1 0h2m1 0h1m1 0h1m1 0h2m1 0h2m3 0h1m-37 1h1m1 0h1m1 0h1m3 0h2m3 0h1m2 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-34 1h2m2 0h1m1 0h2m2 0h2m1 0h1m3 0h1m4 0h2m1 0h2m3 0h2m-31 1h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3m4 0h1m1 0h3m2 0h4m-36 1h1m1 0h2m1 0h2m2 0h1m2 0h3m3 0h3m2 0h1m1 0h8m1 0h1m-28 1h1m2 0h2m1 0h1m2 0h1m1 0h2m1 0h2m4 0h6m1 0h3m-36 1h1m4 0h1m1 0h1m1 0h1m3 0h6m1 0h1m4 0h1m1 0h1m3 0h4m-36 1h1m2 0h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h3m5 0h1m-35 1h1m1 0h1m1 0h1m1 0h2m2 0h4m3 0h5m1 0h1m1 0h6m1 0h1m1 0h1m-29 1h1m1 0h3m2 0h1m1 0h1m2 0h1m2 0h3m2 0h1m3 0h1m1 0h1m1 0h1m-37 1h7m1 0h2m3 0h5m2 0h1m3 0h1m3 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h5m6 0h3m2 0h2m3 0h1m2 0h2m-37 1h1m1 0h3m1 0h1m4 0h4m3 0h2m1 0h2m1 0h1m3 0h6m1 0h2m-37 1h1m1 0h3m1 0h1m1 0h4m3 0h1m1 0h3m1 0h5m1 0h4m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h3m1 0h2m1 0h2m1 0h5m1 0h1m1 0h1m-35 1h1m5 0h1m3 0h4m2 0h1m1 0h2m4 0h3m2 0h1m1 0h4m-35 1h7m1 0h2m1 0h2m1 0h2m1 0h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h3" },
   "SRQ": { a: "srq-20-srq-30", s: "SRQ-30", tipo: "completa", nc: 37, qc: "M0 0.5h7m2 0h1m1 0h1m1 0h2m1 0h5m3 0h3m3 0h7m-37 1h1m5 0h1m1 0h1m2 0h5m2 0h1m2 0h2m7 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h3m4 0h1m4 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h4m1 0h2m2 0h2m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m3 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m3 0h2m1 0h3m2 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h2m1 0h1m1 0h3m2 0h2m1 0h1m-27 1h1m5 0h1m1 0h7m3 0h3m3 0h3m1 0h3m2 0h3m-36 1h3m4 0h2m1 0h1m2 0h2m3 0h4m1 0h2m1 0h2m3 0h3m1 0h1m-35 1h2m2 0h3m1 0h2m2 0h2m2 0h2m1 0h2m3 0h3m4 0h1m1 0h3m-36 1h2m2 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m4 0h1m-33 1h1m1 0h2m1 0h3m1 0h2m1 0h1m2 0h2m2 0h2m1 0h1m3 0h2m1 0h1m2 0h1m-37 1h1m4 0h1m1 0h2m1 0h3m1 0h7m2 0h1m1 0h1m1 0h3m1 0h1m1 0h1m-34 1h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h4m2 0h2m4 0h3m2 0h3m1 0h2m-37 1h2m1 0h1m1 0h1m2 0h3m1 0h3m1 0h3m1 0h1m1 0h1m3 0h2m1 0h3m1 0h3m-36 1h3m2 0h2m1 0h5m1 0h1m1 0h1m2 0h2m4 0h1m3 0h2m1 0h1m1 0h1m1 0h1m-37 1h3m1 0h2m2 0h1m2 0h2m4 0h3m1 0h1m1 0h1m1 0h4m2 0h1m1 0h3m-36 1h1m4 0h2m2 0h3m2 0h2m1 0h3m3 0h2m2 0h2m1 0h1m1 0h1m3 0h1m-35 1h1m5 0h1m1 0h3m7 0h1m1 0h3m2 0h4m1 0h2m2 0h1m-36 1h2m3 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m5 0h2m2 0h2m1 0h3m-35 1h1m2 0h1m5 0h2m2 0h3m2 0h2m1 0h3m1 0h3m4 0h1m1 0h1m-35 1h9m1 0h1m1 0h4m2 0h1m1 0h3m1 0h4m2 0h4m1 0h2m-36 1h1m1 0h3m3 0h1m4 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h2m-34 1h1m2 0h2m1 0h1m1 0h1m4 0h3m1 0h1m6 0h2m1 0h2m3 0h1m-36 1h2m1 0h1m3 0h2m2 0h3m2 0h2m1 0h1m1 0h3m3 0h1m3 0h1m-32 1h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m2 0h3m2 0h1m3 0h3m-37 1h1m1 0h1m1 0h2m2 0h1m1 0h3m2 0h1m4 0h1m2 0h2m2 0h5m1 0h2m1 0h1m-37 1h1m2 0h5m3 0h1m1 0h1m3 0h2m3 0h1m1 0h12m-28 1h2m1 0h1m1 0h1m1 0h6m1 0h2m1 0h1m2 0h1m3 0h1m-33 1h7m3 0h2m2 0h2m3 0h1m2 0h5m1 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m2 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h3m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m2 0h2m3 0h1m1 0h1m2 0h1m1 0h6m1 0h2m-36 1h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h4m3 0h1m1 0h1m3 0h2m3 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h1m3 0h2m11 0h1m6 0h2m-37 1h1m5 0h1m4 0h2m6 0h1m2 0h1m3 0h3m1 0h1m1 0h2m2 0h1m-37 1h7m1 0h3m1 0h2m1 0h2m2 0h2m7 0h1m1 0h2m1 0h1m2 0h1", tam: "srq-20-srq-30", col: "ms", colt: "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020).", acceso: "libre", t: "Cuestionario de Autorreporte de Síntomas (Self Report Questionnaire)", n: 37, q: "M0 0.5h7m1 0h2m1 0h1m4 0h1m1 0h1m3 0h2m6 0h7m-37 1h1m5 0h1m1 0h1m4 0h1m2 0h2m2 0h5m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m1 0h1m1 0h2m1 0h4m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h2m3 0h1m4 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m4 0h1m2 0h3m5 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m2 0h1m1 0h2m2 0h2m2 0h1m1 0h2m3 0h1m3 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m2 0h2m2 0h2m1 0h1m-20 1h1m1 0h2m1 0h3m3 0h3m1 0h2m4 0h1m2 0h1m1 0h2m2 0h1m2 0h1m1 0h2m-37 1h1m2 0h3m2 0h4m1 0h1m1 0h2m1 0h3m1 0h2m2 0h1m1 0h2m1 0h1m2 0h2m-36 1h4m2 0h2m2 0h2m1 0h1m1 0h1m4 0h1m2 0h3m2 0h3m2 0h2m-35 1h1m3 0h2m4 0h1m4 0h1m3 0h2m3 0h4m2 0h2m2 0h1m-34 1h1m3 0h5m7 0h1m4 0h4m2 0h3m1 0h5m-35 1h1m4 0h1m2 0h1m4 0h2m2 0h1m4 0h1m1 0h3m1 0h4m1 0h2m-35 1h2m1 0h3m1 0h1m1 0h1m5 0h4m1 0h1m1 0h1m4 0h1m2 0h1m1 0h2m-35 1h2m1 0h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m1 0h5m2 0h1m-36 1h2m1 0h4m1 0h1m1 0h1m2 0h1m1 0h7m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m-35 1h1m1 0h1m1 0h1m4 0h4m2 0h2m2 0h4m2 0h2m2 0h1m2 0h1m1 0h2m-37 1h2m2 0h1m1 0h1m2 0h1m1 0h3m1 0h2m1 0h1m3 0h1m1 0h4m1 0h2m3 0h3m-37 1h1m4 0h1m1 0h2m1 0h2m2 0h1m2 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h3m1 0h1m-36 1h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m1 0h4m1 0h2m1 0h1m1 0h1m1 0h2m1 0h2m3 0h1m-37 1h1m1 0h1m1 0h1m3 0h2m3 0h1m2 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-34 1h2m2 0h1m1 0h2m2 0h2m1 0h1m3 0h1m4 0h2m1 0h2m3 0h2m-31 1h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3m4 0h1m1 0h3m2 0h4m-36 1h1m1 0h2m1 0h2m2 0h1m2 0h3m3 0h3m2 0h1m1 0h8m1 0h1m-28 1h1m2 0h2m1 0h1m2 0h1m1 0h2m1 0h2m4 0h6m1 0h3m-36 1h1m4 0h1m1 0h1m1 0h1m3 0h6m1 0h1m4 0h1m1 0h1m3 0h4m-36 1h1m2 0h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h3m5 0h1m-35 1h1m1 0h1m1 0h1m1 0h2m2 0h4m3 0h5m1 0h1m1 0h6m1 0h1m1 0h1m-29 1h1m1 0h3m2 0h1m1 0h1m2 0h1m2 0h3m2 0h1m3 0h1m1 0h1m1 0h1m-37 1h7m1 0h2m3 0h5m2 0h1m3 0h1m3 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h5m6 0h3m2 0h2m3 0h1m2 0h2m-37 1h1m1 0h3m1 0h1m4 0h4m3 0h2m1 0h2m1 0h1m3 0h6m1 0h2m-37 1h1m1 0h3m1 0h1m1 0h4m3 0h1m1 0h3m1 0h5m1 0h4m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h3m1 0h2m1 0h2m1 0h5m1 0h1m1 0h1m-35 1h1m5 0h1m3 0h4m2 0h1m1 0h2m4 0h3m2 0h1m1 0h4m-35 1h7m1 0h2m1 0h2m1 0h2m1 0h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h3" },
+  "ASRS v1.1": { a: "asrs-v1-1", s: "ASRS v1.1", tipo: "tecnica", tam: "asrs-v1-1", acceso: "libre", t: "Escala de Autorreporte de Déficit de Atención en Adultos", n: 37, q: "M0 0.5h7m2 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h3m5 0h7m-37 1h1m5 0h1m3 0h2m2 0h1m3 0h2m2 0h1m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m8 0h3m4 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h4m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m6 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h4m3 0h1m2 0h1m2 0h1m2 0h5m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m2 0h3m5 0h6m1 0h2m-28 1h1m1 0h5m4 0h1m2 0h2m2 0h3m3 0h3m1 0h1m1 0h5m-35 1h1m2 0h2m2 0h1m2 0h1m2 0h1m1 0h2m6 0h2m3 0h2m1 0h1m2 0h2m-35 1h6m5 0h1m4 0h2m1 0h2m3 0h4m3 0h1m1 0h3m-33 1h1m2 0h2m1 0h3m3 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m-35 1h2m1 0h2m1 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h2m2 0h3m1 0h5m-37 1h3m2 0h1m1 0h1m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-32 1h1m2 0h1m2 0h3m1 0h1m2 0h1m1 0h3m2 0h1m1 0h1m4 0h7m1 0h2m-36 1h5m1 0h2m2 0h2m2 0h1m1 0h2m2 0h1m4 0h1m1 0h5m2 0h1m-35 1h3m2 0h1m2 0h2m1 0h3m1 0h1m2 0h1m2 0h1m2 0h2m2 0h4m1 0h1m1 0h1m-36 1h1m2 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1m1 0h5m1 0h1m2 0h1m2 0h2m-30 1h2m2 0h1m1 0h1m1 0h3m1 0h2m2 0h1m1 0h4m1 0h2m3 0h3m-34 1h3m2 0h5m2 0h1m3 0h5m3 0h5m4 0h1m-34 1h2m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-35 1h1m1 0h2m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-33 1h4m1 0h1m2 0h3m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-36 1h1m2 0h1m6 0h6m3 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-35 1h2m2 0h2m10 0h2m2 0h2m1 0h8m1 0h1m-35 1h2m3 0h1m2 0h1m2 0h3m1 0h3m5 0h1m2 0h1m1 0h1m2 0h1m1 0h2m-35 1h1m3 0h5m1 0h1m2 0h2m2 0h1m4 0h1m2 0h3m2 0h3m2 0h2m-37 1h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m4 0h2m3 0h1m1 0h3m5 0h1m-37 1h1m2 0h2m1 0h1m2 0h2m2 0h1m3 0h2m3 0h5m1 0h7m-27 1h3m2 0h2m1 0h8m3 0h2m3 0h2m-34 1h7m3 0h1m1 0h1m1 0h4m2 0h3m1 0h2m2 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h2m6 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m5 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h1m1 0h2m2 0h1m1 0h8m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h4m11 0h1m4 0h4m-37 1h1m5 0h1m2 0h5m1 0h1m3 0h6m1 0h5m1 0h1m3 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h1m1 0h3" },
 };
 /* @@FIN-DATOS@@ */
 const $ = id => document.getElementById(id);
