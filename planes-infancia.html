@@ -436,6 +436,7 @@ footer li{margin-bottom:6px;}
 .modelo h5{font-family:var(--font-display); font-size:17px; line-height:1.3; margin:2px 0 0; color:var(--ink);}
 .modelo .autor{font-size:13px; color:var(--ink-soft); margin:2px 0 0;}
 .modelo p.d{margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+.modelo-sug{margin-top:12px; padding-top:10px; border-top:1px dashed var(--border);}
 .dims{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
 .dims .d{
   font-size:12px; color:var(--ink-soft); background:var(--bg);
@@ -720,7 +721,7 @@ a.cita:hover{color:var(--accent-dark);}
           evalúa la variable: uno de tamizaje y, cuando la fuente lo respalda, una prueba
           específica. Varios están en la <a href="pruebas-tamizaje.html">guía de pruebas de tamizaje</a>.</li>
       <li><strong>Cada plan se puede exportar solo.</strong> El botón «Exportar este plan» arma
-          un PDF de una o dos hojas con los componentes que marquen —modelo teórico,
+          un PDF de una o dos hojas con los componentes que marquen —fundamento del plan,
           instrumentos, actividades, precauciones, notas— y cierra con las referencias en
           formato APA de lo que quedó incluido.</li>
       <li><strong>Los términos técnicos están en el glosario.</strong> Junto al nombre de cada
@@ -810,7 +811,7 @@ a.cita:hover{color:var(--accent-dark);}
    enfoque sin fuente para una variable no aparece en ella.
 
    Cada plan se sostiene en cuatro componentes, que son los que pide el
-   marco de un proyecto de investigación: la variable, el modelo teórico
+   marco de un proyecto de investigación: la variable, el fundamento del plan
    que la explica, las actividades con su base terapéutica y el
    instrumento que la mide. Los modelos y los instrumentos viven en
    MODELOS e INSTRUMENTOS y los planes los referencian por clave: varios
@@ -1416,6 +1417,50 @@ REFERENCIAS.push(
   { k: "Monjas, 2009", ref: "Monjas Casares, M. I. (2009). <em>Programa de enseñanza de habilidades de interacción social (PEHIS) para niños y niñas en edad escolar</em>. CEPE." },
   { k: "Cohen et al., 2017", ref: "Cohen, J. A., Mannarino, A. P. y Deblinger, E. (2017). <em>Treating trauma and traumatic grief in children and adolescents</em> (2.ª ed.). Guilford Press." }
 );
+
+/* Fundamento del plan: tipo de cada entrada de MODELOS y fundamentos de los
+   planes que no declaran un modelo teórico propio. Ver la nota en la guía
+   de adultos (_planes-fuente/datos/06-99-fundamentos.js). */
+Object.assign(MODELOS, {
+  "guia-ease": {
+    t: "EASE: programa de la OMS y UNICEF",
+    autor: "Organización Mundial de la Salud y UNICEF",
+    d: "Programa grupal breve para adolescentes tempranos con malestar en comunidades expuestas a la adversidad, aplicable por facilitadores no especialistas con supervisión. No declara un modelo teórico propio: reúne habilidades emocionales, conductuales y de solución de problemas, y sesiones para cuidadores.",
+    dim: ["Entender las emociones", "Calmar el cuerpo", "Cambiar las acciones", "Manejar los problemas", "Apoyo a los cuidadores"],
+    fuente: "OMS y UNICEF, 2023, cap. 1"
+  },
+  "competencia-social": {
+    t: "Modelo de competencia y aprendizaje estructurado",
+    autor: "Monjas, a partir de Goldstein y del aprendizaje social",
+    d: "Las habilidades de interacción social son conductas aprendidas que se pueden enseñar de forma directa y sistemática, como cualquier otra competencia. El entrenamiento sigue el aprendizaje estructurado —instrucción, modelado, práctica, retroalimentación y generalización— dentro de un enfoque cognitivo-conductual y del aprendizaje social.",
+    dim: ["Habilidades como conductas aprendidas", "Enseñanza directa", "Aprendizaje estructurado", "Generalización a la casa y el colegio"],
+    fuente: "Monjas, 2009, cap. 1"
+  },
+  "otmp": {
+    t: "Déficits de organización, manejo del tiempo y planificación",
+    autor: "Gallagher, Abikoff y Spira",
+    d: "Muchos niños con TDAH no saben organizarse: las dificultades para anotar tareas, manejar materiales, calcular el tiempo y planear trabajos son sobre todo déficits de habilidades organizativas, que se entrenan con procedimientos de entrenamiento conductual en habilidades y con apoyo de padres y docentes para motivar su uso.",
+    dim: ["Anotar las tareas", "Manejar los materiales", "Manejar el tiempo", "Planear las tareas", "Motivación con refuerzo"],
+    fuente: "Gallagher et al., 2014, cap. 1"
+  },
+  "sibley-fe": {
+    t: "Atención, funciones ejecutivas y motivación en adolescentes",
+    autor: "Sibley",
+    d: "Los adolescentes con TDAH o dificultades parecidas tienen problemas de atención, de funciones ejecutivas y de motivación que chocan con las exigencias crecientes del colegio. Los padres responden con más control o se retiran, y se forman ciclos negativos. El tratamiento combina el entrenamiento en habilidades con la entrevista motivacional y la estructura en casa.",
+    dim: ["Atención", "Funciones ejecutivas", "Motivación", "Ciclos negativos entre padres y adolescente", "Estructura y contingencias naturales"],
+    fuente: "Sibley, 2017, caps. 1 y 2"
+  }
+});
+
+(function(){
+  const tipos = {
+    proceso: ["tareas-divorcio", "educacion-perdon", "familia-recurso"],
+    marco: ["manejo-conductual", "ensenanza-estructurada", "aprendizaje-explicito", "motivacion-pivote", "competencia-social"],
+    guia: ["guia-ease"]
+  };
+  for (const [t, ks] of Object.entries(tipos)) ks.forEach(k => { if (MODELOS[k]) MODELOS[k].tipo = t; });
+  for (const m of Object.values(MODELOS)) if (!m.tipo) m.tipo = "explicativo";
+})();
 
 // Las referencias van en orden alfabético, como en una lista APA.
 REFERENCIAS.sort((a, b) => a.ref.replace(/<[^>]+>/g, "").localeCompare(b.ref.replace(/<[^>]+>/g, ""), "es"));
@@ -2741,7 +2786,8 @@ const VARIABLES = [
   planes: [
     {
       id: "afr-ease",
-      mod: "pu-infancia",
+      mod: "guia-ease",
+      sug: { mod: "pu-infancia", por: "EASE entrena, como el protocolo unificado, habilidades comunes a la ansiedad y la depresión: reconocer las emociones, calmar el cuerpo, activarse y resolver problemas." },
       inst: ["SDQ", "PHQ-A"],
       enf: "tcc",
       t: "Habilidades emocionales para adolescentes tempranos (EASE)",
@@ -4571,7 +4617,8 @@ const VARIABLES = [
   planes: [
     {
       id: "hhss-pehis",
-      mod: "procesamiento-social",
+      mod: "competencia-social",
+      sug: { mod: "procesamiento-social", por: "El área de solución de problemas interpersonales del PEHIS trabaja los pasos que describe el modelo de procesamiento de la información social." },
       inst: ["SDQ"],
       enf: "col",
       t: "Programa de enseñanza de habilidades de interacción social (PEHIS)",
@@ -4958,7 +5005,8 @@ const VARIABLES = [
     },
     {
       id: "tdah-ost",
-      mod: "manejo-conductual",
+      mod: "otmp",
+      sug: { mod: "manejo-conductual", por: "El componente de padres y docentes —recordar, supervisar, elogiar y premiar— aplica los principios del manejo conductual." },
       inst: ["Vanderbilt", "SNAP-IV"],
       enf: "cond",
       t: "Entrenamiento en habilidades organizativas (OST)",
@@ -5047,7 +5095,8 @@ const VARIABLES = [
     },
     {
       id: "tdah-stand",
-      mod: "manejo-conductual",
+      mod: "sibley-fe",
+      sug: { mod: "manejo-conductual", por: "La estructura en casa, con privilegios ligados al esfuerzo, aplica los principios del manejo conductual." },
       inst: ["Vanderbilt"],
       enf: "em",
       t: "Terapia padres–adolescente para funciones ejecutivas (STAND)",
@@ -8694,7 +8743,7 @@ function lista(items){
   return '<ul>' + items.map(x => '<li>' + x + '</li>').join("") + '</ul>';
 }
 
-/* El modelo teórico y los instrumentos son datos compartidos: varios planes
+/* El fundamento del plan y los instrumentos son datos compartidos: varios planes
    citan el mismo modelo y el mismo instrumento, y así se escriben una vez. */
 /* Enlaces a las fuentes. Cada cita con DOI o página oficial se vuelve un
    enlace, en la guía y en la hoja exportada; los manuales comerciales o de
@@ -8735,16 +8784,34 @@ const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" targe
 const modeloDe = p => MODELOS[p.mod] || null;
 const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
 
+const TIPO_FUND = {
+  explicativo: "Modelo explicativo",
+  proceso: "Modelo del proceso de cambio",
+  marco: "Marco de intervención",
+  guia: "Guía de práctica o programa"
+};
+/* Modelo complementario que sugiere la guía cuando el plan no declara un
+   modelo teórico propio o conviene leerlo desde otro. No se atribuye a los
+   autores del plan: va rotulado aparte, con la razón de compatibilidad. */
+const sugDe = p => p.sug && MODELOS[p.sug.mod] ? Object.assign({ por: p.sug.por }, MODELOS[p.sug.mod]) : null;
+
 function pintarModelo(p){
   const m = modeloDe(p);
   if (!m) return "";
+  const sg = sugDe(p);
   return '<div class="modelo">' +
-    '<span class="r">Modelo teórico que lo sustenta</span>' +
+    '<span class="r">Fundamento del plan · ' + escapar(TIPO_FUND[m.tipo] || "Modelo explicativo") + '</span>' +
     '<h5>' + escapar(m.t) + '</h5>' +
     '<p class="autor">' + escapar(m.autor) + '</p>' +
     '<p class="d">' + escapar(m.d) + '</p>' +
     (m.dim ? '<div class="dims">' + m.dim.map(d => '<span class="d">' + escapar(d) + '</span>').join("") + '</div>' : "") +
     '<p class="autor" style="margin-top:9px"><strong>Fuente:</strong> ' + escapar(m.fuente) + '</p>' +
+    (sg ? '<div class="modelo-sug">' +
+      '<span class="r">Modelo complementario sugerido por la guía · no lo declaran los autores del plan</span>' +
+      '<p class="autor"><strong>' + escapar(sg.t) + '</strong> · ' + escapar(sg.autor) + '</p>' +
+      '<p class="d"><strong>Por qué encaja:</strong> ' + escapar(sg.por) + '</p>' +
+      '<p class="autor"><strong>Fuente:</strong> ' + escapar(sg.fuente) + '</p>' +
+    '</div>' : "") +
   '</div>';
 }
 
@@ -9115,7 +9182,7 @@ window.addEventListener("afterprint", () => {
    ============================================================ */
 const COMPONENTES = [
   { k: "cuando",  et: "Cuándo elegirlo y respaldo", def: true },
-  { k: "modelo",  et: "Modelo teórico",             def: true },
+  { k: "modelo",  et: "Fundamento del plan",        def: true },
   { k: "inst",    et: "Instrumentos",               def: true },
   { k: "acts",    et: "Actividades",                def: true },
   { k: "medir",   et: "Cómo medir el cambio",       def: false },
@@ -9218,12 +9285,15 @@ function construirHoja(id, o, notas){
     trozos.push(p.cuando, p.respaldo);
   }
   if (o.modelo && m){
-    h += '<h2>Modelo teórico</h2>' +
-      '<p><span class="h-mod">' + escapar(m.t) + '</span> · ' + escapar(m.autor) + '</p>' +
+    const sg = sugDe(p);
+    h += '<h2>Fundamento del plan</h2>' +
+      '<p><em>' + escapar(TIPO_FUND[m.tipo] || "Modelo explicativo") + ':</em> <span class="h-mod">' + escapar(m.t) + '</span> · ' + escapar(m.autor) + '</p>' +
       '<p>' + escapar(m.d) + '</p>' +
       (m.dim ? '<p><em>Dimensiones:</em> ' + escapar(m.dim.join(" · ")) + '</p>' : "") +
-      '<p><em>Fuente:</em> ' + escapar(m.fuente) + '</p>';
+      '<p><em>Fuente:</em> ' + escapar(m.fuente) + '</p>' +
+      (sg ? '<p><em>Modelo complementario sugerido por la guía (no lo declaran los autores del plan):</em> <span class="h-mod">' + escapar(sg.t) + '</span> · ' + escapar(sg.autor) + '. ' + escapar(sg.por) + ' <em>Fuente:</em> ' + escapar(sg.fuente) + '</p>' : "");
     trozos.push(m.fuente);
+    if (sg) trozos.push(sg.fuente);
   }
   if (o.inst){
     h += '<h2>Instrumentos</h2>';

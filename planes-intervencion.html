@@ -430,6 +430,7 @@ footer li{margin-bottom:6px;}
 .modelo h5{font-family:var(--font-display); font-size:17px; line-height:1.3; margin:2px 0 0; color:var(--ink);}
 .modelo .autor{font-size:13px; color:var(--ink-soft); margin:2px 0 0;}
 .modelo p.d{margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+.modelo-sug{margin-top:12px; padding-top:10px; border-top:1px dashed var(--border);}
 .dims{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
 .dims .d{
   font-size:12px; color:var(--ink-soft); background:var(--bg);
@@ -710,7 +711,7 @@ a.cita:hover{color:var(--accent-dark);}
           evalúa la variable: uno de tamizaje y, cuando la fuente lo respalda, una prueba
           específica. Varios están en la <a href="pruebas-tamizaje.html">guía de pruebas de tamizaje</a>.</li>
       <li><strong>Cada plan se puede exportar solo.</strong> El botón «Exportar este plan» arma
-          un PDF de una o dos hojas con los componentes que marquen —modelo teórico,
+          un PDF de una o dos hojas con los componentes que marquen —fundamento del plan,
           instrumentos, actividades, precauciones, notas— y cierra con las referencias en
           formato APA de lo que quedó incluido.</li>
       <li><strong>Los términos técnicos están en el glosario.</strong> Junto al nombre de cada
@@ -795,7 +796,7 @@ a.cita:hover{color:var(--accent-dark);}
    enfoque sin fuente para una variable no aparece en ella.
 
    Cada plan se sostiene en cuatro componentes, que son los que pide el
-   marco de un proyecto de investigación: la variable, el modelo teórico
+   marco de un proyecto de investigación: la variable, el fundamento del plan
    que la explica, las actividades con su base terapéutica y el
    instrumento que la mide. Los modelos y los instrumentos viven en
    MODELOS e INSTRUMENTOS y los planes los referencian por clave: varios
@@ -1660,6 +1661,93 @@ REFERENCIAS.push(
   { k: "Niemiec, 2018", ref: "Niemiec, R. M. (2018). <em>Character strengths interventions: A field guide for practitioners</em>. Hogrefe." },
   { k: "Niemiec y Tomasulo, 2023", url: "https://doi.org/10.1007/978-3-031-36294-1", ref: "Niemiec, R. M. y Tomasulo, D. (2023). <em>Character strengths and abilities within disabilities: Advances in science and practice</em>. Springer. https://doi.org/10.1007/978-3-031-36294-1" }
 );
+
+/* Fundamento del plan: tipo de cada entrada de MODELOS, según cómo la
+   presentan sus autores, y fundamentos de los planes que no declaran un
+   modelo teórico propio (guías de práctica y programas).
+     explicativo  modelo o teoría que explica el problema
+     proceso      modelo del proceso de cambio o de recuperación
+     marco        marco o herramienta para intervenir o diseñar intervenciones
+     guia         guía de práctica o programa basado en recomendaciones
+   Un plan puede llevar además sug: { mod, por }: un modelo complementario
+   que sugiere la guía, con la razón de compatibilidad. No se atribuye a los
+   autores del plan. */
+Object.assign(MODELOS, {
+  "guia-ep": {
+    t: "Enfrentando problemas plus (EP+)",
+    autor: "Organización Mundial de la Salud",
+    d: "Intervención psicológica breve que la OMS desarrolló para adultos con malestar en comunidades expuestas a la adversidad, aplicable por personal no especializado con supervisión. No declara un modelo teórico propio: combina estrategias conocidas de solución de problemas y de modificación de conducta para que la persona maneje mejor su malestar y, cuando se puede, sus problemas prácticos.",
+    dim: ["Manejar el estrés", "Enfrentar problemas", "Seguir andando, continuar haciendo", "Fortalecer el apoyo social", "Mantenerse bien"],
+    fuente: "OMS, 2016, caps. 1 y 2"
+  },
+  "guia-cuidadores": {
+    t: "Recomendaciones de la OMS para cuidadores",
+    autor: "Organización Mundial de la Salud",
+    d: "Recomendaciones basadas en revisiones de ensayos sobre el apoyo a cuidadores de personas dependientes. No proponen un modelo teórico: indican qué intervenciones ofrecer —psicoeducación, entrenamiento en habilidades, apoyo psicológico y respiro— y a quién.",
+    dim: ["Identificar al cuidador principal", "Psicoeducación", "Entrenamiento en habilidades de cuidado", "Apoyo psicológico", "Apoyo práctico y respiro"],
+    fuente: "OMS, 2017 (recomendación 13) · OMS, 2023 (DEM1 y OVE1)"
+  },
+  "guia-isupport": {
+    t: "iSupport: programa de la OMS para cuidadores de personas con demencia",
+    autor: "Organización Mundial de la Salud",
+    d: "Programa de formación y apoyo en formato de autoayuda que organiza en módulos los contenidos que la OMS recomienda ofrecer a los cuidadores de personas con demencia. No declara un modelo teórico propio.",
+    dim: ["Conocer la demencia", "Ser cuidador", "Cuidar de sí mismo", "Cuidado diario", "Cambios de conducta"],
+    fuente: "OMS, 2019"
+  },
+  "guia-soledad": {
+    t: "Estrategias individuales y relacionales frente a la desconexión social",
+    autor: "Comisión de la OMS sobre Conexión Social",
+    d: "Informe que sintetiza revisiones de ensayos sobre intervenciones para la soledad y el aislamiento. No propone un modelo teórico: agrupa las estrategias en entrenamiento en habilidades, facilitación del contacto social e intervenciones psicológicas, y señala que combinarlas es más eficaz.",
+    dim: ["Entrenamiento en habilidades", "Facilitación del contacto social", "Intervenciones psicológicas", "Estrategias comunitarias"],
+    fuente: "OMS, 2025, caps. 7 y 8"
+  },
+  "guia-mhgap-psi": {
+    t: "Guía de intervención mhGAP: módulo de psicosis",
+    autor: "Organización Panamericana de la Salud y Organización Mundial de la Salud",
+    d: "Guía para el manejo de la psicosis en atención no especializada. No declara un modelo teórico: indica intervenciones psicosociales para la persona y sus cuidadores junto con la medicación, y el seguimiento regular.",
+    dim: ["Psicoeducación", "Reducir el estrés y fortalecer los apoyos", "Funcionamiento en la vida diaria", "Consejos para los cuidadores", "Seguimiento"],
+    fuente: "OPS, 2017, módulo PSI"
+  },
+  "guia-oms-2023": {
+    t: "Directrices de la OMS para los trastornos mentales en personas con enfermedad física",
+    autor: "Organización Mundial de la Salud",
+    d: "Recomendaciones basadas en revisiones de ensayos. No proponen un modelo teórico: indican intervenciones psicológicas estructuradas y la atención colaborativa para adultos con depresión o ansiedad y una enfermedad física.",
+    dim: ["Intervenciones psicológicas estructuradas", "Atención colaborativa", "Seguimiento"],
+    fuente: "OMS, 2023"
+  },
+  "morrison-voces": {
+    t: "Modelo cognitivo de las alucinaciones auditivas",
+    autor: "Morrison; Bentall; Chadwick y Birchwood",
+    d: "Las voces son pensamientos o eventos internos que la persona atribuye a una fuente externa. Buena parte del malestar no depende de las voces en sí, sino de cómo se interpretan —por ejemplo, como un poder superior que todo lo sabe—, y esas interpretaciones se mantienen por conductas de seguridad y por la atención centrada en uno mismo.",
+    dim: ["Atribución externa de eventos internos", "Interpretación de las voces", "Conductas de seguridad", "Atención centrada en uno mismo"],
+    fuente: "Morrison, 2002, cap. 8"
+  },
+  "taylor-cronico": {
+    t: "Terapia cognitivo-conductual integradora para condiciones crónicas",
+    autor: "Taylor",
+    d: "Adapta la terapia cognitivo-conductual a la enfermedad crónica y la discapacidad. Distingue los pensamientos poco realistas de los que son realistas pero desadaptativos, atiende los temas propios de la condición crónica y pone la empatía, la esperanza y la motivación en el centro del tratamiento.",
+    dim: ["Cogniciones poco realistas", "Cogniciones realistas pero desadaptativas", "Temas propios de la condición crónica", "Empatía, esperanza y motivación"],
+    fuente: "Taylor, 2006, caps. 3, 8 y 10 a 13"
+  },
+  "solanto-fe": {
+    t: "Disfunción ejecutiva en el TDAH adulto",
+    autor: "Solanto",
+    d: "Buena parte de las dificultades de los adultos con TDAH reflejan una disfunción ejecutiva —control inhibitorio, manejo del tiempo, organización y planificación—, compatible con los modelos de motivación y sensibilidad al refuerzo. El programa entrena habilidades compensatorias con principios conductuales y cognitivo-conductuales.",
+    dim: ["Control inhibitorio", "Manejo del tiempo", "Organización", "Planificación", "Motivación y refuerzo"],
+    fuente: "Solanto, 2011, cap. 1"
+  }
+});
+
+// Tipo de cada fundamento, según cómo lo presentan sus autores.
+(function(){
+  const tipos = {
+    proceso: ["ttm", "miller-em", "kohlenberg-fap", "enright-fases", "reach", "autoperdon-worthington", "worden-tareas", "aea", "livneh"],
+    marco: ["matriz", "com-b", "taylor-cronico"],
+    guia: ["guia-ep", "guia-cuidadores", "guia-isupport", "guia-soledad", "guia-mhgap-psi", "guia-oms-2023"]
+  };
+  for (const [t, ks] of Object.entries(tipos)) ks.forEach(k => { if (MODELOS[k]) MODELOS[k].tipo = t; });
+  for (const m of Object.values(MODELOS)) if (!m.tipo) m.tipo = "explicativo";
+})();
 
 // Las referencias van en orden alfabético, como en una lista APA.
 REFERENCIAS.sort((a, b) => a.ref.replace(/<[^>]+>/g, "").localeCompare(b.ref.replace(/<[^>]+>/g, ""), "es"));
@@ -8115,7 +8203,8 @@ const VARIABLES = [
     },
     {
       id: "sp-pm",
-      mod: "dzurilla",
+      mod: "guia-ep",
+      sug: { mod: "dzurilla", por: "EP+ usa los mismos pasos de solución de problemas que describe D'Zurilla y el mismo supuesto: el malestar depende en parte de cómo se enfrentan los problemas." },
       inst: ["K-10", "PHQ-9"],
       enf: "tcc",
       t: "Enfrentando problemas plus (EP+)",
@@ -8654,7 +8743,8 @@ const VARIABLES = [
   planes: [
     {
       id: "estres-cuid",
-      mod: "lazarus",
+      mod: "guia-cuidadores",
+      sug: { mod: "lazarus", por: "La sobrecarga del cuidador se ha estudiado como estrés: las demandas del cuidado frente a los recursos que la persona percibe para afrontarlas." },
       inst: ["Zarit", "CSI"],
       enf: "tcc",
       t: "Apoyo psicológico a cuidadores",
@@ -8763,7 +8853,8 @@ const VARIABLES = [
     },
     {
       id: "cuid-isupport",
-      mod: "lazarus",
+      mod: "guia-isupport",
+      sug: { mod: "lazarus", por: "El módulo «Cuidando de mí» trabaja el estrés del cuidado y su afrontamiento, que es lo que describe el modelo transaccional." },
       inst: ["Zarit", "PHQ-9"],
       enf: "tcc",
       t: "iSupport: formación y apoyo para cuidadores de personas con demencia",
@@ -8867,7 +8958,7 @@ const VARIABLES = [
   planes: [
     {
       id: "sol-multi",
-      mod: "beck-dep",
+      mod: "guia-soledad",
       inst: ["LSNS-6", "MSPSS"],
       enf: "tcc",
       t: "Intervención combinada para la soledad y el aislamiento",
@@ -10158,7 +10249,7 @@ const VARIABLES = [
     },
     {
       id: "psi-morrison",
-      mod: "tarrier-psicosis",
+      mod: "morrison-voces",
       inst: ["PSYRATS"],
       enf: "tcc",
       t: "Terapia cognitiva para voces y creencias persecutorias",
@@ -10252,7 +10343,8 @@ const VARIABLES = [
     },
     {
       id: "psi-mhgap",
-      mod: "tarrier-psicosis",
+      mod: "guia-mhgap-psi",
+      sug: { mod: "tarrier-psicosis", por: "La guía propone reducir el estrés, fortalecer los apoyos y sostener las actividades; el modelo de Tarrier explica los síntomas desde la vulnerabilidad y el estrés, y pone el acento en el afrontamiento." },
       inst: [],
       enf: "fam",
       t: "Manejo psicosocial de la psicosis en atención no especializada",
@@ -10649,7 +10741,7 @@ const VARIABLES = [
     },
     {
       id: "tdah-solanto",
-      mod: "safren-tdah",
+      mod: "solanto-fe",
       inst: ["ASRS v1.1", "BDI-II"],
       enf: "tcc",
       t: "Terapia grupal para la disfunción ejecutiva",
@@ -11067,7 +11159,8 @@ const VARIABLES = [
   planes: [
     {
       id: "hosp-dep",
-      mod: "ac-refuerzo",
+      mod: "guia-oms-2023",
+      sug: { mod: "ac-refuerzo", por: "El plan activa lo que la enfermedad todavía permite; el modelo conductual explica el ánimo bajo por la pérdida de refuerzo." },
       inst: ["HADS", "PHQ-9"],
       enf: "tcc",
       t: "Pérdidas, activación y solución de problemas en la persona hospitalizada",
@@ -11934,7 +12027,8 @@ const VARIABLES = [
     },
     {
       id: "perd-taylor",
-      mod: "livneh",
+      mod: "taylor-cronico",
+      sug: { mod: "livneh", por: "Livneh y Antonak describen las reacciones psicosociales ante la enfermedad crónica y la discapacidad que el plan trabaja." },
       inst: ["PAIS", "PHQ-9"],
       enf: "tcc",
       t: "Terapia cognitivo-conductual para la enfermedad crónica y la discapacidad",
@@ -13986,7 +14080,7 @@ function lista(items){
   return '<ul>' + items.map(x => '<li>' + x + '</li>').join("") + '</ul>';
 }
 
-/* El modelo teórico y los instrumentos son datos compartidos: varios planes
+/* El fundamento del plan y los instrumentos son datos compartidos: varios planes
    citan el mismo modelo y el mismo instrumento, y así se escriben una vez. */
 /* Enlaces a las fuentes. Cada cita con DOI o página oficial se vuelve un
    enlace, en la guía y en la hoja exportada; los manuales comerciales o de
@@ -14027,16 +14121,34 @@ const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" targe
 const modeloDe = p => MODELOS[p.mod] || null;
 const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
 
+const TIPO_FUND = {
+  explicativo: "Modelo explicativo",
+  proceso: "Modelo del proceso de cambio",
+  marco: "Marco de intervención",
+  guia: "Guía de práctica o programa"
+};
+/* Modelo complementario que sugiere la guía cuando el plan no declara un
+   modelo teórico propio o conviene leerlo desde otro. No se atribuye a los
+   autores del plan: va rotulado aparte, con la razón de compatibilidad. */
+const sugDe = p => p.sug && MODELOS[p.sug.mod] ? Object.assign({ por: p.sug.por }, MODELOS[p.sug.mod]) : null;
+
 function pintarModelo(p){
   const m = modeloDe(p);
   if (!m) return "";
+  const sg = sugDe(p);
   return '<div class="modelo">' +
-    '<span class="r">Modelo teórico que lo sustenta</span>' +
+    '<span class="r">Fundamento del plan · ' + escapar(TIPO_FUND[m.tipo] || "Modelo explicativo") + '</span>' +
     '<h5>' + escapar(m.t) + '</h5>' +
     '<p class="autor">' + escapar(m.autor) + '</p>' +
     '<p class="d">' + escapar(m.d) + '</p>' +
     (m.dim ? '<div class="dims">' + m.dim.map(d => '<span class="d">' + escapar(d) + '</span>').join("") + '</div>' : "") +
     '<p class="autor" style="margin-top:9px"><strong>Fuente:</strong> ' + escapar(m.fuente) + '</p>' +
+    (sg ? '<div class="modelo-sug">' +
+      '<span class="r">Modelo complementario sugerido por la guía · no lo declaran los autores del plan</span>' +
+      '<p class="autor"><strong>' + escapar(sg.t) + '</strong> · ' + escapar(sg.autor) + '</p>' +
+      '<p class="d"><strong>Por qué encaja:</strong> ' + escapar(sg.por) + '</p>' +
+      '<p class="autor"><strong>Fuente:</strong> ' + escapar(sg.fuente) + '</p>' +
+    '</div>' : "") +
   '</div>';
 }
 
@@ -14390,7 +14502,7 @@ window.addEventListener("afterprint", () => {
    ============================================================ */
 const COMPONENTES = [
   { k: "cuando",  et: "Cuándo elegirlo y respaldo", def: true },
-  { k: "modelo",  et: "Modelo teórico",             def: true },
+  { k: "modelo",  et: "Fundamento del plan",        def: true },
   { k: "inst",    et: "Instrumentos",               def: true },
   { k: "acts",    et: "Actividades",                def: true },
   { k: "medir",   et: "Cómo medir el cambio",       def: false },
@@ -14493,12 +14605,15 @@ function construirHoja(id, o, notas){
     trozos.push(p.cuando, p.respaldo);
   }
   if (o.modelo && m){
-    h += '<h2>Modelo teórico</h2>' +
-      '<p><span class="h-mod">' + escapar(m.t) + '</span> · ' + escapar(m.autor) + '</p>' +
+    const sg = sugDe(p);
+    h += '<h2>Fundamento del plan</h2>' +
+      '<p><em>' + escapar(TIPO_FUND[m.tipo] || "Modelo explicativo") + ':</em> <span class="h-mod">' + escapar(m.t) + '</span> · ' + escapar(m.autor) + '</p>' +
       '<p>' + escapar(m.d) + '</p>' +
       (m.dim ? '<p><em>Dimensiones:</em> ' + escapar(m.dim.join(" · ")) + '</p>' : "") +
-      '<p><em>Fuente:</em> ' + escapar(m.fuente) + '</p>';
+      '<p><em>Fuente:</em> ' + escapar(m.fuente) + '</p>' +
+      (sg ? '<p><em>Modelo complementario sugerido por la guía (no lo declaran los autores del plan):</em> <span class="h-mod">' + escapar(sg.t) + '</span> · ' + escapar(sg.autor) + '. ' + escapar(sg.por) + ' <em>Fuente:</em> ' + escapar(sg.fuente) + '</p>' : "");
     trozos.push(m.fuente);
+    if (sg) trozos.push(sg.fuente);
   }
   if (o.inst){
     h += '<h2>Instrumentos</h2>';
