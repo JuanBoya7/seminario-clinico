@@ -15029,10 +15029,15 @@ async function compartirHoja(id, boton){
     await cargarPDF();
     window.scrollTo(0, 0);
     document.body.dataset.pdf = "1";
+    // Los navegadores móviles no pintan lienzos de más de ~16 millones de
+    // píxeles (el PDF sale en blanco): la resolución se ajusta al largo.
+    const hojaEl = document.getElementById("hoja");
+    const area = Math.max(1, hojaEl.offsetWidth * hojaEl.scrollHeight);
+    const escala = Math.max(0.8, Math.min(2, Math.sqrt(10e6 / area)));
     const worker = html2pdf().set({
       margin: [13, 13, 16, 13], filename: nombre, enableLinks: true,
       image: { type: "jpeg", quality: 0.92 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+      html2canvas: { scale: escala, useCORS: true, backgroundColor: "#ffffff" },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
       pagebreak: { mode: ["css"], avoid: ["h2", "li", "p", "tr", ".h-act", ".h-ficha", ".h-seg-dec", ".riesgo"] }
     }).from(document.getElementById("hoja")).toPdf();

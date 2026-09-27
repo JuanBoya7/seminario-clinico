@@ -518,8 +518,9 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       <h1>Caso Sergio — Evaluación diagnóstica</h1>
       <p>
         Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
-        Al presionar "Guardar actividad" desde el celular, puede abrirse el cuadro para compartir o
-        guardar el archivo — elijan "Guardar en Archivos" (iPhone) o la carpeta de Descargas (Android).
+        Al presionar "Guardar actividad" se genera un PDF rellenable con sus respuestas: en el celular se abre
+        el menú para compartirlo (WhatsApp, correo, Drive) y en el computador se descarga. Los campos del PDF
+        se pueden seguir editando en Adobe Acrobat Reader, Google Drive o el visor de PDF del teléfono.
         Al terminar, presionen además "Enviar al docente": se abrirá una pestaña confirmando que las
         respuestas llegaron.
       </p>
@@ -1475,7 +1476,7 @@ function applyStateToDOM(){
 }
 
 /* ============================================================
-   9. GUARDAR ACTIVIDAD (descarga un HTML autocontenido)
+   9. GUARDAR ACTIVIDAD (genera un PDF rellenable: ver pdf-rellenable.js)
    ============================================================ */
 function slugify(text){
   return (text || "grupo")
@@ -1494,52 +1495,40 @@ function buildDownloadableHTML(){
 
 function initSaveButton(){
   document.getElementById("btn-guardar").addEventListener("click", async () => {
-    const html = buildDownloadableHTML();
     const grupo = state.text["f-grupo"] || "";
     const curso = (state.text["ct-curso"] || "sin-curso");
     const numero = grupo.trim() || "sin-numero";
-    const filename = `${curso}-caso-sergio-grupo-${numero}.html`;
+    const filename = `${curso}-caso-sergio-grupo-${numero}.pdf`;
     const status = document.getElementById("save-status");
-
-    // Detección de dispositivo móvil / táctil. En escritorio SIEMPRE se descarga el archivo
-    // directamente; la ventana de "compartir" (Web Share API) se reserva para móviles, donde
-    // la descarga clásica por enlace es poco confiable (especialmente en iPhone).
-    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
-      (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
-
-    if (isMobile) {
-      try {
-        const file = new File([html], filename, { type: "text/html" });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: filename });
-          status.textContent = "Actividad guardada · " + new Date().toLocaleTimeString();
-          status.classList.remove("warn");
-          status.classList.add("ok");
-          return;
-        }
-      } catch (err) {
-        if (err && err.name === "AbortError") {
-          // El estudiante cerró el cuadro de compartir sin elegir nada: no forzamos la descarga.
-          return;
-        }
-        // Si falla por otro motivo, seguimos con la descarga clásica como respaldo.
+    const boton = document.getElementById("btn-guardar");
+    const textoBoton = boton.textContent;
+    boton.disabled = true;
+    boton.textContent = "Preparando PDF…";
+    try {
+      // El PDF rellenable se arma en el navegador con un módulo compartido
+      // por todas las actividades; se carga solo al guardar.
+      if (!window.PDFActividad) {
+        await new Promise((ok, mal) => {
+          const s = document.createElement("script");
+          s.src = "https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js";
+          s.onload = ok; s.onerror = mal;
+          document.head.appendChild(s);
+        });
       }
+      const r = await PDFActividad.compartir({ archivo: filename });
+      if (r === "cancelado") return;   // cerraron el menú de compartir a propósito
+      status.textContent = (r === "compartido" ? "PDF listo para enviar · " : "PDF descargado · ") +
+        new Date().toLocaleTimeString();
+      status.classList.remove("warn");
+      status.classList.add("ok");
+    } catch (err) {
+      status.textContent = "No se pudo generar el PDF. Revisen la conexión a internet e intenten de nuevo.";
+      status.classList.remove("ok");
+      status.classList.add("warn");
+    } finally {
+      boton.disabled = false;
+      boton.textContent = textoBoton;
     }
-
-    // Descarga clásica por enlace (escritorio y la mayoría de Android)
-    const blob = new Blob([html], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    status.textContent = "Actividad guardada y descargada · " + new Date().toLocaleTimeString();
-    status.classList.remove("warn");
-    status.classList.add("ok");
   });
 }
 
