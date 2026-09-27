@@ -646,12 +646,14 @@ a.ficha .fmt{font-weight:500; font-size:11.5px; color:var(--ink-faint);}
 a.cita{color:inherit; text-decoration:underline; text-decoration-color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px;}
 a.cita:hover{color:var(--accent-dark);}
 #hoja a{color:var(--accent-dark);}
-body[data-pdf] #hoja{display:block !important; position:absolute; left:0; top:0; width:184mm; background:#fff; z-index:-1;}
+body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; top:0; width:184mm; background:#fff;}
+#pdf-velo{position:fixed; inset:0; z-index:100000; background:var(--bg,#fff); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:600; color:var(--ink-soft,#555);}
 .html2pdf__container #hoja{position:static !important; z-index:auto !important;}
 #hoja{display:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
 #hoja .h-cab{border-bottom:2px solid var(--enf); padding-bottom:6px; margin-bottom:9px;}
 #hoja .h-var{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--enf);}
-#hoja h1{font-family:var(--font-display); font-size:18px; line-height:1.22; margin:2px 0 0;}
+#hoja h1{font-family:var(--font-display); font-size:18px; line-height:1.22; margin:2px 0 0; max-width:none; letter-spacing:0; overflow-wrap:break-word;}
+#hoja{overflow-wrap:break-word;}
 #hoja .h-sub{font-size:11.5px; color:var(--ink-faint); margin-top:3px;}
 #hoja h2{
   font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
@@ -699,6 +701,29 @@ body[data-pdf] #hoja{display:block !important; position:absolute; left:0; top:0;
       border-top:0.6pt solid #c9d6d6; font:700 7.5pt Helvetica,Arial,sans-serif; color:#7d8c91;}
   }
 }
+
+/* Celular y tableta: los rieles laterales no caben, así que dos botones
+   flotantes los abren como paneles: el mapa de variables a la derecha y
+   los filtros a la izquierda. */
+.nav-movil, .nm-cerrar{display:none;}
+@media (max-width:1279px){
+  .nav-movil{display:flex; position:fixed; right:14px; bottom:14px; gap:8px; z-index:40;}
+  .nav-movil button{font:inherit; font-size:14px; font-weight:600; padding:10px 16px; border-radius:999px;
+    border:1px solid var(--accent); background:var(--accent); color:#fff; box-shadow:0 4px 14px rgba(0,0,0,.2); cursor:pointer;}
+  .nav-movil button.sec{background:var(--surface); color:var(--accent);}
+  body.panel-mapa .riel-der{display:block; position:fixed; top:0; right:0; bottom:0; width:min(86vw,360px);
+    background:var(--surface); z-index:60; overflow-y:auto; overscroll-behavior:contain; padding:14px 16px 40px;
+    box-shadow:-6px 0 24px rgba(0,0,0,.22);}
+  body.panel-filtros .controles{position:fixed !important; top:0; left:0; bottom:0; width:min(86vw,360px);
+    margin:0; z-index:60; overflow-y:auto; overscroll-behavior:contain; padding:14px 16px 40px;
+    background:var(--surface); border:0; box-shadow:6px 0 24px rgba(0,0,0,.22);}
+  body.panel-mapa .nm-cerrar, body.panel-filtros .nm-cerrar{display:block; margin:0 0 8px auto; font:inherit;
+    font-size:13px; font-weight:600; background:none; border:1px solid var(--border); border-radius:8px;
+    padding:5px 12px; color:var(--ink-soft); cursor:pointer;}
+  body.panel-mapa .nav-movil, body.panel-filtros .nav-movil{display:none;}
+  #nm-velo{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:55;}
+}
+@media print{ .nav-movil, #nm-velo, .nm-cerrar{display:none !important;} }
 </style>
 </head>
 <body>
@@ -9766,8 +9791,12 @@ async function compartirHoja(id, boton){
   boton.disabled = true; boton.textContent = "Preparando PDF…";
   try {
     await cargarPDF();
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
     window.scrollTo(0, 0);
     document.body.dataset.pdf = "1";
+    const velo = document.createElement("div");
+    velo.id = "pdf-velo"; velo.textContent = "Preparando PDF…";
+    document.body.appendChild(velo);
     // Los navegadores móviles no pintan lienzos de más de ~16 millones de
     // píxeles (el PDF sale en blanco): la resolución se ajusta al largo.
     const hojaEl = document.getElementById("hoja");
@@ -9804,6 +9833,7 @@ async function compartirHoja(id, boton){
     window.print();
   } finally {
     delete document.body.dataset.pdf;
+    document.getElementById("pdf-velo")?.remove();
     window.scrollTo(0, scrollY0);
     boton.disabled = false; boton.textContent = texto;
   }
@@ -10052,5 +10082,32 @@ irAlPlan();
 window.addEventListener("hashchange", irAlPlan);
 </script>
 
+
+<!-- Navegación en celular y tableta: abre el mapa y los filtros como paneles. -->
+<div class="nav-movil">
+  <button type="button" class="sec" id="nm-filtros">Filtros</button>
+  <button type="button" id="nm-mapa">Variables</button>
+</div>
+<div id="nm-velo" hidden></div>
+<script>
+(function(){
+  const b = document.body, velo = document.getElementById("nm-velo");
+  const mapa = document.querySelector(".riel-der"), filtros = document.querySelector(".controles");
+  function cerrar(){ b.classList.remove("panel-mapa", "panel-filtros"); velo.hidden = true; }
+  function abrir(clase){ cerrar(); b.classList.add(clase); velo.hidden = false; }
+  [mapa, filtros].forEach(p => {
+    const x = document.createElement("button");
+    x.type = "button"; x.className = "nm-cerrar"; x.textContent = "Cerrar ×";
+    x.addEventListener("click", cerrar);
+    p.prepend(x);
+  });
+  document.getElementById("nm-mapa").addEventListener("click", () => abrir("panel-mapa"));
+  document.getElementById("nm-filtros").addEventListener("click", () => abrir("panel-filtros"));
+  velo.addEventListener("click", cerrar);
+  document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrar(); });
+  // Elegir una variable en el mapa cierra el panel y lleva hasta ella.
+  mapa.addEventListener("click", ev => { if (ev.target.closest("a")) cerrar(); });
+})();
+</script>
 </body>
 </html>
