@@ -1402,6 +1402,21 @@ REFERENCIAS.push(
   { k: "Niemiec y Tomasulo, 2023", url: "https://doi.org/10.1007/978-3-031-36294-1", ref: "Niemiec, R. M. y Tomasulo, D. (2023). <em>Character strengths and abilities within disabilities: Advances in science and practice</em>. Springer. https://doi.org/10.1007/978-3-031-36294-1" }
 );
 
+/* Ampliación de la biblioteca (septiembre de 2026): manuales propios para
+   maltrato, duelo traumático, consumo, TDAH, conflicto familiar adolescente,
+   afrontamiento (EASE) y habilidades sociales (PEHIS). */
+REFERENCIAS.push(
+  { k: "Kolko y Swenson, 2002", ref: "Kolko, D. J. y Swenson, C. C. (2002). <em>Assessing and treating physically abused children and their families: A cognitive-behavioral approach</em>. Sage." },
+  { k: "Sampl y Kadden, 2001", ref: "Sampl, S. y Kadden, R. (2001). <em>Motivational enhancement therapy and cognitive behavioral therapy for adolescent cannabis users: 5 sessions</em> (Cannabis Youth Treatment Series, vol. 1). Center for Substance Abuse Treatment, SAMHSA." },
+  { k: "Liddle, 2002", ref: "Liddle, H. A. (2002). <em>Multidimensional family therapy for adolescent cannabis users</em> (Cannabis Youth Treatment Series, vol. 5). Center for Substance Abuse Treatment, SAMHSA." },
+  { k: "Gallagher et al., 2014", ref: "Gallagher, R., Abikoff, H. B. y Spira, E. G. (2014). <em>Organizational skills training for children with ADHD: An empirically supported treatment</em>. Guilford Press." },
+  { k: "Sibley, 2017", ref: "Sibley, M. H. (2017). <em>Parent–teen therapy for executive function deficits and ADHD: Building skills and motivation</em>. Guilford Press." },
+  { k: "Barkley y Robin, 2014", ref: "Barkley, R. A. y Robin, A. L. (2014). <em>Your defiant teen: 10 steps to resolve conflict and rebuild your relationship</em> (2.ª ed.). Guilford Press." },
+  { k: "OMS y UNICEF, 2023", ref: "Organización Mundial de la Salud y Fondo de las Naciones Unidas para la Infancia. (2023). <em>Early Adolescent Skills for Emotions (EASE): Group psychological help for young adolescents affected by distress in communities exposed to adversity</em>. OMS." },
+  { k: "Monjas, 2009", ref: "Monjas Casares, M. I. (2009). <em>Programa de enseñanza de habilidades de interacción social (PEHIS) para niños y niñas en edad escolar</em>. CEPE." },
+  { k: "Cohen et al., 2017", ref: "Cohen, J. A., Mannarino, A. P. y Deblinger, E. (2017). <em>Treating trauma and traumatic grief in children and adolescents</em> (2.ª ed.). Guilford Press." }
+);
+
 // Las referencias van en orden alfabético, como en una lista APA.
 REFERENCIAS.sort((a, b) => a.ref.replace(/<[^>]+>/g, "").localeCompare(b.ref.replace(/<[^>]+>/g, ""), "es"));
 
@@ -2717,6 +2732,118 @@ const VARIABLES = [
 },
 {
   cat: "Alteraciones emocionales",
+  t: "Afrontamiento y resiliencia",
+  sub: "Malestar emocional —tristeza, preocupación, irritabilidad, retraimiento— en adolescentes tempranos que viven adversidad: pobreza, violencia, desplazamiento, crisis familiares. No hace falta un diagnóstico. Lo que se entrena son habilidades para reconocer y manejar las emociones, actuar en lugar de retraerse y resolver problemas, junto con apoyo a los cuidadores.",
+  elegir: [
+    "<strong>Si hay un grupo de adolescentes de 10 a 15 años con malestar en un contexto de adversidad</strong> y pocos especialistas, EASE de la OMS y UNICEF ofrece un programa grupal breve que pueden aplicar facilitadores no especialistas con supervisión.",
+    "Si el malestar llega a un trastorno, ver <em>Ansiedad</em> o <em>Depresión</em>."
+  ],
+  planes: [
+    {
+      id: "afr-ease",
+      mod: "pu-infancia",
+      inst: ["SDQ", "PHQ-A"],
+      enf: "tcc",
+      t: "Habilidades emocionales para adolescentes tempranos (EASE)",
+      fuente: "OMS y UNICEF, 2023, caps. 1, 5 y 6",
+      cuando: "Adolescentes de <strong>10 a 15 años</strong> con malestar emocional en comunidades expuestas a la adversidad, en el colegio o en la comunidad. Sus cuidadores pueden asistir a sesiones propias.",
+      respaldo: "EASE redujo los problemas internalizantes en adolescentes de 10 a 15 años con malestar y adversidad, en dos ensayos aleatorizados en contextos comunitarios: con refugiados sirios en Jordania y en colegios públicos de una zona rural de Pakistán (OMS y UNICEF, 2023, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> siete sesiones grupales para adolescentes y tres para cuidadores, de alrededor de una hora y media, repartidas a lo largo del programa. Lo aplican facilitadores no especialistas entrenados y supervisados (OMS y UNICEF, 2023, cap. 1).",
+      esc: ["colegio", "comunidad", "proteccion"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender mis emociones",
+          tecs: ["educacion-emocional", "termometro-emociones"],
+          obj: "Reconocer las emociones y cómo se sienten en el cuerpo.",
+          pasos: [
+            "Nombrar las emociones y relacionarlas con situaciones y sensaciones.",
+            "Explicar cómo la adversidad afecta lo que se siente."
+          ],
+          casa: "Notar y nombrar una emoción cada día.",
+          avance: "El adolescente nombra sus emociones.",
+          fuente: "OMS y UNICEF, 2023, sesión 1 de adolescentes"
+        },
+        {
+          t: "Calmar mi cuerpo",
+          tecs: ["respiracion-diafragmatica", "relajacion"],
+          obj: "Reducir la activación física del malestar.",
+          pasos: [
+            "Practicar técnicas de respiración y relajación.",
+            "Planear cuándo usarlas."
+          ],
+          casa: "Practicar la técnica de calma a diario.",
+          avance: "El adolescente se calma con la técnica.",
+          fuente: "OMS y UNICEF, 2023, sesión 2 de adolescentes"
+        },
+        {
+          t: "Cambiar mis acciones",
+          tecs: ["activacion-conductual", "programacion-actividades"],
+          obj: "Salir del retraimiento haciendo actividades que suban el ánimo.",
+          pasos: [
+            "Explicar el ciclo entre retraerse y sentirse peor.",
+            "Elegir y programar actividades agradables o con sentido, en pasos pequeños.",
+            "Revisar cómo cambió el ánimo."
+          ],
+          casa: "Hacer las actividades programadas.",
+          avance: "El adolescente retoma actividades.",
+          fuente: "OMS y UNICEF, 2023, sesiones 3 y 4 de adolescentes"
+        },
+        {
+          t: "Manejar mis problemas",
+          tecs: ["solucion-problemas", "problemas-solubles"],
+          obj: "Resolver los problemas que se pueden cambiar y afrontar los que no.",
+          pasos: [
+            "Separar los problemas que se pueden resolver de los que no.",
+            "Seguir los pasos de solución de problemas y pedir ayuda cuando haga falta.",
+            "Usar la calma y las actividades para los problemas que no se pueden cambiar."
+          ],
+          casa: "Aplicar los pasos a un problema real.",
+          avance: "El adolescente resuelve un problema propio.",
+          fuente: "OMS y UNICEF, 2023, sesiones 5 y 6 de adolescentes"
+        },
+        {
+          t: "Futuros más brillantes",
+          tecs: ["prevencion-recaidas"],
+          obj: "Repasar las habilidades y planear cómo seguir usándolas.",
+          pasos: [
+            "Repasar las habilidades aprendidas.",
+            "Identificar a quién acudir y qué hacer en momentos difíciles."
+          ],
+          casa: "Plan personal de habilidades.",
+          avance: "El adolescente tiene un plan para seguir usándolas.",
+          fuente: "OMS y UNICEF, 2023, sesión 7 de adolescentes"
+        },
+        {
+          t: "Sesiones para cuidadores",
+          tecs: ["crianza-emocional", "elogio-especifico"],
+          obj: "Que los cuidadores entiendan las emociones fuertes, elogien y se cuiden a sí mismos.",
+          pasos: [
+            "Entender las emociones intensas de los adolescentes y cómo responder.",
+            "Usar el poder del elogio.",
+            "Cuidarse como cuidadores y pensar en el futuro."
+          ],
+          casa: "Elogiar una conducta del adolescente cada día.",
+          avance: "Los cuidadores responden con más calma y elogian más.",
+          fuente: "OMS y UNICEF, 2023, sesiones 1 a 3 de cuidadores"
+        }
+      ],
+      medir: [
+        "<strong>SDQ</strong> o <strong>PHQ-A</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> uno de los ensayos se hizo en colegios públicos de una zona rural (OMS y UNICEF, 2023, cap. 1).",
+        "<strong>Protección:</strong> los adolescentes con riesgos de protección agudos, como violencia familiar, se remiten primero a protección; pueden recibir EASE cuando ya tienen ese apoyo (OMS y UNICEF, 2023, cap. 1)."
+      ],
+      cuidado: [
+        "No es adecuado para adolescentes en riesgo inminente de autolesión o suicidio, con conductas que alteren el grupo o con trastornos graves: requieren otra atención (OMS y UNICEF, 2023, cap. 1).",
+        "Debe haber rutas de remisión para protección y riesgo suicida donde se aplique (OMS y UNICEF, 2023, cap. 1 y anexo 1)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones emocionales",
   t: "Autolesión y riesgo suicida",
   sub: "Pensamientos de muerte o de suicidio, intentos de suicidio y autolesiones sin intención de morir, como cortarse o golpearse para aliviar un malestar. Lo que se interviene es el riesgo inmediato y lo que lleva al adolescente a ver la autolesión o el suicidio como la salida: emociones que no sabe manejar, problemas que siente sin solución, desesperanza y conflictos en la familia.",
   elegir: [
@@ -3562,6 +3689,97 @@ const VARIABLES = [
         "Solo, tiene menos efecto que combinado con el entrenamiento a padres; cuando hay un padre disponible, se hacen ambos (McMahon y Frick, 2019).",
         "Si el niño no responde, se revisa si hay problemas de atención, de lenguaje o de aprendizaje que dificultan usar los pasos."
       ]
+    },
+    {
+      id: "opos-ydt",
+      mod: "coercion",
+      inst: ["ECBI", "SDQ"],
+      enf: "pad",
+      t: "Diez pasos con padres de adolescentes desafiantes",
+      fuente: "Barkley y Robin, 2014, pasos 1 a 10",
+      cuando: "Un adolescente de <strong>12 a 17 años</strong> desafía, discute y no cumple las normas, y el conflicto con los padres se ha vuelto diario. Los padres están dispuestos a cambiar su forma de responder.",
+      respaldo: "Es la versión para padres del programa de Barkley y Robin para adolescentes desafiantes, que combina el manejo de contingencias con el entrenamiento en solución de problemas y comunicación entre padres y adolescentes. El libro es un material de autoayuda para padres, no un manual de terapeuta; los autores basan el programa en sus estudios con adolescentes con conducta desafiante y TDAH (Barkley y Robin, 2014, introducción).",
+      secuencia: "<strong>Secuencia:</strong> diez pasos, de unas dos semanas cada uno: primero se construye lo positivo y el manejo de las consecuencias (pasos 1 a 6), luego se trabajan la solución de problemas, la comunicación y las creencias irracionales (pasos 7 a 9), y al final se consolida (paso 10). Se distinguen los adolescentes de 12 a 15 años de los mayores (Barkley y Robin, 2014).",
+      esc: ["primer-nivel", "salud-mental", "comunidad"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Tiempo positivo a solas",
+          tecs: ["juego-especial", "elogio-especifico"],
+          obj: "Recuperar momentos positivos con el adolescente antes de trabajar las consecuencias.",
+          pasos: [
+            "Programar tiempo a solas con el adolescente en una actividad que elija, sin instrucciones ni críticas.",
+            "Notar y elogiar las conductas positivas."
+          ],
+          casa: "Tiempo positivo a solas varias veces por semana.",
+          avance: "Hay momentos positivos regulares entre padres y adolescente.",
+          fuente: "Barkley y Robin, 2014, paso 1"
+        },
+        {
+          t: "Manejo de las consecuencias",
+          tecs: ["instrucciones-eficaces", "contrato-conductual", "sistema-puntos", "costo-respuesta"],
+          obj: "Ser específicos, consistentes y equilibrados con las normas y las consecuencias.",
+          pasos: [
+            "Dar instrucciones claras y ligar los privilegios al cumplimiento.",
+            "Usar contratos y sistemas de puntos para que el adolescente gane privilegios.",
+            "Solo después, introducir multas o castigos proporcionados, como restringir salidas.",
+            "Aplicarlo a otros problemas y a la conducta y las tareas del colegio."
+          ],
+          casa: "Contrato o sistema de puntos acordado.",
+          avance: "Baja el incumplimiento y los padres aplican consecuencias sin gritar.",
+          fuente: "Barkley y Robin, 2014, pasos 2 a 6"
+        },
+        {
+          t: "Solución de problemas en familia",
+          tecs: ["pasos-solucion-problemas"],
+          obj: "Negociar los temas que no son innegociables en lugar de imponerlos.",
+          pasos: [
+            "Distinguir las normas innegociables —drogas, alcohol, legalidad— de los temas negociables.",
+            "Definir el problema, generar opciones, evaluarlas juntos y acordar una solución.",
+            "Probar la solución y revisarla."
+          ],
+          casa: "Resolver un tema de conflicto con los pasos.",
+          avance: "Padres y adolescente resuelven juntos conflictos concretos.",
+          fuente: "Barkley y Robin, 2014, paso 7"
+        },
+        {
+          t: "Comunicación y creencias poco razonables",
+          tecs: ["entrenamiento-comunicacion", "reestructuracion-cognitiva"],
+          obj: "Hablar y escuchar con respeto, y revisar las expectativas exageradas de ambas partes.",
+          pasos: [
+            "Practicar la escucha activa y hablar con honestidad y respeto, sin sarcasmo ni acusaciones.",
+            "Identificar las creencias poco razonables de los padres —por ejemplo, que el adolescente lo hace a propósito para arruinarles la vida— y las del adolescente —que las normas son injustas—.",
+            "Reemplazarlas por expectativas más realistas."
+          ],
+          casa: "Registrar una discusión y cómo se comunicaron.",
+          avance: "Las discusiones son menos hostiles.",
+          fuente: "Barkley y Robin, 2014, pasos 8 y 9"
+        },
+        {
+          t: "Mantener los cambios",
+          tecs: ["prevencion-recaidas"],
+          obj: "Sostener lo logrado y otorgar independencia de forma gradual.",
+          pasos: [
+            "Revisar lo que funcionó y lo que falta.",
+            "Anticipar los retrocesos y cómo volver a las herramientas.",
+            "Ir concediendo independencia a medida que el adolescente muestra responsabilidad."
+          ],
+          casa: "Plan familiar de mantenimiento.",
+          avance: "La familia sostiene los cambios.",
+          fuente: "Barkley y Robin, 2014, paso 10"
+        }
+      ],
+      medir: [
+        "<strong>ECBI</strong> o <strong>SDQ</strong> al inicio y al final.",
+        "Registro de conflictos en casa."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> como libro de autoayuda, puede acompañarse con sesiones breves de revisión con el profesional."
+      ],
+      cuidado: [
+        "Si hay consumo, violencia grave o riesgo suicida, se atienden primero con el plan correspondiente.",
+        "Si el adolescente tiene TDAH, se combina con el tratamiento del TDAH."
+      ]
     }
   ]
 },
@@ -3920,10 +4138,10 @@ const VARIABLES = [
       inst: ["CRAFFT"],
       enf: "tcc",
       t: "Entrevista motivacional y terapia cognitivo-conductual",
-      fuente: "Chung y Bachrach, 2019",
+      fuente: "Chung y Bachrach, 2019 · Sampl y Kadden, 2001",
       cuando: "Un <strong>adolescente</strong> que consume alcohol o marihuana con problemas asociados, ambivalente frente a cambiar, que puede asistir a sesiones individuales o de grupo.",
       respaldo: "Combinadas, la entrevista motivacional y la terapia cognitivo-conductual son un tratamiento bien establecido para el consumo en adolescentes; la entrevista motivacional sola es probablemente eficaz. En promedio, los adolescentes en tratamiento reducen su consumo, con mejores resultados para la marihuana que para el alcohol, aunque las ganancias tienden a desvanecerse sin cuidado continuado (Chung y Bachrach, 2019).",
-      secuencia: "<strong>Secuencia:</strong> un ejemplo de ocho sesiones, dos motivacionales y seis cognitivo-conductuales; la duración y el orden se ajustan a las necesidades del adolescente, y la motivación se revisa en todo el tratamiento (Chung y Bachrach, 2019, tabla 19.2).",
+      secuencia: "<strong>Secuencia:</strong> un ejemplo de ocho sesiones, dos motivacionales y seis cognitivo-conductuales; la duración y el orden se ajustan a las necesidades del adolescente, y la motivación se revisa en todo el tratamiento (Chung y Bachrach, 2019, tabla 19.2). La versión breve del manual del proyecto CYT tiene cinco sesiones: dos individuales de entrevista motivacional —construir la motivación y fijar metas— y tres grupales cognitivo-conductuales —rechazar el consumo, ampliar la red de apoyo y las actividades agradables, y planear emergencias y afrontar recaídas— (Sampl y Kadden, 2001).",
       esc: ["primer-nivel", "salud-mental", "colegio"],
       edad: ["12-17"],
       actividades: [
@@ -4047,10 +4265,10 @@ const VARIABLES = [
       inst: ["CRAFFT"],
       enf: "fam",
       t: "Terapia familiar multidimensional",
-      fuente: "Chung y Bachrach, 2019",
+      fuente: "Chung y Bachrach, 2019 · Liddle, 2002",
       cuando: "Un <strong>adolescente</strong> con consumo y problemas en varios ámbitos —familia, colegio, justicia—, con conflictos familiares y supervisión débil.",
       respaldo: "Las terapias familiares son un enfoque bien establecido para el consumo en adolescentes. Se propone que la mejora de la crianza, en especial la supervisión, impulsa la reducción del consumo. En esta terapia, tanto las técnicas centradas en la familia como las centradas en el adolescente predijeron los resultados, lo que apoya integrarlas (Chung y Bachrach, 2019).",
-      secuencia: "<strong>Secuencia:</strong> tres fases en 12 a 16 sesiones, en la consulta, la casa o el colegio, con sesiones solo con el adolescente, solo con los padres y con toda la familia, y coordinación con el colegio o la justicia (Chung y Bachrach, 2019).",
+      secuencia: "<strong>Secuencia:</strong> tres fases en 12 a 16 sesiones, en la consulta, la casa o el colegio, con sesiones solo con el adolescente, solo con los padres y con toda la familia, y coordinación con el colegio o la justicia (Chung y Bachrach, 2019). El manual del proyecto CYT lo organiza en cuatro módulos —adolescente, padres, interacción familiar y sistemas fuera de la familia— y tres etapas a lo largo de 12 semanas: construir la base (unas tres semanas), trabajar los temas, y sellar los cambios y salir (Liddle, 2002).",
       esc: ["salud-mental", "comunidad", "colegio"],
       edad: ["12-17"],
       actividades: [
@@ -4338,6 +4556,84 @@ const VARIABLES = [
         "No reemplaza las medidas del colegio contra el acoso: los autores lo presentan como complemento de la modificación de la conducta, no como alternativa (Enright y Fitzgibbons, 2015, cap. 12).",
         "Perdonar no implica que la víctima vuelva a relacionarse con quien la acosa ni que se le quite importancia al acoso.",
         "Los estudios son pocos y pequeños, y del grupo que creó el programa."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones conductuales",
+  t: "Habilidades sociales",
+  sub: "Dificultades para relacionarse con otros niños y con los adultos: no saber iniciar una conversación o unirse a un juego, no pedir ni decir que no, no expresar lo que se siente, resolver los conflictos con agresión o retirándose. Pueden aparecer solas o con timidez, TDAH, discapacidad intelectual o problemas de conducta. Se enseñan como cualquier otra conducta: de forma directa, con práctica y en los lugares donde se usan.",
+  elegir: [
+    "<strong>Si el trabajo se puede hacer en el colegio y en la casa</strong>, el PEHIS ofrece treinta habilidades en seis áreas, con fichas para el profesor y para la familia; se ha aplicado a niños con y sin dificultades en la escuela ordinaria y de integración.",
+    "Si las dificultades vienen con agresión o acoso, ver también <em>Agresividad e ira</em> y <em>Acoso escolar</em>; si con autismo, los planes de <em>Autismo</em>."
+  ],
+  planes: [
+    {
+      id: "hhss-pehis",
+      mod: "procesamiento-social",
+      inst: ["SDQ"],
+      enf: "col",
+      t: "Programa de enseñanza de habilidades de interacción social (PEHIS)",
+      fuente: "Monjas, 2009, caps. 2 a 4",
+      cuando: "Niños y niñas <strong>en edad escolar</strong> con dificultades en las relaciones con sus compañeros o con los adultos: aislados, rechazados, con conductas agresivas o muy tímidos.",
+      respaldo: "Se ha aplicado con niños sin problemas, con discapacidad intelectual y con problemas de comportamiento, en colegios ordinarios y de integración y en los hogares. Las investigaciones de la autora muestran que es eficaz para enseñar competencia social a niños en edad escolar con dificultades en las relaciones, y profesores y familias lo valoran como útil y fácil de aplicar (Monjas, 2009, prólogo e introducción).",
+      secuencia: "<strong>Secuencia:</strong> treinta habilidades en seis áreas: básicas de interacción, para hacer amigos y amigas, conversacionales, relacionadas con sentimientos, emociones y opiniones, de solución de problemas interpersonales y para relacionarse con los adultos. Cada sesión se centra en una habilidad; el número y la duración de las sesiones los decide el profesor. Cada habilidad tiene una ficha para el colegio y otra para la casa (Monjas, 2009, caps. 2 y 3).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Evaluación y selección de habilidades",
+          tecs: ["entrevista-clinica", "observacion-interaccion"],
+          obj: "Identificar qué habilidades le faltan al niño y en qué situaciones.",
+          pasos: [
+            "Evaluar con información del niño, los padres, los profesores y los compañeros.",
+            "Observar al niño en situaciones reales de interacción.",
+            "Seleccionar las habilidades y el orden de enseñanza."
+          ],
+          casa: "Los padres registran situaciones sociales difíciles.",
+          avance: "Hay una lista de habilidades objetivo.",
+          fuente: "Monjas, 2009, cap. 4"
+        },
+        {
+          t: "Sesión de enseñanza de una habilidad",
+          tecs: ["modelado", "juego-roles", "retroalimentacion", "reforzamiento-positivo"],
+          obj: "Enseñar de forma directa cada habilidad.",
+          pasos: [
+            "Revisar las tareas de la sesión anterior y presentar la habilidad.",
+            "Evaluar el nivel inicial y dar instrucción verbal, con diálogo y discusión.",
+            "Modelar la habilidad, con el profesor o con compañeros competentes.",
+            "Ensayar y practicar; dar retroalimentación y refuerzo; repetir lo necesario.",
+            "Recapitular y asignar tareas para la casa."
+          ],
+          casa: "Tarea de la ficha de casa para la habilidad de la semana.",
+          avance: "El niño ejecuta la habilidad en la sesión.",
+          fuente: "Monjas, 2009, cap. 3"
+        },
+        {
+          t: "Generalización en la casa y en el colegio",
+          tecs: ["generalizacion", "elogio-especifico"],
+          obj: "Que el niño use las habilidades en situaciones reales.",
+          pasos: [
+            "Usar la ficha de casa para que la familia enseñe y refuerce la misma habilidad.",
+            "Aprovechar las situaciones naturales del aula y el recreo para practicar.",
+            "Reforzar el uso espontáneo de la habilidad."
+          ],
+          casa: "Practicar la habilidad con la familia.",
+          avance: "El niño usa las habilidades fuera de la sesión.",
+          fuente: "Monjas, 2009, caps. 2 y 3"
+        }
+      ],
+      medir: [
+        "<strong>SDQ</strong> (escala de problemas con compañeros y prosocial) al inicio y al final.",
+        "Observación de las habilidades objetivo en el aula y el recreo."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> lo aplican los profesores dentro del horario escolar, idealmente con la familia (Monjas, 2009, cap. 3)."
+      ],
+      cuidado: [
+        "Si el niño es víctima de acoso, la protección y la intervención en el grupo van primero.",
+        "Cada habilidad puede dividirse en conductas más pequeñas para enseñarla por partes, lo que ayuda con niños con más dificultades (Monjas, 2009, cap. 2)."
       ]
     }
   ]
@@ -4658,6 +4954,160 @@ const VARIABLES = [
       cuidado: [
         "Los beneficios dependen de la práctica frecuente y prolongada: pocas sesiones rara vez alcanzan (Evans et al., 2019).",
         "Los adolescentes con conducta oposicionista o a quienes no se les pide lo esperado para su edad suelen resistirse y mejorar poco (Evans et al., 2019)."
+      ]
+    },
+    {
+      id: "tdah-ost",
+      mod: "manejo-conductual",
+      inst: ["Vanderbilt", "SNAP-IV"],
+      enf: "cond",
+      t: "Entrenamiento en habilidades organizativas (OST)",
+      fuente: "Gallagher et al., 2014, caps. 1 a 3 y sesiones 1 a 20",
+      cuando: "Un niño con TDAH de <strong>tercero a quinto de primaria</strong> (8 a 11 años) no anota las tareas, pierde los útiles y los papeles, no calcula el tiempo y no sabe cómo empezar los trabajos largos, y eso genera conflictos en casa y bajo rendimiento.",
+      respaldo: "En un ensayo aleatorizado con 158 niños con TDAH en dos centros, el 60 % de los que recibieron OST dejó de tener dificultades organizativas en rango clínico, frente al 3 % del grupo en lista de espera; mejoraron también el conflicto familiar y el rendimiento, y las mejorías en el colegio se mantuvieron al año escolar siguiente. Los efectos fueron similares con o sin medicación (Gallagher et al., 2014, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> 20 sesiones, dos por semana durante 10 a 12 semanas, con el niño y su padre o madre; no se recomiendan menos de dos por semana. Cuatro módulos —anotar las tareas, manejar los materiales, manejar el tiempo y planear las tareas— y un componente para que padres y docentes recuerden, supervisen, elogien y premien las habilidades (Gallagher et al., 2014, caps. 1 y 3).",
+      esc: ["primer-nivel", "salud-mental", "colegio"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Orientación y manejo conductual para padres",
+          tecs: ["psicoeducacion", "sistema-puntos", "elogio-especifico"],
+          obj: "Preparar a la familia y poner en marcha el sistema de recordatorios, supervisión, elogio y premios.",
+          pasos: [
+            "Presentar el programa al niño y a los padres.",
+            "Enseñar a los padres, en una sesión solo para ellos, las estrategias de aprendizaje social para motivar al niño.",
+            "Acordar con el docente cómo recordará, supervisará y elogiará las habilidades en el colegio."
+          ],
+          casa: "Poner en marcha el sistema de puntos en casa.",
+          avance: "Padres y docente usan el sistema de recordatorios y premios.",
+          fuente: "Gallagher et al., 2014, sesiones 1 y 2"
+        },
+        {
+          t: "Anotar las tareas",
+          tecs: ["entrenamiento-organizacion", "nota-casa-colegio"],
+          obj: "Que el niño anote todas las tareas y fechas de evaluación.",
+          pasos: [
+            "Enseñar a usar el registro diario de tareas y el calendario de tareas y evaluaciones.",
+            "Revisar con el docente que el registro esté completo."
+          ],
+          casa: "Registro diario de tareas revisado por el padre.",
+          avance: "El niño anota las tareas de forma completa.",
+          fuente: "Gallagher et al., 2014, sesiones 3 y 4"
+        },
+        {
+          t: "Manejar los materiales",
+          tecs: ["entrenamiento-organizacion"],
+          obj: "Que el niño lleve y traiga lo que necesita y tenga los papeles en su lugar.",
+          pasos: [
+            "Organizar los papeles del colegio en un sistema de carpetas.",
+            "Usar una lista de chequeo para la mochila.",
+            "Preparar el lugar de trabajo en casa."
+          ],
+          casa: "Lista de chequeo de la mochila cada día.",
+          avance: "El niño lleva los materiales completos.",
+          fuente: "Gallagher et al., 2014, sesiones 5 a 9"
+        },
+        {
+          t: "Manejar el tiempo",
+          tecs: ["entrenamiento-organizacion", "manipulacion-antecedentes"],
+          obj: "Que el niño calcule el tiempo de las tareas y planee su tarde.",
+          pasos: [
+            "Entender el tiempo y usar calendarios.",
+            "Medir cuánto tardan las tareas y compararlo con lo estimado.",
+            "Planear el tiempo en casa y en el colegio, evitar distracciones y organizar las rutinas."
+          ],
+          casa: "Plan de la tarde con tiempos estimados y reales.",
+          avance: "El niño estima mejor el tiempo y cumple su plan.",
+          fuente: "Gallagher et al., 2014, sesiones 10 a 14"
+        },
+        {
+          t: "Planear las tareas y graduarse",
+          tecs: ["pasos-solucion-problemas", "prevencion-recaidas"],
+          obj: "Dividir los trabajos largos en pasos y sostener las habilidades al terminar.",
+          pasos: [
+            "Dividir una tarea en pasos, con los materiales y el tiempo de cada uno.",
+            "Ubicar los pasos en el calendario y revisar el avance en los proyectos largos.",
+            "Resumir lo aprendido con un «comercial» personal y hacer la graduación."
+          ],
+          casa: "Plan por pasos de un trabajo largo.",
+          avance: "El niño planea y termina un trabajo largo.",
+          fuente: "Gallagher et al., 2014, sesiones 15 a 20"
+        }
+      ],
+      medir: [
+        "<strong>Vanderbilt</strong> o <strong>SNAP-IV</strong> y registro de las tareas completas.",
+        "Escala de habilidades organizativas del programa (COSS), cada semana si está disponible."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> el docente es parte del programa: recuerda, supervisa y elogia las habilidades (Gallagher et al., 2014, cap. 1)."
+      ],
+      cuidado: [
+        "Si hay dificultades intelectuales o de lenguaje importantes, el ritmo y el material pueden necesitar ajustes (Gallagher et al., 2014, cap. 3)."
+      ]
+    },
+    {
+      id: "tdah-stand",
+      mod: "manejo-conductual",
+      inst: ["Vanderbilt"],
+      enf: "em",
+      t: "Terapia padres–adolescente para funciones ejecutivas (STAND)",
+      fuente: "Sibley, 2017, caps. 2 y 4 a 7",
+      cuando: "Un adolescente con TDAH o con problemas de atención, funciones ejecutivas y motivación tiene <strong>problemas escolares</strong> —no anota las tareas, no planea, no estudia— y la relación con los padres se ha vuelto un ciclo de control y conflicto alrededor del colegio.",
+      respaldo: "En el ensayo aleatorizado del programa, las mejorías del adolescente se mantuvieron seis meses después del tratamiento, aunque los padres redujeron algo la estructura en casa (Sibley, 2017, cap. 2).",
+      secuencia: "<strong>Secuencia:</strong> sesiones de una hora con el adolescente y su padre o madre, en módulos: de compromiso (entender a la familia, definir metas, habilidades de colaboración y estructura en casa), de habilidades (anotar tareas, plan de tareas, revisiones de organización, manejo del tiempo, estudio) y de movilización (involucrar al colegio, formar hábitos, plan de acción y mantener el impulso). La entrevista motivacional atraviesa todo el programa; no todas las familias necesitan todos los módulos (Sibley, 2017, caps. 2 y 4).",
+      esc: ["primer-nivel", "salud-mental", "colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Módulos de compromiso",
+          tecs: ["entrevista-motivacional", "hoja-metas", "reglas-casa"],
+          obj: "Motivar al adolescente y a los padres, fijar metas y crear estructura en casa.",
+          pasos: [
+            "Conocer a la familia y presentar la formulación del caso.",
+            "Definir metas con el adolescente y los padres, resolviendo la ambivalencia con entrevista motivacional.",
+            "Entrenar habilidades de colaboración entre padres y adolescente.",
+            "Crear estructura en casa: horario de estudio, supervisión y privilegios ligados al esfuerzo."
+          ],
+          casa: "Poner en marcha la estructura acordada.",
+          avance: "Hay metas compartidas y una estructura en casa.",
+          fuente: "Sibley, 2017, caps. 4 y 5"
+        },
+        {
+          t: "Módulos de habilidades",
+          tecs: ["entrenamiento-organizacion", "toma-apuntes"],
+          obj: "Entrenar las habilidades escolares que el adolescente necesita.",
+          pasos: [
+            "Anotar las tareas y hacer un plan de tareas.",
+            "Hacer revisiones periódicas de la organización del morral y los cuadernos.",
+            "Usar estrategias de manejo del tiempo y de estudio.",
+            "Acordar cómo integrar cada habilidad en la rutina y cómo la supervisarán los padres."
+          ],
+          casa: "Uso diario de la habilidad de la semana, con supervisión.",
+          avance: "El adolescente usa las habilidades en su rutina.",
+          fuente: "Sibley, 2017, cap. 6"
+        },
+        {
+          t: "Módulos de movilización",
+          tecs: ["consultoria-docente", "prevencion-recaidas"],
+          obj: "Involucrar al colegio y convertir las habilidades en hábitos duraderos.",
+          pasos: [
+            "Involucrar al colegio con los apoyos que puede ofrecer.",
+            "Formar hábitos y hacer un plan de acción para después del tratamiento.",
+            "Revisar lo aprendido y cómo mantener el impulso."
+          ],
+          casa: "Plan de acción escrito.",
+          avance: "La familia tiene un plan para sostener los cambios.",
+          fuente: "Sibley, 2017, cap. 7"
+        }
+      ],
+      medir: [
+        "<strong>Vanderbilt</strong> y registro de tareas entregadas y calificaciones."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> un módulo se dedica a involucrar al colegio (Sibley, 2017, cap. 7)."
+      ],
+      cuidado: [
+        "Si el adolescente no se compromete, se vuelve a la entrevista motivacional antes de entrenar habilidades (Sibley, 2017, caps. 4 y 8)."
       ]
     }
   ]
@@ -5925,6 +6375,96 @@ const VARIABLES = [
         "Los adolescentes con más problemas de conducta mejoran sobre todo con las habilidades; los que tienen más ansiedad o tristeza, con el trabajo de trauma y duelo (Kaplow et al., 2019).",
         "Quienes recibieron solo las habilidades y el cierre, sin los módulos de trauma y duelo, se beneficiaron menos: acortar el programa reduce su efecto (Kaplow et al., 2019)."
       ]
+    },
+    {
+      id: "duelo-tfcbt",
+      mod: "aprendizaje-trauma",
+      inst: ["UCLA-PTSD-RI", "Lista-PCBD"],
+      enf: "tcc",
+      t: "TF-CBT para el duelo traumático",
+      fuente: "Cohen et al., 2017, caps. 4, 6 a 15 y 17 a 21",
+      cuando: "Un niño o adolescente perdió a alguien importante en <strong>circunstancias traumáticas</strong> —violencia, accidente, suicidio, muerte súbita o una enfermedad vivida como traumática— y los síntomas de estrés postraumático le impiden hacer el duelo: evita todo lo que le recuerda al fallecido, no puede recordarlo sin revivir la muerte.",
+      respaldo: "Tres estudios mostraron que dar primero los componentes centrados en el trauma y después los centrados en el duelo mejoró tanto el estrés postraumático como el duelo desadaptativo; los componentes de trauma actuaron sobre todo en el estrés postraumático y los de duelo, en el duelo (Cohen et al., 2017, introducción a los componentes de duelo). En los estudios con niños de 6 a 17 años hubo mejorías en estrés postraumático, ansiedad, depresión, conducta y duelo traumático, y en los síntomas de los padres (Cohen et al., 2017, cap. 4).",
+      secuencia: "<strong>Secuencia:</strong> en los estudios, 12 a 16 sesiones: primero los componentes de trauma —psicoeducación, crianza, relajación, expresión emocional, afrontamiento cognitivo, relato del trauma, exposición en vivo, sesiones conjuntas y seguridad— y después los de duelo. Se trabaja con el niño y con el cuidador no agresor, por separado y juntos (Cohen et al., 2017, caps. 3 y 4).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Componentes centrados en el trauma",
+          tecs: ["psicoeducacion", "relajacion", "triangulo-cognitivo", "relato-trauma"],
+          obj: "Resolver los síntomas de trauma que bloquean el duelo.",
+          pasos: [
+            "Psicoeducación sobre el trauma y habilidades de crianza con el cuidador.",
+            "Relajación, expresión y modulación emocional, y afrontamiento cognitivo.",
+            "Relato y procesamiento de la muerte traumática, exposición en vivo a los recordatorios y sesión conjunta para compartir el relato.",
+            "Planear la seguridad futura."
+          ],
+          casa: "Practicar las habilidades de la semana con el cuidador.",
+          avance: "Disminuyen los síntomas de estrés postraumático.",
+          fuente: "Cohen et al., 2017, caps. 6 a 15"
+        },
+        {
+          t: "Psicoeducación sobre el duelo",
+          tecs: ["psicoeducacion", "facilitacion-duelo"],
+          obj: "Nombrar la muerte con palabras claras y entender el duelo.",
+          pasos: [
+            "Hablar de la muerte con palabras concretas y corregir ideas erróneas según la edad.",
+            "Explicar que el duelo no es lineal y no se «resuelve» al final del tratamiento.",
+            "Acompañar al cuidador en su propio duelo."
+          ],
+          casa: "Leer con el cuidador material sobre el duelo.",
+          avance: "El niño habla de la muerte con palabras claras.",
+          fuente: "Cohen et al., 2017, cap. 17"
+        },
+        {
+          t: "Lo que extraño y lo que no extraño",
+          tecs: ["expresion-emocional", "relato-perdida"],
+          obj: "Hacer el duelo de la pérdida y resolver los sentimientos ambivalentes hacia el fallecido.",
+          pasos: [
+            "Ayudar al niño a nombrar lo que extraña de la persona y de la relación.",
+            "Nombrar también lo que no extraña, y resolver la culpa o la rabia.",
+            "Despedirse de lo que ya no será posible."
+          ],
+          casa: "Una carta o un dibujo sobre lo que extraña.",
+          avance: "El niño expresa sentimientos variados hacia el fallecido.",
+          fuente: "Cohen et al., 2017, cap. 18"
+        },
+        {
+          t: "Preservar los recuerdos positivos",
+          tecs: ["vinculos-continuos"],
+          obj: "Poder recordar a la persona sin que el recuerdo lleve a la muerte traumática.",
+          pasos: [
+            "Recoger recuerdos positivos con fotos, objetos e historias.",
+            "Armar una caja de recuerdos o un álbum con el cuidador."
+          ],
+          casa: "Agregar un recuerdo a la caja o al álbum.",
+          avance: "El niño recuerda a la persona con afecto, sin angustia traumática.",
+          fuente: "Cohen et al., 2017, cap. 19"
+        },
+        {
+          t: "Redefinir la relación y cerrar",
+          tecs: ["vinculos-continuos", "apoyo-social", "prevencion-recaidas"],
+          obj: "Pasar de una relación de interacción a una de memoria, invertir en las relaciones presentes y cerrar el tratamiento.",
+          pasos: [
+            "Redefinir la relación con el fallecido como una relación de memoria.",
+            "Comprometerse con las relaciones presentes.",
+            "Revisar el tratamiento y anticipar las fechas y recordatorios difíciles."
+          ],
+          casa: "Plan para las fechas difíciles.",
+          avance: "El niño mantiene el vínculo con el fallecido y retoma sus relaciones.",
+          fuente: "Cohen et al., 2017, caps. 20 y 21"
+        }
+      ],
+      medir: [
+        "<strong>UCLA-PTSD-RI</strong> para el estrés postraumático y la <strong>lista de duelo persistente complejo</strong> para el duelo, al inicio, al pasar a los componentes de duelo y al final."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> en países de bajos recursos se ha aplicado con consejeros no profesionales entrenados (Cohen et al., 2017, cap. 4)."
+      ],
+      cuidado: [
+        "Se evalúa el riesgo suicida y el consumo antes de empezar (Cohen et al., 2017, cap. 2).",
+        "Si el cuidador también perdió a la persona, se atiende su duelo o se deriva."
+      ]
     }
   ]
 },
@@ -6262,6 +6802,99 @@ const VARIABLES = [
       ],
       cuidado: [
         "Los hogares grupales y las instituciones tienen poca evidencia de efectividad y riesgo de efectos adversos; al reducir las rupturas de la ubicación, este programa sostiene la opción menos restrictiva (Wolfe y Kelly, 2019)."
+      ]
+    },
+    {
+      id: "maltrato-afcbt",
+      mod: "coercion",
+      inst: ["ECBI", "SDQ"],
+      enf: "tcc",
+      t: "Terapia cognitivo-conductual centrada en la familia (AF-CBT)",
+      fuente: "Kolko y Swenson, 2002, caps. 3 y 6 a 16",
+      cuando: "Un niño o adolescente <strong>en edad escolar</strong> que sufrió maltrato físico y el padre o la madre que lo maltrató, cuando el plan es que sigan o vuelvan a vivir juntos. Hay agresividad del niño, conflicto familiar o riesgo de que el maltrato se repita.",
+      respaldo: "En un estudio con niños en edad escolar y sus padres, la terapia cognitivo-conductual individual y la terapia familiar mejoraron más que los servicios comunitarios habituales la violencia del niño hacia el padre, los problemas externalizantes del niño, el malestar y el riesgo de maltrato del padre, y el conflicto y la cohesión familiar (Kolko, 1996, en Kolko y Swenson, 2002, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> sesiones individuales del niño y del padre en paralelo, un proceso de clarificación que hace de puente, y sesiones familiares. Puede hacerse en consultorio o en casa (Kolko y Swenson, 2002, caps. 6 y 14).",
+      esc: ["proteccion", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Seguridad y compromiso",
+          tecs: ["coordinacion-proteccion", "plan-seguridad", "estrategias-vinculacion"],
+          obj: "Asegurar que la familia esté segura y comprometida con el tratamiento.",
+          pasos: [
+            "Acordar un plan de seguridad escrito para prevenir y manejar la violencia.",
+            "Evaluar la violencia de pareja, el consumo y el malestar del padre.",
+            "Construir la alianza con la familia, dando algo útil desde las primeras sesiones."
+          ],
+          casa: "Seguir el plan de seguridad.",
+          avance: "Hay un plan de seguridad vigente y la familia asiste.",
+          fuente: "Kolko y Swenson, 2002, caps. 4 y 6"
+        },
+        {
+          t: "Trabajo con el niño",
+          tecs: ["psicoeducacion", "expresion-emocional", "relajacion", "entrenamiento-hhss"],
+          obj: "Que el niño entienda lo que vivió, exprese sus emociones y aprenda a afrontarlas.",
+          pasos: [
+            "Explorar la experiencia del niño y su visión de la violencia y del castigo.",
+            "Corregir la culpa y las atribuciones erróneas sobre el maltrato.",
+            "Enseñar a identificar y expresar emociones, y a manejar la ira y el estrés.",
+            "Entrenar habilidades de afrontamiento y competencia social, y a quién acudir si se siente en peligro."
+          ],
+          casa: "Practicar una habilidad de afrontamiento.",
+          avance: "El niño habla de lo ocurrido sin culparse y usa habilidades de afrontamiento.",
+          fuente: "Kolko y Swenson, 2002, caps. 7 a 10"
+        },
+        {
+          t: "Trabajo con el padre",
+          tecs: ["reestructuracion-cognitiva", "senales-tempranas-ira", "elogio-especifico", "tiempo-fuera"],
+          obj: "Cambiar las ideas sobre la violencia y el castigo, manejar la ira y aprender a disciplinar sin violencia.",
+          pasos: [
+            "Revisar las ideas sobre la violencia, el castigo físico y las expectativas sobre el hijo.",
+            "Revisar las atribuciones de mala intención a la conducta del niño.",
+            "Entrenar el manejo de la ira con un plan de autocontrol, y atender la ansiedad o la depresión del padre.",
+            "Enseñar manejo conductual: atención, elogio, instrucciones claras y tiempo fuera sin castigo físico."
+          ],
+          casa: "Registrar un episodio de enojo y usar el plan de autocontrol; practicar el elogio.",
+          avance: "El padre maneja la ira y usa disciplina sin violencia.",
+          fuente: "Kolko y Swenson, 2002, caps. 11 a 13"
+        },
+        {
+          t: "Clarificación",
+          tecs: ["carta-clarificacion"],
+          obj: "Que el padre asuma la responsabilidad del maltrato ante el niño y la familia.",
+          pasos: [
+            "Preparar con el padre la aceptación de su responsabilidad.",
+            "Preparar al niño y a otros miembros de la familia.",
+            "Hacer la reunión familiar de clarificación y acordar un plan de seguridad y de prevención."
+          ],
+          casa: "Revisar juntos el plan de prevención.",
+          avance: "El padre asume la responsabilidad y la familia tiene un plan de prevención.",
+          fuente: "Kolko y Swenson, 2002, caps. 6 y 14"
+        },
+        {
+          t: "Sesiones familiares",
+          tecs: ["entrenamiento-comunicacion", "pasos-solucion-problemas"],
+          obj: "Mejorar la comunicación y la solución de conflictos en la familia.",
+          pasos: [
+            "Revisar la interacción coercitiva y cómo escala hacia la violencia.",
+            "Entrenar la comunicación y la solución de problemas con todos los miembros.",
+            "Aplicar las habilidades a los conflictos reales de la familia."
+          ],
+          casa: "Una reunión familiar para resolver un problema.",
+          avance: "La familia resuelve conflictos sin violencia.",
+          fuente: "Kolko y Swenson, 2002, caps. 15 y 16"
+        }
+      ],
+      medir: [
+        "<strong>ECBI</strong> o <strong>SDQ</strong> para la conducta del niño.",
+        "Reportes de violencia en la familia durante el tratamiento."
+      ],
+      adapt: [
+        "<strong>Protección:</strong> el trabajo se coordina con los servicios de protección y otros sistemas de la comunidad (Kolko y Swenson, 2002, cap. 17)."
+      ],
+      cuidado: [
+        "La seguridad del niño va primero: toda sospecha de maltrato se reporta según la norma.",
+        "Si hay violencia de pareja, se atiende, porque afecta al niño y la capacidad del padre para criar (Kolko y Swenson, 2002, cap. 6)."
       ]
     }
   ]
@@ -7995,6 +8628,7 @@ const INST_FICHAS = {
   "VIA-J": { a: "via-j", s: "VIA-J", tipo: "tecnica", acceso: "registro", t: "Inventario de Fortalezas VIA para jóvenes", n: 37, q: "M0 0.5h7m3 0h2m4 0h1m1 0h1m1 0h1m2 0h1m6 0h7m-37 1h1m5 0h1m2 0h2m4 0h1m2 0h2m2 0h1m1 0h1m2 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h1m3 0h3m4 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h2m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m3 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m3 0h1m2 0h1m3 0h1m1 0h5m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m2 0h1m1 0h1m1 0h1m3 0h3m1 0h2m1 0h2m-28 1h1m1 0h5m5 0h1m2 0h1m2 0h4m2 0h3m1 0h1m1 0h5m-35 1h2m2 0h2m1 0h2m2 0h1m2 0h3m6 0h1m2 0h1m1 0h2m1 0h1m2 0h2m-36 1h5m1 0h1m1 0h1m3 0h2m3 0h2m1 0h2m2 0h5m3 0h1m1 0h3m-37 1h2m1 0h1m5 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m-37 1h3m2 0h2m1 0h1m3 0h1m1 0h1m2 0h1m4 0h1m1 0h2m2 0h3m1 0h5m-37 1h1m1 0h1m1 0h2m1 0h2m2 0h4m1 0h6m1 0h1m4 0h2m1 0h1m-31 1h1m1 0h7m1 0h7m2 0h2m3 0h9m1 0h2m-36 1h1m5 0h5m1 0h3m1 0h2m2 0h1m6 0h5m2 0h1m-36 1h2m1 0h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m3 0h2m2 0h4m1 0h1m1 0h1m-35 1h3m2 0h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h1m1 0h1m2 0h6m2 0h4m1 0h2m2 0h1m1 0h4m1 0h2m3 0h3m-36 1h2m2 0h1m4 0h1m3 0h2m3 0h5m3 0h5m4 0h1m-33 1h5m3 0h1m1 0h2m1 0h1m1 0h1m3 0h1m1 0h3m1 0h2m1 0h3m-35 1h2m2 0h1m2 0h1m3 0h4m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m4 0h1m-34 1h2m1 0h2m1 0h1m1 0h1m6 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h2m2 0h1m2 0h1m1 0h4m2 0h2m3 0h1m3 0h1m1 0h1m2 0h4m2 0h2m-37 1h1m1 0h5m1 0h7m3 0h15m1 0h1m-35 1h1m1 0h3m8 0h1m1 0h3m5 0h2m3 0h1m2 0h1m1 0h2m-35 1h1m1 0h2m2 0h1m3 0h2m1 0h2m2 0h1m2 0h1m1 0h1m1 0h4m2 0h3m2 0h2m-37 1h1m2 0h2m4 0h1m1 0h2m1 0h1m1 0h1m4 0h4m1 0h1m1 0h3m5 0h1m-37 1h1m1 0h5m1 0h2m1 0h2m4 0h2m3 0h5m1 0h9m-29 1h1m1 0h2m4 0h8m3 0h2m3 0h2m-34 1h7m3 0h4m1 0h3m2 0h2m2 0h1m3 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h2m1 0h1m1 0h1m3 0h2m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h9m4 0h1m2 0h2m1 0h6m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h4m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m2 0h3m2 0h1m8 0h1m4 0h4m-37 1h1m5 0h1m2 0h2m1 0h4m3 0h4m3 0h5m1 0h1m3 0h1m-37 1h7m1 0h2m2 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h1m1 0h3" },
   "Vanderbilt": { a: "vanderbilt", s: "Vanderbilt", tipo: "tecnica", tam: "vanderbilt", acceso: "libre", t: "Escalas de Evaluación Vanderbilt", n: 37, q: "M0 0.5h7m2 0h1m1 0h1m2 0h1m1 0h1m3 0h4m2 0h3m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h2m2 0h1m2 0h1m2 0h2m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m3 0h3m2 0h3m4 0h3m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m4 0h1m3 0h2m2 0h1m4 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m3 0h3m2 0h3m3 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h2m1 0h1m1 0h8m4 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-27 1h1m3 0h3m2 0h4m3 0h3m-29 1h1m2 0h1m1 0h2m1 0h1m3 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h5m1 0h1m1 0h1m-31 1h1m1 0h2m4 0h3m1 0h3m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m-36 1h1m2 0h3m1 0h1m1 0h1m2 0h2m1 0h3m1 0h1m3 0h1m3 0h1m2 0h1m1 0h4m-37 1h2m1 0h1m3 0h2m2 0h3m1 0h1m5 0h3m1 0h1m2 0h1m1 0h4m-34 1h1m5 0h1m1 0h1m1 0h5m1 0h2m1 0h3m2 0h4m1 0h2m4 0h2m-36 1h1m1 0h1m4 0h5m4 0h1m1 0h4m1 0h1m5 0h2m2 0h3m-36 1h3m1 0h2m2 0h1m1 0h1m5 0h2m1 0h1m2 0h1m1 0h2m3 0h3m1 0h1m1 0h1m-37 1h3m1 0h1m3 0h1m1 0h2m2 0h2m1 0h3m1 0h1m1 0h3m2 0h1m3 0h1m3 0h1m-37 1h3m2 0h7m2 0h2m2 0h1m1 0h2m2 0h1m2 0h1m1 0h2m2 0h2m1 0h1m-37 1h3m2 0h1m6 0h9m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m2 0h4m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h2m2 0h3m1 0h2m1 0h2m-36 1h1m5 0h1m1 0h3m2 0h1m2 0h2m2 0h1m5 0h1m3 0h1m2 0h2m-32 1h1m1 0h1m2 0h1m2 0h1m1 0h3m4 0h3m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-36 1h1m4 0h1m1 0h2m1 0h2m2 0h1m1 0h1m3 0h1m3 0h2m2 0h4m1 0h1m1 0h2m-37 1h1m4 0h8m4 0h1m1 0h1m1 0h2m1 0h3m2 0h1m5 0h2m-37 1h1m1 0h2m1 0h1m3 0h5m1 0h3m1 0h1m1 0h1m3 0h1m3 0h1m5 0h1m-36 1h2m1 0h1m2 0h3m1 0h3m1 0h2m3 0h3m1 0h1m1 0h1m3 0h3m1 0h1m-32 1h1m1 0h1m4 0h8m7 0h1m4 0h3m1 0h1m1 0h2m-37 1h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m7 0h1m1 0h1m1 0h2m1 0h7m1 0h1m-36 1h1m1 0h2m2 0h1m4 0h4m1 0h2m1 0h7m1 0h1m2 0h1m-32 1h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h6m1 0h1m2 0h6m1 0h1m-27 1h1m1 0h5m1 0h1m4 0h4m1 0h3m3 0h2m2 0h1m-37 1h7m3 0h3m1 0h1m3 0h1m3 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2m-37 1h1m5 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h5m3 0h1m3 0h5m-37 1h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h3m2 0h1m1 0h4m1 0h6m-34 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h2m2 0h1m2 0h2m2 0h2m1 0h2m-36 1h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m3 0h3m2 0h5m2 0h2m1 0h3m-37 1h1m5 0h1m2 0h1m1 0h3m2 0h1m1 0h2m1 0h2m1 0h2m1 0h3m1 0h1m-32 1h7m1 0h1m2 0h1m1 0h5m2 0h2m3 0h1m1 0h4m2 0h1m1 0h2" },
   "Vineland-3": { a: "vineland-3", s: "Vineland-3", tipo: "tecnica", acceso: "licencia", t: "Escalas de Conducta Adaptativa de Vineland, 3.ª ed.", n: 37, q: "M0 0.5h7m2 0h1m4 0h1m1 0h1m3 0h5m1 0h3m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h5m2 0h1m2 0h1m3 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m3 0h1m1 0h1m4 0h1m4 0h2m2 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m4 0h1m3 0h2m2 0h2m3 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h5m1 0h3m3 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h2m3 0h8m4 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-28 1h2m3 0h3m2 0h3m4 0h3m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h7m1 0h1m1 0h1m-30 1h1m1 0h2m1 0h4m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m-36 1h2m1 0h5m1 0h1m2 0h2m1 0h3m1 0h1m3 0h1m3 0h1m2 0h1m1 0h4m-37 1h2m1 0h1m7 0h1m1 0h1m1 0h1m5 0h5m2 0h1m1 0h4m-34 1h1m5 0h3m1 0h1m1 0h3m1 0h2m1 0h3m1 0h5m1 0h2m4 0h2m-37 1h2m1 0h1m4 0h5m4 0h1m1 0h4m1 0h1m5 0h2m2 0h3m-37 1h1m1 0h5m3 0h2m1 0h2m2 0h2m1 0h4m1 0h2m3 0h3m1 0h1m1 0h1m-35 1h1m1 0h2m2 0h1m2 0h1m2 0h2m1 0h3m1 0h5m2 0h1m3 0h1m3 0h1m-37 1h1m1 0h6m3 0h2m2 0h1m2 0h1m1 0h2m2 0h1m2 0h1m1 0h2m2 0h2m1 0h1m-37 1h3m5 0h1m1 0h4m1 0h6m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m2 0h4m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m2 0h3m1 0h2m1 0h2m-36 1h1m6 0h5m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m3 0h1m2 0h2m-34 1h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h3m4 0h3m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-32 1h2m1 0h5m1 0h2m1 0h1m3 0h1m3 0h1m3 0h4m1 0h1m1 0h2m-36 1h1m3 0h4m2 0h2m4 0h1m1 0h1m1 0h2m1 0h3m2 0h1m5 0h2m-37 1h1m1 0h4m3 0h4m2 0h3m1 0h1m1 0h1m3 0h1m3 0h1m5 0h1m-36 1h1m2 0h1m2 0h2m2 0h6m3 0h3m1 0h3m3 0h3m1 0h1m-31 1h3m1 0h3m3 0h1m1 0h2m7 0h1m4 0h3m1 0h1m1 0h2m-37 1h1m5 0h1m3 0h1m1 0h2m7 0h1m1 0h4m1 0h7m1 0h1m-36 1h1m1 0h2m2 0h1m3 0h5m1 0h2m1 0h7m1 0h1m2 0h1m-32 1h2m1 0h1m1 0h3m1 0h1m3 0h1m3 0h8m2 0h6m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h1m4 0h4m1 0h3m3 0h2m2 0h1m-37 1h7m2 0h6m3 0h1m3 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h5m3 0h1m3 0h5m-37 1h1m1 0h3m1 0h1m2 0h1m6 0h3m2 0h1m1 0h4m1 0h6m-34 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h4m1 0h1m1 0h2m2 0h1m2 0h2m2 0h2m1 0h2m-36 1h1m1 0h3m1 0h1m2 0h2m4 0h1m3 0h3m3 0h4m2 0h2m1 0h3m-37 1h1m5 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h2m1 0h3m1 0h1m-32 1h7m1 0h1m4 0h5m2 0h2m3 0h1m1 0h4m2 0h1m1 0h2" },
+  "ASRS v1.1": { a: "asrs-v1-1", s: "ASRS v1.1", tipo: "tecnica", tam: "asrs-v1-1", acceso: "libre", t: "Escala de Autorreporte de Déficit de Atención en Adultos", n: 37, q: "M0 0.5h7m2 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h3m5 0h7m-37 1h1m5 0h1m3 0h2m2 0h1m3 0h2m2 0h1m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m8 0h3m4 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h4m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m6 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h4m3 0h1m2 0h1m2 0h1m2 0h5m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m2 0h3m5 0h6m1 0h2m-28 1h1m1 0h5m4 0h1m2 0h2m2 0h3m3 0h3m1 0h1m1 0h5m-35 1h1m2 0h2m2 0h1m2 0h1m2 0h1m1 0h2m6 0h2m3 0h2m1 0h1m2 0h2m-35 1h6m5 0h1m4 0h2m1 0h2m3 0h4m3 0h1m1 0h3m-33 1h1m2 0h2m1 0h3m3 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m-35 1h2m1 0h2m1 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h2m2 0h3m1 0h5m-37 1h3m2 0h1m1 0h1m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-32 1h1m2 0h1m2 0h3m1 0h1m2 0h1m1 0h3m2 0h1m1 0h1m4 0h7m1 0h2m-36 1h5m1 0h2m2 0h2m2 0h1m1 0h2m2 0h1m4 0h1m1 0h5m2 0h1m-35 1h3m2 0h1m2 0h2m1 0h3m1 0h1m2 0h1m2 0h1m2 0h2m2 0h4m1 0h1m1 0h1m-36 1h1m2 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1m1 0h5m1 0h1m2 0h1m2 0h2m-30 1h2m2 0h1m1 0h1m1 0h3m1 0h2m2 0h1m1 0h4m1 0h2m3 0h3m-34 1h3m2 0h5m2 0h1m3 0h5m3 0h5m4 0h1m-34 1h2m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-35 1h1m1 0h2m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-33 1h4m1 0h1m2 0h3m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-36 1h1m2 0h1m6 0h6m3 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-35 1h2m2 0h2m10 0h2m2 0h2m1 0h8m1 0h1m-35 1h2m3 0h1m2 0h1m2 0h3m1 0h3m5 0h1m2 0h1m1 0h1m2 0h1m1 0h2m-35 1h1m3 0h5m1 0h1m2 0h2m2 0h1m4 0h1m2 0h3m2 0h3m2 0h2m-37 1h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m4 0h2m3 0h1m1 0h3m5 0h1m-37 1h1m2 0h2m1 0h1m2 0h2m2 0h1m3 0h2m3 0h5m1 0h7m-27 1h3m2 0h2m1 0h8m3 0h2m3 0h2m-34 1h7m3 0h1m1 0h1m1 0h4m2 0h3m1 0h2m2 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h2m6 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m5 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h1m1 0h2m2 0h1m1 0h8m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h4m11 0h1m4 0h4m-37 1h1m5 0h1m2 0h5m1 0h1m3 0h6m1 0h5m1 0h1m3 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h1m1 0h3" },
 };
 /* @@FIN-FICHAS-INST@@ */
 const $ = id => document.getElementById(id);
