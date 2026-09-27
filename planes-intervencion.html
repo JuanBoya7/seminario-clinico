@@ -1468,6 +1468,32 @@ REFERENCIAS.push(
   { k: "Jongsma et al., 2021", ref: "Jongsma, A. E., Jr., Peterson, L. M. y Bruce, T. J. (2021). <em>The complete adult psychotherapy treatment planner</em> (6.ª ed.). Wiley." }
 );
 
+/* Bloque de afrontamiento (ampliación de la biblioteca, septiembre de 2026):
+   Estrés percibido, Solución de problemas, Afrontamiento evitativo,
+   Estrés laboral y burnout, Transiciones vitales y Sobrecarga del cuidador. */
+REFERENCIAS.push(
+  { k: "Meichenbaum, 1985", ref: "Meichenbaum, D. (1985). <em>Stress inoculation training</em>. Pergamon Press." },
+  { k: "D'Zurilla, 1986", ref: "D'Zurilla, T. J. (1986). <em>Problem-solving therapy: A social competence approach to clinical intervention</em>. Springer." },
+  { k: "OMS, 2016", ref: "Organización Mundial de la Salud. (2016). <em>Enfrentando problemas plus (EP+): ayuda psicológica individual para adultos con problemas de angustia en comunidades expuestas a la adversidad</em> [Problem Management Plus (PM+)]. OMS." },
+  { k: "OPS, 2022a", url: "https://doi.org/10.37774/9789275323939", ref: "Organización Panamericana de la Salud. (2022). <em>En tiempos de estrés, haz lo que importa: una guía ilustrada. Versión adaptada para América Latina</em>. OPS. https://doi.org/10.37774/9789275323939" },
+  { k: "OPS, 2022b", ref: "Organización Panamericana de la Salud. (2022). <em>Terapia interpersonal grupal para la depresión</em> (L. Verdeli, K. Clougherty y M. M. Weissman). OPS." },
+  { k: "Polk et al., 2016", ref: "Polk, K. L., Schoendorff, B., Webster, M. y Olaz, F. O. (2016). <em>The essential guide to the ACT matrix: A step-by-step approach to using the ACT matrix model in clinical practice</em>. Context Press / New Harbinger." },
+  { k: "Flaxman et al., 2013", ref: "Flaxman, P. E., Bond, F. W. y Livheim, F. (2013). <em>The mindful and effective employee: An acceptance and commitment therapy training manual for improving well-being and performance</em>. New Harbinger." },
+  { k: "OMS, 2022", ref: "Organización Mundial de la Salud. (2022). <em>WHO guidelines on mental health at work</em>. OMS." },
+  { k: "Weissman et al., 2018", ref: "Weissman, M. M., Markowitz, J. C. y Klerman, G. L. (2018). <em>The guide to interpersonal psychotherapy</em> (ed. actualizada y ampliada). Oxford University Press." },
+  { k: "OMS, 2019", ref: "Organización Mundial de la Salud. (2019). <em>iSupport for dementia: Training and support manual for carers of people with dementia</em>. OMS. Versión en español: <em>iSupport. Manual para el entrenamiento y apoyo de cuidadores de personas con demencia</em> (Ministerio de Sanidad de España, 2022)." }
+);
+
+Object.assign(MODELOS, {
+  matriz: {
+    t: "Matriz de flexibilidad psicológica",
+    autor: "Polk, Schoendorff, Webster y Olaz",
+    d: "Presenta el modelo de flexibilidad psicológica como un diagrama de dos ejes: la experiencia de los cinco sentidos frente a la experiencia interna, y los movimientos hacia quien o lo que importa frente a los movimientos de alejamiento de lo que no se quiere pensar ni sentir. La persona aprende a clasificar su experiencia en los cuatro cuadrantes y a juzgar su conducta por su funcionalidad: si la acerca o no a lo que le importa.",
+    dim: ["Notar la diferencia entre experiencia sensorial e interna", "Movimientos de alejamiento y su funcionalidad", "Ganchos: lo interno que engancha", "Movimientos hacia lo que importa", "Autocompasión", "Toma de perspectiva"],
+    fuente: "Polk et al., 2016, introducción y paso 1"
+  }
+});
+
 /* Psicología positiva: manuales de psicoterapia positiva (Rashid y Seligman),
    terapia de bienestar (Fava), tratamiento del afecto positivo (Craske),
    terapia de perdón (Enright; Worthington), autocompasión consciente
@@ -7253,13 +7279,14 @@ const VARIABLES = [
 },
 {
   cat: "Afrontamiento y relaciones",
-  t: "Estrés y afrontamiento",
-  sub: "Lo que se interviene es la distancia entre las demandas y los recursos: el estrés aparece cuando la persona percibe que lo que la situación le exige supera su capacidad de afrontarlo. Aplica al estrés laboral, al que acompaña una enfermedad crónica o un procedimiento médico, a los cambios vitales y al de quien cuida a otra persona. No requiere un diagnóstico.",
+  t: "Estrés percibido",
+  sub: "Lo que se interviene es la distancia entre las demandas y los recursos: el estrés aparece cuando la persona percibe que lo que la situación le exige supera su capacidad de afrontarlo. Es la variable general del bloque de afrontamiento: aplica al estrés que acompaña una enfermedad crónica o un procedimiento médico, una evaluación o una etapa exigente. Las formas más específicas tienen su propia variable: solución de problemas, afrontamiento evitativo, estrés laboral y burnout, transiciones vitales y sobrecarga del cuidador. No requiere un diagnóstico.",
   elegir: [
     "<strong>Si el estrés responde a situaciones identificables</strong> —un procedimiento médico, una evaluación, una transición, un trabajo exigente—, la inoculación de estrés prepara a la persona para afrontarlas por fases; es el plan más estructurado.",
     "<strong>Si el estrés es sostenido y viene con tensión física, dolor o una enfermedad crónica</strong>, la reducción del estrés basada en mindfulness trabaja la forma de responder a la experiencia del momento; se ha aplicado sobre todo en medicina conductual.",
     "<strong>Si la persona lleva tiempo luchando por no sentir el estrés</strong> y esa lucha ya le cuesta en su vida, el plan de aceptación y compromiso trabaja sobre los valores.",
-    "<strong>Si quien consulta cuida a una persona dependiente</strong>, el plan para cuidadores tiene la recomendación más firme de la OMS. Para promover el bienestar en población general, los ejercicios del plan de psicología positiva de Depresión se han estudiado también en formato autoaplicado y en grupos comunitarios, con efectos pequeños y sostenidos a los tres a seis meses (Bolier et al.)."
+    "<strong>Si la persona está en un contexto de adversidad</strong> —crisis, desplazamiento, pérdida de recursos— o prefiere un formato breve y autoaplicado, la guía «Haz lo que importa» de la OPS enseña en cinco partes habilidades de aceptación y compromiso.",
+    "Para promover el bienestar en población general, los ejercicios del plan de psicología positiva de Depresión se han estudiado también en formato autoaplicado y en grupos comunitarios, con efectos pequeños y sostenidos a los tres a seis meses (Bolier et al.). Si quien consulta cuida a una persona dependiente, ver <em>Sobrecarga del cuidador</em>; si el estrés es del trabajo, <em>Estrés laboral y burnout</em>."
   ],
   planes: [
     {
@@ -7268,10 +7295,10 @@ const VARIABLES = [
       inst: ["K-10", "CBI"],
       enf: "tcc",
       t: "Inoculación de estrés",
-      fuente: "Ruiz et al., cap. 9 (§3) · OMS, 2023",
+      fuente: "Ruiz et al., cap. 9 (§3) · Meichenbaum, 1985, caps. 2 a 6 · OMS, 2023",
       cuando: "El estrés se asocia a <strong>situaciones identificables</strong>, presentes o próximas: un procedimiento médico, una evaluación, una transición vital, un trabajo con exigencias altas o una enfermedad de larga duración. La persona quiere prepararse para afrontarlas.",
       respaldo: "Meichenbaum reportó resultados positivos en las aplicaciones publicadas entre 1972 y 1992, y las revisiones posteriores también. Los estudios controlados indican que reduce la ansiedad y la depresión, con efectos que se mantienen a largo plazo (Foa et al., 1999; Hembree y Foa, 2003; en Ruiz et al., cap. 9, §3.4). Se ha aplicado al estrés en personas sin diagnóstico, a transiciones vitales, a enfermedades crónicas, a la preparación para pruebas médicas y al estrés laboral. Hay pocos ensayos que la comparen con otros tratamientos; lo que más explica sus resultados es el aprendizaje de habilidades de afrontamiento (Ruiz et al., cap. 9, §3.4). La OMS incluye el manejo del estrés entre las intervenciones que sugiere en el estrés postraumático (condicional, certeza baja; OMS, 2023, STR1).",
-      secuencia: "<strong>Secuencia:</strong> tres fases que a veces se solapan: conceptualización, adquisición y entrenamiento de habilidades, y aplicación y consolidación. La idea de inoculación es la del modelo médico: exponer a la persona a estresores de intensidad suficiente para activar su afrontamiento, sin que la desborden (Ruiz et al., cap. 9, §3.2 y §3.3).",
+      secuencia: "<strong>Secuencia:</strong> tres fases que a veces se solapan: conceptualización, adquisición y entrenamiento de habilidades, y aplicación y consolidación. La idea de inoculación es la del modelo médico: exponer a la persona a estresores de intensidad suficiente para activar su afrontamiento, sin que la desborden (Ruiz et al., cap. 9, §3.2 y §3.3). En la mayoría de las aplicaciones son de 12 a 15 sesiones, más sesiones de refuerzo y seguimiento espaciadas durante 6 a 12 meses; la duración depende del desempeño de la persona, no de un número fijo de sesiones (Meichenbaum, 1985, caps. 2 y 3).",
       esc: ["hospital","primer-nivel","salud-mental","comunidad"],
       actividades: [
         {
@@ -7368,7 +7395,7 @@ const VARIABLES = [
         "Con estrés laboral, <strong>CBI</strong> o <strong>MBI</strong>."
       ],
       adapt: [
-        "<strong>Hospital general:</strong> se usa en medicina conductual con enfermedades crónicas y para preparar a la persona para intervenciones o pruebas médicas (Ruiz et al., cap. 9, §3.4).",
+        "<strong>Hospital general:</strong> se usa en medicina conductual con enfermedades crónicas y para preparar a la persona para intervenciones o pruebas médicas (Ruiz et al., cap. 9, §3.4); antes de una cirugía, el entrenamiento puede durar apenas una hora (Meichenbaum, 1985, caps. 3 y 7).",
         "<strong>Comunidad:</strong> se ha aplicado al estrés de personas sin diagnóstico, a transiciones vitales y, en la empresa, al estrés laboral (Ruiz et al., cap. 9, §3.4)."
       ],
       cuidado: [
@@ -7596,6 +7623,764 @@ const VARIABLES = [
       ]
     },
     {
+      id: "estres-hlqi",
+      mod: "flex",
+      inst: ["K-10"],
+      enf: "act",
+      t: "Autoayuda guiada: «Haz lo que importa»",
+      fuente: "OPS, 2022a, partes 1 a 5",
+      cuando: "La persona tiene <strong>estrés en un contexto de adversidad</strong> —crisis, violencia, desplazamiento, pérdida de recursos— o no puede asistir a una terapia de varias semanas. Sirve como autoayuda con acompañamiento breve, como material para grupos o como complemento de otro plan.",
+      respaldo: "Es la versión para América Latina de la guía ilustrada de la OMS <em>Doing What Matters in Times of Stress</em>, basada en la terapia de aceptación y compromiso. Los ejercicios no buscan eliminar los pensamientos y sentimientos difíciles, sino ayudar a manejar el estrés y a actuar más de acuerdo con los propios valores (OPS, 2022a, parte 1). La guía es de uso libre con fines no comerciales.",
+      secuencia: "<strong>Secuencia:</strong> cinco partes, una por semana si se acompaña: poner los pies en la tierra, desengancharse, actuar de acuerdo con los valores, ser amable y dejar espacio. Cada parte trae ejercicios breves para practicar a diario (OPS, 2022a).",
+      esc: ["comunidad","primer-nivel","cuidadores"],
+      actividades: [
+        {
+          t: "Poner los pies en la tierra",
+          tecs: ["anclaje-presente", "respiracion-diafragmatica"],
+          obj: "Salir de las «tormentas emocionales» conectando con el cuerpo y con lo que se está haciendo.",
+          pasos: [
+            "Explicar que cuando nos enganchan los pensamientos y sentimientos difíciles nos alejamos de nuestros valores y de lo que nos rodea.",
+            "Ante una tormenta emocional: notar lo que se piensa y se siente, bajar el ritmo y conectar con el cuerpo —vaciar los pulmones y dejar que se llenen lo más lento posible—.",
+            "Volver a conectarse con el mundo y centrarse en lo que se está haciendo."
+          ],
+          casa: "Practicar el ejercicio de poner los pies en la tierra varias veces al día, también en momentos tranquilos.",
+          avance: "La persona usa el ejercicio en momentos de estrés intenso.",
+          fuente: "OPS, 2022a, parte 1"
+        },
+        {
+          t: "Desengancharse",
+          tecs: ["desengancharse", "defusion"],
+          obj: "Soltar los pensamientos y sentimientos que enganchan, sin pelear con ellos.",
+          pasos: [
+            "Darse cuenta de que un pensamiento o sentimiento nos ha enganchado.",
+            "Ponerle nombre en silencio: «aquí hay un pensamiento», «aquí hay ira».",
+            "Volver a centrarse en lo que se está haciendo y conectar con lo que se puede ver, oír, oler, saborear y tocar."
+          ],
+          casa: "Darse cuenta, ponerle nombre y volver a centrarse, cada vez que note que se enganchó.",
+          avance: "La persona se desengancha con más rapidez.",
+          fuente: "OPS, 2022a, parte 2"
+        },
+        {
+          t: "Actuar de acuerdo con los valores",
+          tecs: ["valores", "accion-comprometida"],
+          obj: "Identificar el tipo de persona que se quiere ser y dar pasos pequeños en esa dirección, aun en tiempos difíciles.",
+          pasos: [
+            "Distinguir valores de metas: las metas son lo que se busca lograr; los valores, el tipo de persona que se quiere ser.",
+            "Elegir valores de la lista de la guía o pensar en alguien que se admira y en los valores que muestra con sus actos.",
+            "Elegir una persona o un área y un primer paso pequeño, por ejemplo, jugar con el hijo diez minutos al día."
+          ],
+          casa: "Hacer cada día el pequeño paso elegido.",
+          avance: "La persona realiza acciones pequeñas guiadas por sus valores.",
+          fuente: "OPS, 2022a, parte 3",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Ser amable",
+          tecs: ["pausa-autocompasion", "tacto-tranquilizador"],
+          obj: "Tratarse a uno mismo y a los demás con amabilidad, sobre todo cuando las cosas van mal.",
+          pasos: [
+            "Notar el trato duro hacia uno mismo y desengancharse de él.",
+            "Poner una mano sobre el pecho o donde duele y ser amable consigo a través de esa mano.",
+            "Hacer pequeños actos de amabilidad con otros."
+          ],
+          casa: "Un gesto amable consigo mismo y uno con otra persona cada día.",
+          avance: "La persona se trata con más amabilidad cuando sufre.",
+          fuente: "OPS, 2022a, parte 4"
+        },
+        {
+          t: "Dejar espacio",
+          tecs: ["aceptacion", "disposicion"],
+          obj: "Dejar que los pensamientos y sentimientos difíciles estén presentes, sin que dominen.",
+          pasos: [
+            "Centrar la atención en un pensamiento o sentimiento difícil, darse cuenta de que está ahí, ponerle nombre y observarlo con curiosidad.",
+            "Imaginar que los pensamientos y sentimientos son como el clima y que uno es el cielo: el clima siempre cambia.",
+            "Repasar las cinco habilidades y acordar cuáles seguir practicando."
+          ],
+          casa: "Practicar dejar espacio cuando aparezca un sentimiento difícil.",
+          avance: "La persona hace lo que importa con el malestar presente.",
+          fuente: "OPS, 2022a, parte 5"
+        }
+      ],
+      medir: [
+        "<strong>K-10</strong> al inicio y al final.",
+        "Registro de la práctica de los ejercicios."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> la guía está pensada para cualquier persona que viva con estrés, en cualquier lugar, y viene ilustrada para facilitar su uso (OPS, 2022a).",
+        "<strong>Cuidadores y familia:</strong> los ejemplos de la guía incluyen el cuidado de hijos y familiares (OPS, 2022a, parte 3)."
+      ],
+      cuidado: [
+        "Es una guía de autoayuda: si hay depresión moderada o grave, riesgo suicida o síntomas graves, se atienden con el plan correspondiente.",
+        "Los ejercicios no eliminan los pensamientos y sentimientos difíciles; su finalidad es ayudar a manejar el estrés (OPS, 2022a, parte 1)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Solución de problemas y toma de decisiones",
+  sub: "Lo que se interviene es la forma de enfrentar los problemas de la vida diaria: cómo la persona los percibe —como reto o como amenaza— y qué hace con ellos. Aplica cuando los problemas prácticos —trabajo, dinero, familia, vivienda, salud— se acumulan sin resolverse, cuando la persona posterga las decisiones o actúa por impulso y cuando el malestar crece con los problemas. No requiere un diagnóstico.",
+  elegir: [
+    "<strong>Si la persona tiene capacidad para un trabajo de varias semanas</strong> y los problemas se repiten o se encadenan, la terapia de solución de problemas entrena el proceso completo, desde la orientación hasta la verificación; es el plan más completo.",
+    "<strong>Si hay adversidad, pocos recursos o quien interviene no es especialista</strong>, Enfrentando problemas plus (EP+) de la OMS reúne en cinco sesiones la solución de problemas, el manejo del estrés, la activación y el apoyo social.",
+    "Si lo que pesa no es un problema concreto sino una situación que no se puede cambiar, los planes de <em>Estrés percibido</em> y de <em>Afrontamiento evitativo</em> trabajan la parte que no se resuelve."
+  ],
+  planes: [
+    {
+      id: "sp-pst",
+      mod: "dzurilla",
+      inst: ["K-10"],
+      enf: "tcc",
+      t: "Terapia de solución de problemas",
+      fuente: "D'Zurilla, 1986, caps. 3, 7 y 8 · Ruiz et al., cap. 9 (§4)",
+      cuando: "Los problemas de la vida diaria se <strong>acumulan sin resolverse</strong> y el malestar crece con ellos: la persona los evita, los deja a otros o los resuelve de forma impulsiva. Sirve como tratamiento, como mantenimiento después de otro tratamiento o como prevención.",
+      respaldo: "D'Zurilla revisa estudios con pacientes psiquiátricos, alcoholismo, tabaquismo, depresión, bajo rendimiento académico, indecisión vocacional, problemas de pareja y familia, control de peso y agorafobia (D'Zurilla, 1986, cap. 11). En su modelo transaccional, el estrés depende de la relación entre el problema, la activación emocional y el afrontamiento, mediada por la solución de problemas; el afrontamiento orientado a resolver el problema es la estrategia general más eficaz (D'Zurilla, 1986, cap. 7). La OMS la incluye entre las intervenciones que pueden considerarse para trabajadores con malestar emocional (condicional, certeza baja; OMS, 2022, recomendación 10A).",
+      secuencia: "<strong>Secuencia:</strong> el programa se diseñó como un paquete de unas 15 sesiones semanales de dos horas, en grupos de seis a ocho personas o en formato individual: estructuración inicial (1 sesión), orientación hacia el problema (1), uso y control de las emociones (2), definición y formulación (2), generación de alternativas (2), toma de decisiones (2), puesta en práctica y verificación (2) y mantenimiento y generalización (2 a 4). Cada paso nuevo depende de que el anterior se haya logrado (D'Zurilla, 1986, cap. 8).",
+      esc: ["primer-nivel","salud-mental","comunidad"],
+      actividades: [
+        {
+          t: "Estructuración inicial y autorregistro",
+          tecs: ["psicoeducacion", "autorregistro"],
+          obj: "Presentar el programa y empezar a registrar los problemas tal como se afrontan hoy.",
+          pasos: [
+            "Presentar la solución de problemas como una forma de afrontar el estrés y de ganar control personal.",
+            "Generar con la persona o el grupo una lista de problemas comunes.",
+            "Enseñar el autorregistro de solución de problemas: el problema, las emociones, las alternativas consideradas, la elegida y el resultado.",
+            "Tres reglas para no saturar la mente: externalizar (escribir), visualizar (hacer diagramas) y simplificar (dividir el problema)."
+          ],
+          casa: "Autorregistro de un problema real durante la semana.",
+          avance: "La persona registra sus problemas y cómo los enfrentó.",
+          fuente: "D'Zurilla, 1986, cap. 8 (unidad 1)",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Orientación hacia el problema",
+          tecs: ["orientacion-problemas"],
+          obj: "Que la persona reconozca los problemas cuando aparecen y los vea como algo normal y abordable, no como una amenaza.",
+          pasos: [
+            "Ver los problemas como sucesos normales de la vida, no como señal de un defecto personal, y como retos u oportunidades más que como amenazas.",
+            "Confiar en que hay una solución y en que uno es capaz de encontrarla.",
+            "Usar las emociones como señal de que hay un problema, y revisar una lista general de problemas para detectar los que no se ven.",
+            "Contrastar el estilo evitativo o dependiente —postergar, esperar que otro lo resuelva— con el estilo de solución de problemas.",
+            "Resistir el primer impulso: las primeras ideas suelen estar guiadas más por la emoción que por el razonamiento; resolver un problema lleva tiempo y esfuerzo."
+          ],
+          casa: "Detectar en la semana los momentos en que evitó un problema y los que abordó.",
+          avance: "La persona identifica sus problemas sin evitarlos y habla de ellos como retos.",
+          fuente: "D'Zurilla, 1986, cap. 3 y cap. 8 (unidad 2)"
+        },
+        {
+          t: "Uso y control de las emociones",
+          tecs: ["relajacion", "reestructuracion-cognitiva"],
+          obj: "Aprovechar las emociones como información y evitar que el malestar intenso bloquee el proceso.",
+          pasos: [
+            "Explicar que las emociones ayudan a reconocer problemas y a valorar las soluciones, pero que la activación alta interfiere con el pensamiento.",
+            "Entrenar formas de reducir la activación, como la relajación.",
+            "Revisar los pensamientos que aumentan el malestar mientras se enfrenta el problema."
+          ],
+          casa: "Practicar la técnica de control de la activación antes de abordar un problema.",
+          avance: "La persona reduce el malestar lo suficiente para pensar el problema.",
+          fuente: "D'Zurilla, 1986, cap. 4 y cap. 8 (unidad 3)",
+          fichas: ["registro-relajacion"]
+        },
+        {
+          t: "Definición y formulación del problema",
+          tecs: ["solucion-problemas"],
+          obj: "Convertir un problema vago en uno concreto, con metas alcanzables.",
+          pasos: [
+            "Reunir la información relevante y separar los hechos de las suposiciones.",
+            "Corregir las distorsiones y las ideas erróneas sobre el problema.",
+            "Entender qué hace que la situación sea un problema: qué obstáculo impide llegar a qué meta.",
+            "Fijar metas realistas y dividir los problemas complejos en partes."
+          ],
+          casa: "Definir por escrito un problema propio con su meta.",
+          avance: "La persona formula sus problemas en términos concretos, con metas claras.",
+          fuente: "D'Zurilla, 1986, cap. 8 (unidad 4)",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Generación de alternativas y toma de decisiones",
+          tecs: ["solucion-problemas", "balance-decisional"],
+          obj: "Producir muchas opciones y elegir la mejor con criterios explícitos.",
+          pasos: [
+            "Generar tantas alternativas como sea posible, sin juzgarlas, y variar el tipo de soluciones.",
+            "Descartar las alternativas que a todas luces no sirven.",
+            "Anticipar las consecuencias de las demás, para la persona y para otros, a corto y a largo plazo, y valorar si podrá llevarlas a cabo.",
+            "Elegir la solución y armar un plan de acción."
+          ],
+          casa: "Aplicar el método a un problema real hasta tener un plan.",
+          avance: "La persona decide con un análisis de consecuencias, no por impulso ni por evitación.",
+          fuente: "D'Zurilla, 1986, cap. 8 (unidades 5 y 6)",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Puesta en práctica, verificación y mantenimiento",
+          tecs: ["autorregistro", "autorrefuerzo", "prevencion-recaidas"],
+          obj: "Llevar a cabo la solución, comprobar si funcionó y sostener el método en el tiempo.",
+          pasos: [
+            "Poner en práctica la solución y registrar lo que pasa.",
+            "Comparar el resultado con la meta: si coincide, reforzarse; si no, volver al paso que falló.",
+            "Entrenar un método rápido para situaciones que exigen actuar de inmediato.",
+            "Aplicar el proceso a problemas nuevos y espaciar las sesiones."
+          ],
+          casa: "Verificar el resultado de la solución elegida y registrar el siguiente paso.",
+          avance: "La persona aplica el proceso por su cuenta a problemas nuevos.",
+          fuente: "D'Zurilla, 1986, cap. 8 (unidades 7 y 8)",
+          fichas: ["solucion-problemas", "plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "Autorregistro de solución de problemas: cuántos problemas abordó y con qué resultado.",
+        "<strong>K-10</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> el programa puede darse como curso o taller con grupos grandes, o como programa de prevención (D'Zurilla, 1986, caps. 8 y 10).",
+        "<strong>Consulta externa:</strong> dentro de una terapia más amplia, el tiempo de entrenamiento se ajusta a las necesidades de la persona; los casos del libro incluyen ansiedad generalizada, depresión, TOC y un trastorno neurológico (D'Zurilla, 1986, cap. 9)."
+      ],
+      cuidado: [
+        "No se trata de dar consejos: el terapeuta usa preguntas para que la persona llegue a sus propias soluciones (D'Zurilla, 1986, cap. 8).",
+        "Si hay depresión grave o riesgo suicida, se atienden primero con el plan correspondiente."
+      ]
+    },
+    {
+      id: "sp-pm",
+      mod: "dzurilla",
+      inst: ["K-10", "PHQ-9"],
+      enf: "tcc",
+      t: "Enfrentando problemas plus (EP+)",
+      fuente: "OMS, 2016, caps. 2 y 5 a 10",
+      cuando: "La persona vive en <strong>adversidad</strong> —pobreza, violencia, desplazamiento, desastres— y tiene malestar emocional con problemas prácticos: desempleo, conflictos, falta de recursos. Sirve cuando no hay especialistas y la intervención la hacen facilitadores entrenados y supervisados.",
+      respaldo: "EP+ combina estrategias conocidas de resolución de problemas con estrategias de modificación de conducta, para ampliar la capacidad de la persona de manejar su malestar y, cuando se puede, reducir sus problemas prácticos (OMS, 2016, cap. 2). El manual de la OMS está pensado para personas no especialistas, con 40 horas de formación y práctica supervisada (OMS, 2016, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> cinco sesiones individuales semanales de 90 minutos. Todas las personas reciben todas las estrategias en el mismo orden: manejo del estrés (desde la sesión 1), enfrentando problemas (sesiones 2 a 4), seguir andando y continuar haciendo (activación), fortalecer el apoyo social (sesión 4) y mantenerse bien (sesión 5). La respiración lenta se practica al final de cada sesión (OMS, 2016, cap. 2).",
+      esc: ["comunidad","primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluación y comprensión de la adversidad",
+          tecs: ["entrevista-clinica", "evaluacion-riesgo-suicida", "psicoeducacion"],
+          obj: "Confirmar que EP+ es adecuado y explicar las reacciones comunes a la adversidad.",
+          pasos: [
+            "Evaluar el malestar y las dos preocupaciones principales de la persona, y repetir esa medida cada semana.",
+            "Valorar el riesgo de suicidio; si hay un plan para terminar con la vida en el futuro cercano, se deriva de inmediato.",
+            "Considerar excluir a la persona si no entiende o no puede seguir la evaluación, o si parece fuera de contacto con la realidad.",
+            "Explicar las reacciones comunes a la adversidad y motivar a participar; si la persona lo desea, invitar a un familiar o amigo de confianza a la primera sesión."
+          ],
+          casa: "Leer el folleto de presentación de EP+.",
+          avance: "La persona entiende qué le pasa y acepta la intervención.",
+          fuente: "OMS, 2016, caps. 4 y 5"
+        },
+        {
+          t: "Manejo del estrés: respiración lenta",
+          tecs: ["respiracion-diafragmatica"],
+          obj: "Reducir los síntomas físicos del estrés con una técnica sencilla.",
+          pasos: [
+            "Explicar que con el estrés la respiración se acelera y se vuelve superficial, y que eso produce síntomas como dolor de cabeza o cansancio.",
+            "Enseñar a respirar desde el estómago y más despacio.",
+            "Practicar 10 minutos al final de cada sesión y resolver las dificultades que la persona encontró en casa."
+          ],
+          casa: "Practicar la respiración lenta a diario.",
+          avance: "La persona usa la respiración lenta cuando nota el estrés.",
+          fuente: "OMS, 2016, cap. 6",
+          fichas: ["registro-relajacion"]
+        },
+        {
+          t: "Enfrentando problemas",
+          tecs: ["solucion-problemas"],
+          obj: "Influir, al menos en parte, sobre los problemas prácticos.",
+          pasos: [
+            "Listar los problemas y separar los solucionables —sobre los que se puede influir— de los insolubles.",
+            "Elegir primero un problema solucionable y más fácil, y definir su parte práctica en forma breve y específica.",
+            "Pensar muchas ideas sin juzgarlas, incluidas personas que puedan ayudar.",
+            "Elegir las estrategias útiles —pocas desventajas y posibles de llevar a cabo— y armar un plan con día, hora y recursos.",
+            "Revisar el resultado en la sesión siguiente y planear cómo seguir."
+          ],
+          casa: "Llevar a cabo el plan de acción y seguir practicando la respiración.",
+          avance: "La persona reduce o modifica en parte sus problemas prácticos.",
+          fuente: "OMS, 2016, cap. 7 y apéndice E",
+          fichas: ["solucion-problemas"]
+        },
+        {
+          t: "Seguir andando, continuar haciendo",
+          tecs: ["activacion-conductual", "programacion-actividades", "tareas-graduadas"],
+          obj: "Recuperar las actividades que la persona dejó de hacer.",
+          pasos: [
+            "Explicar el ciclo en que la inactividad empeora el ánimo y el cansancio.",
+            "Elegir actividades placenteras y tareas necesarias que se abandonaron.",
+            "Dividirlas en pasos pequeños y programarlas en el calendario."
+          ],
+          casa: "Hacer las actividades programadas y registrar el ánimo.",
+          avance: "La persona retoma actividades y nota su efecto en el ánimo.",
+          fuente: "OMS, 2016, cap. 8",
+          fichas: ["registro-actividad-animo"]
+        },
+        {
+          t: "Fortalecer el apoyo social y mantenerse bien",
+          tecs: ["apoyo-social", "prevencion-recaidas"],
+          obj: "Reconectar con personas y organizaciones de apoyo y cerrar con un plan para el futuro.",
+          pasos: [
+            "Identificar a personas y organizaciones de confianza que puedan dar apoyo práctico o emocional.",
+            "Planear un paso concreto para contactarlas.",
+            "En la última sesión, repasar las estrategias, reconocer los avances y planear cómo usarlas en problemas futuros."
+          ],
+          casa: "Un contacto de apoyo en la semana.",
+          avance: "La persona cuenta con apoyo y sabe qué estrategia usar ante un problema nuevo.",
+          fuente: "OMS, 2016, caps. 9 y 10",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "Evaluación semanal de las dos preocupaciones principales, como propone el manual.",
+        "<strong>K-10</strong> o <strong>PHQ-9</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> está diseñado para comunidades expuestas a la adversidad y para facilitadores no especialistas, con supervisión (OMS, 2016, cap. 1).",
+        "<strong>Consulta externa:</strong> la frecuencia de las sesiones puede ajustarse a las necesidades de la persona (OMS, 2016, cap. 2)."
+      ],
+      cuidado: [
+        "Si a la sesión 5 la persona no ha mejorado, se analiza con el supervisor si se deriva a otro servicio (OMS, 2016, cap. 1).",
+        "EP+ evita dar consejos: la persona elige las soluciones (OMS, 2016, cap. 2)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Afrontamiento evitativo e inflexibilidad psicológica",
+  sub: "Lo que se interviene es la forma de responder a lo que se siente y se piensa: la persona organiza su conducta alrededor de no sentir miedo, tristeza, culpa o incomodidad —evita, posterga, se distrae, controla, consume— y eso la aleja de las personas y las cosas que le importan. Es un proceso que atraviesa muchos problemas, no un diagnóstico, y se mide con la evitación experiencial.",
+  elegir: [
+    "<strong>Si la evitación aparece en muchas áreas</strong> y la persona necesita una forma sencilla de ver su propia conducta, la matriz ACT le da un solo diagrama para clasificar lo que siente, lo que hace y lo que le importa; se aplica igual a problemas distintos.",
+    "Si la evitación gira alrededor del estrés o de una enfermedad crónica, el plan de aceptación y compromiso de <em>Estrés percibido</em> sigue el manual clásico de la terapia. Si lo que se evita son miedos concretos, los planes de <em>Ansiedad</em> trabajan con exposición."
+  ],
+  planes: [
+    {
+      id: "evit-matriz",
+      mod: "matriz",
+      inst: ["AAQ-II", "VLQ-2"],
+      enf: "act",
+      t: "Matriz ACT: movimientos hacia y movimientos de alejamiento",
+      fuente: "Polk et al., 2016, pasos 1 a 6",
+      cuando: "La persona <strong>se queda atascada</strong> en ciclos de evitación: hace cosas para no sentir o no pensar —evitar, postergar, discutir, beber, encerrarse— que alivian en el momento y a la larga la alejan de quien o lo que le importa. Sirve con problemas distintos, porque el diagrama es el mismo.",
+      respaldo: "La matriz es una herramienta desarrollada por clínicos para presentar la terapia de aceptación y compromiso de forma simple; al comienzo tuvo poco respaldo de investigación, y los autores reportan estudios en curso en varios países (Reyes, 2015, en Polk et al., 2016, introducción). Se apoya en el modelo de flexibilidad psicológica, que tiene respaldo en ensayos controlados en muchos problemas (Ruiz et al., cap. 11). Los autores la han aplicado en terapia individual, con niños, adolescentes y padres, con parejas y en coaching (Polk et al., 2016, parte 2).",
+      secuencia: "<strong>Secuencia:</strong> seis pasos que en general ocupan una sesión cada uno, aunque pueden combinarse o extenderse según el ritmo de la persona. Desde la segunda sesión, cada encuentro empieza con un breve ejercicio de notar y la revisión de la práctica en casa (Polk et al., 2016, parte 1).",
+      esc: ["primer-nivel","salud-mental","comunidad"],
+      actividades: [
+        {
+          t: "Presentar el punto de vista de la matriz",
+          tecs: ["matriz-act", "valores"],
+          obj: "Que la persona aprenda a clasificar su experiencia en los cuatro cuadrantes de la matriz.",
+          pasos: [
+            "Dibujar la línea horizontal (alejarse de / ir hacia) y la vertical (experiencia de los cinco sentidos / experiencia interna).",
+            "Preguntar en orden: quién y qué es importante para la persona; qué aparece por dentro y se interpone; qué hace para alejarse de eso; qué hace o podría hacer para acercarse a lo que importa.",
+            "Hablar de «quién o qué es importante» más que de «valores», para no llevar a la persona a la cabeza.",
+            "Cuidar que la persona nunca sienta que falla: responder con «sí, y…» en lugar de contradecir."
+          ],
+          casa: "Notar al menos un movimiento hacia y uno de alejamiento cada día.",
+          avance: "La persona ubica en la matriz lo que siente, lo que hace y lo que le importa.",
+          fuente: "Polk et al., 2016, paso 1",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "La funcionalidad de los movimientos de alejamiento",
+          tecs: ["desesperanza-creativa", "metafora-hoyo"],
+          obj: "Que la persona compruebe por su experiencia si sus movimientos de alejamiento funcionan.",
+          pasos: [
+            "Empezar con un breve ejercicio de notar lo que está presente.",
+            "Validar lo fácil que es alejarse de lo que no se quiere sentir.",
+            "Revisar cada movimiento de alejamiento: si funcionó a corto plazo, a largo plazo y si la acercó a quien o lo que le importa.",
+            "Nombrar los ciclos en que la persona queda atascada, con la metáfora del hombre en el hoyo si sirve."
+          ],
+          casa: "Notar los movimientos de alejamiento y su efecto a corto y a largo plazo.",
+          avance: "La persona juzga su conducta por lo que funciona para su vida, no por el alivio inmediato.",
+          fuente: "Polk et al., 2016, paso 2",
+          fichas: ["registro-control"]
+        },
+        {
+          t: "Ganchos y los límites del control",
+          tecs: ["agenda-control", "fusion"],
+          obj: "Mostrar la diferencia entre controlar el mundo exterior y controlar la experiencia interna, e identificar los ganchos.",
+          pasos: [
+            "Contrastar con ejercicios lo mucho que se puede controlar lo que se ve y se toca con lo poco que se puede controlar lo que se piensa y se siente.",
+            "Presentar la metáfora de los ganchos: pensamientos, emociones y recuerdos que, si se muerden, llevan a movimientos de alejamiento.",
+            "Identificar con la persona sus ganchos más frecuentes."
+          ],
+          casa: "Notar los ganchos que aparecen en la semana y si los mordió.",
+          avance: "La persona reconoce sus ganchos antes o poco después de morderlos.",
+          fuente: "Polk et al., 2016, paso 3"
+        },
+        {
+          t: "Aikido verbal",
+          tecs: ["aikido-verbal", "defusion"],
+          obj: "Aprender a notar el gancho, apartarse de su contenido y elegir un movimiento hacia lo importante.",
+          pasos: [
+            "Elegir una situación importante o difícil y recorrer las preguntas de la hoja de aikido verbal.",
+            "Dónde estaba, qué apareció por dentro, cómo lo sintió en el cuerpo, qué hizo.",
+            "Qué habría hecho la persona que quiere ser y qué hay de importante en poder hacerlo.",
+            "Notar cómo se siente moverse hacia lo importante, a diferencia de alejarse."
+          ],
+          casa: "Practicar las preguntas de aikido verbal ante un gancho real.",
+          avance: "La persona responde a las preguntas con flexibilidad y elige movimientos hacia.",
+          fuente: "Polk et al., 2016, paso 4"
+        },
+        {
+          t: "Autocompasión: el ejercicio de la gata madre",
+          tecs: ["gata-madre"],
+          obj: "Cambiar la relación con la autocrítica y los juicios duros que enganchan con más fuerza.",
+          pasos: [
+            "Validar que a muchas personas les cuesta practicar el aikido verbal cuando las heridas son profundas o la autocrítica es intensa.",
+            "Hacer el ejercicio de la gata madre: recibir los juicios duros como a gatitos, con cuidado, en lugar de luchar contra ellos.",
+            "Revisar en las sesiones siguientes cómo recibió la persona a sus «gatitos»."
+          ],
+          casa: "Notar los juicios duros y practicar recibirlos con amabilidad.",
+          avance: "La persona es visiblemente más amable consigo misma ante sus juicios.",
+          fuente: "Polk et al., 2016, paso 5"
+        },
+        {
+          t: "Toma de perspectiva",
+          tecs: ["yo-contexto", "accion-comprometida"],
+          obj: "Preparar movimientos hacia lo importante en situaciones futuras en que la persona prevé atascarse.",
+          pasos: [
+            "Elegir una situación próxima en la que la persona anticipa quedarse atascada.",
+            "Hacer la entrevista de toma de perspectiva: un diálogo entre el yo de aquí y ahora y el yo de allá y entonces, cambiando de perspectiva varias veces.",
+            "Acordar el movimiento hacia que elegirá cuando llegue la situación."
+          ],
+          casa: "Hacer el movimiento hacia elegido en la situación prevista.",
+          avance: "La persona elige movimientos hacia lo importante con los ganchos presentes.",
+          fuente: "Polk et al., 2016, paso 6",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>AAQ-II</strong> al inicio y al final para la evitación experiencial.",
+        "<strong>VLQ-2</strong> para la importancia de las áreas de vida y la coherencia de la acción.",
+        "Registro semanal de movimientos hacia y de alejamiento."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> los autores la usan también en coaching y en equipos de trabajo (Polk et al., 2016, parte 2).",
+        "<strong>Cuidadores y familia:</strong> hay aplicaciones con niños, adolescentes y padres, y con parejas (Polk et al., 2016, parte 2)."
+      ],
+      cuidado: [
+        "La matriz no busca eliminar los pensamientos y las emociones, sino cambiar lo que la persona hace cuando aparecen (Polk et al., 2016, paso 3).",
+        "Si lo que se evita es una situación de riesgo real, como la violencia, la protección va primero.",
+        "La evidencia propia de la matriz es todavía preliminar (Polk et al., 2016, introducción)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Estrés laboral y burnout",
+  sub: "Lo que se interviene es el desgaste asociado al trabajo: agotamiento emocional, distanciamiento o cinismo hacia las personas con que se trabaja y sensación de baja eficacia. Tiene dos niveles: lo que la persona puede hacer con su malestar y lo que la organización puede cambiar en las condiciones de trabajo. No requiere un diagnóstico.",
+  elegir: [
+    "<strong>Si el trabajo se puede hacer en grupo dentro de una organización</strong>, el entrenamiento en aceptación y compromiso en formato 2 + 1 tiene ensayos en el lugar de trabajo, incluidos efectos sobre el agotamiento emocional.",
+    "<strong>Si el desgaste viene de condiciones que la organización puede modificar</strong> —carga, horarios, comunicación—, la OMS recomienda intervenir sobre esos factores; el plan individual no los reemplaza.",
+    "Si predomina la acumulación de problemas concretos, la terapia de <em>Solución de problemas</em> también figura entre las intervenciones que la OMS sugiere para trabajadores con malestar."
+  ],
+  planes: [
+    {
+      id: "burnout-act",
+      mod: "flex",
+      inst: ["CBI", "MBI"],
+      enf: "act",
+      t: "Entrenamiento en aceptación y compromiso en el trabajo (2 + 1)",
+      fuente: "Flaxman et al., 2013, caps. 4 a 7 · OMS, 2022",
+      cuando: "Hay <strong>malestar asociado al trabajo</strong> —agotamiento, tensión, pensamientos repetitivos sobre el trabajo— en personas que siguen trabajando. Sirve como programa para grupos de trabajadores dentro de una organización o adaptado a la consulta individual.",
+      respaldo: "El primer ensayo aleatorizado de la terapia de aceptación y compromiso fue una intervención en el lugar de trabajo (Bond y Bunce, 2000, en Flaxman et al., 2013, cap. 9). En un estudio con lista de espera, tres sesiones de medio día mejoraron la salud mental durante seis meses, y el 69 % de los participantes con más malestar inicial tuvo mejoras clínicamente significativas; en otro, el formato 2 + 1 redujo el agotamiento emocional, lo que protegió del distanciamiento (Flaxman et al., 2013, cap. 9). La OMS sugiere intervenciones psicosociales basadas en mindfulness o en enfoques cognitivo-conductuales para trabajadores con malestar emocional (condicional, certeza baja; OMS, 2022, recomendación 10A).",
+      secuencia: "<strong>Secuencia:</strong> formato 2 + 1: tres sesiones de unas tres horas, dos en semanas consecutivas y una sesión de refuerzo entre uno y tres meses después. El programa se organiza en dos habilidades —mindfulness y acción basada en valores— y cada sesión termina con práctica para la casa (Flaxman et al., 2013, cap. 4).",
+      esc: ["comunidad","primer-nivel","hospital"],
+      actividades: [
+        {
+          t: "Presentación y las dos habilidades",
+          tecs: ["psicoeducacion", "flexibilidad-psicologica"],
+          obj: "Presentar el programa y su lógica: mindfulness y acción basada en valores.",
+          pasos: [
+            "Dar la bienvenida, describir el formato y acordar las reglas del grupo.",
+            "Presentar el diagrama de las dos habilidades y cómo se relacionan.",
+            "Informar sobre otras fuentes de apoyo disponibles en la organización y fuera de ella."
+          ],
+          casa: "Leer el material de la sesión.",
+          avance: "Las personas entienden la lógica del programa.",
+          fuente: "Flaxman et al., 2013, cap. 5 (parte I)"
+        },
+        {
+          t: "Conciencia del momento presente",
+          tecs: ["ejercicio-pasa", "momento-presente"],
+          obj: "Empezar a desarrollar el contacto con la experiencia presente, base de las dos habilidades.",
+          pasos: [
+            "Hacer el ejercicio de la uva pasa.",
+            "Hacer una práctica breve de atención al cuerpo y a la respiración.",
+            "Revisar lo que las personas notaron."
+          ],
+          casa: "Práctica breve de atención a la respiración cada día.",
+          avance: "Las personas notan su experiencia presente durante la práctica.",
+          fuente: "Flaxman et al., 2013, cap. 5 (parte II)",
+          fichas: ["registro-practica-mbct"]
+        },
+        {
+          t: "Acción basada en valores",
+          tecs: ["valores", "hoja-valores"],
+          obj: "Conectar con lo que importa en el trabajo y fuera de él.",
+          pasos: [
+            "Presentar los valores como direcciones elegidas, distintas de las metas.",
+            "Hacer la técnica de las dos hojas: una dice «valor»; la otra, «pensamiento, ánimo o sentimiento poco útil», para mostrar cómo lo interno puede tapar lo que importa.",
+            "Preparar la práctica en casa."
+          ],
+          casa: "Hacer una acción pequeña guiada por un valor.",
+          avance: "Las personas identifican al menos un valor y una acción para la semana.",
+          fuente: "Flaxman et al., 2013, cap. 5 (partes II y III)",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Desenredarse de las barreras internas",
+          tecs: ["metafora-autobus", "defusion", "aceptacion"],
+          obj: "Aprender a relacionarse de otra forma con los pensamientos y las emociones que frenan la acción valiosa.",
+          pasos: [
+            "Empezar con la atención a la respiración y revisar la práctica en casa.",
+            "Presentar la metáfora de los pasajeros del autobús.",
+            "Practicar la defusión con los pensamientos sobre el trabajo.",
+            "Practicar la atención plena al ánimo y a las emociones."
+          ],
+          casa: "Práctica diaria de mindfulness y notar un pensamiento que frena una acción valiosa.",
+          avance: "Las personas describen sus pensamientos como pensamientos, sin quedar atrapadas en ellos.",
+          fuente: "Flaxman et al., 2013, cap. 6 (partes I y II)"
+        },
+        {
+          t: "Metas y acciones guiadas por valores",
+          tecs: ["accion-comprometida"],
+          obj: "Traducir los valores en metas y acciones concretas.",
+          pasos: [
+            "Definir los valores en las áreas elegidas.",
+            "Traducirlos en metas y acciones concretas para las semanas siguientes."
+          ],
+          casa: "Llevar a cabo las acciones planeadas hasta la sesión de refuerzo.",
+          avance: "Las personas tienen un plan de acciones guiadas por valores.",
+          fuente: "Flaxman et al., 2013, cap. 6 (parte III)",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Sesión de refuerzo: consolidar",
+          tecs: ["ejercicio-observador", "prevencion-recaidas"],
+          obj: "Revisar lo logrado, reforzar las dos habilidades y planear cómo seguir.",
+          pasos: [
+            "Revisar la práctica en casa y valorar la coherencia de la acción con los valores.",
+            "Practicar la atención plena a los pensamientos y las emociones, y la perspectiva del observador.",
+            "Dar recomendaciones para ampliar las pautas de acción valiosa y seguir practicando."
+          ],
+          casa: "Plan personal de práctica continuada.",
+          avance: "Las personas sostienen la práctica y la acción basada en valores después del programa.",
+          fuente: "Flaxman et al., 2013, cap. 7"
+        }
+      ],
+      medir: [
+        "<strong>CBI</strong> o <strong>MBI</strong> al inicio, después de la segunda sesión y en la de refuerzo.",
+        "<strong>AAQ-II</strong> para la flexibilidad psicológica."
+      ],
+      adapt: [
+        "<strong>Hospital general:</strong> la OMS sugiere intervenciones psicosociales universales basadas en mindfulness o en enfoques cognitivo-conductuales para el personal de salud, humanitario y de emergencias, y la capacitación de sus jefes (OMS, 2022, recomendaciones 5 y 9A).",
+        "<strong>Comunidad:</strong> la OMS recomienda capacitar a los jefes para apoyar la salud mental de sus equipos (recomendación fuerte, certeza moderada) e intervenir sobre los riesgos psicosociales de la organización (condicional, certeza muy baja; OMS, 2022, recomendaciones 4 y 1).",
+        "<strong>Consulta externa:</strong> en un ensayo con trabajadores de salud en riesgo de incapacidad por estrés y dolor, se dio en cuatro sesiones individuales semanales de una hora (Dahl et al., 2004, en Flaxman et al., 2013, cap. 9)."
+      ],
+      cuidado: [
+        "El entrenamiento individual no sustituye los cambios en las condiciones de trabajo: la OMS pone primero las intervenciones organizacionales (OMS, 2022).",
+        "Si el agotamiento viene con depresión, riesgo suicida o consumo, se atienden con el plan correspondiente."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Adaptación a cambios y transiciones vitales",
+  sub: "Lo que se interviene es la dificultad para adaptarse a un cambio de vida que exige otro rol y otras relaciones: una mudanza, la jubilación, el divorcio, la llegada de un hijo, un ascenso, una migración, un diagnóstico o empezar a cuidar a alguien. Incluye el trastorno adaptativo y la depresión que aparece alrededor del cambio. El cambio puede ser deseado y aun así costar.",
+  elegir: [
+    "<strong>Si hay atención individual</strong> y el malestar aparece alrededor de un cambio de rol, la psicoterapia interpersonal trabaja el área de transición de rol: despedir el rol anterior, valorar el nuevo y construir apoyos.",
+    "<strong>Si hay varias personas con depresión y pocos especialistas</strong>, la terapia interpersonal grupal de la OPS la adapta a ocho sesiones de grupo con facilitadores entrenados.",
+    "Si el cambio es la muerte de una persona significativa, se trabaja como duelo. Si lo que pesa son los problemas prácticos del cambio, la terapia de <em>Solución de problemas</em> puede complementarlo."
+  ],
+  planes: [
+    {
+      id: "trans-ipt",
+      mod: "ipt",
+      inst: ["PHQ-9", "K-10"],
+      enf: "ipt",
+      t: "Psicoterapia interpersonal: transición de rol",
+      fuente: "Weissman et al., 2018, caps. 4, 7 y 9",
+      cuando: "El malestar o la depresión <strong>empezó alrededor de un cambio de vida</strong> que exige otro rol y cambia las relaciones cercanas. La persona recuerda el antes como ideal, vivió el cambio como un golpe y ve el futuro caótico, fuera de control.",
+      respaldo: "La psicoterapia interpersonal tiene respaldo en la depresión mayor; los síntomas más leves responden al menos tan bien como los más graves, por lo que el mismo modelo probablemente beneficia al trastorno adaptativo con ánimo deprimido, y la consejería interpersonal, más breve, también puede servir (Weissman et al., 2018, cap. 22). En un ensayo con hombres jóvenes con VIH y depresión —una transición de rol—, funcionó tan bien como la medicación y mejor que la terapia cognitivo-conductual y la de apoyo (Markowitz et al., 1998, en Weissman et al., 2018, cap. 7).",
+      secuencia: "<strong>Secuencia:</strong> tratamiento limitado en el tiempo, por lo general de doce a dieciséis sesiones semanales, en tres fases: inicial (diagnóstico, inventario interpersonal, formulación y contrato), intermedia (las cinco tareas de la transición de rol) y final (terminación y, si hace falta, mantenimiento) (Weissman et al., 2018, caps. 4, 7 y 9).",
+      esc: ["primer-nivel","salud-mental","hospital","mayores"],
+      actividades: [
+        {
+          t: "Fase inicial: nombrar la transición",
+          tecs: ["inventario-interpersonal", "rol-enfermo", "psicoeducacion"],
+          obj: "Vincular el malestar con el cambio de vida y acordar el foco del tratamiento.",
+          pasos: [
+            "Revisar los síntomas y explicar el diagnóstico.",
+            "Hacer el inventario interpersonal: las relaciones importantes y lo que cambió con la transición.",
+            "Preguntar qué pasaba en la vida de la persona cuando empezó a sentirse mal.",
+            "Presentar la formulación: el problema es una transición de rol, no un caos; acordar el número de sesiones."
+          ],
+          casa: "Anotar los cambios que trajo la transición en las relaciones y en la rutina.",
+          avance: "La persona relaciona su malestar con la transición y acepta el foco.",
+          fuente: "Weissman et al., 2018, caps. 4 y 7",
+          fichas: ["inventario-interpersonal"]
+        },
+        {
+          t: "Despedir y hacer el duelo del rol anterior",
+          tecs: ["transicion-rol", "expresion-emocional"],
+          obj: "Revisar el rol anterior de forma equilibrada y expresar lo que se siente por su pérdida.",
+          pasos: [
+            "Explorar cómo era el rol anterior, qué tenía de bueno y qué extraña la persona.",
+            "Luego preguntar qué no era ideal: la depresión tiende a exagerar lo bueno del pasado.",
+            "Dar espacio a la tristeza, la culpa, la rabia, la impotencia y los miedos por lo perdido."
+          ],
+          casa: "Escribir lo que se extraña y lo que no se extraña del rol anterior.",
+          avance: "La persona describe su rol anterior con sus pros y sus contras.",
+          fuente: "Weissman et al., 2018, cap. 7"
+        },
+        {
+          t: "Valorar el nuevo rol",
+          tecs: ["transicion-rol", "analisis-decisiones"],
+          obj: "Ver el nuevo rol con sus exigencias y sus posibilidades, no solo como pérdida.",
+          pasos: [
+            "Preguntar qué es lo difícil de la situación actual, qué la haría mejor y qué opciones hay para lograrlo.",
+            "Reconocer los aspectos positivos o las oportunidades de crecimiento del nuevo rol.",
+            "Si el cambio es objetivamente negativo, como una enfermedad grave, buscar el sentido o las capacidades que la persona descubre en sí."
+          ],
+          casa: "Registrar una cosa del nuevo rol que sea posible o valiosa.",
+          avance: "La persona ve el nuevo rol de forma más equilibrada.",
+          fuente: "Weissman et al., 2018, cap. 7",
+          fichas: ["analisis-comunicacion"]
+        },
+        {
+          t: "Nuevas habilidades y nuevos apoyos",
+          tecs: ["juego-roles", "apoyo-social", "entrenamiento-comunicacion"],
+          obj: "Desarrollar lo que el nuevo rol exige y construir relaciones de apoyo.",
+          pasos: [
+            "Identificar las habilidades sociales o laborales que el nuevo rol requiere.",
+            "Ensayar con juego de roles lo que la persona necesita decir: pedir, poner límites, expresar lo que quiere.",
+            "Buscar nuevas relaciones, grupos o actividades, y cambiar la relación con los amigos de antes si hace falta."
+          ],
+          casa: "Un paso concreto para crear o recuperar un apoyo.",
+          avance: "La persona cuenta con apoyos y habilidades para el nuevo rol.",
+          fuente: "Weissman et al., 2018, cap. 7"
+        },
+        {
+          t: "Terminación",
+          tecs: ["prevencion-recaidas"],
+          obj: "Reconocer los logros, despedirse y planear qué hacer si vuelven los síntomas.",
+          pasos: [
+            "Anticipar la terminación en las últimas sesiones y reconocer los sentimientos que despierta.",
+            "Revisar los avances y atribuirlos a lo que hizo la persona.",
+            "Identificar las señales de recaída y valorar si hace falta tratamiento de mantenimiento."
+          ],
+          casa: "Plan personal para las señales de alarma.",
+          avance: "La persona termina con un plan para mantener los logros.",
+          fuente: "Weissman et al., 2018, cap. 9",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PHQ-9</strong> cada semana o cada dos semanas.",
+        "<strong>K-10</strong> cuando no hay depresión, en el trastorno adaptativo."
+      ],
+      adapt: [
+        "<strong>Adultos mayores:</strong> la jubilación y otras transiciones del envejecimiento son un foco habitual; el libro tiene un capítulo sobre la depresión en adultos mayores (Weissman et al., 2018, caps. 7 y 15).",
+        "<strong>Hospital general:</strong> en pacientes médicos se usa la consejería interpersonal y la psicoterapia interpersonal breve (Weissman et al., 2018, cap. 16)."
+      ],
+      cuidado: [
+        "El respaldo proviene sobre todo de la depresión; en el trastorno adaptativo es una extensión razonable del modelo más que un resultado de ensayos propios (Weissman et al., 2018, cap. 22).",
+        "Transiciones y disputas suelen coexistir: se elige el foco que mejor explique el malestar y resulte más aceptable para la persona (Weissman et al., 2018, cap. 7)."
+      ]
+    },
+    {
+      id: "trans-tipg",
+      mod: "ipt",
+      inst: ["PHQ-9"],
+      enf: "ipt",
+      t: "Terapia interpersonal grupal: cambios en la vida",
+      fuente: "OPS, 2022b, caps. 1 a 5",
+      cuando: "Hay <strong>varias personas con depresión</strong> relacionada con cambios en la vida —casarse y mudarse, separarse, enterarse de una enfermedad grave, cuidar a alguien que está muriendo, jubilarse, migrar, quedar en la pobreza— y pocos especialistas. La intervención la hacen facilitadores entrenados y supervisados.",
+      respaldo: "Es una versión simplificada de la psicoterapia interpersonal, preparada para la OMS por Verdeli, Clougherty y Weissman, para que la apliquen en ocho sesiones grupales facilitadores sin formación previa en salud mental (OPS, 2022b, prólogo y cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> una sesión individual previa de 90 minutos con cada futuro participante; luego ocho sesiones grupales semanales de 90 minutos con seis a diez personas: fase inicial (sesión 1), intermedia (sesiones 2 a 7) y de finalización (sesión 8). Por ser breve, se trabajan una o dos áreas de problemas por persona (OPS, 2022b, cap. 1).",
+      esc: ["comunidad","primer-nivel"],
+      actividades: [
+        {
+          t: "Sesión individual previa",
+          tecs: ["entrevista-clinica", "inventario-interpersonal", "evaluacion-riesgo-suicida"],
+          obj: "Conocer los síntomas de la persona y relacionar su depresión con un área de problemas.",
+          pasos: [
+            "Evaluar la depresión con una escala adecuada y usar un término local, sin prejuicios, para nombrarla.",
+            "Preguntar por los problemas que pueden estar relacionados: la muerte de alguien, disputas, cambios en la vida, soledad.",
+            "Descartar el riesgo inmediato: la TIP grupal no es apropiada para quien tiene planes de quitarse la vida en un futuro cercano.",
+            "Acordar las áreas de problemas y los objetivos para el grupo."
+          ],
+          casa: "Pensar qué quiere cambiar en el grupo.",
+          avance: "La persona conoce su área de problemas y acepta participar.",
+          fuente: "OPS, 2022b, caps. 1 y 2"
+        },
+        {
+          t: "Primera sesión de grupo",
+          tecs: ["psicoeducacion", "rol-enfermo"],
+          obj: "Presentar a los participantes, explicar la depresión y las áreas de problemas, y acordar las normas.",
+          pasos: [
+            "Presentar a los miembros y las normas del grupo, incluida la confidencialidad.",
+            "Explicar la depresión y su relación con los problemas en las relaciones.",
+            "Que cada participante comparta su área de problemas y su objetivo."
+          ],
+          casa: "Notar la relación entre el ánimo y lo que pasó con otras personas en la semana.",
+          avance: "Los participantes entienden el vínculo entre su ánimo y sus relaciones.",
+          fuente: "OPS, 2022b, cap. 3"
+        },
+        {
+          t: "Hacer frente a los cambios en la vida",
+          tecs: ["transicion-rol", "juego-roles", "apoyo-social"],
+          obj: "Despedir el rol anterior, valorar el nuevo y desarrollar lo que exige.",
+          pasos: [
+            "Describir en detalle el cambio: cómo estaba antes, cómo está ahora y dónde quiere estar en el futuro.",
+            "Explorar lo positivo y lo negativo del rol anterior y hacer el duelo por su pérdida.",
+            "Explorar lo positivo y lo negativo del nuevo rol; si no tiene nada positivo, como una enfermedad terminal, buscar oportunidades de crecimiento o sentido.",
+            "Identificar las habilidades y las personas que facilitarán el nuevo rol, y terminar con el aislamiento."
+          ],
+          casa: "Una tarea interpersonal acordada en el grupo, para revisar en la sesión siguiente.",
+          avance: "El participante se adapta al nuevo rol y cuenta con apoyos.",
+          fuente: "OPS, 2022b, caps. 4 y 5 (§5.3)"
+        },
+        {
+          t: "Sesión final",
+          tecs: ["prevencion-recaidas"],
+          obj: "Reconocer los logros y preparar a los participantes para seguir solos.",
+          pasos: [
+            "Revisar el progreso de cada participante con su área de problemas.",
+            "Identificar las señales tempranas de depresión y qué hacer si aparecen.",
+            "Despedirse y reconocer lo que cada uno aportó al grupo."
+          ],
+          casa: "Plan personal ante las señales de alarma.",
+          avance: "Los participantes terminan con un plan propio.",
+          fuente: "OPS, 2022b, cap. 4"
+        }
+      ],
+      medir: [
+        "Escala de depresión en la sesión previa, durante el grupo y al final; el manual sugiere instrumentos en su sección 2.1.",
+        "<strong>PHQ-9</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Comunidad:</strong> las sesiones pueden hacerse en un centro de salud, un centro comunitario u otro lugar privado; en la mayoría de los contextos conviene separar los grupos de hombres y de mujeres (OPS, 2022b, caps. 1 y 2)."
+      ],
+      cuidado: [
+        "Los facilitadores nuevos deben ser supervisados en al menos tres grupos completos (OPS, 2022b, cap. 1).",
+        "Quien tiene planes de quitarse la vida en el futuro cercano necesita de inmediato una ayuda más específica (OPS, 2022b, cap. 1)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Sobrecarga del cuidador",
+  sub: "Lo que se interviene es el desgaste de quien cuida a una persona dependiente —un adulto mayor, una persona con demencia, con discapacidad, con un trastorno mental grave o con consumo—: la carga percibida, el estrés, los síntomas depresivos y el aislamiento. El foco es el bienestar del cuidador, no solo el de la persona cuidada.",
+  elegir: [
+    "<strong>Si el cuidador necesita atención y apoyo directos</strong>, el plan de apoyo psicológico sigue la recomendación de la OMS para cuidadores de adultos mayores dependientes: psicoeducación, entrenamiento en habilidades y apoyo.",
+    "<strong>Si la persona cuidada tiene demencia y el cuidador puede trabajar por su cuenta</strong>, con o sin acompañamiento, iSupport de la OMS organiza en cinco módulos lo que necesita saber y hacer, incluido cuidarse a sí mismo.",
+    "Si quien cuida a una persona con cáncer se pregunta por el sentido de lo que vive, la psicoterapia centrada en el sentido de <em>Sufrimiento y sentido al final de la vida</em> tiene una adaptación para cuidadores (Applebaum et al., 2026)."
+  ],
+  planes: [
+    {
       id: "estres-cuid",
       mod: "lazarus",
       inst: ["Zarit", "CSI"],
@@ -7702,6 +8487,98 @@ const VARIABLES = [
       cuidado: [
         "El apoyo lo brindan profesionales entrenados, con supervisión acorde con su nivel de implicación (OMS, 2017, recomendación 13).",
         "Para cuidadores de personas con consumo de sustancias, la certeza de la evidencia es muy baja (OMS, 2023, OVE1)."
+      ]
+    },
+    {
+      id: "cuid-isupport",
+      mod: "lazarus",
+      inst: ["Zarit", "PHQ-9"],
+      enf: "tcc",
+      t: "iSupport: formación y apoyo para cuidadores de personas con demencia",
+      fuente: "OMS, 2019, módulos 1 a 5 · OMS, 2023 (DEM1)",
+      cuando: "Quien consulta <strong>cuida a una persona con demencia</strong> y necesita conocer la enfermedad, manejar el día a día y los cambios de conducta, y cuidarse a sí mismo. Puede usarse como autoayuda, completo o por lecciones, o como guía de sesiones con un profesional.",
+      respaldo: "La OMS recomienda ofrecer a los cuidadores de personas con demencia intervenciones basadas en mindfulness, intervenciones multicomponentes, psicoeducación y psicoterapia (recomendación fuerte, certeza baja; OMS, 2023, DEM1). iSupport es el programa de la OMS que reúne esos contenidos en formato de autoayuda (OMS, 2019).",
+      secuencia: "<strong>Secuencia:</strong> cinco módulos: introducción a la demencia; cómo ser cuidador (el viaje juntos, comunicación, toma de decisiones con apoyo, involucrar a otros); cuidando de mí (reducir el estrés, actividades agradables, pensar de manera distinta); cuidando en el día a día (comer y beber, ir al baño, cuidado personal, un día agradable), y cambios conductuales (memoria, agresión, depresión y ansiedad, sueño, delirios, conductas repetitivas, deambulación, razonamiento). Cada lección combina información, ejemplos, preguntas y actividades; se puede seguir en orden o elegir la lección más útil (OMS, 2019).",
+      esc: ["cuidadores","mayores","comunidad","primer-nivel"],
+      actividades: [
+        {
+          t: "Conocer la demencia y el rol de cuidador",
+          tecs: ["psicoeducacion"],
+          obj: "Entender la enfermedad y lo que implica el cuidado a lo largo del tiempo.",
+          pasos: [
+            "Revisar qué es la demencia y cómo evoluciona.",
+            "Hablar del cuidado como un viaje que se hace junto con la persona.",
+            "Elegir con el cuidador por qué módulos empezar según lo que más le pesa."
+          ],
+          casa: "Leer el módulo 1 y marcar las dudas.",
+          avance: "El cuidador conoce la enfermedad y lo que puede esperar.",
+          fuente: "OMS, 2019, módulos 1 y 2 (lección 1)"
+        },
+        {
+          t: "Comunicación, decisiones e involucrar a otros",
+          tecs: ["entrenamiento-comunicacion", "apoyo-social"],
+          obj: "Mejorar la comunicación con la persona cuidada y repartir la carga.",
+          pasos: [
+            "Practicar formas de comunicarse que se ajusten a los cambios de la persona.",
+            "Apoyar a la persona para que participe en las decisiones que la afectan.",
+            "Identificar a familiares y otras personas que puedan asumir parte del cuidado, y pedirles ayuda."
+          ],
+          casa: "Pedir ayuda concreta a una persona de la red.",
+          avance: "El cuidador comparte tareas y se comunica mejor con la persona cuidada.",
+          fuente: "OMS, 2019, módulo 2 (lecciones 2 a 4)"
+        },
+        {
+          t: "Cuidando de mí",
+          tecs: ["relajacion", "programacion-actividades", "reestructuracion-cognitiva"],
+          obj: "Reducir el estrés del cuidador y recuperar espacios propios.",
+          pasos: [
+            "Practicar formas breves de relajarse en cualquier lugar: respiración, respiración consciente, imágenes, relajación muscular y estiramientos.",
+            "Sacar tiempo para actividades agradables.",
+            "Revisar los pensamientos que aumentan la culpa o el malestar y pensar de manera distinta."
+          ],
+          casa: "Una práctica breve de relajación al día y una actividad agradable en la semana.",
+          avance: "El cuidador dedica tiempo regular a su propio bienestar.",
+          fuente: "OMS, 2019, módulo 3",
+          fichas: ["registro-relajacion", "cuidado-cuidador"]
+        },
+        {
+          t: "El cuidado en el día a día",
+          tecs: ["solucion-problemas"],
+          obj: "Hacer más llevaderas las tareas diarias de cuidado.",
+          pasos: [
+            "Revisar las comidas, la hidratación y la prevención de problemas de salud.",
+            "Planear el cuidado personal y el uso del baño respetando la dignidad de la persona.",
+            "Organizar un día agradable, con actividades que la persona todavía disfruta."
+          ],
+          casa: "Aplicar un cambio en la rutina diaria y observar el resultado.",
+          avance: "Las tareas diarias generan menos tensión.",
+          fuente: "OMS, 2019, módulo 4"
+        },
+        {
+          t: "Cambios de conducta y situaciones difíciles",
+          tecs: ["analisis-funcional", "solucion-problemas"],
+          obj: "Entender y manejar los cambios de conducta de la persona con demencia.",
+          pasos: [
+            "Entender los cambios conductuales como parte de la enfermedad, sin culparse ni culpar a la persona.",
+            "Revisar qué pasa antes y después de la conducta —agresión, repetición, deambulación, problemas de sueño, delirios— para buscar qué la desencadena.",
+            "Planear respuestas y combinar lo aprendido en las situaciones difíciles."
+          ],
+          casa: "Registrar una conducta difícil con lo que pasó antes y después.",
+          avance: "El cuidador maneja con más calma los cambios de conducta.",
+          fuente: "OMS, 2019, módulo 5"
+        }
+      ],
+      medir: [
+        "<strong>Zarit</strong> al inicio y al final.",
+        "<strong>PHQ-9</strong> para la depresión del cuidador."
+      ],
+      adapt: [
+        "<strong>Adultos mayores:</strong> muchos cuidadores son también personas mayores, y la persona cuidada casi siempre lo es.",
+        "<strong>Comunidad:</strong> al ser autoaplicado, puede llegar a cuidadores que no pueden asistir a sesiones; el profesional acompaña y resuelve dudas."
+      ],
+      cuidado: [
+        "Si el cuidador tiene depresión o riesgo suicida, se atienden con el plan correspondiente.",
+        "Ante conductas agresivas que persisten, el manual sugiere buscar apoyo en asociaciones de pacientes y otros recursos (OMS, 2019, módulo 5)."
       ]
     }
   ]
@@ -11183,6 +12060,19 @@ const GLOSARIO = [
 { k: "puertas-abren", t: "Puertas que se cierran y se abren", tipo: "Ejercicio", enf: ["pp"],
   d: "Ejercicio de optimismo y esperanza de la psicoterapia positiva. La persona recuerda momentos en que se le cerró una puerta (una pérdida, un plan que se vino abajo, un rechazo), busca qué puerta se abrió después e identifica lo que hizo ella para aprovecharla. Como tarea, anota tres puertas que se cerraron y las tres que se abrieron después.",
   fuente: "Seligman et al., 2006 · Rashid y Seligman, 2018, cap. 15 (sesión 9)" },
+/* ---------- Bloque de afrontamiento ---------- */
+{ k: "matriz-act", t: "Matriz ACT", alias: ["matriz", "movimientos hacia", "movimientos de alejamiento"], tipo: "Técnica", enf: ["act"],
+  d: "Diagrama de dos líneas que cruzan: la horizontal separa los movimientos de alejamiento de lo que no se quiere pensar ni sentir de los movimientos hacia quien o lo que importa; la vertical separa la experiencia de los cinco sentidos de la experiencia interna. La persona clasifica en los cuatro cuadrantes lo que le importa, lo que se interpone, lo que hace para alejarse y lo que hace o podría hacer para acercarse.",
+  fuente: "Polk et al., 2016, paso 1" },
+{ k: "aikido-verbal", t: "Aikido verbal", tipo: "Técnica", enf: ["act"],
+  d: "Forma de conversar en que el terapeuta no discute el contenido de lo que dice la persona, sino que la invita a ubicarlo en la matriz con una serie de preguntas: dónde estaba, qué apareció por dentro, cómo lo sintió en el cuerpo, qué hizo, qué habría hecho la persona que quiere ser y qué hay de importante en poder hacerlo.",
+  fuente: "Polk et al., 2016, paso 4" },
+{ k: "gata-madre", t: "Ejercicio de la gata madre", tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio de autocompasión basado en una metáfora: recibir los juicios duros sobre uno mismo como una gata recibe a sus gatitos, con cuidado, en lugar de luchar contra ellos. Se usa cuando la autocrítica engancha con tanta fuerza que la persona no alcanza a notar el gancho antes de morderlo.",
+  fuente: "Polk et al., 2016, paso 5" },
+{ k: "desengancharse", t: "Desengancharse", tipo: "Técnica", enf: ["act"],
+  d: "Habilidad de la guía «Haz lo que importa»: darse cuenta de que un pensamiento o sentimiento nos ha enganchado, ponerle nombre en silencio —«aquí hay un pensamiento», «aquí hay ira»— y volver a centrarse en lo que se está haciendo.",
+  fuente: "OPS, 2022a, parte 2" },
 { k: "presentacion-positiva", t: "Presentación positiva", alias: ["introducción positiva"], tipo: "Ejercicio", enf: ["pp"],
   d: "Primer ejercicio de la psicoterapia positiva: la persona se presenta con una historia real, con comienzo, desarrollo y final positivo, de un momento en que dio lo mejor de sí, sobre todo al superar una dificultad. Pone las fortalezas a la par de los síntomas desde el inicio y se retoma en la última sesión.",
   como: ["Pedir que recuerde una situación concreta en la que estuvo a la altura de algo difícil, grande o pequeño.",
