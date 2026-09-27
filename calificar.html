@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calificación en línea</title>
+<style>
+/* Calificación en línea de los instrumentos completos. Las preguntas y las
+   reglas vienen de instrumentos/calificar-datos.js, que genera
+   _planes-fuente/instrumentos/generar.py desde las mismas fichas en PDF: lo
+   que se califica aquí es exactamente lo que trae la ficha. Nada se envía ni
+   se guarda: las respuestas viven solo en esta pestaña. */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --alerta:#a83f2b; --alerta-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:12px;
+}
+/* Instrumentos de la guía de niños y adolescentes: los colores de sus fichas. */
+body.infancia{--accent:#c4663c; --accent-dark:#8a4222; --accent-soft:#f8e7de; --surface:#fdf9f5; --border:#e6d6ca;}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5;
+  -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+a{color:var(--accent-dark);}
+.wrap{max-width:1180px; margin:0 auto; padding:28px 20px 60px; display:grid;
+  grid-template-columns:minmax(0,1fr) 330px; gap:28px; align-items:start;}
+.rotulo{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+h1{font-size:clamp(24px,3vw,34px); line-height:1.2;}
+.sigla{font-size:14px; font-weight:700; color:var(--accent); margin-top:6px;}
+.para{color:var(--ink-soft); margin:12px 0 0; max-width:70ch;}
+.aviso{margin:16px 0 0; padding:10px 14px; background:var(--surface); border-radius:10px;
+  font-size:13px; color:var(--ink-soft); border:1px solid var(--border);}
+.acciones{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+.bt{font:inherit; font-size:13.5px; font-weight:600; color:var(--accent-dark); background:var(--bg);
+  border:1px solid var(--accent); border-radius:8px; padding:7px 13px; cursor:pointer; text-decoration:none;}
+.bt:hover{background:var(--accent-soft);}
+.consigna{font-weight:600; margin:24px 0 8px; max-width:75ch;}
+.rej-t{font-weight:700; margin:26px 0 8px; font-size:15px;}
+table{width:100%; border-collapse:collapse; font-size:14.5px;}
+th{background:var(--accent); color:#fff; font-size:11.5px; font-weight:700; padding:7px 4px; text-align:center;
+  vertical-align:bottom;}
+th:first-child{text-align:left; padding-left:10px;}
+td{border-bottom:1px solid var(--border); padding:8px 4px; text-align:center;}
+td:first-child{text-align:left; padding-left:10px;}
+tr:nth-child(even) td{background:var(--surface);}
+tr.falta td:first-child{box-shadow:inset 3px 0 var(--alerta);}
+td label{display:inline-flex; flex-direction:column; align-items:center; gap:1px; cursor:pointer;
+  font-size:11px; color:var(--ink-faint); min-width:34px;}
+input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:pointer; margin:0;}
+.panel{position:sticky; top:16px; background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px;}
+.panel h2{font-size:19px; margin-bottom:4px;}
+.faltan{font-size:12.5px; color:var(--ink-faint); margin-bottom:12px;}
+.res{padding:10px 0; border-top:1px solid var(--border);}
+.res .n{font-size:12.5px; font-weight:700; color:var(--ink-soft);}
+.res .v{font-family:var(--font-display); font-size:26px; font-weight:600; color:var(--accent-dark); line-height:1.2;}
+.res .r{font-size:13.5px; font-weight:600; color:var(--ink);}
+.res .x{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+.alerta{margin-top:12px; padding:10px 12px; border-radius:10px; background:var(--alerta-soft);
+  border-left:4px solid var(--alerta); font-size:13px; color:#5c2418;}
+.alerta a{color:#5c2418; font-weight:700;}
+.riesgo{margin-top:14px; padding:12px 16px; border-radius:10px; background:#fbeae6; border-left:4px solid #a83f2b; font-size:13.5px; line-height:1.5; color:#4a1d13;}
+.riesgo b{display:block; color:#a83f2b; margin-bottom:4px;}
+.riesgo ol{margin:4px 0 0; padding-left:20px;}
+.riesgo li{margin-bottom:3px;}
+.riesgo a{color:#7a2a1a; font-weight:600;}
+.nota-p{font-size:12px; color:var(--ink-faint); margin-top:14px;}
+.indice{grid-column:1 / -1;}
+.indice ul{list-style:none; padding:0; margin:16px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px;}
+.indice li a{display:block; padding:12px 14px; border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--ink);}
+.indice li a:hover{border-color:var(--accent); background:var(--accent-soft);}
+.indice li b{color:var(--accent-dark);}
+.fuente{font-size:12px; color:var(--ink-faint); margin-top:26px;}
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr);}
+  .panel{position:static;}
+  td label{min-width:26px;}
+}
+@media print{
+  .acciones,.aviso{display:none;}
+  .wrap{grid-template-columns:minmax(0,1fr) 260px;}
+  .panel{position:static;}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script src="instrumentos/calificar-datos.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+// El mismo protocolo que muestran los planes junto a los instrumentos de riesgo.
+const PROTOCOLO_RIESGO = '<div class="riesgo"><b>Protocolo ante riesgo suicida</b><ol><li>Pregunte directamente por ideas, plan e intención de suicidio. Preguntar no lo induce.</li><li>Si hay riesgo, la persona no se queda sola ni se va sin una valoración de seguridad. Retire los medios letales a su alcance y avise al responsable de la atención.</li><li>Riesgo inminente: urgencias de inmediato, en el servicio más cercano o por la <strong>Línea 123</strong>.</li><li>Orientación en salud mental en todo el país: <strong>Línea 192, opción 4</strong>, del Ministerio de Salud y Protección Social.</li><li>Siga la <a href="rutas-mhgap.html#sui" target="_blank" rel="noopener">ruta de suicidio (módulo SUI) de la guía mhGAP</a> y la ruta de su institución.</li></ol></div>';
+const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const param = new URLSearchParams(location.search).get("i");
+const app = $("#app");
+
+function indice(){
+  document.title = "Calificación en línea";
+  const lista = Object.entries(CALIFICAR).sort((a, b) => a[1].sigla.localeCompare(b[1].sigla, "es"));
+  app.innerHTML = '<div class="indice"><div class="rotulo">Instrumentos de evaluación</div>' +
+    '<h1>Calificación en línea</h1>' +
+    '<p class="para">Los instrumentos que la guía reproduce completos, listos para responder y calificar en el navegador. ' +
+    'Nada de lo que se marca se envía ni se guarda.</p><ul>' +
+    lista.map(([a, d]) => '<li><a href="?i=' + a + '"><b>' + esc(d.sigla) + '</b> · ' + esc(d.titulo) + '</a></li>').join("") +
+    '</ul></div>';
+}
+
+function instrumento(a, d){
+  document.title = d.sigla + " · Calificación en línea";
+  if (d.estilo === "infancia") document.body.classList.add("infancia");
+  let q = 0, num = 0, h = "";
+  const puntua = {};
+  d.bloques.forEach(b => {
+    if (b.t === "consigna"){ h += '<p class="consigna">' + esc(b.x) + '</p>'; return; }
+    if (b.titulo) h += '<p class="rej-t">' + esc(b.titulo) + '</p>';
+    h += '<table><thead><tr><th>' + esc(b.cab) + '</th>' + b.ops.map(o => '<th>' + esc(o) + '</th>').join("") + '</tr></thead><tbody>';
+    b.items.forEach(it => {
+      q++;
+      if (b.puntua) puntua[q] = true;
+      const rot = b.numerar ? (++num) + ". " + it : it;
+      h += '<tr data-q="' + q + '"><td>' + esc(rot) + '</td>' + b.ops.map((o, k) =>
+        '<td><label title="' + esc(o) + '"><input type="radio" name="q' + q + '" value="' + b.vals[k] + '" aria-label="' + esc(o) + '">' +
+        (b.puntua && b.ops.join() !== "Sí,No" && b.ops.join() !== "No,Sí" ? b.vals[k] : "") + '</label></td>').join("") + '</tr>';
+    });
+    h += '</tbody></table>';
+  });
+  app.innerHTML =
+    '<div><div class="rotulo">Calificación en línea</div><h1>' + esc(d.titulo) + '</h1><div class="sigla">' + esc(d.sigla) + '</div>' +
+    '<p class="para">' + esc(d.para) + '</p>' +
+    '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
+    'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
+    '<div class="acciones"><a class="bt" href="instrumentos/' + a + '.pdf" download>Descargar la ficha en PDF</a>' +
+    '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" onclick="print()">Imprimir resultado</button>' +
+    '<a class="bt" href="calificar.html">Otros instrumentos</a></div>' +
+    h + '<p class="fuente">Fuente: ' + esc(d.cita) + '</p></div>' +
+    '<aside class="panel" aria-live="polite"><h2>Resultado</h2><div id="res"></div></aside>';
+  const total = q;
+  const calc = () => {
+    const r = [null];
+    for (let i = 1; i <= total; i++){
+      const m = document.querySelector('input[name="q' + i + '"]:checked');
+      r[i] = m ? Number(m.value) : null;
+    }
+    const v = i => r[i] == null ? 0 : r[i];
+    const S = (x, y) => { let s = 0; for (let i = x; i <= y; i++) s += v(i); return s; };
+    const L = l => l.reduce((s, i) => s + v(i), 0);
+    const C = (l, val) => l.filter(i => r[i] === val).length;
+    const G = l => l.filter(i => r[i] != null && r[i] >= 2).length;
+    const R = (i, max) => r[i] == null ? 0 : max - r[i];
+    const RANGO = (x, y) => Array.from({ length: y - x + 1 }, (_, k) => x + k);
+    const ev = js => Function("r","S","L","C","G","R","RANGO","return (" + js + ");")(r, S, L, C, G, R, RANGO);
+    const sinResp = Object.keys(puntua).filter(i => r[i] == null);
+    document.querySelectorAll("tr[data-q]").forEach(tr => tr.classList.toggle("falta", false));
+    let out = '<div class="faltan">' + (sinResp.length && !d.calif.nota
+      ? "Faltan " + sinResp.length + " de " + Object.keys(puntua).length + " respuestas: el resultado es parcial."
+      : "Resultado con todas las respuestas marcadas.") + '</div>';
+    if (Object.keys(puntua).length && sinResp.length === Object.keys(puntua).length){
+      $("#res").innerHTML = '<div class="faltan">Marque las respuestas: el resultado se calcula a medida que avanza.</div>';
+      return;
+    }
+    d.calif.escalas.forEach(e => {
+      const val = ev(e.js);
+      let rot = "";
+      (e.rangos || []).forEach(([x, y, t]) => { if (val >= x && (y === null || val <= y)) rot = t; });
+      const esSN = (e.rangos || []).length && e.rangos.every(([x, y]) => x === y);
+      out += '<div class="res"><div class="n">' + esc(e.n) + '</div>' +
+        (esSN ? "" : '<div class="v">' + val + '</div>') +
+        (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (e.texto ? '<div class="x">' + esc(e.texto) + '</div>' : "") + '</div>';
+    });
+    let riesgo = false;
+    (d.calif.alertas || []).forEach(al => { if (ev(al.js)){ out += '<div class="alerta">' + esc(al.texto) + '</div>'; if (/suicid/.test(al.texto)) riesgo = true; } });
+    if (riesgo) out += PROTOCOLO_RIESGO;
+    $("#res").innerHTML = out;
+  };
+  app.addEventListener("change", calc);
+  $("#borrar").addEventListener("click", () => { document.querySelectorAll("input[type=radio]").forEach(x => x.checked = false); calc(); });
+  calc();
+}
+
+if (typeof CALIFICAR === "undefined"){
+  app.innerHTML = '<p>No se pudieron cargar los instrumentos.</p>';
+} else if (param && CALIFICAR[param]){
+  instrumento(param, CALIFICAR[param]);
+} else {
+  indice();
+}
+</script>
+</body>
+</html>

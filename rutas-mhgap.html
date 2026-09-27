@@ -1088,6 +1088,11 @@ function pintar(){
   $statusText.innerHTML = `Módulo <strong>${R.codigo} · ${R.nombre}</strong> — ${decisiones}
     ${decisiones === 1 ? 'decisión tomada' : 'decisiones tomadas'}`;
 }
+
+// Enlace directo a un módulo desde otras guías: rutas-mhgap.html#sui, #dep o #psi.
+const irAlModulo = () => { if (/^#(sui|dep|psi)$/.test(location.hash)) abrirRuta(location.hash.slice(1)); };
+irAlModulo();
+window.addEventListener("hashchange", irAlModulo);
 </script>
 </body>
 </html>
