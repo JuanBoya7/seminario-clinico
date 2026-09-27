@@ -44,6 +44,8 @@
   const ANCHO = AN - MI - MD;
   const TINTA = [0.12, 0.16, 0.18], SUAVE = [0.40, 0.45, 0.48], ACENTO = [0.10, 0.36, 0.36];
 
+  const OMITIR = "button, script, style, .no-pdf, .block-index, .count-badge, .severity-badge, " +
+    ".criteria-alert, .pool-counter, .rubrica-inline, .progress-block";
   const visible = el => el.getClientRects().length > 0 &&
     getComputedStyle(el).visibility !== "hidden";
   const limpio = t => (t || "").replace(/\s+/g, " ").trim();
@@ -52,10 +54,10 @@
   function textoDe(el) {
     // innerText respeta la maquetación (separa los bloques); si hay controles
     // adentro se usa una copia sin ellos.
-    if (!el.querySelector("input, select, textarea, button, .required-mark") && el.innerText !== undefined)
+    if (!el.querySelector("input, select, textarea, .required-mark, " + OMITIR) && el.innerText !== undefined)
       return limpio(el.innerText);
     const c = el.cloneNode(true);
-    c.querySelectorAll("input, select, textarea, button, script, style, .required-mark").forEach(n => n.remove());
+    c.querySelectorAll("input, select, textarea, .required-mark, " + OMITIR).forEach(n => n.remove());
     return limpio(c.textContent);
   }
 
@@ -225,6 +227,13 @@
       { fuente: FI, tam: 8.5, col: SUAVE, despues: 10 });
 
     const BLOQUES = "p, li, div, ul, ol, label, table, tr, blockquote, section, h1, h2, h3, h4, h5, fieldset, details, summary";
+    // En la página, la evidencia de un criterio aparece solo al marcarlo;
+    // en el PDF va siempre, para poder marcar y justificar después.
+    const mostrar = document.createElement("style");
+    mostrar.textContent = ".criterion-evidence{display:block !important;}";
+    document.head.appendChild(mostrar);
+    // Elementos de la interfaz que no tienen sentido en el papel: contadores,
+    // alertas en vivo, numeración de bloques y la rúbrica plegable.
     // Recorrido de la actividad.
     const raiz = opc.raiz || document;
     const bloques = [...raiz.querySelectorAll(".block")].filter(visible);
@@ -234,7 +243,7 @@
       let el = b;
       while ((el = recorrido.nextNode())) {
         if (hechos.has(el)) continue;
-        if (el.closest("button, script, style, .no-pdf")) continue;
+        if (el.closest(OMITIR)) continue;
         if (!visible(el)) continue;
         const tag = el.tagName;
         const marcar = () => el.querySelectorAll("*").forEach(x => hechos.add(x));
@@ -261,6 +270,8 @@
         }
       }
     }
+
+    mostrar.remove();
 
     // Pie con número de página y nota de uso.
     const total = paginas.length;
