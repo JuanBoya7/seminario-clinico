@@ -303,8 +303,8 @@ a.inst-ficha{
 }
 a.inst-ficha::before{
   content:""; width:12px; height:14px; flex:none; background:currentColor;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M5 0h2v7.6l2.3-2.3 1.4 1.4L6 11.4 1.3 6.7l1.4-1.4L5 7.6z M0 12h12v2H0z'/%3E%3C/svg%3E") center/contain no-repeat;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M5 0h2v7.6l2.3-2.3 1.4 1.4L6 11.4 1.3 6.7l1.4-1.4L5 7.6z M0 12h12v2H0z'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath fill-rule='evenodd' d='M1 0h6.5L11 3.5V14H1z M3 7.3h6v1.2H3z M3 9.8h6V11H3z M3 4.8h3.5V6H3z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath fill-rule='evenodd' d='M1 0h6.5L11 3.5V14H1z M3 7.3h6v1.2H3z M3 9.8h6V11H3z M3 4.8h3.5V6H3z'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 a.inst-ficha:hover{background:var(--accent-soft);}
 /* Protocolo ante riesgo suicida, en el grupo que lo detecta. */
@@ -358,9 +358,10 @@ footer strong{color:var(--ink-soft); font-weight:600;}
     fuente oficial</strong>; donde no lo es, se indica cómo se consigue.
   </p>
   <p class="lead">
-    Algunos traen una ficha para descargar. <strong>Descargar instrumento</strong> entrega la
+    Algunos traen una ficha en PDF, que se abre en una pestaña nueva para verla, descargarla o
+    imprimirla. <strong>Ver instrumento</strong> entrega la
     versión oficial lista para aplicar, con su calificación y sus puntos de corte; solo existe
-    para los de acceso libre. <strong>Descargar ficha técnica</strong> resume, sin reproducir los
+    para los de acceso libre. <strong>Ver ficha técnica</strong> resume, sin reproducir los
     ítems, uno con licencia o con registro: qué mide, cómo se consigue y qué alternativa libre
     tiene. Varios de los libres vienen del <a href="https://la.konradlorenz.edu.co/cliniklab-recursos/"
     target="_blank" rel="noopener">ClinikLab de la Fundación Universitaria Konrad Lorenz</a>,
@@ -1737,11 +1738,11 @@ function distintivo(sigla){
 function botonFicha(sigla){
   const f = INST_FICHAS[sigla];
   if (!f) return "";
-  const et = f.tipo === "completa" ? "Descargar instrumento" : "Descargar ficha técnica";
+  const et = f.tipo === "completa" ? "Ver instrumento" : "Ver ficha técnica";
   const ayuda = f.tipo === "completa"
     ? "Ítems de la versión oficial, calificación y puntos de corte"
     : "Sin ítems: qué mide, cómo se califica, cómo se consigue y su alternativa libre";
-  return '<a class="inst-ficha" href="instrumentos/' + f.a + '.pdf" download title="' + ayuda + '">' +
+  return '<a class="inst-ficha" href="instrumentos/' + f.a + '.pdf" target="_blank" rel="noopener" title="' + ayuda + ' (se abre en una pestaña nueva; desde ahí se descarga o se imprime)">' +
     et + ' <span class="fmt">PDF</span></a>' +
     (f.tipo === "completa" ? ' <a class="inst-ficha calif" href="calificar.html?i=' + f.a + '" target="_blank" rel="noopener" ' +
       'title="Responder y calificar en el navegador">Calificar en línea</a>' : "");

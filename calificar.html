@@ -133,7 +133,7 @@ function instrumento(a, d){
     '<p class="para">' + esc(d.para) + '</p>' +
     '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
-    '<div class="acciones"><a class="bt" href="instrumentos/' + a + '.pdf" download>Descargar la ficha en PDF</a>' +
+    '<div class="acciones"><a class="bt" href="instrumentos/' + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>' +
     '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" onclick="print()">Imprimir resultado</button>' +
     '<a class="bt" href="calificar.html">Otros instrumentos</a></div>' +
     h + '<p class="fuente">Fuente: ' + esc(d.cita) + '</p></div>' +
