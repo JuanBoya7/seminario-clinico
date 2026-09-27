@@ -14370,6 +14370,8 @@ const NIVEL = {
   guia:       { et: "Basado en guías", d: "Se apoya en recomendaciones de guías de práctica o de la OMS más que en ensayos propios descritos en el plan." },
   conceptual: { et: "Respaldo conceptual o clínico", d: "Se basa en un marco teórico o en la experiencia clínica de sus autores; sus fuentes no describen ensayos del plan." }
 };
+const ES_MOVIL = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+  (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
 const usadoEnEstudios = (p, s) => (p.instEst || []).includes(s);
 const origenInst = (p, s) => ' <span class="orig-inst">' + (usadoEnEstudios(p, s) ? 'usado en los estudios' : 'sugerido por la guía') + '</span>';
 /* Tipo de la fuente principal: si es el manual o un capítulo de los propios
@@ -14814,7 +14816,7 @@ function pintarExportador(id){
     '</div>' +
     '<textarea data-notas placeholder="Notas del profesional: para qué se comparte, qué ajustar al caso, qué revisar en la próxima sesión."></textarea>' +
     '<div class="exp-pie">' +
-      '<button type="button" class="principal" data-imprimir>Imprimir / Guardar PDF</button>' +
+      '<button type="button" class="principal" data-imprimir>' + (ES_MOVIL ? 'Compartir' : 'Imprimir / Guardar PDF') + '</button>' +
       '<button type="button" data-cerrar>Cerrar</button>' +
       '<span class="nota">En el diálogo de impresión, elijan «Guardar como PDF».</span>' +
     '</div>';
@@ -14989,6 +14991,7 @@ document.addEventListener("click", ev => {
     const notas = caja.querySelector("[data-notas]").value;
     guardarNotas(id, notas);
     construirHoja(id, opcionesDe(caja), notas);
+    if (ES_MOVIL) { compartirHoja(id); return; }
     document.body.dataset.hoja = "1";
     window.print();
   }
@@ -14998,6 +15001,41 @@ document.addEventListener("change", ev => {
   if (t) guardarNotas(t.closest(".exportador").id.replace("exp-", ""), t.value);
 });
 window.addEventListener("afterprint", () => { delete document.body.dataset.hoja; });
+
+/* En celulares y tabletas la impresión es poco práctica: la hoja se
+   empaqueta como un HTML autónomo y se entrega al menú de compartir del
+   sistema (WhatsApp, correo, Drive…). Al abrirlo, trae su propio botón
+   para imprimir o guardar en PDF. Si el navegador no permite compartir
+   archivos, se descarga. */
+async function compartirHoja(id){
+  const par = planPorId(id); if (!par) return;
+  const hoja = document.getElementById("hoja");
+  const estilos = [...document.querySelectorAll("style")].map(e => e.textContent).join("\n");
+  const enlaces = [...document.querySelectorAll('link[rel="stylesheet"]')].map(l => l.outerHTML).join("");
+  const nombre = par.p.t.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 60) + ".html";
+  const html = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<title>' + escapar(par.p.t) + '</title>' + enlaces + '<style>' + estilos +
+    '\n#hoja{display:block !important; max-width:190mm; margin:0 auto; padding:14px 16px 28px; background:#fff;}' +
+    '\nbody{background:#fff;} .h-imp{display:block; margin:14px auto 0; font:inherit; font-weight:600; padding:10px 18px; border-radius:8px; border:0; background:var(--accent-dark,#2c5f5d); color:#fff;}' +
+    '\n@media print{.h-imp{display:none !important;}}</style></head>' +
+    '<body data-hoja="1"><button class="h-imp" onclick="window.print()">Imprimir / Guardar PDF</button>' +
+    hoja.outerHTML.replace('aria-hidden="true"', '') + '</body></html>';
+  const archivo = new File([html], nombre, { type: "text/html" });
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+      await navigator.share({ files: [archivo], title: par.p.t });
+      return;
+    }
+  } catch (err) {
+    if (err && err.name === "AbortError") return;   // cerró el menú a propósito
+  }
+  const url = URL.createObjectURL(archivo);
+  const a = document.createElement("a");
+  a.href = url; a.download = nombre;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
 
 /* ============================================================
    GLOSARIO: SECCIÓN, TÉRMINOS EN LOS PLANES Y DEFINICIÓN EMERGENTE
