@@ -2841,7 +2841,7 @@ const VARIABLES = [
         },
         {
           t: "Metáfora física y toma de perspectiva",
-          tecs: [],
+          tecs: ["metafora-papel"],
           obj: "Mostrar con el cuerpo la diferencia entre luchar con el pensamiento y seguir con lo importante con el pensamiento presente.",
           pasos: [
             "Escribir el pensamiento de fondo en un papel mientras la persona trabaja en algo importante sobre otra hoja.",
@@ -7160,7 +7160,7 @@ const VARIABLES = [
         },
         {
           t: "Mente clara",
-          tecs: [],
+          tecs: ["mente-clara"],
           obj: "Mantenerse sin consumir y alerta a la tentación, sin creer que el problema ya terminó.",
           pasos: [
             "Describir la mente adicta, gobernada por la adicción, y la mente limpia, que ya no ve el peligro de recaer.",
@@ -8136,7 +8136,7 @@ const VARIABLES = [
         },
         {
           t: "Dejar espacio",
-          tecs: [],
+          tecs: ["metafora-cielo"],
           obj: "Dejar que los pensamientos y sentimientos difíciles estén presentes, sin que dominen.",
           pasos: [
             "Centrar la atención en un pensamiento o sentimiento difícil, darse cuenta de que está ahí, ponerle nombre y observarlo con curiosidad.",
@@ -8445,7 +8445,7 @@ const VARIABLES = [
         },
         {
           t: "Ganchos y los límites del control",
-          tecs: [],
+          tecs: ["metafora-ganchos"],
           obj: "Mostrar la diferencia entre controlar el mundo exterior y controlar la experiencia interna, e identificar los ganchos.",
           pasos: [
             "Contrastar con ejercicios lo mucho que se puede controlar lo que se ve y se toca con lo poco que se puede controlar lo que se piensa y se siente.",
@@ -8485,7 +8485,7 @@ const VARIABLES = [
         },
         {
           t: "Toma de perspectiva",
-          tecs: [],
+          tecs: ["entrevista-perspectiva"],
           obj: "Preparar movimientos hacia lo importante en situaciones futuras en que la persona prevé atascarse.",
           pasos: [
             "Elegir una situación próxima en la que la persona anticipa quedarse atascada.",
@@ -13456,7 +13456,7 @@ const GLOSARIO = [
 { k: "abstinencia-dialectica", t: "Abstinencia dialéctica", tipo: "Técnica", enf: ["dbt"],
   d: "Síntesis de la terapia dialéctico-conductual entre abstinencia y reducción de daños: compromiso del 100 % con no consumir mientras se sostiene y, si ocurre una caída, un plan para reducir el daño y volver a la abstinencia cuanto antes.",
   fuente: "Linehan, 2020, cap. 10 · Elices, cap. 4.2" },
-{ k: "mente-clara", t: "Mente clara", alias: ["mente adicta", "mente limpia"], tipo: "Concepto", enf: ["dbt"],
+{ k: "mente-clara", t: "Mente clara", alias: ["mente adicta", "mente limpia"], tipo: "Técnica", enf: ["dbt"],
   d: "En las habilidades para conductas adictivas, el punto medio entre la mente adicta, gobernada por el consumo, y la mente limpia, que ya sin consumir se cree a salvo y baja la guardia. La mente clara se mantiene sin consumir y alerta a la tentación.",
   fuente: "Linehan, 2020, cap. 10" },
 { k: "estadios-cambio", t: "Estadios de cambio", alias: ["precontemplación", "estadio de cambio"], tipo: "Concepto", enf: ["est", "em"],
@@ -13597,6 +13597,13 @@ const GLOSARIO = [
   d: "Organización de los pensamientos que disparan la preocupación y la rumiación: uno de fondo, abstracto, viejo y presente en varias áreas de la vida (por ejemplo, «voy a fracasar»), del que dependen otros más concretos. Trabajar la flexibilidad ante el de fondo facilita que se generalice a los demás.",
   ficha: "jerarquia-disparadores",
   fuente: "Ruiz et al., 2018" },
+{ k: "metafora-papel", t: "Metáfora física del papel", alias: ["empujar el papel"], tipo: "Metáfora", enf: ["act"],
+  d: "Metáfora física del protocolo breve para la preocupación y la rumiación. El terapeuta escribe en un papel el pensamiento de fondo y lo pone de pronto ante la cara de la persona mientras hace una tarea importante; ella lo empuja y el terapeuta resiste, de modo que vive una lucha agotadora que le impide seguir con la tarea. Luego se ensaya la alternativa: mirar el papel, ponerlo a un lado con suavidad, darse cuenta de que eligió hacerlo y seguir con lo importante.",
+  como: ["Pedir a la persona que trabaje en algo que le importe mientras el terapeuta sostiene el papel con el pensamiento escrito.",
+         "Poner el papel ante su cara, invitarla a empujarlo con más fuerza y ofrecer resistencia; repetir cuando «vuelve» el pensamiento.",
+         "Preguntar si esa lucha se parece a su vida y si el pensamiento se hace más fuerte al empujarlo.",
+         "Repetir con la alternativa: mirar el papel, dejarlo a un lado gentilmente y seguir con la tarea."],
+  fuente: "Ruiz et al., 2018, sesión 1, apartado 6" },
 { k: "tres-sistemas-emocion", t: "Tres sistemas de regulación de las emociones", alias: ["tres sistemas de emociones", "tres sistemas"], tipo: "Concepto", enf: ["cft"],
   d: "Modelo de la terapia centrada en la compasión: un sistema de amenaza que protege (miedo, ira, asco), uno de logro que impulsa a buscar recursos (entusiasmo, ganas) y uno de calma y seguridad, ligado al cuidado y al apego. En la vergüenza y la autocrítica predomina la amenaza y la calma está poco desarrollada.",
   ficha: "tres-sistemas",
@@ -13838,6 +13845,25 @@ const GLOSARIO = [
 { k: "desengancharse", t: "Desengancharse", tipo: "Técnica", enf: ["act"],
   d: "Habilidad de la guía «Haz lo que importa»: darse cuenta de que un pensamiento o sentimiento nos ha enganchado, ponerle nombre en silencio —«aquí hay un pensamiento», «aquí hay ira»— y volver a centrarse en lo que se está haciendo.",
   fuente: "OPS, 2022a, parte 2" },
+{ k: "metafora-ganchos", t: "Metáfora de los ganchos", alias: ["ganchos", "hoja de los ganchos"], tipo: "Metáfora", enf: ["act"],
+  d: "Metáfora de la pesca usada en la matriz para la defusión: los peces muerden distintos anzuelos según el lugar y la estación, y notan que están enganchados por la dirección en que los jala la línea. Del mismo modo, pensamientos, emociones, sensaciones, recuerdos o incluso algo que se ve u oye pueden «engancharnos», y lo notamos mejor por lo que hacemos después que mirando el gancho. Basta con reconocer los ganchos como ganchos para elegir no morderlos.",
+  como: ["Contar la metáfora en diálogo, preguntando a la persona cómo notaría un pez que está enganchado.",
+         "Preguntar si el pez necesitaría deshacerse de los ganchos, entenderlos o analizarlos, o si le basta con notarlos.",
+         "Pedirle que complete la hoja de los ganchos: en la carnada escribe lo que la engancha y en la línea lo que hace después."],
+  ej: "En la carnada: «rabia»; en la línea: «subo la voz y me voy».",
+  fuente: "Polk et al., 2016, paso 3" },
+{ k: "entrevista-perspectiva", t: "Entrevista de toma de perspectiva", alias: ["toma de perspectiva", "aquí y ahora, allá y entonces"], tipo: "Ejercicio", enf: ["act"],
+  d: "Ejercicio del último paso de la matriz: la persona elige una situación próxima en la que prevé quedarse atascada y sostiene un diálogo en presente entre su perspectiva de aquí y ahora y la de allá y entonces. El terapeuta actúa como un periodista imparcial que da la palabra a cada perspectiva y facilita varios cambios entre ellas. Los autores lo usan también para evaluar: quien cambia de perspectiva con facilidad suele desengancharse cuando llega la situación.",
+  como: ["Elegir una situación cercana, con fecha y lugar definidos, que probablemente ocurra antes de la siguiente sesión.",
+         "«Teletransportar» a la persona a esa situación y conducir el diálogo en presente entre las dos perspectivas.",
+         "Si hace falta, y con permiso, invitar a la perspectiva de aquí y ahora a validar lo difícil que es estar atascado.",
+         "Cuando aparezca más flexibilidad, facilitar algunos cambios más y preguntar qué hará concretamente en esa situación."],
+  fuente: "Polk et al., 2016, paso 6" },
+{ k: "metafora-cielo", t: "Dejar espacio: el cielo y el clima", alias: ["dejar espacio", "metáfora del cielo"], tipo: "Metáfora", enf: ["act"],
+  d: "Habilidad de la guía «Haz lo que importa» para no quedar atrapado en pensamientos y sentimientos difíciles sin intentar apartarlos: se imagina que son como el clima y que uno es como el cielo. Por malo que sea el clima, el cielo tiene espacio para él y no sufre daño, y el clima tarde o temprano cambia.",
+  como: ["Centrar la atención en un pensamiento o sentimiento difícil, notarlo y ponerle nombre.",
+         "Observarlo con curiosidad e imaginar que es el clima y que uno es el cielo que le deja espacio."],
+  fuente: "OPS, 2022a, parte 5" },
 /* ---------- TDAH en adultos ---------- */
 { k: "demora-distractibilidad", t: "Demora de la distracción", alias: ["distractibility delay"], tipo: "Técnica", enf: ["tcc"],
   d: "Se mide cuánto tiempo puede la persona sostener la atención en una tarea que le cuesta, se divide la tarea en partes de esa duración y, cuando aparece una distracción, se anota para atenderla después en lugar de seguirla en el momento. El tiempo de trabajo se va alargando.",
