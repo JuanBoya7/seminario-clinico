@@ -646,6 +646,8 @@ a.ficha .fmt{font-weight:500; font-size:11.5px; color:var(--ink-faint);}
 a.cita{color:inherit; text-decoration:underline; text-decoration-color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px;}
 a.cita:hover{color:var(--accent-dark);}
 #hoja a{color:var(--accent-dark);}
+body[data-pdf] #hoja{display:block !important; position:absolute; left:0; top:0; width:184mm; background:#fff; z-index:-1;}
+.html2pdf__container #hoja{position:static !important; z-index:auto !important;}
 #hoja{display:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
 #hoja .h-cab{border-bottom:2px solid var(--enf); padding-bottom:6px; margin-bottom:9px;}
 #hoja .h-var{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--enf);}
@@ -14991,7 +14993,7 @@ document.addEventListener("click", ev => {
     const notas = caja.querySelector("[data-notas]").value;
     guardarNotas(id, notas);
     construirHoja(id, opcionesDe(caja), notas);
-    if (ES_MOVIL) { compartirHoja(id); return; }
+    if (ES_MOVIL) { compartirHoja(id, ev.target.closest("[data-imprimir]")); return; }
     document.body.dataset.hoja = "1";
     window.print();
   }
@@ -15003,38 +15005,64 @@ document.addEventListener("change", ev => {
 window.addEventListener("afterprint", () => { delete document.body.dataset.hoja; });
 
 /* En celulares y tabletas la impresión es poco práctica: la hoja se
-   empaqueta como un HTML autónomo y se entrega al menú de compartir del
-   sistema (WhatsApp, correo, Drive…). Al abrirlo, trae su propio botón
-   para imprimir o guardar en PDF. Si el navegador no permite compartir
-   archivos, se descarga. */
-async function compartirHoja(id){
+   convierte en PDF en el propio navegador y se entrega al menú de compartir
+   del sistema (WhatsApp, correo, Drive…). Si el navegador no permite
+   compartir archivos, el PDF se descarga. La librería se carga solo aquí. */
+const PIE_HOJA = "Plan elaborado por Juan Boya Guerra para la guía de planes de intervención";
+let cargaPDF = null;
+function cargarPDF(){
+  if (window.html2pdf) return Promise.resolve();
+  return cargaPDF ||= new Promise((ok, mal) => {
+    const sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js";
+    sc.onload = ok; sc.onerror = () => { cargaPDF = null; mal(new Error("sin conexión")); };
+    document.head.appendChild(sc);
+  });
+}
+async function compartirHoja(id, boton){
   const par = planPorId(id); if (!par) return;
-  const hoja = document.getElementById("hoja");
-  const estilos = [...document.querySelectorAll("style")].map(e => e.textContent).join("\n");
-  const enlaces = [...document.querySelectorAll('link[rel="stylesheet"]')].map(l => l.outerHTML).join("");
-  const nombre = par.p.t.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 60) + ".html";
-  const html = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">' +
-    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-    '<title>' + escapar(par.p.t) + '</title>' + enlaces + '<style>' + estilos +
-    '\n#hoja{display:block !important; max-width:190mm; margin:0 auto; padding:14px 16px 28px; background:#fff;}' +
-    '\nbody{background:#fff;} .h-imp{display:block; margin:14px auto 0; font:inherit; font-weight:600; padding:10px 18px; border-radius:8px; border:0; background:var(--accent-dark,#2c5f5d); color:#fff;}' +
-    '\n@media print{.h-imp{display:none !important;}}</style></head>' +
-    '<body data-hoja="1"><button class="h-imp" onclick="window.print()">Imprimir / Guardar PDF</button>' +
-    hoja.outerHTML.replace('aria-hidden="true"', '') + '</body></html>';
-  const archivo = new File([html], nombre, { type: "text/html" });
+  const nombre = par.p.t.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 60) + ".pdf";
+  const texto = boton.textContent;
+  const scrollY0 = window.scrollY;
+  boton.disabled = true; boton.textContent = "Preparando PDF…";
   try {
-    if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
-      await navigator.share({ files: [archivo], title: par.p.t });
-      return;
+    await cargarPDF();
+    window.scrollTo(0, 0);
+    document.body.dataset.pdf = "1";
+    const worker = html2pdf().set({
+      margin: [13, 13, 16, 13], filename: nombre, enableLinks: true,
+      image: { type: "jpeg", quality: 0.92 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css"], avoid: ["h2", "li", "p", "tr", ".h-act", ".h-ficha", ".h-seg-dec", ".riesgo"] }
+    }).from(document.getElementById("hoja")).toPdf();
+    const pdf = await worker.get("pdf");
+    const n = pdf.internal.getNumberOfPages();
+    for (let i = 1; i <= n; i++) {
+      pdf.setPage(i);
+      pdf.setDrawColor(201, 214, 214); pdf.setLineWidth(0.2); pdf.line(13, 284, 197, 284);
+      pdf.setFont("helvetica", "bold"); pdf.setFontSize(7.5); pdf.setTextColor(125, 140, 145);
+      pdf.text(PIE_HOJA, 13, 288); pdf.text(String(i), 197, 288, { align: "right" });
     }
+    const archivo = new File([pdf.output("blob")], nombre, { type: "application/pdf" });
+    try {
+      if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+        await navigator.share({ files: [archivo], title: par.p.t });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === "AbortError") return;   // cerró el menú a propósito
+    }
+    pdf.save(nombre);
   } catch (err) {
-    if (err && err.name === "AbortError") return;   // cerró el menú a propósito
+    // Sin conexión para cargar la librería: queda la impresión del sistema.
+    document.body.dataset.hoja = "1";
+    window.print();
+  } finally {
+    delete document.body.dataset.pdf;
+    window.scrollTo(0, scrollY0);
+    boton.disabled = false; boton.textContent = texto;
   }
-  const url = URL.createObjectURL(archivo);
-  const a = document.createElement("a");
-  a.href = url; a.download = nombre;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 /* ============================================================
