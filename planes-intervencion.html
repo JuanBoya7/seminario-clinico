@@ -33,6 +33,10 @@
   --cft:#a34d6d;  --cft-soft:#f7e8ee;
   --msc:#c05a4a;  --msc-soft:#fbece9;
   --sent:#6b4a2e; --sent-soft:#f3ece4;
+  --duelo:#5b4f6b; --duelo-soft:#efecf3;
+  --crisis:#8a3b2e; --crisis-soft:#f6e9e6;
+  --psp:#2f5d7a; --psp-soft:#e5eef4;
+  --cc:#6b5a1f; --cc-soft:#f3efdf;
   --trans:#2d6f8f; --trans-soft:#e3f0f5;
   --em:#8a5a1c;   --em-soft:#f6ede0;
   --mct:#3d5c78;  --mct-soft:#e7edf3;
@@ -283,6 +287,10 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .enf-cft{--enf:var(--cft); --enf-soft:var(--cft-soft);}
 .enf-msc{--enf:var(--msc); --enf-soft:var(--msc-soft);}
 .enf-sent{--enf:var(--sent); --enf-soft:var(--sent-soft);}
+.enf-duelo{--enf:var(--duelo); --enf-soft:var(--duelo-soft);}
+.enf-crisis{--enf:var(--crisis); --enf-soft:var(--crisis-soft);}
+.enf-psp{--enf:var(--psp); --enf-soft:var(--psp-soft);}
+.enf-cc{--enf:var(--cc); --enf-soft:var(--cc-soft);}
 .enf-trans{--enf:var(--trans); --enf-soft:var(--trans-soft);}
 .enf-em {--enf:var(--em);  --enf-soft:var(--em-soft);}
 .enf-mct{--enf:var(--mct); --enf-soft:var(--mct-soft);}
@@ -325,6 +333,13 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .plan-cab h4{font-size:clamp(19px,2vw,24px); line-height:1.25; flex:1 1 320px;}
 .plan-fuente{margin-top:6px; font-size:13px; color:var(--ink-faint);}
 .plan-fuente strong{color:var(--ink-soft); font-weight:600;}
+.nivel{display:inline-block; font-size:11.5px; font-weight:600; line-height:1.4; padding:2px 9px; border-radius:999px; margin:0 8px 4px 0; border:1px solid currentColor; vertical-align:1px;}
+.tipo-fuente{color:var(--ink-faint); font-style:italic;}
+.orig-inst{display:inline-block; font-size:11px; color:var(--ink-faint); border:1px solid var(--border); border-radius:999px; padding:0 7px; margin-left:4px; vertical-align:1px;}
+.nivel-ensayos{color:#1f6b45; background:#e8f4ec;}
+.nivel-preliminar{color:#7a5a12; background:#f7f0dd;}
+.nivel-guia{color:#2f5d7a; background:#e5eef4;}
+.nivel-conceptual{color:#6b4a6b; background:#f2eaf2;}
 
 .meta{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
 .caja{
@@ -857,7 +872,11 @@ const ENFOQUES = {
   ipt: { et: "Interpersonal",           largo: "Psicoterapia interpersonal" },
   par: { et: "Pareja",                  largo: "Terapia integral de pareja" },
   fam: { et: "Psicoeducación familiar", largo: "Psicoeducación y terapia centrada en la familia" },
-  sent:{ et: "Centrada en el sentido",  largo: "Psicoterapia centrada en el sentido" }
+  sent:{ et: "Centrada en el sentido",  largo: "Psicoterapia centrada en el sentido" },
+  duelo:{ et: "Asesoramiento en duelo",   largo: "Asesoramiento y terapia del duelo" },
+  crisis:{ et: "Intervención en crisis",  largo: "Intervención en crisis" },
+  psp: { et: "Programa psicosocial",      largo: "Programa psicosocial basado en recomendaciones de la OMS" },
+  cc:  { et: "Cambio de conducta",        largo: "Diseño de intervenciones de cambio de conducta" }
 };
 
 const MODELOS = {
@@ -1780,6 +1799,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["GAD-7", "AAQ-II"],
       enf: "act",
+      nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
       fuente: "Hayes et al., 2012, caps. 5 a 11 · Harris, 2009 · Luoma et al., 2017",
       cuando: "La persona lleva tiempo intentando controlar la ansiedad —evitar, distraerse, pedir compañía, medicarse, esperar a estar tranquila para actuar— y cada vez más ámbitos de su vida se organizan alrededor de no sentirla. Su meta declarada es <strong>dejar de sentir ansiedad para poder vivir</strong>. El plan cambia esa meta: vivir hacia lo que le importa, con la ansiedad presente cuando aparezca.",
@@ -1805,7 +1825,7 @@ const VARIABLES = [
         },
         {
           t: "El control es el problema",
-          tecs: ["agenda-control", "metafora-poligrafo", "lucha-monstruo"],
+          tecs: ["metafora-poligrafo", "lucha-monstruo"],
           obj: "Mostrar que el control que funciona con el mundo exterior no funciona con los pensamientos y las emociones: aplicado a la ansiedad, produce más ansiedad.",
           pasos: [
             "Contrastar con ejemplos dónde el control sí sirve —si no le gusta el color de la pared, la pinta— y dónde no: pensamientos, emociones, recuerdos y sensaciones.",
@@ -1850,7 +1870,7 @@ const VARIABLES = [
         },
         {
           t: "Disposición y exposición al servicio de los valores",
-          tecs: ["disposicion", "metafora-vecino", "exposicion-graduada"],
+          tecs: ["metafora-vecino", "exposicion-graduada"],
           obj: "Practicar abrirse a la ansiedad cuando aparece en el camino de algo valioso, sin hacer nada para que desaparezca.",
           pasos: [
             "Presentar la disposición como una elección y no como un sentimiento: se está dispuesto o no, aunque el paso sea pequeño. Disposición no es desear la ansiedad ni resignarse a ella.",
@@ -1864,7 +1884,7 @@ const VARIABLES = [
         },
         {
           t: "Acción comprometida y prevención de recaídas",
-          tecs: ["accion-comprometida", "barreras", "prevencion-recaidas"],
+          tecs: ["prevencion-recaidas"],
           obj: "Convertir los valores en pautas de acción cada vez más amplias y preparar a la persona para caer y volver a la dirección elegida.",
           pasos: [
             "Traducir cada valor prioritario en metas concretas, de corto a largo plazo: qué hará, cuándo y dónde, de forma que otro pudiera observarlo.",
@@ -1900,6 +1920,7 @@ const VARIABLES = [
       mod: "beck-ans",
       inst: ["GAD-7", "BAI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Exposición graduada con reestructuración cognitiva",
       fuente: "Ruiz et al., caps. 2, 4, 5 y 8 · Craske y Barlow, 2014 · Cifuentes",
       cuando: "La evaluación identifica <strong>algo concreto que se teme</strong> —un objeto, un animal, una situación, un lugar—, la persona lo evita o se protege con conductas de seguridad, y sobreestima el peligro mientras subestima sus propios recursos. Es la primera opción para fobias específicas y para la agorafobia; el pánico y la ansiedad social tienen plan propio en esta variable.",
@@ -1952,7 +1973,7 @@ const VARIABLES = [
         },
         {
           t: "Construcción de la jerarquía",
-          tecs: ["jerarquia-exposicion", "conductas-seguridad"],
+          tecs: ["jerarquia-exposicion"],
           obj: "Ordenar las situaciones temidas en pasos concretos y preparar el retiro de lo que la persona hace para sentirse a salvo.",
           pasos: [
             "Listar de 10 a 15 situaciones evitadas o soportadas con malestar, descritas con detalle: dónde, con quién, cuánto tiempo, a qué hora.",
@@ -2020,6 +2041,7 @@ const VARIABLES = [
       mod: "craske-panico",
       inst: ["PDSS", "ASI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Tratamiento cognitivo-conductual del pánico",
       fuente: "Craske y Barlow, 2014",
       cuando: "La persona tiene <strong>crisis de miedo intenso que alcanzan su máximo en minutos</strong>, vive preocupada por volver a tenerlas y teme lo que significan las sensaciones —un infarto, desmayarse, enloquecer, perder el control—. Suele vigilar su cuerpo, evitar el ejercicio, el café o el calor, y los lugares donde escapar sería difícil. La evaluación médica ya descartó una causa orgánica de las sensaciones.",
@@ -2029,7 +2051,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Educación sobre el pánico y autorregistro",
-          tecs: ["psicoeducacion", "ciclo-panico", "autorregistro"],
+          tecs: ["psicoeducacion", "autorregistro"],
           obj: "Que la persona entienda sus crisis como una respuesta de alarma normal que se dispara en el momento equivocado, y empiece a observarlas como lo haría un científico.",
           pasos: [
             "Preguntar por la última crisis y reconstruirla paso a paso: qué notó primero, qué pensó, qué sintió después, qué hizo. Mostrar el círculo: sensación, pensamiento de peligro, más miedo, más sensaciones.",
@@ -2143,6 +2165,7 @@ const VARIABLES = [
       mod: "heimberg-social",
       inst: ["SPIN", "LSAS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Tratamiento cognitivo-conductual de la ansiedad social",
       fuente: "Heimberg y Magee, 2014",
       cuando: "La persona teme y evita <strong>situaciones en las que puede ser observada o evaluada</strong> —hablar en público, conversar, comer o escribir delante de otros, conocer gente, hablar con figuras de autoridad— porque cree que hará el ridículo o que notarán su ansiedad. Se juzga con más dureza que cualquier observador y dedica mucho tiempo a anticipar y a repasar lo que dijo.",
@@ -2167,7 +2190,7 @@ const VARIABLES = [
         },
         {
           t: "Pensamientos automáticos y errores de pensamiento",
-          tecs: ["reestructuracion-cognitiva", "errores-pensamiento"],
+          tecs: ["reestructuracion-cognitiva"],
           obj: "Que la persona reconozca que su ansiedad responde a cómo interpreta las situaciones, no a las situaciones mismas.",
           pasos: [
             "Presentar un ejemplo ajeno: dos personas que conocen a alguien; una piensa «seguro le parecí aburrido» y se retira, la otra piensa «fue agradable conversar» y sigue en contacto.",
@@ -2262,7 +2285,9 @@ const VARIABLES = [
       id: "ans-pu",
       mod: "barlow-pu",
       inst: ["OASIS", "ODSIS"],
+      instEst: ["OASIS", "ODSIS"],
       enf: "trans",
+      nivel: "ensayos",
       t: "Protocolo Unificado para los trastornos emocionales",
       fuente: "Barlow et al., 2015 · Payne et al., 2014",
       cuando: "La ansiedad convive con otros problemas emocionales —depresión, varios trastornos de ansiedad a la vez, preocupación y pánico— o la evaluación muestra que el problema común es <strong>cómo la persona responde a sus emociones</strong>: las vive como insoportables, las evita o actúa impulsada por ellas. Es útil cuando tratar cada diagnóstico por separado alargaría demasiado el tratamiento.",
@@ -2286,7 +2311,7 @@ const VARIABLES = [
         },
         {
           t: "Comprender las emociones",
-          tecs: ["psicoeducacion", "tres-componentes", "registro-arc"],
+          tecs: ["psicoeducacion", "registro-arc"],
           obj: "Que la persona entienda para qué sirven las emociones y cómo se sostienen, y aprenda a descomponer una experiencia emocional.",
           pasos: [
             "Explicar la función adaptativa de las emociones: el miedo protege, la tristeza pide apoyo, la ira defiende límites. El problema no es sentirlas sino cómo se responde a ellas.",
@@ -2409,7 +2434,9 @@ const VARIABLES = [
       id: "ans-wbt",
       mod: "fava-bienestar",
       inst: ["CID", "EBP", "SQ"],
+      instEst: ["EBP", "SQ"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual seguida de terapia de bienestar para la ansiedad generalizada",
       fuente: "Fava, 2016, caps. 3 y 16",
       cuando: "<strong>Ansiedad generalizada</strong>: la persona se preocupa casi todos los días, no logra relajarse y teme cosas que rara vez pasan. El objetivo no es solo que baje la preocupación, sino que recupere un funcionamiento normal. Está pensada para cuadros sin otros trastornos asociados; con otros trastornos, el tratamiento suele seguir al del cuadro asociado.",
@@ -2461,7 +2488,7 @@ const VARIABLES = [
         },
         {
           t: "Dimensiones del bienestar",
-          tecs: ["modulacion-bienestar", "experiencias-optimas"],
+          tecs: ["modulacion-bienestar"],
           obj: "Trabajar las dimensiones del bienestar que el diario muestra alteradas.",
           pasos: [
             "Buscar en el diario el dominio del entorno: sentirse capaz de manejar los asuntos diarios reduce el pesimismo sobre el propio desempeño.",
@@ -2517,6 +2544,7 @@ const VARIABLES = [
       mod: "dugas",
       inst: ["GAD-7", "EII"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Tolerar la incertidumbre: protocolo cognitivo-conductual de Dugas",
       fuente: "Seidah et al., 2007",
       cuando: "La persona se preocupa de forma excesiva y difícil de controlar, por problemas reales y por situaciones hipotéticas, y organiza su día para reducir la incertidumbre: pide reaseguro, consulta a varios médicos, no delega, tarda en decidir por miedo a equivocarse. El plan no busca eliminar la incertidumbre, que es parte de la vida, sino <strong>aumentar la tolerancia a ella</strong>.",
@@ -2642,6 +2670,7 @@ const VARIABLES = [
       mod: "wells-sca",
       inst: ["MCQ-30", "PSWQ"],
       enf: "mct",
+      nivel: "ensayos",
       t: "Terapia metacognitiva",
       fuente: "Wells, 2020, caps. 3 a 6 y 9",
       cuando: "La persona <strong>pasa horas preocupándose o dándole vueltas</strong> a lo que siente y a lo que le pasa, cree que eso la prepara o la ayuda a entender, y a la vez siente que no puede detenerlo. Suele vigilar sus síntomas y responder al malestar reduciendo actividades, evitando o buscando tranquilización.",
@@ -2760,6 +2789,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["AAQ-II", "PSWQ"],
       enf: "act",
+      nivel: "preliminar",
       t: "Protocolo breve de aceptación y compromiso para la preocupación y la rumiación",
       fuente: "Ruiz et al., 2018",
       cuando: "La preocupación y la rumiación son <strong>la primera respuesta de la persona ante un malestar</strong> y la llevan, con el tiempo, a otras formas de evitarlo —distraerse, consumir, aislarse—, mientras lo que le importa queda en segundo plano. Es una intervención breve para trastornos emocionales moderados.",
@@ -2769,7 +2799,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "El esquema de trabajo",
-          tecs: ["psicoeducacion", "valores"],
+          tecs: ["psicoeducacion"],
           obj: "Presentar la preocupación y la rumiación como el foco de la intervención.",
           pasos: [
             "Acordar un trabajo breve que busca cambios importantes pronto.",
@@ -2782,7 +2812,7 @@ const VARIABLES = [
         },
         {
           t: "La jerarquía de disparadores",
-          tecs: ["jerarquia-disparadores", "analisis-funcional"],
+          tecs: ["analisis-funcional"],
           obj: "Encontrar el pensamiento de fondo que dispara la mayoría de las preocupaciones y rumiaciones.",
           pasos: [
             "Preguntar, con una metáfora, a qué pensamiento dispararía si tuviera una sola bala: el que más la lleva a enredarse.",
@@ -2797,7 +2827,7 @@ const VARIABLES = [
         },
         {
           t: "Consecuencias del patrón",
-          tecs: ["desesperanza-creativa", "evitacion-experiencial"],
+          tecs: ["desesperanza-creativa"],
           obj: "Que la persona compruebe con su experiencia lo que le cuestan la preocupación, la rumiación y lo que hace para dejar de pensar.",
           pasos: [
             "Explorar qué hace para dejar de pensar —distraerse, ver televisión, salir, consumir— y cuánto dura el alivio.",
@@ -2811,7 +2841,7 @@ const VARIABLES = [
         },
         {
           t: "Metáfora física y toma de perspectiva",
-          tecs: ["yo-contexto", "aceptacion"],
+          tecs: [],
           obj: "Mostrar con el cuerpo la diferencia entre luchar con el pensamiento y seguir con lo importante con el pensamiento presente.",
           pasos: [
             "Escribir el pensamiento de fondo en un papel mientras la persona trabaja en algo importante sobre otra hoja.",
@@ -2839,7 +2869,7 @@ const VARIABLES = [
         },
         {
           t: "Acciones valiosas y cierre",
-          tecs: ["valores", "accion-comprometida"],
+          tecs: [],
           obj: "Orientar la práctica hacia lo que importa y dejar a la persona con recursos para seguir.",
           pasos: [
             "Explorar las acciones valiosas que hará en las semanas siguientes.",
@@ -2882,6 +2912,7 @@ const VARIABLES = [
       mod: "foa",
       inst: ["OCI-R", "Y-BOCS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Exposición con prevención de respuesta",
       fuente: "Franklin y Foa, 2014 · Ruiz et al., caps. 2, 4 y 12",
       cuando: "La evaluación identifica <strong>obsesiones con una consecuencia temida</strong> y rituales —visibles o mentales— que alivian la ansiedad por un rato. El círculo obsesión, ansiedad, ritual y alivio es el que se interviene. Es la primera opción cuando los rituales se pueden describir con precisión y la persona acepta, al menos en parte, que sus temores son exagerados.",
@@ -2967,7 +2998,7 @@ const VARIABLES = [
         },
         {
           t: "Prevención de rituales en casa y visita al hogar",
-          tecs: ["visita-hogar", "pautas-conducta-normal"],
+          tecs: ["pautas-conducta-normal"],
           obj: "Llevar la exposición y la abstinencia de rituales a los lugares donde ocurre el problema, empezando por la casa.",
           pasos: [
             "Acordar reglas escritas y concretas de prevención: qué ritual no se hace y qué se permite (por ejemplo, una ducha de diez minutos al día, sin lavarse las manos en el resto del día).",
@@ -3019,6 +3050,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["OCI-R", "AAQ-II"],
       enf: "act",
+      nivel: "ensayos",
       t: "Defusión y disposición frente a las obsesiones",
       fuente: "Hayes et al., 2012 · Harris, 2009 · Ruiz et al., cap. 11",
       cuando: "La persona <strong>toma sus obsesiones como verdades o como órdenes</strong> que hay que obedecer, dedica cada vez más tiempo a neutralizarlas y su vida se ha ido organizando alrededor de no sentir la duda o la ansiedad que traen. La lucha contra el propio pensamiento es el centro del problema.",
@@ -3086,7 +3118,7 @@ const VARIABLES = [
         },
         {
           t: "Disposición y exposición sin ritual",
-          tecs: ["disposicion", "metafora-vecino", "exposicion-graduada"],
+          tecs: ["metafora-vecino", "exposicion-graduada"],
           obj: "Practicar tener la obsesión y la ansiedad sin hacer el ritual, al servicio de algo que importa.",
           pasos: [
             "Presentar la disposición como una elección: se está dispuesto a sentir la duda o no, aunque los pasos sean pequeños.",
@@ -3100,7 +3132,7 @@ const VARIABLES = [
         },
         {
           t: "Acción comprometida y prevención de recaídas",
-          tecs: ["accion-comprometida", "fear-dare", "prevencion-recaidas"],
+          tecs: ["fear-dare", "prevencion-recaidas"],
           obj: "Ampliar las pautas de acción valiosa y preparar a la persona para caer y levantarse.",
           pasos: [
             "Para cada dirección valiosa, definir metas y acciones concretas, empezando por pasos pequeños.",
@@ -3148,6 +3180,7 @@ const VARIABLES = [
       mod: "foa",
       inst: ["PCL-5"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia de exposición prolongada",
       fuente: "Ruiz et al., cap. 4 (§3.2 y §6.3) · Monson et al., 2014",
       cuando: "La persona presenta recuerdos intrusivos, evitación de lo que recuerda el trauma e hiperactivación; <strong>está a salvo en el presente</strong> y puede tolerar un procedimiento que al principio aumenta el malestar. La evitación de los recuerdos y de sus señales es lo que mantiene el cuadro.",
@@ -3263,6 +3296,7 @@ const VARIABLES = [
       mod: "resick-cpt",
       inst: ["PCL-5", "PHQ-9"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia de procesamiento cognitivo",
       fuente: "Monson et al., 2014",
       cuando: "Además de los síntomas de estrés postraumático, la persona <strong>sacó del trauma conclusiones que la atan</strong>: se culpa por lo ocurrido o cree que debió evitarlo, siente vergüenza, o generalizó en exceso —«no puedo confiar en nadie», «ningún lugar es seguro», «no merezco ser feliz»—. Es útil cuando la culpa y la vergüenza pesan tanto como el miedo, y cuando la persona prefiere trabajar escribiendo más que reviviendo el recuerdo en voz alta.",
@@ -3347,7 +3381,7 @@ const VARIABLES = [
         },
         {
           t: "Los cinco temas",
-          tecs: ["cinco-temas", "desafio-creencias"],
+          tecs: ["desafio-creencias"],
           obj: "Trabajar, tema por tema, las creencias sobre uno mismo y los demás que el trauma alteró.",
           pasos: [
             "Seguridad: creencias sobre el peligro de uno mismo y de los demás («nadie está a salvo conmigo», «me van a atacar»).",
@@ -3396,6 +3430,7 @@ const VARIABLES = [
       mod: "ac-refuerzo",
       inst: ["PCL-5", "PHQ-9"],
       enf: "ac",
+      nivel: "preliminar",
       t: "Activación conductual para el estrés postraumático",
       fuente: "Jakupcak et al., 2019",
       cuando: "El estrés postraumático <strong>ha ido encogiendo la vida de la persona</strong>: se aísla, dejó actividades que valoraba, se refugia en el consumo, siente embotamiento y el ánimo decae. No está lista, o no quiere todavía, trabajar directamente con el recuerdo, pero sí puede empezar a recuperar lo que la evitación le quitó.",
@@ -3524,6 +3559,7 @@ const VARIABLES = [
       mod: "lazarus",
       inst: ["PCL-5"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Inoculación de estrés",
       fuente: "Ruiz et al., cap. 9 (§3) · Monson et al., 2014",
       cuando: "La exposición al recuerdo <strong>todavía no es viable</strong> —la persona no la acepta o no la tolera— o el estrés sigue activo en su vida, y lo que se necesita es ampliar sus recursos de afrontamiento. Se ha usado sobre todo con mujeres víctimas de agresión sexual o física.",
@@ -3574,7 +3610,7 @@ const VARIABLES = [
         },
         {
           t: "Apoyo social y afrontamiento paliativo",
-          tecs: ["afrontamiento-paliativo", "apoyo-social", "expresion-emocional"],
+          tecs: ["apoyo-social", "expresion-emocional"],
           obj: "Mitigar el malestar ante lo que no se puede cambiar.",
           pasos: [
             "Entrenar la toma de perspectiva: registrar de 0 a 100 cómo oscila el malestar a lo largo del día para comprobar que no siempre está en su punto máximo.",
@@ -3633,6 +3669,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["PCL-5", "C-SSRS"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Estabilización dialéctico-conductual y exposición prolongada",
       fuente: "Elices, caps. 2 y 4.3 · Linehan, 2020",
       cuando: "El trauma coexiste con <strong>autolesiones, conductas suicidas o una desregulación emocional marcada</strong> —con frecuencia en historias de abuso en la infancia— y la exposición directa al recuerdo sería prematura. Primero se estabiliza; la exposición llega cuando las conductas que atentan contra la vida están bajo control.",
@@ -3656,7 +3693,7 @@ const VARIABLES = [
         },
         {
           t: "Jerarquía de metas y tarjeta diaria",
-          tecs: ["jerarquia-metas-dbt", "tarjeta-diaria"],
+          tecs: ["tarjeta-diaria"],
           obj: "Ordenar cada sesión según la prioridad: primero la vida, después la terapia, después la calidad de vida.",
           pasos: [
             "Compartir la jerarquía: reducir las conductas suicidas y autolesivas; luego lo que interfiere con la terapia; luego lo que interfiere con la calidad de vida; y aumentar habilidades.",
@@ -3761,6 +3798,7 @@ const VARIABLES = [
       mod: "beck-dep",
       inst: ["PHQ-9", "BDI-II"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitiva de Beck",
       fuente: "Young et al., 2014 · Ruiz et al., cap. 8",
       cuando: "La evaluación muestra una <strong>visión negativa de sí mismo, del mundo y del futuro</strong> —«soy un inútil», «nada va a cambiar»—, pensamientos automáticos y distorsiones que la persona toma como verdades, y un mínimo de funcionamiento conductual para trabajar con registros. En depresiones más graves se empieza por la programación de actividades.",
@@ -3770,7 +3808,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación, formulación y estructura de la sesión",
-          tecs: ["formulacion-caso", "estructura-sesion", "empirismo-colaborativo"],
+          tecs: ["formulacion-caso"],
           obj: "Conocer el problema, construir la relación y compartir con la persona una formulación que conecte situaciones, pensamientos, emociones y conductas.",
           pasos: [
             "Evaluar los síntomas afectivos, motivacionales, cognitivos, conductuales y fisiológicos, y medir la línea base con el PHQ-9, revisando su ítem 9 aparte del puntaje.",
@@ -3881,6 +3919,7 @@ const VARIABLES = [
       mod: "ipt",
       inst: ["PHQ-9", "BDI-II"],
       enf: "ipt",
+      nivel: "ensayos",
       t: "Psicoterapia interpersonal",
       fuente: "Bleiberg y Markowitz, 2014",
       cuando: "El episodio depresivo <strong>está ligado a un acontecimiento interpersonal</strong>: la muerte de alguien cercano con un duelo que no avanza, un conflicto sostenido con la pareja, un familiar o un jefe, o un cambio de rol —separación, jubilación, maternidad, migración, diagnóstico de una enfermedad—. También cuando la persona está muy aislada y sin relaciones que la sostengan.",
@@ -3933,7 +3972,7 @@ const VARIABLES = [
         },
         {
           t: "Trabajo sobre el duelo o la transición de rol",
-          tecs: ["facilitacion-duelo", "transicion-rol"],
+          tecs: ["facilitacion-duelo"],
           obj: "Cuando el foco es una pérdida o un cambio de vida: elaborar lo perdido y construir lo nuevo.",
           pasos: [
             "Empezar cada sesión con «¿Cómo se ha sentido desde la última vez?» y enlazar el ánimo con lo que pasó en la semana.",
@@ -3996,6 +4035,7 @@ const VARIABLES = [
       mod: "dzurilla",
       inst: ["PHQ-9", "BDI-II"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia de solución de problemas",
       fuente: "Ruiz et al., cap. 9 (§4) · OMS, 2017",
       cuando: "El ánimo bajo se sostiene en <strong>problemas vitales concretos que la persona no logra resolver</strong> —económicos, laborales, familiares— y ante los que responde con evitación, impulsividad o una orientación negativa («no hay nada que hacer»). También conviene con síntomas depresivos que no llegan a un episodio.",
@@ -4019,7 +4059,7 @@ const VARIABLES = [
         },
         {
           t: "Orientación hacia el problema",
-          tecs: ["solucion-problemas", "orientacion-problemas"],
+          tecs: ["solucion-problemas"],
           obj: "Construir una actitud que haga abordables los problemas: verlos como parte de la vida y confiar en poder enfrentarlos.",
           pasos: [
             "Trabajar la creencia de autoeficacia y el reconocimiento temprano de los problemas.",
@@ -4111,6 +4151,7 @@ const VARIABLES = [
       mod: "ac-refuerzo",
       inst: ["PHQ-9", "GDS-15"],
       enf: "ac",
+      nivel: "ensayos",
       t: "Activación conductual",
       fuente: "Lejuez et al., 2011 · Dimidjian et al., 2014 · OMS, 2017",
       cuando: "La depresión se sostiene en <strong>la inactividad y la retirada</strong>: la persona dejó actividades que le daban agrado o sentido y evita lo que le genera malestar, lo que a su vez mantiene el ánimo bajo. Útil cuando hay poca energía para el trabajo con registros de pensamiento.",
@@ -4230,6 +4271,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["PHQ-9", "AAQ-II"],
       enf: "act",
+      nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
       fuente: "Hayes et al., 2012 · Harris, 2009 · Ruiz et al., cap. 11",
       cuando: "La persona está <strong>atrapada en la lucha contra la tristeza</strong> —aislarse, dormir, distraerse, esperar a sentirse mejor para hacer algo— y fusionada con pensamientos como «soy un fracasado» o «no vale la pena», mientras su vida se vacía de lo que le importa.",
@@ -4254,7 +4296,7 @@ const VARIABLES = [
         },
         {
           t: "El control es el problema",
-          tecs: ["agenda-control", "lucha-monstruo"],
+          tecs: ["lucha-monstruo"],
           obj: "Mostrar que las reglas que ponen la tristeza en contra de la vida la agrandan.",
           pasos: [
             "Examinar reglas como «con estos pensamientos no se puede vivir» o «primero tengo que sentirme bien».",
@@ -4295,7 +4337,7 @@ const VARIABLES = [
         },
         {
           t: "Aceptación y acción en presencia de la tristeza",
-          tecs: ["aceptacion", "disposicion"],
+          tecs: [],
           obj: "Practicar hacer lo que importa sin esperar a tener ganas.",
           pasos: [
             "Presentar la disposición como una elección, no como un sentimiento.",
@@ -4308,7 +4350,7 @@ const VARIABLES = [
         },
         {
           t: "Acción comprometida y prevención de recaídas",
-          tecs: ["accion-comprometida", "fear-dare", "prevencion-recaidas"],
+          tecs: ["fear-dare", "prevencion-recaidas"],
           obj: "Ampliar las pautas de acción valiosa y preparar a la persona para caer y levantarse.",
           pasos: [
             "Definir metas y acciones concretas por cada dirección valiosa, desde pasos pequeños.",
@@ -4343,6 +4385,7 @@ const VARIABLES = [
       mod: "teasdale",
       inst: ["PHQ-9", "BDI-II"],
       enf: "mind",
+      nivel: "ensayos",
       t: "Terapia cognitiva basada en mindfulness para prevenir recaídas",
       fuente: "Segal et al., 2015 · Kuyken et al., 2016",
       cuando: "La persona <strong>ya se recuperó de la depresión, pero ha tenido varios episodios</strong>; cuando el ánimo baja, se engancha en rumiaciones y en autoevaluaciones globales negativas. El programa enseña a reconocer esa modalidad mental y a salir de ella antes de que arrastre una recaída.",
@@ -4409,7 +4452,7 @@ const VARIABLES = [
         },
         {
           t: "Permitir y dejar ser",
-          tecs: ["aceptacion", "meditacion-sedente"],
+          tecs: ["meditacion-sedente"],
           obj: "Establecer una relación distinta con lo que no se quiere sentir: permitirlo en vez de pelearlo.",
           pasos: [
             "Durante la meditación sedente, traer a propósito una dificultad y notar dónde se siente en el cuerpo.",
@@ -4422,7 +4465,7 @@ const VARIABLES = [
         },
         {
           t: "Los pensamientos no son hechos",
-          tecs: ["descentramiento"],
+          tecs: [],
           obj: "Reducir la identificación con los pensamientos: verlos como eventos mentales que pasan.",
           pasos: [
             "Practicar la meditación observando los pensamientos como pensamientos, que aparecen y se van.",
@@ -4482,7 +4525,9 @@ const VARIABLES = [
       id: "dep-wbt",
       mod: "fava-bienestar",
       inst: ["CID", "PHQ-9", "EBP", "SQ"],
+      instEst: ["EBP", "SQ"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia de bienestar en la fase residual y la prevención de recaídas",
       fuente: "Fava, 2016, caps. 3, 4, 13 y 14",
       cuando: "La persona <strong>respondió al tratamiento del episodio</strong> —con frecuencia, antidepresivos— pero le quedan síntomas residuales como ansiedad, irritabilidad, insomnio o desesperanza, o está mejor pero no bien; o tiene una <strong>depresión recurrente</strong>, con tres o más episodios. No está pensada para el episodio agudo: es un tratamiento de segunda línea para la fase que sigue.",
@@ -4534,7 +4579,7 @@ const VARIABLES = [
         },
         {
           t: "Lo que interrumpe el bienestar",
-          tecs: ["interpretacion-observador", "experiencias-optimas"],
+          tecs: ["interpretacion-observador"],
           obj: "Identificar y cuestionar los pensamientos y conductas que cortan el bienestar, y buscar experiencias óptimas.",
           pasos: [
             "Buscar en el diario los pensamientos que cortan el bienestar, como «fue suerte» o «esto no puede durar», y las conductas que lo limitan.",
@@ -4593,7 +4638,9 @@ const VARIABLES = [
       id: "dep-pp",
       mod: "perma",
       inst: ["PHQ-9", "PPTI", "SWLS"],
+      instEst: ["PPTI"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Psicoterapia positiva",
       fuente: "Rashid y Seligman, 2018 · Bolier et al. · Chakhssi et al. · White et al.",
       cuando: "Depresión <strong>leve o moderada</strong> en la que, además de los síntomas, faltan emociones positivas, compromiso con lo que se hace, relaciones que sostengan y sentido. Puede ser el tratamiento en sí o integrarse, práctica por práctica, a otro plan con más respaldo cuando el cuadro es más grave. Construye recursos en lugar de atacar directamente los síntomas, sin dejar de atenderlos.",
@@ -4751,6 +4798,7 @@ const VARIABLES = [
       mod: "rahman",
       inst: ["EPDS", "BDI-II"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Pensar saludable: manejo psicosocial de la depresión perinatal",
       fuente: "FICR, 2022 · Maroto Navarro et al., 2005",
       cuando: "Una gestante o una madre en el primer año del bebé tiene síntomas depresivos confirmados con un tamizaje y una entrevista: tristeza, pérdida de interés —también por el bebé—, cansancio, alteraciones del sueño y del apetito, culpa o desesperanza. El plan <strong>se centra en la salud de la madre y del bebé más que en la depresión</strong>, y entrena habilidades en lugar de ofrecer terapia en sentido estricto.",
@@ -4878,13 +4926,14 @@ const VARIABLES = [
       id: "duelo-ases",
       mod: "worden-tareas",
       inst: ["PHQ-9"],
-      enf: "est",
+      enf: "duelo",
+      nivel: "conceptual",
       t: "Asesoramiento en el duelo: las cuatro tareas",
       fuente: "Worden, 2013, caps. 2 y 4",
       cuando: "La persona está en un <strong>duelo reciente y no complicado</strong> y busca ayuda, o tiene factores que predicen dificultades: ser joven con hijos pequeños en casa, tener pocas relaciones cercanas, haber perdido ingresos, una muerte repentina o una relación ambivalente con el fallecido.",
       respaldo: "Worden distingue tres formas de ofrecer el asesoramiento: a todas las personas en duelo, a quienes lo piden o, de forma preventiva, a quienes tienen factores de riesgo. Los estudios de seguimiento de viudos y viudas identificaron predictores de problemas uno y dos años después de la pérdida, lo que permite una intervención temprana (Worden, 2013, cap. 4). La mayor parte del duelo se resuelve sin intervención formal; se benefician más las personas jóvenes, las mujeres, quienes sufrieron una pérdida repentina o violenta, quienes muestran indicios de duelo crónico y quienes buscan ayuda por una angustia que ellas mismas identifican (Worden, 2013, cap. 4).",
       secuencia: "<strong>Secuencia:</strong> el asesoramiento sigue diez principios, que acompañan las cuatro tareas del duelo; no tiene un número fijo de sesiones y puede darse de forma individual o en grupo. Suele empezar no antes de una semana después del funeral (Worden, 2013, cap. 4).",
-      esc: ["primer-nivel","comunidad","hospital","mayores"],
+      esc: ["primer-nivel","comunidad","mayores"],
       actividades: [
         {
           t: "Aceptar la realidad de la pérdida",
@@ -4943,7 +4992,7 @@ const VARIABLES = [
         },
         {
           t: "Identificar patologías y derivar",
-          tecs: ["evaluacion-riesgo-suicida", "seguimiento-derivacion"],
+          tecs: ["evaluacion-riesgo-suicida"],
           obj: "Reconocer cuándo el duelo se complicó y requiere terapia o atención especializada.",
           pasos: [
             "Estar atento a los signos de duelo complicado, depresión o riesgo suicida.",
@@ -4972,7 +5021,8 @@ const VARIABLES = [
       id: "duelo-compl",
       mod: "worden-tareas",
       inst: ["PHQ-9", "PCL-5"],
-      enf: "est",
+      enf: "duelo",
+      nivel: "conceptual",
       t: "Terapia del duelo complicado",
       fuente: "Worden, 2013, caps. 5 y 6",
       cuando: "El duelo se ha <strong>complicado</strong>: es crónico y no termina, se retrasó y aparece mucho después, es exagerado —con depresión, ansiedad o conductas de riesgo— o está enmascarado en síntomas físicos o conductas que la persona no relaciona con la pérdida.",
@@ -5075,6 +5125,7 @@ const VARIABLES = [
       mod: "recompensa",
       inst: ["PANAS", "DASS", "SHAPS", "TEPS"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Tratamiento del afecto positivo",
       fuente: "Craske et al., 2022",
       cuando: "La persona tiene <strong>ánimo positivo muy bajo o anhedonia</strong> junto con depresión o ansiedad, con o sin varios diagnósticos a la vez. Los autores esperan que sirva también en cuadros que no llegan al umbral diagnóstico pero con riesgo de llegar.",
@@ -5198,6 +5249,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["DIARIO-DBT", "C-SSRS"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Entrenamiento en habilidades dialéctico-conductuales",
       fuente: "Elices, caps. 1 a 4 · Linehan, 2020, caps. 7 a 10",
       cuando: "La persona describe <strong>emociones que se disparan con poco, llegan muy alto y tardan en volver a la calma</strong>, y conductas con que intenta aliviarlas y que le cuestan caro después: autolesiones, consumo, atracones, estallidos, rupturas. Suele haber relaciones intensas e inestables y una historia de invalidación de lo que siente. Es el perfil para el que se creó la terapia dialéctico-conductual: el trastorno límite de la personalidad y otros cuadros con desregulación grave.",
@@ -5225,7 +5277,7 @@ const VARIABLES = [
         },
         {
           t: "Mindfulness: mente sabia",
-          tecs: ["mente-sabia", "habilidades-que-como"],
+          tecs: ["habilidades-que-como"],
           obj: "Aprender a observar la experiencia del momento sin juzgarla y sin actuar de inmediato sobre ella, como base de las demás habilidades.",
           pasos: [
             "Presentar la mente sabia como el punto de encuentro entre la mente emocional y la mente racional.",
@@ -5324,6 +5376,7 @@ const VARIABLES = [
       mod: "barlow-pu",
       inst: ["OASIS", "ODSIS"],
       enf: "trans",
+      nivel: "ensayos",
       t: "Protocolo Unificado aplicado a la desregulación emocional",
       fuente: "Barlow et al., 2015 · Ehrenreich-May et al., 2022",
       cuando: "Las emociones de la persona son <strong>frecuentes e intensas y las vive como intolerables</strong>, y responde a ellas con conductas que las apagan en el momento —explotar, aislarse, beber, comer de más, evitar— en el contexto de varios problemas emocionales a la vez, <strong>sin conducta suicida ni autolesiones graves</strong> que obliguen a un programa más intensivo. Es una opción individual y más breve que el entrenamiento dialéctico-conductual.",
@@ -5441,6 +5494,7 @@ const VARIABLES = [
       mod: "gross",
       inst: ["GAD-7"],
       enf: "tcc",
+      nivel: "preliminar",
       t: "Entrenamiento en regulación emocional",
       fuente: "Ruiz et al., cap. 12 (§10)",
       cuando: "La persona vive sus emociones como <strong>confusas, indiferenciadas o desbordantes</strong>, no logra identificarlas ni nombrarlas y tiende a evitarlas, sin conductas de riesgo que obliguen a priorizar su manejo. El programa se diseñó para la ansiedad generalizada y las autoras del capítulo lo aplican a otros trastornos de ansiedad.",
@@ -5563,6 +5617,7 @@ const VARIABLES = [
       mod: "salovey",
       inst: ["TMMS-24"],
       enf: "dbt",
+      nivel: "conceptual",
       t: "Atender, comprender y reparar las emociones",
       fuente: "Linehan, 2020, caps. 7 y 9 · González et al., 2020",
       cuando: "La evaluación con la escala muestra un perfil concreto: la persona casi no registra lo que siente, o no deja de darle vueltas; confunde unas emociones con otras o no sabe nombrarlas; o, aunque las reconoce, no encuentra cómo salir de un estado negativo. El plan <strong>entrena la habilidad que falla</strong>, con ejercicios de las habilidades de mindfulness y de regulación emocional.",
@@ -5686,6 +5741,7 @@ const VARIABLES = [
       mod: "gilbert-tres-sistemas",
       inst: ["FSCRS", "PHQ-9"],
       enf: "cft",
+      nivel: "ensayos",
       t: "Terapia centrada en la compasión",
       fuente: "Kolts, 2016 · Gilbert, 2009",
       cuando: "La persona se habla con dureza ante sus errores, siente que es defectuosa o inferior, y <strong>no logra sentirse tranquila ni tratarse con amabilidad</strong>, aunque entienda que lo que se dice es exagerado. A menudo teme que, si deja de criticarse, no hará nada o quedará expuesta a los ataques de otros.",
@@ -5695,7 +5751,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Comprender sin culpa",
-          tecs: ["psicoeducacion", "tres-sistemas-emocion"],
+          tecs: ["psicoeducacion"],
           obj: "Reducir la culpa y la vergüenza mostrando que buena parte de lo que la persona sufre no lo eligió.",
           pasos: [
             "Explicar que tenemos un cerebro que la evolución formó para detectar amenazas, capaz de rumiar y de atacarse a sí mismo, y que eso no es culpa de nadie.",
@@ -5799,7 +5855,9 @@ const VARIABLES = [
       id: "auto-msc",
       mod: "neff-autocompasion",
       inst: ["SCS", "PHQ-9"],
+      instEst: ["SCS"],
       enf: "msc",
+      nivel: "ensayos",
       t: "Programa de autocompasión consciente",
       fuente: "Germer y Neff, 2019",
       cuando: "La persona se trata con dureza y quiere aprender a tratarse con amabilidad, <strong>sin estar en una fase aguda</strong> de un trastorno. El programa fue diseñado para población general, no como tratamiento de un cuadro clínico; sus prácticas se pueden integrar en la psicoterapia.",
@@ -5824,7 +5882,7 @@ const VARIABLES = [
         },
         {
           t: "Atención plena y reactivación del dolor",
-          tecs: ["respiracion-afectuosa", "reactivacion-dolor"],
+          tecs: ["respiracion-afectuosa"],
           obj: "Anclar la práctica en la atención plena y preparar a la persona para lo que puede remover.",
           pasos: [
             "Practicar la respiración afectuosa, saboreando el ritmo de la respiración.",
@@ -5894,6 +5952,7 @@ const VARIABLES = [
       mod: "autoperdon-worthington",
       inst: ["EAO"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Autoperdón responsable en seis pasos",
       fuente: "Worthington et al., 2013",
       cuando: "La autocrítica gira alrededor de <strong>algo concreto que la persona hizo y que dañó a otro</strong>: una infidelidad, algo hecho en una guerra, un momento en que perdió el control con un hijo. Siente culpa, remordimiento o vergüenza, se condena desde hace tiempo y no logra seguir adelante.",
@@ -5999,6 +6058,7 @@ const VARIABLES = [
       mod: "ellis-abc",
       inst: [],
       enf: "tcc",
+      nivel: "preliminar",
       t: "Inoculación de estrés para el control de la ira",
       fuente: "Ruiz et al., cap. 9 (§2 y §3) y cap. 7",
       cuando: "La persona reconoce que su ira <strong>escala demasiado rápido y demasiado alto</strong> ante situaciones que puede identificar —provocaciones, críticas, frustraciones cotidianas— y que eso le trae conflictos, pérdidas o arrepentimiento. Quiere controlarla y está dispuesta a registrar sus episodios.",
@@ -6112,6 +6172,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["DIARIO-DBT"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Habilidades dialéctico-conductuales para la ira",
       fuente: "Linehan, 2020, caps. 8 a 10 · Elices, caps. 2 y 3",
       cuando: "La ira forma parte de una <strong>desregulación emocional más amplia</strong>: estallidos que la persona no logra frenar, impulsividad, relaciones inestables. A menudo el entorno refuerza sin querer los estallidos: cuando la persona se enoja, los demás ceden, y eso vuelve la ira más difícil de regular.",
@@ -6234,7 +6295,9 @@ const VARIABLES = [
       id: "perd-enright",
       mod: "enright-fases",
       inst: ["EFI"],
+      instEst: ["EFI"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia de perdón: modelo de proceso",
       fuente: "Enright y Fitzgibbons, 2015 · Enright y Knutson Enright, 2008",
       cuando: "La persona sufrió <strong>una injusticia real</strong> y sigue cargando con una rabia o un resentimiento que afectan su ánimo, su salud o sus relaciones. Está dispuesta, al menos, a considerar el perdón como una opción; nadie tiene la obligación de perdonar.",
@@ -6345,6 +6408,7 @@ const VARIABLES = [
       mod: "reach",
       inst: ["EFI"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Grupo REACH para aprender a perdonar",
       fuente: "Worthington y Scherer, 2006 · Worthington y Lavelock, 2011 · Worthington, s. f.",
       cuando: "Personas con <strong>una herida de importancia moderada</strong> que no han logrado perdonar y que quieren volverse más capaces de perdonar. Es psicoeducación en grupo, no terapia: se aprende un método con una herida concreta para aplicarlo después a otras.",
@@ -6466,7 +6530,8 @@ const VARIABLES = [
       id: "sui-est",
       mod: "caplan",
       inst: ["ASQ", "C-SSRS"],
-      enf: "est",
+      enf: "crisis",
+      nivel: "guia",
       t: "Intervención en crisis y plan de seguridad",
       fuente: "Deza, 2007 · OPS, 2017, módulo SUI · OMS, 2023 · Cifuentes",
       cuando: "La persona llega <strong>en crisis</strong>: ideación suicida actual, un intento reciente, una autolesión o una pérdida que desbordó sus recursos habituales, y no ve salida. El objetivo inmediato no es tratar un trastorno, sino que la persona esté a salvo, recupere un mínimo de equilibrio y quede conectada con ayuda.",
@@ -6547,7 +6612,7 @@ const VARIABLES = [
         },
         {
           t: "Seguimiento y enlace",
-          tecs: ["seguimiento-derivacion"],
+          tecs: [],
           obj: "Verificar que la ayuda funcionó y que la persona quedó conectada con atención continua.",
           pasos: [
             "Acordar el recontacto antes de terminar: un segundo encuentro o una llamada.",
@@ -6582,6 +6647,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["C-SSRS", "DIARIO-DBT"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Programa para la conducta suicida y las autolesiones",
       fuente: "Elices, caps. 2 y 3 · Linehan, 2020",
       cuando: "Las conductas suicidas o las autolesiones <strong>se repiten</strong> y funcionan como una forma, costosa pero eficaz a corto plazo, de aliviar emociones intensas, casi siempre dentro de una desregulación emocional persistente. La persona está fuera de riesgo inminente y puede comprometerse con un tratamiento de alrededor de un año.",
@@ -6621,7 +6687,7 @@ const VARIABLES = [
         },
         {
           t: "Jerarquía de metas y diario",
-          tecs: ["jerarquia-metas-dbt", "tarjeta-diaria"],
+          tecs: ["tarjeta-diaria"],
           obj: "Ordenar cada sesión según la prioridad de las conductas y sostener el foco pese a la inestabilidad.",
           pasos: [
             "Revisar el diario al comienzo de cada sesión.",
@@ -6710,6 +6776,7 @@ const VARIABLES = [
       mod: "ttm",
       inst: ["AUDIT", "ASSIST"],
       enf: "est",
+      nivel: "guia",
       t: "Intervención motivacional por estadios de cambio",
       fuente: "Cifuentes · Marlatt y Donovan, caps. 1 y 9 · OMS, 2023",
       cuando: "La persona <strong>no reconoce el problema, duda o va y viene</strong> entre querer cambiar y no querer. Muchas veces llega porque otros la envían o por una consecuencia médica o legal. Antes de trabajar el cambio hay que trabajar la disposición a cambiar.",
@@ -6719,7 +6786,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Tamizaje y retroalimentación personalizada",
-          tecs: ["tamizaje", "intervencion-breve"],
+          tecs: [],
           obj: "Conocer el patrón y el riesgo del consumo y devolverlos a la persona de forma personalizada.",
           pasos: [
             "Aplicar un tamizaje con ventana temporal definida: AUDIT para el alcohol, ASSIST para varias sustancias.",
@@ -6734,7 +6801,7 @@ const VARIABLES = [
         },
         {
           t: "Identificar el estadio de cambio",
-          tecs: ["estadios-cambio"],
+          tecs: [],
           obj: "Saber en qué estadio está la persona para elegir la estrategia que corresponde.",
           pasos: [
             "Explorar si la persona reconoce un problema, si piensa en cambiar, si ya planea cómo, si ya cambió o si busca sostener el cambio.",
@@ -6760,7 +6827,7 @@ const VARIABLES = [
         },
         {
           t: "Contemplación: resolver la ambivalencia",
-          tecs: ["discrepancia", "habla-cambio"],
+          tecs: ["discrepancia"],
           obj: "Ayudar a la persona a ver la distancia entre su consumo y lo que quiere para su vida, y a expresar sus propias razones para cambiar.",
           pasos: [
             "Explorar las metas de la persona y la diferencia entre esas metas y su conducta actual.",
@@ -6788,7 +6855,7 @@ const VARIABLES = [
         },
         {
           t: "Acción y mantenimiento",
-          tecs: ["seguimiento-derivacion", "prevencion-recaidas"],
+          tecs: ["prevencion-recaidas"],
           obj: "Sostener el cambio y preparar a la persona para los deslices.",
           pasos: [
             "Dar apoyo para mantener el cambio y hacer seguimiento del consumo.",
@@ -6819,6 +6886,7 @@ const VARIABLES = [
       mod: "miller-em",
       inst: ["AUDIT", "ASSIST"],
       enf: "em",
+      nivel: "ensayos",
       t: "Entrevista motivacional",
       fuente: "Miller y Arkowitz, 2015 · Miller, 2015",
       cuando: "La persona <strong>está en dos aguas</strong>: reconoce algunos costos del consumo, pero también lo que le da, y cada vez que alguien le insiste en dejarlo, lo defiende. Llega a menudo enviada por otros, o el consumo aparece en una consulta por otro motivo. Sirve como intervención breve por sí sola o como preparación para otro tratamiento.",
@@ -6857,7 +6925,7 @@ const VARIABLES = [
         },
         {
           t: "Evocar: reconocer el habla de cambio",
-          tecs: ["habla-cambio"],
+          tecs: [],
           obj: "Aprender a oír en lo que dice la persona las señales de que se mueve hacia el cambio.",
           pasos: [
             "Distinguir el habla de cambio preparatoria: deseo («quiero»), capacidad («podría»), razones («si dejo de tomar, recupero…») y necesidad («tengo que»).",
@@ -6938,6 +7006,7 @@ const VARIABLES = [
       mod: "marlatt-rp",
       inst: ["ASSIST", "AASE"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Prevención de recaídas",
       fuente: "Marlatt y Donovan, caps. 1 y 5 · OMS, 2023",
       cuando: "La persona <strong>ya decidió cambiar</strong> —dejar o reducir el consumo— o terminó un tratamiento, y el problema es sostener el cambio: hay situaciones en que vuelve a consumir, y un desliz tiende a convertirse en recaída completa.",
@@ -6947,7 +7016,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Situaciones de alto riesgo",
-          tecs: ["autorregistro", "situaciones-alto-riesgo"],
+          tecs: ["autorregistro"],
           obj: "Identificar las situaciones en que la persona es vulnerable a consumir.",
           pasos: [
             "Revisar episodios de consumo pasados y los factores interpersonales, intrapersonales, ambientales y fisiológicos que los precedieron.",
@@ -7005,7 +7074,7 @@ const VARIABLES = [
         },
         {
           t: "Deslices y efecto de violación de la abstinencia",
-          tecs: ["efecto-violacion-abstinencia", "reatribucion"],
+          tecs: ["reatribucion"],
           obj: "Evitar que un desliz se convierta en recaída completa.",
           pasos: [
             "Explicar el efecto de violación de la abstinencia: la culpa, la vergüenza y la sensación de haber perdido el control después de un desliz, que empujan a seguir consumiendo.",
@@ -7053,6 +7122,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["ASSIST", "DIARIO-DBT"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Habilidades dialéctico-conductuales para conductas adictivas",
       fuente: "Linehan, 2020, cap. 10 · Elices, cap. 4.2",
       cuando: "El consumo convive con una <strong>desregulación emocional grave</strong> —como en el trastorno límite de la personalidad— y funciona como una forma de manejar emociones intensas. La persona alterna compromisos de abstinencia con caídas frecuentes.",
@@ -7090,7 +7160,7 @@ const VARIABLES = [
         },
         {
           t: "Mente clara",
-          tecs: ["mente-clara"],
+          tecs: [],
           obj: "Mantenerse sin consumir y alerta a la tentación, sin creer que el problema ya terminó.",
           pasos: [
             "Describir la mente adicta, gobernada por la adicción, y la mente limpia, que ya no ve el peligro de recaer.",
@@ -7159,6 +7229,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["ASSIST"],
       enf: "act",
+      nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "El consumo funciona sobre todo como una <strong>forma de no sentir</strong>: la persona consume para no tener ansiedad, tristeza, recuerdos o deseo, y cada intento de controlar esas experiencias estrecha más su vida. Ya intentó dejarlo a fuerza de voluntad o de distraerse, sin resultado estable.",
@@ -7168,7 +7239,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Desesperanza creativa",
-          tecs: ["desesperanza-creativa", "agenda-control"],
+          tecs: ["desesperanza-creativa"],
           obj: "Que la persona compruebe con su experiencia que consumir para no sentir no le ha devuelto la vida que quiere.",
           pasos: [
             "Listar lo que el consumo le quita de encima en el momento: ansiedad, tristeza, recuerdos, aburrimiento.",
@@ -7223,7 +7294,7 @@ const VARIABLES = [
         },
         {
           t: "Disposición a sentir sin consumir",
-          tecs: ["aceptacion", "disposicion"],
+          tecs: [],
           obj: "Practicar tener el deseo y el malestar sin actuar sobre ellos, al servicio de lo que importa.",
           pasos: [
             "Presentar la disposición como una elección, no como un sentimiento.",
@@ -7236,7 +7307,7 @@ const VARIABLES = [
         },
         {
           t: "Acción comprometida y recaídas",
-          tecs: ["accion-comprometida", "barreras"],
+          tecs: [],
           obj: "Ampliar las acciones valiosas y preparar a la persona para caer y volver a elegir.",
           pasos: [
             "Definir metas y acciones concretas por cada dirección valiosa, desde pasos pequeños.",
@@ -7280,6 +7351,7 @@ const VARIABLES = [
       mod: "miller-em",
       inst: ["SCOFF", "EAT-26"],
       enf: "em",
+      nivel: "conceptual",
       t: "Entrevista motivacional por síntoma",
       fuente: "Cassin y Geller, 2015 · Marlatt y Donovan, cap. 9",
       cuando: "La persona está <strong>ambivalente</strong>: quiere cambiar algunos síntomas y otros no —por ejemplo, dejar los atracones pero no la restricción, los laxantes o el ejercicio—, o no ve un problema en su alimentación o en su peso. Las dietas, los atracones y las compensaciones le cumplen funciones que valora: sentir control, calmar emociones, comer sin engordar.",
@@ -7393,7 +7465,9 @@ const VARIABLES = [
       id: "alim-tcc",
       mod: "fairburn",
       inst: ["EAT-26", "EDE"],
+      instEst: ["EDE"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual mejorada para los trastornos alimentarios",
       fuente: "Fairburn y Cooper, 2014",
       cuando: "Hay <strong>bulimia, trastorno por atracón u otro trastorno alimentario</strong> en un adulto que puede tratarse de forma ambulatoria: la persona juzga su valor por su figura y su peso, sigue dietas y reglas rígidas, y tiene atracones, vómitos, laxantes o ejercicio excesivo. Es transdiagnóstica: sirve para todos estos cuadros y, con más sesiones, para la anorexia sin riesgo médico.",
@@ -7460,7 +7534,7 @@ const VARIABLES = [
         },
         {
           t: "La importancia de la figura y el peso",
-          tecs: ["sobrevaloracion-figura", "comprobacion-corporal", "exposicion-graduada"],
+          tecs: ["exposicion-graduada"],
           obj: "Reducir la sobrevaloración de la figura y el peso: el lugar que ocupan en la forma en que la persona se valora.",
           pasos: [
             "Dibujar un gráfico circular con las áreas de la vida por las que la persona se juzga; ver qué porción ocupan la figura, el peso y la comida, y los riesgos de que una porción domine.",
@@ -7476,7 +7550,7 @@ const VARIABLES = [
         },
         {
           t: "Reglas dietéticas y alimentos evitados",
-          tecs: ["restriccion-dietetica", "experimento-conductual", "exposicion-graduada"],
+          tecs: ["experimento-conductual", "exposicion-graduada"],
           obj: "Reducir la restricción que alimenta el ciclo de dieta y atracón.",
           pasos: [
             "Identificar cada regla —cuándo, cuánto y qué comer— y lo que la persona teme que pase si la rompe.",
@@ -7541,6 +7615,7 @@ const VARIABLES = [
       mod: "marlatt-rp",
       inst: ["EAT-26", "WEL"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Prevención de recaídas",
       fuente: "Collins, en Marlatt y Donovan, cap. 9",
       cuando: "La persona <strong>terminó un tratamiento</strong> o salió del hospital, y el reto es mantener lo logrado: las recaídas son frecuentes en la bulimia, los atracones y la anorexia, y un desliz tiende a vivirse como un fracaso total.",
@@ -7550,7 +7625,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Situaciones de alto riesgo",
-          tecs: ["autorregistro", "situaciones-alto-riesgo"],
+          tecs: ["autorregistro"],
           obj: "Identificar las situaciones en que la persona vuelve a comer de forma desadaptativa.",
           pasos: [
             "Revisar los episodios y sus determinantes: estados emocionales negativos, comidas en situaciones sociales, estar sola o aburrida, tener comida a la vista.",
@@ -7616,7 +7691,7 @@ const VARIABLES = [
         },
         {
           t: "Interpretar el desliz",
-          tecs: ["efecto-violacion-abstinencia", "reatribucion", "prevencion-recaidas"],
+          tecs: ["reatribucion", "prevencion-recaidas"],
           obj: "Que un desliz se lea como un error de la situación, que se puede corregir, y no como un fracaso global.",
           pasos: [
             "Explicar el efecto de violación de la abstinencia: culparse por el desliz y sentirse mal empuja a comer más.",
@@ -7662,6 +7737,7 @@ const VARIABLES = [
       mod: "lazarus",
       inst: ["K-10", "CBI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Inoculación de estrés",
       fuente: "Ruiz et al., cap. 9 (§3) · Meichenbaum, 1985, caps. 2 a 6 · OMS, 2023",
       cuando: "El estrés se asocia a <strong>situaciones identificables</strong>, presentes o próximas: un procedimiento médico, una evaluación, una transición vital, un trabajo con exigencias altas o una enfermedad de larga duración. La persona quiere prepararse para afrontarlas.",
@@ -7728,7 +7804,7 @@ const VARIABLES = [
         },
         {
           t: "Afrontamiento paliativo y apoyo social",
-          tecs: ["afrontamiento-paliativo", "desviacion-atencion", "apoyo-social", "expresion-emocional"],
+          tecs: ["desviacion-atencion", "apoyo-social", "expresion-emocional"],
           obj: "Contar con estrategias para estresores sostenidos que no se pueden modificar.",
           pasos: [
             "Tomar perspectiva: puntuar de 0 a 100 el malestar a lo largo del día para comprobar que no siempre está en su punto más alto.",
@@ -7776,6 +7852,7 @@ const VARIABLES = [
       mod: "kabat",
       inst: ["K-10", "BPI"],
       enf: "mind",
+      nivel: "preliminar",
       t: "Reducción del estrés basada en mindfulness",
       fuente: "Ruiz et al., cap. 10 (§7.1) · OMS, 2023",
       cuando: "El estrés es <strong>sostenido</strong> y viene con tensión física, dolor o una enfermedad crónica; la persona reacciona en automático y quiere aprender a responder de otra forma. El programa exige compromiso: práctica diaria de 45 minutos y tareas de hasta una hora.",
@@ -7886,6 +7963,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["K-10", "MBI"],
       enf: "act",
+      nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
       fuente: "Díaz Corbobés, caps. 1 a 4 · Ruiz et al., cap. 11",
       cuando: "La persona lleva tiempo <strong>luchando por no sentir el estrés</strong> —evitar, postergar, controlar cada detalle, desconectarse— y esa lucha ya le cuesta en el trabajo, la salud o las relaciones. Hay estresores que no se pueden eliminar, como una enfermedad crónica o un trabajo exigente.",
@@ -7895,7 +7973,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Desesperanza creativa",
-          tecs: ["desesperanza-creativa", "agenda-control", "metafora-hoyo"],
+          tecs: ["desesperanza-creativa", "metafora-hoyo"],
           obj: "Que la persona compruebe con su experiencia que tratar de no sentir el estrés no le ha dado la vida que quiere.",
           pasos: [
             "Listar lo que hace para no sentir el estrés: evitar, postergar, controlar cada detalle, desconectarse.",
@@ -7949,7 +8027,7 @@ const VARIABLES = [
         },
         {
           t: "Disposición a sentir el estrés",
-          tecs: ["aceptacion", "disposicion"],
+          tecs: [],
           obj: "Hacer espacio a las sensaciones y emociones del estrés mientras se hace lo que importa.",
           pasos: [
             "Presentar la disposición como una elección, no como un sentimiento.",
@@ -7962,7 +8040,7 @@ const VARIABLES = [
         },
         {
           t: "Acción comprometida",
-          tecs: ["accion-comprometida", "fear-dare"],
+          tecs: ["fear-dare"],
           obj: "Ampliar las pautas de acción valiosa y preparar a la persona para las recaídas.",
           pasos: [
             "Definir metas y acciones concretas por cada dirección valiosa, desde pasos pequeños.",
@@ -7995,6 +8073,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["K-10"],
       enf: "act",
+      nivel: "guia",
       t: "Autoayuda guiada: «Haz lo que importa»",
       fuente: "OPS, 2022a, partes 1 a 5",
       cuando: "La persona tiene <strong>estrés en un contexto de adversidad</strong> —crisis, violencia, desplazamiento, pérdida de recursos— o no puede asistir a una terapia de varias semanas. Sirve como autoayuda con acompañamiento breve, como material para grupos o como complemento de otro plan.",
@@ -8030,7 +8109,7 @@ const VARIABLES = [
         },
         {
           t: "Actuar de acuerdo con los valores",
-          tecs: ["valores", "accion-comprometida"],
+          tecs: [],
           obj: "Identificar el tipo de persona que se quiere ser y dar pasos pequeños en esa dirección, aun en tiempos difíciles.",
           pasos: [
             "Distinguir valores de metas: las metas son lo que se busca lograr; los valores, el tipo de persona que se quiere ser.",
@@ -8057,7 +8136,7 @@ const VARIABLES = [
         },
         {
           t: "Dejar espacio",
-          tecs: ["aceptacion", "disposicion"],
+          tecs: [],
           obj: "Dejar que los pensamientos y sentimientos difíciles estén presentes, sin que dominen.",
           pasos: [
             "Centrar la atención en un pensamiento o sentimiento difícil, darse cuenta de que está ahí, ponerle nombre y observarlo con curiosidad.",
@@ -8099,6 +8178,7 @@ const VARIABLES = [
       mod: "dzurilla",
       inst: ["K-10"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia de solución de problemas",
       fuente: "D'Zurilla, 1986, caps. 3, 7 y 8 · Ruiz et al., cap. 9 (§4)",
       cuando: "Los problemas de la vida diaria se <strong>acumulan sin resolverse</strong> y el malestar crece con ellos: la persona los evita, los deja a otros o los resuelve de forma impulsiva. Sirve como tratamiento, como mantenimiento después de otro tratamiento o como prevención.",
@@ -8123,7 +8203,7 @@ const VARIABLES = [
         },
         {
           t: "Orientación hacia el problema",
-          tecs: ["orientacion-problemas"],
+          tecs: [],
           obj: "Que la persona reconozca los problemas cuando aparecen y los vea como algo normal y abordable, no como una amenaza.",
           pasos: [
             "Ver los problemas como sucesos normales de la vida, no como señal de un defecto personal, y como retos u oportunidades más que como amenazas.",
@@ -8214,7 +8294,8 @@ const VARIABLES = [
       mod: "guia-ep",
       sug: { mod: "dzurilla", por: "EP+ usa los mismos pasos de solución de problemas que describe D'Zurilla y el mismo supuesto: el malestar depende en parte de cómo se enfrentan los problemas." },
       inst: ["K-10", "PHQ-9"],
-      enf: "tcc",
+      enf: "psp",
+      nivel: "guia",
       t: "Enfrentando problemas plus (EP+)",
       fuente: "OMS, 2016, caps. 2 y 5 a 10",
       cuando: "La persona vive en <strong>adversidad</strong> —pobreza, violencia, desplazamiento, desastres— y tiene malestar emocional con problemas prácticos: desempleo, conflictos, falta de recursos. Sirve cuando no hay especialistas y la intervención la hacen facilitadores entrenados y supervisados.",
@@ -8268,7 +8349,7 @@ const VARIABLES = [
         },
         {
           t: "Seguir andando, continuar haciendo",
-          tecs: ["activacion-conductual", "programacion-actividades", "tareas-graduadas"],
+          tecs: ["programacion-actividades", "tareas-graduadas"],
           obj: "Recuperar las actividades que la persona dejó de hacer.",
           pasos: [
             "Explicar el ciclo en que la inactividad empeora el ánimo y el cansancio.",
@@ -8324,6 +8405,7 @@ const VARIABLES = [
       mod: "matriz",
       inst: ["AAQ-II", "VLQ-2"],
       enf: "act",
+      nivel: "conceptual",
       t: "Matriz ACT: movimientos hacia y movimientos de alejamiento",
       fuente: "Polk et al., 2016, pasos 1 a 6",
       cuando: "La persona <strong>se queda atascada</strong> en ciclos de evitación: hace cosas para no sentir o no pensar —evitar, postergar, discutir, beber, encerrarse— que alivian en el momento y a la larga la alejan de quien o lo que le importa. Sirve con problemas distintos, porque el diagrama es el mismo.",
@@ -8333,7 +8415,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Presentar el punto de vista de la matriz",
-          tecs: ["matriz-act", "valores"],
+          tecs: ["matriz-act"],
           obj: "Que la persona aprenda a clasificar su experiencia en los cuatro cuadrantes de la matriz.",
           pasos: [
             "Dibujar la línea horizontal (alejarse de / ir hacia) y la vertical (experiencia de los cinco sentidos / experiencia interna).",
@@ -8363,7 +8445,7 @@ const VARIABLES = [
         },
         {
           t: "Ganchos y los límites del control",
-          tecs: ["agenda-control", "fusion"],
+          tecs: [],
           obj: "Mostrar la diferencia entre controlar el mundo exterior y controlar la experiencia interna, e identificar los ganchos.",
           pasos: [
             "Contrastar con ejercicios lo mucho que se puede controlar lo que se ve y se toca con lo poco que se puede controlar lo que se piensa y se siente.",
@@ -8403,7 +8485,7 @@ const VARIABLES = [
         },
         {
           t: "Toma de perspectiva",
-          tecs: ["yo-contexto", "accion-comprometida"],
+          tecs: [],
           obj: "Preparar movimientos hacia lo importante en situaciones futuras en que la persona prevé atascarse.",
           pasos: [
             "Elegir una situación próxima en la que la persona anticipa quedarse atascada.",
@@ -8448,6 +8530,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["CBI", "MBI"],
       enf: "act",
+      nivel: "ensayos",
       t: "Entrenamiento en aceptación y compromiso en el trabajo (2 + 1)",
       fuente: "Flaxman et al., 2013, caps. 4 a 7 · OMS, 2022",
       cuando: "Hay <strong>malestar asociado al trabajo</strong> —agotamiento, tensión, pensamientos repetitivos sobre el trabajo— en personas que siguen trabajando. Sirve como programa para grupos de trabajadores dentro de una organización o adaptado a la consulta individual.",
@@ -8457,7 +8540,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Presentación y las dos habilidades",
-          tecs: ["psicoeducacion", "flexibilidad-psicologica"],
+          tecs: ["psicoeducacion"],
           obj: "Presentar el programa y su lógica: mindfulness y acción basada en valores.",
           pasos: [
             "Dar la bienvenida, describir el formato y acordar las reglas del grupo.",
@@ -8470,7 +8553,7 @@ const VARIABLES = [
         },
         {
           t: "Conciencia del momento presente",
-          tecs: ["ejercicio-pasa", "momento-presente"],
+          tecs: ["ejercicio-pasa"],
           obj: "Empezar a desarrollar el contacto con la experiencia presente, base de las dos habilidades.",
           pasos: [
             "Hacer el ejercicio de la uva pasa.",
@@ -8484,7 +8567,7 @@ const VARIABLES = [
         },
         {
           t: "Acción basada en valores",
-          tecs: ["valores", "hoja-valores"],
+          tecs: ["hoja-valores"],
           obj: "Conectar con lo que importa en el trabajo y fuera de él.",
           pasos: [
             "Presentar los valores como direcciones elegidas, distintas de las metas.",
@@ -8498,7 +8581,7 @@ const VARIABLES = [
         },
         {
           t: "Desenredarse de las barreras internas",
-          tecs: ["metafora-autobus", "defusion", "aceptacion"],
+          tecs: ["metafora-autobus", "defusion"],
           obj: "Aprender a relacionarse de otra forma con los pensamientos y las emociones que frenan la acción valiosa.",
           pasos: [
             "Empezar con la atención a la respiración y revisar la práctica en casa.",
@@ -8512,7 +8595,7 @@ const VARIABLES = [
         },
         {
           t: "Metas y acciones guiadas por valores",
-          tecs: ["accion-comprometida"],
+          tecs: [],
           obj: "Traducir los valores en metas y acciones concretas.",
           pasos: [
             "Definir los valores en las áreas elegidas.",
@@ -8568,6 +8651,7 @@ const VARIABLES = [
       mod: "ipt",
       inst: ["PHQ-9", "K-10"],
       enf: "ipt",
+      nivel: "ensayos",
       t: "Psicoterapia interpersonal: transición de rol",
       fuente: "Weissman et al., 2018, caps. 4, 7 y 9",
       cuando: "El malestar o la depresión <strong>empezó alrededor de un cambio de vida</strong> que exige otro rol y cambia las relaciones cercanas. La persona recuerda el antes como ideal, vivió el cambio como un golpe y ve el futuro caótico, fuera de control.",
@@ -8592,7 +8676,7 @@ const VARIABLES = [
         },
         {
           t: "Despedir y hacer el duelo del rol anterior",
-          tecs: ["transicion-rol", "expresion-emocional"],
+          tecs: ["expresion-emocional"],
           obj: "Revisar el rol anterior de forma equilibrada y expresar lo que se siente por su pérdida.",
           pasos: [
             "Explorar cómo era el rol anterior, qué tenía de bueno y qué extraña la persona.",
@@ -8605,7 +8689,7 @@ const VARIABLES = [
         },
         {
           t: "Valorar el nuevo rol",
-          tecs: ["transicion-rol", "analisis-decisiones"],
+          tecs: ["analisis-decisiones"],
           obj: "Ver el nuevo rol con sus exigencias y sus posibilidades, no solo como pérdida.",
           pasos: [
             "Preguntar qué es lo difícil de la situación actual, qué la haría mejor y qué opciones hay para lograrlo.",
@@ -8663,6 +8747,7 @@ const VARIABLES = [
       mod: "ipt",
       inst: ["PHQ-9"],
       enf: "ipt",
+      nivel: "guia",
       t: "Terapia interpersonal grupal: cambios en la vida",
       fuente: "OPS, 2022b, caps. 1 a 5",
       cuando: "Hay <strong>varias personas con depresión</strong> relacionada con cambios en la vida —casarse y mudarse, separarse, enterarse de una enfermedad grave, cuidar a alguien que está muriendo, jubilarse, migrar, quedar en la pobreza— y pocos especialistas. La intervención la hacen facilitadores entrenados y supervisados.",
@@ -8699,7 +8784,7 @@ const VARIABLES = [
         },
         {
           t: "Hacer frente a los cambios en la vida",
-          tecs: ["transicion-rol", "juego-roles", "apoyo-social"],
+          tecs: ["juego-roles", "apoyo-social"],
           obj: "Despedir el rol anterior, valorar el nuevo y desarrollar lo que exige.",
           pasos: [
             "Describir en detalle el cambio: cómo estaba antes, cómo está ahora y dónde quiere estar en el futuro.",
@@ -8754,7 +8839,8 @@ const VARIABLES = [
       mod: "guia-cuidadores",
       sug: { mod: "lazarus", por: "La sobrecarga del cuidador se ha estudiado como estrés: las demandas del cuidado frente a los recursos que la persona percibe para afrontarlas." },
       inst: ["Zarit", "CSI"],
-      enf: "tcc",
+      enf: "psp",
+      nivel: "guia",
       t: "Apoyo psicológico a cuidadores",
       fuente: "OMS, 2017 (recomendación 13) · OMS, 2023 (DEM1 y OVE1)",
       cuando: "Quien consulta <strong>cuida a una persona dependiente</strong> —un adulto mayor, una persona con demencia, psicosis, trastorno bipolar o consumo— y muestra sobrecarga, estrés o síntomas depresivos.",
@@ -8832,7 +8918,7 @@ const VARIABLES = [
         },
         {
           t: "Apoyo práctico y respiro",
-          tecs: ["respiro", "apoyo-social"],
+          tecs: ["apoyo-social"],
           obj: "Aliviar la carga con apoyo práctico.",
           pasos: [
             "Organizar respiro en casa: otro familiar o una persona adecuada supervisa y cuida mientras el cuidador principal descansa o hace otras actividades.",
@@ -8864,7 +8950,8 @@ const VARIABLES = [
       mod: "guia-isupport",
       sug: { mod: "lazarus", por: "El módulo «Cuidando de mí» trabaja el estrés del cuidado y su afrontamiento, que es lo que describe el modelo transaccional." },
       inst: ["Zarit", "PHQ-9"],
-      enf: "tcc",
+      enf: "psp",
+      nivel: "guia",
       t: "iSupport: formación y apoyo para cuidadores de personas con demencia",
       fuente: "OMS, 2019, módulos 1 a 5 · OMS, 2023 (DEM1)",
       cuando: "Quien consulta <strong>cuida a una persona con demencia</strong> y necesita conocer la enfermedad, manejar el día a día y los cambios de conducta, y cuidarse a sí mismo. Puede usarse como autoayuda, completo o por lecciones, o como guía de sesiones con un profesional.",
@@ -8968,7 +9055,8 @@ const VARIABLES = [
       id: "sol-multi",
       mod: "guia-soledad",
       inst: ["LSNS-6", "MSPSS"],
-      enf: "tcc",
+      enf: "psp",
+      nivel: "ensayos",
       t: "Intervención combinada para la soledad y el aislamiento",
       fuente: "OMS, 2025, cap. 8",
       cuando: "La persona se siente sola o está aislada, y eso le pesa: tiene pocas relaciones o no le satisfacen, evita el contacto por miedo al rechazo o perdió su red por una mudanza, una enfermedad, la jubilación o una pérdida.",
@@ -8991,7 +9079,7 @@ const VARIABLES = [
         },
         {
           t: "Cambiar las cogniciones sociales negativas",
-          tecs: ["pensamientos-automaticos", "reestructuracion-cognitiva", "experimento-conductual"],
+          tecs: ["reestructuracion-cognitiva", "experimento-conductual"],
           obj: "Revisar los pensamientos sobre el propio valor y sobre cómo lo ven los demás, que frenan las relaciones.",
           pasos: [
             "Identificar los pensamientos que aparecen antes y después del contacto social: «no le intereso a nadie», «me van a rechazar».",
@@ -9060,6 +9148,7 @@ const VARIABLES = [
       mod: "bandura-hs",
       inst: ["RAS", "EMES-M"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Entrenamiento en habilidades sociales",
       fuente: "Ruiz et al., cap. 6 (§3) · Caballo, 2007, caps. 5 a 7",
       cuando: "La evaluación muestra un <strong>déficit en conductas sociales concretas</strong> —conversar, pedir, negarse, expresar desacuerdo o afecto, hacer y recibir críticas— que limita la vida de la persona o forma parte de un problema mayor, como el aislamiento, la ansiedad social o la depresión.",
@@ -9176,6 +9265,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["SAD", "MSPSS"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Efectividad interpersonal",
       fuente: "Linehan, 2020, cap. 8 · Elices, cap. 2 (§2.5.4)",
       cuando: "La persona tiene dificultades para <strong>pedir lo que necesita, decir que no o sostener sus relaciones</strong> sin que la emoción desborde la interacción: sus relaciones son intensas o inestables, o cede hasta perder el respeto por sí misma.",
@@ -9243,7 +9333,7 @@ const VARIABLES = [
         },
         {
           t: "Construir relaciones y terminar las destructivas",
-          tecs: ["mente-sabia", "solucion-problemas"],
+          tecs: ["solucion-problemas"],
           obj: "Acercarse a posibles amistades y salir de relaciones destructivas desde la mente sabia.",
           pasos: [
             "Practicar las habilidades para acercarse a posibles amigos: conversaciones breves, autorrevelación eficaz, no interrumpir.",
@@ -9285,6 +9375,7 @@ const VARIABLES = [
       mod: "kohlenberg-fap",
       inst: [],
       enf: "fap",
+      nivel: "conceptual",
       t: "Psicoterapia analítica funcional",
       fuente: "Kohlenberg y Tsai, 2022, caps. 1 a 3",
       cuando: "El problema de la persona es <strong>relacionarse de cerca con otros</strong>: evita la intimidad, no pide lo que necesita, desconfía, se retrae o repite con cada persona el mismo patrón que termina en abandono. Sabe «en teoría» qué debería hacer, pero no lo hace, y lo mismo empieza a ocurrir en la relación con el terapeuta. Es una terapia individual y de duración abierta.",
@@ -9294,7 +9385,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Definir las conductas clínicamente relevantes",
-          tecs: ["conductas-clinicamente-relevantes", "analisis-funcional"],
+          tecs: ["analisis-funcional"],
           obj: "Traducir el problema de la vida diaria a conductas concretas que puedan aparecer en la sesión.",
           pasos: [
             "Evaluar el problema con entrevista, autoinformes y registros, como en cualquier terapia, y formular hipótesis sobre lo que lo mantiene.",
@@ -9338,7 +9429,7 @@ const VARIABLES = [
         },
         {
           t: "Responder de forma natural a las mejorías",
-          tecs: ["cinco-reglas-fap", "reforzamiento-natural"],
+          tecs: ["cinco-reglas-fap"],
           obj: "Fortalecer las mejorías con las reacciones genuinas del terapeuta, las mismas que tendría otra persona en la vida real.",
           pasos: [
             "Cuando la persona haga algo nuevo —pedir, expresar un sentimiento, discrepar—, responder de forma genuina y acorde con lo que pidió: atender el pedido, mostrar lo que produjo en el terapeuta.",
@@ -9366,7 +9457,7 @@ const VARIABLES = [
         },
         {
           t: "Conectar la sesión con la vida",
-          tecs: ["cinco-reglas-fap", "equivalencia-funcional"],
+          tecs: ["cinco-reglas-fap"],
           obj: "Que la persona describa su conducta y lo que la controla, y lleve a su vida lo que aprendió en la relación terapéutica.",
           pasos: [
             "Ofrecer explicaciones en términos de historia y de consecuencias actuales, no de rasgos: «Aprendió que pedir algo traía castigo; por eso ahora le cuesta pedírmelo a mí».",
@@ -9412,6 +9503,7 @@ const VARIABLES = [
       mod: "jacobson-tip",
       inst: ["DAS", "CTS2"],
       enf: "par",
+      nivel: "ensayos",
       t: "Terapia integral de pareja",
       fuente: "Christensen et al., 2014 · Barraca, 2015",
       cuando: "Los dos miembros de la pareja <strong>discuten una y otra vez por lo mismo</strong> —cercanía e independencia, dinero, crianza, sexualidad, confianza— y cada uno siente que ya lo ha intentado todo para que el otro cambie. La pareja no quiere separarse, o aún no lo ha decidido, y ambos aceptan asistir.",
@@ -9435,7 +9527,7 @@ const VARIABLES = [
         },
         {
           t: "Formulación y devolución",
-          tecs: ["formulacion-caso", "trampa-mutua"],
+          tecs: ["formulacion-caso"],
           obj: "Ofrecer a la pareja una explicación compartida de su conflicto que no culpe a ninguno.",
           pasos: [
             "Identificar el tema central del conflicto, por ejemplo cercanía frente a independencia.",
@@ -9528,6 +9620,7 @@ const VARIABLES = [
       mod: "amor-valores",
       inst: ["DAS", "AAQ-II"],
       enf: "act",
+      nivel: "conceptual",
       t: "Aceptación y compromiso en la relación de pareja",
       fuente: "Dahl et al., 2013, caps. 5 a 9",
       cuando: "La relación está <strong>estancada en patrones rígidos</strong>: cada uno se aferra a su historia sobre el otro, evita las conversaciones difíciles, espera sentir amor para actuar con cariño o se castiga por los fracasos de la pareja.",
@@ -9537,7 +9630,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Historias, reglas y roles",
-          tecs: ["fusion", "defusion"],
+          tecs: ["defusion"],
           obj: "Reconocer las historias sobre uno mismo y sobre el otro que dirigen la conducta en la relación.",
           pasos: [
             "Identificar las historias que cada uno repite: «siempre me deja solo», «yo soy el que da».",
@@ -9550,7 +9643,7 @@ const VARIABLES = [
         },
         {
           t: "Patrones de rigidez",
-          tecs: ["evitacion-experiencial", "agenda-control"],
+          tecs: [],
           obj: "Ver cómo evitar el malestar mantiene el conflicto y aleja a la pareja.",
           pasos: [
             "Revisar las conductas con que cada uno evita el malestar: callar, retirarse, atacar, controlar.",
@@ -9563,7 +9656,7 @@ const VARIABLES = [
         },
         {
           t: "La intimidad como valor",
-          tecs: ["valores", "accion-comprometida"],
+          tecs: [],
           obj: "Elegir la intimidad como un valor y actuar según él, sin esperar a sentirlo.",
           pasos: [
             "Distinguir entre perseguir sentimientos y perseguir valores en la relación.",
@@ -9577,7 +9670,7 @@ const VARIABLES = [
         },
         {
           t: "Autocompasión y aceptación emocional",
-          tecs: ["pausa-autocompasion", "aceptacion"],
+          tecs: ["pausa-autocompasion"],
           obj: "Tratarse con amabilidad y aceptar las emociones difíciles propias y del otro.",
           pasos: [
             "Acoger las emociones difíciles y observar los juicios sin quedar atrapado en ellos.",
@@ -9616,7 +9709,9 @@ const VARIABLES = [
       id: "pers-esq",
       mod: "young-esquemas",
       inst: ["YSQ"],
+      instEst: ["YSQ"],
       enf: "esq",
+      nivel: "preliminar",
       t: "Terapia de esquemas",
       fuente: "Young et al., 2015",
       cuando: "La persona repite <strong>los mismos patrones en sus relaciones y en su vida desde hace años</strong> —en la pareja, en el trabajo, con la familia—, los vive como parte de su forma de ser y ya pasó por tratamientos breves que no los cambiaron. Puede haber un trastorno de la personalidad o síntomas crónicos de ansiedad o depresión que vuelven una y otra vez.",
@@ -9702,7 +9797,7 @@ const VARIABLES = [
         },
         {
           t: "Trabajo con modos",
-          tecs: ["trabajo-sillas", "modos-esquema"],
+          tecs: ["trabajo-sillas"],
           obj: "En casos graves, ayudar a la persona a reconocer los estados que se alternan en ella y a fortalecer el adulto sano.",
           pasos: [
             "Identificar y nombrar los modos de la persona: por ejemplo, un niño vulnerable, un padre punitivo, un protector desapegado, un adulto sano.",
@@ -9746,6 +9841,7 @@ const VARIABLES = [
       mod: "fava-bienestar",
       inst: ["EBP", "SQ"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia de bienestar",
       fuente: "Fava, 2016, caps. 3 a 13",
       cuando: "La persona <strong>ya no tiene un trastorno agudo</strong> —lo superó o está en remisión— pero su bienestar psicológico quedó disminuido, o alguna dimensión está en exceso: se exige sin descanso, no puede pedir ayuda, no admite errores. También cuando otros tratamientos no dieron el resultado esperado. Es un tratamiento de segunda o tercera línea, no para el episodio agudo.",
@@ -9769,7 +9865,7 @@ const VARIABLES = [
         },
         {
           t: "El diario de bienestar",
-          tecs: ["diario-bienestar", "experiencias-optimas"],
+          tecs: ["diario-bienestar"],
           obj: "Aprender a notar los momentos de bienestar, por breves que sean.",
           pasos: [
             "Preguntar primero cómo le fue en las dos semanas; después, revisar el diario y las dificultades para llenarlo.",
@@ -9872,6 +9968,7 @@ const VARIABLES = [
       mod: "aea",
       inst: ["VIA-IS", "EBP", "SWLS"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Intervenciones con fortalezas del carácter",
       fuente: "Niemiec, 2018 · Rashid y Seligman, 2018 · Seligman et al., 2005 · Bolier et al. · White et al.",
       cuando: "La persona no tiene necesariamente un trastorno, o ya lo superó, y describe poca confianza en sí misma, poca energía en lo que hace o la sensación de no crecer. También sirve como complemento en muestras clínicas. El plan <strong>construye recursos a partir de lo que la persona hace bien</strong>, en lugar de centrarse en corregir déficits.",
@@ -9923,7 +10020,7 @@ const VARIABLES = [
         },
         {
           t: "Cuándo una fortaleza deja de serlo",
-          tecs: ["uso-optimo-fortalezas", "sabiduria-practica"],
+          tecs: ["sabiduria-practica"],
           obj: "Reconocer el uso excesivo y el uso escaso de las fortalezas y buscar el punto justo según la situación.",
           pasos: [
             "Presentar la idea del término medio: cualquier fortaleza puede usarse de más o de menos.",
@@ -9993,6 +10090,7 @@ const VARIABLES = [
       mod: "harvey-insomnio",
       inst: ["ISI", "PSQI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual para el insomnio",
       fuente: "Kaplan y Harvey, 2014",
       cuando: "La persona <strong>duerme mal la mayoría de las noches desde hace tiempo</strong>: tarda en dormirse, se despierta y no vuelve a dormir o se despierta muy temprano, y durante el día se siente cansada, irritable o sin concentración. Suele pasar mucho tiempo en la cama intentando dormir, hacer siestas, preocuparse por el sueño y usar medicación o alcohol para dormir.",
@@ -10129,6 +10227,7 @@ const VARIABLES = [
       mod: "spielman-3p",
       inst: ["ISI", "PSQI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Tratamiento conductual del insomnio sesión por sesión",
       fuente: "Perlis et al., 2005, caps. 3 y 4",
       cuando: "Insomnio crónico en que la persona <strong>pasa mucho más tiempo en la cama del que duerme</strong> y la cama se ha asociado con la vigilia. Sirve en consulta con poco tiempo por sesión, porque se guía por los datos del diario de sueño.",
@@ -10152,7 +10251,7 @@ const VARIABLES = [
         },
         {
           t: "Restricción del sueño y control de estímulos",
-          tecs: ["restriccion-sueno", "control-estimulos", "eficiencia-sueno"],
+          tecs: ["restriccion-sueno", "control-estimulos"],
           obj: "Ajustar el tiempo en cama a lo que la persona duerme y reasociar la cama con el sueño.",
           pasos: [
             "Calcular el promedio de sueño del diario: si la persona duerme 5,5 horas, ¿por qué pasa 7 en la cama?",
@@ -10166,7 +10265,7 @@ const VARIABLES = [
         },
         {
           t: "Ajuste semanal del tiempo en cama",
-          tecs: ["eficiencia-sueno", "higiene-sueno"],
+          tecs: ["higiene-sueno"],
           obj: "Aumentar el tiempo en cama a medida que el sueño se consolida.",
           pasos: [
             "Resumir y graficar el diario y revisar el cumplimiento; si no se cumplió, la sesión se centra en eso.",
@@ -10221,6 +10320,7 @@ const VARIABLES = [
       mod: "tarrier-psicosis",
       inst: ["PSYRATS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual para la psicosis",
       fuente: "Tarrier y Taylor, 2014 · OMS, 2023",
       cuando: "La persona tiene un diagnóstico de esquizofrenia u otro trastorno psicótico, está en tratamiento farmacológico y seguimiento, y <strong>sigue oyendo voces o sosteniendo ideas que le causan miedo, malestar o problemas</strong>, o ha tenido recaídas. Puede hablar de sus experiencias y acepta, al menos, trabajar en cómo sobrellevarlas.",
@@ -10245,7 +10345,7 @@ const VARIABLES = [
         },
         {
           t: "Formulación compartida",
-          tecs: ["formulacion-caso", "ciclo-ebac"],
+          tecs: ["formulacion-caso"],
           obj: "Construir con la persona una explicación de cómo aparecen y se mantienen sus síntomas.",
           pasos: [
             "Explicar que los síntomas surgen de la interacción entre una vulnerabilidad y el estrés, y que la activación emocional puede aumentarlos.",
@@ -10339,6 +10439,7 @@ const VARIABLES = [
       mod: "morrison-voces",
       inst: ["PSYRATS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitiva para voces y creencias persecutorias",
       fuente: "Morrison, 2002, caps. 3, 4, 8 y 12",
       cuando: "La persona oye voces o tiene creencias persecutorias que le causan <strong>malestar o limitan su vida</strong>, a pesar de la medicación, y está dispuesta a examinar cómo interpreta esas experiencias.",
@@ -10389,7 +10490,7 @@ const VARIABLES = [
         },
         {
           t: "Creencias persecutorias",
-          tecs: ["experimento-conductual", "conductas-seguridad"],
+          tecs: ["experimento-conductual"],
           obj: "Poner a prueba las creencias paranoides con la persona como coinvestigadora.",
           pasos: [
             "Puntuar la convicción en la creencia de 0 a 100.",
@@ -10433,7 +10534,8 @@ const VARIABLES = [
       mod: "guia-mhgap-psi",
       sug: { mod: "tarrier-psicosis", por: "La guía propone reducir el estrés, fortalecer los apoyos y sostener las actividades; el modelo de Tarrier explica los síntomas desde la vulnerabilidad y el estrés, y pone el acento en el afrontamiento." },
       inst: [],
-      enf: "fam",
+      enf: "psp",
+      nivel: "guia",
       t: "Manejo psicosocial de la psicosis en atención no especializada",
       fuente: "OPS, 2017, módulo PSI",
       cuando: "Una persona con psicosis se atiende en <strong>atención primaria o en la comunidad</strong>, con o sin apoyo de especialistas, y necesita que ella y su familia entiendan el trastorno, reduzcan el estrés y sostengan sus actividades.",
@@ -10483,7 +10585,7 @@ const VARIABLES = [
         },
         {
           t: "Consejos para los cuidadores",
-          tecs: ["emocion-expresada", "entrenamiento-comunicacion"],
+          tecs: ["entrenamiento-comunicacion"],
           obj: "Reducir la crítica y la hostilidad en casa y proteger la autonomía de la persona.",
           pasos: [
             "No tratar de convencer a la persona de que sus creencias son falsas: mantenerse neutral y dar apoyo.",
@@ -10525,6 +10627,7 @@ const VARIABLES = [
       mod: "miklowitz-bipolar",
       inst: ["PCS"],
       enf: "fam",
+      nivel: "ensayos",
       t: "Tratamiento centrado en la familia",
       fuente: "Miklowitz, 2014 · OMS, 2023",
       cuando: "La persona con trastorno bipolar <strong>acaba de pasar un episodio</strong> —o está saliendo de él—, está en tratamiento con un psiquiatra y vive con su familia o su pareja, o tiene un vínculo cercano con ella. En casa hay tensión, críticas o dificultades para entender qué es enfermedad y qué es la persona, y pueden asistir juntos a las sesiones.",
@@ -10564,7 +10667,7 @@ const VARIABLES = [
         },
         {
           t: "Ritmos, sueño y metas",
-          tecs: ["ritmos-sociales", "grafico-animo"],
+          tecs: ["grafico-animo"],
           obj: "Proteger el ánimo cuidando la regularidad del sueño y las rutinas y moderando la reacción ante las metas y los logros.",
           pasos: [
             "Explicar que los acontecimientos que cambian el sueño y las rutinas —viajes, turnos, salidas nocturnas, una separación— pueden precipitar la manía.",
@@ -10643,6 +10746,7 @@ const VARIABLES = [
       mod: "fava-bienestar",
       inst: ["CID"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual seguida de terapia de bienestar para la ciclotimia",
       fuente: "Fava, 2016, caps. 3 y 15",
       cuando: "<strong>Ciclotimia</strong>: oscilaciones leves o moderadas del ánimo durante al menos dos años, sin llegar a episodios depresivos mayores ni maníacos, con alternancia entre dormir mucho y necesitar poco sueño, desmoralización y exceso de confianza, productividad irregular, a veces arrebatos de irritabilidad, y a menudo con ansiedad asociada. No reemplaza el tratamiento farmacológico del trastorno bipolar.",
@@ -10720,7 +10824,9 @@ const VARIABLES = [
       id: "tdah-safren",
       mod: "safren-tdah",
       inst: ["ASRS v1.1"],
+      instEst: ["ASRS v1.1"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual para el TDAH en adultos",
       fuente: "Safren et al., 2017, caps. 2 a 14 · Ramsay y Rostain, 2008",
       cuando: "Un adulto con <strong>TDAH diagnosticado</strong>, por lo general con medicación estable, sigue teniendo problemas para organizarse, planear, sostener la atención y terminar lo que empieza, y ya se siente derrotado por fracasos repetidos.",
@@ -10786,7 +10892,7 @@ const VARIABLES = [
         },
         {
           t: "Pensamiento adaptativo",
-          tecs: ["pensamientos-automaticos", "errores-pensamiento", "reestructuracion-cognitiva"],
+          tecs: ["reestructuracion-cognitiva"],
           obj: "Reconocer y cambiar los pensamientos negativos que llevan a evitar o a rendirse.",
           pasos: [
             "Presentar el modelo cognitivo del TDAH: cómo los fracasos repetidos dejan pensamientos negativos que a su vez frenan la acción.",
@@ -10830,7 +10936,9 @@ const VARIABLES = [
       id: "tdah-solanto",
       mod: "solanto-fe",
       inst: ["ASRS v1.1", "BDI-II"],
+      instEst: ["BDI-II"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia grupal para la disfunción ejecutiva",
       fuente: "Solanto, 2011, sesiones 1 a 12",
       cuando: "Adultos con TDAH, sobre todo del tipo inatento o combinado, cuyo problema principal es la <strong>gestión del tiempo, la organización y la planificación</strong>, y que pueden asistir a un grupo semanal.",
@@ -10867,7 +10975,7 @@ const VARIABLES = [
         },
         {
           t: "Obstáculos emocionales, activación y motivación",
-          tecs: ["pensamientos-automaticos", "autorrefuerzo"],
+          tecs: ["autorrefuerzo"],
           obj: "Reconocer y responder a los pensamientos que frenan el comienzo de las tareas.",
           pasos: [
             "Identificar los pensamientos que generan ansiedad o desánimo ante una tarea y responder a ellos.",
@@ -10934,6 +11042,7 @@ const VARIABLES = [
       mod: "lazarus",
       inst: ["APAIS"],
       enf: "tcc",
+      nivel: "preliminar",
       t: "Preparación psicológica para la cirugía",
       fuente: "Ruiz et al., caps. 6 y 9 · Vergara-Romero et al., 2017",
       cuando: "La persona tiene una cirugía programada y la escala muestra ansiedad elevada ante la anestesia o la operación, o mucha necesidad de información. El plan <strong>ajusta la información a lo que la persona necesita saber y la entrena para afrontar los momentos concretos</strong> del procedimiento: la espera, el ingreso, el quirófano y el despertar.",
@@ -10943,7 +11052,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Valorar la amenaza y lo que la persona necesita saber",
-          tecs: ["entrevista-clinica", "tamizaje"],
+          tecs: ["entrevista-clinica"],
           obj: "Distinguir si pesa más el miedo a la anestesia, a la operación o la falta de información, y qué partes de la situación se pueden cambiar.",
           pasos: [
             "Aplicar la escala y revisar por separado los ítems de ansiedad y los de necesidad de información.",
@@ -11012,7 +11121,7 @@ const VARIABLES = [
         },
         {
           t: "Ensayo y afrontamiento paliativo",
-          tecs: ["afrontamiento-paliativo", "desviacion-atencion", "apoyo-social"],
+          tecs: ["desviacion-atencion", "apoyo-social"],
           obj: "Integrar lo aprendido y preparar lo que no se puede controlar.",
           pasos: [
             "Ensayar en imaginación la secuencia del día de la cirugía, de lo menos a lo más difícil, con la relajación y las autoinstrucciones.",
@@ -11053,6 +11162,7 @@ const VARIABLES = [
       mod: "lazarus",
       inst: ["HADS"],
       enf: "tcc",
+      nivel: "guia",
       t: "Manejo de la ansiedad en la persona hospitalizada",
       fuente: "Jongsma et al., 2021 · Ruiz et al., cap. 9 · OMS, 2023",
       cuando: "La persona está hospitalizada o en tratamiento médico y <strong>la ansiedad le impide descansar, comprender la información o colaborar con el tratamiento</strong>: teme los procedimientos, el dolor o el resultado, está hipervigilante a sus síntomas o no deja de preocuparse por su familia. La subescala de ansiedad de la escala hospitalaria está elevada.",
@@ -11062,7 +11172,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación de la ansiedad y de sus miedos",
-          tecs: ["tamizaje", "entrevista-clinica"],
+          tecs: ["entrevista-clinica"],
           obj: "Medir la ansiedad y conocer en concreto qué teme la persona.",
           pasos: [
             "Construir la relación con calidez y sin juicio, respetando los tiempos de la persona y de la atención médica.",
@@ -11122,7 +11232,7 @@ const VARIABLES = [
         },
         {
           t: "Plan de afrontamiento",
-          tecs: ["afrontamiento-problema", "afrontamiento-paliativo", "juego-roles"],
+          tecs: ["juego-roles"],
           obj: "Preparar a la persona para manejar las situaciones difíciles de la hospitalización y del regreso a casa.",
           pasos: [
             "Revisar qué le ha servido antes para afrontar situaciones difíciles y qué apoyos tiene.",
@@ -11137,7 +11247,7 @@ const VARIABLES = [
         },
         {
           t: "Familia, apoyos y alta",
-          tecs: ["apoyo-social", "seguimiento-derivacion"],
+          tecs: ["apoyo-social"],
           obj: "Sumar el apoyo de la familia y asegurar la continuidad después del alta.",
           pasos: [
             "Con el acuerdo de la persona, incluir a la familia para que comparta sus miedos y aprenda cómo acompañar.",
@@ -11171,7 +11281,9 @@ const VARIABLES = [
       id: "hosp-ans-apt",
       mod: "moorey-ajuste",
       inst: ["HADS"],
+      instEst: ["HADS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "TCC para la ansiedad durante el tratamiento médico",
       fuente: "Moorey y Greer, 2012, caps. 8 a 10",
       cuando: "Una persona en tratamiento por una enfermedad grave —el cáncer es el ejemplo mejor estudiado— tiene <strong>preocupación ansiosa</strong>: vigila cada síntoma, teme la recaída, se preocupa sin parar o tiene ataques de pánico.",
@@ -11194,7 +11306,7 @@ const VARIABLES = [
         },
         {
           t: "Preocupación ansiosa y miedo a la recaída",
-          tecs: ["preguntas-desafio", "pensamiento-catastrofico"],
+          tecs: ["preguntas-desafio"],
           obj: "Reevaluar la interpretación de los síntomas y los pronósticos catastróficos.",
           pasos: [
             "Prueba de realidad: qué evidencia hay de que el síntoma significa recaída.",
@@ -11208,7 +11320,7 @@ const VARIABLES = [
         },
         {
           t: "Preocupación e incertidumbre",
-          tecs: ["creencias-positivas-preocupacion", "solucion-problemas", "exposicion-incertidumbre"],
+          tecs: ["solucion-problemas", "exposicion-incertidumbre"],
           obj: "Pasar de la preocupación a la acción y tolerar lo que no se sabe.",
           pasos: [
             "Examinar las creencias sobre la preocupación: que protege o prepara.",
@@ -11250,6 +11362,7 @@ const VARIABLES = [
       sug: { mod: "ac-refuerzo", por: "El plan activa lo que la enfermedad todavía permite; el modelo conductual explica el ánimo bajo por la pérdida de refuerzo." },
       inst: ["HADS", "PHQ-9"],
       enf: "tcc",
+      nivel: "guia",
       t: "Pérdidas, activación y solución de problemas en la persona hospitalizada",
       fuente: "Jongsma et al., 2021 · Ruiz et al., cap. 9 (§4) · OMS, 2023",
       cuando: "La persona está hospitalizada o en tratamiento por una enfermedad médica y <strong>se la ve triste, apagada o sin esperanza</strong>: dejó de interesarse por lo que antes le importaba, se aísla, siente que la enfermedad le quitó todo o que es una carga. La subescala de depresión de la escala hospitalaria está elevada.",
@@ -11259,7 +11372,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación de la depresión y del riesgo",
-          tecs: ["tamizaje", "evaluacion-riesgo-suicida"],
+          tecs: ["evaluacion-riesgo-suicida"],
           obj: "Medir la depresión, distinguirla de lo que causa la enfermedad y evaluar el riesgo.",
           pasos: [
             "Construir la relación con calidez y sin juicio.",
@@ -11288,7 +11401,7 @@ const VARIABLES = [
         },
         {
           t: "Lo que todavía se puede hacer",
-          tecs: ["activacion-conductual", "registro-actividad-animo"],
+          tecs: ["registro-actividad-animo"],
           obj: "Recuperar actividades agradables y con sentido dentro de lo que la condición permite.",
           pasos: [
             "Identificar con la persona actividades que todavía puede disfrutar, sola o con otros, en el hospital y en casa.",
@@ -11333,7 +11446,7 @@ const VARIABLES = [
         },
         {
           t: "Apoyos y continuidad tras el alta",
-          tecs: ["apoyo-social", "seguimiento-derivacion"],
+          tecs: ["apoyo-social"],
           obj: "Reducir el aislamiento y asegurar que la atención continúe.",
           pasos: [
             "Identificar los recursos de apoyo emocional y las formas de afrontamiento que le sirvieron antes.",
@@ -11367,7 +11480,9 @@ const VARIABLES = [
       id: "hosp-dep-apt",
       mod: "moorey-ajuste",
       inst: ["HADS", "PHQ-9"],
+      instEst: ["HADS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "TCC para la indefensión y la depresión durante el tratamiento médico",
       fuente: "Moorey y Greer, 2012, caps. 8 a 10 y 14",
       cuando: "Una persona con una enfermedad grave —el cáncer es el ejemplo mejor estudiado— se siente <strong>indefensa y sin esperanza</strong>: cree que nada de lo que haga cambia la enfermedad ni su vida, filtra la información esperanzadora y se retira de sus actividades.",
@@ -11405,7 +11520,7 @@ const VARIABLES = [
         },
         {
           t: "Pensamientos negativos realistas",
-          tecs: ["descentramiento", "solucion-problemas"],
+          tecs: ["solucion-problemas"],
           obj: "Afrontar lo que es verdad —la enfermedad es grave— sin que domine toda la vida.",
           pasos: [
             "Entender el significado personal del pensamiento.",
@@ -11445,6 +11560,7 @@ const VARIABLES = [
       mod: "oms-adh",
       inst: ["PHQ-9", "ADH-MM"],
       enf: "tcc",
+      nivel: "guia",
       t: "Adherencia por dimensiones: información, motivación y habilidades",
       fuente: "OMS, 2003 · Ruiz et al., cap. 9 · Cifuentes",
       cuando: "La persona tiene una enfermedad de largo plazo —diabetes, hipertensión, VIH, asma, epilepsia, depresión— y no sigue el tratamiento acordado: olvida dosis, lo abandona cuando se siente bien, no hace los cambios de hábitos o falta a los controles. El plan <strong>parte de por qué no lo sigue</strong>, que casi nunca es una sola razón.",
@@ -11480,7 +11596,7 @@ const VARIABLES = [
         },
         {
           t: "Motivación según la disposición al cambio",
-          tecs: ["entrevista-motivacional", "estadios-cambio"],
+          tecs: [],
           obj: "Ajustar la intervención a la disposición de la persona a seguir el tratamiento.",
           pasos: [
             "Identificar el estadio de la persona para cada conducta del tratamiento, que puede ser distinto en cada una.",
@@ -11508,7 +11624,7 @@ const VARIABLES = [
         },
         {
           t: "Tamizaje de depresión y consumo",
-          tecs: ["tamizaje"],
+          tecs: [],
           obj: "Detectar una depresión o un consumo que estén frenando la adherencia.",
           pasos: [
             "Aplicar un tamizaje de depresión a toda persona con baja adherencia, como recomienda la Organización Mundial de la Salud.",
@@ -11553,6 +11669,7 @@ const VARIABLES = [
       mod: "miller-em",
       inst: ["ADH-MM"],
       enf: "em",
+      nivel: "ensayos",
       t: "Entrevista motivacional en salud",
       fuente: "Rollnick et al., 2023",
       cuando: "La persona <strong>sabe lo que tendría que hacer, pero duda o no lo hace</strong>: deja la medicación cuando le molestan los efectos, no cambia la dieta o el ejercicio que le indicaron, o se siente regañada cada vez que va a control. La consulta es breve y hay que aprovecharla; también sirve cuando es el profesional, y no la persona, quien propone el tema.",
@@ -11562,7 +11679,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Conectar con la persona",
-          tecs: ["estilo-guia", "oars"],
+          tecs: ["oars"],
           obj: "Que la persona se sienta escuchada y no juzgada, aunque la consulta sea breve.",
           pasos: [
             "Empezar por cómo está la persona y qué le preocupa, antes de revisar resultados o indicaciones.",
@@ -11635,7 +11752,7 @@ const VARIABLES = [
         },
         {
           t: "La entrevista motivacional en pocos minutos",
-          tecs: ["entrevista-motivacional"],
+          tecs: [],
           obj: "Aplicar el estilo motivacional en una consulta corta, sin alargarla.",
           pasos: [
             "En uno o dos minutos: pedir permiso, preguntar por el porqué del cambio y resumir lo que la persona dijo.",
@@ -11679,6 +11796,7 @@ const VARIABLES = [
       mod: "thorn-dolor",
       inst: ["BPI", "PHQ-9"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitiva para el dolor crónico",
       fuente: "Thorn, 2017, caps. 3 y 5, módulos 1 a 10",
       cuando: "Dolor crónico —lumbar, cefalea, fibromialgia, dolor por una enfermedad— que <strong>interfiere en el trabajo, la casa y las relaciones</strong>, con pensamientos catastróficos, estrés o ánimo bajo. La persona está en seguimiento médico.",
@@ -11688,7 +11806,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "El cerebro en el dolor y las metas para vivir",
-          tecs: ["psicoeducacion", "entrevista-motivacional"],
+          tecs: ["psicoeducacion"],
           obj: "Presentar el tratamiento con el modelo de la compuerta y la neuromatriz, y fijar metas de vida.",
           pasos: [
             "Explicar que el dolor se procesa en el cerebro y que el estrés, la atención y los pensamientos lo modulan.",
@@ -11715,7 +11833,7 @@ const VARIABLES = [
         },
         {
           t: "Pensamientos automáticos: identificarlos, examinarlos y crear otros",
-          tecs: ["pensamientos-automaticos", "reestructuracion-cognitiva", "registro-pensamientos"],
+          tecs: ["reestructuracion-cognitiva", "registro-pensamientos"],
           obj: "Reconocer los pensamientos sobre el dolor y reemplazar los que no ayudan.",
           pasos: [
             "Presentar el modelo pensar, sentir y actuar.",
@@ -11743,7 +11861,7 @@ const VARIABLES = [
         },
         {
           t: "Creencias profundas",
-          tecs: ["creencias-nucleares", "flecha-descendente"],
+          tecs: ["flecha-descendente"],
           obj: "Identificar las creencias negativas de fondo y construir otras.",
           pasos: [
             "Identificar las creencias profundas detrás de los pensamientos repetidos: sobre uno mismo, los demás y el futuro con dolor.",
@@ -11756,7 +11874,7 @@ const VARIABLES = [
         },
         {
           t: "Observar y soltar",
-          tecs: ["meditacion-sedente", "descentramiento"],
+          tecs: ["meditacion-sedente"],
           obj: "Relacionarse con los pensamientos y el dolor desde la observación, sin engancharse.",
           pasos: [
             "Presentar la atención plena en relación con la terapia cognitiva.",
@@ -11822,7 +11940,8 @@ const VARIABLES = [
       id: "hab-comb",
       mod: "com-b",
       inst: ["K-10"],
-      enf: "tcc",
+      enf: "cc",
+      nivel: "conceptual",
       t: "Diseño del cambio de conducta con el modelo COM-B",
       fuente: "Michie et al., 2014, caps. 1 a 3",
       cuando: "Hay una <strong>conducta de salud concreta</strong> que cambiar —empezar a caminar, dejar de fumar, comer a horario, controlar la glucosa— y la persona lo ha intentado sin lograrlo, o el profesional necesita diseñar una intervención a la medida de su contexto.",
@@ -11914,7 +12033,9 @@ const VARIABLES = [
       id: "perd-est",
       mod: "livneh",
       inst: ["RIDI", "PAIS"],
+      instEst: ["RIDI"],
       enf: "est",
+      nivel: "preliminar",
       t: "Intervención ajustada a la reacción ante la pérdida",
       fuente: "Livneh y Antonak, 2005 · Deza, 2007",
       cuando: "La persona acaba de perder una parte del cuerpo o una función, o de recibir un diagnóstico grave, y está hospitalizada o en rehabilitación. El plan <strong>empieza en el hecho inmediato</strong> —la crisis— y acompaña la reacción que aparezca, sin esperar que la persona pase por etapas en un orden determinado.",
@@ -11952,7 +12073,7 @@ const VARIABLES = [
         },
         {
           t: "Negación: respetar su función y vigilar su costo",
-          tecs: ["negacion-adaptativa", "psicoeducacion"],
+          tecs: ["psicoeducacion"],
           obj: "Permitir que la negación proteja al principio sin que ponga en riesgo el tratamiento.",
           pasos: [
             "No confrontar ni interpretar mientras no haya un vínculo de confianza.",
@@ -12024,7 +12145,9 @@ const VARIABLES = [
       id: "perd-apt",
       mod: "moorey-ajuste",
       inst: ["HADS", "PAIS"],
+      instEst: ["HADS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia psicológica adyuvante en el cáncer",
       fuente: "Moorey y Greer, 2012, caps. 3, 5 a 10 y 12",
       cuando: "Una persona con <strong>diagnóstico reciente o recaída de cáncer</strong> tiene ansiedad o depresión, o un estilo de ajuste de indefensión o de preocupación ansiosa: siente que nada puede hacer, vive pendiente de cada síntoma o teme la recaída.",
@@ -12088,7 +12211,7 @@ const VARIABLES = [
         },
         {
           t: "Creencias de fondo e imagen corporal",
-          tecs: ["creencias-nucleares", "experimento-conductual"],
+          tecs: ["experimento-conductual"],
           obj: "Trabajar las creencias que el cáncer activa sobre el propio valor, el cuerpo y el control.",
           pasos: [
             "Identificar los supuestos que la enfermedad pone en crisis: autonomía, atractivo, control, invulnerabilidad.",
@@ -12118,6 +12241,7 @@ const VARIABLES = [
       sug: { mod: "livneh", por: "Livneh y Antonak describen las reacciones psicosociales ante la enfermedad crónica y la discapacidad que el plan trabaja." },
       inst: ["PAIS", "PHQ-9"],
       enf: "tcc",
+      nivel: "conceptual",
       t: "Terapia cognitivo-conductual para la enfermedad crónica y la discapacidad",
       fuente: "Taylor, 2006, caps. 4 a 13",
       cuando: "Una persona con <strong>enfermedad crónica o discapacidad</strong> —fatiga crónica, dolor, trastornos del sueño o digestivos, enfermedades de larga duración— tiene dificultades para adaptarse: aislamiento, pérdida de control y de recursos, cambios de rol, estigma o pensamientos negativos que son, en parte, realistas.",
@@ -12181,7 +12305,7 @@ const VARIABLES = [
         },
         {
           t: "Empatía, esperanza y motivación",
-          tecs: ["validacion", "entrevista-motivacional"],
+          tecs: ["validacion"],
           obj: "Sostener la alianza y la motivación a lo largo de una condición que no desaparece.",
           pasos: [
             "Validar la experiencia de la enfermedad, sin minimizarla.",
@@ -12220,7 +12344,9 @@ const VARIABLES = [
       id: "fin-sent",
       mod: "breitbart",
       inst: ["FACIT-Sp", "SAHD"],
+      instEst: ["FACIT-Sp"],
       enf: "sent",
+      nivel: "ensayos",
       t: "Psicoterapia centrada en el sentido",
       fuente: "Breitbart et al., 2015 · Applebaum et al., 2026",
       cuando: "La persona tiene un cáncer avanzado u otra enfermedad que limita la vida y expresa que su vida ya no tiene sentido, que es una carga, que no hay nada que esperar o que preferiría que todo terminara pronto. El plan <strong>no busca que acepte la muerte ni que piense en positivo</strong>: busca que reconecte con lo que le da sentido, aun con los límites que impone la enfermedad.",
@@ -12230,7 +12356,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Conceptos y fuentes de sentido",
-          tecs: ["psicoeducacion", "fuentes-sentido"],
+          tecs: ["psicoeducacion"],
           obj: "Presentar la idea de que el sentido puede encontrarse aun en la enfermedad y que tiene fuentes identificables.",
           pasos: [
             "Presentar el enfoque, basado en Frankl: el sentido no se pierde con la enfermedad; se puede buscar y reconectar con él.",
@@ -12257,7 +12383,7 @@ const VARIABLES = [
         },
         {
           t: "Fuentes históricas: el legado",
-          tecs: ["legado", "ejercicio-experiencial"],
+          tecs: ["ejercicio-experiencial"],
           obj: "Encontrar sentido en la propia historia y en lo que la persona deja a otros.",
           pasos: [
             "Revisar el legado recibido: la historia familiar y las experiencias que no eligió.",
@@ -12271,7 +12397,7 @@ const VARIABLES = [
         },
         {
           t: "Fuentes actitudinales: ante los límites",
-          tecs: ["fuentes-sentido", "ejercicio-experiencial"],
+          tecs: ["ejercicio-experiencial"],
           obj: "Reconocer que, aunque la situación no se pueda cambiar, se puede elegir cómo responder a ella.",
           pasos: [
             "Revisar los límites que impone la enfermedad.",
@@ -12284,7 +12410,7 @@ const VARIABLES = [
         },
         {
           t: "Fuentes creativas: crear la propia vida",
-          tecs: ["fuentes-sentido", "ejercicio-experiencial"],
+          tecs: ["ejercicio-experiencial"],
           obj: "Recuperar el sentido que viene de lo que la persona hace y crea.",
           pasos: [
             "Identificar las actividades, intereses y proyectos que la hacen ser quien es.",
@@ -12297,7 +12423,7 @@ const VARIABLES = [
         },
         {
           t: "Fuentes experienciales y cierre",
-          tecs: ["fuentes-sentido", "ejercicio-experiencial"],
+          tecs: ["ejercicio-experiencial"],
           obj: "Reconectar con el sentido que dan las experiencias y consolidar lo trabajado.",
           pasos: [
             "Explorar experiencias de amor, belleza y humor, y el contacto con la vida a través de los cinco sentidos.",
@@ -12331,6 +12457,7 @@ const VARIABLES = [
       mod: "moorey-ajuste",
       inst: ["HADS", "FACIT-Sp"],
       enf: "tcc",
+      nivel: "conceptual",
       t: "TCC en la enfermedad avanzada y terminal",
       fuente: "Moorey y Greer, 2012, cap. 14",
       cuando: "Una persona con <strong>enfermedad avanzada o terminal</strong> tiene malestar por los síntomas físicos, pensamientos negativos que son en buena parte realistas, miedo a morir o dificultades con la pareja y la familia, y quiere mejorar la calidad del tiempo que le queda.",
@@ -12352,7 +12479,7 @@ const VARIABLES = [
         },
         {
           t: "Pensamientos negativos realistas",
-          tecs: ["descentramiento", "defusion"],
+          tecs: ["defusion"],
           obj: "Trabajar con pensamientos que son verdad sin quedar atrapado en ellos.",
           pasos: [
             "Entender el significado personal del pensamiento.",
@@ -12365,7 +12492,7 @@ const VARIABLES = [
         },
         {
           t: "Luchar y aceptar",
-          tecs: ["aceptacion", "negacion-adaptativa"],
+          tecs: [],
           obj: "Equilibrar el espíritu de lucha con la aceptación, según el momento de la enfermedad.",
           pasos: [
             "Promover el espíritu de lucha y la evitación positiva cuando ayudan a vivir.",
@@ -12880,7 +13007,7 @@ const GLOSARIO = [
 { k: "formato-intensivo", t: "Formato intensivo", tipo: "Concepto", enf: ["tcc"],
   d: "Aplicación de la exposición con prevención de respuesta en sesiones concentradas: 15 sesiones de dos horas en tres semanas, casi a diario. Las sesiones seguidas dan mejores resultados que las espaciadas; si no se puede, se recomienda un mínimo de tres por semana.",
   fuente: "Franklin y Foa, 2014, «Treatment Period»" },
-{ k: "visita-hogar", t: "Visita al hogar", tipo: "Técnica", enf: ["tcc"],
+{ k: "visita-hogar", t: "Visita al hogar", tipo: "Formato", enf: ["tcc"],
   d: "Sesión que el terapeuta hace en la casa de la persona para exponerse allí, sobre todo en los lugares que ella mantiene «a salvo» del problema (la habitación limpia, la cama). Ayuda a que lo aprendido en la consulta se traslade al lugar donde ocurren los rituales y a acordar con la familia cómo seguir.",
   fuente: "Franklin y Foa, 2014, «Home Visit»" },
 { k: "pautas-conducta-normal", t: "Pautas de conducta normal", tipo: "Técnica", enf: ["tcc"],
@@ -12996,7 +13123,7 @@ const GLOSARIO = [
   d: "Postura de trabajo de la terapia cognitiva: terapeuta y persona actúan como dos investigadores que tratan los pensamientos como hipótesis y buscan juntos los datos para ponerlos a prueba. El terapeuta no discute ni convence: pregunta, propone experimentos y deja que la conclusión la saque la persona.",
   ej: "«Tomemos esa idea como una hipótesis. ¿Qué datos tendríamos que reunir esta semana para saber si es así?»",
   fuente: "Young et al., 2014, «Collaborative Empiricism»" },
-{ k: "estructura-sesion", t: "Estructura de la sesión", tipo: "Técnica", enf: ["tcc"],
+{ k: "estructura-sesion", t: "Estructura de la sesión", tipo: "Procedimiento", enf: ["tcc"],
   d: "Secuencia fija de cada sesión de terapia cognitiva: revisar el ánimo, acordar la agenda, revisar la tarea, trabajar los temas de la agenda, acordar la nueva tarea y pedir un resumen y retroalimentación. Da previsibilidad y enseña a la persona a organizar su propio trabajo.",
   como: ["Empezar con una medida breve del ánimo y un puente con la sesión anterior.",
          "Acordar entre los dos dos o tres temas para la sesión.",
@@ -13059,7 +13186,7 @@ const GLOSARIO = [
 { k: "analisis-decisiones", t: "Análisis de decisiones", tipo: "Técnica", enf: ["ipt"],
   d: "Ayudar a la persona a considerar todas las opciones que tiene ante un problema interpersonal —negociar, esperar, poner un límite, terminar la relación—, con las consecuencias de cada una, antes de elegir cuál probar.",
   fuente: "Bleiberg y Markowitz, 2014, «The Middle Phase»" },
-{ k: "activacion-conductual", t: "Activación conductual", tipo: "Técnica", enf: ["ac"],
+{ k: "activacion-conductual", t: "Activación conductual", tipo: "Tratamiento", enf: ["ac"],
   d: "Tratamiento de la depresión que reconecta a la persona con actividades que le dan agrado, logro y sentido, y que trabaja la evitación y la rumiación que la alejan de ellas. Parte de que la acción va primero: no se espera a tener ganas para actuar.",
   fuente: "Dimidjian et al., 2014 · Lejuez et al., 2011" },
 { k: "inventario-areas-valores", t: "Inventario de áreas vitales, valores y actividades", alias: ["inventario de valores", "áreas vitales"], tipo: "Técnica", enf: ["ac"],
@@ -13382,7 +13509,7 @@ const GLOSARIO = [
   d: "Desgaste físico, emocional, social y económico de quien cuida de forma continua a una persona dependiente. Aumenta el riesgo de depresión y de problemas de salud en el cuidador y afecta la calidad del cuidado; por eso se evalúa y se atiende como un objetivo en sí mismo.",
   ficha: "cuidado-cuidador",
   fuente: "OMS, 2017 (recomendación 13) · OMS, 2023 (DEM1)" },
-{ k: "respiro", t: "Cuidado de respiro", alias: ["respiro"], tipo: "Técnica", enf: ["tcc"],
+{ k: "respiro", t: "Cuidado de respiro", alias: ["respiro"], tipo: "Servicio", enf: ["tcc"],
   d: "Organizar que otra persona o un servicio se haga cargo del cuidado por un tiempo —unas horas, un día—, para que el cuidador descanse. Es parte del apoyo práctico que recomienda la OMS para los cuidadores.",
   ficha: "cuidado-cuidador",
   fuente: "OMS, 2023 (DEM1)" },
@@ -13628,13 +13755,13 @@ const GLOSARIO = [
 { k: "evaluacion-riesgo-suicida", t: "Evaluación del riesgo suicida", alias: ["evaluar el riesgo suicida"], tipo: "Técnica", enf: ["est", "dbt"],
   d: "Preguntar de forma directa por la ideación suicida, los planes, los medios, los intentos previos y lo que retiene a la persona. También se exploran los factores que aumentan el riesgo: desesperanza, consumo, aislamiento o una enfermedad grave. Preguntar por el suicidio no lo provoca; abre la posibilidad de hablar de él. Mientras el riesgo persista, se vuelve a evaluar en cada contacto.",
   fuente: "OPS, 2017, módulo SUI · OMS, 2023 (SUI1) · Elices, cap. 2 (§2.4.2)" },
-{ k: "tamizaje", t: "Tamizaje", alias: ["tamizaje sistemático"], tipo: "Técnica", enf: ["est", "tcc"],
+{ k: "tamizaje", t: "Tamizaje", alias: ["tamizaje sistemático"], tipo: "Procedimiento", enf: ["est", "tcc"],
   d: "Aplicación breve y sistemática de un instrumento validado a todas las personas de un grupo, por ejemplo a quienes están hospitalizados o tienen baja adherencia, para detectar quiénes necesitan una evaluación más completa. Un resultado positivo no es un diagnóstico: indica a quién evaluar. En la atención colaborativa, el tamizaje va unido a intervenciones basadas en la evidencia y al seguimiento de los síntomas.",
   fuente: "OMS, 2023 (ANX7 y DRU1)" },
-{ k: "intervencion-breve", t: "Intervención breve", tipo: "Técnica", enf: ["est", "em"],
+{ k: "intervencion-breve", t: "Intervención breve", tipo: "Formato", enf: ["est", "em"],
   d: "Una o pocas sesiones cortas después del tamizaje del consumo de alcohol u otras sustancias. Se devuelve a la persona su resultado de forma personalizada, se conversa con estilo motivacional sobre los riesgos de su consumo y se acuerdan una meta y los siguientes pasos. Si el consumo es más grave, sirve de enlace con un tratamiento más intensivo.",
   fuente: "OMS, 2023 (DRU1) · Marlatt y Donovan, cap. 9" },
-{ k: "entrevista-motivacional", t: "Entrevista motivacional", tipo: "Técnica", enf: ["em"],
+{ k: "entrevista-motivacional", t: "Entrevista motivacional", tipo: "Tratamiento", enf: ["em"],
   d: "Estilo de conversación colaborativo que fortalece la motivación y el compromiso de la persona con un cambio. Evoca sus propias razones en lugar de dárselas. Se organiza en cuatro procesos que se solapan: vincularse, enfocar, evocar y planificar. Sus herramientas son las preguntas abiertas, las afirmaciones, los reflejos y los resúmenes. Es especialmente útil cuando hay ambivalencia.",
   fuente: "Miller y Arkowitz, 2015 · Miller, 2015" },
 { k: "discrepancia", t: "Desarrollo de la discrepancia", alias: ["discrepancia"], tipo: "Técnica", enf: ["em"],
@@ -13662,7 +13789,7 @@ const GLOSARIO = [
   d: "Planificar con la persona actividades concretas para cada hora o cada parte del día, que le den algo de agrado o de logro, empezando por lo que es realista para ella. En la depresión pone a prueba la creencia de no poder hacer nada y le devuelve la sensación de controlar su tiempo. En la sesión siguiente se revisa qué se hizo y cómo cambió el ánimo.",
   ficha: "registro-actividad-animo",
   fuente: "Ruiz et al., cap. 8 (§3.3.1) · Dimidjian et al., 2014" },
-{ k: "seguimiento-derivacion", t: "Seguimiento y derivación", tipo: "Técnica", enf: ["est"],
+{ k: "seguimiento-derivacion", t: "Seguimiento y derivación", tipo: "Procedimiento", enf: ["est"],
   d: "Cierre de toda intervención breve o en crisis. Antes de terminar se acuerda cómo y cuándo será el siguiente contacto. Después se verifica que la ayuda funcionó y que la persona quedó conectada con la atención que necesita. La derivación va con un enlace concreto (el servicio, la cita, quién acompaña) y no se deja a su iniciativa. Es el último componente de los primeros auxilios psicológicos.",
   fuente: "Deza, 2007 · OPS, 2017, módulo SUI" },
 { k: "movimiento-consciente", t: "Movimiento consciente", alias: ["yoga consciente"], tipo: "Ejercicio", enf: ["mind"],
@@ -13772,7 +13899,7 @@ const GLOSARIO = [
 { k: "regalo-tiempo", t: "Regalo de tiempo", tipo: "Ejercicio", enf: ["pp"],
   d: "Dedicar tiempo a hacer algo por otra persona o por la comunidad, usando las propias fortalezas, sin que se lo pidan y sin recibir pago. Se guía por lo que el otro necesita, no por lo que uno cree que necesita; con ansiedad social puede empezar dentro de un voluntariado ya organizado.",
   fuente: "Rashid y Seligman, 2018, cap. 20 (sesión 14)" },
-{ k: "diario-bienestar", t: "Diario de bienestar", tipo: "Instrumento", enf: ["pp"],
+{ k: "diario-bienestar", t: "Diario de bienestar", tipo: "Técnica", enf: ["pp"],
   d: "Herramienta central de la terapia de bienestar. La persona anota los momentos de bienestar del día —la situación, lo que sintió y su intensidad de 0 a 100— sin que se le dé una definición de bienestar. En las sesiones siguientes agrega los pensamientos o conductas que interrumpieron esos momentos antes de tiempo y, después, una columna para la interpretación del observador.",
   como: ["Presentarlo como la primera tarea de autoterapia: no importa el estilo ni que se escriba todos los días.",
          "Revisarlo en cada sesión con interés por la persona antes que por el producto.",
@@ -14159,7 +14286,7 @@ function botonesFichas(claves){
   if (!fs.length) return "";
   return '<div class="act-fichas">' + fs.map(f =>
     '<a class="ficha" href="fichas/' + f.k + '.pdf" target="_blank" rel="noopener" title="' + escapar(f.d || "") + ' (se abre en una pestaña nueva; desde ahí se descarga o se imprime)">' +
-      'Ver ficha · ' + escapar(f.t) + ' <span class="fmt">PDF</span></a>').join("") +
+      'Ver ficha · ' + escapar(f.t) + ' <span class="fmt">PDF · de esta guía</span></a>').join("") +
   '</div>';
 }
 
@@ -14207,6 +14334,35 @@ const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" targe
 
 const modeloDe = p => MODELOS[p.mod] || null;
 const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
+
+/* Nivel del respaldo que describe el plan, para que se vea sin leer el
+   párrafo completo. Lo asigna la guía a partir de lo que dicen sus fuentes. */
+const NIVEL = {
+  ensayos:    { et: "Con ensayos controlados", d: "El plan, o el tratamiento en que se basa, tiene ensayos controlados descritos en sus fuentes." },
+  preliminar: { et: "Evidencia preliminar", d: "Estudios sin grupo de control, de caso único, abiertos o con resultados todavía limitados." },
+  guia:       { et: "Basado en guías", d: "Se apoya en recomendaciones de guías de práctica o de la OMS más que en ensayos propios descritos en el plan." },
+  conceptual: { et: "Respaldo conceptual o clínico", d: "Se basa en un marco teórico o en la experiencia clínica de sus autores; sus fuentes no describen ensayos del plan." }
+};
+const usadoEnEstudios = (p, s) => (p.instEst || []).includes(s);
+const origenInst = (p, s) => ' <span class="orig-inst">' + (usadoEnEstudios(p, s) ? 'usado en los estudios' : 'sugerido por la guía') + '</span>';
+/* Tipo de la fuente principal: si es el manual o un capítulo de los propios
+   autores del programa, un capítulo de revisión o un manual de referencia que
+   lo resume, una guía oficial o un artículo. Se calcula con la primera fuente
+   citada del plan. */
+const FUENTE_RESUMEN = ["Ruiz et al.", "Elices", "Díaz Corbobés", "Cifuentes", "Jongsma et al., 2021"];
+function tipoFuente(p){
+  const rs = REFERENCIAS.filter(r => p.fuente.includes(r.k)).sort((a, b) => p.fuente.indexOf(a.k) - p.fuente.indexOf(b.k) || b.k.length - a.k.length);
+  const r = rs[0];
+  if (!r) return "";
+  const t = r.ref.replace(/<[^>]+>/g, "");
+  if (FUENTE_RESUMEN.includes(r.k)) return "manual de referencia que resume el programa";
+  if (/^(Organización|Centro de Referencia|Organización Panamericana)/.test(t)) return "guía o documento oficial";
+  if (/Treatment of disorders in childhood/i.test(t)) return "capítulo de revisión de un manual de referencia";
+  if (/\. En .*\(Eds?\.\)/.test(t)) return "capítulo de los autores del programa";
+  if (/[0-9]+\([0-9]+\), [0-9]+|, [0-9]+, [0-9]+–[0-9]+|Revista|Journal/.test(t)) return "artículo";
+  return "libro o manual de los autores del programa";
+}
+const nivelHTML = p => NIVEL[p.nivel] ? '<span class="nivel nivel-' + p.nivel + '" title="' + escapar(NIVEL[p.nivel].d) + '">' + escapar(NIVEL[p.nivel].et) + '</span>' : "";
 
 const TIPO_FUND = {
   explicativo: "Modelo explicativo",
@@ -14278,13 +14434,14 @@ function pintarInstrumentos(p){
   const cuerpo = ins.length
     ? '<ul class="inst-l">' + ins.map(i =>
         '<li><span class="rol">' + escapar(i.rol) + '</span><br>' +
-        '<span class="s">' + escapar(i.s) + '</span> · ' + escapar(i.n) + distintivo(i.s) + '<br>' +
+        '<span class="s">' + escapar(i.s) + '</span> · ' + escapar(i.n) + distintivo(i.s) + origenInst(p, i.s) + '<br>' +
         escapar(i.d) + ' <span class="med">(' + escapar(i.med) + ')</span>' +
         (i.guia ? '' : '<br><span class="med">Fuente: ' + escapar(i.fuente || "") + '</span>') +
         botonInstrumento(i.s) +
         '</li>').join("") + '</ul>'
     : '<p style="margin:0">Ninguna de las fuentes de esta guía describe un instrumento para esta variable. El vacío es información: antes de usar uno, hay que respaldarlo.</p>';
   return '<div class="caja"><span class="r">Instrumentos de evaluación</span>' + cuerpo +
+    (ins.length ? '<p style="margin:8px 0 0; font-size:12.5px">' + (ins.some(i => usadoEnEstudios(p, i.s)) ? 'Los marcados como «usado en los estudios» los usaron los estudios del plan o los crearon sus autores; los demás los sugiere esta guía para medir el cambio.' : 'Estos instrumentos los sugiere esta guía para medir el cambio; las fuentes del plan no los mencionan como parte de sus estudios.') + '</p>' : "") +
     (conRiesgo(p) ? PROTOCOLO_RIESGO : "") +
     (ins.some(i => i.guia) ? '<p style="margin:8px 0 0; font-size:12.5px">Los que están en la <a href="pruebas-tamizaje.html">guía de tamizaje</a> traen allí su acceso y sus notas de uso.</p>' : "") +
     '</div>';
@@ -14310,7 +14467,7 @@ function pintarPlan(v, p, vi){
       '<h4>' + escapar(p.t) + '</h4>' +
       '<button class="exp-boton" type="button" data-exp="' + p.id + '">Exportar este plan</button>' +
     '</div>' +
-    '<div class="plan-fuente"><strong>Fuente principal:</strong> ' + escapar(p.fuente) + '</div>' +
+    '<div class="plan-fuente">' + nivelHTML(p) + '<strong>Fuente principal:</strong> ' + escapar(p.fuente) + (tipoFuente(p) ? ' <span class="tipo-fuente">(' + tipoFuente(p) + ')</span>' : '') + '</div>' +
     '<div class="exportador" id="exp-' + p.id + '" hidden></div>' +
     '<div class="meta">' +
       '<div class="caja"><span class="r">Cuándo elegirlo</span>' + p.cuando + '</div>' +
@@ -14682,7 +14839,7 @@ function construirHoja(id, o, notas){
   let h = '<div class="h-cab">' +
       '<div class="h-var">' + escapar(v.t) + '</div>' +
       '<h1>' + escapar(p.t) + '</h1>' +
-      '<div class="h-sub">' + escapar(enf.largo) + ' · Fuente principal: ' + escapar(p.fuente) + '</div>' +
+      '<div class="h-sub">' + escapar(enf.largo) + ' · Fuente principal: ' + escapar(p.fuente) + (tipoFuente(p) ? ' (' + tipoFuente(p) + ')' : '') + (NIVEL[p.nivel] ? ' · <strong>Respaldo:</strong> ' + escapar(NIVEL[p.nivel].et.toLowerCase()) : '') + '</div>' +
     '</div>';
   trozos.push(p.fuente);
 
@@ -14706,7 +14863,8 @@ function construirHoja(id, o, notas){
     h += '<h2>Instrumentos</h2>';
     h += ins.length
       ? '<ul>' + ins.map(i => '<li><strong>' + escapar(i.s) + '</strong> · ' + escapar(i.n) +
-          ' — ' + escapar(i.rol.toLowerCase()) + '. ' + escapar(i.d) + ' (' + escapar(i.med) + ')' +
+          ' — ' + escapar(i.rol.toLowerCase()) + '. ' + escapar(i.d) + ' (' + escapar(i.med) + '). ' +
+          '<em>' + (usadoEnEstudios(p, i.s) ? 'Usado en los estudios o creado por los autores del plan.' : 'Sugerido por esta guía.') + '</em>' +
           (i.guia ? "" : ' <em>' + escapar(i.fuente || "") + '</em>') + '</li>').join("") + '</ul>'
       : '<p>Ninguna de las fuentes de esta guía describe un instrumento para esta variable.</p>';
     ins.forEach(i => trozos.push(i.fuente || ""));
@@ -14768,7 +14926,7 @@ function construirHoja(id, o, notas){
     const vistas = new Set(), fs = [];
     p.actividades.forEach(a => fichasDe(a.fichas).forEach(f => { if (!vistas.has(f.k)){ vistas.add(f.k); fs.push(f); } }));
     if (fs.length){
-      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Cada ficha es un PDF rellenable. Se abre con un clic en su nombre o escaneando el código con el celular.</p>' +
+      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Son fichas elaboradas para esta guía a partir de las actividades del plan; no forman parte del material de sus autores. Cada ficha es un PDF rellenable. Se abre con un clic en su nombre o escaneando el código con el celular.</p>' +
         '<div class="h-fichas">' + fs.map(f =>
           '<div class="h-ficha">' + qrFicha(f) + '<div>' +
             '<a class="ft" href="' + urlFicha(f.k) + '">' + escapar(f.t) + '</a>' +

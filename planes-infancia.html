@@ -32,6 +32,7 @@
   --mind:#1d7a6a; --mind-soft:#e2f2ee;
   --cft:#a34d6d;  --cft-soft:#f7e8ee;
   --sent:#6b4a2e; --sent-soft:#f3ece4;
+  --psp:#2f5d7a; --psp-soft:#e5eef4;
   --trans:#2d6f8f; --trans-soft:#e3f0f5;
   --em:#8a5a1c;   --em-soft:#f6ede0;
   --mct:#3d5c78;  --mct-soft:#e7edf3;
@@ -285,6 +286,7 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .enf-mind{--enf:var(--mind); --enf-soft:var(--mind-soft);}
 .enf-cft{--enf:var(--cft); --enf-soft:var(--cft-soft);}
 .enf-sent{--enf:var(--sent); --enf-soft:var(--sent-soft);}
+.enf-psp{--enf:var(--psp); --enf-soft:var(--psp-soft);}
 .enf-trans{--enf:var(--trans); --enf-soft:var(--trans-soft);}
 .enf-em {--enf:var(--em);  --enf-soft:var(--em-soft);}
 .enf-mct{--enf:var(--mct); --enf-soft:var(--mct-soft);}
@@ -331,6 +333,13 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .plan-cab h4{font-size:clamp(19px,2vw,24px); line-height:1.25; flex:1 1 320px;}
 .plan-fuente{margin-top:6px; font-size:13px; color:var(--ink-faint);}
 .plan-fuente strong{color:var(--ink-soft); font-weight:600;}
+.nivel{display:inline-block; font-size:11.5px; font-weight:600; line-height:1.4; padding:2px 9px; border-radius:999px; margin:0 8px 4px 0; border:1px solid currentColor; vertical-align:1px;}
+.tipo-fuente{color:var(--ink-faint); font-style:italic;}
+.orig-inst{display:inline-block; font-size:11px; color:var(--ink-faint); border:1px solid var(--border); border-radius:999px; padding:0 7px; margin-left:4px; vertical-align:1px;}
+.nivel-ensayos{color:#1f6b45; background:#e8f4ec;}
+.nivel-preliminar{color:#7a5a12; background:#f7f0dd;}
+.nivel-guia{color:#2f5d7a; background:#e5eef4;}
+.nivel-conceptual{color:#6b4a6b; background:#f2eaf2;}
 
 .meta{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
 .caja{
@@ -877,7 +886,8 @@ const ENFOQUES = {
   col:  { et: "Escolar",                  largo: "Intervención en el colegio" },
   est:  { et: "Intervención en crisis",   largo: "Intervención en crisis" },
   em:   { et: "Entrevista motivacional",  largo: "Entrevista motivacional" },
-  pp:   { et: "Psicología positiva",      largo: "Intervenciones de psicología positiva" }
+  pp:   { et: "Psicología positiva",      largo: "Intervenciones de psicología positiva" },
+  psp:  { et: "Programa psicosocial",     largo: "Programa psicosocial basado en recomendaciones de la OMS" }
 };
 
 const MODELOS = {};
@@ -1502,6 +1512,7 @@ const VARIABLES = [
       mod: "ansiedad-infantil",
       inst: ["SCARED", "RCADS", "SDQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual individual: el plan de cuatro pasos",
       fuente: "Palitz et al., 2019 · Kendall y Hedtke, 2006",
       cuando: "El niño tiene <strong>entre 7 y 13 años</strong>, o es un adolescente que acepta trabajar de forma individual, y tiene ansiedad de separación, generalizada o social, o fobias, que le impiden hacer lo que otros niños de su edad hacen.",
@@ -1541,7 +1552,7 @@ const VARIABLES = [
         },
         {
           t: "Sesión con los padres",
-          tecs: ["psicoeducacion", "acomodacion-familiar"],
+          tecs: ["psicoeducacion"],
           obj: "Sumar a los padres al programa y revisar cómo responden a la ansiedad de su hijo.",
           pasos: [
             "Explicar a los padres el modelo y el plan de tratamiento.",
@@ -1643,6 +1654,7 @@ const VARIABLES = [
       mod: "ansiedad-infantil",
       inst: ["SCARED", "SDQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual en grupo con la familia",
       fuente: "Pahl y Barrett, 2010",
       cuando: "Hay <strong>varios niños o adolescentes con ansiedad</strong> que pueden trabajar en grupo, y sus familias pueden participar. Sirve desde los 4 años, con versiones distintas para cada edad, y también como programa de prevención en el colegio.",
@@ -1753,6 +1765,7 @@ const VARIABLES = [
       mod: "pu-infancia",
       inst: ["RCADS", "SCARED", "PHQ-A"],
       enf: "trans",
+      nivel: "ensayos",
       t: "Protocolo unificado para niños y adolescentes",
       fuente: "Ehrenreich-May et al., 2022",
       cuando: "La ansiedad viene <strong>junto con tristeza, irritabilidad u otras emociones intensas</strong>, o hay varios trastornos emocionales a la vez. Sirve para niños de 7 a 13 años, en grupo con sus padres, y para adolescentes de 13 a 18, en formato individual.",
@@ -1763,7 +1776,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Conocer cómo me siento",
-          tecs: ["tres-componentes-emocion", "ciclo-evitacion"],
+          tecs: [],
           obj: "Entender las emociones, sus tres partes y el ciclo de la evitación.",
           pasos: [
             "Presentar el programa, definir los problemas principales y las metas.",
@@ -1805,7 +1818,7 @@ const VARIABLES = [
         },
         {
           t: "Pensar como un detective y resolver problemas",
-          tecs: ["trampas-pensamiento", "pensar-como-detective", "solucion-problemas"],
+          tecs: ["pensar-como-detective", "solucion-problemas"],
           obj: "Pensar de forma más flexible sobre las situaciones emocionales.",
           pasos: [
             "Presentar las cuatro trampas de pensamiento más comunes: sacar conclusiones antes de tiempo, leer la mente, pensar en lo peor e ignorar lo positivo.",
@@ -1819,7 +1832,7 @@ const VARIABLES = [
         },
         {
           t: "Experimentar mis emociones",
-          tecs: ["conciencia-emocional", "exposicion-emocional", "conductas-seguridad"],
+          tecs: ["conciencia-emocional", "exposicion-emocional"],
           obj: "Enfrentar las emociones fuertes en lugar de evitarlas.",
           pasos: [
             "Practicar la atención al momento presente y la conciencia sin juzgar.",
@@ -1834,7 +1847,7 @@ const VARIABLES = [
         },
         {
           t: "Crianza ante las emociones del hijo",
-          tecs: ["crianza-emocional", "acomodacion-familiar"],
+          tecs: ["crianza-emocional"],
           obj: "Que los padres cambien las respuestas que mantienen el malestar por otras que lo reducen.",
           pasos: [
             "Revisar cuatro respuestas de crianza poco útiles: crítica excesiva, sobreprotección, inconsistencia y modelar evitación o emociones intensas.",
@@ -1880,6 +1893,7 @@ const VARIABLES = [
       mod: "flex",
       inst: ["RCADS", "SCARED"],
       enf: "act",
+      nivel: "preliminar",
       t: "Aceptación y compromiso para adolescentes",
       fuente: "Turrell y Bell, 2016 · Palitz et al., 2019",
       cuando: "Un <strong>adolescente</strong> organiza su vida alrededor de evitar la ansiedad —deja de ir a clases, de ver a sus amigos, de hacer lo que le importa— y le cuesta aceptar la exposición como la plantea la terapia cognitivo-conductual. Sirve también cuando la ansiedad se mezcla con tristeza u otros malestares.",
@@ -1917,7 +1931,7 @@ const VARIABLES = [
         },
         {
           t: "Valores y metas",
-          tecs: ["valores", "accion-comprometida"],
+          tecs: [],
           obj: "Aclarar qué le importa y traducirlo en metas concretas.",
           pasos: [
             "Explorar qué le importa en la familia, los amigos, el estudio y el tiempo libre.",
@@ -1931,7 +1945,7 @@ const VARIABLES = [
         },
         {
           t: "Disposición a sentir",
-          tecs: ["disposicion", "exposicion-graduada"],
+          tecs: ["exposicion-graduada"],
           obj: "Hacer espacio a la ansiedad mientras se hace lo que importa.",
           pasos: [
             "Presentar la disposición como una elección, no como un sentimiento.",
@@ -1944,7 +1958,7 @@ const VARIABLES = [
         },
         {
           t: "Defusión y yo como contexto",
-          tecs: ["defusion", "yo-contexto"],
+          tecs: ["defusion"],
           obj: "Ver los pensamientos y la historia sobre sí mismo como lo que son.",
           pasos: [
             "Practicar ejercicios de defusión con los pensamientos ansiosos.",
@@ -1986,6 +2000,7 @@ const VARIABLES = [
       mod: "ansiedad-infantil",
       inst: ["SCARED", "RCADS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Versión breve del programa de Kendall (ocho sesiones)",
       fuente: "Kendall et al., 2013",
       cuando: "Niños y adolescentes jóvenes con <strong>ansiedad generalizada, ansiedad social o ansiedad de separación</strong> cuando no es posible un tratamiento de 16 sesiones: pocas sesiones disponibles, lista de espera larga o atención en consulta externa.",
@@ -2061,6 +2076,7 @@ const VARIABLES = [
       mod: "funciones-rechazo",
       inst: ["SCARED", "SRAS-R"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Retorno gradual al colegio con exposición",
       fuente: "Kearney et al., 2008",
       cuando: "El niño o el adolescente <strong>rechaza el colegio para evitar la angustia, el miedo o la tristeza que le provoca</strong>: llora, se aferra a los padres, tiene dolor de estómago o de cabeza en las mañanas, no puede subir al bus o entrar al salón. El inicio suele estar entre los 10 y los 13 años, o en los cambios de ciclo escolar.",
@@ -2071,7 +2087,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación de la función y del contexto escolar",
-          tecs: ["analisis-funcional", "entrevista-clinica", "consultoria-docente"],
+          tecs: ["analisis-funcional", "entrevista-clinica"],
           obj: "Saber para qué rechaza el colegio y descartar razones legítimas para no ir.",
           pasos: [
             "Entrevistar al niño, a los padres y al colegio: desde cuándo, qué días, en qué momentos y qué pasa después.",
@@ -2129,7 +2145,7 @@ const VARIABLES = [
         },
         {
           t: "Exposiciones más intensas sin señales de seguridad",
-          tecs: ["exposicion-graduada", "conductas-seguridad", "exposicion-interoceptiva"],
+          tecs: ["exposicion-graduada", "exposicion-interoceptiva"],
           obj: "Avanzar más rápido por la jerarquía y retirar lo que el niño usa para sentirse seguro.",
           pasos: [
             "Hacer dos o tres sesiones por semana, en el colegio o fuera de la consulta si hace falta.",
@@ -2188,6 +2204,7 @@ const VARIABLES = [
       mod: "toc-infantil",
       inst: ["CY-BOCS", "FAS"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Exposición con prevención de rituales",
       fuente: "Franklin et al., 2010 · Kemp y Freeman, 2019",
       cuando: "El niño o el adolescente tiene <strong>obsesiones y rituales que le quitan tiempo, le generan angustia o interfieren</strong> con el colegio, la familia o los amigos, y puede comprometerse a practicar exposiciones con apoyo de sus padres.",
@@ -2256,7 +2273,7 @@ const VARIABLES = [
         },
         {
           t: "La familia frente al TOC",
-          tecs: ["acomodacion-familiar", "reforzamiento-positivo"],
+          tecs: ["reforzamiento-positivo"],
           obj: "Que la familia deje de participar en los rituales y apoye las exposiciones.",
           pasos: [
             "Revisar cómo participa la familia: responder preguntas de tranquilización, lavar o revisar por el niño, cambiar rutinas.",
@@ -2316,6 +2333,7 @@ const VARIABLES = [
       mod: "depresion-cc",
       inst: ["PHQ-A", "RCADS", "ASQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual para la depresión",
       fuente: "Curry y Meyer, 2019",
       cuando: "Un <strong>adolescente con depresión leve a moderada</strong>, o grave junto con medicación, que puede asistir a sesiones semanales y practicar entre sesiones. En niños, sobre todo en formato de grupo.",
@@ -2432,6 +2450,7 @@ const VARIABLES = [
       mod: "interpersonal-adolescente",
       inst: ["PHQ-A", "RCADS"],
       enf: "ipt",
+      nivel: "ensayos",
       t: "Psicoterapia interpersonal para adolescentes",
       fuente: "Curry y Meyer, 2019",
       cuando: "Un <strong>adolescente cuya depresión está ligada a una relación o un cambio</strong>: la muerte de alguien cercano, una ruptura, peleas con los padres, un cambio de colegio, o aislamiento por falta de habilidades para hacer amigos.",
@@ -2468,7 +2487,7 @@ const VARIABLES = [
         },
         {
           t: "Inventario interpersonal y elección del área",
-          tecs: ["inventario-interpersonal", "areas-problema"],
+          tecs: ["inventario-interpersonal"],
           obj: "Revisar las relaciones importantes y elegir una o dos áreas problema.",
           pasos: [
             "Revisar las relaciones importantes: qué funciona, qué no y qué le gustaría cambiar.",
@@ -2527,6 +2546,7 @@ const VARIABLES = [
       mod: "ac-ferster",
       inst: ["SMFQ", "PHQ-A"],
       enf: "ac",
+      nivel: "ensayos",
       t: "Activación conductual para adolescentes",
       fuente: "McCauley et al., 2016 · Curry y Meyer, 2019",
       cuando: "Un <strong>adolescente con depresión que se ha retirado</strong>: dejó actividades, amigos y responsabilidades, pasa el tiempo en la cama o en pantallas y hace lo que le pide el ánimo. Sirve cuando se busca un tratamiento más simple, centrado en la conducta.",
@@ -2552,7 +2572,7 @@ const VARIABLES = [
         },
         {
           t: "Activarse: actuar según las metas, no según el ánimo",
-          tecs: ["activacion-conductual", "analisis-funcional"],
+          tecs: ["analisis-funcional"],
           obj: "Que el adolescente distinga la conducta guiada por el ánimo de la guiada por sus metas.",
           pasos: [
             "Presentar la diferencia entre hacer lo que el ánimo pide y hacer lo que lo acerca a sus metas.",
@@ -2578,7 +2598,7 @@ const VARIABLES = [
         },
         {
           t: "Barreras y evitación",
-          tecs: ["trap-trac", "activacion-conductual"],
+          tecs: ["trap-trac"],
           obj: "Reconocer lo que impide avanzar y salir de la evitación.",
           pasos: [
             "Identificar barreras internas y externas para cumplir las metas.",
@@ -2593,7 +2613,7 @@ const VARIABLES = [
         },
         {
           t: "Práctica con un plan de acción",
-          tecs: ["activacion-conductual", "programacion-actividades"],
+          tecs: ["programacion-actividades"],
           obj: "Integrar las habilidades en un plan propio y practicarlas.",
           pasos: [
             "Revisar el estado del adolescente y qué quiere trabajar en las sesiones que quedan.",
@@ -2638,6 +2658,7 @@ const VARIABLES = [
       mod: "bienestar-ninos",
       inst: ["SMFQ", "PHQ-A"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Prevención de recaídas con terapia cognitivo-conductual y de bienestar",
       fuente: "Curry y Meyer, 2019 · Fava, 2016, caps. 3 y 19",
       cuando: "Niños y adolescentes con <strong>depresión mayor que respondieron a la medicación</strong> y siguen con ella, con riesgo de recaer. El objetivo no es solo sostener la mejoría sino recuperar el bienestar.",
@@ -2703,7 +2724,7 @@ const VARIABLES = [
         },
         {
           t: "Lo que manejo bien, lo que quiero aprender y cómo me llevo con los demás",
-          tecs: ["dimensiones-bienestar"],
+          tecs: [],
           obj: "Trabajar el dominio del entorno, el crecimiento y las relaciones, junto con los valores y la aceptación de sí.",
           pasos: [
             "Hacer una lista de situaciones en que el niño se maneja bien.",
@@ -2757,7 +2778,9 @@ const VARIABLES = [
       id: "bien-escolar",
       mod: "bienestar-ninos",
       inst: ["SQ-K"],
+      instEst: ["SQ-K"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Terapia de bienestar en el colegio",
       fuente: "Fava, 2016, cap. 19",
       cuando: "Cursos completos de <strong>secundaria</strong>, sin selección por síntomas, para promover el bienestar psicológico y la resiliencia; los estudiantes de bachillerato se consideran más expuestos a la ansiedad y la depresión.",
@@ -2808,7 +2831,7 @@ const VARIABLES = [
         },
         {
           t: "Situaciones que manejo bien",
-          tecs: ["dimensiones-bienestar"],
+          tecs: [],
           obj: "Reconocer el dominio del entorno: las situaciones en que cada estudiante se maneja bien.",
           pasos: [
             "Armar entre todos una lista de situaciones de la vida escolar y familiar que manejan bien.",
@@ -2821,7 +2844,7 @@ const VARIABLES = [
         },
         {
           t: "Lo que sé hacer y lo que quiero aprender",
-          tecs: ["dimensiones-bienestar", "pasos-solucion-problemas"],
+          tecs: ["pasos-solucion-problemas"],
           obj: "Trabajar el crecimiento personal con técnicas sencillas de solución de problemas.",
           pasos: [
             "Reflexionar sobre las habilidades que ya se tienen y las que se quieren desarrollar.",
@@ -2834,7 +2857,7 @@ const VARIABLES = [
         },
         {
           t: "Cómo me llevo con los demás",
-          tecs: ["dimensiones-bienestar"],
+          tecs: [],
           obj: "Reflexionar sobre las conductas que mejoran cómo se sienten y cómo se relacionan, y cerrar el ciclo.",
           pasos: [
             "Pensar qué conductas mejoran el ánimo propio y las relaciones con los demás.",
@@ -2862,6 +2885,7 @@ const VARIABLES = [
       mod: "mindful-ninos",
       inst: ["SDQ"],
       enf: "mind",
+      nivel: "conceptual",
       t: "Atención plena para niños con sus padres",
       fuente: "Snel, 2013, caps. 2 a 10",
       cuando: "Niños de <strong>5 a 12 años</strong> que quieren calmarse, concentrarse mejor, entender sus emociones o sentirse más seguros de sí mismos, con padres dispuestos a practicar con ellos. Se practica en casa.",
@@ -2938,17 +2962,18 @@ const VARIABLES = [
       mod: "aea",
       inst: ["VIA-J"],
       enf: "pp",
+      nivel: "conceptual",
       t: "Fortalezas del carácter en la infancia",
       fuente: "Niemiec, 2018, caps. 2, 3 y 8 · Niemiec y Tomasulo, 2023, cap. 3",
-      cuando: "Niños de <strong>6 a 11 años</strong> en los que se quiere promover el bienestar, la autoestima y las relaciones, en consulta, en casa o en el colegio, sin que haya un trastorno.",
+      cuando: "Niños de <strong>6 a 11 años</strong> en los que se quiere promover el bienestar, la autoestima y las relaciones, en consulta y en casa, sin que haya un trastorno.",
       respaldo: "El trabajo con fortalezas complementa el enfoque centrado en los déficits o ofrece una alternativa. Niemiec reúne las intervenciones con fortalezas que tienen respaldo de investigación (Niemiec, 2018, caps. 3 y 8). En niños, la evidencia se ha estudiado menos que en adultos; el VIA para jóvenes se usa desde los 8 años (Niemiec y Tomasulo, 2023, cap. 3).",
       secuencia: "<strong>Secuencia:</strong> tomar conciencia de las fortalezas, explorarlas y aplicarlas a metas concretas, con padres y docentes que detectan y nombran las fortalezas del niño en la vida diaria (Niemiec, 2018, cap. 3).",
-      esc: ["colegio", "primer-nivel", "comunidad"],
+      esc: ["primer-nivel"],
       edad: ["6-11"],
       actividades: [
         {
           t: "Descubrir mis fortalezas",
-          tecs: ["fortalezas-caracter", "deteccion-fortalezas"],
+          tecs: ["deteccion-fortalezas"],
           obj: "Que el niño conozca sus fortalezas principales.",
           pasos: [
             "Presentar las fortalezas con ejemplos y dibujos.",
@@ -2975,7 +3000,7 @@ const VARIABLES = [
         },
         {
           t: "Usar las fortalezas de formas nuevas",
-          tecs: ["fortalezas-caracter"],
+          tecs: [],
           obj: "Aplicar las fortalezas en el colegio, en casa y en las relaciones.",
           pasos: [
             "Elegir una fortaleza y una forma nueva de usarla en la semana.",
@@ -2992,7 +3017,7 @@ const VARIABLES = [
         "Registro de las fortalezas usadas y nombradas."
       ],
       adapt: [
-        "<strong>Colegio:</strong> las fortalezas pueden trabajarse con todo el curso."
+        "<strong>Consulta externa:</strong> el trabajo con fortalezas puede complementar el tratamiento de otros problemas, como alternativa o complemento del enfoque centrado en los déficits (Niemiec, 2018, cap. 3)."
       ],
       cuidado: [
         "No sustituye el tratamiento de un trastorno; se usa como complemento.",
@@ -3015,7 +3040,8 @@ const VARIABLES = [
       mod: "guia-ease",
       sug: { mod: "pu-infancia", por: "EASE entrena, como el protocolo unificado, habilidades comunes a la ansiedad y la depresión: reconocer las emociones, calmar el cuerpo, activarse y resolver problemas." },
       inst: ["SDQ", "PHQ-A"],
-      enf: "tcc",
+      enf: "psp",
+      nivel: "ensayos",
       t: "Habilidades emocionales para adolescentes tempranos (EASE)",
       fuente: "OMS y UNICEF, 2023, caps. 1, 5 y 6",
       cuando: "Adolescentes de <strong>10 a 15 años</strong> con malestar emocional en comunidades expuestas a la adversidad, en el colegio o en la comunidad. Sus cuidadores pueden asistir a sesiones propias.",
@@ -3050,7 +3076,7 @@ const VARIABLES = [
         },
         {
           t: "Cambiar mis acciones",
-          tecs: ["activacion-conductual", "programacion-actividades"],
+          tecs: ["programacion-actividades"],
           obj: "Salir del retraimiento haciendo actividades que suban el ánimo.",
           pasos: [
             "Explicar el ciclo entre retraerse y sentirse peor.",
@@ -3129,6 +3155,7 @@ const VARIABLES = [
       mod: "riesgo-suicida",
       inst: ["ASQ", "C-SSRS", "PHQ-A"],
       enf: "est",
+      nivel: "guia",
       t: "Evaluación del riesgo y plan de seguridad",
       fuente: "Nock et al., 2019 · Berk et al., 2008 · OMS, 2023",
       cuando: "Un niño o un adolescente expresa ideas de muerte o de suicidio, se autolesiona o tuvo un intento, o el tamizaje sale positivo. Es el primer contacto, en cualquier escenario, antes de decidir el tratamiento.",
@@ -3139,7 +3166,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Confidencialidad y sus límites",
-          tecs: ["limites-confidencialidad"],
+          tecs: [],
           obj: "Construir confianza y dejar claro desde el inicio qué se compartirá con los padres.",
           pasos: [
             "Explicar al adolescente que mucho de lo que cuente es privado, pero que si hay riesgo para su vida o la de otros se comunicará a quienes puedan protegerlo.",
@@ -3206,7 +3233,7 @@ const VARIABLES = [
         },
         {
           t: "Continuidad y seguimiento",
-          tecs: ["seguimiento-derivacion"],
+          tecs: [],
           obj: "Asegurar que el adolescente siga en tratamiento.",
           pasos: [
             "Acordar el siguiente contacto antes de terminar y llamar para recordar las citas.",
@@ -3238,6 +3265,7 @@ const VARIABLES = [
       mod: "cognitivo-suicidio",
       inst: ["C-SSRS", "PHQ-A"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitiva para adolescentes con intento de suicidio",
       fuente: "Berk et al., 2008 · Nock et al., 2019",
       cuando: "Un <strong>adolescente que tuvo un intento de suicidio reciente</strong>, con o sin otros diagnósticos. El intento es el blanco principal del tratamiento, no algo secundario a un trastorno de fondo.",
@@ -3353,6 +3381,7 @@ const VARIABLES = [
       mod: "biosocial",
       inst: ["C-SSRS", "PHQ-A"],
       enf: "dbt",
+      nivel: "ensayos",
       t: "Terapia dialéctico-conductual para adolescentes",
       fuente: "Rathus y Miller, 2022 · Nock et al., 2019",
       cuando: "Un <strong>adolescente con autolesiones o conductas suicidas repetidas</strong> y desregulación emocional intensa: emociones que se disparan rápido y tardan en bajar, impulsividad, conflictos frecuentes, confusión sobre sí mismo. Hay un equipo que puede sostener el tratamiento completo.",
@@ -3393,7 +3422,7 @@ const VARIABLES = [
         },
         {
           t: "Mindfulness y tolerancia al malestar",
-          tecs: ["mente-sabia", "tip", "pros-contras", "aceptacion-radical"],
+          tecs: ["tip", "pros-contras", "aceptacion-radical"],
           obj: "Atravesar las crisis sin hacerse daño.",
           pasos: [
             "Enseñar la mente sabia y las habilidades de observar, describir y participar sin juzgar.",
@@ -3434,7 +3463,7 @@ const VARIABLES = [
         },
         {
           t: "Coaching telefónico, consolidación y graduación",
-          tecs: ["coaching-telefonico", "prevencion-recaidas"],
+          tecs: ["prevencion-recaidas"],
           obj: "Llevar las habilidades a la vida diaria y sostenerlas al terminar.",
           pasos: [
             "Ofrecer coaching telefónico para usar las habilidades en el momento, al adolescente y a los padres.",
@@ -3475,6 +3504,7 @@ const VARIABLES = [
       mod: "cps",
       inst: ["SDQ", "ECBI"],
       enf: "cps",
+      nivel: "ensayos",
       t: "Solución colaborativa y proactiva de problemas",
       fuente: "Greene y Ablon, 2006",
       cuando: "El niño o el adolescente tiene <strong>explosiones de rabia repetidas y predecibles</strong> —ante cambios de actividad, tareas, rutinas o negativas— y los intentos de imponer consecuencias más fuertes han empeorado las explosiones. Los padres, y si es posible los docentes, pueden venir a las sesiones.",
@@ -3500,7 +3530,7 @@ const VARIABLES = [
         },
         {
           t: "Los tres planes",
-          tecs: ["tres-planes", "psicoeducacion"],
+          tecs: ["psicoeducacion"],
           obj: "Que los adultos reconozcan cómo responden hoy a las expectativas no cumplidas y cuál es la alternativa.",
           pasos: [
             "Presentar las tres opciones ante una expectativa que el niño no cumple: imponerla (plan A), resolver el problema en conjunto (plan B) o dejarla por ahora (plan C).",
@@ -3556,7 +3586,7 @@ const VARIABLES = [
         },
         {
           t: "Solución colaborativa en el colegio",
-          tecs: ["plan-b", "consultoria-docente"],
+          tecs: ["plan-b"],
           obj: "Llevar el enfoque al colegio cuando allí también hay explosiones.",
           pasos: [
             "Revisar con los docentes las habilidades que faltan y las situaciones que disparan en el colegio.",
@@ -3598,6 +3628,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["SDQ", "ECBI", "APQ"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Entrenamiento a padres para la conducta desafiante",
       fuente: "Kazdin, 2005, cap. 5 · Kazdin, 2010 · McMahon y Frick, 2019",
       cuando: "El niño tiene entre 2 y 12 años y <strong>la desobediencia, las rabietas o el desafío se repiten en casa</strong>, con discusiones que escalan hasta los gritos o los golpes. Hay al menos un cuidador principal que puede venir a las sesiones y practicar a diario en casa.",
@@ -3608,7 +3639,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Orientación y evaluación",
-          tecs: ["entrevista-clinica", "psicoeducacion", "proceso-coercitivo"],
+          tecs: ["entrevista-clinica", "psicoeducacion"],
           obj: "Conocer el problema y su contexto, y explicar qué pedirá el programa a los padres.",
           pasos: [
             "Recoger con los padres qué hace el niño, dónde, con quién y desde cuándo, y cómo es el día en casa y en el colegio.",
@@ -3652,7 +3683,7 @@ const VARIABLES = [
         },
         {
           t: "Atender e ignorar",
-          tecs: ["atencion-diferencial", "extincion"],
+          tecs: ["atencion-diferencial"],
           obj: "Retirar la atención de las conductas molestas menores y dársela a su opuesto positivo.",
           pasos: [
             "Elegir una conducta molesta pero no peligrosa, como quejarse o interrumpir, que se va a ignorar.",
@@ -3746,6 +3777,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["ECBI", "SDQ"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Terapia de interacción padres-hijos",
       fuente: "Hembree-Kigin y McNeil, 1995, caps. 1 a 5 · McMahon y Frick, 2019",
       cuando: "El niño tiene <strong>entre 2 y 7 años</strong> y presenta desobediencia, desafío o agresión, y la relación con sus padres se volvió tensa o crítica. Los padres pueden venir juntos con el niño a sesiones semanales y practicar cinco minutos al día.",
@@ -3860,6 +3892,7 @@ const VARIABLES = [
       mod: "procesamiento-social",
       inst: ["SDQ", "ECBI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Entrenamiento en solución de problemas para el niño",
       fuente: "Kazdin, 2010 · McMahon y Frick, 2019",
       cuando: "El niño tiene <strong>entre 7 y 13 años</strong>, responde de forma impulsiva o agresiva ante problemas con compañeros, hermanos, padres o docentes, y puede trabajar en sesiones individuales. Idealmente, los padres hacen a la vez el entrenamiento a padres.",
@@ -3967,6 +4000,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["ECBI", "SDQ"],
       enf: "pad",
+      nivel: "conceptual",
       t: "Diez pasos con padres de adolescentes desafiantes",
       fuente: "Barkley y Robin, 2014, pasos 1 a 10",
       cuando: "Un adolescente de <strong>12 a 17 años</strong> desafía, discute y no cumple las normas, y el conflicto con los padres se ha vuelto diario. Los padres están dispuestos a cambiar su forma de responder.",
@@ -4070,6 +4104,7 @@ const VARIABLES = [
       mod: "social-cognitivo-contextual",
       inst: ["SDQ", "ECBI"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Programa de afrontamiento de la ira para niños",
       fuente: "Lochman et al., 2010",
       cuando: "Niños de <strong>9 a 12 años</strong> que pelean, amenazan o reaccionan con agresión ante provocaciones, identificados por sus docentes, sus padres o en la consulta.",
@@ -4178,6 +4213,7 @@ const VARIABLES = [
       mod: "ira-novaco",
       inst: ["SDQ"],
       enf: "tcc",
+      nivel: "conceptual",
       t: "Manejo de la ira para adolescentes",
       fuente: "Feindler y Gerber, 2008",
       cuando: "Un <strong>adolescente con arranques de ira y agresión</strong> ante provocaciones, en el colegio, la casa o una institución, que tiene dificultades para manejar la activación, controlar los impulsos y responder de forma prosocial.",
@@ -4285,7 +4321,9 @@ const VARIABLES = [
       id: "ira-perdon",
       mod: "educacion-perdon",
       inst: ["EFI-N"],
+      instEst: ["EFI-N"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Educación en el perdón para niños",
       fuente: "Enright y Knutson Enright, 2008 · Enright y Fitzgibbons, 2015, cap. 12",
       cuando: "Niños de <strong>6 a 11 años</strong> con enojo por injusticias que vivieron —en la familia, con compañeros— o que crecen en contextos de mucho conflicto o pobreza. Se aplica a un aula completa, en grupo o en consulta, y enseña una tercera forma de responder al enojo, además de negarlo o descargarlo.",
@@ -4296,7 +4334,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Todas las personas tienen valor",
-          tecs: ["valor-inherente", "cuentos-perdon"],
+          tecs: ["cuentos-perdon"],
           obj: "Que el niño entienda que toda persona vale por el solo hecho de serlo, aunque sea distinta o actúe mal.",
           pasos: [
             "Conversar sobre cómo nos diferenciamos: aspecto, cosas, habilidades, lugar donde vivimos.",
@@ -4324,7 +4362,7 @@ const VARIABLES = [
         },
         {
           t: "Qué es y qué no es perdonar",
-          tecs: ["que-es-perdonar", "cuentos-perdon"],
+          tecs: ["cuentos-perdon"],
           obj: "Que el niño entienda qué es perdonar y lo distinga de excusar, olvidar o volver a ser amigos.",
           pasos: [
             "Leer un cuento en que un personaje perdona a otro.",
@@ -4409,6 +4447,7 @@ const VARIABLES = [
       mod: "consumo-aprendido",
       inst: ["CRAFFT"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Entrevista motivacional y terapia cognitivo-conductual",
       fuente: "Chung y Bachrach, 2019 · Sampl y Kadden, 2001",
       cuando: "Un <strong>adolescente</strong> que consume alcohol o marihuana con problemas asociados, ambivalente frente a cambiar, que puede asistir a sesiones individuales o de grupo.",
@@ -4419,7 +4458,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Vínculo, motivación y metas",
-          tecs: ["entrevista-motivacional", "retroalimentacion-personalizada"],
+          tecs: ["retroalimentacion-personalizada"],
           obj: "Construir la alianza y explorar la ambivalencia frente al consumo.",
           pasos: [
             "Evaluar antes de empezar para preparar una retroalimentación personalizada.",
@@ -4434,7 +4473,7 @@ const VARIABLES = [
         },
         {
           t: "Análisis funcional del consumo",
-          tecs: ["analisis-funcional", "situaciones-riesgo"],
+          tecs: ["analisis-funcional"],
           obj: "Entender qué dispara el consumo y qué lo mantiene.",
           pasos: [
             "Revisar con el adolescente situaciones concretas de consumo: el disparador, lo que pensó, lo que sintió, lo que hizo y sus consecuencias positivas y negativas.",
@@ -4536,6 +4575,7 @@ const VARIABLES = [
       mod: "familia-consumo",
       inst: ["CRAFFT"],
       enf: "fam",
+      nivel: "ensayos",
       t: "Terapia familiar multidimensional",
       fuente: "Chung y Bachrach, 2019 · Liddle, 2002",
       cuando: "Un <strong>adolescente</strong> con consumo y problemas en varios ámbitos —familia, colegio, justicia—, con conflictos familiares y supervisión débil.",
@@ -4638,6 +4678,7 @@ const VARIABLES = [
       mod: "acoso-grupal",
       inst: ["Cuestionario anónimo de acoso"],
       enf: "col",
+      nivel: "ensayos",
       t: "Programa de todo el colegio contra el acoso",
       fuente: "McMahon y Frick, 2019",
       cuando: "Un colegio con casos de acoso o que quiere prevenirlo, con directivos dispuestos a comprometer al personal durante al menos un año escolar.",
@@ -4648,7 +4689,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Conocer el problema en el colegio",
-          tecs: ["cuestionario-acoso", "consultoria-docente"],
+          tecs: [],
           obj: "Medir el acoso y comprometer al colegio.",
           pasos: [
             "Aplicar un cuestionario anónimo a los estudiantes sobre el acoso en el colegio.",
@@ -4661,7 +4702,7 @@ const VARIABLES = [
         },
         {
           t: "Política, reglas y supervisión",
-          tecs: ["reglas-aula", "supervision-recreos"],
+          tecs: ["reglas-aula"],
           obj: "Reducir las oportunidades y las recompensas del acoso.",
           pasos: [
             "Acordar una política del colegio contra el acoso.",
@@ -4674,7 +4715,7 @@ const VARIABLES = [
         },
         {
           t: "Trabajo en el aula y con los espectadores",
-          tecs: ["psicoeducacion", "rol-espectadores"],
+          tecs: ["psicoeducacion"],
           obj: "Cambiar las actitudes del grupo y el papel de quienes presencian el acoso.",
           pasos: [
             "Hacer lecciones y reuniones de aula regulares sobre el acoso.",
@@ -4729,6 +4770,7 @@ const VARIABLES = [
       mod: "educacion-perdon",
       inst: ["EFI-N"],
       enf: "pp",
+      nivel: "ensayos",
       t: "Perdón para adolescentes que acosan y son acosados",
       fuente: "Enright y Fitzgibbons, 2015, cap. 12",
       cuando: "Adolescentes que <strong>acosan y a la vez han sido agredidos</strong>, o estudiantes con mucho enojo, en riesgo de fracaso escolar y con heridas profundas de otras personas. Parte de la idea de que quien acosa suele haber sido tratado injustamente y desplaza ese enojo hacia otros más débiles. Complementa, no reemplaza, el sistema escolar contra el acoso.",
@@ -4752,7 +4794,7 @@ const VARIABLES = [
         },
         {
           t: "El perdón calma el enojo",
-          tecs: ["que-es-perdonar"],
+          tecs: [],
           obj: "Presentar el perdón como una forma de calmar el enojo de adentro, distinta de negarlo o descargarlo.",
           pasos: [
             "Explorar las tres formas de manejar el enojo: negarlo, expresarlo o perdonar.",
@@ -4765,7 +4807,7 @@ const VARIABLES = [
         },
         {
           t: "Todos tenemos valor",
-          tecs: ["valor-inherente"],
+          tecs: [],
           obj: "Reconocer el valor de todas las personas, tanto de quien acosa como de quien es acosado.",
           pasos: [
             "Trabajar con la historia del personaje y con una canción o un texto contra la burla.",
@@ -4847,6 +4889,7 @@ const VARIABLES = [
       sug: { mod: "procesamiento-social", por: "El área de solución de problemas interpersonales del PEHIS trabaja los pasos que describe el modelo de procesamiento de la información social." },
       inst: ["SDQ"],
       enf: "col",
+      nivel: "preliminar",
       t: "Programa de enseñanza de habilidades de interacción social (PEHIS)",
       fuente: "Monjas, 2009, caps. 2 a 4",
       cuando: "Niños y niñas <strong>en edad escolar</strong> con dificultades en las relaciones con sus compañeros o con los adultos: aislados, rechazados, con conductas agresivas o muy tímidos.",
@@ -4885,7 +4928,7 @@ const VARIABLES = [
         },
         {
           t: "Generalización en la casa y en el colegio",
-          tecs: ["generalizacion", "elogio-especifico"],
+          tecs: ["elogio-especifico"],
           obj: "Que el niño use las habilidades en situaciones reales.",
           pasos: [
             "Usar la ficha de casa para que la familia enseñe y refuerce la misma habilidad.",
@@ -4926,6 +4969,7 @@ const VARIABLES = [
       mod: "manejo-conductual",
       inst: ["Vanderbilt", "SNAP-IV", "SDQ"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Entrenamiento conductual a padres",
       fuente: "Evans et al., 2019 · Kazdin, 2005",
       cuando: "El niño tiene <strong>entre 3 y 12 años</strong> y en casa hay desobediencia, conflictos por rutinas y tareas, o una relación tensa con los padres. Los padres pueden asistir a un grupo o a sesiones individuales y aplicar lo aprendido a diario.",
@@ -4936,7 +4980,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Qué es el TDAH y qué sostiene los conflictos",
-          tecs: ["psicoeducacion", "proceso-coercitivo"],
+          tecs: ["psicoeducacion"],
           obj: "Que los padres entiendan el TDAH y el ciclo que agrava la conducta en casa.",
           pasos: [
             "Explicar el TDAH como una dificultad para regular la atención y la conducta, que no es falta de voluntad ni culpa de los padres.",
@@ -5038,6 +5082,7 @@ const VARIABLES = [
       mod: "manejo-conductual",
       inst: ["Vanderbilt", "SNAP-IV"],
       enf: "col",
+      nivel: "ensayos",
       t: "Manejo conductual en el aula y nota diaria",
       fuente: "Evans et al., 2019",
       cuando: "El niño está en preescolar o primaria y <strong>los problemas se ven en el aula</strong>: no termina el trabajo, interrumpe, se levanta, discute. El docente está dispuesto a trabajar con un consultor durante varias semanas.",
@@ -5048,7 +5093,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Relación con el docente",
-          tecs: ["consultoria-docente"],
+          tecs: [],
           obj: "Construir una alianza de trabajo con el docente, sin la cual no hay intervención en el aula.",
           pasos: [
             "Agradecer la derivación y mostrar interés en trabajar juntos.",
@@ -5062,7 +5107,7 @@ const VARIABLES = [
         },
         {
           t: "Definir el problema y las conductas clave",
-          tecs: ["registro-conducta", "consultoria-docente"],
+          tecs: ["registro-conducta"],
           obj: "Traducir la preocupación del docente en conductas observables y medibles.",
           pasos: [
             "Preguntar qué pasa justo antes y justo después de la conducta, cuándo y dónde ocurre, y cómo es esa situación.",
@@ -5105,7 +5150,7 @@ const VARIABLES = [
         },
         {
           t: "Seguimiento con datos",
-          tecs: ["consultoria-docente", "moldeamiento"],
+          tecs: ["moldeamiento"],
           obj: "Ajustar la nota según los datos y subir las metas.",
           pasos: [
             "Revisar cada dos semanas los datos de la nota y lo que cuenta el docente.",
@@ -5136,6 +5181,7 @@ const VARIABLES = [
       mod: "manejo-conductual",
       inst: ["Vanderbilt", "SNAP-IV"],
       enf: "col",
+      nivel: "ensayos",
       t: "Entrenamiento en organización para adolescentes",
       fuente: "Evans et al., 2019",
       cuando: "El adolescente está en secundaria y <strong>tiene tareas sin entregar, materiales desordenados y no anota lo que le piden</strong>, aunque entiende las materias. Se puede verlo con frecuencia, en el colegio o en consulta.",
@@ -5146,7 +5192,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Motivación y metas",
-          tecs: ["entrevista-motivacional", "contrato-conductual"],
+          tecs: ["contrato-conductual"],
           obj: "Que el adolescente vea para qué le sirve organizarse y se comprometa.",
           pasos: [
             "Explorar qué le preocupa del colegio y qué quiere lograr, con preguntas abiertas y reflejos.",
@@ -5235,6 +5281,7 @@ const VARIABLES = [
       sug: { mod: "manejo-conductual", por: "El componente de padres y docentes —recordar, supervisar, elogiar y premiar— aplica los principios del manejo conductual." },
       inst: ["Vanderbilt", "SNAP-IV"],
       enf: "cond",
+      nivel: "ensayos",
       t: "Entrenamiento en habilidades organizativas (OST)",
       fuente: "Gallagher et al., 2014, caps. 1 a 3 y sesiones 1 a 20",
       cuando: "Un niño con TDAH de <strong>tercero a quinto de primaria</strong> (8 a 11 años) no anota las tareas, pierde los útiles y los papeles, no calcula el tiempo y no sabe cómo empezar los trabajos largos, y eso genera conflictos en casa y bajo rendimiento.",
@@ -5325,6 +5372,7 @@ const VARIABLES = [
       sug: { mod: "manejo-conductual", por: "La estructura en casa, con privilegios ligados al esfuerzo, aplica los principios del manejo conductual." },
       inst: ["Vanderbilt"],
       enf: "em",
+      nivel: "ensayos",
       t: "Terapia padres–adolescente para funciones ejecutivas (STAND)",
       fuente: "Sibley, 2017, caps. 2 y 4 a 7",
       cuando: "Un adolescente con TDAH o con problemas de atención, funciones ejecutivas y motivación tiene <strong>problemas escolares</strong> —no anota las tareas, no planea, no estudia— y la relación con los padres se ha vuelto un ciclo de control y conflicto alrededor del colegio.",
@@ -5335,7 +5383,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Módulos de compromiso",
-          tecs: ["entrevista-motivacional", "hoja-metas", "reglas-casa"],
+          tecs: ["hoja-metas", "reglas-casa"],
           obj: "Motivar al adolescente y a los padres, fijar metas y crear estructura en casa.",
           pasos: [
             "Conocer a la familia y presentar la formulación del caso.",
@@ -5363,7 +5411,7 @@ const VARIABLES = [
         },
         {
           t: "Módulos de movilización",
-          tecs: ["consultoria-docente", "prevencion-recaidas"],
+          tecs: ["prevencion-recaidas"],
           obj: "Involucrar al colegio y convertir las habilidades en hábitos duraderos.",
           pasos: [
             "Involucrar al colegio con los apoyos que puede ofrecer.",
@@ -5401,6 +5449,7 @@ const VARIABLES = [
       mod: "motivacion-pivote",
       inst: ["M-CHAT-R/F", "Vineland-3"],
       enf: "cond",
+      nivel: "ensayos",
       t: "Intervención naturalista con los padres para niños pequeños",
       fuente: "Koegel et al., 2010",
       cuando: "Un <strong>niño pequeño con autismo</strong>, o con sospecha fundada mientras llega el diagnóstico, que se comunica poco, no comparte la atención con los demás o no inicia la interacción. Los padres pueden venir a sesiones frecuentes y practicar en casa.",
@@ -5426,7 +5475,7 @@ const VARIABLES = [
         },
         {
           t: "Seguir el interés del niño",
-          tecs: ["eleccion-nino", "reforzador-natural"],
+          tecs: ["eleccion-nino"],
           obj: "Aumentar la motivación del niño para responder y comunicarse.",
           pasos: [
             "Enseñar a los padres a ofrecer materiales y actividades que el niño elige, siguiendo su interés.",
@@ -5480,7 +5529,7 @@ const VARIABLES = [
         },
         {
           t: "Llevarlo a todos los momentos del día",
-          tecs: ["retroalimentacion", "generalizacion"],
+          tecs: ["retroalimentacion"],
           obj: "Que el niño tenga oportunidades de aprender durante todo el día y con distintas personas.",
           pasos: [
             "Revisar con los padres las rutinas del día en que pueden aplicar las estrategias: comidas, baño, juego.",
@@ -5511,6 +5560,7 @@ const VARIABLES = [
       mod: "ensenanza-estructurada",
       inst: ["Vineland-3"],
       enf: "cond",
+      nivel: "preliminar",
       t: "Apoyos visuales y enseñanza estructurada",
       fuente: "Klinger y Dudley, 2019",
       cuando: "Un <strong>niño o adolescente con autismo</strong> que se desorganiza o hace rabietas ante los cambios, no entiende qué se espera de él, depende de que un adulto le indique cada paso o insiste en rutinas rígidas, en casa o en el colegio.",
@@ -5576,7 +5626,7 @@ const VARIABLES = [
         },
         {
           t: "Apoyos visuales en el colegio",
-          tecs: ["consultoria-docente", "apoyos-visuales"],
+          tecs: ["apoyos-visuales"],
           obj: "Llevar la misma estructura al aula.",
           pasos: [
             "Compartir con el docente lo que funciona en casa.",
@@ -5607,6 +5657,7 @@ const VARIABLES = [
       mod: "ansiedad-infantil",
       inst: ["SCARED"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual para la ansiedad en el autismo",
       fuente: "Klinger y Dudley, 2019",
       cuando: "Un <strong>niño o adolescente con autismo y capacidad verbal</strong> con ansiedad que interfiere, como miedo a equivocarse, preocupaciones o miedos específicos, con un padre o cuidador que puede participar.",
@@ -5702,6 +5753,7 @@ const VARIABLES = [
       mod: "aprendizaje-explicito",
       inst: ["Vineland-3"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Habilidades sociales para adolescentes con autismo",
       fuente: "Klinger y Dudley, 2019",
       cuando: "Un <strong>adolescente con autismo</strong>, sin discapacidad intelectual, que quiere tener amigos pero monopoliza las conversaciones, no sabe cómo acercarse a otros o es objeto de burlas, con un padre o cuidador que puede asistir a un grupo paralelo.",
@@ -5805,6 +5857,7 @@ const VARIABLES = [
       mod: "funcion-conducta",
       inst: ["Registro ABC", "Vineland-3"],
       enf: "cond",
+      nivel: "preliminar",
       t: "Evaluación funcional y apoyo conductual positivo",
       fuente: "Matson et al., 2019",
       cuando: "Un niño o adolescente con discapacidad intelectual con agresión, autolesiones, destrucción u otras conductas desafiantes que ponen en riesgo su salud, su aprendizaje o su participación en la comunidad.",
@@ -5855,7 +5908,7 @@ const VARIABLES = [
         },
         {
           t: "Dejar de reforzar la conducta desafiante",
-          tecs: ["extincion"],
+          tecs: [],
           obj: "Que la conducta desafiante deje de producir lo que busca.",
           pasos: [
             "Retirar la consecuencia que mantiene la conducta, por ejemplo no dejar que escape de la tarea cuando agrede.",
@@ -5868,7 +5921,7 @@ const VARIABLES = [
         },
         {
           t: "Cambiar el ambiente",
-          tecs: ["apoyo-conductual-positivo", "manipulacion-antecedentes"],
+          tecs: ["manipulacion-antecedentes"],
           obj: "Prevenir la conducta modificando las condiciones que la provocan.",
           pasos: [
             "Identificar los antecedentes que la provocan, como tareas difíciles o esperas.",
@@ -5897,6 +5950,7 @@ const VARIABLES = [
       mod: "funcion-conducta",
       inst: ["Vineland-3"],
       enf: "cond",
+      nivel: "preliminar",
       t: "Habilidades adaptativas y sociales",
       fuente: "Matson et al., 2019",
       cuando: "Un niño o adolescente con discapacidad intelectual que necesita aprender habilidades de cuidado personal, de vida en casa y en la comunidad, o habilidades para relacionarse con otros, con padres o docentes que pueden practicar con él.",
@@ -5935,7 +5989,7 @@ const VARIABLES = [
         },
         {
           t: "Entrenar a los padres para enseñar",
-          tecs: ["entrenamiento-habilidades-conductuales", "generalizacion"],
+          tecs: ["entrenamiento-habilidades-conductuales"],
           obj: "Que los padres enseñen y generalicen las habilidades en casa.",
           pasos: [
             "Enseñar a los padres con instrucciones, modelo, ensayo y retroalimentación.",
@@ -5948,7 +6002,7 @@ const VARIABLES = [
         },
         {
           t: "Compañeros en el colegio",
-          tecs: ["mediacion-pares", "consultoria-docente"],
+          tecs: ["mediacion-pares"],
           obj: "Practicar las habilidades sociales con compañeros.",
           pasos: [
             "Preparar a compañeros para modelar habilidades sociales e interactuar con el estudiante.",
@@ -5976,6 +6030,7 @@ const VARIABLES = [
       mod: "fortalezas-caracter",
       inst: ["VIA-J"],
       enf: "pp",
+      nivel: "preliminar",
       t: "Fortalezas del carácter en la discapacidad intelectual",
       fuente: "Niemiec y Tomasulo, 2023, cap. 3",
       cuando: "Niños y adolescentes con <strong>discapacidad intelectual o del desarrollo</strong>, incluido el autismo, como complemento de los apoyos educativos y conductuales. Busca que se conozcan por sus cualidades y no solo por sus déficits, y que sus fortalezas entren en las metas escolares.",
@@ -5986,7 +6041,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Conocer las fortalezas con los apoyos necesarios",
-          tecs: ["fortalezas-caracter", "fortalezas-360"],
+          tecs: ["fortalezas-360"],
           obj: "Identificar las fortalezas del niño con el método que mejor se ajuste a su nivel de apoyo.",
           pasos: [
             "Elegir el nivel: el inventario juvenil solo, con una persona de apoyo que no influya en las respuestas, una medida breve, o una lista de las 24 fortalezas en lenguaje sencillo para marcar las que lo describen.",
@@ -6013,7 +6068,7 @@ const VARIABLES = [
         },
         {
           t: "Primeros pasos con cada fortaleza",
-          tecs: ["fortalezas-caracter"],
+          tecs: [],
           obj: "Traducir cada fortaleza en una acción concreta y sencilla.",
           pasos: [
             "Tomar una fortaleza principal y su acción práctica: por ejemplo, para la bondad, ayudar o dar tiempo a otro.",
@@ -6068,6 +6123,7 @@ const VARIABLES = [
       mod: "aprendizaje-trauma",
       inst: ["UCLA-PTSD-RI", "SDQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual centrada en el trauma",
       fuente: "Deblinger et al., 2012",
       cuando: "Un <strong>niño desde los 4 años o un adolescente</strong> con síntomas de estrés postraumático después de uno o varios traumas, que ya no está expuesto al agresor, con un padre o cuidador que pueda apoyarlo y participar.",
@@ -6078,7 +6134,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación y psicoeducación sobre el trauma",
-          tecs: ["entrevista-clinica", "psicoeducacion", "exposicion-gradual-trauma"],
+          tecs: ["entrevista-clinica", "psicoeducacion"],
           obj: "Conocer el impacto del trauma, normalizar las reacciones y comprometer a la familia.",
           pasos: [
             "Evaluar al niño y al cuidador con entrevistas y escalas: estrés postraumático, depresión, conducta, y las propias reacciones del cuidador.",
@@ -6213,6 +6269,7 @@ const VARIABLES = [
       mod: "aprendizaje-trauma",
       inst: ["UCLA-PTSD-RI"],
       enf: "tcc",
+      nivel: "guia",
       t: "Terapia centrada en el trauma en el colegio",
       fuente: "Rivera, 2012",
       cuando: "Estudiantes con historia de trauma y síntomas que afectan su rendimiento o su conducta, referidos por docentes u orientadores, cuyas familias difícilmente llegarían a un servicio de salud mental.",
@@ -6223,7 +6280,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Alianza con el colegio",
-          tecs: ["consultoria-docente", "psicoeducacion"],
+          tecs: ["psicoeducacion"],
           obj: "Lograr el apoyo de directivos y docentes para intervenir en el colegio.",
           pasos: [
             "Mostrar a los directivos cómo el trauma afecta la concentración, el aprendizaje y la conducta.",
@@ -6237,7 +6294,7 @@ const VARIABLES = [
         },
         {
           t: "Tamizaje, consentimiento y evaluación",
-          tecs: ["tamizaje", "entrevista-clinica"],
+          tecs: ["entrevista-clinica"],
           obj: "Identificar a quiénes les sirve el programa y a quiénes derivar.",
           pasos: [
             "Recibir remisiones de docentes y orientadores, aunque el trauma no esté identificado.",
@@ -6324,6 +6381,7 @@ const VARIABLES = [
       mod: "aprendizaje-trauma",
       inst: ["UCLA-PTSD-RI", "SDQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia centrada en el trauma para niños bajo protección",
       fuente: "Dorsey y Deblinger, 2012",
       cuando: "Un niño o adolescente en un hogar sustituto o con familiares que asumieron su cuidado, con traumas múltiples y crónicos, problemas de conducta y dificultades para regular las emociones.",
@@ -6334,7 +6392,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Coordinación con protección",
-          tecs: ["coordinacion-proteccion"],
+          tecs: [],
           obj: "Trabajar con el equipo de protección como aliado.",
           pasos: [
             "Obtener del profesional de protección la historia del niño, el plan de reintegro o permanencia y las fechas de audiencias y visitas.",
@@ -6431,6 +6489,7 @@ const VARIABLES = [
       mod: "duelo-multidimensional",
       inst: ["Lista-PCBD", "UCLA-PTSD-RI"],
       enf: "tcc",
+      nivel: "preliminar",
       t: "Terapia multidimensional del duelo",
       fuente: "Kaplow et al., 2019",
       cuando: "Un niño o adolescente de <strong>7 a 17 años</strong> con reacciones de duelo intensas meses después de la muerte de un ser querido, que interfieren con el colegio, las amistades o la vida familiar, con un cuidador que puede participar.",
@@ -6441,7 +6500,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Evaluación del perfil de duelo",
-          tecs: ["entrevista-clinica", "dimensiones-duelo"],
+          tecs: ["entrevista-clinica"],
           obj: "Saber qué reacciones de duelo predominan y si hay síntomas de estrés postraumático.",
           pasos: [
             "Evaluar con el niño y el cuidador la pérdida, la forma en que ocurrió la muerte y las adversidades que vinieron después, como cambios de casa o de ingresos.",
@@ -6454,7 +6513,7 @@ const VARIABLES = [
         },
         {
           t: "Psicoeducación sobre el duelo",
-          tecs: ["psicoeducacion", "dimensiones-duelo", "recordatorios-perdida"],
+          tecs: ["psicoeducacion"],
           obj: "Normalizar el duelo y dar palabras para lo que el niño siente.",
           pasos: [
             "Explicar que no hay una sola forma correcta de vivir el duelo ni un tiempo fijo para que pase.",
@@ -6568,6 +6627,7 @@ const VARIABLES = [
       mod: "duelo-multidimensional",
       inst: ["Lista-PCBD"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Grupo de duelo para adolescentes en el colegio",
       fuente: "Kaplow et al., 2019",
       cuando: "Adolescentes de <strong>11 a 18 años</strong> que perdieron a alguien cercano, a menudo en contextos de violencia, conflicto o desastre, con reacciones de duelo que afectan su funcionamiento.",
@@ -6578,7 +6638,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Psicoeducación sobre el duelo",
-          tecs: ["psicoeducacion", "dimensiones-duelo", "apoyo-social"],
+          tecs: ["psicoeducacion", "apoyo-social"],
           obj: "Normalizar el duelo y crear un lenguaje común en el grupo.",
           pasos: [
             "Presentar las reacciones de duelo, las que ayudan y las que hacen daño.",
@@ -6590,7 +6650,7 @@ const VARIABLES = [
         },
         {
           t: "Recordatorios, reacciones y consecuencias",
-          tecs: ["recordatorios-perdida", "triangulo-cognitivo"],
+          tecs: ["triangulo-cognitivo"],
           obj: "Ver cómo los recordatorios llevan a reacciones y consecuencias.",
           pasos: [
             "Mapear con cada adolescente la cadena entre un recordatorio de la pérdida, su reacción y lo que pasa después.",
@@ -6656,6 +6716,7 @@ const VARIABLES = [
       mod: "aprendizaje-trauma",
       inst: ["UCLA-PTSD-RI", "Lista-PCBD"],
       enf: "tcc",
+      nivel: "preliminar",
       t: "TF-CBT para el duelo traumático",
       fuente: "Cohen et al., 2017, caps. 4, 6 a 15 y 17 a 21",
       cuando: "Un niño o adolescente perdió a alguien importante en <strong>circunstancias traumáticas</strong> —violencia, accidente, suicidio, muerte súbita o una enfermedad vivida como traumática— y los síntomas de estrés postraumático le impiden hacer el duelo: evita todo lo que le recuerda al fallecido, no puede recordarlo sin revivir la muerte.",
@@ -6757,6 +6818,7 @@ const VARIABLES = [
       mod: "sensibilidad-apego",
       inst: ["SDQ"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Programa de apego y ajuste bioconductual para cuidadores de bebés",
       fuente: "Wolfe y Kelly, 2019",
       cuando: "Cuidadores de niños de <strong>6 a 24 meses</strong> identificados por protección como de alto riesgo de maltrato, o cuidadores sustitutos de bebés que rechazan el contacto.",
@@ -6793,7 +6855,7 @@ const VARIABLES = [
         },
         {
           t: "Evitar las conductas que asustan",
-          tecs: ["conducta-atemorizante"],
+          tecs: [],
           obj: "Reducir las conductas del cuidador que asustan al bebé.",
           pasos: [
             "Identificar con el video conductas que asustan, como gritos, movimientos bruscos o juegos de susto.",
@@ -6846,6 +6908,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["ECBI"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Terapia de interacción padres-hijos con familias con maltrato físico",
       fuente: "Wolfe y Kelly, 2019",
       cuando: "Familias con niños de <strong>2 a 7 años</strong> en las que hubo maltrato físico o hay crianza dura o intrusiva que pone al niño en riesgo, o en las que los problemas de conducta del niño aumentan el riesgo. Puede participar el padre que maltrató, el otro padre o el cuidador sustituto.",
@@ -6898,7 +6961,7 @@ const VARIABLES = [
         },
         {
           t: "Cierre y seguimiento con protección",
-          tecs: ["prevencion-recaidas", "coordinacion-proteccion"],
+          tecs: ["prevencion-recaidas"],
           obj: "Asegurar que los cambios se mantengan.",
           pasos: [
             "Repetir la observación y las escalas.",
@@ -6929,6 +6992,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["UCLA-PTSD-RI", "APQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual combinada para padres e hijos",
       fuente: "Wolfe y Kelly, 2019",
       cuando: "Un padre con un episodio documentado de maltrato físico o con alto riesgo, bajo seguimiento de protección, y su hijo de <strong>3 a 17 años</strong>, que vive con él o está en otro hogar con plan de reintegro.",
@@ -7010,6 +7074,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["ECBI"],
       enf: "pad",
+      nivel: "preliminar",
       t: "Entrenamiento y apoyo a cuidadores sustitutos",
       fuente: "Wolfe y Kelly, 2019",
       cuando: "Cuidadores sustitutos o familiares a cargo de niños de <strong>5 a 11 años</strong> bajo protección, sobre todo si el niño tiene problemas de conducta.",
@@ -7084,6 +7149,7 @@ const VARIABLES = [
       mod: "coercion",
       inst: ["ECBI", "SDQ"],
       enf: "tcc",
+      nivel: "ensayos",
       t: "Terapia cognitivo-conductual centrada en la familia (AF-CBT)",
       fuente: "Kolko y Swenson, 2002, caps. 3 y 6 a 16",
       cuando: "Un niño o adolescente <strong>en edad escolar</strong> que sufrió maltrato físico y el padre o la madre que lo maltrató, cuando el plan es que sigan o vuelvan a vivir juntos. Hay agresividad del niño, conflicto familiar o riesgo de que el maltrato se repita.",
@@ -7094,7 +7160,7 @@ const VARIABLES = [
       actividades: [
         {
           t: "Seguridad y compromiso",
-          tecs: ["coordinacion-proteccion", "plan-seguridad", "estrategias-vinculacion"],
+          tecs: ["plan-seguridad", "estrategias-vinculacion"],
           obj: "Asegurar que la familia esté segura y comprometida con el tratamiento.",
           pasos: [
             "Acordar un plan de seguridad escrito para prevenir y manejar la violencia.",
@@ -7188,6 +7254,7 @@ const VARIABLES = [
       mod: "tareas-divorcio",
       inst: ["SDQ"],
       enf: "col",
+      nivel: "ensayos",
       t: "Grupo de apoyo para hijos de padres separados",
       fuente: "Pedro-Carroll, 2008",
       cuando: "Niños de <strong>7 y 8 años</strong> cuyos padres se separaron, con reacciones de tristeza, miedo, culpa o enojo, sin problemas emocionales graves. Hay versiones para otras edades.",
@@ -7321,6 +7388,7 @@ const VARIABLES = [
       mod: "sueno-aprendido",
       inst: ["Diario de sueño"],
       enf: "pad",
+      nivel: "ensayos",
       t: "Tratamiento conductual del insomnio infantil con los padres",
       fuente: "Graef y Byars, 2019",
       cuando: "Un niño pequeño o en edad escolar que no se duerme sin la presencia o la ayuda de un adulto, que se despierta varias veces en la noche y llama a sus padres, o que alarga y resiste la hora de dormir.",
@@ -7346,7 +7414,7 @@ const VARIABLES = [
         },
         {
           t: "Dormirse solo",
-          tecs: ["extincion", "extincion-gradual", "desvanecimiento-presencia"],
+          tecs: ["extincion-gradual", "desvanecimiento-presencia"],
           obj: "Que el niño aprenda a dormirse sin ayuda y a volver a dormirse solo.",
           pasos: [
             "Acostar al niño somnoliento pero despierto.",
@@ -7417,6 +7485,7 @@ const VARIABLES = [
       mod: "sueno-aprendido",
       inst: ["Diario de sueño"],
       enf: "tcc",
+      nivel: "preliminar",
       t: "Tratamiento cognitivo-conductual del insomnio y del horario corrido",
       fuente: "Graef y Byars, 2019",
       cuando: "Un adolescente que tarda mucho en dormirse, se despierta en la noche o no descansa, o que no logra dormirse antes de la madrugada ni levantarse para ir al colegio.",
@@ -7521,6 +7590,7 @@ const VARIABLES = [
       mod: "evitacion-activa",
       inst: ["Calendario de noches secas"],
       enf: "cond",
+      nivel: "ensayos",
       t: "Entrenamiento completo en casa con alarma",
       fuente: "Houts, 2010",
       cuando: "Un niño desde los <strong>5 o 6 años</strong> que moja la cama solo de noche, sin problemas médicos y sin un periodo seco de seis meses, con padres dispuestos a sostener el tratamiento varias semanas.",
@@ -7643,6 +7713,7 @@ const VARIABLES = [
       mod: "familia-recurso",
       inst: ["EDE"],
       enf: "fam",
+      nivel: "ensayos",
       t: "Tratamiento basado en la familia",
       fuente: "Robin y Le Grange, 2010",
       cuando: "Un adolescente con anorexia de menos de tres años de evolución, médicamente estable para el tratamiento ambulatorio, con padres que pueden dedicar tiempo y energía a alimentarlo.",
@@ -7740,6 +7811,7 @@ const VARIABLES = [
       mod: "familia-recurso",
       inst: ["EDE"],
       enf: "fam",
+      nivel: "ensayos",
       t: "Terapia familiar conductual sistémica",
       fuente: "Robin y Le Grange, 2010",
       cuando: "Un adolescente con anorexia cuya familia se beneficia de un programa estructurado para la alimentación, con acceso a un médico y a un nutricionista, o con distorsiones importantes sobre el cuerpo.",
@@ -7878,7 +7950,7 @@ const GLOSARIO = [
          "Presentar las caídas como ocasiones de práctica y programar seguimientos."],
   ficha: "plan-mantenimiento-nino",
   fuente: "Ruiz et al., caps. 2 y 4 · Barlow et al., 2015, módulo 8 · Marlatt y Donovan" },
-{ k: "entrevista-motivacional", t: "Entrevista motivacional", tipo: "Técnica", enf: ["em"],
+{ k: "entrevista-motivacional", t: "Entrevista motivacional", tipo: "Tratamiento", enf: ["em"],
   d: "Estilo de conversación colaborativo que fortalece la motivación y el compromiso de la persona con un cambio. Evoca sus propias razones en lugar de dárselas. Se organiza en cuatro procesos que se solapan: vincularse, enfocar, evocar y planificar. Sus herramientas son las preguntas abiertas, las afirmaciones, los reflejos y los resúmenes. Es especialmente útil cuando hay ambivalencia.",
   fuente: "Miller y Arkowitz, 2015 · Miller, 2015" },
 { k: "solucion-problemas", t: "Solución de problemas", alias: ["entrenamiento en solución de problemas", "solución de problemas en cinco pasos"], tipo: "Técnica", enf: ["tcc"],
@@ -8092,7 +8164,7 @@ const GLOSARIO = [
          "Acordar solo el primero o los dos primeros para la semana.",
          "Revisar lo hecho y subir de paso solo cuando el anterior salió."],
   fuente: "Young et al., 2014, «Behavioral Techniques» · Dimidjian et al., 2014, «Graded Task Assignment»" },
-{ k: "activacion-conductual", t: "Activación conductual", tipo: "Técnica", enf: ["ac"],
+{ k: "activacion-conductual", t: "Activación conductual", tipo: "Tratamiento", enf: ["ac"],
   d: "Tratamiento de la depresión que reconecta a la persona con actividades que le dan agrado, logro y sentido, y que trabaja la evitación y la rumiación que la alejan de ellas. Parte de que la acción va primero: no se espera a tener ganas para actuar.",
   fuente: "Dimidjian et al., 2014 · Lejuez et al., 2011" },
 { k: "programacion-actividades", t: "Programación de actividades", alias: ["planificación diaria de actividades", "programar actividades"], tipo: "Técnica", enf: ["tcc", "ac"],
@@ -8135,7 +8207,7 @@ const GLOSARIO = [
 { k: "seguridad-medios", t: "Seguridad de los medios", alias: ["restricción de medios", "medios de autolesión", "medios letales"], tipo: "Técnica", enf: ["est", "dbt"],
   d: "Acordar con la persona y su familia cómo dejar fuera de alcance los medios con que podría hacerse daño de forma impulsiva: plaguicidas, medicamentos, armas, sustancias tóxicas. Antes se llamaba restricción de medios; el nuevo nombre subraya el objetivo protector.",
   fuente: "OPS, 2017, módulo SUI · Comtois y Landes, 2018" },
-{ k: "seguimiento-derivacion", t: "Seguimiento y derivación", tipo: "Técnica", enf: ["est"],
+{ k: "seguimiento-derivacion", t: "Seguimiento y derivación", tipo: "Procedimiento", enf: ["est"],
   d: "Cierre de toda intervención breve o en crisis. Antes de terminar se acuerda cómo y cuándo será el siguiente contacto. Después se verifica que la ayuda funcionó y que la persona quedó conectada con la atención que necesita. La derivación va con un enlace concreto (el servicio, la cita, quién acompaña) y no se deja a su iniciativa. Es el último componente de los primeros auxilios psicológicos.",
   fuente: "Deza, 2007 · OPS, 2017, módulo SUI" },
 { k: "estrategias-compromiso", t: "Estrategias de compromiso", tipo: "Técnica", enf: ["dbt"],
@@ -8329,7 +8401,7 @@ const GLOSARIO = [
   d: "Cinco preguntas que el niño aprende a hacerse ante un problema con otros: qué tengo que hacer, qué puedo hacer y qué pasaría —con al menos tres opciones—, cuál elijo y cómo me fue. Se aprenden con juegos, se ensayan con juego de roles y pasan de decirse en voz alta a pensarse en silencio.",
   ficha: "pasos-problema",
   fuente: "Kazdin, 2010" },
-{ k: "limites-confidencialidad", t: "Límites de la confidencialidad", tipo: "Técnica", enf: ["est", "tcc"],
+{ k: "limites-confidencialidad", t: "Límites de la confidencialidad", tipo: "Procedimiento", enf: ["est", "tcc"],
   d: "Explicar al comienzo, al adolescente y a los padres, qué de lo que se hable es privado y qué no: todo lo que implique riesgo para su vida o la de otros se comunicará a quienes puedan protegerlo. Dicho con claridad desde el inicio, construye confianza y evita que el adolescente sienta que se rompió un acuerdo cuando haya que informar.",
   fuente: "Berk et al., 2008, sesión 1" },
 { k: "linea-tiempo-intento", t: "Línea de tiempo del intento", tipo: "Técnica", enf: ["tcc"],
@@ -8350,7 +8422,7 @@ const GLOSARIO = [
 { k: "ejercicio-prevencion-recaidas", t: "Ejercicio de prevención de recaídas en imaginación", tipo: "Técnica", enf: ["tcc"],
   d: "El adolescente imagina con detalle la secuencia de su último intento; después la repite imaginando que usa las habilidades aprendidas en cada momento, y por último imagina una crisis futura y cómo la afrontaría. Es un ensayo y a la vez una evaluación: el tratamiento termina cuando puede aplicar sus habilidades en el ejercicio.",
   fuente: "Berk et al., 2008, sesiones 9 y 10" },
-{ k: "coaching-telefonico", t: "Coaching telefónico", tipo: "Técnica", enf: ["dbt"],
+{ k: "coaching-telefonico", t: "Coaching telefónico", tipo: "Formato", enf: ["dbt"],
   d: "Llamadas breves entre sesiones para que el adolescente, o sus padres, reciban ayuda para usar una habilidad en el momento en que la necesitan. No es terapia por teléfono: se centra en qué habilidad usar ahora. Ayuda a llevar lo aprendido a la vida diaria.",
   fuente: "Rathus y Miller, 2022, cap. 1" },
 { k: "analisis-situacional", t: "Análisis de habilidades y disparadores", alias: ["análisis situacional"], tipo: "Técnica", enf: ["cps"],
@@ -8399,13 +8471,13 @@ const GLOSARIO = [
   d: "Entrenamiento, con modelado y juego de roles, en decir que no de forma asertiva a una oferta de alcohol o drogas, cuidando el lenguaje del cuerpo y los pensamientos que frenan la respuesta.",
   ficha: "analisis-consumo",
   fuente: "Chung y Bachrach, 2019, tabla 19.2" },
-{ k: "cuestionario-acoso", t: "Diagnóstico del acoso en el colegio", tipo: "Técnica", enf: ["col"],
+{ k: "cuestionario-acoso", t: "Diagnóstico del acoso en el colegio", tipo: "Procedimiento", enf: ["col"],
   d: "Encuesta anónima a los estudiantes sobre el acoso en el colegio, cuyos resultados se discuten con el personal y los padres para planear el programa y medir el cambio.",
   fuente: "McMahon y Frick, 2019, «Bullying»" },
 { k: "reglas-aula", t: "Reglas de aula contra el acoso", tipo: "Técnica", enf: ["col"],
   d: "Reglas claras en cada aula contra el acoso, con sanciones consistentes y no físicas, acompañadas de reuniones regulares de aula sobre el tema.",
   fuente: "McMahon y Frick, 2019, «Bullying»" },
-{ k: "supervision-recreos", t: "Supervisión de los recreos", tipo: "Técnica", enf: ["col"],
+{ k: "supervision-recreos", t: "Supervisión de los recreos", tipo: "Procedimiento", enf: ["col"],
   d: "Sistema de supervisión de los estudiantes en los recreos y entre clases, donde ocurre buena parte del acoso. Es uno de los componentes más asociados con la reducción del acoso.",
   fuente: "McMahon y Frick, 2019, «Bullying»" },
 { k: "rol-espectadores", t: "Papel de los espectadores", alias: ["espectadores"], tipo: "Concepto", enf: ["col"],
@@ -8415,7 +8487,7 @@ const GLOSARIO = [
   d: "Pocas reglas, escritas en positivo y a la vista, que dicen lo que se espera en casa: «guardamos los juguetes antes de cenar», «hablamos sin gritar». Evitan repetir órdenes, hacen previsible la consecuencia y le dan al niño con dificultades de atención un recordatorio que puede ver.",
   ficha: "reglas-casa",
   fuente: "Evans et al., 2019" },
-{ k: "consultoria-docente", t: "Consultoría con el docente", alias: ["consultoría de solución de problemas"], tipo: "Técnica", enf: ["col"],
+{ k: "consultoria-docente", t: "Consultoría con el docente", alias: ["consultoría de solución de problemas"], tipo: "Formato", enf: ["col"],
   d: "Trabajo conjunto del psicólogo con el docente para diseñar y sostener una intervención en el aula. Sigue los pasos de la solución de problemas: construir la relación, definir el problema en conductas observables, generar ideas con el docente, elegir la más viable, planear cómo aplicarla y evaluarla con datos. Sin la implicación del docente no hay intervención en el aula.",
   como: ["Mostrar interés y reconocer lo difícil que ha sido la situación.",
          "Preguntar qué pasa antes y después de la conducta, cuándo y dónde.",
@@ -8537,7 +8609,7 @@ const GLOSARIO = [
   d: "Enseñanza y práctica de habilidades para cuidarse ante peligros futuros —decir no, pedir ayuda, cuidado del cuerpo, seguridad en internet— y un plan de seguridad con la familia. Se presentan como otras reglas de seguridad cotidianas y aclarando que el niño respondió al trauma lo mejor que pudo.",
   ficha: "plan-seguridad-familia",
   fuente: "Deblinger et al., 2012, «Enhancing Safety and Future Development»" },
-{ k: "coordinacion-proteccion", t: "Coordinación con protección", tipo: "Técnica", enf: ["tcc"],
+{ k: "coordinacion-proteccion", t: "Coordinación con protección", tipo: "Procedimiento", enf: ["tcc"],
   d: "Contacto regular del terapeuta con el profesional de protección responsable del niño: recibir la historia, el plan de reintegro o permanencia y las fechas de audiencias y visitas, e informar la asistencia y el avance, para que las decisiones sobre el niño apoyen el tratamiento.",
   fuente: "Dorsey y Deblinger, 2012, «Collaboration with Child Welfare»" },
 { k: "estrategias-vinculacion", t: "Estrategias de vinculación", alias: ["estrategias de enganche"], tipo: "Técnica", enf: ["tcc", "pad"],
@@ -8547,7 +8619,7 @@ const GLOSARIO = [
   d: "Línea o índice con los hechos importantes de la vida del niño, incluidos traumas y cambios de hogar, que ayuda a ordenar una historia con muchas experiencias difíciles y a elegir qué incluir en el relato.",
   ficha: "linea-tiempo-vida",
   fuente: "Dorsey y Deblinger, 2012, «Trauma Narrative Development and Processing»" },
-{ k: "tamizaje", t: "Tamizaje", tipo: "Técnica", enf: ["col"],
+{ k: "tamizaje", t: "Tamizaje", tipo: "Procedimiento", enf: ["col"],
   d: "Aplicación breve de una escala o una lista a un grupo amplio para identificar a quiénes podrían necesitar una evaluación completa. Identifica riesgo: no hace diagnóstico.",
   fuente: "Rivera, 2012 · Sheridan y Lord, 2020" },
 { k: "dimensiones-duelo", t: "Dimensiones del duelo", alias: ["malestar por separación", "malestar existencial", "malestar por las circunstancias"], tipo: "Concepto", enf: ["tcc"],
@@ -8961,7 +9033,7 @@ function botonesFichas(claves){
   if (!fs.length) return "";
   return '<div class="act-fichas">' + fs.map(f =>
     '<a class="ficha" href="fichas-infancia/' + f.k + '.pdf" target="_blank" rel="noopener" title="' + escapar(f.d || "") + ' (se abre en una pestaña nueva; desde ahí se descarga o se imprime)">' +
-      'Ver ficha · ' + escapar(f.t) + ' <span class="fmt">PDF</span></a>').join("") +
+      'Ver ficha · ' + escapar(f.t) + ' <span class="fmt">PDF · de esta guía</span></a>').join("") +
   '</div>';
 }
 
@@ -9009,6 +9081,35 @@ const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" targe
 
 const modeloDe = p => MODELOS[p.mod] || null;
 const instrumentosDe = p => (p.inst || []).map(k => Object.assign({ s: k }, INSTRUMENTOS[k])).filter(i => i.n);
+
+/* Nivel del respaldo que describe el plan, para que se vea sin leer el
+   párrafo completo. Lo asigna la guía a partir de lo que dicen sus fuentes. */
+const NIVEL = {
+  ensayos:    { et: "Con ensayos controlados", d: "El plan, o el tratamiento en que se basa, tiene ensayos controlados descritos en sus fuentes." },
+  preliminar: { et: "Evidencia preliminar", d: "Estudios sin grupo de control, de caso único, abiertos o con resultados todavía limitados." },
+  guia:       { et: "Basado en guías", d: "Se apoya en recomendaciones de guías de práctica o de la OMS más que en ensayos propios descritos en el plan." },
+  conceptual: { et: "Respaldo conceptual o clínico", d: "Se basa en un marco teórico o en la experiencia clínica de sus autores; sus fuentes no describen ensayos del plan." }
+};
+const usadoEnEstudios = (p, s) => (p.instEst || []).includes(s);
+const origenInst = (p, s) => ' <span class="orig-inst">' + (usadoEnEstudios(p, s) ? 'usado en los estudios' : 'sugerido por la guía') + '</span>';
+/* Tipo de la fuente principal: si es el manual o un capítulo de los propios
+   autores del programa, un capítulo de revisión o un manual de referencia que
+   lo resume, una guía oficial o un artículo. Se calcula con la primera fuente
+   citada del plan. */
+const FUENTE_RESUMEN = ["Ruiz et al.", "Elices", "Díaz Corbobés", "Cifuentes", "Jongsma et al., 2021"];
+function tipoFuente(p){
+  const rs = REFERENCIAS.filter(r => p.fuente.includes(r.k)).sort((a, b) => p.fuente.indexOf(a.k) - p.fuente.indexOf(b.k) || b.k.length - a.k.length);
+  const r = rs[0];
+  if (!r) return "";
+  const t = r.ref.replace(/<[^>]+>/g, "");
+  if (FUENTE_RESUMEN.includes(r.k)) return "manual de referencia que resume el programa";
+  if (/^(Organización|Centro de Referencia|Organización Panamericana)/.test(t)) return "guía o documento oficial";
+  if (/Treatment of disorders in childhood/i.test(t)) return "capítulo de revisión de un manual de referencia";
+  if (/\. En .*\(Eds?\.\)/.test(t)) return "capítulo de los autores del programa";
+  if (/[0-9]+\([0-9]+\), [0-9]+|, [0-9]+, [0-9]+–[0-9]+|Revista|Journal/.test(t)) return "artículo";
+  return "libro o manual de los autores del programa";
+}
+const nivelHTML = p => NIVEL[p.nivel] ? '<span class="nivel nivel-' + p.nivel + '" title="' + escapar(NIVEL[p.nivel].d) + '">' + escapar(NIVEL[p.nivel].et) + '</span>' : "";
 
 const TIPO_FUND = {
   explicativo: "Modelo explicativo",
@@ -9079,13 +9180,14 @@ function pintarInstrumentos(p){
   const cuerpo = ins.length
     ? '<ul class="inst-l">' + ins.map(i =>
         '<li><span class="rol">' + escapar(i.rol) + '</span><br>' +
-        '<span class="s">' + escapar(i.s) + '</span> · ' + escapar(i.n) + distintivo(i.s) + '<br>' +
+        '<span class="s">' + escapar(i.s) + '</span> · ' + escapar(i.n) + distintivo(i.s) + origenInst(p, i.s) + '<br>' +
         escapar(i.d) + ' <span class="med">(' + escapar(i.med) + ')</span>' +
         (i.guia ? '' : '<br><span class="med">Fuente: ' + escapar(i.fuente || "") + '</span>') +
         botonInstrumento(i.s) +
         '</li>').join("") + '</ul>'
     : '<p style="margin:0">Ninguna de las fuentes de esta guía describe un instrumento para esta variable. El vacío es información: antes de usar uno, hay que respaldarlo.</p>';
   return '<div class="caja"><span class="r">Instrumentos de evaluación</span>' + cuerpo +
+    (ins.length ? '<p style="margin:8px 0 0; font-size:12.5px">' + (ins.some(i => usadoEnEstudios(p, i.s)) ? 'Los marcados como «usado en los estudios» los usaron los estudios del plan o los crearon sus autores; los demás los sugiere esta guía para medir el cambio.' : 'Estos instrumentos los sugiere esta guía para medir el cambio; las fuentes del plan no los mencionan como parte de sus estudios.') + '</p>' : "") +
     (conRiesgo(p) ? PROTOCOLO_RIESGO : "") +
     (ins.some(i => i.guia) ? '<p style="margin:8px 0 0; font-size:12.5px">Los que están en la <a href="pruebas-tamizaje.html">guía de tamizaje</a> traen allí su acceso y sus notas de uso.</p>' : "") +
     '</div>';
@@ -9111,7 +9213,7 @@ function pintarPlan(v, p, vi){
       '<h4>' + escapar(p.t) + '</h4>' +
       '<button class="exp-boton" type="button" data-exp="' + p.id + '">Exportar este plan</button>' +
     '</div>' +
-    '<div class="plan-fuente"><strong>Fuente principal:</strong> ' + escapar(p.fuente) + '</div>' +
+    '<div class="plan-fuente">' + nivelHTML(p) + '<strong>Fuente principal:</strong> ' + escapar(p.fuente) + (tipoFuente(p) ? ' <span class="tipo-fuente">(' + tipoFuente(p) + ')</span>' : '') + '</div>' +
     '<div class="exportador" id="exp-' + p.id + '" hidden></div>' +
     '<div class="meta">' +
       '<div class="caja"><span class="r">Cuándo elegirlo</span>' + p.cuando + '</div>' +
@@ -9501,7 +9603,7 @@ function construirHoja(id, o, notas){
   let h = '<div class="h-cab">' +
       '<div class="h-var">' + escapar(v.t) + '</div>' +
       '<h1>' + escapar(p.t) + '</h1>' +
-      '<div class="h-sub">' + escapar(enf.largo) + ' · Fuente principal: ' + escapar(p.fuente) + '</div>' +
+      '<div class="h-sub">' + escapar(enf.largo) + ' · Fuente principal: ' + escapar(p.fuente) + (tipoFuente(p) ? ' (' + tipoFuente(p) + ')' : '') + (NIVEL[p.nivel] ? ' · <strong>Respaldo:</strong> ' + escapar(NIVEL[p.nivel].et.toLowerCase()) : '') + '</div>' +
     '</div>';
   trozos.push(p.fuente);
 
@@ -9525,7 +9627,8 @@ function construirHoja(id, o, notas){
     h += '<h2>Instrumentos</h2>';
     h += ins.length
       ? '<ul>' + ins.map(i => '<li><strong>' + escapar(i.s) + '</strong> · ' + escapar(i.n) +
-          ' — ' + escapar(i.rol.toLowerCase()) + '. ' + escapar(i.d) + ' (' + escapar(i.med) + ')' +
+          ' — ' + escapar(i.rol.toLowerCase()) + '. ' + escapar(i.d) + ' (' + escapar(i.med) + '). ' +
+          '<em>' + (usadoEnEstudios(p, i.s) ? 'Usado en los estudios o creado por los autores del plan.' : 'Sugerido por esta guía.') + '</em>' +
           (i.guia ? "" : ' <em>' + escapar(i.fuente || "") + '</em>') + '</li>').join("") + '</ul>'
       : '<p>Ninguna de las fuentes de esta guía describe un instrumento para esta variable.</p>';
     ins.forEach(i => trozos.push(i.fuente || ""));
@@ -9587,7 +9690,7 @@ function construirHoja(id, o, notas){
     const vistas = new Set(), fs = [];
     p.actividades.forEach(a => fichasDe(a.fichas).forEach(f => { if (!vistas.has(f.k)){ vistas.add(f.k); fs.push(f); } }));
     if (fs.length){
-      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Cada ficha es un PDF rellenable. Se abre con un clic en su nombre o escaneando el código con el celular.</p>' +
+      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Son fichas elaboradas para esta guía a partir de las actividades del plan; no forman parte del material de sus autores. Cada ficha es un PDF rellenable. Se abre con un clic en su nombre o escaneando el código con el celular.</p>' +
         '<div class="h-fichas">' + fs.map(f =>
           '<div class="h-ficha">' + qrFicha(f) + '<div>' +
             '<a class="ft" href="' + urlFicha(f.k) + '">' + escapar(f.t) + '</a>' +
