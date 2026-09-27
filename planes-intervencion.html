@@ -735,8 +735,8 @@ a.cita:hover{color:var(--accent-dark);}
           ejercicios aparecen subrayados con puntos. Al tocar una técnica o un término subrayado se
           abre su definición, y el <a href="#glosario">glosario</a> explica cómo se hace cada uno en sesión.
           Cuando una actividad usa una hoja de trabajo, trae el botón para descargarla.</li>
-      <li><strong>Se aplica con supervisión.</strong> La guía orienta la planificación; la
-          ejecución se ajusta al caso con el acompañamiento del supervisor del sitio de práctica.</li>
+      <li><strong>Se aplica con criterio clínico.</strong> La guía orienta la planificación; la
+          ejecución se ajusta a cada persona según el juicio de quien la aplica.</li>
     </ul>
   </div>
 
@@ -14812,7 +14812,7 @@ function pintarExportador(id){
         '<label><input type="checkbox" data-c="' + c.k + '"' + (c.def ? " checked" : "") + '>' + c.et + '</label>'
       ).join("") +
     '</div>' +
-    '<textarea data-notas placeholder="Notas del profesional: para qué se comparte, qué ajustar al caso, qué revisar en la próxima supervisión."></textarea>' +
+    '<textarea data-notas placeholder="Notas del profesional: para qué se comparte, qué ajustar al caso, qué revisar en la próxima sesión."></textarea>' +
     '<div class="exp-pie">' +
       '<button type="button" class="principal" data-imprimir>Imprimir / Guardar PDF</button>' +
       '<button type="button" data-cerrar>Cerrar</button>' +
@@ -15221,7 +15221,7 @@ $("pie").innerHTML =
   "Cada actividad cita la fuente y la sección que la sustentan; donde un dato viene de un " +
   "estudio que la fuente reseña, se indica el estudio y la fuente que lo recoge." +
   "<br><br>La guía orienta la planificación y no reemplaza la formulación del caso: " +
-  "<strong>un plan se ajusta a la persona</strong>, se aplica con supervisión y se evalúa " +
+  "<strong>un plan se ajusta a la persona</strong>, se aplica con criterio clínico y se evalúa " +
   "con medidas antes y después." +
   "<h2>Referencias</h2><ol>" + REFERENCIAS.map(r => "<li>" + refHTML(r) + "</li>").join("") + "</ol>";
 
