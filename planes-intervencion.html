@@ -15021,7 +15021,7 @@ function cargarPDF(){
 }
 async function compartirHoja(id, boton){
   const par = planPorId(id); if (!par) return;
-  const nombre = par.p.t.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 60) + ".pdf";
+  const nombre = par.p.t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) + ".pdf";
   const texto = boton.textContent;
   const scrollY0 = window.scrollY;
   boton.disabled = true; boton.textContent = "Preparando PDF…";
