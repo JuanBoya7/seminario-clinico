@@ -69,6 +69,20 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .riesgo li{margin-bottom:3px;}
 .riesgo a{color:#7a2a1a; font-weight:600;}
 .nota-p{font-size:12px; color:var(--ink-faint); margin-top:14px;}
+/* Todos los puntos de corte del instrumento, con la banda del resultado marcada. */
+.cortes{margin-top:9px;}
+.barra-c{display:flex; height:10px; border-radius:5px; overflow:hidden; margin:0 0 7px;}
+.barra-c span{display:block; height:100%; border-right:2px solid var(--surface);}
+.barra-c span:last-child{border-right:0;}
+.marca-c{position:relative; height:22px; margin-top:12px;}
+.marca-c i{position:absolute; top:0; transform:translateX(-50%); font-style:normal; font-size:11.5px;
+  font-weight:700; line-height:14px; color:var(--accent-dark); white-space:nowrap;}
+.marca-c i::after{content:""; position:absolute; left:50%; top:14px; margin-left:-5px; border:5px solid transparent;
+  border-top-color:var(--accent-dark); border-bottom-width:0;}
+.corte{display:grid; grid-template-columns:64px 1fr; gap:8px; padding:3px 8px; font-size:12.5px;
+  color:var(--ink-faint); border-left:3px solid transparent; border-radius:0 6px 6px 0;}
+.corte .rg{font-variant-numeric:tabular-nums;}
+.corte.aqui{color:var(--ink); font-weight:700; background:var(--accent-soft); border-left-color:var(--accent);}
 .indice{grid-column:1 / -1;}
 .indice ul{list-style:none; padding:0; margin:16px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px;}
 .indice li a{display:block; padding:12px 14px; border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--ink);}
@@ -80,6 +94,16 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
   .panel{position:static;}
   td label{min-width:26px;}
 }
+/* En celulares y tabletas el resultado se comparte como PDF: mientras se arma,
+   la hoja toma el ancho de una página, como en la impresión. */
+body[data-pdf] .wrap{width:184mm; max-width:none; padding:0;
+  grid-template-columns:minmax(0,1fr) 60mm; gap:6mm; background:#fff;}
+body[data-pdf] .acciones, body[data-pdf] .aviso{display:none;}
+body[data-pdf] .panel{position:static;}
+.marca{display:inline-block; width:16px; height:16px; border-radius:50%; border:1.5px solid var(--ink-faint);}
+.marca.si{background:var(--accent); border-color:var(--accent);}
+#pdf-velo{position:fixed; inset:0; z-index:100000; background:#fff; display:flex; align-items:center;
+  justify-content:center; font-size:16px; font-weight:600; color:var(--ink-soft);}
 @media print{
   .acciones,.aviso{display:none;}
   .wrap{grid-template-columns:minmax(0,1fr) 260px;}
@@ -97,6 +121,8 @@ const PROTOCOLO_RIESGO = '<div class="riesgo"><b>Protocolo ante riesgo suicida</
 const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const param = new URLSearchParams(location.search).get("i");
 const app = $("#app");
+const ES_MOVIL = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+  (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
 
 function indice(){
   document.title = "Calificación en línea";
@@ -107,6 +133,32 @@ function indice(){
     'Nada de lo que se marca se envía ni se guarda.</p><ul>' +
     lista.map(([a, d]) => '<li><a href="?i=' + a + '"><b>' + esc(d.sigla) + '</b> · ' + esc(d.titulo) + '</a></li>').join("") +
     '</ul></div>';
+}
+
+// La escala completa de puntos de corte: una barra con el ancho de cada banda
+// proporcional a su rango, una marca en el puntaje y la lista de bandas.
+function escalaCortes(rangos, val){
+  const ult = rangos[rangos.length - 1], penult = rangos[rangos.length - 2];
+  const fin = ult[1] !== null ? ult[1] : ult[0] + (penult[1] - penult[0]);
+  const ini = rangos[0][0], largo = Math.max(1, fin - ini + 1);
+  const tono = k => mezclar("#dfe9ea", getComputedStyle(document.body).getPropertyValue("--accent").trim() || "#1f6f78",
+    rangos.length === 1 ? 1 : .15 + .85 * k / (rangos.length - 1));
+  const barra = rangos.map(([x, y], k) => {
+    const hasta = y !== null ? y : fin;
+    return '<span style="width:' + ((hasta - x + 1) / largo * 100) + '%;background:' + tono(k) + '"></span>';
+  }).join("");
+  const pos = Math.max(0, Math.min(100, (Math.min(val, fin) - ini + .5) / largo * 100));
+  const lista = rangos.map(([x, y, t]) => {
+    const aqui = val >= x && (y === null || val <= y);
+    const rg = y === null ? x + " o más" : x === y ? String(x) : x + "–" + y;
+    return '<div class="corte' + (aqui ? ' aqui' : '') + '"><span class="rg">' + rg + '</span><span>' + esc(t) + '</span></div>';
+  }).join("");
+  return '<div class="cortes"><div class="marca-c"><i style="left:' + pos + '%">' + val + '</i></div>' +
+    '<div class="barra-c">' + barra + '</div>' + lista + '</div>';
+}
+function mezclar(a, b, t){
+  const n = (c, i) => parseInt(c.substr(1 + i * 2, 2), 16);
+  return "#" + [0, 1, 2].map(i => Math.round(n(a, i) + (n(b, i) - n(a, i)) * t).toString(16).padStart(2, "0")).join("");
 }
 
 function instrumento(a, d){
@@ -134,7 +186,8 @@ function instrumento(a, d){
     '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
     '<div class="acciones"><a class="bt" href="instrumentos/' + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>' +
-    '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" onclick="print()">Imprimir resultado</button>' +
+    '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" id="imprimir">' +
+    (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button>' +
     '<a class="bt" href="calificar.html">Otros instrumentos</a></div>' +
     h + '<p class="fuente">Fuente: ' + esc(d.cita) + '</p></div>' +
     '<aside class="panel" aria-live="polite"><h2>Resultado</h2><div id="res"></div></aside>';
@@ -167,9 +220,12 @@ function instrumento(a, d){
       let rot = "";
       (e.rangos || []).forEach(([x, y, t]) => { if (val >= x && (y === null || val <= y)) rot = t; });
       const esSN = (e.rangos || []).length && e.rangos.every(([x, y]) => x === y);
+      const cortes = !esSN && (e.rangos || []).length >= 2 && !(val === 0 && d.calif.escalas.length > 4)
+        ? escalaCortes(e.rangos, val) : "";
       out += '<div class="res"><div class="n">' + esc(e.n) + '</div>' +
         (esSN ? "" : '<div class="v">' + val + '</div>') +
-        (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (e.texto ? '<div class="x">' + esc(e.texto) + '</div>' : "") + '</div>';
+        (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (e.texto ? '<div class="x">' + esc(e.texto) + '</div>' : "") +
+        cortes + '</div>';
     });
     let riesgo = false;
     (d.calif.alertas || []).forEach(al => { if (ev(al.js)){ out += '<div class="alerta">' + esc(al.texto) + '</div>'; if (/suicid/.test(al.texto)) riesgo = true; } });
@@ -178,7 +234,79 @@ function instrumento(a, d){
   };
   app.addEventListener("change", calc);
   $("#borrar").addEventListener("click", () => { document.querySelectorAll("input[type=radio]").forEach(x => x.checked = false); calc(); });
+  $("#imprimir").addEventListener("click", ev => ES_MOVIL ? compartir(d, ev.currentTarget) : print());
   calc();
+}
+
+/* Compartir en celulares y tabletas: el resultado sale como PDF por el menú
+   de compartir del sistema; si el navegador no lo permite, se descarga, y si
+   no hay conexión para cargar la librería, queda la impresión del sistema. */
+let cargaPDF = null;
+function cargarPDF(){
+  if (window.html2pdf) return Promise.resolve();
+  return cargaPDF ||= new Promise((ok, mal) => {
+    const sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js";
+    sc.onload = ok; sc.onerror = () => { cargaPDF = null; mal(new Error("sin conexión")); };
+    document.head.appendChild(sc);
+  });
+}
+// La librería copia la hoja dentro de la página; una copia con los mismos
+// botones de opción le quitaría las marcas a la original. Se entrega una copia
+// en la que cada opción es un círculo dibujado, lleno si estaba marcada.
+function copiaEstatica(){
+  const copia = app.cloneNode(true);
+  copia.removeAttribute("id");
+  const orig = app.querySelectorAll("input[type=radio]");
+  copia.querySelectorAll("input[type=radio]").forEach((x, k) => {
+    const m = document.createElement("span");
+    m.className = "marca" + (orig[k].checked ? " si" : "");
+    x.replaceWith(m);
+  });
+  return copia;
+}
+async function compartir(d, boton){
+  const nombre = (d.sigla + " resultado").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+  const texto = boton.textContent, scrollY0 = window.scrollY;
+  boton.disabled = true; boton.textContent = "Preparando PDF…";
+  try {
+    await cargarPDF();
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    window.scrollTo(0, 0);
+    document.body.dataset.pdf = "1";
+    const velo = document.createElement("div");
+    velo.id = "pdf-velo"; velo.textContent = "Preparando PDF…";
+    document.body.appendChild(velo);
+    // Los navegadores móviles no pintan lienzos de más de ~16 millones de
+    // píxeles (el PDF sale en blanco): la resolución se ajusta al largo.
+    const area = Math.max(1, app.offsetWidth * app.scrollHeight);
+    const escala = Math.max(0.8, Math.min(2, Math.sqrt(10e6 / area)));
+    const pdf = await html2pdf().set({
+      margin: [13, 13, 13, 13], filename: nombre,
+      image: { type: "jpeg", quality: 0.92 },
+      html2canvas: { scale: escala, useCORS: true, backgroundColor: "#ffffff" },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css"], avoid: ["tr", ".res", ".alerta", ".riesgo", ".consigna"] }
+    }).from(copiaEstatica()).toPdf().get("pdf");
+    const archivo = new File([pdf.output("blob")], nombre, { type: "application/pdf" });
+    try {
+      if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+        await navigator.share({ files: [archivo], title: d.sigla });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === "AbortError") return;   // cerró el menú a propósito
+    }
+    pdf.save(nombre);
+  } catch (err) {
+    print();
+  } finally {
+    delete document.body.dataset.pdf;
+    document.getElementById("pdf-velo")?.remove();
+    window.scrollTo(0, scrollY0);
+    boton.disabled = false; boton.textContent = texto;
+  }
 }
 
 if (typeof CALIFICAR === "undefined"){
