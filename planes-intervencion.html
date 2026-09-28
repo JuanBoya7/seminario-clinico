@@ -397,6 +397,11 @@ button.gl.tec:hover{background:var(--enf, var(--accent)); color:#fff; border-rad
   padding:9px 12px; font-size:13px; line-height:1.5; color:var(--ink-soft);
 }
 
+/* Situaciones clínicas que enlazan el plan: llevan al recurso «¿Y si…?». */
+.sit-rel{margin:0 0 18px; padding:12px 16px; border:1px dashed var(--border); border-radius:10px; font-size:13.5px; line-height:1.5;}
+.sit-rel ul{margin:4px 0 0; padding-left:18px;}
+.sit-rel li{margin-bottom:4px;}
+.sit-rel .sit-todas{display:inline-block; margin-top:6px; font-weight:600; text-decoration:none;}
 .cierre{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; margin:6px 0 16px; padding-top:18px; border-top:1px solid var(--border);}
 .cierre ul{margin:0; padding-left:18px;}
 .cierre li{margin-bottom:6px;}
@@ -682,7 +687,7 @@ body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; to
 #hoja .h-pie{margin-top:10px; padding-top:6px; border-top:1px solid var(--border); font-size:9px; color:var(--ink-faint);}
 
 @media print{
-  .controles, .indice, .tabs, .exp-boton, .exportador, .riel-der, #glos-pop, .glos-ctrl, .act-fichas{display:none !important;}
+  .sit-rel, .controles, .indice, .tabs, .exp-boton, .exportador, .riel-der, #glos-pop, .glos-ctrl, .act-fichas{display:none !important;}
   button.gl{text-decoration:none;}
   .pagina{display:block;}
   /* Todos los planes de la variable, salvo los que el filtro dejó fuera. */
@@ -740,7 +745,9 @@ body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; to
     <strong>en qué fuente y en qué sección se sustenta</strong>. El filtro de escenario deja
     solo los planes que tienen respaldo para esa población o ese tipo de institución, y el de
     enfoque, los del modelo que se quiera aplicar. Para la infancia y la adolescencia está la
-    <a href="planes-infancia.html">guía de planes en niños y adolescentes</a>.
+    <a href="planes-infancia.html">guía de planes en niños y adolescentes</a>. Lo que atraviesa
+    varios planes —una revelación de abuso, una familia que acomoda el síntoma, un tratamiento que
+    no avanza— está en <a href="situaciones-clinicas.html">¿Y si…? Situaciones clínicas</a>.
   </p>
 
   <div class="aviso">
@@ -1966,6 +1973,622 @@ Object.assign(INSTRUMENTOS, {
   "Mini-Cog": { n: "Prueba Mini-Cog", rol: "Tamizaje", d: "Cribado rápido de deterioro cognitivo: recuerdo de tres palabras más dibujo del reloj.", med: "3 min", guia: true },
   "MoCA":     { n: "Evaluación Cognitiva de Montreal", rol: "Tamizaje", d: "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas. Exige certificación y registro del aplicador.", med: "30 puntos · 10-15 min", guia: true }
 });
+
+// Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
+const SITUACIONES_POR_PLAN = {
+"adh-em": [
+{
+"id": "viene-obligada",
+"t": "la persona viene obligada por un juzgado, la empresa o la familia"
+},
+{
+"id": "consumo-no-motivo",
+"t": "aparece un consumo de alcohol o drogas que no era el motivo de consulta"
+}
+],
+"alim-est": [
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+}
+],
+"alim-pr": [
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"alim-tcc": [
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+}
+],
+"ans-act": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+}
+],
+"ans-panico": [
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+}
+],
+"ans-pu": [
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+},
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+},
+{
+"id": "familia-hostil",
+"t": "la pareja o la familia critica a la persona con hostilidad"
+}
+],
+"bip-fft": [
+{
+"id": "familia-hostil",
+"t": "la pareja o la familia critica a la persona con hostilidad"
+},
+{
+"id": "euforia-antidepresivo",
+"t": "aparece euforia o hipomanía tras iniciar un antidepresivo"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+},
+{
+"id": "quiere-dejar",
+"t": "la persona quiere dejar la terapia antes de alcanzar las metas"
+}
+],
+"cog-ecg": [
+{
+"id": "mayor-deterioro",
+"t": "la persona es mayor o tiene deterioro cognitivo"
+}
+],
+"cons-em": [
+{
+"id": "viene-obligada",
+"t": "la persona viene obligada por un juzgado, la empresa o la familia"
+},
+{
+"id": "consumo-no-motivo",
+"t": "aparece un consumo de alcohol o drogas que no era el motivo de consulta"
+}
+],
+"cons-est": [
+{
+"id": "viene-obligada",
+"t": "la persona viene obligada por un juzgado, la empresa o la familia"
+},
+{
+"id": "adolescente-reserva",
+"t": "el adolescente pide que sus padres no se enteren de lo que habla"
+},
+{
+"id": "consumo-no-motivo",
+"t": "aparece un consumo de alcohol o drogas que no era el motivo de consulta"
+},
+{
+"id": "llega-intoxicada",
+"t": "la persona llega a la sesión bajo el efecto del alcohol o de otra droga"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+}
+],
+"cons-pr": [
+{
+"id": "llega-intoxicada",
+"t": "la persona llega a la sesión bajo el efecto del alcohol o de otra droga"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"cuid-isupport": [
+{
+"id": "mayor-deterioro",
+"t": "la persona es mayor o tiene deterioro cognitivo"
+}
+],
+"dep-ac": [
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+}
+],
+"dep-ipt": [
+{
+"id": "conflicto-armado",
+"t": "la persona vivió el conflicto armado o participó en él"
+},
+{
+"id": "euforia-antidepresivo",
+"t": "aparece euforia o hipomanía tras iniciar un antidepresivo"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+},
+{
+"id": "no-funciona",
+"t": "el tratamiento no está funcionando"
+},
+{
+"id": "miedo-a-terminar",
+"t": "a la persona le angustia terminar la terapia"
+}
+],
+"dep-mbct": [
+{
+"id": "no-candidato-grupo",
+"t": "una persona no parece candidata para el formato de grupo"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"dep-tcc-tc": [
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+},
+{
+"id": "euforia-antidepresivo",
+"t": "aparece euforia o hipomanía tras iniciar un antidepresivo"
+},
+{
+"id": "no-funciona",
+"t": "el tratamiento no está funcionando"
+}
+],
+"dep-wbt": [
+{
+"id": "no-funciona",
+"t": "el tratamiento no está funcionando"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"desreg-dbt": [
+{
+"id": "familia-hostil",
+"t": "la pareja o la familia critica a la persona con hostilidad"
+},
+{
+"id": "quiere-dejar",
+"t": "la persona quiere dejar la terapia antes de alcanzar las metas"
+}
+],
+"dolor-tc": [
+{
+"id": "sin-explicacion-medica",
+"t": "el médico no encuentra causa y la persona pide una constancia de incapacidad"
+},
+{
+"id": "no-candidato-grupo",
+"t": "una persona no parece candidata para el formato de grupo"
+}
+],
+"duelo-ases": [
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"duelo-compl": [
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+},
+{
+"id": "trauma-otro-motivo",
+"t": "aparece una historia de trauma y la persona consulta por otra cosa"
+},
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"estres-tcc": [
+{
+"id": "despues-de-un-evento",
+"t": "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron"
+}
+],
+"fin-apt": [
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"fin-sent": [
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"int-juego": [
+{
+"id": "consulta-la-familia",
+"t": "quien consulta es la familia y no la persona con el problema"
+}
+],
+"ira-dbt": [
+{
+"id": "amenaza-a-otros",
+"t": "la persona dice que va a hacerle daño a alguien"
+}
+],
+"ira-tcc": [
+{
+"id": "viene-obligada",
+"t": "la persona viene obligada por un juzgado, la empresa o la familia"
+},
+{
+"id": "amenaza-a-otros",
+"t": "la persona dice que va a hacerle daño a alguien"
+}
+],
+"jue-petry": [
+{
+"id": "consulta-la-familia",
+"t": "quien consulta es la familia y no la persona con el problema"
+},
+{
+"id": "prestamistas",
+"t": "el jugador tiene deudas con prestamistas ilegales"
+}
+],
+"jue-tcc": [
+{
+"id": "consulta-la-familia",
+"t": "quien consulta es la familia y no la persona con el problema"
+},
+{
+"id": "prestamistas",
+"t": "el jugador tiene deudas con prestamistas ilegales"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"mig-capas": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "pocos-recursos",
+"t": "la familia tiene muy pocos recursos"
+},
+{
+"id": "conflicto-armado",
+"t": "la persona vivió el conflicto armado o participó en él"
+},
+{
+"id": "despues-de-un-evento",
+"t": "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron"
+}
+],
+"min-afirm": [
+{
+"id": "diversidad-sexual",
+"t": "la persona o la pareja es de la diversidad sexual o de género"
+}
+],
+"par-act": [
+{
+"id": "diversidad-sexual",
+"t": "la persona o la pareja es de la diversidad sexual o de género"
+},
+{
+"id": "infidelidad-en-curso",
+"t": "en la terapia de pareja aparece una infidelidad en curso"
+}
+],
+"par-tip": [
+{
+"id": "consumo-no-motivo",
+"t": "aparece un consumo de alcohol o drogas que no era el motivo de consulta"
+},
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "revela-violencia-pareja",
+"t": "la persona revela que vive violencia de pareja"
+},
+{
+"id": "diversidad-sexual",
+"t": "la persona o la pareja es de la diversidad sexual o de género"
+},
+{
+"id": "pocos-recursos",
+"t": "la familia tiene muy pocos recursos"
+},
+{
+"id": "infidelidad-en-curso",
+"t": "en la terapia de pareja aparece una infidelidad en curso"
+},
+{
+"id": "agresion-en-pareja",
+"t": "en la terapia de pareja aparecen agresiones o maltrato"
+}
+],
+"per-tcc": [
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"perd-enright": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "mayor-deterioro",
+"t": "la persona es mayor o tiene deterioro cognitivo"
+}
+],
+"perd-taylor": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"pos-tcc": [
+{
+"id": "revela-violencia-pareja",
+"t": "la persona revela que vive violencia de pareja"
+},
+{
+"id": "revela-abuso-nino",
+"t": "un niño o un adolescente revela un abuso"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+}
+],
+"psi-mhgap": [
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+}
+],
+"psi-tcc": [
+{
+"id": "familia-hostil",
+"t": "la pareja o la familia critica a la persona con hostilidad"
+}
+],
+"sal-grupo": [
+{
+"id": "sin-explicacion-medica",
+"t": "el médico no encuentra causa y la persona pide una constancia de incapacidad"
+}
+],
+"sal-tcc": [
+{
+"id": "consumo-no-motivo",
+"t": "aparece un consumo de alcohol o drogas que no era el motivo de consulta"
+},
+{
+"id": "causa-medica",
+"t": "los síntomas podrían tener una causa médica"
+},
+{
+"id": "sin-explicacion-medica",
+"t": "el médico no encuentra causa y la persona pide una constancia de incapacidad"
+},
+{
+"id": "mayor-deterioro",
+"t": "la persona es mayor o tiene deterioro cognitivo"
+},
+{
+"id": "familia-acomoda",
+"t": "la familia tranquiliza, hace los rituales o evita por la persona"
+}
+],
+"som-acbt": [
+{
+"id": "sin-explicacion-medica",
+"t": "el médico no encuentra causa y la persona pide una constancia de incapacidad"
+},
+{
+"id": "trauma-otro-motivo",
+"t": "aparece una historia de trauma y la persona consulta por otra cosa"
+},
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+}
+],
+"sp-pm": [
+{
+"id": "mayor-deterioro",
+"t": "la persona es mayor o tiene deterioro cognitivo"
+},
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+},
+{
+"id": "no-candidato-grupo",
+"t": "una persona no parece candidata para el formato de grupo"
+},
+{
+"id": "familia-hostil",
+"t": "la pareja o la familia critica a la persona con hostilidad"
+},
+{
+"id": "conflicto-armado",
+"t": "la persona vivió el conflicto armado o participó en él"
+}
+],
+"sui-dbt": [
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"sui-est": [
+{
+"id": "amenaza-a-otros",
+"t": "la persona dice que va a hacerle daño a alguien"
+},
+{
+"id": "prestamistas",
+"t": "el jugador tiene deudas con prestamistas ilegales"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+},
+{
+"id": "despues-de-un-evento",
+"t": "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron"
+}
+],
+"tdah-solanto": [
+{
+"id": "no-candidato-grupo",
+"t": "una persona no parece candidata para el formato de grupo"
+}
+],
+"tept-ac": [
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+}
+],
+"tept-cpt": [
+{
+"id": "trauma-otro-motivo",
+"t": "aparece una historia de trauma y la persona consulta por otra cosa"
+},
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+},
+{
+"id": "conflicto-armado",
+"t": "la persona vivió el conflicto armado o participó en él"
+},
+{
+"id": "quiere-dejar",
+"t": "la persona quiere dejar la terapia antes de alcanzar las metas"
+}
+],
+"tept-dbt": [
+{
+"id": "trauma-otro-motivo",
+"t": "aparece una historia de trauma y la persona consulta por otra cosa"
+}
+],
+"tept-tcc-ep": [
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+}
+],
+"toc-tcc": [
+{
+"id": "familia-acomoda",
+"t": "la familia tranquiliza, hace los rituales o evita por la persona"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"trans-ipt": [
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+},
+{
+"id": "miedo-a-terminar",
+"t": "a la persona le angustia terminar la terapia"
+}
+],
+"trans-tipg": [
+{
+"id": "llega-intoxicada",
+"t": "la persona llega a la sesión bajo el efecto del alcohol o de otra droga"
+},
+{
+"id": "no-candidato-grupo",
+"t": "una persona no parece candidata para el formato de grupo"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"vp-ctt": [
+{
+"id": "revela-violencia-pareja",
+"t": "la persona revela que vive violencia de pareja"
+},
+{
+"id": "agresion-en-pareja",
+"t": "en la terapia de pareja aparecen agresiones o maltrato"
+},
+{
+"id": "contacto-con-agresor",
+"t": "la persona tiene que seguir en contacto con quien la maltrató, por los hijos"
+},
+{
+"id": "padres-en-conflicto",
+"t": "los padres están separados y en conflicto"
+}
+],
+"vp-oms": [
+{
+"id": "revela-violencia-pareja",
+"t": "la persona revela que vive violencia de pareja"
+},
+{
+"id": "agresion-en-pareja",
+"t": "en la terapia de pareja aparecen agresiones o maltrato"
+},
+{
+"id": "contacto-con-agresor",
+"t": "la persona tiene que seguir en contacto con quien la maltrató, por los hijos"
+},
+{
+"id": "embarazo-posparto",
+"t": "la persona está embarazada o en posparto"
+}
+]
+};
 
 /* Fundamento del plan: tipo de cada entrada de MODELOS, según cómo la
    presentan sus autores, y fundamentos de los planes que no declaran un
@@ -16976,7 +17599,19 @@ function pintarPlan(v, p, vi){
       '<div class="caja"><span class="r">Adaptaciones por escenario</span>' + lista(p.adapt) + '</div>' +
       '<div class="caja"><span class="r">Precauciones</span>' + lista(p.cuidado) + '</div>' +
     '</div>' +
+    pintarSituaciones(p) +
   '</section>';
+}
+
+/* Situaciones clínicas que enlazan este plan. Las escribe _situaciones-fuente/armar.py
+   en datos/06-98-situaciones.js. */
+function pintarSituaciones(p){
+  const l = (typeof SITUACIONES_POR_PLAN !== "undefined" && SITUACIONES_POR_PLAN[p.id]) || [];
+  if (!l.length) return "";
+  return '<div class="sit-rel"><span class="r">¿Y si…? Situaciones clínicas</span><ul>' +
+    l.map(x => '<li><a href="situaciones-clinicas.html#sit-' + x.id + '">¿Y si ' + escapar(x.t) + '?</a></li>').join("") + '</ul>' +
+    (l.length > 1 ? '<a class="sit-todas" href="situaciones-clinicas.html#plan-a-' + encodeURIComponent(p.id) + '">Verlas juntas →</a>' : '') +
+    '</div>';
 }
 
 function pintarVariable(v, vi){

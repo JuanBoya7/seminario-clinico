@@ -395,6 +395,11 @@ button.gl.tec:hover{background:var(--enf, var(--accent)); color:#fff; border-rad
   padding:9px 12px; font-size:13px; line-height:1.5; color:var(--ink-soft);
 }
 
+/* Situaciones clínicas que enlazan el plan: llevan al recurso «¿Y si…?». */
+.sit-rel{margin:0 0 18px; padding:12px 16px; border:1px dashed var(--border); border-radius:10px; font-size:13.5px; line-height:1.5;}
+.sit-rel ul{margin:4px 0 0; padding-left:18px;}
+.sit-rel li{margin-bottom:4px;}
+.sit-rel .sit-todas{display:inline-block; margin-top:6px; font-weight:600; text-decoration:none;}
 .cierre{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; margin:6px 0 16px; padding-top:18px; border-top:1px solid var(--border);}
 .cierre ul{margin:0; padding-left:18px;}
 .cierre li{margin-bottom:6px;}
@@ -680,7 +685,7 @@ body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; to
 #hoja .h-pie{margin-top:10px; padding-top:6px; border-top:1px solid var(--border); font-size:9px; color:var(--ink-faint);}
 
 @media print{
-  .controles, .indice, .tabs, .exp-boton, .exportador, .riel-der, #glos-pop, .glos-ctrl, .act-fichas{display:none !important;}
+  .sit-rel, .controles, .indice, .tabs, .exp-boton, .exportador, .riel-der, #glos-pop, .glos-ctrl, .act-fichas{display:none !important;}
   button.gl{text-decoration:none;}
   .pagina{display:block;}
   /* Todos los planes de la variable, salvo los que el filtro dejó fuera. */
@@ -738,7 +743,9 @@ body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; to
     adolescencia. Cada actividad indica <strong>en qué fuente y en qué sección se sustenta</strong>.
     Los filtros dejan solo los planes que tienen respaldo para un escenario, para una edad o
     para el enfoque que se quiera aplicar. Para la adultez está la
-    <a href="planes-intervencion.html">guía de planes por variable psicológica</a>.
+    <a href="planes-intervencion.html">guía de planes por variable psicológica</a>. Lo que atraviesa
+    varios planes —una revelación de abuso, una familia que acomoda el síntoma, un tratamiento que
+    no avanza— está en <a href="situaciones-clinicas.html">¿Y si…? Situaciones clínicas</a>.
   </p>
 
   <div class="aviso">
@@ -1531,6 +1538,366 @@ Object.assign(MODELOS, {
     fuente: "Niemiec, 2018, cap. 3"
   }
 });
+
+// Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
+const SITUACIONES_POR_PLAN = {
+"afr-ease": [
+{
+"id": "revela-abuso-nino",
+"t": "un niño o un adolescente revela un abuso"
+},
+{
+"id": "despues-de-un-evento",
+"t": "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron"
+}
+],
+"ans-familia": [
+{
+"id": "familia-acomoda",
+"t": "la familia tranquiliza, hace los rituales o evita por la persona"
+}
+],
+"ans-kendall": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+},
+{
+"id": "familia-acomoda",
+"t": "la familia tranquiliza, hace los rituales o evita por la persona"
+},
+{
+"id": "nino-no-habla",
+"t": "el niño no quiere hablar en la sesión"
+},
+{
+"id": "miedo-a-terminar",
+"t": "a la persona le angustia terminar la terapia"
+}
+],
+"bien-mind": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"cons-mdft": [
+{
+"id": "llega-intoxicada",
+"t": "la persona llega a la sesión bajo el efecto del alcohol o de otra droga"
+}
+],
+"cons-met-tcc": [
+{
+"id": "adolescente-reserva",
+"t": "el adolescente pide que sus padres no se enteren de lo que habla"
+},
+{
+"id": "llega-intoxicada",
+"t": "la persona llega a la sesión bajo el efecto del alcohol o de otra droga"
+},
+{
+"id": "amenaza-a-otros",
+"t": "la persona dice que va a hacerle daño a alguien"
+},
+{
+"id": "diversidad-sexual",
+"t": "la persona o la pareja es de la diversidad sexual o de género"
+}
+],
+"dep-ac": [
+{
+"id": "antidepresivos-adolescente",
+"t": "el adolescente empieza a tomar antidepresivos"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"dep-bienestar": [
+{
+"id": "no-funciona",
+"t": "el tratamiento no está funcionando"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"dep-ipt": [
+{
+"id": "adolescente-reserva",
+"t": "el adolescente pide que sus padres no se enteren de lo que habla"
+},
+{
+"id": "antidepresivos-adolescente",
+"t": "el adolescente empieza a tomar antidepresivos"
+},
+{
+"id": "miedo-a-terminar",
+"t": "a la persona le angustia terminar la terapia"
+}
+],
+"dep-tcc": [
+{
+"id": "no-hace-tareas",
+"t": "la persona no hace las tareas entre sesiones"
+},
+{
+"id": "nino-no-habla",
+"t": "el niño no quiere hablar en la sesión"
+},
+{
+"id": "antidepresivos-adolescente",
+"t": "el adolescente empieza a tomar antidepresivos"
+}
+],
+"di-conducta": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"di-fortalezas": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"di-habilidades": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"duelo-grupo": [
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"duelo-mgt": [
+{
+"id": "muerte-anticipada",
+"t": "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida"
+}
+],
+"ira-tame": [
+{
+"id": "amenaza-a-otros",
+"t": "la persona dice que va a hacerle daño a alguien"
+}
+],
+"maltrato-afcbt": [
+{
+"id": "revela-abuso-nino",
+"t": "un niño o un adolescente revela un abuso"
+},
+{
+"id": "sospecha-maltrato-nuevo",
+"t": "durante el tratamiento surge la sospecha de un maltrato nuevo"
+},
+{
+"id": "padres-desbordados",
+"t": "los padres llegan desbordados, se sienten culpados o tienen su propio malestar"
+},
+{
+"id": "hogar-de-acogida",
+"t": "el niño vive en un hogar de acogida o bajo protección"
+}
+],
+"maltrato-cpc": [
+{
+"id": "revela-abuso-nino",
+"t": "un niño o un adolescente revela un abuso"
+},
+{
+"id": "sospecha-maltrato-nuevo",
+"t": "durante el tratamiento surge la sospecha de un maltrato nuevo"
+}
+],
+"maltrato-keep": [
+{
+"id": "hogar-de-acogida",
+"t": "el niño vive en un hogar de acogida o bajo protección"
+}
+],
+"maltrato-pcit": [
+{
+"id": "sospecha-maltrato-nuevo",
+"t": "durante el tratamiento surge la sospecha de un maltrato nuevo"
+}
+],
+"mutismo-conductual": [
+{
+"id": "nino-no-habla",
+"t": "el niño no quiere hablar en la sesión"
+}
+],
+"opos-pcit": [
+{
+"id": "padres-desbordados",
+"t": "los padres llegan desbordados, se sienten culpados o tienen su propio malestar"
+}
+],
+"opos-pmt": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+},
+{
+"id": "pocos-recursos",
+"t": "la familia tiene muy pocos recursos"
+},
+{
+"id": "padres-desbordados",
+"t": "los padres llegan desbordados, se sienten culpados o tienen su propio malestar"
+},
+{
+"id": "quiere-dejar",
+"t": "la persona quiere dejar la terapia antes de alcanzar las metas"
+}
+],
+"pant-familia": [
+{
+"id": "consulta-la-familia",
+"t": "quien consulta es la familia y no la persona con el problema"
+}
+],
+"pant-padres": [
+{
+"id": "consulta-la-familia",
+"t": "quien consulta es la familia y no la persona con el problema"
+}
+],
+"sep-codip": [
+{
+"id": "contacto-con-agresor",
+"t": "la persona tiene que seguir en contacto con quien la maltrató, por los hijos"
+},
+{
+"id": "padres-en-conflicto",
+"t": "los padres están separados y en conflicto"
+}
+],
+"sui-dbt": [
+{
+"id": "adolescente-reserva",
+"t": "el adolescente pide que sus padres no se enteren de lo que habla"
+}
+],
+"sui-seguridad": [
+{
+"id": "adolescente-reserva",
+"t": "el adolescente pide que sus padres no se enteren de lo que habla"
+},
+{
+"id": "antidepresivos-adolescente",
+"t": "el adolescente empieza a tomar antidepresivos"
+},
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"sui-tc": [
+{
+"id": "suicidio-en-otro-plan",
+"t": "aparecen ideas de suicidio mientras se trabaja otro problema"
+}
+],
+"tdah-pad": [
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+},
+{
+"id": "pocos-recursos",
+"t": "la familia tiene muy pocos recursos"
+},
+{
+"id": "padres-desbordados",
+"t": "los padres llegan desbordados, se sienten culpados o tienen su propio malestar"
+}
+],
+"tea-ansiedad": [
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+}
+],
+"tea-ndbi": [
+{
+"id": "pocos-recursos",
+"t": "la familia tiene muy pocos recursos"
+}
+],
+"toc-erp": [
+{
+"id": "familia-acomoda",
+"t": "la familia tranquiliza, hace los rituales o evita por la persona"
+},
+{
+"id": "vacio-y-recaida",
+"t": "al terminar queda un vacío o reaparecen los síntomas"
+}
+],
+"trauma-colegio": [
+{
+"id": "despues-de-un-evento",
+"t": "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron"
+}
+],
+"trauma-proteccion": [
+{
+"id": "sospecha-maltrato-nuevo",
+"t": "durante el tratamiento surge la sospecha de un maltrato nuevo"
+},
+{
+"id": "falta-a-sesiones",
+"t": "la persona falta a las sesiones o las cancela seguido"
+},
+{
+"id": "hogar-de-acogida",
+"t": "el niño vive en un hogar de acogida o bajo protección"
+}
+],
+"trauma-tfcbt": [
+{
+"id": "otra-cultura-lengua",
+"t": "la persona o la familia viene de otra cultura o prefiere otra lengua"
+},
+{
+"id": "revela-abuso-nino",
+"t": "un niño o un adolescente revela un abuso"
+},
+{
+"id": "discapacidad",
+"t": "la persona o el niño tiene una discapacidad intelectual o del desarrollo"
+},
+{
+"id": "trauma-otro-motivo",
+"t": "aparece una historia de trauma y la persona consulta por otra cosa"
+},
+{
+"id": "nino-no-habla",
+"t": "el niño no quiere hablar en la sesión"
+},
+{
+"id": "hogar-de-acogida",
+"t": "el niño vive en un hogar de acogida o bajo protección"
+}
+]
+};
 
 /* Fundamento del plan: tipo de cada entrada de MODELOS y fundamentos de los
    planes que no declaran un modelo teórico propio. Ver la nota en la guía
@@ -9815,7 +10182,19 @@ function pintarPlan(v, p, vi){
       '<div class="caja"><span class="r">Adaptaciones por escenario</span>' + lista(p.adapt) + '</div>' +
       '<div class="caja"><span class="r">Precauciones</span>' + lista(p.cuidado) + '</div>' +
     '</div>' +
+    pintarSituaciones(p) +
   '</section>';
+}
+
+/* Situaciones clínicas que enlazan este plan. Las escribe _situaciones-fuente/armar.py
+   en datos/06-98-situaciones.js. */
+function pintarSituaciones(p){
+  const l = (typeof SITUACIONES_POR_PLAN !== "undefined" && SITUACIONES_POR_PLAN[p.id]) || [];
+  if (!l.length) return "";
+  return '<div class="sit-rel"><span class="r">¿Y si…? Situaciones clínicas</span><ul>' +
+    l.map(x => '<li><a href="situaciones-clinicas.html#sit-' + x.id + '">¿Y si ' + escapar(x.t) + '?</a></li>').join("") + '</ul>' +
+    (l.length > 1 ? '<a class="sit-todas" href="situaciones-clinicas.html#plan-i-' + encodeURIComponent(p.id) + '">Verlas juntas →</a>' : '') +
+    '</div>';
 }
 
 function pintarVariable(v, vi){

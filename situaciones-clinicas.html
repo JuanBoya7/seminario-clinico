@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Y si…? Situaciones clínicas</title>
+<style>
+/* ============================================================
+   TOKENS
+   Los de las guías de planes y de tamizaje: este recurso se lee junto
+   a ellas y enlaza a sus planes. Los colores por momento distinguen
+   en qué punto de la atención ocurre cada situación.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --primer:#2f5d8a;  --primer-soft:#e6eef7;
+  --eval:#6b4f8a;    --eval-soft:#efe9f5;
+  --interv:#3f7d53;  --interv-soft:#e7f3ea;
+  --crisis:#8a3b2e;  --crisis-soft:#f6e9e6;
+  --cierre:#b8722a;  --cierre-soft:#faf1e4;
+  --evitar:#9a3b2e;  --evitar-soft:#fbefec;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:12px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+a{color:var(--accent-dark);}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.rotulo{
+  font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px;
+}
+h1{font-size:clamp(28px,3.4vw,42px); line-height:1.12; letter-spacing:-.015em;}
+.lead{
+  margin-top:15px; max-width:76ch;
+  font-size:clamp(14.5px,1.5vw,16.5px); line-height:1.65; color:var(--ink-soft);
+}
+.lead strong{color:var(--ink); font-weight:600;}
+.aviso{
+  margin-top:24px; padding:16px 20px;
+  border:1px solid var(--border); border-left:4px solid var(--accent);
+  border-radius:var(--radius); background:var(--surface);
+  font-size:14px; line-height:1.6; color:var(--ink-soft); max-width:88ch;
+}
+.aviso strong{color:var(--ink); font-weight:600;}
+.aviso ul{margin:0; padding-left:20px;}
+.aviso li{margin-bottom:6px;}
+.aviso li:last-child{margin-bottom:0;}
+
+/* ============================================================
+   DISTRIBUCIÓN
+   Ancha: filtros a la izquierda, mapa a la derecha, los dos fijos.
+   Mediana y teléfono: filtros arriba y sin mapa.
+   ============================================================ */
+.pagina{
+  max-width:1180px; margin:0 auto; padding:clamp(30px,6vh,60px) 28px 90px;
+  display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:"cab" "izq" "centro";
+}
+.cab{grid-area:cab;}
+.riel-izq{display:contents;}
+.riel-izq > .controles{grid-area:izq;}
+.centro{grid-area:centro; min-width:0;}
+.riel-der{display:none;}
+
+@media (min-width:1280px){
+  .pagina{
+    max-width:none; padding-left:clamp(20px,2vw,36px); padding-right:clamp(20px,2vw,36px);
+    grid-template-columns:clamp(236px,17vw,290px) minmax(0,1fr) clamp(236px,17vw,290px);
+    grid-template-areas:"izq cab der" "izq centro der";
+    grid-template-rows:auto 1fr;
+    column-gap:clamp(24px,2.4vw,44px);
+  }
+  .riel-izq, .riel-der{display:block;}
+  .riel-izq{grid-area:izq;}
+  .riel-der{grid-area:der;}
+  .riel-izq .controles, .riel-der .mapa{
+    position:sticky; top:20px; max-height:calc(100vh - 40px); overflow-y:auto;
+    overscroll-behavior:contain; scrollbar-width:thin;
+  }
+  .riel-izq .controles{
+    margin:0; padding:18px 16px; border:1px solid var(--border); border-radius:var(--radius);
+    background:var(--surface);
+  }
+  .riel-izq .controles-fila{gap:6px;}
+  .riel-izq .controles-fila + .controles-fila{margin-top:16px;}
+  .riel-izq .controles-r{width:100%; min-width:0; margin:0 0 2px;}
+  .riel-izq .chip{font-size:12.5px; padding:5px 11px;}
+  .riel-izq .buscador{flex-basis:100%; min-width:0; font-size:13px; padding:8px 12px;}
+  .riel-izq #bt-todo{width:100%;}
+  .momento{scroll-margin-top:24px;}
+  .sit{scroll-margin-top:18px;}
+}
+
+/* Mapa: momentos y situaciones. */
+.mapa{padding:4px 2px 12px;}
+.mapa-r{
+  display:block; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint); margin:2px 0 10px;
+}
+.mapa-m{margin-top:14px;}
+.mapa-m[hidden], .mapa li[hidden]{display:none;}
+.mapa-m > a{
+  display:block; font-family:var(--font-display); font-weight:600; font-size:14px; line-height:1.3;
+  color:var(--mom); text-decoration:none; margin-bottom:4px;
+}
+.mapa ul{list-style:none; margin:0; padding:0 0 0 10px; border-left:2px solid var(--border);}
+.mapa li a{
+  display:block; font-size:12.5px; line-height:1.35; color:var(--ink-soft); text-decoration:none;
+  padding:4px 8px; border-radius:6px; margin-left:-2px; border-left:2px solid transparent;
+}
+.mapa li a:hover{color:var(--accent-dark); background:var(--accent-soft);}
+.mapa li a.actual{color:var(--accent-dark); border-left-color:var(--accent); background:var(--accent-soft); font-weight:600;}
+
+/* ============================================================
+   CONTROLES
+   ============================================================ */
+.controles{
+  position:sticky; top:0; z-index:10;
+  margin:30px 0 0; padding:16px 0 14px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.controles-fila{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.controles-fila + .controles-fila{margin-top:10px;}
+.controles-r{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint); margin-right:4px; min-width:84px;
+}
+.chip{
+  font-family:var(--font-body); font-size:13.5px; font-weight:500;
+  color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:999px;
+  padding:7px 14px; cursor:pointer;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.chip:hover{background:var(--surface-alt); color:var(--ink);}
+.chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;}
+.chip:focus-visible, .sit > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.buscador{
+  flex:1 1 220px; min-width:200px;
+  font-family:var(--font-body); font-size:14px; color:var(--ink);
+  padding:9px 14px; border:1px solid var(--border); border-radius:999px; background:var(--bg);
+}
+.buscador:focus{outline:none; border-color:var(--accent);}
+.cuenta{margin-top:10px; font-size:12.5px; color:var(--ink-faint);}
+
+/* Aviso de filtro por plan: se llega desde el enlace de un plan. */
+.por-plan{
+  margin-top:22px; padding:12px 16px; display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+  border:1px solid var(--accent-soft); background:var(--accent-soft); border-radius:10px;
+  font-size:14px; color:var(--accent-dark);
+}
+.por-plan[hidden]{display:none;}
+.por-plan strong{font-weight:600;}
+.por-plan button{
+  margin-left:auto; font:inherit; font-size:13px; font-weight:600; cursor:pointer;
+  border:1px solid var(--accent); background:var(--bg); color:var(--accent-dark);
+  border-radius:999px; padding:5px 13px;
+}
+
+/* ============================================================
+   MOMENTOS Y SITUACIONES
+   ============================================================ */
+.m-primer{--mom:var(--primer); --mom-soft:var(--primer-soft);}
+.m-eval{--mom:var(--eval); --mom-soft:var(--eval-soft);}
+.m-interv{--mom:var(--interv); --mom-soft:var(--interv-soft);}
+.m-crisis{--mom:var(--crisis); --mom-soft:var(--crisis-soft);}
+.m-cierre{--mom:var(--cierre); --mom-soft:var(--cierre-soft);}
+
+.momento{margin:clamp(34px,5vh,52px) 0 4px;}
+.momento[hidden]{display:none;}
+.momento > h2{
+  font-size:clamp(21px,2.5vw,29px); line-height:1.2; letter-spacing:-.01em; color:var(--mom);
+  padding-bottom:9px; border-bottom:2px solid var(--mom-soft);
+}
+.momento > p{margin:9px 0 0; max-width:84ch; font-size:13.5px; line-height:1.6; color:var(--ink-faint);}
+
+.sit{margin-top:12px;}
+.sit[hidden]{display:none;}
+.sit > summary{
+  list-style:none; cursor:pointer;
+  border:1px solid var(--border); border-left:4px solid var(--mom); border-radius:var(--radius);
+  background:var(--surface); padding:15px 18px;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 14px; align-items:start;
+  transition:background .14s, border-color .14s;
+}
+.sit > summary::-webkit-details-marker{display:none;}
+.sit > summary:hover{background:var(--surface-alt);}
+.sit[open] > summary{border-bottom-left-radius:0; border-bottom-right-radius:0; background:var(--mom-soft);}
+.sit h3{font-size:clamp(17px,1.8vw,20.5px); line-height:1.3;}
+.sit h3 .ysi{color:var(--mom);}
+.sit .mas{grid-row:1 / span 2; grid-column:2; font-size:20px; line-height:1.3; color:var(--mom);}
+.sit[open] .mas::after{content:"\2013";}
+.sit:not([open]) .mas::after{content:"+";}
+.etiquetas{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+.et{
+  font-size:11px; font-weight:600; color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:999px; padding:2px 9px; white-space:nowrap;
+}
+.et.alc{font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:10.5px; color:var(--mom); border-color:var(--mom-soft); background:var(--mom-soft);}
+.sit[open] .et.alc{background:var(--bg);}
+
+.sit-cuerpo{
+  border:1px solid var(--border); border-left:4px solid var(--mom); border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  padding:4px 22px 20px;
+}
+.clave{
+  margin:16px 0 0; padding:12px 16px; border-radius:10px;
+  background:var(--mom-soft); color:var(--ink); font-size:15px; line-height:1.55; max-width:92ch;
+}
+.clave b{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--mom); display:block; margin-bottom:3px;}
+.sit h4{
+  font-family:var(--font-body); font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-faint); margin:20px 0 8px;
+}
+.dice, .evitar{margin:0; padding-left:20px; max-width:92ch;}
+.dice li, .evitar li{font-size:14.5px; line-height:1.62; color:var(--ink-soft); margin-bottom:8px;}
+.dice li:last-child, .evitar li:last-child{margin-bottom:0;}
+.evitar{list-style:none; padding-left:0;}
+.evitar li{
+  position:relative; padding:9px 14px 9px 38px; border-radius:8px; background:var(--evitar-soft);
+  color:var(--ink);
+}
+.evitar li::before{
+  content:"\00D7"; position:absolute; left:14px; top:6px;
+  font-size:19px; font-weight:700; color:var(--evitar);
+}
+.planes{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:8px; max-width:92ch;}
+.plan-l{
+  display:flex; flex-direction:column; gap:2px; text-decoration:none;
+  border:1px solid var(--border); border-radius:10px; background:var(--bg);
+  padding:8px 12px; transition:background .14s, border-color .14s;
+}
+.plan-l:hover{background:var(--surface); border-color:var(--accent-soft);}
+.plan-l .g{font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent);}
+.plan-l .pt{font-family:var(--font-display); font-size:15px; line-height:1.3; color:var(--ink);}
+.plan-l .pv{font-size:12px; color:var(--ink-faint);}
+
+.vacio{
+  margin-top:40px; padding:28px; text-align:center;
+  border:1px dashed var(--border); border-radius:var(--radius);
+  color:var(--ink-faint); font-size:14.5px;
+}
+.vacio[hidden]{display:none;}
+
+footer{
+  margin-top:clamp(46px,8vh,80px); padding-top:24px; border-top:1px solid var(--border);
+  font-size:12.5px; line-height:1.6; color:var(--ink-faint); max-width:96ch;
+}
+footer strong{color:var(--ink-soft); font-weight:600;}
+footer h2{font-size:15px; color:var(--ink-soft); margin:22px 0 8px;}
+footer ol{margin:0; padding-left:20px;}
+footer li{margin-bottom:6px;}
+
+/* Con cuatro filas de filtros, la barra fija taparía media pantalla: solo
+   queda fija cuando va en la columna lateral. */
+@media (max-width:1279px){
+  .controles{position:static;}
+}
+@media (max-width:860px){
+  .chip{font-size:13px; padding:6px 11px;}
+}
+@media (max-width:640px){
+  .pagina{padding-left:16px; padding-right:16px;}
+  .sit > summary{padding:13px 14px;}
+  .sit-cuerpo{padding:2px 14px 16px;}
+  .controles-r{min-width:0; width:100%;}
+}
+
+@media print{
+  .riel-izq, .riel-der, .controles, .por-plan{display:none !important;}
+  .pagina{display:block; padding:0;}
+  .sit{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<div class="pagina">
+
+  <header class="cab">
+    <div class="rotulo">Guía de consulta</div>
+    <h1>¿Y si…? Situaciones clínicas</h1>
+    <p class="lead">
+      Situaciones que aparecen en la práctica y que ningún plan resuelve por sí solo: una revelación
+      en medio de un grupo, una familia que acomoda el síntoma, un tratamiento que no avanza. Para
+      cada una, <strong>lo que dicen los manuales y las guías</strong>, lo que conviene evitar y los
+      planes con los que se relaciona en la <a href="planes-intervencion.html">guía de planes para adultos</a>
+      y en la <a href="planes-infancia.html">guía de planes en niños y adolescentes</a>.
+    </p>
+    <div class="aviso">
+      <ul>
+        <li><strong>Cada afirmación cita su fuente</strong> y el capítulo o apartado; las referencias
+            completas están al final.</li>
+        <li><strong>Lo legal depende del país.</strong> Donde una fuente describe la notificación de
+            maltrato o el deber de advertir, se toma como criterio clínico y se contrasta con la
+            normativa y la ruta de atención locales.</li>
+        <li><strong>No reemplaza la supervisión.</strong> Las situaciones de riesgo se llevan a
+            supervisión y a la ruta de atención antes que a cualquier plan.</li>
+      </ul>
+    </div>
+    <div class="por-plan" id="por-plan" hidden></div>
+  </header>
+
+  <aside class="riel-izq" aria-label="Filtros">
+    <div class="controles">
+      <div class="controles-fila" id="f-mom"><span class="controles-r">Momento</span></div>
+      <div class="controles-fila" id="f-alc"><span class="controles-r">Alcance</span></div>
+      <div class="controles-fila" id="f-pob"><span class="controles-r">Contexto</span></div>
+      <div class="controles-fila">
+        <input class="buscador" id="buscador" type="search" autocomplete="off"
+               placeholder="Buscar (tareas, intérprete, acogida, suicidio…)">
+        <button class="chip" type="button" id="bt-todo">Desplegar todo</button>
+      </div>
+      <div class="cuenta" id="cuenta"></div>
+    </div>
+  </aside>
+
+  <main class="centro">
+    <div id="lista"></div>
+    <div class="vacio" id="vacio" hidden>Ninguna situación coincide con los filtros.</div>
+    <footer id="pie"></footer>
+  </main>
+
+  <aside class="riel-der">
+    <nav class="mapa" id="mapa" aria-label="Mapa de situaciones"></nav>
+  </aside>
+</div>
+
+<script>
+/* ============================================================
+   CÓMO ESTÁ ARMADA ESTA GUÍA
+
+   Cada situación es una entrada con el momento de la atención en que
+   ocurre, su alcance (adultos, niñez y adolescencia o ambos), los
+   contextos a los que toca, una síntesis, lo que dicen las fuentes, lo
+   que conviene evitar y los planes relacionados de las dos guías.
+
+   Los planes se enlazan por id: planes-intervencion.html#plan-<id> y
+   planes-infancia.html#plan-<id>. Desde un plan se llega aquí con
+   #plan-a-<id> o #plan-i-<id>, que deja solo las situaciones que lo
+   enlazan. Una situación se abre directamente con #sit-<id>.
+
+   Fuentes: los manuales, capítulos y guías de la biblioteca en Markdown,
+   parafraseados; ninguna entrada reproduce pasajes extensos.
+   ============================================================ */
+
+/* @@DATOS@@ Bloque generado por _situaciones-fuente/armar.py desde _situaciones-fuente/datos/. No se edita aquí. */
+const SITUACIONES = [
+{
+  id: "viene-obligada",
+  mom: "primer",
+  alc: ["a"],
+  pob: ["consumo"],
+  t: "la persona viene obligada por un juzgado, la empresa o la familia",
+  clave: "Lo que parece negación suele ser cautela ante un sistema que tiene poder sobre la persona; la pregunta útil es qué necesita cambiar para que quien la remitió quede tranquilo.",
+  dice: [
+    "Quien llega remitido a menudo puntúa su malestar por debajo del corte en las primeras medidas. No siempre es falta de problema: reconocerlo puede traerle consecuencias, puede no estar de acuerdo con el motivo de la remisión o con la meta que le fijaron, desconfiar de un sistema al que el terapeuta envía informes o sentir vergüenza (Maeschalck y Barfknecht, 2017, cap. 3).",
+    "Se validan y normalizan esos temores, y se cambia el foco: cómo cree que lo evaluaría quien lo remitió y qué cambios esperaría ver. El problema deja de ser qué está mal en la persona y pasa a ser qué necesita hacer para resolver esa preocupación (Maeschalck y Barfknecht, 2017, cap. 3).",
+    "Ante la resistencia se usan las herramientas de la entrevista motivacional: reconocer abiertamente que no quiere estar ahí, reflejar los dos lados de la ambivalencia, cambiar de tema si hace falta y recordarle su autonomía y su responsabilidad (Woodin, 2015).",
+    "La transparencia importa más que de costumbre: estas personas pueden temer las consecuencias de ser francas o haberse sentido desoídas antes, y la diferencia de poder es evidente (Maeschalck y Barfknecht, 2017, cap. 3)."
+  ],
+  evitar: [
+    "Confrontar, discutir o dar consejos: aumentan la desconfianza y la reticencia (Woodin, 2015).",
+    "Juzgar a la persona por lo que la trajo. Cuando aparece ese juicio, afecta la autenticidad del terapeuta y la persona lo percibe; la autorreflexión y la supervisión ayudan (Maeschalck y Barfknecht, 2017, cap. 3)."
+  ],
+  planes: ["a:cons-em", "a:cons-est", "a:adh-em", "a:ira-tcc"]
+},
+{
+  id: "adolescente-reserva",
+  mom: "primer",
+  alc: ["i"],
+  pob: ["adolescencia", "familia"],
+  t: "el adolescente pide que sus padres no se enteren de lo que habla",
+  clave: "La reserva se ofrece con sus límites dichos desde el inicio, y lo que deba llegar a los padres se trabaja con el adolescente, no a sus espaldas.",
+  dice: [
+    "La necesidad de privacidad frente a los padres aumenta con la edad, y los adolescentes suelen necesitar bastante para sentirse cómodos en la terapia. Desde el comienzo se dice con honestidad qué se puede mantener en reserva y qué no, para que no haya sorpresas (Shapiro, 2015, cap. 1).",
+    "En la psicoterapia interpersonal para adolescentes, el terapeuta no comenta el contenido de las sesiones con los padres salvo que lo decidan juntos. Si el adolescente está en peligro, primero habla con él de romper la confidencialidad y después actúa. A los padres se les puede informar en términos generales —asistencia, mejoría, una recomendación de valoración por psiquiatría— con la aprobación previa del adolescente; si no la da, se le anima a contarlo él mismo (Weissman et al., 2018, cap. 14).",
+    "Cuando algo delicado tiene que llegar a los padres, se trata como una oportunidad terapéutica. Se invita al adolescente a la reunión y, si está dispuesto, a contarlo él, con el terapeuta atento a que no quede fuera nada importante; así conserva cierto control sobre lo que se revela (Shapiro, 2015, cap. 1).",
+    "En la atención del consumo se aclara desde el inicio qué se mantiene confidencial y en qué casos se informa a los padres (OPS, 2017, módulo SUB)."
+  ],
+  evitar: [
+    "Prometer una reserva absoluta que después no se podrá sostener.",
+    "Presentar la revelación a los padres como una delación en la que el adolescente «quedó descubierto» (Shapiro, 2015, cap. 1)."
+  ],
+  planes: ["i:dep-ipt", "i:cons-met-tcc", "i:sui-seguridad", "i:sui-dbt", "a:cons-est"]
+},
+{
+  id: "consumo-no-motivo",
+  mom: "primer",
+  alc: ["a"],
+  pob: ["consumo", "pareja"],
+  t: "aparece un consumo de alcohol o drogas que no era el motivo de consulta",
+  clave: "Se pide permiso para hablar de él, se nombra la preocupación y se empieza por lo que la persona esté dispuesta a cambiar.",
+  dice: [
+    "En atención primaria o en psicoterapia, cuando el consumo no es el motivo de consulta, se pide permiso para hablar de él y se expresa la preocupación, respetando que la decisión es de la persona (Miller, 2015).",
+    "Con varias sustancias la motivación suele ser distinta para cada una: se empieza por los cambios que la persona está dispuesta a hacer, aunque no sean la abstinencia de todo (Miller, 2015).",
+    "En la terapia de pareja, la dependencia se trata en una terapia específica; una vez iniciada, la terapia de pareja puede sumarse centrada en la relación (Barraca, 2015, cap. 10).",
+    "Si la persona bebe cuando se angustia, se vigila que la exposición a lo temido no aumente el consumo (Taylor y Asmundson, 2004)."
+  ],
+  evitar: [
+    "Que el terapeuta de pareja se vuelva vigilante del consumo o señale a quien consume como el origen de todos los problemas (Barraca, 2015, cap. 10)."
+  ],
+  planes: ["a:cons-em", "a:cons-est", "a:par-tip", "a:sal-tcc", "a:adh-em"]
+},
+{
+  id: "consulta-la-familia",
+  mom: "primer",
+  alc: ["a", "i"],
+  pob: ["familia", "consumo"],
+  t: "quien consulta es la familia y no la persona con el problema",
+  clave: "La familia también es consultante: tiene su propio malestar y decisiones que le corresponden, y se le da información para tomarlas.",
+  dice: [
+    "En el juego patológico, la pareja y la familia a menudo buscan ayuda antes que el jugador, y el juego afecta también a los hijos. Hay grupos para familiares y terapia individual o de pareja, aunque la evidencia sobre qué les sirve es escasa (Petry, 2005).",
+    "Cuando los familiares preguntan si prestarle dinero, la decisión es de ellos. Se les informa que prestar suele reducir las consecuencias del juego y facilitar que continúe, y que les conviene protegerse económicamente (Ladouceur y Lachance, 2007, cap. 11).",
+    "En los videojuegos se evalúa si otros familiares juegan con la persona, porque pueden normalizar y facilitar el juego (King y Delfabbro, 2018, caps. 5 y 7)."
+  ],
+  evitar: [
+    "Decidir por la familia si presta dinero: se le da la información y la decisión queda en sus manos (Ladouceur y Lachance, 2007, cap. 11).",
+    "Recomendar a los padres de un joven que vive en casa que le quiten los dispositivos como imposición: suele escalar el conflicto (King y Delfabbro, 2018, caps. 5 y 7)."
+  ],
+  planes: ["a:jue-petry", "a:jue-tcc", "a:int-juego", "i:pant-familia", "i:pant-padres"]
+},
+{
+  id: "llega-intoxicada",
+  mom: "primer",
+  alc: ["a", "i"],
+  pob: ["consumo", "grupo", "adolescencia"],
+  t: "la persona llega a la sesión bajo el efecto del alcohol o de otra droga",
+  clave: "Esa sesión no se hace como estaba prevista: se atiende primero la seguridad y se reprograma.",
+  dice: [
+    "Con una alcoholemia alta no se puede hacer una entrevista ni una sesión productiva. McCrady reprograma la sesión si supera 50 mg%, sugiere atención médica cuando el nivel es muy alto y acuerda con la persona venir sobria a la siguiente (McCrady, 2014).",
+    "En los programas para adolescentes, quien llega bajo efecto de alcohol, cannabis u otra droga no participa en esa sesión. Se valora si necesita desintoxicación, se avisa a los padres o al acudiente y se evalúa el riesgo para otros, por ejemplo si va a conducir al salir (Sampl y Kadden, 2001).",
+    "En grupo, idealmente se detecta antes de entrar. Si ya está adentro, se le pide salir y otro miembro del equipo lo acompaña; después se pregunta al grupo cómo le afectó verlo y si le despertó ganas de consumir, y se hace un plan con quien lo necesite (Sampl y Kadden, 2001).",
+    "En la terapia interpersonal grupal se anima, sin juicio, a no consumir antes de las sesiones; si alguien llega intoxicado y perturba, se invita al grupo a hablar del efecto y a pedirle que no venga así (OPS, 2022b, cap. 6)."
+  ],
+  evitar: [
+    "Seguir la sesión como si nada pasara.",
+    "Dejar que se vaya conduciendo o sin avisar al adulto responsable, en el caso de un adolescente (Sampl y Kadden, 2001)."
+  ],
+  planes: ["a:cons-est", "a:cons-pr", "a:trans-tipg", "i:cons-met-tcc", "i:cons-mdft"]
+},
+{
+  id: "otra-cultura-lengua",
+  mom: "primer",
+  alc: ["a", "i"],
+  pob: ["cultura", "familia"],
+  t: "la persona o la familia viene de otra cultura o prefiere otra lengua",
+  clave: "No conocer la cultura del otro es manejable; lo que daña es actuar como si se conociera.",
+  dice: [
+    "No conocer la cultura de la familia es un problema manejable, salvo que el terapeuta actúe como si la conociera. Ayuda reconocerlo con honestidad, mostrar interés por aprender y plantear el trabajo como una colaboración: si algo no se entiende, se pregunta (Shapiro, 2015, cap. 9).",
+    "La psicoterapia nació en un contexto cultural particular, y para muchas familias hablar de asuntos personales con alguien ajeno resulta intrusivo. Se explica cómo funciona la terapia, por qué se hacen ciertas preguntas, para qué se usa la información y qué se mantiene en reserva (Shapiro, 2015, cap. 9).",
+    "Preguntar en qué lengua prefiere trabajar no siempre basta. Los niños que aprenden una segunda lengua pueden elegirla para mostrar que la dominan y luego tener dificultad para hablar de pensamientos y emociones: se anima a expresarse en la lengua que mejor recoja lo que piensan y sienten, y puede variar según el tema (de Arellano et al., 2012).",
+    "Si se trabaja con intérprete, conviene que sea el mismo en todo el caso, por la relación que se forma, y que conozca el modelo de tratamiento y sus objetivos (de Arellano et al., 2012). Con temas delicados, como la violencia, se tiene especial cuidado cuando interviene un intérprete (OMS, 2013, recuadro B).",
+    "Como los valores varían entre culturas, si los de la persona son propios de un grupo que el terapeuta no conoce, conviene consultar con alguien que lo conozca (Hayes et al., 2012, cap. 11). En la ansiedad infantil se conservan las estrategias generales y se adapta el contenido al contexto: flexibilidad dentro de la fidelidad (Palitz et al., 2019)."
+  ],
+  evitar: [
+    "Suponer que alguien comparte todos los rasgos atribuidos a su grupo: la sensibilidad cultural no puede volverse insensibilidad hacia la persona concreta (de Arellano et al., 2012).",
+    "Descartar como «no valores» elecciones que solo son distintas (Hayes et al., 2012, cap. 11)."
+  ],
+  planes: ["i:trauma-tfcbt", "i:ans-kendall", "i:opos-pmt", "a:ans-act", "a:par-tip", "a:perd-enright", "a:mig-capas"]
+},
+{
+  id: "causa-medica",
+  mom: "eval",
+  alc: ["a"],
+  pob: ["salud"],
+  t: "los síntomas podrían tener una causa médica",
+  clave: "La valoración médica va antes del diagnóstico y de algunas técnicas; encontrar una causa médica no descarta la intervención psicológica.",
+  dice: [
+    "Antes de diagnosticar e iniciar el tratamiento de un trastorno emocional se recomienda una evaluación médica. El hipotiroidismo, el hipertiroidismo, la hipoglucemia, el prolapso de la válvula mitral o la abstinencia de alcohol u otras sustancias pueden dar síntomas parecidos a los de la ansiedad generalizada o el pánico (Payne et al., 2014).",
+    "Encontrar una causa médica no descarta la intervención psicológica, pero puede indicar otro tratamiento (Payne et al., 2014).",
+    "Antes de la exposición a las sensaciones corporales se consulta con el médico: en el asma grave, por ejemplo, los ejercicios de hiperventilación pueden estar contraindicados (Taylor y Asmundson, 2004).",
+    "La terapia del duelo complicado empieza por descartar una enfermedad física detrás de los síntomas (Worden, 2013, cap. 6).",
+    "En los trastornos alimentarios, el tratamiento ambulatorio exige que el estado físico sea estable y que no haya riesgo de suicidio. El protocolo está pensado para un índice de masa corporal entre 15 y 40; por debajo de 15 conviene un terapeuta con experiencia, y quien no es médico necesita tener acceso fácil a uno (Fairburn y Cooper, 2014)."
+  ],
+  evitar: [
+    "Tratar como psicológico un síntoma físico que nadie ha valorado médicamente.",
+    "Suspender la intervención psicológica solo porque apareció una condición médica (Payne et al., 2014)."
+  ],
+  planes: ["a:ans-panico", "a:ans-pu", "a:sal-tcc", "a:duelo-compl", "a:alim-tcc", "a:alim-est"]
+},
+{
+  id: "sin-explicacion-medica",
+  mom: "eval",
+  alc: ["a"],
+  pob: ["salud"],
+  t: "el médico no encuentra causa y la persona pide una constancia de incapacidad",
+  clave: "El reto son los síntomas, no la persona; la meta es recuperar funcionamiento, no certificar la enfermedad.",
+  dice: [
+    "La incapacidad laboral prolongada suele mantener el papel de enfermo y hace muy difícil recuperar el funcionamiento. Woolfolk y Allen no escriben cartas de apoyo para pensiones por incapacidad; ofrecen, en cambio, ayudar a aumentar la actividad (Woolfolk y Allen, 2007, cap. 9).",
+    "La mayoría tiene también depresión o ansiedad. Tras una evaluación completa, que incluya la historia médica, se pregunta qué síntomas le molestan e interfieren más, y eso define el foco (Woolfolk y Allen, 2007, cap. 9).",
+    "Los valores y creencias culturales influyen en cómo se interpretan las sensaciones del cuerpo y en cuáles se temen más; las personas latinoamericanas tienden a consultar con más síntomas sin explicación médica (Taylor y Asmundson, 2004).",
+    "Es un trabajo que frustra también al clínico. Ayuda tener expectativas razonables: buscar mejoría, no curas (Woolfolk y Allen, 2007, cap. 9)."
+  ],
+  evitar: [
+    "Las etiquetas peyorativas —«quejumbroso», «paciente problema»—, que expresan la frustración del profesional. Si aparece la tentación de culpar a la persona, lo indicado es revisar los propios pensamientos y volver a la empatía (Woolfolk y Allen, 2007, cap. 9)."
+  ],
+  planes: ["a:som-acbt", "a:sal-tcc", "a:sal-grupo", "a:dolor-tc"]
+},
+{
+  id: "revela-violencia-pareja",
+  mom: "eval",
+  alc: ["a"],
+  pob: ["pareja", "perinatal"],
+  t: "la persona revela que vive violencia de pareja",
+  clave: "Lo mínimo es el apoyo de primera línea: privacidad, escucha sin presión, información y seguridad.",
+  dice: [
+    "A quien revela violencia de pareja o sexual se le ofrece apoyo inmediato: consulta en privado; confidencialidad, informando sus límites cuando hay notificación obligatoria; una actitud sin juicios que valida lo que dice; ayuda práctica que responde a sus preocupaciones sin invadir; preguntar por su historia escuchando con atención pero sin presionar; información sobre recursos legales y de otro tipo; apoyo para aumentar su seguridad y la de sus hijos, y movilización de apoyo social (OMS, 2013, recuadro B).",
+    "Si quien atiende no puede darlo, se asegura que otra persona, en el mismo servicio o en uno de fácil acceso, lo haga de inmediato (OMS, 2013, recuadro B).",
+    "A la gestante que revela violencia se le ofrece consejería de empoderamiento breve o de duración media —hasta 12 sesiones— con un componente de seguridad; el control prenatal es una oportunidad para preguntar de rutina (OMS, 2013, recomendaciones 2 y 8).",
+    "Si la violencia viene de la pareja o de un familiar, esa persona no acompaña a la consultante en las sesiones (FICR, 2022, sección 25)."
+  ],
+  evitar: [
+    "Presionarla para que cuente o para que tome una decisión (OMS, 2013, recuadro B).",
+    "Proponer o continuar una terapia de pareja cuando hay maltrato: se interrumpe, porque seguir podría hacer creer que el terapeuta no lo juzga grave (Barraca, 2015, cap. 10)."
+  ],
+  planes: ["a:vp-oms", "a:vp-ctt", "a:par-tip", "a:pos-tcc"]
+},
+{
+  id: "revela-abuso-nino",
+  mom: "eval",
+  alc: ["i"],
+  pob: ["proteccion", "grupo"],
+  t: "un niño o un adolescente revela un abuso",
+  clave: "Se recibe con calma y sin interrogar, se le dice que no tiene que resolverlo solo y se activa la ruta con el supervisor.",
+  dice: [
+    "En un grupo, se responde con interés y se dice a todos que nunca está bien que alguien te lastime y que no tienen que resolverlo solos. Después se habla a solas con el participante, se respeta si no quiere contar más y se le informa que se consultará con el supervisor (OMS y UNICEF, 2023, cap. 3).",
+    "Los límites de la confidencialidad y la ley de notificación del país se explican al niño y a la familia desde el comienzo del tratamiento, incluso por escrito (Kolko y Swenson, 2002, cap. 6).",
+    "En el trabajo con madres, los límites de la confidencialidad incluyen la protección de los niños, y se deriva según la ruta disponible (FICR, 2022, sección 25)."
+  ],
+  evitar: [
+    "Pedir detalles que el niño no quiere dar (OMS y UNICEF, 2023, cap. 3).",
+    "Prometerle que no se lo contará a nadie."
+  ],
+  planes: ["i:afr-ease", "i:trauma-tfcbt", "i:maltrato-afcbt", "i:maltrato-cpc", "a:pos-tcc"]
+},
+{
+  id: "sospecha-maltrato-nuevo",
+  mom: "eval",
+  alc: ["i"],
+  pob: ["proteccion", "familia"],
+  t: "durante el tratamiento surge la sospecha de un maltrato nuevo",
+  clave: "Se notifica y, salvo que ponga en riesgo al niño, se le avisa antes a la familia: el silencio se vive como engaño.",
+  dice: [
+    "El terapeuta conoce a fondo la ley de notificación de su país y la explica, con los límites de la confidencialidad, al niño y a la familia desde el inicio (Kolko y Swenson, 2002, cap. 6).",
+    "Lo que ya fue investigado no se vuelve a notificar, y conviene decirlo: las familias temen nuevas investigaciones por hechos antiguos (Kolko y Swenson, 2002, cap. 6).",
+    "Si se sospecha un hecho nuevo y se va a notificar, se informa antes a los padres, siempre que sea seguro. Puede dañar la alianza al principio, pero lo más probable es que sepan quién notificó, y el silencio se vive como engaño. Si avisar pone en peligro al niño, se espera a que esté a salvo (Kolko y Swenson, 2002, cap. 6).",
+    "Si el niño expresa intención suicida, se informa a los padres y se decide si la familia puede cuidarlo hasta que se estabilice o si necesita hospitalización (Kolko y Swenson, 2002, cap. 6).",
+    "Un juez puede pedir la historia clínica: las notas se llevan al día, claras y sin comentarios peyorativos sobre la familia ni sobre nadie (Kolko y Swenson, 2002, cap. 6)."
+  ],
+  evitar: [
+    "Notificar sin decírselo a la familia cuando avisarle es seguro (Kolko y Swenson, 2002, cap. 6).",
+    "Escribir en la historia juicios sobre los padres (Kolko y Swenson, 2002, cap. 6)."
+  ],
+  planes: ["i:maltrato-afcbt", "i:maltrato-cpc", "i:maltrato-pcit", "i:trauma-proteccion"]
+},
+{
+  id: "amenaza-a-otros",
+  mom: "eval",
+  alc: ["a", "i"],
+  pob: ["grupo", "adolescencia"],
+  t: "la persona dice que va a hacerle daño a alguien",
+  clave: "Se evalúa de inmediato, se lleva a supervisión y se revisa el deber de advertir según la ley del lugar.",
+  dice: [
+    "Las amenazas de hacerse daño o de dañar a otros se evalúan de inmediato en la sesión individual, o justo después si ocurren en grupo. El terapeuta lo lleva enseguida al supervisor, y esa revisión define la respuesta clínica y el deber ético y legal de advertir o intervenir (Sampl y Kadden, 2001).",
+    "Una amenaza así obliga a revaluar la gravedad del problema y la modalidad de atención (Sampl y Kadden, 2001).",
+    "Si ocurre en grupo, se dice al grupo que el terapeuta hablará con la persona al terminar, para que sepan que se toma en serio, y se pregunta a los demás si les afectó o les despertó su propio problema (Sampl y Kadden, 2001).",
+    "Los límites de la confidencialidad incluyen la intención de dañar a otros, y se aclaran con la familia al inicio. En la jurisprudencia estadounidense el aviso se da a la policía y a la posible víctima; cada terapeuta conoce lo que dispone la ley de su país (Kolko y Swenson, 2002, cap. 6)."
+  ],
+  evitar: [
+    "Resolverlo en solitario, sin supervisión ni registro (Sampl y Kadden, 2001)."
+  ],
+  planes: ["a:ira-tcc", "a:ira-dbt", "i:ira-tame", "i:cons-met-tcc", "a:sui-est"]
+},
+{
+  id: "mayor-deterioro",
+  mom: "eval",
+  alc: ["a"],
+  pob: ["mayores", "salud"],
+  t: "la persona es mayor o tiene deterioro cognitivo",
+  clave: "Sin deterioro, los tratamientos habituales sirven; con deterioro, lo más útil son programas conductuales simples.",
+  dice: [
+    "En la ansiedad por la salud, la terapia cognitivo-conductual parece útil en personas mayores sin deterioro; con deterioro cognitivo sirven más los programas conductuales simples que refuerzan las conductas adaptativas y no las quejas (Taylor y Asmundson, 2004).",
+    "En la demencia con depresión leve a moderada, la OMS sugiere considerar terapia cognitivo-conductual, psicoterapia interpersonal, consejería estructurada o activación conductual (recomendación condicional, certeza baja; OMS, 2023, DEM2).",
+    "La terapia de perdón se probó con mujeres de 65 años o más con heridas familiares o de amistad y sin un duelo en curso (Enright y Fitzgibbons, 2015, cap. 5).",
+    "Enfrentando problemas plus no está diseñado para personas con demencia: se evalúa al inicio y se deriva (OMS, 2016, caps. 1 y 4)."
+  ],
+  evitar: [
+    "Aplicar sin ajustes un protocolo cognitivo exigente a alguien con deterioro (Taylor y Asmundson, 2004)."
+  ],
+  planes: ["a:sal-tcc", "a:cog-ecg", "a:cuid-isupport", "a:perd-enright", "a:sp-pm"]
+},
+{
+  id: "discapacidad",
+  mom: "eval",
+  alc: ["a", "i"],
+  pob: ["discapacidad", "proteccion"],
+  t: "la persona o el niño tiene una discapacidad intelectual o del desarrollo",
+  clave: "El modelo se conserva y se cambia el formato: sesiones cortas, un mensaje a la vez, apoyos visuales y mucha repetición.",
+  dice: [
+    "Los niños con discapacidades del desarrollo tienen más riesgo de maltrato. En la terapia centrada en el trauma se les dan estructura y rutinas, sesiones más cortas, mensajes simples de uno en uno, apoyos visuales, juego, mucha repetición y sus intereses especiales para engancharlos (Grosso, 2012).",
+    "A la mayoría de los niños con déficit de atención, dislexia o autismo les gustan los ejercicios de atención plena; no tratan la condición, pero les ayudan a relacionarse de otra manera con ella (Snel, 2013, cap. 1).",
+    "En los adultos, construir una identidad positiva junto a otras personas con discapacidad es parte de la adaptación (Taylor, 2006, caps. 10 y 16).",
+    "Enfrentando problemas plus no está pensado para personas con discapacidad intelectual grave: se deriva (OMS, 2016, caps. 1 y 4). En contextos humanitarios se usa la rehabilitación basada en la comunidad (ACNUR, 2013, apartados 2.4 y 5.2)."
+  ],
+  evitar: [
+    "Descartar un tratamiento con respaldo solo por la discapacidad, en lugar de adaptar el formato (Grosso, 2012)."
+  ],
+  planes: ["i:trauma-tfcbt", "i:di-conducta", "i:di-habilidades", "i:di-fortalezas", "i:tea-ansiedad", "i:bien-mind", "a:perd-taylor", "a:sp-pm"]
+},
+{
+  id: "trauma-otro-motivo",
+  mom: "eval",
+  alc: ["a", "i"],
+  pob: [],
+  t: "aparece una historia de trauma y la persona consulta por otra cosa",
+  clave: "Se ofrece trabajarla y se respeta la decisión; algunos necesitan estabilizarse antes de entrar al trauma.",
+  dice: [
+    "Si la persona tiene una historia de abuso que le causa malestar y quiere trabajarla, se recomienda una terapia cognitivo-conductual con exposición al trauma; si prefiere no abordarla, el tratamiento por el que consultó sigue su curso (Woolfolk y Allen, 2007, cap. 9).",
+    "Con traumas múltiples o abuso sexual en la infancia los tratamientos del estrés postraumático también funcionan, pero puede hacer falta más trabajo en habilidades interpersonales y de regulación emocional (Monson et al., 2014).",
+    "Los adolescentes con trauma complejo a menudo no están listos para entrar de inmediato al trabajo centrado en el trauma. La evaluación se hace por capas, al ritmo del adolescente y con información de otros adultos que lo conocen (Kliethermes y Wamser, 2012).",
+    "Una pérdida puede despertar síntomas de estrés postraumático que nunca habían aparecido: Worden describe a un veterano que los presentó cincuenta años después de la guerra, tras la muerte de su esposa (Worden, 2013, cap. 5)."
+  ],
+  evitar: [
+    "Forzar el trabajo sobre el trauma cuando la persona no lo eligió (Woolfolk y Allen, 2007, cap. 9)."
+  ],
+  planes: ["a:som-acbt", "a:tept-cpt", "a:tept-dbt", "i:trauma-tfcbt", "a:duelo-compl"]
+}
+,
+{
+  id: "no-candidato-grupo",
+  mom: "eval",
+  alc: ["a"],
+  pob: ["grupo"],
+  t: "una persona no parece candidata para el formato de grupo",
+  clave: "El grupo es un formato, no un derecho ni una obligación: quien lo alteraría o quedaría expuesto recibe atención individual o lo más urgente primero.",
+  dice: [
+    "El grupo no conviene a quien podría alterarlo por agresividad, a quien tiene fobia social grave, ni cuando hay trastorno límite de la personalidad, ideación suicida o consumo activo: se trabaja de forma individual o se atiende primero lo más urgente (Solanto, 2011, cap. 5).",
+    "Tampoco a quien tiene malestar o conflictos interpersonales que lo alterarían, a quien no quiere compartir temas personales o a quien no puede ajustar sus horarios; se le ofrece el formato individual (Thorn, 2017, cap. 5).",
+    "En los grupos de prevención de recaídas de la depresión no se incluye a quien tuvo un intento de suicidio y no tiene otro apoyo, ni a quien consume de forma problemática en ese momento (Segal et al., 2015, caps. 5 y 6).",
+    "Las intervenciones breves para personas con malestar, como Enfrentando problemas plus, no están pensadas para personas en riesgo de suicidio ni con un trastorno grave, neurológico o por consumo: se evalúa al inicio y se deriva (OMS, 2016, caps. 1 y 4)."
+  ],
+  evitar: [
+    "Incluir a alguien solo porque es el único formato disponible, sin evaluar el riesgo para él y para el grupo."
+  ],
+  planes: ["a:tdah-solanto", "a:dolor-tc", "a:dep-mbct", "a:sp-pm", "a:trans-tipg"]
+},
+{
+  id: "no-hace-tareas",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: [],
+  t: "la persona no hace las tareas entre sesiones",
+  clave: "Antes de pensar en resistencia se averigua qué pasó; la tarea se revisa siempre, se diseña con la persona y se ensaya antes de salir.",
+  dice: [
+    "La tarea se revisa siempre en la sesión siguiente: no hacerlo comunica que no era importante. Si no la hizo, se dedica parte de la sesión a completar juntos una porción o a revisar qué la impidió (Woolfolk y Allen, 2007, cap. 9).",
+    "Se cumple más cuando se diseña con la persona —dónde, cuándo, cuánto y con qué frecuencia— y cuando, antes de salir, imagina el momento de hacerla y anticipa los obstáculos (Woolfolk y Allen, 2007, cap. 9).",
+    "En la terapia cognitiva no se presupone resistencia: se buscan los pensamientos o problemas conductuales que la explican. Si no entendió, se explica mejor o se ensaya; si cree que es desordenado, se le recuerda cuándo sí hace listas; si teme hacerla mal, se aclara que una tarea no se reprueba y que hacer una parte sirve más que nada; si cree que sus problemas son demasiado profundos, se recuerda que todo empieza con pasos pequeños (Young et al., 2014).",
+    "Si le molesta que se las asignen, puede proponer las suyas o elegir entre alternativas, incluida no hacerla, y examinar después las consecuencias. Con depresión más grave ayuda fijar una hora del día y, si hace falta, una recompensa (Young et al., 2014).",
+    "Si cree que mejorará igual sin tareas, se puede compartir que quienes no las hacen suelen avanzar más lento, o acordar un periodo sin tareas y evaluar juntos el progreso. Algunas personas sí cambian sin tareas formales (Young et al., 2014).",
+    "Plantearlas como experimentos de una o dos semanas, en lugar de un compromiso de por vida, facilita que la persona acepte probar (Woolfolk y Allen, 2007, cap. 9)."
+  ],
+  evitar: [
+    "Interpretar el incumplimiento como resistencia o conducta pasivo-agresiva antes de explorarlo (Young et al., 2014).",
+    "Asignar una tarea y no volver a preguntar por ella (Woolfolk y Allen, 2007, cap. 9)."
+  ],
+  planes: ["a:dep-tcc-tc", "a:dep-ac", "a:som-acbt", "a:ans-pu", "i:dep-tcc", "i:ans-kendall"]
+},
+{
+  id: "falta-a-sesiones",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["pobreza", "familia"],
+  t: "la persona falta a las sesiones o las cancela seguido",
+  clave: "Las faltas suelen ser parte del cuadro o de las barreras de la familia, y se anticipan y se trabajan como tales.",
+  dice: [
+    "En el estrés postraumático la evitación es un síntoma y aparece también frente a la terapia: faltas y cancelaciones son esperables. Se nombran como parte del cuadro, y un contacto telefónico antes de la primera sesión ayuda a que la persona llegue (Monson et al., 2014).",
+    "La formulación del caso ayuda a prever el abandono: es más probable en quien no da importancia a sus propias necesidades y deja la terapia cuando ya no está tan mal, en quien es muy reactivo o en quien ya ha abandonado antes. Conviene hablarlo, acordar que no terminará sin discutirlo y tener un plan para cuando aparezcan las ganas de dejar (Persons, 2008, cap. 11).",
+    "En la infancia, la disfunción de los padres, el estrés familiar y las barreras para participar están entre los predictores más sólidos de cancelaciones y abandono temprano. Cuanto mayores son las barreras que perciben los padres, menor es el cambio del niño (Kazdin, 2010).",
+    "El nivel socioeconómico bajo, el estrés de los padres y criar solo se asocian con menos asistencia y más abandono; conviene anticipar esas barreras y ajustar el formato (Evans et al., 2019).",
+    "No todo abandono es fracaso: de las familias que dejan muy pronto, un tercio reporta grandes mejorías del niño y no ve razón para seguir (Kazdin, 2010)."
+  ],
+  evitar: [
+    "Nombrar las faltas como «resistencia» cuando son la evitación propia del cuadro (Monson et al., 2014)."
+  ],
+  planes: ["a:tept-cpt", "a:tept-tcc-ep", "a:tept-ac", "i:opos-pmt", "i:tdah-pad", "i:trauma-proteccion"]
+},
+{
+  id: "familia-acomoda",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["familia"],
+  t: "la familia tranquiliza, hace los rituales o evita por la persona",
+  clave: "La acomodación alivia en el momento y mantiene el problema; la familia se suma al plan, con alternativas acordadas.",
+  dice: [
+    "Los intentos bien intencionados de la familia por evitar o calmar la preocupación del niño funcionan como una conducta de seguridad: alivian en el momento y refuerzan a los dos, pero impiden que el niño aprenda que puede tolerar la situación sin esa ayuda (Kemp y Freeman, 2019).",
+    "En los adultos, los familiares suelen haber desarrollado rutinas para evitarle malestar —dar reaseguro, hacer por la persona lo que teme—. Se les da psicoeducación, se identifican esas rutinas y se acuerdan alternativas; se les pide responder con calma a los picos de ansiedad, que no son fracasos, y reducir las críticas (Franklin y Foa, 2014)."
+  ],
+  evitar: [
+    "Pedir a la familia que retire de golpe el reaseguro sin haberlo explicado ni acordado qué hará en su lugar (Franklin y Foa, 2014)."
+  ],
+  planes: ["a:toc-tcc", "a:sal-tcc", "i:toc-erp", "i:ans-familia", "i:ans-kendall"]
+},
+{
+  id: "familia-hostil",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["familia", "pareja"],
+  t: "la pareja o la familia critica a la persona con hostilidad",
+  clave: "La hostilidad familiar predice recaídas; se trabaja con la familia, sin convertirla en culpable.",
+  dice: [
+    "Que la pareja o los familiares conozcan el programa, y a veces participen, mejora los resultados. La hostilidad hacia la persona predice peor respuesta; la crítica no hostil a conductas concretas no tiene ese efecto (Barlow et al., 2015, cap. 1).",
+    "La emoción expresada de la familia —comentarios críticos, hostilidad o sobreimplicación— predice recaídas en la esquizofrenia y en el trastorno bipolar. Los familiares con alta emoción expresada tienden a ver las conductas negativas como controlables por el paciente, y a menudo paciente y familia quedan atrapados en ciclos de ataque y contraataque en los que el paciente también provoca (Miklowitz, 2014).",
+    "Los familiares y la pareja pueden aprender las mismas habilidades dialéctico-conductuales, en grupos separados, para practicarlas juntos (Linehan, 2020, cap. 4)."
+  ],
+  evitar: [
+    "Ver a la persona solo como víctima de una familia agresiva: la relación es bidireccional (Miklowitz, 2014)."
+  ],
+  planes: ["a:ans-pu", "a:bip-fft", "a:desreg-dbt", "a:psi-tcc", "a:sp-pm"]
+},
+{
+  id: "diversidad-sexual",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["diversidad", "pareja", "adolescencia"],
+  t: "la persona o la pareja es de la diversidad sexual o de género",
+  clave: "El tratamiento es el mismo; lo que cambia es que el estrés de minorías entra en la formulación.",
+  dice: [
+    "Las parejas del mismo sexo están tan satisfechas y comprometidas como las heterosexuales y pueden tener los mismos problemas; el trabajo es el mismo (Dahl et al., 2013, cap. 1).",
+    "La terapia de pareja se aplica igual, atendiendo a la presión social, la falta de ritos y de apoyo familiar y la ausencia de modelos para repartir los roles (Barraca, 2015, cap. 10).",
+    "Los adolescentes de minorías sexuales tienen más riesgo de consumo, ligado a más acoso y discriminación, y pueden usar las sustancias para afrontar ese estrés; se incluye en la formulación (Chung y Bachrach, 2019)."
+  ],
+  evitar: [
+    "Trasladar las normas de las parejas heterosexuales como el ideal (Barraca, 2015, cap. 10)."
+  ],
+  planes: ["a:min-afirm", "a:par-tip", "a:par-act", "i:cons-met-tcc"]
+},
+{
+  id: "pocos-recursos",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["pobreza", "familia"],
+  t: "la familia tiene muy pocos recursos",
+  clave: "Se separa lo económico de lo psicológico, se anticipan las barreras y se ajusta el formato.",
+  dice: [
+    "En la terapia de pareja, con pobreza o exclusión social primero se distinguen los problemas económicos de los de relación y se coordina con trabajo social; suelen convenir versiones breves (Barraca, 2015, cap. 10).",
+    "El nivel socioeconómico bajo, el estrés de los padres y criar solo se asocian con menos asistencia y más abandono; algunas madres necesitaron más sesiones para lograr los mismos resultados (Evans et al., 2019).",
+    "Los niños de familias de menores recursos o de zonas rurales suelen recibir tarde el diagnóstico de autismo; el tamizaje en el primer nivel y la búsqueda activa ayudan (Klinger y Dudley, 2019).",
+    "Sumar al entrenamiento a padres un apoyo para su propio estrés mejoró la asistencia, la permanencia y los cambios del niño (Kazdin, 2005)."
+  ],
+  evitar: [
+    "Leer como falta de compromiso lo que son barreras concretas o percibidas para asistir (Kazdin, 2010)."
+  ],
+  planes: ["a:par-tip", "i:tdah-pad", "i:opos-pmt", "i:tea-ndbi", "a:mig-capas"]
+},
+{
+  id: "conflicto-armado",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["conflicto", "cultura"],
+  t: "la persona vivió el conflicto armado o participó en él",
+  clave: "Se respeta lo que no quiera contar, se entiende la desconfianza y se reconocen los límites del propio conocimiento del contexto.",
+  dice: [
+    "La persona puede temer a las fuerzas de seguridad, a los grupos armados o a figuras de autoridad, y desconfiar del facilitador. Se respeta que no cuente detalles y se espera que su historia cambie con el tiempo, sin que eso sea mentir (OMS, 2016, cap. 3).",
+    "Los excombatientes y las víctimas de violencia armada pueden traer temas propios —haber ejercido violencia o matado, desconfianza hacia la autoridad, duelos prolongados—; el terapeuta reconoce cuánto conoce de ese contexto (Monson et al., 2014).",
+    "En Bogotá se capacitó a profesionales para aplicar la consejería interpersonal con mujeres desplazadas que vivieron amenazas, secuestro, agresión sexual o tortura, para tratar depresión, ansiedad y estrés postraumático (Weissman et al., 2018, cap. 24).",
+    "Con violencia sexual u otras experiencias traumáticas íntimas la persona puede no estar a salvo todavía; se valida, se informa de servicios y se respeta si no quiere contarlo. Ante un riesgo cierto de agresión, primero los primeros auxilios psicológicos (OMS, 2016, caps. 1 y 3)."
+  ],
+  evitar: [
+    "Insistir en detalles o leer los cambios en el relato como mentiras (OMS, 2016, cap. 3)."
+  ],
+  planes: ["a:sp-pm", "a:tept-cpt", "a:mig-capas", "a:dep-ipt"]
+},
+{
+  id: "prestamistas",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["familia"],
+  t: "el jugador tiene deudas con prestamistas ilegales",
+  clave: "La amenaza a la integridad va primero; la terapia reconoce hasta dónde llega.",
+  dice: [
+    "La amenaza a la integridad del jugador o de su familia se atiende primero: negociar plazos, que un tercero maneje el dinero y que no tenga acceso a efectivo. El terapeuta reconoce los límites de su intervención en esa situación (Ladouceur y Lachance, 2007, cap. 11).",
+    "Si hay depresión grave o ideas de suicidio, se atienden antes que el juego: la persona sabe a quién acudir, se valora la consulta médica y se retoma la terapia cuando se estabiliza (Ladouceur y Lachance, 2007, cap. 11). El juego patológico se asocia con ideación e intentos de suicidio, que se evalúan desde el inicio (Petry, 2005, cap. 5)."
+  ],
+  evitar: [
+    "Seguir el protocolo como si la amenaza no existiera."
+  ],
+  planes: ["a:jue-tcc", "a:jue-petry", "a:sui-est"]
+},
+{
+  id: "infidelidad-en-curso",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["pareja"],
+  t: "en la terapia de pareja aparece una infidelidad en curso",
+  clave: "Con una relación paralela oculta la terapia tiene pocas posibilidades; se invita a revelarla sin traicionar la confianza.",
+  dice: [
+    "Si hay una relación extraconyugal en curso que no se revela ni se termina, la terapia tiene pocas posibilidades. Se invita a quien la mantiene a contarla, idealmente en sesión, sin traicionar su confianza (Barraca, 2015, cap. 10).",
+    "Las infidelidades pasadas no tienen por qué sacarse a la luz (Barraca, 2015, cap. 10)."
+  ],
+  evitar: [
+    "Revelar por cuenta propia lo que se supo en una sesión individual (Barraca, 2015, cap. 10)."
+  ],
+  planes: ["a:par-tip", "a:par-act"]
+},
+{
+  id: "agresion-en-pareja",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["pareja"],
+  t: "en la terapia de pareja aparecen agresiones o maltrato",
+  clave: "Las agresiones menores exigen un acuerdo formal; el maltrato interrumpe la terapia de pareja.",
+  dice: [
+    "Con agresiones verbales o golpes a objetos, sin maltrato, la terapia exige un acuerdo formal de no repetirlas (Barraca, 2015, cap. 10).",
+    "Ante maltrato o abuso la terapia de pareja se interrumpe de inmediato, porque continuarla podría hacer creer que el terapeuta no juzga grave la situación. Se activan un plan de seguridad y los recursos legales y sociales (Barraca, 2015, cap. 10).",
+    "A quien revela la violencia se le ofrece el apoyo de primera línea: privacidad, escucha sin presión, información sobre recursos y ayuda para aumentar su seguridad y la de sus hijos (OMS, 2013, recuadro B)."
+  ],
+  evitar: [
+    "Seguir con la terapia de pareja «para trabajar la comunicación» cuando hay maltrato (Barraca, 2015, cap. 10)."
+  ],
+  planes: ["a:par-tip", "a:vp-oms", "a:vp-ctt"]
+},
+{
+  id: "contacto-con-agresor",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["pareja", "familia"],
+  t: "la persona tiene que seguir en contacto con quien la maltrató, por los hijos",
+  clave: "Se ensaya un límite claro: el contacto es solo sobre los hijos.",
+  dice: [
+    "Cuando la custodia o las visitas obligan al contacto, la expareja suele usarlo para agredir verbalmente. Se ensaya un límite claro: el contacto es solo sobre los hijos, y ante críticas o temas ajenos la conversación termina (Kubany y Ralston, 2008, módulo 15).",
+    "Cuando los niños estuvieron expuestos a la violencia de pareja en casa, se ofrece una intervención psicoterapéutica con sesiones junto a su madre y sesiones sin ella, aunque no está claro cuánto aplica en países de ingresos bajos y medios (OMS, 2013).",
+    "Los niños quedan atrapados en conflictos de lealtad cuando un padre les pide que compartan su enojo con el otro; se les ayuda a tener sus propias ideas y sentimientos, y se orienta a los padres a no pedirles funciones de adulto como consolarlos o mediar (Shapiro, 2015, cap. 15)."
+  ],
+  evitar: [
+    "Pedirle al niño que tome partido o que medie entre los padres (Shapiro, 2015, cap. 15)."
+  ],
+  planes: ["a:vp-ctt", "a:vp-oms", "i:sep-codip"]
+},
+{
+  id: "padres-en-conflicto",
+  mom: "interv",
+  alc: ["i"],
+  pob: ["familia"],
+  t: "los padres están separados y en conflicto",
+  clave: "La meta es el ajuste del niño, no quién gana; se protege al niño de los conflictos de lealtad.",
+  dice: [
+    "Los hijos de padres separados suelen preguntarse cómo querer y ser leales a los dos sin herir o enojar al otro. Una explicación que no culpa a ninguno —dos buenas personas que no funcionaron juntas— les ayuda más que una historia de héroes y villanos (Shapiro, 2015, cap. 15).",
+    "Con los padres se trabaja para que vean la situación desde el niño, que quiere paz entre ellos. Las disputas por custodia y visitas suelen agravar el conflicto: el abogado busca ganar; el terapeuta, el mejor ajuste del niño, y anima a conciliar aun a costa de una victoria en el juzgado (Shapiro, 2015, cap. 15).",
+    "Se ayuda al niño a distinguir lo que puede controlar de lo que no, y a soltar la responsabilidad de consolar, aconsejar o mediar entre los padres (Shapiro, 2015, cap. 15)."
+  ],
+  evitar: [
+    "Aceptar que un padre le pida al niño compartir su enojo contra el otro: lo pone en un conflicto de lealtad y daña su relación con ese otro padre (Shapiro, 2015, cap. 15)."
+  ],
+  planes: ["i:sep-codip", "a:vp-ctt"]
+},
+{
+  id: "padres-desbordados",
+  mom: "interv",
+  alc: ["i"],
+  pob: ["familia"],
+  t: "los padres llegan desbordados, se sienten culpados o tienen su propio malestar",
+  clave: "El mensaje es «necesito su ayuda para ayudar a su hijo»; el malestar de los padres se atiende como parte del plan.",
+  dice: [
+    "Una fuente de reticencia es el temor de los padres a ser culpados. Se explica que la salud mental del niño depende de muchos factores —genéticos, del temperamento, del entorno, de los pares— además de la crianza, y que se les pide participar no porque causaron el problema, sino porque pueden ayudar a resolverlo (Shapiro, 2015, cap. 1).",
+    "Sumar sesiones para que uno de los padres maneje su estrés mejoró los cambios del niño. Se hizo con uno solo porque, con los dos, las sesiones se convertían en terapia de pareja, desahogo y reproches (Kazdin, 2005).",
+    "El consumo de los padres se trata cuando aumenta el riesgo de maltrato o impide el cambio; como puede negarse, se reúne información de varias fuentes y se deriva si hace falta (Kolko y Swenson, 2002, cap. 6)."
+  ],
+  evitar: [
+    "Dejar que las sesiones de apoyo a los padres se vuelvan terapia de pareja, desahogo o reproches mutuos (Kazdin, 2005)."
+  ],
+  planes: ["i:opos-pmt", "i:tdah-pad", "i:maltrato-afcbt", "i:opos-pcit"]
+},
+{
+  id: "nino-no-habla",
+  mom: "interv",
+  alc: ["i"],
+  pob: [],
+  t: "el niño no quiere hablar en la sesión",
+  clave: "La cautela ante un extraño es razonable; se valida, se refuerza lo que sí cuenta y se avanza de lo concreto a lo emocional.",
+  dice: [
+    "Al comienzo es común que el niño dude: la terapia puede parecerle una situación intimidante, a solas con un extraño que pregunta por sus problemas. Se le aclara que no es una prueba y se valida su cautela (Shapiro, 2015, cap. 1).",
+    "Cuando cuenta algo útil, se le dice qué fue lo que ayudó; reforzarlo hace más probable que vuelva a hacerlo, sobre todo si le costó contarlo (Shapiro, 2015, cap. 1).",
+    "Si sigue muy reservado, se exploran sus razones: por qué cree que lo trajeron, si está de acuerdo, qué cree que es la terapia, qué podría tener de malo y de bueno (Shapiro, 2015, cap. 1).",
+    "Ayuda hablar primero del problema en otras personas —lo que se sabe de la depresión o del acoso, por ejemplo— y pasar de lo concreto, como las rutinas, a lo emocional (Shapiro, 2015, cap. 1)."
+  ],
+  evitar: [
+    "Insistir con preguntas directas sobre lo más doloroso antes de que haya confianza (Shapiro, 2015, cap. 1)."
+  ],
+  planes: ["i:mutismo-conductual", "i:dep-tcc", "i:ans-kendall", "i:trauma-tfcbt"]
+},
+{
+  id: "hogar-de-acogida",
+  mom: "interv",
+  alc: ["i"],
+  pob: ["proteccion", "familia"],
+  t: "el niño vive en un hogar de acogida o bajo protección",
+  clave: "El cuidador del día a día es el participante principal, y el profesional de protección es un aliado que se mantiene informado.",
+  dice: [
+    "Estos niños suelen tener traumas múltiples y crónicos, problemas de conducta, desregulación emocional y varios diagnósticos, pero la terapia centrada en el trauma funciona con ellos casi igual que con otros niños (Dorsey y Deblinger, 2012).",
+    "El profesional de protección aporta la historia, las fechas de audiencias, los cambios de visitas o de hogar y el plan de reintegro; conviene enviarle un breve reporte mensual de asistencia y avance. Si no participa, puede recomendar sin saberlo lo contrario del tratamiento, como evitar los recuerdos del trauma (Dorsey y Deblinger, 2012).",
+    "Aunque el niño esté en acogida, se piensa desde el inicio en los padres biológicos: la mayoría los sigue viendo y muchos volverán con ellos. Una reunión temprana con el padre o la madre, sin el niño, puede reducir la resistencia más adelante (Dorsey y Deblinger, 2012).",
+    "Si el plan es el reintegro, se trabaja de cerca con el cuidador sustituto en la adaptación y en preparar el regreso; estabilizar la conducta ayuda a evitar cambios de hogar (Kolko y Swenson, 2002, cap. 6). Si el niño no va a volver con su familia, el trabajo con los padres no está indicado (Kolko y Swenson, 2002, cap. 5)."
+  ],
+  evitar: [
+    "Trabajar sin coordinación con el sistema de protección (Dorsey y Deblinger, 2012)."
+  ],
+  planes: ["i:trauma-proteccion", "i:maltrato-afcbt", "i:maltrato-keep", "i:trauma-tfcbt"]
+},
+{
+  id: "antidepresivos-adolescente",
+  mom: "interv",
+  alc: ["i"],
+  pob: ["adolescencia", "salud"],
+  t: "el adolescente empieza a tomar antidepresivos",
+  clave: "Se vigila más de cerca el riesgo suicida al inicio, en coordinación con quien prescribe.",
+  dice: [
+    "En los jóvenes, los antidepresivos se asocian con un aumento modesto del riesgo de pensamientos y conductas suicidas: se vigila de cerca, sobre todo al inicio, junto con quien prescribe (Curry y Meyer, 2019).",
+    "En la activación conductual para adolescentes, el riesgo suicida se revisa cada semana con un cuestionario breve y con más detalle cada tres semanas (McCauley et al., 2016, cap. 4)."
+  ],
+  evitar: [
+    "Dejar el seguimiento del riesgo solo en manos del médico que prescribe (Curry y Meyer, 2019)."
+  ],
+  planes: ["i:dep-tcc", "i:dep-ipt", "i:dep-ac", "i:sui-seguridad"]
+},
+{
+  id: "euforia-antidepresivo",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["salud"],
+  t: "aparece euforia o hipomanía tras iniciar un antidepresivo",
+  clave: "No se concluye de inmediato que es un trastorno bipolar: el orden de los hechos decide.",
+  dice: [
+    "Si alguien que nunca tuvo un episodio maníaco lo presenta después de empezar un antidepresivo, lo más probable es un trastorno del ánimo inducido por sustancias. Se considera trastorno bipolar solo si los síntomas precedieron al antidepresivo o si persisten al menos un mes después de retirarlo; lo mismo aplica a drogas estimulantes como la cocaína o las anfetaminas (Miklowitz, 2014)."
+  ],
+  evitar: [
+    "Diagnosticar un trastorno bipolar sin revisar la cronología frente al medicamento (Miklowitz, 2014)."
+  ],
+  planes: ["a:bip-fft", "a:dep-tcc-tc", "a:dep-ipt"]
+},
+{
+  id: "muerte-anticipada",
+  mom: "interv",
+  alc: ["a", "i"],
+  pob: ["salud", "perinatal", "familia"],
+  t: "la muerte se espera: una enfermedad terminal o un diagnóstico prenatal incompatible con la vida",
+  clave: "El duelo empieza antes de la muerte; el tiempo que queda sirve para lo pendiente.",
+  dice: [
+    "Cuando la muerte se sabe inevitable, las tareas del duelo empiezan antes. Es normal que la aceptación alterne con la negación y que la ansiedad crezca a medida que se acerca; pensar en cómo será la vida después no es frialdad. El tiempo que queda sirve para decir lo que se quiera decir y despedirse (Worden, 2013, cap. 7).",
+    "Una pérdida perinatal o un diagnóstico prenatal incompatible con la vida se reconoce como la muerte de un hijo. Se trabaja con los dos padres, se tiene en cuenta a hermanos y abuelos y se explora la culpa; ayudan el nombre, los rituales y los recuerdos. Si el bebé tiene malformaciones hay dos duelos: por el hijo esperado y por el que se pierde (Worden, 2013, cap. 7).",
+    "Los niños que pierden a alguien tras una enfermedad prevista pueden tener más riesgo de estrés postraumático y duelo desadaptativo que tras una muerte súbita. El apoyo antes de la muerte es prometedor, pero casi no se ha estudiado (Kaplow et al., 2019).",
+    "Tras una muerte, los niños necesitan validación de lo que sienten, una explicación clara y acorde a su edad de que la muerte es definitiva, y seguridad sobre quién los cuidará (Shapiro, 2015, cap. 15)."
+  ],
+  evitar: [
+    "Frases como «todo va a salir bien», que interrumpen el duelo anticipado (Worden, 2013, cap. 7).",
+    "Minimizar una pérdida perinatal hablando de futuros embarazos (Worden, 2013, cap. 7)."
+  ],
+  planes: ["a:duelo-ases", "a:duelo-compl", "a:fin-sent", "a:fin-apt", "i:duelo-mgt", "i:duelo-grupo"]
+},
+{
+  id: "embarazo-posparto",
+  mom: "interv",
+  alc: ["a"],
+  pob: ["perinatal", "salud"],
+  t: "la persona está embarazada o en posparto",
+  clave: "El embarazo cambia la evaluación, el calendario y la medicación, y abre una oportunidad para preguntar por la violencia.",
+  dice: [
+    "La psicoterapia interpersonal tiene ensayos en el embarazo y el posparto y adaptaciones para el aborto espontáneo y la infertilidad. Se distinguen los síntomas depresivos de los del embarazo normal, se incluye la historia reproductiva en el inventario interpersonal y se flexibiliza el calendario alrededor del parto (Weissman et al., 2018, cap. 13).",
+    "Un embarazo que sigue a una violación, coincide con una enfermedad, no fue planeado o trae un hijo con anomalías se considera complicado (Weissman et al., 2018, cap. 13).",
+    "La terapia cognitiva basada en mindfulness es una alternativa para prevenir recaídas en quien no puede o no quiere tomar antidepresivos de mantenimiento, como las embarazadas o las mujeres que lactan (Segal et al., 2015, cap. 1).",
+    "El valproato no se usa en mujeres en edad fértil, y en el embarazo y la lactancia se evitan también el litio y la carbamazepina: si la persona planea un embarazo o está embarazada, se le anima a hablarlo con quien prescribe (OMS, 2023, PSY7 y PSY8). En la psicosis se coordina con salud materna y se explican los riesgos de suspender la medicación (OPS, 2017, módulo PSI).",
+    "Se recomienda evitar por completo el alcohol en el embarazo y la lactancia; el consumo puede alterar el ciclo menstrual y dar la falsa impresión de que no hay embarazo (OPS, 2017, módulo SUB)."
+  ],
+  evitar: [
+    "Suspender por cuenta propia una medicación, o animar a suspenderla, sin hablarlo con quien prescribe (OPS, 2017, módulo PSI)."
+  ],
+  planes: ["a:pos-tcc", "a:dep-ipt", "a:trans-ipt", "a:dep-mbct", "a:bip-fft", "a:psi-mhgap", "a:cons-est", "a:vp-oms"]
+},
+{
+  id: "suicidio-en-otro-plan",
+  mom: "crisis",
+  alc: ["a", "i"],
+  pob: ["grupo", "adolescencia"],
+  t: "aparecen ideas de suicidio mientras se trabaja otro problema",
+  clave: "Se pregunta sin miedo, la seguridad pasa antes que el plan en curso y, en grupo, se atiende a la persona apenas termina la sesión.",
+  dice: [
+    "Cuando alguien dice sentirse peor, se le pregunta por pensamientos suicidas: preguntar no los provoca. En grupo, se pide a los demás no juzgarlos como ilegales o inmorales, porque decirlo es pedir apoyo (OPS, 2022b, cap. 6).",
+    "Si lo dice en grupo, el terapeuta aclara que hablará con la persona al terminar, para que todos sepan que se toma en serio, y pregunta a los demás si les afectó. Lo lleva de inmediato a supervisión y se revalúan la gravedad y la modalidad de atención (Sampl y Kadden, 2001).",
+    "Si hay depresión grave o ideas de suicidio, se atienden antes que el problema por el que se consultaba: la persona sabe a quién acudir, se valora la consulta médica y se retoma la terapia cuando se estabiliza (Ladouceur y Lachance, 2007, cap. 11).",
+    "Varios problemas traen su propio riesgo y conviene preguntar desde el inicio: el juego patológico se asocia con ideación e intentos (Petry, 2005, cap. 5), y el perfeccionismo, sobre todo el que se siente impuesto por los demás, con ideación y conducta suicida (Egan et al., 2014, cap. 3).",
+    "En la activación conductual para adolescentes, el riesgo se revisa cada semana con un cuestionario breve y con más detalle cada tres semanas; si hay ideación sin plan ni intención, se acuerda un plan de seguridad y se trabaja dentro del análisis funcional (McCauley et al., 2016, cap. 4).",
+    "En los grupos de prevención de recaídas de la depresión no se incluye a quien tuvo un intento y no cuenta con otro apoyo; con participantes en riesgo, el instructor identifica de antemano a quién avisar si aparece un riesgo inmediato (Segal et al., 2015, caps. 5 y 6)."
+  ],
+  evitar: [
+    "Evitar la pregunta por temor a sugerir la idea (OPS, 2022b, cap. 6).",
+    "Seguir con el protocolo como si nada hubiera pasado."
+  ],
+  planes: ["a:sui-est", "a:sui-dbt", "i:sui-seguridad", "i:sui-tc", "a:trans-tipg", "a:jue-tcc", "a:per-tcc", "i:dep-ac", "a:dep-mbct"]
+},
+{
+  id: "despues-de-un-evento",
+  mom: "crisis",
+  alc: ["a", "i"],
+  pob: ["grupo", "conflicto"],
+  t: "justo después de un evento grave piden reunir a todos para que cuenten lo que vivieron",
+  clave: "El relato obligado del evento no previene y puede dañar; lo que sirve es escuchar, cubrir necesidades y hacer seguimiento.",
+  dice: [
+    "El debriefing psicológico —una sesión única para revivir el evento y las emociones, a veces en grupo— se ha usado mucho en colegios tras suicidios, violencia o desastres. La evidencia indica que no es eficaz y que puede hacer daño: puede retraumatizar, se queda corto frente a estresores múltiples y puede reducir la búsqueda de ayuda porque se cree que ya se recibió (La Greca y Danzi, 2019).",
+    "No todas las víctimas de un evento grave necesitan una intervención formal, y justo después pueden estar demasiado aturdidas. Se les deja expresarse a su ritmo (Meichenbaum, 1985, cap. 7).",
+    "En los primeros auxilios psicológicos se escucha con cuidado, se reflejan los sentimientos y los hechos y se comunica aceptación; se da el siguiente paso concreto posible y se acuerda un seguimiento (Deza, 2007).",
+    "Las actividades grupales de expresión creativa en el aula, tras eventos comunitarios, pueden mejorar el bienestar y a veces reducir un poco los síntomas, aunque los estudios tienen poco rigor (La Greca y Danzi, 2019)."
+  ],
+  evitar: [
+    "Obligar a todos a relatar el evento en una sola sesión (La Greca y Danzi, 2019).",
+    "Contar la propia historia, juzgar o tomar partido mientras se acompaña (Deza, 2007)."
+  ],
+  planes: ["a:sui-est", "a:estres-tcc", "a:mig-capas", "i:trauma-colegio", "i:afr-ease"]
+},
+{
+  id: "quiere-dejar",
+  mom: "cierre",
+  alc: ["a", "i"],
+  pob: [],
+  t: "la persona quiere dejar la terapia antes de alcanzar las metas",
+  clave: "Primero se distingue si es una decisión razonable o una muestra del problema que se está tratando.",
+  dice: [
+    "El abandono prematuro es frecuente y conviene preguntarse si las ganas de dejar son una conducta razonable o un ejemplo del problema que se trata, como en quien, durante una manía, siente que ya no necesita la terapia. En ese caso se aborda como una conducta que interfiere con la terapia (Persons, 2008, cap. 11).",
+    "Si la amenaza de dejar surge en medio de una crisis, se sigue trabajando la crisis y después se conversa sobre ella: puede ser su forma habitual de escapar cuando está estresado, y se acuerda hablarlo con calma en sesión la próxima vez (Persons, 2008, cap. 11).",
+    "Si insiste, se valida su deseo —suele tener razones válidas— y se dice con calma que la decisión es suya, que no se recomienda dejar ahora y que la hora queda reservada. Si no vuelve, se le escribe de vez en cuando para intentar retomar (Persons, 2008, cap. 11).",
+    "En la infancia, cerca de la mitad de los tratamientos terminan de una forma que el clínico considera abandono, pero en muchos casos los padres probablemente creían que ya había sido suficiente; son ellos quienes deciden (Shapiro, 2015, cap. 1)."
+  ],
+  evitar: [
+    "Tratar como capricho una decisión que puede tener buenas razones, o como decisión razonable lo que es el propio síntoma (Persons, 2008, cap. 11)."
+  ],
+  planes: ["a:bip-fft", "a:desreg-dbt", "a:tept-cpt", "i:opos-pmt"]
+},
+{
+  id: "no-funciona",
+  mom: "cierre",
+  alc: ["a", "i"],
+  pob: [],
+  t: "el tratamiento no está funcionando",
+  clave: "Si la medición muestra que no hay avance, se cambia el plan o se deriva, sin abandonar a la persona.",
+  dice: [
+    "La falta de respuesta es frecuente incluso con tratamientos con respaldo: en un metaanálisis, 63 % de las personas con depresión, 57 % con ansiedad generalizada y 46 % con pánico no mejoraron, y un pequeño porcentaje empeoró (Persons, 2008, cap. 11).",
+    "Fijar metas al inicio y medir el avance en cada sesión prepara el terreno: recuerda a los dos que, si el plan falla, habrá que cambiarlo o terminar (Persons, 2008, cap. 11).",
+    "Terminar un tratamiento que no funciona es difícil para ambos, y Persons suele pedir consulta a colegas. Se ofrecen alternativas viables, asequibles y disponibles, y se dan pasos concretos para que la persona llegue a ellas, como llamar al otro profesional (Persons, 2008, cap. 11).",
+    "En la infancia, cuando la terapia no ayuda o se estanca en una meseta, terapeuta y padres consideran un cambio de estrategia o una derivación (Shapiro, 2015, cap. 1).",
+    "Quien responde pero conserva síntomas residuales altos está cerca del umbral de recaída: puede necesitar un tratamiento de mantenimiento con un nuevo contrato (Weissman et al., 2018, cap. 9)."
+  ],
+  evitar: [
+    "Seguir viendo a la persona cada semana sin avances. Como dice Persons, eso sí sería renunciar a ella (Persons, 2008, cap. 11)."
+  ],
+  planes: ["a:dep-tcc-tc", "a:dep-ipt", "a:dep-wbt", "i:dep-bienestar"]
+},
+{
+  id: "miedo-a-terminar",
+  mom: "cierre",
+  alc: ["a", "i"],
+  pob: [],
+  t: "a la persona le angustia terminar la terapia",
+  clave: "El cierre se usa para que la persona se atribuya sus logros y sepa que puede volver.",
+  dice: [
+    "Quien mejoró puede temer terminar porque hace pocas semanas estaba muy mal. Se revisan los síntomas, se señala la mejoría y se le pregunta por qué cree que mejoró: suele darle el mérito al terapeuta, y el cierre sirve para mostrarle su propio trabajo y anticipar cómo usará lo aprendido (Weissman et al., 2018, cap. 9).",
+    "Se le recuerda que puede volver si los síntomas regresan (Weissman et al., 2018, cap. 9). En la infancia es común que las familias regresen en otros momentos del desarrollo, y ayuda decirles que el terapeuta seguirá disponible (Shapiro, 2015, cap. 1).",
+    "El cierre se hace gradual, espaciando las sesiones, para que la persona se prepare y procese la transición; en tratamientos largos, más despacio (Shapiro, 2015, cap. 1)."
+  ],
+  evitar: [
+    "Terminar de golpe una terapia larga (Shapiro, 2015, cap. 1)."
+  ],
+  planes: ["a:dep-ipt", "a:trans-ipt", "i:dep-ipt", "i:ans-kendall"]
+},
+{
+  id: "vacio-y-recaida",
+  mom: "cierre",
+  alc: ["a", "i"],
+  pob: ["familia"],
+  t: "al terminar queda un vacío o reaparecen los síntomas",
+  clave: "Se distingue la caída puntual de la recaída y se planea con qué llenar el espacio que dejó el problema.",
+  dice: [
+    "Sin los rituales, muchas personas quedan con un vacío en su rutina: se planean metas sociales u ocupacionales y se dan pautas normales de lavado o revisión (Franklin y Foa, 2014).",
+    "En las últimas sesiones se revisa el progreso y se hace un plan para mantenerlo, con las situaciones difíciles que se ven venir y cómo usar lo aprendido. Se explica la diferencia entre una caída puntual, que es esperable, y una recaída, con evitación persistente y malestar alto: lo que decide es cómo se responde a la caída (Kemp y Freeman, 2019).",
+    "Los síntomas pueden no desaparecer del todo aunque el niño parezca estar bien al terminar; la mejor prevención es que la exposición siga siendo parte de su vida (Kemp y Freeman, 2019).",
+    "Las personas con depresión recurrente o con síntomas residuales pueden necesitar sesiones de mantenimiento; la mensual es la frecuencia más estudiada, pero se tiene en cuenta la preferencia de la persona (Weissman et al., 2018, cap. 9)."
+  ],
+  evitar: [
+    "Presentar el alta como la desaparición definitiva del problema (Kemp y Freeman, 2019)."
+  ],
+  planes: ["a:toc-tcc", "i:toc-erp", "a:cons-pr", "a:alim-pr", "a:dep-mbct", "a:dep-wbt", "i:dep-bienestar"]
+}
+];
+const PLANES = {
+"a:adh-em": {
+"t": "Entrevista motivacional en salud",
+"v": "Adherencia al tratamiento"
+},
+"a:alim-est": {
+"t": "Entrevista motivacional por síntoma",
+"v": "Conducta alimentaria"
+},
+"a:alim-pr": {
+"t": "Prevención de recaídas",
+"v": "Conducta alimentaria"
+},
+"a:alim-tcc": {
+"t": "Terapia cognitivo-conductual mejorada para los trastornos alimentarios",
+"v": "Conducta alimentaria"
+},
+"a:ans-act": {
+"t": "Aceptación y acción guiada por valores",
+"v": "Ansiedad"
+},
+"a:ans-panico": {
+"t": "Tratamiento cognitivo-conductual del pánico",
+"v": "Ansiedad"
+},
+"a:ans-pu": {
+"t": "Protocolo Unificado para los trastornos emocionales",
+"v": "Ansiedad"
+},
+"a:bip-fft": {
+"t": "Tratamiento centrado en la familia",
+"v": "Estabilidad del ánimo en el trastorno bipolar"
+},
+"a:cog-ecg": {
+"t": "Estimulación cognitiva en grupo y su mantenimiento",
+"v": "Deterioro cognitivo y demencia leve a moderada"
+},
+"a:cons-em": {
+"t": "Entrevista motivacional",
+"v": "Consumo de sustancias"
+},
+"a:cons-est": {
+"t": "Intervención motivacional por estadios de cambio",
+"v": "Consumo de sustancias"
+},
+"a:cons-pr": {
+"t": "Prevención de recaídas",
+"v": "Consumo de sustancias"
+},
+"a:cuid-isupport": {
+"t": "iSupport: formación y apoyo para cuidadores de personas con demencia",
+"v": "Sobrecarga del cuidador"
+},
+"a:dep-ac": {
+"t": "Activación conductual",
+"v": "Depresión"
+},
+"a:dep-ipt": {
+"t": "Psicoterapia interpersonal",
+"v": "Depresión"
+},
+"a:dep-mbct": {
+"t": "Terapia cognitiva basada en mindfulness para prevenir recaídas",
+"v": "Depresión"
+},
+"a:dep-tcc-tc": {
+"t": "Terapia cognitiva de Beck",
+"v": "Depresión"
+},
+"a:dep-wbt": {
+"t": "Terapia de bienestar en la fase residual y la prevención de recaídas",
+"v": "Depresión"
+},
+"a:desreg-dbt": {
+"t": "Entrenamiento en habilidades dialéctico-conductuales",
+"v": "Desregulación emocional"
+},
+"a:dolor-tc": {
+"t": "Terapia cognitiva para el dolor crónico",
+"v": "Dolor crónico"
+},
+"a:duelo-ases": {
+"t": "Asesoramiento en el duelo: las cuatro tareas",
+"v": "Duelo"
+},
+"a:duelo-compl": {
+"t": "Terapia del duelo complicado",
+"v": "Duelo"
+},
+"a:estres-tcc": {
+"t": "Inoculación de estrés",
+"v": "Estrés percibido"
+},
+"a:fin-apt": {
+"t": "TCC en la enfermedad avanzada y terminal",
+"v": "Sufrimiento y sentido al final de la vida"
+},
+"a:fin-sent": {
+"t": "Psicoterapia centrada en el sentido",
+"v": "Sufrimiento y sentido al final de la vida"
+},
+"a:int-juego": {
+"t": "Terapia cognitivo-conductual para el trastorno por videojuegos",
+"v": "Uso problemático de internet y videojuegos"
+},
+"a:ira-dbt": {
+"t": "Habilidades dialéctico-conductuales para la ira",
+"v": "Ira e impulsividad"
+},
+"a:ira-tcc": {
+"t": "Inoculación de estrés para el control de la ira",
+"v": "Ira e impulsividad"
+},
+"a:jue-petry": {
+"t": "Terapia cognitivo-conductual breve con refuerzo de los días sin jugar",
+"v": "Juego y apuestas"
+},
+"a:jue-tcc": {
+"t": "Terapia cognitivo-conductual centrada en las ideas erróneas sobre el azar",
+"v": "Juego y apuestas"
+},
+"a:mig-capas": {
+"t": "Apoyo psicosocial por capas para población migrante y desplazada",
+"v": "Migración y desplazamiento forzado"
+},
+"a:min-afirm": {
+"t": "Práctica psicológica afirmativa ante el estrés de minorías",
+"v": "Estrés de minorías en la diversidad sexual y de género"
+},
+"a:par-act": {
+"t": "Aceptación y compromiso en la relación de pareja",
+"v": "Malestar en la pareja"
+},
+"a:par-tip": {
+"t": "Terapia integral de pareja",
+"v": "Malestar en la pareja"
+},
+"a:per-tcc": {
+"t": "Terapia cognitivo-conductual para el perfeccionismo clínico",
+"v": "Perfeccionismo"
+},
+"a:perd-enright": {
+"t": "Terapia de perdón: modelo de proceso",
+"v": "Resentimiento y perdón"
+},
+"a:perd-taylor": {
+"t": "Terapia cognitivo-conductual para la enfermedad crónica y la discapacidad",
+"v": "Impacto psicológico de una pérdida corporal o un diagnóstico grave"
+},
+"a:pos-tcc": {
+"t": "Pensar saludable: manejo psicosocial de la depresión perinatal",
+"v": "Depresión posparto"
+},
+"a:psi-mhgap": {
+"t": "Manejo psicosocial de la psicosis en atención no especializada",
+"v": "Síntomas psicóticos"
+},
+"a:psi-tcc": {
+"t": "Terapia cognitivo-conductual para la psicosis",
+"v": "Síntomas psicóticos"
+},
+"a:sal-grupo": {
+"t": "Psicoeducación en grupo para la ansiedad por la salud",
+"v": "Ansiedad por la salud y síntomas somáticos"
+},
+"a:sal-tcc": {
+"t": "Terapia cognitivo-conductual para la ansiedad por la salud",
+"v": "Ansiedad por la salud y síntomas somáticos"
+},
+"a:som-acbt": {
+"t": "Terapia afectiva cognitivo-conductual para la somatización",
+"v": "Ansiedad por la salud y síntomas somáticos"
+},
+"a:sp-pm": {
+"t": "Enfrentando problemas plus (EP+)",
+"v": "Solución de problemas y toma de decisiones"
+},
+"a:sui-dbt": {
+"t": "Programa para la conducta suicida y las autolesiones",
+"v": "Riesgo suicida y autolesión"
+},
+"a:sui-est": {
+"t": "Intervención en crisis y plan de seguridad",
+"v": "Riesgo suicida y autolesión"
+},
+"a:tdah-solanto": {
+"t": "Terapia grupal para la disfunción ejecutiva",
+"v": "TDAH en adultos"
+},
+"a:tept-ac": {
+"t": "Activación conductual para el estrés postraumático",
+"v": "Trauma y estrés postraumático"
+},
+"a:tept-cpt": {
+"t": "Terapia de procesamiento cognitivo",
+"v": "Trauma y estrés postraumático"
+},
+"a:tept-dbt": {
+"t": "Estabilización dialéctico-conductual y exposición prolongada",
+"v": "Trauma y estrés postraumático"
+},
+"a:tept-tcc-ep": {
+"t": "Terapia de exposición prolongada",
+"v": "Trauma y estrés postraumático"
+},
+"a:toc-tcc": {
+"t": "Exposición con prevención de respuesta",
+"v": "Obsesiones y compulsiones"
+},
+"a:trans-ipt": {
+"t": "Psicoterapia interpersonal: transición de rol",
+"v": "Adaptación a cambios y transiciones vitales"
+},
+"a:trans-tipg": {
+"t": "Terapia interpersonal grupal: cambios en la vida",
+"v": "Adaptación a cambios y transiciones vitales"
+},
+"a:vp-ctt": {
+"t": "Terapia cognitiva del trauma para mujeres que vivieron maltrato de pareja",
+"v": "Violencia de pareja"
+},
+"a:vp-oms": {
+"t": "Respuesta de primera línea a la violencia de pareja",
+"v": "Violencia de pareja"
+},
+"i:afr-ease": {
+"t": "Habilidades emocionales para adolescentes tempranos (EASE)",
+"v": "Afrontamiento y resiliencia"
+},
+"i:ans-familia": {
+"t": "Terapia cognitivo-conductual en grupo con la familia",
+"v": "Ansiedad y miedos"
+},
+"i:ans-kendall": {
+"t": "Terapia cognitivo-conductual individual: el plan de cuatro pasos",
+"v": "Ansiedad y miedos"
+},
+"i:bien-mind": {
+"t": "Atención plena para niños con sus padres",
+"v": "Bienestar psicológico"
+},
+"i:cons-mdft": {
+"t": "Terapia familiar multidimensional",
+"v": "Consumo de alcohol y otras sustancias"
+},
+"i:cons-met-tcc": {
+"t": "Entrevista motivacional y terapia cognitivo-conductual",
+"v": "Consumo de alcohol y otras sustancias"
+},
+"i:dep-ac": {
+"t": "Activación conductual para adolescentes",
+"v": "Depresión"
+},
+"i:dep-bienestar": {
+"t": "Prevención de recaídas con terapia cognitivo-conductual y de bienestar",
+"v": "Depresión"
+},
+"i:dep-ipt": {
+"t": "Psicoterapia interpersonal para adolescentes",
+"v": "Depresión"
+},
+"i:dep-tcc": {
+"t": "Terapia cognitivo-conductual para la depresión",
+"v": "Depresión"
+},
+"i:di-conducta": {
+"t": "Evaluación funcional y apoyo conductual positivo",
+"v": "Discapacidad intelectual"
+},
+"i:di-fortalezas": {
+"t": "Fortalezas del carácter en la discapacidad intelectual",
+"v": "Discapacidad intelectual"
+},
+"i:di-habilidades": {
+"t": "Habilidades adaptativas y sociales",
+"v": "Discapacidad intelectual"
+},
+"i:duelo-grupo": {
+"t": "Grupo de duelo para adolescentes en el colegio",
+"v": "Duelo"
+},
+"i:duelo-mgt": {
+"t": "Terapia multidimensional del duelo",
+"v": "Duelo"
+},
+"i:ira-tame": {
+"t": "Manejo de la ira para adolescentes",
+"v": "Agresividad e ira"
+},
+"i:maltrato-afcbt": {
+"t": "Terapia cognitivo-conductual centrada en la familia (AF-CBT)",
+"v": "Maltrato y crianza violenta"
+},
+"i:maltrato-cpc": {
+"t": "Terapia cognitivo-conductual combinada para padres e hijos",
+"v": "Maltrato y crianza violenta"
+},
+"i:maltrato-keep": {
+"t": "Entrenamiento y apoyo a cuidadores sustitutos",
+"v": "Maltrato y crianza violenta"
+},
+"i:maltrato-pcit": {
+"t": "Terapia de interacción padres-hijos con familias con maltrato físico",
+"v": "Maltrato y crianza violenta"
+},
+"i:mutismo-conductual": {
+"t": "Intervención conductual en casa, en el colegio y en la comunidad",
+"v": "Mutismo selectivo"
+},
+"i:opos-pcit": {
+"t": "Terapia de interacción padres-hijos",
+"v": "Conducta oposicionista y desafiante"
+},
+"i:opos-pmt": {
+"t": "Entrenamiento a padres para la conducta desafiante",
+"v": "Conducta oposicionista y desafiante"
+},
+"i:pant-familia": {
+"t": "Intervención con la familia en el uso problemático de videojuegos e internet",
+"v": "Uso problemático de pantallas y videojuegos"
+},
+"i:pant-padres": {
+"t": "Orientación a padres para un uso saludable de pantallas y videojuegos",
+"v": "Uso problemático de pantallas y videojuegos"
+},
+"i:sep-codip": {
+"t": "Grupo de apoyo para hijos de padres separados",
+"v": "Separación de los padres"
+},
+"i:sui-dbt": {
+"t": "Terapia dialéctico-conductual para adolescentes",
+"v": "Autolesión y riesgo suicida"
+},
+"i:sui-seguridad": {
+"t": "Evaluación del riesgo y plan de seguridad",
+"v": "Autolesión y riesgo suicida"
+},
+"i:sui-tc": {
+"t": "Terapia cognitiva para adolescentes con intento de suicidio",
+"v": "Autolesión y riesgo suicida"
+},
+"i:tdah-pad": {
+"t": "Entrenamiento conductual a padres",
+"v": "Inatención, hiperactividad e impulsividad"
+},
+"i:tea-ansiedad": {
+"t": "Terapia cognitivo-conductual para la ansiedad en el autismo",
+"v": "Autismo"
+},
+"i:tea-ndbi": {
+"t": "Intervención naturalista con los padres para niños pequeños",
+"v": "Autismo"
+},
+"i:toc-erp": {
+"t": "Exposición con prevención de rituales",
+"v": "Obsesiones y compulsiones"
+},
+"i:trauma-colegio": {
+"t": "Terapia centrada en el trauma en el colegio",
+"v": "Estrés postraumático"
+},
+"i:trauma-proteccion": {
+"t": "Terapia centrada en el trauma para niños bajo protección",
+"v": "Estrés postraumático"
+},
+"i:trauma-tfcbt": {
+"t": "Terapia cognitivo-conductual centrada en el trauma",
+"v": "Estrés postraumático"
+}
+};
+const REFERENCIAS = [
+{
+"k": "ACNUR, 2013",
+"ref": "Alto Comisionado de las Naciones Unidas para los Refugiados. (2013). <em>Operational guidance: Mental health &amp; psychosocial support programming for refugee operations</em>. ACNUR."
+},
+{
+"k": "Barlow et al., 2015",
+"ref": "Barlow, D. H., Farchione, T. J., Fairholme, C. P., Ellard, K. K., Boisseau, C. L., Allen, L. B. y Ehrenreich-May, J. (2015). <em>Protocolo unificado para el tratamiento transdiagnóstico de los trastornos emocionales: Manual del terapeuta y manual del paciente</em> (J. Osma y E. Crespo, Trads.). Alianza Editorial. (Trabajo original publicado en 2011)"
+},
+{
+"k": "Barraca, 2015",
+"ref": "Barraca Mairal, J. (2015). <em>Terapia integral de pareja</em>. Síntesis."
+},
+{
+"k": "FICR, 2022",
+"ref": "Centro de Referencia para el Apoyo Psicosocial de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. (2022). <em>Thinking Healthy: A training guide for psychosocial management of perinatal depression</em>. Basada en Organización Mundial de la Salud (2015), <em>Thinking healthy: A manual for psychosocial management of perinatal depression</em> (versión genérica de prueba de campo 1.0). https://mhpsshub.org/wp-content/uploads/2023/01/Thinking-Healthy-Interractive-for-web.pdf",
+"url": "https://mhpsshub.org/wp-content/uploads/2023/01/Thinking-Healthy-Interractive-for-web.pdf"
+},
+{
+"k": "Chung y Bachrach, 2019",
+"ref": "Chung, T. y Bachrach, R. L. (2019). Substance use problems. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed.). Guilford Press."
+},
+{
+"k": "Curry y Meyer, 2019",
+"ref": "Curry, J. F. y Meyer, A. E. (2019). Depressive disorders. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 175–211). Guilford Press."
+},
+{
+"k": "Dahl et al., 2013",
+"ref": "Dahl, J., Stewart, I., Martell, C. y Kaplan, J. S. (2013). <em>ACT and RFT in relationships: Helping clients deepen intimacy and maintain healthy commitments using acceptance and commitment therapy and relational frame theory</em>. New Harbinger."
+},
+{
+"k": "de Arellano et al., 2012",
+"ref": "de Arellano, M. A., Danielson, C. K. y Felton, J. W. (2012). Children of Latino descent: Culturally modified TF-CBT. En J. A. Cohen, A. P. Mannarino y E. Deblinger (Eds.), <em>Trauma-focused CBT for children and adolescents: Treatment applications</em> (pp. 253–279). Guilford Press."
+},
+{
+"k": "Deza, 2007",
+"ref": "Deza Villanueva, S. (2007). Intervención en crisis: primeros auxilios psicológicos. <em>Temática Psicológica, 3</em>(1), 37–43."
+},
+{
+"k": "Dorsey y Deblinger, 2012",
+"ref": "Dorsey, S. y Deblinger, E. (2012). Children in foster care. En J. A. Cohen, A. P. Mannarino y E. Deblinger (Eds.), <em>Trauma-focused CBT for children and adolescents: Treatment applications</em> (pp. 49–72). Guilford Press."
+},
+{
+"k": "Egan et al., 2014",
+"ref": "Egan, S. J., Wade, T. D., Shafran, R. y Antony, M. M. (2014). <em>Cognitive-behavioral treatment of perfectionism</em>. Guilford Press."
+},
+{
+"k": "Enright y Fitzgibbons, 2015",
+"ref": "Enright, R. D. y Fitzgibbons, R. P. (2015). <em>Forgiveness therapy: An empirical guide for resolving anger and restoring hope</em>. American Psychological Association. https://doi.org/10.1037/14526-000",
+"url": "https://doi.org/10.1037/14526-000"
+},
+{
+"k": "Evans et al., 2019",
+"ref": "Evans, S. W., Owens, J. S. y Power, T. J. (2019). Attention-deficit/hyperactivity disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 47–101). Guilford Press."
+},
+{
+"k": "Fairburn y Cooper, 2014",
+"ref": "Fairburn, C. G. y Cooper, Z. (2014). Eating disorders: A transdiagnostic protocol. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "Franklin y Foa, 2014",
+"ref": "Franklin, M. E. y Foa, E. B. (2014). Obsessive-compulsive disorder. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "Grosso, 2012",
+"ref": "Grosso, C. A. (2012). Children with developmental disabilities. En J. A. Cohen, A. P. Mannarino y E. Deblinger (Eds.), <em>Trauma-focused CBT for children and adolescents: Treatment applications</em> (pp. 149–174). Guilford Press."
+},
+{
+"k": "Hayes et al., 2012",
+"ref": "Hayes, S. C., Strosahl, K. D. y Wilson, K. G. (2012). <em>Acceptance and commitment therapy: The process and practice of mindful change</em> (2.ª ed.). Guilford Press."
+},
+{
+"k": "Kaplow et al., 2019",
+"ref": "Kaplow, J. B., Layne, C. M. y Pynoos, R. S. (2019). Persistent complex bereavement disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed.). Guilford Press."
+},
+{
+"k": "Kazdin, 2005",
+"ref": "Kazdin, A. E. (2005). <em>Parent management training: Treatment for oppositional, aggressive, and antisocial behavior in children and adolescents</em>. Oxford University Press."
+},
+{
+"k": "Kazdin, 2010",
+"ref": "Kazdin, A. E. (2010). Problem-solving skills training and parent management training for oppositional defiant disorder and conduct disorder. En J. R. Weisz y A. E. Kazdin (Eds.), <em>Evidence-based psychotherapies for children and adolescents</em> (2.ª ed.). Guilford Press."
+},
+{
+"k": "Kemp y Freeman, 2019",
+"ref": "Kemp, J. y Freeman, J. B. (2019). Obsessive-compulsive disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 311–338). Guilford Press."
+},
+{
+"k": "King y Delfabbro, 2018",
+"ref": "King, D. L. y Delfabbro, P. H. (2018). <em>Internet gaming disorder: Theory, assessment, treatment, and prevention</em>. Academic Press."
+},
+{
+"k": "Kliethermes y Wamser, 2012",
+"ref": "Kliethermes, M. y Wamser, R. (2012). Adolescents with complex trauma. En J. A. Cohen, A. P. Mannarino y E. Deblinger (Eds.), <em>Trauma-focused CBT for children and adolescents: Treatment applications</em> (pp. 175–198). Guilford Press."
+},
+{
+"k": "Klinger y Dudley, 2019",
+"ref": "Klinger, L. G. y Dudley, K. M. (2019). Autism spectrum disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed.). Guilford Press."
+},
+{
+"k": "Kolko y Swenson, 2002",
+"ref": "Kolko, D. J. y Swenson, C. C. (2002). <em>Assessing and treating physically abused children and their families: A cognitive-behavioral approach</em>. Sage."
+},
+{
+"k": "Kubany y Ralston, 2008",
+"ref": "Kubany, E. S. y Ralston, T. C. (2008). <em>Treating PTSD in battered women: A step-by-step manual for therapists and counselors</em>. New Harbinger."
+},
+{
+"k": "La Greca y Danzi, 2019",
+"ref": "La Greca, A. M. y Danzi, B. A. (2019). Posttraumatic stress disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 495–538). Guilford Press."
+},
+{
+"k": "Ladouceur y Lachance, 2007",
+"ref": "Ladouceur, R. y Lachance, S. (2007). <em>Overcoming pathological gambling: Therapist guide</em>. Oxford University Press."
+},
+{
+"k": "Linehan, 2020",
+"ref": "Linehan, M. M. (2020). <em>Manual de entrenamiento en habilidades DBT para el/la terapeuta</em> (P. Gagliesi, Rev. y Trad.). Editorial de la Universidad Nacional de La Plata. (Trabajo original publicado en 2014)."
+},
+{
+"k": "Maeschalck y Barfknecht, 2017",
+"ref": "Maeschalck, C. L. y Barfknecht, L. R. (2017). Using client feedback to inform treatment. En D. S. Prescott, C. L. Maeschalck y S. D. Miller (Eds.), <em>Feedback-informed treatment in clinical practice: Reaching for excellence</em>. American Psychological Association."
+},
+{
+"k": "McCauley et al., 2016",
+"ref": "McCauley, E., Schloredt, K. A., Gudmundsen, G. R., Martell, C. R. y Dimidjian, S. (2016). <em>Behavioral activation with adolescents: A clinician's guide</em>. Guilford Press."
+},
+{
+"k": "McCrady, 2014",
+"ref": "McCrady, B. S. (2014). Alcohol use disorders. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "Meichenbaum, 1985",
+"ref": "Meichenbaum, D. (1985). <em>Stress inoculation training</em>. Pergamon Press."
+},
+{
+"k": "Miklowitz, 2014",
+"ref": "Miklowitz, D. J. (2014). Bipolar disorder. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "Miller, 2015",
+"ref": "Miller, W. R. (2015). Motivational interviewing in treating addictions. En H. Arkowitz, W. R. Miller y S. Rollnick (Eds.), <em>Motivational interviewing in the treatment of psychological problems</em> (2.ª ed., pp. 249–270). Guilford Press."
+},
+{
+"k": "Monson et al., 2014",
+"ref": "Monson, C. M., Resick, P. A. y Rizvi, S. L. (2014). Posttraumatic stress disorder. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "OMS y UNICEF, 2023",
+"ref": "Organización Mundial de la Salud y Fondo de las Naciones Unidas para la Infancia. (2023). <em>Early Adolescent Skills for Emotions (EASE): Group psychological help for young adolescents affected by distress in communities exposed to adversity</em>. OMS."
+},
+{
+"k": "OMS, 2013",
+"ref": "Organización Mundial de la Salud. (2013). <em>Responding to intimate partner violence and sexual violence against women: WHO clinical and policy guidelines</em>. OMS."
+},
+{
+"k": "OMS, 2016",
+"ref": "Organización Mundial de la Salud. (2016). <em>Enfrentando problemas plus (EP+): ayuda psicológica individual para adultos con problemas de angustia en comunidades expuestas a la adversidad</em> [Problem Management Plus (PM+)]. OMS."
+},
+{
+"k": "OMS, 2023",
+"ref": "Organización Mundial de la Salud. (2023). <em>Mental Health Gap Action Programme (mhGAP) guideline for mental, neurological and substance use disorders</em>. OMS. https://www.who.int/publications/i/item/9789240084278",
+"url": "https://www.who.int/publications/i/item/9789240084278"
+},
+{
+"k": "OPS, 2017",
+"ref": "Organización Panamericana de la Salud. (2017). <em>Guía de intervención mhGAP para los trastornos mentales, neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada</em> (versión 2.0). OPS. https://iris.paho.org/items/732dc5f7-fbc2-48eb-8022-1aecbfe99daa",
+"url": "https://iris.paho.org/items/732dc5f7-fbc2-48eb-8022-1aecbfe99daa"
+},
+{
+"k": "OPS, 2022b",
+"ref": "Organización Panamericana de la Salud. (2022). <em>Terapia interpersonal grupal para la depresión</em> (L. Verdeli, K. Clougherty y M. M. Weissman). OPS."
+},
+{
+"k": "Palitz et al., 2019",
+"ref": "Palitz, S. A., Davis, J. P. y Kendall, P. C. (2019). Anxiety disorders. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 281–310). Guilford Press."
+},
+{
+"k": "Payne et al., 2014",
+"ref": "Payne, L. A., Ellard, K. K., Farchione, T. J., Fairholme, C. P. y Barlow, D. H. (2014). Emotional disorders: A unified transdiagnostic protocol. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+},
+{
+"k": "Persons, 2008",
+"ref": "Persons, J. B. (2008). <em>The case formulation approach to cognitive-behavior therapy</em>. Guilford Press."
+},
+{
+"k": "Petry, 2005",
+"ref": "Petry, N. M. (2005). <em>Pathological gambling: Etiology, comorbidity, and treatment</em>. American Psychological Association."
+},
+{
+"k": "Sampl y Kadden, 2001",
+"ref": "Sampl, S. y Kadden, R. (2001). <em>Motivational enhancement therapy and cognitive behavioral therapy for adolescent cannabis users: 5 sessions</em> (Cannabis Youth Treatment Series, vol. 1). Center for Substance Abuse Treatment, SAMHSA."
+},
+{
+"k": "Segal et al., 2015",
+"ref": "Segal, Z. V., Williams, J. M. G. y Teasdale, J. D. (2015). <em>Terapia cognitiva basada en mindfulness para la depresión</em> (D. González Raga y F. Mora, Trads.; 2.ª ed.). Kairós. (Trabajo original publicado en 2013)"
+},
+{
+"k": "Shapiro, 2015",
+"ref": "Shapiro, J. P. (2015). <em>Child and adolescent therapy: Science and art</em> (2.ª ed.). Wiley."
+},
+{
+"k": "Snel, 2013",
+"ref": "Snel, E. (2013). <em>Tranquilos y atentos como una rana: la meditación para niños… con sus padres</em>. Kairós. (Obra original publicada en 2010)."
+},
+{
+"k": "Solanto, 2011",
+"ref": "Solanto, M. V. (2011). <em>Cognitive-behavioral therapy for adult ADHD: Targeting executive dysfunction</em>. Guilford Press."
+},
+{
+"k": "Taylor, 2006",
+"ref": "Taylor, R. R. (2006). <em>Cognitive behavioral therapy for chronic illness and disability</em>. Springer."
+},
+{
+"k": "Taylor y Asmundson, 2004",
+"ref": "Taylor, S. y Asmundson, G. J. G. (2004). <em>Treating health anxiety: A cognitive-behavioral approach</em>. Guilford Press."
+},
+{
+"k": "Thorn, 2017",
+"ref": "Thorn, B. E. (2017). <em>Cognitive therapy for chronic pain: A step-by-step guide</em> (2.ª ed.). Guilford Press."
+},
+{
+"k": "Weissman et al., 2018",
+"ref": "Weissman, M. M., Markowitz, J. C. y Klerman, G. L. (2018). <em>The guide to interpersonal psychotherapy</em> (ed. actualizada y ampliada). Oxford University Press."
+},
+{
+"k": "Woodin, 2015",
+"ref": "Woodin, E. M. (2015). Motivational interviewing for intimate partner violence. En H. Arkowitz, W. R. Miller y S. Rollnick (Eds.), <em>Motivational interviewing in the treatment of psychological problems</em> (2.ª ed.). Guilford Press."
+},
+{
+"k": "Woolfolk y Allen, 2007",
+"ref": "Woolfolk, R. L. y Allen, L. A. (2007). <em>Treating somatization: A cognitive-behavioral approach</em>. Guilford Press."
+},
+{
+"k": "Worden, 2013",
+"ref": "Worden, J. W. (2013). <em>El tratamiento del duelo: asesoramiento psicológico y terapia</em> (4.ª ed. revisada y ampliada; G. Sánchez Barberán, trad.). Paidós. (Obra original publicada en 2008)."
+},
+{
+"k": "Young et al., 2014",
+"ref": "Young, J. E., Rygh, J. L., Weinberger, A. D. y Beck, A. T. (2014). Cognitive therapy for depression. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed.). Guilford Press."
+}
+];
+/* @@FIN-DATOS@@ */
+
+const $ = id => document.getElementById(id);
+const MOMENTOS = [
+  { k: "primer", t: "Primer contacto", d: "Quién llega, cómo llega y qué se acuerda antes de empezar." },
+  { k: "eval", t: "Evaluación", d: "Lo que aparece al evaluar y cambia la decisión sobre qué hacer." },
+  { k: "interv", t: "Intervención", d: "Lo que se cruza con el plan en marcha: la persona, la familia, el contexto." },
+  { k: "crisis", t: "Crisis y riesgo", d: "Cuando la seguridad pasa antes que el plan." },
+  { k: "cierre", t: "Cierre", d: "Terminar, no terminar, y lo que viene después del alta." }
+];
+const ALCANCES = [
+  { k: "", t: "Todos" }, { k: "a", t: "Adultos" }, { k: "i", t: "Niñez y adolescencia" }
+];
+const POBLACIONES = {
+  adolescencia: "Adolescencia", familia: "Familia y cuidadores", pareja: "Pareja", grupo: "Trabajo en grupo",
+  mayores: "Personas mayores", perinatal: "Embarazo y posparto", discapacidad: "Discapacidad",
+  diversidad: "Diversidad sexual y de género", cultura: "Cultura y lengua", pobreza: "Pocos recursos",
+  conflicto: "Conflicto armado", proteccion: "Protección infantil", consumo: "Consumo", salud: "Salud física"
+};
+const GUIA = {
+  a: { url: "planes-intervencion.html", t: "Adultos" },
+  i: { url: "planes-infancia.html", t: "Niñez y adolescencia" }
+};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const plano = s => String(s).replace(/<[^>]+>/g, " ").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const refHTML = r => r.url ? r.ref.replace(r.url, '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.url + '</a>') : r.ref;
+
+const estado = { mom: "", alc: "", pob: "", q: "", plan: "" };
+
+/* ---------- Filtros ---------- */
+function chips(contenedor, opciones, campo){
+  opciones.forEach(o => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = o.t; b.dataset.k = o.k;
+    b.setAttribute("aria-pressed", o.k === estado[campo] ? "true" : "false");
+    b.addEventListener("click", () => {
+      estado[campo] = o.k;
+      contenedor.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b ? "true" : "false"));
+      aplicar();
+    });
+    contenedor.appendChild(b);
+  });
+}
+chips($("f-mom"), [{ k: "", t: "Todos" }].concat(MOMENTOS), "mom");
+chips($("f-alc"), ALCANCES, "alc");
+const usadas = new Set(SITUACIONES.flatMap(s => s.pob));
+chips($("f-pob"), [{ k: "", t: "Todos" }].concat(Object.keys(POBLACIONES).filter(k => usadas.has(k)).map(k => ({ k, t: POBLACIONES[k] }))), "pob");
+
+/* ---------- Tarjetas ---------- */
+function tarjeta(s){
+  const d = document.createElement("details");
+  d.className = "sit"; d.id = "sit-" + s.id; d.dataset.id = s.id;
+  const alc = s.alc.map(g => '<span class="et alc">' + GUIA[g].t + "</span>").join("");
+  const pob = s.pob.map(p => '<span class="et">' + POBLACIONES[p] + "</span>").join("");
+  const planes = s.planes.map(k => {
+    const [g, id] = k.split(":"), p = PLANES[k];
+    return '<a class="plan-l" href="' + GUIA[g].url + "#plan-" + encodeURIComponent(id) + '">' +
+      '<span class="g">' + GUIA[g].t + "</span>" +
+      '<span class="pt">' + esc(p.t) + "</span>" +
+      '<span class="pv">' + esc(p.v) + "</span></a>";
+  }).join("");
+  d.innerHTML =
+    "<summary><h3><span class=\"ysi\">¿Y si</span> " + s.t + "?</h3>" +
+    '<span class="mas" aria-hidden="true"></span>' +
+    '<div class="etiquetas">' + alc + pob + "</div></summary>" +
+    '<div class="sit-cuerpo">' +
+      '<p class="clave"><b>En síntesis</b>' + s.clave + "</p>" +
+      "<h4>Qué dicen las fuentes</h4><ul class=\"dice\">" + s.dice.map(t => "<li>" + t + "</li>").join("") + "</ul>" +
+      (s.evitar.length ? "<h4>Qué conviene evitar</h4><ul class=\"evitar\">" + s.evitar.map(t => "<li>" + t + "</li>").join("") + "</ul>" : "") +
+      "<h4>Planes relacionados</h4><div class=\"planes\">" + planes + "</div>" +
+    "</div>";
+  d.dataset.texto = plano([s.t, s.clave].concat(s.dice, s.evitar, s.planes.map(k => PLANES[k].t + " " + PLANES[k].v), s.pob.map(p => POBLACIONES[p])).join(" "));
+  d.addEventListener("toggle", () => {
+    if (d.open && !estado.plan) history.replaceState(null, "", "#sit-" + s.id);
+  });
+  return d;
+}
+
+const lista = $("lista"), mapa = $("mapa");
+mapa.innerHTML = '<span class="mapa-r">Situaciones</span>';
+MOMENTOS.forEach(m => {
+  const de = SITUACIONES.filter(s => s.mom === m.k);
+  if (!de.length) return;
+  const sec = document.createElement("section");
+  sec.className = "momento m-" + m.k; sec.id = "mom-" + m.k; sec.dataset.k = m.k;
+  sec.innerHTML = "<h2>" + m.t + "</h2><p>" + m.d + "</p>";
+  de.forEach(s => sec.appendChild(tarjeta(s)));
+  lista.appendChild(sec);
+
+  const bloque = document.createElement("div");
+  bloque.className = "mapa-m m-" + m.k; bloque.dataset.k = m.k;
+  bloque.innerHTML = '<a href="#mom-' + m.k + '">' + m.t + "</a><ul>" +
+    de.map(s => '<li data-id="' + s.id + '"><a href="#sit-' + s.id + '">¿Y si ' + s.t + "?</a></li>").join("") + "</ul>";
+  mapa.appendChild(bloque);
+});
+mapa.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#sit-"]');
+  if (!a) return;
+  const d = $(a.getAttribute("href").slice(1));
+  if (d){ d.open = true; }
+});
+
+/* ---------- Filtrar ---------- */
+function coincide(s, d){
+  if (estado.plan) return s.planes.includes(estado.plan);
+  if (estado.mom && s.mom !== estado.mom) return false;
+  if (estado.alc && !s.alc.includes(estado.alc)) return false;
+  if (estado.pob && !s.pob.includes(estado.pob)) return false;
+  if (estado.q){
+    const palabras = plano(estado.q).split(/\s+/).filter(Boolean);
+    if (!palabras.every(w => d.dataset.texto.includes(w))) return false;
+  }
+  return true;
+}
+function aplicar(){
+  let n = 0;
+  document.querySelectorAll(".sit").forEach(d => {
+    const s = SITUACIONES.find(x => x.id === d.dataset.id);
+    const ok = coincide(s, d);
+    d.hidden = !ok; if (ok) n++;
+    const li = mapa.querySelector('li[data-id="' + s.id + '"]');
+    if (li) li.hidden = !ok;
+  });
+  document.querySelectorAll(".momento").forEach(sec => {
+    sec.hidden = !sec.querySelector(".sit:not([hidden])");
+    const b = mapa.querySelector('.mapa-m[data-k="' + sec.dataset.k + '"]');
+    if (b) b.hidden = sec.hidden;
+  });
+  $("vacio").hidden = n > 0;
+  $("cuenta").textContent = n === SITUACIONES.length
+    ? SITUACIONES.length + " situaciones"
+    : n + (n === 1 ? " situación" : " situaciones") + " de " + SITUACIONES.length;
+}
+let espera;
+$("buscador").addEventListener("input", e => {
+  clearTimeout(espera);
+  espera = setTimeout(() => { estado.q = e.target.value.trim(); aplicar(); }, 120);
+});
+$("bt-todo").addEventListener("click", e => {
+  const visibles = [...document.querySelectorAll(".sit:not([hidden])")];
+  const abrir = visibles.some(d => !d.open);
+  visibles.forEach(d => d.open = abrir);
+  e.target.textContent = abrir ? "Plegar todo" : "Desplegar todo";
+});
+
+/* ---------- Mapa: situación en pantalla ---------- */
+if ("IntersectionObserver" in window){
+  const obs = new IntersectionObserver(ents => {
+    ents.forEach(en => {
+      if (!en.isIntersecting) return;
+      mapa.querySelectorAll("a.actual").forEach(a => a.classList.remove("actual"));
+      const a = mapa.querySelector('a[href="#' + en.target.id + '"]');
+      if (a) a.classList.add("actual");
+    });
+  }, { rootMargin: "-20% 0px -70% 0px" });
+  document.querySelectorAll(".sit").forEach(d => obs.observe(d));
+}
+
+/* ---------- Pie y referencias ---------- */
+$("pie").innerHTML =
+  "<strong>" + SITUACIONES.length + " situaciones</strong>, enlazadas con " + Object.keys(PLANES).length +
+  " planes de las dos guías. Cada afirmación cita la fuente y la sección que la sustentan; donde un dato " +
+  "viene de un estudio que la fuente reseña, se atribuye a la fuente que lo recoge." +
+  "<br><br>La guía orienta el criterio clínico y no reemplaza la supervisión, la formulación del caso " +
+  "ni la normativa local." +
+  "<h2>Referencias</h2><ol>" + REFERENCIAS.map(r => "<li>" + refHTML(r) + "</li>").join("") + "</ol>";
+
+/* ---------- Enlaces de entrada ----------
+   #sit-<id> abre una situación; #plan-a-<id> o #plan-i-<id> deja solo las
+   situaciones que enlazan ese plan (lo usan las guías de planes). */
+function entrar(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const mp = h.match(/^plan-([ai])-(.+)$/);
+  const aviso = $("por-plan");
+  if (mp && PLANES[mp[1] + ":" + mp[2]]){
+    estado.plan = mp[1] + ":" + mp[2];
+    const p = PLANES[estado.plan];
+    aviso.innerHTML = "<span>Situaciones relacionadas con el plan <strong>" + esc(p.t) + "</strong> (" +
+      esc(p.v) + ", " + GUIA[mp[1]].t.toLowerCase() + ")</span>" +
+      '<button type="button" id="ver-todas">Ver todas</button>';
+    aviso.hidden = false;
+    $("ver-todas").addEventListener("click", () => {
+      estado.plan = ""; aviso.hidden = true;
+      history.replaceState(null, "", location.pathname);
+      aplicar();
+    });
+    aplicar();
+    const visibles = document.querySelectorAll(".sit:not([hidden])");
+    if (visibles.length === 1) visibles[0].open = true;
+    aviso.scrollIntoView({ block: "start" });
+    return;
+  }
+  const d = h.startsWith("sit-") && $(h);
+  if (d){
+    d.open = true;
+    d.scrollIntoView({ block: "start" });
+  }
+}
+aplicar();
+entrar();
+window.addEventListener("hashchange", entrar);
+</script>
+</body>
+</html>
