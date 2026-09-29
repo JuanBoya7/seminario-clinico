@@ -64,8 +64,10 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .concepto p{margin:0; font-size:clamp(16.5px,1.5vw,19px); line-height:1.55; color:var(--ink); max-width:80ch;}
 .concepto .citas{margin-top:10px; font-size:13px; line-height:1.45; color:var(--accent-dark);}
 .concepto .citas span{white-space:nowrap;}
-.caso-dato{font-size:15.5px; line-height:1.5; color:var(--ink-soft); margin:0 0 20px; max-width:80ch;}
-.caso-dato b{font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-right:8px;}
+/* ---- En el expediente: el dato del caso, resaltado, justo antes de las barras ---- */
+.caso-dato{margin:0 0 22px; background:var(--surface-alt); border:1px solid var(--border); border-radius:12px; padding:14px 20px;}
+.caso-dato .rot{display:block; font-family:var(--font-mono); font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.caso-dato p{margin:0; font-size:clamp(17px,1.6vw,20px); line-height:1.5; color:var(--ink); max-width:80ch;}
 .referencias{margin-top:28px; border-top:1px solid var(--border); padding-top:14px;}
 .referencias .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
 .referencias p{font-size:12.5px; line-height:1.45; color:var(--ink-faint); margin:0 0 4px; padding-left:22px; text-indent:-22px;}
@@ -86,7 +88,7 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .btn-principal:hover{background:var(--accent-dark);}
 
 /* ---- Voces: frases reales de los informes, sin número de grupo ---- */
-.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; margin-top:28px;}
+.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:22px; margin-top:28px;}
 .col-voz h3{font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
 .col-voz.mal h3{border-bottom-color:var(--moderate);}
 .col-voz.bien h3{border-bottom-color:var(--accent);}
@@ -94,6 +96,8 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 /* Cada frase toma, en pastel, el color de la línea de su columna. */
 .col-voz.mal .voz{background:var(--moderate-soft);}
 .col-voz.bien .voz{background:var(--accent-soft);}
+.siglas-rot{font-size:15px; color:var(--ink-soft); margin-top:22px;}
+.siglas-rot + .siglas-chips{margin-top:10px;}
 .siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
 .sigla{font-family:var(--font-mono); font-size:19px; font-weight:700; padding:8px 14px; border-radius:8px; background:var(--moderate-soft); color:var(--moderate);}
 .sigla small{font-size:12px; font-weight:600; margin-left:6px;}
@@ -184,14 +188,14 @@ const GLOBOS = [
     concepto: "El informe existe para responder la pregunta de quien remite. Cada parte de esa pregunta recibe una respuesta explícita en la conclusión, en palabras que el destinatario pueda usar para decidir. Una estrategia sencilla es numerar las preguntas en el motivo de consulta y responderlas con los mismos números. Si una parte no puede responderse con los datos disponibles, se dice y se explica por qué.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 15"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["sch2018", "Schneider et al., 2018, cap. 8"]],
     lamina: "Láminas 3 y 12",
-    caso: "La médica preguntó dos cosas: si hay un componente ansioso o depresivo que explique los síntomas, y si Jairo requiere manejo por psicología o remisión a psiquiatría. Así clasificó cada equipo la frase con la que respondió.",
+    caso: "La médica preguntó dos cosas: si hay un componente ansioso o depresivo que explique los síntomas, y si Jairo requiere manejo por psicología o remisión a psiquiatría.",
     opciones: [["completa", "Responde las dos partes", "bien"], ["parcial", "Responde solo una parte", "neutro"], ["no", "No la responde de forma directa", "mal"]] },
   { id: "siglas", tema: "Redacción clínica",
     pregunta: "¿Quién va a leer esas siglas?",
     concepto: "Un informe lo leen personas que no comparten la jerga del evaluador: el consultante, otros profesionales, a veces un juez. Cada sigla se escribe completa la primera vez, con la sigla entre paréntesis, y solo se conserva si se va a repetir. Los nombres de las pruebas siguen la misma regla. Hasta los términos técnicos que parecen claros son malinterpretados con frecuencia, incluso por profesionales.",
     citas: [["sch2018", "Schneider et al., 2018, cap. 3"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"]],
     lamina: "Lámina 9",
-    caso: "La remisión traía IDx, TAG, TDM, IAM y EKG. Estas quedaron en los informes sin su forma completa.",
+    caso: "La remisión de la médica traía cinco siglas: IDx, TAG, TDM, IAM y EKG.",
     opciones: [["sin-explicar", "Usaron siglas sin explicarlas", "mal"], ["algunas", "Explicaron algunas", "neutro"], ["todas", "Las explicaron todas, o no las usaron", "bien"]] },
   { id: "rumor", tema: "Buenas prácticas",
     pregunta: "¿Qué hacemos con lo que alguien contó que otro dijo?",
@@ -380,7 +384,7 @@ function pantallaGlobo(E, i){
   const cabeza = `<div class="num">Globo ${i + 1} de ${GLOBOS.length} · ${esc(g.tema)}</div>
     <h2>${esc(g.pregunta)}</h2>
     <div class="concepto"><p>${esc(g.concepto)}</p><div class="citas">${citas} · <span>En el deck: ${esc(g.lamina)}</span></div></div>
-    <p class="caso-dato"><b>En el expediente</b>${esc(g.caso)}</p>`;
+    <div class="caso-dato"><span class="rot">En el expediente</span><p>${esc(g.caso)}</p></div>`;
   const refs = `<div class="referencias"><div class="rot">Referencias</div>${
     [...new Set(g.citas.map(c => c[0]))].map(k => `<p>${REFERENCIAS[k]}</p>`).join("")}</div>`;
   if (!E.length) return `<section class="panel">${cabeza}${sinEntregas}${refs}</section>`;
@@ -402,7 +406,7 @@ function pantallaGlobo(E, i){
     E.forEach(e => ((e.hallazgos || {}).siglas || []).forEach(s => cuenta[s] = (cuenta[s] || 0) + 1));
     const orden = Object.keys(cuenta).sort((a, b) => cuenta[b] - cuenta[a]);
     const chips = orden.length
-      ? `<div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
+      ? `<div class="siglas-rot">Quedaron en los informes sin su forma completa</div><div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
       : `<div class="vacio-msg" style="margin-top:20px">Ningún informe dejó siglas de la remisión sin su forma completa.</div>`;
     medio = chips + `<div class="voces">
       ${col("mal", "Así quedó el error", frasesSiglas(E, "siglas-mal", "sin-explicar"), "Ningún informe dejó una sigla sin explicar.")}
