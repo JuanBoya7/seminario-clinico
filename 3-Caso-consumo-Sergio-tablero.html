@@ -121,6 +121,34 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .leyenda .sep{width:1px; align-self:stretch; background:var(--border);}
 .barras{display:flex; flex-direction:column; gap:4px;}
 .bar-fam{display:flex; height:7px; border-radius:4px; overflow:hidden; background:var(--surface-alt);}
+
+/* ---- Situaciones: una fila por día, pensada para leer de lejos ----
+   La barra reparte a los grupos en tres bloques (sustancia, persona, sin
+   decidir), cada uno con su nombre y su número; debajo, en palabras, qué
+   explicación eligieron dentro de cada familia. */
+.dias{display:flex; flex-direction:column; gap:14px; margin-top:6px;}
+.dia{display:grid; grid-template-columns:minmax(170px,26%) minmax(0,1fr) 84px; gap:16px;
+  align-items:start; padding:12px 0 14px; border-top:1px solid var(--border);}
+.dia-nom > b{display:block; font-size:19px; font-weight:600; line-height:1.2;}
+.dia-nom > small{display:block; font-size:13.5px; color:var(--ink-faint); margin-top:2px;}
+.lect{margin-top:8px; font-size:13.5px; line-height:1.35; padding-left:9px; border-left:3px solid;}
+.lect .r{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-faint);}
+.lect b{font-weight:700; font-size:14.5px;}
+.lect i{color:var(--ink-soft);}
+.fambar{display:flex; height:38px; border-radius:8px; overflow:hidden; background:var(--surface-alt);}
+.fambar span{display:flex; align-items:center; justify-content:center; height:100%; color:#fff;
+  font-size:15px; font-weight:700; white-space:nowrap; overflow:hidden; padding:0 6px;}
+.desglose{display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:7px; font-size:14.5px;}
+.desglose span b{font-family:var(--font-mono); margin-left:4px;}
+.dia .val{font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); text-align:right;
+  padding-top:10px; white-space:nowrap;}
+.leyenda3{display:flex; gap:10px 22px; flex-wrap:wrap; margin:0 0 4px; font-size:15px; color:var(--ink-soft);}
+.leyenda3 i{display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:7px; vertical-align:-2px;}
+@media (max-width:760px){
+  .dia{grid-template-columns:minmax(0,1fr); gap:8px;}
+  .dia .val{text-align:left; padding-top:0;}
+}
 .sit{border-top:1px solid var(--border); padding:12px 0 10px;}
 .sit summary{list-style:none; cursor:pointer;}
 .sit summary::-webkit-details-marker{display:none;}
@@ -273,8 +301,10 @@ const SITUACIONES = [
 function etiquetaLectura(s){
   if (!mostrada || !s.lectura) return "";
   const v = veredicto(s.lectura);
-  return ` <span class="lectura" style="color:${v.color}">(${esc(v.corto)})</span>` +
-    (s.pista ? `<span class="pista">${esc(s.pista)}</span>` : "");
+  const F = FAMILIAS.find(f => f.k === v.fam);
+  const color = F ? F.color : v.color;
+  return `<div class="lect" style="border-color:${color}"><span class="r">La psicóloga</span>` +
+    `<b style="color:${color}">${esc(v.corto)}</b>${s.pista ? ` · <i>${esc(s.pista)}</i>` : ""}</div>`;
 }
 
 /* ============================================================
@@ -325,8 +355,11 @@ const AFIRMACIONES = {
 };
 
 const CIERRE = {
-  texto: "Con el video completo, la psicóloga concluye que la mayor parte de las discusiones se explica por el consumo: directamente, con la cocaína encima, o por la irritabilidad, el cansancio y el no dormir que dejan la cocaína y el cannabis. Sergio fuma cannabis casi a diario, también «cuando me noto más alterado o enfadado», y ya no duerme sin él. En la devolución, ante los dos, dice que no ve un problema de pareja sino de consumo.",
-  fuente: "Video completo: 18:14, 26:11, 51:47 y 58:31 · <strong>Morrison</strong>, cap. 15: intoxicación y abstinencia de estimulantes; abstinencia de cannabis."
+  // Responde a las dos familias: la sustancia explica las peleas; lo que parece
+  // de la persona (el carácter, estar sin trabajo) ella lo lee como efecto o
+  // facilitador del consumo.
+  texto: "Con el video completo, la psicóloga lo resuelve del lado de la sustancia: la mayor parte de las discusiones se explica por el consumo, con la cocaína encima o por la irritabilidad, el cansancio y el no dormir que dejan la cocaína y el cannabis. Lo que Sergio llama «cómo se toman las cosas», ella lo lee como un efecto del consumo sobre su carácter; y estar sin trabajo no explica las peleas: facilita que siga consumiendo. En la devolución, ante los dos, dice que no ve un problema de pareja sino de consumo.",
+  fuente: "Video completo: 51:47, 52:19, 56:26–57:27 y 58:31 · <strong>Morrison</strong>, cap. 15: intoxicación y abstinencia de estimulantes; abstinencia de cannabis."
 };
 
 /* ============================================================
@@ -478,41 +511,46 @@ function pantallaSituaciones(E){
   if (!conDatos.length) return `<section class="panel"><h2>Las situaciones</h2>
     <div class="vacio-msg">Las situaciones no llegaron al tablero: el receptor necesita la versión que las incluye.</div></section>`;
 
-  const item = v => `<span><i style="background:${v.color}"></i>${esc(v.corto)}</span>`;
-  const leyenda = FAMILIAS.map(F =>
-      `<span class="fam" style="color:${F.color}">${esc(F.nombre)}</span>` +
-      VEREDICTOS.filter(v => v.fam === F.k).map(item).join("")).join('<span class="sep"></span>') +
-    '<span class="sep"></span>' + VEREDICTOS.filter(v => v.fam === "ninguna").map(item).join("");
+  const NINGUNA = { k: "ninguna", nombre: "No se puede decidir", corto: "", color: "var(--c-nodecide)" };
+  const leyenda = FAMILIAS.concat([NINGUNA]).map(F =>
+    `<span><i style="background:${F.color}"></i>${esc(F.nombre)}</span>`).join("");
   let masDividida = null;
   const filas = SITUACIONES.map(s => {
     const resp = conDatos.filter(e => e.situaciones[s.k] && e.situaciones[s.k].opcion);
     const n = resp.length;
     const partes = VEREDICTOS.map(v => ({ v, c: resp.filter(e => e.situaciones[s.k].opcion === v.v).length }));
     // La división que importa es entre familias: la sustancia o la persona.
-    const porFam = FAMILIAS.map(F => ({ F, c: partes.filter(p => p.v.fam === F.k).reduce((t, p) => t + p.c, 0) }));
+    const bloques = FAMILIAS.concat([NINGUNA]).map(F =>
+      ({ F, c: partes.filter(p => p.v.fam === F.k).reduce((t, p) => t + p.c, 0) }));
+    const porFam = bloques.slice(0, FAMILIAS.length);
     const decididos = porFam.reduce((t, p) => t + p.c, 0);
     const max = Math.max(0, ...porFam.map(p => p.c));
     if (decididos && (!masDividida || max / decididos < masDividida.r)) masDividida = { s, r: max / decididos };
-    const franja = porFam.filter(p => p.c).map(p =>
-      `<span title="${esc(p.F.nombre)}: ${p.c}" style="width:${pct(p.c, n)}%;background:${p.F.color}"></span>`).join("");
-    const barra = partes.filter(p => p.c).map(p =>
-      `<span title="${esc(p.v.corto)}: ${p.c}" style="width:${pct(p.c, n)}%;background:${p.v.color}">${p.c}</span>`).join("");
+    // Cada bloque lleva su nombre si cabe (un cuarto de la barra o más); si no, solo el número.
+    const corto = { sustancia: "Sustancia", persona: "Persona", ninguna: "" };
+    const barra = bloques.filter(b => b.c).map(b => {
+      const ancho = pct(b.c, n);
+      const rot = ancho >= 25 && corto[b.F.k] ? `${corto[b.F.k]} · ${b.c}` : `${b.c}`;
+      return `<span title="${esc(b.F.nombre)}: ${b.c}" style="flex:${b.c} 1 0;background:${b.F.color}">${rot}</span>`;
+    }).join("");
+    // Debajo, en palabras y con el color de su familia: qué explicación eligieron.
+    const desglose = partes.filter(p => p.c && p.v.fam !== "ninguna").map(p => {
+      const F = FAMILIAS.find(f => f.k === p.v.fam);
+      return `<span style="color:${F.color}">${esc(p.v.corto)}<b>${p.c}</b></span>`;
+    }).join("");
     const voces = resp.slice().sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b)).map(e => {
       const r = e.situaciones[s.k], v = veredicto(r.opcion);
       return `<div class="sit-voz" style="border-left-color:${v.color}"><span class="de">${esc(quien(e))} · ${esc(v.corto)}</span>${
         r.dato ? "«" + esc(r.dato) + "»" : '<span class="vacio-msg">sin línea</span>'}</div>`;
     }).join("");
-    if (!MOSTRAR_VOCES) return `<div class="fila sit-plana">
-        <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
-        <div class="barras"><div class="bar">${barra}</div><div class="bar-fam">${franja}</div></div>
+    const fila = `<div class="dia">
+        <div class="dia-nom"><b>${esc(s.dia)}</b><small>${esc(s.que)}</small>${etiquetaLectura(s)}</div>
+        <div><div class="fambar">${barra}</div><div class="desglose">${desglose}</div></div>
         <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
       </div>`;
+    if (!MOSTRAR_VOCES) return fila;
     return `<details class="sit" data-sit="${s.k}"${abiertas.has(s.k) ? " open" : ""}>
-      <summary><div class="fila">
-        <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
-        <div class="barras"><div class="bar">${barra}</div><div class="bar-fam">${franja}</div></div>
-        <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
-      </div></summary>
+      <summary>${fila}</summary>
       <div class="sit-voces">${voces}</div>
     </details>`;
   }).join("");
@@ -524,8 +562,8 @@ function pantallaSituaciones(E){
     <h2>Las situaciones</h2>
     <div class="sub">Qué explica, para cada grupo, cada una de las cuatro situaciones del autorregistro.
       ${MOSTRAR_VOCES ? "Toquen una situación para ver las líneas de los grupos." : "Cada grupo explica en voz alta su lectura."}</div>
-    <div class="leyenda">${leyenda}</div>
-    ${filas}
+    <div class="leyenda3">${leyenda}</div>
+    <div class="dias">${filas}</div>
     <div class="frase">${frase}</div>
     ${MOSTRAR_VEREDICTO_FINAL ? "" : bloqueCierre()}
   </section>`;
