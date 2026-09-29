@@ -267,6 +267,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 .option-row:hover{border-color:var(--accent); background:var(--accent-soft);}
 .option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
 .option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
+/* Familias de explicaciones (caso Sergio): los mismos colores que el deck,
+   turquesa para lo que hace la sustancia y coral para lo que hace la persona. */
+.option-fam{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; margin:6px 0 -2px; padding-left:10px; border-left:4px solid;}
+.option-fam:first-child{margin-top:0;}
+.option-fam.fam-sustancia{color:#1C7A70; border-color:#1C7A70;}
+.option-fam.fam-persona{color:#C8583A; border-color:#C8583A; margin-top:10px;}
+.option-fam.fam-ninguna{margin-top:10px; border-color:transparent; padding-left:0;}
 
 /* ---- Checklist diagnóstico (dos condiciones evaluadas en paralelo) ---- */
 .condition-card{
@@ -591,10 +599,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-label">Viernes · La discoteca: el chico que pidió fuego <span class="required-mark">*</span></div>
         <div class="card-help">¿Qué explica esta situación?</div>
         <div class="option-list" data-group="sit-viernes" data-required="true">
-          <label class="option-row"><input type="radio" name="sit-viernes" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
-          <label class="option-row"><input type="radio" name="sit-viernes" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <div class="option-fam fam-sustancia">Lo que hace la sustancia</div>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="intoxicacion"><span>La sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="bajon"><span>La sustancia cuando se va (el bajón)</span></label>
           <label class="option-row"><input type="radio" name="sit-viernes" value="motivo"><span>La droga como motivo de la pelea (se discute por consumir)</span></label>
-          <label class="option-row"><input type="radio" name="sit-viernes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-persona">Lo que hace la persona</div>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="reaccion"><span>Su forma de reaccionar: «cómo se toma las cosas»</span></label>
+          <label class="option-row"><input type="radio" name="sit-viernes" value="relacion"><span>La situación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-ninguna"></div>
           <label class="option-row"><input type="radio" name="sit-viernes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <div class="linea-situacion">
@@ -608,10 +620,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-label">Sábado · El baño de la discoteca <span class="required-mark">*</span></div>
         <div class="card-help">¿Qué explica esta situación?</div>
         <div class="option-list" data-group="sit-sabado" data-required="true">
-          <label class="option-row"><input type="radio" name="sit-sabado" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
-          <label class="option-row"><input type="radio" name="sit-sabado" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <div class="option-fam fam-sustancia">Lo que hace la sustancia</div>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="intoxicacion"><span>La sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="bajon"><span>La sustancia cuando se va (el bajón)</span></label>
           <label class="option-row"><input type="radio" name="sit-sabado" value="motivo"><span>La droga como motivo de la pelea (se discute por consumir)</span></label>
-          <label class="option-row"><input type="radio" name="sit-sabado" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-persona">Lo que hace la persona</div>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="reaccion"><span>Su forma de reaccionar: «cómo se toma las cosas»</span></label>
+          <label class="option-row"><input type="radio" name="sit-sabado" value="relacion"><span>La situación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-ninguna"></div>
           <label class="option-row"><input type="radio" name="sit-sabado" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <div class="linea-situacion">
@@ -625,10 +641,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-label">Domingo · La barra, con sus amigos <span class="required-mark">*</span></div>
         <div class="card-help">¿Qué explica esta situación?</div>
         <div class="option-list" data-group="sit-domingo" data-required="true">
-          <label class="option-row"><input type="radio" name="sit-domingo" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
-          <label class="option-row"><input type="radio" name="sit-domingo" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <div class="option-fam fam-sustancia">Lo que hace la sustancia</div>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="intoxicacion"><span>La sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="bajon"><span>La sustancia cuando se va (el bajón)</span></label>
           <label class="option-row"><input type="radio" name="sit-domingo" value="motivo"><span>La droga como motivo de la pelea (se discute por consumir)</span></label>
-          <label class="option-row"><input type="radio" name="sit-domingo" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-persona">Lo que hace la persona</div>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="reaccion"><span>Su forma de reaccionar: «cómo se toma las cosas»</span></label>
+          <label class="option-row"><input type="radio" name="sit-domingo" value="relacion"><span>La situación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-ninguna"></div>
           <label class="option-row"><input type="radio" name="sit-domingo" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <div class="linea-situacion">
@@ -642,10 +662,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-label">Martes · El canal de televisión <span class="required-mark">*</span></div>
         <div class="card-help">¿Qué explica esta situación?</div>
         <div class="option-list" data-group="sit-martes" data-required="true">
-          <label class="option-row"><input type="radio" name="sit-martes" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
-          <label class="option-row"><input type="radio" name="sit-martes" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <div class="option-fam fam-sustancia">Lo que hace la sustancia</div>
+          <label class="option-row"><input type="radio" name="sit-martes" value="intoxicacion"><span>La sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="bajon"><span>La sustancia cuando se va (el bajón)</span></label>
           <label class="option-row"><input type="radio" name="sit-martes" value="motivo"><span>La droga como motivo de la pelea (se discute por consumir)</span></label>
-          <label class="option-row"><input type="radio" name="sit-martes" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-persona">Lo que hace la persona</div>
+          <label class="option-row"><input type="radio" name="sit-martes" value="reaccion"><span>Su forma de reaccionar: «cómo se toma las cosas»</span></label>
+          <label class="option-row"><input type="radio" name="sit-martes" value="relacion"><span>La situación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-ninguna"></div>
           <label class="option-row"><input type="radio" name="sit-martes" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <div class="linea-situacion">
@@ -678,10 +702,14 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <div class="card-label">Veredicto del grupo <span class="required-mark">*</span></div>
         <div class="card-help">¿Qué explica la mayor parte de los conflictos de Sergio?</div>
         <div class="option-list" data-group="veredicto" data-required="true">
-          <label class="option-row"><input type="radio" name="veredicto" value="intoxicacion"><span>Lo que hace la sustancia mientras está (intoxicación)</span></label>
-          <label class="option-row"><input type="radio" name="veredicto" value="bajon"><span>Lo que deja la sustancia cuando se va (el bajón)</span></label>
+          <div class="option-fam fam-sustancia">Lo que hace la sustancia</div>
+          <label class="option-row"><input type="radio" name="veredicto" value="intoxicacion"><span>La sustancia mientras está (intoxicación)</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="bajon"><span>La sustancia cuando se va (el bajón)</span></label>
           <label class="option-row"><input type="radio" name="veredicto" value="motivo"><span>La droga como motivo de la pelea (se discute por consumir)</span></label>
-          <label class="option-row"><input type="radio" name="veredicto" value="relacion"><span>La relación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-persona">Lo que hace la persona</div>
+          <label class="option-row"><input type="radio" name="veredicto" value="reaccion"><span>Su forma de reaccionar: «cómo se toma las cosas»</span></label>
+          <label class="option-row"><input type="radio" name="veredicto" value="relacion"><span>La situación: el roce, la convivencia, estar sin trabajo</span></label>
+          <div class="option-fam fam-ninguna"></div>
           <label class="option-row"><input type="radio" name="veredicto" value="nodecide"><span>No se puede decidir con lo que se vio</span></label>
         </div>
         <!-- La línea escrita queda apagada con PEDIR_LINEA_VEREDICTO (ver sección 11.4):

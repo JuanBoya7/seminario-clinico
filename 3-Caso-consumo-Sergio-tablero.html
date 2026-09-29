@@ -23,13 +23,18 @@
   --moderate-soft:#faf1e4;
   --severe:#a83f2b;
   --severe-soft:#fbeae6;
-  /* Un color por veredicto. Ninguno sugiere "correcto": la rúbrica no
-     califica acertar el trastorno, y el tablero tampoco debe insinuarlo. */
-  --c-intox:#1f6f78;
-  --c-bajon:#6d5a9c;
-  --c-motivo:#b8722a;
-  --c-relacion:#b0503a;
+  /* Un color por explicación, agrupados en dos familias con los colores del
+     deck de consumo e impulsos: turquesa, lo que hace la sustancia; coral, lo
+     que hace la persona. Ninguno sugiere "correcto": la rúbrica no califica
+     acertar, y el tablero tampoco debe insinuarlo. */
+  --c-intox:#0F4F49;
+  --c-bajon:#1C7A70;
+  --c-motivo:#3A9E92;
+  --c-reaccion:#9A3A24;
+  --c-relacion:#C8583A;
   --c-nodecide:#8a97a0;
+  --fam-sustancia:#1C7A70;
+  --fam-persona:#C8583A;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
@@ -111,6 +116,11 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 /* ---- Las situaciones: una barra por situación, repartida por explicación ---- */
 .leyenda{display:flex; gap:8px 18px; flex-wrap:wrap; margin:0 0 16px; font-size:14px; color:var(--ink-soft);}
 .leyenda i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+.leyenda .fam{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; margin-right:2px;}
+.leyenda .sep{width:1px; align-self:stretch; background:var(--border);}
+.barras{display:flex; flex-direction:column; gap:4px;}
+.bar-fam{display:flex; height:7px; border-radius:4px; overflow:hidden; background:var(--surface-alt);}
 .sit{border-top:1px solid var(--border); padding:12px 0 10px;}
 .sit summary{list-style:none; cursor:pointer;}
 .sit summary::-webkit-details-marker{display:none;}
@@ -219,11 +229,19 @@ const FUENTE = {
 const GRUPOS_CURSO = ["901", "902", "903"];
 
 const VEREDICTOS = [
-  { v: "intoxicacion", nombre: "Intoxicación: lo que hace mientras está", corto: "intoxicación",         color: "var(--c-intox)" },
-  { v: "bajon",        nombre: "El bajón: lo que deja cuando se va",      corto: "el bajón",             color: "var(--c-bajon)" },
-  { v: "motivo",       nombre: "La droga como motivo de la pelea",        corto: "la droga como motivo", color: "var(--c-motivo)" },
-  { v: "relacion",     nombre: "La relación",                             corto: "la relación",          color: "var(--c-relacion)" },
-  { v: "nodecide",     nombre: "No se puede decidir con lo que se vio",   corto: "no se puede decidir",  color: "var(--c-nodecide)" }
+  { v: "intoxicacion", fam: "sustancia", nombre: "Intoxicación: lo que hace mientras está",      corto: "intoxicación",           color: "var(--c-intox)" },
+  { v: "bajon",        fam: "sustancia", nombre: "El bajón: lo que deja cuando se va",           corto: "el bajón",               color: "var(--c-bajon)" },
+  { v: "motivo",       fam: "sustancia", nombre: "La droga como motivo de la pelea",             corto: "la droga como motivo",   color: "var(--c-motivo)" },
+  { v: "reaccion",     fam: "persona",   nombre: "Su forma de reaccionar",                       corto: "su forma de reaccionar", color: "var(--c-reaccion)" },
+  { v: "relacion",     fam: "persona",   nombre: "La situación: la relación, estar sin trabajo", corto: "la situación",           color: "var(--c-relacion)" },
+  { v: "nodecide",     fam: "ninguna",   nombre: "No se puede decidir con lo que se vio",        corto: "no se puede decidir",    color: "var(--c-nodecide)" }
+];
+
+// Las dos familias del debate, con los títulos de la lámina «Lo que hace la
+// sustancia, lo que hace la persona» y los mismos colores del deck.
+const FAMILIAS = [
+  { k: "sustancia", nombre: "Lo que hace la sustancia", color: "var(--fam-sustancia)" },
+  { k: "persona",   nombre: "Lo que hace la persona",   color: "var(--fam-persona)" }
 ];
 
 // false: la actividad ya no pide la línea escrita del veredicto (ver
@@ -292,9 +310,13 @@ const AFIRMACIONES = {
     texto: "La droga como motivo pide que se discuta por la droga misma, no por lo que hace. El sábado lo echan por consumir en el baño, y su novio le dice que tiene un problema, que no puede salir sin consumir.",
     fuente: "Fragmento C, 42:09–42:41 · <strong>Morrison</strong>, cap. 15: seguir consumiendo pese a los problemas con otros que el consumo causa es uno de los once criterios."
   },
+  reaccion: {
+    texto: "Su forma de reaccionar como explicación pide un patrón que aparezca con y sin la sustancia: estallar de más ante lo cotidiano. Es la tesis de Sergio —«es por cómo se toman las cosas»— y el martes, sin rayas, es su mejor ejemplo; pero las otras tres situaciones llegan con cocaína encima o por consumir.",
+    fuente: "Fragmento A, 2:43 · Fragmento C, 41:37–44:47."
+  },
   relacion: {
-    texto: "La relación como explicación pide conflictos que no dependan de la sustancia. Es la tesis de Sergio —«es por cómo se toman las cosas»— y el martes es su mejor ejemplo, pero él mismo dice que cuando trabajaba no los tenía.",
-    fuente: "Fragmento A, 2:43 · Fragmento C, 44:47 y 45:49."
+    texto: "La situación como explicación pide conflictos que vengan del contexto: el roce de la convivencia, estar sin trabajo. Sergio mismo dice que cuando trabajaba no los tenía; el martes discuten en casa, sin rayas.",
+    fuente: "Fragmento C, 44:47 y 45:49."
   },
   nodecide: {
     texto: "Suspender el juicio también es una conclusión, y se sostiene nombrando el dato que falta. En los fragmentos no hay una semana sin cocaína ni sin cannabis con la que comparar.",
@@ -318,16 +340,16 @@ const CIERRE = {
 const DEMO = [
   { g: 1, h: "10:31", v: "intoxicacion", d: "Tres de las cuatro situaciones empiezan después de meterse rayas.",
     s: ["intoxicacion", "motivo", "intoxicacion", "relacion"] },
-  { g: 2, h: "10:33", v: "relacion",     d: "Lo del canal de televisión fue sin cocaína y discutieron igual.",
-    s: ["intoxicacion", "motivo", "intoxicacion", "relacion"] },
+  { g: 2, h: "10:33", v: "reaccion",     d: "Lo del canal de televisión fue sin cocaína y discutieron igual.",
+    s: ["intoxicacion", "motivo", "intoxicacion", "reaccion"] },
   { g: 3, h: "10:34", v: "bajon",        d: "Al día siguiente de consumir está más irascible, y el martes estaba cansado.",
     s: ["intoxicacion", "motivo", "intoxicacion", "bajon"] },
   { g: 4, h: "10:36", v: "intoxicacion", d: "Le pegó a un chico después de dos o tres rayas.",
     s: ["intoxicacion", "intoxicacion", "intoxicacion", "nodecide"] },
   { g: 5, h: "10:37", v: "motivo",       d: "Su novio se enoja porque no puede salir sin consumir.",
     s: ["intoxicacion", "motivo", "motivo", "bajon"] },
-  { g: 6, h: "10:39", v: "relacion",     d: "Él mismo dice que discuten por cómo se toman las cosas.",
-    s: ["relacion", "motivo", "intoxicacion", "relacion"] },
+  { g: 6, h: "10:39", v: "reaccion",     d: "Él mismo dice que discuten por cómo se toman las cosas.",
+    s: ["reaccion", "motivo", "intoxicacion", "reaccion"] },
   { g: 7, h: "10:40", v: "bajon",        d: "Cuando trabajaba no tenía esas discusiones; ahora está cansado.",
     s: ["intoxicacion", "motivo", "intoxicacion", "bajon"] },
   { g: 8, h: "10:42", v: "nodecide",     d: "No sabemos cómo sería una semana sin consumir nada.",
@@ -456,14 +478,23 @@ function pantallaSituaciones(E){
   if (!conDatos.length) return `<section class="panel"><h2>Las situaciones</h2>
     <div class="vacio-msg">Las situaciones no llegaron al tablero: el receptor necesita la versión que las incluye.</div></section>`;
 
-  const leyenda = VEREDICTOS.map(v => `<span><i style="background:${v.color}"></i>${esc(v.corto)}</span>`).join("");
+  const item = v => `<span><i style="background:${v.color}"></i>${esc(v.corto)}</span>`;
+  const leyenda = FAMILIAS.map(F =>
+      `<span class="fam" style="color:${F.color}">${esc(F.nombre)}</span>` +
+      VEREDICTOS.filter(v => v.fam === F.k).map(item).join("")).join('<span class="sep"></span>') +
+    '<span class="sep"></span>' + VEREDICTOS.filter(v => v.fam === "ninguna").map(item).join("");
   let masDividida = null;
   const filas = SITUACIONES.map(s => {
     const resp = conDatos.filter(e => e.situaciones[s.k] && e.situaciones[s.k].opcion);
     const n = resp.length;
     const partes = VEREDICTOS.map(v => ({ v, c: resp.filter(e => e.situaciones[s.k].opcion === v.v).length }));
-    const max = Math.max(0, ...partes.map(p => p.c));
-    if (n && (!masDividida || max / n < masDividida.r)) masDividida = { s, r: max / n };
+    // La división que importa es entre familias: la sustancia o la persona.
+    const porFam = FAMILIAS.map(F => ({ F, c: partes.filter(p => p.v.fam === F.k).reduce((t, p) => t + p.c, 0) }));
+    const decididos = porFam.reduce((t, p) => t + p.c, 0);
+    const max = Math.max(0, ...porFam.map(p => p.c));
+    if (decididos && (!masDividida || max / decididos < masDividida.r)) masDividida = { s, r: max / decididos };
+    const franja = porFam.filter(p => p.c).map(p =>
+      `<span title="${esc(p.F.nombre)}: ${p.c}" style="width:${pct(p.c, n)}%;background:${p.F.color}"></span>`).join("");
     const barra = partes.filter(p => p.c).map(p =>
       `<span title="${esc(p.v.corto)}: ${p.c}" style="width:${pct(p.c, n)}%;background:${p.v.color}">${p.c}</span>`).join("");
     const voces = resp.slice().sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b)).map(e => {
@@ -473,13 +504,13 @@ function pantallaSituaciones(E){
     }).join("");
     if (!MOSTRAR_VOCES) return `<div class="fila sit-plana">
         <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
-        <div class="bar">${barra}</div>
+        <div class="barras"><div class="bar">${barra}</div><div class="bar-fam">${franja}</div></div>
         <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
       </div>`;
     return `<details class="sit" data-sit="${s.k}"${abiertas.has(s.k) ? " open" : ""}>
       <summary><div class="fila">
         <div class="nom">${esc(s.dia)}${etiquetaLectura(s)}<small>${esc(s.que)}</small></div>
-        <div class="bar">${barra}</div>
+        <div class="barras"><div class="bar">${barra}</div><div class="bar-fam">${franja}</div></div>
         <div class="val">${n} ${plural(n, "grupo", "grupos")}</div>
       </div></summary>
       <div class="sit-voces">${voces}</div>
@@ -487,8 +518,8 @@ function pantallaSituaciones(E){
   }).join("");
 
   const frase = masDividida && masDividida.r < 1
-    ? `Donde más se dividen: <em>${esc(masDividida.s.dia)}</em>. ¿Con qué dato del video sostiene cada grupo su lectura?`
-    : `En las cuatro situaciones, los grupos coinciden. ¿Con qué dato del video lo sostiene cada uno?`;
+    ? `Donde más se dividen entre la sustancia y la persona: <em>${esc(masDividida.s.dia)}</em>. ¿Con qué dato del video sostiene cada grupo su lectura?`
+    : `En las cuatro situaciones, los grupos coinciden entre la sustancia y la persona. ¿Con qué dato del video lo sostiene cada uno?`;
   return `<section class="panel">
     <h2>Las situaciones</h2>
     <div class="sub">Qué explica, para cada grupo, cada una de las cuatro situaciones del autorregistro.
