@@ -57,9 +57,18 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 
 .panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
 .panel .num{font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
-/* La pregunta del globo es lo que se lee desde el fondo del salón. */
-.panel h2{font-size:clamp(26px,3vw,38px); line-height:1.2; max-width:34ch;}
-.panel .sub{font-size:15px; color:var(--ink-faint); margin:10px 0 24px; max-width:72ch;}
+.panel h2{font-size:clamp(20px,2vw,25px); line-height:1.25; max-width:48ch;}
+
+/* ---- Concepto: lo que se espera, con su fuente, antes de ver las respuestas ---- */
+.concepto{margin:14px 0 22px; background:var(--accent-soft); border-left:4px solid var(--accent); border-radius:0 12px 12px 0; padding:16px 22px;}
+.concepto p{margin:0; font-size:clamp(16.5px,1.5vw,19px); line-height:1.55; color:var(--ink); max-width:80ch;}
+.concepto .citas{margin-top:10px; font-size:13px; line-height:1.45; color:var(--accent-dark);}
+.concepto .citas span{white-space:nowrap;}
+.caso-dato{font-size:15.5px; line-height:1.5; color:var(--ink-soft); margin:0 0 20px; max-width:80ch;}
+.caso-dato b{font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-right:8px;}
+.referencias{margin-top:28px; border-top:1px solid var(--border); padding-top:14px;}
+.referencias .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
+.referencias p{font-size:12.5px; line-height:1.45; color:var(--ink-faint); margin:0 0 4px; padding-left:22px; text-indent:-22px;}
 .vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
 
 .fila{display:grid; grid-template-columns:minmax(200px,34%) minmax(0,1fr) 80px; gap:14px; align-items:center; margin-bottom:12px;}
@@ -81,20 +90,11 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .col-voz h3{font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
 .col-voz.mal h3{border-bottom-color:var(--moderate);}
 .col-voz.bien h3{border-bottom-color:var(--accent);}
-.voz{background:var(--surface); padding:12px 14px; border-radius:8px; margin-bottom:10px; font-size:17px; line-height:1.45;}
-.voz .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
+.voz{background:var(--surface); padding:12px 14px; border-radius:8px; margin-bottom:10px; font-size:16.5px; line-height:1.45;}
 .siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
 .sigla{font-family:var(--font-mono); font-size:19px; font-weight:700; padding:8px 14px; border-radius:8px; background:var(--moderate-soft); color:var(--moderate);}
 .sigla small{font-size:12px; font-weight:600; margin-left:6px;}
 
-/* ---- Práctica recomendada: aparece cuando el docente la pide ---- */
-.cierre{margin-top:30px; border-top:1px solid var(--border); padding-top:24px;}
-.cierre .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:12px;}
-.afirmacion{font-family:var(--font-display); font-size:clamp(21px,2.4vw,30px); line-height:1.38; color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:20px 24px; max-width:62ch;}
-.afirmacion-fuente{font-size:12.5px; color:var(--ink-faint); margin-top:10px;}
-
-/* Pantalla final */
-.sintesis{font-family:var(--font-display); font-size:clamp(28px,3.6vw,44px); line-height:1.3; color:var(--accent-dark); max-width:30ch; margin:18px 0 22px;}
 
 .pie{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
 .pie[hidden]{display:none;}
@@ -152,97 +152,113 @@ const FUENTE = {
 };
 const GRUPOS_CURSO = ["Práctica II"];
 
-// Nombre de pila de cada expediente: es lo único que identifica una frase.
-// Las voces no llevan número de grupo — el tablero se proyecta delante del curso.
-const EXPEDIENTES = { A: "Samuel", B: "Daniela", C: "Jairo", D: "Mercedes" };
+// Todos los equipos trabajan el mismo expediente: el de Jairo.
+const EXPEDIENTE = "C";
 
 /* ============================================================
    2. LOS GLOBOS
    ============================================================
    Uno por trampa, en el orden del deck (finalidad → redacción → buenas
-   prácticas → lectura → ética). Las opciones son las mismas de la
+   prácticas → lectura → ética). Cada globo muestra, en este orden: la
+   pregunta, el concepto que la responde con sus fuentes, lo que traía el
+   expediente, las barras y las voces. Las opciones son las mismas de la
    autoauditoría del recurso, con un rótulo corto para las barras y su lectura:
    «mal» y «bien» deciden en qué columna de voces cae la frase de un grupo;
    «neutro» cuenta en las barras pero no aporta voces.
+   Las citas remiten a REFERENCIAS por su clave.
    ============================================================ */
+const REFERENCIAS = {
+  gm2009: "Groth-Marnat, G. (2009). <i>Handbook of psychological assessment</i> (5.ª ed.). John Wiley &amp; Sons.",
+  gmd2014: "Groth-Marnat, G. y Davis, A. (2014). <i>Psychological report writing assistant</i>. John Wiley &amp; Sons.",
+  sch2018: "Schneider, W. J., Lichtenberger, E. O., Mather, N. y Kaufman, N. L. (2018). <i>Essentials of assessment report writing</i> (2.ª ed.). John Wiley &amp; Sons.",
+  aera2014: "American Educational Research Association, American Psychological Association y National Council on Measurement in Education. (2014). <i>Standards for educational and psychological testing</i>. AERA.",
+  ley1090: "Congreso de la República de Colombia. (2006). <i>Ley 1090 de 2006, por la cual se reglamenta el ejercicio de la profesión de Psicología, se dicta el Código Deontológico y Bioético y otras disposiciones</i>."
+};
+
 const GLOBOS = [
   { id: "pregunta", tema: "Finalidad del informe",
     pregunta: "¿Respondieron lo que les preguntaron?",
-    sub: "Cada remitente hizo una pregunta concreta. Así clasificó cada equipo la frase con la que la respondió.",
-    opciones: [["completa", "Responde todas las partes", "bien"], ["parcial", "Responde solo una parte", "neutro"], ["no", "No la responde de forma directa", "mal"]],
-    principio: "El informe existe para responder a quien lo pidió. La conclusión contesta cada parte de la pregunta de remisión, con palabras que el destinatario pueda usar, y no responde preguntas que nadie hizo: una comisaría no pidió saber si el padrastro es culpable.",
-    fuente: "Láminas 3 y 12: para qué sirve el informe; del hallazgo a la conclusión." },
+    concepto: "El informe existe para responder la pregunta de quien remite. Cada parte de esa pregunta recibe una respuesta explícita en la conclusión, en palabras que el destinatario pueda usar para decidir. Una estrategia sencilla es numerar las preguntas en el motivo de consulta y responderlas con los mismos números. Si una parte no puede responderse con los datos disponibles, se dice y se explica por qué.",
+    citas: [["gm2009", "Groth-Marnat, 2009, cap. 15"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["sch2018", "Schneider et al., 2018, cap. 8"]],
+    lamina: "Láminas 3 y 12",
+    caso: "La médica preguntó dos cosas: si hay un componente ansioso o depresivo que explique los síntomas, y si Jairo requiere manejo por psicología o remisión a psiquiatría. Así clasificó cada equipo la frase con la que respondió.",
+    opciones: [["completa", "Responde las dos partes", "bien"], ["parcial", "Responde solo una parte", "neutro"], ["no", "No la responde de forma directa", "mal"]] },
   { id: "siglas", tema: "Redacción clínica",
     pregunta: "¿Quién va a leer esas siglas?",
-    sub: "Las remisiones venían llenas de siglas. Estas quedaron en los informes sin su forma completa.",
-    opciones: [["sin-explicar", "Usaron siglas sin explicarlas", "mal"], ["algunas", "Explicaron algunas", "neutro"], ["todas", "Las explicaron todas, o no las usaron", "bien"]],
-    principio: "Un informe lo leen el consultante, otros profesionales y a veces un juez. Las siglas se escriben completas, o completas la primera vez con la sigla entre paréntesis. Vale también para las escalas de las pruebas.",
-    fuente: "Lámina 9: evitar siglas y abreviaturas sin aclarar." },
+    concepto: "Un informe lo leen personas que no comparten la jerga del evaluador: el consultante, otros profesionales, a veces un juez. Cada sigla se escribe completa la primera vez, con la sigla entre paréntesis, y solo se conserva si se va a repetir. Los nombres de las pruebas siguen la misma regla. Hasta los términos técnicos que parecen claros son malinterpretados con frecuencia, incluso por profesionales.",
+    citas: [["sch2018", "Schneider et al., 2018, cap. 3"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"]],
+    lamina: "Lámina 9",
+    caso: "La remisión traía IDx, TAG, TDM, IAM y EKG. Estas quedaron en los informes sin su forma completa.",
+    opciones: [["sin-explicar", "Usaron siglas sin explicarlas", "mal"], ["algunas", "Explicaron algunas", "neutro"], ["todas", "Las explicaron todas, o no las usaron", "bien"]] },
   { id: "rumor", tema: "Buenas prácticas",
     pregunta: "¿Qué hacemos con lo que alguien contó que otro dijo?",
-    sub: "Cada expediente traía un dato de oídas: la violencia en la casa, el muchacho mayor, el alcohol en la bodega, la noche en el parque.",
-    opciones: [["hecho", "Lo presentaron como un hecho", "mal"], ["atribuido", "Lo atribuyeron, sin darlo por cierto", "bien"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]],
-    principio: "Un dato de oídas no es un hallazgo. Si se incluye, se dice de dónde viene y se contrasta con lo evaluado; si no aporta a la pregunta, se deja fuera o se recomienda explorarlo. Nunca se presenta como un hecho.",
-    fuente: "Lámina 9: no sustentar rumores ni información no verificada." },
+    concepto: "Un dato de oídas no es un hallazgo. Lo que no pudo verificarse se omite, o se incluye nombrando su fuente («según refiere su esposa…») y contrastándolo con lo evaluado. La información de terceros se verifica antes de usarla, con más cuidado si quien la aporta tiene interés en el resultado. Nunca se redacta como un hecho.",
+    citas: [["sch2018", "Schneider et al., 2018, cap. 4"], ["aera2014", "AERA, APA y NCME, 2014, cap. 10"]],
+    lamina: "Lámina 9",
+    caso: "Liliana contó que Yolanda le dijo que un compañero le contó que a Jairo lo han visto tomando en la bodega. Nadie lo vio; Jairo reporta cerveza cada quince días y el AUDIT dio 6.",
+    opciones: [["hecho", "Lo presentaron como un hecho", "mal"], ["atribuido", "Lo atribuyeron, sin darlo por cierto", "bien"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]] },
   { id: "contradiccion", tema: "Integración",
     pregunta: "Cuando dos fuentes no dicen lo mismo, ¿a cuál le creemos?",
-    sub: "«No estoy deprimido» y un BDI-II de 24; la docente y los padres; «estoy bien» y las pesadillas; «está perdida» y una orientación perfecta.",
-    opciones: [["una", "Informaron solo una fuente", "mal"], ["separadas", "Informaron las dos, por separado", "mal"], ["integradas", "Las integraron y explicaron la diferencia", "bien"], ["no-tratado", "No lo trataron", "neutro"]],
-    principio: "A ninguna por separado. Integrar es explicar la diferencia: por qué el consultante dice una cosa y la prueba otra, o por qué la docente ve lo que los padres no. Un informe que yuxtapone resultados fragmenta a la persona.",
-    fuente: "Láminas 10 y 16: no fragmentar al examinado; integrar los datos." },
+    concepto: "A ninguna por separado. Integrar no es poner los resultados uno al lado del otro: es combinar las fuentes y dar cuenta de las que se contradicen. Una discrepancia entre lo que dice la persona y lo que muestra una prueba no es un error que haya que descartar; suele ser información clínica que el informe explica. Un informe organizado prueba por prueba fragmenta a la persona.",
+    citas: [["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["gm2009", "Groth-Marnat, 2009, cap. 15"]],
+    lamina: "Láminas 10 y 16",
+    caso: "Jairo dijo «Yo no estoy deprimido. Lo mío es físico», y su BDI-II dio 24, con el puntaje concentrado en ítems corporales (sueño, energía, cansancio) y los cognitivos en cero.",
+    opciones: [["una", "Informaron solo una fuente", "mal"], ["separadas", "Informaron las dos, por separado", "mal"], ["integradas", "Las integraron y explicaron la diferencia", "bien"], ["no-tratado", "No lo trataron", "neutro"]] },
   { id: "validez", tema: "Calidad de los instrumentos",
     pregunta: "¿Un puntaje dice siempre lo que parece?",
-    sub: "Un MMPI-2 con 36 ítems sin contestar, un MMPI-A defensivo, una subprueba interrumpida por un simulacro, una MoCA aplicada sin lentes.",
-    opciones: [["sin-advertir", "Interpretaron sin advertir el problema", "mal"], ["advertido", "Lo advirtieron, pero interpretaron todo", "mal"], ["limitado", "Lo advirtieron y limitaron la interpretación", "bien"], ["no-usada", "No usaron esa prueba", "neutro"]],
-    principio: "Antes de interpretar una prueba se mira cómo se aplicó y si el protocolo es válido. El problema se informa, y la interpretación se limita a lo que el protocolo permite.",
-    fuente: "Lámina 8: objetividad y calidad de los instrumentos." },
+    concepto: "Antes de interpretar un puntaje se revisa si el protocolo es válido. En el MMPI-2, treinta o más ítems sin contestar ponen en duda la interpretación, y el problema se informa. Como las escalas básicas salen de los primeros 370 ítems y varias de las demás, entre ellas las de contenido, dependen de la parte final, las omisiones del final afectan sobre todo a estas últimas: la lectura se limita a lo que el protocolo permite.",
+    citas: [["gm2009", "Groth-Marnat, 2009, cap. 7"]],
+    lamina: "Lámina 8",
+    caso: "Jairo dejó 36 ítems del MMPI-2 sin contestar, 31 de ellos después del 370: «las últimas me dio pereza». La hoja mostraba elevadas las escalas de contenido.",
+    opciones: [["sin-advertir", "Interpretaron sin advertir el problema", "mal"], ["advertido", "Lo advirtieron, pero interpretaron todo", "mal"], ["limitado", "Lo advirtieron y limitaron la interpretación", "bien"], ["no-usada", "No usaron esa prueba", "neutro"]] },
   { id: "fortaleza", tema: "Lectura por áreas y pronóstico",
     pregunta: "¿Qué puede hacer bien esta persona?",
-    sub: "Cada expediente traía una fortaleza de pasada: el Lego, la danza, el microfútbol, el pastillero y el coro.",
-    opciones: [["no", "No la mencionaron", "mal"], ["mencion", "La mencionaron, sin usarla", "neutro"], ["usada", "La usaron en el pronóstico o las recomendaciones", "bien"]],
-    principio: "Las áreas libres de conflicto son parte del informe: sostienen el pronóstico y orientan la intervención. Redactar en positivo es decir lo que la persona sí puede, no suavizar lo que no.",
-    fuente: "Láminas 9, 11 y 12: redactar en positivo; áreas libres de conflicto; pronóstico." },
+    concepto: "Los informes tienden a enumerar déficits. Describir también las fortalezas y los recursos de la persona equilibra la descripción, favorece la relación con quien lo lee y orienta el tratamiento, que puede apoyarse en ellas para mejorar los resultados. No son un adorno: las áreas libres de conflicto sostienen el pronóstico.",
+    citas: [["gm2009", "Groth-Marnat, 2009, cap. 15"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 3"]],
+    lamina: "Láminas 9, 11 y 12",
+    caso: "Jairo sigue entrenando los sábados el equipo de microfútbol de su hija («ni me acuerdo del pecho»), y en el trabajo «es el que sabe dónde está todo».",
+    opciones: [["no", "No la mencionaron", "mal"], ["mencion", "La mencionaron, sin usarla", "neutro"], ["usada", "La usaron en el pronóstico o las recomendaciones", "bien"]] },
   { id: "intimo", tema: "Ética",
     pregunta: "¿Todo lo que supimos va en el informe?",
-    sub: "En los cuatro expedientes alguien contó algo íntimo y pidió que no quedara en ningún papel.",
-    opciones: [["incluido", "Lo incluyeron", "mal"], ["suavizado", "Lo incluyeron de forma indirecta", "mal"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]],
-    principio: "No. Un informe incluye lo que responde la pregunta de remisión. Lo que el consultante confió con pedido de reserva, y no explica el motivo de consulta, queda fuera: incluirlo vulnera la confidencialidad sin aportar nada.",
-    fuente: "Lámina 8: respeto y código deontológico." }
+    concepto: "No. Un informe incluye solo la información pertinente al propósito para el que se escribe. Lo que la persona confió con pedido de reserva, y no responde la pregunta de remisión, queda fuera: incluirlo, aun suavizado, vulnera la confidencialidad sin aportar nada. Conviene redactar asumiendo que todo el que tenga derecho a leer el informe lo va a leer.",
+    citas: [["ley1090", "Ley 1090 de 2006, art. 2, num. 5"], ["sch2018", "Schneider et al., 2018, cap. 4 y cap. 10, que cita la norma 4.04 del código de ética de la APA"]],
+    lamina: "Lámina 8",
+    caso: "Jairo contó una relación de hace doce años, dijo que no tenía nada que ver con lo que le pasa y pidió que no quedara «en ningún papel». El informe va a su médica.",
+    opciones: [["incluido", "Lo incluyeron", "mal"], ["suavizado", "Lo incluyeron de forma indirecta", "mal"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]] }
 ];
-
-const SINTESIS = "El informe no fragmenta al examinado: integra los datos en una descripción coherente, ética y útil para decidir.";
 
 /* ============================================================
    3. DATOS DE EJEMPLO
    ============================================================
-   Ocho grupos inventados, dos por expediente. Se usan mientras FUENTE.url
+   Ocho equipos inventados, todos sobre el expediente de Jairo, con todas las opciones
+   de cada globo representadas al menos una vez. Se usan mientras FUENTE.url
    diga "PENDIENTE", o con ?demo=1 en la dirección, para ensayar el cierre.
    ============================================================ */
 const DEMO = [
-  { g: 1, h: "10:31", x: "C", aud: { rumor: "hecho", contradiccion: "separadas", validez: "sin-advertir", fortaleza: "no", intimo: "excluido", siglas: "sin-explicar", pregunta: "parcial" },
-    hal: { rumor: ["Según su cuñada, lo han visto tomando en la bodega."], contradiccion: ["El BDI-II indica depresión moderada."], validez: ["El MMPI-2 muestra elevación en ansiedad, depresión y preocupaciones por la salud."], siglas: ["TAG", "TDM"] },
-    f: "Se evidencian síntomas de ansiedad relacionados con la salud." },
-  { g: 2, h: "10:33", x: "C", aud: { rumor: "atribuido", contradiccion: "integradas", validez: "limitado", fortaleza: "usada", intimo: "excluido", siglas: "todas", pregunta: "completa" },
-    hal: { rumor: ["La esposa refiere un comentario de terceros sobre consumo en el trabajo, no verificado; el AUDIT indica bajo riesgo."], contradiccion: ["Aunque niega estar deprimido, el BDI-II puntúa 24, sobre todo por ítems corporales como el sueño y el cansancio."], validez: ["El MMPI-2 tiene 36 ítems sin contestar, por lo que las escalas de contenido no se interpretan."], fortaleza: ["Mantiene el entrenamiento de microfútbol de su hija, un recurso para la intervención."], siglas: [] },
-    f: "Se identifica un componente ansioso centrado en la salud; se recomienda psicoterapia, sin necesidad actual de remisión a psiquiatría." },
-  { g: 3, h: "10:34", x: "A", aud: { rumor: "hecho", contradiccion: "una", validez: "sin-advertir", fortaleza: "mencion", intimo: "incluido", siglas: "sin-explicar", pregunta: "parcial" },
-    hal: { rumor: ["La docente informa que el padre maltrataba a la madre, lo que podría explicar su conducta."], contradiccion: ["Según la docente, presenta inatención e hiperactividad, compatibles con TDAH."], validez: ["La memoria de trabajo (82) está en promedio bajo, lo que confirma dificultades de atención."], fortaleza: ["Le gusta armar Lego."], intimo: ["La madre tiene antecedente de depresión en tratamiento con sertralina."], siglas: ["TDAH", "PIAR"] },
-    f: "Se sugiere valoración por neuropediatría por posible TDAH." },
-  { g: 4, h: "10:36", x: "A", aud: { rumor: "excluido", contradiccion: "integradas", validez: "limitado", fortaleza: "usada", intimo: "excluido", siglas: "algunas", pregunta: "completa" },
-    hal: { contradiccion: ["La docente reporta inatención, pero los padres no; los síntomas aparecen en las tareas de lectura."], validez: ["Dígitos se interrumpió por un simulacro, por lo que la memoria de trabajo se interpreta con cautela."], fortaleza: ["Su fortaleza visoespacial permite usar apoyos visuales y material concreto."], siglas: ["DUA"] },
-    f: "El perfil corresponde a una dificultad específica en la lectura; se recomiendan más tiempo, evaluación oral y apoyos visuales." },
-  { g: 5, h: "10:37", x: "B", aud: { rumor: "atribuido", contradiccion: "separadas", validez: "sin-advertir", fortaleza: "usada", intimo: "suavizado", siglas: "sin-explicar", pregunta: "parcial" },
-    hal: { rumor: ["La tía refiere rumores del barrio sobre una relación con un joven mayor, sin confirmar."], contradiccion: ["Daniela refiere estar bien.", "La CPSS-5 puntúa 29, por debajo del punto de corte."], validez: ["En el MMPI-A todas las escalas clínicas están dentro de lo normal."], fortaleza: ["La danza urbana es un espacio protector."], intimo: ["Refiere una relación afectiva en el grupo de danza que su madre desconoce."], siglas: ["VIF", "NNA"] },
-    f: "Daniela presenta afectación emocional por los hechos de violencia que presenció." },
-  { g: 6, h: "10:39", x: "B", aud: { rumor: "excluido", contradiccion: "integradas", validez: "limitado", fortaleza: "usada", intimo: "excluido", siglas: "todas", pregunta: "completa" },
-    hal: { contradiccion: ["Aunque dice que ya pasó, presenta pesadillas, evitación y sobresalto."], validez: ["El MMPI-A es defensivo (Mentira y Corrección elevadas), así que las escalas clínicas normales no descartan malestar."], fortaleza: ["Cuidó a su hermano y llamó al 123; la danza es un recurso."], siglas: [] },
-    f: "Presenta síntomas de estrés postraumático asociados a los hechos presenciados; se recomienda atención psicológica centrada en el trauma." },
-  { g: 7, h: "10:40", x: "D", aud: { rumor: "hecho", contradiccion: "una", validez: "sin-advertir", fortaleza: "no", intimo: "incluido", siglas: "sin-explicar", pregunta: "parcial" },
-    hal: { rumor: ["La vecina la ha visto perdida en el parque de noche."], contradiccion: ["La hija refiere que ya no se acuerda de nada."], validez: ["Obtuvo 21 en la MoCA, por debajo del punto de corte, compatible con deterioro cognitivo."], intimo: ["El esposo tuvo otra familia en Mariquita, lo que agrava su duelo."], siglas: ["DCL", "EA"] },
-    f: "El puntaje de la MoCA sugiere un deterioro cognitivo leve." },
-  { g: 8, h: "10:42", x: "D", aud: { rumor: "atribuido", contradiccion: "integradas", validez: "limitado", fortaleza: "usada", intimo: "excluido", siglas: "todas", pregunta: "completa" },
-    hal: { rumor: ["Una vecina afirma haberla visto sola de noche; el portero lo contradice."], contradiccion: ["Aunque la hija la describe perdida, está orientada y recupera las palabras con pistas."], validez: ["La MoCA se aplicó sin lentes; se recomienda repetirla."], fortaleza: ["Maneja sola su pastillero y canta en el coro."], siglas: [] },
-    f: "El perfil es más compatible con un cuadro depresivo, sin descartar un deterioro cognitivo; se recomienda repetir la MoCA con lentes y reevaluar en seis meses." }
+  { g: 3, h: "10:31", aud: {"rumor": "hecho", "contradiccion": "una", "validez": "sin-advertir", "fortaleza": "no", "intimo": "incluido", "siglas": "sin-explicar", "pregunta": "no"},
+    hal: {"rumor": ["Consume alcohol durante la jornada laboral.", "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar."], "contradiccion": ["El BDI-II arroja una puntuación de 24, correspondiente a depresión moderada.", "En el MMPI-2 se elevan las escalas de Hipocondría (78), Histeria (80) y Depresión (72), y las de Ansiedad (75), Depresión (74) y Preocupaciones por la salud (82).", "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar."], "validez": ["En el MMPI-2 se elevan las escalas de Hipocondría (78), Histeria (80) y Depresión (72), y las de Ansiedad (75), Depresión (74) y Preocupaciones por la salud (82)."], "intimo": ["Hace doce años tuvo una relación extramatrimonial con una compañera de trabajo que su esposa desconoce, lo que le genera culpa."], "siglas": ["IDx", "TAG", "TDM", "IAM"]},
+    f: "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar." },
+  { g: 1, h: "10:33", aud: {"rumor": "hecho", "contradiccion": "separadas", "validez": "sin-advertir", "fortaleza": "mencion", "intimo": "suavizado", "siglas": "sin-explicar", "pregunta": "parcial"},
+    hal: {"rumor": ["Además, consume alcohol en la bodega en horas de trabajo."], "contradiccion": ["Jairo refiere que no está deprimido y que lo suyo es físico.", "El BDI-II puntúa 24, que indica depresión moderada, y el BAI 22, ansiedad moderada.", "El MMPI-2 muestra elevaciones en Ansiedad (ANX 75), Depresión (DEP 74) y Preocupaciones por la salud (HEA 82), además de Hipocondría e Histeria.", "Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre."], "validez": ["El MMPI-2 muestra elevaciones en Ansiedad (ANX 75), Depresión (DEP 74) y Preocupaciones por la salud (HEA 82), además de Hipocondría e Histeria."], "fortaleza": ["Entrena al equipo de microfútbol de su hija."], "intimo": ["Refiere un episodio de su vida de pareja de hace doce años que su esposa desconoce y que le genera culpa."], "siglas": ["IDx", "TAG", "TDM", "EKG"]},
+    f: "Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre. Se recomienda psicoterapia y control del consumo." },
+  { g: 7, h: "10:35", aud: {"rumor": "atribuido", "contradiccion": "no-tratado", "validez": "no-usada", "fortaleza": "no", "intimo": "no-visto", "siglas": "sin-explicar", "pregunta": "no"},
+    hal: {"rumor": ["Según lo que cuenta la esposa, un compañero lo ha visto tomando en la bodega, dato que no se confirmó."], "siglas": ["IDx", "IAM", "EKG"]},
+    f: "Jairo presenta ansiedad relacionada con el estrés laboral, que se manifiesta en síntomas físicos." },
+  { g: 6, h: "10:37", aud: {"rumor": "atribuido", "contradiccion": "separadas", "validez": "advertido", "fortaleza": "mencion", "intimo": "excluido", "siglas": "algunas", "pregunta": "parcial"},
+    hal: {"rumor": ["La esposa comenta que un compañero lo habría visto tomando en la bodega, aunque ella nunca lo ha visto embriagado."], "contradiccion": ["Jairo manifiesta que no está deprimido.", "En el BDI-II obtuvo 24, depresión moderada, y en el BAI 22, ansiedad moderada.", "El MMPI-2 tiene 36 ítems sin responder y debe leerse con cautela, pero muestra elevaciones en Hipocondría, Histeria y Depresión, y en las escalas de Ansiedad y Preocupaciones por la salud.", "Se evidencia un componente ansioso y depresivo que podría explicar los síntomas físicos."], "validez": ["El MMPI-2 tiene 36 ítems sin responder y debe leerse con cautela, pero muestra elevaciones en Hipocondría, Histeria y Depresión, y en las escalas de Ansiedad y Preocupaciones por la salud."], "fortaleza": ["Los sábados entrena el equipo de microfútbol de su hija."], "siglas": ["TAG", "TDM", "EKG"]},
+    f: "Se evidencia un componente ansioso y depresivo que podría explicar los síntomas físicos." },
+  { g: 2, h: "10:39", aud: {"rumor": "atribuido", "contradiccion": "integradas", "validez": "advertido", "fortaleza": "usada", "intimo": "excluido", "siglas": "todas", "pregunta": "parcial"},
+    hal: {"rumor": ["Su esposa refiere que, según un compañero de trabajo, lo han visto tomando en la bodega, dato que no se pudo verificar y que contrasta con el AUDIT (6), de bajo riesgo, y con la cerveza cada quince días que él reporta."], "contradiccion": ["Aunque Jairo dice no estar deprimido, el Inventario de Depresión de Beck (BDI-II = 24) se eleva sobre todo por el sueño, la energía y el cansancio, con los ítems de culpa y desvalorización en cero: su malestar se expresa más en el cuerpo que en el ánimo.", "El Inventario de Ansiedad de Beck (BAI = 22) coincide con las palpitaciones que describe.", "En el MMPI-2 dejó 36 ítems sin contestar, y se elevan Hipocondría, Histeria y Depresión, así como las escalas de contenido de Ansiedad y Preocupaciones por la salud."], "validez": ["En el MMPI-2 dejó 36 ítems sin contestar, y se elevan Hipocondría, Histeria y Depresión, así como las escalas de contenido de Ansiedad y Preocupaciones por la salud."], "fortaleza": ["Se recomienda psicoterapia cognitivo-conductual apoyada en actividades que conserva, como entrenar el equipo de microfútbol de su hija."]},
+    f: "Existe un componente ansioso centrado en la salud, asociado al duelo por su padre, que explica buena parte de los síntomas físicos. Se recomienda psicoterapia cognitivo-conductual apoyada en actividades que conserva, como entrenar el equipo de microfútbol de su hija." },
+  { g: 8, h: "10:41", aud: {"rumor": "excluido", "contradiccion": "separadas", "validez": "limitado", "fortaleza": "mencion", "intimo": "excluido", "siglas": "algunas", "pregunta": "completa"},
+    hal: {"contradiccion": ["Jairo refiere que no está deprimido.", "En el BDI-II obtuvo 24, rango moderado.", "El MMPI-2 quedó con 36 ítems sin contestar, así que solo se interpretan las escalas básicas: Hipocondría (78) e Histeria (80) por encima de Depresión (72)."], "validez": ["El MMPI-2 quedó con 36 ítems sin contestar, así que solo se interpretan las escalas básicas: Hipocondría (78) e Histeria (80) por encima de Depresión (72)."], "fortaleza": ["Su esposa lo describe irritable y cansado desde el duelo, y cuenta que en el trabajo es el que sabe dónde está todo."], "siglas": ["TAG"]},
+    f: "Hay un componente ansioso centrado en la salud, vinculado al duelo por su padre, que explica los síntomas físicos. El manejo indicado es la psicoterapia, sin necesidad actual de remisión a psiquiatría, ya que niega ideas de muerte." },
+  { g: 4, h: "10:44", aud: {"rumor": "no-visto", "contradiccion": "integradas", "validez": "limitado", "fortaleza": "usada", "intimo": "excluido", "siglas": "algunas", "pregunta": "completa"},
+    hal: {"contradiccion": ["Jairo niega estar deprimido, pero el BDI-II (24) se apoya en ítems corporales como el sueño, la energía y el cansancio, con los ítems cognitivos en cero;", "En las básicas se elevan Hipocondría (78) e Histeria (80) sobre Depresión (72), un perfil de expresión corporal del malestar."], "validez": ["El MMPI-2 tiene 36 ítems sin contestar: las escalas básicas se interpretan con reserva y las de contenido no se interpretan.", "En las básicas se elevan Hipocondría (78) e Histeria (80) sobre Depresión (72), un perfil de expresión corporal del malestar."], "fortaleza": ["Dejó de trotar por miedo, pero sigue entrenando los sábados el equipo de microfútbol de su hija.", "El pronóstico es favorable: el microfútbol de su hija es un recurso para retomar la actividad física."], "siglas": ["IDx", "EKG"]},
+    f: "Hay ansiedad centrada en la salud, iniciada tras el duelo por su padre, compatible con un trastorno de síntomas somáticos. Se recomienda psicoterapia, sin criterio actual de remisión urgente a psiquiatría, dado que niega ideas de muerte; se sugiere reevaluar si los síntomas persisten." },
+  { g: 5, h: "10:46", aud: {"rumor": "excluido", "contradiccion": "integradas", "validez": "limitado", "fortaleza": "usada", "intimo": "excluido", "siglas": "todas", "pregunta": "completa"},
+    hal: {"contradiccion": ["Jairo niega estar deprimido, y el BDI-II (24) lo matiza: el puntaje sale de ítems corporales como el sueño, la energía y el cansancio, mientras los de culpa, fracaso e ideas de muerte están en cero.", "En las básicas, Hipocondría (78) e Histeria (80) superan a Depresión (72), un patrón de malestar expresado en el cuerpo."], "validez": ["El MMPI-2 quedó con 36 ítems sin contestar, casi todos al final, así que las escalas básicas se leen con reserva y las de la segunda parte de la prueba no se interpretan.", "En las básicas, Hipocondría (78) e Histeria (80) superan a Depresión (72), un patrón de malestar expresado en el cuerpo."], "fortaleza": ["El pronóstico es favorable: sigue entrenando el equipo de microfútbol de su hija y en el trabajo lo reconocen como alguien confiable, recursos para retomar la actividad."]},
+    f: "(1) Sí: hay una ansiedad centrada en la salud, iniciada con el duelo por su padre, que explica buena parte de los síntomas; el perfil es compatible con un trastorno de síntomas somáticos. (2) Se recomienda psicoterapia; no hay criterio actual de remisión urgente a psiquiatría, pues niega ideas de muerte, aunque conviene revisarlo si los síntomas persisten." }
 ];
 
 function entregasDemo(cuantas){
@@ -251,7 +267,7 @@ function entregasDemo(cuantas){
     const [hh, mm] = x.h.split(":").map(Number);
     return { cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + x.g,
              enviado: new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), hh, mm).toISOString(),
-             expediente: x.x, aud: x.aud, hallazgos: x.hal, frase: x.f };
+             expediente: EXPEDIENTE, aud: x.aud, hallazgos: x.hal, frase: x.f };
   });
 }
 
@@ -322,7 +338,7 @@ function pantallaEnvios(E){
   const orden = E.slice().sort((a, b) => (a.cursoGrupo + numeroDeGrupo(a)).localeCompare(b.cursoGrupo + numeroDeGrupo(b), "es", { numeric: true }));
   const chips = orden.map(e => {
     const hora = e.enviado ? new Date(e.enviado).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "";
-    return `<span class="chip">${esc(quien(e))} · ${esc(EXPEDIENTES[e.expediente] || "—")}${hora ? `<small>${hora}</small>` : ""}</span>`;
+    return `<span class="chip">${esc(quien(e))}${hora ? `<small>${hora}</small>` : ""}</span>`;
   }).join("");
   return `<section class="panel">
     <div class="contador">${E.length}</div>
@@ -333,28 +349,28 @@ function pantallaEnvios(E){
   </section>`;
 }
 
-// Una frase por voz, como máximo tres por columna, alternando expedientes para
-// que no hable siempre el mismo caso.
+// Una frase por voz, como máximo tres por columna, sin repetir frases iguales.
+// Las voces no llevan número de grupo: el tablero se proyecta delante del curso.
 function voces(E, globo, lectura){
   const codigos = globo.opciones.filter(o => o[2] === lectura).map(o => o[0]);
-  const fuentes = E.filter(e => codigos.includes((e.aud || {})[globo.id]));
   const lista = [];
-  fuentes.forEach(e => {
+  E.filter(e => codigos.includes((e.aud || {})[globo.id])).forEach(e => {
     const frases = globo.id === "pregunta" ? (e.frase ? [e.frase] : []) : ((e.hallazgos || {})[globo.id] || []);
-    if (frases.length) lista.push({ quien: EXPEDIENTES[e.expediente] || "—", frase: frases[0] });
+    if (frases.length && !lista.includes(frases[0])) lista.push(frases[0]);
   });
-  const vistos = {}, orden = [];
-  lista.forEach(v => { if (!vistos[v.quien]) { vistos[v.quien] = 1; orden.push(v); } });
-  lista.forEach(v => { if (!orden.includes(v)) orden.push(v); });
-  return orden.slice(0, 3);
+  return lista.slice(0, 3);
 }
-
-let mostrada = {};   // qué globos ya destaparon su práctica recomendada
 
 function pantallaGlobo(E, i){
   const g = GLOBOS[i];
-  const cabeza = `<div class="num">Globo ${i + 1} de ${GLOBOS.length} · ${esc(g.tema)}</div><h2>${esc(g.pregunta)}</h2><div class="sub">${esc(g.sub)}</div>`;
-  if (!E.length) return `<section class="panel">${cabeza}${sinEntregas}</section>`;
+  const citas = g.citas.map(c => `<span>${esc(c[1])}</span>`).join(" · ");
+  const cabeza = `<div class="num">Globo ${i + 1} de ${GLOBOS.length} · ${esc(g.tema)}</div>
+    <h2>${esc(g.pregunta)}</h2>
+    <div class="concepto"><p>${esc(g.concepto)}</p><div class="citas">${citas} · <span>En el deck: ${esc(g.lamina)}</span></div></div>
+    <p class="caso-dato"><b>En el expediente</b>${esc(g.caso)}</p>`;
+  const refs = `<div class="referencias"><div class="rot">Referencias</div>${
+    [...new Set(g.citas.map(c => c[0]))].map(k => `<p>${REFERENCIAS[k]}</p>`).join("")}</div>`;
+  if (!E.length) return `<section class="panel">${cabeza}${sinEntregas}${refs}</section>`;
 
   const n = E.length;
   const filas = g.opciones.map(([cod, rot, lec]) => {
@@ -373,46 +389,23 @@ function pantallaGlobo(E, i){
       ? `<div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
       : `<div class="vacio-msg" style="margin-top:20px">Ningún informe dejó siglas de la remisión sin su forma completa.</div>`;
   } else {
-    const mal = voces(E, g, "mal"), bien = voces(E, g, "bien");
     const col = (clase, titulo, vs, vacio) => `<div class="col-voz ${clase}"><h3>${titulo}</h3>${
-      vs.length ? vs.map(v => `<div class="voz"><span class="de">${esc(v.quien)}</span>«${esc(v.frase)}»</div>`).join("")
+      vs.length ? vs.map(v => `<div class="voz">«${esc(v)}»</div>`).join("")
                 : `<div class="vacio-msg">${vacio}</div>`}</div>`;
     medio = `<div class="voces">
-      ${col("mal", "Así quedó escrito", mal, "Ningún equipo dejó una frase de este lado.")}
-      ${col("bien", "Así lo resolvieron", bien, g.id === "intimo" || g.id === "rumor"
+      ${col("mal", "Así quedó escrito", voces(E, g, "mal"), g.id === "fortaleza"
+          ? "Quien no la mencionó no tiene frase que mostrar."
+          : "Ningún equipo dejó una frase de este lado.")}
+      ${col("bien", "Así lo resolvieron", voces(E, g, "bien"), g.id === "intimo" || g.id === "rumor"
           ? "Quien lo resolvió dejándolo fuera no tiene frase que mostrar."
           : "Ningún equipo dejó una frase de este lado.")}
     </div>`;
   }
 
-  const cierre = mostrada[g.id]
-    ? `<div class="afirmacion">${esc(g.principio)}</div><div class="afirmacion-fuente">${esc(g.fuente)}</div>`
-    : `<button class="btn-principal" id="bt-principio">Mostrar la práctica recomendada</button>`;
-
-  return `<section class="panel">${cabeza}${filas}${medio}
-    <div class="cierre"><div class="rot">Práctica recomendada</div>${cierre}</div>
-  </section>`;
+  return `<section class="panel">${cabeza}${filas}${medio}${refs}</section>`;
 }
 
-function pantallaSintesis(E){
-  const n = E.length;
-  const resueltas = GLOBOS.map(g => {
-    const bien = g.opciones.filter(o => o[2] === "bien").map(o => o[0]);
-    return { g, c: E.filter(e => bien.includes((e.aud || {})[g.id])).length };
-  }).sort((a, b) => a.c - b.c);
-  const filas = n ? resueltas.map(r => `<div class="fila"><div class="nom">${esc(r.g.pregunta)}</div>
-      <div class="bar"><span style="width:${pct(r.c, n)}%;background:var(--accent)"></span></div>
-      <div class="val">${r.c} de ${n}</div></div>`).join("") : sinEntregas;
-  return `<section class="panel">
-    <div class="num">Cierre</div>
-    <div class="sintesis">${esc(SINTESIS)}</div>
-    <div class="sub">Cuántos equipos resolvieron cada punto, de menor a mayor.</div>
-    ${filas}
-  </section>`;
-}
-
-const PANTALLAS = GLOBOS.map((g, i) => ({ rotulo: (i + 1) + ". " + g.tema, pintar: E => pantallaGlobo(E, i), globo: g.id }))
-  .concat([{ rotulo: "Cierre", pintar: pantallaSintesis }]);
+const PANTALLAS = GLOBOS.map((g, i) => ({ rotulo: (i + 1) + ". " + g.tema, pintar: E => pantallaGlobo(E, i) }));
 
 /* ============================================================
    6. ESTADO Y PINTADO
@@ -445,15 +438,6 @@ function pintar(){
 }
 
 function ir(i){ actual = (i + PANTALLAS.length) % PANTALLAS.length; pintar(); window.scrollTo(0, 0); }
-
-function mostrarPrincipio(){
-  const id = PANTALLAS[actual].globo;
-  if (!id || mostrada[id]) return;
-  mostrada[id] = true;
-  pintar();
-  const caja = document.querySelector(".afirmacion");
-  if (caja) caja.scrollIntoView({ behavior: "smooth", block: "center" });
-}
 
 /* ============================================================
    7. CICLO DE ACTUALIZACIÓN
@@ -503,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (e) {}
     sel.addEventListener("change", () => {
       try { localStorage.setItem("informe_tablero_grupo:" + FUENTE.curso, sel.value); } catch (e) {}
-      actual = 0; mostrada = {}; firma = ""; entregas = [];
+      actual = 0; firma = ""; entregas = [];
       pintar(); actualizar();
     });
 
@@ -523,7 +507,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const b = ev.target.closest("button");
       if (!b) return;
       if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; pintar(); }
-      else if (b.id === "bt-principio") mostrarPrincipio();
       else if (b.dataset.ir !== undefined) ir(Number(b.dataset.ir));
     });
     document.getElementById("bt-ant").addEventListener("click", () => ir(actual - 1));
@@ -533,8 +516,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!destapado() || ev.target.tagName === "SELECT") return;
       if (ev.key === "ArrowRight") { ev.preventDefault(); ir(actual + 1); }
       else if (ev.key === "ArrowLeft") { ev.preventDefault(); ir(actual - 1); }
-      // Barra espaciadora: destapa la práctica recomendada del globo en pantalla.
-      else if ((ev.key === " " || ev.code === "Space") && ev.target.tagName !== "BUTTON") { ev.preventDefault(); mostrarPrincipio(); }
     });
 
     pintar();
