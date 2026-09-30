@@ -2631,6 +2631,304 @@ const CALIFICAR = {
    ]
   }
  },
+ "apais": {
+  "clave": "APAIS",
+  "sigla": "APAIS",
+  "titulo": "Escala de Ansiedad e Información Preoperatoria de Ámsterdam",
+  "para": "Medir la ansiedad antes de una cirugía, por la anestesia y por la operación, y cuánta información quiere recibir la persona. Es breve y se aplica en la consulta preanestésica o en la sala de espera.",
+  "estilo": "adultos",
+  "cita": "Vergara-Romero et al. (2017), Health and Quality of Life Outcomes · acceso abierto, CC BY 4.0.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Antes de su intervención, indique cuánto describe cada frase cómo se siente ahora, de 1 (nada) a 5 (extremadamente)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1 Nada",
+     "2",
+     "3",
+     "4",
+     "5 Extremadamente"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Estoy preocupado por la anestesia",
+     "Pienso en la anestesia continuamente",
+     "Me gustaría saber lo máximo posible acerca de la anestesia",
+     "Estoy preocupado por la operación",
+     "Pienso en la operación continuamente",
+     "Me gustaría saber lo máximo posible acerca de la operación"
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total (ítems 1 a 6)",
+     "js": "S(1,6)",
+     "rangos": [
+      [
+       6,
+       13,
+       "Por debajo del punto de corte"
+      ],
+      [
+       14,
+       30,
+       "Ansiedad preoperatoria probable (corte 14)"
+      ]
+     ]
+    },
+    {
+     "n": "Ansiedad (ítems 1, 2, 4 y 5)",
+     "js": "L([1,2,4,5])",
+     "texto": "De 4 a 20. Describe la ansiedad por la anestesia y por la operación."
+    },
+    {
+     "n": "Necesidad de información (ítems 3 y 6)",
+     "js": "L([3,6])",
+     "texto": "De 2 a 10. Una necesidad alta pide explicarle con detalle el procedimiento."
+    }
+   ]
+  }
+ },
+ "tmms-24": {
+  "clave": "TMMS-24",
+  "sigla": "TMMS-24",
+  "titulo": "Escala Rasgo de Metaconocimiento Emocional",
+  "para": "Evaluar la inteligencia emocional percibida en tres dimensiones de ocho ítems: atención a los propios sentimientos, claridad para comprenderlos y reparación, es decir, la capacidad de regular los estados emocionales. Orienta el trabajo en regulación emocional; no diagnostica.",
+  "estilo": "adultos",
+  "cita": "Fernández-Berrocal, Extremera y Ramos (2004), Psychological Reports · formato y puntos de corte del grupo de investigación de la Universidad de Málaga · permiso por confirmar.",
+  "bloques": [
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Hombre",
+     "Mujer"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Sexo de la persona evaluada (los puntos de corte cambian según el sexo)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "consigna",
+    "x": "A continuación encontrará algunas afirmaciones sobre sus emociones y sentimientos. Lea atentamente cada frase y indique por favor el grado de acuerdo o desacuerdo con respecto a las mismas. Señale con una “X” la respuesta que más se aproxime a sus preferencias. No hay respuestas correctas o incorrectas, ni buenas o malas. No emplee mucho tiempo en cada respuesta."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada de acuerdo",
+     "Algo de acuerdo",
+     "Bastante de acuerdo",
+     "Muy de acuerdo",
+     "Totalmente de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Presto mucha atención a los sentimientos.",
+     "Normalmente me preocupo mucho por lo que siento.",
+     "Normalmente dedico tiempo a pensar en mis emociones.",
+     "Pienso que merece la pena prestar atención a mis emociones y estado de ánimo.",
+     "Dejo que mis sentimientos afecten a mis pensamientos.",
+     "Pienso en mi estado de ánimo constantemente.",
+     "A menudo pienso en mis sentimientos.",
+     "Presto mucha atención a cómo me siento.",
+     "Tengo claros mis sentimientos.",
+     "Frecuentemente puedo definir mis sentimientos.",
+     "Casi siempre sé cómo me siento.",
+     "Normalmente conozco mis sentimientos sobre las personas.",
+     "A menudo me doy cuenta de mis sentimientos en diferentes situaciones.",
+     "Siempre puedo decir cómo me siento.",
+     "A veces puedo decir cuáles son mis emociones.",
+     "Puedo llegar a comprender mis sentimientos.",
+     "Aunque a veces me siento triste, suelo tener una visión optimista.",
+     "Aunque me sienta mal, procuro pensar en cosas agradables.",
+     "Cuando estoy triste, pienso en todos los placeres de la vida.",
+     "Intento tener pensamientos positivos aunque me sienta mal.",
+     "Si doy demasiadas vueltas a las cosas, complicándolas, trato de calmarme.",
+     "Me preocupo por tener un buen estado de ánimo.",
+     "Tengo mucha energía cuando me siento feliz.",
+     "Cuando estoy enfadado intento cambiar mi estado de ánimo."
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Atención (ítems 1 a 8)",
+     "js": "S(2,9)",
+     "rangos_por": [
+      {
+       "si": "r[1] === 0",
+       "rangos": [
+        [
+         8,
+         21,
+         "Debe mejorar: presta poca atención"
+        ],
+        [
+         22,
+         32,
+         "Adecuada atención"
+        ],
+        [
+         33,
+         40,
+         "Debe mejorar: presta demasiada atención"
+        ]
+       ]
+      },
+      {
+       "si": "r[1] === 1",
+       "rangos": [
+        [
+         8,
+         24,
+         "Debe mejorar: presta poca atención"
+        ],
+        [
+         25,
+         35,
+         "Adecuada atención"
+        ],
+        [
+         36,
+         40,
+         "Debe mejorar: presta demasiada atención"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque el sexo para ver la interpretación."
+    },
+    {
+     "n": "Claridad (ítems 9 a 16)",
+     "js": "S(10,17)",
+     "rangos_por": [
+      {
+       "si": "r[1] === 0",
+       "rangos": [
+        [
+         8,
+         25,
+         "Debe mejorar su claridad"
+        ],
+        [
+         26,
+         35,
+         "Adecuada claridad"
+        ],
+        [
+         36,
+         40,
+         "Excelente claridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[1] === 1",
+       "rangos": [
+        [
+         8,
+         23,
+         "Debe mejorar su claridad"
+        ],
+        [
+         24,
+         34,
+         "Adecuada claridad"
+        ],
+        [
+         35,
+         40,
+         "Excelente claridad"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque el sexo para ver la interpretación."
+    },
+    {
+     "n": "Reparación (ítems 17 a 24)",
+     "js": "S(18,25)",
+     "rangos_por": [
+      {
+       "si": "r[1] === 0",
+       "rangos": [
+        [
+         8,
+         23,
+         "Debe mejorar su reparación"
+        ],
+        [
+         24,
+         35,
+         "Adecuada reparación"
+        ],
+        [
+         36,
+         40,
+         "Excelente reparación"
+        ]
+       ]
+      },
+      {
+       "si": "r[1] === 1",
+       "rangos": [
+        [
+         8,
+         23,
+         "Debe mejorar su reparación"
+        ],
+        [
+         24,
+         34,
+         "Adecuada reparación"
+        ],
+        [
+         35,
+         40,
+         "Excelente reparación"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque el sexo para ver la interpretación."
+    }
+   ]
+  }
+ },
  "srq-20-srq-30": {
   "clave": "SRQ-20 / SRQ-30",
   "sigla": "SRQ-30",

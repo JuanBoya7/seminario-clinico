@@ -259,14 +259,17 @@ function instrumento(a, d){
     }
     d.calif.escalas.forEach(e => {
       const val = ev(e.js);
+      // rangos_por: cortes que dependen de otra respuesta (el sexo en el TMMS-24).
+      const rangos = e.rangos_por ? ((e.rangos_por.find(x => ev(x.si)) || {}).rangos || []) : (e.rangos || []);
       let rot = "";
-      (e.rangos || []).forEach(([x, y, t]) => { if (val >= x && (y === null || val <= y)) rot = t; });
-      const esSN = (e.rangos || []).length && e.rangos.every(([x, y]) => x === y);
-      const cortes = !esSN && (e.rangos || []).length >= 2 && !(val === 0 && d.calif.escalas.length > 4)
-        ? escalaCortes(e.rangos, val) : "";
+      rangos.forEach(([x, y, t]) => { if (val >= x && (y === null || val <= y)) rot = t; });
+      const esSN = rangos.length && rangos.every(([x, y]) => x === y);
+      const cortes = !esSN && rangos.length >= 2 && !(val === 0 && d.calif.escalas.length > 4)
+        ? escalaCortes(rangos, val) : "";
+      const texto = e.texto || (e.rangos_por && !rangos.length ? e.sin_rango : "");
       out += '<div class="res"><div class="n">' + esc(e.n) + '</div>' +
         (esSN ? "" : '<div class="v">' + val + '</div>') +
-        (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (e.texto ? '<div class="x">' + esc(e.texto) + '</div>' : "") +
+        (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (texto ? '<div class="x">' + esc(texto) + '</div>' : "") +
         cortes + '</div>';
     });
     let riesgo = false;
