@@ -50,6 +50,22 @@ tr:nth-child(even) td{background:var(--surface);}
 tr.falta td:first-child{box-shadow:inset 3px 0 var(--alerta);}
 td label{display:inline-flex; flex-direction:column; align-items:center; gap:1px; cursor:pointer;
   font-size:11px; color:var(--ink-faint); min-width:34px;}
+/* Entrevistas con clave de colores (C-SSRS): la casilla «Sí» lleva el color del
+   nivel de riesgo que marca; las preguntas que dependen de otra se atenúan. */
+td .ej{font-weight:400; font-size:12.5px; color:var(--ink-soft); margin-top:3px;}
+tr.n-bajo td:first-child, tr.n-moderado td:first-child, tr.n-alto td:first-child{font-weight:600;}
+tr.n-bajo td:nth-child(2){background:#fcf1b4 !important;}
+tr.n-moderado td:nth-child(2){background:#fbd99c !important;}
+tr.n-alto td:nth-child(2){background:#f5b9b3 !important;}
+tr.omitida{opacity:.4;}
+.leyenda{display:flex; flex-wrap:wrap; gap:16px; margin:10px 0 0; font-size:12.5px; color:var(--ink-soft);}
+.leyenda i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+/* Preguntas con opciones propias (HADS): una pregunta por bloque, opciones en lista. */
+.lista{padding:12px 0 10px; border-bottom:1px solid var(--border); max-width:75ch;}
+.lista-t{font-weight:600; margin:0 0 6px;}
+.lista label{display:flex; gap:10px; align-items:center; padding:5px 8px; border-radius:8px; cursor:pointer;}
+.lista label:hover{background:var(--surface);}
+.lista small{color:var(--ink-faint); font-size:11.5px;}
 input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:pointer; margin:0;}
 .panel{position:sticky; top:16px; background:var(--surface); border:1px solid var(--border);
   border-radius:var(--radius); padding:18px;}
@@ -166,20 +182,36 @@ function instrumento(a, d){
   if (d.estilo === "infancia") document.body.classList.add("infancia");
   let q = 0, num = 0, h = "";
   const puntua = {};
+  let niveles = false;
   d.bloques.forEach(b => {
     if (b.t === "consigna"){ h += '<p class="consigna">' + esc(b.x) + '</p>'; return; }
+    if (b.lista){
+      b.items.forEach(it => {
+        q++;
+        if (b.puntua) puntua[q] = true;
+        h += '<div class="lista" data-q="' + q + '"><p class="lista-t">' + esc(it) + '</p>' + b.ops.map((o, k) =>
+          '<label><input type="radio" name="q' + q + '" value="' + b.vals[k] + '"><span>' + esc(o) + '</span>' +
+          (b.puntua ? '<small>(' + b.vals[k] + ')</small>' : '') + '</label>').join("") + '</div>';
+      });
+      return;
+    }
     if (b.titulo) h += '<p class="rej-t">' + esc(b.titulo) + '</p>';
     h += '<table><thead><tr><th>' + esc(b.cab) + '</th>' + b.ops.map(o => '<th>' + esc(o) + '</th>').join("") + '</tr></thead><tbody>';
     b.items.forEach(it => {
       q++;
       if (b.puntua) puntua[q] = true;
-      const rot = b.numerar ? (++num) + ". " + it : it;
-      h += '<tr data-q="' + q + '"><td>' + esc(rot) + '</td>' + b.ops.map((o, k) =>
+      const o = typeof it === "string" ? { x: it } : it;   // objeto: {x, ej, nivel, si}
+      if (o.nivel) niveles = true;
+      const rot = b.numerar ? (++num) + ". " + o.x : o.x;
+      h += '<tr data-q="' + q + '"' + (o.si ? ' data-si="' + esc(o.si) + '"' : '') + (o.nivel ? ' class="n-' + o.nivel + '"' : '') +
+        '><td>' + esc(rot) + (o.ej ? '<div class="ej">' + esc(o.ej) + '</div>' : '') + '</td>' + b.ops.map((o, k) =>
         '<td><label title="' + esc(o) + '"><input type="radio" name="q' + q + '" value="' + b.vals[k] + '" aria-label="' + esc(o) + '">' +
         (b.puntua && b.ops.join() !== "Sí,No" && b.ops.join() !== "No,Sí" ? b.vals[k] : "") + '</label></td>').join("") + '</tr>';
     });
     h += '</tbody></table>';
   });
+  if (niveles) h += '<div class="leyenda"><span><i style="background:#f7e36b"></i>Riesgo bajo</span>' +
+    '<span><i style="background:#f5b544"></i>Riesgo moderado</span><span><i style="background:#e2574c"></i>Riesgo alto</span></div>';
   app.innerHTML =
     '<div><div class="rotulo">Calificación en línea</div><h1>' + esc(d.titulo) + '</h1><div class="sigla">' + esc(d.sigla) + '</div>' +
     '<p class="para">' + esc(d.para) + '</p>' +
@@ -206,12 +238,22 @@ function instrumento(a, d){
     const R = (i, max) => r[i] == null ? 0 : max - r[i];
     const RANGO = (x, y) => Array.from({ length: y - x + 1 }, (_, k) => x + k);
     const ev = js => Function("r","S","L","C","G","R","RANGO","return (" + js + ");")(r, S, L, C, G, R, RANGO);
-    const sinResp = Object.keys(puntua).filter(i => r[i] == null);
-    document.querySelectorAll("tr[data-q]").forEach(tr => tr.classList.toggle("falta", false));
+    // Preguntas que dependen de otra (data-si): si la condición no se cumple, se
+    // desmarcan, se desactivan y no cuentan como faltantes.
+    const omitidas = new Set();
+    document.querySelectorAll("[data-si]").forEach(fila => {
+      const ok = !!ev(fila.dataset.si);
+      fila.classList.toggle("omitida", !ok);
+      fila.querySelectorAll("input").forEach(x => { x.disabled = !ok; if (!ok) x.checked = false; });
+      if (!ok){ r[+fila.dataset.q] = null; omitidas.add(fila.dataset.q); }
+    });
+    const activas = Object.keys(puntua).filter(i => !omitidas.has(i));
+    const sinResp = activas.filter(i => r[i] == null);
+    document.querySelectorAll("[data-q]").forEach(tr => tr.classList.toggle("falta", false));
     let out = '<div class="faltan">' + (sinResp.length && !d.calif.nota
-      ? "Faltan " + sinResp.length + " de " + Object.keys(puntua).length + " respuestas: el resultado es parcial."
+      ? "Faltan " + sinResp.length + " de " + activas.length + " respuestas: el resultado es parcial."
       : "Resultado con todas las respuestas marcadas.") + '</div>';
-    if (Object.keys(puntua).length && sinResp.length === Object.keys(puntua).length){
+    if (activas.length && sinResp.length === activas.length){
       $("#res").innerHTML = '<div class="faltan">Marque las respuestas: el resultado se calcula a medida que avanza.</div>';
       return;
     }

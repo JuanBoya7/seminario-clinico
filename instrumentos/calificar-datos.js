@@ -929,6 +929,137 @@ const CALIFICAR = {
    "nota": "Responda solo las sustancias que la persona ha consumido; las demás quedan en blanco y valen 0."
   }
  },
+ "c-ssrs": {
+  "clave": "C-SSRS",
+  "sigla": "C-SSRS",
+  "titulo": "Columbia-Escala de Severidad Suicida, versión exploratoria reciente",
+  "para": "Tamizar el riesgo suicida en una entrevista breve: seis preguntas directas, de sí o no, que van del deseo de estar muerto a la ideación con intención y plan, y a la conducta suicida. La respuesta afirmativa de color más alto indica el nivel de riesgo y qué tan urgente es actuar.",
+  "estilo": "adultos",
+  "cita": "Posner et al. (2011), American Journal of Psychiatry · versión exploratoria reciente en español, The Columbia Lighthouse Project.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Formule las preguntas que están en negrilla."
+   },
+   {
+    "t": "consigna",
+    "x": "Formule las preguntas 1 y 2"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Pasado mes",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "1) ¿Ha deseado estar muerto(a) o poder dormirse y no despertar?",
+      "nivel": "bajo"
+     },
+     {
+      "x": "2) ¿Ha tenido realmente la idea de suicidarse?",
+      "nivel": "bajo"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Si la respuesta es “Sí” a la pregunta 2, formule las preguntas 3, 4, 5, y 6. Si la respuesta es “No” continúe a la pregunta 6."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Pasado mes",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "3) ¿Ha pensado en cómo llevaría esto a cabo?",
+      "ej": "Esto incluye a un(a) participante que diría: “He tenido la idea de tomar una sobredosis, pero nunca hice un plan específico sobre el momento, el lugar o cómo lo haría realmente… y nunca lo haría”.",
+      "nivel": "moderado",
+      "si": "r[2] === 1"
+     },
+     {
+      "x": "4) ¿Ha tenido estas ideas y en cierto grado la intención de llevarlas a cabo?",
+      "ej": "a diferencia de “Tengo los pensamientos, pero definitivamente no haré nada al respecto”.",
+      "nivel": "alto",
+      "si": "r[2] === 1"
+     },
+     {
+      "x": "5) ¿Ha comenzado a elaborar o ha elaborado los detalles sobre cómo suicidarse? ¿Tenía intenciones de llevar a cabo este plan?",
+      "nivel": "alto",
+      "si": "r[2] === 1"
+     },
+     {
+      "x": "6) ¿Alguna vez ha hecho algo usted, comenzado a hacer algo o se ha preparado para hacer algo para terminar su vida?",
+      "ej": "Ejemplos: Colectar píldoras, obtener una arma, regalar cosas de valor, escribir un testamento o carta de suicidio, sacado píldoras de la botella pero no las tragado, agarrar una arma pero ha cambiado de mente de usarla o alguien se la ha quitado de sus manos, ha subido al techo pero no ha saltado al vacío; o realmente ha tomado píldoras, ha tratado de disparar una arma, se ha cortado, ha tratado de colgarse, etc.",
+      "nivel": "moderado"
+     },
+     {
+      "x": "Si la respuesta es “Sí”, formule: ¿Fue esto en los últimos 3 meses?",
+      "nivel": "alto",
+      "si": "r[6] === 1"
+     }
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Nivel de riesgo",
+     "js": "(r[4] === 1 || r[5] === 1 || (r[6] === 1 && r[7] === 1)) ? 3 : ((r[3] === 1 || r[6] === 1) ? 2 : ((r[1] === 1 || r[2] === 1) ? 1 : 0))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin respuestas afirmativas"
+      ],
+      [
+       1,
+       1,
+       "Riesgo bajo (amarillo): deseo de estar muerto o idea de suicidarse en el último mes"
+      ],
+      [
+       2,
+       2,
+       "Riesgo moderado (naranja): ideación con método, o conducta suicida hace más de 3 meses"
+      ],
+      [
+       3,
+       3,
+       "Riesgo alto (rojo): ideación con intención o con plan, o conducta suicida en los últimos 3 meses"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[6] === 1 && r[7] == null",
+     "texto": "Falta saber si la conducta de la pregunta 6 fue en los últimos 3 meses: si lo fue, el riesgo es alto."
+    },
+    {
+     "js": "C([1,2,3,4,5,6],1) > 0",
+     "texto": "Hay una respuesta que indica posible riesgo suicida. Pregunte directamente, en esta misma atención, y siga el protocolo de riesgo: la persona no se va sin una valoración de seguridad."
+    }
+   ]
+  }
+ },
  "aaq-ii": {
   "clave": "AAQ-II",
   "sigla": "AAQ-II",
@@ -1926,6 +2057,388 @@ const CALIFICAR = {
        11,
        15,
        "Casi siempre corresponde a depresión"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "hads": {
+  "clave": "HADS",
+  "sigla": "HADS",
+  "titulo": "Escala Hospitalaria de Ansiedad y Depresión",
+  "para": "Tamizar ansiedad y depresión en personas con enfermedad física, sin los síntomas somáticos (fatiga, insomnio, pérdida de peso) que en el hospital se deben a la enfermedad y no al ánimo. Es el tamizaje más usado en psicología hospitalaria.",
+  "estilo": "adultos",
+  "cita": "Zigmond y Snaith (1983), Acta Psychiatrica Scandinavica · versión en español de Bobes et al. · derechos de GL Assessment.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Los médicos conocen la importancia de los factores emocionales en la mayoría de enfermedades. Si el médico sabe cuál es el estado emocional del paciente puede prestarle entonces mejor ayuda. Este cuestionario ha sido confeccionado para ayudar a que su médico sepa cómo se siente usted afectiva y emocionalmente. No es preciso que preste atención a los números que aparecen a la izquierda. Lea cada pregunta y subraye la respuesta que usted considere que coincide con su propio estado emocional en la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi todo el día",
+     "Gran parte del día",
+     "De vez en cuando",
+     "Nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "A.1. Me siento tenso/a o nervioso/a"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ciertamente, igual que antes",
+     "No tanto como antes",
+     "Solamente un poco",
+     "Ya no disfruto con nada"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "D.1. Sigo disfrutando de las cosas como siempre"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, y muy intenso",
+     "Sí, pero no muy intenso",
+     "Sí, pero no me preocupa",
+     "No siento nada de eso"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "A.2. Siento una especie de temor como si algo malo fuera a suceder"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Igual que siempre",
+     "Actualmente, algo menos",
+     "Actualmente, mucho menos",
+     "Actualmente, en absoluto"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "D.2. Soy capaz de reírme y ver el lado gracioso de las cosas"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi todo el día",
+     "Gran parte del día",
+     "De vez en cuando",
+     "Nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "A.3. Tengo la cabeza llena de preocupaciones"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Muy pocas veces",
+     "En algunas ocasiones",
+     "Gran parte del día"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "D.3. Me siento alegre"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Siempre",
+     "A menudo",
+     "Raras veces",
+     "Nunca"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "A.4. Soy capaz de permanecer sentado/a tranquilo/a y relajado/a"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Gran parte del día",
+     "A menudo",
+     "A veces",
+     "Nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "D.4. Me siento lento/a y torpe"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Sólo en algunas ocasiones",
+     "A menudo",
+     "Muy a menudo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "A.5. Experimento una desagradable sensación de «nervios y hormigueos» en el estómago"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Completamente",
+     "No me cuido como debería hacerlo",
+     "Es posible que no me cuide como debiera",
+     "Me cuido como siempre lo he hecho"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "D.5. He perdido el interés por mi aspecto personal"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Realmente mucho",
+     "Bastante",
+     "No mucho",
+     "En absoluto"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "A.6. Me siento inquieto/a como si no pudiera parar de moverme"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Como siempre",
+     "Algo menos que antes",
+     "Mucho menos que antes",
+     "En absoluto"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "D.6. Espero las cosas con ilusión"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy a menudo",
+     "Con cierta frecuencia",
+     "Raramente",
+     "Nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "A.7. Experimento de repente sensaciones de gran angustia o temor"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "A menudo",
+     "Algunas veces",
+     "Pocas veces",
+     "Casi nunca"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "D.7. Soy capaz de disfrutar con un buen libro o con un buen programa de radio o televisión"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Ansiedad (ítems A)",
+     "js": "L([1,3,5,7,9,11,13])",
+     "rangos": [
+      [
+       0,
+       7,
+       "Sin caso"
+      ],
+      [
+       8,
+       10,
+       "Caso dudoso"
+      ],
+      [
+       11,
+       21,
+       "Caso probable"
+      ]
+     ]
+    },
+    {
+     "n": "Depresión (ítems D)",
+     "js": "L([2,4,6,8,10,12,14])",
+     "rangos": [
+      [
+       0,
+       7,
+       "Sin caso"
+      ],
+      [
+       8,
+       10,
+       "Caso dudoso"
+      ],
+      [
+       11,
+       21,
+       "Caso probable"
       ]
      ]
     }
