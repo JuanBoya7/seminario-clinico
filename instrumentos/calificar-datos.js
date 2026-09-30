@@ -2073,7 +2073,7 @@ const CALIFICAR = {
   "bloques": [
    {
     "t": "consigna",
-    "x": "Los médicos conocen la importancia de los factores emocionales en la mayoría de enfermedades. Si el médico sabe cuál es el estado emocional del paciente puede prestarle entonces mejor ayuda. Este cuestionario ha sido confeccionado para ayudar a que su médico sepa cómo se siente usted afectiva y emocionalmente. No es preciso que preste atención a los números que aparecen a la izquierda. Lea cada pregunta y subraye la respuesta que usted considere que coincide con su propio estado emocional en la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho."
+    "x": "Los médicos conocen la importancia de los factores emocionales en la mayoría de enfermedades. Si el médico sabe cuál es el estado emocional del paciente puede prestarle entonces mejor ayuda. Este cuestionario ha sido confeccionado para ayudar a que su médico sepa cómo se siente usted afectiva y emocionalmente. Lea cada pregunta y marque la respuesta que usted considere que coincide con su propio estado emocional en la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho."
    },
    {
     "t": "items",
