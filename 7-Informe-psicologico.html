@@ -35,6 +35,9 @@
 
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
+/* El texto de la página no se selecciona; los campos de escritura sí, para poder corregirlos. */
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea,select,[contenteditable]{-webkit-user-select:text; user-select:text;}
 body{
   background:var(--bg);
   color:var(--ink);
@@ -380,7 +383,7 @@ a.btn{display:inline-block; text-decoration:none;}
       <div class="masthead-eyebrow">Informe psicológico clínico</div>
       <h1>Construcción del informe</h1>
       <p>
-        Escriban sus respuestas manualmente: pegar y cortar están deshabilitados en este formulario.
+        Escriban sus respuestas manualmente: copiar, pegar y cortar están deshabilitados en este formulario.
         Al presionar «Guardar actividad» se genera un PDF rellenable con sus respuestas: en el celular se abre
         el menú para compartirlo (WhatsApp, correo, Drive) y en el computador se descarga. Los campos del PDF
         se pueden seguir editando en Adobe Acrobat Reader, Google Drive o el visor de PDF del teléfono.
@@ -470,7 +473,7 @@ a.btn{display:inline-block; text-decoration:none;}
   </div>
 </div>
 
-<div class="toast" id="toast">Pegar y cortar están deshabilitados: escriban la respuesta manualmente.</div>
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
 
 <script>
 /* ============================================================
@@ -536,11 +539,11 @@ const state = {
 };
 
 /* ============================================================
-   3. RESTRICCIÓN DE PEGAR / CORTAR
+   3. RESTRICCIÓN DE COPIAR / PEGAR / CORTAR
    ============================================================ */
 function showToast(msg){
   const t = document.getElementById("toast");
-  t.textContent = msg || "Pegar y cortar están deshabilitados: escriban la respuesta manualmente.";
+  t.textContent = msg || "Copiar, cortar y pegar están deshabilitados en este formulario.";
   t.classList.add("is-visible");
   clearTimeout(showToast._timer);
   showToast._timer = setTimeout(() => t.classList.remove("is-visible"), 2400);
@@ -548,11 +551,19 @@ function showToast(msg){
 
 function initInputRestrictions(){
   const block = (e) => { e.preventDefault(); showToast(); };
-  // «copy» queda habilitado a propósito: el docente copia respuestas para evaluar.
-  ["cut","paste","drop"].forEach(evt => document.addEventListener(evt, block));
+  // No entra ni sale texto del formulario: se bloquean copiar, cortar, pegar, soltar
+  // y arrastrar una selección hacia afuera. Las respuestas se leen en la hoja de envíos.
+  ["copy","cut","paste","drop","dragstart"].forEach(evt => {
+    document.addEventListener(evt, block);
+  });
+  // Atajos de teclado: Ctrl/Cmd + C (copiar), V (pegar) y X (cortar)
   document.addEventListener("keydown", (e) => {
-    const key = e.key.toLowerCase();
-    if ((e.ctrlKey || e.metaKey) && ["v","x"].includes(key)) { e.preventDefault(); showToast(); }
+    const key = (e.key || "").toLowerCase();
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && ["c","v","x"].includes(key)) {
+      e.preventDefault();
+      showToast();
+    }
   });
 }
 

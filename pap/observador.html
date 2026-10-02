@@ -33,6 +33,9 @@
 
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
+/* El texto de la página no se selecciona; los campos de escritura sí, para poder corregirlos. */
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea,select,[contenteditable]{-webkit-user-select:text; user-select:text;}
 body{
   background:var(--bg); color:var(--ink);
   font-family:var(--font-body); line-height:1.5;
@@ -149,6 +152,14 @@ textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px va
 @media (min-width:560px){
   .error-lista{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
 }
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px;
+  font-size:13px; text-align:center; max-width:calc(100% - 32px);
+  opacity:0; pointer-events:none; transition:all 0.25s ease;
+  z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -474,11 +485,41 @@ function prepararSiguienteEscena(){
 }
 
 /* ============================================================
+   RESTRICCIÓN DE COPIAR / PEGAR / CORTAR
+   ============================================================ */
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg || "Copiar, cortar y pegar están deshabilitados en este formulario.";
+  t.classList.add("is-visible");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove("is-visible"), 2400);
+}
+
+function initInputRestrictions(){
+  const block = (e) => { e.preventDefault(); showToast(); };
+  // No entra ni sale texto del formulario: se bloquean copiar, cortar, pegar, soltar
+  // y arrastrar una selección hacia afuera. Las respuestas se leen en la hoja de envíos.
+  ["copy","cut","paste","drop","dragstart"].forEach(evt => {
+    document.addEventListener(evt, block);
+  });
+  // Atajos de teclado: Ctrl/Cmd + C (copiar), V (pegar) y X (cortar)
+  document.addEventListener("keydown", (e) => {
+    const key = (e.key || "").toLowerCase();
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && ["c","v","x"].includes(key)) {
+      e.preventDefault();
+      showToast();
+    }
+  });
+}
+
+/* ============================================================
    6. INICIALIZACIÓN
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
   const aviso = document.getElementById("js-warning-fallback");
   if (aviso) aviso.style.display = "none";
+  initInputRestrictions();
 
   try {
     renderItems();
@@ -498,5 +539,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
 </body>
 </html>
