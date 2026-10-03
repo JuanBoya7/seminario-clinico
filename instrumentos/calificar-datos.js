@@ -5178,6 +5178,101 @@ const CALIFICAR = {
    "nota": "Responda solo la forma que vaya a calificar (la del niño o la del adulto); la otra queda en blanco y vale 0."
   }
  },
+ "snap-iv": {
+  "clave": "SNAP-IV",
+  "sigla": "SNAP-IV",
+  "titulo": "Escala SNAP-IV, versión argentina",
+  "para": "Detectar síntomas de inatención y de hiperactividad e impulsividad en niños de 4 a 14 años, a partir de los criterios diagnósticos del TDAH, según lo que observa el docente o la familia. Es una herramienta de tamizaje: un puntaje sobre el corte pide una evaluación diagnóstica, no la reemplaza.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Swanson, Nolan y Pelham · versión argentina de Grañana et al. (2011), Revista Panamericana de Salud Pública, cuadro 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Lea cada frase anteponiendo «A menudo…» y marque cuánto describe al niño o la niña."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Poco",
+     "Bastante",
+     "Mucho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. Le cuesta prestar atención a detalles o comete errores por descuido en las tareas escolares o trabajo.",
+     "2. Tiene dificultades para mantener la atención en tareas o en actividades lúdicas.",
+     "3. Parece no escuchar cuando se le habla directamente.",
+     "4. Le cuesta seguir instrucciones y no finaliza tareas escolares, encargos u obligaciones.",
+     "5. Tiene dificultad en organizar sus tareas y actividades.",
+     "6. Evita, le disgusta o es reacio a dedicarse a tareas que requieren un esfuerzo mental sostenido.",
+     "7. Extravía objetos necesarios para realizar sus actividades (p. ej. juguetes, ejercicios escolares, lápices o libros).",
+     "8. Se distrae por estímulos irrelevantes de su tarea.",
+     "9. Es descuidado en sus actividades diarias.",
+     "10. Le cuesta mantenerse alerta, responder a lo que se le pide, o ejecutar consignas.",
+     "11. Mueve las manos y los pies o se retuerce en el asiento.",
+     "12. Abandona su asiento en clase u otras situaciones en que se espera que permanezca sentado.",
+     "13. Corre o salta excesivamente en situaciones en que es inapropiado.",
+     "14. Tiene dificultades para jugar o dedicarse a actividades de ocio tranquilamente.",
+     "15. Está «en marcha» o actúa como si tuviera un motor encendido.",
+     "16. Habla en exceso.",
+     "17. Precipita respuestas antes de haber sido terminadas las preguntas.",
+     "18. Tiene dificultades para aguardar su turno.",
+     "19. Interrumpe o se inmiscuye en las actividades de otros (p. ej. se entromete en conversaciones o juegos).",
+     "20. Tiene dificultad para permanecer sentado, quedarse quieto o inhibir impulsos en la clase o en el hogar."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Inatención (1 a 9)",
+     "js": "S(1,9)",
+     "rangos": [
+      [
+       0,
+       14,
+       "Por debajo del corte"
+      ],
+      [
+       15,
+       27,
+       "Sobre el corte (15, versión argentina para docentes)"
+      ]
+     ]
+    },
+    {
+     "n": "Hiperactividad e impulsividad (11 a 19)",
+     "js": "S(11,19)",
+     "rangos": [
+      [
+       0,
+       15,
+       "Por debajo del corte"
+      ],
+      [
+       16,
+       27,
+       "Sobre el corte (16, versión argentina para docentes)"
+      ]
+     ]
+    }
+   ],
+   "nota": "Las preguntas 10 y 20 son generales y no entran en la suma. Los cortes se validaron con la forma que responden los docentes."
+  }
+ },
  "lie-bet": {
   "clave": "Lie/Bet",
   "sigla": "Lie/Bet",
