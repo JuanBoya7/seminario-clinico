@@ -3813,6 +3813,131 @@ const CALIFICAR = {
    ]
   }
  },
+ "scs": {
+  "clave": "SCS",
+  "sigla": "SCS",
+  "titulo": "Escala de Autocompasión",
+  "para": "Medir cómo se trata la persona a sí misma en los momentos difíciles: los tres componentes de la autocompasión (amabilidad consigo misma, humanidad común y mindfulness) y sus opuestos (autojuicio, aislamiento y sobreidentificación). Es la medida con que se evaluaron los estudios del programa de autocompasión consciente.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Neff (2003) · versión española de García-Campayo et al. (2014), Health and Quality of Life Outcomes · uso libre.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "¿Cómo actúo habitualmente hacia mí mismo en momentos difíciles?"
+   },
+   {
+    "t": "consigna",
+    "x": "Lea cada frase cuidadosamente antes de contestar. En cada frase, marque la frecuencia con que se comporta de la manera indicada, utilizando la siguiente escala:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "",
+     "",
+     "",
+     "Casi siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. Desapruebo mis propios defectos e incapacidades y soy crítico/a respecto a ellos.",
+     "2. Cuando me siento bajo/a de ánimo, tiendo a obsesionarme y a fijarme en todo lo que va mal.",
+     "3. Cuando las cosas me van mal, veo las dificultades como parte de lo que a todo el mundo le toca vivir",
+     "4. Cuando pienso en mis deficiencias, tiendo a sentirme más separado/a y aislado/a del resto del mundo.",
+     "5. Trato de ser cariñoso/a conmigo mismo/a cuando siento malestar emocional.",
+     "6. Cuando fallo en algo importante para mí, me consumen los sentimientos de ineficacia.",
+     "7. Cuando estoy desanimado y triste, me acuerdo de que hay muchas personas en el mundo que se sienten como yo.",
+     "8. Cuando vienen épocas muy difíciles, tiendo a ser duro/a conmigo mismo/a.",
+     "9. Cuando algo me disgusta trato de mantener mis emociones en equilibrio.",
+     "10. Cuando me siento incapaz de alguna manera, trato de recordarme que casi todas las personas comparten sentimientos de incapacidad.",
+     "11. Soy intolerante e impaciente con aquellos aspectos de mi personalidad que no me gustan.",
+     "12. Cuando lo estoy pasando verdaderamente mal, me doy el cuidado y el cariño que necesito.",
+     "13. Cuando estoy bajo/a de ánimo, tiendo a pensar que, probablemente, la mayoría de la gente es más feliz que yo.",
+     "14. Cuando me sucede algo doloroso trato de mantener una visión equilibrada de la situación.",
+     "15. Trato de ver mis defectos como parte de la condición humana.",
+     "16. Cuando veo aspectos de mí mismo/a que no me gustan, me critico continuamente.",
+     "17. Cuando fallo en algo importante para mí, trato de ver las cosas con perspectiva.",
+     "18. Cuando realmente estoy en apuros, tiendo a pensar que otras personas lo tienen más fácil.",
+     "19. Soy amable conmigo mismo/a cuando estoy experimentando sufrimiento.",
+     "20. Cuando algo me molesta me dejo llevar por mis sentimientos.",
+     "21. Puedo ser un poco insensible hacia mí mismo/a cuando estoy experimentando sufrimiento.",
+     "22. Cuando me siento deprimido/a trato de observar mis sentimientos con curiosidad y apertura de mente.",
+     "23. Soy tolerante con mis propios defectos e imperfecciones o debilidades.",
+     "24. Cuando sucede algo doloroso tiendo a hacer una montaña de un grano de arena.",
+     "25. Cuando fallo en algo que es importante para mí, tiendo a sentirme solo en mi fracaso.",
+     "26. Trato de ser comprensivo y paciente con aquellos aspectos de mi personalidad que no me gustan."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total (promedio de las seis, con las negativas invertidas)",
+     "js": "Math.round(((L([5, 12, 19, 23, 26]) / 5) + (6 - (L([1, 8, 11, 16, 21]) / 5)) + (L([3, 7, 10, 15]) / 4) + (6 - (L([4, 13, 18, 25]) / 4)) + (L([9, 14, 17, 22]) / 4) + (6 - (L([2, 6, 20, 24]) / 4))) / 6 * 100) / 100",
+     "rangos": [
+      [
+       1,
+       2.49,
+       "Autocompasión baja"
+      ],
+      [
+       2.5,
+       3.5,
+       "Autocompasión moderada"
+      ],
+      [
+       3.51,
+       5,
+       "Autocompasión alta"
+      ]
+     ]
+    },
+    {
+     "n": "Autoamabilidad (promedio)",
+     "js": "Math.round((L([5, 12, 19, 23, 26]) / 5) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+    },
+    {
+     "n": "Autojuicio (promedio)",
+     "js": "Math.round((L([1, 8, 11, 16, 21]) / 5) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+    },
+    {
+     "n": "Humanidad común (promedio)",
+     "js": "Math.round((L([3, 7, 10, 15]) / 4) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+    },
+    {
+     "n": "Aislamiento (promedio)",
+     "js": "Math.round((L([4, 13, 18, 25]) / 4) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+    },
+    {
+     "n": "Mindfulness (promedio)",
+     "js": "Math.round((L([9, 14, 17, 22]) / 4) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+    },
+    {
+     "n": "Sobreidentificación (promedio)",
+     "js": "Math.round((L([2, 6, 20, 24]) / 4) * 100) / 100",
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+    }
+   ]
+  }
+ },
  "shaps": {
   "clave": "SHAPS",
   "sigla": "SHAPS",
@@ -4456,6 +4581,113 @@ const CALIFICAR = {
     {
      "js": "r[9] > 0 || r[12] === 1 || r[13] === 1",
      "texto": "Hay una respuesta que indica posible riesgo suicida. Pregunte directamente, en esta misma atención, y siga el protocolo de riesgo: la persona no se va sin una valoración de seguridad."
+    }
+   ]
+  }
+ },
+ "rcads": {
+  "clave": "RCADS",
+  "sigla": "RCADS-30",
+  "titulo": "Escala Revisada de Ansiedad y Depresión Infantil, versión de 30 ítems",
+  "para": "Medir síntomas de depresión y de cinco tipos de ansiedad en niños y adolescentes: pánico, fobia social, ansiedad de separación, ansiedad generalizada y síntomas obsesivo-compulsivos. Es breve y sirve para seguir el cambio en ansiedad y depresión a la vez.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Chorpita et al. (2000); versión de 30 ítems en español de Sandín et al. (2010), validada en Colombia por Barajas y Ruiz (2024).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor rodea con un círculo la palabra que mejor refleje la frecuencia con que te ocurre cada una de las siguientes cosas. No hay respuestas buenas ni malas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "A menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me siento triste o decaído/a",
+     "2. De repente siento como si no pudiera respirar sin saber por qué",
+     "3. Me preocupa parecer tonto/a ante la gente",
+     "4. Sentiría miedo si estuviera solo/a en casa",
+     "5. Me preocupo mucho por las cosas",
+     "6. Me siento mal por tener pensamientos malos o tontos, o imágenes en mi cabeza",
+     "7. Me cuesta divertirme o pasarlo bien",
+     "8. De repente empiezo a temblar o a agitarme sin saber por qué",
+     "9. Me da miedo hacer las cosas mal",
+     "10. Estar lejos de mis padres me da miedo",
+     "11. Me preocupa que le ocurra algo terrible a alguno de mis familiares",
+     "12. Tengo que seguir comprobando que he hecho las cosas bien (como que el interruptor está apagado o la puerta cerrada)",
+     "13. Me siento con muy poca energía para hacer las cosas",
+     "14. De repente me siento muy asustado/a sin saber por qué",
+     "15. Me preocupa lo que otras personas piensen de mí",
+     "16. Si tengo que dormir solo/a siento miedo",
+     "17. Me preocupa que me ocurran cosas malas",
+     "18. Tengo pensamientos malos o tontos que no puedo quitar de mi cabeza",
+     "19. Me resulta muy difícil pensar con claridad",
+     "20. De repente mi corazón empieza a latir rápido sin saber por qué",
+     "21. Me da miedo si tengo que hablar delante de la clase",
+     "22. Por las mañanas al ir al colegio me da miedo separarme de mis padres",
+     "23. Me preocupa que me ocurra algo malo",
+     "24. Tengo que concentrarme en pensamientos especiales (como números o palabras) para que no ocurran cosas malas",
+     "25. Siento que no valgo para nada",
+     "26. Me preocupa que de repente me sienta asustado/a, aunque no haya nada por lo que deba tener miedo",
+     "27. Me asusta ponerme en ridículo delante de la gente",
+     "28. Sentiría miedo si tuviera que pasar la noche fuera de casa",
+     "29. Me preocupa lo que vaya a ocurrir",
+     "30. Tengo que repetir algunas cosas una y otra vez (como lavarme las manos, limpiar o colocar cosas en un orden determinado)"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Depresión mayor",
+     "js": "L([1, 7, 13, 19, 25])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Trastorno de pánico",
+     "js": "L([2, 8, 14, 20, 26])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Fobia social",
+     "js": "L([3, 9, 15, 21, 27])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Ansiedad de separación",
+     "js": "L([4, 10, 16, 22, 28])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Ansiedad generalizada",
+     "js": "L([5, 11, 17, 23, 29])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Obsesivo-compulsivo",
+     "js": "L([6, 12, 18, 24, 30])",
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,30)",
+     "texto": "De 0 a 90. Sin puntos de corte: compare con aplicaciones anteriores."
     }
    ]
   }
