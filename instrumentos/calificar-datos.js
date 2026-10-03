@@ -2591,6 +2591,262 @@ const CALIFICAR = {
    ]
   }
  },
+ "psqi": {
+  "clave": "PSQI",
+  "sigla": "PSQI",
+  "titulo": "Índice de Calidad de Sueño de Pittsburgh",
+  "para": "Medir la calidad del sueño del último mes en siete componentes: calidad subjetiva, tiempo que tarda en dormirse, duración, eficiencia (cuánto del tiempo en cama se duerme), perturbaciones del sueño, uso de medicación para dormir y somnolencia o desánimo durante el día. Separa a quienes duermen bien de quienes duermen mal.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Buysse et al. (1989) · versión castellana de Royuela y Macías (1997), en Bobes et al., sección 8.2.2 · derechos de la Universidad de Pittsburgh.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Las siguientes preguntas hacen referencia a cómo ha dormido usted normalmente durante el último mes. Intente ajustarse en sus respuestas de la manera más exacta posible a lo ocurrido durante la mayor parte de los días y noches del último mes. ¡Muy importante! CONTESTE A TODAS LAS PREGUNTAS"
+   },
+   {
+    "t": "dato",
+    "x": "1. Durante el último mes, ¿cuál ha sido, normalmente, su hora de acostarse?",
+    "tipo": "hora",
+    "unidad": "hora (hh:mm)"
+   },
+   {
+    "t": "dato",
+    "x": "2. ¿Cuánto tiempo habrá tardado en dormirse, normalmente, las noches del último mes?",
+    "tipo": "numero",
+    "unidad": "minutos"
+   },
+   {
+    "t": "dato",
+    "x": "3. Durante el último mes, ¿a qué hora se ha levantado habitualmente por la mañana?",
+    "tipo": "hora",
+    "unidad": "hora (hh:mm)"
+   },
+   {
+    "t": "dato",
+    "x": "4. ¿Cuántas horas calcula que habrá dormido verdaderamente cada noche durante el último mes? (El tiempo puede ser diferente al que usted permanezca en la cama)",
+    "tipo": "numero",
+    "unidad": "horas"
+   },
+   {
+    "t": "consigna",
+    "x": "Para cada una de las siguientes preguntas, elija la respuesta que más se ajusta a su caso. Intente contestar a TODAS las preguntas."
+   },
+   {
+    "t": "consigna",
+    "x": "5. Durante el último mes, cuántas veces ha tenido usted problemas para dormir a causa de:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna vez en el último mes",
+     "Menos de una vez a la semana",
+     "Una o dos veces a la semana",
+     "Tres o más veces a la semana"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "a) No poder conciliar el sueño en la primera media hora",
+     "b) Despertarse durante la noche o de madrugada",
+     "c) Tener que levantarse para ir al servicio",
+     "d) No poder respirar bien",
+     "e) Toser o roncar ruidosamente",
+     "f) Sentir frío",
+     "g) Sentir demasiado calor",
+     "h) Tener pesadillas o «malos sueños»",
+     "i) Sufrir dolores",
+     "j) Otras razones (por favor, descríbalas)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Bastante bueno",
+     "Bueno",
+     "Malo",
+     "Bastante malo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "6. Durante el último mes, ¿cómo valoraría en conjunto, la calidad de su sueño?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna vez en el último mes",
+     "Menos de una vez a la semana",
+     "Una o dos veces a la semana",
+     "Tres o más veces a la semana"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "7. Durante el último mes, ¿cuántas veces habrá tomado medicinas (por su cuenta o recetadas por el médico) para dormir?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna vez en el último mes",
+     "Menos de una vez a la semana",
+     "Una o dos veces a la semana",
+     "Tres o más veces a la semana"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "8. Durante el último mes, ¿cuántas veces ha sentido somnolencia mientras conducía, comía o desarrollaba alguna otra actividad?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ningún problema",
+     "Sólo un leve problema",
+     "Un problema",
+     "Un grave problema"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "9. Durante el último mes, ¿ha representado para usted mucho problema el «tener ánimos» para realizar alguna de las actividades detalladas en la pregunta anterior?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Solo",
+     "Con alguien en otra habitación",
+     "En la misma habitación, pero en otra cama",
+     "En la misma cama"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": false,
+    "items": [
+     "10. ¿Duerme usted solo o acompañado?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total (0 a 21)",
+     "js": "(r[15] || 0) + (((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) === 0 ? 0 : ((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) <= 2 ? 1 : ((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) <= 4 ? 2 : 3) + (r[4] == null ? 0 : (r[4] > 7 ? 0 : r[4] >= 6 ? 1 : r[4] >= 5 ? 2 : 3)) + ((r[1] == null || r[3] == null || r[4] == null || ((r[3] - r[1] + 24) % 24) === 0) ? 0 : ((r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 85 ? 0 : (r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 75 ? 1 : (r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 65 ? 2 : 3)) + (S(6,14) === 0 ? 0 : S(6,14) <= 9 ? 1 : S(6,14) <= 18 ? 2 : 3) + (r[16] || 0) + (((r[17] || 0) + (r[18] || 0)) === 0 ? 0 : ((r[17] || 0) + (r[18] || 0)) <= 2 ? 1 : ((r[17] || 0) + (r[18] || 0)) <= 4 ? 2 : 3)",
+     "rangos": [
+      [
+       0,
+       5,
+       "Buena calidad de sueño"
+      ],
+      [
+       6,
+       21,
+       "Mala calidad de sueño (más de 5)"
+      ]
+     ]
+    },
+    {
+     "n": "C1 Calidad subjetiva",
+     "js": "(r[15] || 0)",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C2 Latencia",
+     "js": "(((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) === 0 ? 0 : ((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) <= 2 ? 1 : ((r[2] == null ? 0 : (r[2] <= 15 ? 0 : r[2] <= 30 ? 1 : r[2] <= 60 ? 2 : 3)) + (r[5] || 0)) <= 4 ? 2 : 3)",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C3 Duración",
+     "js": "(r[4] == null ? 0 : (r[4] > 7 ? 0 : r[4] >= 6 ? 1 : r[4] >= 5 ? 2 : 3))",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C4 Eficiencia",
+     "js": "((r[1] == null || r[3] == null || r[4] == null || ((r[3] - r[1] + 24) % 24) === 0) ? 0 : ((r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 85 ? 0 : (r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 75 ? 1 : (r[4] / ((r[3] - r[1] + 24) % 24) * 100) >= 65 ? 2 : 3))",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C5 Perturbaciones",
+     "js": "(S(6,14) === 0 ? 0 : S(6,14) <= 9 ? 1 : S(6,14) <= 18 ? 2 : 3)",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C6 Medicación",
+     "js": "(r[16] || 0)",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "C7 Disfunción diurna",
+     "js": "(((r[17] || 0) + (r[18] || 0)) === 0 ? 0 : ((r[17] || 0) + (r[18] || 0)) <= 2 ? 1 : ((r[17] || 0) + (r[18] || 0)) <= 4 ? 2 : 3)",
+     "texto": "De 0 a 3."
+    },
+    {
+     "n": "Eficiencia del sueño (%)",
+     "js": "((r[1] == null || r[3] == null || r[4] == null || ((r[3] - r[1] + 24) % 24) === 0) ? 0 : Math.round((r[4] / ((r[3] - r[1] + 24) % 24) * 100)))",
+     "texto": "Horas dormidas sobre horas en cama. Necesita las preguntas 1, 3 y 4."
+    }
+   ],
+   "nota": "Las preguntas 1 y 3 se escriben como hora (por ejemplo, 23:30 o 06:15); la 2 en minutos y la 4 en horas (6,5 = seis horas y media). La pregunta 10 no puntúa."
+  }
+ },
  "pcl-5": {
   "clave": "PCL-5",
   "sigla": "PCL-5",
