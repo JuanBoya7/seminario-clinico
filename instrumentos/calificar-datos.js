@@ -3273,6 +3273,73 @@ const CALIFICAR = {
    "nota": "La escala de clientes o usuarios solo se responde si la persona trabaja con ellos más de la mitad de su jornada; si queda en blanco, su resultado no se lee."
   }
  },
+ "csi": {
+  "clave": "CSI",
+  "sigla": "CSI",
+  "titulo": "Índice de Esfuerzo del Cuidador",
+  "para": "Identificar a los cuidadores de personas dependientes que están sobrecargados: trece aspectos del cuidado que suelen volverse un problema (sueño, esfuerzo físico, restricción del tiempo, cambios familiares, laborales y económicos, conductas molestas de la persona cuidada). Es breve y se usa en atención primaria y en el seguimiento domiciliario.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Robinson (1983) · versión española de López Alonso y Moral Serrano (2005), Enfermería Comunitaria.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Voy a leer una lista de cosas que han sido problemáticas para otras personas al atender a pacientes que han regresado a casa tras una estancia en el Hospital ¿Puede decirme si alguna de ellas se puede aplicar a su caso? (aporte ejemplos)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. Tiene trastornos de sueño (p. ej., porque el paciente se acuesta y se levanta o pasea por la casa de noche)",
+     "2. Es un inconveniente (p. ej., porque la ayuda consume mucho tiempo o se tarda mucho en proporcionar).",
+     "3. Representa un esfuerzo físico (p. ej., hay que sentarlo, levantarlo de una silla).",
+     "4. Supone una restricción (p. ej., porque ayudar limita el tiempo libre o no puede hacer visitas).",
+     "5. Ha habido modificaciones en la familia (p. ej., porque la ayuda ha roto la rutina o no hay intimidad)",
+     "6. Ha habido cambios en los planes personales (p. ej., se tuvo que rechazar un trabajo o no se pudo ir de vacaciones)",
+     "7. Ha habido otras exigencias de mi tiempo (p. ej., por parte de otros miembros de la familia)",
+     "8. Ha habido cambios emocionales (p. ej., causa de fuertes discusiones)",
+     "9. Algunos comportamientos son molestos (p. ej., la incontinencia, al paciente le cuesta recordar las cosas, el paciente acusa a los demás de quitarle las cosas)",
+     "10. Es molesto darse cuenta de que el paciente ha cambiado tanto comparado con antes (p. ej., es una persona diferente de antes).",
+     "11. Ha habido modificaciones en el trabajo (p. ej., a causa de la necesidad de reservarse tiempo para la ayuda)",
+     "12. Es una carga económica",
+     "13. Nos ha desbordado totalmente (p. ej., por la preocupación acerca de persona cuidada o preocupaciones sobre cómo continuar el tratamiento)."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí»",
+     "js": "C(RANGO(1,13),1)",
+     "rangos": [
+      [
+       0,
+       6,
+       "Por debajo del punto de corte"
+      ],
+      [
+       7,
+       13,
+       "Nivel elevado de esfuerzo (7 o más)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "eat-26": {
   "clave": "EAT-26",
   "sigla": "EAT-26",
@@ -3401,6 +3468,197 @@ const CALIFICAR = {
        "Riesgo de trastorno de la conducta alimentaria (corte 11, versión colombiana)"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "ebp": {
+  "clave": "EBP",
+  "sigla": "EBP",
+  "titulo": "Escalas de Bienestar Psicológico de Ryff, versión española de 29 ítems",
+  "para": "Medir el bienestar psicológico en seis dimensiones: aceptarse a uno mismo, tener relaciones positivas, actuar con autonomía, dominar el entorno, tener un propósito en la vida y seguir creciendo como persona. Es una medida de funcionamiento positivo, no de ausencia de síntomas, útil en programas de psicología positiva y de promoción de la salud.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Ryff (1989) · versión española de 29 ítems de Díaz et al. (2006), Psicothema, apéndice 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Indique su grado de acuerdo con cada frase, marcando un número de 1 (totalmente en desacuerdo) a 6 (totalmente de acuerdo). Los ítems con asterisco se puntúan al revés."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Totalmente en desacuerdo",
+     "",
+     "",
+     "",
+     "",
+     "Totalmente de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cuando repaso la historia de mi vida estoy contento con cómo han resultado las cosas",
+     "2. A menudo me siento solo porque tengo pocos amigos íntimos con quienes compartir mis preocupaciones *",
+     "3. No tengo miedo de expresar mis opiniones, incluso cuando son opuestas a las opiniones de la mayoría de la gente",
+     "4. Me preocupa cómo otra gente evalúa las elecciones que he hecho en mi vida *",
+     "5. Me resulta difícil dirigir mi vida hacia un camino que me satisfaga *",
+     "6. Disfruto haciendo planes para el futuro y trabajar para hacerlos realidad",
+     "7. En general, me siento seguro y positivo conmigo mismo",
+     "8. No tengo muchas personas que quieran escucharme cuando necesito hablar *",
+     "9. Tiendo a preocuparme sobre lo que otra gente piensa de mí *",
+     "10. He sido capaz de construir un hogar y un modo de vida a mi gusto",
+     "11. Soy una persona activa al realizar los proyectos que propuse para mí mismo",
+     "12. Siento que mis amistades me aportan muchas cosas",
+     "13. Tiendo a estar influenciado por la gente con fuertes convicciones *",
+     "14. En general, siento que soy responsable de la situación en la que vivo",
+     "15. Me siento bien cuando pienso en lo que he hecho en el pasado y lo que espero hacer en el futuro",
+     "16. Mis objetivos en la vida han sido más una fuente de satisfacción que de frustración para mí",
+     "17. Me gusta la mayor parte de los aspectos de mi personalidad",
+     "18. Tengo confianza en mis opiniones incluso si son contrarias al consenso general",
+     "19. Las demandas de la vida diaria a menudo me deprimen *",
+     "20. Tengo clara la dirección y el objetivo de mi vida",
+     "21. En general, con el tiempo siento que sigo aprendiendo más sobre mí mismo",
+     "22. No he experimentado muchas relaciones cercanas y de confianza *",
+     "23. Es difícil para mí expresar mis propias opiniones en asuntos polémicos *",
+     "24. En su mayor parte, me siento orgulloso de quien soy y la vida que llevo",
+     "25. Sé que puedo confiar en mis amigos, y ellos saben que pueden confiar en mí",
+     "26. Cuando pienso en ello, realmente con los años no he mejorado mucho como persona *",
+     "27. Tengo la sensación de que con el tiempo me he desarrollado mucho como persona",
+     "28. Para mí, la vida ha sido un proceso continuo de estudio, cambio y crecimiento",
+     "29. Si me sintiera infeliz con mi situación de vida daría los pasos más eficaces para cambiarla"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Autoaceptación",
+     "js": "(r[1] || 0) + (r[7] || 0) + (r[17] || 0) + (r[24] || 0)",
+     "texto": "De 4 a 24: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Relaciones positivas",
+     "js": "R(2,7) + R(8,7) + (r[12] || 0) + R(22,7) + (r[25] || 0)",
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Autonomía",
+     "js": "(r[3] || 0) + R(4,7) + R(9,7) + R(13,7) + (r[18] || 0) + R(23,7)",
+     "texto": "De 6 a 36: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Dominio del entorno",
+     "js": "R(5,7) + (r[10] || 0) + (r[14] || 0) + R(19,7) + (r[29] || 0)",
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Propósito en la vida",
+     "js": "(r[6] || 0) + (r[11] || 0) + (r[15] || 0) + (r[16] || 0) + (r[20] || 0)",
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Crecimiento personal",
+     "js": "(r[21] || 0) + R(26,7) + (r[27] || 0) + (r[28] || 0)",
+     "texto": "De 4 a 24: a mayor puntaje, más bienestar."
+    }
+   ]
+  }
+ },
+ "eii": {
+  "clave": "EII",
+  "sigla": "EII",
+  "titulo": "Escala de Intolerancia a la Incertidumbre",
+  "para": "Medir cuánto le cuesta a la persona tolerar lo incierto: la incertidumbre que la paraliza e inhibe, y la que vive como desconcierto ante lo imprevisto. Es un proceso central de la preocupación excesiva y del trastorno de ansiedad generalizada, y un blanco de la terapia.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Freeston et al. (1994) · adaptación española de González Rodríguez et al. (2006), Psicología y Salud.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Indique en qué medida cada frase es característica de usted, marcando un número de 1 (nada característico de mí) a 5 (extremadamente característico de mí)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada característico de mí",
+     "",
+     "",
+     "",
+     "Extremadamente característico de mí"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. La incertidumbre me impide tener una opinión firme.",
+     "2. Estar inseguro/a sobre algo me desorganiza.",
+     "3. La incertidumbre hace intolerable la vida.",
+     "4. Es injusto no tener garantías de que las cosas vayan a salir bien en la vida.",
+     "5. No puedo estar tranquilo/a mientras no sepa lo que va a suceder al día siguiente.",
+     "6. La incertidumbre me produce inquietud, ansiedad o estrés.",
+     "7. Los imprevistos me molestan mucho.",
+     "8. Es frustrante para mí no tener toda la información que necesito.",
+     "9. La incertidumbre me impide disfrutar plenamente de la vida.",
+     "10. Se debería prever todo para evitar las sorpresas.",
+     "11. Un pequeño imprevisto puede arruinarlo todo, incluso con la mejor de las planeaciones.",
+     "12. Cuando llega el momento de actuar, la incertidumbre me paraliza.",
+     "13. Estar inseguro/a implica no poder figurar entre los mejores.",
+     "14. Cuando estoy indeciso/a no puedo seguir adelante.",
+     "15. Cuando estoy indeciso/a no puedo funcionar muy bien.",
+     "16. A diferencia de mí, los demás siempre parecen saber hacia dónde dirigen sus vidas.",
+     "17. La incertidumbre me hace vulnerable, infeliz o triste.",
+     "18. Quiero saber siempre qué me depara el futuro.",
+     "19. No soporto que me cojan por sorpresa.",
+     "20. La más mínima duda me puede impedir actuar.",
+     "21. Tendría que ser capaz de organizar todo de antemano.",
+     "22. La incertidumbre me produce falta de confianza en mí mismo.",
+     "23. No entiendo cómo otras personas parecen tan seguras y decididas acerca de su futuro.",
+     "24. La incertidumbre me impide dormir bien.",
+     "25. Debo alejarme de toda situación incierta.",
+     "26. Las ambigüedades de la vida me causan estrés.",
+     "27. No soporto estar indeciso/a acerca de mi futuro."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,27)",
+     "texto": "De 27 a 135. Media de la población general española: mujeres 60,3; hombres 55,6."
+    },
+    {
+     "n": "Incertidumbre generadora de inhibición (IGI)",
+     "js": "L([1, 2, 3, 6, 9, 12, 13, 14, 15, 16, 17, 20, 22, 23, 24, 26])",
+     "texto": "Media: mujeres 35,3; hombres 31,4."
+    },
+    {
+     "n": "Incertidumbre como desconcierto e imprevisión (IDI)",
+     "js": "L([4, 5, 7, 8, 10, 11, 18, 19, 21, 25, 27])",
+     "texto": "Media: mujeres 25,2; hombres 24,4."
     }
    ]
   }
@@ -4061,6 +4319,114 @@ const CALIFICAR = {
        "Sobre el punto de corte (10, Osma et al., 2019); en la validación colombiana el corte es 11"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "oci-r": {
+  "clave": "OCI-R",
+  "sigla": "OCI-R",
+  "titulo": "Inventario Obsesivo-Compulsivo Revisado",
+  "para": "Medir la gravedad de los síntomas obsesivo-compulsivos y su tipo: lavado, comprobación, orden, acumulación, neutralización (contar, números) y obsesiones. Es breve y sirve para tamizar y para seguir el tratamiento.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Foa et al. (2002), Psychological Assessment · versión española de Belloch et al. (2013).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marca una opción por ítem según la siguiente escala:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "En absoluto",
+     "Un poco",
+     "Bastante",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Acumular cosas hasta el punto que le estorban.",
+     "2. Comprobar las cosas más a menudo de lo necesario.",
+     "3. Que las cosas no estén bien ordenadas.",
+     "4. Sentir la necesidad de contar mientras está haciendo cosas.",
+     "5. Tocar un objeto cuando sabe que lo han tocado desconocidos o ciertas personas.",
+     "6. No poder controlar sus propios pensamientos.",
+     "7. Acumular cosas que no necesita.",
+     "8. Comprobar repetidamente puertas, ventanas, cajones...",
+     "9. Que los demás cambien la manera en que ha ordenado las cosas.",
+     "10. Tener necesidad de repetir ciertos números.",
+     "11. Tener a veces que asearse o lavarse por el mero hecho de sentirse contaminado/a.",
+     "12. Tener pensamientos desagradables en contra de su voluntad.",
+     "13. Sentirse incapaz de tirar cosas por temor a necesitarlas después.",
+     "14. Comprobar repetidamente el gas, el agua y la luz después de haberlos cerrado/apagado.",
+     "15. Tener la necesidad de que las cosas estén ordenadas de una determinada manera.",
+     "16. Sentir que existen números buenos y malos.",
+     "17. Lavarse las manos más a menudo y durante más tiempo de lo necesario.",
+     "18. Tener con frecuencia pensamientos repugnantes y que le cueste librarse de ellos."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,18)",
+     "rangos": [
+      [
+       0,
+       20,
+       "Por debajo del punto de corte"
+      ],
+      [
+       21,
+       72,
+       "Probable TOC (21 o más): confirme con entrevista"
+      ]
+     ]
+    },
+    {
+     "n": "Acumulación",
+     "js": "L([1, 7, 13])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Comprobación",
+     "js": "L([2, 8, 14])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Orden",
+     "js": "L([3, 9, 15])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Neutralización",
+     "js": "L([4, 10, 16])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Lavado",
+     "js": "L([5, 11, 17])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Obsesión",
+     "js": "L([6, 12, 18])",
+     "texto": "De 0 a 12."
     }
    ]
   }
