@@ -7,6 +7,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario sobre la Salud del Paciente-9",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas y estimar su gravedad. Cada ítem corresponde a un criterio del episodio depresivo mayor, así que sirve también para seguir el cambio sesión a sesión. No diagnostica: un puntaje alto pide una entrevista clínica.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Spitzer, Williams, Kroenke y colegas · versión oficial en español para Colombia (Pfizer) · se reproduce sin autorización.",
   "bloques": [
    {
@@ -114,6 +117,9 @@ const CALIFICAR = {
   "titulo": "Escala del Trastorno de Ansiedad Generalizada",
   "para": "Tamizar síntomas de ansiedad de las dos últimas semanas y estimar su gravedad. Se diseñó para el trastorno de ansiedad generalizada, pero también detecta con razonable precisión el pánico, la ansiedad social y el estrés postraumático. No diagnostica ni distingue entre ellos.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Spitzer, Williams, Kroenke y colegas · versión oficial en español para Colombia (Pfizer) · se reproduce sin autorización.",
   "bloques": [
    {
@@ -186,6 +192,9 @@ const CALIFICAR = {
   "titulo": "Test de Identificación de Trastornos debidos al Consumo de Alcohol",
   "para": "Identificar el consumo de riesgo, el consumo perjudicial y la posible dependencia del alcohol en el último año, y decidir el nivel de intervención. Los ítems 1 a 3 miden el consumo; 4 a 6, síntomas de dependencia; 7 a 10, problemas causados por el alcohol.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Babor et al., Organización Mundial de la Salud (2001), WHO/MSD/MSB/01.6a · reproducción libre sin fines comerciales.",
   "bloques": [
    {
@@ -468,6 +477,9 @@ const CALIFICAR = {
   "titulo": "Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
   "para": "Detectar el consumo de diez clases de sustancias y ubicar, para cada una, el nivel de riesgo y la intervención que corresponde: ninguna, intervención breve o tratamiento más intensivo. Es una entrevista breve de la OMS pensada para la atención primaria.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Organización Panamericana de la Salud y Organización Mundial de la Salud (2011), manual del ASSIST v3.1, Apéndice A.",
   "bloques": [
    {
@@ -935,6 +947,10 @@ const CALIFICAR = {
   "titulo": "Columbia-Escala de Severidad Suicida, versión exploratoria reciente",
   "para": "Tamizar el riesgo suicida en una entrevista breve: seis preguntas directas, de sí o no, que van del deseo de estar muerto a la ideación con intención y plan, y a la conducta suicida. La respuesta afirmativa de color más alto indica el nivel de riesgo y qué tan urgente es actuar.",
   "estilo": "adultos",
+  "pob": [
+   "adultos",
+   "infancia"
+  ],
   "cita": "Posner et al. (2011), American Journal of Psychiatry · versión exploratoria reciente en español, The Columbia Lighthouse Project.",
   "bloques": [
    {
@@ -1066,6 +1082,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Aceptación y Acción II",
   "para": "Medir la inflexibilidad psicológica y la evitación experiencial: cuánto se lucha contra los pensamientos, emociones y recuerdos difíciles, y cuánto esa lucha estorba la vida que la persona quiere. Es la medida de proceso central de la terapia de aceptación y compromiso.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Bond et al. (2011); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1123,6 +1142,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Preocupación de Pensilvania, versión de 11 ítems",
   "para": "Medir la tendencia a preocuparse: cuánto, con qué frecuencia y con cuánta dificultad para detenerlo. Es el rasgo central del trastorno de ansiedad generalizada. Esta versión breve está validada en Colombia y tiene puntos de corte para TAG moderado y grave.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Meyer, Miller, Metzger y Borkovec (1990); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1196,6 +1218,9 @@ const CALIFICAR = {
   "titulo": "Escala de Satisfacción con la Vida",
   "para": "Medir cuán satisfecha está la persona con su vida en conjunto, según sus propios criterios. Es la medida más usada del componente cognitivo del bienestar y una buena medida de resultado para programas de psicología positiva y de promoción de la salud.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Diener, Emmons, Larsen y Griffin (1985); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1282,6 +1307,9 @@ const CALIFICAR = {
   "titulo": "Escalas de Depresión, Ansiedad y Estrés, versión de 21 ítems",
   "para": "Medir en una sola hoja tres estados emocionales negativos de la última semana: depresión, ansiedad y estrés, cada uno con su puntaje y su grado de gravedad. Sirve como tamizaje general y para seguir el cambio en tratamientos transdiagnósticos.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Lovibond y Lovibond (1995); Antony et al. (1998); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1446,6 +1474,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Fusión Cognitiva",
   "para": "Medir la fusión cognitiva: cuánto se enreda la persona en sus pensamientos y los toma como verdades que dirigen su conducta. Es una medida de proceso de la terapia de aceptación y compromiso; no confundir con el Cuestionario de Fallos Cognitivos, que tiene la misma sigla.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Gillanders et al. (2014); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1503,6 +1534,9 @@ const CALIFICAR = {
   "titulo": "Escala de Atención y Conciencia Plena",
   "para": "Medir la atención plena como rasgo: con qué frecuencia la persona actúa en «piloto automático», sin darse cuenta de lo que hace o siente. Sirve para evaluar programas basados en mindfulness.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Brown y Ryan (2003); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1566,6 +1600,9 @@ const CALIFICAR = {
   "titulo": "Escala de Respuestas Rumiativas, versión breve",
   "para": "Medir la rumia ante el ánimo bajo en sus dos formas: la reflexión, que busca entender, y los reproches, que dan vueltas a lo que salió mal. Los reproches se asocian más con la depresión; distinguirlos orienta el trabajo con la rumia.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Treynor, González y Nolen-Hoeksema (2003); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1647,6 +1684,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Pensamientos Automáticos, versión de 8 ítems",
   "para": "Medir la frecuencia de pensamientos automáticos negativos de la última semana, como los que describe la terapia cognitiva de la depresión. Es breve y sensible al cambio, así que sirve para seguir el trabajo de reestructuración.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Netemeyer et al. (2002); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1701,6 +1741,9 @@ const CALIFICAR = {
   "titulo": "Escala de Activación Conductual para la Depresión, versión breve",
   "para": "Medir cuánto se activó la persona durante la última semana y cuánto evitó: las dos caras que trabaja la activación conductual. Es sensible al cambio y se aplica sesión a sesión.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Manos, Kanter y Luo (2011); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1768,6 +1811,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Regulación Emocional",
   "para": "Medir cuánto usa la persona dos estrategias de regulación emocional: la reevaluación cognitiva, que cambia cómo se piensa la situación, y la supresión expresiva, que oculta lo que se siente. La supresión frecuente se asocia con más malestar y peores relaciones.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Gross y John (2003); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1833,6 +1879,9 @@ const CALIFICAR = {
   "titulo": "Escala de Actitudes Disfuncionales, revisada",
   "para": "Medir las creencias disfuncionales que, según el modelo cognitivo de Beck, hacen a una persona vulnerable a la depresión: el perfeccionismo y la dependencia de la aprobación de los demás. No confundir con la Escala de Ajuste Diádico, que tiene una sigla parecida.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "de Graaf, Roelofs y Huibers (2009); validación colombiana y formato del ClinikLab, Fundación Universitaria Konrad Lorenz · uso libre sin solicitar permiso.",
   "bloques": [
    {
@@ -1910,6 +1959,10 @@ const CALIFICAR = {
   "titulo": "Preguntas de Detección del Riesgo de Suicidio",
   "para": "Detectar en menos de un minuto el riesgo de suicidio en cualquier consulta, incluso cuando el motivo no es de salud mental. Cuatro preguntas directas y, si alguna es positiva, una quinta que separa el riesgo agudo del no agudo.",
   "estilo": "adultos",
+  "pob": [
+   "adultos",
+   "infancia"
+  ],
   "cita": "National Institute of Mental Health (2017), versión oficial en español · dominio público.",
   "bloques": [
    {
@@ -1998,6 +2051,9 @@ const CALIFICAR = {
   "titulo": "Escala de Depresión Geriátrica de Yesavage, versión breve",
   "para": "Tamizar depresión en personas mayores con preguntas de sí o no, que evitan los síntomas físicos que en esa edad se confunden con enfermedad. Sirve también con baja escolaridad, porque se puede leer en voz alta.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Yesavage et al. (1983); Sheikh y Yesavage (1986) · versión en español publicada por el autor · dominio público.",
   "bloques": [
    {
@@ -2069,6 +2125,9 @@ const CALIFICAR = {
   "titulo": "Escala Hospitalaria de Ansiedad y Depresión",
   "para": "Tamizar ansiedad y depresión en personas con enfermedad física, sin los síntomas somáticos (fatiga, insomnio, pérdida de peso) que en el hospital se deben a la enfermedad y no al ánimo. Es el tamizaje más usado en psicología hospitalaria.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Zigmond y Snaith (1983), Acta Psychiatrica Scandinavica · versión en español de Bobes et al. · derechos de GL Assessment.",
   "bloques": [
    {
@@ -2451,6 +2510,9 @@ const CALIFICAR = {
   "titulo": "Lista de Verificación del Trastorno de Estrés Postraumático para el DSM-5",
   "para": "Tamizar y medir la gravedad de los síntomas de estrés postraumático del último mes. Sus 20 ítems siguen los 20 síntomas del DSM-5, agrupados en intrusión, evitación, alteraciones negativas de cognición y ánimo, y activación. Sirve para tamizar, para apoyar un diagnóstico provisional y para seguir el cambio.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Weathers et al. (2013), National Center for PTSD · traducción aprobada por CENTER-TBI · dominio público.",
   "bloques": [
    {
@@ -2560,6 +2622,9 @@ const CALIFICAR = {
   "titulo": "Escala de Malestar Psicológico de Kessler",
   "para": "Tamizar malestar psicológico inespecífico del último mes, sobre todo síntomas de ansiedad y depresión. Es breve, se usa en encuestas poblacionales de muchos países y sirve en atención primaria como primera puerta cuando todavía no hay una hipótesis.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Kessler et al. (2002); adaptación al castellano del Grupo LISIS (2011) · uso libre.",
   "bloques": [
    {
@@ -2637,6 +2702,9 @@ const CALIFICAR = {
   "titulo": "Escala de Ansiedad e Información Preoperatoria de Ámsterdam",
   "para": "Medir la ansiedad antes de una cirugía, por la anestesia y por la operación, y cuánta información quiere recibir la persona. Es breve y se aplica en la consulta preanestésica o en la sala de espera.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Vergara-Romero et al. (2017), Health and Quality of Life Outcomes · acceso abierto, CC BY 4.0.",
   "bloques": [
    {
@@ -2704,12 +2772,305 @@ const CALIFICAR = {
    ]
   }
  },
+ "cbi": {
+  "clave": "CBI",
+  "sigla": "CBI",
+  "titulo": "Inventario de Burnout de Copenhague",
+  "para": "Medir el burnout como agotamiento físico y psicológico en tres ámbitos: el personal, el relacionado con el trabajo y el relacionado con el trabajo con clientes o usuarios. Se puede usar en cualquier ocupación y es de uso libre.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Kristensen et al. (2005); versión española de Molinero Ruiz et al. (2013), Revista Española de Salud Pública, anexo 1 · uso libre.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque con qué frecuencia le ocurre cada una de estas situaciones."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Sólo alguna vez",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     25,
+     50,
+     75,
+     100
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Con qué frecuencia te sientes cansado?",
+     "2. ¿Con qué frecuencia piensas «no puedo más»?",
+     "3. ¿Con qué frecuencia te sientes débil y susceptible de enfermar?",
+     "4. ¿Con qué frecuencia estás físicamente agotado?",
+     "5. ¿Con qué frecuencia te sientes agotado?",
+     "6. ¿Con qué frecuencia estás psicológicamente agotado?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Sólo alguna vez",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     25,
+     50,
+     75,
+     100
+    ],
+    "puntua": true,
+    "items": [
+     "7. ¿Te sientes agotado al final de tu jornada laboral?",
+     "8. ¿Por la mañana te agota pensar en otro día de trabajo?",
+     "9. ¿Sientes que cada hora de trabajo es agotadora?",
+     "10. ¿Tienes suficiente energía para la familia y los amigos durante el tiempo libre?",
+     "11. ¿Te sientes quemado por tu trabajo?",
+     "12. ¿Te sientes frustrado por tu trabajo?",
+     "13. ¿Tu trabajo es emocionalmente agotador?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Sólo alguna vez",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     25,
+     50,
+     75,
+     100
+    ],
+    "puntua": true,
+    "items": [
+     "14. ¿Estás cansado de trabajar con clientes o usuarios?",
+     "15. ¿A veces te preguntas cuánto tiempo podrás continuar trabajando con clientes o usuarios?",
+     "16. ¿Es duro trabajar con clientes o usuarios?",
+     "17. ¿Sientes que das más que recibes cuando trabajas con clientes o usuarios?",
+     "18. ¿Es frustrante trabajar con clientes o usuarios?",
+     "19. ¿Trabajar con clientes o usuarios consume tu energía?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Burnout personal (promedio)",
+     "js": "Math.round(S(1,6) / 6)",
+     "rangos": [
+      [
+       0,
+       49,
+       "Por debajo del nivel de burnout"
+      ],
+      [
+       50,
+       100,
+       "Burnout (corte de 50)"
+      ]
+     ]
+    },
+    {
+     "n": "Burnout relacionado con el trabajo (promedio)",
+     "js": "Math.round((S(7,9) + R(10,100) + S(11,13)) / 7)",
+     "rangos": [
+      [
+       0,
+       49,
+       "Por debajo del nivel de burnout"
+      ],
+      [
+       50,
+       100,
+       "Burnout (corte de 50)"
+      ]
+     ]
+    },
+    {
+     "n": "Burnout con clientes o usuarios (promedio)",
+     "js": "Math.round(S(14,19) / 6)",
+     "rangos": [
+      [
+       0,
+       49,
+       "Por debajo del nivel de burnout"
+      ],
+      [
+       50,
+       100,
+       "Burnout (corte de 50)"
+      ]
+     ]
+    }
+   ],
+   "nota": "La escala de clientes o usuarios solo se responde si la persona trabaja con ellos más de la mitad de su jornada; si queda en blanco, su resultado no se lee."
+  }
+ },
+ "eat-26": {
+  "clave": "EAT-26",
+  "sigla": "EAT-26",
+  "titulo": "Prueba de Actitudes ante la Alimentación",
+  "para": "Tamizar el riesgo de trastornos de la conducta alimentaria: preocupación por el peso y la comida, dieta, conductas bulímicas y control sobre la alimentación. No diagnostica: un puntaje sobre el corte pide una entrevista clínica.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Garner, Olmsted, Bohr y Garfinkel (1982) · versión colombiana de cinco opciones de Constain et al. (2014), Atención Primaria.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Este cuestionario NO es un examen, NO hay respuestas buenas ni malas. Si en alguna pregunta no encuentras la respuesta que se ajuste exactamente a lo que piensas o haces, marca con una X la respuesta que más se le aproxime."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Casi nunca",
+     "A menudo",
+     "Muy a menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me angustia la idea de estar demasiado gorda",
+     "2. Procuro no comer cuando tengo hambre",
+     "3. La comida es para mí una preocupación habitual",
+     "4. He sufrido crisis de atracones en las que tenía la sensación de no poder parar de comer",
+     "5. Corto mis alimentos en pequeños trozos",
+     "6. Conozco la cantidad de calorías de los alimentos que como",
+     "7. Procuro no comer alimentos que contengan muchos carbohidratos (pan, arroz, papas, etc.)",
+     "8. Tengo la impresión de que a los demás les gustaría verme comer más",
+     "9. Vomito después de comer",
+     "10. Me siento muy culpable después de comer",
+     "11. Me obsesiona el deseo de estar más delgada",
+     "12. Cuando hago deporte pienso sobre todo en quemar calorías",
+     "13. Los demás piensan que estoy demasiado delgada",
+     "14. Me preocupa la idea de tener zonas gordas en el cuerpo y/o de tener celulitis",
+     "15. Tardo más tiempo que los demás en comer",
+     "16. Procuro no comer alimentos que tengan azúcar",
+     "17. Como alimentos dietéticos",
+     "18. Tengo la impresión de que mi vida gira alrededor de la comida",
+     "19. Tengo un buen autocontrol en lo que se refiere a la comida",
+     "20. Tengo la sensación de que los demás me presionan para que coma más",
+     "21. Paso demasiado tiempo pensando en la comida",
+     "22. No me siento bien después de haber tomado dulces",
+     "23. Estoy haciendo dieta",
+     "24. Me gusta tener el estómago vacío"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Casi nunca",
+     "A menudo",
+     "Muy a menudo",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "25. Me gusta probar platos nuevos, sabrosos y ricos en calorías"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Casi nunca",
+     "A menudo",
+     "Muy a menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "26. Después de las comidas tengo el impulso de vomitar"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,26)",
+     "rangos": [
+      [
+       0,
+       10,
+       "Por debajo del punto de corte"
+      ],
+      [
+       11,
+       78,
+       "Riesgo de trastorno de la conducta alimentaria (corte 11, versión colombiana)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "epds": {
   "clave": "EPDS",
   "sigla": "EPDS",
   "titulo": "Escala de Depresión Posparto de Edimburgo",
   "para": "Tamizar síntomas depresivos de la última semana en el embarazo y el posparto. No incluye los síntomas somáticos (sueño, apetito, cansancio) que se confunden con el puerperio. No diagnostica: un puntaje alto pide una entrevista clínica.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Cox, Holden y Sagovsky (1987) · versión en castellano en Maroto Navarro et al. (2005) · reproducción permitida citando la fuente.",
   "bloques": [
    {
@@ -2984,12 +3345,159 @@ const CALIFICAR = {
    ]
   }
  },
+ "mspss": {
+  "clave": "MSPSS",
+  "sigla": "MSPSS",
+  "titulo": "Escala Multidimensional de Apoyo Social Percibido",
+  "para": "Medir cuánto apoyo siente la persona que recibe de tres fuentes: la familia, los amigos y una persona especial. Mide apoyo percibido, no el tamaño de la red: alguien con pocos vínculos puede sentirse muy apoyado, y al revés.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Zimet et al. (1988); versión en español y validación colombiana de Trejos-Herrera et al. (2018), Psychosocial Intervention, CC BY-NC-ND.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Indique cuán de acuerdo o en desacuerdo está con cada afirmación, marcando un número de 1 a 7."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy en desacuerdo",
+     "",
+     "",
+     "Ni de acuerdo ni en desacuerdo",
+     "",
+     "",
+     "Muy de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "1. Existe una persona especial que está cerca de mí cuando la necesito",
+     "2. Existe una persona especial con la que puedo compartir alegrías y tristezas",
+     "3. Mi familia trata realmente de ayudarme",
+     "4. Tengo la ayuda y el apoyo emocional que necesito de mi familia",
+     "5. Tengo una persona especial que es una fuente real de consuelo para mí",
+     "6. Mis amigos tratan realmente de ayudarme",
+     "7. Puedo contar con mis amigos cuando las cosas van mal",
+     "8. Puedo hablar de mis problemas con mi familia",
+     "9. Tengo amigos con los que puedo compartir mis alegrías y mis penas",
+     "10. Hay una persona especial en mi vida que se preocupa de mis sentimientos",
+     "11. Mi familia está dispuesta a ayudarme a tomar decisiones",
+     "12. Puedo hablar de mis problemas con mis amigos"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Persona especial",
+     "js": "L([1,2,5,10])",
+     "rangos": [
+      [
+       4,
+       11,
+       "Apoyo bajo"
+      ],
+      [
+       12,
+       20,
+       "Apoyo moderado"
+      ],
+      [
+       21,
+       28,
+       "Apoyo alto"
+      ]
+     ]
+    },
+    {
+     "n": "Familia",
+     "js": "L([3,4,8,11])",
+     "rangos": [
+      [
+       4,
+       11,
+       "Apoyo bajo"
+      ],
+      [
+       12,
+       20,
+       "Apoyo moderado"
+      ],
+      [
+       21,
+       28,
+       "Apoyo alto"
+      ]
+     ]
+    },
+    {
+     "n": "Amigos",
+     "js": "L([6,7,9,12])",
+     "rangos": [
+      [
+       4,
+       11,
+       "Apoyo bajo"
+      ],
+      [
+       12,
+       20,
+       "Apoyo moderado"
+      ],
+      [
+       21,
+       28,
+       "Apoyo alto"
+      ]
+     ]
+    },
+    {
+     "n": "Total",
+     "js": "S(1,12)",
+     "rangos": [
+      [
+       12,
+       35,
+       "Apoyo bajo"
+      ],
+      [
+       36,
+       60,
+       "Apoyo moderado"
+      ],
+      [
+       61,
+       84,
+       "Apoyo alto"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "oasis": {
   "clave": "OASIS",
   "sigla": "OASIS",
   "titulo": "Escala Global de Gravedad e Interferencia de la Ansiedad",
   "para": "Medir en cinco preguntas la frecuencia y la intensidad de la ansiedad, la evitación y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. No es específica de un trastorno: sirve para cualquier problema de ansiedad, también por debajo del umbral diagnóstico, y está pensada para aplicarse en cada sesión.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Norman, Cissell, Means-Christensen y Stein (2006) · versión en castellano de Osma et al. (2019), en el Protocolo unificado (Alianza).",
   "bloques": [
    {
@@ -3149,6 +3657,9 @@ const CALIFICAR = {
   "titulo": "Escala Global de Gravedad e Interferencia de la Depresión",
   "para": "Medir en cinco preguntas la frecuencia y la intensidad de la depresión, la pérdida de interés en lo que se disfrutaba y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. Es la hermana de la OASIS: no es específica de un trastorno y está pensada para aplicarse en cada sesión.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Bentley, Gallagher, Carl y Barlow (2014) · versión en castellano de Osma et al. (2019), en el Protocolo unificado (Alianza).",
   "bloques": [
    {
@@ -3302,12 +3813,87 @@ const CALIFICAR = {
    ]
   }
  },
+ "shaps": {
+  "clave": "SHAPS",
+  "sigla": "SHAPS",
+  "titulo": "Escala de Placer de Snaith-Hamilton",
+  "para": "Medir la anhedonia de forma directa: cuánto puede la persona disfrutar de experiencias comunes de cuatro dominios, que son los intereses y pasatiempos, la vida social, las sensaciones y la comida y la bebida. No mide tristeza: es útil cuando lo que domina es la pérdida de placer.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Snaith et al. (1995); versión en español de Fresán y Berlanga (2013), Actas Españolas de Psiquiatría, figura 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Instrucciones: Este cuestionario está diseñado para evaluar qué tanto ha podido usted experimentar agrado o sensaciones placenteras durante los últimos días. Es importante que lea completas las oraciones y marque con una «X» la respuesta que mejor lo describa. La información obtenida servirá para poder conocer mejor su sentir y brindarle el tratamiento más adecuado."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Totalmente en desacuerdo",
+     "En desacuerdo",
+     "De acuerdo",
+     "Totalmente de acuerdo"
+    ],
+    "vals": [
+     1,
+     1,
+     0,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. Disfruto de mi programa favorito de radio o televisión",
+     "2. Disfruto estar con mi familia o amigos",
+     "3. Disfruto mis pasatiempos",
+     "4. Disfruto de mi comida favorita",
+     "5. Disfruto de un baño caliente o refrescante",
+     "6. Me causa placer percibir el aroma de las flores, de la brisa o del pan recién hecho",
+     "7. Disfruto ver a otras personas sonreír",
+     "8. Disfruto el verme bien cuando trato de cuidar mi apariencia",
+     "9. Disfruto leer un libro, una revista o el periódico",
+     "10. Me resulta muy agradable el tomar una taza de café, de té o de mi bebida favorita",
+     "11. Me produce placer el fijarme en pequeños detalles como un día soleado o una llamada telefónica de un amigo",
+     "12. Disfruto un paisaje o una vista hermosa",
+     "13. Disfruto el poder ayudar a otros",
+     "14. Disfruto cuando otras personas me halagan"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,14)",
+     "rangos": [
+      [
+       0,
+       2,
+       "Tono hedónico dentro de lo esperado"
+      ],
+      [
+       3,
+       14,
+       "Anhedonia (más de 2)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "tmms-24": {
   "clave": "TMMS-24",
   "sigla": "TMMS-24",
   "titulo": "Escala Rasgo de Metaconocimiento Emocional",
   "para": "Evaluar la inteligencia emocional percibida en tres dimensiones de ocho ítems: atención a los propios sentimientos, claridad para comprenderlos y reparación, es decir, la capacidad de regular los estados emocionales. Orienta el trabajo en regulación emocional; no diagnostica.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Fernández-Berrocal, Extremera y Ramos (2004), Psychological Reports · formato y puntos de corte del grupo de investigación de la Universidad de Málaga · permiso por confirmar.",
   "bloques": [
    {
@@ -3533,6 +4119,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Autorreporte de Síntomas (Self Report Questionnaire)",
   "para": "Tamizar problemas de salud mental comunes, posible psicosis, trastorno convulsivo y problemas con el alcohol en el último mes. Es el que el Ministerio de Salud sugiere en la Ruta de Promoción y Mantenimiento de la Salud desde los 16 años.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Organización Mundial de la Salud; versión colombiana del Ministerio de Salud y Protección Social (2020), Anexo 11.",
   "bloques": [
    {
@@ -3664,6 +4253,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Síntomas para Niños",
   "para": "Detectar signos y síntomas de interés en salud mental en niñas y niños de 5 a 15 años, referidos a los últimos seis meses. Es el tamizaje infantil que sugiere el Ministerio de Salud en la Ruta de Promoción y Mantenimiento de la Salud.",
   "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
   "cita": "Giel et al. (1981); versión colombiana del Ministerio de Salud y Protección Social (2020), Anexo 11.",
   "bloques": [
    {
@@ -3721,6 +4313,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario sobre la Salud del Paciente, versión adolescente",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas en adolescentes, con el lenguaje del PHQ-9 ajustado a esa edad (incluye la irritabilidad). Trae además preguntas sobre el ánimo del último año, la interferencia y las ideas e intentos de suicidio. No diagnostica.",
   "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
   "cita": "Johnson et al. (2002); adaptación al castellano para Chile de Borghero et al. (2018), Revista Médica de Chile · familia PHQ, de reproducción libre.",
   "bloques": [
    {
@@ -3871,6 +4466,9 @@ const CALIFICAR = {
   "titulo": "Pantalla de Trastornos Emocionales Relacionados con la Ansiedad Infantil",
   "para": "Tamizar síntomas de ansiedad en niños y adolescentes desde los 8 años, con una forma para el niño y otra para los padres. Además del total da cinco puntajes: pánico o síntomas somáticos, ansiedad generalizada, ansiedad de separación, ansiedad social y evitación escolar.",
   "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
   "cita": "Birmaher et al. (1997, 1999) · versiones en español para Colombia publicadas por el autor (Universidad de Pittsburgh) · sin costo.",
   "bloques": [
    {
@@ -4224,6 +4822,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario Breve de Ánimo y Sentimientos",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas en niños y adolescentes de 6 a 17 años, con una forma para el niño y otra para el padre, la madre o el adulto a cargo. Por su brevedad sirve también para seguir la gravedad de los síntomas y la respuesta al tratamiento, sesión a sesión.",
   "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
   "cita": "Angold et al. (1995) · versiones en español de Angold y Costello (Duke University) · uso no comercial sin costo.",
   "bloques": [
    {
@@ -4351,6 +4952,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario Lie-Bet",
   "para": "Tamizar en un minuto problemas con el juego de apuestas, con dos preguntas: haber mentido sobre cuánto se juega y haber necesitado apostar cada vez más dinero. Es el tamizaje más breve de la guía.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Johnson et al. (1997), Psychological Reports · redacción en español citada en Salinas (2004), Salud y Drogas.",
   "bloques": [
    {
@@ -4400,6 +5004,9 @@ const CALIFICAR = {
   "titulo": "Cuestionario de Juego Patológico de South Oaks",
   "para": "Tamizar el juego patológico a partir de sus conductas y consecuencias: volver a jugar para recuperar lo perdido, mentir, discutir por el dinero, pedir prestado. Pregunta también de dónde salió el dinero, que suele mostrar el alcance real del problema.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Lesieur y Blume (1987); versión española de Echeburúa, Báez, Fernández-Montalvo y Páez (1994) · se reproduce tal como está impreso.",
   "bloques": [
    {
@@ -4634,6 +5241,10 @@ const CALIFICAR = {
   "titulo": "Escala breve de Trastorno de Juego por Internet",
   "para": "Tamizar el trastorno de juego por internet (videojuegos) con nueve preguntas, una por cada criterio propuesto en el DSM-5, referidas a los últimos doce meses. Da un puntaje de gravedad y un conteo de criterios.",
   "estilo": "adultos",
+  "pob": [
+   "adultos",
+   "infancia"
+  ],
   "cita": "Pontes y Griffiths (2015); versión española de Beranuy et al. (2020), IJERPH · acceso abierto, CC BY 4.0.",
   "bloques": [
    {
@@ -4710,6 +5321,9 @@ const CALIFICAR = {
   "titulo": "Herramienta de Tamizaje de Maltrato a la Mujer, versión corta",
   "para": "Abrir el tema de la violencia de pareja con dos preguntas que no la nombran de entrada: cuánta tensión hay en la relación y con cuánta dificultad se resuelven las discusiones. Son las dos preguntas del WAST con las que las mujeres dijeron sentirse más cómodas.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Brown et al. (1996); versión corta en español de Fogarty y Brown (2002), en Plazaola-Castaño et al. (2008), Gaceta Sanitaria.",
   "bloques": [
    {
@@ -4782,6 +5396,9 @@ const CALIFICAR = {
   "titulo": "Escala de Red Social de Lubben, versión abreviada",
   "para": "Medir el tamaño y la cercanía de la red de familiares y de amigos con que cuenta la persona: con cuántos se ve o habla, con cuántos puede conversar de lo privado y a cuántos podría llamar si necesita ayuda. Mide red efectiva, no apoyo percibido, y tamiza el riesgo de aislamiento social en personas mayores.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Lubben et al. (2006); ítems en español de Moyano-Díaz et al. (2025), MedUNAB, CC BY-NC-ND · opciones y cortes del original.",
   "bloques": [
    {
@@ -4904,6 +5521,9 @@ const CALIFICAR = {
   "titulo": "Escala de Autoestima de Rosenberg",
   "para": "Medir la autoestima global: cuánto se valora y se acepta la persona a sí misma. Son diez frases, la mitad positivas y la mitad negativas. Es la escala de autoestima más usada en el mundo y sirve para comparar a la persona consigo misma al inicio y al final de una intervención.",
   "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
   "cita": "Rosenberg (1965) · versión española de Atienza, Moreno y Balaguer (2000) · uso libre.",
   "bloques": [
    {
