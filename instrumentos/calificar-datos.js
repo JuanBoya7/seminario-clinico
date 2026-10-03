@@ -2704,6 +2704,604 @@ const CALIFICAR = {
    ]
   }
  },
+ "epds": {
+  "clave": "EPDS",
+  "sigla": "EPDS",
+  "titulo": "Escala de Depresión Posparto de Edimburgo",
+  "para": "Tamizar síntomas depresivos de la última semana en el embarazo y el posparto. No incluye los síntomas somáticos (sueño, apetito, cansancio) que se confunden con el puerperio. No diagnostica: un puntaje alto pide una entrevista clínica.",
+  "estilo": "adultos",
+  "cita": "Cox, Holden y Sagovsky (1987) · versión en castellano en Maroto Navarro et al. (2005) · reproducción permitida citando la fuente.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque en cada frase la respuesta que más se acerque a cómo se ha sentido en los últimos 7 días, no solo hoy."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Tanto como siempre",
+     "No tanto ahora",
+     "Mucho menos",
+     "No, no he podido"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. He sido capaz de reír y ver el lado bueno de las cosas"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Tanto como siempre",
+     "Algo menos de lo que solía hacer",
+     "Definitivamente menos",
+     "No, nada"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "2. He mirado el futuro con placer"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, la mayoría de las veces",
+     "Sí, algunas veces",
+     "No muy a menudo",
+     "No, nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "3. Me he culpado innecesariamente cuando las cosas marchaban mal"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No, nada",
+     "Casi nada",
+     "Sí, a veces",
+     "Sí, a menudo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "4. He estado ansiosa y preocupada sin motivo"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, bastante",
+     "Sí, a veces",
+     "No, no mucho",
+     "No, nada"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "5. He sentido miedo y pánico sin motivo alguno"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, la mayor parte de las veces",
+     "Sí, a veces",
+     "No, casi nunca",
+     "No, nada"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "6. Las cosas me superaban, me sobrepasaban"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, casi siempre",
+     "Sí, a veces",
+     "No muy a menudo",
+     "No, nada"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "7. Me he sentido tan infeliz que he tenido dificultad para dormir"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, casi siempre",
+     "Sí, bastante a menudo",
+     "No muy a menudo",
+     "No, nada"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "8. Me he sentido triste y desgraciada"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, casi siempre",
+     "Sí, bastante a menudo",
+     "Sólo ocasionalmente",
+     "No, nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "9. He sido tan infeliz que he estado llorando"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, bastante a menudo",
+     "A veces",
+     "Casi nunca",
+     "No, nunca"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "10. He pensado en hacerme daño a mí misma"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,10)",
+     "rangos": [
+      [
+       0,
+       9,
+       "Por debajo de los puntos de corte publicados"
+      ],
+      [
+       10,
+       10,
+       "Sobre el corte 9/10 de los autores"
+      ],
+      [
+       11,
+       12,
+       "Sobre el corte 10/11 de la validación española: confirme con entrevista"
+      ],
+      [
+       13,
+       30,
+       "Sobre el corte 12/13: depresión probable, necesita valoración clínica"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[10] > 0",
+     "texto": "Hay una respuesta que indica posible riesgo suicida. Pregunte directamente, en esta misma atención, y siga el protocolo de riesgo: la persona no se va sin una valoración de seguridad."
+    }
+   ]
+  }
+ },
+ "oasis": {
+  "clave": "OASIS",
+  "sigla": "OASIS",
+  "titulo": "Escala Global de Gravedad e Interferencia de la Ansiedad",
+  "para": "Medir en cinco preguntas la frecuencia y la intensidad de la ansiedad, la evitación y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. No es específica de un trastorno: sirve para cualquier problema de ansiedad, también por debajo del umbral diagnóstico, y está pensada para aplicarse en cada sesión.",
+  "estilo": "adultos",
+  "cita": "Norman, Cissell, Means-Christensen y Stein (2006) · versión en castellano de Osma et al. (2019), en el Protocolo unificado (Alianza).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Los siguientes ítems preguntan sobre ansiedad. Para cada ítem, rodee el número que mejor describa su experiencia durante la última semana."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No me sentí ansioso durante la última semana.",
+     "Ansiedad infrecuente. Me sentí ansioso en algunos momentos.",
+     "Ansiedad ocasional. La mitad del tiempo me sentí ansioso y la otra mitad no. Me costó relajarme.",
+     "Ansiedad frecuente. Me sentí ansioso la mayor parte del tiempo. Me resultó muy difícil relajarme.",
+     "Ansiedad constante. Me sentí ansioso todo el tiempo y nunca llegué a relajarme."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Durante la última semana, ¿con qué frecuencia te has sentido ansioso?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Poco o nada. La ansiedad estuvo ausente o casi no la noté.",
+     "Leve. La ansiedad fue de baja intensidad. Pude relajarme cuando lo intenté. Los síntomas físicos fueron solo un poco molestos.",
+     "Moderada. La ansiedad me generó malestar en algunos momentos. Me resultó difícil relajarme o concentrarme, pero pude hacerlo cuando lo intenté. Los síntomas físicos fueron molestos.",
+     "Severa. La ansiedad fue intensa la mayor parte del tiempo. Me resultó muy difícil relajarme o concentrarme en cualquier otra cosa. Los síntomas físicos fueron enormemente molestos.",
+     "Extrema. La ansiedad me sobrepasó. Me fue totalmente imposible relajarme. Los síntomas físicos fueron insoportables."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Durante la última semana, cuando te sentiste ansioso, ¿cómo de intensa o grave fue tu ansiedad?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna. No evité lugares, situaciones, actividades o cosas por miedo.",
+     "Infrecuente. Evité algunas cosas de vez en cuando, pero por lo general me enfrenté a las situaciones u objetos. Mi estilo de vida no se vio afectado.",
+     "Ocasional. Tuve algo de miedo a ciertas situaciones, lugares u objetos, pero todavía pude manejarlos. Mi estilo de vida sufrió pocos cambios. Siempre o casi siempre evité las cosas que me dan miedo si estaba solo, pero las pude manejar si alguien venía conmigo.",
+     "Frecuente. Tuve bastante miedo y realmente intenté evitar las cosas que me asustan. He hecho cambios significativos en mi estilo de vida para evitar objetos, situaciones, actividades o lugares.",
+     "Todo el tiempo. Evitar objetos, situaciones, actividades o lugares ha ocupado gran parte de mi vida. Mi estilo de vida se ha visto enormemente afectado y ya no hago cosas con las que solía disfrutar."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Durante la última semana, ¿con qué frecuencia evitaste situaciones, lugares, objetos o actividades debido a tu ansiedad o miedo?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada. La ansiedad no interfirió en mi trabajo/hogar/colegio.",
+     "Leve. La ansiedad me causó algo de interferencia en mi trabajo/hogar/colegio. Las cosas eran más difíciles, pero pude realizar todo lo que necesitaba hacer.",
+     "Moderada. La ansiedad definitivamente interfirió en mis tareas. He podido realizar la mayoría de las cosas, pero solo algunas las he hecho tan bien como en el pasado.",
+     "Severa. La ansiedad verdaderamente ha cambiado mi capacidad para hacer las cosas. Algunas cosas las he podido realizar, pero otras no. Mi rendimiento se ha visto definitivamente afectado.",
+     "Extrema. La ansiedad ha llegado a ser incapacitante. He sido incapaz de completar mis tareas y he tenido que irme del colegio, he dejado o me han despedido de mi trabajo o he sido incapaz de completar las tareas del hogar y he sufrido consecuencias como desalojos, cobradores de facturas, etc."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Durante la última semana, ¿en qué medida ha interferido la ansiedad en tu capacidad para hacer las cosas que necesitabas hacer en el trabajo, el colegio o en tu hogar?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada. La ansiedad no interfirió en mis relaciones.",
+     "Leve. La ansiedad apenas interfirió en mis relaciones. Algunas de mis amistades y otras relaciones se han visto afectadas, pero en conjunto mi vida social sigue siendo satisfactoria.",
+     "Moderada. La ansiedad interfirió algo en mi vida social, pero sigo teniendo algunas relaciones cercanas. No paso tanto tiempo con otros como en el pasado, pero sigo teniendo relaciones sociales algunas veces.",
+     "Severa. Mis amistades y otras relaciones se han visto muy afectadas a causa de mi ansiedad. No disfruto de las actividades sociales. Tengo muy pocas relaciones sociales.",
+     "Extrema. La ansiedad ha alterado completamente mis actividades sociales. Todas mis relaciones se han visto afectadas o han finalizado. Mi vida familiar es extremadamente tensa."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Durante la última semana, ¿en qué medida ha interferido la ansiedad en tu vida social y en tus relaciones?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,5)",
+     "rangos": [
+      [
+       0,
+       9,
+       "Por debajo del punto de corte"
+      ],
+      [
+       10,
+       20,
+       "Sobre el punto de corte (10, Osma et al., 2019); en la validación colombiana el corte es 11"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "odsis": {
+  "clave": "ODSIS",
+  "sigla": "ODSIS",
+  "titulo": "Escala Global de Gravedad e Interferencia de la Depresión",
+  "para": "Medir en cinco preguntas la frecuencia y la intensidad de la depresión, la pérdida de interés en lo que se disfrutaba y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. Es la hermana de la OASIS: no es específica de un trastorno y está pensada para aplicarse en cada sesión.",
+  "estilo": "adultos",
+  "cita": "Bentley, Gallagher, Carl y Barlow (2014) · versión en castellano de Osma et al. (2019), en el Protocolo unificado (Alianza).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Los siguientes ítems preguntan sobre depresión. Para cada ítem, rodee el número que mejor describa su experiencia durante la última semana."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No me sentí deprimido durante la última semana.",
+     "Depresión infrecuente. Me sentí deprimido en algunos momentos.",
+     "Depresión ocasional. La mitad del tiempo me sentí deprimido y la otra mitad no.",
+     "Depresión frecuente. Me sentí deprimido la mayor parte del tiempo.",
+     "Depresión constante. Me sentí deprimido todo el tiempo."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Durante la última semana, ¿con qué frecuencia te has sentido deprimido?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Poco o nada. La depresión estuvo ausente o casi no la noté.",
+     "Leve. La depresión fue de baja intensidad.",
+     "Moderada. La depresión me generó malestar en algunos momentos.",
+     "Severa. La depresión fue intensa la mayor parte del tiempo.",
+     "Extrema. La depresión me sobrepasó."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Durante la última semana, cuando te sentiste deprimido, ¿cómo de intensa o grave fue tu depresión?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna. No tuve dificultades para realizar o interesarme en actividades que normalmente disfruto debido a la depresión.",
+     "Infrecuente. Algunas veces tuve dificultades para realizar actividades o interesarme en actividades que normalmente disfruto, debido a la depresión. Mi estilo de vida no se vio afectado.",
+     "Ocasional. Tuve algunas dificultades para realizar actividades o interesarme en actividades que normalmente disfruto, debido a la depresión. Mi estilo de vida sufrió pocos cambios.",
+     "Frecuente. Tuve bastantes dificultades para realizar actividades o interesarme en actividades que normalmente disfruto, debido a la depresión. He realizado cambios significativos en mi estilo de vida por no poder interesarme en actividades que solía disfrutar.",
+     "Todo el tiempo. No he podido participar o interesarme en actividades que normalmente disfruto, debido a la depresión. Mi estilo de vida se ha visto enormemente afectado y ya no hago cosas que solía disfrutar."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Durante la última semana, ¿con qué frecuencia tuviste dificultad para realizar o interesarte en actividades que normalmente disfrutas debido a tu depresión?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada. La depresión no interfirió en mi trabajo/hogar/colegio.",
+     "Leve. La depresión me causó algo de interferencia en mi trabajo/hogar/colegio. Las cosas fueron más difíciles, pero pude realizar todo lo que necesitaba hacer.",
+     "Moderada. La depresión definitivamente interfirió en mis tareas. He podido realizar la mayoría de las cosas, pero solo algunas las he hecho tan bien como en el pasado.",
+     "Severa. La depresión verdaderamente ha interferido en mis tareas. Algunas tareas las he podido realizar, pero muchas otras no. Mi rendimiento se ha visto definitivamente afectado.",
+     "Extrema. La depresión ha llegado a ser incapacitante. He sido incapaz de completar mis tareas y he tenido que irme del colegio, he dejado o me han despedido de mi trabajo o he sido incapaz de completar las tareas del hogar y he sufrido consecuencias como desalojos, cobradores de facturas, etc."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Durante la última semana, ¿en qué medida ha interferido la depresión en tu capacidad para hacer las cosas que necesitabas hacer en el trabajo, el colegio o en tu hogar?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada. La depresión no interfirió en mis relaciones.",
+     "Leve. La depresión apenas interfirió en mis relaciones. Algunas de mis amistades y otras relaciones se han visto afectadas, pero en conjunto mi vida social sigue siendo satisfactoria.",
+     "Moderada. La depresión ha interferido algo en mi vida social, pero sigo teniendo algunas relaciones cercanas. No paso tanto tiempo con otros como en el pasado, pero sigo manteniendo relaciones sociales algunas veces.",
+     "Severa. Mis amistades y otras relaciones se han visto muy afectadas a causa de mi depresión. No disfruto de las actividades sociales. Tengo muy pocas relaciones sociales.",
+     "Extrema. La depresión ha alterado completamente mis actividades sociales. Todas mis relaciones se han visto afectadas o han finalizado. Mi vida familiar es extremadamente tensa."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Durante la última semana, ¿en qué medida ha interferido la depresión en tu vida social y en tus relaciones?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,5)",
+     "rangos": [
+      [
+       0,
+       9,
+       "Por debajo del punto de corte"
+      ],
+      [
+       10,
+       20,
+       "Sobre el punto de corte (10, Osma et al., 2019); en la validación colombiana el corte es 12"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "tmms-24": {
   "clave": "TMMS-24",
   "sigla": "TMMS-24",
@@ -3113,6 +3711,1253 @@ const CALIFICAR = {
        "Remitir a evaluación integral"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "phq-a": {
+  "clave": "PHQ-A",
+  "sigla": "PHQ-A",
+  "titulo": "Cuestionario sobre la Salud del Paciente, versión adolescente",
+  "para": "Tamizar síntomas depresivos de las dos últimas semanas en adolescentes, con el lenguaje del PHQ-9 ajustado a esa edad (incluye la irritabilidad). Trae además preguntas sobre el ánimo del último año, la interferencia y las ideas e intentos de suicidio. No diagnostica.",
+  "estilo": "infancia",
+  "cita": "Johnson et al. (2002); adaptación al castellano para Chile de Borghero et al. (2018), Revista Médica de Chile · familia PHQ, de reproducción libre.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "¿Con qué frecuencia te han incomodado alguno de los siguientes síntomas durante las últimas dos semanas? (Para cada síntoma marca con una \"x\" la respuesta que mejor describe cómo te has sentido)"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Algunos días",
+     "Más de la mitad de los días",
+     "Casi todos los días"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "¿Te has sentido bajoneado/a, deprimido/a, irritable o desesperanzado/a?",
+     "¿Has sentido poco interés o placer al hacer las cosas?",
+     "¿Has sentido problemas para quedarte dormido/a, permanecer dormido/a, o has estado durmiendo demasiado?",
+     "¿Te has sentido cansado/a o con poca energía?",
+     "¿Has tenido poco apetito, has bajado de peso, o has comido excesivamente?",
+     "¿Te has sentido mal respecto a ti mismo/a o has sentido que tú eres un/a fracasado/a, o que has decepcionado a tu familia o a ti mismo/a?",
+     "¿Has tenido problemas para concentrarte en actividades como trabajos escolares, leer, o ver televisión?",
+     "¿Te has movido o hablado tan lento que las otras personas podrían haberlo notado? O al contrario ¿has estado tan inquieto/a que estabas moviéndote de un lado para otro mucho más de lo usual?",
+     "¿Has pensado que sería mejor estar muerto/a o has pensado hacerte daño de alguna manera?"
+    ],
+    "numerar": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "a. En el último año, ¿te has sentido deprimido o triste la mayoría de los días, aunque te sientas a veces bien?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna dificultad",
+     "Algo de dificultad",
+     "Bastante dificultad",
+     "Extrema Dificultad"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": false,
+    "items": [
+     "b. Si estás experimentando alguno de los problemas de este cuestionario, ¿cuánto hacen esos problemas que se te dificulte hacer tu trabajo, tus labores en la casa, o llevarte bien con los demás?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "c. Durante el último mes ¿has pensado en algún momento seriamente en terminar con tu vida?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "d. Alguna vez en tu vida, ¿has tratado de matarte o has hecho un intento de suicidio?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Si has tenido pensamientos de que sería mejor estar muerto/a o has pensado en hacerte daño de alguna manera, por favor convérsalo con el/la profesional que está a cargo de tu caso."
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (ítems 1 a 9)",
+     "js": "S(1,9)",
+     "rangos": [
+      [
+       0,
+       10,
+       "Por debajo del punto de corte"
+      ],
+      [
+       11,
+       27,
+       "Probable episodio depresivo (corte 11 de la validación chilena): confirme con entrevista"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[9] > 0 || r[12] === 1 || r[13] === 1",
+     "texto": "Hay una respuesta que indica posible riesgo suicida. Pregunte directamente, en esta misma atención, y siga el protocolo de riesgo: la persona no se va sin una valoración de seguridad."
+    }
+   ]
+  }
+ },
+ "scared": {
+  "clave": "SCARED",
+  "sigla": "SCARED",
+  "titulo": "Pantalla de Trastornos Emocionales Relacionados con la Ansiedad Infantil",
+  "para": "Tamizar síntomas de ansiedad en niños y adolescentes desde los 8 años, con una forma para el niño y otra para los padres. Además del total da cinco puntajes: pánico o síntomas somáticos, ansiedad generalizada, ansiedad de separación, ansiedad social y evitación escolar.",
+  "estilo": "infancia",
+  "cita": "Birmaher et al. (1997, 1999) · versiones en español para Colombia publicadas por el autor (Universidad de Pittsburgh) · sin costo.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "FORMA PARA NIÑOS (8 años o mayores)"
+   },
+   {
+    "t": "consigna",
+    "x": "Esta es una lista de cosas que describen cómo se siente usted. Marque el 0 si casi nunca o nunca es cierto. Marque el 1 si es cierto algunas veces. Marque el 2 si casi siempre o siempre es cierto. Por favor conteste las preguntas lo mejor que pueda."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca o nunca es cierto",
+     "Es cierto algunas veces",
+     "Casi siempre o siempre es cierto"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cuando tengo miedo, no puedo respirar bien.",
+     "2. Cuando estoy en la escuela me duele la cabeza.",
+     "3. No me gusta estar con personas que no conozco bien.",
+     "4. Cuando duermo en una casa que no es la mía me siento con miedo.",
+     "5. Me preocupa saber si le caigo bien a la gente.",
+     "6. Cuando tengo miedo, siento que me voy a desmayar.",
+     "7. Soy una persona nerviosa.",
+     "8. Sigo a mis padres a donde ellos van.",
+     "9. La gente me dice que me veo nervioso(a).",
+     "10. Me pongo nervioso(a) cuando estoy con personas que no conozco bien.",
+     "11. Cuando estoy en la escuela me duele el estómago (panza).",
+     "12. Cuando tengo mucho miedo, me siento como si me fuera a enloquecer.",
+     "13. Me preocupo cuando tengo que dormir solo(a).",
+     "14. Me preocupo de ser tan bueno(a) como los otros niños (por ejemplo: en mis estudios o deportes).",
+     "15. Cuando tengo mucho miedo, siento como si las cosas fueran diferentes o no reales.",
+     "16. En las noches sueño que cosas malas le van a pasar a mis padres.",
+     "17. Me preocupo cuando tengo que ir a la escuela.",
+     "18. Cuando tengo mucho miedo, el corazón me late muy rápido.",
+     "19. Cuando tengo mucho miedo, yo tiemblo.",
+     "20. En las noches tengo pesadillas de que me va a pasar algo malo.",
+     "21. Me preocupa pensar cómo me van a salir las cosas.",
+     "22. Sudo mucho cuando tengo miedo.",
+     "23. Me preocupo demasiado.",
+     "24. Me preocupo sin motivo.",
+     "25. Me da miedo estar solo(a) en la casa.",
+     "26. Me cuesta trabajo hablar con personas que no conozco.",
+     "27. Cuando tengo miedo, siento como si no pudiera tragar.",
+     "28. Las personas me dicen que yo me preocupo demasiado.",
+     "29. No me gusta estar lejos de mi familia.",
+     "30. Tengo miedo de tener ataques de nervios (pánico).",
+     "31. Me preocupa pensar que algo malo le va a pasar a mis padres.",
+     "32. Me da vergüenza cuando estoy con personas que no conozco.",
+     "33. Me preocupa qué me pasará cuando sea grande.",
+     "34. Cuando tengo miedo me dan ganas de vomitar.",
+     "35. Me preocupa saber si hago las cosas bien.",
+     "36. Tengo miedo de ir al colegio.",
+     "37. Me preocupan las cosas que ya han pasado.",
+     "38. Cuando tengo miedo, me siento mareado(a).",
+     "39. Me siento nervioso(a) cuando tengo que hacer algo delante de otros niños o adultos (ejemplos: leer en voz alta, hablar, jugar)",
+     "40. Me siento nervioso(a) de ir a fiestas, bailes, o alguna parte donde hay gente que no conozco.",
+     "41. Soy tímido(a)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "FORMA PARA LOS PADRES"
+   },
+   {
+    "t": "consigna",
+    "x": "Esta es una lista de cosas que describen cómo se siente su hijo(a). Marque el 0 si casi nunca o nunca es cierto. Marque el 1 si es cierto algunas veces. Marque el 2 si casi siempre o siempre es cierto. Por favor conteste las preguntas lo mejor que pueda."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca o nunca es cierto",
+     "Es cierto algunas veces",
+     "Casi siempre o siempre es cierto"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cuando siente miedo, no puede respirar bien.",
+     "2. Cuando está en la escuela, se queja de dolor de cabeza.",
+     "3. No le gusta estar con personas que no conoce bien.",
+     "4. Le da miedo dormir en otras casas.",
+     "5. Se preocupa de lo que piensan de él (ella).",
+     "6. Cuando tiene miedo, siente que se va a desmayar.",
+     "7. Es un niño(a) nervioso(a).",
+     "8. Me sigue a todas partes donde voy (es como mi \"sombra\").",
+     "9. La gente dice que mi hijo(a) se ve nervioso(a).",
+     "10. Se pone nervioso(a) con personas que no conoce bien.",
+     "11. Cuando está en la escuela le duele el estómago.",
+     "12. Cuando tiene mucho miedo, se siente como si se fuera a \"enloquecer\".",
+     "13. Se preocupa si tiene que dormir solo(a).",
+     "14. Se preocupa de ser tan bueno(a) como los otros niños.",
+     "15. Cuando tiene mucho miedo siente como si las cosas no fueran reales.",
+     "16. Sueña que algo malo le va a pasar a su mamá o a su papá.",
+     "17. Se preocupa cuando tiene que ir a la escuela.",
+     "18. Cuando tiene miedo, el corazón le late muy rápido.",
+     "19. Cuando tiene miedo, se pone tembloroso.",
+     "20. Sueña que algo malo le va a pasar a él (ella).",
+     "21. Le preocupa cómo le van a salir las cosas.",
+     "22. Cuando tiene miedo (nervios) suda mucho.",
+     "23. Se preocupa demasiado.",
+     "24. Le da miedo sin tener ningún motivo.",
+     "25. Le da miedo estar solo en casa.",
+     "26. Le cuesta trabajo hablar con personas que no conoce.",
+     "27. Cuando tiene miedo, siente que no puede tragar.",
+     "28. Las personas dicen que se preocupa demasiado.",
+     "29. No le gusta estar separado de la familia.",
+     "30. Le da miedo de tener ataques de nervios (pánico).",
+     "31. Le preocupa que algo malo les pueda pasar a sus padres.",
+     "32. Le da vergüenza cuando está con personas que no conoce.",
+     "33. Le preocupa qué le vaya a pasar en el futuro.",
+     "34. Cuando tiene miedo le dan ganas de vomitar.",
+     "35. Le preocupa saber si está haciendo las cosas bien.",
+     "36. Tiene miedo de ir al colegio.",
+     "37. Le preocupan las cosas que ya han pasado.",
+     "38. Cuando tiene miedo, se siente mareado(a).",
+     "39. Se siente nervioso(a) cuando tiene que hacer algo delante de otros niños o adultos (por ejemplo: leer en voz alta, hablar, jugar).",
+     "40. Se siente nervioso(a) de ir a fiestas, bailes o alguna parte donde hay gente que no conoce.",
+     "41. Mi hijo(a) es tímido(a)."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Niño: Total",
+     "js": "L([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41])",
+     "rangos": [
+      [
+       0,
+       24,
+       "Por debajo del corte"
+      ],
+      [
+       25,
+       30,
+       "25 o más: puede indicar un trastorno de ansiedad"
+      ],
+      [
+       31,
+       82,
+       "Más de 30: resultado más específico"
+      ]
+     ]
+    },
+    {
+     "n": "Niño: Pánico o somático",
+     "js": "L([1, 6, 9, 12, 15, 18, 19, 22, 24, 27, 30, 34, 38])",
+     "rangos": [
+      [
+       0,
+       6,
+       "Por debajo del corte"
+      ],
+      [
+       7,
+       26,
+       "Puede indicar trastorno de pánico o síntomas somáticos significativos"
+      ]
+     ]
+    },
+    {
+     "n": "Niño: Ansiedad generalizada",
+     "js": "L([5, 7, 14, 21, 23, 28, 33, 35, 37])",
+     "rangos": [
+      [
+       0,
+       8,
+       "Por debajo del corte"
+      ],
+      [
+       9,
+       18,
+       "Puede indicar trastorno de ansiedad generalizada"
+      ]
+     ]
+    },
+    {
+     "n": "Niño: Ansiedad de separación",
+     "js": "L([4, 8, 13, 16, 20, 25, 29, 31])",
+     "rangos": [
+      [
+       0,
+       4,
+       "Por debajo del corte"
+      ],
+      [
+       5,
+       16,
+       "Puede indicar ansiedad de separación"
+      ]
+     ]
+    },
+    {
+     "n": "Niño: Ansiedad social",
+     "js": "L([3, 10, 26, 32, 39, 40, 41])",
+     "rangos": [
+      [
+       0,
+       7,
+       "Por debajo del corte"
+      ],
+      [
+       8,
+       14,
+       "Puede indicar fobia social"
+      ]
+     ]
+    },
+    {
+     "n": "Niño: Evitación escolar",
+     "js": "L([2, 11, 17, 36])",
+     "rangos": [
+      [
+       0,
+       2,
+       "Por debajo del corte"
+      ],
+      [
+       3,
+       8,
+       "Puede indicar evitación escolar significativa"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Total",
+     "js": "L([42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82])",
+     "rangos": [
+      [
+       0,
+       24,
+       "Por debajo del corte"
+      ],
+      [
+       25,
+       30,
+       "25 o más: puede indicar un trastorno de ansiedad"
+      ],
+      [
+       31,
+       82,
+       "Más de 30: resultado más específico"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Pánico o somático",
+     "js": "L([42, 47, 50, 53, 56, 59, 60, 63, 65, 68, 71, 75, 79])",
+     "rangos": [
+      [
+       0,
+       6,
+       "Por debajo del corte"
+      ],
+      [
+       7,
+       26,
+       "Puede indicar trastorno de pánico o síntomas somáticos significativos"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Ansiedad generalizada",
+     "js": "L([46, 48, 55, 62, 64, 69, 74, 76, 78])",
+     "rangos": [
+      [
+       0,
+       8,
+       "Por debajo del corte"
+      ],
+      [
+       9,
+       18,
+       "Puede indicar trastorno de ansiedad generalizada"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Ansiedad de separación",
+     "js": "L([45, 49, 54, 57, 61, 66, 70, 72])",
+     "rangos": [
+      [
+       0,
+       4,
+       "Por debajo del corte"
+      ],
+      [
+       5,
+       16,
+       "Puede indicar ansiedad de separación"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Ansiedad social",
+     "js": "L([44, 51, 67, 73, 80, 81, 82])",
+     "rangos": [
+      [
+       0,
+       7,
+       "Por debajo del corte"
+      ],
+      [
+       8,
+       14,
+       "Puede indicar fobia social"
+      ]
+     ]
+    },
+    {
+     "n": "Padres: Evitación escolar",
+     "js": "L([43, 52, 58, 77])",
+     "rangos": [
+      [
+       0,
+       2,
+       "Por debajo del corte"
+      ],
+      [
+       3,
+       8,
+       "Puede indicar evitación escolar significativa"
+      ]
+     ]
+    }
+   ],
+   "nota": "Responda solo la forma que vaya a calificar (la del niño o la de los padres); la otra queda en blanco y vale 0."
+  }
+ },
+ "smfq": {
+  "clave": "SMFQ",
+  "sigla": "SMFQ",
+  "titulo": "Cuestionario Breve de Ánimo y Sentimientos",
+  "para": "Tamizar síntomas depresivos de las dos últimas semanas en niños y adolescentes de 6 a 17 años, con una forma para el niño y otra para el padre, la madre o el adulto a cargo. Por su brevedad sirve también para seguir la gravedad de los síntomas y la respuesta al tratamiento, sesión a sesión.",
+  "estilo": "infancia",
+  "cita": "Angold et al. (1995) · versiones en español de Angold y Costello (Duke University) · uso no comercial sin costo.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "FORMA DEL NIÑO O EL JOVEN"
+   },
+   {
+    "t": "consigna",
+    "x": "Este formulario se trata de cómo te pudiste haber sentido o actuado recientemente. Por cada pregunta, por favor señala qué tanto te has sentido o actuado de esta forma durante las últimas dos semanas. Si la frase es cierta en tu caso la mayor parte del tiempo, marca CIERTO. Si la frase es cierta sólo ocasionalmente, marca ALGUNAS VECES. Si la frase no es cierta, marca NO ES CIERTO."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No es cierto",
+     "Algunas veces",
+     "Cierto"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me sentí triste o amargado/a.",
+     "2. Nada me ha causado agrado.",
+     "3. Me sentí tan cansado que sólo me senté y no hice nada.",
+     "4. Estuve muy inquieto/a.",
+     "5. Sentí que ya no servía para nada.",
+     "6. Lloré mucho.",
+     "7. Se me hizo muy difícil pensar o concentrarme en algo.",
+     "8. Me odié a mí mismo/a.",
+     "9. Fui una mala persona.",
+     "10. Me sentí solo/a.",
+     "11. Pensé que nadie me quería.",
+     "12. Pensé que jamás sería tan bueno como otros niños/as.",
+     "13. Hice todo mal."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "FORMA DEL PADRE, LA MADRE O EL ADULTO A CARGO"
+   },
+   {
+    "t": "consigna",
+    "x": "Este formulario se trata de cómo su niño/a se pudo haber sentido o actuado recientemente. Por cada pregunta, por favor señale qué tanto su niño/a se ha sentido o actuado de esta forma durante las últimas dos semanas. Si la frase es cierta en el caso de su niño/a la mayor parte del tiempo, marque CIERTO. Si la frase es cierta en el caso de su niño/a sólo ocasionalmente, marque ALGUNAS VECES. Si la frase no es cierta en el caso de su niño/a, marque NO ES CIERTO."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No es cierto",
+     "Algunas veces",
+     "Cierto"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. El/Ella se sintió triste o amargado/a.",
+     "2. El/Ella no mostró agrado por nada.",
+     "3. El/Ella se sintió tan cansado/a que sólo se sentó y no hizo nada.",
+     "4. El/Ella estuvo muy inquieto/a.",
+     "5. El/Ella sintió que ya no servía para nada.",
+     "6. El/Ella lloró mucho.",
+     "7. Se le hizo muy difícil pensar o concentrarse en algo.",
+     "8. El/Ella se odió a sí mismo/a.",
+     "9. El/Ella sintió que era una mala persona.",
+     "10. Se sintió solo/a.",
+     "11. El/Ella pensó que nadie le quería.",
+     "12. Pensó que jamás sería tan bueno como otros niños/as.",
+     "13. El/Ella sintió que todo cuanto hacía estaba mal."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Niño: puntaje total",
+     "js": "S(1,13)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Por debajo del punto de corte"
+      ],
+      [
+       8,
+       26,
+       "Sobre el punto de corte (8): síntomas depresivos significativos; confirme con entrevista"
+      ]
+     ]
+    },
+    {
+     "n": "Adulto a cargo: puntaje total",
+     "js": "S(14,26)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Por debajo del punto de corte"
+      ],
+      [
+       8,
+       26,
+       "Sobre el punto de corte (8): síntomas depresivos significativos; confirme con entrevista"
+      ]
+     ]
+    }
+   ],
+   "nota": "Responda solo la forma que vaya a calificar (la del niño o la del adulto); la otra queda en blanco y vale 0."
+  }
+ },
+ "lie-bet": {
+  "clave": "Lie/Bet",
+  "sigla": "Lie/Bet",
+  "titulo": "Cuestionario Lie-Bet",
+  "para": "Tamizar en un minuto problemas con el juego de apuestas, con dos preguntas: haber mentido sobre cuánto se juega y haber necesitado apostar cada vez más dinero. Es el tamizaje más breve de la guía.",
+  "estilo": "adultos",
+  "cita": "Johnson et al. (1997), Psychological Reports · redacción en español citada en Salinas (2004), Salud y Drogas.",
+  "bloques": [
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿Alguna vez has tenido que mentir a gente importante para ti acerca de cuánto juegas?",
+     "¿Alguna vez has sentido la necesidad de apostar más y más dinero?"
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí»",
+     "js": "C([1,2],1)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Tamizaje negativo"
+      ],
+      [
+       1,
+       2,
+       "Tamizaje positivo: siga con una evaluación más completa"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "sogs": {
+  "clave": "SOGS",
+  "sigla": "SOGS",
+  "titulo": "Cuestionario de Juego Patológico de South Oaks",
+  "para": "Tamizar el juego patológico a partir de sus conductas y consecuencias: volver a jugar para recuperar lo perdido, mentir, discutir por el dinero, pedir prestado. Pregunta también de dónde salió el dinero, que suele mostrar el alcance real del problema.",
+  "estilo": "adultos",
+  "cita": "Lesieur y Blume (1987); versión española de Echeburúa, Báez, Fernández-Montalvo y Páez (1994) · se reproduce tal como está impreso.",
+  "bloques": [
+   {
+    "t": "items",
+    "titulo": "1. Indique, por favor, cuál de los siguientes juegos ha practicado usted en su vida. Señale para cada tipo una contestación:",
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Menos de una vez por semana",
+     "Una vez por semana o más"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": false,
+    "items": [
+     "a) jugar a cartas con dinero de por medio",
+     "b) apostar en las carreras de caballos",
+     "c) apostar en el frontón o en los deportes rurales",
+     "d) jugar a la lotería, a las quinielas, a la primitiva, a la bono-loto o a los ciegos",
+     "e) jugar en el casino",
+     "f) jugar al bingo",
+     "g) especular en la bolsa de valores",
+     "h) jugar en las máquinas tragaperras",
+     "i) practicar cualquier deporte o poner a prueba cualquier habilidad por una apuesta"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca he jugado dinero",
+     "Menos de 1.000 pesetas",
+     "Entre 1.000 y 5.000 pesetas",
+     "Entre 5.000 y 10.000 pts.",
+     "Entre 10.000 y 50.000 pesetas",
+     "Más de 50.000 pesetas"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": false,
+    "items": [
+     "2. ¿Cuál es la mayor cantidad de dinero que ha gastado en jugar en un solo día?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "mi padre",
+     "mi madre",
+     "un hermano",
+     "un abuelo",
+     "mi cónyuge o pareja",
+     "alguno de mis hijos",
+     "otro familiar",
+     "un amigo o alguien importante para mí"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": false,
+    "items": [
+     "3. Señale quién de las siguientes personas allegadas tiene o ha tenido un problema de juego."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Algunas veces, pero menos de la mitad",
+     "La mayoría de las veces que pierdo",
+     "Siempre que pierdo"
+    ],
+    "vals": [
+     0,
+     0,
+     1,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "4. Cuando usted juega dinero, ¿con qué frecuencia vuelve otra vez a jugar para recuperar lo perdido?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Sí, pero menos de la mitad de las veces que he perdido",
+     "La mayoría de las veces"
+    ],
+    "vals": [
+     0,
+     1,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "5. ¿Ha afirmado usted alguna vez haber ganado dinero en el juego cuando en realidad había perdido?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Ahora no, pero en el pasado sí",
+     "Ahora sí"
+    ],
+    "vals": [
+     0,
+     1,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "6. ¿Cree usted que tiene o ha tenido alguna vez problemas con el juego?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "7. ¿Ha jugado alguna vez más dinero de lo que tenía pensado?",
+     "8. ¿Le ha criticado la gente por jugar dinero o le ha dicho alguien que tenía un problema de juego, a pesar de que usted cree que no es cierto?",
+     "9. ¿Se ha sentido alguna vez culpable por jugar o por lo que le ocurre cuando juega?",
+     "10. ¿Ha intentado alguna vez dejar de jugar y no ha sido capaz de ello?",
+     "11. ¿Ha ocultado alguna vez a su pareja, a sus hijos o a otros seres queridos billetes de lotería, fichas de apuestas, dinero obtenido en el juego u otros signos de juego?",
+     "12. ¿Ha discutido alguna vez con las personas con que convive sobre la forma de administrar el dinero?",
+     "13. (Si ha respondido sí a la pregunta anterior) ¿Se han centrado alguna vez las discusiones de dinero sobre el juego?",
+     "14. ¿Ha pedido en alguna ocasión dinero prestado a alguien y no se lo ha devuelto a causa del juego?",
+     "15. ¿Ha perdido alguna vez tiempo de trabajo o de clase debido al juego?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": "16. Si ha pedido prestado dinero para jugar o pagar deudas, ¿a quién se lo ha pedido o de dónde lo ha obtenido? (ponga una X en las respuestas que sean ciertas en su caso)",
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "a) del dinero de casa",
+     "b) a mi pareja",
+     "c) a otros familiares",
+     "d) de bancos y cajas de ahorro",
+     "e) de tarjetas de crédito",
+     "f) de prestamistas",
+     "g) de la venta de propiedades personales o familiares",
+     "h) de la firma de cheques falsos o de extender cheques sin fondos",
+     "i) de una cuenta de crédito en el mismo casino"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (0 a 19)",
+     "js": "L([12,13,14]) + C([15,16,17,18,19,21,22,23],1) + C(RANGO(24,31),1)",
+     "rangos": [
+      [
+       0,
+       3,
+       "Por debajo del punto de corte"
+      ],
+      [
+       4,
+       19,
+       "Probable jugador patológico (4 o más)"
+      ]
+     ]
+    }
+   ],
+   "nota": "Las preguntas 1, 2, 3, 12 y 16i no puntúan. En línea la pregunta 3 admite una sola marca; en la ficha en PDF, varias."
+  }
+ },
+ "igds9-sf": {
+  "clave": "IGDS9-SF",
+  "sigla": "IGDS9-SF",
+  "titulo": "Escala breve de Trastorno de Juego por Internet",
+  "para": "Tamizar el trastorno de juego por internet (videojuegos) con nueve preguntas, una por cada criterio propuesto en el DSM-5, referidas a los últimos doce meses. Da un puntaje de gravedad y un conteo de criterios.",
+  "estilo": "adultos",
+  "cita": "Pontes y Griffiths (2015); versión española de Beranuy et al. (2020), IJERPH · acceso abierto, CC BY 4.0.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Los siguientes ítems hacen referencia a tu actividad con los videojuegos durante el último año (es decir, los últimos 12 meses). Por actividad en los videojuegos entendemos cualquier acción relacionada con los mismos (jugar desde un ordenador/portátil o desde una videoconsola) o desde cualquier otro tipo de dispositivo (por ejemplo, teléfono móvil, tablet, etc.) tanto conectado a Internet como sin estarlo y a cualquier tipo de juego"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Preguntas",
+    "ops": [
+     "Nunca",
+     "Raramente",
+     "Ocasionalmente",
+     "A menudo",
+     "Muy a menudo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "¿Te sientes preocupado por tu comportamiento con el juego? (Algunos ejemplos: ¿Piensas en exceso cuando no estás jugando o anticipas en exceso a la próxima sesión de juego?, ¿Crees que el juego se ha convertido en la actividad dominante en tu vida diaria?)",
+     "¿Sientes irritabilidad, ansiedad o incluso tristeza cuando intentas reducir o detener tu actividad de juego?",
+     "¿Sientes la necesidad de pasar cada vez más tiempo jugando para lograr satisfacción o placer?",
+     "¿Fallas sistemáticamente al intentar controlar o terminar tu actividad de juego?",
+     "¿Has perdido intereses en aficiones anteriores y otras actividades de entretenimiento como resultado de tu compromiso con el juego?",
+     "¿Has continuado jugando a pesar de saber que te estaba causando problemas con otras personas? (pareja, amistad o familia)",
+     "¿Has engañado a alguno de tus familiares, terapeutas o amigos sobre el tiempo que pasas jugando?",
+     "¿Juegas para escapar temporalmente o aliviar un estado de ánimo negativo (por ejemplo, desesperanza, tristeza, culpa o ansiedad)?",
+     "¿Has comprometido o perdido una relación importante, un trabajo o una oportunidad educativa debido a tu actividad de juego?"
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,9)",
+     "texto": "De 9 a 45: a mayor puntaje, mayor gravedad."
+    },
+    {
+     "n": "Criterios cumplidos («A menudo» o «Muy a menudo»)",
+     "js": "C(RANGO(1,9),4) + C(RANGO(1,9),5)",
+     "rangos": [
+      [
+       0,
+       3,
+       "Menos de cuatro criterios"
+      ],
+      [
+       4,
+       4,
+       "En riesgo: cuatro criterios"
+      ],
+      [
+       5,
+       9,
+       "Cinco o más criterios: posible trastorno de juego por internet; confirme con entrevista"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "wast": {
+  "clave": "WAST",
+  "sigla": "WAST",
+  "titulo": "Herramienta de Tamizaje de Maltrato a la Mujer, versión corta",
+  "para": "Abrir el tema de la violencia de pareja con dos preguntas que no la nombran de entrada: cuánta tensión hay en la relación y con cuánta dificultad se resuelven las discusiones. Son las dos preguntas del WAST con las que las mujeres dijeron sentirse más cómodas.",
+  "estilo": "adultos",
+  "cita": "Brown et al. (1996); versión corta en español de Fogarty y Brown (2002), en Plazaola-Castaño et al. (2008), Gaceta Sanitaria.",
+  "bloques": [
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Mucha tensión",
+     "Alguna tensión",
+     "Sin tensión"
+    ],
+    "vals": [
+     1,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. En general, ¿cómo describiría usted su relación con su pareja?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Mucha dificultad",
+     "Alguna dificultad",
+     "Sin dificultad"
+    ],
+    "vals": [
+     1,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "2. Usted y su pareja resuelven sus discusiones con:"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje (primer criterio)",
+     "js": "S(1,2)",
+     "rangos": [
+      [
+       0,
+       1,
+       "Tamizaje negativo"
+      ],
+      [
+       2,
+       2,
+       "Tamizaje positivo: siga preguntando y valore la seguridad"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "lsns-6": {
+  "clave": "LSNS-6",
+  "sigla": "LSNS-6",
+  "titulo": "Escala de Red Social de Lubben, versión abreviada",
+  "para": "Medir el tamaño y la cercanía de la red de familiares y de amigos con que cuenta la persona: con cuántos se ve o habla, con cuántos puede conversar de lo privado y a cuántos podría llamar si necesita ayuda. Mide red efectiva, no apoyo percibido, y tamiza el riesgo de aislamiento social en personas mayores.",
+  "estilo": "adultos",
+  "cita": "Lubben et al. (2006); ítems en español de Moyano-Díaz et al. (2025), MedUNAB, CC BY-NC-ND · opciones y cortes del original.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Para cada pregunta, marque cuántas personas corresponden."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguno",
+     "Uno",
+     "Dos",
+     "Tres o cuatro",
+     "Cinco a ocho",
+     "Nueve o más"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Con cuántos familiares tiene usted contacto personal o telefónico al menos una vez por mes?",
+     "2. ¿Con cuántos familiares se siente usted cómodo para conversar con facilidad sobre los asuntos privados que a usted le preocupan?",
+     "3. ¿A cuántos familiares los siente usted lo suficientemente cercanos como para llamarlos en caso de necesitar ayuda?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguno",
+     "Uno",
+     "Dos",
+     "Tres o cuatro",
+     "Cinco a ocho",
+     "Nueve o más"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "4. ¿Con cuántos amigos (personas con algún vínculo, pero NO parientes) tiene usted contacto personal o telefónico al menos una vez por mes?",
+     "5. ¿Con cuántos amigos se siente usted cómodo para conversar con facilidad sobre los asuntos privados que a usted le preocupan?",
+     "6. ¿A cuántos amigos los siente usted lo suficientemente cercanos como para llamarlos en caso de necesitar ayuda?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Familia",
+     "js": "S(1,3)",
+     "rangos": [
+      [
+       0,
+       5,
+       "Red familiar escasa (menor de 6)"
+      ],
+      [
+       6,
+       15,
+       "Sin indicio de red familiar escasa"
+      ]
+     ]
+    },
+    {
+     "n": "Amigos",
+     "js": "S(4,6)",
+     "rangos": [
+      [
+       0,
+       5,
+       "Red de amigos escasa (menor de 6)"
+      ],
+      [
+       6,
+       15,
+       "Sin indicio de red de amigos escasa"
+      ]
+     ]
+    },
+    {
+     "n": "Total",
+     "js": "S(1,6)",
+     "rangos": [
+      [
+       0,
+       11,
+       "Riesgo de aislamiento social (menor de 12)"
+      ],
+      [
+       12,
+       30,
+       "Sin riesgo de aislamiento según el corte"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "rosenberg": {
+  "clave": "Rosenberg",
+  "sigla": "Rosenberg",
+  "titulo": "Escala de Autoestima de Rosenberg",
+  "para": "Medir la autoestima global: cuánto se valora y se acepta la persona a sí misma. Son diez frases, la mitad positivas y la mitad negativas. Es la escala de autoestima más usada en el mundo y sirve para comparar a la persona consigo misma al inicio y al final de una intervención.",
+  "estilo": "adultos",
+  "cita": "Rosenberg (1965) · versión española de Atienza, Moreno y Balaguer (2000) · uso libre.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor, lee las frases que figuran a continuación y señala el nivel de acuerdo o desacuerdo que tienes con cada una de ellas, marcando con un aspa la alternativa elegida."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy en desacuerdo",
+     "En desacuerdo",
+     "De acuerdo",
+     "Muy de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me siento una persona tan valiosa como las otras",
+     "2. Generalmente me inclino a pensar que soy un fracaso",
+     "3. Creo que tengo algunas cualidades buenas",
+     "4. Soy capaz de hacer las cosas tan bien como los demás",
+     "5. Creo que no tengo mucho de lo que estar orgulloso",
+     "6. Tengo una actitud positiva hacia mí mismo",
+     "7. En general me siento satisfecho conmigo mismo",
+     "8. Me gustaría tener más respeto por mí mismo",
+     "9. Realmente me siento inútil en algunas ocasiones",
+     "10. A veces pienso que no sirvo para nada"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "L([1,3,4,6,7]) + R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
+     "texto": "De 10 a 40: a mayor puntaje, mayor autoestima. Sin puntos de corte en la validación española."
+    },
+    {
+     "n": "Autoestima positiva (1, 3, 4, 6, 7)",
+     "js": "L([1,3,4,6,7])",
+     "texto": "De 5 a 20."
+    },
+    {
+     "n": "Autoestima negativa invertida (2, 5, 8, 9, 10)",
+     "js": "R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
+     "texto": "De 5 a 20: a mayor puntaje, menos autoevaluación negativa."
     }
    ]
   }
