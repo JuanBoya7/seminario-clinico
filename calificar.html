@@ -115,6 +115,13 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .chips button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff;}
 .cuenta{font-size:13px; color:var(--ink-faint); margin:10px 0 0;}
 .vacio{color:var(--ink-soft); margin:16px 0 0;}
+/* Respuestas abiertas (hora o número), como las cuatro primeras del PSQI. */
+.dato{display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; padding:10px 0; border-bottom:1px solid var(--border); max-width:75ch;}
+.dato p{flex:1 1 300px; margin:0; font-weight:600;}
+.dato input{font:inherit; font-size:15px; padding:6px 10px; border:1px solid var(--border); border-radius:8px; width:8.5em;
+  background:var(--bg); color:var(--ink);}
+.dato small{color:var(--ink-faint);}
+.dato .valor{font-weight:700;}
 .fuente{font-size:12px; color:var(--ink-faint); margin-top:26px;}
 @media (max-width:900px){
   .wrap{grid-template-columns:minmax(0,1fr);}
@@ -225,6 +232,15 @@ function instrumento(a, d){
   let niveles = false;
   d.bloques.forEach(b => {
     if (b.t === "consigna"){ h += '<p class="consigna">' + esc(b.x) + '</p>'; return; }
+    if (b.t === "dato"){
+      q++;
+      puntua[q] = true;
+      const hora = b.tipo === "hora";
+      h += '<div class="dato" data-q="' + q + '"><p>' + esc(b.x) + '</p><input name="q' + q + '" data-tipo="' + (hora ? "hora" : "numero") +
+        '" type="' + (hora ? "time" : "number") + '"' + (hora ? "" : ' min="0" step="any" inputmode="decimal"') +
+        ' aria-label="' + esc(b.x) + '">' + (b.unidad ? '<small>' + esc(b.unidad) + '</small>' : '') + '</div>';
+      return;
+    }
     if (b.lista){
       b.items.forEach(it => {
         q++;
@@ -267,6 +283,14 @@ function instrumento(a, d){
   const calc = () => {
     const r = [null];
     for (let i = 1; i <= total; i++){
+      const campo = document.querySelector('input[name="q' + i + '"]');
+      if (campo && campo.dataset.tipo){
+        // Hora: en horas decimales (23:30 -> 23.5). Número: tal cual.
+        const t = campo.value.trim();
+        r[i] = !t ? null : campo.dataset.tipo === "hora"
+          ? (([hh, mm]) => hh + mm / 60)(t.split(":").map(Number)) : (isNaN(Number(t)) ? null : Number(t));
+        continue;
+      }
       const m = document.querySelector('input[name="q' + i + '"]:checked');
       r[i] = m ? Number(m.value) : null;
     }
@@ -318,7 +342,12 @@ function instrumento(a, d){
     $("#res").innerHTML = out;
   };
   app.addEventListener("change", calc);
-  $("#borrar").addEventListener("click", () => { document.querySelectorAll("input[type=radio]").forEach(x => x.checked = false); calc(); });
+  app.addEventListener("input", e => { if (e.target.dataset && e.target.dataset.tipo) calc(); });
+  $("#borrar").addEventListener("click", () => {
+    document.querySelectorAll("input[type=radio]").forEach(x => x.checked = false);
+    document.querySelectorAll(".dato input").forEach(x => x.value = "");
+    calc();
+  });
   $("#imprimir").addEventListener("click", ev => ES_MOVIL ? compartir(d, ev.currentTarget) : print());
   calc();
 }
@@ -347,6 +376,14 @@ function copiaEstatica(){
     const m = document.createElement("span");
     m.className = "marca" + (orig[k].checked ? " si" : "");
     x.replaceWith(m);
+  });
+  // Los campos de hora y de número pasan como texto: la copia no conserva lo escrito.
+  const datos = app.querySelectorAll(".dato input");
+  copia.querySelectorAll(".dato input").forEach((x, k) => {
+    const v = document.createElement("span");
+    v.className = "valor";
+    v.textContent = datos[k].value || "—";
+    x.replaceWith(v);
   });
   return copia;
 }

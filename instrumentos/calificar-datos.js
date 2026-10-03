@@ -2504,6 +2504,93 @@ const CALIFICAR = {
    ]
   }
  },
+ "zarit": {
+  "clave": "Zarit",
+  "sigla": "Zarit",
+  "titulo": "Escala de Sobrecarga del Cuidador de Zarit",
+  "para": "Medir cuánta carga siente quien cuida a una persona dependiente: el efecto del cuidado en su salud, su vida social, su economía y su relación con la persona cuidada. Sirve para decidir si el cuidador necesita apoyo y para seguir el cambio.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Zarit, Reever y Bach-Peterson (1980) · versión española de Martín et al. (1996) · distribuida por Mapi Research Trust.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "A continuación se presenta una lista de afirmaciones, en las cuales se refleja cómo se sienten, a veces, las personas que cuidan a otra persona. Después de leer cada afirmación, debe indicar con que frecuencia se siente Vd. así: nunca, raramente, algunas veces, bastante a menudo y casi siempre. A la hora de responder piense que no existen respuestas acertadas o equivocadas, sino tan sólo su experiencia."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Algunas veces",
+     "Bastantes veces",
+     "Casi siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Piensa que su familiar le pide más ayuda de la que realmente necesita?",
+     "2. ¿Piensa que debido al tiempo que dedica a su familiar no tiene suficiente tiempo para Vd.?",
+     "3. ¿Se siente agobiado por intentar compatibilizar el cuidado de su familiar con otras responsabilidades (trabajo, familia)?",
+     "4. ¿Siente vergüenza por la conducta de su familiar?",
+     "5. ¿Se siente enfadado cuando está cerca de su familiar?",
+     "6. ¿Piensa que el cuidar de su familiar afecta negativamente la relación que usted tiene con otros miembros de su familia?",
+     "7. ¿Tiene miedo por el futuro de su familiar?",
+     "8. ¿Piensa que su familiar depende de Vd.?",
+     "9. ¿Se siente tenso cuando está cerca de su familiar?",
+     "10. ¿Piensa que su salud ha empeorado debido a tener que cuidar de su familiar?",
+     "11. ¿Piensa que no tiene tanta intimidad como le gustaría debido a tener que cuidar de su familiar?",
+     "12. ¿Piensa que su vida social se ha visto afectada negativamente por tener que cuidar a su familiar?",
+     "13. ¿Se siente incómodo por distanciarse de sus amistades debido a tener que cuidar de su familiar?",
+     "14. ¿Piensa que su familiar le considera a usted la única persona que le puede cuidar?",
+     "15. ¿Piensa que no tiene suficientes ingresos económicos para los gastos de cuidar a su familiar, además de sus otros gastos?",
+     "16. ¿Piensa que no será capaz de cuidar a su familiar por mucho más tiempo?",
+     "17. ¿Siente que ha perdido el control de su vida desde que comenzó la enfermedad de su familiar?",
+     "18. ¿Desearía poder dejar el cuidado de su familiar a otra persona?",
+     "19. ¿Se siente indeciso sobre qué hacer con su familiar?",
+     "20. ¿Piensa que debería hacer más por su familiar?",
+     "21. ¿Piensa que podría cuidar mejor a su familiar?",
+     "22. Globalmente, ¿qué grado de \"carga\" experimenta por el hecho de cuidar a su familiar?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,22)",
+     "rangos": [
+      [
+       22,
+       46,
+       "No hay sobrecarga"
+      ],
+      [
+       47,
+       55,
+       "Sobrecarga leve"
+      ],
+      [
+       56,
+       110,
+       "Sobrecarga intensa"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "pcl-5": {
   "clave": "PCL-5",
   "sigla": "PCL-5",
@@ -3345,6 +3432,77 @@ const CALIFICAR = {
    ]
   }
  },
+ "facit-sp": {
+  "clave": "FACIT-Sp",
+  "sigla": "FACIT-Sp",
+  "titulo": "Escala de Bienestar Espiritual (FACIT-Sp-12)",
+  "para": "Medir el bienestar espiritual en personas con enfermedad crónica o grave: el sentido y la paz (sentir que la vida tiene propósito, estar en armonía) y el consuelo y la fuerza que dan la fe o las creencias. No exige una religión: varias preguntas hablan de sentido y de paz sin referirse a la fe.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Peterman et al. (2002) · versión colombiana de Sierra Matamoros (Universidad Nacional de Colombia) · licencia de FACIT.org.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "A continuación encontrará una lista de afirmaciones que otras personas con su misma enfermedad consideran importantes. Marque un solo número por línea para indicar la respuesta que corresponde a los últimos 7 días."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me siento en paz",
+     "2. Tengo una razón para vivir",
+     "3. Mi vida ha sido productiva",
+     "4. Tengo dificultades para conseguir paz mental",
+     "5. Siento que mi vida tiene sentido",
+     "6. Soy capaz de encontrar consuelo dentro de mí mismo(a)",
+     "7. Tengo un sentimiento de armonía interior",
+     "8. A mi vida le falta sentido y propósito",
+     "9. Encuentro consuelo en mi fe o mis creencias espirituales",
+     "10. Encuentro fuerza en mi fe o mis creencias espirituales",
+     "11. Mi enfermedad ha fortalecido mi fe o mis creencias espirituales",
+     "12. Pase lo que pase con mi enfermedad, todo va a ir bien"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Sentido y paz (1 a 8)",
+     "js": "L([1,2,3,5,6,7]) + R(4,4) + R(8,4)",
+     "texto": "De 0 a 32: a mayor puntaje, más sentido y paz."
+    },
+    {
+     "n": "Fe (9 a 12)",
+     "js": "S(9,12)",
+     "texto": "De 0 a 16: a mayor puntaje, más consuelo y fuerza en la fe."
+    },
+    {
+     "n": "Total",
+     "js": "L([1,2,3,5,6,7]) + R(4,4) + R(8,4) + S(9,12)",
+     "texto": "De 0 a 48. Sin puntos de corte: compare con aplicaciones anteriores."
+    }
+   ]
+  }
+ },
  "mspss": {
   "clave": "MSPSS",
   "sigla": "MSPSS",
@@ -3807,6 +3965,65 @@ const CALIFICAR = {
        10,
        20,
        "Sobre el punto de corte (10, Osma et al., 2019); en la validación colombiana el corte es 12"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "scoff": {
+  "clave": "SCOFF",
+  "sigla": "SCOFF",
+  "titulo": "Cuestionario SCOFF",
+  "para": "Tamizar en cinco preguntas el riesgo de anorexia y bulimia: vómito provocado, pérdida de control sobre lo que se come, pérdida de peso, imagen corporal distorsionada y comida que domina la vida. Es breve y fácil de recordar, por eso sirve en consulta general y en entornos escolares.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Morgan et al. (1999), BMJ; versión colombiana de Rueda Jaimes et al. (2005), Atención Primaria, tabla 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Responda «Sí» o «No» a cada pregunta."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Usted se provoca el vómito porque se siente muy llena?",
+     "2. ¿Le preocupa que haya perdido el control sobre la cantidad de comida que ingiere?",
+     "3. ¿Ha perdido recientemente más de 7 kg en un período de 3 meses?",
+     "4. ¿Cree que está gorda aunque los demás digan que está demasiado delgada?",
+     "5. ¿Usted diría que la comida domina su vida?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí»",
+     "js": "C([1,2,3,4,5],1)",
+     "rangos": [
+      [
+       0,
+       1,
+       "Tamizaje negativo"
+      ],
+      [
+       2,
+       5,
+       "Tamizaje positivo: riesgo de trastorno de la conducta alimentaria (2 o más)"
       ]
      ]
     }
