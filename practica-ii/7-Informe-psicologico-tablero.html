@@ -519,21 +519,29 @@ function pintarGlobos(){
 
 // Frase larga: se muestra la ventana alrededor de lo que la hizo caer en el
 // globo, para que se lea de lejos.
+// Se resaltan todas las coincidencias que caen dentro de la ventana.
 function recortar(frase, re){
   const LIM = 300;
   const n = normalizar(frase);
-  const m = re ? re.exec(n) : null;
+  const tramos = [];
+  if (re) {
+    const g = new RegExp(re.source, "g"); let m;
+    while ((m = g.exec(n))) { if (!m[0].length) { g.lastIndex++; continue; } tramos.push([m.index, m.index + m[0].length]); }
+  }
   let a = 0, b = frase.length;
   if (frase.length > LIM) {
-    const centro = m ? m.index + m[0].length / 2 : 0;
+    const centro = tramos.length ? (tramos[0][0] + tramos[0][1]) / 2 : 0;
     a = Math.max(0, Math.round(centro - LIM / 2)); b = Math.min(frase.length, a + LIM); a = Math.max(0, b - LIM);
     while (a > 0 && frase[a - 1] !== " ") a--;
     while (b < frase.length && frase[b] !== " ") b++;
   }
-  let html = "";
-  if (m && m[0].length && m.index >= a && m.index + m[0].length <= b) {
-    html = esc(frase.slice(a, m.index)) + "<mark>" + esc(frase.slice(m.index, m.index + m[0].length)) + "</mark>" + esc(frase.slice(m.index + m[0].length, b));
-  } else html = esc(frase.slice(a, b));
+  let html = "", pos = a;
+  tramos.filter(([x, y]) => x >= a && y <= b).forEach(([x, y]) => {
+    if (x < pos) return;
+    html += esc(frase.slice(pos, x)) + "<mark>" + esc(frase.slice(x, y)) + "</mark>";
+    pos = y;
+  });
+  html += esc(frase.slice(pos, b));
   return (a > 0 ? "…" : "") + html + (b < frase.length ? "…" : "");
 }
 
@@ -549,8 +557,13 @@ const RESALTE = {
              bien: /omision\w*|sin contestar|no se interpreta\w*|escalas basicas|basicas|invalid\w*|desestim\w*/ },
   fortaleza: { mal: R.fortaleza, bien: /microf\w*|futbol|entrena\w*|red de apoyo|apoyo \w+|estabilidad \w+|insercion \w+( y \w+)?|se mantiene activo|fortalez\w*|favorec\w*|pronostico/ },
   intimo: { mal: R.intimo, bien: R.intimo },
-  siglas: { mal: null, bien: null },
-  pregunta: { mal: null, bien: null }
+  // Siglas: en «Puede mejorar», las que quedaron sin explicar (se arma en
+  // htmlInformes con las de cada momento); en «Bien resuelto», la forma completa.
+  siglas: { mal: null, bien: /impresion diagnostica|trastorno de ansiedad generalizada|ansiedad generalizada|trastorno depresivo mayor|depresivo mayor|infarto (agudo )?de miocardio|infarto agudo|electrocardiograma/ },
+  // Pregunta de remisión: lo que responde cada parte. En «Puede mejorar»,
+  // además, el diagnóstico que quedó en lugar de la respuesta.
+  pregunta: { mal: /componente \w+|psicoterap\w*|terapia|manejo psicologico|intervencion psicologica|psiquiatr\w*|trastorno (de |del )?[a-z]+( [a-z]+)?/,
+              bien: /componente \w+|psicoterap\w*|terapia|manejo psicologico|intervencion psicologica|psiquiatr\w*/ }
 };
 
 // Una frase por informe y por columna, tres como máximo, sin repetir. Un
@@ -574,9 +587,11 @@ function htmlInformes(g){
       : "Todavía no llegó ningún informe de este grupo."}</div>`;
   }
   const n = entregas.length;
+  const faltanTodas = [...new Set(entregas.flatMap(e => e.r.siglas.faltan))];
   const col = (lado, vacio) => {
     const vs = voces(g, lado);
-    const re = RESALTE[g.id][lado];
+    let re = RESALTE[g.id][lado];
+    if (g.id === "siglas" && lado === "mal" && faltanTodas.length) re = new RegExp("\\b(" + faltanTodas.map(s => s.toLowerCase()).join("|") + ")\\b");
     return `<div class="col-voz ${lado}"><h3>${COLUMNAS[lado]}</h3>${
       vs.length ? vs.map(v => `<div class="voz">«${recortar(v, re ? new RegExp(re.source) : null)}»</div>`).join("")
                 : `<div class="vacio-msg">${vacio}</div>`}</div>`;
