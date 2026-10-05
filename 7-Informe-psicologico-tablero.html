@@ -120,6 +120,22 @@ button,select{font-family:var(--font-body);}
 .rot{display:block; font-family:var(--font-mono); font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
 .caso-dato p{margin:0; font-size:clamp(17px,1.7vw,21px); line-height:1.5; color:var(--ink); max-width:80ch;}
 
+/* Perfil del MMPI-2 (solo el globo de validez) */
+.perfil{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:16px; margin-top:16px;}
+.perfil-col{background:var(--bg); border:1px solid var(--border); border-top:3px solid var(--accent); border-radius:10px; padding:12px 16px;}
+.perfil-col.no{border-top-color:var(--moderate);}
+.perfil-rot{font-family:var(--font-mono); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-dark);}
+.perfil-col.no .perfil-rot{color:var(--moderate);}
+.perfil-sub{font-size:14px; color:var(--ink-soft); margin:2px 0 8px;}
+.perfil ul{list-style:none; margin:0; padding:0;}
+.perfil li{display:flex; justify-content:space-between; gap:12px; font-size:15.5px; line-height:1.45; padding:2px 0; border-bottom:1px dotted var(--border); color:var(--ink-soft);}
+.perfil li:last-child{border-bottom:none;}
+.perfil li b{font-family:var(--font-mono); font-weight:400;}
+.perfil li.alta{color:var(--ink); font-weight:700;}
+.perfil li.alta b{font-weight:700;}
+.perfil-bajas{margin:8px 0 0; font-size:13px; line-height:1.45; color:var(--ink-faint);}
+.perfil-nota{margin:10px 0 0; font-size:14.5px; line-height:1.5; color:var(--ink-soft); max-width:none;}
+
 .paso-zona{margin-top:clamp(22px,4vh,40px);}
 
 /* Argumento */
@@ -190,6 +206,7 @@ button,select{font-family:var(--font-body);}
       <div id="argumento" hidden>
         <div class="concepto"><p id="concepto"></p><div class="citas" id="citas"></div></div>
         <div class="caso-dato"><span class="rot">En el expediente</span><p id="caso"></p></div>
+        <div id="perfil"></div>
         <div class="paso-zona"><button class="bt primario" id="bt-informes">Informes</button></div>
       </div>
       <div id="informes" hidden></div>
@@ -260,7 +277,19 @@ const GLOBOS = [
     caso: "Jairo dejó 36 ítems del MMPI-2 sin contestar, 31 de ellos después del 370: «las últimas me dio pereza». La hoja mostraba elevadas las escalas de contenido.",
     concepto: "Antes de interpretar un puntaje se revisa si el protocolo es válido. En el MMPI-2, con treinta o más ítems sin contestar lo más probable es que el protocolo sea inválido, y eso se informa. Las escalas básicas salen de los primeros 370 ítems; varias de las demás, entre ellas las de contenido, dependen de la parte final. Si las omisiones están al final, las básicas se leen con cautela y las de contenido no se interpretan; también es defendible no interpretar el protocolo. Anunciar «reservas» y concluir a partir de las escalas afectadas no es limitar la lectura.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 7"]],
-    lamina: "Lámina 8" },
+    lamina: "Lámina 8",
+    // El perfil de Jairo, tal como lo trae el expediente, partido por lo que
+    // se puede leer: para contrastar en vivo qué escalas citó cada informe.
+    perfil: {
+      basicas: [["Hipocondría (Hs)", 78], ["Depresión (D)", 72], ["Histeria (Hy)", 80], ["Desviación psicopática (Pd)", 55],
+                ["Masculinidad-feminidad (Mf)", 48], ["Paranoia (Pa)", 58], ["Psicastenia (Pt)", 66], ["Esquizofrenia (Sc)", 60],
+                ["Hipomanía (Ma)", 45], ["Introversión social (Si)", 62]],
+      contenido: [["Ansiedad (ANX)", 75], ["Depresión (DEP)", 74], ["Preocupaciones por la salud (HEA)", 82],
+                  ["Dificultades en el trabajo (WRK)", 66], ["Indicadores negativos de tratamiento (TRT)", 70]],
+      contenidoBajas: "Miedos (FRS), Obsesividad (OBS), Pensamiento extravagante (BIZ), Enojo (ANG), Cinismo (CYN), Prácticas antisociales (ASP), Personalidad tipo A (TPA), Baja autoestima (LSE), Incomodidad social (SOD) y Problemas familiares (FAM)",
+      notas: ["«Depresión» está en los dos grupos: D 72 es básica; DEP 74, de contenido. «Ansiedad» es solo de contenido; lo más cercano entre las básicas es Psicastenia (Pt) 66.",
+              "Infrecuencia posterior (Fb) 71, por encima de Infrecuencia (F) 62: la parte final de la prueba se respondió con menos cuidado."]
+    } },
   { id: "fortaleza", tema: "Lectura por áreas y pronóstico",
     titulo: "Evitar describir solo déficits",
     caso: "Jairo sigue entrenando los sábados el equipo de microfútbol de su hija («ni me acuerdo del pecho»), y en el trabajo «es el que sabe dónde está todo».",
@@ -616,11 +645,23 @@ function htmlInformes(g){
   return arriba + `<div class="voces">${col("mal", vacioMal)}${col("bien", vacioBien)}</div>`;
 }
 
+// Perfil del MMPI-2 en dos columnas: lo que se lee y lo que no. Las
+// elevaciones (T ≥ 65) van en negrita.
+function htmlPerfil(p){
+  const lista = filas => filas.map(([n, t]) => `<li${t >= 65 ? ' class="alta"' : ""}><span>${esc(n)}</span><b>${t}</b></li>`).join("");
+  return `<div class="perfil">
+    <div class="perfil-col lee"><div class="perfil-rot">Básicas · primeros 370 ítems</div><div class="perfil-sub">Se leen, con cautela</div><ul>${lista(p.basicas)}</ul></div>
+    <div class="perfil-col no"><div class="perfil-rot">Contenido · dependen de los ítems 371 a 567</div><div class="perfil-sub">No se interpretan</div><ul>${lista(p.contenido)}</ul>
+      <p class="perfil-bajas">Por debajo de 65: ${esc(p.contenidoBajas)}.</p></div>
+  </div>${p.notas.map(n => `<p class="perfil-nota">${esc(n)}</p>`).join("")}`;
+}
+
 function pintarEscena(){
   const g = GLOBOS[actual];
   $("cuenta").textContent = `${actual + 1} de ${GLOBOS.length} · ${g.tema}`;
   $("q-texto").textContent = g.titulo;
   $("caso").textContent = g.caso;
+  $("perfil").innerHTML = g.perfil ? htmlPerfil(g.perfil) : "";
   $("concepto").textContent = g.concepto;
   $("citas").innerHTML = g.citas.map(c => `<span>${esc(c[1])}</span>`).join(" · ") + ` · <span>En el deck: ${esc(g.lamina)}</span>`;
   $("referencias").innerHTML = `<span class="rot">Referencias</span>` +
