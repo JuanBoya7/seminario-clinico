@@ -157,6 +157,10 @@ button,select{font-family:var(--font-body);}
 .col-voz.mal .voz{background:var(--moderate-soft);}
 .col-voz.bien .voz{background:var(--accent-soft);}
 .voz mark{background:transparent; color:inherit; font-weight:700;}
+.resp-linea{margin-bottom:9px;}
+.resp-linea:last-child{margin-bottom:0;}
+.resp-rot{display:block; font-family:var(--font-mono); font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:2px;}
+.resp-falta{font-style:italic; color:var(--severe);}
 .vacio-msg{color:var(--ink-faint); font-size:15.5px; font-style:italic;}
 .siglas-rot{font-size:15px; color:var(--ink-soft); margin-top:clamp(20px,3vh,28px);}
 .siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
@@ -399,13 +403,13 @@ function analizar(textos){
 
   // 1. Pregunta de remisión: se juzga el informe entero por su conclusión.
   const concl = de(x => x.sec === "conclusion");
-  const p1 = concl.filter(x => R.parte1.test(x.n)), p2 = concl.filter(x => R.parte2.test(x.n));
-  // Se muestra la primera frase que responde cada parte; sin ninguna, el
-  // comienzo de la conclusión.
-  const resp = [p1[0], p2[0]].filter((x, i, a) => x && a.indexOf(x) === i);
-  r.pregunta = (p1.length && p2.length)
-    ? { bien: [unir(resp)], mal: [] }
-    : { bien: [], mal: [unir(resp.length ? resp : concl.slice(0, 2))].filter(Boolean) };
+  // Se guarda la primera frase que responde cada parte, por separado, para
+  // mostrar una línea por parte; sin ninguna, el comienzo de la conclusión,
+  // que es lo que el informe puso en lugar de la respuesta.
+  const p1 = concl.find(x => R.parte1.test(x.n)), p2 = concl.find(x => R.parte2.test(x.n));
+  const resp = { p1: p1 ? p1.f : null, p2: p2 ? p2.f : null,
+                 otro: !p1 && !p2 && concl.length ? unir(concl.slice(0, 2)) : null };
+  r.pregunta = p1 && p2 ? { bien: [resp], mal: [] } : { bien: [], mal: [resp] };
 
   // 2. Siglas
   const faltan = siglasSinExplicar(textos);
@@ -549,8 +553,7 @@ function pintarGlobos(){
 // Frase larga: se muestra la ventana alrededor de lo que la hizo caer en el
 // globo, para que se lea de lejos.
 // Se resaltan todas las coincidencias que caen dentro de la ventana.
-function recortar(frase, re){
-  const LIM = 300;
+function recortar(frase, re, LIM = 300){
   const n = normalizar(frase);
   const tramos = [];
   if (re) {
@@ -589,11 +592,29 @@ const RESALTE = {
   // Siglas: en «Puede mejorar», las que quedaron sin explicar (se arma en
   // htmlInformes con las de cada momento); en «Bien resuelto», la forma completa.
   siglas: { mal: null, bien: /impresion diagnostica|trastorno de ansiedad generalizada|ansiedad generalizada|trastorno depresivo mayor|depresivo mayor|infarto (agudo )?de miocardio|infarto agudo|electrocardiograma/ },
-  // Pregunta de remisión: lo que responde cada parte. En «Puede mejorar»,
-  // además, el diagnóstico que quedó en lugar de la respuesta.
-  pregunta: { mal: /componente \w+|psicoterap\w*|terapia|manejo psicologico|intervencion psicologica|psiquiatr\w*|trastorno (de |del )?[a-z]+( [a-z]+)?/,
-              bien: /componente \w+|psicoterap\w*|terapia|manejo psicologico|intervencion psicologica|psiquiatr\w*/ }
+  pregunta: { mal: null, bien: null }   // va por partes: ver PARTES_PREGUNTA
 };
+
+// Pregunta de remisión: una línea por parte, cada una con su frase recortada
+// por separado y su propio resaltado. «otro» es el diagnóstico (u otra cosa)
+// que quedó en lugar de la respuesta.
+const PARTES_PREGUNTA = [
+  { clave: "p1", rot: "¿Componente ansioso o depresivo?",
+    re: /componente \w+( \w+)?|sintomatologia (ansiosa|depresiva)( y depresiva)?|ansiedad moderada|ansios\w*|depresiv\w*/ },
+  { clave: "p2", rot: "¿Psicología o psiquiatría?",
+    re: /psicoterap\w*|terapia|manejo psicologico|intervencion psicologica|(manejo|valoracion|remision|atencion) (por |a |con )?(la )?psiquiatr\w*|psiquiatr\w*/ },
+  { clave: "otro", rot: "En su lugar", re: /trastorno (de |del )?[a-z]+( [a-z]+)?/ }
+];
+function htmlRespuesta(v){
+  return PARTES_PREGUNTA.map(p => {
+    if (p.clave === "otro" && !v.otro) return "";
+    if (p.clave !== "otro" && v.p1 === v.p2 && p.clave === "p2" && v.p1) return "";   // una frase responde las dos
+    const rot = p.clave === "p1" && v.p1 && v.p1 === v.p2 ? "Las dos partes" : p.rot;
+    const f = v[p.clave];
+    return `<div class="resp-linea"><span class="resp-rot">${esc(rot)}</span>${
+      f ? "«" + recortar(f, p.re, 220) + "»" : `<span class="resp-falta">No lo responde</span>`}</div>`;
+  }).join("");
+}
 
 // Una frase por informe y por columna, tres como máximo, sin repetir. Un
 // informe que resolvió bien la trampa no aparece además en «Puede mejorar»,
@@ -604,7 +625,8 @@ function voces(g, lado){
     const x = e.r[g.id];
     if (lado === "mal" && g.id !== "siglas" && (x.bien || []).length) return;
     const f = (x[lado] || [])[0];
-    if (f && !lista.includes(f)) lista.push(f);
+    const clave = JSON.stringify(f);   // la pregunta de remisión guarda un objeto por informe
+    if (f && !lista.some(x => JSON.stringify(x) === clave)) lista.push(f);
   });
   return lista.slice(0, 3);
 }
@@ -622,7 +644,9 @@ function htmlInformes(g){
     let re = RESALTE[g.id][lado];
     if (g.id === "siglas" && lado === "mal" && faltanTodas.length) re = new RegExp("\\b(" + faltanTodas.map(s => s.toLowerCase()).join("|") + ")\\b");
     return `<div class="col-voz ${lado}"><h3>${COLUMNAS[lado]}</h3>${
-      vs.length ? vs.map(v => `<div class="voz">«${recortar(v, re ? new RegExp(re.source) : null)}»</div>`).join("")
+      vs.length ? vs.map(v => g.id === "pregunta"
+                    ? `<div class="voz">${htmlRespuesta(v)}</div>`
+                    : `<div class="voz">«${recortar(v, re)}»</div>`).join("")
                 : `<div class="vacio-msg">${vacio}</div>`}</div>`;
   };
   let arriba = "";
