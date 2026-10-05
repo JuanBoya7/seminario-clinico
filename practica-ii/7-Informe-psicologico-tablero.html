@@ -172,7 +172,7 @@ button,select{font-family:var(--font-body);}
 </div>
 
 <!-- ============================================================
-     Vista de proyección: expediente → argumento → informes
+     Vista de proyección: título → argumento y expediente → informes
      ============================================================ -->
 <div class="escena" id="escena" role="dialog" aria-modal="true" aria-labelledby="q-texto">
   <div class="escena-barra">
@@ -186,10 +186,10 @@ button,select{font-family:var(--font-body);}
   <div class="escena-cuerpo" id="escena-cuerpo">
     <div class="escena-inner">
       <h1 class="q-texto" id="q-texto"></h1>
-      <div class="caso-dato"><span class="rot">En el expediente</span><p id="caso"></p></div>
       <div class="paso-zona"><button class="bt primario" id="bt-argumento">Argumento</button></div>
       <div id="argumento" hidden>
         <div class="concepto"><p id="concepto"></p><div class="citas" id="citas"></div></div>
+        <div class="caso-dato"><span class="rot">En el expediente</span><p id="caso"></p></div>
         <div class="paso-zona"><button class="bt primario" id="bt-informes">Informes</button></div>
       </div>
       <div id="informes" hidden></div>
@@ -216,8 +216,8 @@ const GRUPOS_CURSO = ["Práctica II"];
    2. LOS GLOBOS
    ============================================================
    Uno por trampa del expediente de Jairo, en el orden del deck. Cada globo
-   abre, en este orden: el dato del expediente, el argumento con sus fuentes
-   y las frases de los informes. El título dice qué evitar, como el recuadro
+   abre, en este orden: el título solo; el argumento con sus fuentes y, justo
+   debajo, el dato del expediente; y las frases de los informes. El título dice qué evitar, como el recuadro
    «¿Qué evitar?» de la apertura.
    Las citas remiten a REFERENCIAS por su clave.
    ============================================================ */
@@ -497,7 +497,7 @@ let entregas = [];     // [{ grupo, cursoGrupo, textos, r }]
 let firma = "";
 let cargando = false;
 let actual = 0;
-let paso = 0;          // 0 expediente · 1 argumento · 2 informes
+let paso = 0;          // 0 título · 1 argumento y expediente · 2 informes
 
 // Un informe trae sus cuatro secciones en «textos» (receptor actualizado el
 // 2026-10-05). Sin ellas no hay nada que leer.
