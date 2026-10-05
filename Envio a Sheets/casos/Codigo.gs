@@ -292,22 +292,21 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
       Object.keys(ultima).forEach(function (grupo) {
         var estado = {};
         try { estado = JSON.parse(ultima[grupo].json) || {}; } catch (err) { estado = {}; }
-        // El informe no tiene veredicto ni criterios: su tablero proyecta la
-        // autoauditoría (cómo clasificó cada equipo las siete trampas) y las
-        // frases de su informe que el recurso encontró para cada una.
+        // El informe no tiene veredicto ni criterios: su tablero lee las cuatro
+        // secciones escritas y busca en ellas las trampas del expediente.
         if (caso === 'Informe') {
-          var radios = estado.radio || {}, aud = {};
-          Object.keys(radios).forEach(function (k) {
-            if (k.indexOf('aud-') === 0) aud[k.substring(4)] = String(radios[k] || '');
-          });
+          var txt = estado.text || {};
           entregas.push({
             cursoGrupo: g,
             grupo: grupo,
             enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
-            expediente: String((estado.text || {})['ct-caso'] || ''),
-            aud: aud,
-            hallazgos: estado.hallazgos || {},
-            frase: String((estado.text || {})['f-aud-frase'] || '').substring(0, 400)
+            expediente: String(txt['ct-caso'] || ''),
+            textos: {
+              motivo: String(txt['f-motivo'] || '').substring(0, 3000),
+              historia: String(txt['f-historia'] || '').substring(0, 3000),
+              resultados: String(txt['f-resultados'] || '').substring(0, 3000),
+              conclusion: String(txt['f-conclusion'] || '').substring(0, 3000)
+            }
           });
           return;
         }

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informe psicológico — Tablero</title>
+<title>Informe psicológico — Qué evitar</title>
 <style>
 /* ============================================================
-   TOKENS — los mismos del recurso y de los tableros de los casos
+   TOKENS — los del recurso y de los globos del tamizaje SRQ
    ============================================================ */
 :root{
   --bg:#ffffff;
@@ -23,126 +23,179 @@
   --moderate-soft:#faf1e4;
   --severe:#a83f2b;
   --severe-soft:#fbeae6;
-  --gris:#9aa6ad;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:14px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 6px 22px rgba(22,35,43,0.07);
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
-body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
-h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
-button{font-family:var(--font-body);}
-.wrap{max-width:1180px; margin:0 auto; padding:22px 24px 40px;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+button,select{font-family:var(--font-body);}
 
-.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
-.aviso-demo{background:var(--moderate-soft); border:1px solid var(--moderate); color:var(--moderate); border-radius:10px; padding:9px 14px; font-size:13.5px; margin-bottom:16px;}
-.aviso-demo[hidden]{display:none;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin:16px;}
 
-.cabecera{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;}
-.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
-.cabecera h1{font-size:26px;}
-.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
-.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
-.bt:hover{background:var(--surface-alt); color:var(--ink);}
-.bt[hidden]{display:none;}
-.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+/* ---- Controles del docente: discretos, arriba a la derecha ---- */
+.controles{
+  position:fixed; top:12px; right:16px; z-index:20;
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+}
+.controles select{font-size:13px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:5px 8px;}
+.estado{font-size:11.5px; color:var(--ink-faint); font-family:var(--font-mono);}
 .estado.error{color:var(--severe);}
 
-.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
-.nav-pantallas[hidden]{display:none;}
-.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
-.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+/* ============================================================
+   LOS GLOBOS
+   ============================================================ */
+.wrap{
+  max-width:1180px; margin:0 auto;
+  padding:clamp(48px,8vh,84px) 32px 64px;
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.globos{display:grid; grid-template-columns:repeat(2,minmax(300px,1fr)); gap:34px 30px;}
+/* Con siete globos, el último pasa a fila completa y se centra. */
+.globos > .globo:last-child:nth-child(odd){grid-column:1 / -1; justify-self:center; width:calc(50% - 15px);}
+@media (max-width:820px){
+  .wrap{padding:64px 16px 40px;}
+  .globos{grid-template-columns:1fr; gap:30px 0;}
+  .globos > .globo:last-child:nth-child(odd){grid-column:auto; width:100%;}
+}
+.globo{
+  position:relative; display:block; width:100%; text-align:left;
+  font-family:var(--font-display); font-size:clamp(19px,1.85vw,23px);
+  line-height:1.34; letter-spacing:-.005em; color:var(--ink);
+  background:var(--surface); border:1px solid var(--border); border-radius:22px;
+  padding:24px 26px 28px; cursor:pointer; box-shadow:var(--shadow-card);
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.globo:hover, .globo:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(22,35,43,.05), 0 14px 30px rgba(22,35,43,.11);
+  background:var(--bg); outline:none;
+}
+.globo:focus-visible{border-color:var(--accent);}
+.globo::before, .globo::after{content:""; position:absolute; left:34px; width:0; height:0; border-style:solid;}
+.globo::before{bottom:-15px; border-width:15px 15px 0 0; border-color:var(--border) transparent transparent transparent;}
+.globo::after{bottom:-13px; border-width:13px 13px 0 0; border-color:var(--surface) transparent transparent transparent; transition:border-top-color .16s ease;}
+.globo:hover::after, .globo:focus-visible::after{border-top-color:var(--bg);}
+.globo .num{display:block; font-family:var(--font-body); font-size:11.5px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:12px;}
 
-.panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
-.panel .num{font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
-.panel h2{font-size:clamp(20px,2vw,25px); line-height:1.25; max-width:48ch;}
+/* ============================================================
+   VISTA DE PROYECCIÓN
+   ============================================================ */
+.escena{position:fixed; inset:0; z-index:50; background:var(--bg); display:none; flex-direction:column;}
+.escena.abierta{display:flex;}
+.escena-barra{
+  flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 26px; border-bottom:1px solid var(--border); background:var(--surface);
+}
+.escena-barra .cuenta{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint);}
+.escena-barra .btns{display:flex; align-items:center; gap:8px;}
+.bt{
+  font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px; padding:7px 14px; cursor:pointer;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt.primario{background:var(--accent); border-color:var(--accent); color:#fff;}
+.bt.primario:hover{background:var(--accent-dark); border-color:var(--accent-dark);}
+.bt[hidden]{display:none;}
 
-/* ---- Concepto: lo que se espera, con su fuente, antes de ver las respuestas ---- */
-.concepto{margin:14px 0 22px; background:var(--accent-soft); border-left:4px solid var(--accent); border-radius:0 12px 12px 0; padding:16px 22px;}
-.concepto p{margin:0; font-size:clamp(16.5px,1.5vw,19px); line-height:1.55; color:var(--ink); max-width:80ch;}
+.escena-cuerpo{flex:1 1 auto; overflow-y:auto; padding:clamp(24px,4vh,48px) clamp(20px,5vw,64px) 48px;}
+.escena-inner{width:100%; max-width:1080px; margin:0 auto;}
+
+.q-texto{
+  font-family:var(--font-display); font-size:clamp(28px,3.6vw,46px);
+  line-height:1.2; letter-spacing:-.015em; color:var(--ink); max-width:28ch;
+  transition:font-size .22s ease;
+}
+/* Abierto el argumento, el título baja a encabezado y le deja la pantalla al contenido. */
+.escena.avanzado .q-texto{font-size:clamp(21px,2.2vw,29px); max-width:none; color:var(--ink-soft);}
+
+/* En el expediente: lo primero que se ve, el dato del caso */
+.caso-dato{margin-top:clamp(20px,3vh,32px); background:var(--surface-alt); border:1px solid var(--border); border-radius:var(--radius); padding:16px 22px;}
+.rot{display:block; font-family:var(--font-mono); font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.caso-dato p{margin:0; font-size:clamp(17px,1.7vw,21px); line-height:1.5; color:var(--ink); max-width:80ch;}
+
+.paso-zona{margin-top:clamp(22px,4vh,40px);}
+
+/* Argumento */
+.concepto{margin-top:clamp(20px,3vh,30px); background:var(--accent-soft); border-left:4px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0; padding:16px 22px;}
+.concepto p{margin:0; font-size:clamp(16.5px,1.55vw,19.5px); line-height:1.55; color:var(--ink); max-width:82ch;}
 .concepto .citas{margin-top:10px; font-size:13px; line-height:1.45; color:var(--accent-dark);}
 .concepto .citas span{white-space:nowrap;}
-/* ---- En el expediente: el dato del caso, resaltado, justo antes de las barras ---- */
-.caso-dato{margin:0 0 22px; background:var(--surface-alt); border:1px solid var(--border); border-radius:12px; padding:14px 20px;}
-.caso-dato .rot{display:block; font-family:var(--font-mono); font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
-.caso-dato p{margin:0; font-size:clamp(17px,1.6vw,20px); line-height:1.5; color:var(--ink); max-width:80ch;}
-.referencias{margin-top:28px; border-top:1px solid var(--border); padding-top:14px;}
-.referencias .rot{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;}
+.referencias{margin-top:28px; border-top:1px solid var(--border); padding-top:12px;}
+.referencias .rot{color:var(--ink-faint); font-weight:600;}
 .referencias p{font-size:12.5px; line-height:1.45; color:var(--ink-faint); margin:0 0 4px; padding-left:22px; text-indent:-22px;}
-.vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
 
-.fila{display:grid; grid-template-columns:minmax(200px,34%) minmax(0,1fr) 80px; gap:14px; align-items:center; margin-bottom:12px;}
-.fila .nom{font-size:16.5px; line-height:1.3;}
-.bar{display:flex; height:28px; background:var(--surface-alt); border-radius:6px; overflow:hidden;}
-.bar span{display:block; height:100%;}
-.fila .val{font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); text-align:right; white-space:nowrap;}
-
-.contador{font-family:var(--font-display); font-size:clamp(72px,11vw,128px); line-height:1; color:var(--accent-dark);}
-.contador-t{font-size:18px; color:var(--ink-soft); margin-top:6px;}
-.chips{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px;}
-.chip{font-size:14.5px; padding:7px 13px; border-radius:99px; background:var(--accent-soft); color:var(--accent-dark);}
-.chip small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px; color:var(--accent);}
-.btn-principal{font-size:17px; font-weight:600; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:10px; padding:14px 26px; cursor:pointer;}
-.btn-principal:hover{background:var(--accent-dark);}
-
-/* ---- Voces: frases reales de los informes, sin número de grupo ---- */
-.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:22px; margin-top:28px;}
-.col-voz h3{font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
+/* Informes: frases reales, sin número de grupo */
+.ausencia{margin-top:clamp(20px,3vh,28px); font-size:15.5px; color:var(--ink-soft);}
+.voces{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr)); gap:22px; margin-top:20px;}
+.col-voz h3{font-size:18px; margin-bottom:10px; padding-bottom:6px; border-bottom:3px solid var(--border);}
 .col-voz.mal h3{border-bottom-color:var(--moderate);}
 .col-voz.bien h3{border-bottom-color:var(--accent);}
-.voz{background:var(--surface); padding:12px 14px; border-radius:8px; margin-bottom:10px; font-size:16.5px; line-height:1.45;}
-/* Cada frase toma, en pastel, el color de la línea de su columna. */
+.voz{padding:12px 14px; border-radius:8px; margin-bottom:10px; font-size:16.5px; line-height:1.45;}
 .col-voz.mal .voz{background:var(--moderate-soft);}
 .col-voz.bien .voz{background:var(--accent-soft);}
-.siglas-rot{font-size:15px; color:var(--ink-soft); margin-top:22px;}
-.siglas-rot + .siglas-chips{margin-top:10px;}
-.siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
+.voz mark{background:transparent; color:inherit; font-weight:700;}
+.vacio-msg{color:var(--ink-faint); font-size:15.5px; font-style:italic;}
+.siglas-rot{font-size:15px; color:var(--ink-soft); margin-top:clamp(20px,3vh,28px);}
+.siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
 .sigla{font-family:var(--font-mono); font-size:19px; font-weight:700; padding:8px 14px; border-radius:8px; background:var(--moderate-soft); color:var(--moderate);}
 .sigla small{font-size:12px; font-weight:600; margin-left:6px;}
+.aviso-datos{margin-top:18px; font-size:14px; color:var(--severe); background:var(--severe-soft); border-radius:8px; padding:10px 14px;}
 
-
-.pie{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
-.pie[hidden]{display:none;}
-.pie .cuenta{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint);}
+[hidden]{display:none !important;}
 
 @media (max-width:760px){
-  .wrap{padding:16px 14px 30px;}
-  .panel{padding:20px 18px 22px;}
-  .fila{grid-template-columns:minmax(0,1fr); gap:6px;}
-  .fila .val{text-align:left;}
+  .escena-barra{padding:10px 14px;}
+  .escena-cuerpo{padding:20px 16px 40px;}
 }
 </style>
 </head>
 <body>
+
+<div class="js-warning" id="js-warning-fallback">
+  Si ves este mensaje, el tablero no se está ejecutando. Ábrelo en un navegador de escritorio.
+</div>
+
+<div class="controles">
+  <select id="f-grupo" aria-label="Grupo del curso"></select>
+  <span class="estado" id="estado">—</span>
+</div>
+
 <div class="wrap">
+  <div class="globos" id="globos"></div>
+</div>
 
-  <div class="js-warning" id="js-warning-fallback">
-    Si ves este mensaje, el tablero no se está ejecutando. Ábrelo en un navegador de escritorio.
-  </div>
-  <div class="aviso-demo" id="aviso-demo" hidden></div>
-
-  <div class="cabecera">
-    <div>
-      <div class="eyebrow">Informe psicológico · Tablero docente</div>
-      <h1>Lo que dejaron los informes</h1>
-    </div>
-    <div class="controles">
-      <select id="f-grupo" aria-label="Grupo del curso"></select>
-      <button class="bt" id="bt-tapar" hidden>Volver a tapar</button>
-      <span class="estado" id="estado">—</span>
+<!-- ============================================================
+     Vista de proyección: expediente → argumento → informes
+     ============================================================ -->
+<div class="escena" id="escena" role="dialog" aria-modal="true" aria-labelledby="q-texto">
+  <div class="escena-barra">
+    <div class="cuenta" id="cuenta"></div>
+    <div class="btns">
+      <button class="bt" id="bt-ant" title="Anterior (←)">← Anterior</button>
+      <button class="bt" id="bt-sig" title="Siguiente (→)">Siguiente →</button>
+      <button class="bt" id="bt-cerrar" title="Volver a los globos (Esc)">Cerrar</button>
     </div>
   </div>
-
-  <nav class="nav-pantallas" id="nav" hidden></nav>
-  <main id="pantalla"></main>
-  <div class="pie" id="pie" hidden>
-    <button class="bt" id="bt-ant">← Anterior</button>
-    <span class="cuenta" id="cuenta"></span>
-    <button class="bt" id="bt-sig">Siguiente →</button>
+  <div class="escena-cuerpo" id="escena-cuerpo">
+    <div class="escena-inner">
+      <h1 class="q-texto" id="q-texto"></h1>
+      <div class="caso-dato"><span class="rot">En el expediente</span><p id="caso"></p></div>
+      <div class="paso-zona"><button class="bt primario" id="bt-argumento">Argumento</button></div>
+      <div id="argumento" hidden>
+        <div class="concepto"><p id="concepto"></p><div class="citas" id="citas"></div></div>
+        <div class="paso-zona"><button class="bt primario" id="bt-informes">Informes</button></div>
+      </div>
+      <div id="informes" hidden></div>
+      <div class="referencias" id="referencias" hidden></div>
+    </div>
   </div>
-
 </div>
 
 <script>
@@ -159,19 +212,13 @@ const FUENTE = {
 };
 const GRUPOS_CURSO = ["901", "902", "903"];
 
-// Todos los equipos trabajan el mismo expediente: el de Jairo.
-const EXPEDIENTE = "C";
-
 /* ============================================================
    2. LOS GLOBOS
    ============================================================
-   Uno por trampa, en el orden del deck (finalidad → redacción → buenas
-   prácticas → lectura → ética). Cada globo muestra, en este orden: la
-   pregunta, el concepto que la responde con sus fuentes, lo que traía el
-   expediente, las barras y las voces. Las opciones son las mismas de la
-   autoauditoría del recurso, con un rótulo corto para las barras y su lectura:
-   «mal» y «bien» deciden en qué columna de voces cae la frase de un grupo;
-   «neutro» cuenta en las barras pero no aporta voces.
+   Uno por trampa del expediente de Jairo, en el orden del deck. Cada globo
+   abre, en este orden: el dato del expediente, el argumento con sus fuentes
+   y las frases de los informes. El título dice qué evitar, como el recuadro
+   «¿Qué evitar?» de la apertura.
    Las citas remiten a REFERENCIAS por su clave.
    ============================================================ */
 const REFERENCIAS = {
@@ -184,105 +231,218 @@ const REFERENCIAS = {
 
 const GLOBOS = [
   { id: "pregunta", tema: "Finalidad del informe",
-    pregunta: "¿Respondieron lo que les preguntaron?",
+    titulo: "Evitar dejar sin respuesta la pregunta de quien remite",
+    caso: "La médica preguntó dos cosas: si hay un componente ansioso o depresivo que explique los síntomas, y si Jairo requiere manejo por psicología o remisión a psiquiatría.",
     concepto: "El informe existe para responder la pregunta de quien remite. Cada parte de esa pregunta recibe una respuesta explícita en la conclusión, en palabras que el destinatario pueda usar para decidir. Una estrategia sencilla es numerar las preguntas en el motivo de consulta y responderlas con los mismos números. Si una parte no puede responderse con los datos disponibles, se dice y se explica por qué.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 15"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["sch2018", "Schneider et al., 2018, cap. 8"]],
-    lamina: "Láminas 3 y 12",
-    caso: "La médica preguntó dos cosas: si hay un componente ansioso o depresivo que explique los síntomas, y si Jairo requiere manejo por psicología o remisión a psiquiatría.",
-    opciones: [["completa", "Responde las dos partes", "bien"], ["parcial", "Responde solo una parte", "neutro"], ["no", "No la responde de forma directa", "mal"]] },
+    lamina: "Láminas 3 y 12" },
   { id: "siglas", tema: "Redacción clínica",
-    pregunta: "¿Quién va a leer esas siglas?",
+    titulo: "Evitar siglas sin su forma completa",
+    caso: "La remisión de la médica traía cinco siglas: IDx, TAG, TDM, IAM y EKG.",
     concepto: "Un informe lo leen personas que no comparten la jerga del evaluador: el consultante, otros profesionales, a veces un juez. Cada sigla se escribe completa la primera vez, con la sigla entre paréntesis, y solo se conserva si se va a repetir. Los nombres de las pruebas siguen la misma regla. Hasta los términos técnicos que parecen claros son malinterpretados con frecuencia, incluso por profesionales.",
     citas: [["sch2018", "Schneider et al., 2018, cap. 3"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"]],
-    lamina: "Lámina 9",
-    caso: "La remisión de la médica traía cinco siglas: IDx, TAG, TDM, IAM y EKG.",
-    opciones: [["sin-explicar", "Usaron siglas sin explicarlas", "mal"], ["algunas", "Explicaron algunas", "neutro"], ["todas", "Las explicaron todas, o no las usaron", "bien"]] },
+    lamina: "Lámina 9" },
   { id: "rumor", tema: "Buenas prácticas",
-    pregunta: "¿Qué hacemos con lo que alguien contó que otro dijo?",
+    titulo: "Evitar presentar como hecho un dato no verificado",
+    caso: "Liliana contó que Yolanda le dijo que un compañero le contó que a Jairo lo han visto tomando en la bodega. Nadie lo vio; Jairo reporta cerveza cada quince días y el AUDIT dio 6.",
     concepto: "Un dato de oídas no es un hallazgo. Lo que no pudo verificarse se omite, o se incluye nombrando su fuente («según refiere su esposa…») y contrastándolo con lo evaluado. La información de terceros se verifica antes de usarla, con más cuidado si quien la aporta tiene interés en el resultado. Nunca se redacta como un hecho.",
     citas: [["sch2018", "Schneider et al., 2018, cap. 4"], ["aera2014", "AERA, APA y NCME, 2014, cap. 10"]],
     lamina: "Lámina 9",
-    caso: "Liliana contó que Yolanda le dijo que un compañero le contó que a Jairo lo han visto tomando en la bodega. Nadie lo vio; Jairo reporta cerveza cada quince días y el AUDIT dio 6.",
-    opciones: [["hecho", "Lo presentaron como un hecho", "mal"], ["atribuido", "Lo atribuyeron, sin darlo por cierto", "bien"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]] },
+    ausente: "no mencionan el rumor" },
   { id: "contradiccion", tema: "Integración",
-    pregunta: "Cuando dos fuentes no dicen lo mismo, ¿a cuál le creemos?",
-    concepto: "A ninguna por separado. Integrar no es poner los resultados uno al lado del otro: es combinar las fuentes y dar cuenta de las que se contradicen. Una discrepancia entre lo que dice la persona y lo que muestra una prueba no es un error que haya que descartar; suele ser información clínica que el informe explica. Un informe organizado prueba por prueba fragmenta a la persona.",
-    citas: [["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["gm2009", "Groth-Marnat, 2009, cap. 15"]],
-    lamina: "Láminas 10 y 16",
+    titulo: "Evitar interpretar las fuentes por separado",
     caso: "Jairo dijo «Yo no estoy deprimido. Lo mío es físico», y su BDI-II dio 24, con el puntaje concentrado en ítems corporales (sueño, energía, cansancio) y los cognitivos en cero.",
-    opciones: [["una", "Informaron solo una fuente", "mal"], ["separadas", "Informaron las dos, por separado", "mal"], ["integradas", "Las integraron y explicaron la diferencia", "bien"], ["no-tratado", "No lo trataron", "neutro"]] },
+    concepto: "Integrar no es poner los resultados uno al lado del otro: es combinar las fuentes y dar cuenta de las que se contradicen. Una discrepancia entre lo que dice la persona y lo que muestra una prueba no es un error que haya que descartar; suele ser información clínica que el informe explica. Un informe organizado prueba por prueba fragmenta a la persona.",
+    citas: [["gmd2014", "Groth-Marnat y Davis, 2014, cap. 2"], ["gm2009", "Groth-Marnat, 2009, cap. 15"]],
+    lamina: "Láminas 10 y 16" },
   { id: "validez", tema: "Calidad de los instrumentos",
-    pregunta: "¿Un puntaje dice siempre lo que parece?",
+    titulo: "Evitar interpretar un protocolo sin revisar su validez",
+    caso: "Jairo dejó 36 ítems del MMPI-2 sin contestar, 31 de ellos después del 370: «las últimas me dio pereza». La hoja mostraba elevadas las escalas de contenido.",
     concepto: "Antes de interpretar un puntaje se revisa si el protocolo es válido. En el MMPI-2, treinta o más ítems sin contestar ponen en duda la interpretación, y el problema se informa. Como las escalas básicas salen de los primeros 370 ítems y varias de las demás, entre ellas las de contenido, dependen de la parte final, las omisiones del final afectan sobre todo a estas últimas: la lectura se limita a lo que el protocolo permite.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 7"]],
-    lamina: "Lámina 8",
-    caso: "Jairo dejó 36 ítems del MMPI-2 sin contestar, 31 de ellos después del 370: «las últimas me dio pereza». La hoja mostraba elevadas las escalas de contenido.",
-    opciones: [["sin-advertir", "Interpretaron sin advertir el problema", "mal"], ["advertido", "Lo advirtieron, pero interpretaron todo", "mal"], ["limitado", "Lo advirtieron y limitaron la interpretación", "bien"], ["no-usada", "No usaron esa prueba", "neutro"]] },
+    lamina: "Lámina 8" },
   { id: "fortaleza", tema: "Lectura por áreas y pronóstico",
-    pregunta: "¿Qué puede hacer bien esta persona?",
+    titulo: "Evitar describir solo déficits",
+    caso: "Jairo sigue entrenando los sábados el equipo de microfútbol de su hija («ni me acuerdo del pecho»), y en el trabajo «es el que sabe dónde está todo».",
     concepto: "Los informes tienden a enumerar déficits. Describir también las fortalezas y los recursos de la persona equilibra la descripción, favorece la relación con quien lo lee y orienta el tratamiento, que puede apoyarse en ellas para mejorar los resultados. No son un adorno: las áreas libres de conflicto sostienen el pronóstico.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 15"], ["gmd2014", "Groth-Marnat y Davis, 2014, cap. 3"]],
     lamina: "Láminas 9, 11 y 12",
-    caso: "Jairo sigue entrenando los sábados el equipo de microfútbol de su hija («ni me acuerdo del pecho»), y en el trabajo «es el que sabe dónde está todo».",
-    opciones: [["no", "No la mencionaron", "mal"], ["mencion", "La mencionaron, sin usarla", "neutro"], ["usada", "La usaron en el pronóstico o las recomendaciones", "bien"]] },
+    ausente: "no mencionan ninguna fortaleza" },
   { id: "intimo", tema: "Ética",
-    pregunta: "¿Todo lo que supimos va en el informe?",
-    concepto: "No. Un informe incluye solo la información pertinente al propósito para el que se escribe. Lo que la persona confió con pedido de reserva, y no responde la pregunta de remisión, queda fuera: incluirlo, aun suavizado, vulnera la confidencialidad sin aportar nada. Conviene redactar asumiendo que todo el que tenga derecho a leer el informe lo va a leer.",
+    titulo: "Evitar incluir información confidencial ajena a la remisión",
+    caso: "Jairo contó una relación de hace doce años, dijo que no tenía nada que ver con lo que le pasa y pidió que no quedara «en ningún papel». El informe va a su médica.",
+    concepto: "Un informe incluye solo la información pertinente al propósito para el que se escribe. Lo que la persona confió con pedido de reserva, y no responde la pregunta de remisión, queda fuera: incluirlo, aun suavizado, vulnera la confidencialidad sin aportar nada. Conviene redactar asumiendo que todo el que tenga derecho a leer el informe lo va a leer.",
     citas: [["ley1090", "Ley 1090 de 2006, art. 2, num. 5"], ["sch2018", "Schneider et al., 2018, cap. 4 y cap. 10, que cita la norma 4.04 del código de ética de la APA"]],
     lamina: "Lámina 8",
-    caso: "Jairo contó una relación de hace doce años, dijo que no tenía nada que ver con lo que le pasa y pidió que no quedara «en ningún papel». El informe va a su médica.",
-    opciones: [["incluido", "Lo incluyeron", "mal"], ["suavizado", "Lo incluyeron de forma indirecta", "mal"], ["excluido", "Lo dejaron fuera, a propósito", "bien"], ["no-visto", "No lo vieron", "neutro"]] }
+    ausente: "no incluyen el dato" }
 ];
+
+const COLUMNAS = { mal: "Puede mejorar", bien: "Bien resuelto" };
 
 /* ============================================================
-   3. DATOS DE EJEMPLO
+   3. DETECCIÓN EN LOS INFORMES
    ============================================================
-   Ocho equipos inventados, todos sobre el expediente de Jairo, con todas las opciones
-   de cada globo representadas al menos una vez. Se usan mientras FUENTE.url
-   diga "PENDIENTE", o con ?demo=1 en la dirección, para ensayar el cierre.
+   El tablero lee las cuatro secciones de cada informe y ubica, para cada
+   globo, las frases que tocan la trampa y de qué lado caen. Todo se compara
+   en minúsculas y sin tildes. Las reglas se afinaron con los siete informes
+   reales de Práctica II (2026-10-03): ver el comentario de cada una.
+   Es una lectura de apoyo para la discusión, no una calificación.
    ============================================================ */
-const DEMO = [
-  { g: 3, h: "10:31", aud: {"rumor": "hecho", "contradiccion": "una", "validez": "sin-advertir", "fortaleza": "no", "intimo": "incluido", "siglas": "sin-explicar", "pregunta": "no"},
-    hal: {"rumor": ["Consume alcohol durante la jornada laboral.", "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar."], "contradiccion": ["El BDI-II arroja una puntuación de 24, correspondiente a depresión moderada.", "En el MMPI-2 se elevan las escalas de Hipocondría (78), Histeria (80) y Depresión (72), y las de Ansiedad (75), Depresión (74) y Preocupaciones por la salud (82).", "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar."], "validez": ["En el MMPI-2 se elevan las escalas de Hipocondría (78), Histeria (80) y Depresión (72), y las de Ansiedad (75), Depresión (74) y Preocupaciones por la salud (82)."], "intimo": ["Hace doce años tuvo una relación extramatrimonial con una compañera de trabajo que su esposa desconoce, lo que le genera culpa."], "siglas": ["IDx", "TAG", "TDM", "IAM"], "siglas-mal": ["Paciente de 38 años remitido por medicina general por dolor en el pecho, gastritis y dolor de cabeza, con IDx de síntomas físicos persistentes para descartar TAG o TDM.", "Antecedente de IAM en el padre."]},
-    f: "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar." },
-  { g: 1, h: "10:33", aud: {"rumor": "hecho", "contradiccion": "separadas", "validez": "sin-advertir", "fortaleza": "mencion", "intimo": "suavizado", "siglas": "sin-explicar", "pregunta": "parcial"},
-    hal: {"rumor": ["Además, consume alcohol en la bodega en horas de trabajo."], "contradiccion": ["Jairo refiere que no está deprimido y que lo suyo es físico.", "El BDI-II puntúa 24, que indica depresión moderada, y el BAI 22, ansiedad moderada.", "El MMPI-2 muestra elevaciones en Ansiedad (ANX 75), Depresión (DEP 74) y Preocupaciones por la salud (HEA 82), además de Hipocondría e Histeria.", "Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre."], "validez": ["El MMPI-2 muestra elevaciones en Ansiedad (ANX 75), Depresión (DEP 74) y Preocupaciones por la salud (HEA 82), además de Hipocondría e Histeria."], "fortaleza": ["Entrena al equipo de microfútbol de su hija."], "intimo": ["Refiere un episodio de su vida de pareja de hace doce años que su esposa desconoce y que le genera culpa."], "siglas": ["IDx", "TAG", "TDM", "EKG"], "siglas-mal": ["Jairo, de 38 años, es remitido por medicina general por dolor en el pecho, ardor de estómago y dolor de cabeza, con siete consultas en seis meses y EKG normal.", "La IDx es síntomas físicos sin causa orgánica y se pide descartar TAG o TDM."]},
-    f: "Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre. Se recomienda psicoterapia y control del consumo." },
-  { g: 7, h: "10:35", aud: {"rumor": "atribuido", "contradiccion": "no-tratado", "validez": "no-usada", "fortaleza": "no", "intimo": "no-visto", "siglas": "sin-explicar", "pregunta": "no"},
-    hal: {"rumor": ["Según lo que cuenta la esposa, un compañero lo ha visto tomando en la bodega, dato que no se confirmó."], "siglas": ["IDx", "IAM", "EKG"], "siglas-mal": ["Paciente de 38 años remitido por medicina general con IDx de síntomas físicos persistentes, EKG normal y antecedente paterno de IAM."]},
-    f: "Jairo presenta ansiedad relacionada con el estrés laboral, que se manifiesta en síntomas físicos." },
-  { g: 6, h: "10:37", aud: {"rumor": "atribuido", "contradiccion": "separadas", "validez": "advertido", "fortaleza": "mencion", "intimo": "excluido", "siglas": "algunas", "pregunta": "parcial"},
-    hal: {"rumor": ["La esposa comenta que un compañero lo habría visto tomando en la bodega, aunque ella nunca lo ha visto embriagado."], "contradiccion": ["Jairo manifiesta que no está deprimido.", "En el BDI-II obtuvo 24, depresión moderada, y en el BAI 22, ansiedad moderada.", "El MMPI-2 tiene 36 ítems sin responder y debe leerse con cautela, pero muestra elevaciones en Hipocondría, Histeria y Depresión, y en las escalas de Ansiedad y Preocupaciones por la salud.", "Se evidencia un componente ansioso y depresivo que podría explicar los síntomas físicos."], "validez": ["El MMPI-2 tiene 36 ítems sin responder y debe leerse con cautela, pero muestra elevaciones en Hipocondría, Histeria y Depresión, y en las escalas de Ansiedad y Preocupaciones por la salud."], "fortaleza": ["Los sábados entrena el equipo de microfútbol de su hija."], "siglas": ["TAG", "TDM", "EKG"], "siglas-mal": ["Jairo, de 38 años, es remitido por medicina general por síntomas físicos sin causa orgánica: dolor en el pecho, ardor de estómago y cefalea, con EKG y enzimas normales.", "La impresión diagnóstica (IDx) pide descartar TAG o TDM."]},
-    f: "Se evidencia un componente ansioso y depresivo que podría explicar los síntomas físicos." },
-  { g: 2, h: "10:39", aud: {"rumor": "atribuido", "contradiccion": "integradas", "validez": "advertido", "fortaleza": "usada", "intimo": "excluido", "siglas": "todas", "pregunta": "parcial"},
-    hal: {"rumor": ["Su esposa refiere que, según un compañero de trabajo, lo han visto tomando en la bodega, dato que no se pudo verificar y que contrasta con el AUDIT (6), de bajo riesgo, y con la cerveza cada quince días que él reporta."], "contradiccion": ["Aunque Jairo dice no estar deprimido, el Inventario de Depresión de Beck (BDI-II = 24) se eleva sobre todo por el sueño, la energía y el cansancio, con los ítems de culpa y desvalorización en cero: su malestar se expresa más en el cuerpo que en el ánimo.", "El Inventario de Ansiedad de Beck (BAI = 22) coincide con las palpitaciones que describe.", "En el MMPI-2 dejó 36 ítems sin contestar, y se elevan Hipocondría, Histeria y Depresión, así como las escalas de contenido de Ansiedad y Preocupaciones por la salud."], "validez": ["En el MMPI-2 dejó 36 ítems sin contestar, y se elevan Hipocondría, Histeria y Depresión, así como las escalas de contenido de Ansiedad y Preocupaciones por la salud."], "fortaleza": ["Se recomienda psicoterapia cognitivo-conductual apoyada en actividades que conserva, como entrenar el equipo de microfútbol de su hija."], "siglas-bien": ["Medicina general remite a Jairo, de 38 años, por dolor torácico atípico, ardor gástrico y cefalea tensional, con siete consultas en seis meses y electrocardiogramas normales.", "En su impresión diagnóstica pide descartar un trastorno de ansiedad generalizada o un trastorno del estado de ánimo, y pregunta si requiere psicología o psiquiatría."]},
-    f: "Existe un componente ansioso centrado en la salud, asociado al duelo por su padre, que explica buena parte de los síntomas físicos. Se recomienda psicoterapia cognitivo-conductual apoyada en actividades que conserva, como entrenar el equipo de microfútbol de su hija." },
-  { g: 8, h: "10:41", aud: {"rumor": "excluido", "contradiccion": "separadas", "validez": "limitado", "fortaleza": "mencion", "intimo": "excluido", "siglas": "algunas", "pregunta": "completa"},
-    hal: {"contradiccion": ["Jairo refiere que no está deprimido.", "En el BDI-II obtuvo 24, rango moderado.", "El MMPI-2 quedó con 36 ítems sin contestar, así que solo se interpretan las escalas básicas: Hipocondría (78) e Histeria (80) por encima de Depresión (72)."], "validez": ["El MMPI-2 quedó con 36 ítems sin contestar, así que solo se interpretan las escalas básicas: Hipocondría (78) e Histeria (80) por encima de Depresión (72)."], "fortaleza": ["Su esposa lo describe irritable y cansado desde el duelo, y cuenta que en el trabajo es el que sabe dónde está todo."], "siglas": ["TAG"], "siglas-mal": ["Pide descartar TAG o un cuadro del ánimo y pregunta si requiere psicología o psiquiatría."], "siglas-bien": ["Medicina general remite a Jairo, de 38 años, por dolor en el pecho, ardor de estómago y cefalea con estudios normales, entre ellos el electrocardiograma (EKG)."]},
-    f: "Hay un componente ansioso centrado en la salud, vinculado al duelo por su padre, que explica los síntomas físicos. El manejo indicado es la psicoterapia, sin necesidad actual de remisión a psiquiatría, ya que niega ideas de muerte." },
-  { g: 4, h: "10:44", aud: {"rumor": "no-visto", "contradiccion": "integradas", "validez": "limitado", "fortaleza": "usada", "intimo": "excluido", "siglas": "algunas", "pregunta": "completa"},
-    hal: {"contradiccion": ["Jairo niega estar deprimido, pero el BDI-II (24) se apoya en ítems corporales como el sueño, la energía y el cansancio, con los ítems cognitivos en cero;", "En las básicas se elevan Hipocondría (78) e Histeria (80) sobre Depresión (72), un perfil de expresión corporal del malestar."], "validez": ["El MMPI-2 tiene 36 ítems sin contestar: las escalas básicas se interpretan con reserva y las de contenido no se interpretan.", "En las básicas se elevan Hipocondría (78) e Histeria (80) sobre Depresión (72), un perfil de expresión corporal del malestar."], "fortaleza": ["Dejó de trotar por miedo, pero sigue entrenando los sábados el equipo de microfútbol de su hija.", "El pronóstico es favorable: el microfútbol de su hija es un recurso para retomar la actividad física."], "siglas": ["IDx", "EKG"], "siglas-mal": ["Medicina general remite a Jairo, de 38 años, por dolor en el pecho, ardor de estómago y cefalea, con siete consultas en seis meses, EKG normal y valoración de cardiología sin hallazgos.", "La IDx pide descartar un trastorno de ansiedad generalizada (TAG) o un cuadro del ánimo, y pregunta si requiere psicología o psiquiatría."]},
-    f: "Hay ansiedad centrada en la salud, iniciada tras el duelo por su padre, compatible con un trastorno de síntomas somáticos. Se recomienda psicoterapia, sin criterio actual de remisión urgente a psiquiatría, dado que niega ideas de muerte; se sugiere reevaluar si los síntomas persisten." },
-  { g: 5, h: "10:46", aud: {"rumor": "excluido", "contradiccion": "integradas", "validez": "limitado", "fortaleza": "usada", "intimo": "excluido", "siglas": "todas", "pregunta": "completa"},
-    hal: {"contradiccion": ["Jairo niega estar deprimido, y el BDI-II (24) lo matiza: el puntaje sale de ítems corporales como el sueño, la energía y el cansancio, mientras los de culpa, fracaso e ideas de muerte están en cero.", "En las básicas, Hipocondría (78) e Histeria (80) superan a Depresión (72), un patrón de malestar expresado en el cuerpo."], "validez": ["El MMPI-2 quedó con 36 ítems sin contestar, casi todos al final, así que las escalas básicas se leen con reserva y las de la segunda parte de la prueba no se interpretan.", "En las básicas, Hipocondría (78) e Histeria (80) superan a Depresión (72), un patrón de malestar expresado en el cuerpo."], "fortaleza": ["El pronóstico es favorable: sigue entrenando el equipo de microfútbol de su hija y en el trabajo lo reconocen como alguien confiable, recursos para retomar la actividad."], "siglas-bien": ["La médica tratante remite a Jairo, de 38 años, por dolor torácico, ardor gástrico y cefalea, con siete consultas en seis meses y estudios cardíacos normales (electrocardiograma y prueba de esfuerzo)."]},
-    f: "(1) Sí: hay una ansiedad centrada en la salud, iniciada con el duelo por su padre, que explica buena parte de los síntomas; el perfil es compatible con un trastorno de síntomas somáticos. (2) Se recomienda psicoterapia; no hay criterio actual de remisión urgente a psiquiatría, pues niega ideas de muerte, aunque conviene revisarlo si los síntomas persisten." }
-];
+const SECCIONES = [["motivo", "f-motivo"], ["historia", "f-historia"], ["resultados", "f-resultados"], ["conclusion", "f-conclusion"]];
 
-function entregasDemo(cuantas){
-  const hoy = new Date();
-  return DEMO.slice(0, cuantas).map(x => {
-    const [hh, mm] = x.h.split(":").map(Number);
-    return { cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + x.g,
-             enviado: new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), hh, mm).toISOString(),
-             expediente: EXPEDIENTE, aud: x.aud, hallazgos: x.hal, frase: x.f };
-  });
+// Quita tildes sin cambiar la longitud del texto: las posiciones de una
+// coincidencia en el texto normalizado sirven para resaltar en el original.
+const normalizar = s => Array.from(String(s || "")).map(c => c.normalize("NFD")[0]).join("").toLowerCase();
+
+// Corta en saltos de línea (hay quien escribe en listas, sin puntos) y en
+// punto, signo de cierre o punto y coma seguidos de espacio.
+function frasesDe(textos){
+  const out = [];
+  SECCIONES.forEach(([sec]) => String(textos[sec] || "").split(/\n+/).forEach(linea => {
+    linea.replace(/^\s*[-•*]\s*/, "").split(/(?<=[.!?;])\s+/).forEach(f => {
+      f = f.trim();
+      if (f.length > 3) out.push({ sec, f, n: normalizar(f) });
+    });
+  }));
+  return out;
 }
 
+const R = {
+  // Rumor: solo lo que viene del rumor. «Alcohol» a secas atrapaba el
+  // resultado del AUDIT, que todos informan (3 de 3 hallazgos eran eso).
+  rumor: /bodega|yolanda|lo han visto|lo habrian visto|lo vieron|habria(n)? visto|tomando|(beb|tom|consum)\w* .{0,40}(trabajo|jornada|laboral)|(trabajo|jornada|laboral).{0,40}(beb|tom|alcohol|licor|embriag)|embriag|rumor|de oidas/,
+  atribuido: /segun|refiere|refirio|comenta|menciona|reporta|informa|cuenta|conto|habria|de oidas|rumor|tercer|(no|sin) (se )?(pudo |ha podido )?(verific|confirm|comprob)|no verificad|no confirmad|sin evidencia/,
+  // Fuentes que no coinciden: las frases del BDI-II y las que hablan de
+  // concordancia entre pruebas y entrevista.
+  contraCand: /\bbdi|beck|deprimid|no esta deprimido|lo suyo es fisico|niega|negacion|sin (cons)?ciencia|contrasta|discrep|no coincide|(consistentes|congruentes|coinciden) con la entrevista|segun lo evidenciado en las pruebas|integracion de (la )?entrevista/,
+  contraBien: /contrasta|discrep|no coincide|sin (cons)?ciencia|a pesar de|aunque (el paciente |jairo )?(niega|refiere|dice|manifiesta)|niega.{0,80}(bdi|puntaj|prueba|inventario)|(bdi|beck|depresiv).{0,160}(aunque|pero|sin embargo|mientras).{0,100}(no se report|sin |en cero|ausen)|malestar (emocional )?(mediante|a traves|en el cuerpo)|expres\w* .{0,40}(cuerpo|corporal|somatic)|(items?|reactivos?) (corporales|somaticos|fisicos)|cognitiv\w* .{0,25}(en cero|ausentes|sin puntaje)|somatiz\w*.{0,80}(negacion|niega|atribu)|integracion de (la )?entrevista y (las )?pruebas/,
+  contraMal: /\bbdi|beck|(consistentes|congruentes|coinciden) con la entrevista|segun lo evidenciado en las pruebas|niveles de (ansiedad y )?depresi/,
+  // Validez: «omit» no encontraba «omisiones», y «MPI-2» o «MMPI2» se
+  // escapaban. Bien resuelto solo si además limita la lectura a las básicas
+  // o dice que las de contenido no se interpretan.
+  validezCand: /\bm?mpi|omision|omitid|sin contestar|sin responder|items? sin|hipocondr|histeria|psicastenia|triada|invalid|desestim/,
+  validezBien: /(omision|omitid|sin contestar|sin responder|items? sin)[^]*?(no se interpreta|no son interpretables|no se pueden interpretar|solo (se interpretan |se leen |se pueden leer )?(las )?(escalas )?basicas|unicamente (las )?(escalas )?basicas|basicas (si )?se (pueden )?(leer|interpretar))|(no se interpreta|solo (se interpretan )?(las )?(escalas )?basicas)[^]*?(omision|omitid|sin contestar)/,
+  // Fortaleza: además del microfútbol, la red de apoyo y la estabilidad que
+  // un grupo usó en el pronóstico. Bien resuelto si aparece en la conclusión,
+  // que es donde va el pronóstico; en la historia es solo una mención.
+  fortaleza: /microf|futbol|entrena|fortalez|recursos? (personal|propio|de afrontamiento)|sabe donde esta|red de apoyo|apoyo (familiar|de su esposa|de su familia|social)|estabilidad (familiar|laboral)|insercion (social|laboral)|se mantiene activo|factor(es)? protector|confiable/,
+  intimo: /relacion extra|extramatrimonial|infidel|otra mujer|amante|aventura|doce anos|12 anos|relacion (de hace|pasada|anterior|fuera)|vida de pareja de hace/,
+  // Pregunta de remisión, en la conclusión: (1) se pronuncia sobre el
+  // componente ansioso o depresivo; (2) sobre psicología o psiquiatría.
+  // Un diagnóstico solo, sin verbo que lo afirme, no responde la pregunta.
+  parte1: /componente (ansios|depresiv|emocional|ansioso-depresiv)|((se )?(confirm|evidenci|identific|observ|present|sugier|encuentr|aprecia)\w*|hay|existe|compatible con|presencia de).{0,60}(ansi|depres)/,
+  parte2: /psicoterap|terapia|psicologic|(manejo|intervencion|tratamiento|atencion|seguimiento) (por |desde |con |en )?(la )?psicolog|psiquiatr/
+};
+
+// Siglas de la remisión y su forma completa.
+const SIGLAS = { IDx: ["impresion diagnostica"], TAG: ["ansiedad generalizada"], TDM: ["depresivo mayor"],
+                 IAM: ["infarto agudo", "infarto de miocardio"], EKG: ["electrocardiograma"] };
+// Siglas que no se cuentan: los instrumentos, que la sección 3 del informe ya
+// trae escritos completos (también «MPI-2», el error de tipeo de un grupo);
+// números romanos, y palabras escritas en mayúscula.
+const SIGLAS_PERMITIDAS = new Set(["MMPI", "MPI", "BDI", "BAI", "AUDIT", "II", "III", "IV",
+  "EL", "LA", "LOS", "LAS", "DE", "DEL", "Y", "EN", "SE", "NO", "SI", "UN", "UNA", "AL", "CON", "POR", "QUE", "ES", "SU", "LO", "O", "A"]);
+const conSigla = s => new RegExp("(^|[^A-Za-zÁÉÍÓÚÑáéíóúñ])" + s + "([^A-Za-zÁÉÍÓÚÑáéíóúñ]|$)");
+
+function siglasSinExplicar(textos){
+  const todo = SECCIONES.map(([s]) => textos[s] || "").join(" \n ");
+  const norm = normalizar(todo);
+  const faltan = [];
+  Object.keys(SIGLAS).forEach(s => {
+    if (conSigla(s).test(todo) && !SIGLAS[s].some(forma => norm.includes(forma))) faltan.push(s);
+  });
+  // Otras siglas que el grupo agregó por su cuenta (TCC, EPS, SPA…): cuentan
+  // si no aparecen nunca entre paréntesis después de su forma completa.
+  (todo.match(/\b[A-ZÑ]{2,6}\b/g) || []).forEach(s => {
+    if (SIGLAS[s] || SIGLAS_PERMITIDAS.has(s) || faltan.includes(s)) return;
+    if (new RegExp("\\(\\s*" + s + "\\s*\\)").test(todo)) return;
+    faltan.push(s);
+  });
+  return faltan;
+}
+
+// Analiza un informe y devuelve, por globo, sus frases de cada lado.
+function analizar(textos){
+  const F = frasesDe(textos);
+  const r = {};
+  const de = (filtro) => F.filter(filtro);
+
+  // 1. Pregunta de remisión: se juzga el informe entero por su conclusión.
+  const concl = de(x => x.sec === "conclusion");
+  const p1 = concl.filter(x => R.parte1.test(x.n)), p2 = concl.filter(x => R.parte2.test(x.n));
+  // Se muestra la primera frase que responde cada parte; sin ninguna, el
+  // comienzo de la conclusión.
+  const resp = [p1[0], p2[0]].filter((x, i, a) => x && a.indexOf(x) === i);
+  r.pregunta = (p1.length && p2.length)
+    ? { bien: [unir(resp)], mal: [] }
+    : { bien: [], mal: [unir(resp.length ? resp : concl.slice(0, 2))].filter(Boolean) };
+
+  // 2. Siglas
+  const faltan = siglasSinExplicar(textos);
+  const bienS = [];
+  F.forEach(x => {
+    if (faltan.some(s => conSigla(s).test(x.f))) return;   // una frase a medias no es ejemplo
+    let rango = null;
+    Object.keys(SIGLAS).forEach(s => SIGLAS[s].forEach(forma => {
+      if (!x.n.includes(forma)) return;
+      const k = /\(\s*[A-Z]{2,6}\s*\)/.test(x.f) || conSigla(s).test(x.f) ? 0 : forma === "impresion diagnostica" ? 2 : 1;
+      rango = rango === null ? k : Math.min(rango, k);
+    }));
+    if (rango !== null) bienS.push({ f: x.f, rango });
+  });
+  r.siglas = { faltan,
+               mal: de(x => faltan.some(s => conSigla(s).test(x.f))).map(x => x.f),
+               bien: bienS.sort((a, b) => a.rango - b.rango).map(b => b.f) };
+
+  // 3. Rumor
+  const rum = de(x => R.rumor.test(x.n));
+  r.rumor = { hay: rum.length > 0, bien: rum.filter(x => R.atribuido.test(x.n)).map(x => x.f),
+              mal: rum.filter(x => !R.atribuido.test(x.n)).map(x => x.f) };
+
+  // 4. Fuentes que no coinciden
+  const con = de(x => R.contraCand.test(x.n));
+  r.contradiccion = { bien: con.filter(x => R.contraBien.test(x.n)).map(x => x.f),
+                      mal: con.filter(x => !R.contraBien.test(x.n) && R.contraMal.test(x.n)).map(x => x.f) };
+
+  // 5. Validez
+  const val = de(x => R.validezCand.test(x.n));
+  r.validez = { bien: val.filter(x => R.validezBien.test(x.n)).map(x => x.f),
+                mal: val.filter(x => !R.validezBien.test(x.n)).map(x => x.f) };
+
+  // 6. Fortaleza
+  const fort = de(x => R.fortaleza.test(x.n));
+  r.fortaleza = { hay: fort.length > 0, bien: fort.filter(x => x.sec === "conclusion").map(x => x.f),
+                  mal: fort.filter(x => x.sec !== "conclusion").map(x => x.f) };
+
+  // 7. Dato confidencial: cualquier inclusión es el error.
+  const int = de(x => R.intimo.test(x.n));
+  r.intimo = { hay: int.length > 0, bien: [], mal: int.map(x => x.f) };
+  return r;
+}
+function unir(frases){ return frases.map(x => x.f).join(" ").trim(); }
+
 /* ============================================================
-   4. CARGA (fetch, con JSONP de respaldo)
+   4. DATOS DE ENSAYO
+   ============================================================
+   Ocho informes inventados sobre el expediente de Jairo, con aciertos y
+   errores en cada trampa. Se usan con ?demo=1 en la dirección, o mientras
+   FUENTE.url diga "PENDIENTE".
+   ============================================================ */
+const DEMO = [
+  {"g": 3, "h": "10:31", "t": {"motivo": "Paciente de 38 años remitido por medicina general por dolor en el pecho, gastritis y dolor de cabeza, con IDx de síntomas físicos persistentes para descartar TAG o TDM. Antecedente de IAM en el padre.", "historia": "Consume alcohol durante la jornada laboral. Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar. Hace doce años tuvo una relación extramatrimonial con una compañera de trabajo que su esposa desconoce, lo que le genera culpa.", "resultados": "El BDI-II arroja una puntuación de 24, correspondiente a depresión moderada. En el MMPI-2 se elevan las escalas de Hipocondría (78), Histeria (80) y Depresión (72), y las de Ansiedad (75), Depresión (74) y Preocupaciones por la salud (82).", "conclusion": "Jairo presenta síntomas depresivos, ansiosos y somáticos, además del consumo de alcohol, que afectan su vida laboral y familiar."}},
+  {"g": 1, "h": "10:33", "t": {"motivo": "Jairo, de 38 años, es remitido por medicina general por dolor en el pecho, ardor de estómago y dolor de cabeza, con siete consultas en seis meses y EKG normal. La IDx es síntomas físicos sin causa orgánica y se pide descartar TAG o TDM.", "historia": "Además, consume alcohol en la bodega en horas de trabajo. Refiere un episodio de su vida de pareja de hace doce años que su esposa desconoce y que le genera culpa. Entrena al equipo de microfútbol de su hija.", "resultados": "Jairo refiere que no está deprimido y que lo suyo es físico. El BDI-II puntúa 24, que indica depresión moderada, y el BAI 22, ansiedad moderada. El MMPI-2 muestra elevaciones en Ansiedad (ANX 75), Depresión (DEP 74) y Preocupaciones por la salud (HEA 82), además de Hipocondría e Histeria. Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre.", "conclusion": "Jairo presenta ansiedad centrada en la salud y síntomas depresivos moderados, relacionados con la muerte de su padre. Se recomienda psicoterapia y control del consumo."}},
+  {"g": 7, "h": "10:35", "t": {"motivo": "Paciente de 38 años remitido por medicina general con IDx de síntomas físicos persistentes, EKG normal y antecedente paterno de IAM.", "historia": "Según lo que cuenta la esposa, un compañero lo ha visto tomando en la bodega, dato que no se confirmó.", "resultados": "", "conclusion": "Jairo presenta ansiedad relacionada con el estrés laboral, que se manifiesta en síntomas físicos."}},
+  {"g": 6, "h": "10:37", "t": {"motivo": "Jairo, de 38 años, es remitido por medicina general por síntomas físicos sin causa orgánica: dolor en el pecho, ardor de estómago y cefalea, con EKG y enzimas normales. La impresión diagnóstica (IDx) pide descartar TAG o TDM.", "historia": "La esposa comenta que un compañero lo habría visto tomando en la bodega, aunque ella nunca lo ha visto embriagado. Los sábados entrena el equipo de microfútbol de su hija.", "resultados": "Jairo manifiesta que no está deprimido. En el BDI-II obtuvo 24, depresión moderada, y en el BAI 22, ansiedad moderada. El MMPI-2 tiene 36 ítems sin responder y debe leerse con cautela, pero muestra elevaciones en Hipocondría, Histeria y Depresión, y en las escalas de Ansiedad y Preocupaciones por la salud.", "conclusion": "Se evidencia un componente ansioso y depresivo que podría explicar los síntomas físicos."}},
+  {"g": 2, "h": "10:39", "t": {"motivo": "Medicina general remite a Jairo, de 38 años, por dolor torácico atípico, ardor gástrico y cefalea tensional, con siete consultas en seis meses y electrocardiogramas normales. En su impresión diagnóstica pide descartar un trastorno de ansiedad generalizada o un trastorno del estado de ánimo, y pregunta si requiere psicología o psiquiatría.", "historia": "Su esposa refiere que, según un compañero de trabajo, lo han visto tomando en la bodega, dato que no se pudo verificar y que contrasta con el AUDIT (6), de bajo riesgo, y con la cerveza cada quince días que él reporta.", "resultados": "Aunque Jairo dice no estar deprimido, el Inventario de Depresión de Beck (BDI-II = 24) se eleva sobre todo por el sueño, la energía y el cansancio, con los ítems de culpa y desvalorización en cero: su malestar se expresa más en el cuerpo que en el ánimo. El Inventario de Ansiedad de Beck (BAI = 22) coincide con las palpitaciones que describe. En el MMPI-2 dejó 36 ítems sin contestar, y se elevan Hipocondría, Histeria y Depresión, así como las escalas de contenido de Ansiedad y Preocupaciones por la salud.", "conclusion": "Existe un componente ansioso centrado en la salud, asociado al duelo por su padre, que explica buena parte de los síntomas físicos. Se recomienda psicoterapia cognitivo-conductual apoyada en actividades que conserva, como entrenar el equipo de microfútbol de su hija."}},
+  {"g": 8, "h": "10:41", "t": {"motivo": "Pide descartar TAG o un cuadro del ánimo y pregunta si requiere psicología o psiquiatría. Medicina general remite a Jairo, de 38 años, por dolor en el pecho, ardor de estómago y cefalea con estudios normales, entre ellos el electrocardiograma (EKG).", "historia": "Su esposa lo describe irritable y cansado desde el duelo, y cuenta que en el trabajo es el que sabe dónde está todo.", "resultados": "Jairo refiere que no está deprimido. En el BDI-II obtuvo 24, rango moderado. El MMPI-2 quedó con 36 ítems sin contestar, así que solo se interpretan las escalas básicas: Hipocondría (78) e Histeria (80) por encima de Depresión (72).", "conclusion": "Hay un componente ansioso centrado en la salud, vinculado al duelo por su padre, que explica los síntomas físicos. El manejo indicado es la psicoterapia, sin necesidad actual de remisión a psiquiatría, ya que niega ideas de muerte."}},
+  {"g": 4, "h": "10:44", "t": {"motivo": "Medicina general remite a Jairo, de 38 años, por dolor en el pecho, ardor de estómago y cefalea, con siete consultas en seis meses, EKG normal y valoración de cardiología sin hallazgos. La IDx pide descartar un trastorno de ansiedad generalizada (TAG) o un cuadro del ánimo, y pregunta si requiere psicología o psiquiatría.", "historia": "Dejó de trotar por miedo, pero sigue entrenando los sábados el equipo de microfútbol de su hija.", "resultados": "Jairo niega estar deprimido, pero el BDI-II (24) se apoya en ítems corporales como el sueño, la energía y el cansancio, con los ítems cognitivos en cero; En las básicas se elevan Hipocondría (78) e Histeria (80) sobre Depresión (72), un perfil de expresión corporal del malestar. El MMPI-2 tiene 36 ítems sin contestar: las escalas básicas se interpretan con reserva y las de contenido no se interpretan.", "conclusion": "Hay ansiedad centrada en la salud, iniciada tras el duelo por su padre, compatible con un trastorno de síntomas somáticos. Se recomienda psicoterapia, sin criterio actual de remisión urgente a psiquiatría, dado que niega ideas de muerte; se sugiere reevaluar si los síntomas persisten. El pronóstico es favorable: el microfútbol de su hija es un recurso para retomar la actividad física."}},
+  {"g": 5, "h": "10:46", "t": {"motivo": "La médica tratante remite a Jairo, de 38 años, por dolor torácico, ardor gástrico y cefalea, con siete consultas en seis meses y estudios cardíacos normales (electrocardiograma y prueba de esfuerzo).", "historia": "", "resultados": "Jairo niega estar deprimido, y el BDI-II (24) lo matiza: el puntaje sale de ítems corporales como el sueño, la energía y el cansancio, mientras los de culpa, fracaso e ideas de muerte están en cero. En las básicas, Hipocondría (78) e Histeria (80) superan a Depresión (72), un patrón de malestar expresado en el cuerpo. El MMPI-2 quedó con 36 ítems sin contestar, casi todos al final, así que las escalas básicas se leen con reserva y las de la segunda parte de la prueba no se interpretan.", "conclusion": "(1) Sí: hay una ansiedad centrada en la salud, iniciada con el duelo por su padre, que explica buena parte de los síntomas; el perfil es compatible con un trastorno de síntomas somáticos. (2) Se recomienda psicoterapia; no hay criterio actual de remisión urgente a psiquiatría, pues niega ideas de muerte, aunque conviene revisarlo si los síntomas persisten. El pronóstico es favorable: sigue entrenando el equipo de microfútbol de su hija y en el trabajo lo reconocen como alguien confiable, recursos para retomar la actividad."}}
+];
+
+/* ============================================================
+   5. CARGA (fetch, con JSONP de respaldo)
    ============================================================ */
 const MODO_DEMO = FUENTE.url === "PENDIENTE" || /[?&]demo=1\b/.test(location.search);
-let demoVisibles = 5;
 
 function direcciones(){
   const lista = [FUENTE.url];
@@ -293,12 +453,10 @@ function direcciones(){
   if (otra !== FUENTE.url) lista.push(otra);
   return lista;
 }
-
 function urlResumen(base, grupo){
   return base + "?tablero=" + encodeURIComponent(FUENTE.caso) + "&curso=" + encodeURIComponent(FUENTE.curso) +
     (grupo ? "&grupo=" + encodeURIComponent(grupo) : "") + "&t=" + Date.now();
 }
-
 let contadorCallback = 0;
 function pedirJsonp(url){
   return new Promise((resolver, rechazar) => {
@@ -312,7 +470,6 @@ function pedirJsonp(url){
     document.body.appendChild(script);
   });
 }
-
 async function pedirResumen(grupo){
   let ultimoFallo = null;
   for (const base of direcciones()) {
@@ -330,164 +487,194 @@ async function pedirResumen(grupo){
 }
 
 /* ============================================================
-   5. PANTALLAS
+   6. ESTADO
    ============================================================ */
+const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const numeroDeGrupo = e => parseInt(String(e.grupo).replace(/\D/g, ""), 10) || 0;
-const plural = (n, uno, varios) => n === 1 ? uno : varios;
-const pct = (n, d) => d ? Math.round(n / d * 100) : 0;
-const grupoElegido = () => document.getElementById("f-grupo").value;
-const quien = e => (grupoElegido() ? "" : e.cursoGrupo + " · ") + e.grupo;
-const COLOR = { mal: "var(--moderate)", bien: "var(--accent)", neutro: "var(--gris)" };
-const sinEntregas = `<div class="vacio-msg">Todavía no llegó ninguna entrega de este grupo.</div>`;
 
-function pantallaEnvios(E){
-  const orden = E.slice().sort((a, b) => (a.cursoGrupo + numeroDeGrupo(a)).localeCompare(b.cursoGrupo + numeroDeGrupo(b), "es", { numeric: true }));
-  const chips = orden.map(e => {
-    const hora = e.enviado ? new Date(e.enviado).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "";
-    return `<span class="chip">${esc(quien(e))}${hora ? `<small>${hora}</small>` : ""}</span>`;
-  }).join("");
-  return `<section class="panel">
-    <div class="contador">${E.length}</div>
-    <div class="contador-t">${plural(E.length, "equipo envió su informe y su autoauditoría", "equipos enviaron su informe y su autoauditoría")}</div>
-    <div class="chips">${chips || '<span class="vacio-msg">Esperando la primera entrega…</span>'}</div>
-    <div class="sub">Los resultados están tapados mientras los equipos terminan. Destápalos cuando hayan enviado todos.</div>
-    <button class="btn-principal" id="bt-destapar">Destapar resultados</button>
-  </section>`;
+let entregas = [];     // [{ grupo, cursoGrupo, textos, r }]
+let firma = "";
+let cargando = false;
+let actual = 0;
+let paso = 0;          // 0 expediente · 1 argumento · 2 informes
+
+// Un informe trae sus cuatro secciones en «textos» (receptor actualizado el
+// 2026-10-05). Sin ellas no hay nada que leer.
+function prepararEntregas(lista){
+  return lista.filter(e => e.textos && SECCIONES.some(([s]) => (e.textos[s] || "").trim()))
+    .sort((a, b) => (a.cursoGrupo + numeroDeGrupo(a)).localeCompare(b.cursoGrupo + numeroDeGrupo(b), "es", { numeric: true }))
+    .map(e => Object.assign({}, e, { r: analizar(e.textos) }));
+}
+let sinTextos = 0;
+
+/* ============================================================
+   7. LOS GLOBOS Y LA ESCENA
+   ============================================================ */
+function pintarGlobos(){
+  $("globos").innerHTML = GLOBOS.map((g, i) =>
+    `<button class="globo" type="button" data-i="${i}"><span class="num">${i + 1} · ${esc(g.tema)}</span>${esc(g.titulo)}</button>`).join("");
 }
 
-// Una frase por voz, como máximo tres por columna, sin repetir frases iguales.
-// Las voces no llevan número de grupo: el tablero se proyecta delante del curso.
-function voces(E, globo, lectura){
-  const codigos = globo.opciones.filter(o => o[2] === lectura).map(o => o[0]);
+// Frase larga: se muestra la ventana alrededor de lo que la hizo caer en el
+// globo, para que se lea de lejos.
+function recortar(frase, re){
+  const LIM = 300;
+  const n = normalizar(frase);
+  const m = re ? re.exec(n) : null;
+  let a = 0, b = frase.length;
+  if (frase.length > LIM) {
+    const centro = m ? m.index + m[0].length / 2 : 0;
+    a = Math.max(0, Math.round(centro - LIM / 2)); b = Math.min(frase.length, a + LIM); a = Math.max(0, b - LIM);
+    while (a > 0 && frase[a - 1] !== " ") a--;
+    while (b < frase.length && frase[b] !== " ") b++;
+  }
+  let html = "";
+  if (m && m[0].length && m.index >= a && m.index + m[0].length <= b) {
+    html = esc(frase.slice(a, m.index)) + "<mark>" + esc(frase.slice(m.index, m.index + m[0].length)) + "</mark>" + esc(frase.slice(m.index + m[0].length, b));
+  } else html = esc(frase.slice(a, b));
+  return (a > 0 ? "…" : "") + html + (b < frase.length ? "…" : "");
+}
+
+// Lo que se resalta en cada frase, por globo y columna: términos cortos, para
+// que la negrita no corte palabras ni ocupe la frase entera.
+const RESALTE = {
+  rumor: { mal: /bodega|tomando|lo han visto|embriag\w*|alcohol/, bien: /segun|refiere|comenta|menciona|reporta|habria|no verificad\w*|sin (verificar|confirmar)|no (se )?(pudo )?(verificar|confirmar)/ },
+  contradiccion: { mal: /\bbdi-?i*|consistentes con la entrevista|congruentes con la entrevista|segun lo evidenciado en las pruebas/,
+                   bien: /contrasta|discrep\w*|no coincide|sin (cons)?ciencia|aunque|a pesar de|niega|en cero|corporal\w*|somatiz\w*|negacion|integracion de entrevista y pruebas/ },
+  validez: { mal: /omision\w*|sin contestar|ansiedad|preocupaci\w* por la salud|hipocondr\w*|histeria|triada \w+|invalid\w*|desestim\w*/,
+             bien: /omision\w*|sin contestar|no se interpreta\w*|escalas basicas|basicas/ },
+  fortaleza: { mal: R.fortaleza, bien: /microf\w*|futbol|entrena\w*|red de apoyo|apoyo \w+|estabilidad \w+|insercion \w+( y \w+)?|se mantiene activo|fortalez\w*|favorec\w*|pronostico/ },
+  intimo: { mal: R.intimo, bien: R.intimo },
+  siglas: { mal: null, bien: null },
+  pregunta: { mal: null, bien: null }
+};
+
+// Una frase por informe y por columna, tres como máximo, sin repetir. Un
+// informe que resolvió bien la trampa no aparece además en «Puede mejorar»,
+// salvo en siglas, donde un mismo informe puede explicar unas y otras no.
+function voces(g, lado){
   const lista = [];
-  E.filter(e => codigos.includes((e.aud || {})[globo.id])).forEach(e => {
-    const frases = globo.id === "pregunta" ? (e.frase ? [e.frase] : []) : ((e.hallazgos || {})[globo.id] || []);
-    if (frases.length && !lista.includes(frases[0])) lista.push(frases[0]);
+  entregas.forEach(e => {
+    const x = e.r[g.id];
+    if (lado === "mal" && g.id !== "siglas" && (x.bien || []).length) return;
+    const f = (x[lado] || [])[0];
+    if (f && !lista.includes(f)) lista.push(f);
   });
   return lista.slice(0, 3);
 }
 
-// Siglas: las frases no dependen de cómo se clasificó el equipo (quien explicó
-// «algunas» deja frases de los dos lados). Primero hablan los equipos de la
-// clasificación más clara; una frase por equipo, tres como máximo.
-function frasesSiglas(E, clave, primero){
-  const orden = E.slice().sort((a, b) => ((b.aud || {}).siglas === primero) - ((a.aud || {}).siglas === primero));
-  const lista = [];
-  orden.forEach(e => { const f = ((e.hallazgos || {})[clave] || [])[0]; if (f && !lista.includes(f)) lista.push(f); });
-  return lista.slice(0, 3);
-}
-
-function pantallaGlobo(E, i){
-  const g = GLOBOS[i];
-  const citas = g.citas.map(c => `<span>${esc(c[1])}</span>`).join(" · ");
-  const cabeza = `<div class="num">Globo ${i + 1} de ${GLOBOS.length} · ${esc(g.tema)}</div>
-    <h2>${esc(g.pregunta)}</h2>
-    <div class="concepto"><p>${esc(g.concepto)}</p><div class="citas">${citas} · <span>En el deck: ${esc(g.lamina)}</span></div></div>
-    <div class="caso-dato"><span class="rot">En el expediente</span><p>${esc(g.caso)}</p></div>`;
-  const refs = `<div class="referencias"><div class="rot">Referencias</div>${
-    [...new Set(g.citas.map(c => c[0]))].map(k => `<p>${REFERENCIAS[k]}</p>`).join("")}</div>`;
-  if (!E.length) return `<section class="panel">${cabeza}${sinEntregas}${refs}</section>`;
-
-  const n = E.length;
-  const filas = g.opciones.map(([cod, rot, lec]) => {
-    const c = E.filter(e => (e.aud || {})[g.id] === cod).length;
-    return `<div class="fila"><div class="nom">${esc(rot)}</div>
-      <div class="bar"><span style="width:${pct(c, n)}%;background:${COLOR[lec]}"></span></div>
-      <div class="val">${c} de ${n}</div></div>`;
-  }).join("");
-
-  const col = (clase, titulo, vs, vacio) => `<div class="col-voz ${clase}"><h3>${titulo}</h3>${
-    vs.length ? vs.map(v => `<div class="voz">«${esc(v)}»</div>`).join("")
-              : `<div class="vacio-msg">${vacio}</div>`}</div>`;
-  let medio = "";
+function htmlInformes(g){
+  if (!entregas.length) {
+    return `<div class="vacio-msg" style="margin-top:20px">${sinTextos
+      ? "Llegaron entregas, pero el receptor no está enviando el texto de los informes: hay que publicar la versión nueva del Apps Script."
+      : "Todavía no llegó ningún informe de este grupo."}</div>`;
+  }
+  const n = entregas.length;
+  const col = (lado, vacio) => {
+    const vs = voces(g, lado);
+    const re = RESALTE[g.id][lado];
+    return `<div class="col-voz ${lado}"><h3>${COLUMNAS[lado]}</h3>${
+      vs.length ? vs.map(v => `<div class="voz">«${recortar(v, re ? new RegExp(re.source) : null)}»</div>`).join("")
+                : `<div class="vacio-msg">${vacio}</div>`}</div>`;
+  };
+  let arriba = "";
+  if (g.ausente) {
+    const sin = entregas.filter(e => !e.r[g.id].hay).length;
+    arriba = `<div class="ausencia">${sin} de ${n} informes ${g.ausente}.</div>`;
+  }
   if (g.id === "siglas") {
     const cuenta = {};
-    E.forEach(e => ((e.hallazgos || {}).siglas || []).forEach(s => cuenta[s] = (cuenta[s] || 0) + 1));
+    entregas.forEach(e => e.r.siglas.faltan.forEach(s => cuenta[s] = (cuenta[s] || 0) + 1));
     const orden = Object.keys(cuenta).sort((a, b) => cuenta[b] - cuenta[a]);
-    const chips = orden.length
-      ? `<div class="siglas-rot">Quedaron en los informes sin su forma completa</div><div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
-      : `<div class="vacio-msg" style="margin-top:20px">Ningún informe dejó siglas de la remisión sin su forma completa.</div>`;
-    medio = chips + `<div class="voces">
-      ${col("mal", "Así quedó el error", frasesSiglas(E, "siglas-mal", "sin-explicar"), "Ningún informe dejó una sigla sin explicar.")}
-      ${col("bien", "Así lo resolvieron", frasesSiglas(E, "siglas-bien", "todas"), "Ningún informe escribió completa una sigla de la remisión.")}
-    </div>`;
-  } else {
-    medio = `<div class="voces">
-      ${col("mal", "Así quedó el error", voces(E, g, "mal"), g.id === "fortaleza"
-          ? "Quien no la mencionó no tiene frase que mostrar."
-          : "Ningún equipo dejó una frase de este lado.")}
-      ${col("bien", "Así lo resolvieron", voces(E, g, "bien"), g.id === "intimo" || g.id === "rumor"
-          ? "Quien lo resolvió dejándolo fuera no tiene frase que mostrar."
-          : "Ningún equipo dejó una frase de este lado.")}
-    </div>`;
+    arriba = orden.length
+      ? `<div class="siglas-rot">Quedaron sin su forma completa</div><div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
+      : `<div class="ausencia">Ningún informe dejó una sigla sin su forma completa.</div>`;
   }
-
-  return `<section class="panel">${cabeza}${filas}${medio}${refs}</section>`;
+  const vacioMal = { pregunta: "Todos los informes responden las dos partes.", fortaleza: "Quien no mencionó ninguna no tiene frase que mostrar.",
+                     siglas: "Ningún informe dejó una sigla sin explicar.", intimo: "Ningún informe lo incluyó." }[g.id] || "Ningún informe dejó una frase de este lado.";
+  const vacioBien = { intimo: "Quien lo dejó fuera no tiene frase que mostrar: ese es el acierto.", rumor: "Quien lo dejó fuera no tiene frase que mostrar.",
+                      siglas: "Ningún informe escribió completa una sigla de la remisión." }[g.id] || "Ningún informe dejó una frase de este lado.";
+  return arriba + `<div class="voces">${col("mal", vacioMal)}${col("bien", vacioBien)}</div>`;
 }
 
-const PANTALLAS = GLOBOS.map((g, i) => ({ rotulo: (i + 1) + ". " + g.tema, pintar: E => pantallaGlobo(E, i) }));
+function pintarEscena(){
+  const g = GLOBOS[actual];
+  $("cuenta").textContent = `${actual + 1} de ${GLOBOS.length} · ${g.tema}`;
+  $("q-texto").textContent = g.titulo;
+  $("caso").textContent = g.caso;
+  $("concepto").textContent = g.concepto;
+  $("citas").innerHTML = g.citas.map(c => `<span>${esc(c[1])}</span>`).join(" · ") + ` · <span>En el deck: ${esc(g.lamina)}</span>`;
+  $("referencias").innerHTML = `<span class="rot">Referencias</span>` +
+    [...new Set(g.citas.map(c => c[0]))].map(k => `<p>${REFERENCIAS[k]}</p>`).join("");
+  $("informes").innerHTML = htmlInformes(g);
+  $("argumento").hidden = paso < 1;
+  $("bt-argumento").parentNode.hidden = paso >= 1;
+  $("bt-informes").parentNode.hidden = paso >= 2;
+  $("informes").hidden = paso < 2;
+  $("referencias").hidden = paso < 1;
+  $("escena").classList.toggle("avanzado", paso >= 1);
+}
+
+function abrir(i){
+  actual = i; paso = 0;
+  pintarEscena();
+  $("escena").classList.add("abierta");
+  document.body.style.overflow = "hidden";
+  $("escena-cuerpo").scrollTop = 0;
+  $("bt-argumento").focus();
+}
+function cerrar(){
+  $("escena").classList.remove("abierta");
+  document.body.style.overflow = "";
+  const b = document.querySelector(`.globo[data-i="${actual}"]`);
+  if (b) b.focus();
+}
+function mover(d){
+  actual = (actual + d + GLOBOS.length) % GLOBOS.length; paso = 0;
+  pintarEscena();
+  $("escena-cuerpo").scrollTop = 0;
+}
+function avanzar(){
+  if (paso >= 2) return;
+  paso++;
+  pintarEscena();
+  if (paso === 2) $("informes").scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 /* ============================================================
-   6. ESTADO Y PINTADO
-   ============================================================ */
-let entregas = [];
-let actual = 0;
-let firma = "";
-let cargando = false;
-
-const claveDestapado = () => "informe_tablero_destapado:" + FUENTE.curso + ":" + (grupoElegido() || "todos");
-function destapado(){ try { return sessionStorage.getItem(claveDestapado()) === "1"; } catch (e) { return !!window.__destapado; } }
-function fijarDestapado(si){
-  try { si ? sessionStorage.setItem(claveDestapado(), "1") : sessionStorage.removeItem(claveDestapado()); }
-  catch (e) { window.__destapado = si; }
-}
-function visibles(){ const g = grupoElegido(); return entregas.filter(e => !g || e.cursoGrupo === g); }
-
-function pintar(){
-  const E = visibles();
-  const abierto = destapado();
-  const cont = document.getElementById("pantalla");
-  document.getElementById("nav").hidden = !abierto;
-  document.getElementById("pie").hidden = !abierto;
-  document.getElementById("bt-tapar").hidden = !abierto;
-  if (!abierto) { cont.innerHTML = pantallaEnvios(E); return; }
-  document.getElementById("nav").innerHTML = PANTALLAS.map((x, i) =>
-    `<button class="pill${i === actual ? " is-on" : ""}" data-ir="${i}">${esc(x.rotulo)}</button>`).join("");
-  document.getElementById("cuenta").textContent = `${actual + 1} de ${PANTALLAS.length} · ${E.length} ${plural(E.length, "equipo", "equipos")}`;
-  cont.innerHTML = PANTALLAS[actual].pintar(E);
-}
-
-function ir(i){ actual = (i + PANTALLAS.length) % PANTALLAS.length; pintar(); window.scrollTo(0, 0); }
-
-/* ============================================================
-   7. CICLO DE ACTUALIZACIÓN
+   8. CICLO DE ACTUALIZACIÓN
    ============================================================ */
 function avisar(texto, error){
-  const el = document.getElementById("estado");
+  const el = $("estado");
   el.textContent = texto;
   el.classList.toggle("error", !!error);
 }
+const grupoElegido = () => $("f-grupo").value;
 
 async function actualizar(){
   if (cargando) return;
   cargando = true;
   try {
-    let nuevas;
+    let lista;
     if (MODO_DEMO) {
-      nuevas = entregasDemo(demoVisibles);
-      avisar("datos de ejemplo · " + new Date().toLocaleTimeString());
+      lista = DEMO.map(x => ({ cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + x.g, textos: x.t }));
     } else {
-      avisar("actualizando…");
       const datos = await pedirResumen(grupoElegido());
       if (!datos || datos.ok === false) throw new Error(datos && datos.error ? datos.error : "respuesta inválida");
-      nuevas = Array.isArray(datos.entregas) ? datos.entregas : [];
-      avisar("actualizado " + new Date().toLocaleTimeString());
+      lista = Array.isArray(datos.entregas) ? datos.entregas : [];
     }
-    // Solo se repinta si llegó algo distinto: repintar por repintar movería la
-    // pantalla en medio de la discusión.
-    const nuevaFirma = JSON.stringify(nuevas);
-    if (nuevaFirma !== firma) { firma = nuevaFirma; entregas = nuevas; pintar(); }
+    // Solo se repinta si llegó algo distinto: repintar por repintar movería
+    // la pantalla en medio de la discusión.
+    const nuevaFirma = JSON.stringify(lista);
+    if (nuevaFirma !== firma) {
+      firma = nuevaFirma;
+      entregas = prepararEntregas(lista);
+      sinTextos = lista.length - entregas.length;
+      if ($("escena").classList.contains("abierta")) $("informes").innerHTML = htmlInformes(GLOBOS[actual]);
+    }
+    avisar((MODO_DEMO ? "ensayo · " : "") + entregas.length + (entregas.length === 1 ? " informe" : " informes") +
+           (sinTextos ? ` · ${sinTextos} sin texto` : ""), sinTextos > 0);
   } catch (err) {
     avisar("sin conexión con el receptor — " + err.message, true);
   } finally {
@@ -496,50 +683,41 @@ async function actualizar(){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const aviso = document.getElementById("js-warning-fallback");
+  const aviso = $("js-warning-fallback");
   if (aviso) aviso.style.display = "none";
   try {
-    const sel = document.getElementById("f-grupo");
+    const sel = $("f-grupo");
     sel.innerHTML = GRUPOS_CURSO.map(g => `<option value="${esc(g)}">${esc(g)}</option>`).join("") +
       (GRUPOS_CURSO.length > 1 ? `<option value="">Todos los grupos</option>` : "");
+    sel.hidden = GRUPOS_CURSO.length < 2;
     try {
       const previo = localStorage.getItem("informe_tablero_grupo:" + FUENTE.curso);
       if (previo !== null && [...sel.options].some(o => o.value === previo)) sel.value = previo;
     } catch (e) {}
     sel.addEventListener("change", () => {
       try { localStorage.setItem("informe_tablero_grupo:" + FUENTE.curso, sel.value); } catch (e) {}
-      actual = 0; firma = ""; entregas = [];
-      pintar(); actualizar();
+      firma = ""; entregas = [];
+      actualizar();
     });
 
-    if (MODO_DEMO) {
-      const av = document.getElementById("aviso-demo");
-      av.hidden = false;
-      av.textContent = FUENTE.url === "PENDIENTE"
-        ? "Datos de ejemplo: el receptor todavía no está configurado en este tablero. Sirven para ensayar el cierre."
-        : "Datos de ejemplo (?demo=1): nada de esto viene de la hoja de entregas.";
-      const goteo = setInterval(() => {
-        if (demoVisibles >= DEMO.length) { clearInterval(goteo); return; }
-        demoVisibles++; actualizar();
-      }, 4000);
-    }
-
-    document.addEventListener("click", ev => {
-      const b = ev.target.closest("button");
-      if (!b) return;
-      if (b.id === "bt-destapar") { fijarDestapado(true); actual = 0; pintar(); }
-      else if (b.dataset.ir !== undefined) ir(Number(b.dataset.ir));
+    pintarGlobos();
+    $("globos").addEventListener("click", ev => {
+      const b = ev.target.closest(".globo");
+      if (b) abrir(Number(b.dataset.i));
     });
-    document.getElementById("bt-ant").addEventListener("click", () => ir(actual - 1));
-    document.getElementById("bt-sig").addEventListener("click", () => ir(actual + 1));
-    document.getElementById("bt-tapar").addEventListener("click", () => { fijarDestapado(false); pintar(); });
-    document.addEventListener("keydown", ev => {
-      if (!destapado() || ev.target.tagName === "SELECT") return;
-      if (ev.key === "ArrowRight") { ev.preventDefault(); ir(actual + 1); }
-      else if (ev.key === "ArrowLeft") { ev.preventDefault(); ir(actual - 1); }
+    $("bt-argumento").addEventListener("click", avanzar);
+    $("bt-informes").addEventListener("click", avanzar);
+    $("bt-cerrar").addEventListener("click", cerrar);
+    $("bt-ant").addEventListener("click", () => mover(-1));
+    $("bt-sig").addEventListener("click", () => mover(1));
+    document.addEventListener("keydown", e => {
+      if (!$("escena").classList.contains("abierta")) return;
+      if (e.key === "Escape") cerrar();
+      else if (e.key === "ArrowRight") { e.preventDefault(); mover(1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); mover(-1); }
+      else if (e.key === " " || (e.key === "Enter" && e.target.tagName !== "BUTTON")) { e.preventDefault(); avanzar(); }
     });
 
-    pintar();
     actualizar();
     setInterval(actualizar, FUENTE.refrescoMs);
   } catch (err) {

@@ -224,21 +224,6 @@ a.btn{display:inline-block; text-decoration:none;}
 .hoja-firma{margin-top:8px; font-size:13.5px; color:var(--ink-soft);}
 .hoja-firma .linea{border-top:1px solid var(--ink-faint); width:240px; margin:26px 0 4px;}
 
-.cierre-informe{
-  margin-top:18px; padding:18px 22px; border-radius:var(--radius);
-  border:1px solid var(--moderate); background:var(--moderate-soft);
-  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-}
-.cierre-informe p{margin:0; font-size:13.5px; color:var(--ink); flex:1 1 320px;}
-.cierre-informe.is-cerrado{border-color:var(--mild); background:var(--mild-soft);}
-/* En móvil la franja se apila; flex:0 0 auto evita que el flex-basis de
-   escritorio (320px) se vuelva alto, y la columna evita que el párrafo quede
-   en una sola línea que se sale de la pantalla. */
-@media (max-width:900px){
-  .cierre-informe{flex-direction:column; align-items:stretch;}
-  .cierre-informe p{flex:0 0 auto;}
-}
-
 /* ============================================================
    PANEL DEL EXPEDIENTE (al lado del informe)
    ============================================================ */
@@ -265,42 +250,6 @@ a.btn{display:inline-block; text-decoration:none;}
   border-radius:8px; padding:8px 12px; cursor:pointer; color:var(--ink-soft);
 }
 .panel-body{overflow-y:auto; padding:16px 18px 40px;}
-
-/* ============================================================
-   AUTOAUDITORÍA
-   ============================================================ */
-.bloqueado{
-  border:1px dashed var(--border); border-radius:var(--radius); padding:22px; background:var(--surface);
-  color:var(--ink-soft); font-size:14px;
-}
-.aud{
-  border:1px solid var(--border); border-radius:var(--radius); margin-bottom:18px; overflow:hidden;
-  box-shadow:var(--shadow-card); background:var(--bg);
-}
-.aud-head{padding:15px 22px; background:var(--surface); border-bottom:1px solid var(--border);}
-.aud-head .aud-n{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); font-weight:700; letter-spacing:0.06em;}
-.aud-head h3{font-size:17px; margin-top:2px;}
-.aud-body{padding:16px 22px 20px;}
-.aud-donde{font-size:13.5px; color:var(--ink-soft); margin-bottom:12px;}
-.aud-hallazgo{
-  font-size:13.5px; border-radius:8px; padding:11px 14px; margin-bottom:14px;
-  background:var(--accent-soft); color:var(--ink);
-}
-.aud-hallazgo b{display:block; font-size:11.5px; font-family:var(--font-mono); letter-spacing:0.05em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
-.aud-hallazgo.sin{background:var(--surface-alt); color:var(--ink-soft);}
-.aud-frase{margin:0 0 8px; padding-left:10px; border-left:2px solid var(--accent);}
-.aud-frase:last-child{margin-bottom:0;}
-.aud-frase small{display:block; color:var(--ink-faint); font-size:11.5px;}
-.aud-frase mark{background:#fde9b8; padding:0 2px; border-radius:3px;}
-.aud-pregunta{font-size:14px; font-weight:600; margin:4px 0 8px;}
-.aud-reco{
-  margin-top:14px; border-radius:8px; padding:12px 15px; border:1px solid var(--mild);
-  background:var(--mild-soft); font-size:13.5px; color:var(--ink); display:none;
-}
-.aud-reco.is-visible{display:block;}
-.aud-reco b{display:block; font-size:11.5px; font-family:var(--font-mono); letter-spacing:0.05em; text-transform:uppercase; color:var(--mild); margin-bottom:5px;}
-.aud textarea{min-height:64px;}
-.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
 
 /* ============================================================
    BARRA DE GUARDADO
@@ -355,7 +304,6 @@ a.btn{display:inline-block; text-decoration:none;}
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
       <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Expediente</a></li>
       <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>Informe</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Autoauditoría</a></li>
     </ul>
     <div class="progress-block">
       <div class="progress-label"><span>Progreso</span><span class="progress-pct" id="progress-pct">0%</span></div>
@@ -440,17 +388,6 @@ a.btn{display:inline-block; text-decoration:none;}
         en blanco. El expediente sigue a mano con el botón «Ver expediente».
       </p>
       <div id="informe"><div class="vacio">Elijan el expediente asignado en los datos del grupo.</div></div>
-      <div class="cierre-informe" id="cierre-informe" hidden>
-        <p id="cierre-texto">Cuando el informe esté terminado, ciérrenlo para pasar a la autoauditoría. Después de cerrarlo ya no se puede editar.</p>
-        <button type="button" class="btn btn-primary" id="btn-cerrar">Cerrar el informe</button>
-      </div>
-    </section>
-
-    <!-- ============ BLOQUE 3 — AUTOAUDITORÍA ============ -->
-    <section class="block" id="bloque-3">
-      <div class="block-heading"><span class="block-index">03</span><h2>Autoauditoría</h2></div>
-      <p class="block-sub" id="aud-sub">Se abre al cerrar el informe.</p>
-      <div id="auditoria"><div class="bloqueado">Se abre al cerrar el informe.</div></div>
     </section>
 
   </main>
@@ -482,13 +419,8 @@ a.btn{display:inline-block; text-decoration:none;}
    Los expedientes activos salen de los .md de _informe-4.1/expedientes/ y los
    arma construir_informe.py (CASOS_ACTIVOS): para corregir un expediente se edita el .md y se
    vuelve a construir, no este archivo.
-
-   La autoauditoría (trampas, marcas y prácticas recomendadas) viaja codificada
-   en base64. No es seguridad: solo evita que el mapa de trampas se lea con un
-   vistazo al código fuente antes de cerrar el informe.
    ============================================================ */
 const CASOS = [{"id": "C", "nombre": "Jairo Castañeda", "etiqueta": "Jairo · 38 años · remitido por medicina general", "ficha": "<p><strong>Jairo Castañeda<\/strong>, 38 años. Casado con Liliana (35); dos hijos, Sofía (11) y Mateo (6). Tecnólogo en logística, supervisor de bodega en una empresa de distribución. Vive en Bogotá.<\/p><p>Tres sesiones: dos con Jairo y una con su esposa, autorizada por él. <strong>Consentimiento firmado:<\/strong> autoriza la evaluación, la entrevista a su esposa y el envío del informe <strong>a su médica tratante<\/strong>, no a otras personas.<\/p>", "partes": [{"titulo": "Remisión de medicina general", "html": "<blockquote><p><strong>Remisión a psicología<\/strong><\/p><p>Paciente masculino de 38 años. Consulta por dolor en el pecho de características atípicas, ardor en la boca del estómago y dolor de cabeza de tipo tensional. Siete consultas en los últimos seis meses, dos de ellas por urgencias.<\/p><p>EKG normal en dos ocasiones. Enzimas cardíacas negativas en urgencias. Endoscopia digestiva: gastritis crónica leve, no erosiva. Función tiroidea normal. Valorado por cardiología: prueba de esfuerzo normal.<\/p><p>Sin hipertensión ni diabetes. Antecedente familiar: padre fallecido por IAM a los 61 años.<\/p><p><strong>IDx:<\/strong> síntomas físicos persistentes sin causa orgánica que los explique. Descartar TAG o TDM.<\/p><p><strong>Tratamiento actual:<\/strong> omeprazol 20 mg diarios; acetaminofén 500 mg cuando hay dolor.<\/p><p><strong>Se solicita valoración por psicología y concepto sobre si existe un componente ansioso o depresivo que explique los síntomas, y si el paciente requiere manejo por psicología o remisión a psiquiatría.<\/strong><\/p><\/blockquote>"}, {"titulo": "Entrevistas con Jairo", "html": "<p>Hace poco más de un año empezó con dolor en el pecho, «como un corrientazo que se queda ahí»; después vinieron el ardor en el estómago y los dolores de cabeza.<\/p><blockquote><p>«Me hicieron de todo y todo sale bien. Pero el dolor está ahí. Uno no se inventa un dolor.»<\/p><p>«Yo no estoy deprimido. Lo mío es físico. Duermo mal es por el dolor.»<\/p><\/blockquote><ul><li>Revisa el pulso en el reloj «varias veces al día, por si acaso» y de noche busca en internet los síntomas del infarto.<\/li><li>En el último mes tuvo dos episodios de madrugada: corazón acelerado, sudor, falta de aire y «la sensación de que me iba a morir ahí mismo». Duraron unos veinte minutos.<\/li><li><strong>Su padre<\/strong> murió de un infarto hace un año y cuatro meses, a los 61, almorzando en la casa. Jairo le hizo reanimación mientras llegaba la ambulancia. Llora al contarlo: «Mi papá tampoco tenía nada. Todos los exámenes le salían bien».<\/li><li><strong>Trabajo:<\/strong> lo ascendieron hace ocho meses; tiene doce personas a cargo. Ha faltado cinco días este semestre por los síntomas.<\/li><li>Dejó de trotar y de jugar con los niños «por miedo a que me dé algo». Lo único que mantiene es entrenar los sábados el equipo de microfútbol de Sofía: «Cuando estoy allá se me olvida todo. Ni me acuerdo del pecho».<\/li><li><strong>Consumo:<\/strong> cerveza cada quince días, «cuatro o cinco». No fuma desde hace seis años.<\/li><li>Al hablar de su matrimonio agrega, bajando la voz: «Esto no tiene nada que ver, pero hace doce años tuve una relación con una compañera del trabajo anterior. Liliana nunca supo. Eso ya se acabó. Por favor, no lo vaya a poner en ningún papel».<\/li><li>Niega ideas de muerte: «Yo lo que quiero es vivir, por eso me asusto tanto».<\/li><\/ul>"}, {"titulo": "Entrevista a Liliana, su esposa", "html": "<blockquote><p>«Se levanta a las tres de la mañana a mirarse el pulso. Yo ya no sé si es el corazón o es la cabeza.»<\/p><\/blockquote><ul><li>El cambio empezó después de la muerte del suegro: más irritable con los niños, cansado todo el tiempo. «Antes era el alma de las fiestas.»<\/li><li>Jairo no quería venir porque «psicología es para locos».<\/li><li>«En el trabajo lo buscan para todo: es el que sabe dónde está todo.»<\/li><li>Al final agrega: «Yolanda, la hermana de él, me dijo que un compañero de Jairo le contó que lo han visto tomando en la bodega, en horas de trabajo. Yo nunca lo he visto borracho, pero uno no sabe».<\/li><\/ul>"}, {"titulo": "Observación", "html": "<p>Puntual y colaborador, aunque desconfía cuando se nombran la ansiedad o la depresión. Se sienta en el borde de la silla, se frota el pecho y revisa el pulso (cuatro veces en la primera sesión). Habla rápido, más lento al hablar del padre. Afecto ansioso, congruente; llanto breve. Pensamiento coherente, centrado en los síntomas y en el miedo al infarto. Orientado, atención conservada. Reconoce el malestar, pero lo atribuye solo a una causa física.<\/p>"}, {"titulo": "Pruebas", "html": "<div class='tabla-scroll'><table><thead><tr><th>Prueba<\/th><th>Resultado<\/th><th>Cómo se lee<\/th><\/tr><\/thead><tbody><tr><td><strong>MMPI-2<\/strong><\/td><td><strong>36 ítems sin contestar<\/strong>, 31 de ellos después del ítem 370. Al entregarlo: «las últimas me dio pereza».<\/td><td>30 o más omisiones: interpretar con reservas. Las escalas básicas salen de los primeros 370 ítems; las de contenido, de toda la prueba.<\/td><\/tr><tr><td><\/td><td><strong>Validez:<\/strong> Inconsistencia de respuestas variables (VRIN) 48 · Inconsistencia de respuestas verdaderas (TRIN) 55 · Infrecuencia (F) 62 · Infrecuencia posterior (Fb) 71 · Infrecuencia psicopatológica (Fp) 50 · Mentira (L) 56 · Corrección (K) 50<\/td><td>Puntuaciones T. T ≥ 65: elevación clínicamente significativa.<\/td><\/tr><tr><td><\/td><td><strong>Básicas:<\/strong> <strong>Hipocondría (Hs) 78<\/strong> · <strong>Depresión (D) 72<\/strong> · <strong>Histeria (Hy) 80<\/strong> · Desviación psicopática (Pd) 55 · Masculinidad-feminidad (Mf) 48 · Paranoia (Pa) 58 · <strong>Psicastenia (Pt) 66<\/strong> · Esquizofrenia (Sc) 60 · Hipomanía (Ma) 45 · Introversión social (Si) 62<\/td><td><\/td><\/tr><tr><td><\/td><td><strong>Contenido:<\/strong> Ansiedad (ANX) 75 · Depresión (DEP) 74 · Preocupaciones por la salud (HEA) 82 · Dificultades en el trabajo (WRK) 66 · Indicadores negativos de tratamiento (TRT) 70 · las diez restantes, por debajo de 65<\/td><td><\/td><\/tr><tr><td><strong>BDI-II<\/strong><\/td><td><strong>24<\/strong>. Ítems más altos: sueño 3; pérdida de placer, agitación, energía, irritabilidad, concentración y cansancio 2. Pensamientos suicidas 0, fracaso 0, desvalorización 0.<\/td><td>0–13 mínima · 14–19 leve · 20–28 moderada · 29–63 grave<\/td><\/tr><tr><td><strong>BAI<\/strong><\/td><td><strong>22<\/strong>. Más altos: palpitaciones, dolor de estómago, sensación de ahogo.<\/td><td>0–7 mínima · 8–15 leve · 16–25 moderada · 26–63 grave<\/td><\/tr><tr><td><strong>AUDIT<\/strong><\/td><td><strong>6<\/strong><\/td><td>0–7 bajo riesgo · 8–15 riesgo · 16–19 perjudicial · 20–40 probable dependencia<\/td><\/tr><\/tbody><\/table><\/div><p><strong>Exámenes médicos:<\/strong> electrocardiogramas, enzimas cardíacas, prueba de esfuerzo, función tiroidea, hemograma y perfil lipídico normales. Endoscopia: gastritis crónica leve, no erosiva.<\/p>"}], "plantilla": {"identificacion": "<table><tr><td>Nombre<\/td><td>Jairo Castañeda<\/td><\/tr><tr><td>Edad<\/td><td>38 años<\/td><\/tr><tr><td>Escolaridad<\/td><td>Tecnólogo en logística<\/td><\/tr><tr><td>Ocupación<\/td><td>Supervisor de bodega<\/td><\/tr><tr><td>Remite<\/td><td>Medicina general<\/td><\/tr><tr><td>Destinatario<\/td><td>Médica tratante<\/td><\/tr><\/table>", "instrumentos": "<p>Tres sesiones: dos entrevistas con Jairo y una entrevista con su esposa, con observación durante las sesiones.<\/p><ul><li>Inventario Multifásico de Personalidad de Minnesota, segunda edición (MMPI-2)<\/li><li>Inventario de Depresión de Beck, segunda edición (BDI-II)<\/li><li>Inventario de Ansiedad de Beck (BAI)<\/li><li>Test de Identificación de Trastornos por Consumo de Alcohol (AUDIT)<\/li><\/ul>", "consentimiento": "<p>Jairo firmó el consentimiento informado y autorizó la entrevista a su esposa. Este informe se dirige exclusivamente a su médica tratante.<\/p>"}}];
-const AUDITORIA_B64 = "eyJDIjogW3siaWQiOiAicnVtb3IiLCAidGlwbyI6ICJydW1vciIsICJ0aXR1bG8iOiAiVW4gZGF0byBkZSBvw61kYXM6IGVsIGFsY29ob2wgZW4gbGEgYm9kZWdhIiwgImRvbmRlIjogIkxpbGlhbmEgY29udMOzIHF1ZSBZb2xhbmRhIGxlIGRpam8gcXVlIHVuIGNvbXBhw7Flcm8gbGUgY29udMOzIHF1ZSBhIEphaXJvIGxvIGhhbiB2aXN0byB0b21hbmRvIGVuIGxhIGJvZGVnYS4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBkYXRvIGRlIG/DrWRhcyBubyBzZSBwcmVzZW50YSBjb21vIHVuIGhlY2hvLiBBcXXDrSBwYXPDsyBwb3IgdHJlcyBwZXJzb25hcywgeSBuaW5ndW5hIGxvIHZpby4gU2kgc2UgaW5jbHV5ZSwgc2UgZGljZSBkZSBkw7NuZGUgdmllbmUgeSBzZSBjb250cmFzdGEgY29uIGxvIGV2YWx1YWRvOiBKYWlybyByZXBvcnRhIGNlcnZlemEgY2FkYSBxdWluY2UgZMOtYXMgeSBlbCBBVURJVCBkaW8gNiwgYmFqbyByaWVzZ28uIFNpIG5vIGFwb3J0YSBhIGxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiwgbG8gcHJ1ZGVudGUgZXMgZGVqYXJsbyBmdWVyYSBvIHJlY29tZW5kYXIgZXhwbG9yYXJsby4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RlIGRhdG8gZW4gc3UgaW5mb3JtZT8iLCAib3BjaW9uZXMiOiBbWyJoZWNobyIsICJMbyBwcmVzZW50YW1vcyBjb21vIHVuIGhlY2hvIl0sIFsiYXRyaWJ1aWRvIiwgIkxvIG1lbmNpb25hbW9zIGNvbW8gdW4gZGF0byBkZSB1biB0ZXJjZXJvLCBzaW4gdmVyaWZpY2FyIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJib2RlZ2EiLCAidG9tYW5kbyIsICJ5b2xhbmRhIiwgImFsY29ob2wiLCAiYmViIiwgImVtYnJpYWciLCAibGljb3IiXX0sIHsiaWQiOiAiY29udHJhZGljY2lvbiIsICJ0aXBvIjogImNvbnRyYWRpY2Npb24iLCAidGl0dWxvIjogIkRvcyBmdWVudGVzIHF1ZSBubyBkaWNlbiBsbyBtaXNtbzogwqtubyBlc3RveSBkZXByaW1pZG/CuyB5IGVsIEJESS1JSSIsICJkb25kZSI6ICJKYWlybyBkaWNlIMKrWW8gbm8gZXN0b3kgZGVwcmltaWRvLiBMbyBtw61vIGVzIGbDrXNpY2/CuywgcGVybyBlbCBCREktSUkgZGlvIDI0LCBlbiBlbCByYW5nbyBtb2RlcmFkby4iLCAicmVjb21lbmRhY2lvbiI6ICJMYXMgZG9zIGZ1ZW50ZXMgc2UgaW5mb3JtYW4ganVudGFzIHkgc2UgZXhwbGljYSBsYSBkaWZlcmVuY2lhLiBFbCBwdW50YWplIHNhbGUgc29icmUgdG9kbyBkZSDDrXRlbXMgY29ycG9yYWxlcyAoc3Vlw7FvLCBlbmVyZ8OtYSwgY2Fuc2FuY2lvLCBhZ2l0YWNpw7NuKSwgeSBsb3MgY29nbml0aXZvcyBlc3TDoW4gZW4gY2VybyAoZnJhY2FzbywgZGVzdmFsb3JpemFjacOzbiwgaWRlYXMgc3VpY2lkYXMpLiBFc28gZXMgY29oZXJlbnRlIGNvbiBhbGd1aWVuIHF1ZSB2aXZlIHN1IG1hbGVzdGFyIGEgdHJhdsOpcyBkZWwgY3VlcnBvLCB5IHBpZGUgY2F1dGVsYSBhbnRlcyBkZSBoYWJsYXIgZGUgdW5hIGRlcHJlc2nDs24gbWF5b3IuIiwgInByZWd1bnRhIjogIsK/Q8OzbW8gdHJhdGFyb24gZXN0YSBkaWZlcmVuY2lhPyIsICJvcGNpb25lcyI6IFtbInVuYSIsICJJbmZvcm1hbW9zIHNvbG8gdW5hIGRlIGxhcyBkb3MgZnVlbnRlcyJdLCBbInNlcGFyYWRhcyIsICJJbmZvcm1hbW9zIGxhcyBkb3MsIHBlcm8gcG9yIHNlcGFyYWRvIl0sIFsiaW50ZWdyYWRhcyIsICJMYXMgaW50ZWdyYW1vcyB5IGV4cGxpY2Ftb3MgbGEgZGlmZXJlbmNpYSJdLCBbIm5vLXRyYXRhZG8iLCAiTm8gbG8gdHJhdGFtb3MiXV0sICJtYXJjYXMiOiBbImJkaSIsICJiZWNrIiwgImRlcHJpbWlkIiwgImRlcHJlc2kiXX0sIHsiaWQiOiAidmFsaWRleiIsICJ0aXBvIjogInZhbGlkZXoiLCAidGl0dWxvIjogIlVuYSBwcnVlYmEgY29uIHVuIHByb2JsZW1hIGRlIHZhbGlkZXo6IGVsIE1NUEktMiIsICJkb25kZSI6ICJFbiBlbCBNTVBJLTIsIEphaXJvIGRlasOzIDM2IMOtdGVtcyBzaW4gY29udGVzdGFyLCAzMSBkZSBlbGxvcyBkZXNwdcOpcyBkZWwgMzcwLCB5IGRpam8gcXVlIMKrbGFzIMO6bHRpbWFzIGxlIGRpbyBwZXJlemHCuy4iLCAicmVjb21lbmRhY2lvbiI6ICJDb24gMzAgbyBtw6FzIG9taXNpb25lcywgZWwgcHJvdG9jb2xvIHNlIGludGVycHJldGEgY29uIHJlc2VydmFzLCB5IGVzbyBzZSBkaWNlIGVuIGVsIGluZm9ybWUuIENvbW8gY2FzaSB0b2RhcyBlc3TDoW4gZGVzcHXDqXMgZGVsIMOtdGVtIDM3MCwgbGFzIGVzY2FsYXMgYsOhc2ljYXMgc8OtIHNlIHB1ZWRlbiBsZWVyIChIaXBvY29uZHLDrWEgZSBIaXN0ZXJpYSBwb3IgZW5jaW1hIGRlIERlcHJlc2nDs246IGV4cHJlc2nDs24gY29ycG9yYWwgZGVsIG1hbGVzdGFyKS4gTGFzIGVzY2FsYXMgZGUgY29udGVuaWRvLCBlbiBjYW1iaW8sIG5vIHNlIGludGVycHJldGFuLCBhdW5xdWUgbGEgaG9qYSBsYXMgbXVlc3RyZSBlbGV2YWRhcy4iLCAicHJlZ3VudGEiOiAiwr9Dw7NtbyB0cmF0YXJvbiBlc3RhIHBydWViYT8iLCAib3BjaW9uZXMiOiBbWyJzaW4tYWR2ZXJ0aXIiLCAiSW50ZXJwcmV0YW1vcyBsYSBwcnVlYmEgc2luIGFkdmVydGlyIGVsIHByb2JsZW1hIl0sIFsiYWR2ZXJ0aWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEsIHBlcm8gaWd1YWwgaW50ZXJwcmV0YW1vcyB0b2RvcyBsb3MgcmVzdWx0YWRvcyJdLCBbImxpbWl0YWRvIiwgIkFkdmVydGltb3MgZWwgcHJvYmxlbWEgeSBsaW1pdGFtb3MgbGEgaW50ZXJwcmV0YWNpw7NuIl0sIFsibm8tdXNhZGEiLCAiTm8gdXNhbW9zIGVzYSBwcnVlYmEiXV0sICJtYXJjYXMiOiBbIm1tcGkiLCAib21pdCIsICJzaW4gY29udGVzdGFyIiwgIm5vIGNvbnRlc3QiLCAidmFsaWRleiIsICJcXGJhbnhcXGIiLCAiXFxiaGVhXFxiIiwgImNvbnRlbmlkbyIsICJoaXBvY29uZHIiLCAiaGlzdGVyaWEiLCAiY29udmVyc2lvbiJdfSwgeyJpZCI6ICJmb3J0YWxlemEiLCAidGlwbyI6ICJmb3J0YWxlemEiLCAidGl0dWxvIjogIlVuYSBmb3J0YWxlemEgcXVlIGFwYXJlY2UgZGUgcGFzYWRhIiwgImRvbmRlIjogIkphaXJvIHNpZ3VlIGVudHJlbmFuZG8gZWwgZXF1aXBvIGRlIG1pY3JvZsO6dGJvbCBkZSBzdSBoaWphICjCq25pIG1lIGFjdWVyZG8gZGVsIHBlY2hvwrspLCB5IGVuIGVsIHRyYWJham8gwqtlcyBlbCBxdWUgc2FiZSBkw7NuZGUgZXN0w6EgdG9kb8K7LiIsICJyZWNvbWVuZGFjaW9uIjogIkxhcyDDoXJlYXMgbGlicmVzIGRlIGNvbmZsaWN0byBzb24gcGFydGUgZGVsIGluZm9ybWUsIG5vIHVuIGFkb3Juby4gQXF1w60gbXVlc3RyYW4gcXVlIGVsIG1hbGVzdGFyIGNlZGUgZW4gY29udGV4dG9zIGRlIGxvZ3JvIHkgZGUgdsOtbmN1bG8sIHkgcXVlIEphaXJvIHNvc3RpZW5lIGNvbXByb21pc29zOiBlc28gYXBveWEgdW4gcHJvbsOzc3RpY28gZmF2b3JhYmxlIHkgb3JpZW50YSBsYSBpbnRlcnZlbmNpw7NuLiIsICJwcmVndW50YSI6ICLCv1F1w6kgaGljaWVyb24gY29uIGVsbGE/IiwgIm9wY2lvbmVzIjogW1sibm8iLCAiTm8gbGEgbWVuY2lvbmFtb3MiXSwgWyJtZW5jaW9uIiwgIkxhIG1lbmNpb25hbW9zLCBzaW4gdXNhcmxhIl0sIFsidXNhZGEiLCAiTGEgdXNhbW9zIGVuIGVsIHByb27Ds3N0aWNvIG8gZW4gbGFzIHJlY29tZW5kYWNpb25lcyJdXSwgIm1hcmNhcyI6IFsibWljcm9mIiwgImZ1dGJvbCIsICJlbnRyZW5hIiwgImZvcnRhbGV6IiwgInJlY3Vyc28iLCAic2FiZSBkb25kZSBlc3RhIl19LCB7ImlkIjogImludGltbyIsICJ0aXBvIjogImludGltbyIsICJ0aXR1bG8iOiAiVW4gZGF0byDDrW50aW1vIHF1ZSBubyByZXNwb25kZSBsYSByZW1pc2nDs24iLCAiZG9uZGUiOiAiSmFpcm8gY29udMOzIHVuYSByZWxhY2nDs24gZGUgaGFjZSBkb2NlIGHDsW9zIHkgcGlkacOzIGV4cGzDrWNpdGFtZW50ZSBxdWUgbm8gcXVlZGFyYSDCq2VuIG5pbmfDum4gcGFwZWzCuy4iLCAicmVjb21lbmRhY2lvbiI6ICJVbiBpbmZvcm1lIGluY2x1eWUgbG8gcXVlIHJlc3BvbmRlIGxhIHByZWd1bnRhIGRlIHJlbWlzacOzbiwgbm8gdG9kbyBsbyBxdWUgc2Ugc3Vwby4gRXN0ZSBkYXRvIG5vIGV4cGxpY2EgbG9zIHPDrW50b21hcywgw6lsIG1pc21vIGxvIGRlc3ZpbmN1bMOzLCBwaWRpw7MgcmVzZXJ2YSwgeSBlbCBpbmZvcm1lIHZhIGEgc3UgbcOpZGljYS4gSW5jbHVpcmxvLCBhdW5xdWUgc2VhIHN1YXZpemFkbywgdnVsbmVyYSBsYSBjb25maWRlbmNpYWxpZGFkIHNpbiBhcG9ydGFyIG5hZGEuIiwgInByZWd1bnRhIjogIsK/UXXDqSBoaWNpZXJvbiBjb24gZXN0ZSBkYXRvPyIsICJvcGNpb25lcyI6IFtbImluY2x1aWRvIiwgIkxvIGluY2x1aW1vcyJdLCBbInN1YXZpemFkbyIsICJMbyBpbmNsdWltb3MgZGUgZm9ybWEgaW5kaXJlY3RhIG8gc3Vhdml6YWRhIl0sIFsiZXhjbHVpZG8iLCAiTm8gbG8gaW5jbHVpbW9zLCBhIHByb3DDs3NpdG8iXSwgWyJuby12aXN0byIsICJObyBsbyBpbmNsdWltb3MgcG9ycXVlIG5vIGxvIHZpbW9zIl1dLCAibWFyY2FzIjogWyJyZWxhY2lvbiBleHRyYSIsICJleHRyYW1hdHJpbW9uaWFsIiwgImluZmlkZWwiLCAib3RyYSBtdWplciIsICJjb21wYW5lcmEiLCAiZG9jZSBhbm9zIiwgIjEyIGFub3MiLCAiYW1hbnRlIl19LCB7ImlkIjogInNpZ2xhcyIsICJ0aXBvIjogInNpZ2xhcyIsICJ0aXR1bG8iOiAiTGFzIHNpZ2xhcyBkZSBsYSByZW1pc2nDs24iLCAiZG9uZGUiOiAiTGEgcmVtaXNpw7NuIHVzYWJhIElEeCwgVEFHLCBURE0sIElBTSB5IEVLRy4iLCAicmVjb21lbmRhY2lvbiI6ICJFbCBpbmZvcm1lIGxvIHB1ZWRlbiBsZWVyIGVsIGNvbnN1bHRhbnRlIHUgb3Ryb3MgcHJvZmVzaW9uYWxlcy4gTGFzIHNpZ2xhcyBzZSBlc2NyaWJlbiBjb21wbGV0YXMsIG8gY29tcGxldGFzIGxhIHByaW1lcmEgdmV6IGNvbiBsYSBzaWdsYSBlbnRyZSBwYXLDqW50ZXNpczogwqt0cmFzdG9ybm8gZGUgYW5zaWVkYWQgZ2VuZXJhbGl6YWRhIChUQUcpwrsuIFZhbGUgdGFtYmnDqW4gcGFyYSBsYXMgZXNjYWxhcyBkZSBsYXMgcHJ1ZWJhcy4iLCAicHJlZ3VudGEiOiAiwr9RdcOpIGhpY2llcm9uIGNvbiBsYXMgc2lnbGFzPyIsICJvcGNpb25lcyI6IFtbInNpbi1leHBsaWNhciIsICJVc2Ftb3Mgc2lnbGFzIHNpbiBleHBsaWNhcmxhcyJdLCBbImFsZ3VuYXMiLCAiRXhwbGljYW1vcyBhbGd1bmFzIl0sIFsidG9kYXMiLCAiTGFzIGV4cGxpY2Ftb3MgdG9kYXMsIG8gbm8gbGFzIHVzYW1vcyJdXSwgInNpZ2xhcyI6IHsiSUR4IjogWyJpbXByZXNpb24gZGlhZ25vc3RpY2EiXSwgIlRBRyI6IFsiYW5zaWVkYWQgZ2VuZXJhbGl6YWRhIl0sICJURE0iOiBbImRlcHJlc2l2byBtYXlvciJdLCAiSUFNIjogWyJpbmZhcnRvIGFndWRvIiwgImluZmFydG8gZGUgbWlvY2FyZGlvIl0sICJFS0ciOiBbImVsZWN0cm9jYXJkaW9ncmFtYSJdfX0sIHsiaWQiOiAicHJlZ3VudGEiLCAidGlwbyI6ICJwcmVndW50YSIsICJ0aXR1bG8iOiAiTGEgcHJlZ3VudGEgZGUgcmVtaXNpw7NuIiwgImRvbmRlIjogIkxhIG3DqWRpY2EgcHJlZ3VudMOzIGRvcyBjb3Nhczogc2kgaGF5IHVuIGNvbXBvbmVudGUgYW5zaW9zbyBvIGRlcHJlc2l2byBxdWUgZXhwbGlxdWUgbG9zIHPDrW50b21hcywgeSBzaSBKYWlybyByZXF1aWVyZSBtYW5lam8gcG9yIHBzaWNvbG9nw61hIG8gcmVtaXNpw7NuIGEgcHNpcXVpYXRyw61hLiIsICJyZWNvbWVuZGFjaW9uIjogIkxhIGNvbmNsdXNpw7NuIHJlc3BvbmRlIGxhcyBkb3MgcGFydGVzLCBjb24gcGFsYWJyYXMgcXVlIGxhIG3DqWRpY2EgcHVlZGEgdXNhcjogc8OtIGhheSB1biBjb21wb25lbnRlICh1bmEgYW5zaWVkYWQgY2VudHJhZGEgZW4gbGEgc2FsdWQgcXVlIGVtcGV6w7MgY29uIGVsIGR1ZWxvIHBvciBsYSBtdWVydGUgZGUgc3UgcGFkcmUpLCB5IGVsIG1hbmVqbyBpbmRpY2FkbyBlcyBsYSBwc2ljb3RlcmFwaWEsIHNpbiBjcml0ZXJpbyBhY3R1YWwgZGUgcmVtaXNpw7NuIHVyZ2VudGUgYSBwc2lxdWlhdHLDrWEg4oCUbmllZ2EgaWRlYXMgZGUgbXVlcnRl4oCULCBhIHJldmlzYXIgc2Vnw7puIGxhIGV2b2x1Y2nDs24uIiwgInByZWd1bnRhIjogIkxlw61kYSBlc2EgZnJhc2UsIMK/cXXDqSB0YW50byByZXNwb25kZSBsbyBxdWUgc2UgcHJlZ3VudMOzPyIsICJvcGNpb25lcyI6IFtbImNvbXBsZXRhIiwgIlJlc3BvbmRlIHRvZGFzIGxhcyBwYXJ0ZXMgZGUgbGEgcHJlZ3VudGEiXSwgWyJwYXJjaWFsIiwgIlJlc3BvbmRlIHNvbG8gdW5hIHBhcnRlIl0sIFsibm8iLCAiTm8gbGEgcmVzcG9uZGUgZGUgZm9ybWEgZGlyZWN0YSJdXX1dfQ==";
 
 // Las cuatro secciones que escribe el grupo. El tope de palabras es orientativo:
 // el contador avisa cuando se pasa, pero no bloquea.
@@ -503,29 +435,6 @@ const SECCIONES = [
     ayuda: "Impresión diagnóstica, respuesta a la pregunta de remisión, pronóstico y recomendaciones.", tope: 150 }
 ];
 
-function decodificarAuditoria(){
-  try {
-    const bin = atob(AUDITORIA_B64);
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return JSON.parse(new TextDecoder("utf-8").decode(bytes));
-  } catch (e) { return {}; }
-}
-let AUDITORIA = null;   // se decodifica recién al cerrar el informe
-
-// Rótulos de columna en la hoja. Son los mismos para todos los expedientes:
-// todos escriben en la pestaña «<grupo> Informe», y un título propio de cada
-// caso crearía siete columnas por expediente en vez de siete en total.
-const ETIQUETA_AUD = {
-  rumor: "Autoauditoría — Dato de oídas",
-  contradiccion: "Autoauditoría — Fuentes que no coinciden",
-  validez: "Autoauditoría — Problema de la prueba",
-  fortaleza: "Autoauditoría — Fortaleza",
-  intimo: "Autoauditoría — Dato íntimo",
-  siglas: "Autoauditoría — Siglas",
-  pregunta: "Autoauditoría — Pregunta de remisión"
-};
-
 /* ============================================================
    2. ESTADO DE LA APLICACIÓN
    ============================================================ */
@@ -533,9 +442,7 @@ const state = {
   text: {},       // inputs / textareas,   { id: valor }
   radio: {},      // selección única,      { grupo: valor }
   checkbox: {},
-  lists: { integrantes: [] },
-  cerrado: false, // el informe ya no se edita; la autoauditoría está abierta
-  hallazgos: {}   // lo que encontró la autoauditoría en el informe, para el tablero
+  lists: { integrantes: [] }
 };
 
 /* ============================================================
@@ -643,10 +550,8 @@ function seccionFija(orden, titulo, html){
 function renderInforme(){
   const caso = casoActual();
   const cont = document.getElementById("informe");
-  const cierre = document.getElementById("cierre-informe");
   if (!caso) {
     cont.innerHTML = `<div class="vacio">Elijan el expediente asignado en los datos del grupo.</div>`;
-    cierre.hidden = true;
     return;
   }
   const integrantes = state.lists.integrantes.map(i => (i.value || "").trim()).filter(Boolean);
@@ -672,7 +577,6 @@ function renderInforme(){
   SECCIONES.forEach(sec => {
     const ta = document.getElementById(sec.id);
     ta.value = state.text[sec.id] || "";
-    ta.readOnly = !!state.cerrado;
     ta.addEventListener("input", () => {
       state.text[sec.id] = ta.value;
       actualizarContador(sec);
@@ -681,8 +585,6 @@ function renderInforme(){
     });
     actualizarContador(sec);
   });
-  cierre.hidden = false;
-  pintarEstadoCierre();
 }
 
 function actualizarFirma(){
@@ -690,43 +592,6 @@ function actualizarFirma(){
   if (!el) return;
   const integrantes = state.lists.integrantes.map(i => (i.value || "").trim()).filter(Boolean);
   el.textContent = "Equipo evaluador: " + (integrantes.length ? integrantes.join(", ") : "—");
-}
-
-function pintarEstadoCierre(){
-  const cierre = document.getElementById("cierre-informe");
-  const texto = document.getElementById("cierre-texto");
-  const boton = document.getElementById("btn-cerrar");
-  cierre.classList.toggle("is-cerrado", !!state.cerrado);
-  if (state.cerrado) {
-    texto.textContent = "Informe cerrado. Sigan con la autoauditoría.";
-    boton.hidden = true;
-  } else {
-    texto.textContent = "Cuando el informe esté terminado, ciérrenlo para pasar a la autoauditoría. Después de cerrarlo ya no se puede editar.";
-    boton.hidden = false;
-  }
-  document.getElementById("ct-caso").disabled = !!state.cerrado;
-  const nav = document.querySelector('.nav-item[data-target="bloque-3"]');
-  if (nav) nav.classList.toggle("is-locked", !state.cerrado);
-}
-
-function initCierre(){
-  document.getElementById("btn-cerrar").addEventListener("click", () => {
-    const faltante = highlightInvalidFields(["bloque-0", "bloque-2"]);
-    if (faltante) {
-      faltante.scrollIntoView({ behavior: "smooth", block: "center" });
-      showToast("Completen los datos del grupo y las cuatro secciones antes de cerrar.");
-      return;
-    }
-    const ok = window.confirm("Al cerrar el informe ya no podrán modificarlo.\n\n¿Lo cierran y pasan a la autoauditoría?");
-    if (!ok) return;
-    state.cerrado = true;
-    SECCIONES.forEach(sec => { const ta = document.getElementById(sec.id); if (ta) ta.readOnly = true; });
-    pintarEstadoCierre();
-    renderAuditoria();
-    updateProgress();
-    persistToLocalStorage();
-    document.getElementById("bloque-3").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
 }
 
 // Cambiar de expediente con el informe empezado deja texto escrito para otro
@@ -749,173 +614,7 @@ function initCambioDeCaso(){
   });
 }
 
-/* ============================================================
-   6. AUTOAUDITORÍA
-   ============================================================
-   Busca en el informe cerrado las marcas de cada trampa y le muestra al grupo
-   las frases exactas donde aparecen. El recurso NO califica: una búsqueda de
-   palabras no distingue «la vecina dice que…» de «lo que dijo la vecina no se
-   incluyó por no estar verificado». Clasificar su propia frase es el ejercicio.
-   Al elegir una opción aparece la práctica recomendada.
-   ============================================================ */
-function normalizar(t){
-  return (t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-}
-
-function frasesDelInforme(){
-  const frases = [];
-  SECCIONES.forEach(sec => {
-    const txt = (state.text[sec.id] || "").replace(/\s+/g, " ").trim();
-    if (!txt) return;
-    // Corta en punto, signo de cierre o punto y coma seguidos de espacio.
-    txt.split(/(?<=[.!?;])\s+/).forEach(f => { if (f.trim()) frases.push({ sec: sec.titulo, frase: f.trim() }); });
-  });
-  return frases;
-}
-
-function buscarMarcas(marcas){
-  const res = [];
-  const exps = marcas.map(m => new RegExp(m, "i"));
-  frasesDelInforme().forEach(f => {
-    const n = normalizar(f.frase);
-    if (exps.some(re => re.test(n))) res.push(f);
-  });
-  return res;
-}
-
-function siglasSinDesarrollar(siglas){
-  const todo = SECCIONES.map(s => state.text[s.id] || "").join(" \n ");
-  const norm = normalizar(todo);
-  const faltan = [];
-  Object.keys(siglas).forEach(sigla => {
-    const aparece = new RegExp("(^|[^A-Za-zÁÉÍÓÚÑáéíóúñ])" + sigla + "([^A-Za-zÁÉÍÓÚÑáéíóúñ]|$)").test(todo);
-    if (!aparece) return;
-    const desarrollada = siglas[sigla].some(forma => norm.indexOf(normalizar(forma)) !== -1);
-    if (!desarrollada) faltan.push(sigla);
-  });
-  return faltan;
-}
-
-// Para el tablero: las frases que dejan una sigla sin su forma completa y las
-// que escriben completo lo que significa. Primero las que traen la sigla entre
-// paréntesis, que son el ejemplo más claro de la buena práctica.
-function frasesDeSiglas(siglas, faltan){
-  const conSigla = s => new RegExp("(^|[^A-Za-zÁÉÍÓÚÑáéíóúñ])" + s + "([^A-Za-zÁÉÍÓÚÑáéíóúñ]|$)");
-  const frases = frasesDelInforme().map(f => f.frase);
-  state.hallazgos["siglas-mal"] = frases.filter(f => faltan.some(s => conSigla(s).test(f))).slice(0, 4);
-  const bien = [];
-  frases.forEach(f => {
-    if (faltan.some(s => conSigla(s).test(f))) return;   // una frase a medias no es ejemplo
-    const n = normalizar(f);
-    Object.keys(siglas).forEach(s => {
-      if (faltan.includes(s) || !siglas[s].some(forma => n.indexOf(normalizar(forma)) !== -1)) return;
-      if (!bien.some(b => b.f === f)) bien.push({ f, rango: new RegExp("\\(" + s + "\\)").test(f) ? 0 : 1 });
-    });
-  });
-  state.hallazgos["siglas-bien"] = bien.sort((a, b) => a.rango - b.rango).map(b => b.f).slice(0, 4);
-}
-
-function resaltar(frase, marcas){
-  // Resalta sobre el texto original ubicando la coincidencia en la versión
-  // normalizada (misma longitud: solo se quitaron tildes).
-  const norm = normalizar(frase);
-  const tramos = [];
-  marcas.forEach(m => {
-    const re = new RegExp(m, "ig"); let r;
-    while ((r = re.exec(norm)) && r[0].length) tramos.push([r.index, r.index + r[0].length]);
-  });
-  if (!tramos.length || norm.length !== frase.length) return esc(frase);
-  tramos.sort((a, b) => a[0] - b[0]);
-  let out = "", pos = 0;
-  tramos.forEach(([a, b]) => {
-    if (a < pos) return;
-    out += esc(frase.slice(pos, a)) + "<mark>" + esc(frase.slice(a, b)) + "</mark>";
-    pos = b;
-  });
-  return out + esc(frase.slice(pos));
-}
-
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[c])); }
-
-function renderAuditoria(){
-  const cont = document.getElementById("auditoria");
-  const sub = document.getElementById("aud-sub");
-  const caso = casoActual();
-  if (!state.cerrado || !caso) {
-    cont.innerHTML = `<div class="bloqueado">Se abre al cerrar el informe.</div>`;
-    sub.textContent = "Se abre al cerrar el informe.";
-    return;
-  }
-  if (!AUDITORIA) AUDITORIA = decodificarAuditoria();
-  const datos = AUDITORIA[caso.id];
-  if (!datos) { cont.innerHTML = `<div class="bloqueado">No se encontró la autoauditoría de este expediente.</div>`; return; }
-
-  sub.textContent = "El expediente traía siete puntos delicados. Para cada uno, revisen lo que escribieron y elijan la opción que describe lo que hicieron. Al elegir, aparece la práctica recomendada.";
-
-  state.hallazgos = {};
-  let html = "";
-  datos.forEach((t, i) => {
-    let hallazgo = "";
-    if (t.tipo === "siglas") {
-      const faltan = siglasSinDesarrollar(t.siglas);
-      state.hallazgos[t.id] = faltan;
-      frasesDeSiglas(t.siglas, faltan);
-      hallazgo = faltan.length
-        ? `<div class="aud-hallazgo"><b>En su informe</b>Aparecen sin su forma completa: ${faltan.map(esc).join(", ")}.</div>`
-        : `<div class="aud-hallazgo sin"><b>En su informe</b>No aparecen siglas de la remisión sin su forma completa.</div>`;
-    } else if (t.tipo !== "pregunta") {
-      const encontradas = buscarMarcas(t.marcas);
-      state.hallazgos[t.id] = encontradas.map(f => f.frase).slice(0, 4);
-      hallazgo = encontradas.length
-        ? `<div class="aud-hallazgo"><b>En su informe</b>${encontradas.slice(0, 4).map(f =>
-            `<p class="aud-frase"><small>${esc(f.sec)}</small>«${resaltar(f.frase, t.marcas)}»</p>`).join("")}</div>`
-        : `<div class="aud-hallazgo sin"><b>En su informe</b>${esc(t.sinHallazgo || "Su informe no lo menciona.")}</div>`;
-    }
-
-    const grupo = "aud-" + t.id;
-    const opciones = t.opciones.map(o =>
-      `<label class="option-row"><input type="radio" name="${grupo}" value="${o[0]}"><span>${esc(o[1])}</span></label>`).join("");
-    const frase = t.tipo === "pregunta"
-      ? `<label class="campo-sub" for="f-aud-frase">Copien aquí, tal como la escribieron, la frase de su informe que responde la pregunta de remisión.</label>
-         <textarea id="f-aud-frase" data-required="true" data-etiqueta="Autoauditoría — Frase que responde la remisión" rows="3" maxlength="900"></textarea>`
-      : "";
-
-    html += `<div class="aud card-sin-marco">
-      <div class="aud-head"><div class="aud-n">PUNTO ${i + 1} DE ${datos.length}</div><h3>${esc(t.titulo)}</h3></div>
-      <div class="aud-body">
-        <div class="aud-donde">${t.donde}</div>
-        ${hallazgo}
-        ${frase}
-        <div class="aud-pregunta">${esc(t.pregunta)}</div>
-        <div class="option-list" data-group="${grupo}" data-required="true" data-etiqueta="${ETIQUETA_AUD[t.id] || "Autoauditoría — " + esc(t.titulo)}">${opciones}</div>
-        <div class="aud-reco" id="reco-${t.id}"><b>Práctica recomendada</b>${t.recomendacion}</div>
-      </div>
-    </div>`;
-  });
-  cont.innerHTML = html;
-
-  // Enlazar radios y la frase, y reponer lo ya contestado.
-  datos.forEach(t => {
-    const grupo = "aud-" + t.id;
-    const lista = cont.querySelector(`.option-list[data-group="${grupo}"]`);
-    lista.querySelectorAll("input").forEach(inp => {
-      if (state.radio[grupo] === inp.value) { inp.checked = true; inp.closest(".option-row").classList.add("is-checked"); }
-      inp.addEventListener("change", () => {
-        lista.querySelectorAll(".option-row").forEach(r => r.classList.toggle("is-checked", r.querySelector("input").checked));
-        state.radio[grupo] = inp.value;
-        document.getElementById("reco-" + t.id).classList.add("is-visible");
-        updateProgress();
-        persistToLocalStorage();
-      });
-    });
-    if (state.radio[grupo]) document.getElementById("reco-" + t.id).classList.add("is-visible");
-  });
-  const fr = document.getElementById("f-aud-frase");
-  if (fr) {
-    fr.value = state.text["f-aud-frase"] || "";
-    fr.addEventListener("input", () => { state.text["f-aud-frase"] = fr.value; updateProgress(); persistToLocalStorage(); });
-  }
-}
 
 /* ============================================================
    7. LISTA DINÁMICA (integrantes)
@@ -1004,9 +703,6 @@ function campoCompleto(el){
 function updateProgress(){
   let total = 1, filled = listHasContent("integrantes") ? 1 : 0;
   document.querySelectorAll('[data-required="true"]').forEach(el => { total++; if (campoCompleto(el)) filled++; });
-  // Mientras la autoauditoría está cerrada, sus siete puntos y la frase cuentan
-  // como pendientes: el 100% es con todo.
-  if (!state.cerrado) total += 8;
   const pct = Math.round((filled / total) * 100);
   document.getElementById("progress-fill").style.width = pct + "%";
   document.getElementById("progress-pct").textContent = pct + "%";
@@ -1136,8 +832,6 @@ function loadInitialState(){
     Object.assign(state.text, loaded.text || {});
     Object.assign(state.radio, loaded.radio || {});
     state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
-    state.cerrado = !!loaded.cerrado;
-    state.hallazgos = loaded.hallazgos || {};
   }
 }
 
@@ -1213,24 +907,11 @@ const ENVIO = {
   casoLabel: "Informe"
 };
 
-function etiquetaDeCampo(el){
-  if (el.dataset && el.dataset.etiqueta) return el.dataset.etiqueta;
-  const card = el.closest(".card");
-  const label = card && card.querySelector(".card-label");
-  return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
-}
-
 function recogerEnvio(){
   const campos = {};
   const caso = casoActual();
   campos["Expediente"] = caso ? caso.etiqueta : "";
   SECCIONES.forEach(sec => { const v = (state.text[sec.id] || "").trim(); if (v) campos[sec.titulo] = v; });
-  document.querySelectorAll("#auditoria .option-list[data-group]").forEach(grupo => {
-    const elegido = grupo.querySelector("input:checked");
-    if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
-  });
-  const frase = (state.text["f-aud-frase"] || "").trim();
-  if (frase) campos["Autoauditoría — Frase que responde la remisión"] = frase;
   return {
     curso: ENVIO.curso, caso: ENVIO.caso, casoLabel: ENVIO.casoLabel,
     cursoGrupo: (state.text["ct-curso"] || "").trim(),
@@ -1247,11 +928,6 @@ function initSendButton(){
     const avisar = (msg, ok) => { status.textContent = msg; status.classList.toggle("ok", !!ok); status.classList.toggle("warn", !ok); };
     if (!/^https?:\/\//.test(ENVIO.url)) {
       avisar("El envío en línea no está configurado en este archivo: guarden la actividad y entréguenla como archivo.", false);
-      return;
-    }
-    if (!state.cerrado) {
-      avisar("Primero cierren el informe y completen la autoauditoría.", false);
-      document.getElementById("cierre-informe").scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     const faltante = highlightInvalidFields();
@@ -1284,17 +960,14 @@ function initNav(){
   });
 }
 
-// Con una lista de bloques, valida solo esos (el cierre del informe no exige
-// la autoauditoría, que todavía no existe).
-function highlightInvalidFields(bloques){
+function highlightInvalidFields(){
   let firstInvalid = null;
-  const alcance = bloques ? bloques.map(b => "#" + b + ' [data-required="true"]').join(", ") : '[data-required="true"]';
-  document.querySelectorAll(alcance).forEach(el => {
+  document.querySelectorAll('[data-required="true"]').forEach(el => {
     const ok = campoCompleto(el);
     el.classList.toggle("invalid", !ok);
     if (!ok && !firstInvalid) firstInvalid = el;
   });
-  if (!listHasContent("integrantes") && (!bloques || bloques.includes("bloque-0"))) {
+  if (!listHasContent("integrantes")) {
     const lista = document.getElementById("list-integrantes");
     const primero = lista.querySelector("input");
     if (primero) { primero.classList.add("invalid"); if (!firstInvalid) firstInvalid = primero; }
@@ -1319,9 +992,7 @@ document.addEventListener("DOMContentLoaded", () => {
     avisarSiSeRecupero();
     renderExpediente();
     renderInforme();
-    renderAuditoria();
     initCambioDeCaso();
-    initCierre();
     initPanel();
     initInputRestrictions();
     initSaveButton();
