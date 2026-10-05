@@ -258,7 +258,7 @@ const GLOBOS = [
   { id: "validez", tema: "Calidad de los instrumentos",
     titulo: "Evitar interpretar un protocolo sin revisar su validez",
     caso: "Jairo dejó 36 ítems del MMPI-2 sin contestar, 31 de ellos después del 370: «las últimas me dio pereza». La hoja mostraba elevadas las escalas de contenido.",
-    concepto: "Antes de interpretar un puntaje se revisa si el protocolo es válido. En el MMPI-2, treinta o más ítems sin contestar ponen en duda la interpretación, y el problema se informa. Como las escalas básicas salen de los primeros 370 ítems y varias de las demás, entre ellas las de contenido, dependen de la parte final, las omisiones del final afectan sobre todo a estas últimas: la lectura se limita a lo que el protocolo permite.",
+    concepto: "Antes de interpretar un puntaje se revisa si el protocolo es válido. En el MMPI-2, con treinta o más ítems sin contestar lo más probable es que el protocolo sea inválido, y eso se informa. Las escalas básicas salen de los primeros 370 ítems; varias de las demás, entre ellas las de contenido, dependen de la parte final. Si las omisiones están al final, las básicas se leen con cautela y las de contenido no se interpretan; también es defendible no interpretar el protocolo. Anunciar «reservas» y concluir a partir de las escalas afectadas no es limitar la lectura.",
     citas: [["gm2009", "Groth-Marnat, 2009, cap. 7"]],
     lamina: "Lámina 8" },
   { id: "fortaleza", tema: "Lectura por áreas y pronóstico",
@@ -318,10 +318,11 @@ const R = {
   contraBien: /contrasta|discrep|no coincide|sin (cons)?ciencia|a pesar de|aunque (el paciente |jairo )?(niega|refiere|dice|manifiesta)|niega.{0,80}(bdi|puntaj|prueba|inventario)|(bdi|beck|depresiv).{0,160}(aunque|pero|sin embargo|mientras).{0,100}(no se report|sin |en cero|ausen)|malestar (emocional )?(mediante|a traves|en el cuerpo)|expres\w* .{0,40}(cuerpo|corporal|somatic)|(items?|reactivos?) (corporales|somaticos|fisicos)|cognitiv\w* .{0,25}(en cero|ausentes|sin puntaje)|somatiz\w*.{0,80}(negacion|niega|atribu)|integracion de (la )?entrevista y (las )?pruebas/,
   contraMal: /\bbdi|beck|(consistentes|congruentes|coinciden) con la entrevista|segun lo evidenciado en las pruebas|niveles de (ansiedad y )?depresi/,
   // Validez: «omit» no encontraba «omisiones», y «MPI-2» o «MMPI2» se
-  // escapaban. Bien resuelto solo si además limita la lectura a las básicas
-  // o dice que las de contenido no se interpretan.
+  // escapaban. Bien resuelto si además limita la lectura a las básicas, dice
+  // que las de contenido no se interpretan, o declara el protocolo inválido
+  // por las omisiones (la regla de Groth-Marnat, 2009, cap. 7, para 30 o más).
   validezCand: /\bm?mpi|omision|omitid|sin contestar|sin responder|items? sin|hipocondr|histeria|psicastenia|triada|invalid|desestim/,
-  validezBien: /(omision|omitid|sin contestar|sin responder|items? sin)[^]*?(no se interpreta|no son interpretables|no se pueden interpretar|solo (se interpretan |se leen |se pueden leer )?(las )?(escalas )?basicas|unicamente (las )?(escalas )?basicas|basicas (si )?se (pueden )?(leer|interpretar))|(no se interpreta|solo (se interpretan )?(las )?(escalas )?basicas)[^]*?(omision|omitid|sin contestar)/,
+  validezBien: /(omision|omitid|sin contestar|sin responder|items? sin)[^]*?(no se interpreta|no son interpretables|no se pueden interpretar|solo (se interpretan |se leen |se pueden leer )?(las )?(escalas )?basicas|unicamente (las )?(escalas )?basicas|basicas (si )?se (pueden )?(leer|interpretar))|(no se interpreta|solo (se interpretan )?(las )?(escalas )?basicas)[^]*?(omision|omitid|sin contestar)|(omision|omitid|sin contestar|sin responder|items? sin)[^]*?(invalid|desestim)|(invalid|desestim)[^]*?(omision|omitid|sin contestar|sin responder|items? sin)/,
   // Fortaleza: además del microfútbol, la red de apoyo y la estabilidad que
   // un grupo usó en el pronóstico. Bien resuelto si aparece en la conclusión,
   // que es donde va el pronóstico; en la historia es solo una mención.
@@ -542,8 +543,10 @@ const RESALTE = {
   rumor: { mal: /bodega|tomando|lo han visto|embriag\w*|alcohol/, bien: /segun|refiere|comenta|menciona|reporta|habria|no verificad\w*|sin (verificar|confirmar)|no (se )?(pudo )?(verificar|confirmar)/ },
   contradiccion: { mal: /\bbdi-?i*|consistentes con la entrevista|congruentes con la entrevista|segun lo evidenciado en las pruebas/,
                    bien: /contrasta|discrep\w*|no coincide|sin (cons)?ciencia|aunque|a pesar de|niega|en cero|corporal\w*|somatiz\w*|negacion|integracion de entrevista y pruebas/ },
-  validez: { mal: /omision\w*|sin contestar|ansiedad|preocupaci\w* por la salud|hipocondr\w*|histeria|triada \w+|invalid\w*|desestim\w*/,
-             bien: /omision\w*|sin contestar|no se interpreta\w*|escalas basicas|basicas/ },
+  // En «Puede mejorar» se resalta la escala de contenido que se interpretó, no
+  // las básicas (hipocondría, histeria), que sí podían leerse.
+  validez: { mal: /preocupaci\w* por la salud|ansiedad|dificultades (laborales|en el trabajo)|omision\w*|sin contestar/,
+             bien: /omision\w*|sin contestar|no se interpreta\w*|escalas basicas|basicas|invalid\w*|desestim\w*/ },
   fortaleza: { mal: R.fortaleza, bien: /microf\w*|futbol|entrena\w*|red de apoyo|apoyo \w+|estabilidad \w+|insercion \w+( y \w+)?|se mantiene activo|fortalez\w*|favorec\w*|pronostico/ },
   intimo: { mal: R.intimo, bien: R.intimo },
   siglas: { mal: null, bien: null },
