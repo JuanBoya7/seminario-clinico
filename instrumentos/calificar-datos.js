@@ -4593,6 +4593,288 @@ const CALIFICAR = {
    ]
   }
  },
+ "pdss": {
+  "clave": "PDSS",
+  "sigla": "PDSS",
+  "titulo": "Escala de Gravedad del Trastorno de Pánico",
+  "para": "Medir la gravedad del trastorno de pánico en la última semana: frecuencia y malestar de las crisis, ansiedad anticipatoria, evitación de situaciones y de sensaciones, e interferencia en el trabajo y en la vida social. Sirve para seguir el tratamiento sesión a sesión.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Shear et al. (1997) · traducción del Labpsitec (2003) · interpretación de Furukawa et al. (2009).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "A continuación, le presentamos una serie de preguntas relacionadas con sus ataques de pánico. Marque con una cruz la respuesta que mejor explique cómo interfieren estos ataques en su vida."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ni ataques de pánico ni crisis de síntomas limitados.",
+     "Ligero: Ningún ataque de pánico y no más de una crisis de síntomas limitada al día.",
+     "Moderado: Uno o dos ataques de pánico y/o múltiples crisis de síntomas limitados al día.",
+     "Severo: Más de dos ataques de pánico, pero no más de uno al día en promedio",
+     "Extremo: Los ataques de pánico ocurrieron más de una vez al día la mayoría de días."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Cuántos ataques de pánico y crisis de síntomas limitados ha tenido durante la semana?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "En absoluto desagradables, o sin ataques de pánico ni crisis de síntomas limitados durante la semana pasada.",
+     "Ligeramente desagradable (no demasiado intenso).",
+     "Moderadamente desagradable (intenso, pero manejable).",
+     "Severamente desagradable (muy intenso).",
+     "Extremadamente desagradable (extremo malestar durante todos los ataques)."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Si ha tenido algún ataque de pánico durante la semana pasada, ¿cuán desagradables (molestos, espantosos) fueron mientras estaban sucediendo? (si ha tenido más de uno saque un promedio entre ellos; si no ha tenido ningún ataque de pánico pero sí crisis de síntomas limitados, responda teniendo en cuenta estas crisis)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No, en absoluto.",
+     "Ocasional o tan solo ligeramente.",
+     "Frecuentemente o de manera moderada.",
+     "Muy a menudo o de una manera muy molesta.",
+     "Prácticamente siempre y de manera muy molesta."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Durante la semana pasada, ¿cuánto le ha preocupado o sentido ansiedad acerca de cuándo sería el próximo ataque de pánico o acerca de miedos relacionados con los ataques? (por ejemplo, que signifiquen que tiene problemas físicos o mentales, o que puedan avergonzarle en público)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguno. Ni miedo ni evitación.",
+     "Ligero. Miedo y/o evitación ocasional, aunque normalmente pude controlar o aguantar la situación. Mi día a día apenas cambió debido a esto.",
+     "Moderado. Miedo y/o evitación evidente, pero aún manejable. Evité algunas situaciones, pero pude afrontarlas en compañía. Mi día a día se vio ligeramente afectado, pero mi funcionamiento general no se resintió.",
+     "Severo. Evitación considerable. Mi día a día se modificó notablemente a causa de la evitación, lo que me dificultó realizar actividades cotidianas.",
+     "Extremo. Temor y/o evitación extremadamente incapacitante. Mi día a día se vio tan afectado que no realicé incluso tareas importantes."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Durante la semana pasada, ¿hubo algún lugar o situación (por ejemplo, transportes públicos, cines, multitudes, puentes, túneles, centros comerciales o estar solo) que evitara o que temiera (que se sintiera incómodo, quisiera evitar o irse) por temor a tener un ataque de pánico? ¿Hay otras situaciones que haya evitado o que haya temido durante la semana por el mismo motivo? Si ha sido así, por favor, valore su nivel de miedo y evitación durante la semana pasada."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ni miedo ni evitación hacia actividades o situaciones debido a sensaciones físicas molestas.",
+     "Ligero. Miedo y/o evitaciones ocasionales que normalmente pude controlar o aguantar, aunque con ligero malestar. Son actividades que me generan sensaciones físicas. Mi día a día no se vio afectado debido a esto.",
+     "Moderado. La evitación era evidente pero manejable. Mi día a día se modificó, pero mi funcionamiento general no se vio afectado.",
+     "Severo. Evitación importante. Mi día a día se modificó de manera importante y afectó a mi funcionamiento.",
+     "Extremo. Evitación extremadamente incapacitante, mi día a día se vio tan afectado que no realicé ni las tareas importantes."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Durante la semana pasada, ¿hubo alguna actividad (por ejemplo, ejercicio físico, relaciones sexuales, tomar un baño o una ducha calientes, beber café, mirar una película de acción o de miedo) que evitara o le diera miedo (que le resultara molesta, quisiera evitarla o detenerla) porque le generase sensaciones físicas similares a aquellas que siente durante los ataques de pánico o porque temiera que le provocara un ataque de pánico? ¿Hay otras actividades que, por ese mismo motivo, hubiera evitado, o le hubieran asustado si se hubieran presentado durante la semana? Si la respuesta es sí a cualquiera de las dos preguntas, por favor, valore el nivel de miedo y evitación hacia esas actividades durante la pasada semana."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sin interferencia en el trabajo ni en las responsabilidades del hogar.",
+     "Ligera interferencia en trabajo o en las responsabilidades del hogar. Aun así pude hacer las cosas como las hubiera hecho sin tener esos problemas.",
+     "Interferencia significativa con el trabajo o las tareas del hogar. A pesar de eso pude hacer las cosas que tenía que hacer.",
+     "Interferencia importante en el trabajo o en las responsabilidades del hogar. Hubo varias cosas importantes que no pude hacer debido a estos problemas.",
+     "Interferencia extremadamente incapacitante. En esencia fui incapaz de ocuparme del trabajo o de las responsabilidades del hogar."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6. Durante la semana pasada, ¿en qué medida los síntomas que ha visto, en su conjunto (ataques de pánico, crisis de síntomas limitados y la preocupación por los ataques), han interferido con su habilidad para trabajar o llevar a cabo sus responsabilidades en el hogar? (si su trabajo o responsabilidades del hogar han sido inferiores a lo habitual durante la semana pasada, conteste en relación con lo que hubieran interferido en una semana normal)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sin interferencia.",
+     "Ligera interferencia con actividades sociales, pero pude hacer casi todo lo que haría sin haber tenido estos problemas.",
+     "Interferencia significativa con actividades sociales, pero pude ser capaz de hacer la mayoría de cosas haciendo un esfuerzo.",
+     "Interferencia importante en las actividades sociales. Hubo algunas actividades sociales que no pude hacer debido a estos problemas.",
+     "Interferencia extremadamente incapacitante, tanto que prácticamente no hubo ninguna actividad social que pudiera hacer."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "7. Durante la semana pasada, ¿cuánto interfirieron en su vida social los ataques de pánico o las crisis de síntomas limitados, la preocupación por dichos ataques o el temor ante ciertas situaciones y actividades? (si durante la semana pasada no tuvo muchas oportunidades para socializar, responda cuánto cree que habría interferido de haberlas tenido)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Para el clínico: ¿la persona tiene agorafobia?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total (0 a 28)",
+     "js": "S(1,7)",
+     "rangos_por": [
+      {
+       "si": "r[8] === 1",
+       "rangos": [
+        [
+         0,
+         2,
+         "Normal"
+        ],
+        [
+         3,
+         7,
+         "Límite"
+        ],
+        [
+         8,
+         10,
+         "Levemente enfermo"
+        ],
+        [
+         11,
+         15,
+         "Moderadamente enfermo"
+        ],
+        [
+         16,
+         28,
+         "Marcadamente enfermo"
+        ]
+       ]
+      },
+      {
+       "si": "r[8] === 0",
+       "rangos": [
+        [
+         0,
+         1,
+         "Normal"
+        ],
+        [
+         2,
+         5,
+         "Límite"
+        ],
+        [
+         6,
+         9,
+         "Levemente enfermo"
+        ],
+        [
+         10,
+         13,
+         "Moderadamente enfermo"
+        ],
+        [
+         14,
+         28,
+         "Marcadamente enfermo"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Responda la pregunta final (agorafobia) para ver la gravedad. Remisión: 5 o menos."
+    }
+   ]
+  }
+ },
  "scoff": {
   "clave": "SCOFF",
   "sigla": "SCOFF",
@@ -5267,6 +5549,67 @@ const CALIFICAR = {
        "Remitir a evaluación integral"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "fas": {
+  "clave": "FAS",
+  "sigla": "FAS",
+  "titulo": "Escala de Acomodación Familiar a los síntomas del TOC",
+  "para": "Medir cuánto participa la familia en los síntomas obsesivo-compulsivos del niño o adolescente: dar seguridad, esperar, facilitar rituales y evitaciones, cambiar rutinas o asumir responsabilidades del paciente. La acomodación mantiene el TOC, así que es un blanco directo del tratamiento.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Calvocoressi et al. (1999); versión española de Otero y Rivas (2007), Actas Españolas de Psiquiatría, tabla 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Con la información que aporta la familia en la entrevista, puntúe cuánto se da cada tipo de acomodación a los síntomas del TOC."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada o no aplicable",
+     "Leve",
+     "Moderado",
+     "Severo",
+     "Grave"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Proporcionar seguridad al paciente",
+     "2. Observar (vigilar) al paciente deliberadamente completando sus rituales",
+     "3. Esperar por el paciente",
+     "4. Abstenerse de decir o hacer cosas",
+     "5. Facilitar la evitación",
+     "6. Facilitar las compulsiones",
+     "7. Participar en las compulsiones",
+     "8. Ayudar en tareas simples",
+     "9. Tolerar conductas extrañas o perturbación del hogar",
+     "10. Modificar la rutina personal",
+     "11. Modificar la rutina familiar",
+     "12. Asumir responsabilidades del paciente"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,12)",
+     "texto": "De 0 a 48. Sin puntos de corte; media en la validación española al inicio del tratamiento: 16,2."
     }
    ]
   }
@@ -6481,6 +6824,99 @@ const CALIFICAR = {
    ]
   }
  },
+ "iat": {
+  "clave": "IAT",
+  "sigla": "IAT",
+  "titulo": "Test de Adicción a Internet",
+  "para": "Medir el uso problemático de internet: pérdida de control del tiempo conectado, desatención de obligaciones y relaciones, preocupación por conectarse y malestar cuando no se puede. Sirve para tamizar y para seguir el cambio en adolescentes y adultos.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos",
+   "infancia"
+  ],
+  "cita": "Young (1998) · traducción sin autor identificado; validación colombiana de Puerta-Cortés et al. (2012).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque el casillero, para cada una de las 20 preguntas, que represente con mayor precisión lo que usted experimenta respecto al uso de Internet:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Raramente",
+     "Ocasionalmente",
+     "Frecuentemente",
+     "Muy a menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Con qué frecuencia se encuentra con que lleva más tiempo navegando del que pretendía estar?",
+     "2. ¿Desatiende las labores de su hogar por pasar más tiempo frente a la computadora navegando?",
+     "3. ¿Prefiere excitarse con fotos o videos a través de Internet en lugar de buscar intimidad con su pareja?",
+     "4. ¿Con qué frecuencia establece relaciones amistosas con gente que sólo conoce a través de Internet?",
+     "5. ¿Con qué frecuencia personas de su entorno le recriminan que pasa demasiado tiempo conectado a Internet?",
+     "6. ¿Su actividad académica (escuela, universidad) se ve perjudicada porque dedica demasiado tiempo a navegar?",
+     "7. ¿Con qué frecuencia chequea el correo electrónico antes de realizar otras tareas prioritarias?",
+     "8. ¿Su productividad en el trabajo se ve perjudicada por el uso de Internet?",
+     "9. ¿Se vuelve precavido o reservado cuando alguien le pregunta a qué dedica el tiempo que pasa navegando?",
+     "10. ¿Se evade de sus problemas de la vida real pasando un rato conectado a Internet?",
+     "11. ¿Se encuentra alguna vez pensando en lo que va a hacer la próxima vez que se conecte a Internet?",
+     "12. ¿Teme que su vida sin Internet sea aburrida y vacía?",
+     "13. ¿Se siente molesto cuando alguien lo o la interrumpe mientras está navegando?",
+     "14. ¿Con qué frecuencia pierde horas de sueño pasándolas conectado a Internet?",
+     "15. ¿Se encuentra a menudo pensando en cosas relacionadas a Internet cuando no está conectado?",
+     "16. ¿Le ha pasado alguna vez eso de decir \"solo unos minutitos más\" antes de apagar la computadora?",
+     "17. ¿Ha intentado alguna vez pasar menos tiempo conectado a Internet y no lo ha logrado?",
+     "18. ¿Trata de ocultar cuánto tiempo pasa realmente navegando?",
+     "19. ¿Prefiere pasar más tiempo online que con sus amigos en la vida real?",
+     "20. ¿Se siente ansioso, nervioso, deprimido o aburrido cuando no está conectado a Internet?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,20)",
+     "rangos": [
+      [
+       0,
+       30,
+       "Uso dentro de lo normal"
+      ],
+      [
+       31,
+       49,
+       "Adicción leve"
+      ],
+      [
+       50,
+       79,
+       "Adicción moderada"
+      ],
+      [
+       80,
+       100,
+       "Adicción grave"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "wast": {
   "clave": "WAST",
   "sigla": "WAST",
@@ -6744,6 +7180,127 @@ const CALIFICAR = {
      "n": "Autoestima negativa invertida (2, 5, 8, 9, 10)",
      "js": "R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
      "texto": "De 5 a 20: a mayor puntaje, menos autoevaluación negativa."
+    }
+   ]
+  }
+ },
+ "smq": {
+  "clave": "SMQ",
+  "sigla": "SMQ",
+  "titulo": "Cuestionario de Mutismo Selectivo",
+  "para": "Medir con qué frecuencia el niño habla en tres contextos: la escuela, la familia y las situaciones sociales fuera de la escuela. Lo responden los padres y sirve para ver dónde está el mutismo y para seguir el tratamiento.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Bergman et al. (2008); versión española de Olivares-Olivares et al. (2021), IJCHP, apéndice A.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor, considere el comportamiento de su hijo en el último mes y califique con qué frecuencia es verdadera cada una de las siguientes afirmaciones."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "A menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cuando es oportuno, mi hijo/a habla con la mayoría de sus compañeros en la escuela",
+     "2. Cuando es adecuado, mi hijo/a habla con sus compañeros preferidos (sus amigos/as) en la escuela",
+     "3. Cuando su maestro/a le hace preguntas mi hijo/a le contesta",
+     "4. Cuando es oportuno, mi hijo/a le hace preguntas a su maestro/a",
+     "5. Cuando corresponde, mi hijo/a habla con la mayoría de los maestros y personal de la escuela",
+     "6. Cuando es oportuno, mi hijo/a habla en grupos pequeños o delante de la clase"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "A menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "7. Cuando está en casa, mi hijo/a habla cómodamente con los miembros de la familia que viven en el hogar familiar",
+     "8. Cuando es adecuado, mi hijo/a habla con los miembros de la familia en lugares desconocidos",
+     "9. Cuando es apropiado, mi hijo/a habla con los familiares que no viven con él/ella (por ejemplo, con sus abuelos, con sus primos/as, etc.)",
+     "10. Cuando corresponde, mi hijo/a habla por teléfono con sus padres y sus hermanos",
+     "11. Cuando es oportuno, mi hijo/a habla con amigos de la familia conocidos por él/ella",
+     "12. Mi hijo habla al menos con una cuidadora"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "A menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "13. Cuando es oportuno, mi hijo/a habla con otros niños que no conoce",
+     "14. Cuando es adecuado, mi hijo/a habla con amigos de la familia que no conoce",
+     "15. Cuando corresponde, mi hijo/a habla con su médico y/o dentista",
+     "16. Cuando es apropiado, mi hijo/a habla con los empleados de las tiendas y/o con los camareros",
+     "17. Cuando es oportuno, mi hijo/a habla cuando está en clubes, equipos o actividades organizadas fuera de la escuela"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Escuela (1 a 6)",
+     "js": "S(1,6)",
+     "texto": "De 0 a 18: a menor puntaje, menos habla en la escuela."
+    },
+    {
+     "n": "Familia (7 a 12)",
+     "js": "S(7,12)",
+     "texto": "De 0 a 18: a menor puntaje, menos habla con la familia."
+    },
+    {
+     "n": "Social (13 a 17)",
+     "js": "S(13,17)",
+     "texto": "De 0 a 15: a menor puntaje, menos habla fuera de la escuela."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,17)",
+     "texto": "De 0 a 51: a menor puntaje, más mutismo. Sin puntos de corte."
     }
    ]
   }
