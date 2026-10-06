@@ -3511,6 +3511,335 @@ const CALIFICAR = {
    ]
   }
  },
+ "das": {
+  "clave": "DAS",
+  "sigla": "DAS",
+  "titulo": "Escala de Ajuste Diádico",
+  "para": "Medir la calidad de la relación de pareja en cuatro áreas: consenso en temas importantes, satisfacción, cohesión (actividades compartidas) y expresión afectiva. Sirve para evaluar y seguir la terapia de pareja.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Spanier (1976), Journal of Marriage and the Family · traducción del formato del docente.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Siempre de acuerdo",
+     "Casi siempre de acuerdo",
+     "A veces en desacuerdo",
+     "A menudo en desacuerdo",
+     "Casi siempre en desacuerdo",
+     "Siempre en desacuerdo"
+    ],
+    "vals": [
+     5,
+     4,
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Siempre",
+     "Casi siempre",
+     "A menudo",
+     "A veces",
+     "Casi nunca",
+     "Nunca"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 16",
+     "Ítem 17"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Siempre",
+     "Casi siempre",
+     "A menudo",
+     "A veces",
+     "Casi nunca",
+     "Nunca"
+    ],
+    "vals": [
+     5,
+     4,
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 18",
+     "Ítem 19"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Siempre",
+     "Casi siempre",
+     "A menudo",
+     "A veces",
+     "Casi nunca",
+     "Nunca"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Todos los días",
+     "Casi todos los días",
+     "A veces",
+     "Casi nunca",
+     "Nunca"
+    ],
+    "vals": [
+     4,
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 23"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "En casi todas",
+     "En la mayoría",
+     "En algunas",
+     "En casi ninguna",
+     "En ninguna"
+    ],
+    "vals": [
+     4,
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 24"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Menos de una vez al mes",
+     "Una o dos veces al mes",
+     "Una o dos veces a la semana",
+     "Una vez al día",
+     "Más a menudo incluso"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí, ha sido motivo",
+     "No"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 29",
+     "Ítem 30"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy desgraciada",
+     "Bastante desgraciada",
+     "Algo desgraciada",
+     "Feliz",
+     "Bastante feliz",
+     "Muy feliz",
+     "Radiante"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 31"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "5",
+     "4",
+     "3",
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     5,
+     4,
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 32"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Consenso",
+     "js": "L([1, 2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15])",
+     "texto": "De 0 a 65."
+    },
+    {
+     "n": "Satisfacción",
+     "js": "L([16, 17, 18, 19, 20, 21, 22, 23, 31, 32])",
+     "texto": "De 0 a 50."
+    },
+    {
+     "n": "Cohesión",
+     "js": "L([24, 25, 26, 27, 28])",
+     "texto": "De 0 a 24."
+    },
+    {
+     "n": "Expresión afectiva",
+     "js": "L([4, 6, 29, 30])",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,32)",
+     "rangos": [
+      [
+       0,
+       99,
+       "Por debajo de 100: suele leerse como malestar en la relación"
+      ],
+      [
+       100,
+       151,
+       "100 o más"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "eat-26": {
   "clave": "EAT-26",
   "sigla": "EAT-26",
@@ -5193,6 +5522,903 @@ const CALIFICAR = {
    ]
   }
  },
+ "pais": {
+  "clave": "PAIS",
+  "sigla": "PAIS-SR",
+  "titulo": "Escala de Adaptación Psicosocial a la Enfermedad, autoaplicada",
+  "para": "Evaluar cómo se adapta la persona a una enfermedad médica en siete áreas: cuidado de la salud, trabajo y economía, vida doméstica, sexualidad, vida social, apoyo de la familia y malestar psicológico. Señala dónde la enfermedad está afectando más.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Derogatis (1986), Journal of Psychosomatic Research · PAIS-SR de 38 preguntas, tesis de la UNAM (anexo).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 9"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 10"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 11"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 12"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 13"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 14"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 15"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 16"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 17"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 18"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 19"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 21"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 22"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 23"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 24"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 25"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 26"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 27"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 28"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 29"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 30"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 31"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 32"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 33"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 34"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 35"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 36"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 37"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 38"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Orientación al cuidado de la salud",
+     "js": "S(1,5)",
+     "texto": "De 0 a 15: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Recursos físicos y económicos",
+     "js": "S(6,10)",
+     "texto": "De 0 a 15: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Ámbito doméstico",
+     "js": "S(11,14)",
+     "texto": "De 0 a 12: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Relaciones sexuales",
+     "js": "S(15,20)",
+     "texto": "De 0 a 18: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Entorno social",
+     "js": "S(21,27)",
+     "texto": "De 0 a 21: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Apoyo familiar",
+     "js": "S(28,31)",
+     "texto": "De 0 a 12: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Malestar psicológico",
+     "js": "S(32,38)",
+     "texto": "De 0 a 21: a mayor puntaje, peor adaptación."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,38)",
+     "texto": "De 0 a 114: a mayor puntaje, peor adaptación. Sin baremos para esta versión."
+    }
+   ]
+  }
+ },
  "panas": {
   "clave": "PANAS",
   "sigla": "PANAS",
@@ -6258,6 +7484,237 @@ const CALIFICAR = {
       }
      ],
      "sin_rango": "Marque el sexo para ver la interpretación."
+    }
+   ]
+  }
+ },
+ "ysq": {
+  "clave": "YSQ",
+  "sigla": "YSQ-S3",
+  "titulo": "Cuestionario de Esquemas de Young, versión corta III",
+  "para": "Identificar los esquemas tempranos desadaptativos de la persona (18 esquemas, de privación emocional a castigo) para formular el caso y orientar la terapia de esquemas.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Young (2005), Young Schema Questionnaire, versión corta 3 · traducción del formato del docente.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Totalmente falso",
+     "La mayoría de las veces falso",
+     "Más falso que verdadero",
+     "Más verdadero que falso",
+     "La mayoría de las veces verdadero",
+     "Totalmente verdadero"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49",
+     "Ítem 50",
+     "Ítem 51",
+     "Ítem 52",
+     "Ítem 53",
+     "Ítem 54",
+     "Ítem 55",
+     "Ítem 56",
+     "Ítem 57",
+     "Ítem 58",
+     "Ítem 59",
+     "Ítem 60",
+     "Ítem 61",
+     "Ítem 62",
+     "Ítem 63",
+     "Ítem 64",
+     "Ítem 65",
+     "Ítem 66",
+     "Ítem 67",
+     "Ítem 68",
+     "Ítem 69",
+     "Ítem 70",
+     "Ítem 71",
+     "Ítem 72",
+     "Ítem 73",
+     "Ítem 74",
+     "Ítem 75",
+     "Ítem 76",
+     "Ítem 77",
+     "Ítem 78",
+     "Ítem 79",
+     "Ítem 80",
+     "Ítem 81",
+     "Ítem 82",
+     "Ítem 83",
+     "Ítem 84",
+     "Ítem 85",
+     "Ítem 86",
+     "Ítem 87",
+     "Ítem 88",
+     "Ítem 89",
+     "Ítem 90"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Privación emocional",
+     "js": "L([1, 19, 37, 55, 73])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Abandono",
+     "js": "L([2, 20, 38, 56, 74])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Desconfianza y abuso",
+     "js": "L([3, 21, 39, 57, 75])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Aislamiento social",
+     "js": "L([4, 22, 40, 58, 76])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Defectuosidad",
+     "js": "L([5, 23, 41, 59, 77])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Fracaso",
+     "js": "L([6, 24, 42, 60, 78])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Dependencia o incompetencia",
+     "js": "L([7, 25, 43, 61, 79])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Vulnerabilidad",
+     "js": "L([8, 26, 44, 62, 80])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Simbiosis",
+     "js": "L([9, 27, 45, 63, 81])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Subyugación",
+     "js": "L([10, 28, 46, 64, 82])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Autosacrificio",
+     "js": "L([11, 29, 47, 65, 83])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Inhibición emocional",
+     "js": "L([12, 30, 48, 66, 84])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Estándares inalcanzables",
+     "js": "L([13, 31, 49, 67, 85])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Grandiosidad",
+     "js": "L([14, 32, 50, 68, 86])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Disciplina insuficiente",
+     "js": "L([15, 33, 51, 69, 87])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Búsqueda de reconocimiento",
+     "js": "L([16, 34, 52, 70, 88])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Negatividad",
+     "js": "L([17, 35, 53, 71, 89])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Castigo",
+     "js": "L([18, 36, 54, 72, 90])",
+     "texto": "De 5 a 30. Frases en 5 o 6: se cuentan aparte."
+    },
+    {
+     "n": "Esquemas con 2 o más frases en 5 o 6",
+     "js": "([1, 19, 37, 55, 73].filter(i => r[i] >= 5).length >= 2) + ([2, 20, 38, 56, 74].filter(i => r[i] >= 5).length >= 2) + ([3, 21, 39, 57, 75].filter(i => r[i] >= 5).length >= 2) + ([4, 22, 40, 58, 76].filter(i => r[i] >= 5).length >= 2) + ([5, 23, 41, 59, 77].filter(i => r[i] >= 5).length >= 2) + ([6, 24, 42, 60, 78].filter(i => r[i] >= 5).length >= 2) + ([7, 25, 43, 61, 79].filter(i => r[i] >= 5).length >= 2) + ([8, 26, 44, 62, 80].filter(i => r[i] >= 5).length >= 2) + ([9, 27, 45, 63, 81].filter(i => r[i] >= 5).length >= 2) + ([10, 28, 46, 64, 82].filter(i => r[i] >= 5).length >= 2) + ([11, 29, 47, 65, 83].filter(i => r[i] >= 5).length >= 2) + ([12, 30, 48, 66, 84].filter(i => r[i] >= 5).length >= 2) + ([13, 31, 49, 67, 85].filter(i => r[i] >= 5).length >= 2) + ([14, 32, 50, 68, 86].filter(i => r[i] >= 5).length >= 2) + ([15, 33, 51, 69, 87].filter(i => r[i] >= 5).length >= 2) + ([16, 34, 52, 70, 88].filter(i => r[i] >= 5).length >= 2) + ([17, 35, 53, 71, 89].filter(i => r[i] >= 5).length >= 2) + ([18, 36, 54, 72, 90].filter(i => r[i] >= 5).length >= 2)",
+     "texto": "Número de esquemas (de 18) con al menos dos frases en 5 o 6: orientan qué esquemas explorar."
     }
    ]
   }
