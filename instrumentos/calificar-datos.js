@@ -4017,6 +4017,87 @@ const CALIFICAR = {
    ]
   }
  },
+ "fscrs": {
+  "clave": "FSCRS",
+  "sigla": "FSCRS",
+  "titulo": "Escala de Formas de Autocrítica y Autotranquilización",
+  "para": "Medir cómo se trata la persona cuando las cosas le salen mal: sentirse inadecuada, atacarse con desprecio o, al contrario, tranquilizarse y apoyarse. Sirve para formular y seguir la terapia centrada en la compasión.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Gilbert et al. (2004), British Journal of Clinical Psychology · traducción de López-Cavada y Jódar (2017).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Cuando las cosas van mal en nuestra vida o no funcionan como lo esperábamos, y sentimos que podríamos haberlo hecho mejor, a veces tenemos pensamientos negativos y auto-críticos. Esto puede llevar la forma de sentimientos de falta de valía, de inutilidad, e inferioridad, etc. Sin embargo, las personas pueden también probar a ser de apoyo consigo mismos. Debajo hay una serie de pensamientos y sentimientos que a veces las personas tienen. Lee atentamente cada frase y rodea el número que mejor describa cómo de verdadera es esa afirmación para ti. Cuando las cosas me van mal…"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Moderadamente",
+     "Bastante",
+     "Extremadamente"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me decepciono fácilmente conmigo mismo.",
+     "2. Hay una parte de mí que me critica.",
+     "3. Soy capaz de recordarme a mí mismo cosas positivas de mí.",
+     "4. Encuentro difícil controlar mi enfado y frustración hacia mí.",
+     "5. Encuentro fácil perdonarme a mí mismo.",
+     "6. Hay una parte de mí que siente que no soy suficientemente bueno.",
+     "7. Me siento agotado por mis pensamientos autocríticos.",
+     "8. Aún me gusta ser yo.",
+     "9. He llegado a estar tan enfadado conmigo mismo que quiero herirme o lesionarme a mí mismo.",
+     "10. Tengo un sentimiento de repulsión conmigo mismo.",
+     "11. Aún me puedo sentir digno de amor y aceptable.",
+     "12. He parado de cuidarme a mí mismo.",
+     "13. Encuentro fácil gustarme a mí mismo.",
+     "14. Recuerdo y me aflijo por mis fracasos.",
+     "15. A veces me digo cosas ofensivas a mí mismo.",
+     "16. Soy amable conmigo mismo y me apoyo.",
+     "17. No puedo aceptar fallos y contratiempos sin sentirme insuficiente.",
+     "18. Pienso que merezco mi autocrítica.",
+     "19. Soy capaz de mirar y cuidar de mí mismo.",
+     "20. Hay una parte de mí que quiere deshacerse de las partes que no me gustan.",
+     "21. Me animo/aliento para el futuro.",
+     "22. No me gusta ser yo."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Yo inadecuado",
+     "js": "L([1, 2, 4, 6, 7, 14, 17, 18, 20])",
+     "texto": "De 0 a 36: a mayor puntaje, más autocrítica por sentirse insuficiente."
+    },
+    {
+     "n": "Yo odiado",
+     "js": "L([9, 10, 12, 15, 22])",
+     "texto": "De 0 a 20: a mayor puntaje, más desprecio hacia uno mismo. Si es alto, indague el riesgo de autolesión."
+    },
+    {
+     "n": "Yo tranquilizador",
+     "js": "L([3, 5, 8, 11, 13, 16, 19, 21])",
+     "texto": "De 0 a 32: a mayor puntaje, más capacidad de tranquilizarse."
+    }
+   ]
+  }
+ },
  "mspss": {
   "clave": "MSPSS",
   "sigla": "MSPSS",
@@ -4871,6 +4952,158 @@ const CALIFICAR = {
       }
      ],
      "sin_rango": "Responda la pregunta final (agorafobia) para ver la gravedad. Remisión: 5 o menos."
+    }
+   ]
+  }
+ },
+ "ras": {
+  "clave": "RAS",
+  "sigla": "RAS",
+  "titulo": "Inventario de Asertividad de Rathus",
+  "para": "Medir la conducta asertiva: expresar desacuerdo, quejarse, decir que no, pedir, opinar y expresar sentimientos, frente a la inhibición y la evitación. Sirve para planear el entrenamiento en habilidades sociales y ver su efecto.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Rathus (1973), Behavior Therapy · versión española reproducida por Roca.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Indica hasta qué punto estás de acuerdo con cada una de las frases siguientes."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy de acuerdo",
+     "Bastante de acuerdo",
+     "Algo de acuerdo",
+     "Algo en desacuerdo",
+     "Bastante en desacuerdo",
+     "Muy en desacuerdo"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     -1,
+     -2,
+     -3
+    ],
+    "puntua": true,
+    "items": [
+     "1. Mucha gente parece ser más agresiva que yo.",
+     "2. He dudado en solicitar o aceptar citas por timidez.",
+     "3. Cuando la comida que me han servido en un restaurante no está hecha a mi gusto me quejo al camarero o camarera.",
+     "4. Me esfuerzo en evitar ofender los sentimientos de otras personas aun cuando me hayan molestado.",
+     "5. Cuando un vendedor se ha molestado mucho mostrándome un producto que luego no me agrada, paso un mal rato al decir \"no\".",
+     "6. Cuando me dicen que haga algo, insisto en saber por qué.",
+     "7. Hay veces en que provoco abiertamente una discusión.",
+     "8. Lucho, como la mayoría de la gente, por mantener mi posición.",
+     "9. En realidad, la gente se aprovecha con frecuencia de mí.",
+     "10. Disfruto entablando conversación con conocidos y extraños.",
+     "11. Con frecuencia no sé qué decir a personas atractivas del otro sexo.",
+     "12. Rehuyo telefonear a instituciones y empresas.",
+     "13. En caso de solicitar un trabajo o la admisión en una institución preferiría escribir cartas a realizar entrevistas personales.",
+     "14. Me resulta embarazoso devolver un artículo comprado.",
+     "15. Si un pariente cercano o respetable me molesta, prefiero ocultar mis sentimientos antes que expresar mi disgusto.",
+     "16. He evitado hacer preguntas por miedo a parecer tonto o tonta.",
+     "17. Durante una discusión, con frecuencia temo alterarme tanto como para ponerme a temblar.",
+     "18. Si un eminente conferenciante hiciera una afirmación que considero incorrecta, yo expondría públicamente mi punto de vista.",
+     "19. Evito discutir sobre precios con dependientes o vendedores.",
+     "20. Cuando he hecho algo importante o meritorio, trato de que los demás se enteren de ello.",
+     "21. Soy abierto y franco en lo que respecta a mis sentimientos.",
+     "22. Si alguien ha hablado mal de mí o me ha atribuido hechos falsos, lo o la busco cuanto antes para dejar las cosas claras.",
+     "23. Con frecuencia paso un mal rato al decir \"no\".",
+     "24. Suelo reprimir mis emociones antes de hacer una escena.",
+     "25. En el restaurante o en cualquier sitio semejante, protesto por un mal servicio.",
+     "26. Cuando me alaban con frecuencia, no sé qué responder.",
+     "27. Si dos personas en el teatro o en una conferencia están hablando demasiado alto, les digo que se callen o que se vayan a hablar a otra parte.",
+     "28. Si alguien se me cuela en una fila, le llamo abiertamente la atención.",
+     "29. Expreso mis opiniones con facilidad.",
+     "30. Hay ocasiones en que soy incapaz de decir nada."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "L([3, 6, 7, 8, 10, 18, 20, 21, 22, 25, 27, 28, 29]) - L([1, 2, 4, 5, 9, 11, 12, 13, 14, 15, 16, 17, 19, 23, 24, 26, 30])",
+     "texto": "De −90 a +90: a mayor puntaje, más asertividad. Sin puntos de corte."
+    }
+   ]
+  }
+ },
+ "sad": {
+  "clave": "SAD",
+  "sigla": "SAD",
+  "titulo": "Escala de Ansiedad y Evitación Sociales",
+  "para": "Medir el malestar en situaciones sociales y la tendencia a evitarlas. Sirve para valorar la ansiedad social y para seguir el entrenamiento en habilidades sociales o la exposición.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Watson y Friend (1969) · versión española de Zubeidat, Salinas y Sierra (2007), Clínica y Salud.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor, conteste si está de acuerdo o no con las siguientes afirmaciones."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me siento relajado incluso en situaciones sociales desconocidas.",
+     "2. Intento evitar situaciones que me obligan a ser muy sociable.",
+     "3. Normalmente suelo estar relajado cuando estoy con personas extrañas.",
+     "4. Generalmente no deseo evitar a las personas.",
+     "5. A menudo encuentro desagradables las situaciones sociales.",
+     "6. Generalmente me encuentro tranquilo y cómodo en situaciones sociales.",
+     "7. Normalmente me encuentro a gusto cuando hablo con alguien del sexo opuesto.",
+     "8. Procuro evitar hablar con la gente, a no ser que la conozca bien.",
+     "9. Si tengo oportunidad de conocer a personas nuevas, normalmente suelo hacerlo.",
+     "10. A menudo me encuentro nervioso o intranquilo cuando por casualidad me encuentro con un grupo de personas de ambos sexos.",
+     "11. Si no conozco bien a la gente, generalmente suelo sentirme nervioso cuando estoy con ellos.",
+     "12. Normalmente me siento relajado cuando estoy con un grupo de personas.",
+     "13. A menudo quiero evadirme de la gente.",
+     "14. Normalmente me siento cómodo cuando estoy con un grupo de personas que no conozco.",
+     "15. Normalmente me siento relajado cuando conozco a alguien por primera vez.",
+     "16. Cuando me presentan a alguien me pongo nervioso y tenso.",
+     "17. Puedo entrar en una sala aunque esté llena de personas desconocidas.",
+     "18. Normalmente suelo evitar juntarme con un grupo grande de personas.",
+     "19. Cuando mis superiores quieren hablar conmigo, lo hago con gusto.",
+     "20. Cuando estoy con un grupo de gente suelo estar muy nervioso.",
+     "21. Procuro evitar a las personas.",
+     "22. No me importa hablar con gente en reuniones sociales.",
+     "23. Raras veces me encuentro a gusto cuando estoy con un grupo de gente.",
+     "24. Generalmente suelo inventar excusas para evitar los compromisos sociales.",
+     "25. Algunas veces acepto la responsabilidad de presentar a las personas.",
+     "26. Procuro evitar situaciones sociales formales.",
+     "27. Generalmente acudo siempre a cualquier compromiso social que tenga.",
+     "28. Creo que es fácil estar relajado en presencia de otras personas."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "C([2, 5, 8, 10, 11, 13, 16, 18, 20, 21, 23, 24, 26], 1) + C([1, 3, 4, 6, 7, 9, 12, 14, 15, 17, 19, 22, 25, 27, 28], 0)",
+     "texto": "De 0 a 28. Sin puntos de corte; medias en adolescentes españoles: 7,6 sin psicopatología, 13,4 en ansiedad social específica y 17,0 en generalizada."
     }
    ]
   }
@@ -7180,6 +7413,217 @@ const CALIFICAR = {
      "n": "Autoestima negativa invertida (2, 5, 8, 9, 10)",
      "js": "R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
      "texto": "De 5 a 20: a mayor puntaje, menos autoevaluación negativa."
+    }
+   ]
+  }
+ },
+ "mgh-hs": {
+  "clave": "MGH-HS",
+  "sigla": "MGH-HS",
+  "titulo": "Escala de Arrancamiento de Pelo del Hospital General de Massachusetts",
+  "para": "Medir la gravedad del arrancamiento de pelo (tricotilomanía) en la última semana: frecuencia e intensidad de los impulsos, control sobre ellos, frecuencia del arrancamiento, intentos de resistirlo y malestar. Es la medida habitual para seguir el tratamiento.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Keuthen et al. (1995), Psychotherapy and Psychosomatics · traducción sin autor identificado.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Para cada pregunta, elija la afirmación dentro de cada grupo que mejor describa sus conductas y/o sentimientos durante la última semana. Si ha tenido altibajos, trate de estimar un promedio para la última semana. Asegúrese de leer todas las afirmaciones antes de hacer su elección."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana no sentí ningún impulso de arrancarme el cabello.",
+     "Esta semana sentí un impulso ocasional de arrancarme el cabello.",
+     "Esta semana sentí con frecuencia el impulso de arrancarme el cabello.",
+     "Esta semana sentí muy frecuentemente el impulso de arrancarme el cabello.",
+     "Esta semana sentí impulsos casi constantes de arrancarme el cabello."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Frecuencia de los impulsos (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana no sentí ningún impulso de arrancarme el cabello.",
+     "Esta semana sentí impulsos leves de arrancarme el cabello.",
+     "Esta semana sentí impulsos moderados de arrancarme el cabello.",
+     "Esta semana sentí impulsos severos de arrancarme el cabello.",
+     "Esta semana sentí impulsos extremos de arrancarme el cabello."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Intensidad de los impulsos (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana siempre pude controlar los impulsos, o no sentí ningún impulso.",
+     "Esta semana pude distraerme de los impulsos la mayor parte del tiempo.",
+     "Esta semana pude distraerme de los impulsos algunas veces.",
+     "Esta semana rara vez pude distraerme de los impulsos.",
+     "Esta semana nunca pude distraerme de los impulsos."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Capacidad para controlar los impulsos (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana no me arranqué el cabello.",
+     "Esta semana me arranqué el cabello ocasionalmente.",
+     "Esta semana me arranqué el cabello con frecuencia.",
+     "Esta semana me arranqué el cabello muy frecuentemente.",
+     "Esta semana me arranqué el cabello con tanta frecuencia que sentí que lo hacía todo el tiempo."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Frecuencia del arrancamiento (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana no sentí ningún impulso de arrancarme el cabello.",
+     "Esta semana intenté resistir casi todo el tiempo.",
+     "Esta semana intenté resistir algunas veces.",
+     "Esta semana rara vez intenté resistir.",
+     "Esta semana nunca intenté resistir."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Intentos de resistir el arrancamiento (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Esta semana no me arranqué el cabello.",
+     "Esta semana pude resistir casi todo el tiempo.",
+     "Esta semana pude resistir la mayor parte del tiempo.",
+     "Esta semana pude resistir algunas veces.",
+     "Esta semana rara vez pude resistir."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6. Control sobre el arrancamiento (día promedio)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No me sentí incómodo/a por arrancarme el cabello.",
+     "Me sentí levemente incómodo/a.",
+     "Me sentí claramente incómodo/a.",
+     "Me sentí significativamente incómodo/a.",
+     "Me sentí intensamente incómodo/a."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "7. Malestar asociado (última semana)"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,7)",
+     "texto": "De 0 a 28: a mayor puntaje, más gravedad. Sin puntos de corte."
+    },
+    {
+     "n": "Impulsos (1 a 3)",
+     "js": "S(1,3)",
+     "texto": "De 0 a 12."
+    },
+    {
+     "n": "Arrancamiento (4 a 6)",
+     "js": "S(4,6)",
+     "texto": "De 0 a 12."
     }
    ]
   }
