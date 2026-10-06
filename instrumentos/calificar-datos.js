@@ -5786,6 +5786,424 @@ const CALIFICAR = {
    ]
   }
  },
+ "crafft": {
+  "clave": "CRAFFT",
+  "sigla": "CRAFFT",
+  "titulo": "CRAFFT 2.1+N",
+  "para": "Tamizar el consumo de alcohol, cannabis y otras drogas en adolescentes de 12 a 21 años, con una parte de dependencia a la nicotina y al vaporizador. Sirve para decidir si hace falta una evaluación completa y para el consejo breve.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Knight et al.; CRAFFT 2.1+N, Boston Children's Hospital (2020), versión en español.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Entrevista que el profesional hace de forma oral. Comienzo: “Te voy a hacer algunas preguntas que les hago a todos los pacientes. Por favor responde sinceramente. Tus respuestas serán confidenciales”"
+   },
+   {
+    "t": "dato",
+    "x": "1. ¿Has bebido algo más que unos sorbos de cerveza, vino o alguna bebida con alcohol? Di “0” si la respuesta es ninguno.",
+    "tipo": "numero",
+    "unidad": "días"
+   },
+   {
+    "t": "dato",
+    "x": "2. ¿Has usado algún tipo de marihuana (cannabis, aceite, cera, para fumar, vaporizar, fumar dosis muy concentradas o “dabs” o en los alimentos) o “marihuana sintética” (como “K2”, “Spice”)? Di “0” si la respuesta es ninguno.",
+    "tipo": "numero",
+    "unidad": "días"
+   },
+   {
+    "t": "dato",
+    "x": "3. ¿Has usado algo más para drogarte (como otras drogas ilegales, medicamentos recetados o de venta libre, y cosas para inhalar, esnifar, vaporizar o inyectarse)? Di “0” si la respuesta es ninguno.",
+    "tipo": "numero",
+    "unidad": "días"
+   },
+   {
+    "t": "dato",
+    "x": "4. ¿Has usado un dispositivo vaporizador* que contiene nicotina o sabores, o algún producto de tabaco†? Di “0” si la respuesta es ninguno. * Como cigarrillos electrónicos, “mods”, dispositivos “pod” como JUUL, vaporizadores descartables como Puff Bar, vaporizadores tipo bolígrafo o pipas de agua electrónicas. † Pitillos, cigarros, cigarrillos, pipas, tabaco de mascar, tabaco rapé, “snus” o solubles.",
+    "tipo": "numero",
+    "unidad": "días"
+   },
+   {
+    "t": "consigna",
+    "x": "Si respondió 0 en todas las preguntas de la parte A, haga solo la primera pregunta de la parte B (CAR) y deténgase. Con 1 o más en las preguntas 1, 2 o 3, haga las 6 preguntas de la parte B. Con 1 o más en la pregunta 4, haga las 10 de la parte C."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "C (CAR). ¿Alguna vez has viajado en un vehículo (CAR) conducido por alguien (incluido/a tú mismo/a) que estaba drogado o que había consumido alcohol o drogas?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "R (RELAX). ¿Alguna vez consumes alcohol o drogas para relajarte (RELAX), sentirte mejor contigo mismo/a o integrarte en un grupo?",
+      "si": "((r[1] || 0) + (r[2] || 0) + (r[3] || 0)) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "A (ALONE). ¿Alguna vez consumes alcohol o drogas cuando estás solo/a (ALONE) o sin compañía?",
+      "si": "((r[1] || 0) + (r[2] || 0) + (r[3] || 0)) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "F (FORGET). ¿Alguna vez te olvidas (FORGET) de cosas que has hecho mientras consumías alcohol o drogas?",
+      "si": "((r[1] || 0) + (r[2] || 0) + (r[3] || 0)) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "F (FAMILY/FRIENDS). ¿Tus familiares o amigos (FAMILY or FRIENDS) alguna vez te dicen que deberías disminuir el consumo de alcohol o drogas?",
+      "si": "((r[1] || 0) + (r[2] || 0) + (r[3] || 0)) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "T (TROUBLE). ¿Alguna vez te has metido en problemas (TROUBLE) al consumir alcohol o drogas?",
+      "si": "((r[1] || 0) + (r[2] || 0) + (r[3] || 0)) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "1. ¿Alguna vez has intentado DEJAR de consumir, pero no pudiste?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "2. ¿ACTUALMENTE usas vaporizador o tabaco porque te resulta muy difícil dejar de consumir?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "3. ¿Alguna vez has sentido que eres ADICTO/A al vaporizador o al tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "4. ¿Alguna vez sientes muchas GANAS de usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "5. ¿Alguna vez has sentido que realmente NECESITABAS usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "6. ¿Te resulta difícil evitar usar vaporizador o tabaco en LUGARES donde supuestamente no debes hacerlo, como la escuela?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "7. CuandoNO HAS USADO vaporizador o tabaco durante un tiempo (o cuando has intentado dejar de usarlo)…"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "7a. ¿te resultó difícil CONCENTRARTE porque no podías usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "7b. ¿te sentiste más IRRITABLE porque no podías usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "7c. ¿sentiste NECESIDAD o ganas intensas de usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "7d. ¿te sentiste NERVIOSO/A, inquieto/a o ansioso/a porque no podías usar vaporizador o tabaco?",
+      "si": "(r[4] || 0) > 0"
+     }
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje CRAFFT (parte B)",
+     "js": "S(5,10)",
+     "rangos": [
+      [
+       0,
+       1,
+       "Riesgo bajo: menos de 2 respuestas «sí»"
+      ],
+      [
+       2,
+       6,
+       "Problema serio con el consumo (2 o más): siga evaluando"
+      ]
+     ]
+    },
+    {
+     "n": "Parte C (nicotina)",
+     "js": "S(11,20)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin respuestas «sí»"
+      ],
+      [
+       1,
+       10,
+       "Problema serio con la nicotina (1 o más «sí»): siga evaluando"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "fas": {
   "clave": "FAS",
   "sigla": "FAS",
@@ -5843,6 +6261,126 @@ const CALIFICAR = {
      "n": "Total",
      "js": "S(1,12)",
      "texto": "De 0 a 48. Sin puntos de corte; media en la validación española al inicio del tratamiento: 16,2."
+    }
+   ]
+  }
+ },
+ "m-chat-r-f": {
+  "clave": "M-CHAT-R/F",
+  "sigla": "M-CHAT-R/F",
+  "titulo": "Cuestionario Modificado de Detección Temprana de Autismo, revisado y con entrevista de seguimiento",
+  "para": "Identificar riesgo de trastorno del espectro autista en niños de 16 a 30 meses, con lo que informan los padres. Detecta riesgo y lleva a derivar; no hace diagnóstico.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Robins, Fein y Barton (2009) · M-CHAT-R/F, versión en español de mchatscreen.com.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor conteste las siguientes preguntas teniendo en cuenta el comportamiento que su hijo/a presenta usualmente. Si ha notado cierto comportamiento algunas veces, pero no es algo que hace usualmente, por favor conteste no. Conteste cada una de las preguntas, marcando con un círculo, la palabra sí o no como respuesta. Muchas gracias."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Si usted señala un objeto del otro lado del cuarto, su hijo/a lo mira? (POR EJEMPLO ¿Si usted señala un juguete o un animal, su hijo/a mira al juguete o al animal?)",
+     "2. ¿Alguna vez se ha preguntado si su hijo/a es sordo/a?",
+     "3. ¿Su hijo/a juega juegos de fantasía o imaginación? (POR EJEMPLO finge beber de una taza vacía, finge hablar por teléfono o finge darle de comer a una muñeca o un peluche)",
+     "4. ¿A su hijo/a le gusta treparse a las cosas? (POR EJEMPLO muebles, escaleras o juegos infantiles)",
+     "5. ¿Su hijo/a hace movimientos inusuales con los dedos cerca de sus ojos? (POR EJEMPLO ¿Mueve sus dedos cerca de sus ojos de manera inusual?)",
+     "6. ¿Su hijo/a apunta o señala con un dedo cuando quiere pedir algo o pedir ayuda? (POR EJEMPLO señala un juguete o algo para comer que está fuera de su alcance)",
+     "7. ¿Su hijo/a apunta o señala con un dedo cuando quiere mostrarle algo interesante? (POR EJEMPLO señala un avión en el cielo o un camión grande en el camino)",
+     "8. ¿Su hijo/a muestra interés en otros niños? (POR EJEMPLO ¿mira con atención a otros niños, les sonríe o se les acerca?)",
+     "9. ¿Su hijo/a le muestra cosas acercándoselas a usted o levantándolas para que usted las vea, no para pedir ayuda sino para compartirlas con usted? (POR EJEMPLO le muestra una flor, un peluche o un camión/carro de juguete)",
+     "10. ¿Su hijo/a responde cuando usted le llama por su nombre? (POR EJEMPLO ¿Cuando usted lo llama por su nombre: lo mira a usted, habla, balbucea, o deja de hacer lo que estaba haciendo?)",
+     "11. ¿Cuándo usted le sonríe a su hijo/a, él o ella le devuelve la sonrisa?",
+     "12. ¿A su hijo/a le molestan los ruidos cotidianos? (POR EJEMPLO ¿Llora o grita cuando escucha la aspiradora o música muy fuerte?)",
+     "13. ¿Su hijo/a camina?",
+     "14. ¿Su hijo/a le mira a los ojos cuando usted le habla, juega con él/ella o lo/la viste?",
+     "15. ¿Su hijo/a trata de imitar sus movimientos? (POR EJEMPLO decir adiós con la mano, aplaudir o algún ruido chistoso que usted haga)",
+     "16. ¿Si usted se voltea a ver algo, su hijo/a trata de ver que es lo que usted está mirando?",
+     "17. ¿Su hijo/a trata que usted lo mire? (POR EJEMPLO ¿Busca que usted lo/la halague, o dice “mirame”?)",
+     "18. ¿Su hijo/a le entiende cuando usted le dice que haga algo? (POR EJEMPLO ¿Su hijo/a entiende “pon el libro en la silla” o “tráeme la cobija” sin que usted haga señas?)",
+     "19. ¿Si algo nuevo ocurre, su hijo/a lo mira a la cara para ver cómo se siente usted al respecto? (POR EJEMPLO ¿Si oye un ruido extraño o ve un juguete nuevo, se voltearía a ver su cara?)",
+     "20. ¿A su hijo/a le gustan las actividades con movimiento? (POR EJEMPLO Le gusta que lo mezan/columpien, o que lo haga saltar en sus rodillas)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No se hizo",
+     "0 o 1",
+     "2 o más"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": false,
+    "items": [
+     "Entrevista de seguimiento (con riesgo medio): preguntas que siguen sin pasar"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas de riesgo",
+     "js": "(r[1] === 0) + (r[2] === 1) + (r[3] === 0) + (r[4] === 0) + (r[5] === 1) + (r[6] === 0) + (r[7] === 0) + (r[8] === 0) + (r[9] === 0) + (r[10] === 0) + (r[11] === 0) + (r[12] === 1) + (r[13] === 0) + (r[14] === 0) + (r[15] === 0) + (r[16] === 0) + (r[17] === 0) + (r[18] === 0) + (r[19] === 0) + (r[20] === 0)",
+     "rangos": [
+      [
+       0,
+       2,
+       "Riesgo bajo"
+      ],
+      [
+       3,
+       7,
+       "Riesgo medio: haga la entrevista de seguimiento"
+      ],
+      [
+       8,
+       20,
+       "Riesgo alto: derive a evaluación diagnóstica"
+      ]
+     ]
+    },
+    {
+     "n": "Entrevista de seguimiento",
+     "js": "r[21] == null ? 0 : r[21]",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin entrevista de seguimiento registrada"
+      ],
+      [
+       1,
+       1,
+       "Negativa: 0 o 1 preguntas sin pasar"
+      ],
+      [
+       2,
+       2,
+       "Positiva: 2 o más sin pasar; derive a evaluación diagnóstica"
+      ]
+     ]
     }
    ]
   }
@@ -6463,6 +7001,371 @@ const CALIFICAR = {
    "nota": "Responda solo la forma que vaya a calificar (la del niño o la de los padres); la otra queda en blanco y vale 0."
   }
  },
+ "sdq": {
+  "clave": "SDQ",
+  "sigla": "SDQ",
+  "titulo": "Cuestionario de Capacidades y Dificultades, forma para padres y docentes",
+  "para": "Tamizar dificultades emocionales y de conducta en niños y adolescentes de 4 a 17 años: síntomas emocionales, problemas de conducta, hiperactividad, relación con compañeros y conducta prosocial.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Goodman (1997) · SDQ-Cas para padres y docentes, sdqinfo.org.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor, ponga una cruz en el cuadro que usted cree que corresponde a cada una de las preguntas: No es cierto, Un tanto cierto, Absolutamente cierto. Nos sería de gran ayuda si respondiese a todas las preguntas lo mejor que pudiera, aunque no esté completamente seguro/a de la respuesta. Por favor, responda a las preguntas basándose en el comportamiento del niño/a durante los últimos seis meses o durante el presente curso escolar."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No es cierto",
+     "Un tanto cierto",
+     "Absolutamente cierto"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Tiene en cuenta los sentimientos de otras personas",
+     "2. Es inquieto/a, hiperactivo/a, no puede permanecer quieto/a por mucho tiempo",
+     "3. Se queja con frecuencia de dolor de cabeza, de estómago o de náuseas",
+     "4. Comparte frecuentemente con otros niños/as chucherías, juguetes, lápices, etc",
+     "5. Frecuentemente tiene rabietas o mal genio",
+     "6. Es más bien solitario/a y tiende a jugar solo/a",
+     "7. Por lo general es obediente, suele hacer lo que le piden los adultos",
+     "8. Tiene muchas preocupaciones, a menudo parece inquieto/a o preocupado/a",
+     "9. Ofrece ayuda cuando alguien resulta herido, disgustado, o enfermo",
+     "10. Está continuamente moviéndose y es revoltoso",
+     "11. Tiene por lo menos un/a buen/a amigo/a",
+     "12. Pelea con frecuencia con otros niños/as o se mete con ellos/ellas",
+     "13. Se siente a menudo infeliz, desanimado o lloroso",
+     "14. Por lo general cae bien a los otros niños/as",
+     "15. Se distrae con facilidad, su concentración tiende a dispersarse",
+     "16. Es nervioso/a o dependiente ante nuevas situaciones, fácilmente pierde la confianza en sí mismo/a",
+     "17. Trata bien a los niños/as más pequeños/as",
+     "18. A menudo miente o engaña",
+     "19. Los otros niños/as se meten con él/ella o se burlan de él/ella",
+     "20. A menudo se ofrece para ayudar (a padres, maestros, otros niños/as)",
+     "21. Piensa las cosas antes de hacerlas",
+     "22. Roba cosas en casa, en la escuela o en otros sitios",
+     "23. Se lleva mejor con adultos que con otros niños/as",
+     "24. Tiene muchos miedos, se asusta fácilmente",
+     "25. Termina lo que empieza, tiene buena concentración"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Madre, padre u otro cuidador",
+     "Docente"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Quién responde"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Síntomas emocionales",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         3,
+         "Normal"
+        ],
+        [
+         4,
+         4,
+         "Límite"
+        ],
+        [
+         5,
+         10,
+         "Anormal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         4,
+         "Normal"
+        ],
+        [
+         5,
+         5,
+         "Límite"
+        ],
+        [
+         6,
+         10,
+         "Anormal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    },
+    {
+     "n": "Problemas de conducta",
+     "js": "(r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         2,
+         "Normal"
+        ],
+        [
+         3,
+         3,
+         "Límite"
+        ],
+        [
+         4,
+         10,
+         "Anormal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         2,
+         "Normal"
+        ],
+        [
+         3,
+         3,
+         "Límite"
+        ],
+        [
+         4,
+         10,
+         "Anormal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    },
+    {
+     "n": "Hiperactividad",
+     "js": "(r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         5,
+         "Normal"
+        ],
+        [
+         6,
+         6,
+         "Límite"
+        ],
+        [
+         7,
+         10,
+         "Anormal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         5,
+         "Normal"
+        ],
+        [
+         6,
+         6,
+         "Límite"
+        ],
+        [
+         7,
+         10,
+         "Anormal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    },
+    {
+     "n": "Problemas con compañeros",
+     "js": "(r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         2,
+         "Normal"
+        ],
+        [
+         3,
+         3,
+         "Límite"
+        ],
+        [
+         4,
+         10,
+         "Anormal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         3,
+         "Normal"
+        ],
+        [
+         4,
+         4,
+         "Límite"
+        ],
+        [
+         5,
+         10,
+         "Anormal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    },
+    {
+     "n": "Conducta prosocial",
+     "js": "(r[1] == null ? 0 : r[1]) + (r[4] == null ? 0 : r[4]) + (r[9] == null ? 0 : r[9]) + (r[17] == null ? 0 : r[17]) + (r[20] == null ? 0 : r[20])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         4,
+         "Anormal"
+        ],
+        [
+         5,
+         5,
+         "Límite"
+        ],
+        [
+         6,
+         10,
+         "Normal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         4,
+         "Anormal"
+        ],
+        [
+         5,
+         5,
+         "Límite"
+        ],
+        [
+         6,
+         10,
+         "Normal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    },
+    {
+     "n": "Total de dificultades",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24]) + (r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22]) + (r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25]) + (r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "rangos_por": [
+      {
+       "si": "r[26] === 0",
+       "rangos": [
+        [
+         0,
+         13,
+         "Normal"
+        ],
+        [
+         14,
+         16,
+         "Límite"
+        ],
+        [
+         17,
+         40,
+         "Anormal"
+        ]
+       ]
+      },
+      {
+       "si": "r[26] === 1",
+       "rangos": [
+        [
+         0,
+         11,
+         "Normal"
+        ],
+        [
+         12,
+         15,
+         "Límite"
+        ],
+        [
+         16,
+         40,
+         "Anormal"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Marque quién responde (al final) para ver la banda."
+    }
+   ]
+  }
+ },
  "smfq": {
   "clave": "SMFQ",
   "sigla": "SMFQ",
@@ -6686,6 +7589,411 @@ const CALIFICAR = {
     }
    ],
    "nota": "Las preguntas 10 y 20 son generales y no entran en la suma. Los cortes se validaron con la forma que responden los docentes."
+  }
+ },
+ "vanderbilt": {
+  "clave": "Vanderbilt",
+  "sigla": "Vanderbilt",
+  "titulo": "Escala de Evaluación Vanderbilt, formulario para padres",
+  "para": "Evaluar síntomas de TDAH (inatención e hiperactividad-impulsividad) y las comorbilidades más frecuentes (oposicionismo, conducta, ansiedad y depresión), junto con el rendimiento escolar y social, con lo que informan los padres.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Wolraich et al. (2003) · Escala Vanderbilt para padres, kit de TDAH de la AAP (3.ª ed.), versión en español.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Cada calificación debe ser considerada en el contexto de lo que es adecuado para la edad de su hijo. Cuando complete este formulario, piense sobre el comportamiento de su hijo en los últimos 6 meses."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Tomaba medicamentos",
+     "No tomaba medicamentos",
+     "No está seguro"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": false,
+    "items": [
+     "Esta evaluación está basada en un tiempo cuando su hijo:"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "De vez en cuando",
+     "A menudo",
+     "Muy a menudo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "1. No presta atención a detalles o comete errores que parecen descuidos, por ejemplo, con las tareas domiciliarias.",
+     "2. Tiene dificultad para prestar atención a las tareas o actividades que se deben realizar.",
+     "3. Cuando se le habla directamente parece no escuchar.",
+     "4. No sigue las instrucciones o no termina las actividades (no porque se niegue ni porque no entienda).",
+     "5. Tiene dificultad para organizar las tareas y las actividades.",
+     "6. Evita, no le gustan o no quiere comenzar las tareas que requieren esfuerzo mental continuo.",
+     "7. Pierde cosas que necesita para las tareas o actividades (p. ej. juguetes, deberes, lápices, libros).",
+     "8. Se distrae con facilidad con ruidos u otros estímulos.",
+     "9. Se muestra olvidadizo en las actividades diarias.",
+     "10. Juguetea con o golpea las manos o los pies o se retuerce en el asiento.",
+     "11. Se levanta de su asiento cuando se espera que permanezca sentado.",
+     "12. Corre o trepa en exceso cuando se espera que permanezca sentado.",
+     "13. Tiene dificultad para jugar o comenzar a desarrollar juegos tranquilos.",
+     "14. Está siempre activo o con frecuencia actúa como si \"tuviera un motor\".",
+     "15. Habla demasiado.",
+     "16. Responde a las preguntas sin esperar que terminen de hacerlas.",
+     "17. Tiene dificultad para esperar su turno.",
+     "18. Interrumpe o se entromete en las conversaciones o actividades de los demás, o ambas cosas.",
+     "19. Pierde los estribos.",
+     "20. Es quisquilloso o se molesta fácilmente.",
+     "21. Se enoja o muestra resentimiento.",
+     "22. Discute con figuras de autoridad o con adultos.",
+     "23. Desafía activamente o se niega a cumplir solicitudes o reglas.",
+     "24. Molesta a otras personas deliberadamente.",
+     "25. Culpa a los demás por sus errores o mal comportamiento.",
+     "26. Es rencoroso y vengativo.",
+     "27. Hostiga, amenaza o intimada a otros.",
+     "28. Comienza las peleas físicas.",
+     "29. Ha usado un arma que puede causar daño grave (p. ej., bate, cuchillo, ladrillo, pistola).",
+     "30. Ha sido físicamente cruel con las personas.",
+     "31. Ha sido físicamente cruel con animales.",
+     "32. Ha robado confrontando a una persona.",
+     "33. Ha forzado a alguien a mantener una actividad sexual.",
+     "34. Ha prendido fuego deliberadamente para causar daño.",
+     "35. Destruye deliberadamente las cosas de otras personas.",
+     "36. Ha ingresado con violencia en otra casa, tienda o auto.",
+     "37. Miente para salir de un problema, obtener cosas o favores o evitar obligaciones (p.ej., embauca a los demás).",
+     "38. Ha robado objetos de valor.",
+     "39. Ha pasado la noche fuera de su casa sin permiso desde antes de los 13 años de edad.",
+     "40. Se ha escapado de casas dos veces o una vez por un período prolongado.",
+     "41. Suele faltar a la escuela.",
+     "42. Es temeroso, ansioso o se preocupa.",
+     "43. Teme hacer cosas nuevas por miedo a cometer errores.",
+     "44. Se siente despreciable o inferior.",
+     "45. Se culpa por problemas o se siente culpable.",
+     "46. Se siente solo, no querido o no amado; a menudo dice que nadie lo quiere.",
+     "47. No es feliz; está triste o deprimido.",
+     "48. Es acomplejado, tímido o se avergüenza con facilidad."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Excelente",
+     "Por encima del promedio",
+     "Promedio",
+     "Algo problemático",
+     "Problemático"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "49. Rendimiento escolar en general.",
+     "50. Lectura.",
+     "51. Escritura.",
+     "52. Matemática.",
+     "53. Relación con los padres.",
+     "54. Relación con los hermanos.",
+     "55. Relación con los compañeros.",
+     "56. Participación en actividades organizadas (p. ej. equipos)."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "dato",
+    "x": "¿Qué edad tenía su hijo cuando observó los comportamientos por primera vez?",
+    "tipo": "numero",
+    "unidad": "años"
+   },
+   {
+    "t": "consigna",
+    "x": "A su leal saber y entender, indique si su hijo exhibe los siguientes comportamientos:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No hay tics presentes",
+     "Sí, casi todos los días, pero pasan desapercibidos para la mayoría de las personas",
+     "Sí, los tics evidentes se manifiestan casi todos los días"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": false,
+    "items": [
+     "1. Tics motores: Movimientos rápidos y repetitivos como pestañear, hacer muecas faciales, mover la nariz, sacudir la cabeza, encogerse de hombros, sacudir los brazos, sacudir el cuerpo y dar patadas rápidas"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No hay tics presentes",
+     "Sí, casi todos los días, pero pasan desapercibidos para la mayoría de las personas",
+     "Sí, los tics evidentes se manifiestan casi todos los días"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": false,
+    "items": [
+     "2. Tics fónicos (vocales): Ruidos repetidos que incluyen carraspear, toser, silbar, aspirar ruidosamente por la nariz, resoplar, dar alaridos, producir una especie de ladridos, gruñir o repetir palabras y frases cortas"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "3. Si respondió SÍ en 1 ó 2, ¿estos tics interfieren con las actividades de su hijo (como leer, escribir, caminar, hablar o comer)?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿A su hijo le han diagnosticado TDAH o TDA?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "2. ¿Toma medicamentos para el TDAH o el TDA?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "3. ¿A su hijo se le ha diagnosticado un trastorno de tics o síndrome de Tourette?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "4. ¿Su hijo toma medicamentos para un trastorno de tics o el síndrome de Tourette?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Deterioro en el rendimiento",
+     "js": "(RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No (menos de dos 4 y ningún 5)"
+      ],
+      [
+       1,
+       1,
+       "Sí"
+      ]
+     ]
+    },
+    {
+     "n": "Inatención: síntomas en 2 o 3",
+     "js": "RANGO(2,10).filter(i => r[i] != null && r[i] >= 2).length",
+     "texto": "De 0 a 9; el cuadro pide 6 o más."
+    },
+    {
+     "n": "Hiperactividad-impulsividad: síntomas en 2 o 3",
+     "js": "RANGO(11,19).filter(i => r[i] != null && r[i] >= 2).length",
+     "texto": "De 0 a 9; el cuadro pide 6 o más."
+    },
+    {
+     "n": "TDAH, predominio inatento",
+     "js": "(RANGO(2,10).filter(i => r[i] != null && r[i] >= 2).length >= 6 && RANGO(11,19).filter(i => r[i] != null && r[i] >= 2).length < 6 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    },
+    {
+     "n": "TDAH, predominio hiperactivo-impulsivo",
+     "js": "(RANGO(11,19).filter(i => r[i] != null && r[i] >= 2).length >= 6 && RANGO(2,10).filter(i => r[i] != null && r[i] >= 2).length < 6 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    },
+    {
+     "n": "TDAH combinado",
+     "js": "(RANGO(2,10).filter(i => r[i] != null && r[i] >= 2).length >= 6 && RANGO(11,19).filter(i => r[i] != null && r[i] >= 2).length >= 6 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    },
+    {
+     "n": "Trastorno negativista desafiante",
+     "js": "(RANGO(20,27).filter(i => r[i] != null && r[i] >= 2).length >= 4 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    },
+    {
+     "n": "Trastorno de conducta",
+     "js": "(RANGO(28,42).filter(i => r[i] != null && r[i] >= 2).length >= 3 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    },
+    {
+     "n": "Ansiedad o depresión",
+     "js": "(RANGO(43,49).filter(i => r[i] != null && r[i] >= 2).length >= 3 && (RANGO(50,57).filter(i => r[i] === 4).length >= 2 || RANGO(50,57).filter(i => r[i] === 5).length >= 1)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "No se sugiere"
+      ],
+      [
+       1,
+       1,
+       "Se sugiere: confirme con la entrevista y el formulario del docente"
+      ]
+     ]
+    }
+   ]
   }
  },
  "lie-bet": {
@@ -7144,6 +8452,228 @@ const CALIFICAR = {
        80,
        100,
        "Adicción grave"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "asrs-v1-1": {
+  "clave": "ASRS v1.1",
+  "sigla": "ASRS v1.1",
+  "titulo": "Escala de Autorreporte de Síntomas de TDAH en Adultos",
+  "para": "Tamizar el TDAH en adultos. La parte A, de seis preguntas, es la que mejor predice el trastorno; la parte B completa los 18 síntomas del DSM y orienta la entrevista.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Kessler et al. (2005), Psychological Medicine · Organización Mundial de la Salud; versión en español.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Responda a las siguientes preguntas autoevaluándose en cada uno de los criterios que se muestran, utilizando la escala a la derecha de la página. Cuando responda cada pregunta, ponga una X en la casilla que mejor describa cómo se ha sentido y comportado durante los últimos 6 meses."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Algunas veces",
+     "Con frecuencia",
+     "Con mucha frecuencia"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Con qué frecuencia tiene dificultad para terminar los detalles finales de un proyecto después de haber hecho las partes difíciles?",
+     "2. ¿Con qué frecuencia le cuesta poner las cosas en orden cuando tiene que hacer una tarea que requiere organización?",
+     "3. ¿Con qué frecuencia tiene problemas para acordarse de citas u obligaciones?",
+     "4. Cuando tiene una tarea que exige pensar mucho, ¿con qué frecuencia evita o retrasa su comienzo?",
+     "5. ¿Con qué frecuencia se mueve nerviosamente o retuerce las manos o los pies cuando tiene que estar sentado por un tiempo prolongado?",
+     "6. ¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si tuviera un motor adentro?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Algunas veces",
+     "Con frecuencia",
+     "Con mucha frecuencia"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "7. ¿Con qué frecuencia comete errores por descuido cuando tiene que trabajar en un proyecto difícil o aburrido?",
+     "8. ¿Con qué frecuencia le cuesta mantener la atención cuando está haciendo un trabajo aburrido o repetitivo?",
+     "9. ¿Con qué frecuencia le cuesta concentrarse en lo que otras personas le dicen, incluso cuando le están hablando directamente a usted?",
+     "10. ¿Con qué frecuencia embolata o le cuesta encontrar cosas en la casa o el trabajo?",
+     "11. ¿Con qué frecuencia lo distraen las actividades o ruidos que lo rodean?",
+     "12. ¿Con qué frecuencia deja su asiento en reuniones u otras situaciones en las que se espera que se mantenga sentado?",
+     "13. ¿Con qué frecuencia se siente inquieto o agitado?",
+     "14. ¿Con qué frecuencia le cuesta despreocuparse y relajarse cuando tiene tiempo libre?",
+     "15. ¿Con qué frecuencia encuentra que habla demasiado cuando está en situaciones sociales?",
+     "16. Cuando participa en una conversación, ¿con qué frecuencia encuentra que termina las frases de las personas con las que habla antes de que ellas puedan terminarlas?",
+     "17. ¿Con qué frecuencia le cuesta esperar su turno en situaciones en las que es necesario esperar turno?",
+     "18. ¿Con qué frecuencia interrumpe a otras personas cuando están ocupadas?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Parte A: preguntas positivas",
+     "js": "(r[1] != null && r[1] >= 2) + (r[2] != null && r[2] >= 2) + (r[3] != null && r[3] >= 2) + (r[4] != null && r[4] >= 3) + (r[5] != null && r[5] >= 3) + (r[6] != null && r[6] >= 3)",
+     "rangos": [
+      [
+       0,
+       3,
+       "Por debajo del corte"
+      ],
+      [
+       4,
+       6,
+       "Compatible con TDAH en el adulto (4 o más): evalúe en entrevista"
+      ]
+     ]
+    },
+    {
+     "n": "Parte B: síntomas frecuentes",
+     "js": "RANGO(7,18).filter(i => r[i] != null && r[i] >= 3).length",
+     "texto": "De 0 a 12: preguntas en «con frecuencia» o más. Sin corte; orientan la entrevista."
+    }
+   ]
+  }
+ },
+ "mini-cog": {
+  "clave": "Mini-Cog",
+  "sigla": "Mini-Cog",
+  "titulo": "Prueba Mini-Cog",
+  "para": "Tamizar rápidamente el deterioro cognitivo en adultos mayores: recuerdo de tres palabras y dibujo del reloj. Toma unos tres minutos y depende poco de la escolaridad y del idioma.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Borson et al. (2000, 2003) · Mini-Cog©, versión oficial en español.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Mire directamente a la persona y dígale, \"Escuche con cuidado. Voy a decir tres palabras que quiero que usted repita ahora y trate de recordar. Las palabras son [seleccione una lista de palabras de las versiones que aparecen a continuación]. \"Ahora repita las palabras.” Si la persona no es capaz de repetir las palabras después de tres intentos, continúe al Paso N.º 2 (Dibujo de reloj)."
+   },
+   {
+    "t": "consigna",
+    "x": "Diga: \"Ahora, quiero que me dibuje un reloj. Primero, coloque los números donde van\". Una vez que el cliente haya terminado, diga: \"Ahora, ponga las manecillas del reloj en la posición que indiquen las 11:10\". Use la página con el círculo impreso (vea la siguiente página) para este ejercicio. Repita las instrucciones según sea necesario ya que esto no es una prueba de memoria. Continúe al"
+   },
+   {
+    "t": "consigna",
+    "x": "Pídale a la persona que repita las tres palabras que usted dijo en el Paso N.º 1. Diga: “¿Cuáles fueron las tres palabras que le pedí que recordara?” Registre el número de versión de lista de palabras y las respuestas de la persona a continuación."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Versión 1",
+     "Versión 2",
+     "Versión 3",
+     "Versión 4",
+     "Versión 5",
+     "Versión 6"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": false,
+    "items": [
+     "Versión de la lista de palabras usada"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguna",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Memoria de palabras (0 a 3): 1 punto por cada palabra que recuerde espontáneamente, sin pistas"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Anormal, no lo dibuja o se rehúsa",
+     "Normal"
+    ],
+    "vals": [
+     0,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Dibujo de reloj (0 o 2). Reloj normal = 2 puntos. Un reloj normal tiene todos los números colocados en la secuencia y posición aproximadamente correctas (p. ej., 12, 3, 6, 9 están en posiciones de anclaje y 2 (11:10). Longitud de la manecilla no se cuenta en el puntaje. Si la persona no es capaz de dibujar un reloj o se rehúsa (anormal) = 0 puntos."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "(r[2] || 0) + (r[3] || 0)",
+     "rangos": [
+      [
+       0,
+       2,
+       "Positivo para demencia (menos de 3): evalúe a fondo"
+      ],
+      [
+       3,
+       3,
+       "Por encima del corte habitual; con el corte más sensible (menos de 4), conviene evaluar más"
+      ],
+      [
+       4,
+       5,
+       "Negativo"
       ]
      ]
     }
@@ -8807,6 +10337,292 @@ const CALIFICAR = {
        4,
        4,
        "Se cumplen los cuatro: orienta a duelo complicado; confirme en entrevista"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "sdq-18": {
+  "clave": "SDQ-18",
+  "sigla": "SDQ-18",
+  "titulo": "Cuestionario de Capacidades y Dificultades, autoinforme de 18 años o más",
+  "para": "Describir dificultades emocionales y de conducta en jóvenes y adultos con la misma estructura del SDQ: síntomas emocionales, problemas de conducta, hiperactividad, relación con los demás y conducta prosocial.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Goodman (1997) · SDQ-Cas de autoinforme para mayores de 18 años, sdqinfo.org.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor ponga una cruz en el cuadro que crea que corresponde a cada una de las preguntas: No es verdad, Es verdad a medias, Verdaderamente sí. Es importante que responda a todas las preguntas lo mejor que pueda, aunque no esté completamente seguro/ a de la respuesta. Por favor, responda a las preguntas según como le han ido las cosas en los últimos seis meses."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No es verdad",
+     "Es verdad a medias",
+     "Verdaderamente sí"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Procuro ser agradable con los demás. Tengo en cuenta los sentimientos de las otras personas",
+     "2. Soy inquieto/a hiperactivo/a, me resulta difícil permanecer sentado/a durante mucho tiempo",
+     "3. Suelo tener muchos dolores de cabeza, estómago o náuseas",
+     "4. Normalmente comparto mis cosas con otras personas, por ejemplo comida o bebida",
+     "5. Cuando me enfado, me enfado mucho y pierdo el control",
+     "6. Prefiero estar solo/a a estar con gente",
+     "7. En general estoy dispuesto/a a hacer lo que otras personas quieren",
+     "8. A menudo estoy preocupado/a",
+     "9. Ayudo si alguien está enfermo, disgustado o herido",
+     "10. Estoy todo el tiempo moviéndome, me muevo demasiado",
+     "11. Tengo un/a buen/a amigo/a por lo menos",
+     "12. Peleo con frecuencia, puedo conseguir que otras personas hagan lo que yo quiero",
+     "13. Me siento a menudo triste, desanimado/a o con ganas de llorar",
+     "14. Por lo general caigo bien a la gente",
+     "15. Me distraigo con facilidad, me cuesta concentrarme",
+     "16. Me pongo nervioso/a con las situaciones nuevas, fácilmente pierdo la confianza en mí mismo/a",
+     "17. Soy amable con los niños",
+     "18. A menudo me acusan de mentir o de hacer trampas",
+     "19. Otras personas se meten conmigo o se burlan de mí",
+     "20. A menudo me ofrezco para ayudar a los demás (familiares, amigos/as, compañeros/as)",
+     "21. Pienso las cosas antes de hacerlas",
+     "22. Cojo cosas que no son mías, de casa, del trabajo o de otros sitios",
+     "23. Me llevo mejor con personas que son mayores que yo que con la gente de mi edad",
+     "24. Tengo muchos miedos, me asusto fácilmente",
+     "25. Termino lo que empiezo, tengo buena concentración"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Síntomas emocionales",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24])",
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Problemas de conducta",
+     "js": "(r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22])",
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Hiperactividad",
+     "js": "(r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25])",
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Problemas con compañeros",
+     "js": "(r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Conducta prosocial",
+     "js": "(r[1] == null ? 0 : r[1]) + (r[4] == null ? 0 : r[4]) + (r[9] == null ? 0 : r[9]) + (r[17] == null ? 0 : r[17]) + (r[20] == null ? 0 : r[20])",
+     "texto": "De 0 a 10: a mayor puntaje, más conducta prosocial."
+    },
+    {
+     "n": "Total de dificultades",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24]) + (r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22]) + (r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25]) + (r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "texto": "De 0 a 40."
+    }
+   ]
+  }
+ },
+ "sdq-ai": {
+  "clave": "SDQ-AI",
+  "sigla": "SDQ-AI",
+  "titulo": "Cuestionario de Capacidades y Dificultades, autoinforme de 11 a 17 años",
+  "para": "Tamizar dificultades emocionales y de conducta con lo que informa el propio adolescente: síntomas emocionales, problemas de conducta, hiperactividad, relación con compañeros y conducta prosocial.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Goodman (1997, 2001) · SDQ-Cas de autoinforme de 11 a 17 años, sdqinfo.org.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor pon una cruz en el cuadro que creas que corresponde a cada una de las preguntas: No es verdad, Es verdad a medias, Verdaderamente sí. Es importante que respondas a todas las preguntas lo mejor que puedas, aunque no estés completamente seguro/a de la respuesta. Por favor, responde a las preguntas según como te han ido las cosas en los últimos seis meses."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No es verdad",
+     "Es verdad a medias",
+     "Verdaderamente sí"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "1. Procuro ser agradable con los demás. Tengo en cuenta los sentimientos de las otras personas",
+     "2. Soy inquieto/a, hiperactivo/a, no puedo permanecer quieto/a por mucho tiempo",
+     "3. Suelo tener muchos dolores de cabeza, estómago o náuseas",
+     "4. Normalmente comparto con otros mis juguetes, chucherías, lápices, etc",
+     "5. Cuando me enfado, me enfado mucho y pierdo el control",
+     "6. Prefiero estar solo/a que con gente de mi edad",
+     "7. Por lo general soy obediente",
+     "8. A menudo estoy preocupado/a",
+     "9. Ayudo si alguien está enfermo, disgustado o herido",
+     "10. Estoy todo el tiempo moviéndome, me muevo demasiado",
+     "11. Tengo un/a buen/a amigo/a por lo menos",
+     "12. Peleo con frecuencia con otros, manipulo a los demás",
+     "13. Me siento a menudo triste, desanimado o con ganas de llorar",
+     "14. Por lo general caigo bien a la otra gente de mi edad",
+     "15. Me distraigo con facilidad, me cuesta concentrarme",
+     "16. Me pongo nervioso/a con las situaciones nuevas, fácilmente pierdo la confianza en mí mismo/a",
+     "17. Trato bien a los niños/as más pequeños/as",
+     "18. A menudo me acusan de mentir o de hacer trampas",
+     "19. Otra gente de mi edad se mete conmigo o se burla de mí",
+     "20. A menudo me ofrezco para ayudar (a padres, maestros, niños)",
+     "21. Pienso las cosas antes de hacerlas",
+     "22. Cojo cosas que no son mías de casa, la escuela o de otros sitios",
+     "23. Me llevo mejor con adultos que con otros de mi edad",
+     "24. Tengo muchos miedos, me asusto fácilmente",
+     "25. Termino lo que empiezo, tengo buena concentración"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Síntomas emocionales",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24])",
+     "rangos": [
+      [
+       0,
+       5,
+       "Normal"
+      ],
+      [
+       6,
+       6,
+       "Límite"
+      ],
+      [
+       7,
+       10,
+       "Anormal"
+      ]
+     ]
+    },
+    {
+     "n": "Problemas de conducta",
+     "js": "(r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22])",
+     "rangos": [
+      [
+       0,
+       3,
+       "Normal"
+      ],
+      [
+       4,
+       4,
+       "Límite"
+      ],
+      [
+       5,
+       10,
+       "Anormal"
+      ]
+     ]
+    },
+    {
+     "n": "Hiperactividad",
+     "js": "(r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25])",
+     "rangos": [
+      [
+       0,
+       5,
+       "Normal"
+      ],
+      [
+       6,
+       6,
+       "Límite"
+      ],
+      [
+       7,
+       10,
+       "Anormal"
+      ]
+     ]
+    },
+    {
+     "n": "Problemas con compañeros",
+     "js": "(r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "rangos": [
+      [
+       0,
+       3,
+       "Normal"
+      ],
+      [
+       4,
+       5,
+       "Límite"
+      ],
+      [
+       6,
+       10,
+       "Anormal"
+      ]
+     ]
+    },
+    {
+     "n": "Conducta prosocial",
+     "js": "(r[1] == null ? 0 : r[1]) + (r[4] == null ? 0 : r[4]) + (r[9] == null ? 0 : r[9]) + (r[17] == null ? 0 : r[17]) + (r[20] == null ? 0 : r[20])",
+     "rangos": [
+      [
+       0,
+       4,
+       "Anormal"
+      ],
+      [
+       5,
+       5,
+       "Límite"
+      ],
+      [
+       6,
+       10,
+       "Normal"
+      ]
+     ]
+    },
+    {
+     "n": "Total de dificultades",
+     "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24]) + (r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22]) + (r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25]) + (r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
+     "rangos": [
+      [
+       0,
+       15,
+       "Normal"
+      ],
+      [
+       16,
+       19,
+       "Límite"
+      ],
+      [
+       20,
+       40,
+       "Anormal"
       ]
      ]
     }
