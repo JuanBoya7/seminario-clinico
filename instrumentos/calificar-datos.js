@@ -1,6 +1,6 @@
 /* Preguntas y reglas de calificación de las fichas completas. Lo escribe
    _planes-fuente/instrumentos/generar.py: no se edita a mano. */
-const AREAS = ["Riesgo suicida", "Malestar general", "Ánimo y depresión", "Ansiedad", "TOC y conductas repetitivas", "Trauma y duelo", "Consumo, juego y pantallas", "Alimentación", "Salud, sueño y síntomas físicos", "Neurodesarrollo y cognición", "Familia, pareja y violencia", "Cuidadores y desgaste laboral", "Autoestima, autocrítica y habilidades sociales", "Procesos psicológicos: aceptación, metacognición y regulación", "Bienestar y apoyo social", "Otras"];
+const AREAS = ["Riesgo suicida", "Malestar general", "Ánimo y depresión", "Ansiedad", "TOC y conductas repetitivas", "Trauma y duelo", "Síntomas psicóticos", "Consumo, juego y pantallas", "Alimentación", "Salud, sueño y síntomas físicos", "Neurodesarrollo y cognición", "Familia, pareja y violencia", "Cuidadores y desgaste laboral", "Autoestima, autocrítica y habilidades sociales", "Procesos psicológicos: aceptación, metacognición y regulación", "Bienestar y apoyo social", "Otras"];
 const CALIFICAR = {
  "phq-9": {
   "clave": "PHQ-9",
@@ -7598,6 +7598,472 @@ const CALIFICAR = {
    ]
   }
  },
+ "psyrats": {
+  "clave": "PSYRATS",
+  "sigla": "PSYRATS",
+  "titulo": "Escalas de Valoración de los Síntomas Psicóticos",
+  "para": "Medir en detalle las alucinaciones auditivas y los delirios, más allá de su presencia: frecuencia, duración, convicción, contenido negativo, angustia, interferencia en la vida y control. Sirve para formular el caso y para seguir el cambio en la terapia cognitiva de la psicosis.",
+  "areas": [
+   "Síntomas psicóticos"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Haddock et al. (1999), Psychological Medicine · versión española de González et al. (2003), Actas Españolas de Psiquiatría.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "La siguiente entrevista estructurada está diseñada para elicitar detalles específicos que tenga en cuenta diferentes dimensiones de las alucinaciones auditivas. Cuando se hacen las preguntas, la entrevista está diseñada para valorar las experiencias del paciente en la última semana para la mayoría de los ítems. Hay dos excepciones para esto, por ejemplo, cuando se pregunta sobre las creencias que tienen que ver con las causas de las voces, se valoran las respuestas de los pacientes basadas en lo que ellos creen en el momento de ser entrevistados. La intensidad de las voces también sería valorado de acuerdo con la intensidad de las voces en el momento de la entrevista o en el último momento en el que el paciente la experimentó."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no se presentan o se presenta menos de una vez a la semana.",
+     "1 Las voces ocurren al menos una vez a la semana.",
+     "2 Las voces ocurren al menos una vez al día.",
+     "3 Las voces ocurren al menos una vez a la hora.",
+     "4 Las voces ocurren continuamente o casi constantemente, por ejemplo, sólo paran unos pocos segundos o minutos."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Frecuencia. ¿Con qué frecuencia escuchas voces? (por ejemplo, cada día, a lo largo de todo el día)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no se presentan.",
+     "1 Las voces duran unos pocos segundos, son fugaces.",
+     "2 Las voces duran unos pocos minutos.",
+     "3 Las voces duran al menos una hora.",
+     "4 Las voces duran cuatro horas a la vez."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Duración. Cuando escuchas tus voces, ¿Cuánto tiempo duran? (por ejemplo, unos pocos segundos, minutos, todo el día)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no se presentan.",
+     "1 Las voces parecen estar solamente dentro de la cabeza.",
+     "2 Las voces están fuera de la cabeza, pero cerca de los oídos o cara. Las voces también pueden estar dentro de la cabeza.",
+     "3 Las voces parecen como si estuvieran dentro o cerca de los oídos y fuera de la cabeza lejos de los oídos.",
+     "4 Las voces parecen estar solamente fuera de la cabeza."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Localización. Cuando escuchas tus voces ¿De dónde te parecen que vienen? ¿de dentro de tu cabeza o de fuera de tu cabeza? Si te parecen que vienen de fuera de tu cabeza, ¿de dónde te parecen que vienen?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no se presentan.",
+     "1 La intensidad de las voces es más baja que la propia voz, son susurros.",
+     "2 Más o menos de igual intensidad que la propia voz.",
+     "3 Más alta que la propia voz.",
+     "4 Extremadamente alta, gritan."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Intensidad. ¿Son muy fuertes tus voces? ¿Las escuchas más fuerte que tu propia voz o son más calladas, como un cuchicheo?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no se presentan.",
+     "1 El paciente cree que las voces son solamente generadas internamente y relacionadas con el yo.",
+     "2 El paciente mantiene una convicción menor del 50% de que las voces son originadas por causas externas.",
+     "3 El paciente mantiene una convicción del 50% o más (pero menos del 100%), de que las voces son originadas por causas externas.",
+     "4 El paciente cree que las voces son solamente debidas a causas externas (100% de convicción)."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Creencias sobre la procedencia de las voces. ¿Qué crees que produce o causa tus voces? ¿Son producidas por factores relacionados contigo mismo o debido a otras personas o factores externos? Si el paciente expresa un origen externo: ¿En qué medida crees que tus voces son causadas por......................................... (añade la atribución del paciente) sobre una escala de 0 a 100, siendo 100 que estás totalmente convencido, que no tiene dudas y 0 que no estás completamente convencido?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no presentan un contenido desagradable.",
+     "1 Presentan ocasionalmente un contenido desagradable.",
+     "2 Una minoría de las voces presentan un contenido desagradable o negativo (menos del 50%).",
+     "3 La mayoría de las voces presentan un contenido desagradable o negativo (50% o más).",
+     "4 El contenido de todas las voces es desagradable y negativo."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6. Cantidad de contenido negativo de las voces. ¿Las voces te dicen cosas desagradables o negativas? ¿Puedes darme algún ejemplo de lo que te dicen las voces? (registra los ejemplos) ¿Cuántas veces las voces te dicen ese tipo de cosas desagradables o negativas?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no presentan un contenido desagradable o negativo.",
+     "1 Las voces presentan algún grado de contenido negativo, pero no son comentarios personales relacionados con el yo o la familia, por ejemplo, palabrotas o comentarios no dirigidos al yo (\"el lechero es peligroso\").",
+     "2 El contenido de las voces son insultos personales, comentarios sobre la conducta, por ejemplo, \"no deberías hacer esto\", \"no digas esto\".",
+     "3 El contenido de las voces son insultos personales relacionados con el autoconcepto, por ejemplo, \"perezoso\", \"feo\", \"loco\", \"pervertido\".",
+     "4 El contenido de las voces son amenazas personales al yo, por ejemplo, amenazas de dañar al yo o a la familia, instrucciones extremas u órdenes de dañarse a sí mismo u a otros e insultos personales como en el ítem número 3."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "7. Grado del contenido negativo. (Valorar usando los criterios sobre una escala, pidiéndole al paciente que los detalle más si es necesario)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no son totalmente angustiantes.",
+     "1 Las voces ocasionalmente son angustiantes, la mayoría no lo son. (<10%).",
+     "2 Se presentan igual cantidad de voces angustiantes y no angustiantes. (50%).",
+     "3 La mayoría de las voces son angustiantes, una minoría no lo son. (>50%).",
+     "4 Las voces son siempre angustiantes."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "8. Cantidad de angustia. ¿Son tus voces angustiantes? ¿Por cuánto tiempo son angustiantes?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no son totalmente angustiantes.",
+     "1 Las voces son ligeramente angustiantes.",
+     "2 Las voces son moderadamente angustiantes.",
+     "3 Las voces son muy angustiantes, aunque el paciente podría sentirse peor.",
+     "4 Las voces son extremadamente angustiantes, el paciente no puede sentirse peor."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "9. Intensidad de la angustia. Cuando las voces son angustiantes, ¿cuánta angustia te causan? ¿Te causan una angustia mínima, moderada o grave?, ¿Son las más angustiantes que jamás has tenido?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las voces no producen un trastorno en la vida diaria del paciente, es capaz de mantener una vida independiente sin problemas en las habilidades para la vida diaria.",
+     "1 Las voces causan un mínimo trastorno en la vida del paciente, por ejemplo, interfieren en la concentración aunque es capaz de mantener las actividades de la vida diaria y las relaciones sociales y familiares, es capaz de mantener vida independiente sin apoyo.",
+     "2 Las voces provocan una cantidad moderada de trastorno en la vida del paciente, causando alguna perturbación en la actividad diaria y/o en las actividades familiares y sociales. El paciente no está en el hospital aunque puede vivir en un alojamiento protegido o recibir ayuda adicional en las habilidades de la vida diaria.",
+     "3 Las voces provocan un trastorno severo en la vida del paciente de forma que su hospitalización es normalmente necesaria. El paciente es capaz de mantener algunas actividades diarias, auto-cuidado y relaciones durante su estancia en el hospital. El paciente puede también estar en un alojamiento protegido pero experimentando una severa perturbación de la vida en términos actividades, habilidades para la vida diaria y/o relaciones.",
+     "4 Las voces provocan un completo trastorno en la vida diaria del paciente requiriendo hospitalización. Es incapaz de mantener actividades y relaciones sociales. El auto-cuidado está también gravemente trastornado."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "10. Trastorno causado por las voces en la vida del paciente. ¿Causan las voces mucho trastorno en tu vida diaria? ¿Las voces te impiden trabajar o hacer otras actividades diarias? ¿Interfieren en tus relaciones con amigos y/o familiares? ¿Ellas te impiden que te cuides a ti mismo, por ejemplo, bañarte, cambiarte de ropa, etc.?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 El paciente cree que tiene control sobre las voces y puede siempre provocarlas y eliminarlas a voluntad.",
+     "1 El paciente cree que tiene algún control sobre las voces en la mayoría de las ocasiones.",
+     "2 El paciente cree que tiene algún control sobre las voces aproximadamente la mitad de las veces.",
+     "3 El paciente cree que tiene algún control sobre las voces pero solo ocasionalmente. La mayoría de las veces el paciente experimenta voces incontrolables.",
+     "4 El paciente no tiene ningún control sobre la ocurrencia de las voces y no puede disminuirlas o aumentarlas."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "11. Control sobre las voces. ¿Piensas que tienes algún control sobre las voces para que ocurran? ¿Puedes a voluntad disminuir o aumentar las voces?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "consigna",
+    "x": "La siguiente entrevista estructurada está diseñada para elicitar detalles específicos que tenga en cuenta diferentes dimensiones de las creencias delirantes. Cuando se hacen las preguntas, la entrevista está diseñada para valorar las experiencias del paciente en la última semana para la mayoría de los ítems. Hay una excepción para esto. Cuando valoramos la convicción, preguntar al paciente su convicción en el momento de la entrevista."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 El paciente no refiere delirios o refiere pensar en ellos menos de una vez a la semana.",
+     "1 El paciente piensa en sus creencias al menos una vez a la semana.",
+     "2 El paciente piensa en sus creencias al menos una vez al día.",
+     "3 El paciente piensa en sus creencias al menos una vez a la hora.",
+     "4 El paciente piensa en sus delirios continuamente o casi constantemente."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cantidad de preocupación sobre los delirios. ¿Cuánto tiempo dedicas a pensar en tus creencias? (todo el tiempo, diariamente, semanalmente, etc.)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 El paciente no refiere ningún delirio.",
+     "1 Los pensamientos sobre las creencias duran unos pocos segundos, son pensamientos fugaces.",
+     "2 Los pensamientos sobre las creencias duran varios minutos.",
+     "3 Los pensamientos sobre las creencias duran al menos una hora.",
+     "4 Los pensamientos sobre las creencias normalmente duran varias horas a la vez."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Duración de la preocupación con los delirios. Cuando piensas en tus creencias, ¿cuánto tiempo piensas en ellas? (unos pocos segundos, minutos, horas, etc.)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 El paciente no está convencido de sus creencias.",
+     "1 Muy poca convicción en la realidad de sus creencias, menos del 10%.",
+     "2 Algunas dudas con relación a la convicción de sus creencias, entre 10 y 49%.",
+     "3 La convicción en sus creencias es muy fuerte, entre 50 y 99%.",
+     "4 La convicción es del 100%."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Convicción (en el momento de la entrevista). En este momento, ¿qué grado de convicción tienes que tus creencias son verdaderas? ¿Puedes valorarlas en una escala de 0 a 100, donde 100 significa que estás totalmente convencido de que tus creencias son auténticas y 0 significa que no estás convencido de ellas?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las creencias nunca provocan angustia.",
+     "1 Las creencias provocan angustia en unas pocas ocasiones.",
+     "2 Las creencias provocan angustia aproximadamente en el 50% de las ocasiones.",
+     "3 Las creencias provocan angustia en la mayoría de las ocasiones, esto es, entre el 50 y 99% de las veces.",
+     "4 Las creencias siempre provocan angustia cuando ocurren."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Cantidad de angustia. ¿Te causan angustia tus creencias? ¿Cuántas veces te provocan angustia?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las creencias no provocan angustia.",
+     "1 Las creencias provocan una ligera angustia.",
+     "2 Las creencias provocan una moderada angustia.",
+     "3 Las creencias provocan una marcada angustia.",
+     "4 Las creencias provocan una angustia extrema, no pueden ser peor."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Intensidad de la angustia. Cuando tus creencias te provocan angustia, ¿con qué grado de intensidad lo sientes?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Las creencias no trastornan su vida, es capaz de mantener una vida independiente sin problemas en las habilidades para la vida diaria. Es capaz de mantener relaciones familiares y sociales (si se presentan).",
+     "1 Las creencias provocan una mínima cantidad de trastorno de la vida diaria, por ejemplo, interfieren en la concentración aunque es capaz de mantener las actividades diarias y las relaciones sociales y familiares y también en capaz de mantener una vida independiente sin apoyo.",
+     "2 Las creencias provocan una cantidad moderada de trastorno en la vida, causando algún trastorno en las actividades diarias y/o en las actividades sociales o familiares. El paciente no está ingresado en el hospital aunque puede vivir en recurso protegido o recibir ayuda adicional en las habilidades para la vida diaria.",
+     "3 Las creencias provocan un trastorno severo en la vida del paciente, de forma que la hospitalización es normalmente necesaria. Es capaz de mantener algunas actividades diarias, auto-cuidado y relaciones durante su estancia en el hospital. El paciente puede también estar en recurso protegido pero experimentando un trastorno severo en su vida con relación a actividades, habilidades para la vida diaria, y/o relaciones.",
+     "4 Las creencias provocan un completo trastorno en su vida diaria siendo necesario la hospitalización. El paciente es incapaz de mantener cualquier actividad diaria y relaciones sociales. El auto-cuidado está gravemente trastornado."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6. Trastorno en la vida diaria causado por las creencias. ¿Cuánto trastorno te provocan tus creencias en tu vida diaria? ¿Te impiden trabajar o hacer otras actividades diarias? ¿Interfieren en tus relaciones con amigos y/o familiares? ¿Te interfieren en tus habilidades para cuidarte a tí mismo, por ejemplo, bañarte, cambiarte de ropa, etc.?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Alucinaciones auditivas",
+     "js": "S(1,11)",
+     "texto": "De 0 a 44: a mayor puntaje, alucinaciones más frecuentes, angustiantes e incontrolables. Sin puntos de corte: sirve para seguir el cambio."
+    },
+    {
+     "n": "Delirios",
+     "js": "S(12,17)",
+     "texto": "De 0 a 24: a mayor puntaje, más preocupación, convicción, angustia e interferencia. Sin puntos de corte: sirve para seguir el cambio."
+    }
+   ]
+  }
+ },
  "ras": {
   "clave": "RAS",
   "sigla": "RAS",
@@ -11553,6 +12019,98 @@ const CALIFICAR = {
    "nota": "Las preguntas 10 y 20 son generales y no entran en la suma. Los cortes se validaron con la forma que responden los docentes."
   }
  },
+ "sras-r": {
+  "clave": "SRAS-R",
+  "sigla": "SRAS-R-C",
+  "titulo": "Escala Revisada de Evaluación del Rechazo Escolar, versión para niños",
+  "para": "Identificar para qué rechaza el niño la escuela: evitar el malestar que le causa, escapar de situaciones sociales o de evaluación, conseguir la atención de sus padres u obtener cosas agradables fuera de la escuela. La función dominante orienta el tratamiento.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Kearney (2002) · versión española de 18 ítems de Gonzálvez et al. (2016), tesis doctoral de C. Gonzálvez, Universidad de Alicante.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Lee cada pregunta y marca con qué frecuencia te pasa lo que dice. No hay respuestas buenas ni malas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Algunas veces",
+     "La mitad de las veces",
+     "Normalmente",
+     "Casi siempre",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Cuántas veces tienes sentimientos negativos hacia la escuela porque tienes miedo a algo relacionado con la escuela (por ejemplo: exámenes, transporte escolar, maestro, alarma de incendio)?",
+     "2. ¿Cuántas veces tratas de no ir a la escuela porque te resulta difícil hablar con los otros chicos(as) en la escuela?",
+     "3. ¿Cuántas veces preferirías estar con tus padres en vez de ir a la escuela?",
+     "4. Cuando no estás en la escuela durante la semana, ¿cuántas veces sales de casa y haces algo divertido?",
+     "5. ¿Cuántas veces tratas de no ir a la escuela porque si vas te sentirás triste o deprimido?",
+     "6. ¿Cuántas veces tratas de no ir a la escuela porque te da vergüenza estar delante de otras personas en la escuela?",
+     "7. ¿Cuántas veces piensas en tus padres o en tu familia cuando estás en la escuela?",
+     "8. Cuando estás en la escuela durante la semana, ¿cuántas veces hablas o te relacionas con otras personas (aparte de tu familia)?",
+     "9. ¿Cuántas veces te sientes peor al estar en la escuela (por ejemplo, asustado, nervioso o triste) que cuando estás en casa con amigos?",
+     "10. ¿Cuántas veces tratas de no ir a la escuela porque no tienes muchos amigos allí?",
+     "11. ¿Cuántas veces preferirías estar con tu familia más que ir a la escuela?",
+     "12. Cuando no estás en la escuela durante la semana, ¿cuánto disfrutas haciendo cosas distintas (por ejemplo, estar con amigos, salir)?",
+     "13. ¿Con qué frecuencia tienes sentimientos negativos hacia la escuela (por ejemplo, asustado, nervioso o triste) cuando piensas en la escuela el sábado o el domingo?",
+     "14. ¿Con qué frecuencia evitas ciertos lugares en la escuela (por ejemplo, pasillos, lugares en los que hay grupos de gente) en los que tendrías que hablar con alguien?",
+     "15. ¿Cuántas veces preferirías que tus padres te enseñaran en casa en vez de tu profesor/a en la escuela?",
+     "21. ¿Cuántas veces tienes más pensamientos negativos hacia la escuela (por ejemplo, asustado, nervioso o triste) que otros chicos(as) de tu edad?",
+     "22. ¿Cuántas veces evitas a otras personas en la escuela, en comparación con otros chicos(as) de tu edad?",
+     "23. ¿Te gustaría estar en casa con tus padres más de lo que les gustaría a los otros chicos(as) de tu edad estar en casa con sus padres?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Evitar el malestar que provocan la escuela o sus situaciones (promedio)",
+     "js": "((r[1] || 0) + (r[5] || 0) + (r[9] || 0) + (r[13] || 0) + (r[16] || 0)) / 5",
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+    },
+    {
+     "n": "Escapar de situaciones sociales o de evaluación (promedio)",
+     "js": "((r[2] || 0) + (r[6] || 0) + (r[10] || 0) + (r[14] || 0) + (r[17] || 0)) / 5",
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+    },
+    {
+     "n": "Buscar la atención de personas significativas (promedio)",
+     "js": "((r[3] || 0) + (r[7] || 0) + (r[11] || 0) + (r[15] || 0) + (r[18] || 0)) / 5",
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+    },
+    {
+     "n": "Buscar refuerzos tangibles fuera de la escuela (promedio)",
+     "js": "((r[4] || 0) + (r[8] || 0) + (r[12] || 0)) / 3",
+     "texto": "Suma dividida por 3, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+    }
+   ]
+  }
+ },
  "vanderbilt": {
   "clave": "Vanderbilt",
   "sigla": "Vanderbilt",
@@ -13202,6 +13760,118 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "fmps": {
+  "clave": "FMPS",
+  "sigla": "FMPS",
+  "titulo": "Escala Multidimensional de Perfeccionismo de Frost",
+  "para": "Medir el perfeccionismo en sus distintas caras: miedo a cometer errores y dudas sobre lo que se hace, exigencias y expectativas de logro, influencia de las expectativas y críticas de los padres, y organización. Distingue el perfeccionismo que daña del que no.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales",
+   "TOC y conductas repetitivas"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Frost et al. (1990) · versión española de Carrasco, Belloch y Perpiñá (2010), Análisis y Modificación de Conducta.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Miedo a los errores",
+     "js": "(r[9] || 0) + (r[10] || 0) + (r[14] || 0) + (r[17] || 0) + (r[21] || 0) + (r[23] || 0) + (r[25] || 0) + (r[28] || 0) + (r[32] || 0) + (r[33] || 0) + (r[34] || 0)",
+     "texto": "De 11 a 55."
+    },
+    {
+     "n": "Influencias paternas",
+     "js": "(r[1] || 0) + (r[3] || 0) + (r[5] || 0) + (r[11] || 0) + (r[15] || 0) + (r[20] || 0) + (r[22] || 0) + (r[26] || 0) + (r[35] || 0)",
+     "texto": "De 9 a 45."
+    },
+    {
+     "n": "Expectativas de logro",
+     "js": "(r[4] || 0) + (r[6] || 0) + (r[12] || 0) + (r[13] || 0) + (r[16] || 0) + (r[18] || 0) + (r[19] || 0) + (r[24] || 0) + (r[30] || 0)",
+     "texto": "De 9 a 45."
+    },
+    {
+     "n": "Organización",
+     "js": "(r[2] || 0) + (r[7] || 0) + (r[8] || 0) + (r[27] || 0) + (r[29] || 0) + (r[31] || 0)",
+     "texto": "De 6 a 30."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,35)",
+     "texto": "De 35 a 175. En la muestra española, la mediana fue 67 y el percentil 75, 82."
+    }
+   ]
+  },
+  "hoja": true
  },
  "mgh-hs": {
   "clave": "MGH-HS",
