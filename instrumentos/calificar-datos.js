@@ -3115,6 +3115,88 @@ const CALIFICAR = {
    ]
   }
  },
+ "asi": {
+  "clave": "ASI",
+  "sigla": "ASI-3",
+  "titulo": "Índice de Sensibilidad a la Ansiedad-3",
+  "para": "Medir el miedo a las sensaciones de ansiedad por creer que traen consecuencias graves: físicas (infarto, ahogo), cognitivas (perder el control, volverse loco) o sociales (que los demás lo noten). Orienta la exposición interoceptiva y la reestructuración en el pánico y otros trastornos de ansiedad.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Taylor et al. (2007) · versión española de Sandín, Chorot y McNally (2007), Revista de Psicopatología y Psicología Clínica.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Conteste rodeando con un círculo el número (0, 1, 2, 3, 4) que mejor refleje su experiencia con lo que se indica en cada uno de los enunciados. Si algo de lo que se dice no lo ha sentido o experimentado nunca (p.ej., desmayarse en público), conteste como usted crea que se sentiría si realmente le hubiera ocurrido."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada o casi nada",
+     "Un poco",
+     "Bastante",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Para mí es importante no dar la impresión de estar nervioso/a",
+     "2. Cuando no puedo mantener mi mente concentrada en una tarea, siento la preocupación de que podría estar volviéndome loco/a",
+     "3. Me asusto cuando mi corazón late de forma rápida",
+     "4. Cuando siento malestar en el estómago, me preocupa estar seriamente enfermo/a",
+     "5. Me asusto cuando soy incapaz de mantener mi mente concentrada en una tarea",
+     "6. Cuando tiemblo en presencia de otras personas, me da miedo lo que puedan pensar de mí",
+     "7. Cuando siento opresión en el pecho, me asusta no poder respirar bien",
+     "8. Cuando siento dolor en el pecho, me preocupa que vaya a darme un ataque cardíaco",
+     "9. Me preocupa que otras personas noten mi ansiedad",
+     "10. Cuando tengo la sensación de que las cosas no son reales, me preocupa que pueda estar mentalmente enfermo/a",
+     "11. Tengo miedo a sonrojarme delante de la gente",
+     "12. Cuando noto que mi corazón da un salto o late de forma irregular, me preocupa que algo grave me esté ocurriendo",
+     "13. Cuando comienzo a sudar en una situación social, me da miedo que la gente piense negativamente de mí",
+     "14. Cuando mis pensamientos parecen acelerarse, me preocupa que pueda volverme loco/a",
+     "15. Cuando siento opresión en la garganta, me preocupa que pueda atragantarme y morir",
+     "16. Cuando me resulta difícil pensar con claridad, me preocupa que me esté ocurriendo algo grave",
+     "17. Pienso que me resultaría horrible si me desmayase en público",
+     "18. Cuando mi mente se queda en blanco, me preocupa que me esté ocurriendo algo terriblemente malo"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Física",
+     "js": "L([3, 4, 7, 8, 12, 15])",
+     "texto": "De 0 a 24."
+    },
+    {
+     "n": "Cognitiva",
+     "js": "L([2, 5, 10, 14, 16, 18])",
+     "texto": "De 0 a 24."
+    },
+    {
+     "n": "Social",
+     "js": "L([1, 6, 9, 11, 13, 17])",
+     "texto": "De 0 a 24."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,18)",
+     "texto": "De 0 a 72: a mayor puntaje, más sensibilidad a la ansiedad. Sin puntos de corte."
+    }
+   ]
+  }
+ },
  "cbi": {
   "clave": "CBI",
   "sigla": "CBI",
@@ -3663,6 +3745,119 @@ const CALIFICAR = {
    ]
   }
  },
+ "emes-m": {
+  "clave": "EMES-M",
+  "sigla": "EMES-M",
+  "titulo": "Escala Multidimensional de Expresión Social, parte motora",
+  "para": "Medir con qué frecuencia la persona actúa de forma socialmente hábil: iniciar interacciones, hablar en público, defender sus derechos, expresar molestia, afecto y opiniones, hacer y recibir cumplidos y decir que no. Sirve para planear y evaluar el entrenamiento en habilidades sociales.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Caballo (1987, 1993) · EMES-M, formato del docente.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Esta prueba ha sido diseñada para proporcionar información sobre el modo en que Ud. actúa normalmente en sus relaciones con las demás personas. Al contestar, coloque una X en la alternativa más apropiada, usando la siguiente escala:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca o muy raramente",
+     "Raramente",
+     "De vez en cuando",
+     "Habitualmente o a menudo",
+     "Siempre o muy a menudo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Cuando personas que apenas conozco me alaban, intento minimizar la situación, quitando importancia al hecho por el cual soy alabado.",
+     "2. Cuando un vendedor se ha tomado una molestia considerable en enseñarme un producto que no me acaba de satisfacer soy incapaz de decirle \"no”.",
+     "3. Cuando la gente me presiona para que haga cosas por ellos, me resulta difícil decir que no.",
+     "4. Evito hacer preguntas a personas que no conozco.",
+     "5. Soy incapaz de negarme cuando mi pareja me pide algo.",
+     "6. Si un/a amigo/a me interrumpe en medio de una importante conversación, le pido que espere hasta que yo haya acabado.",
+     "7. Cuando estoy irritado ante un/a superior/a, se lo digo.",
+     "8. Si un amigo, a quien he prestado 200 dólares, parece haberlo olvidado, se lo recuerdo.",
+     "9. Me resulta fácil ayudar a que mi pareja se sienta bien, alabándole.",
+     "10. Me aparto de mi camino para evitar problemas con otras personas.",
+     "11. Es un problema, para mí, mostrar a las demás personas mi agrado hacia ellos/as.",
+     "12. Si dos personas en un cine o en una conferencia están hablando demasiado alto, les pido que hagan silencio.",
+     "13. Cuando alguien atractivo/a del otro género me pide algo, soy incapaz de decirle que no.",
+     "14. Cuando me siento enojado con alguna persona, lo oculto.",
+     "15. Me reservo mis opiniones.",
+     "16. Pongo excesivo cuidado, en lo que digo o hago, para evitar herir de alguna forma los sentimientos de los demás",
+     "17. Cuando me atrae una persona a la que no he sido presentado/a, intento de modo activo conocerle.",
+     "18. Me resulta difícil hablar en público.",
+     "19. Soy incapaz de expresar desacuerdo a mi pareja.",
+     "20. Evito hacer preguntas en clase o en el trabajo por miedo o timidez.",
+     "21. Me resulta fácil hacer cumplidos a una persona que apenas conozco.",
+     "22. Cuando alguno de mis superiores me llama para que haga cosas que no tengo obligación de hacer, soy incapaz de decir que no.",
+     "23. Me resulta difícil hacer nuevos/as amigos/as.",
+     "24. Si un amigo/a traiciona mi confianza, expreso claramente mi disgusto a esa persona.",
+     "25. Expreso sentimientos de cariño hacia mis padres.",
+     "26. Me resulta difícil hacerle un cumplido a un superior/a.",
+     "27. Si estuviera en un pequeño seminario o reunión y el profesor o la persona que lo dirige hiciese una afirmación que yo considero incorrecta, expondría mi propio punto de vista.",
+     "28. Si ya no quiero seguir saliendo con alguien del otro género, se lo hago saber claramente.",
+     "29. Soy capaz de expresar sentimientos negativos hacia extraños/as, si me siento ofendido.",
+     "30. Si en un restaurante me sirven comida que no está a mi gusto, me quejo de ello al camarero.",
+     "31. Me cuesta hablar con una persona atractiva del otro género a quien conozco sólo ligeramente.",
+     "32. Cuando he conocido a una persona que me agrada, le pido el número telefónico para un posible encuentro posterior.",
+     "33. Si estoy enfadado con mis padres se los hago saber claramente.",
+     "34. Expreso mi punto de vista, aunque sea impopular.",
+     "35. Si alguien ha hablado mal de mí o falsamente me ha atribuido hechos, le busco enseguida para aclarar esto.",
+     "36. Me resulta difícil iniciar una conversación con un/a extraño/a.",
+     "37. Soy incapaz de defender mis derechos ante mis superiores.",
+     "38. Si una figura con autoridad me critica sin justificación, me resulta difícil discutir su crítica abiertamente.",
+     "39. Si una persona del otro género me critica injustamente, le pido claramente explicaciones.",
+     "40. No solicito citas por timidez o dudo mucho en hacerlo.",
+     "41. Me resulta fácil dirigirme a un/a superior/a e iniciar una conversación con él/ella.",
+     "42. Con buenas palabras hago lo que los/las demás quieren que haga y no lo que realmente yo querría hacer.",
+     "43. Cuando conozco gente nueva tengo poco que decir.",
+     "44. Hago la vista gorda cuando alguien se cuela delante de mí en una fila.",
+     "45. Soy incapaz de decirle a alguien del otro género que me gusta",
+     "46. Me resulta difícil criticar o corregir a los demás incluso cuando está justificado.",
+     "47. No sé qué decir a personas atractivas del otro género.",
+     "48. Si me doy cuenta de que me estoy enamorando de alguien con quien salgo, expreso estos sentimientos a esa persona.",
+     "49. Si un familiar me critica injustamente, expreso mi enojo espontánea y fácilmente.",
+     "50. Me resulta fácil aceptar cumplidos.",
+     "51. Me río de las bromas con las que me siento ofendido, en vez de protestar o hablar claramente.",
+     "52. Cuando me alaban no sé que responder.",
+     "53. Soy incapaz de hablar en público.",
+     "54. Soy incapaz de mostrar afecto hacia una persona del otro género.",
+     "55. En la relación con mi pareja es ella/él quien lleva el peso de las conversaciones",
+     "56. Evito pedir algo a una persona, cuando se trata de un/a superior/a.",
+     "57. Si un pariente cercano y respetado me estuviese importunando, le expresaría claramente mi malestar.",
+     "58. Cuando un dependiente en una tienda atiende a alguien que llegó después de mí, llamo su atención al respecto.",
+     "59. Me resulta difícil hacer cumplidos o alabar a una persona del otro género.",
+     "60. Cuando estoy en un grupo tengo problemas para encontrar cosas sobre las cuales hablar.",
+     "61. Me resulta difícil mostrar afecto hacia otra persona (por ejemplo: mi pareja en público).",
+     "62. Si un/a vecino/a del otro género a quien he estado queriendo conocer para salir de casa y me pregunta la hora, tomaría la iniciativa de empezar una conversación con esa persona.",
+     "63. Por timidez o por temor de importunar a otras personas, evito hacer cosas agradables o convenientes para mí.",
+     "64. Me resulta fácil mostrar mi enfado cuando alguien hace algo ante lo cual me he sentido molesto."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "L([6, 7, 8, 9, 12, 17, 21, 24, 25, 27, 28, 29, 30, 32, 33, 34, 35, 39, 41, 48, 49, 50, 57, 58, 62, 64]) + R(1,4) + R(2,4) + R(3,4) + R(4,4) + R(5,4) + R(10,4) + R(11,4) + R(13,4) + R(14,4) + R(15,4) + R(16,4) + R(18,4) + R(19,4) + R(20,4) + R(22,4) + R(23,4) + R(26,4) + R(31,4) + R(36,4) + R(37,4) + R(38,4) + R(40,4) + R(42,4) + R(43,4) + R(44,4) + R(45,4) + R(46,4) + R(47,4) + R(51,4) + R(52,4) + R(53,4) + R(54,4) + R(55,4) + R(56,4) + R(59,4) + R(60,4) + R(61,4) + R(63,4)",
+     "texto": "De 0 a 256: a mayor puntaje, más habilidad social. Sin puntos de corte."
+    }
+   ]
+  }
+ },
  "epds": {
   "clave": "EPDS",
   "sigla": "EPDS",
@@ -4094,6 +4289,108 @@ const CALIFICAR = {
      "n": "Yo tranquilizador",
      "js": "L([3, 5, 8, 11, 13, 16, 19, 21])",
      "texto": "De 0 a 32: a mayor puntaje, más capacidad de tranquilizarse."
+    }
+   ]
+  }
+ },
+ "mcq-30": {
+  "clave": "MCQ-30",
+  "sigla": "MCQ-30",
+  "titulo": "Cuestionario de Metacogniciones",
+  "para": "Medir las creencias sobre el propio pensamiento que mantienen la preocupación y la rumiación: que preocuparse sirve, que es incontrolable y peligroso, la poca confianza en la memoria, la necesidad de controlar los pensamientos y la vigilancia de la propia mente. Es la medida de la terapia metacognitiva.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Wells y Cartwright-Hatton (2004), Behaviour Research and Therapy · traducción de Neurocorp (Ecuador).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Este cuestionario indaga sobre las creencias que las personas tienen acerca de su pensamiento. A continuación se enumeran varias creencias que las personas suelen expresar. Por favor, lea cada ítem e indique cuán de acuerdo está con cada descripción."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No estoy de acuerdo",
+     "Ligeramente de acuerdo",
+     "Moderadamente de acuerdo",
+     "Fuertemente de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Estar preocupado me ayuda a organizar mi mente",
+     "2. Estar preocupado me ayuda a afrontar las cosas",
+     "3. Necesito preocuparme para funcionar bien",
+     "4. Estar preocupado me ayuda a solucionar los problemas",
+     "5. Necesito preocuparme para seguir organizado",
+     "6. Estar preocupado me ayuda a evitar problemas en el futuro",
+     "7. Mis pensamientos preocupantes persisten, independientemente de cómo intente detenerlos",
+     "8. Cuando empiezo a preocuparme no puedo parar",
+     "9. Podría llegar a enfermar de preocupación",
+     "10. No puedo ignorar los pensamientos que me preocupan",
+     "11. Mi preocupación podría volverme loco",
+     "12. Considero que preocuparme es peligroso para mí",
+     "13. No confío en mi memoria",
+     "14. Tengo mala memoria",
+     "15. Tengo poca confianza en mi memoria sobre hechos",
+     "16. Tengo poca confianza en mi memoria sobre lugares",
+     "17. Tengo poca confianza en mi memoria sobre palabras y nombres",
+     "18. Mi memoria me puede engañar a veces",
+     "19. Si no pudiera controlar mis pensamientos, yo no podría funcionar",
+     "20. No poder controlar mis pensamientos es una señal de debilidad",
+     "21. Debería controlar mis pensamientos todo el tiempo",
+     "22. Es malo tener ciertos pensamientos",
+     "23. Si yo no controlara un pensamiento preocupante y luego ocurriese, sería por mi culpa",
+     "24. Recibiré un castigo por no controlar ciertos pensamientos",
+     "25. Soy consciente constantemente de lo que pienso",
+     "26. Presto mucha atención a la manera en que mi mente funciona",
+     "27. Pienso mucho acerca de mis pensamientos",
+     "28. Examino constantemente mis pensamientos",
+     "29. Monitorizo mis pensamientos",
+     "30. Me doy cuenta de cómo funciona mi mente mientras pienso en cómo solucionar un problema"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Creencias positivas sobre la preocupación",
+     "js": "S(1,6)",
+     "texto": "De 6 a 24."
+    },
+    {
+     "n": "Creencias negativas: incontrolabilidad y peligro",
+     "js": "S(7,12)",
+     "texto": "De 6 a 24."
+    },
+    {
+     "n": "Baja confianza cognitiva",
+     "js": "S(13,18)",
+     "texto": "De 6 a 24."
+    },
+    {
+     "n": "Necesidad de controlar los pensamientos",
+     "js": "S(19,24)",
+     "texto": "De 6 a 24."
+    },
+    {
+     "n": "Autoconciencia cognitiva",
+     "js": "S(25,30)",
+     "texto": "De 6 a 24."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,30)",
+     "texto": "De 30 a 120. Sin puntos de corte."
     }
    ]
   }
@@ -4670,6 +4967,80 @@ const CALIFICAR = {
        "Sobre el punto de corte (10, Osma et al., 2019); en la validación colombiana el corte es 12"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "panas": {
+  "clave": "PANAS",
+  "sigla": "PANAS",
+  "titulo": "Escalas de Afecto Positivo y Negativo",
+  "para": "Medir por separado el afecto positivo (interés, entusiasmo, energía) y el afecto negativo (miedo, culpa, irritabilidad, nerviosismo). En el tratamiento del afecto positivo se aplica al comienzo de cada sesión.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Watson, Clark y Tellegen (1988) · versión española de López-Gómez, Hervás y Vázquez (2015), Psicología Conductual.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque con una cruz la opción que refleje mejor cómo se ha sentido en la última semana, incluyendo el día de hoy:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada o muy ligeramente",
+     "Un poco",
+     "Moderadamente",
+     "Bastante",
+     "Mucho"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. Interesado/a por las cosas",
+     "2. Angustiado/a",
+     "3. Ilusionado/a o emocionado/a",
+     "4. Afectado/a",
+     "5. Fuerte",
+     "6. Culpable",
+     "7. Asustado/a",
+     "8. Agresivo/a",
+     "9. Entusiasmado/a",
+     "10. Satisfecho/a consigo mismo/a",
+     "11. Irritable",
+     "12. Despierto/a",
+     "13. Avergonzado/a",
+     "14. Inspirado/a",
+     "15. Nervioso/a",
+     "16. Decidido/a",
+     "17. Concentrado/a",
+     "18. Agitado/a",
+     "19. Activo/a",
+     "20. Miedoso/a"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Afecto positivo",
+     "js": "L([1, 3, 5, 9, 10, 12, 14, 16, 17, 19])",
+     "texto": "De 10 a 50: a mayor puntaje, más afecto positivo."
+    },
+    {
+     "n": "Afecto negativo",
+     "js": "L([2, 4, 6, 7, 8, 11, 13, 15, 18, 20])",
+     "texto": "De 10 a 50: a mayor puntaje, más afecto negativo."
     }
    ]
   }
@@ -5358,6 +5729,83 @@ const CALIFICAR = {
        3,
        14,
        "Anhedonia (más de 2)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "spin": {
+  "clave": "SPIN",
+  "sigla": "SPIN",
+  "titulo": "Inventario de Fobia Social",
+  "para": "Medir la ansiedad social en la última semana en sus tres componentes: miedo a las situaciones sociales y de evaluación, evitación y malestar físico (sonrojo, sudor, temblor, palpitaciones). Sirve para tamizar y para seguir el tratamiento.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Connor et al. (2000), British Journal of Psychiatry · traducción de EspectroAutista.Info.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Las siguientes frases describen problemas que usted puede haber padecido. Recapacite sobre las ocasiones en que los ha sufrido durante la última semana, e indique cuál de las 5 opciones describe mejor cuánto le han afectado esos problemas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Muy poco",
+     "Un poco",
+     "Muchísimo",
+     "Sin cesar"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Me espanto ante la gente con autoridad.",
+     "2. Me molesta sonrojarme delante de la gente.",
+     "3. Las fiestas y acontecimientos sociales me asustan.",
+     "4. Evito hablar con la gente que no conozco.",
+     "5. Cuando me critican me alarmo mucho.",
+     "6. El miedo a sentirme avergonzado me lleva a evitar hacer cosas o a hablar con la gente.",
+     "7. Sudar delante de la gente me incomoda.",
+     "8. Evito ir a fiestas.",
+     "9. Evito las actividades en las que soy el centro de atención.",
+     "10. Hablar con desconocidos me asusta.",
+     "11. Evito tener que hablar ante una audiencia.",
+     "12. Haría cualquier cosa para evitar ser criticado.",
+     "13. Me molesta tener palpitaciones cuando estoy entre la gente.",
+     "14. Me atemoriza hacer cosas cuando la gente me mira.",
+     "15. Sentirme avergonzado o parecer estúpido son mis peores miedos.",
+     "16. Evito hablar a cualquier persona importante.",
+     "17. Me incomoda temblar o agitarme delante de la gente."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,17)",
+     "rangos": [
+      [
+       0,
+       18,
+       "Por debajo del corte orientativo"
+      ],
+      [
+       19,
+       68,
+       "Por encima del corte (19 o más): probable ansiedad social, confirme con entrevista"
       ]
      ]
     }
@@ -8680,6 +9128,70 @@ const CALIFICAR = {
    ]
   }
  },
+ "hits": {
+  "clave": "HITS",
+  "sigla": "HITS",
+  "titulo": "Tamizaje de Violencia de Pareja (HITS)",
+  "para": "Tamizar la violencia de pareja en consulta con cuatro preguntas: con qué frecuencia la pareja lastima, insulta, amenaza o grita. Abre la conversación y orienta la ruta de atención.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Sherin et al. (1998), Family Medicine · versión en español (hoja de la AAP, capítulo de Virginia).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque la respuesta que indique con qué frecuencia su pareja actuó de la manera descrita durante el último mes."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "A veces",
+     "Bastante a menudo",
+     "Frecuentemente"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Cuán a menudo su pareja le lastima físicamente?",
+     "2. ¿Cuán a menudo su pareja le insulta o le habla en una forma que le hace sentir inferior?",
+     "3. ¿Cuán a menudo su pareja le amenaza de hacerle daño?",
+     "4. ¿Cuán a menudo su pareja le grita o le maldice?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,4)",
+     "rangos": [
+      [
+       4,
+       10,
+       "Negativo (10 o menos): si hay preocupación, igual converse sobre seguridad"
+      ],
+      [
+       11,
+       20,
+       "Positivo (más de 10): evalúe riesgo y active la ruta de atención"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "wast": {
   "clave": "WAST",
   "sigla": "WAST",
@@ -8943,6 +9455,157 @@ const CALIFICAR = {
      "n": "Autoestima negativa invertida (2, 5, 8, 9, 10)",
      "js": "R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
      "texto": "De 5 a 20: a mayor puntaje, menos autoevaluación negativa."
+    }
+   ]
+  }
+ },
+ "whiteley": {
+  "clave": "Whiteley",
+  "sigla": "Whiteley",
+  "titulo": "Índice Whiteley de hipocondría",
+  "para": "Tamizar la ansiedad por la salud (hipocondría): miedo a enfermar, convicción de estar enfermo y preocupación por las sensaciones corporales. Sirve también para medir el cambio con el tratamiento.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Pilowsky (1967), British Journal of Psychiatry · versión en español del formato del docente.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor responda sí o no a cada una de las siguientes preguntas:"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿A menudo se preocupa por la posibilidad de tener una enfermedad grave?",
+     "2. ¿Sufre de dolores y achaques diversos?",
+     "3. ¿A menudo se da cuenta de distintos síntomas que ocurren en su cuerpo?",
+     "4. ¿Está muy preocupado por su salud?",
+     "5. ¿Con frecuencia tiene síntomas de enfermedades muy graves?",
+     "6. ¿Si tiene noticias de alguna enfermedad (a través de la radio, la TV, los periódicos o de algún conocido) se preocupa por la posibilidad de padecerla?",
+     "7. ¿Cuando está enfermo, se molesta si alguien le dice que tiene mejor aspecto?",
+     "8. ¿Se encuentra mal por muchos síntomas diferentes?",
+     "9. ¿Le resulta fácil olvidarse de sí mismo y pensar en cualquier otra cosa?",
+     "10. ¿Le cuesta creer al médico cuando le dice que no tiene ningún motivo para preocuparse?",
+     "11. ¿Tiene la sensación de que la gente no se toma suficientemente en serio su enfermedad?",
+     "12. ¿Cree que se preocupa por su salud más que la mayoría de la gente?",
+     "13. ¿Cree que hay algo que funciona francamente mal en su cuerpo?",
+     "14. ¿Tiene miedo a la enfermedad?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "(r[1] === 1) + (r[2] === 1) + (r[3] === 1) + (r[4] === 1) + (r[5] === 1) + (r[6] === 1) + (r[7] === 1) + (r[8] === 1) + (r[9] === 0) + (r[10] === 1) + (r[11] === 1) + (r[12] === 1) + (r[13] === 1) + (r[14] === 1)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Por debajo del corte"
+      ],
+      [
+       8,
+       14,
+       "Compatible con ansiedad por la salud (8 o más): explore en la entrevista"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "sss": {
+  "clave": "SSS",
+  "sigla": "SSS-8",
+  "titulo": "Escala de Síntomas Somáticos (SSS-8)",
+  "para": "Medir la carga de síntomas somáticos de la última semana: digestivos, dolor de espalda, de extremidades, de cabeza y de pecho o falta de aire, mareo, cansancio y sueño. Sirve para tamizar y seguir el trastorno de síntomas somáticos.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Gierk et al. (2014), JAMA Internal Medicine · traducción sin autor identificado.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Durante los últimos 7 días, ¿cuánto le han molestado cualquiera de los siguientes problemas?"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Bastante",
+     "Mucho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1. Problemas estomacales o intestinales",
+     "2. Dolor de espalda",
+     "3. Dolor en brazos, piernas o articulaciones",
+     "4. Dolores de cabeza",
+     "5. Dolor en el pecho o dificultad para respirar",
+     "6. Mareos",
+     "7. Se siente cansado o que tiene baja energía",
+     "8. Problemas para dormir"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,8)",
+     "rangos": [
+      [
+       0,
+       3,
+       "Nada o mínima"
+      ],
+      [
+       4,
+       7,
+       "Baja"
+      ],
+      [
+       8,
+       11,
+       "Media"
+      ],
+      [
+       12,
+       15,
+       "Alta"
+      ],
+      [
+       16,
+       32,
+       "Muy alta"
+      ]
+     ]
     }
    ]
   }
