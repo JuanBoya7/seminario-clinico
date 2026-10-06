@@ -1,11 +1,18 @@
 /* Preguntas y reglas de calificación de las fichas completas. Lo escribe
    _planes-fuente/instrumentos/generar.py: no se edita a mano. */
+const AREAS = ["Riesgo suicida", "Malestar general", "Ánimo y depresión", "Ansiedad", "TOC y conductas repetitivas", "Trauma y duelo", "Consumo, juego y pantallas", "Alimentación", "Salud, sueño y síntomas físicos", "Neurodesarrollo y cognición", "Familia, pareja y violencia", "Cuidadores y desgaste laboral", "Autoestima, autocrítica y habilidades sociales", "Procesos psicológicos: aceptación, metacognición y regulación", "Bienestar y apoyo social", "Otras"];
 const CALIFICAR = {
  "phq-9": {
   "clave": "PHQ-9",
   "sigla": "PHQ-9",
   "titulo": "Cuestionario sobre la Salud del Paciente-9",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas y estimar su gravedad. Cada ítem corresponde a un criterio del episodio depresivo mayor, así que sirve también para seguir el cambio sesión a sesión. No diagnostica: un puntaje alto pide una entrevista clínica.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -116,6 +123,12 @@ const CALIFICAR = {
   "sigla": "GAD-7",
   "titulo": "Escala del Trastorno de Ansiedad Generalizada",
   "para": "Tamizar síntomas de ansiedad de las dos últimas semanas y estimar su gravedad. Se diseñó para el trastorno de ansiedad generalizada, pero también detecta con razonable precisión el pánico, la ansiedad social y el estrés postraumático. No diagnostica ni distingue entre ellos.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -191,6 +204,12 @@ const CALIFICAR = {
   "sigla": "AUDIT",
   "titulo": "Test de Identificación de Trastornos debidos al Consumo de Alcohol",
   "para": "Identificar el consumo de riesgo, el consumo perjudicial y la posible dependencia del alcohol en el último año, y decidir el nivel de intervención. Los ítems 1 a 3 miden el consumo; 4 a 6, síntomas de dependencia; 7 a 10, problemas causados por el alcohol.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -476,6 +495,12 @@ const CALIFICAR = {
   "sigla": "ASSIST v3.1",
   "titulo": "Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
   "para": "Detectar el consumo de diez clases de sustancias y ubicar, para cada una, el nivel de riesgo y la intervención que corresponde: ninguna, intervención breve o tratamiento más intensivo. Es una entrevista breve de la OMS pensada para la atención primaria.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -946,6 +971,12 @@ const CALIFICAR = {
   "sigla": "BAI",
   "titulo": "Inventario de Ansiedad de Beck",
   "para": "Medir la gravedad de la ansiedad en la última semana, sobre todo sus síntomas físicos (temblor, palpitaciones, ahogo, mareo) y el miedo a perder el control o a morir. Sirve para tamizar y para seguir el tratamiento.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1035,6 +1066,12 @@ const CALIFICAR = {
   "sigla": "C-SSRS",
   "titulo": "Columbia-Escala de Severidad Suicida, versión exploratoria reciente",
   "para": "Tamizar el riesgo suicida en una entrevista breve: seis preguntas directas, de sí o no, que van del deseo de estar muerto a la ideación con intención y plan, y a la conducta suicida. La respuesta afirmativa de color más alto indica el nivel de riesgo y qué tan urgente es actuar.",
+  "areas": [
+   "Riesgo suicida"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos",
@@ -1170,6 +1207,12 @@ const CALIFICAR = {
   "sigla": "AAQ-II",
   "titulo": "Cuestionario de Aceptación y Acción II",
   "para": "Medir la inflexibilidad psicológica y la evitación experiencial: cuánto se lucha contra los pensamientos, emociones y recuerdos difíciles, y cuánto esa lucha estorba la vida que la persona quiere. Es la medida de proceso central de la terapia de aceptación y compromiso.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1230,6 +1273,13 @@ const CALIFICAR = {
   "sigla": "PSWQ-11",
   "titulo": "Cuestionario de Preocupación de Pensilvania, versión de 11 ítems",
   "para": "Medir la tendencia a preocuparse: cuánto, con qué frecuencia y con cuánta dificultad para detenerlo. Es el rasgo central del trastorno de ansiedad generalizada. Esta versión breve está validada en Colombia y tiene puntos de corte para TAG moderado y grave.",
+  "areas": [
+   "Ansiedad",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1306,6 +1356,12 @@ const CALIFICAR = {
   "sigla": "SWLS",
   "titulo": "Escala de Satisfacción con la Vida",
   "para": "Medir cuán satisfecha está la persona con su vida en conjunto, según sus propios criterios. Es la medida más usada del componente cognitivo del bienestar y una buena medida de resultado para programas de psicología positiva y de promoción de la salud.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1395,6 +1451,14 @@ const CALIFICAR = {
   "sigla": "DASS-21",
   "titulo": "Escalas de Depresión, Ansiedad y Estrés, versión de 21 ítems",
   "para": "Medir en una sola hoja tres estados emocionales negativos de la última semana: depresión, ansiedad y estrés, cada uno con su puntaje y su grado de gravedad. Sirve como tamizaje general y para seguir el cambio en tratamientos transdiagnósticos.",
+  "areas": [
+   "Malestar general",
+   "Ánimo y depresión",
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1562,6 +1626,12 @@ const CALIFICAR = {
   "sigla": "CFQ-7",
   "titulo": "Cuestionario de Fusión Cognitiva",
   "para": "Medir la fusión cognitiva: cuánto se enreda la persona en sus pensamientos y los toma como verdades que dirigen su conducta. Es una medida de proceso de la terapia de aceptación y compromiso; no confundir con el Cuestionario de Fallos Cognitivos, que tiene la misma sigla.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1622,6 +1692,12 @@ const CALIFICAR = {
   "sigla": "MAAS",
   "titulo": "Escala de Atención y Conciencia Plena",
   "para": "Medir la atención plena como rasgo: con qué frecuencia la persona actúa en «piloto automático», sin darse cuenta de lo que hace o siente. Sirve para evaluar programas basados en mindfulness.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1688,6 +1764,13 @@ const CALIFICAR = {
   "sigla": "RRS-SF",
   "titulo": "Escala de Respuestas Rumiativas, versión breve",
   "para": "Medir la rumia ante el ánimo bajo en sus dos formas: la reflexión, que busca entender, y los reproches, que dan vueltas a lo que salió mal. Los reproches se asocian más con la depresión; distinguirlos orienta el trabajo con la rumia.",
+  "areas": [
+   "Ánimo y depresión",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1772,6 +1855,13 @@ const CALIFICAR = {
   "sigla": "ATQ-8",
   "titulo": "Cuestionario de Pensamientos Automáticos, versión de 8 ítems",
   "para": "Medir la frecuencia de pensamientos automáticos negativos de la última semana, como los que describe la terapia cognitiva de la depresión. Es breve y sensible al cambio, así que sirve para seguir el trabajo de reestructuración.",
+  "areas": [
+   "Ánimo y depresión",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1829,6 +1919,12 @@ const CALIFICAR = {
   "sigla": "BADS-SF",
   "titulo": "Escala de Activación Conductual para la Depresión, versión breve",
   "para": "Medir cuánto se activó la persona durante la última semana y cuánto evitó: las dos caras que trabaja la activación conductual. Es sensible al cambio y se aplica sesión a sesión.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1899,6 +1995,12 @@ const CALIFICAR = {
   "sigla": "ERQ",
   "titulo": "Cuestionario de Regulación Emocional",
   "para": "Medir cuánto usa la persona dos estrategias de regulación emocional: la reevaluación cognitiva, que cambia cómo se piensa la situación, y la supresión expresiva, que oculta lo que se siente. La supresión frecuente se asocia con más malestar y peores relaciones.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -1967,6 +2069,13 @@ const CALIFICAR = {
   "sigla": "DAS-R",
   "titulo": "Escala de Actitudes Disfuncionales, revisada",
   "para": "Medir las creencias disfuncionales que, según el modelo cognitivo de Beck, hacen a una persona vulnerable a la depresión: el perfeccionismo y la dependencia de la aprobación de los demás. No confundir con la Escala de Ajuste Diádico, que tiene una sigla parecida.",
+  "areas": [
+   "Ánimo y depresión",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -2047,6 +2156,12 @@ const CALIFICAR = {
   "sigla": "ASQ",
   "titulo": "Preguntas de Detección del Riesgo de Suicidio",
   "para": "Detectar en menos de un minuto el riesgo de suicidio en cualquier consulta, incluso cuando el motivo no es de salud mental. Cuatro preguntas directas y, si alguna es positiva, una quinta que separa el riesgo agudo del no agudo.",
+  "areas": [
+   "Riesgo suicida"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos",
@@ -2139,6 +2254,12 @@ const CALIFICAR = {
   "sigla": "GDS-15",
   "titulo": "Escala de Depresión Geriátrica de Yesavage, versión breve",
   "para": "Tamizar depresión en personas mayores con preguntas de sí o no, que evitan los síntomas físicos que en esa edad se confunden con enfermedad. Sirve también con baja escolaridad, porque se puede leer en voz alta.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -2213,6 +2334,15 @@ const CALIFICAR = {
   "sigla": "HADS",
   "titulo": "Escala Hospitalaria de Ansiedad y Depresión",
   "para": "Tamizar ansiedad y depresión en personas con enfermedad física, sin los síntomas somáticos (fatiga, insomnio, pérdida de peso) que en el hospital se deben a la enfermedad y no al ánimo. Es el tamizaje más usado en psicología hospitalaria.",
+  "areas": [
+   "Malestar general",
+   "Ánimo y depresión",
+   "Ansiedad",
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -2598,6 +2728,12 @@ const CALIFICAR = {
   "sigla": "Zarit",
   "titulo": "Escala de Sobrecarga del Cuidador de Zarit",
   "para": "Medir cuánta carga siente quien cuida a una persona dependiente: el efecto del cuidado en su salud, su vida social, su economía y su relación con la persona cuidada. Sirve para decidir si el cuidador necesita apoyo y para seguir el cambio.",
+  "areas": [
+   "Cuidadores y desgaste laboral"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -2685,6 +2821,12 @@ const CALIFICAR = {
   "sigla": "PSQI",
   "titulo": "Índice de Calidad de Sueño de Pittsburgh",
   "para": "Medir la calidad del sueño del último mes en siete componentes: calidad subjetiva, tiempo que tarda en dormirse, duración, eficiencia (cuánto del tiempo en cama se duerme), perturbaciones del sueño, uso de medicación para dormir y somnolencia o desánimo durante el día. Separa a quienes duermen bien de quienes duermen mal.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -2941,6 +3083,12 @@ const CALIFICAR = {
   "sigla": "PCL-5",
   "titulo": "Lista de Verificación del Trastorno de Estrés Postraumático para el DSM-5",
   "para": "Tamizar y medir la gravedad de los síntomas de estrés postraumático del último mes. Sus 20 ítems siguen los 20 síntomas del DSM-5, agrupados en intrusión, evitación, alteraciones negativas de cognición y ánimo, y activación. Sirve para tamizar, para apoyar un diagnóstico provisional y para seguir el cambio.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3053,6 +3201,12 @@ const CALIFICAR = {
   "sigla": "K-10",
   "titulo": "Escala de Malestar Psicológico de Kessler",
   "para": "Tamizar malestar psicológico inespecífico del último mes, sobre todo síntomas de ansiedad y depresión. Es breve, se usa en encuestas poblacionales de muchos países y sirve en atención primaria como primera puerta cuando todavía no hay una hipótesis.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3133,6 +3287,13 @@ const CALIFICAR = {
   "sigla": "APAIS",
   "titulo": "Escala de Ansiedad e Información Preoperatoria de Ámsterdam",
   "para": "Medir la ansiedad antes de una cirugía, por la anestesia y por la operación, y cuánta información quiere recibir la persona. Es breve y se aplica en la consulta preanestésica o en la sala de espera.",
+  "areas": [
+   "Ansiedad",
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3209,6 +3370,12 @@ const CALIFICAR = {
   "sigla": "ASI-3",
   "titulo": "Índice de Sensibilidad a la Ansiedad-3",
   "para": "Medir el miedo a las sensaciones de ansiedad por creer que traen consecuencias graves: físicas (infarto, ahogo), cognitivas (perder el control, volverse loco) o sociales (que los demás lo noten). Orienta la exposición interoceptiva y la reestructuración en el pánico y otros trastornos de ansiedad.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3291,6 +3458,12 @@ const CALIFICAR = {
   "sigla": "CBI",
   "titulo": "Inventario de Burnout de Copenhague",
   "para": "Medir el burnout como agotamiento físico y psicológico en tres ámbitos: el personal, el relacionado con el trabajo y el relacionado con el trabajo con clientes o usuarios. Se puede usar en cualquier ocupación y es de uso libre.",
+  "areas": [
+   "Cuidadores y desgaste laboral"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3449,6 +3622,12 @@ const CALIFICAR = {
   "sigla": "CSI",
   "titulo": "Índice de Esfuerzo del Cuidador",
   "para": "Identificar a los cuidadores de personas dependientes que están sobrecargados: trece aspectos del cuidado que suelen volverse un problema (sueño, esfuerzo físico, restricción del tiempo, cambios familiares, laborales y económicos, conductas molestas de la persona cuidada). Es breve y se usa en atención primaria y en el seguimiento domiciliario.",
+  "areas": [
+   "Cuidadores y desgaste laboral"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3516,6 +3695,12 @@ const CALIFICAR = {
   "sigla": "DAS",
   "titulo": "Escala de Ajuste Diádico",
   "para": "Medir la calidad de la relación de pareja en cuatro áreas: consenso en temas importantes, satisfacción, cohesión (actividades compartidas) y expresión afectiva. Sirve para evaluar y seguir la terapia de pareja.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3845,6 +4030,12 @@ const CALIFICAR = {
   "sigla": "EAT-26",
   "titulo": "Prueba de Actitudes ante la Alimentación",
   "para": "Tamizar el riesgo de trastornos de la conducta alimentaria: preocupación por el peso y la comida, dieta, conductas bulímicas y control sobre la alimentación. No diagnostica: un puntaje sobre el corte pide una entrevista clínica.",
+  "areas": [
+   "Alimentación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -3977,6 +4168,12 @@ const CALIFICAR = {
   "sigla": "EBP",
   "titulo": "Escalas de Bienestar Psicológico de Ryff, versión española de 29 ítems",
   "para": "Medir el bienestar psicológico en seis dimensiones: aceptarse a uno mismo, tener relaciones positivas, actuar con autonomía, dominar el entorno, tener un propósito en la vida y seguir creciendo como persona. Es una medida de funcionamiento positivo, no de ausencia de síntomas, útil en programas de psicología positiva y de promoción de la salud.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4082,6 +4279,13 @@ const CALIFICAR = {
   "sigla": "EII",
   "titulo": "Escala de Intolerancia a la Incertidumbre",
   "para": "Medir cuánto le cuesta a la persona tolerar lo incierto: la incertidumbre que la paraliza e inhibe, y la que vive como desconcierto ante lo imprevisto. Es un proceso central de la preocupación excesiva y del trastorno de ansiedad generalizada, y un blanco de la terapia.",
+  "areas": [
+   "Ansiedad",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4168,6 +4372,12 @@ const CALIFICAR = {
   "sigla": "EMES-M",
   "titulo": "Escala Multidimensional de Expresión Social, parte motora",
   "para": "Medir con qué frecuencia la persona actúa de forma socialmente hábil: iniciar interacciones, hablar en público, defender sus derechos, expresar molestia, afecto y opiniones, hacer y recibir cumplidos y decir que no. Sirve para planear y evaluar el entrenamiento en habilidades sociales.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4281,6 +4491,12 @@ const CALIFICAR = {
   "sigla": "EPDS",
   "titulo": "Escala de Depresión Posparto de Edimburgo",
   "para": "Tamizar síntomas depresivos de la última semana en el embarazo y el posparto. No incluye los síntomas somáticos (sueño, apetito, cansancio) que se confunden con el puerperio. No diagnostica: un puntaje alto pide una entrevista clínica.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4564,6 +4780,13 @@ const CALIFICAR = {
   "sigla": "FACIT-Sp",
   "titulo": "Escala de Bienestar Espiritual (FACIT-Sp-12)",
   "para": "Medir el bienestar espiritual en personas con enfermedad crónica o grave: el sentido y la paz (sentir que la vida tiene propósito, estar en armonía) y el consuelo y la fuerza que dan la fe o las creencias. No exige una religión: varias preguntas hablan de sentido y de paz sin referirse a la fe.",
+  "areas": [
+   "Bienestar y apoyo social",
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4635,6 +4858,12 @@ const CALIFICAR = {
   "sigla": "FSCRS",
   "titulo": "Escala de Formas de Autocrítica y Autotranquilización",
   "para": "Medir cómo se trata la persona cuando las cosas le salen mal: sentirse inadecuada, atacarse con desprecio o, al contrario, tranquilizarse y apoyarse. Sirve para formular y seguir la terapia centrada en la compasión.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4716,6 +4945,12 @@ const CALIFICAR = {
   "sigla": "MBI",
   "titulo": "Inventario de Burnout de Maslach",
   "para": "Medir el síndrome de quemarse por el trabajo en profesionales que atienden personas: agotamiento emocional, despersonalización (trato frío y distante) y baja realización personal.",
+  "areas": [
+   "Cuidadores y desgaste laboral"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4849,6 +5084,13 @@ const CALIFICAR = {
   "sigla": "MCQ-30",
   "titulo": "Cuestionario de Metacogniciones",
   "para": "Medir las creencias sobre el propio pensamiento que mantienen la preocupación y la rumiación: que preocuparse sirve, que es incontrolable y peligroso, la poca confianza en la memoria, la necesidad de controlar los pensamientos y la vigilancia de la propia mente. Es la medida de la terapia metacognitiva.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación",
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -4951,6 +5193,12 @@ const CALIFICAR = {
   "sigla": "MSPSS",
   "titulo": "Escala Multidimensional de Apoyo Social Percibido",
   "para": "Medir cuánto apoyo siente la persona que recibe de tres fuentes: la familia, los amigos y una persona especial. Mide apoyo percibido, no el tamaño de la red: alguien con pocos vínculos puede sentirse muy apoyado, y al revés.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -5095,6 +5343,12 @@ const CALIFICAR = {
   "sigla": "OASIS",
   "titulo": "Escala Global de Gravedad e Interferencia de la Ansiedad",
   "para": "Medir en cinco preguntas la frecuencia y la intensidad de la ansiedad, la evitación y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. No es específica de un trastorno: sirve para cualquier problema de ansiedad, también por debajo del umbral diagnóstico, y está pensada para aplicarse en cada sesión.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -5257,6 +5511,12 @@ const CALIFICAR = {
   "sigla": "OCI-R",
   "titulo": "Inventario Obsesivo-Compulsivo Revisado",
   "para": "Medir la gravedad de los síntomas obsesivo-compulsivos y su tipo: lavado, comprobación, orden, acumulación, neutralización (contar, números) y obsesiones. Es breve y sirve para tamizar y para seguir el tratamiento.",
+  "areas": [
+   "TOC y conductas repetitivas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -5365,6 +5625,12 @@ const CALIFICAR = {
   "sigla": "ODSIS",
   "titulo": "Escala Global de Gravedad e Interferencia de la Depresión",
   "para": "Medir en cinco preguntas la frecuencia y la intensidad de la depresión, la pérdida de interés en lo que se disfrutaba y cuánto interfiere en el trabajo, el estudio, el hogar y la vida social durante la última semana. Es la hermana de la OASIS: no es específica de un trastorno y está pensada para aplicarse en cada sesión.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -5527,6 +5793,12 @@ const CALIFICAR = {
   "sigla": "PAIS-SR",
   "titulo": "Escala de Adaptación Psicosocial a la Enfermedad, autoaplicada",
   "para": "Evaluar cómo se adapta la persona a una enfermedad médica en siete áreas: cuidado de la salud, trabajo y economía, vida doméstica, sexualidad, vida social, apoyo de la familia y malestar psicológico. Señala dónde la enfermedad está afectando más.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6424,6 +6696,13 @@ const CALIFICAR = {
   "sigla": "PANAS",
   "titulo": "Escalas de Afecto Positivo y Negativo",
   "para": "Medir por separado el afecto positivo (interés, entusiasmo, energía) y el afecto negativo (miedo, culpa, irritabilidad, nerviosismo). En el tratamiento del afecto positivo se aplica al comienzo de cada sesión.",
+  "areas": [
+   "Bienestar y apoyo social",
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6498,6 +6777,12 @@ const CALIFICAR = {
   "sigla": "PDSS",
   "titulo": "Escala de Gravedad del Trastorno de Pánico",
   "para": "Medir la gravedad del trastorno de pánico en la última semana: frecuencia y malestar de las crisis, ansiedad anticipatoria, evitación de situaciones y de sensaciones, e interferencia en el trabajo y en la vida social. Sirve para seguir el tratamiento sesión a sesión.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6780,6 +7065,12 @@ const CALIFICAR = {
   "sigla": "RAS",
   "titulo": "Inventario de Asertividad de Rathus",
   "para": "Medir la conducta asertiva: expresar desacuerdo, quejarse, decir que no, pedir, opinar y expresar sentimientos, frente a la inhibición y la evitación. Sirve para planear el entrenamiento en habilidades sociales y ver su efecto.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6861,6 +7152,13 @@ const CALIFICAR = {
   "sigla": "SAD",
   "titulo": "Escala de Ansiedad y Evitación Sociales",
   "para": "Medir el malestar en situaciones sociales y la tendencia a evitarlas. Sirve para valorar la ansiedad social y para seguir el entrenamiento en habilidades sociales o la exposición.",
+  "areas": [
+   "Ansiedad",
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6932,6 +7230,12 @@ const CALIFICAR = {
   "sigla": "SCOFF",
   "titulo": "Cuestionario SCOFF",
   "para": "Tamizar en cinco preguntas el riesgo de anorexia y bulimia: vómito provocado, pérdida de control sobre lo que se come, pérdida de peso, imagen corporal distorsionada y comida que domina la vida. Es breve y fácil de recordar, por eso sirve en consulta general y en entornos escolares.",
+  "areas": [
+   "Alimentación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -6991,6 +7295,13 @@ const CALIFICAR = {
   "sigla": "SCS",
   "titulo": "Escala de Autocompasión",
   "para": "Medir cómo se trata la persona a sí misma en los momentos difíciles: los tres componentes de la autocompasión (amabilidad consigo misma, humanidad común y mindfulness) y sus opuestos (autojuicio, aislamiento y sobreidentificación). Es la medida con que se evaluaron los estudios del programa de autocompasión consciente.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7116,6 +7427,12 @@ const CALIFICAR = {
   "sigla": "SHAPS",
   "titulo": "Escala de Placer de Snaith-Hamilton",
   "para": "Medir la anhedonia de forma directa: cuánto puede la persona disfrutar de experiencias comunes de cuatro dominios, que son los intereses y pasatiempos, la vida social, las sensaciones y la comida y la bebida. No mide tristeza: es útil cuando lo que domina es la pérdida de placer.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7188,6 +7505,13 @@ const CALIFICAR = {
   "sigla": "SPIN",
   "titulo": "Inventario de Fobia Social",
   "para": "Medir la ansiedad social en la última semana en sus tres componentes: miedo a las situaciones sociales y de evaluación, evitación y malestar físico (sonrojo, sudor, temblor, palpitaciones). Sirve para tamizar y para seguir el tratamiento.",
+  "areas": [
+   "Ansiedad",
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7265,6 +7589,12 @@ const CALIFICAR = {
   "sigla": "TMMS-24",
   "titulo": "Escala Rasgo de Metaconocimiento Emocional",
   "para": "Evaluar la inteligencia emocional percibida en tres dimensiones de ocho ítems: atención a los propios sentimientos, claridad para comprenderlos y reparación, es decir, la capacidad de regular los estados emocionales. Orienta el trabajo en regulación emocional; no diagnostica.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7493,6 +7823,12 @@ const CALIFICAR = {
   "sigla": "YSQ-S3",
   "titulo": "Cuestionario de Esquemas de Young, versión corta III",
   "para": "Identificar los esquemas tempranos desadaptativos de la persona (18 esquemas, de privación emocional a castigo) para formular el caso y orientar la terapia de esquemas.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7724,6 +8060,12 @@ const CALIFICAR = {
   "sigla": "SRQ-30",
   "titulo": "Cuestionario de Autorreporte de Síntomas (Self Report Questionnaire)",
   "para": "Tamizar problemas de salud mental comunes, posible psicosis, trastorno convulsivo y problemas con el alcohol en el último mes. Es el que el Ministerio de Salud sugiere en la Ruta de Promoción y Mantenimiento de la Salud desde los 16 años.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -7858,6 +8200,13 @@ const CALIFICAR = {
   "sigla": "RQC",
   "titulo": "Cuestionario de Síntomas para Niños",
   "para": "Detectar signos y síntomas de interés en salud mental en niñas y niños de 5 a 15 años, referidos a los últimos seis meses. Es el tamizaje infantil que sugiere el Ministerio de Salud en la Ruta de Promoción y Mantenimiento de la Salud.",
+  "areas": [
+   "Malestar general",
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -7918,6 +8267,12 @@ const CALIFICAR = {
   "sigla": "CRAFFT",
   "titulo": "CRAFFT 2.1+N",
   "para": "Tamizar el consumo de alcohol, cannabis y otras drogas en adolescentes de 12 a 21 años, con una parte de dependencia a la nicotina y al vaporizador. Sirve para decidir si hace falta una evaluación completa y para el consejo breve.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -8336,6 +8691,12 @@ const CALIFICAR = {
   "sigla": "CY-BOCS",
   "titulo": "Escala de Yale-Brown para el Trastorno Obsesivo-Compulsivo en Niños y Adolescentes",
   "para": "Medir la gravedad del trastorno obsesivo-compulsivo en niños y adolescentes con una entrevista semiestructurada: tiempo, interferencia, malestar, resistencia y control de las obsesiones y de las compulsiones. Es la medida habitual para seguir el tratamiento.",
+  "areas": [
+   "TOC y conductas repetitivas"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9041,6 +9402,13 @@ const CALIFICAR = {
   "sigla": "ECBI",
   "titulo": "Inventario Eyberg del Comportamiento en Niños",
   "para": "Medir con qué frecuencia el niño (2 a 16 años) presenta conductas disruptivas en casa (desobediencia, rabietas, agresión, problemas de atención) y cuáles de ellas son un problema para los padres. Sirve para tamizar y para evaluar el entrenamiento de padres.",
+  "areas": [
+   "Familia, pareja y violencia",
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9210,6 +9578,13 @@ const CALIFICAR = {
   "sigla": "FAS",
   "titulo": "Escala de Acomodación Familiar a los síntomas del TOC",
   "para": "Medir cuánto participa la familia en los síntomas obsesivo-compulsivos del niño o adolescente: dar seguridad, esperar, facilitar rituales y evitaciones, cambiar rutinas o asumir responsabilidades del paciente. La acomodación mantiene el TOC, así que es un blanco directo del tratamiento.",
+  "areas": [
+   "TOC y conductas repetitivas",
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9271,6 +9646,12 @@ const CALIFICAR = {
   "sigla": "M-CHAT-R/F",
   "titulo": "Cuestionario Modificado de Detección Temprana de Autismo, revisado y con entrevista de seguimiento",
   "para": "Identificar riesgo de trastorno del espectro autista en niños de 16 a 30 meses, con lo que informan los padres. Detecta riesgo y lleva a derivar; no hace diagnóstico.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9391,6 +9772,12 @@ const CALIFICAR = {
   "sigla": "PHQ-A",
   "titulo": "Cuestionario sobre la Salud del Paciente, versión adolescente",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas en adolescentes, con el lenguaje del PHQ-9 ajustado a esa edad (incluye la irritabilidad). Trae además preguntas sobre el ánimo del último año, la interferencia y las ideas e intentos de suicidio. No diagnostica.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9544,6 +9931,13 @@ const CALIFICAR = {
   "sigla": "RCADS-30",
   "titulo": "Escala Revisada de Ansiedad y Depresión Infantil, versión de 30 ítems",
   "para": "Medir síntomas de depresión y de cinco tipos de ansiedad en niños y adolescentes: pánico, fobia social, ansiedad de separación, ansiedad generalizada y síntomas obsesivo-compulsivos. Es breve y sirve para seguir el cambio en ansiedad y depresión a la vez.",
+  "areas": [
+   "Ansiedad",
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -9651,6 +10045,13 @@ const CALIFICAR = {
   "sigla": "SCARED",
   "titulo": "Pantalla de Trastornos Emocionales Relacionados con la Ansiedad Infantil",
   "para": "Tamizar síntomas de ansiedad en niños y adolescentes desde los 8 años, con una forma para el niño y otra para los padres. Además del total da cinco puntajes: pánico o síntomas somáticos, ansiedad generalizada, ansiedad de separación, ansiedad social y evitación escolar.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona",
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -10007,6 +10408,13 @@ const CALIFICAR = {
   "sigla": "SDQ",
   "titulo": "Cuestionario de Capacidades y Dificultades, forma para padres y docentes",
   "para": "Tamizar dificultades emocionales y de conducta en niños y adolescentes de 4 a 17 años: síntomas emocionales, problemas de conducta, hiperactividad, relación con compañeros y conducta prosocial.",
+  "areas": [
+   "Malestar general",
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -10372,6 +10780,13 @@ const CALIFICAR = {
   "sigla": "SMFQ",
   "titulo": "Cuestionario Breve de Ánimo y Sentimientos",
   "para": "Tamizar síntomas depresivos de las dos últimas semanas en niños y adolescentes de 6 a 17 años, con una forma para el niño y otra para el padre, la madre o el adulto a cargo. Por su brevedad sirve también para seguir la gravedad de los síntomas y la respuesta al tratamiento, sesión a sesión.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona",
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -10502,6 +10917,12 @@ const CALIFICAR = {
   "sigla": "SNAP-IV",
   "titulo": "Escala SNAP-IV, versión argentina",
   "para": "Detectar síntomas de inatención y de hiperactividad e impulsividad en niños de 4 a 14 años, a partir de los criterios diagnósticos del TDAH, según lo que observa el docente o la familia. Es una herramienta de tamizaje: un puntaje sobre el corte pide una evaluación diagnóstica, no la reemplaza.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -10597,6 +11018,12 @@ const CALIFICAR = {
   "sigla": "Vanderbilt",
   "titulo": "Escala de Evaluación Vanderbilt, formulario para padres",
   "para": "Evaluar síntomas de TDAH (inatención e hiperactividad-impulsividad) y las comorbilidades más frecuentes (oposicionismo, conducta, ansiedad y depresión), junto con el rendimiento escolar y social, con lo que informan los padres.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -11002,6 +11429,12 @@ const CALIFICAR = {
   "sigla": "Lie/Bet",
   "titulo": "Cuestionario Lie-Bet",
   "para": "Tamizar en un minuto problemas con el juego de apuestas, con dos preguntas: haber mentido sobre cuánto se juega y haber necesitado apostar cada vez más dinero. Es el tamizaje más breve de la guía.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11054,6 +11487,12 @@ const CALIFICAR = {
   "sigla": "SOGS",
   "titulo": "Cuestionario de Juego Patológico de South Oaks",
   "para": "Tamizar el juego patológico a partir de sus conductas y consecuencias: volver a jugar para recuperar lo perdido, mentir, discutir por el dinero, pedir prestado. Pregunta también de dónde salió el dinero, que suele mostrar el alcance real del problema.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11291,6 +11730,12 @@ const CALIFICAR = {
   "sigla": "IGDS9-SF",
   "titulo": "Escala breve de Trastorno de Juego por Internet",
   "para": "Tamizar el trastorno de juego por internet (videojuegos) con nueve preguntas, una por cada criterio propuesto en el DSM-5, referidas a los últimos doce meses. Da un puntaje de gravedad y un conteo de criterios.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos",
@@ -11371,6 +11816,12 @@ const CALIFICAR = {
   "sigla": "IAT",
   "titulo": "Test de Adicción a Internet",
   "para": "Medir el uso problemático de internet: pérdida de control del tiempo conectado, desatención de obligaciones y relaciones, preocupación por conectarse y malestar cuando no se puede. Sirve para tamizar y para seguir el cambio en adolescentes y adultos.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos",
@@ -11464,6 +11915,12 @@ const CALIFICAR = {
   "sigla": "ASRS v1.1",
   "titulo": "Escala de Autorreporte de Síntomas de TDAH en Adultos",
   "para": "Tamizar el TDAH en adultos. La parte A, de seis preguntas, es la que mejor predice el trastorno; la parte B completa los 18 síntomas del DSM y orienta la entrevista.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11570,6 +12027,12 @@ const CALIFICAR = {
   "sigla": "Mini-Cog",
   "titulo": "Prueba Mini-Cog",
   "para": "Tamizar rápidamente el deterioro cognitivo en adultos mayores: recuerdo de tres palabras y dibujo del reloj. Toma unos tres minutos y depende poco de la escolaridad y del idioma.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11686,6 +12149,12 @@ const CALIFICAR = {
   "sigla": "HITS",
   "titulo": "Tamizaje de Violencia de Pareja (HITS)",
   "para": "Tamizar la violencia de pareja en consulta con cuatro preguntas: con qué frecuencia la pareja lastima, insulta, amenaza o grita. Abre la conversación y orienta la ruta de atención.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11750,6 +12219,12 @@ const CALIFICAR = {
   "sigla": "WAST",
   "titulo": "Herramienta de Tamizaje de Maltrato a la Mujer, versión corta",
   "para": "Abrir el tema de la violencia de pareja con dos preguntas que no la nombran de entrada: cuánta tensión hay en la relación y con cuánta dificultad se resuelven las discusiones. Son las dos preguntas del WAST con las que las mujeres dijeron sentirse más cómodas.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11825,6 +12300,12 @@ const CALIFICAR = {
   "sigla": "LSNS-6",
   "titulo": "Escala de Red Social de Lubben, versión abreviada",
   "para": "Medir el tamaño y la cercanía de la red de familiares y de amigos con que cuenta la persona: con cuántos se ve o habla, con cuántos puede conversar de lo privado y a cuántos podría llamar si necesita ayuda. Mide red efectiva, no apoyo percibido, y tamiza el riesgo de aislamiento social en personas mayores.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -11950,6 +12431,12 @@ const CALIFICAR = {
   "sigla": "Rosenberg",
   "titulo": "Escala de Autoestima de Rosenberg",
   "para": "Medir la autoestima global: cuánto se valora y se acepta la persona a sí misma. Son diez frases, la mitad positivas y la mitad negativas. Es la escala de autoestima más usada en el mundo y sirve para comparar a la persona consigo misma al inicio y al final de una intervención.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -12017,6 +12504,13 @@ const CALIFICAR = {
   "sigla": "Whiteley",
   "titulo": "Índice Whiteley de hipocondría",
   "para": "Tamizar la ansiedad por la salud (hipocondría): miedo a enfermar, convicción de estar enfermo y preocupación por las sensaciones corporales. Sirve también para medir el cambio con el tratamiento.",
+  "areas": [
+   "Salud, sueño y síntomas físicos",
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -12085,6 +12579,12 @@ const CALIFICAR = {
   "sigla": "SSS-8",
   "titulo": "Escala de Síntomas Somáticos (SSS-8)",
   "para": "Medir la carga de síntomas somáticos de la última semana: digestivos, dolor de espalda, de extremidades, de cabeza y de pecho o falta de aire, mareo, cansancio y sueño. Sirve para tamizar y seguir el trastorno de síntomas somáticos.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -12168,6 +12668,12 @@ const CALIFICAR = {
   "sigla": "MGH-HS",
   "titulo": "Escala de Arrancamiento de Pelo del Hospital General de Massachusetts",
   "para": "Medir la gravedad del arrancamiento de pelo (tricotilomanía) en la última semana: frecuencia e intensidad de los impulsos, control sobre ellos, frecuencia del arrancamiento, intentos de resistirlo y malestar. Es la medida habitual para seguir el tratamiento.",
+  "areas": [
+   "TOC y conductas repetitivas"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -12379,6 +12885,12 @@ const CALIFICAR = {
   "sigla": "SMQ",
   "titulo": "Cuestionario de Mutismo Selectivo",
   "para": "Medir con qué frecuencia el niño habla en tres contextos: la escuela, la familia y las situaciones sociales fuera de la escuela. Lo responden los padres y sirve para ver dónde está el mutismo y para seguir el tratamiento.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "padres"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -12500,6 +13012,13 @@ const CALIFICAR = {
   "sigla": "ACIPS",
   "titulo": "Escala de Placer Interpersonal Anticipatorio y Consumatorio",
   "para": "Medir la capacidad de disfrutar de las relaciones con otros, tanto al anticipar un encuentro como al vivirlo: la anhedonia social. Sirve en la depresión, en el espectro de la esquizofrenia y en el retraimiento social, y para seguir el cambio.",
+  "areas": [
+   "Ánimo y depresión",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -12568,6 +13087,13 @@ const CALIFICAR = {
   "sigla": "IDC-R",
   "titulo": "Inventario de Duelo Complicado Revisado",
   "para": "Evaluar si un duelo se ha vuelto complicado: añoranza intensa, incredulidad, evitación, vacío y pérdida de sentido, con su duración y el deterioro que causan. Incluye los criterios de duelo complicado de Prigerson para valorarlos con la persona.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona",
+   "profesional"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -13564,6 +14090,12 @@ const CALIFICAR = {
   "sigla": "SDQ-18",
   "titulo": "Cuestionario de Capacidades y Dificultades, autoinforme de 18 años o más",
   "para": "Describir dificultades emocionales y de conducta en jóvenes y adultos con la misma estructura del SDQ: síntomas emocionales, problemas de conducta, hiperactividad, relación con los demás y conducta prosocial.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
@@ -13659,6 +14191,12 @@ const CALIFICAR = {
   "sigla": "SDQ-AI",
   "titulo": "Cuestionario de Capacidades y Dificultades, autoinforme de 11 a 17 años",
   "para": "Tamizar dificultades emocionales y de conducta con lo que informa el propio adolescente: síntomas emocionales, problemas de conducta, hiperactividad, relación con compañeros y conducta prosocial.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "infancia",
   "pob": [
    "infancia"
@@ -13850,6 +14388,12 @@ const CALIFICAR = {
   "sigla": "VLQ-2",
   "titulo": "Cuestionario de Vida Valiosa",
   "para": "Medir cuánto importa a la persona cada área de su vida y cuánto actuó de acuerdo con ella en la última semana. La distancia entre las dos señala dónde trabajar valores y acción comprometida en la terapia de aceptación y compromiso.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
   "estilo": "adultos",
   "pob": [
    "adultos"
