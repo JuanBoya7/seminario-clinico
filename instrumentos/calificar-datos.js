@@ -966,6 +966,539 @@ const CALIFICAR = {
    "nota": "Responda solo las sustancias que la persona ha consumido; las demás quedan en blanco y valen 0."
   }
  },
+ "bdi-ii": {
+  "clave": "BDI-II",
+  "sigla": "BDI-II",
+  "titulo": "Inventario de Depresión de Beck, segunda edición",
+  "para": "Medir la gravedad de los síntomas depresivos de las dos últimas semanas en adolescentes desde los 13 años y adultos: tristeza, pérdida de placer, culpa, pesimismo, ideación suicida, cambios del sueño y del apetito, fatiga, entre otros. Sirve para tamizar y para seguir el tratamiento.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Beck, Steer y Brown (1996) · adaptación española de Sanz y Vázquez (Pearson), manual y hoja de respuestas.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 9"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 10"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 11"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 12"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 13"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 14"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 15"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1a",
+     "1b",
+     "2a",
+     "2b",
+     "3a",
+     "3b"
+    ],
+    "vals": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 16"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 17"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1a",
+     "1b",
+     "2a",
+     "2b",
+     "3a",
+     "3b"
+    ],
+    "vals": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 18"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 19"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 21"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,21)",
+     "rangos": [
+      [
+       0,
+       13,
+       "Depresión mínima"
+      ],
+      [
+       14,
+       19,
+       "Depresión leve"
+      ],
+      [
+       20,
+       28,
+       "Depresión moderada"
+      ],
+      [
+       29,
+       63,
+       "Depresión grave"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[9] >= 1 || r[2] >= 2",
+     "texto": "Hay respuesta positiva en pensamientos de suicidio (grupo 9) o pesimismo alto (grupo 2): valore el riesgo suicida en esta misma sesión, sea cual sea el total."
+    }
+   ]
+  }
+ },
  "bai": {
   "clave": "BAI",
   "sigla": "BAI",
