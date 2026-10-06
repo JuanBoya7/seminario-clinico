@@ -941,6 +941,95 @@ const CALIFICAR = {
    "nota": "Responda solo las sustancias que la persona ha consumido; las demás quedan en blanco y valen 0."
   }
  },
+ "bai": {
+  "clave": "BAI",
+  "sigla": "BAI",
+  "titulo": "Inventario de Ansiedad de Beck",
+  "para": "Medir la gravedad de la ansiedad en la última semana, sobre todo sus síntomas físicos (temblor, palpitaciones, ahogo, mareo) y el miedo a perder el control o a morir. Sirve para tamizar y para seguir el tratamiento.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Beck et al. (1988); Beck y Steer (1993) · adaptación española de Sanz (2014).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Poco o nada",
+     "Más o menos",
+     "Moderado",
+     "Severo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,21)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Ansiedad mínima"
+      ],
+      [
+       8,
+       15,
+       "Ansiedad leve"
+      ],
+      [
+       16,
+       25,
+       "Ansiedad moderada"
+      ],
+      [
+       26,
+       63,
+       "Ansiedad grave"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "c-ssrs": {
   "clave": "C-SSRS",
   "sigla": "C-SSRS",
@@ -4293,6 +4382,139 @@ const CALIFICAR = {
    ]
   }
  },
+ "mbi": {
+  "clave": "MBI",
+  "sigla": "MBI",
+  "titulo": "Inventario de Burnout de Maslach",
+  "para": "Medir el síndrome de quemarse por el trabajo en profesionales que atienden personas: agotamiento emocional, despersonalización (trato frío y distante) y baja realización personal.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Maslach y Jackson (1981, 1986) · adaptación española de Seisdedos (1997), TEA.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Alguna vez al año o menos",
+     "Una vez al mes o menos",
+     "Algunas veces al mes",
+     "Una vez a la semana",
+     "Varias veces a la semana",
+     "Diariamente"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Agotamiento emocional",
+     "js": "L([1, 2, 3, 6, 8, 13, 14, 16, 20])",
+     "rangos": [
+      [
+       0,
+       18,
+       "Bajo"
+      ],
+      [
+       19,
+       26,
+       "Medio"
+      ],
+      [
+       27,
+       54,
+       "Alto"
+      ]
+     ]
+    },
+    {
+     "n": "Despersonalización",
+     "js": "L([5, 10, 11, 15, 22])",
+     "rangos": [
+      [
+       0,
+       5,
+       "Baja"
+      ],
+      [
+       6,
+       9,
+       "Media"
+      ],
+      [
+       10,
+       30,
+       "Alta"
+      ]
+     ]
+    },
+    {
+     "n": "Realización personal",
+     "js": "L([4, 7, 9, 12, 17, 18, 19, 21])",
+     "rangos": [
+      [
+       0,
+       33,
+       "Baja (indica burnout)"
+      ],
+      [
+       34,
+       39,
+       "Media"
+      ],
+      [
+       40,
+       48,
+       "Alta"
+      ]
+     ]
+    }
+   ]
+  }
+ },
  "mcq-30": {
   "clave": "MCQ-30",
   "sigla": "MCQ-30",
@@ -6646,6 +6868,175 @@ const CALIFICAR = {
        1,
        10,
        "Problema serio con la nicotina (1 o más «sí»): siga evaluando"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "ecbi": {
+  "clave": "ECBI",
+  "sigla": "ECBI",
+  "titulo": "Inventario Eyberg del Comportamiento en Niños",
+  "para": "Medir con qué frecuencia el niño (2 a 16 años) presenta conductas disruptivas en casa (desobediencia, rabietas, agresión, problemas de atención) y cuáles de ellas son un problema para los padres. Sirve para tamizar y para evaluar el entrenamiento de padres.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Eyberg y Ross (1978) · validación española de García-Tornel et al. (1998), Anales Españoles de Pediatría.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca (1)",
+     "2",
+     "3",
+     "Alguna vez (4)",
+     "5",
+     "6",
+     "Siempre (7)"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Intensidad",
+     "js": "S(1,36)",
+     "rangos": [
+      [
+       36,
+       131,
+       "Por debajo del corte"
+      ],
+      [
+       132,
+       252,
+       "Más de 131: sospecha de problemas de conducta"
+      ]
+     ]
+    },
+    {
+     "n": "Problema",
+     "js": "S(37,72)",
+     "rangos": [
+      [
+       0,
+       15,
+       "Por debajo del corte"
+      ],
+      [
+       16,
+       36,
+       "Más de 15: las conductas son un problema para los padres"
       ]
      ]
     }

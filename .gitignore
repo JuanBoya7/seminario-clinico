@@ -39,3 +39,7 @@ _respaldo-planes-infancia-pp-2026-09-24/
 # Todos los respaldos agrupados en una sola carpeta (2026-09-28)
 _respaldos/
 _validar-tmp.html
+
+# Fichas completas de pruebas comerciales: solo de uso personal del docente,
+# en su copia local. Al sitio va la hoja de respuestas (sin ítems).
+instrumentos-local/
