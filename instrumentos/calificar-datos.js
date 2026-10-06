@@ -8331,6 +8331,711 @@ const CALIFICAR = {
    ]
   }
  },
+ "cy-bocs": {
+  "clave": "CY-BOCS",
+  "sigla": "CY-BOCS",
+  "titulo": "Escala de Yale-Brown para el Trastorno Obsesivo-Compulsivo en Niños y Adolescentes",
+  "para": "Medir la gravedad del trastorno obsesivo-compulsivo en niños y adolescentes con una entrevista semiestructurada: tiempo, interferencia, malestar, resistencia y control de las obsesiones y de las compulsiones. Es la medida habitual para seguir el tratamiento.",
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Scahill et al. (1997), JAACAP · versión de Ulloa y de la Peña (México).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque con una «X» todos los síntomas presentes (considere presente lo que se describe en la última semana) o en el pasado (considere síntomas presentes en el episodio más severo en el pasado (EMSP) y señale con una «P» los síntomas principales. (El evaluador debe detectar si las conductas reportadas son síntomas genuinos del trastorno obsesivo-compulsivo y no síntomas de otros trastornos tales como fobia simple o hipocondriasis. Los reactivos señalados con un asterisco [*] pueden o no formar parte del trastorno obsesivo-compulsivo)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones de contaminación",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Preocupación por suciedad, gérmenes o algunas enfermedades",
+     "Preocupación o repugnancia por desechos o secreciones del cuerpo (p. ej., orina, heces fecales, saliva)",
+     "Preocupación excesiva por contaminantes ambientales (p. ej., asbestos, radiaciones, desechos",
+     "Preocupación excesiva por artículos domésticos de limpieza (p. ej., blanqueadores, solventes)",
+     "Preocupación excesiva por animales (p. ej., insectos)",
+     "Se molesta excesivamente por sustancias pegajosas o por residuos",
+     "Preocupación por que los contaminantes lo enfermen",
+     "Preocupación de enfermar a otros por esparcir contaminantes (agresivo)",
+     "Sólo se preocupa por cómo se sentirían las consecuencias de la contaminación",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones de agresión",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Temor de lastimarse a sí mismo",
+     "Temor de lastimar a los demás",
+     "Temor de que algún daño venga a él/ella",
+     "Temor de que otros resulten dañados por algo que él/ella hizo o no hizo",
+     "Imágenes horribles o violentas",
+     "Temor a expresar repentinamente obscenidades o insultos",
+     "Temor de hacer algo vergonzoso*",
+     "Temor de actuar de acuerdo a impulsos indeseables (p. ej., apuñalar a un familiar)",
+     "Temor de robarse cosas",
+     "Temor de ser responsable de que algo terrible pueda pasar (p. ej., incendio, asalto, inundación)",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones sexuales. ¿Tienes pensamientos sobre el sexo? ¿Son repetitivos y preferirías no tenerlos porque te molestan?",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Pensamientos, imágenes o impulsos sexuales prohibidos o perversos",
+     "El contenido involucra homosexualidad*",
+     "Conducta sexual hacia otros (agresiva o en forma intencional)*",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones de atesorar o coleccionar. ¿Tienes la idea repetitiva de guardar o coleccionar algo?",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Miedo a perder las cosas"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Pensamientos mágicos o supersticiones",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Números de buena o mala suerte, colores con significado especial",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones somáticas",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Preocupaciones con enfermedades o padecimientos*",
+     "Preocupación excesiva por alguna parte del cuerpo o la apariencia (dismorfofobia)*"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones religiosas (escrupulosidad)",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Preocupación excesiva por ofender a Dios u otros objetos religiosos",
+     "Preocupación excesiva con lo bueno y lo malo y con la moralidad"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones varias",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Necesidad de saber o recordar",
+     "Temor de decir ciertas cosas",
+     "Temor de no decir las cosas correctamente",
+     "Imágenes intrusivas (no violentas)",
+     "Sonidos, palabras, música o números intrusivos",
+     "Simetría, exactitud",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Preguntas acerca de pensamientos obsesivos: Voy a preguntarte acerca de los pensamientos que no puedes evitar tener."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NADA",
+     "1 POCO Menos de una hora al día o intrusión ocasional.",
+     "2 MODERADO De 1 a 3 horas al día o intrusión frecuente.",
+     "3 MUCHO Más de 3 y hasta 8 horas al día o intrusiones muy frecuentes.",
+     "4 EXTREMO Más de 8 horas al día, casi intrusión constante."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1.a) Tiempo ocupado por pensamientos obsesivos. ¿Cuánto tiempo pasas pensando en estas cosas? Cuando las obsesiones aparecen como intrusiones breves o intermitentes puede ser difícil establecer el tiempo que ocupan en horas totales. En estos casos, estime qué tan frecuentemente ocurren. Considere tanto el número de veces que las intrusiones aparecen como cuántas horas del día están afectadas. Evalúe la suma total de tiempo en el día. Pregunte: ¿Con qué frecuencia aparecen los pensamientos obsesivos y cuánto tiempo te duran? Esté seguro de excluir rumiaciones y preocupaciones, las cuales, a diferencia de las obsesiones, son egosintónicas y racionales, pero exageradas."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 SIN SÍNTOMAS",
+     "1 LEVE Intervalos largos libres de síntomas, más de 8 horas consecutivas al día libres de síntomas.",
+     "2 MODERADO Intervalos relativamente largos libres de síntomas, más de 3 horas y hasta 8 horas consecutivas al día libres de síntomas.",
+     "3 SEVERO Intervalos cortos libres de síntomas, de 1 a 3 horas consecutivas al día libres de síntomas.",
+     "4 EXTREMO Intervalos extremadamente cortos libres de síntomas, menos de una hora consecutiva al día libre de síntomas."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "1.b) Intervalos libres de obsesiones (No se incluyen en el puntaje total). En promedio, ¿cuánto es la mayor cantidad de horas consecutivas que has podido pasar sin pensamientos obsesivos estando despierto? Si es necesario pregunte: ¿Cuál ha sido el tiempo más largo en el que los pensamientos obsesivos se encuentran ausentes?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NINGUNA",
+     "1 LEVE Discreta interferencia con actividades sociales y ocupacionales, sin afectarse el desempeño global.",
+     "2 MODERADA Interferencia definitiva con el desempeño ocupacional y social, pero aún manejable.",
+     "3 SEVERA Causa deterioro substancial en el desempeño social o escolar.",
+     "4 EXTREMA Incapacitante."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "2. Interferencia debida a pensamientos obsesivos. ¿Qué tanto tus pensamientos obsesivos interfieren con tu trabajo en la escuela o las cosas que haces con tus amigos? ¿Hay algo que no hagas a causa de ellos? Si actualmente no va a la escuela, estime qué tanto del desempeño del paciente estaría afectado si estuviese acudiendo."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NINGUNO",
+     "1 LEVE Molestia infrecuente y no muy intensa.",
+     "2 MODERADO Frecuentemente molesto pero aún manejable.",
+     "3 SEVERO Muy frecuente y severamente molesto.",
+     "4 EXTREMO Casi constante, malestar incapacitante."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "3. Malestar asociado a pensamientos obsesivos. ¿Qué tanto estos pensamientos te preocupan molestan o afectan? En la mayoría de los casos, malestar es igual a ansiedad; sin embargo, los pacientes pueden reportar que sus obsesiones son molestas pero niegan ansiedad. Sólo califique la ansiedad o frustración que parece estar disparada por las obsesiones, no la ansiedad generalizada o la ligada a otros síntomas."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Hace un esfuerzo para RESISTIR SIEMPRE, o los síntomas son tan insignificantes que no necesita resistirlos activamente.",
+     "1 Trata de RESISTIR LA MAYOR PARTE del tiempo.",
+     "2 Hace ALGÚN ESFUERZO para resistir.",
+     "3 CEDE a las obsesiones sin intentar controlarlas, pero lo hace con cierto desgano.",
+     "4 Completa y voluntariamente CEDE A TODAS las obsesiones."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "4. Resistencia contra las obsesiones. ¿Qué tanto esfuerzo haces para detener o ignorar los pensamientos obsesivos? Sólo califique el esfuerzo hecho para resistir, no el éxito o el fracaso en realmente controlar las obsesiones. Cuanto se resista el paciente a sus obsesiones puede o no correlacionarse con su habilidad para controlarlas. Observe que esta pregunta no mide directamente la severidad de los pensamientos intrusivos; más bien evalúa una manifestación de salud, por ejemplo el esfuerzo que el paciente hace para contrarrestar las obsesiones por medios distintos a la evitación o realización de compulsiones. Por lo tanto, cuanto más trate de esforzarse por resistir, menos daño habrá en este aspecto de su funcionamiento. Si las obsesiones son mínimas el paciente puede no sentir la necesidad de resistirlas. En estos casos deberá ser dada una calificación de 0."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 COMPLETO CONTROL",
+     "1 MUCHO CONTROL Usualmente es capaz de detener o desviar obsesiones con esfuerzo y concentración.",
+     "2 MODERADO CONTROL Algunas veces es capaz de detener o desviar las obsesiones.",
+     "3 POCO CONTROL Raramente tiene éxito en detener las obsesiones, puede solamente desviar la atención con dificultad.",
+     "4 NO CONTROL Se experimentan como completamente involuntarios, pocas veces capaz de desviar el pensamiento aún momentáneamente."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "5. Grado de control sobre los pensamientos obsesivos. Cuando tratas de pelear contra los pensamientos, ¿puedes vencerlos? ¿Qué tanto control tienes sobre tus pensamientos obsesivos? En contraste al reactivo anterior sobre resistencia, la habilidad del paciente en controlar sus obsesiones está más estrechamente relacionada con la severidad de los pensamientos intrusivos."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones de limpieza o lavado",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Lavado de manos excesivo o ritualizado",
+     "Baño, lavado de dientes, arreglo personal excesivo o ritualizado o rutinas para hacer sus necesidades",
+     "Limpieza excesiva de objetos personales u otros objetos",
+     "Otras medidas para prevenir o eliminar el contacto con contaminantes",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones de revisar",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Revisar cerraduras, juguetes, libros de la escuela, etc",
+     "Revisar que esté adecuadamente lavado, vestido o desvestido",
+     "Revisar que no hizo/hará daño a otros",
+     "Revisar que no se hizo/hará daño a sí mismo",
+     "Revisar que nada terrible ocurrió/ocurrirá",
+     "Revisar que no se hayan cometido errores",
+     "Chequeo ligado a obsesiones somáticas",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Rituales de repetición",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Releer, borrar o reescribir",
+     "Necesidad de repetir actividades rutinarias (p. ej., entrar/salir por la puerta, sentarse/pararse de la silla)",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones de contar",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Objetos, números, palabras."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones de ordenar o arreglar",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Necesidad de arreglar en forma simétrica o de acuerdo a un patrón específico."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones de guardar o coleccionar. (Distinguir de los pasatiempos y del interés por objetos con valor sentimental o económico)",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Dificultad para tirar cosas, guardar pedazos de papel, de cuerda, etc",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Juegos mágicos excesivos, conductas supersticiosas",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "(Distinguir de los juegos mágicos apropiados para su edad). Por ejemplo, pararse sobre ciertas manchas del piso, tocar un objeto o a sí mismos cierto número de veces como un juego de rutina para evitar que pase algo malo"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Rituales que involucran a otras personas",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Necesidad de involucrar a otros, regularmente a uno de los padres, en el ritual, por ejemplo pedirle al padre que conteste repetidamente la misma pregunta, hacer que la madre realice rituales a la hora de los alimentos.*"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones varias",
+    "ops": [
+     "Presente",
+     "EMSP"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": false,
+    "items": [
+     "Rituales mentales (otros diferentes a revisar) contar, cantar, rezar",
+     "Necesidad de decir, preguntar o confesar",
+     "Medidas para prevenir daño a sí mismo, daño a otros, terribles consecuencias",
+     "Conductas ritualizadas al comer*",
+     "Hacer listas en exceso",
+     "Necesidad de tocar, acariciar o frotar*",
+     "Necesidad de hacer cosas (p. ej., tocar o arreglar) hasta que «esté bien»*",
+     "Rituales que incluyen parpadeo o fijar la mirada*",
+     "Tricotilomanía*",
+     "Otras conducta de autodaño o automutilación*",
+     "Otras (describir)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Ahora voy a preguntarte acerca de las conductas que no puedes evitar y te molestan. Preguntas sobre las compulsiones: Ahora te voy a preguntar acerca de las conductas que tienes y no puedes detener. Mencione los síntomas blanco y refiérase a ellos al hacer las preguntas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NADA",
+     "1 POCO Emplea menos de 1 hora/día realizando compulsiones, u ocasional realización de conductas compulsivas.",
+     "2 MODERADO Emplea de 1 a 3 horas por día realizando compulsiones, o realización frecuente de conductas compulsivas.",
+     "3 MUCHO Emplea más de 3 y hasta 8 horas por día realizando compulsiones, o muy frecuentemente realiza conductas compulsivas.",
+     "4 EXTREMO Emplea más de 8 horas por día realizando compulsiones, o la realización casi constante de conductas compulsivas (muy numerosas para ser contadas)."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6.a) Tiempo ocupado en la realización de conductas compulsivas. ¿Cuanto tiempo ocupas haciendo estas cosas? Cuando los rituales que forman parte principal de las actividades de la vida diaria se encuentran presentes, pregunte: ¿Cuánto más tiempo que el normal para las otras personas te toma completar tus actividades diarias a causa de tus hábitos o estas conductas repetitivas? Cuando las compulsiones aparecen como conductas breves e intermitentes puede ser imposible el determinar el tiempo empleado en realizarlas en términos de horas totales. En estos casos estime el tiempo, determinando qué tan frecuentemente éstas son realizadas. Considere tanto el número de veces que se realicen las compulsiones como el número de horas del día que están afectadas. Pregunte: ¿Qué tan frecuentemente realizas estas conductas? Cuente por separado las conductas compulsivas, no el número de repeticiones, por ejemplo, un paciente que entra al baño 20 veces al día, para lavarse las manos 5 veces rápidamente, realiza compulsiones 20 veces al día, no 5 o 5 x 20 = 100. En la mayoría de los casos, las compulsiones son conductas observables (p. ej., lavado de manos), pero hay ocasiones en las que las compulsiones no son observables (p. ej., revisar en silencio)."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 SIN SÍNTOMAS",
+     "1 INTERVALOS LARGOS libres de síntomas, más de 8 horas consecutivas al día libres de síntomas.",
+     "2 INTERVALOS MODERADAMENTE LARGOS libres de síntomas, más de 3 horas y hasta 8 horas consecutivas al día libres de síntomas.",
+     "3 INTERVALOS CORTOS libres de síntomas, de 1 a 3 horas consecutivas al día libres de síntomas.",
+     "4 INTERVALO LIBRE DE SÍNTOMAS EXTREMADAMENTE CORTO, menos de 1 hora consecutiva al día libre de síntomas."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "6.b) Intervalo libre de compulsiones (No se incluye en el puntaje total). ¿Cuánto tiempo puedes estar sin realizar tus conductas compulsivas/hábitos? Si es necesario pregunte: ¿Cuánto es el mayor tiempo en que las compulsiones están ausentes?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NINGUNA",
+     "1 LEVE Discreta interferencia con actividades sociales y escolares, pero el desempeño global no está alterado.",
+     "2 MODERADA Interferencia definitiva con el desempeño social u ocupacional, pero aún manejable.",
+     "3 SEVERA Causa deterioro substancial en el desempeño ocupacional y social.",
+     "4 EXTREMA Incapacitante."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "7. Interferencia debida a las conductas compulsivas. ¿Qué tanto tus conductas compulsivas interfieren con tu trabajo en la escuela o las cosas que haces con tus amigos? ¿Hay algo que no hagas debido a las compulsiones? Si actualmente el paciente no está en la escuela, determine qué tanto desempeño estaría afectado si estuviera asistiendo."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 NINGUNO",
+     "1 LEVE Sólo discretamente ansioso si se previenen las compulsiones o sólo discreta ansiedad durante la ejecución de las compulsiones.",
+     "2 MODERADO Reporta que la ansiedad se incrementa, pero es aún manejable si las compulsiones son prevenidas, o que la ansiedad se incrementa, pero permanece manejable durante la ejecución de las compulsiones.",
+     "3 SEVERO Prominente y muy molesto incremento en la ansiedad si las compulsiones son interrumpidas o prominente y muy molesto incremento en la ansiedad durante la realización de las compulsiones.",
+     "4 EXTREMO Ansiedad incapacitante ante cualquier intervención que tenga por objetivo modificar la actividad, o se desarrolla ansiedad incapacitante durante la ejecución de las compulsiones."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "8. Malestar asociado a conducta compulsiva. ¿Cómo te sentirías si alguien evitara que realizaras tus conductas? ¿Qué tan molesto te sentirías? Califique al grado de malestar que el paciente experimentaría si la realización de su compulsión fuera repentinamente interrumpida sin decirle palabras tranquilizadoras. En la mayoría, pero no en todos los casos, la ejecución de compulsiones reduce la ansiedad y frustración: ¿Qué tan molesto te sientes mientras haces tus compulsiones hasta que se han completado satisfactoriamente?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 Hace un ESFUERZO PARA RESISTIR SIEMPRE, o los síntomas son tan insignificantes que no necesita resistir activamente.",
+     "1 Trata de resistir la MAYOR PARTE DEL TIEMPO.",
+     "2 Hace ALGO DE ESFUERZO para resistir.",
+     "3 CEDE A CASI TODAS las compulsiones sin intentar controlarlas, pero lo hace con alguna resistencia.",
+     "4 Completa y voluntariamente CEDE A TODAS sus compulsiones."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "9. Resistencia en contra de las compulsiones. ¿Cuánto esfuerzo haces para resistir las compulsiones ? Sólo califique el esfuerzo realizado para resistir, no el éxito o fracaso en realmente controlar las compulsiones. Qué tanto el paciente resiste sus compulsiones puede o no correlacionarse con su habilidad para controlarlas. Observe que esta pregunta no mide directamente la severidad de las compulsiones; más bien evalúa una manifestación de salud, por ejemplo el esfuerzo que el paciente hace para contrarrestar las compulsiones. Así, lo más que el paciente trate de resistirlas, lo menos incapacitado está este aspecto de su funcionamiento. Si las compulsiones son mínimas, el paciente puede no sentir la necesidad de resistirlas. En estos casos, debe ser otorgada una calificación de 0."
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0 COMPLETO CONTROL",
+     "1 MUCHO CONTROL Experimenta presión para ejecutar la conducta, pero usualmente es capaz de ejercer control voluntario sobre ésta.",
+     "2 MODERADO CONTROL Fuerte presión para ejecutar la conducta, puede controlarla sólo con dificultad.",
+     "3 POCO CONTROL Impulso muy fuerte de ejecutar la conducta, debe ser llevada a cabo hasta su finalización, sólo se puede demorar con dificultad.",
+     "4 NO CONTROL El impulso de ejecutar la conducta se experimenta como completamente involuntario y muy poderoso, raramente es capaz de demorar la actividad aún momentáneamente."
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "10. Grado de control sobre las conductas compulsivas. ¿Qué tan fuerte es la sensación de que tienes que realizar tus conductas? ¿Qué pasa cuando tratas de resistirte a hacerlo? Para niños mayores preguntar: ¿Qué tanto control tienes sobre tus conductas? En contraste con la pregunta anterior acerca de la resistencia, la capacidad del paciente para controlar sus compulsiones, se encuentra más estrechamente relacionada con la severidad de las compulsiones."
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Obsesiones",
+     "js": "(r[40] || 0) + (r[42] || 0) + (r[43] || 0) + (r[44] || 0) + (r[45] || 0)",
+     "texto": "De 0 a 20."
+    },
+    {
+     "n": "Compulsiones",
+     "js": "(r[79] || 0) + (r[81] || 0) + (r[82] || 0) + (r[83] || 0) + (r[84] || 0)",
+     "texto": "De 0 a 20."
+    },
+    {
+     "n": "Total",
+     "js": "(r[40] || 0) + (r[42] || 0) + (r[43] || 0) + (r[44] || 0) + (r[45] || 0) + (r[79] || 0) + (r[81] || 0) + (r[82] || 0) + (r[83] || 0) + (r[84] || 0)",
+     "texto": "De 0 a 40: a mayor puntaje, más gravedad. Sin puntos de corte en el formato; sirve para seguir el cambio."
+    }
+   ]
+  }
+ },
  "ecbi": {
   "clave": "ECBI",
   "sigla": "ECBI",
