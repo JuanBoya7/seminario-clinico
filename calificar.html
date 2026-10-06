@@ -151,6 +151,15 @@ body[data-pdf] .panel{position:static;}
   .wrap{grid-template-columns:minmax(0,1fr) 260px;}
   .panel{position:static;}
 }
+/* Versión completa de las pruebas comerciales: se abre con la contraseña del docente. */
+.candado{margin-top:12px; padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);}
+.candado[hidden]{display:none;}
+.candado p{margin:0 0 8px; font-size:14px; color:var(--ink-soft);}
+.candado form{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
+.candado input[type=password]{font:inherit; font-size:15px; padding:7px 10px; border:1px solid var(--border); border-radius:8px; flex:1 1 220px; min-width:0;}
+.candado label{font-size:13.5px; color:var(--ink-soft); display:flex; gap:6px; align-items:center;}
+.candado .error{color:var(--alerta); font-size:13.5px; margin:8px 0 0;}
+.bt.completa{border-style:dashed;}
 </style>
 </head>
 <body>
@@ -299,10 +308,18 @@ function instrumento(a, d){
     '<p class="para">' + esc(d.para) + '</p>' +
     '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
-    '<div class="acciones"><a class="bt" href="' + (d.local ? "instrumentos-local/" : "instrumentos/") + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>' +
+    '<div class="acciones">' + (d.cifrado
+      ? '<a class="bt" id="pdf-cifrado" data-a="' + a + '" target="_blank" rel="noopener">Abriendo PDF…</a>'
+      : '<a class="bt" href="' + (d.local ? "instrumentos-local/" : "instrumentos/") + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>') +
+    (d.hoja && !d.local ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
+    (d.cifrado ? '<button class="bt completa" id="cerrar-completa">Cerrar la versión completa</button>' : '') +
     '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" id="imprimir">' +
     (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button>' +
     '<a class="bt" href="calificar.html">Otros instrumentos</a></div>' +
+    (d.hoja && !d.local ? '<div class="candado" id="candado" hidden><p>Escriba la contraseña para ver los ítems y calificar con la versión completa.</p>' +
+      '<form id="form-clave"><input type="password" id="clave" autocomplete="current-password" aria-label="Contraseña">' +
+      '<label><input type="checkbox" id="recordar"> Recordar en este dispositivo</label>' +
+      '<button class="bt" type="submit">Abrir</button></form><p class="error" id="clave-error" hidden></p></div>' : '') +
     h + '<p class="fuente">Fuente: ' + esc(d.cita) + '</p></div>' +
     '<aside class="panel" aria-live="polite"><h2>Resultado</h2><div id="res"></div></aside>';
   const total = q;
@@ -457,13 +474,98 @@ async function compartir(d, boton){
   }
 }
 
-if (typeof CALIFICAR === "undefined"){
-  app.innerHTML = '<p>No se pudieron cargar los instrumentos.</p>';
-} else if (param && CALIFICAR[param]){
-  instrumento(param, CALIFICAR[param]);
-} else {
-  indice();
+/* Versión completa cifrada (instrumentos/privado/, la escribe
+   _planes-fuente/instrumentos/cifrar.py). La contraseña da la llave AES con
+   PBKDF2; la llave, no la contraseña, queda en la sesión de la pestaña o, si se
+   pide recordar, en este dispositivo. */
+const PRIV = "instrumentos/privado/";
+const GUARDA = "calificar-llave";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+let LLAVE = null;
+function leerGuardada(){
+  try { return sessionStorage.getItem(GUARDA) || localStorage.getItem(GUARDA); } catch (e) { return null; }
 }
+function guardar(raw, recordar){
+  const t = btoa(String.fromCharCode(...new Uint8Array(raw)));
+  try { sessionStorage.setItem(GUARDA, t); if (recordar) localStorage.setItem(GUARDA, t); } catch (e) {}
+}
+function olvidar(){
+  try { sessionStorage.removeItem(GUARDA); localStorage.removeItem(GUARDA); } catch (e) {}
+}
+async function descifrar(llave, buf){
+  const u = new Uint8Array(buf);
+  return crypto.subtle.decrypt({ name: "AES-GCM", iv: u.slice(0, 12) }, llave, u.slice(12));
+}
+async function llaveDeRaw(raw){
+  return crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]);
+}
+async function cargarCompleta(llave){
+  const buf = await fetch(PRIV + "calificar-datos.js.bin", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error("sin datos"); return r.arrayBuffer(); });
+  const txt = new TextDecoder().decode(await descifrar(llave, buf));
+  new Function("CALIFICAR", txt)(CALIFICAR);
+  Object.keys(CALIFICAR).forEach(k => { if (CALIFICAR[k].local) { CALIFICAR[k].cifrado = true; } });
+  LLAVE = llave;
+}
+async function abrirConClave(contrasena, recordar){
+  const meta = await fetch(PRIV + "clave.json", { cache: "no-cache" }).then(r => r.json());
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(contrasena), "PBKDF2", false, ["deriveBits"]);
+  const raw = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: b64(meta.sal), iterations: meta.iter }, base, 256);
+  const llave = await llaveDeRaw(raw);
+  await descifrar(llave, b64(meta.prueba));          // falla si la contraseña no es la correcta
+  await cargarCompleta(llave);
+  guardar(raw, recordar);
+}
+document.addEventListener("click", async ev => {
+  const t = ev.target.closest("button");
+  if (!t) return;
+  if (t.id === "abrir-completa"){
+    const c = $("#candado");
+    c.hidden = !c.hidden;
+    if (!c.hidden) $("#clave").focus();
+  } else if (t.id === "cerrar-completa"){
+    olvidar();
+    location.reload();
+  }
+});
+// El PDF completo se descifra al abrir la ficha y el botón queda como enlace común
+// (una ventana abierta después de esperar la bloquean los navegadores del celular).
+async function prepararPDF(){
+  const a = document.getElementById("pdf-cifrado");
+  if (!a) return;
+  try {
+    const buf = await fetch(PRIV + a.dataset.a + ".pdf.bin").then(r => { if (!r.ok) throw new Error(); return r.arrayBuffer(); });
+    a.href = URL.createObjectURL(new Blob([await descifrar(LLAVE, buf)], { type: "application/pdf" }));
+    a.textContent = "Ver la ficha en PDF";
+  } catch (e) { a.textContent = "PDF no disponible"; }
+}
+document.addEventListener("submit", async ev => {
+  if (ev.target.id !== "form-clave") return;
+  ev.preventDefault();
+  const err = $("#clave-error"), boton = ev.target.querySelector("button");
+  err.hidden = true; boton.disabled = true; boton.textContent = "Abriendo…";
+  try {
+    await abrirConClave($("#clave").value, $("#recordar").checked);
+    instrumento(param, CALIFICAR[param]);
+    prepararPDF();
+  } catch (e) {
+    err.textContent = !window.crypto || !crypto.subtle ? "Este navegador no puede abrir la versión completa." : "La contraseña no es correcta.";
+    err.hidden = false; boton.disabled = false; boton.textContent = "Abrir";
+  }
+});
+
+(async () => {
+  if (typeof CALIFICAR === "undefined"){
+    app.innerHTML = '<p>No se pudieron cargar los instrumentos.</p>';
+    return;
+  }
+  // Si ya se abrió antes (en esta pestaña o recordado en el dispositivo), se carga sola.
+  const guardada = leerGuardada();
+  if (guardada && window.crypto && crypto.subtle && Object.values(CALIFICAR).some(d => d.hoja && !d.local)){
+    try { await cargarCompleta(await llaveDeRaw(b64(guardada))); } catch (e) { olvidar(); }
+  }
+  if (param && CALIFICAR[param]){ instrumento(param, CALIFICAR[param]); prepararPDF(); }
+  else indice();
+})();
 </script>
 </body>
 </html>

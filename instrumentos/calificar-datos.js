@@ -1497,7 +1497,8 @@ const CALIFICAR = {
      "texto": "Hay respuesta positiva en pensamientos de suicidio (grupo 9) o pesimismo alto (grupo 2): valore el riesgo suicida en esta misma sesión, sea cual sea el total."
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "bai": {
   "clave": "BAI",
@@ -1592,7 +1593,8 @@ const CALIFICAR = {
      ]
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "c-ssrs": {
   "clave": "C-SSRS",
@@ -4556,7 +4558,8 @@ const CALIFICAR = {
      ]
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "eat-26": {
   "clave": "EAT-26",
@@ -5610,7 +5613,8 @@ const CALIFICAR = {
      ]
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "mcq-30": {
   "clave": "MCQ-30",
@@ -7222,7 +7226,8 @@ const CALIFICAR = {
      "texto": "De 0 a 114: a mayor puntaje, peor adaptación. Sin baremos para esta versión."
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "panas": {
   "clave": "PANAS",
@@ -8586,7 +8591,8 @@ const CALIFICAR = {
      "texto": "Número de esquemas (de 18) con al menos dos frases en 5 o 6: orientan qué esquemas explorar."
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "srq-20-srq-30": {
   "clave": "SRQ-20 / SRQ-30",
@@ -10104,7 +10110,8 @@ const CALIFICAR = {
      ]
     }
    ]
-  }
+  },
+  "hoja": true
  },
  "fas": {
   "clave": "FAS",
