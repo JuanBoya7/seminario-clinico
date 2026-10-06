@@ -1,0 +1,5 @@
+# Archivos binarios: Git no debe tocar sus fines de línea.
+*.pdf binary
+*.bin binary
+*.png binary
+*.jpg binary
