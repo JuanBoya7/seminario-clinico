@@ -7748,5 +7748,1185 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "acips": {
+  "clave": "ACIPS",
+  "sigla": "ACIPS",
+  "titulo": "Escala de Placer Interpersonal Anticipatorio y Consumatorio",
+  "para": "Medir la capacidad de disfrutar de las relaciones con otros, tanto al anticipar un encuentro como al vivirlo: la anhedonia social. Sirve en la depresión, en el espectro de la esquizofrenia y en el retraimiento social, y para seguir el cambio.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Gooding y Pflum (2014) · versión española de Gooding, Fonseca-Pedrero et al. (2016), Revista de Psiquiatría y Salud Mental.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Lee cada afirmación cuidadosamente y decide qué grado de verdad tienen para ti en general. En el caso de que nunca hayas tenido la experiencia descrita, piensa en la experiencia más parecida que hayas tenido y marque la opción que más se aproxime. No te preocupes acerca de ser totalmente coherente en todas tus respuestas. Elige entre las siguientes seis opciones de respuesta e indique su respuesta en el espacio a la derecha de cada ítem."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Totalmente falsa para mí",
+     "Moderadamente falsa para mí",
+     "Ligeramente falsa para mí",
+     "Ligeramente verdadera para mí",
+     "Moderadamente verdadera para mí",
+     "Totalmente verdadera para mí"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "1. Estoy deseando ver a la gente cuando voy de camino a una fiesta o a quedar con otras personas.",
+     "2. Disfruto mirando fotografías de mis amigos y familia.",
+     "3. Realmente no me gustan las reuniones familiares o las tertulias (reuniones con otras personas).",
+     "4. Disfruto bromeando y hablando con un amigo o un compañero de trabajo.",
+     "5. Una buena comida siempre tiene mejor sabor cuando comes con un amigo cercano.",
+     "6. Me gusta cuando la gente llama o manda mensajes de texto sólo para decir hola.",
+     "7. Cuando algo bueno me pasa, no puedo esperar a compartirlo con otros.",
+     "8. Si conociera un grupo donde las personas compartieran los mismos intereses que yo, estaría interesado en unirme a ellos.",
+     "9. Disfruto viendo películas sobre la amistad o relaciones con mis amigos.",
+     "10. Me imagino que sería muy divertido ir de vacaciones con un amigo o alguien a quien amas.",
+     "11. Valoro mucho cuando me invitan a quedar con gente que conozco después del colegio o del trabajo.",
+     "12. Estoy feliz cuando veo un amigo o alguien a quien amo que no he visto en mucho tiempo.",
+     "13. Disfruto haciendo actividades grupales, como ir a eventos deportivos o conciertos con mis amigos.",
+     "14. Me gusta ver mis programas favoritos de televisión con mis amigos.",
+     "15. Me emociono cuando un amigo que no he visto en un tiempo me llama para hacer planes.",
+     "16. Me gusta hablar con otros mientras espero en una fila.",
+     "17. Disfruto cuando charlo con un amigo sobre cosas importantes."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,17) - (r[3] == null ? 0 : r[3]) + R(3,7)",
+     "texto": "De 17 a 102: a menor puntaje, más anhedonia social. Sin puntos de corte; media en universitarios españoles sin trastorno: 87,9 (DE 10,8)."
+    }
+   ]
+  }
+ },
+ "idc-r": {
+  "clave": "IDC-R",
+  "sigla": "IDC-R",
+  "titulo": "Inventario de Duelo Complicado Revisado",
+  "para": "Evaluar si un duelo se ha vuelto complicado: añoranza intensa, incredulidad, evitación, vacío y pérdida de sentido, con su duración y el deterioro que causan. Incluye los criterios de duelo complicado de Prigerson para valorarlos con la persona.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Prigerson, Kasl y Jacobs (2001) · versión española de García-García et al. (2001).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Por favor, marque con una cruz las respuestas que mejor describan cómo se ha sentido durante el último mes. Los espacios en blanco y subrayados son para poner el nombre de la persona fallecida. Por ejemplo en: Veo a ___________ como si lo tuviera delante; si la persona fallecida se llamaba Juan es: Veo a Juan como si lo tuviera delante."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. La muerte de ___________ hace que me sienta abatido/a o destrozado/a."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "2. Pienso tanto en ___________ que a veces me resulta difícil hacer las cosas que hago normalmente."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "3. Los recuerdos de ___________ me afectan y me trastornan."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "4. Siento que me cuesta aceptar su muerte."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "5. Me doy cuenta que deseo con todas mis fuerzas que _________ esté conmigo, y que recordar su ausencia me provoca una enorme y profunda tristeza."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "6. Me siento atraído/a por los lugares y las cosas relacionadas con ___________ ."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "7. No puedo evitar sentirme enfadado/a por la muerte de __________ ."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "8. Siento que no me puedo creer que ___________ esté muerto/a."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "9. Me siento como “atontado/a”, aturdido/a o conmocionado/a por la muerte de ___________."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "10. Tras la muerte de ___________ me es difícil confiar en la gente."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "11. Tras la muerte de ___________ es como si hubiera perdido el interés por los demás o me sintiera distante de la gente que me importa."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "12. Tengo los mismos dolores que __________ , o alguno de sus síntomas, o a veces mi forma de ser se parece en algo a la suya o me comporto como él/ella lo hacía."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "13. ¿Piensa usted que antes de la muerte de ___________ solía hacer cosas que ahora no hace, o solía ver a personas que ahora no ve?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "13a. En caso de haber contestado “Sí” a la pregunta anterior ¿Cuanto le afecta no hacer esas cosas o no ver a esas personas?",
+      "si": "r[13] === 1"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "14. Hago lo posible por evitar todo aquello que hace que me acuerde de él/ella (cosas, personas, lugares,...)."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "15. Hago lo posible por evitar todo lo que me recuerda que ___________ está muerto/a."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "16. A veces, las personas que han perdido a un ser querido se sienten mal por seguir adelante con su vida. ¿Es difícil para usted seguir adelante con su vida, por ejemplo: hacer nuevos amigos o interesarse por cosas nuevas?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "17. Sin ___________ siento que mi vida está vacía o que no tiene sentido."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "18. Oigo la voz de ____________ que me habla."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "19. Veo a ___________ como si le/la tuviera delante."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "20. Siento que tras la muerte de __________ me he hecho más frío/a e insensible."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "21. Creo que es injusto que yo siga vivo/a estando __________ muerto/a, y me siento culpable por ello."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Bastante",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "22. Estoy amargado/a por la muerte de ___________ ."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "23. Siento envidia de la gente que no ha perdido a un ser querido."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "24. Sin __________ es como si el futuro no tuviera ningún sentido, o como si todo fuera inútil."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "25. Tras la muerte de ___________ me siento sola."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "26. Me siento incapaz de imaginar una vida plena sin __________ ."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "27. Siento que una parte de mí se ha muerto con él/ella."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "28. Siento que su muerte ha cambiado mi manera de ver el mundo."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "29. He perdido la sensación de seguridad, o de estar a salvo, que tenía antes de la muerte de ___________."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "30. He perdido la sensación de control que tenía antes de la muerte de ___________."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "31. Creo que, como consecuencia de mi dolor, se han deteriorado de manera importante mis relaciones sociales, mi trabajo u otras actividades de mi vida."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "32. Tras su muerte me he sentido nervioso/a, irritable o asustadizo/a."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Bien",
+     "Un poco mal",
+     "Algo mal",
+     "Muy mal",
+     "Fatal"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "33. Tras su muerte he dormido...."
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "34. En general, estos sentimientos de los que hemos estado hablando ¿aparecieron nada más morirse él/ella?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "dato",
+    "x": "35. y…¿cuánto tiempo lleva notándolos?",
+    "tipo": "numero",
+    "unidad": "meses"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "36. ¿En algún momento, estos sentimientos, han desaparecido… y después de un tiempo han aparecido otra vez?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "37. Finalmente… ¿puede describir cómo han ido cambiando, estos sentimientos, desde la muerte de ____________ hasta ahora?: ________________________________________________ ________________________________________________ ________________________________________________"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "38. ¿Considera el entrevistador que la persona encuestada tiene un duelo complicado?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "39. ¿Cumple la persona encuestada los siguientes criterios de duelo complicado? (¡Atención: antes de contestar esta pregunta responda la 38!)."
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "A2. Estrés por la separación",
+     "js": "[2, 3, 5, 6, 26].filter(i => r[i] != null && r[i] >= 4).length",
+     "rangos": [
+      [
+       0,
+       2,
+       "No se cumple (menos de 3 preguntas en 4 o más)"
+      ],
+      [
+       3,
+       5,
+       "Se cumple"
+      ]
+     ]
+    },
+    {
+     "n": "B. Estrés por el trauma",
+     "js": "[4, 7, 8, 9, 11, 16, 18, 21, 23, 25, 27, 30].filter(i => r[i] != null && r[i] >= 4).length",
+     "rangos": [
+      [
+       0,
+       5,
+       "No se cumple (menos de 6 preguntas en 4 o más)"
+      ],
+      [
+       6,
+       12,
+       "Se cumple"
+      ]
+     ]
+    },
+    {
+     "n": "C. Cronología (meses)",
+     "js": "Math.floor(r[36] || 0)",
+     "rangos": [
+      [
+       0,
+       5,
+       "No se cumple (menos de 6 meses)"
+      ],
+      [
+       6,
+       null,
+       "Se cumple"
+      ]
+     ]
+    },
+    {
+     "n": "D. Deterioro (pregunta 31)",
+     "js": "r[32] || 0",
+     "rangos": [
+      [
+       0,
+       3,
+       "No se cumple"
+      ],
+      [
+       4,
+       5,
+       "Se cumple"
+      ]
+     ]
+    },
+    {
+     "n": "Criterios cumplidos",
+     "js": "([2, 3, 5, 6, 26].filter(i => r[i] != null && r[i] >= 4).length >= 3) + ([4, 7, 8, 9, 11, 16, 18, 21, 23, 25, 27, 30].filter(i => r[i] != null && r[i] >= 4).length >= 6) + (r[36] != null && r[36] >= 6) + (r[32] != null && r[32] >= 4)",
+     "rangos": [
+      [
+       0,
+       3,
+       "No se cumplen todos: no orienta a duelo complicado"
+      ],
+      [
+       4,
+       4,
+       "Se cumplen los cuatro: orienta a duelo complicado; confirme en entrevista"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "vlq-2": {
+  "clave": "VLQ-2",
+  "sigla": "VLQ-2",
+  "titulo": "Cuestionario de Vida Valiosa",
+  "para": "Medir cuánto importa a la persona cada área de su vida y cuánto actuó de acuerdo con ella en la última semana. La distancia entre las dos señala dónde trabajar valores y acción comprometida en la terapia de aceptación y compromiso.",
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Wilson y Groom (2002); Wilson et al. (2010), The Psychological Record · traducción sin validar.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "A continuación, encontrarás diversas áreas de la vida que pueden ser significativas para algunas personas. Nos interesa conocer cómo percibes tu calidad de vida en cada una de ellas. Una parte fundamental de la calidad de vida está relacionada con la importancia que le otorgas a estas áreas. Por ello, te pedimos que evalúes el nivel de importancia que cada una tiene para ti , utilizando la siguiente escala del 1 al 10: 1 significa que esa área no tiene ninguna importancia en tu vida. 10 significa que esa área es de máxima importancia para ti. Es importante recordar que cada persona tiene prioridades y valores únicos , por lo que no todas las áreas serán igualmente relevantes para todos. No hay respuestas correctas o incorrectas ; simplemente, valora cada una según tu perspectiva y experiencia personal."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "puntua": true,
+    "items": [
+     "1. Familia (excepto matrimonio o crianza)",
+     "2. Matrimonio / Pareja / Relaciones íntimas",
+     "3. Crianza",
+     "4. Amigos / Vida social",
+     "5. Trabajo",
+     "6. Educación / Entrenamiento",
+     "7. Recreación / Diversión",
+     "8. Espiritualidad",
+     "9. Ciudadanía / Participación comunitaria",
+     "10. Cuidado físico personal (dieta, ejercicio, sueño)"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "En esta sección, indica cómo de consistentes han sido tus acciones con tus valores en cada área durante la última semana. No se trata de tus ideales, ni de lo que otros piensan, sino de cómo consideras que te has comportado."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "puntua": true,
+    "items": [
+     "1. Familia (excepto matrimonio o crianza)",
+     "2. Matrimonio / Pareja / Relaciones íntimas",
+     "3. Crianza",
+     "4. Amigos / Vida social",
+     "5. Trabajo",
+     "6. Educación / Entrenamiento",
+     "7. Recreación / Diversión",
+     "8. Espiritualidad",
+     "9. Ciudadanía / Participación comunitaria",
+     "10. Cuidado físico personal (dieta, ejercicio, sueño)"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Compuesto de vida valiosa",
+     "js": "Math.round(RANGO(1,10).reduce((s, i) => s + (r[i] || 0) * (r[i + 10] || 0), 0) / 10 * 10) / 10",
+     "texto": "De 1 a 100: promedio, en las 10 áreas, de importancia por coherencia. A mayor puntaje, más vida de acuerdo con los valores. Sin puntos de corte."
+    }
+   ]
+  }
  }
 };
