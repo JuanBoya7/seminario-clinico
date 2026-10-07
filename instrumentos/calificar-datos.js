@@ -5727,32 +5727,32 @@ const CALIFICAR = {
     {
      "n": "Creencias positivas sobre la preocupación",
      "js": "S(1,6)",
-     "texto": "De 6 a 24."
+     "texto": "De 6 a 24. Media en población general española: 10,1 (DE 4,1)."
     },
     {
      "n": "Creencias negativas: incontrolabilidad y peligro",
      "js": "S(7,12)",
-     "texto": "De 6 a 24."
+     "texto": "De 6 a 24. Media en población general española: 11,5 (DE 3,8)."
     },
     {
      "n": "Baja confianza cognitiva",
      "js": "S(13,18)",
-     "texto": "De 6 a 24."
+     "texto": "De 6 a 24. Media en población general española: 11,4 (DE 4,6)."
     },
     {
      "n": "Necesidad de controlar los pensamientos",
      "js": "S(19,24)",
-     "texto": "De 6 a 24."
+     "texto": "De 6 a 24. Media en población general española: 10,1 (DE 3,3)."
     },
     {
      "n": "Autoconciencia cognitiva",
      "js": "S(25,30)",
-     "texto": "De 6 a 24."
+     "texto": "De 6 a 24. Media en población general española: 13,9 (DE 4,2)."
     },
     {
      "n": "Total",
      "js": "S(1,30)",
-     "texto": "De 30 a 120. Sin puntos de corte."
+     "texto": "De 30 a 120: a mayor puntaje, más creencias metacognitivas disfuncionales. Sin puntos de corte. Referencia: media de 57,2 (DE 13,7) en población general española (Ramos-Cejudo et al., 2013, n = 768, 16 a 81 años)."
     }
    ]
   }
