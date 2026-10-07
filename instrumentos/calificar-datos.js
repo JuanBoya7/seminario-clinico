@@ -14217,6 +14217,306 @@ const CALIFICAR = {
    ]
   }
  },
+ "fiat-q": {
+  "clave": "FIAT-Q",
+  "sigla": "FIAT-Q",
+  "titulo": "Cuestionario de Evaluación Idiográfica Funcional",
+  "para": "Funcionamiento interpersonal en cinco clases —expresión de necesidades, comunicación en ambos sentidos, conflicto, cercanía y experiencia y expresión emocional— para identificar las conductas clínicamente relevantes de la persona en la psicoterapia analítica funcional.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Darrow et al. (2014), FIAT-Q, apéndice A · traducción al español del formato del docente, sin fuente identificada.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "−3",
+     "−2",
+     "−1",
+     "+1",
+     "+2",
+     "+3"
+    ],
+    "vals": [
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "−3",
+     "−2",
+     "−1",
+     "+1",
+     "+2",
+     "+3"
+    ],
+    "vals": [
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "−3",
+     "−2",
+     "−1",
+     "+1",
+     "+2",
+     "+3"
+    ],
+    "vals": [
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "−3",
+     "−2",
+     "−1",
+     "+1",
+     "+2",
+     "+3"
+    ],
+    "vals": [
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "−3",
+     "−2",
+     "−1",
+     "+1",
+     "+2",
+     "+3"
+    ],
+    "vals": [
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Clase A. Identificación y expresión de necesidades",
+     "js": "(r[1] + R(2,0) + R(3,0) + r[4] + r[5] + R(6,0) + r[7] + R(8,0) + R(9,0) + R(10,0) + r[11] + r[12] + r[13] + R(14,0) + r[15] + r[16] + r[17] + R(18,0) + r[19] + r[20] + r[21])",
+     "texto": "De −63 a +63 (21 afirmaciones): a mayor puntaje, más problemas."
+    },
+    {
+     "n": "Clase B. Comunicación bidireccional: impacto y retroalimentación",
+     "js": "(r[22] + r[23] + r[24] + r[25] + R(26,0) + R(28,0) + R(29,0) + r[30] + R(31,0) + r[32] + r[34] + r[35] + r[37] + r[38] + r[39] + r[40] + r[41] + r[42] + r[43] + R(44,0) + r[45] + r[46])",
+     "texto": "De −66 a +66 (22 afirmaciones): a mayor puntaje, más problemas."
+    },
+    {
+     "n": "Clase C. Conflicto",
+     "js": "(r[47] + r[48] + R(49,0) + r[50] + R(51,0) + r[52] + r[53] + r[54] + r[55] + r[56] + r[57] + r[58] + R(60,0) + r[61] + R(63,0) + r[64] + r[65] + r[66] + r[67] + r[68] + r[69])",
+     "texto": "De −63 a +63 (21 afirmaciones): a mayor puntaje, más problemas."
+    },
+    {
+     "n": "Clase D. Cercanía interpersonal",
+     "js": "(r[70] + R(71,0) + r[72] + R(73,0) + r[74] + r[75] + r[76] + r[77] + R(78,0) + r[79] + r[80] + r[81] + R(82,0) + r[83] + R(84,0) + r[85] + R(86,0) + r[87] + r[88] + r[89] + r[90] + r[91] + R(92,0) + r[93])",
+     "texto": "De −72 a +72 (24 afirmaciones): a mayor puntaje, más problemas."
+    },
+    {
+     "n": "Clase E. Experiencia y expresión emocional",
+     "js": "(r[94] + r[95] + R(96,0) + r[97] + R(98,0) + R(99,0) + R(100,0) + r[102] + r[103] + r[104] + R(105,0) + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111] + r[112] + R(113,0) + r[114] + r[115] + r[116] + r[117])",
+     "texto": "De −69 a +69 (23 afirmaciones): a mayor puntaje, más problemas."
+    },
+    {
+     "n": "Total",
+     "js": "(r[1] + R(2,0) + R(3,0) + r[4] + r[5] + R(6,0) + r[7] + R(8,0) + R(9,0) + R(10,0) + r[11] + r[12] + r[13] + R(14,0) + r[15] + r[16] + r[17] + R(18,0) + r[19] + r[20] + r[21]) + (r[22] + r[23] + r[24] + r[25] + R(26,0) + R(28,0) + R(29,0) + r[30] + R(31,0) + r[32] + r[34] + r[35] + r[37] + r[38] + r[39] + r[40] + r[41] + r[42] + r[43] + R(44,0) + r[45] + r[46]) + (r[47] + r[48] + R(49,0) + r[50] + R(51,0) + r[52] + r[53] + r[54] + r[55] + r[56] + r[57] + r[58] + R(60,0) + r[61] + R(63,0) + r[64] + r[65] + r[66] + r[67] + r[68] + r[69]) + (r[70] + R(71,0) + r[72] + R(73,0) + r[74] + r[75] + r[76] + r[77] + R(78,0) + r[79] + r[80] + r[81] + R(82,0) + r[83] + R(84,0) + r[85] + R(86,0) + r[87] + r[88] + r[89] + r[90] + r[91] + R(92,0) + r[93]) + (r[94] + r[95] + R(96,0) + r[97] + R(98,0) + R(99,0) + R(100,0) + r[102] + r[103] + r[104] + R(105,0) + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111] + r[112] + R(113,0) + r[114] + r[115] + r[116] + r[117])",
+     "texto": "De −333 a +333 (111 afirmaciones): a mayor puntaje, más problemas en el funcionamiento interpersonal. Sin baremos ni puntos de corte."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "eoss": {
   "clave": "EOSS",
   "sigla": "EOSS",
