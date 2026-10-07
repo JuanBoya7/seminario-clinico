@@ -14223,7 +14223,7 @@ const CALIFICAR = {
   "titulo": "Escala de Experiencia del Yo",
   "para": "Grado en que la experiencia del yo depende de los demás —lo que la persona siente, necesita, opina y hace— en general, con conocidos y en las relaciones cercanas, además de la espontaneidad, la creatividad y la sensibilidad a la crítica. Sirve para evaluar los problemas del yo y comparar antes y después del tratamiento.",
   "areas": [
-   "Otras"
+   "Autoestima, autocrítica y habilidades sociales"
   ],
   "quien": [
    "persona"
