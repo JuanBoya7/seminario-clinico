@@ -2145,7 +2145,7 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "S(1,21)",
-     "texto": "Indicador general de síntomas emocionales."
+     "texto": "Indicador general de síntomas emocionales. No tiene puntos de corte propios: la gravedad se lee en las tres escalas."
     }
    ],
    "alertas": [
@@ -3968,22 +3968,54 @@ const CALIFICAR = {
     {
      "n": "Física",
      "js": "L([3, 4, 7, 8, 12, 15])",
-     "texto": "De 0 a 24."
+     "texto": "De 0 a 24. Percentiles 50, 75 y 90 en universitarios españoles: 4, 6 y 10."
     },
     {
      "n": "Cognitiva",
      "js": "L([2, 5, 10, 14, 16, 18])",
-     "texto": "De 0 a 24."
+     "texto": "De 0 a 24. Percentiles 50, 75 y 90 en universitarios españoles: 1, 4 y 7."
     },
     {
      "n": "Social",
      "js": "L([1, 6, 9, 11, 13, 17])",
-     "texto": "De 0 a 24."
+     "texto": "De 0 a 24. Percentiles 50, 75 y 90 en universitarios españoles: 6, 10 y 14."
     },
     {
      "n": "Total",
      "js": "S(1,18)",
-     "texto": "De 0 a 72: a mayor puntaje, más sensibilidad a la ansiedad. Sin puntos de corte."
+     "rangos": [
+      [
+       0,
+       7,
+       "Hasta el percentil 25"
+      ],
+      [
+       8,
+       11,
+       "Entre los percentiles 25 y 50"
+      ],
+      [
+       12,
+       19,
+       "Entre los percentiles 50 y 75"
+      ],
+      [
+       20,
+       28,
+       "Entre los percentiles 75 y 90"
+      ],
+      [
+       29,
+       32,
+       "Entre los percentiles 90 y 95"
+      ],
+      [
+       33,
+       72,
+       "Por encima del percentil 95"
+      ]
+     ],
+     "texto": "De 0 a 72: a mayor puntaje, más sensibilidad a la ansiedad. Percentiles de universitarios españoles (Sandín et al., 2007): no son puntos de corte. Media 14,1 (DT 9,6); mujeres algo más alto."
     }
    ]
   }
@@ -4780,32 +4812,32 @@ const CALIFICAR = {
     {
      "n": "Autoaceptación",
      "js": "(r[1] || 0) + (r[7] || 0) + (r[17] || 0) + (r[24] || 0)",
-     "texto": "De 4 a 24: a mayor puntaje, más bienestar."
+     "texto": "De 4 a 24: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,3, que en esta suma equivale a unos 17."
     },
     {
      "n": "Relaciones positivas",
      "js": "R(2,7) + R(8,7) + (r[12] || 0) + R(22,7) + (r[25] || 0)",
-     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,6, que en esta suma equivale a unos 23."
     },
     {
      "n": "Autonomía",
      "js": "(r[3] || 0) + R(4,7) + R(9,7) + R(13,7) + (r[18] || 0) + R(23,7)",
-     "texto": "De 6 a 36: a mayor puntaje, más bienestar."
+     "texto": "De 6 a 36: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,2, que en esta suma equivale a unos 25."
     },
     {
      "n": "Dominio del entorno",
      "js": "R(5,7) + (r[10] || 0) + (r[14] || 0) + R(19,7) + (r[29] || 0)",
-     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,3, que en esta suma equivale a unos 22."
     },
     {
      "n": "Propósito en la vida",
      "js": "(r[6] || 0) + (r[11] || 0) + (r[15] || 0) + (r[16] || 0) + (r[20] || 0)",
-     "texto": "De 5 a 30: a mayor puntaje, más bienestar."
+     "texto": "De 5 a 30: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,5, que en esta suma equivale a unos 22."
     },
     {
      "n": "Crecimiento personal",
      "js": "(r[21] || 0) + R(26,7) + (r[27] || 0) + (r[28] || 0)",
-     "texto": "De 4 a 24: a mayor puntaje, más bienestar."
+     "texto": "De 4 a 24: a mayor puntaje, más bienestar. Referencia: en población general española el promedio por ítem fue 4,6, que en esta suma equivale a unos 18."
     }
    ]
   }
@@ -5017,7 +5049,7 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "L([6, 7, 8, 9, 12, 17, 21, 24, 25, 27, 28, 29, 30, 32, 33, 34, 35, 39, 41, 48, 49, 50, 57, 58, 62, 64]) + R(1,4) + R(2,4) + R(3,4) + R(4,4) + R(5,4) + R(10,4) + R(11,4) + R(13,4) + R(14,4) + R(15,4) + R(16,4) + R(18,4) + R(19,4) + R(20,4) + R(22,4) + R(23,4) + R(26,4) + R(31,4) + R(36,4) + R(37,4) + R(38,4) + R(40,4) + R(42,4) + R(43,4) + R(44,4) + R(45,4) + R(46,4) + R(47,4) + R(51,4) + R(52,4) + R(53,4) + R(54,4) + R(55,4) + R(56,4) + R(59,4) + R(60,4) + R(61,4) + R(63,4)",
-     "texto": "De 0 a 256: a mayor puntaje, más habilidad social. Sin puntos de corte."
+     "texto": "De 0 a 256: a mayor puntaje, más habilidad social. Sin puntos de corte. Referencia: media de 140,6 (DE 29,8) en 673 universitarios españoles (Caballo, 1993)."
     }
    ]
   }
@@ -7223,7 +7255,24 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "S(1,38)",
-     "texto": "De 0 a 114: a mayor puntaje, peor adaptación. Sin baremos para esta versión."
+     "texto": "De 0 a 114: a mayor puntaje, peor adaptación. Percentiles 25, 50 y 75 de la muestra de la tesis (231 pacientes mexicanos): 22, 32 y 44.",
+     "rangos": [
+      [
+       0,
+       21,
+       "Alta adaptación (por debajo del percentil 25)"
+      ],
+      [
+       22,
+       44,
+       "Entre los percentiles 25 y 75"
+      ],
+      [
+       45,
+       114,
+       "Baja adaptación (por encima del percentil 75)"
+      ]
+     ]
     }
    ]
   },
@@ -7300,12 +7349,12 @@ const CALIFICAR = {
     {
      "n": "Afecto positivo",
      "js": "L([1, 3, 5, 9, 10, 12, 14, 16, 17, 19])",
-     "texto": "De 10 a 50: a mayor puntaje, más afecto positivo."
+     "texto": "De 10 a 50: a mayor puntaje, más afecto positivo. Referencia: 32,7 (DE 8,3) en población general española (López-Gómez et al., 2015, n = 1071)."
     },
     {
      "n": "Afecto negativo",
      "js": "L([2, 4, 6, 7, 8, 11, 13, 15, 18, 20])",
-     "texto": "De 10 a 50: a mayor puntaje, más afecto negativo."
+     "texto": "De 10 a 50: a mayor puntaje, más afecto negativo. Referencia: 20,1 (DE 7,6) en población general española, algo más alto en mujeres (López-Gómez et al., 2015)."
     }
    ]
   }
@@ -8396,32 +8445,32 @@ const CALIFICAR = {
     {
      "n": "Autoamabilidad (promedio)",
      "js": "Math.round((L([5, 12, 19, 23, 26]) / 5) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión. Referencia: 3,14 (DE 0,68) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     },
     {
      "n": "Autojuicio (promedio)",
      "js": "Math.round((L([1, 8, 11, 16, 21]) / 5) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión. Referencia: 3,02 (DE 0,71) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     },
     {
      "n": "Humanidad común (promedio)",
      "js": "Math.round((L([3, 7, 10, 15]) / 4) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión. Referencia: 2,91 (DE 0,65) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     },
     {
      "n": "Aislamiento (promedio)",
      "js": "Math.round((L([4, 13, 18, 25]) / 4) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión. Referencia: 2,87 (DE 0,72) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     },
     {
      "n": "Mindfulness (promedio)",
      "js": "Math.round((L([9, 14, 17, 22]) / 4) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, más autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, más autocompasión. Referencia: 3,18 (DE 0,74) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     },
     {
      "n": "Sobreidentificación (promedio)",
      "js": "Math.round((L([2, 6, 20, 24]) / 4) * 100) / 100",
-     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión."
+     "texto": "De 1 a 5: a mayor puntaje, menos autocompasión. Referencia: 3,14 (DE 0,77) en universitarios españoles (García-Campayo et al., 2014, n = 268)."
     }
    ]
   }
@@ -11011,37 +11060,37 @@ const CALIFICAR = {
     {
      "n": "Depresión mayor",
      "js": "L([1, 7, 13, 19, 25])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 3,4 (DE 2,4)."
     },
     {
      "n": "Trastorno de pánico",
      "js": "L([2, 8, 14, 20, 26])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 1,7 (DE 2,2)."
     },
     {
      "n": "Fobia social",
      "js": "L([3, 9, 15, 21, 27])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 6,0 (DE 3,4)."
     },
     {
      "n": "Ansiedad de separación",
      "js": "L([4, 10, 16, 22, 28])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 2,9 (DE 2,6)."
     },
     {
      "n": "Ansiedad generalizada",
      "js": "L([5, 11, 17, 23, 29])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 8,1 (DE 3,5)."
     },
     {
      "n": "Obsesivo-compulsivo",
      "js": "L([6, 12, 18, 24, 30])",
-     "texto": "De 0 a 15: a mayor puntaje, más síntomas."
+     "texto": "De 0 a 15: a mayor puntaje, más síntomas. Media en niños y adolescentes españoles: 4,1 (DE 2,6)."
     },
     {
      "n": "Total",
      "js": "S(1,30)",
-     "texto": "De 0 a 90. Sin puntos de corte: compare con aplicaciones anteriores."
+     "texto": "De 0 a 90. Sin puntos de corte. Media en niños y adolescentes españoles: 25,5 (DE 12,3); niñas 26,9, niños 24,3 (Sandín et al., 2010, n = 544). Compare también con aplicaciones anteriores."
     }
    ]
   }
@@ -12091,22 +12140,22 @@ const CALIFICAR = {
     {
      "n": "Evitar el malestar que provocan la escuela o sus situaciones (promedio)",
      "js": "((r[1] || 0) + (r[5] || 0) + (r[9] || 0) + (r[13] || 0) + (r[16] || 0)) / 5",
-     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal. Promedio en escolares españoles de 3.º a 6.º de primaria: 1,5 (Gonzálvez et al., 2016, n = 1078)."
     },
     {
      "n": "Escapar de situaciones sociales o de evaluación (promedio)",
      "js": "((r[2] || 0) + (r[6] || 0) + (r[10] || 0) + (r[14] || 0) + (r[17] || 0)) / 5",
-     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal. Promedio en escolares españoles de 3.º a 6.º de primaria: 0,7 (Gonzálvez et al., 2016, n = 1078)."
     },
     {
      "n": "Buscar la atención de personas significativas (promedio)",
      "js": "((r[3] || 0) + (r[7] || 0) + (r[11] || 0) + (r[15] || 0) + (r[18] || 0)) / 5",
-     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+     "texto": "Suma dividida por 5, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal. Promedio en escolares españoles de 3.º a 6.º de primaria: 2,5 (Gonzálvez et al., 2016, n = 1078)."
     },
     {
      "n": "Buscar refuerzos tangibles fuera de la escuela (promedio)",
      "js": "((r[4] || 0) + (r[8] || 0) + (r[12] || 0)) / 3",
-     "texto": "Suma dividida por 3, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal."
+     "texto": "Suma dividida por 3, de 0 a 6. Compare los cuatro promedios: el más alto orienta la función principal. Promedio en escolares españoles de 3.º a 6.º de primaria: 4,0 (Gonzálvez et al., 2016, n = 1078)."
     }
    ]
   }
@@ -12883,7 +12932,7 @@ const CALIFICAR = {
     {
      "n": "Puntaje total",
      "js": "S(1,9)",
-     "texto": "De 9 a 45: a mayor puntaje, mayor gravedad."
+     "texto": "De 9 a 45: a mayor puntaje, mayor gravedad. Referencia: en estudiantes españoles que juegan, quienes se declararon adictos promediaron 19,2 (DE 8,3) y los demás 13,4 (DE 4,7) (Beranuy et al., 2020)."
     },
     {
      "n": "Criterios cumplidos («A menudo» o «Muy a menudo»)",
@@ -13582,7 +13631,7 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "L([1,3,4,6,7]) + R(2,5) + R(5,5) + R(8,5) + R(9,5) + R(10,5)",
-     "texto": "De 10 a 40: a mayor puntaje, mayor autoestima. Sin puntos de corte en la validación española."
+     "texto": "De 10 a 40: a mayor puntaje, mayor autoestima. Sin puntos de corte. Referencia: en universitarios españoles la media fue 32,5 (DE 3,9) en hombres y 31,1 (DE 4,6) en mujeres (Martín-Albo et al., 2007, n = 420)."
     },
     {
      "n": "Autoestima positiva (1, 3, 4, 6, 7)",
@@ -13847,22 +13896,22 @@ const CALIFICAR = {
     {
      "n": "Miedo a los errores",
      "js": "(r[9] || 0) + (r[10] || 0) + (r[14] || 0) + (r[17] || 0) + (r[21] || 0) + (r[23] || 0) + (r[25] || 0) + (r[28] || 0) + (r[32] || 0) + (r[33] || 0) + (r[34] || 0)",
-     "texto": "De 11 a 55."
+     "texto": "De 11 a 55. Media en universitarios españoles: 19,2 (DE 6,8); percentiles 25/50/75: 14, 18 y 23."
     },
     {
      "n": "Influencias paternas",
      "js": "(r[1] || 0) + (r[3] || 0) + (r[5] || 0) + (r[11] || 0) + (r[15] || 0) + (r[20] || 0) + (r[22] || 0) + (r[26] || 0) + (r[35] || 0)",
-     "texto": "De 9 a 45."
+     "texto": "De 9 a 45. Media en universitarios españoles: 14,3 (DE 6,4); percentiles 25/50/75: 10, 12 y 16."
     },
     {
      "n": "Expectativas de logro",
      "js": "(r[4] || 0) + (r[6] || 0) + (r[12] || 0) + (r[13] || 0) + (r[16] || 0) + (r[18] || 0) + (r[19] || 0) + (r[24] || 0) + (r[30] || 0)",
-     "texto": "De 9 a 45."
+     "texto": "De 9 a 45. Media en universitarios españoles: 19,3 (DE 6,8); percentiles 25/50/75: 14, 18 y 24."
     },
     {
      "n": "Organización",
      "js": "(r[2] || 0) + (r[7] || 0) + (r[8] || 0) + (r[27] || 0) + (r[29] || 0) + (r[31] || 0)",
-     "texto": "De 6 a 30."
+     "texto": "De 6 a 30. Media en universitarios españoles: 18,4 (DE 5,1); percentiles 25/50/75: 15, 18 y 22."
     },
     {
      "n": "Total",
@@ -14075,7 +14124,7 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "S(1,7)",
-     "texto": "De 0 a 28: a mayor puntaje, más gravedad. Sin puntos de corte."
+     "texto": "De 0 a 28: a mayor puntaje, más gravedad. Sin puntos de corte ni normas: sirve para seguir el cambio. Referencia: en el estudio piloto del manual de Woods y Twohig (2008) el puntaje bajó en promedio un 63 % al terminar el tratamiento."
     },
     {
      "n": "Impulsos (1 a 3)",
@@ -14197,22 +14246,22 @@ const CALIFICAR = {
     {
      "n": "Escuela (1 a 6)",
      "js": "S(1,6)",
-     "texto": "De 0 a 18: a menor puntaje, menos habla en la escuela."
+     "texto": "De 0 a 18: a menor puntaje, menos habla en la escuela. En niños con mutismo selectivo: 2,4 (DE 2,3)."
     },
     {
      "n": "Familia (7 a 12)",
      "js": "S(7,12)",
-     "texto": "De 0 a 18: a menor puntaje, menos habla con la familia."
+     "texto": "De 0 a 18: a menor puntaje, menos habla con la familia. En niños con mutismo selectivo: 6,0 (DE 3,1)."
     },
     {
      "n": "Social (13 a 17)",
      "js": "S(13,17)",
-     "texto": "De 0 a 15: a menor puntaje, menos habla fuera de la escuela."
+     "texto": "De 0 a 15: a menor puntaje, menos habla fuera de la escuela. En niños con mutismo selectivo: 1,4 (DE 1,6)."
     },
     {
      "n": "Total",
      "js": "S(1,17)",
-     "texto": "De 0 a 51: a menor puntaje, más mutismo. Sin puntos de corte."
+     "texto": "De 0 a 51: a menor puntaje, más mutismo. Sin puntos de corte. Referencia clínica: 9,8 (DE 5,8) en 110 niños españoles con mutismo selectivo diagnosticado (Olivares-Olivares et al., 2021)."
     }
    ]
   }
@@ -16145,32 +16194,32 @@ const CALIFICAR = {
     {
      "n": "Síntomas emocionales",
      "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24])",
-     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     },
     {
      "n": "Problemas de conducta",
      "js": "(r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22])",
-     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     },
     {
      "n": "Hiperactividad",
      "js": "(r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25])",
-     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     },
     {
      "n": "Problemas con compañeros",
      "js": "(r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
-     "texto": "De 0 a 10: a mayor puntaje, más dificultades."
+     "texto": "De 0 a 10: a mayor puntaje, más dificultades. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     },
     {
      "n": "Conducta prosocial",
      "js": "(r[1] == null ? 0 : r[1]) + (r[4] == null ? 0 : r[4]) + (r[9] == null ? 0 : r[9]) + (r[17] == null ? 0 : r[17]) + (r[20] == null ? 0 : r[20])",
-     "texto": "De 0 a 10: a mayor puntaje, más conducta prosocial."
+     "texto": "De 0 a 10: a mayor puntaje, más conducta prosocial. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     },
     {
      "n": "Total de dificultades",
      "js": "(r[3] == null ? 0 : r[3]) + (r[8] == null ? 0 : r[8]) + (r[13] == null ? 0 : r[13]) + (r[16] == null ? 0 : r[16]) + (r[24] == null ? 0 : r[24]) + (r[5] == null ? 0 : r[5]) + (r[7] == null ? 0 : 2 - r[7]) + (r[12] == null ? 0 : r[12]) + (r[18] == null ? 0 : r[18]) + (r[22] == null ? 0 : r[22]) + (r[2] == null ? 0 : r[2]) + (r[10] == null ? 0 : r[10]) + (r[15] == null ? 0 : r[15]) + (r[21] == null ? 0 : 2 - r[21]) + (r[25] == null ? 0 : 2 - r[25]) + (r[6] == null ? 0 : r[6]) + (r[11] == null ? 0 : 2 - r[11]) + (r[14] == null ? 0 : 2 - r[14]) + (r[19] == null ? 0 : r[19]) + (r[23] == null ? 0 : r[23])",
-     "texto": "De 0 a 40."
+     "texto": "De 0 a 40. Sin bandas validadas para mayores de 18: los autores recomiendan usar el puntaje continuo y compararlo entre aplicaciones."
     }
    ]
   }
