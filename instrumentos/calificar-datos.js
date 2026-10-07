@@ -14217,6 +14217,224 @@ const CALIFICAR = {
    ]
   }
  },
+ "eoss": {
+  "clave": "EOSS",
+  "sigla": "EOSS",
+  "titulo": "Escala de Experiencia del Yo",
+  "para": "Grado en que la experiencia del yo depende de los demás —lo que la persona siente, necesita, opina y hace— en general, con conocidos y en las relaciones cercanas, además de la espontaneidad, la creatividad y la sensibilidad a la crítica. Sirve para evaluar los problemas del yo y comparar antes y después del tratamiento.",
+  "areas": [
+   "Otras"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Kanter, Parker y Kohlenberg (2001), EOSS · adaptación española de Valero, Ferro, López y Selva (2012, 2014), versión 2013.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Sección I. Sí mismo en general",
+     "js": "L([1,2,3,4,7]) + R(5,8) + R(6,8)",
+     "texto": "De 7 a 49. Media en la muestra española: 16,9 no clínica; 21,9 clínica."
+    },
+    {
+     "n": "Sección II. Con conocidos",
+     "js": "S(8,17)",
+     "texto": "De 10 a 70. Media: 20,4 no clínica; 24,0 clínica."
+    },
+    {
+     "n": "Sección III. En relaciones cercanas",
+     "js": "S(18,27)",
+     "texto": "De 10 a 70. Media: 27,4 no clínica; 31,4 clínica."
+    },
+    {
+     "n": "Sección IV. Sí mismo en relación con los demás",
+     "js": "L([28,29,32,33,34,37]) + R(30,8) + R(31,8) + R(35,8) + R(36,8)",
+     "texto": "De 10 a 70. Media: 25,5 no clínica; 30,5 clínica."
+    },
+    {
+     "n": "Total",
+     "js": "(L([1,2,3,4,7]) + R(5,8) + R(6,8)) + (S(8,17)) + (S(18,27)) + (L([28,29,32,33,34,37]) + R(30,8) + R(31,8) + R(35,8) + R(36,8))",
+     "texto": "De 37 a 259: a mayor puntaje, más control público del yo. Sin puntos de corte; media 90,2 (DE 25,7) no clínica y 107,7 (DE 33,0) clínica."
+    },
+    {
+     "n": "Factor 1. Yo en las relaciones íntimas",
+     "js": "S(18,27)",
+     "texto": "Ítems 18 a 27."
+    },
+    {
+     "n": "Factor 2. Yo con conocidos",
+     "js": "S(8,17)",
+     "texto": "Ítems 8 a 17."
+    },
+    {
+     "n": "Factor 3. Yo en general",
+     "js": "L([1,2,3,4,7,28,29,32,33,34,37])",
+     "texto": "De 11 a 77."
+    },
+    {
+     "n": "Factor 4. Experiencia positiva del yo",
+     "js": "L([5,6,30,31,35,36])",
+     "texto": "De 6 a 42, sumados tal como se responden: un puntaje alto indica más creatividad y espontaneidad."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "acips": {
   "clave": "ACIPS",
   "sigla": "ACIPS",
