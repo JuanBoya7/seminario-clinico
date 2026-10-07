@@ -14311,16 +14311,13 @@ const CALIFICAR = {
      "Ítem 3",
      "Ítem 4",
      "Ítem 5",
-     "Ítem 6",
      "Ítem 7",
      "Ítem 8",
      "Ítem 9",
      "Ítem 10",
      "Ítem 11",
-     "Ítem 12",
      "Ítem 13",
      "Ítem 14",
-     "Ítem 15",
      "Ítem 16",
      "Ítem 17",
      "Ítem 18",
@@ -14368,10 +14365,8 @@ const CALIFICAR = {
      "Ítem 10",
      "Ítem 11",
      "Ítem 12",
-     "Ítem 13",
      "Ítem 14",
      "Ítem 15",
-     "Ítem 16",
      "Ítem 17",
      "Ítem 18",
      "Ítem 19",
@@ -14460,7 +14455,6 @@ const CALIFICAR = {
      "Ítem 5",
      "Ítem 6",
      "Ítem 7",
-     "Ítem 8",
      "Ítem 9",
      "Ítem 10",
      "Ítem 11",
@@ -14490,27 +14484,27 @@ const CALIFICAR = {
     },
     {
      "n": "Clase B. Comunicación bidireccional: impacto y retroalimentación",
-     "js": "(r[22] + r[23] + r[24] + r[25] + R(26,0) + R(28,0) + R(29,0) + r[30] + R(31,0) + r[32] + r[34] + r[35] + r[37] + r[38] + r[39] + r[40] + r[41] + r[42] + r[43] + R(44,0) + r[45] + r[46])",
+     "js": "(r[22] + r[23] + r[24] + r[25] + R(26,0) + R(27,0) + R(28,0) + r[29] + R(30,0) + r[31] + r[32] + r[33] + r[34] + r[35] + r[36] + r[37] + r[38] + r[39] + r[40] + R(41,0) + r[42] + r[43])",
      "texto": "De −66 a +66 (22 afirmaciones): a mayor puntaje, más problemas."
     },
     {
      "n": "Clase C. Conflicto",
-     "js": "(r[47] + r[48] + R(49,0) + r[50] + R(51,0) + r[52] + r[53] + r[54] + r[55] + r[56] + r[57] + r[58] + R(60,0) + r[61] + R(63,0) + r[64] + r[65] + r[66] + r[67] + r[68] + r[69])",
+     "js": "(r[44] + r[45] + R(46,0) + r[47] + R(48,0) + r[49] + r[50] + r[51] + r[52] + r[53] + r[54] + r[55] + R(56,0) + r[57] + R(58,0) + r[59] + r[60] + r[61] + r[62] + r[63] + r[64])",
      "texto": "De −63 a +63 (21 afirmaciones): a mayor puntaje, más problemas."
     },
     {
      "n": "Clase D. Cercanía interpersonal",
-     "js": "(r[70] + R(71,0) + r[72] + R(73,0) + r[74] + r[75] + r[76] + r[77] + R(78,0) + r[79] + r[80] + r[81] + R(82,0) + r[83] + R(84,0) + r[85] + R(86,0) + r[87] + r[88] + r[89] + r[90] + r[91] + R(92,0) + r[93])",
+     "js": "(r[65] + R(66,0) + r[67] + R(68,0) + r[69] + r[70] + r[71] + r[72] + R(73,0) + r[74] + r[75] + r[76] + R(77,0) + r[78] + R(79,0) + r[80] + R(81,0) + r[82] + r[83] + r[84] + r[85] + r[86] + R(87,0) + r[88])",
      "texto": "De −72 a +72 (24 afirmaciones): a mayor puntaje, más problemas."
     },
     {
      "n": "Clase E. Experiencia y expresión emocional",
-     "js": "(r[94] + r[95] + R(96,0) + r[97] + R(98,0) + R(99,0) + R(100,0) + r[102] + r[103] + r[104] + R(105,0) + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111] + r[112] + R(113,0) + r[114] + r[115] + r[116] + r[117])",
+     "js": "(r[89] + r[90] + R(91,0) + r[92] + R(93,0) + R(94,0) + R(95,0) + r[96] + r[97] + r[98] + R(99,0) + r[100] + R(101,0) + r[102] + r[103] + r[104] + r[105] + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111])",
      "texto": "De −69 a +69 (23 afirmaciones): a mayor puntaje, más problemas."
     },
     {
      "n": "Total",
-     "js": "(r[1] + R(2,0) + R(3,0) + r[4] + r[5] + R(6,0) + r[7] + R(8,0) + R(9,0) + R(10,0) + r[11] + r[12] + r[13] + R(14,0) + r[15] + r[16] + r[17] + R(18,0) + r[19] + r[20] + r[21]) + (r[22] + r[23] + r[24] + r[25] + R(26,0) + R(28,0) + R(29,0) + r[30] + R(31,0) + r[32] + r[34] + r[35] + r[37] + r[38] + r[39] + r[40] + r[41] + r[42] + r[43] + R(44,0) + r[45] + r[46]) + (r[47] + r[48] + R(49,0) + r[50] + R(51,0) + r[52] + r[53] + r[54] + r[55] + r[56] + r[57] + r[58] + R(60,0) + r[61] + R(63,0) + r[64] + r[65] + r[66] + r[67] + r[68] + r[69]) + (r[70] + R(71,0) + r[72] + R(73,0) + r[74] + r[75] + r[76] + r[77] + R(78,0) + r[79] + r[80] + r[81] + R(82,0) + r[83] + R(84,0) + r[85] + R(86,0) + r[87] + r[88] + r[89] + r[90] + r[91] + R(92,0) + r[93]) + (r[94] + r[95] + R(96,0) + r[97] + R(98,0) + R(99,0) + R(100,0) + r[102] + r[103] + r[104] + R(105,0) + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111] + r[112] + R(113,0) + r[114] + r[115] + r[116] + r[117])",
+     "js": "(r[1] + R(2,0) + R(3,0) + r[4] + r[5] + R(6,0) + r[7] + R(8,0) + R(9,0) + R(10,0) + r[11] + r[12] + r[13] + R(14,0) + r[15] + r[16] + r[17] + R(18,0) + r[19] + r[20] + r[21]) + (r[22] + r[23] + r[24] + r[25] + R(26,0) + R(27,0) + R(28,0) + r[29] + R(30,0) + r[31] + r[32] + r[33] + r[34] + r[35] + r[36] + r[37] + r[38] + r[39] + r[40] + R(41,0) + r[42] + r[43]) + (r[44] + r[45] + R(46,0) + r[47] + R(48,0) + r[49] + r[50] + r[51] + r[52] + r[53] + r[54] + r[55] + R(56,0) + r[57] + R(58,0) + r[59] + r[60] + r[61] + r[62] + r[63] + r[64]) + (r[65] + R(66,0) + r[67] + R(68,0) + r[69] + r[70] + r[71] + r[72] + R(73,0) + r[74] + r[75] + r[76] + R(77,0) + r[78] + R(79,0) + r[80] + R(81,0) + r[82] + r[83] + r[84] + r[85] + r[86] + R(87,0) + r[88]) + (r[89] + r[90] + R(91,0) + r[92] + R(93,0) + R(94,0) + R(95,0) + r[96] + r[97] + r[98] + R(99,0) + r[100] + R(101,0) + r[102] + r[103] + r[104] + r[105] + r[106] + R(107,0) + r[108] + r[109] + r[110] + r[111])",
      "texto": "De −333 a +333 (111 afirmaciones): a mayor puntaje, más problemas en el funcionamiento interpersonal. Sin baremos ni puntos de corte."
     }
    ]
@@ -14809,6 +14803,273 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "fiat-q-breve": {
+  "clave": "FIAT-Q-breve",
+  "sigla": "FIAT-Q-breve",
+  "titulo": "Cuestionario de Evaluación Idiográfica Funcional, versión breve",
+  "para": "Versión breve y validada en España del FIAT-Q: dificultades interpersonales en las cinco clases de la psicoterapia analítica funcional, con centiles de población general. Sirve para el tamizaje y para comparar antes y después del tratamiento; el FIAT-Q completo da el detalle para formular el caso.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Macías, Ruiz García, López Pinar y Valero Aguayo (2025), FIAT-Q-breve, anexo 1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 17",
+     "Ítem 18"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Clase A. Expresión de necesidades",
+     "js": "L([1,2,3,4])",
+     "texto": "De 4 a 24: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Clase B. Comunicación bidireccional",
+     "js": "L([5,6,7,8,9,10])",
+     "texto": "De 6 a 36: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Clase C. Manejo de conflictos",
+     "js": "L([11,12,13,14,15])",
+     "texto": "De 5 a 30: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Clase D. Revelación emocional y apertura interpersonal",
+     "js": "L([16,17])",
+     "texto": "De 2 a 12: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Clase E. Experiencia y expresión emocional",
+     "js": "L([18,19,20,21,22,23,24,25,26,27])",
+     "texto": "De 10 a 60: a mayor puntaje, más dificultades."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,27)",
+     "rangos": [
+      [
+       27,
+       37,
+       "Por debajo del centil 10"
+      ],
+      [
+       38,
+       47,
+       "Entre los centiles 10 y 20"
+      ],
+      [
+       48,
+       53,
+       "Entre los centiles 20 y 30"
+      ],
+      [
+       54,
+       62,
+       "Entre los centiles 30 y 40"
+      ],
+      [
+       63,
+       69,
+       "Entre los centiles 40 y 50"
+      ],
+      [
+       70,
+       79,
+       "Entre los centiles 50 y 60"
+      ],
+      [
+       80,
+       88,
+       "Entre los centiles 60 y 70"
+      ],
+      [
+       89,
+       96,
+       "Entre los centiles 70 y 80"
+      ],
+      [
+       97,
+       108,
+       "Entre los centiles 80 y 90"
+      ],
+      [
+       109,
+       134,
+       "Entre los centiles 90 y 99"
+      ],
+      [
+       135,
+       162,
+       "Centil 99 o más"
+      ]
+     ],
+     "texto": "De 27 a 162. Centiles de población general española (n = 400): no son puntos de corte."
+    }
+   ]
+  },
+  "hoja": true
  },
  "idc-r": {
   "clave": "IDC-R",
