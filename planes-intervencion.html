@@ -20343,6 +20343,17 @@ window.addEventListener("hashchange", irAlPlan);
 @media(max-width:700px){.hp-dialog{width:97vw;max-height:94vh}.hp-head,.hp-body{padding:15px}.hp-head h2{font-size:20px}.hp-grid{grid-template-columns:1fr}.hp-table{min-width:700px}.hp-options label{max-width:none;width:100%}.hp-head .hp-button{flex-shrink:0}}
 @media print{.hp-dialog,.hp-tools,.hp-situation{display:none!important}}
 
+.md-dialog{width:min(800px,94vw)}
+.md-nota{border-left:4px solid #547c6c;padding:12px 16px;background:#edf4ef;border-radius:0 8px 8px 0}
+.md-nota p{margin:6px 0 0}.md-turnos{list-style:none;padding:0;display:grid;gap:12px}
+.md-turno{background:#fff;border:1px solid #d4dfd8;border-radius:10px;padding:16px}.md-turno p{margin:8px 0}
+.md-voz{font-weight:700;color:#285549}.md-intencion{font-size:14px;line-height:1.6;color:#4b6258;border-top:1px solid #e1e8e2;padding-top:8px}
+.md-detalle{border:1px solid #d4dfd8;border-radius:8px;padding:12px 16px;margin:14px 0}.md-detalle summary{cursor:pointer;font-weight:650;line-height:1.5}.md-detalle li,#md-apoyos li{margin:9px 0;line-height:1.6}
+.md-selector{display:grid;gap:8px;font-weight:650;margin-top:22px}.md-selector select{font:inherit;font-weight:400;background:white;color:#263a34;border:1px solid #9db5a9;border-radius:8px;padding:11px;width:100%;min-width:0}
+.md-tools{padding-top:9px;border-top:1px solid #dce5df}.md-dialog [hidden]{display:none!important}
+.md-dialog .hp-reference{overflow-wrap:anywhere}.md-dialog h3{margin-top:24px}.md-dialog h4{margin:16px 0 8px}
+@media(max-width:600px){.md-dialog .hp-head,.md-dialog .hp-body{padding:16px}.md-dialog h2{font-size:20px}.md-dialog .hp-head{position:static}.md-dialog{scroll-padding-top:16px}.md-dialog .hp-button{min-height:44px}.md-tools .hp-button{max-width:100%}.md-selector select{font-size:16px}}
+
 </style>
 <script>
 /* Herramientas de planificación. Se integran al final de ambas guías.
@@ -20552,6 +20563,248 @@ window.addEventListener("hashchange", irAlPlan);
     const b=ev.target.closest('button');if(!b)return;
     if(b.dataset.comparador !== undefined)comparar(+b.dataset.comparador);
     if(b.dataset.formular)formular(b.dataset.formular);
+  });
+})();
+
+/* Escenas originales de enseñanza. Las fuentes sustentan el procedimiento,
+   no estos diálogos ficticios ni una indicación clínica nueva. */
+const MICRODEMOSTRACIONES = (() => {
+  const habilidades = 'Ruiz, Díaz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales, cap. 6, §3.3.2: instrucciones, modelado, ensayo y retroalimentación.';
+  const cognitiva = 'Ruiz, Díaz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales, cap. 8, §3.3.3: técnicas cognitivas y descubrimiento guiado.';
+  const parental = 'Kazdin (2005), Parent Management Training, sección «Positive Opposite, Positive Reinforcement, Points and Praise».';
+  const lenguaje = 'Shapiro (2015), Child and Adolescent Therapy: Science and Art, cap. 1: «Therapy Language» y «Using Play in Therapy».';
+  // Cada turno: voz, intervención original, intención u observación docente.
+  const escena = (contexto, turnos, atasco, alternativa, observar) => ({contexto,turnos,atasco,alternativa,observar});
+  return [
+    {k:'psicoeducacion', fuente:lenguaje, infancia:escena('Conversación con un escolar que evita participar en clase.',[
+      ['Terapeuta','¿Qué piensas que pasa cuando quieres responder y te quedas callado?','Explorar la explicación del niño antes de ofrecer información.'],
+      ['Niño','Mi cuerpo se pone raro y pienso que todos se van a reír.','Recoger sus palabras y una situación concreta.'],
+      ['Terapeuta','A veces, cuando sentimos miedo, el cuerpo se prepara para protegernos. Podemos aprender a reconocerlo y practicar cómo participar. ¿Cómo lo explicarías con tus palabras?','Usar lenguaje cotidiano y comprobar comprensión.'],
+      ['Niño','Que puedo sentir miedo y practicar una respuesta.','Escuchar qué entendió; ajustar la explicación si hace falta.']
+    ],'Responde «sí» a todo, pero no puede explicar la idea.','Volver a una situación que conozca y representarla con un dibujo o un breve juego; pedirle que cuente qué ocurre.','Puede relacionar la explicación con una experiencia propia y con la práctica propuesta.')},
+    {k:'modelado',fuente:habilidades,adultos:escena('Una persona quiere aprender a pedir una aclaración en el trabajo.',[
+      ['Terapeuta','Voy a representar cómo pediría una aclaración. Fíjese en cómo nombro lo que necesito.','Definir una conducta concreta que observar.'],
+      ['Terapeuta, en el ensayo','Entendí la primera parte. ¿Podría explicarme cuál es el siguiente paso?','Mostrar la habilidad en una escena breve.'],
+      ['Consultante','Dijo lo que había entendido y después preguntó.','Comprobar qué aspectos del modelo identificó.'],
+      ['Terapeuta','Ahora probemos con una situación suya. Puede decirlo con sus propias palabras.','Pasar de observar a practicar.']
+    ],'Dice que jamás podría hablar como el terapeuta.','Mostrar un intento con una pequeña vacilación y cómo corregirlo; reducir la habilidad a una parte practicable.','Identifica y ensaya la conducta modelada en una situación pertinente.'),infancia:escena('Un escolar practica cómo pedir participar en un juego.',[
+      ['Terapeuta','Yo haré de alguien que quiere jugar. Observa cómo lo pide.','Dirigir la atención a una conducta específica.'],
+      ['Terapeuta, en el juego','¿Puedo jugar en la próxima ronda?','Modelar una petición breve.'],
+      ['Niño','Preguntaste cuándo podías entrar.','Comprobar qué observó.'],
+      ['Terapeuta','Cambiemos de papel. Ahora tú puedes probar tu forma de pedirlo.','Ensayar mediante intercambio de roles.']
+    ],'Solo repite la frase sin entender cuándo usarla.','Representar otra situación conocida y ayudarle a elegir sus propias palabras.','Usa la habilidad en una segunda escena, con apoyo si lo necesita.')},
+    {k:'juego-roles',fuente:habilidades,adultos:escena('Ensayo de una petición de ayuda en casa.',[
+      ['Terapeuta','Elijamos una conversación reciente y qué le gustaría pedir. Yo representaré a la otra persona.','Delimitar la escena y el objetivo.'],
+      ['Consultante','Necesito que hoy se encargue de recoger la cocina.','Ejecutar la conducta en lugar de describirla.'],
+      ['Terapeuta','La petición fue concreta. Repitamos dejando tiempo para que la otra persona responda.','Ofrecer un ajuste específico.'],
+      ['Consultante','¿Puede encargarse hoy de recoger la cocina?','Repetir incorporando la retroalimentación.']
+    ],'Explica lo que diría, pero no entra en el papel.','Hacer primero una demostración breve y retomar una sola frase.','Formula la petición dentro del ensayo y responde a la reacción del interlocutor.'),infancia:escena('Un adolescente ensaya cómo pedir una explicación en clase.',[
+      ['Terapeuta','Yo haré de profesor. Elige qué parte de la tarea quieres preguntar.','Acordar una situación concreta.'],
+      ['Adolescente','No entendí qué debemos entregar. ¿Puede explicarlo otra vez?','Ensayar una petición funcional.'],
+      ['Terapeuta','Se entiende qué necesitas. Ahora ensayemos si el profesor te pregunta qué parte no comprendiste.','Introducir una variación gradual.'],
+      ['Adolescente','Sé cuál es el tema; no sé cómo organizar el trabajo.','Precisar la petición frente a la nueva respuesta.']
+    ],'Le da vergüenza actuar.','Acordar una escena más breve y ofrecer modelarla primero.','Puede pedir ayuda en la escena y ajustar la petición a la respuesta.')},
+    {k:'retroalimentacion',fuente:habilidades,adultos:escena('Revisión inmediata de un ensayo de comunicación.',[
+      ['Terapeuta','Nombró con claridad lo que necesitaba. ¿Cómo sintió el intento?','Reconocer una conducta lograda y solicitar autoevaluación.'],
+      ['Consultante','Me apresuré al final.','Identificar una dificultad concreta.'],
+      ['Terapeuta','Probemos dejando una pausa después de la petición.','Proponer un solo cambio observable.'],
+      ['Consultante','De acuerdo; voy a repetirlo.','Comprobar el ajuste mediante otro ensayo.']
+    ],'La persona entiende la devolución como una crítica global.','Volver a describir lo que hizo y el cambio puntual, sin etiquetar su personalidad.','El siguiente intento incorpora el ajuste acordado.'),infancia:escena('Revisión de un ensayo de pedir turno.',[
+      ['Terapeuta','Esperaste a que terminara y después pediste el turno. ¿Qué te salió mejor?','Describir la conducta lograda.'],
+      ['Niño','Esperar.','Favorecer autoobservación.'],
+      ['Terapeuta','Ahora probemos diciendo la petición de forma que pueda oírla.','Elegir un cambio concreto.'],
+      ['Niño','¿Puedo seguir yo?','Ensayar inmediatamente el ajuste.']
+    ],'Se centra solo en lo que salió mal.','Recordar una conducta que sí logró y practicar un único ajuste.','Reconoce una habilidad lograda y prueba la corrección.')},
+    {k:'registro-pensamientos',fuente:cognitiva,adultos:escena('Una persona interpreta una demora al responder un mensaje.',[
+      ['Terapeuta','Describa primero qué ocurrió, como lo habría registrado una cámara.','Separar la situación de su interpretación.'],
+      ['Consultante','Envié un mensaje por la mañana y al almuerzo no habían respondido.','Precisar un hecho observable.'],
+      ['Terapeuta','¿Qué pasó por su mente y qué sintió en ese momento?','Diferenciar pensamiento y emoción.'],
+      ['Consultante','Pensé «ya no le importo» y sentí tristeza.','Registrar las palabras de la persona sin corregirlas de inmediato.']
+    ],'Escribe «me sentí ignorado» como único registro.','Preguntar qué ocurrió, qué significado le dio y qué emoción apareció, trabajando una columna a la vez.','Distingue acontecimiento, pensamiento y emoción en una escena concreta.'),infancia:escena('Un adolescente registra lo que pasó al no recibir respuesta de un amigo.',[
+      ['Terapeuta','¿Qué ocurrió antes de sentirte triste?','Anclar el registro en un episodio concreto.'],
+      ['Adolescente','Le escribí y no contestó en la tarde.','Describir el acontecimiento.'],
+      ['Terapeuta','¿Qué pensaste que significaba?','Explorar la interpretación.'],
+      ['Adolescente','Que ya no quiere ser mi amigo. Sentí tristeza.','Diferenciar interpretación y emoción con sus palabras.']
+    ],'Tiene dificultad para escribir lo que pensó.','Trabajar oralmente un episodio, apoyándose en una viñeta si resulta útil, y comprobar el significado con él.','Puede distinguir qué pasó de lo que pensó acerca de lo ocurrido.')},
+    {k:'reestructuracion-cognitiva',fuente:cognitiva,adultos:escena('Una persona concluye que un error demuestra incapacidad.',[
+      ['Consultante','Me equivoqué en el informe; soy incapaz de hacer este trabajo.','Identificar la conclusión y el episodio que la activó.'],
+      ['Terapeuta','¿Qué datos apoyan esa conclusión y qué datos podrían matizarla?','Examinar evidencia sin imponer una respuesta.'],
+      ['Consultante','Falló una parte, pero he entregado otros informes bien.','Ampliar la información considerada.'],
+      ['Terapeuta','Con esos datos, ¿cómo describiría lo ocurrido de una forma más precisa?','Construir una alternativa creíble con la persona.'],
+      ['Consultante','Necesito corregir esa parte; un error no resume todo mi desempeño.','Formular una lectura matizada, vinculada a los hechos.']
+    ],'Responde con una frase positiva que no cree.','Retomar la evidencia y buscar una formulación que reconozca tanto la dificultad como los datos que faltaban.','Puede explicar en qué evidencia apoya su interpretación alternativa.'),infancia:escena('Un adolescente concluye que una nota baja significa que siempre fracasará.',[
+      ['Adolescente','Me fue mal en esta prueba; nunca voy a poder.','Identificar el pensamiento en una situación concreta.'],
+      ['Terapeuta','¿Qué te hace pensar eso? ¿Qué otras experiencias tendríamos que considerar?','Explorar evidencia y excepciones sin discutir.'],
+      ['Adolescente','Esta vez no entendí una parte; otras veces me ha ido mejor.','Ampliar la información.'],
+      ['Terapeuta','¿Cómo podrías describir esta prueba teniendo en cuenta ambas cosas?','Facilitar una alternativa propia.'],
+      ['Adolescente','Esta parte me costó y necesito ayuda para prepararla.','Vincular una interpretación precisa con una acción posible.']
+    ],'Cree que debe decir lo que el terapeuta quiere escuchar.','Preguntar cuánto le convence la alternativa y qué datos necesitaría revisar.','La alternativa conserva la dificultad real y resulta comprensible y creíble para él.')},
+    {k:'reforzamiento-positivo',fuente:'Ruiz, Díaz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales, cap. 3, §3.1: reforzamiento positivo.',adultos:escena('Se reconoce una conducta de participación durante una práctica.',[
+      ['Consultante','Esta vez hice la pregunta aunque estaba nervioso.','Identificar la conducta objetivo.'],
+      ['Terapeuta','Hizo la pregunta que habíamos acordado, aun con nervios. ¿Qué le ayudó a intentarlo?','Dar atención inmediata y específica a la conducta.'],
+      ['Consultante','Haberla ensayado antes.','Explorar condiciones que favorecen la repetición.'],
+      ['Terapeuta','Revisaremos en las próximas prácticas si consigue volver a hacerlo.','Comprobar el efecto sobre la conducta posterior.']
+    ],'El reconocimiento resulta incómodo o la conducta no aumenta.','Consultar qué consecuencias valora la persona y revisar la relación entre conducta y consecuencia.','La conducta objetivo aumenta; ese efecto permite hablar de reforzamiento.'),infancia:escena('Un cuidador practica cómo reconocer una petición adecuada.',[
+      ['Terapeuta','Cuando pida el material con palabras, ¿cómo podría reconocer esa conducta?','Precisar la conducta y su consecuencia.'],
+      ['Cuidador','Gracias por pedirme el lápiz con palabras.','Ensayar atención específica y cercana al comportamiento.'],
+      ['Terapeuta','Observemos si esa forma de responder le ayuda a pedirlo así más veces.','Evaluar la función de la consecuencia.'],
+      ['Cuidador','Registraré cuándo lo pide y cómo respondo.','Acordar observación del efecto.']
+    ],'El adulto ofrece algo que al niño no le interesa.','Revisar con el niño qué valora y observar qué consecuencias favorecen la conducta acordada.','Aumentan las peticiones definidas en el plan; el agrado aparente por sí solo no demuestra reforzamiento.'),participante:'cuidador'},
+    {k:'defusion',fuente:'Harris (2009), ACT Made Simple, cap. 7: «Watch Your Thinking».',adultos:escena('Una persona queda atrapada en el pensamiento «voy a fallar».',[
+      ['Consultante','Voy a fallar, así que mejor no lo intento.','Reconocer cómo el pensamiento dirige la conducta.'],
+      ['Terapeuta','Si le parece, diga: «Estoy notando el pensamiento de que voy a fallar».','Invitar a observar el pensamiento como un evento mental.'],
+      ['Consultante','Sigue apareciendo, pero puedo notar que es un pensamiento.','Explorar la experiencia sin exigir que desaparezca.'],
+      ['Terapeuta','Con ese pensamiento presente, ¿qué pequeño paso quiere dar hacia lo que le importa?','Relacionar la observación con una elección de conducta.']
+    ],'Usa la frase repetidamente para intentar borrar el pensamiento.','Explorar si puede dejarlo estar y volver a la acción elegida, sin convertir el ejercicio en una lucha por eliminarlo.','Puede notar el pensamiento y elegir una acción relevante aunque siga presente.')},
+    {k:'valores',fuente:'Harris (2009), ACT Made Simple, cap. 11: «Know What Matters».',adultos:escena('Exploración de la forma en que una persona quiere relacionarse con su hermana.',[
+      ['Consultante','Quiero que mi hermana me llame más.','Reconocer una meta que depende también de otra persona.'],
+      ['Terapeuta','En esa relación, ¿qué clase de hermana quiere ser usted?','Explorar cualidades de acción propias.'],
+      ['Consultante','Quiero estar presente y escucharla.','Nombrar una dirección elegida.'],
+      ['Terapeuta','¿Cómo podría actuar de esa manera en un próximo encuentro?','Traducir la dirección en una conducta posible.']
+    ],'Responde con lo que cree que debería importarle.','Explorar qué elegiría si no necesitara recibir aprobación por la respuesta.','Distingue una cualidad de acción elegida de un resultado que depende de otros.')},
+    {k:'accion-comprometida',fuente:'Harris (2009), ACT Made Simple, cap. 12: «Do What It Takes».',adultos:escena('Una persona quiere recuperar contacto con una amistad importante.',[
+      ['Terapeuta','Ha dicho que quiere cuidar esa amistad. ¿Qué acción pequeña y posible daría esa dirección a esta semana?','Conectar una acción con un valor elegido.'],
+      ['Consultante','Puedo escribirle el jueves después del trabajo para proponer una llamada.','Precisar una acción y una ocasión.'],
+      ['Terapeuta','¿Qué podría dificultarlo y cómo respondería si aparece?','Anticipar barreras sin esperar condiciones perfectas.'],
+      ['Consultante','Puede aparecer vergüenza. Puedo notarla y enviar el mensaje que he preparado.','Preparar una respuesta flexible al obstáculo.']
+    ],'Propone una acción demasiado grande para sus condiciones actuales.','Elegir un paso menor que siga expresando el valor y acordar cómo revisar lo ocurrido.','Realiza o revisa el paso acordado y ajusta el plan a las barreras observadas.')},
+    {k:'opuesto-positivo',fuente:parental,participante:'cuidador',infancia:escena('Un cuidador transforma una queja global en una conducta que puede enseñar.',[
+      ['Cuidador','Quiero que deje de portarse mal al llegar a casa.','Detectar una descripción demasiado amplia.'],
+      ['Terapeuta','Al llegar, ¿qué le gustaría verlo hacer?','Definir la conducta deseada en términos positivos.'],
+      ['Cuidador','Que ponga la mochila en su lugar.','Elegir una conducta observable.'],
+      ['Terapeuta','Ensayemos cómo pedirlo y cómo reconocerlo cuando lo haga.','Preparar la enseñanza y el reconocimiento de esa conducta.']
+    ],'Formula otra prohibición: «que no tire la mochila».','Preguntar qué acción concreta ocuparía su lugar y cómo sabrían que ocurrió.','Dos observadores podrían identificar si la conducta definida ocurrió.')},
+    {k:'elogio-especifico',fuente:parental,participante:'cuidador',infancia:escena('Un cuidador ensaya el reconocimiento de una conducta acordada.',[
+      ['Terapeuta','Imagine que acaba de guardar los materiales. ¿Qué le diría?','Situar el elogio inmediatamente después de la conducta.'],
+      ['Cuidador','Qué bien, por fin haces caso.','Detectar la crítica añadida al reconocimiento.'],
+      ['Terapeuta','Probemos nombrando solo lo que hizo y qué aprecia usted de ello.','Modelar una devolución específica, sin reproche.'],
+      ['Cuidador','Guardaste los colores en su caja; gracias por cuidar los materiales.','Ensayar un reconocimiento concreto.']
+    ],'El elogio suena forzado o el niño lo rechaza.','Buscar una forma de reconocimiento que resulte natural para el cuidador y aceptable para el niño, y observar su efecto.','El reconocimiento describe la conducta y permite comprobar si favorece su repetición.')}
+  ];
+})();
+
+(() => {
+  'use strict';
+  const infantil = typeof EDADES !== 'undefined';
+  const E = escapar;
+  const catalogo = MICRODEMOSTRACIONES.filter(m => infantil ? m.infancia : m.adultos);
+  const porClave = Object.fromEntries(catalogo.map(m => [m.k,m]));
+  const glosario = Object.fromEntries(GLOSARIO.map(g => [g.k,g]));
+  const titulo = k => glosario[k]?.t || k;
+  const listaHtml = xs => '<ul>'+xs.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  const dialogo = document.createElement('dialog');
+  dialogo.className='hp-dialog md-dialog';dialogo.setAttribute('aria-labelledby','md-titulo');
+  document.body.append(dialogo);
+  let origen, escenaActual, visibles;
+  function abrir(tituloDialogo,cuerpo){
+    origen=document.activeElement;
+    dialogo.innerHTML='<header class="hp-head"><div><div class="hp-eyebrow">Práctica clínica · recurso docente</div><h2 id="md-titulo">'+E(tituloDialogo)+'</h2></div><button class="hp-button" data-md-cerrar>Cerrar</button></header><div class="hp-body">'+cuerpo+'</div>';
+    dialogo.showModal();dialogo.scrollTop=0;
+  }
+  dialogo.addEventListener('close',()=>{if(origen?.isConnected)origen.focus();});
+  function botonDemo(k){return '<button class="hp-button md-demo" data-micro="'+E(k)+'">Microdemostración: '+E(titulo(k))+'</button>';}
+  function compatible(m,p){
+    // Las escenas con escolares/adolescentes no amplían la indicación a primera infancia.
+    return !infantil || m.participante==='cuidador' || p.edad?.some(e=>e==='6-11'||e==='12-17');
+  }
+  function pintarTurnos(){
+    const e=escenaActual;
+    dialogo.querySelector('#md-turnos').innerHTML=e.turnos.slice(0,visibles).map((t,i)=>
+      '<li class="md-turno"><div class="md-voz">'+(i+1)+'. '+E(t[0])+'</div><p>«'+E(t[1])+'»</p><div class="md-intencion"><strong>Para observar:</strong> '+E(t[2])+'</div></li>').join('');
+    dialogo.querySelector('#md-progreso').textContent='Intervención '+visibles+' de '+e.turnos.length;
+    dialogo.querySelector('[data-md-siguiente]').disabled=visibles===e.turnos.length;
+    dialogo.querySelector('[data-md-todo]').hidden=visibles===e.turnos.length;
+    dialogo.querySelector('#md-cierre').hidden=visibles!==e.turnos.length;
+  }
+  function demostrar(k){
+    const m=porClave[k];if(!m)return;
+    escenaActual=infantil?m.infancia:m.adultos;visibles=1;
+    const e=escenaActual;
+    abrir('Microdemostración: '+titulo(k),
+      '<p class="md-nota"><strong>Escena ficticia de elaboración pedagógica.</strong> El diálogo ilustra el procedimiento; su aplicación depende de la formulación y las indicaciones del plan.</p>'+
+      '<p>'+E(e.contexto)+'</p><p class="hp-muted">'+E(glosario[k]?.d||'')+'</p>'+
+      '<p>Antes de avanzar, anticipen qué dirían y con qué propósito.</p><p id="md-progreso" role="status" class="hp-muted"></p><ol id="md-turnos" class="md-turnos" aria-live="polite" aria-relevant="additions"></ol>'+
+      '<div class="hp-tools"><button class="hp-button" data-md-siguiente>Siguiente intervención</button><button class="hp-button" data-md-todo>Ver escena completa</button><button class="hp-button" data-md-reiniciar>Reiniciar escena</button></div>'+
+      '<section id="md-cierre" hidden><h3>Cuando se atasca</h3><p>'+E(e.atasco)+'</p><p><strong>Respuesta posible:</strong> '+E(e.alternativa)+'</p><h3>Qué observar en la práctica</h3><p>'+E(e.observar)+'</p></section>'+
+      '<p class="hp-reference"><strong>Fundamento del procedimiento:</strong> '+E(m.fuente)+'</p>');
+    pintarTurnos();
+  }
+  const perfiles=[
+    {t:'Apoyo visual, juego o demostración',
+      uso:'Cuando resulta más fácil comprender y expresarse con acciones, imágenes u objetos.',
+      pasos:['Presentar una sola idea con palabras cotidianas y vincularla con una situación conocida.','Representar la habilidad mediante un juego, una viñeta o una demostración breve, cuando sea compatible con el procedimiento.','Pedir que muestre o cuente lo que entendió; preguntar por el significado de sus dibujos.','Ensayar una parte de la actividad con ayuda y revisar si el apoyo facilita la participación.']},
+    {t:'Conversación y práctica guiadas',
+      uso:'Cuando puede conversar sobre una experiencia concreta y necesita ayuda para organizar los pasos.',
+      pasos:['Partir de un episodio reciente y formular una pregunta a la vez.','Demostrar el primer paso y ensayarlo juntos antes de añadir el siguiente.','Usar sus palabras para resumir lo trabajado y pedirle que lo explique o represente.','Acordar la práctica del plan con los apoyos que realmente pueda utilizar.']},
+    {t:'Mayor autonomía para elegir y practicar',
+      uso:'Cuando puede explicar el propósito, proponer ejemplos y organizar una práctica con menor ayuda.',
+      pasos:['Acordar un ejemplo relevante para sus metas e intereses.','Invitarle a proponer cómo ensayar la habilidad dentro del procedimiento del plan.','Pedirle que anticipe dificultades y qué apoyo necesitaría.','Revisar juntos lo ocurrido y ajustar el apoyo según su desempeño.']},
+    {t:'Actividad dirigida a cuidadores',
+      uso:'Cuando el plan sitúa esta actividad en el trabajo con los adultos responsables.',
+      pasos:['Precisar qué aprenderá o practicará el cuidador en esta actividad.','Usar un episodio cotidiano para explicar el procedimiento con lenguaje claro.','Si corresponde ensayar una habilidad, demostrarla y practicarla con el cuidador.','Acordar cómo observar la respuesta del niño y revisar el desempeño del adulto conforme al plan.']}
+  ];
+  function pintarPerfil(){
+    const perfil=perfiles[+dialogo.querySelector('#md-perfil').value];
+    dialogo.querySelector('#md-apoyos').innerHTML='<p>'+E(perfil.uso)+'</p>'+listaHtml(perfil.pasos.map(E))+
+      '<p class="hp-muted">Seleccionen el apoyo por la comprensión, la comunicación y el desempeño observado. Comprueben que la presentación elegida conserva el objetivo y el procedimiento de esta actividad.</p>';
+  }
+  function referenciasRol(p,a,patron){
+    // Recuperar indicaciones existentes, sin inventar participación por diagnóstico.
+    const propias=(a.pasos||[]).filter(s=>patron.test(s));
+    const delPlan=(p.adapt||[]).filter(s=>patron.test(s));
+    return (propias.length?'<h4>En los pasos de esta actividad</h4>'+listaHtml(propias):'')+
+      (delPlan.length?'<h4>En las adaptaciones del plan</h4>'+listaHtml(delPlan):'')+
+      (!propias.length&&!delPlan.length?'<p>Los pasos de esta actividad y las adaptaciones del plan no detallan un papel específico para este participante. Revisen la formulación y el protocolo antes de incorporarlo.</p>':'');
+  }
+  function adaptar(id,oi,ai){
+    const p=VARIABLES.flatMap(v=>v.planes).find(p=>p.id===id);if(!p)return;
+    const o=secuenciasDe(p)[oi],a=o?.actividades[ai];if(!a)return;
+    abrir('Adaptar la actividad: '+a.t,
+      '<p class="hp-muted">'+E(p.t)+(secuenciasDe(p).length>1?' · Secuencia '+E(o.letra||String(oi+1)):'')+'</p>'+
+      '<div class="md-nota"><strong>Objetivo que se conserva</strong><p>'+E(a.obj)+'</p></div>'+
+      '<details class="md-detalle"><summary>Edad e indicaciones del plan</summary><p>'+E((p.edad||[]).map(e=>ET_EDAD[e]||e).join(' · '))+'</p><p>'+p.cuando+'</p></details>'+
+      '<label class="md-selector" for="md-perfil">Apoyo para presentar y ensayar la actividad<select id="md-perfil">'+perfiles.map((p,i)=>'<option value="'+i+'">'+E(p.t)+'</option>').join('')+'</select></label>'+
+      '<div id="md-apoyos" aria-live="polite"></div>'+
+      '<details class="md-detalle"><summary>Procedimiento y criterio de avance</summary>'+listaHtml(a.pasos||[])+
+      '<p><strong>Criterio del plan:</strong> '+E(a.avance||'Consultar el seguimiento del plan.')+'</p></details>'+
+      '<details class="md-detalle"><summary>Familia o cuidadores: participación descrita</summary>'+referenciasRol(p,a,/familia|cuidador|madre|padre|parental|adulto responsable/i)+'</details>'+
+      '<details class="md-detalle"><summary>Escuela: indicaciones y contexto del plan</summary>'+referenciasRol(p,a,/escuela|escolar|colegio|docente|profesor|maestr[oa]/i)+'</details>'+
+      '<details class="md-detalle"><summary>Adaptaciones y precauciones del plan</summary>'+listaHtml(p.adapt||[])+listaHtml(p.cuidado||[])+'</details>'+
+      '<p class="hp-reference"><strong>Fuente de la actividad:</strong> '+E(a.fuente||p.fuente)+'</p>'+
+      '<p class="hp-reference"><strong>Apoyos de comunicación:</strong> Shapiro (2015), <em>Child and Adolescent Therapy: Science and Art</em>, cap. 1, «Therapy Language», «Session Structure and Activities», «Using Play in Therapy» y «Using Art in Therapy». Los apoyos son una síntesis pedagógica para preparar la sesión. Las indicaciones clínicas corresponden al plan seleccionado.</p>');
+    pintarPerfil();
+    enlazarCitas(dialogo);
+  }
+  dialogo.addEventListener('click',ev=>{
+    const b=ev.target.closest('button');if(!b)return;
+    if(b.hasAttribute('data-md-cerrar'))dialogo.close();
+    if(b.hasAttribute('data-md-siguiente')){visibles=Math.min(visibles+1,escenaActual.turnos.length);pintarTurnos();}
+    if(b.hasAttribute('data-md-todo')){visibles=escenaActual.turnos.length;pintarTurnos();}
+    if(b.hasAttribute('data-md-reiniciar')){visibles=1;pintarTurnos();dialogo.scrollTop=0;}
+  });
+  dialogo.addEventListener('change',ev=>{if(ev.target.id==='md-perfil')pintarPerfil();});
+  catalogo.forEach(m=>{
+    const entrada=document.getElementById('g-'+m.k);
+    if(entrada)entrada.insertAdjacentHTML('beforeend','<div class="hp-tools">'+botonDemo(m.k)+'</div>');
+  });
+  VARIABLES.forEach(v=>v.planes.forEach(p=>{
+    const panel=document.getElementById('panel-'+p.id);if(!panel)return;
+    secuenciasDe(p).forEach((o,oi)=>{
+      const cont=panel.querySelector('#opp-'+p.id+'-'+oi)||panel;
+      const acts=cont.querySelectorAll('.acts > .act');
+      o.actividades.forEach((a,ai)=>{
+        if(!acts[ai])return;
+        const demos=[...new Set(a.tecs||[])].filter(k=>porClave[k]&&compatible(porClave[k],p));
+        if(!demos.length&&!infantil)return;
+        const enlaces=demos.map(botonDemo).join('')+(infantil?'<button class="hp-button" data-adaptar="'+E(p.id)+'" data-opcion="'+oi+'" data-actividad="'+ai+'">Adaptar por desarrollo y participantes</button>':'');
+        acts[ai].lastElementChild.insertAdjacentHTML('beforeend','<div class="hp-tools md-tools">'+enlaces+'</div>');
+      });
+    });
+  }));
+  document.addEventListener('click',ev=>{
+    const b=ev.target.closest('button');if(!b)return;
+    if(b.dataset.micro)demostrar(b.dataset.micro);
+    if(infantil&&b.dataset.adaptar)adaptar(b.dataset.adaptar,+b.dataset.opcion,+b.dataset.actividad);
   });
 })();
 
