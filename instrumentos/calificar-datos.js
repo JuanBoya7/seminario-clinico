@@ -5411,12 +5411,12 @@ const CALIFICAR = {
     {
      "n": "Fe (9 a 12)",
      "js": "S(9,12)",
-     "texto": "De 0 a 16: a mayor puntaje, más consuelo y fuerza en la fe."
+     "texto": "De 0 a 16: a mayor puntaje, más consuelo y fuerza en la fe. Referencia en 269 pacientes colombianos con cáncer: media 12,49 (DE 2,20); Sierra Matamoros, 2012, tabla 3-3. No es un corte clínico."
     },
     {
      "n": "Total",
      "js": "L([1,2,3,5,6,7]) + R(4,4) + R(8,4) + S(9,12)",
-     "texto": "De 0 a 48. Sin puntos de corte: compare con aplicaciones anteriores."
+     "texto": "De 0 a 48. Referencia descriptiva en 269 pacientes colombianos con cáncer: media 36,14 (DE 5,65), Sierra Matamoros, 2012, tabla 3-3, pp. 45–46. No es un baremo nacional ni un punto de corte. Compare también con aplicaciones anteriores."
     }
    ]
   }
@@ -5493,17 +5493,17 @@ const CALIFICAR = {
     {
      "n": "Yo inadecuado",
      "js": "L([1, 2, 4, 6, 7, 14, 17, 18, 20])",
-     "texto": "De 0 a 36: a mayor puntaje, más autocrítica por sentirse insuficiente."
+     "texto": "De 0 a 36: a mayor puntaje, más autocrítica por sentirse insuficiente. Referencia española: M=12,908 (DE=7,260), 242 voluntarios de 18–68 años; López Cavada, 2020, cap. 5, tabla 2. Sin punto de corte ni baremo colombiano."
     },
     {
      "n": "Yo odiado",
      "js": "L([9, 10, 12, 15, 22])",
-     "texto": "De 0 a 20: a mayor puntaje, más desprecio hacia uno mismo. Si es alto, indague el riesgo de autolesión."
+     "texto": "De 0 a 20: a mayor puntaje, más desprecio hacia uno mismo. Referencia española de la misma muestra: M=2,543 (DE=2,892), López Cavada, 2020, tabla 2. No es un corte; explore clínicamente el riesgo de autolesión cuando corresponda."
     },
     {
      "n": "Yo tranquilizador",
      "js": "L([3, 5, 8, 11, 13, 16, 19, 21])",
-     "texto": "De 0 a 32: a mayor puntaje, más capacidad de tranquilizarse."
+     "texto": "De 0 a 32: a mayor puntaje, más capacidad de tranquilizarse. Referencia española de la misma muestra: M=19,866 (DE=5,924), López Cavada, 2020, tabla 2. No es un corte; úselo como contexto y siga el cambio de la persona."
     }
    ]
   }
@@ -8867,6 +8867,134 @@ const CALIFICAR = {
       }
      ],
      "sin_rango": "Marque el sexo para ver la interpretación."
+    }
+   ]
+  }
+ },
+ "wel": {
+  "clave": "WEL",
+  "sigla": "WEL-11",
+  "titulo": "Autoeficacia alimentaria · WEL, adaptación chilena de 11 ítems",
+  "para": "Explorar la confianza para resistirse a comer ante malestar físico y emocional o presión externa. Es una medida de proceso para adultos; su estudio chileno se realizó en población general.",
+  "areas": [
+   "Alimentación"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Gatica-Saavedra, Nazar, Rubí y Bustos (2024). PLOS ONE, 19(1), e0293658; método 2.2 y suplemento S2. https://doi.org/10.1371/journal.pone.0293658",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Indique cuánta confianza tiene en poder afrontar cada situación: 0 significa que no se considera capaz y 10 que se siente completamente seguro/a de poder hacerlo. Marque un número por frase. Los números que preceden a las frases identifican los ítems del estudio."
+   },
+   {
+    "t": "consigna",
+    "x": "Malestar físico y emocional"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "puntua": true,
+    "items": [
+     "7. Soy capaz de resistirme a comer cuando estoy enfadado/a (o irritable)",
+     "3. Soy capaz de resistirme a comer cuando me siento físicamente mal",
+     "6. Soy capaz de resistirme a comer incluso aunque tenga dolor de cabeza",
+     "12. Soy capaz de resistirme a comer cuando me siento mal",
+     "10. Soy capaz de resistirme a comer cuando he tenido un fracaso",
+     "4. Soy capaz de resistirme a comer cuando estoy deprimido/a (o desanimado/a)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "consigna",
+    "x": "Presión externa"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "puntua": true,
+    "items": [
+     "2. Soy capaz de resistirme a comer incluso aunque tenga que decirle que “no” a otros",
+     "1. Soy capaz de resistirme a comer cuando estoy ansioso/a (o nervioso/a)",
+     "11. Soy capaz de resistirme a comer incluso aunque piense que otros se van a molestar si no como",
+     "5. Soy capaz de resistirme a comer incluso aunque crea que es grosero rechazar un segundo ofrecimiento.",
+     "8. Soy capaz de resistirme a comer incluso aunque otros me presionen para que coma"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Malestar físico y emocional · promedio descriptivo",
+     "js": "r.slice(1,7).some(x => x == null) ? 'Pendiente' : +(S(1,6)/6).toFixed(2)",
+     "texto": "0 a 10; requiere las seis respuestas del grupo. Mayor valor: mayor confianza. Resumen descriptivo de esta guía, sin puntos de corte, normas colombianas ni clasificación diagnóstica. Versión chilena de 11 ítems (Gatica-Saavedra et al., 2024)."
+    },
+    {
+     "n": "Presión externa · promedio descriptivo",
+     "js": "r.slice(7,12).some(x => x == null) ? 'Pendiente' : +(S(7,11)/5).toFixed(2)",
+     "texto": "0 a 10; requiere las cinco respuestas del grupo. Mayor valor: mayor confianza. Compare esta dimensión consigo misma durante el seguimiento. No intercambie estas puntuaciones con las de WEL-20 o WEL-12."
     }
    ]
   }

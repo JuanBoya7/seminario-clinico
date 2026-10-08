@@ -65,6 +65,10 @@ tr.omitida{opacity:.4;}
 .lista-t{font-weight:600; margin:0 0 6px;}
 .lista label{display:flex; gap:10px; align-items:center; padding:5px 8px; border-radius:8px; cursor:pointer;}
 .lista label:hover{background:var(--surface);}
+.lista-numerica{display:flex; flex-wrap:wrap; gap:4px;}
+.lista-numerica .lista-t{flex-basis:100%;}
+.lista-numerica small{display:none;}
+.lista-numerica label{display:inline-flex; min-width:44px; min-height:44px; justify-content:center; box-sizing:border-box;}
 .lista small{color:var(--ink-faint); font-size:11.5px;}
 input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:pointer; margin:0;}
 .panel{position:sticky; top:16px; background:var(--surface); border:1px solid var(--border);
@@ -280,7 +284,7 @@ function instrumento(a, d){
       b.items.forEach(it => {
         q++;
         if (b.puntua) puntua[q] = true;
-        h += '<div class="lista" data-q="' + q + '"><p class="lista-t">' + esc(it) + '</p>' + b.ops.map((o, k) =>
+        h += '<div class="lista' + (b.ops.every((o, k) => /^\d+$/.test(o) && Number(o) === b.vals[k]) ? ' lista-numerica' : '') + '" data-q="' + q + '"><p class="lista-t">' + esc(it) + '</p>' + b.ops.map((o, k) =>
           '<label><input type="radio" name="q' + q + '" value="' + b.vals[k] + '"><span>' + esc(o) + '</span>' +
           (b.puntua ? '<small>(' + b.vals[k] + ')</small>' : '') + '</label>').join("") + '</div>';
       });
