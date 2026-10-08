@@ -12707,5 +12707,249 @@ window.addEventListener("hashchange", irAlPlan);
   mapa.addEventListener("click", ev => { if (ev.target.closest("a")) cerrar(); });
 })();
 </script>
+<!-- @@HERRAMIENTAS-PLANES@@ -->
+<style>
+.hp-tools{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.hp-button{font:inherit;font-size:14px;line-height:1.4;border:1px solid #b5c9c4;border-radius:8px;background:#f0f7f4;color:#17483e;padding:9px 13px;cursor:pointer;text-align:left}
+.hp-button:hover{background:#e0eee8}.hp-button:focus-visible,.hp-dialog :focus-visible{outline:3px solid #b96e24;outline-offset:3px}
+.hp-button:disabled{opacity:.5;cursor:not-allowed}
+.hp-dialog{box-sizing:border-box;width:min(1160px,94vw);max-height:90vh;padding:0;border:1px solid #bbc8c3;border-radius:16px;background:#fafbf8;color:#263a34;box-shadow:0 24px 80px #142c3450}
+.hp-dialog::backdrop{background:#122b36a6}
+.hp-dialog{scroll-padding-top:120px}.hp-dialog input,.hp-dialog textarea,.hp-dialog select,.hp-dialog button{scroll-margin-top:120px}
+.hp-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 24px;background:#fafbf8;border-bottom:1px solid #d4dfd8}
+.hp-head h2{font-size:23px;line-height:1.25;margin:3px 0}.hp-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#486e60}
+.hp-body{padding:20px 24px}.hp-body p{line-height:1.6}.hp-muted{font-size:13px;color:#52665c}
+.hp-options{display:flex;gap:10px;flex-wrap:wrap;padding:0;border:0;margin:12px 0}.hp-options legend{font-weight:700;margin-bottom:8px}
+.hp-options label{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;background:#fff;border:1px solid #cbd9d0;border-radius:8px;max-width:330px;font-size:14px}
+.hp-options input{margin-top:4px;accent-color:#24644f}
+.hp-table-wrap{overflow:auto;border:1px solid #ccd8d0;border-radius:10px}
+.hp-table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff;font-size:14px;line-height:1.6}
+.hp-table th,.hp-table td{padding:15px;vertical-align:top;border-bottom:1px solid #dbe3dc;border-right:1px solid #dbe3dc;overflow-wrap:anywhere}
+.hp-table thead th{background:#e7efe9;text-align:left;font-size:16px}.hp-table tbody th{width:150px;text-align:left;font-size:13px;background:#f2f5ef}
+.hp-table ul{padding-left:18px;margin:0}.hp-table select{width:100%;margin-top:10px;font:inherit;padding:6px}
+.hp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.hp-field{display:block;font-size:14px;font-weight:600}
+.hp-field textarea,.hp-field input,.hp-field select{box-sizing:border-box;display:block;width:100%;font:inherit;font-weight:400;margin-top:6px;padding:10px;border:1px solid #b8c9be;border-radius:7px;background:white;color:#24382f}
+.hp-field textarea{min-height:90px;resize:vertical;line-height:1.5}.hp-wide{grid-column:1/-1}
+.hp-step{border:1px solid #cfdbd2;background:#fff;border-radius:10px;padding:16px;margin:16px 0}.hp-step h3{margin:0 0 12px;font-size:17px}
+.hp-reference{padding:12px;background:#eef3ec;border-left:3px solid #5e846b;font-size:14px;line-height:1.6;margin:12px 0}
+.hp-situation{margin-top:12px;border-top:1px solid #d9e2db;padding-top:9px;font-size:13px}.hp-situation summary{cursor:pointer;color:#346953;font-weight:600}.hp-situation a{display:block;margin:8px 0;color:#285e4e;line-height:1.5}
+.hp-status{min-height:22px;font-size:14px;color:#674c25}
+@media(max-width:700px){.hp-dialog{width:97vw;max-height:94vh}.hp-head,.hp-body{padding:15px}.hp-head h2{font-size:20px}.hp-grid{grid-template-columns:1fr}.hp-table{min-width:700px}.hp-options label{max-width:none;width:100%}.hp-head .hp-button{flex-shrink:0}}
+@media print{.hp-dialog,.hp-tools,.hp-situation{display:none!important}}
+
+</style>
+<script>
+/* Herramientas de planificación. Se integran al final de ambas guías.
+   El comparador reutiliza datos originales; no clasifica ni recomienda tratamientos.
+   Hoja pedagógica propia: vínculo formulación-plan descrito por Persons (2008), cap. 1.
+   Los enlaces por actividad son una organización editorial de asociaciones ya existentes. */
+(() => {
+  'use strict';
+  const E = escapar;
+  const infantil = typeof EDADES !== 'undefined';
+  const prefijo = 'hoja-formulacion-v1-' + (infantil ? 'infancia-' : 'adultos-');
+  const fuenteHoja = 'Persons, J. B. (2008). <em>The case formulation approach to cognitive-behavior therapy</em> (cap. 1). Guilford Press.';
+  const boton = (t, attrs = '') => '<button type="button" class="hp-button" ' + attrs + '>' + E(t) + '</button>';
+  const situaciones = p => (typeof SITUACIONES_POR_PLAN !== 'undefined' && SITUACIONES_POR_PLAN[p.id]) || [];
+  const enlace = s => '<a href="situaciones-clinicas.html#sit-' + encodeURIComponent(s.id) + '" target="_blank" rel="noopener">¿Y si ' + E(s.t) + '?</a>';
+  const dialogo = document.createElement('dialog');
+  dialogo.className = 'hp-dialog'; dialogo.setAttribute('aria-labelledby', 'hp-titulo');
+  document.body.append(dialogo);
+  let regreso, actual = null, datos = null, comp = null;
+  function abrir(titulo, subtitulo, contenido){
+    if (!dialogo.open) regreso = document.activeElement;
+    dialogo.innerHTML = '<header class="hp-head"><div><span class="hp-eyebrow">' + E(subtitulo) + '</span><h2 id="hp-titulo">' + E(titulo) + '</h2></div>' + boton('Cerrar', 'data-hp="cerrar"') + '</header><div class="hp-body">' + contenido + '</div>';
+    if (!dialogo.open) dialogo.showModal();
+    dialogo.scrollTop = 0;
+  }
+  dialogo.addEventListener('close', () => { if (regreso && regreso.isConnected) regreso.focus(); });
+  const listaHTML = l => l && l.length ? lista(l) : 'Sin información específica en este plan.';
+  function comparar(vi){
+    const v = VARIABLES[vi];
+    comp = {v, ids:v.planes.slice(0, 2).map(p => p.id), opciones:{}};
+    abrir('Comparar planes', v.t,
+      '<p>Elijan dos o tres planes de esta variable y revisen qué condiciones del caso respaldan cada elección.</p>' +
+      '<fieldset class="hp-options"><legend>Planes de la variable</legend>' + v.planes.map(p =>
+        '<label><input type="checkbox" data-comparar="' + E(p.id) + '"' + (comp.ids.includes(p.id) ? ' checked' : '') + '> <span>' + E(p.t) + '</span></label>').join('') +
+      '</fieldset><p class="hp-status" id="hp-estado" role="status" aria-live="polite"></p><div id="hp-comparacion"></div>');
+    pintarComparacion();
+  }
+  function pintarComparacion(){
+    dialogo.querySelectorAll('[data-comparar]').forEach(c => { c.disabled = comp.ids.length === 3 && !c.checked; });
+    const salida = dialogo.querySelector('#hp-comparacion');
+    dialogo.querySelector('#hp-estado').textContent = comp.ids.length + ' de 3 planes seleccionados.';
+    if(comp.ids.length < 2){salida.innerHTML = '<p>Seleccionen al menos dos planes para ver la comparación.</p>';return;}
+    const ps = comp.ids.map(id => comp.v.planes.find(p => p.id === id));
+    const opcion = p => secuenciasDe(p)[comp.opciones[p.id] || 0];
+    const filas = [
+      ['Cuándo elegirlo', p => p.cuando],
+      ['Fundamento', p => {const m = modeloDe(p);return m ? '<strong>' + E(m.t) + '</strong><br>' + E(m.autor) + '<p>' + E(m.d) + '</p>' : 'Sin modelo declarado.';}],
+      ...(infantil ? [['Edades con respaldo', p => p.edad.map(e => E(ET_EDAD[e])).join(', ')]] : []),
+      ['Escenarios con respaldo', p => p.esc.map(e => E(ET_ESC[e])).join(', ')],
+      ['Secuencia seleccionada', p => (opcion(p).cuando ? '<p>' + opcion(p).cuando + '</p>' : '') + opcion(p).secuencia],
+      ['Objetivos de las actividades', p => listaHTML(opcion(p).actividades.map(a => E(a.obj)))],
+      ['Evaluación y avance', p => listaHTML(p.medir)],
+      ['Instrumentos', p => listaHTML(instrumentosDe(p).map(i => E(i.s + ' · ' + i.n)))],
+      ['Adaptaciones y participación', p => listaHTML(p.adapt)],
+      ['Precauciones', p => listaHTML(p.cuidado)],
+      ['Respaldo y fuentes', p => p.respaldo + (opcion(p).respaldo ? '<p>' + opcion(p).respaldo + '</p>' : '') + '<p><strong>Fuente:</strong> ' + E(opcion(p).fuente || p.fuente) + '</p>']
+    ];
+    salida.innerHTML = '<p class="hp-muted">En pantallas pequeñas, deslicen la tabla horizontalmente.</p><div class="hp-table-wrap" tabindex="0" role="region" aria-label="Tabla comparativa de planes"><table class="hp-table"><caption class="hp-muted">' + E(comp.v.t) + '</caption><colgroup><col style="width:145px">' + ps.map(() => '<col>').join('') + '</colgroup><thead><tr><th scope="col">Aspecto</th>' + ps.map(p =>
+      '<th scope="col">' + E(p.t) + '<br><small>' + E(ENFOQUES[p.enf].largo) + '</small>' +
+      (secuenciasDe(p).length > 1 ? '<label class="hp-field">Secuencia<select data-comp-op="' + E(p.id) + '">' + secuenciasDe(p).map((o,i) => '<option value="' + i + '"' + (i === (comp.opciones[p.id] || 0) ? ' selected' : '') + '>Opción ' + E(o.letra) + ' · ' + E(o.t) + '</option>').join('') + '</select></label>' : '') + '</th>').join('') + '</tr></thead><tbody>' +
+      filas.map(([t, fn]) => '<tr><th scope="row">' + E(t) + '</th>' + ps.map(p => '<td>' + fn(p) + '</td>').join('') + '</tr>').join('') +
+      '<tr><th scope="row">Planificación del caso</th>' + ps.map(p => '<td>' + boton('Abrir hoja de formulación', 'data-formular="' + E(p.id) + '"') + '</td>').join('') + '</tr></tbody></table></div>';
+    enlazarCitas(salida);
+  }
+  const campos = [
+    ['codigo','Código del caso'], ['contexto','Contexto y participantes'],
+    ['problema','¿Qué problema se prioriza y cómo afecta la vida cotidiana?'],
+    ['hipotesis','¿Qué hipótesis explica el mantenimiento del problema?'],
+    ['evidencia','¿Qué información apoya o cuestiona esa hipótesis?'],
+    ['eleccion','¿Por qué este plan corresponde al caso?']
+  ];
+  const camposMeta = [
+    ['objetivo','¿Qué cambio se acuerda con la persona?'],
+    ['relacion','¿Cómo se relaciona la actividad con la hipótesis del caso?'],
+    ['indicador','¿Qué cambio observable permitirá valorar el avance?'],
+    ['base','¿Cuál es la situación inicial?'],
+    ['revision','¿Cuándo y con quién se revisará el avance?'],
+    ['ajuste','¿Qué se revisará si el avance es insuficiente?']
+  ];
+  const vacia = () => ({version:1, ...Object.fromEntries(campos.map(([k]) => [k,''])), metas:[{actividad:'', ...Object.fromEntries(camposMeta.map(([k]) => [k,'']))}]});
+  function leerHoja(id){
+    try{const d = JSON.parse(localStorage.getItem(prefijo + id));
+      if(d && d.version === 1 && Array.isArray(d.metas) && d.metas.length){
+        const n = vacia();campos.forEach(([k]) => n[k] = typeof d[k] === 'string' ? d[k] : '');
+        n.metas = d.metas.slice(0,12).map(m => Object.fromEntries(['actividad',...camposMeta.map(([k]) => k)].map(k => [k, typeof m[k] === 'string' ? m[k] : ''])));return n;
+      }
+    }catch(e){} return vacia();
+  }
+  function guardar(){
+    try{localStorage.setItem(prefijo + actual.p.id, JSON.stringify(datos));}
+    catch(e){const s = dialogo.querySelector('#hp-estado');if(s) s.textContent = 'No fue posible conservar los cambios. Descarguen la hoja antes de cerrar.';}
+  }
+  function campo(k,t,valor,meta){
+    const attrs = meta === undefined ? 'data-campo="' + k + '"' : 'data-meta="' + meta + '" data-campo="' + k + '"';
+    return '<label class="hp-field">' + E(t) + (k === 'codigo' ? '<input maxlength="150" ' + attrs + ' value="' + E(valor || '') + '">' : '<textarea maxlength="4000" ' + attrs + '>' + E(valor || '') + '</textarea>') + '</label>';
+  }
+  function actividadDe(valor){
+    const [o,a] = String(valor).split(':').map(Number);
+    if(!/^\d+:\d+$/.test(valor))return null;
+    return secuenciasDe(actual.p)[o]?.actividades[a] || null;
+  }
+  function referenciaActividad(valor){
+    const a = actividadDe(valor);
+    return a ? '<strong>Objetivo de la actividad:</strong> ' + E(a.obj) + '<br><strong>Señal de avance del plan:</strong> ' + E(a.avance) + '<br><strong>Fuente:</strong> ' + E(a.fuente) : 'Elijan una actividad del plan para consultar su objetivo, señal de avance y fuente.';
+  }
+  function pintarMetas(){
+    const ps = secuenciasDe(actual.p);
+    dialogo.querySelector('#hp-metas').innerHTML = datos.metas.map((m,i) => '<section class="hp-step"><h3>Objetivo ' + (i+1) + '</h3><div class="hp-grid">' +
+      campo('objetivo',camposMeta[0][1],m.objetivo,i) + '<label class="hp-field">Actividad del plan<select data-meta="' + i + '" data-campo="actividad"><option value="">Elegir actividad</option>' + ps.map((o,oi) => '<optgroup label="' + E(ps.length > 1 ? 'Opción ' + o.letra + ' · ' + o.t : 'Secuencia del plan') + '">' + o.actividades.map((a,ai) => '<option value="' + oi + ':' + ai + '"' + (m.actividad === oi + ':' + ai ? ' selected' : '') + '>' + (ai+1) + '. ' + E(a.t) + '</option>').join('') + '</optgroup>').join('') + '</select></label></div>' +
+      '<div class="hp-reference" data-ref-meta="' + i + '">' + referenciaActividad(m.actividad) + '</div><div class="hp-grid">' + camposMeta.slice(1).map(([k,t]) => campo(k,t,m[k],i)).join('') + '</div>' +
+      (datos.metas.length > 1 ? '<div class="hp-tools">' + boton('Quitar este objetivo', 'data-quitar="' + i + '"') + '</div>' : '') + '</section>').join('');
+    dialogo.querySelector('[data-hp="agregar"]').disabled = datos.metas.length >= 12;
+  }
+  function formular(id){
+    actual = planPorId(id);if(!actual)return;
+    datos = leerHoja(id);
+    abrir('Del caso al plan', actual.v.t,
+      '<p><strong>' + E(actual.p.t) + '</strong></p><p>Relacionen la hipótesis del caso con los objetivos acordados, las actividades y la revisión del avance.</p>' +
+      '<details><summary>Fundamento de la hoja</summary><p class="hp-muted">Organización pedagógica propia basada en el vínculo entre formulación, planificación y seguimiento descrito por Persons (2008, cap. 1). Las actividades y sus indicaciones proceden del plan seleccionado.</p><p class="hp-muted">' + fuenteHoja + '</p></details>' +
+      '<div class="hp-tools">' + boton('Descargar hoja', 'data-hp="descargar"') + boton('Imprimir / PDF', 'data-hp="imprimir"') + boton('Vaciar hoja', 'data-hp="vaciar"') + '</div>' +
+      '<div class="hp-grid">' + campos.map(([k,t]) => campo(k,t,datos[k])).join('') + '</div>' +
+      '<div id="hp-metas"></div><div class="hp-tools">' + boton('Agregar objetivo', 'data-hp="agregar"') + '</div>' +
+      (situaciones(actual.p).length ? '<details class="hp-situation"><summary>¿Y si…? Revisar dificultades del proceso</summary>' + situaciones(actual.p).map(enlace).join('') + '</details>' : '') +
+      '<p class="hp-status" id="hp-estado" role="status" aria-live="polite"></p>');
+    pintarMetas();
+  }
+  function documento(){
+    const parrafo = (t,v) => '<section><h3>' + E(t) + '</h3><p>' + E(v || 'Pendiente de completar').replace(/\n/g,'<br>') + '</p></section>';
+    const claves = [actual.p.fuente, ...datos.metas.map(m => actividadDe(m.actividad)?.fuente || '')].join(' ');
+    const refs = REFERENCIAS.filter(r => claves.includes(r.k) || r.k === 'Persons, 2008');
+    let cuerpo = '<h1>Del caso al plan</h1><h2>' + E(actual.p.t) + '</h2><p>' + E(actual.v.t) + '</p>' + campos.map(([k,t]) => parrafo(t,datos[k])).join('');
+    datos.metas.forEach((m,i) => {const a = actividadDe(m.actividad), ops = secuenciasDe(actual.p), op = ops[Number(m.actividad.split(':')[0])];const nombre = a ? (ops.length > 1 ? 'Opción ' + op.letra + ' · ' + op.t + ' / ' : '') + a.t : '';cuerpo += '<h2>Objetivo ' + (i+1) + '</h2>' + parrafo(camposMeta[0][1],m.objetivo) + parrafo('Actividad seleccionada',nombre) + (a ? '<div class="ref">' + referenciaActividad(m.actividad) + '</div>' : '') + camposMeta.slice(1).map(([k,t]) => parrafo(t,m[k])).join('');});
+    cuerpo += '<h2>Fuentes</h2><p>Organización pedagógica propia basada en Persons (2008, cap. 1).</p><p>Fuente del plan: ' + E(actual.p.fuente) + '</p><ul><li>' + fuenteHoja + '</li>' + refs.filter(r => r.k !== 'Persons, 2008').map(r => '<li>' + refHTML(r) + '</li>').join('') + '</ul><footer>Hoja elaborada por Juan Boya Guerra.</footer>';
+    return '<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Del caso al plan</title><style>body{font:15px/1.5 system-ui,sans-serif;color:#233c32;max-width:850px;margin:30px auto;padding:20px;overflow-wrap:anywhere}h1{font-size:25px}h2{font-size:19px;border-bottom:1px solid #bbb;padding-bottom:6px;break-after:avoid}h3{font-size:14px;margin-bottom:4px;break-after:avoid}p{margin:4px 0 12px}section{break-inside:avoid}.ref{background:#eff4ef;padding:12px;font-size:13px}footer{font-size:11px;border-top:1px solid #ccc;padding:10px;margin-top:24px}@page{size:A4;margin:15mm}@media print{body{font-size:11px;margin:0;padding:0}h1{font-size:21px}h2{font-size:16px}.ref{font-size:11px}}</style><body>' + cuerpo + '</body></html>';
+  }
+  function exportar(imprimir){
+    const html = documento();
+    if(imprimir){
+      const w = window.open('', '_blank');
+      if(!w){dialogo.querySelector('#hp-estado').textContent = 'El navegador bloqueó la impresión. Descarguen la hoja o permitan la ventana emergente.';return;}
+      w.document.write(html);w.document.close();w.focus();w.print();return;
+    }
+    const url = URL.createObjectURL(new Blob([html], {type:'text/html;charset=utf-8'}));
+    const a = document.createElement('a');a.href=url;a.download='formulacion-' + actual.p.id + '.html';a.click();setTimeout(() => URL.revokeObjectURL(url),30000);
+    dialogo.querySelector('#hp-estado').textContent = 'Hoja descargada para consulta e impresión.';
+  }
+  dialogo.addEventListener('input', ev => {
+    const el = ev.target;if(!el.dataset.campo || !datos)return;
+    if(el.dataset.meta !== undefined)datos.metas[+el.dataset.meta][el.dataset.campo] = el.value;
+    else datos[el.dataset.campo] = el.value;
+    guardar();
+    if(el.dataset.campo === 'actividad')dialogo.querySelector('[data-ref-meta="' + el.dataset.meta + '"]').innerHTML = referenciaActividad(el.value);
+  });
+  dialogo.addEventListener('change', ev => {
+    const el=ev.target;
+    if(el.dataset.comparar){comp.ids=[...dialogo.querySelectorAll('[data-comparar]:checked')].map(c=>c.dataset.comparar);pintarComparacion();}
+    if(el.dataset.compOp){const id=el.dataset.compOp;comp.opciones[id]=+el.value;pintarComparacion();dialogo.querySelector('[data-comp-op="' + id + '"]').focus();}
+  });
+  dialogo.addEventListener('click', ev => {
+    const b=ev.target.closest('button');if(!b)return;
+    if(b.dataset.formular){formular(b.dataset.formular);return;}
+    if(b.dataset.quitar !== undefined){
+      if(!confirm('¿Quitar este objetivo y su contenido?'))return;
+      datos.metas.splice(+b.dataset.quitar,1);guardar();pintarMetas();dialogo.querySelector('[data-hp="agregar"]').focus();return;
+    }
+    switch(b.dataset.hp){
+      case 'cerrar':dialogo.close();break;
+      case 'agregar':if(datos.metas.length < 12){datos.metas.push(vacia().metas[0]);guardar();pintarMetas();dialogo.querySelector('#hp-metas .hp-step:last-child textarea').focus();}break;
+      case 'vaciar':if(confirm('¿Vaciar todos los campos de esta hoja?')){datos=vacia();guardar();const origen=regreso;formular(actual.p.id);regreso=origen;}break;
+      case 'descargar':exportar(false);break;
+      case 'imprimir':exportar(true);break;
+    }
+  });
+  // Mismo criterio de escritura que los demás recursos del docente.
+  ['copy','cut','paste','drop','dragstart'].forEach(tipo => dialogo.addEventListener(tipo, e => {if(e.target.closest('textarea,input'))e.preventDefault();}));
+  function relacionadas(p,a,indice,total){
+    // Solo situaciones ya vinculadas editorialmente a este plan; sin coincidencias por palabras.
+    const tecs=a.tecs || [];
+    const familia=tecs.some(t => /padres|parental|familia|reforzamiento|sistema-puntos/.test(t));
+    return situaciones(p).filter(s =>
+      (s.id === 'no-hace-tareas' && a.casa) || s.id === 'no-funciona' ||
+      (indice === 0 && ['nino-no-habla','viene-obligada','falta-a-sesiones','padres-desbordados','pocos-recursos'].includes(s.id)) ||
+      (familia && ['familia-acomoda','familia-hostil','padres-en-conflicto','hogar-de-acogida','padres-desbordados'].includes(s.id)) ||
+      (indice === total-1 && ['quiere-dejar','miedo-a-terminar','vacio-y-recaida'].includes(s.id))
+    );
+  }
+  VARIABLES.forEach((v,vi) => {
+    const variable=document.getElementById('v'+vi);if(!variable)return;
+    if(v.planes.length > 1){
+      const tools=document.createElement('div');tools.className='hp-tools';tools.innerHTML=boton('Comparar planes de esta variable','data-comparador="' + vi + '"');
+      variable.querySelector('.var-cuerpo').prepend(tools);
+    }
+    v.planes.forEach(p => {
+      const panel=document.getElementById('panel-'+p.id);if(!panel)return;
+      panel.querySelector('.plan-cab').insertAdjacentHTML('beforeend',boton('Formular el caso','data-formular="' + E(p.id) + '"'));
+      secuenciasDe(p).forEach((o,oi) => {
+        const cont=panel.querySelector('#opp-'+p.id+'-'+oi) || panel;
+        const acts=cont.querySelectorAll('.acts > .act');
+        o.actividades.forEach((a,ai) => {
+          const l=relacionadas(p,a,ai,o.actividades.length);if(!l.length || !acts[ai])return;
+          acts[ai].lastElementChild.insertAdjacentHTML('beforeend','<details class="hp-situation"><summary>¿Y si…? Durante esta actividad</summary>' + l.map(enlace).join('') + '</details>');
+        });
+      });
+    });
+  });
+  document.getElementById('variables').addEventListener('click', ev => {
+    const b=ev.target.closest('button');if(!b)return;
+    if(b.dataset.comparador !== undefined)comparar(+b.dataset.comparador);
+    if(b.dataset.formular)formular(b.dataset.formular);
+  });
+})();
+
+</script>
+<!-- @@FIN-HERRAMIENTAS-PLANES@@ -->
 </body>
 </html>
