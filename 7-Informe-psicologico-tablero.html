@@ -166,6 +166,15 @@ button,select{font-family:var(--font-body);}
 .siglas-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
 .sigla{font-family:var(--font-mono); font-size:19px; font-weight:700; padding:8px 14px; border-radius:8px; background:var(--moderate-soft); color:var(--moderate);}
 .sigla small{font-size:12px; font-weight:600; margin-left:6px;}
+.siglas-parciales{margin-top:24px;}
+.col-voz.parcial h3{border-bottom:3px solid var(--moderate);}
+.voz-parcial{background:#f7f5ef; border:1px solid #ded7c6; border-left:4px solid var(--moderate);}
+.siglas-etiqueta{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#705522; margin-bottom:10px;}
+.voz mark.sigla-explicada{color:#175b58; background:#dcefeb; border-radius:3px; padding:0 2px;}
+.voz mark.sigla-pendiente{color:#9c3038; background:#fae7e8; text-decoration:underline; text-decoration-style:dotted; text-decoration-thickness:2px; text-underline-offset:4px; padding:0 2px; border-radius:3px;}
+.siglas-claves{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:12px; padding-top:10px; border-top:1px solid #d7d6cd; font-size:14px; font-weight:600;}
+.clave-explicada{color:#175b58;}
+.clave-pendiente{color:#9c3038;}
 .aviso-datos{margin-top:18px; font-size:14px; color:var(--severe); background:var(--severe-soft); border-radius:8px; padding:10px 14px;}
 
 [hidden]{display:none !important;}
@@ -375,7 +384,13 @@ const SIGLAS = { IDx: ["impresion diagnostica"], TAG: ["ansiedad generalizada"],
                  ANX: ["ansiedad"], DEP: ["depresion"],
                  HEA: ["preocupaciones por la salud", "preocupacion por la salud"],
                  WRK: ["dificultades en el trabajo"], TRT: ["indicadores negativos de tratamiento"],
-                 VRIN: ["inconsistencia de respuestas variables"], TRIN: ["inconsistencia de respuestas verdaderas"] };
+                 VRIN: ["inconsistencia de respuestas variables"], TRIN: ["inconsistencia de respuestas verdaderas"],
+                 Hs: ["hipocondria"], Hy: ["histeria"], D: ["depresion"],
+                 Pd: ["desviacion psicopatica"], Mf: ["masculinidad-feminidad", "masculinidad feminidad"],
+                 Pa: ["paranoia"], Pt: ["psicastenia"], Sc: ["esquizofrenia"],
+                 Ma: ["hipomania"], Si: ["introversion social"],
+                 F: ["infrecuencia"], Fb: ["infrecuencia posterior"], Fp: ["infrecuencia psicopatologica"],
+                 L: ["mentira"], K: ["correccion"] };
 // Siglas que no se cuentan: los instrumentos, que la sección 3 del informe ya
 // trae escritos completos (también «MPI-2», el error de tipeo de un grupo);
 // números romanos, y palabras escritas en mayúscula.
@@ -386,12 +401,40 @@ const escaparRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const conSigla = s => new RegExp("(?<![\\p{L}\\p{M}\\p{N}_])" + escaparRegex(s) + "(?![\\p{L}\\p{M}\\p{N}_])", "iu");
 const contieneForma = (texto, forma) => conSigla(forma).test(texto.replace(/\s+/g, " "));
 
+// Las letras únicas y códigos que coinciden con palabras necesitan contexto
+// de escala: puntaje, nombre de escala o lista entre paréntesis con otras escalas.
+function usosSigla(s, texto){
+  const re = conSigla(s);
+  const todas = [...texto.matchAll(new RegExp(re.source, "giu"))];
+  if (!["D", "F", "L", "K", "Si", "Ma", "Pa"].includes(s)) return todas;
+  return todas.filter(m => {
+    const antes = texto.slice(Math.max(0, m.index - 35), m.index);
+    const despues = texto.slice(m.index + m[0].length);
+    return /^\s*(?:[=:]\s*|\(\s*)?\d/.test(despues) ||
+      /escala\s*\(?\s*$/i.test(antes) ||
+      /\([^()]*\b(?:Hs|Hy|Pt|Pd|Mf|Sc)\b[^()]*$/i.test(antes) ||
+      (SIGLAS[s].some(forma => normalizar(antes).trim().endsWith(forma + " (")));
+  });
+}
+
+function siglaExplicada(s, todo){
+  const norm = normalizar(todo).replace(/\s+/g, " ");
+  if (["IDx", "TAG", "TDM", "IAM", "EKG"].includes(s)) return SIGLAS[s].some(forma => contieneForma(norm, forma));
+  // Para escalas, «depresión» en otro apartado no desarrolla por sí sola D.
+  return usosSigla(s, norm).some(m => SIGLAS[s].some(forma => {
+    const antes = norm.slice(0, m.index);
+    const despues = norm.slice(m.index + m[0].length);
+    return new RegExp(escaparRegex(forma) + "\\s*[(,:—-]?\\s*$", "u").test(antes) ||
+      new RegExp("^\\s*[(,:—-]?\\s*" + escaparRegex(forma) + "(?![\\p{L}\\p{M}])", "u").test(despues);
+  }));
+}
+
 function siglasSinExplicar(textos){
   const todo = SECCIONES.map(([s]) => textos[s] || "").join(" \n ").normalize("NFC");
   const norm = normalizar(todo);
   const faltan = [];
   Object.keys(SIGLAS).forEach(s => {
-    if (conSigla(s).test(todo) && !SIGLAS[s].some(forma => contieneForma(norm, forma))) faltan.push(s);
+    if (usosSigla(s, todo).length && !siglaExplicada(s, todo)) faltan.push(s);
   });
   // Examinar palabras completas, con tildes y marcas combinadas. Nunca fragmentos
   // como DIAGN / STICO de DIAGNÓSTICO ni SITUA de SITUACIÓN.
@@ -427,25 +470,22 @@ function analizar(textos){
                  otro: !p1 && !p2 && concl.length ? unir(concl.slice(0, 2)) : null };
   r.pregunta = p1 && p2 ? { bien: [resp], mal: [] } : { bien: [], mal: [resp] };
 
-  // 2. Siglas
+  // 2. Siglas: conservar los aciertos y pendientes de cada frase por separado.
   const faltan = siglasSinExplicar(textos);
-  const bienS = [];
-  F.forEach(x => {
-    if (faltan.some(s => conSigla(s).test(x.f))) return;   // una frase a medias no es ejemplo
-    let rango = null;
-    Object.keys(SIGLAS).forEach(s => SIGLAS[s].forEach(forma => {
-      if (!contieneForma(x.n, forma)) return;
-      // Los nombres genéricos de escalas cuentan como explicación solo si
-      // acompañan a su sigla; «ansiedad» por sí sola no ejemplifica ANX.
-      if (!["IDx", "TAG", "TDM", "IAM", "EKG"].includes(s) && !conSigla(s).test(x.f)) return;
-      const k = /\(\s*[A-Z]{2,6}\s*\)/.test(x.f) || conSigla(s).test(x.f) ? 0 : forma === "impresion diagnostica" ? 2 : 1;
-      rango = rango === null ? k : Math.min(rango, k);
-    }));
-    if (rango !== null) bienS.push({ f: x.f, rango });
-  });
-  r.siglas = { faltan,
-               mal: de(x => faltan.some(s => conSigla(s).test(x.f))).map(x => x.f),
-               bien: bienS.sort((a, b) => a.rango - b.rango).map(b => b.f) };
+  const detalles = F.map(x => {
+    const pendientes = faltan.filter(s => usosSigla(s, x.f).length);
+    const formas = [];
+    Object.keys(SIGLAS).forEach(s => {
+      if (faltan.includes(s)) return;
+      if (!["IDx", "TAG", "TDM", "IAM", "EKG"].includes(s) && !usosSigla(s, x.f).length) return;
+      SIGLAS[s].forEach(forma => { if (contieneForma(x.n, forma)) formas.push(forma); });
+    });
+    return { f: x.f, pendientes, formas: [...new Set(formas)] };
+  }).filter(x => x.pendientes.length || x.formas.length);
+  r.siglas = { faltan, detalles,
+    mal: detalles.filter(x => x.pendientes.length && !x.formas.length).map(x => x.f),
+    bien: detalles.filter(x => x.formas.length && !x.pendientes.length).map(x => x.f),
+    parcial: detalles.filter(x => x.formas.length && x.pendientes.length).map(x => x.f) };
 
   // 3. Rumor
   const rum = de(x => R.rumor.test(x.n));
@@ -650,6 +690,44 @@ function voces(g, lado){
   return lista.slice(0, 3);
 }
 
+// Cada tarjeta de siglas conserva la frase completa: recortarla podría ocultar
+// precisamente el acierto o el pendiente que justifica la categoría mixta.
+function htmlFraseSiglas(detalle){
+  const { f, pendientes, formas } = detalle;
+  const tramos = [];
+  pendientes.forEach(s => usosSigla(s, f).forEach(m => tramos.push({ a: m.index, b: m.index + m[0].length, tipo: "pendiente" })));
+  formas.forEach(forma => {
+    const re = conSigla(forma);
+    for (const m of normalizar(f).matchAll(new RegExp(re.source, "giu"))) tramos.push({ a: m.index, b: m.index + m[0].length, tipo: "explicada" });
+  });
+  let pos = 0, html = "";
+  tramos.sort((a, b) => a.a - b.a || b.b - a.b).forEach(t => {
+    if (t.a < pos) return;
+    html += esc(f.slice(pos, t.a)) + `<mark class="sigla-${t.tipo}">${esc(f.slice(t.a, t.b))}</mark>`;
+    pos = t.b;
+  });
+  return html + esc(f.slice(pos));
+}
+function htmlDetalleSiglas(d){
+  const mixta = d.pendientes.length && d.formas.length;
+  return `<div class="voz${mixta ? " voz-parcial" : ""}">${mixta ? '<span class="siglas-etiqueta">Parcialmente resuelto</span>' : ""}
+    <div>«${htmlFraseSiglas(d)}»</div>
+    <div class="siglas-claves">${d.formas.length ? '<span class="clave-explicada">✓ Forma completa</span>' : ""}
+    ${d.pendientes.length ? `<span class="clave-pendiente">! Sin desarrollar: ${d.pendientes.map(esc).join(" · ")}</span>` : ""}</div></div>`;
+}
+function htmlVocesSiglas(){
+  const listas = { mal: [], bien: [], parcial: [] };
+  entregas.forEach(e => {
+    for (const tipo of Object.keys(listas)) {
+      const d = e.r.siglas.detalles.find(x => tipo === "parcial" ? x.pendientes.length && x.formas.length : tipo === "mal" ? x.pendientes.length && !x.formas.length : x.formas.length && !x.pendientes.length);
+      if (d && !listas[tipo].some(x => JSON.stringify(x) === JSON.stringify(d))) listas[tipo].push(d);
+    }
+  });
+  const col = (tipo, titulo, vacio) => `<div class="col-voz ${tipo}"><h3>${titulo}</h3>${listas[tipo].length ? listas[tipo].slice(0,3).map(htmlDetalleSiglas).join("") : `<div class="vacio-msg">${vacio}</div>`}</div>`;
+  return `<div class="voces">${col("mal", "Puede mejorar", "No hay frases con solo siglas pendientes.")}${col("bien", "Bien resuelto", "No hay frases con todas las siglas detectadas explicadas.")}</div>` +
+    (listas.parcial.length ? `<div class="siglas-parciales">${col("parcial", "Aciertos con aspectos pendientes", "")}</div>` : "");
+}
+
 function htmlInformes(g){
   if (!entregas.length) {
     return `<div class="vacio-msg" style="margin-top:20px">${sinTextos
@@ -681,6 +759,7 @@ function htmlInformes(g){
       ? `<div class="siglas-rot">Quedaron sin su forma completa</div><div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
       : `<div class="ausencia">Ningún informe dejó una sigla sin su forma completa.</div>`;
   }
+  if (g.id === "siglas") return arriba + htmlVocesSiglas();
   const vacioMal = { pregunta: "Todos los informes responden las dos partes.", fortaleza: "Quien no mencionó ninguna no tiene frase que mostrar.",
                      siglas: "Ningún informe dejó una sigla sin explicar.", intimo: "Ningún informe lo incluyó." }[g.id] || "Ningún informe dejó una frase de este lado.";
   const vacioBien = { intimo: "Quien lo dejó fuera no tiene frase que mostrar: ese es el acierto.", rumor: "Quien lo dejó fuera no tiene frase que mostrar.",
