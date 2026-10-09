@@ -370,27 +370,43 @@ const R = {
 
 // Siglas de la remisión y su forma completa.
 const SIGLAS = { IDx: ["impresion diagnostica"], TAG: ["ansiedad generalizada"], TDM: ["depresivo mayor"],
-                 IAM: ["infarto agudo", "infarto de miocardio"], EKG: ["electrocardiograma"] };
+                 IAM: ["infarto agudo", "infarto de miocardio"], EKG: ["electrocardiograma"],
+                 // Formas del expediente; aceptar singular y plural y puntajes (HEA=82).
+                 ANX: ["ansiedad"], DEP: ["depresion"],
+                 HEA: ["preocupaciones por la salud", "preocupacion por la salud"],
+                 WRK: ["dificultades en el trabajo"], TRT: ["indicadores negativos de tratamiento"],
+                 VRIN: ["inconsistencia de respuestas variables"], TRIN: ["inconsistencia de respuestas verdaderas"] };
 // Siglas que no se cuentan: los instrumentos, que la sección 3 del informe ya
 // trae escritos completos (también «MPI-2», el error de tipeo de un grupo);
 // números romanos, y palabras escritas en mayúscula.
 const SIGLAS_PERMITIDAS = new Set(["MMPI", "MPI", "BDI", "BAI", "AUDIT", "II", "III", "IV",
   "EL", "LA", "LOS", "LAS", "DE", "DEL", "Y", "EN", "SE", "NO", "SI", "UN", "UNA", "AL", "CON", "POR", "QUE", "ES", "SU", "LO", "O", "A"]);
-const conSigla = s => new RegExp("(^|[^A-Za-zÁÉÍÓÚÑáéíóúñ])" + s + "([^A-Za-zÁÉÍÓÚÑáéíóúñ]|$)");
+// Límites Unicode: una vocal acentuada nunca parte una palabra en falsas siglas.
+const escaparRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const conSigla = s => new RegExp("(?<![\\p{L}\\p{M}\\p{N}_])" + escaparRegex(s) + "(?![\\p{L}\\p{M}\\p{N}_])", "iu");
+const contieneForma = (texto, forma) => conSigla(forma).test(texto.replace(/\s+/g, " "));
 
 function siglasSinExplicar(textos){
-  const todo = SECCIONES.map(([s]) => textos[s] || "").join(" \n ");
+  const todo = SECCIONES.map(([s]) => textos[s] || "").join(" \n ").normalize("NFC");
   const norm = normalizar(todo);
   const faltan = [];
   Object.keys(SIGLAS).forEach(s => {
-    if (conSigla(s).test(todo) && !SIGLAS[s].some(forma => norm.includes(forma))) faltan.push(s);
+    if (conSigla(s).test(todo) && !SIGLAS[s].some(forma => contieneForma(norm, forma))) faltan.push(s);
   });
-  // Otras siglas que el grupo agregó por su cuenta (TCC, EPS, SPA…): cuentan
-  // si no aparecen nunca entre paréntesis después de su forma completa.
-  (todo.match(/\b[A-ZÑ]{2,6}\b/g) || []).forEach(s => {
-    if (SIGLAS[s] || SIGLAS_PERMITIDAS.has(s) || faltan.includes(s)) return;
-    if (new RegExp("\\(\\s*" + s + "\\s*\\)").test(todo)) return;
-    faltan.push(s);
+  // Examinar palabras completas, con tildes y marcas combinadas. Nunca fragmentos
+  // como DIAGN / STICO de DIAGNÓSTICO ni SITUA de SITUACIÓN.
+  (todo.match(/[\p{L}\p{M}\p{N}_]+/gu) || []).forEach(s => {
+    if (!/^[A-ZÑ]{2,6}$/.test(s)) return;
+    if (Object.keys(SIGLAS).some(k => k.toUpperCase() === s) || SIGLAS_PERMITIDAS.has(s) || faltan.includes(s)) return;
+    // Para siglas adicionales, exigir una forma cuyas iniciales correspondan.
+    // El paréntesis solo, o un puntaje como (TCC=20), no explica una sigla.
+    const re = new RegExp("([\\p{L}\\p{M} ,]+)\\(\\s*" + escaparRegex(s) + "\\s*\\)", "gu");
+    const explicada = [...todo.matchAll(re)].some(m => {
+      const palabras = normalizar(m[1]).match(/[a-zñ]+/g) || [];
+      const utiles = palabras.filter(p => !["de", "del", "la", "las", "el", "los", "y", "en", "por", "para"].includes(p));
+      return utiles.slice(-s.length).map(p => p[0]).join("") === s.toLowerCase();
+    });
+    if (!explicada) faltan.push(s);
   });
   return faltan;
 }
@@ -418,7 +434,10 @@ function analizar(textos){
     if (faltan.some(s => conSigla(s).test(x.f))) return;   // una frase a medias no es ejemplo
     let rango = null;
     Object.keys(SIGLAS).forEach(s => SIGLAS[s].forEach(forma => {
-      if (!x.n.includes(forma)) return;
+      if (!contieneForma(x.n, forma)) return;
+      // Los nombres genéricos de escalas cuentan como explicación solo si
+      // acompañan a su sigla; «ansiedad» por sí sola no ejemplifica ANX.
+      if (!["IDx", "TAG", "TDM", "IAM", "EKG"].includes(s) && !conSigla(s).test(x.f)) return;
       const k = /\(\s*[A-Z]{2,6}\s*\)/.test(x.f) || conSigla(s).test(x.f) ? 0 : forma === "impresion diagnostica" ? 2 : 1;
       rango = rango === null ? k : Math.min(rango, k);
     }));
@@ -591,7 +610,7 @@ const RESALTE = {
   intimo: { mal: R.intimo, bien: R.intimo },
   // Siglas: en «Puede mejorar», las que quedaron sin explicar (se arma en
   // htmlInformes con las de cada momento); en «Bien resuelto», la forma completa.
-  siglas: { mal: null, bien: /impresion diagnostica|trastorno de ansiedad generalizada|ansiedad generalizada|trastorno depresivo mayor|depresivo mayor|infarto (agudo )?de miocardio|infarto agudo|electrocardiograma/ },
+  siglas: { mal: null, bien: new RegExp(Object.values(SIGLAS).flat().map(escaparRegex).join("|")) },
   pregunta: { mal: null, bien: null }   // va por partes: ver PARTES_PREGUNTA
 };
 
@@ -665,7 +684,7 @@ function htmlInformes(g){
   const vacioMal = { pregunta: "Todos los informes responden las dos partes.", fortaleza: "Quien no mencionó ninguna no tiene frase que mostrar.",
                      siglas: "Ningún informe dejó una sigla sin explicar.", intimo: "Ningún informe lo incluyó." }[g.id] || "Ningún informe dejó una frase de este lado.";
   const vacioBien = { intimo: "Quien lo dejó fuera no tiene frase que mostrar: ese es el acierto.", rumor: "Quien lo dejó fuera no tiene frase que mostrar.",
-                      siglas: "Ningún informe escribió completa una sigla de la remisión." }[g.id] || "Ningún informe dejó una frase de este lado.";
+                      siglas: "Ningún informe incluyó una forma completa reconocida por el detector." }[g.id] || "Ningún informe dejó una frase de este lado.";
   return arriba + `<div class="voces">${col("mal", vacioMal)}${col("bien", vacioBien)}</div>`;
 }
 
