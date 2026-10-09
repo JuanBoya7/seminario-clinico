@@ -79,6 +79,10 @@ function doPost(e) {
 
     // Una pestaña por grupo del curso y caso: "901 Elisa", "902 Susana"...
     var etiquetaCaso = (datos.casoLabel || datos.caso || 'sin-caso').toString();
+    // Defensa del receptor: las plantillas antiguas también pueden enviar aquí.
+    if (etiquetaCaso === 'Informe' && !/^Grupo [0-9]{1,3}$/.test(String(datos.grupo || '').trim())) {
+      return paginaError('Falta un número de equipo válido. Vuelvan a la actividad, completen el número y envíen de nuevo.');
+    }
     var nombreHoja = (grupoCurso + ' ' + etiquetaCaso).substring(0, 60);
 
     var valoresFijos = {
@@ -279,14 +283,18 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
 
       // Las filas se agregan en orden de llegada: la última de cada grupo es su
       // entrega vigente. La fecha solo desempata si alguien reordenó la hoja.
-      var ultima = {};
+      var ultima = Object.create(null);
       for (var f = 1; f < tabla.length; f++) {
         var grupo = String(tabla[f][cGrupo] || '').trim();
-        if (!grupo) continue;
+        // Conservar cada fila antigua sin equipo: no ocultarla ni mezclarla
+        // con otra entrega anónima. La etiqueta no inventa un número de equipo.
+        var sinGrupo = !grupo;
+        if (sinGrupo && caso !== 'Informe') continue;
+        if (sinGrupo) grupo = 'Sin número · fila ' + (f + 1);
         var fecha = (cFecha > -1 && tabla[f][cFecha] instanceof Date) ? tabla[f][cFecha] : null;
         var previa = ultima[grupo];
         if (previa && previa.fecha && fecha && previa.fecha > fecha) continue;
-        ultima[grupo] = { fecha: fecha, json: String(tabla[f][cJson] || '') };
+        ultima[grupo] = { fecha: fecha, json: String(tabla[f][cJson] || ''), sinGrupo: sinGrupo };
       }
 
       Object.keys(ultima).forEach(function (grupo) {
@@ -299,6 +307,7 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
           entregas.push({
             cursoGrupo: g,
             grupo: grupo,
+            sinGrupo: !!ultima[grupo].sinGrupo,
             enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
             expediente: String(txt['ct-caso'] || ''),
             textos: {

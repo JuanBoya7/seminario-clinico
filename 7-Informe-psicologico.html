@@ -907,6 +907,18 @@ const ENVIO = {
   casoLabel: "Informe"
 };
 
+// La validación lee el DOM: el envío debe leer los mismos valores, incluso
+// si el navegador autocompletó un campo sin disparar input/change.
+function sincronizarDatosEnvio(){
+  ["ct-curso", "f-grupo", "ct-caso", ...SECCIONES.map(sec => sec.id)].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) state.text[id] = el.value;
+  });
+  document.querySelectorAll("#list-integrantes input").forEach((el, i) => {
+    if (state.lists.integrantes[i]) state.lists.integrantes[i].value = el.value;
+  });
+}
+
 function recogerEnvio(){
   const campos = {};
   const caso = casoActual();
@@ -930,20 +942,27 @@ function initSendButton(){
       avisar("El envío en línea no está configurado en este archivo: guarden la actividad y entréguenla como archivo.", false);
       return;
     }
+    sincronizarDatosEnvio();
     const faltante = highlightInvalidFields();
     if (faltante) {
       faltante.scrollIntoView({ behavior: "smooth", block: "center" });
       avisar("Faltan campos obligatorios por completar antes de enviar.", false);
       return;
     }
+    const envio = recogerEnvio();
+    if (!/^Grupo [0-9]{1,3}$/.test(envio.grupo) || !envio.cursoGrupo || !envio.integrantes) {
+      avisar("Revisen el curso, el número de equipo y los integrantes antes de enviar.", false);
+      return;
+    }
+    persistToLocalStorage();
     let destino = "_self";
     try { const ventana = window.open("", "entrega-actividad"); if (ventana) destino = "entrega-actividad"; } catch (e) { destino = "_self"; }
     const form = document.createElement("form");
     form.method = "POST"; form.action = ENVIO.url; form.target = destino;
     const campo = document.createElement("input");
-    campo.type = "hidden"; campo.name = "payload"; campo.value = JSON.stringify(recogerEnvio());
+    campo.type = "hidden"; campo.name = "payload"; campo.value = JSON.stringify(envio);
     form.appendChild(campo); document.body.appendChild(form); form.submit(); document.body.removeChild(form);
-    avisar("Actividad enviada · " + new Date().toLocaleTimeString() + " — revisen la pestaña de confirmación que se abrió.", true);
+    avisar("Solicitud de envío abierta · " + new Date().toLocaleTimeString() + " — comprueben en la pestaña de confirmación que la actividad quedó registrada. Si aparece un error, vuelvan a intentarlo.", false);
   });
 }
 

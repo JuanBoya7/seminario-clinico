@@ -352,7 +352,8 @@ function frasesDe(textos){
 const R = {
   // Rumor: solo lo que viene del rumor. «Alcohol» a secas atrapaba el
   // resultado del AUDIT, que todos informan (3 de 3 hallazgos eran eso).
-  rumor: /bodega|yolanda|lo han visto|lo habrian visto|lo vieron|habria(n)? visto|tomando|(beb|tom|consum)\w* .{0,40}(trabajo|jornada|laboral)|(trabajo|jornada|laboral).{0,40}(beb|tom|alcohol|licor|embriag)|embriag|rumor|de oidas/,
+  // Límites de palabra: «síntomas» no equivale a «tomar»; tampoco basta «tomando» sin contexto laboral.
+  rumor: /\bbodega\b|\byolanda\b|\blo han visto\b|\blo habrian visto\b|\blo vieron\b|\bhabrian? visto\b|\b(beb|tom|consum)\w*\b .{0,40}\b(trabajo|jornada|laboral)\w*\b|\b(trabajo|jornada|laboral)\w*\b.{0,40}\b(beb|tom|alcohol|licor|embriag)\w*\b|\bembriag\w*\b|\brumor\b|\bde oidas\b/,
   atribuido: /segun|refiere|refirio|comenta|menciona|reporta|informa|cuenta|conto|habria|de oidas|rumor|tercer|(no|sin) (se )?(pudo |ha podido )?(verific|confirm|comprob)|no verificad|no confirmad|sin evidencia/,
   // Fuentes que no coinciden: las frases del BDI-II y las que hablan de
   // concordancia entre pruebas y entrevista.
@@ -746,6 +747,8 @@ function htmlInformes(g){
                     : `<div class="voz">«${recortar(v, re)}»</div>`).join("")
                 : `<div class="vacio-msg">${vacio}</div>`}</div>`;
   };
+  const sinNumero = entregas.filter(e => e.sinGrupo).length;
+  const avisoNumero = sinNumero ? `<div class="aviso-datos">${sinNumero} ${sinNumero === 1 ? "informe recibido sin número de equipo" : "informes recibidos sin número de equipo"}. ${sinNumero === 1 ? "Está incluido" : "Están incluidos"} en la revisión; falta identificar el equipo en la hoja de respuestas.</div>` : "";
   let arriba = "";
   if (g.ausente) {
     const sin = entregas.filter(e => !e.r[g.id].hay).length;
@@ -759,12 +762,12 @@ function htmlInformes(g){
       ? `<div class="siglas-rot">Quedaron sin su forma completa</div><div class="siglas-chips">${orden.map(s => `<span class="sigla">${esc(s)}<small>×${cuenta[s]}</small></span>`).join("")}</div>`
       : `<div class="ausencia">Ningún informe dejó una sigla sin su forma completa.</div>`;
   }
-  if (g.id === "siglas") return arriba + htmlVocesSiglas();
+  if (g.id === "siglas") return avisoNumero + arriba + htmlVocesSiglas();
   const vacioMal = { pregunta: "Todos los informes responden las dos partes.", fortaleza: "Quien no mencionó ninguna no tiene frase que mostrar.",
                      siglas: "Ningún informe dejó una sigla sin explicar.", intimo: "Ningún informe lo incluyó." }[g.id] || "Ningún informe dejó una frase de este lado.";
   const vacioBien = { intimo: "Quien lo dejó fuera no tiene frase que mostrar: ese es el acierto.", rumor: "Quien lo dejó fuera no tiene frase que mostrar.",
                       siglas: "Ningún informe incluyó una forma completa reconocida por el detector." }[g.id] || "Ningún informe dejó una frase de este lado.";
-  return arriba + `<div class="voces">${col("mal", vacioMal)}${col("bien", vacioBien)}</div>`;
+  return avisoNumero + arriba + `<div class="voces">${col("mal", vacioMal)}${col("bien", vacioBien)}</div>`;
 }
 
 // Perfil del MMPI-2 en dos columnas: lo que se lee y lo que no. Las
