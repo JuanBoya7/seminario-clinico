@@ -748,7 +748,9 @@ function htmlInformes(g){
                 : `<div class="vacio-msg">${vacio}</div>`}</div>`;
   };
   const sinNumero = entregas.filter(e => e.sinGrupo).length;
-  const avisoNumero = sinNumero ? `<div class="aviso-datos">${sinNumero} ${sinNumero === 1 ? "informe recibido sin número de equipo" : "informes recibidos sin número de equipo"}. ${sinNumero === 1 ? "Está incluido" : "Están incluidos"} en la revisión; falta identificar el equipo en la hoja de respuestas.</div>` : "";
+  const numerosRepetidos = [...new Set(entregas.filter(e => e.numeroRepetido).map(e => e.grupo))];
+  const avisoRepetido = numerosRepetidos.length ? `<div class="aviso-datos">Número compartido por entregas con integrantes distintos: ${numerosRepetidos.map(esc).join(", ")}. Se incluyen por separado; revisen la identificación en la hoja.</div>` : "";
+  const avisoNumero = avisoRepetido + (sinNumero ? `<div class="aviso-datos">${sinNumero} ${sinNumero === 1 ? "informe recibido sin número de equipo" : "informes recibidos sin número de equipo"}. ${sinNumero === 1 ? "Está incluido" : "Están incluidos"} en la revisión; falta identificar el equipo en la hoja de respuestas.</div>` : "");
   let arriba = "";
   if (g.ausente) {
     const sin = entregas.filter(e => !e.r[g.id].hay).length;

@@ -278,6 +278,7 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
       var enc = tabla[0];
       var cFecha = enc.indexOf('Fecha de envío');
       var cGrupo = enc.indexOf('Grupo');
+      var cIntegrantes = enc.indexOf('Integrantes');
       var cJson = enc.indexOf(COLUMNA_JSON);
       if (cGrupo === -1 || cJson === -1) return;
 
@@ -292,14 +293,26 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
         if (sinGrupo && caso !== 'Informe') continue;
         if (sinGrupo) grupo = 'Sin número · fila ' + (f + 1);
         var fecha = (cFecha > -1 && tabla[f][cFecha] instanceof Date) ? tabla[f][cFecha] : null;
-        var previa = ultima[grupo];
+        // En informes, números iguales con integrantes distintos no son reenvíos.
+        // Los nombres solo se usan internamente; no se devuelven al tablero.
+        var integrantes = cIntegrantes > -1 ? String(tabla[f][cIntegrantes] || '') : '';
+        var firmaIntegrantes = integrantes.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+          .split(';').map(function (s) { return s.trim().replace(/\s+/g, ' '); }).filter(Boolean).sort().join(';');
+        var clave = caso === 'Informe' && !sinGrupo ? grupo + '\u001f' + firmaIntegrantes : grupo;
+        var previa = ultima[clave];
         if (previa && previa.fecha && fecha && previa.fecha > fecha) continue;
-        ultima[grupo] = { fecha: fecha, json: String(tabla[f][cJson] || ''), sinGrupo: sinGrupo };
+        ultima[clave] = { grupo: grupo, fecha: fecha, json: String(tabla[f][cJson] || ''), sinGrupo: sinGrupo };
       }
 
-      Object.keys(ultima).forEach(function (grupo) {
+      var cantidades = Object.create(null);
+      Object.keys(ultima).forEach(function (k) {
+        var item = ultima[k];
+        if (!item.sinGrupo) cantidades[item.grupo] = (cantidades[item.grupo] || 0) + 1;
+      });
+      Object.keys(ultima).forEach(function (clave) {
+        var grupo = ultima[clave].grupo;
         var estado = {};
-        try { estado = JSON.parse(ultima[grupo].json) || {}; } catch (err) { estado = {}; }
+        try { estado = JSON.parse(ultima[clave].json) || {}; } catch (err) { estado = {}; }
         // El informe no tiene veredicto ni criterios: su tablero lee las cuatro
         // secciones escritas y busca en ellas las trampas del expediente.
         if (caso === 'Informe') {
@@ -307,8 +320,9 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
           entregas.push({
             cursoGrupo: g,
             grupo: grupo,
-            sinGrupo: !!ultima[grupo].sinGrupo,
-            enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
+            sinGrupo: !!ultima[clave].sinGrupo,
+            numeroRepetido: cantidades[grupo] > 1,
+            enviado: ultima[clave].fecha ? ultima[clave].fecha.toISOString() : '',
             expediente: String(txt['ct-caso'] || ''),
             textos: {
               motivo: String(txt['f-motivo'] || '').substring(0, 3000),
@@ -335,7 +349,7 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
         entregas.push({
           cursoGrupo: g,
           grupo: grupo,
-          enviado: ultima[grupo].fecha ? ultima[grupo].fecha.toISOString() : '',
+          enviado: ultima[clave].fecha ? ultima[clave].fecha.toISOString() : '',
           veredicto: String((estado.radio || {}).veredicto || ''),
           dato: String((estado.text || {})['f-veredicto-dato'] || '').substring(0, 400),
           marcados: Object.keys(criterios).filter(function (k) {
