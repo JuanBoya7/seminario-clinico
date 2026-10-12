@@ -200,6 +200,7 @@ function tick(){remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));upda
 function resetTimer(){stopTimer();remaining=Number(el('duration').value);updateClock();el('timer-toggle').textContent='Iniciar';el('timer-status').textContent='';}
 try{
  readHash();render();if(location.hash)el('preparation').open=false;
+ document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();el('station-title').focus();el('station-title').scrollIntoView({block:'start'});});
  el('groups').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b)navigate(Number(b.dataset.group),role);});
  el('roles').addEventListener('click',e=>{const b=e.target.closest('[data-role]');if(b)navigate(current,b.dataset.role);});
  window.addEventListener('hashchange',()=>{if(location.hash==='#references'||location.hash==='#ref-harris'||location.hash==='#ref-hayes'){el('references').open=true;return;}const before=current;readHash();if(current!==before)resetTimer();render();});
