@@ -1,68 +1,566 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Análisis en cadena · Terapia dialéctico-conductual</title><style>
-:root{--ink:#2c2433;--muted:#605669;--purple:#3e294e;--purple2:#412a4e;--gold:#bf922a;--gold-soft:#f8f1e1;--lav:#f3eff6;--lav2:#e4dcec;--line:#ddd5e4;--bg:#faf8fb}
-*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif}
-header,main,footer{max-width:980px;margin:auto;padding:22px}
-h1,h2{line-height:1.15;font-weight:700;color:var(--ink)}h1{font-size:36px;margin:6px 0 10px}h2{font-size:24px;margin:4px 0 10px}h3{font-size:16px;margin:0 0 6px;color:var(--purple)}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:750}
-.intro{display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:center}.intro img{width:100%;height:auto;border-radius:14px}
-.intro p{color:var(--muted);margin:0 0 10px}
-.block{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}
-.context{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-label{display:block;font-weight:650;font-size:14px;color:var(--purple);margin-bottom:4px}
-select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #c9bdd6;border-radius:8px;padding:9px 10px}
-textarea{min-height:64px;resize:vertical}
-select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.episode{background:var(--purple);color:#fff;border-radius:14px;padding:20px 22px}.episode h2{color:#fff;margin:4px 0 8px}.episode .eyebrow{color:#e3c173}.episode p{margin:0;color:#ece5f1}
-.chain{list-style:none;margin:0;padding:0;counter-reset:link}
-.chain li{position:relative;margin:0 0 14px;padding:14px 16px 14px 56px;background:#fff;border:1px solid var(--line);border-radius:12px}
-.chain li::before{counter-increment:link;content:counter(link);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--lav2);color:var(--purple);font-weight:700;display:grid;place-items:center;font-size:14px}
-.chain li.problem{background:var(--lav)}.chain li.problem::before{background:var(--purple);color:#fff}
-.chain li.conseq::before{background:var(--gold-soft);color:var(--gold)}
-.chain li+li::after{content:'';position:absolute;left:27px;top:-15px;height:14px;border-left:2px solid var(--gold)}
-.help{font-size:13px;color:var(--muted);margin:-2px 0 6px}
-.solutions{display:grid;grid-template-columns:1fr 1fr;gap:16px}.solutions .wide{grid-column:1/-1}
-.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
-button{font:inherit;cursor:pointer;border-radius:8px;padding:10px 16px;border:1px solid var(--purple);background:#fff;color:var(--purple)}
-button.primary{background:var(--purple);color:#fff}button:disabled{opacity:.5;cursor:default}
-#status{min-height:1.4em;color:var(--purple);font-size:14px}
-.empty{color:var(--muted);font-style:italic}
-footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:24px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--purple);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
-.toast.is-visible{opacity:1}
-body.form{user-select:none}body.form input,body.form textarea,body.form select{user-select:text}
-[hidden]{display:none!important}
-@media (max-width:700px){.intro,.context,.solutions{grid-template-columns:1fr}.intro img{max-width:220px}h1{font-size:28px}}
-@media print{.no-pdf{display:none!important}}
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caso Valeria — Análisis en cadena</title>
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --none:#8a97a0;
+  --none-soft:#eef1f2;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+/* El texto de la página no se selecciona; los campos de escritura sí, para poder corregirlos. */
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea,select,[contenteditable]{-webkit-user-select:text; user-select:text;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-soft);}
+
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.app-shell{
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  min-height:100vh;
+}
+@media (max-width:900px){
+  .app-shell{grid-template-columns:1fr;}
+}
+
+/* ---- Sidebar / nav ---- */
+.sidebar{
+  border-right:1px solid var(--border);
+  padding:28px 20px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  background:var(--surface);
+}
+@media (max-width:900px){
+  .sidebar{
+    position:relative;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding:18px 16px;
+  }
+}
+.sidebar-brand{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:6px;
+}
+.sidebar-title{
+  font-size:19px;
+  margin-bottom:22px;
+  line-height:1.3;
+}
+.nav-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+@media (max-width:900px){
+  .nav-list{flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:4px;}
+}
+.nav-item{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  white-space:nowrap;
+  transition:background 0.15s ease, color 0.15s ease;
+}
+.nav-item:hover{background:var(--surface-alt); color:var(--ink);}
+.nav-item.is-complete .nav-dot{background:var(--accent); border-color:var(--accent);}
+.nav-dot{
+  width:7px; height:7px; border-radius:50%;
+  border:1.5px solid var(--ink-faint);
+  flex-shrink:0;
+}
+
+/* ---- Progress block (sidebar) ---- */
+.progress-block{margin-top:26px; padding-top:20px; border-top:1px solid var(--border);}
+.progress-label{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:12px; color:var(--ink-soft); margin-bottom:8px;
+}
+.progress-pct{font-family:var(--font-mono); font-size:15px; color:var(--accent-dark); font-weight:600;}
+.progress-track{
+  height:6px; border-radius:99px; background:var(--surface-alt); overflow:hidden;
+}
+.progress-fill{
+  height:100%; background:var(--accent); border-radius:99px;
+  transition:width 0.4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+.autosave-note{font-size:11.5px; color:var(--ink-faint); margin-top:10px;}
+
+/* ---- Main content ---- */
+.main{padding:36px clamp(20px,4vw,64px) 100px; max-width:880px;}
+.masthead{margin-bottom:34px;}
+.masthead-eyebrow{
+  font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;
+}
+.masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); font-size:15px; max-width:60ch;}
+
+/* Enlace a la rúbrica, en el encabezado. Apunta a la URL absoluta de Pages y no
+   al archivo vecino: el recurso se guarda y viaja solo, y un enlace relativo
+   quedaría roto en cuanto el grupo descarga su copia. */
+.link-rubrica{
+  display:inline-block; margin-top:14px;
+  font-size:14px; font-weight:600; color:var(--accent); text-decoration:none;
+  border:1px solid var(--border); border-radius:8px; padding:9px 14px;
+}
+.link-rubrica:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+/* Criterio de evaluación al pie de las preguntas abiertas. Se muestra PLEGADO:
+   la regla del curso es que una consigna abierta no enumere qué observar,
+   porque entonces el estudiante ya no desarrolla la mirada clínica, sólo
+   verifica una lista. Plegado respeta las dos cosas — quien quiere saber contra
+   qué se lo mide lo abre, y quien responde de frente lo hace sin la lista
+   delante. */
+.rubrica-inline{margin-top:12px; border-top:1px solid var(--border); padding-top:10px;}
+.rubrica-inline > summary{
+  cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:600; color:var(--accent);
+  /* El relleno vertical es el área táctil: sin él, el disparador mide 19 px de
+     alto y en un celular hay que apuntarle. */
+  padding:9px 4px 9px 0;
+}
+.rubrica-inline > summary::-webkit-details-marker{display:none;}
+.rubrica-inline > summary::before{
+  content:""; width:7px; height:7px; flex-shrink:0;
+  border-right:1.8px solid var(--accent); border-bottom:1.8px solid var(--accent);
+  transform:rotate(-45deg); transition:transform 0.2s ease;
+}
+.rubrica-inline[open] > summary::before{transform:rotate(45deg);}
+.rubrica-peso{
+  font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:2px 7px; border-radius:99px;
+}
+.rubrica-niveles{margin-top:10px; display:flex; flex-direction:column; gap:6px;}
+.rubrica-nivel{
+  display:flex; gap:10px; align-items:flex-start;
+  font-size:12.5px; line-height:1.45; color:var(--ink-soft);
+  padding:7px 11px; border-radius:7px; background:var(--surface);
+}
+.rubrica-nivel b{
+  flex:0 0 96px; font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.04em; text-transform:uppercase; margin-top:1px;
+}
+.rubrica-nivel:nth-child(1) b{color:var(--severe);}
+.rubrica-nivel:nth-child(2) b{color:var(--moderate);}
+.rubrica-nivel:nth-child(3) b{color:var(--mild);}
+.rubrica-nivel:nth-child(4) b{color:var(--accent);}
+@media (max-width:900px){
+  .rubrica-inline > summary{padding:14px 4px 14px 0;}
+}
+@media (max-width:560px){
+  .rubrica-nivel{flex-direction:column; gap:3px;}
+  .rubrica-nivel b{flex:none;}
+}
+
+
+section.block{margin-bottom:40px; scroll-margin-top:24px;}
+.block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+.block-heading h2{font-size:20px;}
+.block-index{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint);}
+.block-sub{color:var(--ink-soft); font-size:14px; margin-bottom:18px; max-width:64ch;}
+
+/* ---- Card ---- */
+.card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow-card);
+}
+.card + .card{margin-top:0;}
+.card-label{
+  font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px;
+  display:flex; align-items:center; gap:6px;
+}
+.required-mark{color:var(--severe); font-size:13px;}
+.card-help{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
+
+/* ---- Inputs ---- */
+input[type="text"], textarea, select{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:14.5px;
+  color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:11px 13px;
+  transition:border-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* Campo con prefijo fijo: la palabra "Grupo" es parte del disenio, no la
+   escribe el estudiante. Evita que cada grupo invente su propio formato. */
+.input-prefixed{display:flex; align-items:stretch;}
+.input-prefix{
+  display:flex; align-items:center; white-space:nowrap;
+  padding:0 14px; font-size:14.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft);
+  border:1px solid var(--border); border-right:none;
+  border-radius:8px 0 0 8px;
+}
+.input-prefixed input[type="text"]{border-radius:0 8px 8px 0; flex:1 1 auto; min-width:0;}
+
+input[type="text"]:focus, textarea:focus, select:focus{
+  outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+  background:var(--bg);
+}
+textarea{resize:vertical; min-height:76px; line-height:1.5;}
+textarea.evidence-box{min-height:56px; font-size:13.5px;}
+
+/* ---- Radio / checkbox groups ---- */
+.option-list{display:flex; flex-direction:column; gap:8px;}
+.option-row{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 12px; border:1px solid var(--border); border-radius:8px;
+  cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease;
+  font-size:14px;
+}
+.option-row:hover{border-color:var(--accent); background:var(--accent-soft);}
+.option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
+.option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
+/* Familias de explicaciones (caso Sergio): los mismos colores que el deck,
+   turquesa para lo que hace la sustancia y coral para lo que hace la persona. */
+.option-fam{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; margin:6px 0 -2px; padding-left:10px; border-left:4px solid;}
+.option-fam:first-child{margin-top:0;}
+.option-fam.fam-sustancia{color:#1C7A70; border-color:#1C7A70;}
+.option-fam.fam-persona{color:#C8583A; border-color:#C8583A; margin-top:10px;}
+.option-fam.fam-ninguna{margin-top:10px; border-color:transparent; padding-left:0;}
+
+/* ---- Checklist diagnóstico (dos condiciones evaluadas en paralelo) ---- */
+.condition-card{
+  border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:20px; overflow:hidden; box-shadow:var(--shadow-card);
+}
+.condition-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:18px 22px; background:var(--surface); cursor:pointer;
+  user-select:none;
+}
+.condition-header h3{font-size:17px;}
+.condition-header-left{display:flex; align-items:center; gap:12px;}
+.chevron{
+  width:9px; height:9px; border-right:2px solid var(--ink-faint); border-bottom:2px solid var(--ink-faint);
+  transform:rotate(45deg); transition:transform 0.2s ease; flex-shrink:0;
+}
+.condition-card.is-open .chevron{transform:rotate(-135deg);}
+
+/* Insignia neutra (trastornos sin gravedad oficial del DSM-5: solo cuenta criterios) */
+.count-badge{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  padding:6px 12px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+
+/* Insignia de gravedad (solo trastorno por consumo: el DSM-5 sí define
+   leve/moderado/grave por conteo de criterios) */
+.severity-badge{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  padding:6px 12px; border-radius:99px; white-space:nowrap;
+  background:var(--none-soft); color:var(--none);
+}
+.severity-badge[data-level="leve"]{background:var(--mild-soft); color:var(--mild);}
+.severity-badge[data-level="moderada"]{background:var(--moderate-soft); color:var(--moderate);}
+.severity-badge[data-level="grave"]{background:var(--severe-soft); color:var(--severe);}
+
+.condition-body{
+  max-height:0; overflow:hidden; transition:max-height 0.35s ease;
+}
+.condition-card.is-open .condition-body{max-height:8000px;}
+.condition-body-inner{padding:20px 22px 22px;}
+
+/* Alerta de cumplimiento de criterios (trastornos sin gravedad oficial: se
+   informa en cambio si el patrón completo queda o no diagnósticamente
+   cumplido con lo marcado hasta el momento) */
+.criteria-alert{
+  margin-bottom:18px; padding:13px 16px; border-radius:8px;
+  border:1px solid var(--border); background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;
+}
+.criteria-alert .alert-dot{width:9px; height:9px; border-radius:50%; background:var(--ink-faint); flex-shrink:0;}
+.criteria-alert strong{color:var(--ink);}
+.criteria-alert.is-met{background:var(--mild-soft); border-color:var(--mild);}
+.criteria-alert.is-met .alert-dot{background:var(--mild);}
+.criteria-alert.is-met strong{color:var(--mild);}
+
+.criterion{
+  border-top:1px solid var(--border); padding:16px 0;
+}
+.criterion:first-child{border-top:none; padding-top:6px;}
+.criterion-main{display:flex; gap:12px; align-items:flex-start;}
+.criterion-main input{margin-top:3px; width:20px; height:20px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.criterion-num{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); flex-shrink:0; margin-top:2px;}
+.criterion-text{font-size:14px; color:var(--ink); cursor:pointer;}
+.criterion-evidence{margin-top:10px; margin-left:29px; display:none;}
+.criterion.is-checked .criterion-evidence{display:block;}
+.criterion-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+.severity-summary{
+  margin-top:8px; padding:14px 16px; border-radius:8px; background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.severity-summary strong{color:var(--ink); font-family:var(--font-mono);}
+
+/* ---- Bloque "pool": un mínimo de N síntomas dentro de un mismo criterio ---- */
+.pool-block{border-top:1px solid var(--border); padding:16px 0;}
+.pool-block:first-child{border-top:none; padding-top:6px;}
+.pool-heading{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.pool-heading-text{font-size:14px; color:var(--ink); flex:1; min-width:200px;}
+.pool-counter{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+.pool-items{display:flex; flex-direction:column; gap:2px; margin-left:29px;}
+.pool-item{display:flex; align-items:flex-start; gap:10px; padding:6px 0; font-size:13.5px; color:var(--ink); cursor:pointer;}
+.pool-item input{margin-top:3px; width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.pool-evidence{margin-top:10px; margin-left:29px;}
+.pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+/* ---- Lista dinámica (integrantes) ---- */
+.dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
+.dynamic-list-row input{flex:1;}
+.btn-remove-item{
+  flex-shrink:0; width:40px; height:40px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--ink-faint); font-size:18px; line-height:1;
+  cursor:pointer; transition:all 0.15s ease;
+}
+.btn-remove-item:hover{border-color:var(--severe); color:var(--severe); background:var(--severe-soft);}
+.btn-add-item{
+  margin-top:4px; font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft); border:1px solid transparent;
+  border-radius:8px; padding:9px 16px; cursor:pointer; transition:background 0.15s ease;
+}
+.btn-add-item:hover{background:var(--accent); color:#fff;}
+
+/* ---- Buttons ---- */
+.btn{
+  font-family:var(--font-body); font-size:14.5px; font-weight:600;
+  padding:13px 26px; border-radius:9px; border:1px solid transparent;
+  cursor:pointer; transition:transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-primary:active{transform:scale(0.98);}
+.btn-secondary{background:#fff; color:var(--accent); border-color:var(--accent);}
+.btn-secondary:hover{background:var(--accent-soft);}
+.btn-secondary:active{transform:scale(0.98);}
+.btn:disabled{opacity:0.5; cursor:not-allowed;}
+.save-actions{display:flex; gap:10px; flex-wrap:wrap;}
+
+.save-bar{
+  position:sticky; bottom:0; left:0; right:0;
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(6px);
+  border-top:1px solid var(--border);
+  padding:16px clamp(20px,4vw,64px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.save-status{font-size:12.5px; color:var(--ink-faint); flex:1 1 200px; min-width:0;}
+.save-status.ok{color:var(--mild);}
+.save-status.warn{color:var(--severe);}
+
+/* En pantallas angostas la barra deja de flotar. Fija ocupaba casi media
+   pantalla del celular mientras el grupo escribia, y ahi no sirve para nada:
+   se usa al final. Pasa al cierre del documento, despues del ultimo bloque. */
+@media (max-width:900px){
+  .save-bar{
+    position:static;
+    margin:0;
+    padding:20px 16px 30px;
+    background:var(--surface);
+    backdrop-filter:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea */
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea.
+     El flex:0 0 auto es imprescindible: la regla de escritorio usa
+     flex:1 1 200px, y al apilarse en columna esos 200px dejan de ser ancho y
+     pasan a ser ALTO. Ese era el bulto que se comia media pantalla. */
+  .save-status{order:-1; text-align:center; font-size:12px; flex:0 0 auto;}
+  /* Los dos botones comparten una fila: la mitad de alto que apilados */
+  .save-actions{flex-direction:row; gap:10px;}
+  .save-actions .btn{flex:1 1 0; min-width:0; padding:13px 8px; font-size:13.5px;}
+  /* Ya no hay barra flotante que tapar: se recupera ese espacio al final */
+  .main{padding-bottom:8px;}
+}
+
+/* Muy angosto: los dos rotulos no entran lado a lado */
+@media (max-width:360px){
+  .save-actions{flex-direction:column;}
+}
+
+/* ---- Restriction toast ---- */
+.toast{
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px;
+  font-size:13px; opacity:0; pointer-events:none; transition:all 0.25s ease;
+  z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+
+/* ---- Aviso de JavaScript (visible solo si el script no arranca) ---- */
+.js-warning{
+  background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 18px; border-radius:var(--radius); font-size:14px; margin-bottom:24px;
+  line-height:1.5;
+}
+
+/* ---- Veredicto: una opción y una línea ---- */
+.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
+.option-list.invalid{border-radius:8px;}
+
+@media print{.sidebar,.save-bar{display:none;}}
+
+/* ---- Propio de la actividad de análisis en cadena ---- */
+.episodio{display:grid; grid-template-columns:minmax(0,1fr) 150px; gap:20px; align-items:center;}
+.episodio p{margin:0; font-size:15px; color:var(--ink); line-height:1.6;}
+.episodio img{width:100%; height:auto; border-radius:8px;}
+.episodio-tit{font-family:var(--font-display); font-size:21px; font-weight:600; margin:0 0 8px;}
+.eslabon-num{font-family:var(--font-mono); font-size:12px; color:var(--accent); margin-right:4px;}
+.card.is-problema{border-color:var(--accent); background:var(--accent-soft);}
+.card.is-problema textarea{background:#fff;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-2 .card{margin-bottom:0;}
+.vacio{color:var(--ink-faint); font-style:italic; font-size:15px;}
+@media (max-width:700px){.episodio,.grid-2{grid-template-columns:1fr}.episodio img{max-width:160px}}
 </style></head>
-<body class="form">
-<header><div class="eyebrow">Práctica en aula · Terapia dialéctico-conductual</div>
-<div class="intro"><div><h1>Análisis en cadena de Valeria</h1>
-<p>Cada grupo recibe un episodio distinto de Valeria. Reconstruyan la cadena eslabón por eslabón, desde lo que la hacía vulnerable hasta las consecuencias, y decidan dónde cortarla.</p>
-<p>Valeria es un caso ficticio. Lo que escriban sobre sus pensamientos, emociones e impulsos son hipótesis que se desprenden del relato.</p></div>
-<img src="dbt-valeria.jpg" alt="Ilustración de una joven sentada en una banca mirando su celular" width="480" height="519"></div></header>
-<main id="formulario">
-<section class="block context"><div><label for="curso">Curso</label><select id="curso"><option value="">Elijan el curso</option><option>901</option><option>902</option><option>903</option></select></div><div><label for="grupo">Grupo</label><select id="grupo"><option value="">Elijan el grupo</option><option value="1">Grupo 1</option><option value="2">Grupo 2</option><option value="3">Grupo 3</option><option value="4">Grupo 4</option><option value="5">Grupo 5</option><option value="6">Grupo 6</option></select></div></section>
-<section id="sin-grupo" class="empty">Elijan el curso y el grupo para ver su episodio.</section>
-<section id="trabajo" hidden>
-<div class="episode"><div class="eyebrow">Episodio del grupo <span id="ep-num"></span></div><h2 id="ep-titulo"></h2><p id="ep-texto"></p></div>
-<section class="block"><h3>La cadena</h3><ol class="chain"><li class=""><label for="e-vulnerabilidad">Vulnerabilidad</label><p class="help">Lo que la hacía más vulnerable antes del evento.</p><textarea id="e-vulnerabilidad" data-link="vulnerabilidad" maxlength="600"></textarea></li><li class=""><label for="e-evento">Evento desencadenante</label><p class="help">El hecho concreto con el que empieza la cadena.</p><textarea id="e-evento" data-link="evento" maxlength="600"></textarea></li><li class=""><label for="e-pensamientos">Pensamientos</label><textarea id="e-pensamientos" data-link="pensamientos" maxlength="600"></textarea></li><li class=""><label for="e-emociones">Emociones y sensaciones</label><textarea id="e-emociones" data-link="emociones" maxlength="600"></textarea></li><li class=""><label for="e-impulso">Impulso</label><textarea id="e-impulso" data-link="impulso" maxlength="600"></textarea></li><li class="problem"><label for="e-conducta">Conducta problema</label><textarea id="e-conducta" data-link="conducta" maxlength="600"></textarea></li><li class="conseq"><label for="e-corto">Consecuencias a corto plazo</label><textarea id="e-corto" data-link="corto" maxlength="600"></textarea></li><li class="conseq"><label for="e-largo">Consecuencias a largo plazo</label><textarea id="e-largo" data-link="largo" maxlength="600"></textarea></li></ol></section>
-<section class="block"><h3>Análisis de soluciones</h3><div class="solutions">
-<div><label for="nivel">Nivel de la jerarquía de metas</label><select id="nivel"><option value="">Elijan el nivel</option><option value="1">1 · Conductas que amenazan la vida</option><option value="2">2 · Conductas que interfieren con la terapia</option><option value="3">3 · Conductas que interfieren con la calidad de vida</option><option value="4">4 · Aumentar las habilidades</option></select></div>
-<div><label for="intervencion">Eslabón donde intervenir</label><select id="intervencion"><option value="">Elijan el eslabón</option><option value="vulnerabilidad">Vulnerabilidad</option><option value="evento">Evento desencadenante</option><option value="pensamientos">Pensamientos</option><option value="emociones">Emociones y sensaciones</option><option value="impulso">Impulso</option><option value="conducta">Conducta problema</option><option value="corto">Consecuencias a corto plazo</option><option value="largo">Consecuencias a largo plazo</option></select></div>
-<div><label for="habilidad">Habilidad</label><select id="habilidad"><option value="">Elijan la habilidad</option><option>STOP</option><option>TIP</option><option>Pros y contras</option><option>Aceptación radical</option><option>Mindfulness: observar y describir</option><option>Mindfulness de la emoción actual</option><option>Verificar los hechos</option><option>Acción opuesta</option><option>ACA CUIDA</option><option>DEAR MAN</option><option>AVES</option><option>VIDA</option></select></div>
-<div class="wide"><label for="aplicacion">Cómo la usaría Valeria en ese momento</label><textarea id="aplicacion" maxlength="800"></textarea></div>
-</div></section>
-<div class="actions no-pdf"><button id="save">Guardar PDF</button><button id="send" class="primary">Enviar al docente</button><button id="new">Nuevo análisis</button><span id="status" role="status"></span></div>
-</section></main>
-<footer>Seminario de práctica clínica · Terapia dialéctico-conductual. Caso ficticio con fines docentes.</footer>
+<body>
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-brand">Terapia dialéctico-conductual</div>
+    <div class="sidebar-title">Caso Valeria<br>Análisis en cadena</div>
+    <ul class="nav-list" id="nav-list">
+      <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>El episodio</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>La cadena</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Análisis de soluciones</a></li>
+    </ul>
+    <div class="progress-block">
+      <div class="progress-label"><span>Progreso</span><span class="progress-pct" id="progress-pct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </nav>
+  <main class="main" id="formulario">
+    <header class="masthead">
+      <div class="masthead-eyebrow">Práctica en aula · Terapia dialéctico-conductual</div>
+      <h1>Caso Valeria — Análisis en cadena</h1>
+      <p>Cada grupo recibe un episodio distinto de Valeria, un caso ficticio. Reconstruyan la cadena eslabón por eslabón, desde lo que la hacía vulnerable hasta las consecuencias, y decidan dónde cortarla. Lo que escriban sobre pensamientos, emociones e impulsos son hipótesis que se desprenden del relato.</p>
+      <p>Escriban sus respuestas manualmente: copiar, pegar y cortar están deshabilitados en este formulario. Al presionar "Guardar actividad" se genera un PDF rellenable con sus respuestas: en el celular se abre el menú para compartirlo y en el computador se descarga. Al terminar, presionen además "Enviar al docente": se abrirá una pestaña confirmando que las respuestas llegaron.</p>
+    </header>
+
+    <section class="block" id="bloque-0">
+      <div class="block-heading"><h2>Datos del grupo</h2></div>
+      <div class="grid-2">
+        <div class="card"><div class="card-label">Grupo del curso <span class="required-mark">*</span></div>
+          <div class="card-help">Seleccionen el grupo de la asignatura al que pertenecen.</div><select id="ct-curso"><option value="">— Seleccionar —</option><option value="901">901</option><option value="902">902</option><option value="903">903</option></select></div>
+        <div class="card"><div class="card-label">Grupo de trabajo <span class="required-mark">*</span></div>
+          <div class="card-help">Cada grupo trabaja un episodio distinto.</div><select id="ct-grupo"><option value="">— Seleccionar —</option><option value="1">Grupo 1</option><option value="2">Grupo 2</option><option value="3">Grupo 3</option><option value="4">Grupo 4</option><option value="5">Grupo 5</option><option value="6">Grupo 6</option></select></div>
+      </div>
+    </section>
+
+    <section class="block" id="bloque-1">
+      <div class="block-heading"><h2>El episodio</h2></div>
+      <div class="card" id="sin-grupo"><p class="vacio">Elijan el curso y el grupo para ver su episodio.</p></div>
+      <div class="card episodio" id="episodio" hidden>
+        <div><div class="masthead-eyebrow" id="ep-num"></div><div class="episodio-tit" id="ep-titulo"></div><p id="ep-texto"></p></div>
+        <img src="dbt-valeria.jpg" alt="Ilustración de Valeria sentada en una banca, mirando su celular" width="480" height="519">
+      </div>
+    </section>
+
+    <section class="block" id="bloque-2">
+      <div class="block-heading"><h2>La cadena</h2></div>
+      <div class="block-sub">Un eslabón por casilla, en el orden en que ocurrió.</div>
+      <div class="card"><div class="card-label"><span class="eslabon-num">1/8</span>Vulnerabilidad <span class="required-mark">*</span></div><div class="card-help">Lo que la hacía más vulnerable antes del evento.</div><textarea id="e-vulnerabilidad" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">2/8</span>Evento desencadenante <span class="required-mark">*</span></div><div class="card-help">El hecho concreto con el que empieza la cadena.</div><textarea id="e-evento" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">3/8</span>Pensamientos <span class="required-mark">*</span></div><textarea id="e-pensamientos" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">4/8</span>Emociones y sensaciones <span class="required-mark">*</span></div><textarea id="e-emociones" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">5/8</span>Impulso <span class="required-mark">*</span></div><textarea id="e-impulso" rows="2" maxlength="600"></textarea></div><div class="card is-problema"><div class="card-label"><span class="eslabon-num">6/8</span>Conducta problema <span class="required-mark">*</span></div><textarea id="e-conducta" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">7/8</span>Consecuencias a corto plazo <span class="required-mark">*</span></div><textarea id="e-corto" rows="2" maxlength="600"></textarea></div><div class="card"><div class="card-label"><span class="eslabon-num">8/8</span>Consecuencias a largo plazo <span class="required-mark">*</span></div><textarea id="e-largo" rows="2" maxlength="600"></textarea></div>
+    </section>
+
+    <section class="block" id="bloque-3">
+      <div class="block-heading"><h2>Análisis de soluciones</h2></div>
+      <div class="grid-2">
+        <div class="card"><div class="card-label">Nivel de la jerarquía de metas <span class="required-mark">*</span></div><select id="nivel"><option value="">— Seleccionar —</option><option value="1">1 · Conductas que amenazan la vida</option><option value="2">2 · Conductas que interfieren con la terapia</option><option value="3">3 · Conductas que interfieren con la calidad de vida</option><option value="4">4 · Aumentar las habilidades</option></select></div>
+        <div class="card"><div class="card-label">Eslabón donde intervenir <span class="required-mark">*</span></div><select id="intervencion"><option value="">— Seleccionar —</option><option value="vulnerabilidad">Vulnerabilidad</option><option value="evento">Evento desencadenante</option><option value="pensamientos">Pensamientos</option><option value="emociones">Emociones y sensaciones</option><option value="impulso">Impulso</option><option value="conducta">Conducta problema</option><option value="corto">Consecuencias a corto plazo</option><option value="largo">Consecuencias a largo plazo</option></select></div>
+      </div>
+      <div class="card" style="margin-top:16px"><div class="card-label">Habilidad <span class="required-mark">*</span></div><select id="habilidad"><option value="">— Seleccionar —</option><option>STOP</option><option>TIP</option><option>Pros y contras</option><option>Aceptación radical</option><option>Mindfulness: observar y describir</option><option>Mindfulness de la emoción actual</option><option>Verificar los hechos</option><option>Acción opuesta</option><option>ACA CUIDA</option><option>DEAR MAN</option><option>AVES</option><option>VIDA</option></select></div>
+      <div class="card"><div class="card-label">Cómo la usaría Valeria en ese momento <span class="required-mark">*</span></div>
+        <textarea id="aplicacion" rows="3" maxlength="800"></textarea></div>
+    </section>
+  </main>
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="save-status"></div>
+  <div class="save-actions">
+    <button class="btn btn-secondary" id="btn-guardar">Guardar actividad</button>
+    <button class="btn btn-primary" id="btn-enviar">Enviar al docente</button>
+  </div>
+</div>
 <div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
 <script id="saved-data" type="application/json">null</script>
-<script src="dbt-cadena-envio.js?v=20261012"></script>
+<script src="dbt-cadena-envio.js?v=20261012b"></script>
 <script>
+/* ============================================================
+   1. DATOS DE CONTENIDO
+   ============================================================ */
 const EPISODIOS=[{"titulo": "La llamada de la universidad", "texto": "Es lunes. Valeria lleva dos noches durmiendo mal porque su pareja está de viaje. A media mañana la llaman de la universidad: no alcanzó el cupo de una materia que necesitaba para no atrasarse otra vez. Cuelga y siente un nudo en el estómago. Piensa que nunca va a terminar la carrera y que su madre tenía razón. Esa semana no vuelve a clase: se queda en la cama con el celular. El lunes siguiente le da vergüenza aparecer."}, {"titulo": "Las fotos del sábado", "texto": "El sábado en la noche Valeria ve en redes las fotos de una reunión de sus amigas del colegio. Nadie le avisó. Ese día había discutido con su madre. Siente un golpe en el pecho y le arde la cara. Piensa «nadie me quiere cerca». Escribe en el grupo mensajes hirientes y se sale del chat. Durante unos minutos se siente más tranquila; al día siguiente dos amigas le dejan de hablar."}, {"titulo": "La puerta del cuarto", "texto": "Valeria llega cansada de un parcial que le fue mal. Su madre la ve llorando en la cocina y le dice: «Otra vez con tus dramas». Valeria siente calor en todo el cuerpo y aprieta los puños. Piensa que en esa casa nadie la va a entender nunca. Tira la puerta del cuarto y rompe un portarretratos. Su madre deja de insistir y se va. Después Valeria siente culpa y no sale a comer."}, {"titulo": "El dinero del mes", "texto": "Es viernes y su pareja cancela la salida una hora antes, «por cansancio». Valeria no ha almorzado. Siente un vacío que no sabe nombrar y piensa «soy la última opción». Abre la aplicación de compras y en una hora gasta el dinero que tenía para el transporte del mes. Mientras compra se siente mejor. El lunes no tiene cómo ir a la universidad."}, {"titulo": "La fiesta", "texto": "Valeria va sola a una fiesta de la carrera porque su pareja no quiso ir. Lleva una semana de entregas y casi sin dormir. Ve a su pareja conectada en el celular, pero sin responderle. Siente miedo y luego rabia. Piensa «seguro está con otra persona». Toma un trago tras otro hasta que una compañera tiene que llevarla a casa. Esa noche deja de pensar; al otro día no recuerda parte de lo que dijo."}, {"titulo": "La sesión", "texto": "En la tercera sesión, su terapeuta le propone revisar, eslabón por eslabón, la última vez que se hizo daño. Valeria llegó tarde porque discutió con su madre en la mañana. Mientras recuerda, siente vergüenza y el estómago revuelto. Piensa «me va a juzgar como todos». Dice que tiene otra cita, toma su bolso y se va antes de terminar. Afuera siente alivio. A la semana siguiente duda si volver."}];
 const KEYS=["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];
 const CURSO_CODE='SPI-2026-2';
+const CURSOS=["901", "902", "903"];
+
+/* ============================================================
+   2. ESTADO Y PERSISTENCIA
+   ============================================================ */
 const el=id=>document.getElementById(id);
 const PREFIX='dbt-cadena-fuaa-v1:';
 const ENDPOINT=window.DBT_CADENA_ENVIO_URL||'';
@@ -71,40 +569,74 @@ function blank(c,g){return{curso:c,grupo:g,eslabones:Object.fromEntries(KEYS.map
 function key(){return PREFIX+(state.curso||'-')+':'+(state.grupo||'-');}
 function persist(){try{localStorage.setItem(key(),JSON.stringify(state));localStorage.setItem(PREFIX+'ultima',JSON.stringify({curso:state.curso,grupo:state.grupo}));}catch(e){}}
 function load(c,g){state=blank(c,g);try{const r=localStorage.getItem(key());if(r){const s=JSON.parse(r);if(s.curso===c&&s.grupo===g)state={...state,...s};}}catch(e){}apply();}
-function apply(){el('curso').value=state.curso;el('grupo').value=state.grupo;const ep=EPISODIOS[Number(state.grupo)-1];const ok=!!(state.curso&&ep);
-el('trabajo').hidden=!ok;el('sin-grupo').hidden=ok;if(ok){el('ep-num').textContent=state.grupo;el('ep-titulo').textContent=ep.titulo;el('ep-texto').textContent=ep.texto;}
+
+/* ============================================================
+   3. PINTAR Y PROGRESO
+   ============================================================ */
+function apply(){el('ct-curso').value=state.curso;el('ct-grupo').value=state.grupo;const ep=EPISODIOS[Number(state.grupo)-1];const ok=!!(state.curso&&ep);
+el('episodio').hidden=!ok;el('sin-grupo').hidden=ok;if(ok){el('ep-num').textContent='Episodio del grupo '+state.grupo;el('ep-titulo').textContent=ep.titulo;el('ep-texto').textContent=ep.texto;}
 KEYS.forEach(k=>el('e-'+k).value=state.eslabones[k]||'');['nivel','intervencion','habilidad','aplicacion'].forEach(k=>el(k).value=state[k]||'');update();}
-function missing(){const m=KEYS.filter(k=>!(state.eslabones[k]||'').trim());['nivel','intervencion','habilidad','aplicacion'].forEach(k=>{if(!(state[k]||'').trim())m.push(k);});return m;}
-function update(){const lock=busy||state.enviado;document.querySelectorAll('#trabajo textarea,#trabajo select').forEach(x=>x.disabled=lock);el('send').disabled=busy||!ENDPOINT||state.enviado;el('save').disabled=busy;el('new').disabled=busy;el('curso').disabled=busy;el('grupo').disabled=busy;}
-function validate(){if(!state.curso||!state.grupo){el('status').textContent='Elijan el curso y el grupo.';return false;}const m=missing();if(m.length){el('status').textContent='Falta completar al menos un campo.';const f=KEYS.includes(m[0])?el('e-'+m[0]):el(m[0]);f.focus();return false;}return true;}
-function edited(){state.rid='';state.enviado=false;persist();update();el('status').textContent='';}
+const SOL=['nivel','intervencion','habilidad','aplicacion'];
+function filled(v){return String(v||'').trim().length>0;}
+function progress(){const b0=filled(state.curso)&&filled(state.grupo);const b2=KEYS.filter(k=>filled(state.eslabones[k])).length;const b3=SOL.filter(k=>filled(state[k])).length;
+const total=2+KEYS.length+SOL.length,done=(filled(state.curso)?1:0)+(filled(state.grupo)?1:0)+b2+b3;const pct=Math.round(done/total*100);
+el('progress-pct').textContent=pct+'%';el('progress-fill').style.width=pct+'%';
+const comp={'bloque-0':b0,'bloque-1':b0,'bloque-2':b2===KEYS.length,'bloque-3':b3===SOL.length};
+document.querySelectorAll('.nav-item').forEach(a=>a.classList.toggle('is-complete',!!comp[a.dataset.target]));}
+function setStatus(t,cls){const s=el('save-status');s.textContent=t||'';s.className='save-status'+(cls?' '+cls:'');}
+function update(){const lock=busy||state.enviado;document.querySelectorAll('#bloque-2 textarea,#bloque-3 textarea,#bloque-3 select').forEach(x=>x.disabled=lock);
+el('btn-enviar').disabled=busy||!ENDPOINT||state.enviado;el('btn-guardar').disabled=busy;el('ct-curso').disabled=busy;el('ct-grupo').disabled=busy;progress();}
+
+/* ============================================================
+   4. VALIDACIÓN
+   ============================================================ */
+function clearInvalid(){document.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));}
+function validate(){clearInvalid();const faltan=[];if(!filled(state.curso))faltan.push(el('ct-curso'));if(!filled(state.grupo))faltan.push(el('ct-grupo'));
+KEYS.forEach(k=>{if(!filled(state.eslabones[k]))faltan.push(el('e-'+k));});SOL.forEach(k=>{if(!filled(state[k]))faltan.push(el(k));});
+if(faltan.length){faltan.forEach(f=>f.classList.add('invalid'));faltan[0].focus();faltan[0].scrollIntoView({block:'center',behavior:'smooth'});setStatus('Faltan '+faltan.length+' campo(s) por completar.','warn');return false;}return true;}
+function edited(){state.rid='';state.enviado=false;persist();update();setStatus('');}
+
+/* ============================================================
+   5. GUARDAR ACTIVIDAD (PDF rellenable)
+   ============================================================ */
+async function save(){if(!validate())return;busy=true;update();setStatus('Preparando el PDF…');try{if(!window.PDFActividad)await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js?v=20261012b';s.onload=ok;s.onerror=()=>{s.remove();no(Error('connection'));};document.head.appendChild(s);});
+const r=await PDFActividad.compartir({titulo:'Caso Valeria · '+EPISODIOS[Number(state.grupo)-1].titulo,archivo:state.curso.replace(/\s+/g,'-')+'-DBT-grupo-'+state.grupo+'-cadena.pdf',raiz:el('formulario')});
+setStatus(r==='cancelado'?'Guardado cancelado.':'PDF preparado. Revisen la descarga o el menú de compartir.','ok');}catch(e){setStatus('No fue posible crear el PDF. Revisen la conexión y vuelvan a intentar.','warn');console.error(e);}finally{busy=false;update();}}
+
+/* ============================================================
+   6. ENVIAR AL DOCENTE
+   ============================================================ */
 function uid(){if(globalThis.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}
 function payload(){return{tipo:'dbt-cadena',version:1,curso:CURSO_CODE,cursoGrupo:state.curso,grupo:Number(state.grupo),eslabones:KEYS.map(k=>state.eslabones[k]||''),nivel:Number(state.nivel),intervencion:state.intervencion,habilidad:state.habilidad,aplicacion:state.aplicacion||'',rid:state.rid};}
-async function save(){if(!validate())return;busy=true;update();el('status').textContent='Preparando el PDF…';try{if(!window.PDFActividad)await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js?v=20261012';s.onload=ok;s.onerror=()=>{s.remove();no(Error('connection'));};document.head.appendChild(s);});
-const r=await PDFActividad.compartir({titulo:'Análisis en cadena · '+EPISODIOS[Number(state.grupo)-1].titulo,archivo:state.curso.replace(/\s+/g,'-')+'-DBT-grupo-'+state.grupo+'-cadena.pdf',raiz:el('formulario')});
-el('status').textContent=r==='cancelado'?'Guardado cancelado.':'PDF preparado. Revisen la descarga o el menú de compartir.';}catch(e){el('status').textContent='No fue posible crear el PDF. Revisen la conexión y vuelvan a intentar.';console.error(e);}finally{busy=false;update();}}
 function stopAck(){clearTimeout(ackTimer);ackTimer=null;document.querySelectorAll('script[data-ack]').forEach(s=>s.remove());}
-function confirmed(r){if(!busy||!r||r.rid!==state.rid||r.ok!==true)return;stopAck();busy=false;state.enviado=true;persist();update();el('status').textContent='Registro confirmado en la hoja del docente.';}
-function poll(){if(!busy)return;if(Date.now()>ackDeadline){stopAck();busy=false;update();el('status').textContent='Aún no hay confirmación. Revisen la pestaña de envío o reintenten; el identificador evita duplicados.';return;}
+function confirmed(r){if(!busy||!r||r.rid!==state.rid||r.ok!==true)return;stopAck();busy=false;state.enviado=true;persist();update();setStatus('Registro confirmado en la hoja del docente.','ok');}
+function poll(){if(!busy)return;if(Date.now()>ackDeadline){stopAck();busy=false;update();setStatus('Aún no hay confirmación. Revisen la pestaña de envío o reintenten.','warn');return;}
 const name='dbtAck_'+state.rid.replace(/-/g,'')+'_'+Date.now();const s=document.createElement('script');s.dataset.ack='1';globalThis[name]=r=>{confirmed(r);clean();};const clean=()=>{s.remove();globalThis[name]=()=>{};};s.onerror=clean;s.src=ENDPOINT+'?estado='+encodeURIComponent(state.rid)+'&callback='+name;document.head.appendChild(s);setTimeout(clean,12000);ackTimer=setTimeout(poll,5000);}
-function send(){if(!validate()||!ENDPOINT||busy||state.enviado)return;const w=window.open('','dbt_envio');if(!w){el('status').textContent='El navegador bloqueó la pestaña de envío. Permitan la ventana emergente y reintenten.';return;}
-if(!state.rid)state.rid=uid();persist();busy=true;update();el('status').textContent='Esperando confirmación de registro…';
+function send(){if(!validate()||!ENDPOINT||busy||state.enviado)return;const w=window.open('','dbt_envio');if(!w){setStatus('El navegador bloqueó la pestaña de envío. Permitan la ventana emergente y reintenten.','warn');return;}
+if(!state.rid)state.rid=uid();persist();busy=true;update();setStatus('Esperando confirmación de registro…');
 const f=document.createElement('form');f.method='POST';f.action=ENDPOINT;f.target='dbt_envio';f.hidden=true;const i=document.createElement('input');i.name='payload';i.value=JSON.stringify(payload());f.appendChild(i);document.body.appendChild(f);
-try{f.submit();ackDeadline=Date.now()+65000;ackTimer=setTimeout(poll,2500);}catch(e){busy=false;update();el('status').textContent='No fue posible abrir el envío.';}finally{f.remove();}}
+try{f.submit();ackDeadline=Date.now()+65000;ackTimer=setTimeout(poll,2500);}catch(e){busy=false;update();setStatus('No fue posible abrir el envío.','warn');}finally{f.remove();}}
+
+/* ============================================================
+   7. RESTRICCIÓN DE COPIAR Y PEGAR
+   ============================================================ */
 function showToast(m){const t=el('toast');t.textContent=m||'Copiar, cortar y pegar están deshabilitados en este formulario.';t.classList.add('is-visible');clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.classList.remove('is-visible'),2400);}
 function initInputRestrictions(){const block=e=>{e.preventDefault();showToast();};
-// No entra ni sale texto del formulario. Las respuestas se leen en la hoja de envíos y en el tablero.
-['copy','cut','paste','drop','dragstart'].forEach(ev=>document.addEventListener(ev,block));
-document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();if((e.ctrlKey||e.metaKey)&&['c','v','x'].includes(k)){e.preventDefault();showToast();}});}
+  // No entra ni sale texto del formulario. Las respuestas se leen en la hoja de envíos y en el tablero.
+  ['copy','cut','paste','drop','dragstart'].forEach(ev=>document.addEventListener(ev,block));
+  document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();if((e.ctrlKey||e.metaKey)&&['c','v','x'].includes(k)){e.preventDefault();showToast();}});}
+
+/* ============================================================
+   8. ARRANQUE
+   ============================================================ */
 initInputRestrictions();
 let first={curso:'',grupo:''};try{first=JSON.parse(localStorage.getItem(PREFIX+'ultima'))||first;}catch(e){}
 const embedded=JSON.parse(el('saved-data').textContent);
-if(embedded&&embedded.curso&&embedded.grupo){state=embedded;apply();}else load(["901", "902", "903"].includes(first.curso)?first.curso:'',/^[1-6]$/.test(first.grupo)?first.grupo:'');
-el('curso').addEventListener('change',()=>{persist();load(el('curso').value,el('grupo').value);persist();});
-el('grupo').addEventListener('change',()=>{persist();load(el('curso').value,el('grupo').value);persist();});
-KEYS.forEach(k=>el('e-'+k).addEventListener('input',()=>{state.eslabones[k]=el('e-'+k).value;edited();}));
-['nivel','intervencion','habilidad'].forEach(k=>el(k).addEventListener('change',()=>{state[k]=el(k).value;edited();}));
-el('aplicacion').addEventListener('input',()=>{state.aplicacion=el('aplicacion').value;edited();});
-el('save').onclick=save;el('send').onclick=send;
-el('new').onclick=()=>{const has=KEYS.some(k=>state.eslabones[k])||state.aplicacion;if(has&&!state.enviado&&!confirm('¿Empezar otro análisis y vaciar este borrador?'))return;state=blank(state.curso,state.grupo);persist();apply();el('status').textContent='Nuevo análisis listo.';};
+if(embedded&&embedded.curso&&embedded.grupo){state=embedded;apply();}else load(CURSOS.includes(first.curso)?first.curso:'',/^[1-6]$/.test(first.grupo)?first.grupo:'');
+function cambioGrupo(){const c=el('ct-curso').value,g=el('ct-grupo').value;persist();load(c,g);persist();if(state.enviado)setStatus('Este análisis ya tiene registro confirmado.','ok');}
+el('ct-curso').addEventListener('change',cambioGrupo);el('ct-grupo').addEventListener('change',cambioGrupo);
+KEYS.forEach(k=>el('e-'+k).addEventListener('input',()=>{state.eslabones[k]=el('e-'+k).value;el('e-'+k).classList.remove('invalid');edited();}));
+['nivel','intervencion','habilidad'].forEach(k=>el(k).addEventListener('change',()=>{state[k]=el(k).value;el(k).classList.remove('invalid');edited();}));
+el('aplicacion').addEventListener('input',()=>{state.aplicacion=el('aplicacion').value;el('aplicacion').classList.remove('invalid');edited();});
+el('btn-guardar').onclick=save;el('btn-enviar').onclick=send;
 </script></body></html>
