@@ -1,0 +1,63 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tablero · Análisis en cadena</title><style>
+:root{--ink:#2c2433;--muted:#605669;--purple:#3e294e;--purple2:#412a4e;--gold:#bf922a;--gold-soft:#f8f1e1;--lav:#f3eff6;--lav2:#e4dcec;--line:#ddd5e4;--bg:#faf8fb}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif}
+header,main,footer{max-width:980px;margin:auto;padding:22px}
+h1,h2{line-height:1.15;font-weight:700;color:var(--ink)}h1{font-size:36px;margin:6px 0 10px}h2{font-size:24px;margin:4px 0 10px}h3{font-size:16px;margin:0 0 6px;color:var(--purple)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:750}
+.intro{display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:center}.intro img{width:100%;height:auto;border-radius:14px}
+.intro p{color:var(--muted);margin:0 0 10px}
+.block{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}
+.context{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-weight:650;font-size:14px;color:var(--purple);margin-bottom:4px}
+select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #c9bdd6;border-radius:8px;padding:9px 10px}
+textarea{min-height:64px;resize:vertical}
+select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.episode{background:var(--purple);color:#fff;border-radius:14px;padding:20px 22px}.episode h2{color:#fff;margin:4px 0 8px}.episode .eyebrow{color:#e3c173}.episode p{margin:0;color:#ece5f1}
+.chain{list-style:none;margin:0;padding:0;counter-reset:link}
+.chain li{position:relative;margin:0 0 14px;padding:14px 16px 14px 56px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.chain li::before{counter-increment:link;content:counter(link);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--lav2);color:var(--purple);font-weight:700;display:grid;place-items:center;font-size:14px}
+.chain li.problem{background:var(--lav)}.chain li.problem::before{background:var(--purple);color:#fff}
+.chain li.conseq::before{background:var(--gold-soft);color:var(--gold)}
+.chain li+li::after{content:'';position:absolute;left:27px;top:-15px;height:14px;border-left:2px solid var(--gold)}
+.help{font-size:13px;color:var(--muted);margin:-2px 0 6px}
+.solutions{display:grid;grid-template-columns:1fr 1fr;gap:16px}.solutions .wide{grid-column:1/-1}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+button{font:inherit;cursor:pointer;border-radius:8px;padding:10px 16px;border:1px solid var(--purple);background:#fff;color:var(--purple)}
+button.primary{background:var(--purple);color:#fff}button:disabled{opacity:.5;cursor:default}
+#status{min-height:1.4em;color:var(--purple);font-size:14px}
+.empty{color:var(--muted);font-style:italic}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:24px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--purple);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.is-visible{opacity:1}
+body.form{user-select:none}body.form input,body.form textarea,body.form select{user-select:text}
+[hidden]{display:none!important}
+@media (max-width:700px){.intro,.context,.solutions{grid-template-columns:1fr}.intro img{max-width:220px}h1{font-size:28px}}
+@media print{.no-pdf{display:none!important}}
+
+main{max-width:1240px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}.card h2{font-size:19px;margin:2px 0 10px}
+.card ol{margin:0;padding-left:20px}.card li{margin:0 0 6px}.card li b{color:var(--purple)}
+.sol{background:var(--gold-soft);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:15px}
+.ref{background:var(--lav);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:15px}
+.meta{font-size:13px;color:var(--muted)}</style></head>
+<body><header><div class="eyebrow">Tablero docente · Terapia dialéctico-conductual</div><h1>Análisis en cadena de Valeria</h1>
+<div class="actions"><div style="min-width:220px"><select id="curso"><option>Práctica II</option></select></div><button id="cargar" class="primary">Cargar envíos</button><label style="display:flex;gap:6px;align-items:center;margin:0;font-weight:500"><input type="checkbox" id="ver-ref"> Mostrar lectura docente</label><span id="status"></span></div></header>
+<main><div id="grid" class="grid"></div></main>
+<footer>Las cadenas son hipótesis construidas por cada grupo sobre un caso ficticio.</footer>
+<script src="../dbt-cadena-envio.js?v=20261012"></script>
+<script>
+const EP=[{"titulo": "La llamada de la universidad", "lectura": ["Dos noches sin dormir bien; la pareja de viaje.", "La llamada: no alcanzó el cupo de la materia.", "«Nunca voy a terminar»; «mi madre tenía razón».", "Desesperanza y vergüenza; nudo en el estómago.", "Esconderse, no enfrentar la universidad.", "No vuelve a clase en toda la semana.", "Evita el malestar de enfrentar la situación.", "Más atraso y más vergüenza para regresar."], "nivel": 3, "sugerencia": "Verificar los hechos sobre el cupo y acción opuesta a la vergüenza: ir a la siguiente clase y preguntar opciones."}, {"titulo": "Las fotos del sábado", "lectura": ["La discusión con su madre ese día.", "Las fotos de la reunión a la que no la invitaron.", "«Nadie me quiere cerca.»", "Dolor, ira y vergüenza; calor en la cara.", "Atacar para que sientan lo que ella siente.", "Mensajes hirientes; se sale del chat.", "Descarga y tranquilidad por unos minutos.", "Pierde a dos amigas: más aislamiento."], "nivel": 3, "sugerencia": "STOP antes de escribir; verificar los hechos sobre la invitación; DEAR MAN o AVES para decir que le dolió."}, {"titulo": "La puerta del cuarto", "lectura": ["Cansancio y un parcial que le fue mal.", "«Otra vez con tus dramas» (invalidación).", "«En esta casa nadie me va a entender nunca.»", "Ira intensa; calor y puños apretados.", "Golpear, hacer ruido, que la dejen en paz.", "Tira la puerta y rompe un portarretratos.", "La madre deja de insistir: alivio inmediato.", "Culpa; se aísla y no come; la relación empeora."], "nivel": 3, "sugerencia": "TIP para bajar la activación (agua fría, respiración pausada) y, ya en calma, DEAR MAN con su madre."}, {"titulo": "El dinero del mes", "lectura": ["Sin almorzar; semana cargada.", "La pareja cancela la salida una hora antes.", "«Soy la última opción.»", "Vacío y tristeza difíciles de nombrar.", "Hacer algo que la haga sentir mejor ya.", "Gasta el dinero del transporte del mes.", "Alivio mientras compra.", "No tiene cómo ir a clase; culpa y más estrés."], "nivel": 3, "sugerencia": "Mindfulness de la emoción actual para nombrarla; pros y contras antes de comprar; ACA CUIDA (comer)."}, {"titulo": "La fiesta", "lectura": ["Una semana de entregas, casi sin dormir.", "La pareja conectada y sin responderle.", "«Seguro está con otra persona.»", "Miedo y luego rabia.", "Dejar de sentir y de pensar.", "Bebe hasta que tienen que llevarla a casa.", "Deja de pensar esa noche.", "No recuerda lo que dijo; vergüenza; riesgo."], "nivel": 3, "sugerencia": "Verificar los hechos sobre la pareja; STOP y pros y contras ante el siguiente trago; ACA CUIDA (dormir)."}, {"titulo": "La sesión", "lectura": ["La discusión con su madre en la mañana.", "La propuesta de revisar la última autolesión.", "«Me va a juzgar como todos.»", "Vergüenza; estómago revuelto.", "Salir de ahí.", "Se va de la sesión antes de terminar.", "Alivio al salir.", "Duda si volver: la terapia está en riesgo."], "nivel": 2, "sugerencia": "Validación del terapeuta (V4 y V5) y acción opuesta a la vergüenza: quedarse y nombrarla en sesión."}];const NOMBRES=["Vulnerabilidad", "Evento desencadenante", "Pensamientos", "Emociones y sensaciones", "Impulso", "Conducta problema", "Consecuencias a corto plazo", "Consecuencias a largo plazo"];const KEYS=["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];const NIVELES=["1 · Conductas que amenazan la vida", "2 · Conductas que interfieren con la terapia", "3 · Conductas que interfieren con la calidad de vida", "4 · Aumentar las habilidades"];
+const ENDPOINT=window.DBT_CADENA_ENVIO_URL||'';const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let datos=[];
+function render(){const ver=el('ver-ref').checked;el('grid').innerHTML=EP.map((e,i)=>{const g=i+1;const env=datos.filter(d=>Number(d.grupo)===g);const u=env[env.length-1];
+let body=u?`<ol>${u.eslabones.map((t,k)=>`<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join('')}</ol><div class="sol"><b>Nivel:</b> ${esc(NIVELES[(u.nivel||1)-1])}<br><b>Intervenir en:</b> ${esc(NOMBRES[KEYS.indexOf(u.intervencion)]||u.intervencion)} · <b>${esc(u.habilidad)}</b><br>${esc(u.aplicacion)}</div><p class="meta">${env.length} envío(s); se muestra el último.</p>`:'<p class="empty">Sin envío todavía.</p>';
+const ref=ver?`<div class="ref"><b>Una cadena posible</b><ol>${e.lectura.map((t,k)=>`<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join('')}</ol><b>Nivel:</b> ${esc(NIVELES[e.nivel-1])}<br><b>Dónde cortarla:</b> ${esc(e.sugerencia)}</div>`:'';
+return `<article class="card"><div class="eyebrow">Grupo ${g}</div><h2>${esc(e.titulo)}</h2>${body}${ref}</article>`;}).join('');}
+function cargar(){const c=el('curso').value;if(!c){el('status').textContent='Elijan el curso.';return;}if(!ENDPOINT){el('status').textContent='El receptor aún no está configurado.';return;}
+el('status').textContent='Cargando…';const name='dbtTab_'+Date.now();const s=document.createElement('script');
+globalThis[name]=r=>{datos=(r&&r.ok&&r.filas)||[];el('status').textContent=r&&r.ok?datos.length+' envío(s)':'No fue posible leer la hoja.';render();s.remove();};
+s.onerror=()=>{el('status').textContent='No fue posible conectar con la hoja.';s.remove();};s.src=ENDPOINT+'?tablero='+encodeURIComponent(c)+'&callback='+name;document.head.appendChild(s);}
+el('cargar').onclick=cargar;el('ver-ref').onchange=render;el('curso').onchange=()=>{datos=[];render();};render();
+</script></body></html>

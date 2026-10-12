@@ -1,0 +1,110 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Análisis en cadena · Terapia dialéctico-conductual</title><style>
+:root{--ink:#2c2433;--muted:#605669;--purple:#3e294e;--purple2:#412a4e;--gold:#bf922a;--gold-soft:#f8f1e1;--lav:#f3eff6;--lav2:#e4dcec;--line:#ddd5e4;--bg:#faf8fb}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif}
+header,main,footer{max-width:980px;margin:auto;padding:22px}
+h1,h2{line-height:1.15;font-weight:700;color:var(--ink)}h1{font-size:36px;margin:6px 0 10px}h2{font-size:24px;margin:4px 0 10px}h3{font-size:16px;margin:0 0 6px;color:var(--purple)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:750}
+.intro{display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:center}.intro img{width:100%;height:auto;border-radius:14px}
+.intro p{color:var(--muted);margin:0 0 10px}
+.block{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}
+.context{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-weight:650;font-size:14px;color:var(--purple);margin-bottom:4px}
+select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #c9bdd6;border-radius:8px;padding:9px 10px}
+textarea{min-height:64px;resize:vertical}
+select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.episode{background:var(--purple);color:#fff;border-radius:14px;padding:20px 22px}.episode h2{color:#fff;margin:4px 0 8px}.episode .eyebrow{color:#e3c173}.episode p{margin:0;color:#ece5f1}
+.chain{list-style:none;margin:0;padding:0;counter-reset:link}
+.chain li{position:relative;margin:0 0 14px;padding:14px 16px 14px 56px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.chain li::before{counter-increment:link;content:counter(link);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--lav2);color:var(--purple);font-weight:700;display:grid;place-items:center;font-size:14px}
+.chain li.problem{background:var(--lav)}.chain li.problem::before{background:var(--purple);color:#fff}
+.chain li.conseq::before{background:var(--gold-soft);color:var(--gold)}
+.chain li+li::after{content:'';position:absolute;left:27px;top:-15px;height:14px;border-left:2px solid var(--gold)}
+.help{font-size:13px;color:var(--muted);margin:-2px 0 6px}
+.solutions{display:grid;grid-template-columns:1fr 1fr;gap:16px}.solutions .wide{grid-column:1/-1}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+button{font:inherit;cursor:pointer;border-radius:8px;padding:10px 16px;border:1px solid var(--purple);background:#fff;color:var(--purple)}
+button.primary{background:var(--purple);color:#fff}button:disabled{opacity:.5;cursor:default}
+#status{min-height:1.4em;color:var(--purple);font-size:14px}
+.empty{color:var(--muted);font-style:italic}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:24px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--purple);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.is-visible{opacity:1}
+body.form{user-select:none}body.form input,body.form textarea,body.form select{user-select:text}
+[hidden]{display:none!important}
+@media (max-width:700px){.intro,.context,.solutions{grid-template-columns:1fr}.intro img{max-width:220px}h1{font-size:28px}}
+@media print{.no-pdf{display:none!important}}
+</style></head>
+<body class="form">
+<header><div class="eyebrow">Práctica en aula · Terapia dialéctico-conductual</div>
+<div class="intro"><div><h1>Análisis en cadena de Valeria</h1>
+<p>Cada grupo recibe un episodio distinto de Valeria. Reconstruyan la cadena eslabón por eslabón, desde lo que la hacía vulnerable hasta las consecuencias, y decidan dónde cortarla.</p>
+<p>Valeria es un caso ficticio. Lo que escriban sobre sus pensamientos, emociones e impulsos son hipótesis que se desprenden del relato.</p></div>
+<img src="dbt-valeria.jpg" alt="Ilustración de una joven sentada en una banca mirando su celular" width="480" height="519"></div></header>
+<main id="formulario">
+<section class="block context"><div><label for="curso">Curso</label><select id="curso"><option value="">Elijan el curso</option><option>901</option><option>902</option><option>903</option></select></div><div><label for="grupo">Grupo</label><select id="grupo"><option value="">Elijan el grupo</option><option value="1">Grupo 1</option><option value="2">Grupo 2</option><option value="3">Grupo 3</option><option value="4">Grupo 4</option><option value="5">Grupo 5</option><option value="6">Grupo 6</option></select></div></section>
+<section id="sin-grupo" class="empty">Elijan el curso y el grupo para ver su episodio.</section>
+<section id="trabajo" hidden>
+<div class="episode"><div class="eyebrow">Episodio del grupo <span id="ep-num"></span></div><h2 id="ep-titulo"></h2><p id="ep-texto"></p></div>
+<section class="block"><h3>La cadena</h3><ol class="chain"><li class=""><label for="e-vulnerabilidad">Vulnerabilidad</label><p class="help">Lo que la hacía más vulnerable antes del evento.</p><textarea id="e-vulnerabilidad" data-link="vulnerabilidad" maxlength="600"></textarea></li><li class=""><label for="e-evento">Evento desencadenante</label><p class="help">El hecho concreto con el que empieza la cadena.</p><textarea id="e-evento" data-link="evento" maxlength="600"></textarea></li><li class=""><label for="e-pensamientos">Pensamientos</label><textarea id="e-pensamientos" data-link="pensamientos" maxlength="600"></textarea></li><li class=""><label for="e-emociones">Emociones y sensaciones</label><textarea id="e-emociones" data-link="emociones" maxlength="600"></textarea></li><li class=""><label for="e-impulso">Impulso</label><textarea id="e-impulso" data-link="impulso" maxlength="600"></textarea></li><li class="problem"><label for="e-conducta">Conducta problema</label><textarea id="e-conducta" data-link="conducta" maxlength="600"></textarea></li><li class="conseq"><label for="e-corto">Consecuencias a corto plazo</label><textarea id="e-corto" data-link="corto" maxlength="600"></textarea></li><li class="conseq"><label for="e-largo">Consecuencias a largo plazo</label><textarea id="e-largo" data-link="largo" maxlength="600"></textarea></li></ol></section>
+<section class="block"><h3>Análisis de soluciones</h3><div class="solutions">
+<div><label for="nivel">Nivel de la jerarquía de metas</label><select id="nivel"><option value="">Elijan el nivel</option><option value="1">1 · Conductas que amenazan la vida</option><option value="2">2 · Conductas que interfieren con la terapia</option><option value="3">3 · Conductas que interfieren con la calidad de vida</option><option value="4">4 · Aumentar las habilidades</option></select></div>
+<div><label for="intervencion">Eslabón donde intervenir</label><select id="intervencion"><option value="">Elijan el eslabón</option><option value="vulnerabilidad">Vulnerabilidad</option><option value="evento">Evento desencadenante</option><option value="pensamientos">Pensamientos</option><option value="emociones">Emociones y sensaciones</option><option value="impulso">Impulso</option><option value="conducta">Conducta problema</option><option value="corto">Consecuencias a corto plazo</option><option value="largo">Consecuencias a largo plazo</option></select></div>
+<div><label for="habilidad">Habilidad</label><select id="habilidad"><option value="">Elijan la habilidad</option><option>STOP</option><option>TIP</option><option>Pros y contras</option><option>Aceptación radical</option><option>Mindfulness: observar y describir</option><option>Mindfulness de la emoción actual</option><option>Verificar los hechos</option><option>Acción opuesta</option><option>ACA CUIDA</option><option>DEAR MAN</option><option>AVES</option><option>VIDA</option></select></div>
+<div class="wide"><label for="aplicacion">Cómo la usaría Valeria en ese momento</label><textarea id="aplicacion" maxlength="800"></textarea></div>
+</div></section>
+<div class="actions no-pdf"><button id="save">Guardar PDF</button><button id="send" class="primary">Enviar al docente</button><button id="new">Nuevo análisis</button><span id="status" role="status"></span></div>
+</section></main>
+<footer>Seminario de práctica clínica · Terapia dialéctico-conductual. Caso ficticio con fines docentes.</footer>
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
+<script id="saved-data" type="application/json">null</script>
+<script src="dbt-cadena-envio.js?v=20261012"></script>
+<script>
+const EPISODIOS=[{"titulo": "La llamada de la universidad", "texto": "Es lunes. Valeria lleva dos noches durmiendo mal porque su pareja está de viaje. A media mañana la llaman de la universidad: no alcanzó el cupo de una materia que necesitaba para no atrasarse otra vez. Cuelga y siente un nudo en el estómago. Piensa que nunca va a terminar la carrera y que su madre tenía razón. Esa semana no vuelve a clase: se queda en la cama con el celular. El lunes siguiente le da vergüenza aparecer."}, {"titulo": "Las fotos del sábado", "texto": "El sábado en la noche Valeria ve en redes las fotos de una reunión de sus amigas del colegio. Nadie le avisó. Ese día había discutido con su madre. Siente un golpe en el pecho y le arde la cara. Piensa «nadie me quiere cerca». Escribe en el grupo mensajes hirientes y se sale del chat. Durante unos minutos se siente más tranquila; al día siguiente dos amigas le dejan de hablar."}, {"titulo": "La puerta del cuarto", "texto": "Valeria llega cansada de un parcial que le fue mal. Su madre la ve llorando en la cocina y le dice: «Otra vez con tus dramas». Valeria siente calor en todo el cuerpo y aprieta los puños. Piensa que en esa casa nadie la va a entender nunca. Tira la puerta del cuarto y rompe un portarretratos. Su madre deja de insistir y se va. Después Valeria siente culpa y no sale a comer."}, {"titulo": "El dinero del mes", "texto": "Es viernes y su pareja cancela la salida una hora antes, «por cansancio». Valeria no ha almorzado. Siente un vacío que no sabe nombrar y piensa «soy la última opción». Abre la aplicación de compras y en una hora gasta el dinero que tenía para el transporte del mes. Mientras compra se siente mejor. El lunes no tiene cómo ir a la universidad."}, {"titulo": "La fiesta", "texto": "Valeria va sola a una fiesta de la carrera porque su pareja no quiso ir. Lleva una semana de entregas y casi sin dormir. Ve a su pareja conectada en el celular, pero sin responderle. Siente miedo y luego rabia. Piensa «seguro está con otra persona». Toma un trago tras otro hasta que una compañera tiene que llevarla a casa. Esa noche deja de pensar; al otro día no recuerda parte de lo que dijo."}, {"titulo": "La sesión", "texto": "En la tercera sesión, su terapeuta le propone revisar, eslabón por eslabón, la última vez que se hizo daño. Valeria llegó tarde porque discutió con su madre en la mañana. Mientras recuerda, siente vergüenza y el estómago revuelto. Piensa «me va a juzgar como todos». Dice que tiene otra cita, toma su bolso y se va antes de terminar. Afuera siente alivio. A la semana siguiente duda si volver."}];
+const KEYS=["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];
+const CURSO_CODE='SPI-2026-2';
+const el=id=>document.getElementById(id);
+const PREFIX='dbt-cadena-fuaa-v1:';
+const ENDPOINT=window.DBT_CADENA_ENVIO_URL||'';
+let state=null,busy=false,ackTimer=null,ackDeadline=0;
+function blank(c,g){return{curso:c,grupo:g,eslabones:Object.fromEntries(KEYS.map(k=>[k,''])),nivel:'',intervencion:'',habilidad:'',aplicacion:'',rid:'',enviado:false};}
+function key(){return PREFIX+(state.curso||'-')+':'+(state.grupo||'-');}
+function persist(){try{localStorage.setItem(key(),JSON.stringify(state));localStorage.setItem(PREFIX+'ultima',JSON.stringify({curso:state.curso,grupo:state.grupo}));}catch(e){}}
+function load(c,g){state=blank(c,g);try{const r=localStorage.getItem(key());if(r){const s=JSON.parse(r);if(s.curso===c&&s.grupo===g)state={...state,...s};}}catch(e){}apply();}
+function apply(){el('curso').value=state.curso;el('grupo').value=state.grupo;const ep=EPISODIOS[Number(state.grupo)-1];const ok=!!(state.curso&&ep);
+el('trabajo').hidden=!ok;el('sin-grupo').hidden=ok;if(ok){el('ep-num').textContent=state.grupo;el('ep-titulo').textContent=ep.titulo;el('ep-texto').textContent=ep.texto;}
+KEYS.forEach(k=>el('e-'+k).value=state.eslabones[k]||'');['nivel','intervencion','habilidad','aplicacion'].forEach(k=>el(k).value=state[k]||'');update();}
+function missing(){const m=KEYS.filter(k=>!(state.eslabones[k]||'').trim());['nivel','intervencion','habilidad','aplicacion'].forEach(k=>{if(!(state[k]||'').trim())m.push(k);});return m;}
+function update(){const lock=busy||state.enviado;document.querySelectorAll('#trabajo textarea,#trabajo select').forEach(x=>x.disabled=lock);el('send').disabled=busy||!ENDPOINT||state.enviado;el('save').disabled=busy;el('new').disabled=busy;el('curso').disabled=busy;el('grupo').disabled=busy;}
+function validate(){if(!state.curso||!state.grupo){el('status').textContent='Elijan el curso y el grupo.';return false;}const m=missing();if(m.length){el('status').textContent='Falta completar al menos un campo.';const f=KEYS.includes(m[0])?el('e-'+m[0]):el(m[0]);f.focus();return false;}return true;}
+function edited(){state.rid='';state.enviado=false;persist();update();el('status').textContent='';}
+function uid(){if(globalThis.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}
+function payload(){return{tipo:'dbt-cadena',version:1,curso:CURSO_CODE,cursoGrupo:state.curso,grupo:Number(state.grupo),eslabones:KEYS.map(k=>state.eslabones[k]||''),nivel:Number(state.nivel),intervencion:state.intervencion,habilidad:state.habilidad,aplicacion:state.aplicacion||'',rid:state.rid};}
+async function save(){if(!validate())return;busy=true;update();el('status').textContent='Preparando el PDF…';try{if(!window.PDFActividad)await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js?v=20261012';s.onload=ok;s.onerror=()=>{s.remove();no(Error('connection'));};document.head.appendChild(s);});
+const r=await PDFActividad.compartir({titulo:'Análisis en cadena · '+EPISODIOS[Number(state.grupo)-1].titulo,archivo:state.curso.replace(/\s+/g,'-')+'-DBT-grupo-'+state.grupo+'-cadena.pdf',raiz:el('formulario')});
+el('status').textContent=r==='cancelado'?'Guardado cancelado.':'PDF preparado. Revisen la descarga o el menú de compartir.';}catch(e){el('status').textContent='No fue posible crear el PDF. Revisen la conexión y vuelvan a intentar.';console.error(e);}finally{busy=false;update();}}
+function stopAck(){clearTimeout(ackTimer);ackTimer=null;document.querySelectorAll('script[data-ack]').forEach(s=>s.remove());}
+function confirmed(r){if(!busy||!r||r.rid!==state.rid||r.ok!==true)return;stopAck();busy=false;state.enviado=true;persist();update();el('status').textContent='Registro confirmado en la hoja del docente.';}
+function poll(){if(!busy)return;if(Date.now()>ackDeadline){stopAck();busy=false;update();el('status').textContent='Aún no hay confirmación. Revisen la pestaña de envío o reintenten; el identificador evita duplicados.';return;}
+const name='dbtAck_'+state.rid.replace(/-/g,'')+'_'+Date.now();const s=document.createElement('script');s.dataset.ack='1';globalThis[name]=r=>{confirmed(r);clean();};const clean=()=>{s.remove();globalThis[name]=()=>{};};s.onerror=clean;s.src=ENDPOINT+'?estado='+encodeURIComponent(state.rid)+'&callback='+name;document.head.appendChild(s);setTimeout(clean,12000);ackTimer=setTimeout(poll,5000);}
+function send(){if(!validate()||!ENDPOINT||busy||state.enviado)return;const w=window.open('','dbt_envio');if(!w){el('status').textContent='El navegador bloqueó la pestaña de envío. Permitan la ventana emergente y reintenten.';return;}
+if(!state.rid)state.rid=uid();persist();busy=true;update();el('status').textContent='Esperando confirmación de registro…';
+const f=document.createElement('form');f.method='POST';f.action=ENDPOINT;f.target='dbt_envio';f.hidden=true;const i=document.createElement('input');i.name='payload';i.value=JSON.stringify(payload());f.appendChild(i);document.body.appendChild(f);
+try{f.submit();ackDeadline=Date.now()+65000;ackTimer=setTimeout(poll,2500);}catch(e){busy=false;update();el('status').textContent='No fue posible abrir el envío.';}finally{f.remove();}}
+function showToast(m){const t=el('toast');t.textContent=m||'Copiar, cortar y pegar están deshabilitados en este formulario.';t.classList.add('is-visible');clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.classList.remove('is-visible'),2400);}
+function initInputRestrictions(){const block=e=>{e.preventDefault();showToast();};
+// No entra ni sale texto del formulario. Las respuestas se leen en la hoja de envíos y en el tablero.
+['copy','cut','paste','drop','dragstart'].forEach(ev=>document.addEventListener(ev,block));
+document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();if((e.ctrlKey||e.metaKey)&&['c','v','x'].includes(k)){e.preventDefault();showToast();}});}
+initInputRestrictions();
+let first={curso:'',grupo:''};try{first=JSON.parse(localStorage.getItem(PREFIX+'ultima'))||first;}catch(e){}
+const embedded=JSON.parse(el('saved-data').textContent);
+if(embedded&&embedded.curso&&embedded.grupo){state=embedded;apply();}else load(["901", "902", "903"].includes(first.curso)?first.curso:'',/^[1-6]$/.test(first.grupo)?first.grupo:'');
+el('curso').addEventListener('change',()=>{persist();load(el('curso').value,el('grupo').value);persist();});
+el('grupo').addEventListener('change',()=>{persist();load(el('curso').value,el('grupo').value);persist();});
+KEYS.forEach(k=>el('e-'+k).addEventListener('input',()=>{state.eslabones[k]=el('e-'+k).value;edited();}));
+['nivel','intervencion','habilidad'].forEach(k=>el(k).addEventListener('change',()=>{state[k]=el(k).value;edited();}));
+el('aplicacion').addEventListener('input',()=>{state.aplicacion=el('aplicacion').value;edited();});
+el('save').onclick=save;el('send').onclick=send;
+el('new').onclick=()=>{const has=KEYS.some(k=>state.eslabones[k])||state.aplicacion;if(has&&!state.enviado&&!confirm('¿Empezar otro análisis y vaciar este borrador?'))return;state=blank(state.curso,state.grupo);persist();apply();el('status').textContent='Nuevo análisis listo.';};
+</script></body></html>
