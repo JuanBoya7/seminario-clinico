@@ -1,6 +1,7 @@
 // Receptor independiente de las valoraciones de juegos de roles ACT.
 // Pegar en el proyecto del docente. Ejecutar prepararHoja una vez.
-// La hoja queda privada en la cuenta que ejecuta prepararHoja.
+// Los envíos van a la hoja unida al proyecto (Extensiones → Apps Script); queda privada en la
+// cuenta que ejecuta prepararHoja.
 var CURSOS = {'SPI-2026-2':['901','902','903'], 'PII-2026-B':['Práctica II']};
 var PROCESOS = ['Aceptación','Defusión cognitiva','Momento presente','Yo como contexto','Valores','Acción comprometida'];
 var COLUMNAS = ['Fecha de envío','ID de envío','Curso','Grupo observado','Proceso','Grupo observador',
@@ -10,7 +11,10 @@ var COLUMNAS = ['Fecha de envío','ID de envío','Curso','Grupo observado','Proc
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('ACT_HOJA_ID');
-  var libro = id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('Valoraciones - juegos de roles ACT');
+  // Si el proyecto se creó desde una hoja (Extensiones → Apps Script), los envíos van a esa
+  // hoja: es donde el docente consulta sus datos. Solo un proyecto independiente crea una aparte.
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  var libro = activa || (id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('Valoraciones - juegos de roles ACT'));
   props.setProperty('ACT_HOJA_ID', libro.getId());
   Object.keys(CURSOS).forEach(function(curso) {
     CURSOS[curso].forEach(function(grupo) {

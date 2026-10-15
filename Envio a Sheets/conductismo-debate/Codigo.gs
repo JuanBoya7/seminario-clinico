@@ -36,7 +36,7 @@ function prepararHoja() {
   CORTES.forEach(function(c) { encabezar_(libro.getSheetByName(nombreHoja_(c)) || libro.insertSheet(nombreHoja_(c)), COLUMNAS); });
   encabezar_(libro.getSheetByName(VALORACION) || libro.insertSheet(VALORACION), COL_VAL);
   var sobra = libro.getSheetByName('Hoja 1') || libro.getSheetByName('Sheet1');
-  if (sobra && libro.getSheets().length > 1) libro.deleteSheet(sobra);
+  if (sobra && sobra.getLastRow() === 0 && libro.getSheets().length > 1) libro.deleteSheet(sobra);
   if (!props.getProperty('DEB402_CLAVE')) props.setProperty('DEB402_CLAVE', Utilities.getUuid().replace(/-/g,'').slice(0,8));
   Logger.log('Hoja de los debates: ' + libro.getUrl());
   Logger.log('Clave docente para el tablero: ' + props.getProperty('DEB402_CLAVE'));

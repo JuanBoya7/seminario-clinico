@@ -29,7 +29,7 @@ function prepararHoja() {
     }
   });
   var sobra = libro.getSheetByName('Hoja 1') || libro.getSheetByName('Sheet1');
-  if (sobra && libro.getSheets().length > 1) libro.deleteSheet(sobra);
+  if (sobra && sobra.getLastRow() === 0 && libro.getSheets().length > 1) libro.deleteSheet(sobra);
   Logger.log('Hoja de la actividad: ' + libro.getUrl());
   return libro.getUrl();
 }
