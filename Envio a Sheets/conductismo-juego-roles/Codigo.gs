@@ -101,7 +101,7 @@ function doGet(e) {
     // necesita distinguir jurados para quedarse con el último envío de cada uno, no sus nombres.
     var orden = {};
     var filas = v.map(function(r) {
-      var k = String(r[2]).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim() + '|' + r[3];
+      var k = String(r[2]).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim() + '|' + r[3];
       if (!(k in orden)) orden[k] = Object.keys(orden).length + 1;
       var f = {evaluador: docente ? String(r[2]) : 'J' + orden[k], clave: docente ? k : 'J' + orden[k], grupoEvaluador:Number(r[3]), grupo:Number(r[4]),
         auto:r[6] === 'Autoevaluación', puntajes:[Number(r[7]),Number(r[8]),Number(r[9]),Number(r[10])],

@@ -6,7 +6,7 @@ const ETIQUETAS = ['Abre línea', 'Réplica sólida', 'Integra a su equipo', 'Ci
 const COLOR = {A: ['var(--eqA)', 'var(--eqA-soft)'], B: ['var(--eqB)', 'var(--eqB-soft)'], C: ['var(--eqC)', 'var(--eqC-soft)']};
 const el = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const pal = t => (String(t || '').trim().match(/\S+/g) || []).length;
 const mmss = s => Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
 const f1 = x => x == null ? '—' : (Math.round(x * 10) / 10).toFixed(1).replace('.', ',');
@@ -16,6 +16,7 @@ try { clave = sessionStorage.getItem(C.clave + 'docente') || ''; } catch (e) {}
 
 function eqStyle(id) { const c = COLOR[id] || COLOR.A; return `--c:${c[0]};--cs:${c[1]}`; }
 function conceptosEn(t) { const n = norm(t); return CONCEPTOS.filter(c => n.includes(norm(c))); }
+function conceptosDe(f) { return f.conceptos || conceptosEn(f.texto); }
 function porEquipo() {
   const ints = filas.filter(f => f.fila === 'intervencion');
   return C.equipos.map(e => {
@@ -23,7 +24,7 @@ function porEquipo() {
     const reg = new Set(filas.filter(f => f.equipo === e.id).map(f => f.persona));
     const voces = new Set(mias.map(f => f.persona));
     const seg = mias.reduce((s, f) => s + f.segundos, 0);
-    const cc = {}; mias.forEach(f => conceptosEn(f.texto).forEach(c => { cc[c] = (cc[c] || 0) + 1; }));
+    const cc = {}; mias.forEach(f => conceptosDe(f).forEach(c => { cc[c] = (cc[c] || 0) + 1; }));
     return {e, mias, reg: reg.size, voces: voces.size, seg, cc};
   });
 }
@@ -37,17 +38,36 @@ function vistaVivo(pe) {
   el('vivo-eq').style.gridTemplateColumns = `repeat(${pe.length},1fr)`;
   el('vivo-eq').innerHTML = pe.map(x => `<div class="eq" style="${eqStyle(x.e.id)}"><h2>${esc(x.e.nombre)}</h2><div class="post">${esc(x.e.postura)} · ${esc(x.e.enfoque)}</div>
     <div class="cifras"><div class="cifra"><b>${x.reg}</b><span>registrados</span></div><div class="cifra"><b>${x.mias.length}</b><span>intervenciones</span></div><div class="cifra"><b>${x.voces}</b><span>voces distintas</span></div></div>
-    ${x.mias.slice().sort((a, b) => b.hora - a.hora).slice(0, 4).map(f => `<div class="int"><span class="de">${esc(docente ? f.nombre : f.persona)} · ${esc(f.tipo)} · ${mmss(f.segundos)}</span>${esc(f.texto.length > 260 ? f.texto.slice(0, 260) + '…' : f.texto)}</div>`).join('') || '<p class="vacio-msg">Sin intervenciones todavía.</p>'}</div>`).join('');
+    <div class="cifras"><div class="cifra"><b>${mmss(x.seg)}</b><span>de palabra</span></div></div></div>`).join('');
 }
 
 /* ---------- Balance ---------- */
+function lectura(x, pe) {
+  // Lectura del bando armada con cifras y conceptos, sin citar a nadie: la vista pública no
+  // recibe los textos.
+  const tot = pe.reduce((s, y) => s + y.seg, 0);
+  if (!x.mias.length) return `${esc(x.e.nombre)} todavía no ha tomado la palabra.`;
+  const propios = new Set(x.e.conceptos), ajenos = new Set(pe.filter(y => y !== x).flatMap(y => y.e.conceptos));
+  const cc = Object.entries(x.cc).sort((a, b) => b[1] - a[1]);
+  const suyos = cc.filter(c => propios.has(c[0])).slice(0, 3).map(c => '<em>' + esc(c[0]) + '</em>');
+  const otros = cc.filter(c => ajenos.has(c[0]) && !propios.has(c[0])).slice(0, 3).map(c => '<em>' + esc(c[0]) + '</em>');
+  const lista = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1] : a[0];
+  const n = t => x.mias.filter(f => f.tipo === t).length;
+  const rep = n('Réplica'), preg = n('Pregunta al otro equipo');
+  let t = `${esc(x.e.nombre)} habló ${tot ? Math.round(x.seg / tot * 100) : 0} % del tiempo; ${x.voces} de ${x.reg} registrados tomaron la palabra. `;
+  t += suyos.length ? `Se apoyó sobre todo en ${lista(suyos)}. ` : 'No usó los conceptos propios de su postura. ';
+  if (otros.length) t += `Retomó conceptos del otro lado: ${lista(otros)}. `;
+  const hizo = [rep ? rep + (rep === 1 ? ' réplica' : ' réplicas') : '', preg ? preg + (preg === 1 ? ' pregunta' : ' preguntas') + ' al otro equipo' : ''].filter(Boolean);
+  t += hizo.length ? 'Hizo ' + hizo.join(' y ') + '.' : 'No hizo réplicas ni preguntas al otro equipo.';
+  return t;
+}
 function vistaBalance(pe) {
   el('bal-eq').style.gridTemplateColumns = `repeat(${pe.length},1fr)`;
   el('bal-eq').innerHTML = pe.map(x => {
     const tipos = C.tipos.map(t => [t, x.mias.filter(f => f.tipo === t).length]).filter(t => t[1]);
     const cc = Object.entries(x.cc).sort((a, b) => b[1] - a[1]);
     return `<div class="eq" style="${eqStyle(x.e.id)}"><h2>${esc(x.e.nombre)}</h2><div class="post">${esc(x.e.postura)}</div>
-      <div class="cifras"><div class="cifra"><b>${mmss(x.seg)}</b><span>de palabra</span></div><div class="cifra"><b>${x.voces}/${x.reg}</b><span>registrados que hablaron</span></div></div>
+      <p class="lectura">${lectura(x, pe)}</p>
       <div class="post">Intervenciones por tipo</div><div class="chips" style="margin-bottom:12px">${tipos.map(t => `<span class="chip">${esc(t[0])}<b>${t[1]}</b></span>`).join('') || '<span class="vacio-msg">—</span>'}</div>
       <div class="post">Conceptos del curso en lo que dijeron</div><div class="chips">${cc.map(c => `<span class="chip">${esc(c[0])}<b>${c[1]}</b></span>`).join('') || '<span class="vacio-msg">Ninguno todavía.</span>'}</div></div>`;
   }).join('');
@@ -56,7 +76,7 @@ function vistaBalance(pe) {
   const tot = pe.reduce((s, x) => s + x.seg, 0), max = pe.reduce((a, b) => b.seg > a.seg ? b : a, pe[0]);
   el('bal-frase').innerHTML = !tot ? 'El balance aparece con las primeras intervenciones.' :
     (con.length ? `En ${con.map(x => '<em>' + esc(x.e.nombre) + '</em>').join(' y ')} habló menos de la mitad de los registrados. ¿Quién no ha tomado la palabra todavía?` :
-      `<em>${esc(max.e.nombre)}</em> lleva ${Math.round(max.seg / tot * 100)} % del tiempo de palabra. ¿Lo usó para argumentar o para repetir?`);
+      `<em>${esc(max.e.nombre)}</em> lleva ${Math.round(max.seg / tot * 100)} % del tiempo de palabra.`);
 }
 
 /* ---------- Vista docente ---------- */
@@ -68,7 +88,7 @@ function personas() {
   const m = {};
   filas.forEach(f => { (m[f.persona] = m[f.persona] || {nombre: f.nombre, equipo: f.equipo, ints: []}); if (f.fila === 'intervencion') m[f.persona].ints.push(f); });
   const lista = Object.values(m).map(p => ({...p, n: p.ints.length, seg: p.ints.reduce((s, f) => s + f.segundos, 0),
-    palabras: p.ints.reduce((s, f) => s + pal(f.texto), 0), conceptos: new Set(p.ints.flatMap(f => conceptosEn(f.texto))).size,
+    palabras: p.ints.reduce((s, f) => s + (pal(f.texto) || f.palabras || 0), 0), conceptos: new Set(p.ints.flatMap(conceptosDe)).size,
     etq: p.ints.reduce((s, f) => s + f.etiquetas.length, 0)}));
   C.equipos.forEach(e => {
     const del = lista.filter(p => p.equipo === e.id), mx = k => Math.max(1, ...del.map(p => p[k]));
@@ -109,6 +129,32 @@ function vistaDocente() {
     f.etiquetas = f.etiquetas.includes(t) ? f.etiquetas.filter(x => x !== t) : [...f.etiquetas, t];
     accion({accion: 'etiquetar', rid: f.rid, etiquetas: f.etiquetas.join('|')}); render();
   });
+}
+function descargar(nombre, contenido, tipo) {
+  // La marca BOM hace que Excel abra el CSV con tildes correctas.
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + contenido], {type: tipo + ';charset=utf-8'}));
+  a.download = nombre; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+function intervencionesOrdenadas() {
+  return filas.filter(f => f.fila === 'intervencion').sort((a, b) => a.equipo.localeCompare(b.equipo) || a.hora - b.hora);
+}
+function descargarCSV() {
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const filasCsv = [['Equipo', 'Postura', 'Estudiante', 'Tipo', 'Duración', 'Modo', 'Etiquetas del docente', 'Conceptos', 'Transcripción']].concat(
+    intervencionesOrdenadas().map(f => { const e = C.equipos.find(x => x.id === f.equipo) || {};
+      return [e.nombre, e.postura, f.nombre, f.tipo, mmss(f.segundos), f.modo, f.etiquetas.join(' · '), conceptosDe(f).join(' · '), f.texto]; }));
+  descargar('debate-corte' + C.corte + '-transcripciones.csv', filasCsv.map(r => r.map(q).join(';')).join('\r\n'), 'text/csv');
+}
+function descargarTXT() {
+  const ints = intervencionesOrdenadas();
+  const txt = [C.titulo, 'Moción: ' + C.mocion, ''].concat(C.equipos.flatMap(e => {
+    const del = ints.filter(f => f.equipo === e.id);
+    return ['', '='.repeat(60), e.nombre + ' · ' + e.postura + ' · ' + e.enfoque, '='.repeat(60)].concat(
+      del.length ? del.map((f, i) => '\n' + (i + 1) + '. ' + f.nombre + ' · ' + f.tipo + ' · ' + mmss(f.segundos) +
+        (f.etiquetas.length ? ' · ' + f.etiquetas.join(', ') : '') + '\n' + f.texto) : ['\n(Sin intervenciones)']);
+  })).join('\r\n');
+  descargar('debate-corte' + C.corte + '-transcripciones-por-equipo.txt', txt.replace(/\r?\n/g, '\r\n'), 'text/plain');
 }
 function copiar() {
   const tsv = ['Estudiante\tEquipo\tIntervenciones\tTiempo\tConceptos\tEtiquetas\tAjuste\tNota propuesta'].concat(ultimaTabla.map(p =>
@@ -154,6 +200,7 @@ try {
   el('entrar').onclick = () => { clave = el('clave').value.trim(); if (clave) { el('clave').value = ''; el('clave-estado').textContent = ''; ciclo(); } };
   el('clave').onkeydown = e => { if (e.key === 'Enter') el('entrar').click(); };
   el('copiar').onclick = copiar;
+  el('bajar-csv').onclick = descargarCSV; el('bajar-txt').onclick = descargarTXT;
   render(); ciclo();
 } catch (e) { el('js-warning').hidden = false; console.error(e); }
 })();

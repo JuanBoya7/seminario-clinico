@@ -18,6 +18,12 @@ const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const el = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pal = t => (String(t || '').trim().match(/\S+/g) || []).length;
+// Conceptos del curso presentes en una intervención (de cualquier equipo: usar los del otro
+// lado también cuenta, es contrastar). Viajan con el envío porque la vista pública del tablero
+// no recibe los textos.
+const CONCEPTOS = [...new Set(C.equipos.flatMap(e => e.conceptos))];
+const normTxt = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const conceptosEn = t => { const n = normTxt(t); return CONCEPTOS.filter(c => n.includes(normTxt(c))); };
 const mmss = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 
 let st = {nombre: '', equipo: '', ridReg: '', registrado: false, mias: []};
@@ -149,7 +155,7 @@ async function enviarIntervencion(m) {
     el('revision').hidden = true; el('texto').value = ''; el('reloj').textContent = '00:00';
   }
   pintarMias(); setEstado('estado', 'Enviando…');
-  const ok = await enviar({...base('intervencion', m.rid), tipoIntervencion: m.tipo, segundos: m.seg, texto: m.texto, modo: m.modo});
+  const ok = await enviar({...base('intervencion', m.rid), tipoIntervencion: m.tipo, segundos: m.seg, texto: m.texto, modo: m.modo, conceptos: conceptosEn(m.texto)});
   m.enviado = ok; guardar(); pintarMias();
   setEstado('estado', ok ? 'Intervención registrada.' : 'No llegó la confirmación: quedó pendiente para reintentar.', ok);
 }

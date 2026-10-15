@@ -79,6 +79,8 @@ td.nota{font-family:var(--font-display); font-size:19px; color:var(--accent-dark
 .etq button{font-size:12px; font-weight:600; padding:4px 9px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); cursor:pointer;}
 .etq button[aria-pressed="true"]{background:var(--c); border-color:var(--c); color:#fff;}
 .lista-int .int{background:var(--surface);}
+.lectura{font-family:var(--font-display); font-size:17.5px; line-height:1.5; margin:0 0 14px;}
+.lectura em{font-style:normal; color:var(--c); font-weight:600;}
 h3.sec{font-size:19px; margin:26px 0 10px;}
 @media (max-width:860px){.equipos,.valorar{grid-template-columns:1fr !important;} .wrap{padding:16px 14px 30px;} .panel{padding:18px 16px;}}
 </style></head>
@@ -102,7 +104,7 @@ h3.sec{font-size:19px; margin:26px 0 10px;}
 
   <div class="panel" id="v-balance" hidden>
     <h2>Balance del debate</h2>
-    <p class="sub">Cuánto habló cada equipo, cuántas voces distintas lo sostuvieron y qué conceptos del curso usó.</p>
+    <p class="sub">Una lectura de cada bando hecha con cifras y conceptos: cuánto habló, cuántas voces lo sostuvieron, en qué conceptos se apoyó y si replicó al otro lado.</p>
     <p class="frase" id="bal-frase"></p>
     <div class="equipos" id="bal-eq"></div>
   </div>
@@ -123,8 +125,9 @@ h3.sec{font-size:19px; margin:26px 0 10px;}
       <h3 class="sec">Participación individual</h3>
       <div class="controles" style="margin-bottom:10px"><button class="bt" id="copiar">Copiar tabla</button><span class="estado" id="copiar-estado"></span></div>
       <div id="tabla"></div>
-      <h3 class="sec">Intervenciones</h3>
-      <p class="sub">Etiqueten las intervenciones que muestran liderazgo; las etiquetas cuentan en el índice de participación.</p>
+      <h3 class="sec">Transcripciones</h3>
+      <p class="sub">Solo se ven en esta vista. Etiqueten las intervenciones que muestran liderazgo: las etiquetas cuentan en el índice de participación.</p>
+      <div class="controles" style="margin-bottom:12px"><button class="bt" id="bajar-txt">Descargar por equipo (texto)</button><button class="bt" id="bajar-csv">Descargar para Excel (CSV)</button></div>
       <div class="equipos lista-int" id="lista-int"></div>
     </div>
   </div>

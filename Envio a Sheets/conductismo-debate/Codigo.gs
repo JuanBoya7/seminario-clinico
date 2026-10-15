@@ -8,7 +8,7 @@ var CURSOS = {'TMC-2026-2':['402']};
 var CORTES = [1, 2, 3];
 var EQUIPOS = ['A', 'B', 'C'];
 var ETIQUETAS = ['Abre línea', 'Réplica sólida', 'Integra a su equipo', 'Cierre'];
-var COLUMNAS = ['Fecha de envío','ID de envío','Fila','Nombre','Equipo','Tipo de intervención','Segundos','Transcripción','Modo','Etiquetas del docente'];
+var COLUMNAS = ['Fecha de envío','ID de envío','Fila','Nombre','Equipo','Tipo de intervención','Segundos','Transcripción','Modo','Etiquetas del docente','Conceptos del curso'];
 var VALORACION = 'Valoración del docente';
 var COL_VAL = ['Corte','Equipo','Criterio 1','Criterio 2','Criterio 3','Criterio 4','Actualizado'];
 
@@ -55,6 +55,7 @@ function validar_(d) {
     if (typeof d.segundos !== 'number' || d.segundos < 1 || d.segundos > 1800) throw new Error('Duración no válida.');
     if (!texto_(d.texto, 4000)) throw new Error('Falta el texto.');
     if (['voz','escrita'].indexOf(d.modo) < 0) throw new Error('Modo no válido.');
+    if (d.conceptos !== undefined && (!Array.isArray(d.conceptos) || d.conceptos.length > 40 || !d.conceptos.every(function(c) { return texto_(c, 60); }))) throw new Error('Conceptos no válidos.');
   } else if (d.fila !== 'registro') throw new Error('Fila no válida.');
   return d;
 }
@@ -66,11 +67,13 @@ function registrar_(d) {
   try {
     var hoja = libro_().getSheetByName(nombreHoja_(d.corte));
     if (!hoja) throw new Error('Falta la pestaña del corte. Ejecuten prepararHoja.');
+    // Hojas creadas antes de la columna de conceptos: se le pone el encabezado al vuelo.
+    if (!hoja.getRange(1, COLUMNAS.length).getValue()) hoja.getRange(1, COLUMNAS.length).setValue(COLUMNAS[COLUMNAS.length - 1]).setBackground('#134349').setFontColor('#ffffff').setFontWeight('bold');
     var anterior = hoja.getLastRow() > 1 ? hoja.getRange(2,2,hoja.getLastRow()-1,1).createTextFinder(d.rid).matchEntireCell(true).findNext() : null;
     if (!anterior) {
       hoja.appendRow(d.fila === 'registro'
-        ? [new Date(), d.rid, 'Registro', seguro_(d.nombre), d.equipo, '', '', '', '', '']
-        : [new Date(), d.rid, 'Intervención', seguro_(d.nombre), d.equipo, d.tipoIntervencion, d.segundos, seguro_(d.texto), d.modo, '']);
+        ? [new Date(), d.rid, 'Registro', seguro_(d.nombre), d.equipo, '', '', '', '', '', '']
+        : [new Date(), d.rid, 'Intervención', seguro_(d.nombre), d.equipo, d.tipoIntervencion, d.segundos, seguro_(d.texto), d.modo, '', (d.conceptos || []).join(' · ')]);
       SpreadsheetApp.flush();
     }
     CacheService.getScriptCache().put('DEB402_ACK_' + d.rid, '1', 21600);
@@ -89,7 +92,7 @@ function doPost(e) {
 }
 
 function jsonp_(cb, obj) { return ContentService.createTextOutput(cb + '(' + JSON.stringify(obj) + ');').setMimeType(ContentService.MimeType.JAVASCRIPT); }
-function norm_(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim(); }
+function norm_(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim(); }
 
 function leer_(corte, docente) {
   var libro = libro_();
@@ -97,15 +100,17 @@ function leer_(corte, docente) {
   var filas = [];
   if (hoja && hoja.getLastRow() > 1) {
     var v = hoja.getRange(2,1,hoja.getLastRow()-1,COLUMNAS.length).getValues();
-    // Sin clave, cada persona se vuelve un alias por equipo (A1, A2…): el tablero proyectado
-    // distingue voces sin mostrar nombres.
+    // Sin clave, cada persona se vuelve un alias por equipo (A1, A2…) y no sale ningún texto:
+    // la vista pública solo muestra cifras y conceptos. Las transcripciones son para calificar
+    // después y solo las recibe el tablero con la clave docente.
     var alias = {}, cuenta = {};
     filas = v.map(function(r) {
       var eq = String(r[4]), k = norm_(r[3]) + '|' + eq;
       if (!(k in alias)) { cuenta[eq] = (cuenta[eq] || 0) + 1; alias[k] = eq + cuenta[eq]; }
       return {rid:String(r[1]), fila:r[2] === 'Registro' ? 'registro' : 'intervencion', persona: docente ? k : alias[k],
         nombre: docente ? String(r[3]) : alias[k], equipo:eq, tipo:String(r[5]), segundos:Number(r[6]) || 0,
-        texto:String(r[7]), modo:String(r[8]), etiquetas: docente && r[9] ? String(r[9]).split(' · ') : [],
+        texto: docente ? String(r[7]) : '', palabras: String(r[7]).trim() ? String(r[7]).trim().split(/\s+/).length : 0,
+        conceptos: r[10] ? String(r[10]).split(' · ') : null, modo:String(r[8]), etiquetas: docente && r[9] ? String(r[9]).split(' · ') : [],
         hora: r[0] instanceof Date ? r[0].getTime() : 0};
     });
   }
