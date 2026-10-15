@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un mismo hoy, seis lentes — Tablero</title><style>
+/* Tokens y piezas del tablero de DBT (dbt-analisis-cadena-tablero.html). */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --moderate:#b8722a; --moderate-soft:#faf1e4; --severe:#a83f2b; --severe-soft:#fbeae6;
+  /* Las dos posturas ante la moción: ninguna es la correcta, ningún color sugiere acierto. */
+  --favor:#1f6f78; --contra:#b8722a;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+button{font-family:var(--font-body);}
+.wrap{max-width:1240px; margin:0 auto; padding:22px 24px 40px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
+.js-warning[hidden]{display:none;}
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
+.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt[hidden]{display:none;}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
+.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
+.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+.pill small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px;}
+.panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
+.panel[hidden]{display:none;}
+.panel h2{font-size:clamp(22px,2.4vw,30px);}
+.panel .sub{font-size:14.5px; color:var(--ink-faint); margin:6px 0 22px; max-width:70ch;}
+.vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
+.contador{font-family:var(--font-display); font-size:clamp(72px,11vw,128px); line-height:1; color:var(--accent-dark);}
+.contador-t{font-size:18px; color:var(--ink-soft); margin-top:6px;}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px;}
+.chip{font-size:14.5px; padding:7px 13px; border-radius:99px; background:var(--accent-soft); color:var(--accent-dark);}
+.chip small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px; color:var(--accent);}
+.btn-principal{font-size:17px; font-weight:600; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:10px; padding:14px 26px; cursor:pointer;}
+.btn-principal:hover{background:var(--accent-dark);}
+.frase{font-family:var(--font-display); font-size:clamp(20px,2.3vw,28px); line-height:1.35; color:var(--ink); border-left:5px solid var(--accent); padding:4px 0 4px 18px; margin:22px 0 0;}
+
+/* ---- Fenómeno sorteado: se lee desde el fondo del salón ---- */
+.fen-letra{font-family:var(--font-display); font-size:clamp(90px,14vw,170px); line-height:.9; color:var(--accent);}
+.fen-tit{font-family:var(--font-display); font-size:clamp(28px,3.4vw,44px); margin:10px 0 14px;}
+.fen-texto{font-family:var(--font-display); font-size:clamp(22px,2.6vw,34px); line-height:1.4; max-width:42ch; margin:0;}
+.fen-controles{display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; align-items:center;}
+
+/* ---- Lecturas: una tarjeta por lente ---- */
+.grupos{display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:16px;}
+.grupo{border:1px solid var(--border); border-left:5px solid var(--accent); border-radius:12px; padding:16px 20px;}
+.grupo h3{font-size:21px; margin:2px 0 4px;}
+.grupo .fen{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint); margin-bottom:10px;}
+.campo{margin:0 0 10px; font-size:15.5px; line-height:1.45;}
+.campo .r{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:2px;}
+.grupo.sin{border-left-color:var(--border);}
+
+/* ---- Preguntas: agrupadas por la lente que las recibe ---- */
+.recibe{border-top:1px solid var(--border); padding:16px 0;}
+.recibe h3{font-size:21px; margin-bottom:10px;}
+.recibe h3 small{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); font-weight:400; margin-left:8px;}
+.preg{background:var(--surface); border-radius:8px; padding:12px 16px; margin:0 0 8px; font-size:18px; line-height:1.45;}
+.preg .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
+
+/* ---- Moción ---- */
+.mocion{font-family:var(--font-display); font-size:clamp(20px,2.3vw,28px); line-height:1.4; color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:18px 22px; max-width:70ch;}
+.bar{display:flex; height:46px; border-radius:8px; overflow:hidden; background:var(--surface-alt); margin:22px 0 8px;}
+.bar span{display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:700; white-space:nowrap; overflow:hidden; padding:0 8px;}
+.cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
+.cols h3{font-size:19px; padding-bottom:6px; border-bottom:3px solid; margin-bottom:10px;}
+.razon{background:var(--surface); border-radius:8px; padding:11px 14px; margin-bottom:8px; font-size:16px; line-height:1.45;}
+.razon .de{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:3px;}
+@media (max-width:760px){
+  .wrap{padding:16px 14px 30px;} .panel{padding:20px 18px 22px;}
+  .grupos{grid-template-columns:1fr;} .cols{grid-template-columns:1fr;}
+}
+</style></head>
+<body><div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, el tablero no se está ejecutando. Ábranlo en un navegador.</div>
+  <div class="cabecera">
+    <div><div class="eyebrow" id="eyebrow">Tablero docente</div><h1 id="titulo"></h1></div>
+    <div class="controles"><select id="curso"><option value="402">402</option></select><button class="bt" id="tapar" hidden>Tapar resultados</button><span class="estado" id="estado"></span></div>
+  </div>
+  <div class="nav-pantallas" id="pills">
+    <button class="pill is-on" data-p="fen">El fenómeno</button>
+    <button class="pill" data-p="r1">Ronda 1 · Lecturas<small id="n1">0</small></button>
+    <button class="pill" data-p="r2">Ronda 2 · Preguntas<small id="n2">0</small></button>
+    <button class="pill" data-p="mo">La moción</button>
+  </div>
+
+  <div class="panel" id="p-fen">
+    <div id="fen-vacio"><h2>El fenómeno de hoy</h2><p class="sub">Sorteen el fenómeno; todos los grupos lo leen con su propia lente.</p></div>
+    <div id="fen-lleno" hidden><div class="fen-letra" id="fen-letra"></div><div class="fen-tit" id="fen-tit"></div><p class="fen-texto" id="fen-texto"></p></div>
+    <div class="fen-controles"><button class="btn-principal" id="sortear">Sortear fenómeno</button><select id="fen-manual"><option value="">Elegir uno…</option></select></div>
+  </div>
+
+  <div class="panel" id="p-espera" hidden>
+    <div class="contador" id="contador">0</div>
+    <div class="contador-t" id="contador-t"></div>
+    <div class="chips" id="chips"></div>
+    <p class="sub">Los resultados están tapados para que ningún grupo ajuste lo suyo a lo de los demás.</p>
+    <button class="btn-principal" id="destapar">Destapar resultados</button>
+  </div>
+
+  <div class="panel" id="p-r1" hidden><h2>Seis lecturas del mismo fenómeno</h2><p class="sub">El último envío de cada grupo.</p><div class="grupos" id="grupos"></div></div>
+  <div class="panel" id="p-r2" hidden><h2>Las preguntas incómodas</h2><p class="sub">Cada lente responde en voz alta las preguntas que recibió.</p><div id="preguntas"></div></div>
+  <div class="panel" id="p-mo" hidden><h2>La moción</h2><div class="mocion" id="mocion" style="margin-top:14px"></div><div id="votos"></div></div>
+</div>
+<script src="discusion-envio.js?v=20261015"></script>
+<script src="discusion-corte3.js?v=20261015"></script>
+<script>
+(function(){
+'use strict';
+const C=window.DISCUSION_CONFIG, ENDPOINT=window.DISCUSION_402_ENVIO_URL||'';
+const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const N=C.lentes.length, KFEN='discusion-402-tablero-c'+C.corte+':fen';
+let datos=[],pant='fen',destapado={r1:false,r2:false,mo:false},timer=null,fen='';
+// Último envío de cada grupo en cada ronda.
+function ultimos(f){const m={};datos.filter(d=>Number(d.fase)===f).forEach(d=>{m[Number(d.grupo)]=d;});return m;}
+function nombre(g){return 'Grupo '+g+' · '+C.lentes[g-1].nombre;}
+
+function pintarFen(){const f=C.fenomenos.find(x=>x.letra===fen);el('fen-vacio').hidden=!!f;el('fen-lleno').hidden=!f;
+  if(f){el('fen-letra').textContent=f.letra;el('fen-tit').textContent=f.titulo;el('fen-texto').textContent=f.texto;}
+  el('sortear').textContent=f?'Sortear otro':'Sortear fenómeno';}
+function sortear(){const resto=C.fenomenos.filter(x=>x.letra!==fen);fen=resto[Math.floor(Math.random()*resto.length)].letra;
+  try{localStorage.setItem(KFEN,fen);}catch(e){}el('fen-manual').value='';pintarFen();}
+
+function render(){
+  const u1=ultimos(1),u2=ultimos(2);
+  el('n1').textContent=Object.keys(u1).length+'/'+N;el('n2').textContent=Object.keys(u2).length+'/'+N;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('is-on',p.dataset.p===pant));
+  ['fen','espera','r1','r2','mo'].forEach(p=>el('p-'+p).hidden=true);
+  el('tapar').hidden=!(pant!=='fen'&&destapado[pant]);
+  if(pant==='fen'){el('p-fen').hidden=false;return;}
+  if(!destapado[pant]){
+    const u=pant==='r1'?u1:u2,env=Object.keys(u).map(Number).sort((a,b)=>a-b);
+    el('p-espera').hidden=false;el('contador').textContent=env.length;
+    el('contador-t').textContent=pant==='r1'?'grupos enviaron su lectura':pant==='r2'?'grupos enviaron su pregunta':'grupos tomaron postura ante la moción';
+    el('chips').innerHTML=env.length?env.map(g=>`<span class="chip">Grupo ${g}<small>${esc(C.lentes[g-1].nombre)}</small></span>`).join(''):'<span class="vacio-msg">Esperando la primera entrega…</span>';
+    return;}
+  el('p-'+pant).hidden=false;
+  if(pant==='r1'){
+    const campos=[['lectura','Lo que ve nuestra lente'],['supuesto','El supuesto de fondo'],['prueba','Cómo lo pondríamos a prueba'],['limite','Lo que nuestra lente deja por fuera']];
+    el('grupos').innerHTML=C.lentes.map((l,i)=>{const g=i+1,d=u1[g];
+      return `<article class="grupo${d?'':' sin'}"><div class="eyebrow">Grupo ${g}</div><h3>${esc(l.nombre)}</h3>`+
+      (d?`<div class="fen">Fenómeno ${esc(d.fenomeno)}</div>`+campos.map(([k,r])=>`<p class="campo"><span class="r">${r}</span>${esc(d[k])}</p>`).join(''):'<p class="vacio-msg">Sin envío todavía.</p>')+'</article>';}).join('');}
+  if(pant==='r2'){
+    const por={};Object.values(u2).forEach(d=>{(por[d.destino]=por[d.destino]||[]).push(d);});
+    const dest=Object.keys(por).map(Number).sort((a,b)=>a-b);
+    el('preguntas').innerHTML=dest.length?dest.map(g=>`<div class="recibe"><h3>${esc(nombre(g))}<small>${por[g].length} pregunta${por[g].length>1?'s':''}</small></h3>`+
+      por[g].map(d=>`<div class="preg"><span class="de">Le pregunta ${esc(nombre(Number(d.grupo)))}</span>${esc(d.pregunta)}</div>`).join('')+'</div>').join(''):'<p class="vacio-msg">Sin preguntas todavía.</p>';
+    const sinRecibir=C.lentes.map((l,i)=>i+1).filter(g=>!por[g]);
+    if(dest.length&&sinRecibir.length)el('preguntas').insertAdjacentHTML('beforeend',`<p class="frase">Ninguna pregunta fue para ${sinRecibir.map(g=>'<em>'+esc(C.lentes[g-1].nombre)+'</em>').join(', ')}. ¿Qué pregunta le harían ustedes?</p>`);}
+  if(pant==='mo'){
+    el('mocion').textContent=C.mocion;
+    const v=Object.values(u2),fa=v.filter(d=>d.postura==='favor'),co=v.filter(d=>d.postura==='contra'),t=v.length;
+    if(!t){el('votos').innerHTML='<p class="vacio-msg" style="margin-top:20px">Sin posturas todavía.</p>';return;}
+    const pc=n=>Math.round(n/t*100);
+    const lista=a=>a.map(d=>`<div class="razon"><span class="de">${esc(nombre(Number(d.grupo)))}</span>${esc(d.razon)}</div>`).join('')||'<p class="vacio-msg">Ninguna lente.</p>';
+    // La frase se arma con los datos: dice qué lentes quedaron de cada lado, no quién acertó.
+    const ln=a=>a.map(d=>'<em>'+esc(C.lentes[d.grupo-1].nombre)+'</em>').join(', ');
+    const frase=!fa.length||!co.length?`Las ${t} lentes que votaron quedaron del mismo lado. ¿Qué tendría que pasar para que alguna cambie de postura?`:
+      `A favor: ${ln(fa)}. En contra: ${ln(co)}. ¿Qué supuesto de fondo separa a los dos lados?`;
+    el('votos').innerHTML=`<div class="bar">${fa.length?`<span style="width:${pc(fa.length)}%;background:var(--favor)">A favor · ${fa.length}</span>`:''}${co.length?`<span style="width:${pc(co.length)}%;background:var(--contra)">En contra · ${co.length}</span>`:''}</div>`+
+      `<p class="frase">${frase}</p><div class="cols"><div><h3 style="border-color:var(--favor)">A favor</h3>${lista(fa)}</div><div><h3 style="border-color:var(--contra)">En contra</h3>${lista(co)}</div></div>`;}
+}
+function cargar(){if(!ENDPOINT){el('estado').textContent='receptor sin configurar';el('estado').className='estado error';return;}
+  el('estado').textContent='actualizando…';el('estado').className='estado';
+  const name='disTab_'+Date.now(),s=document.createElement('script');
+  globalThis[name]=r=>{datos=(r&&r.ok&&r.filas)||datos;el('estado').textContent=r&&r.ok?'actualizado '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}):'no fue posible leer la hoja';el('estado').className='estado'+(r&&r.ok?'':' error');render();s.remove();};
+  s.onerror=()=>{el('estado').textContent='sin conexión con la hoja';el('estado').className='estado error';s.remove();};
+  s.src=ENDPOINT+'?tablero='+encodeURIComponent(el('curso').value)+'&corte='+C.corte+'&callback='+name;document.head.appendChild(s);}
+function ciclo(){clearTimeout(timer);cargar();timer=setTimeout(ciclo,20000);}
+try{
+  el('js-warning').hidden=true;
+  el('titulo').textContent=C.titulo;el('eyebrow').textContent='Tablero docente · '+C.eyebrow.replace(/^Espacio de discusión · /,'');
+  document.title=C.titulo+' — Tablero';
+  el('fen-manual').insertAdjacentHTML('beforeend',C.fenomenos.map(f=>`<option value="${f.letra}">${f.letra} · ${esc(f.titulo)}</option>`).join(''));
+  try{fen=localStorage.getItem(KFEN)||'';}catch(e){}
+  pintarFen();
+  el('sortear').onclick=sortear;
+  el('fen-manual').onchange=()=>{if(!el('fen-manual').value)return;fen=el('fen-manual').value;try{localStorage.setItem(KFEN,fen);}catch(e){}pintarFen();};
+  document.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{pant=p.dataset.p;render();});
+  // La moción se destapa junto con las preguntas: los votos llegan en el mismo envío.
+  el('destapar').onclick=()=>{destapado[pant]=true;if(pant==='r2')destapado.mo=true;if(pant==='mo')destapado.r2=true;render();};
+  el('tapar').onclick=()=>{destapado[pant]=false;render();};
+  render();ciclo();
+}catch(e){el('js-warning').hidden=false;console.error(e);}
+})();
+</script></body></html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juego de roles — Tablero</title><style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n2:#b8722a; --n3:#7d7b3a; --n4:#3f7d53; --n5:#1f6f78;
+  --moderate:#b8722a; --moderate-soft:#faf1e4; --severe:#a83f2b; --severe-soft:#fbeae6; --mild:#3f7d53;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+button,input{font-family:var(--font-body);}
+.wrap{max-width:1240px; margin:0 auto; padding:22px 24px 40px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
+.js-warning[hidden]{display:none;}
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select,input[type=password]{font-size:14.5px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
+.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt[hidden]{display:none;}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
+.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
+.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+.pill small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px;}
+.grupos-sel{display:flex; gap:6px; flex-wrap:wrap; margin:0 0 16px;}
+.gsel{font-family:var(--font-mono); font-size:14px; font-weight:700; width:44px; height:40px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); cursor:pointer;}
+.gsel.is-on{background:var(--accent); border-color:var(--accent); color:#fff;}
+.gsel.tiene{border-color:var(--accent);}
+.panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
+.panel[hidden]{display:none;}
+.panel h2{font-size:clamp(22px,2.4vw,30px);}
+.panel .sub{font-size:14.5px; color:var(--ink-faint); margin:6px 0 22px; max-width:72ch;}
+.vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
+.contador{font-family:var(--font-display); font-size:clamp(72px,11vw,128px); line-height:1; color:var(--accent-dark);}
+.contador-t{font-size:18px; color:var(--ink-soft); margin-top:6px;}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px;}
+.chip{font-size:14.5px; padding:7px 13px; border-radius:99px; background:var(--accent-soft); color:var(--accent-dark);}
+.chip small{font-family:var(--font-mono); font-size:11.5px; margin-left:6px; color:var(--accent);}
+.btn-principal{font-size:17px; font-weight:600; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:10px; padding:14px 26px; cursor:pointer;}
+.btn-principal:hover{background:var(--accent-dark);}
+.frase{font-family:var(--font-display); font-size:clamp(20px,2.3vw,27px); line-height:1.35; color:var(--ink); border-left:5px solid var(--accent); padding:4px 0 4px 18px; margin:6px 0 26px;}
+.frase em{font-style:normal; color:var(--accent-dark);}
+.tec-tit{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-top:4px;}
+
+/* ---- Un aspecto por fila: promedio de pares, reparto 1–5 y autoevaluación ---- */
+.asp{display:grid; grid-template-columns:minmax(200px,28%) 90px minmax(0,1fr) 120px; gap:16px; align-items:center; padding:12px 0; border-top:1px solid var(--border);}
+.asp .nom{font-size:17px; font-weight:600;}
+.asp .media{font-family:var(--font-display); font-size:34px; color:var(--accent-dark); line-height:1;}
+.asp .media small{display:block; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint);}
+.reparto{display:flex; height:30px; border-radius:6px; overflow:hidden; background:var(--surface-alt);}
+.reparto span{display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-mono); font-size:13px; font-weight:700; overflow:hidden;}
+.auto{font-size:13.5px; color:var(--ink-soft); text-align:right;}
+.auto b{font-family:var(--font-mono); font-size:17px; color:var(--moderate);}
+.leyenda{display:flex; gap:6px 16px; flex-wrap:wrap; font-size:13px; color:var(--ink-soft); margin:16px 0 0;}
+.leyenda i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px;}
+
+.cols{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px;}
+.cols h3{font-size:18px; padding-bottom:6px; border-bottom:3px solid var(--border); margin-bottom:10px;}
+.voz{background:var(--surface); border-radius:8px; padding:10px 13px; margin-bottom:8px; font-size:15px; line-height:1.45;}
+.voz .de{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:2px;}
+.voz.propio{background:var(--moderate-soft);}
+
+table{width:100%; border-collapse:collapse; font-size:15px;}
+th,td{padding:9px 10px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top;}
+th{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+td.num{font-family:var(--font-mono); text-align:right; white-space:nowrap;}
+th.num{text-align:right;}
+td.nota{font-family:var(--font-display); font-size:20px; color:var(--accent-dark); text-align:right;}
+tr.bajo td.nota{color:var(--severe);}
+.clave{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0 20px;}
+.como{font-size:13.5px; color:var(--ink-soft); background:var(--surface); border-radius:10px; padding:12px 16px; margin:0 0 18px;}
+.como summary{cursor:pointer; font-weight:600; color:var(--accent);}
+.como li{margin-bottom:4px;}
+@media (max-width:860px){.asp{grid-template-columns:1fr 80px; } .asp .reparto,.asp .auto{grid-column:1 / -1; text-align:left;} .cols{grid-template-columns:1fr;} .wrap{padding:16px 14px 30px;} .panel{padding:20px 16px;}}
+</style></head>
+<body><div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, el tablero no se está ejecutando. Ábranlo en un navegador.</div>
+  <div class="cabecera">
+    <div><div class="eyebrow">Juego de roles · Tablero</div><h1>Cómo vio el curso cada sesión con Andrés</h1></div>
+    <div class="controles"><select id="curso"><option value="402">402</option></select><button class="bt" id="tapar" hidden>Tapar resultados</button><span class="estado" id="estado"></span></div>
+  </div>
+  <div class="nav-pantallas">
+    <button class="pill is-on" data-p="escena">Grupo en escena</button>
+    <button class="pill" data-p="resumen">Resumen</button>
+    <button class="pill" data-p="docente">Vista docente</button>
+  </div>
+
+  <div id="v-escena">
+    <div class="grupos-sel" id="gsel"></div>
+    <div class="panel" id="p-espera">
+      <div class="contador" id="contador">0</div>
+      <div class="contador-t" id="contador-t">jurados valoraron al grupo</div>
+      <div class="chips" id="chips"></div>
+      <p class="sub">Las valoraciones están tapadas para que nadie ajuste la suya a la de los demás. Destápenlas al cerrar la escena.</p>
+      <button class="btn-principal" id="destapar">Destapar resultados</button>
+    </div>
+    <div class="panel" id="p-grupo" hidden>
+      <h2 id="g-tit"></h2><div class="tec-tit" id="g-n"></div>
+      <p class="frase" id="g-frase" style="margin-top:18px"></p>
+      <div id="g-asp"></div>
+      <div class="leyenda" id="leyenda"></div>
+      <div class="cols">
+        <div><h3>Lo que vio el jurado</h3><div id="c-desc"></div></div>
+        <div><h3>Sugerencias</h3><div id="c-sug"></div></div>
+        <div><h3>Preguntas para el grupo</h3><div id="c-preg"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="v-resumen" hidden>
+    <h2>Las ocho sesiones</h2>
+    <p class="sub">Promedio de los pares por aspecto (1 a 5). La autoevaluación va aparte: no entra en el promedio.</p>
+    <div id="tabla-resumen"></div>
+  </div>
+
+  <div class="panel" id="v-docente" hidden>
+    <h2>Nota propuesta como jurado</h2>
+    <p class="sub">Calculada con la rúbrica de evaluadores a partir de las hojas enviadas. Es una propuesta: la retroalimentación oral en la socialización la completa el docente.</p>
+    <div class="clave" id="caja-clave"><input type="password" id="clave" placeholder="Clave docente" autocomplete="off"><button class="bt" id="entrar">Entrar</button><span class="estado" id="clave-estado"></span></div>
+    <div id="docente-cont" hidden>
+      <details class="como"><summary>Cómo se calcula cada criterio</summary><ul>
+        <li><b>Aplicación de la matriz (30 %)</b>: grupos valorados sobre los grupos que pasaron a escena (menos el propio), por 5. Se resta 1 si todos sus puntajes son prácticamente iguales.</li>
+        <li><b>Justificación (30 %)</b>: extensión de la descripción de cada valoración (20 palabras = 4; 40 o más = 5), multiplicada por la cobertura.</li>
+        <li><b>Objetividad (20 %)</b>: distancia promedio entre sus puntajes y los del resto del jurado para el mismo grupo y aspecto (0,5 o menos = 5). Se resta si su autoevaluación supera en más de un punto lo que los pares le dieron a su grupo.</li>
+        <li><b>Retroalimentación (20 %)</b>: parte escrita (sugerencias y preguntas), hasta 4,5, multiplicada por la cobertura. Súmenle o réstenle según la socialización.</li>
+      </ul></details>
+      <div class="controles" style="margin-bottom:12px"><button class="bt" id="copiar">Copiar tabla</button><span class="estado" id="copiar-estado"></span></div>
+      <div id="tabla-docente"></div>
+    </div>
+  </div>
+</div>
+<script src="juego-roles-envio.js?v=20261015"></script>
+<script src="juego-roles-config.js?v=20261015"></script>
+<script>
+(function(){
+'use strict';
+const ENDPOINT=window.JR_ENVIO_URL||'', T=JR.tecnicas, A=JR.aspectos, NG=T.length;
+const COLOR=['var(--n1)','var(--n2)','var(--n3)','var(--n4)','var(--n5)'];
+const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const media=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+const sd=a=>{const m=media(a);return a.length>1?Math.sqrt(media(a.map(x=>(x-m)**2))):0;};
+const f1=x=>x==null?'—':x.toFixed(1).replace('.',',');
+const pal=t=>(String(t||'').trim().match(/\S+/g)||[]).length;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+let filas=[],pant='escena',g=1,destapado={},clave='',timer=null,docente=false;
+try{clave=sessionStorage.getItem('jr402-clave')||'';}catch(e){}
+
+// Último envío de cada jurado por grupo.
+function ultimos(){const m=new Map();filas.forEach(f=>m.set(f.clave+'#'+f.grupo,f));return [...m.values()];}
+function pares(u,gr){return u.filter(f=>f.grupo===gr&&!f.auto);}
+function autoDe(u,gr){const a=u.filter(f=>f.grupo===gr&&f.auto);return a.length?a:null;}
+
+function pintarGsel(u){el('gsel').innerHTML=T.map((t,i)=>`<button class="gsel${i+1===g?' is-on':''}${pares(u,i+1).length?' tiene':''}" data-g="${i+1}" title="${esc(t.nombre)}">${i+1}</button>`).join('');
+  el('gsel').querySelectorAll('.gsel').forEach(b=>b.onclick=()=>{g=Number(b.dataset.g);render();});}
+
+function vistaEscena(u){
+  pintarGsel(u);
+  const p=pares(u,g),au=autoDe(u,g),t=T[g-1];
+  const ver=!!destapado[g];
+  el('p-espera').hidden=ver;el('p-grupo').hidden=!ver;el('tapar').hidden=!ver;
+  if(!ver){el('contador').textContent=p.length;el('contador-t').textContent='jurados valoraron al grupo '+g+' · '+t.nombre;
+    const por={};p.forEach(f=>por[f.grupoEvaluador]=(por[f.grupoEvaluador]||0)+1);
+    el('chips').innerHTML=Object.keys(por).length?Object.keys(por).sort((a,b)=>a-b).map(k=>`<span class="chip">Grupo ${k}<small>${por[k]}</small></span>`).join('')+(au?'<span class="chip" style="background:var(--moderate-soft);color:var(--moderate)">Autoevaluación recibida</span>':''):'<span class="vacio-msg">Esperando la primera valoración…</span>';return;}
+  el('g-tit').textContent='Grupo '+g+' · '+t.nombre;
+  el('g-n').textContent=p.length+' jurado'+(p.length===1?'':'s')+(au?' · con autoevaluación':' · sin autoevaluación');
+  if(!p.length){el('g-asp').innerHTML='<p class="vacio-msg">Sin valoraciones de pares todavía.</p>';el('g-frase').textContent='';['c-desc','c-sug','c-preg'].forEach(i=>el(i).innerHTML='');return;}
+  const stats=A.map((a,k)=>{const v=p.map(f=>f.puntajes[k]);const am=au?media(au.map(f=>f.puntajes[k])):null;return{m:media(v),sd:sd(v),v,am};});
+  el('g-asp').innerHTML=A.map((a,k)=>{const s=stats[k];const cnt=[1,2,3,4,5].map(n=>s.v.filter(x=>x===n).length);
+    return `<div class="asp"><div class="nom">${esc(a.titulo)}</div><div class="media">${f1(s.m)}<small>pares</small></div>
+    <div class="reparto">${cnt.map((c,i)=>c?`<span style="width:${c/s.v.length*100}%;background:${COLOR[i]}">${c}</span>`:'').join('')}</div>
+    <div class="auto">${s.am!=null?'Autoevaluación <b>'+f1(s.am)+'</b>':''}</div></div>`;}).join('');
+  el('leyenda').innerHTML=JR.etiquetas.map((e,i)=>`<span><i style="background:${COLOR[i]}"></i>${i+1} · ${e}</span>`).join('')+'<span>El número en cada tramo es la cantidad de jurados.</span>';
+  // La frase se arma con los datos: el aspecto en que más se dividió el jurado y, si hay
+  // autoevaluación, dónde más se separó la mirada del grupo de la de sus pares.
+  const kd=stats.reduce((b,s,k)=>s.sd>stats[b].sd?k:b,0);
+  let frase=stats[kd].sd>=0.8?`El jurado se dividió sobre todo en <em>${esc(A[kd].titulo.toLowerCase())}</em>. ¿Qué vio cada lado?`:`El jurado coincidió bastante en los cuatro aspectos.`;
+  if(au){const kg=stats.reduce((b,s,k)=>Math.abs(s.am-s.m)>Math.abs(stats[b].am-stats[b].m)?k:b,0);const dif=stats[kg].am-stats[kg].m;
+    if(Math.abs(dif)>=0.75)frase+=` El grupo se vio ${dif>0?'mejor':'peor'} que sus pares en <em>${esc(A[kg].titulo.toLowerCase())}</em> (${f1(stats[kg].am)} frente a ${f1(stats[kg].m)}).`;}
+  el('g-frase').innerHTML=frase;
+  const voces=(arr,k,cls)=>arr.filter(f=>String(f[k]).trim()).map(f=>`<div class="voz${cls||''}"><span class="de">${f.auto?'El propio grupo':'Jurado del grupo '+f.grupoEvaluador}</span>${esc(f[k])}</div>`).join('');
+  el('c-desc').innerHTML=(au?voces(au,'descripcion',' propio'):'')+voces(p,'descripcion')||'<p class="vacio-msg">—</p>';
+  el('c-sug').innerHTML=(au?voces(au,'sugerencia',' propio'):'')+voces(p,'sugerencia')||'<p class="vacio-msg">—</p>';
+  el('c-preg').innerHTML=voces(p,'pregunta')||'<p class="vacio-msg">Sin preguntas.</p>';
+}
+
+function vistaResumen(u){
+  el('tabla-resumen').innerHTML=`<table><thead><tr><th>Grupo</th>${A.map(a=>`<th class="num">${esc(a.titulo)}</th>`).join('')}<th class="num">Promedio</th><th class="num">Autoeval.</th><th class="num">Jurados</th></tr></thead><tbody>`+
+    T.map((t,i)=>{const p=pares(u,i+1),au=autoDe(u,i+1);const ms=A.map((a,k)=>media(p.map(f=>f.puntajes[k])));
+      const tot=p.length?media(ms):null,at=au?media(au.flatMap(f=>f.puntajes)):null;
+      return `<tr><td><b>${i+1}</b> · ${esc(t.nombre)}</td>${ms.map(m=>`<td class="num">${f1(m)}</td>`).join('')}<td class="num"><b>${f1(tot)}</b></td><td class="num">${f1(at)}</td><td class="num">${p.length}</td></tr>`;}).join('')+'</tbody></table>';
+}
+
+/* ---------- Nota propuesta como jurado (rúbrica 3.3) ---------- */
+function notas(u){
+  const enEscena=new Set(u.filter(f=>!f.auto).map(f=>f.grupo));
+  const jur={};u.forEach(f=>{(jur[f.clave]=jur[f.clave]||{nombre:f.evaluador,grupo:f.grupoEvaluador,filas:[]}).filas.push(f);});
+  return Object.values(jur).map(j=>{
+    const par=j.filas.filter(f=>!f.auto),auto=j.filas.find(f=>f.auto);
+    const esperados=[...enEscena].filter(x=>x!==j.grupo).length;
+    const cov=esperados?clamp(new Set(par.map(f=>f.grupo)).size/esperados,0,1):0;
+    const todos=par.flatMap(f=>f.puntajes);
+    const c1=par.length?clamp(5*cov-(todos.length>=8&&sd(todos)<0.35?1:0),1,5):null;
+    const ptsDesc=n=>n>=40?5:n>=30?4.5:n>=20?4:n>=10?3:n>=5?2:1;
+    const c2=par.length?clamp(media(par.map(f=>ptsDesc(pal(f.descripcion))))*cov,1,5):null;
+    const dif=[];par.forEach(f=>{const otros=u.filter(o=>o.grupo===f.grupo&&!o.auto&&o.clave!==f.clave);
+      if(otros.length>=2)A.forEach((a,k)=>dif.push(Math.abs(f.puntajes[k]-media(otros.map(o=>o.puntajes[k]))))); });
+    let c3=null;
+    if(dif.length){const d=media(dif);c3=d<=0.5?5:d<=0.75?4.5:d<=1?4:d<=1.25?3.5:d<=1.5?3:d<=2?2:1;
+      if(auto){const pg=u.filter(o=>o.grupo===j.grupo&&!o.auto);if(pg.length){const infl=media(auto.puntajes)-media(pg.flatMap(o=>o.puntajes));if(infl>1.5)c3-=1;else if(infl>1)c3-=0.5;}}
+      c3=clamp(c3,1,5);}
+    let c4=null;
+    if(par.length){const s=media(par.map(f=>pal(f.sugerencia)));let b=s>=15?4:s>=8?3.5:3;if(par.filter(f=>pal(f.pregunta)>=4).length>=par.length/2)b+=0.5;c4=clamp(b*cov,1,4.5);}
+    const cs=[c1,c2,c3,c4],w=JR.rubricaJurado.map(r=>r.peso);
+    let sw=0,sv=0;cs.forEach((c,i)=>{if(c!=null){sw+=w[i];sv+=w[i]*c;}});
+    return {...j,n:new Set(par.map(f=>f.grupo)).size,esperados,auto:!!auto,cs,nota:sw?Math.round(sv/sw*10)/10:null};
+  }).sort((a,b)=>a.grupo-b.grupo||a.nombre.localeCompare(b.nombre,'es'));
+}
+let ultimaTabla=[];
+function vistaDocente(u){
+  el('caja-clave').hidden=docente;el('docente-cont').hidden=!docente;
+  if(!docente)return;
+  ultimaTabla=notas(u);
+  el('tabla-docente').innerHTML=ultimaTabla.length?`<table><thead><tr><th>Jurado</th><th class="num">Grupo</th><th class="num">Grupos valorados</th><th class="num">Autoeval.</th>${JR.rubricaJurado.map(r=>`<th class="num">${esc(r.criterio)}</th>`).join('')}<th class="num">Nota</th></tr></thead><tbody>`+
+    ultimaTabla.map(j=>`<tr class="${j.nota!=null&&j.nota<3?'bajo':''}"><td>${esc(j.nombre)}</td><td class="num">${j.grupo}</td><td class="num">${j.n} de ${j.esperados}</td><td class="num">${j.auto?'sí':'no'}</td>${j.cs.map(c=>`<td class="num">${f1(c)}</td>`).join('')}<td class="nota">${f1(j.nota)}</td></tr>`).join('')+'</tbody></table>':'<p class="vacio-msg">Sin hojas de jurado todavía.</p>';
+}
+function copiar(){const tsv=['Jurado\tGrupo\tGrupos valorados\tAutoevaluación\t'+JR.rubricaJurado.map(r=>r.criterio).join('\t')+'\tNota propuesta']
+  .concat(ultimaTabla.map(j=>[j.nombre,j.grupo,j.n+' de '+j.esperados,j.auto?'sí':'no'].concat(j.cs.map(f1)).concat([f1(j.nota)]).join('\t'))).join('\n');
+  (navigator.clipboard?navigator.clipboard.writeText(tsv):Promise.reject()).then(()=>{el('copiar-estado').textContent='copiada: péguenla en la planilla';},()=>{el('copiar-estado').textContent='no fue posible copiar';});}
+
+function render(){
+  const u=ultimos();
+  document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('is-on',p.dataset.p===pant));
+  el('v-escena').hidden=pant!=='escena';el('v-resumen').hidden=pant!=='resumen';el('v-docente').hidden=pant!=='docente';
+  el('tapar').hidden=true;
+  if(pant==='escena')vistaEscena(u);else if(pant==='resumen')vistaResumen(u);else vistaDocente(u);
+}
+function cargar(){
+  if(!ENDPOINT){el('estado').textContent='receptor sin configurar';el('estado').className='estado error';return;}
+  el('estado').textContent='actualizando…';el('estado').className='estado';
+  const name='jrTab_'+Date.now(),s=document.createElement('script');
+  globalThis[name]=r=>{s.remove();
+    if(r&&r.error==='clave'){clave='';try{sessionStorage.removeItem('jr402-clave');}catch(e){}docente=false;el('clave-estado').textContent='clave incorrecta';el('clave-estado').className='estado error';cargar();return;}
+    if(r&&r.ok){filas=r.filas||[];docente=!!r.docente;if(docente){el('clave-estado').textContent='';try{sessionStorage.setItem('jr402-clave',clave);}catch(e){}}}
+    el('estado').textContent=r&&r.ok?'actualizado '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}):'no fue posible leer la hoja';el('estado').className='estado'+(r&&r.ok?'':' error');render();};
+  s.onerror=()=>{el('estado').textContent='sin conexión con la hoja';el('estado').className='estado error';s.remove();};
+  s.src=ENDPOINT+'?tablero='+encodeURIComponent(el('curso').value)+(clave?'&clave='+encodeURIComponent(clave):'')+'&callback='+name;document.head.appendChild(s);
+}
+function ciclo(){clearTimeout(timer);cargar();timer=setTimeout(ciclo,20000);}
+try{
+  el('js-warning').hidden=true;
+  document.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{pant=p.dataset.p;render();});
+  el('destapar').onclick=()=>{destapado[g]=true;render();};
+  el('tapar').onclick=()=>{destapado[g]=false;render();};
+  el('entrar').onclick=()=>{clave=el('clave').value.trim();if(clave){el('clave').value='';ciclo();}};
+  el('clave').onkeydown=e=>{if(e.key==='Enter')el('entrar').click();};
+  el('copiar').onclick=copiar;
+  render();ciclo();
+}catch(e){el('js-warning').hidden=false;console.error(e);}
+})();
+</script></body></html>

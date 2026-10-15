@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juego de roles — Hoja del jurado</title>
+<style>
+/* Sistema visual de la hoja del observador de Práctica II (practica-ii/juego-roles/observador.html). */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n2:#b8722a; --n3:#7d7b3a; --n4:#3f7d53; --n5:#1f6f78;
+  --mild:#3f7d53; --severe:#a83f2b; --severe-soft:#fbeae6; --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+/* El texto de la página no se selecciona; los campos de escritura sí, para poder corregirlos. */
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea,select{-webkit-user-select:text; user-select:text;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 40px;}
+.masthead{margin-bottom:20px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead h1{font-size:24px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14px; margin:0 0 8px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+.js-warning[hidden]{display:none;}
+
+.ident{display:grid; grid-template-columns:1fr 1fr; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px; margin-bottom:8px;}
+.ident .ancho{grid-column:1 / -1;}
+.ident label{display:block; font-size:11.5px; font-weight:600; letter-spacing:0.02em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;}
+select,input[type="text"]{width:100%; font-family:var(--font-body); font-size:15px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 8px;}
+select:focus,input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+.nombre-fijo{font-size:12px; color:var(--ink-faint); margin-top:4px;}
+.nombre-fijo button{background:none; border:none; color:var(--accent); font-weight:600; font-size:12px; cursor:pointer; padding:0;}
+
+.asignacion{border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:12px 15px; margin:0 0 10px; background:var(--bg); font-size:13.5px; color:var(--ink-soft);}
+.asignacion.vacia{border-left-color:var(--border); color:var(--ink-faint);}
+.asignacion.auto{border-left-color:var(--moderate); background:var(--moderate-soft);}
+.asignacion b{color:var(--accent-dark);}
+.asignacion .tec{display:block; font-family:var(--font-display); font-size:19px; color:var(--ink); margin:2px 0 4px;}
+.pasos{margin:8px 0 0; padding-left:20px; font-size:13px; color:var(--ink-soft);}
+.pasos li{margin-bottom:3px;}
+.ver{background:none; border:none; color:var(--accent); cursor:pointer; font-family:var(--font-body); font-size:12.5px; font-weight:600; padding:6px 0 0; display:block;}
+.hechos{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 18px; font-size:12px; color:var(--ink-faint); align-items:center;}
+.hechos span.g{font-family:var(--font-mono); font-weight:700; padding:3px 8px; border-radius:99px; background:var(--accent-soft); color:var(--accent-dark);}
+.hechos span.g.auto{background:var(--moderate-soft); color:var(--moderate);}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+.seccion-nota{font-size:12.5px; color:var(--ink-faint); margin:-4px 0 12px;}
+
+.item{border:1px solid var(--border); border-radius:var(--radius); padding:13px 14px; margin-bottom:11px; background:var(--bg);}
+.item.respondido{background:var(--surface); border-color:var(--surface-alt);}
+.item-num{font-family:var(--font-mono); font-size:11px; color:var(--accent); font-weight:700; margin-right:6px;}
+.item-texto{font-size:15px; font-weight:600; display:block; margin-bottom:3px;}
+.item-pista{font-size:12.5px; color:var(--ink-faint); margin-bottom:11px;}
+.opciones{display:grid; grid-template-columns:repeat(5,1fr); gap:5px;}
+.opcion{border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); font-family:var(--font-body); font-size:13px; font-weight:600; line-height:1.2; padding:10px 2px; border-radius:8px; cursor:pointer; text-align:center;}
+.opcion .cifra{display:block; font-family:var(--font-mono); font-size:16px; margin-bottom:2px;}
+.opcion .etiqueta{display:block; font-size:9.5px; font-weight:500;}
+.opcion:active{transform:scale(0.97);}
+.opcion[aria-pressed="true"][data-valor="1"]{background:var(--n1); border-color:var(--n1); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="2"]{background:var(--n2); border-color:var(--n2); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="3"]{background:var(--n3); border-color:var(--n3); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="4"]{background:var(--n4); border-color:var(--n4); color:#fff;}
+.opcion[aria-pressed="true"][data-valor="5"]{background:var(--n5); border-color:var(--n5); color:#fff;}
+.descriptor{font-size:12.8px; color:var(--ink-soft); background:var(--surface-alt); border-radius:7px; padding:9px 11px; margin-top:9px;}
+.descriptor[hidden]{display:none;}
+.ver-niveles{background:none; border:none; color:var(--accent); cursor:pointer; font-family:var(--font-body); font-size:12.5px; font-weight:600; padding:0; margin:0 0 10px; display:block;}
+.ver-niveles::before{content:"▸ "; font-size:11px;}
+.ver-niveles[aria-expanded="true"]::before{content:"▾ ";}
+.todos-niveles{margin:0 0 11px; border:1px solid var(--border); border-radius:8px; overflow:hidden;}
+.todos-niveles[hidden]{display:none;}
+.nivel-fila{display:flex; gap:9px; align-items:flex-start; padding:8px 10px; font-size:12.6px; color:var(--ink-soft); border-bottom:1px solid var(--border);}
+.nivel-fila:last-child{border-bottom:none;}
+.nivel-cifra{font-family:var(--font-mono); font-size:11px; font-weight:700; color:#fff; border-radius:4px; padding:2px 6px; flex-shrink:0; margin-top:1px;}
+
+textarea{width:100%; font-family:var(--font-body); font-size:14.5px; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:11px 12px; resize:vertical;}
+textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+.campo{margin-bottom:16px;}
+.campo[hidden]{display:none;}
+.campo-titulo{font-size:14.5px; font-weight:600; margin-bottom:3px;}
+.campo-nota{font-size:12.5px; color:var(--ink-faint); margin-bottom:8px;}
+.palabras{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); text-align:right; margin-top:3px;}
+.palabras.ok{color:var(--mild);}
+
+.barra{margin-top:26px; padding:18px 0 0; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:12px;}
+.estado{font-size:12.5px; color:var(--ink-faint); text-align:center; min-height:18px;}
+.estado.ok{color:var(--mild);} .estado.warn{color:var(--severe);}
+.btn{font-family:var(--font-body); font-size:16px; font-weight:600; padding:15px 26px; border-radius:9px; border:1px solid transparent; cursor:pointer; background:var(--accent); color:#fff; width:100%;}
+.btn:hover{background:var(--accent-dark);}
+.btn:disabled{opacity:.5; cursor:not-allowed;}
+.progreso{font-size:12.5px; color:var(--ink-faint); text-align:center;}
+.toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px; font-size:13px; text-align:center; max-width:calc(100% - 32px); opacity:0; pointer-events:none; transition:all 0.25s ease; z-index:999;}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+.firma{font-size:11.5px; color:var(--ink-faint); margin-top:30px; text-align:center;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, la hoja no se está ejecutando. Ábranla en un navegador (Chrome, Safari, Edge o Firefox), no dentro del visor de una app de mensajería.</div>
+  <header class="masthead">
+    <div class="eyebrow">Juego de roles · Técnicas cognitivo-conductuales · Hoja del jurado</div>
+    <h1>Valoración del grupo en escena</h1>
+    <p>Mientras un grupo atiende a Andrés, el resto del curso es jurado. Cada estudiante valora a cada grupo que pasa a escena y autoevalúa al suyo; los cuatro aspectos son los de la matriz de evaluación y valoran al grupo, no a sus integrantes.</p>
+    <p>Esta hoja cuenta para la nota como jurado: se valora que califiquen a todos los grupos, que usen la escala con criterio y que cada puntaje quede sustentado en lo observado.</p>
+  </header>
+
+  <div class="ident">
+    <div><label for="f-curso">Curso</label><select id="f-curso"><option value="402">402</option></select></div>
+    <div><label for="f-mi-grupo">Su grupo</label><select id="f-mi-grupo"><option value="">—</option></select></div>
+    <div class="ancho"><label for="f-nombre">Nombre y apellidos</label><input type="text" id="f-nombre" maxlength="80" autocomplete="name">
+      <div class="nombre-fijo" id="nombre-fijo" hidden>El nombre queda fijo en este celular. <button type="button" id="cambiar-nombre">Cambiarlo</button></div></div>
+    <div class="ancho"><label for="f-escena">Grupo en escena</label><select id="f-escena"><option value="">—</option></select></div>
+  </div>
+  <div class="asignacion vacia" id="asignacion">Elijan su grupo y el grupo en escena; la técnica se muestra sola.</div>
+  <div class="hechos" id="hechos" hidden></div>
+
+  <div id="contenido" hidden>
+    <div class="seccion-titulo">Los cuatro aspectos</div>
+    <p class="seccion-nota">Un toque por aspecto. Si dudan entre dos niveles, «ver los cinco niveles» muestra la rúbrica completa sin salir de la hoja.</p>
+    <div id="items"></div>
+
+    <div class="seccion-titulo">Lo que sustenta la calificación</div>
+    <div class="campo"><div class="campo-titulo">Descripción general del desempeño</div>
+      <div class="campo-nota" id="nota-desc">Lo que vieron en la escena que explica los puntajes, con términos de la técnica.</div>
+      <textarea id="f-desc" rows="4" maxlength="1500"></textarea><div class="palabras" id="cuenta-desc"></div></div>
+    <div class="campo"><div class="campo-titulo" id="tit-sug">Una sugerencia de mejora</div>
+      <div class="campo-nota" id="nota-sug">Algo concreto que el grupo podría hacer distinto en la próxima sesión con Andrés.</div>
+      <textarea id="f-sug" rows="2" maxlength="800"></textarea></div>
+    <div class="campo" id="campo-preg"><div class="campo-titulo">Una pregunta para el grupo <span style="font-weight:400;color:var(--ink-faint)">(opcional)</span></div>
+      <div class="campo-nota">Para la socialización: algo que no puede responderse desde afuera.</div>
+      <textarea id="f-preg" rows="2" maxlength="600"></textarea></div>
+
+    <div class="barra">
+      <div class="progreso" id="progreso">0 de 4 aspectos valorados</div>
+      <button class="btn" id="btn-enviar">Enviar valoración</button>
+      <div class="estado" id="estado"></div>
+    </div>
+  </div>
+  <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
+</div>
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en esta hoja.</div>
+<script src="juego-roles-envio.js?v=20261015"></script>
+<script src="juego-roles-config.js?v=20261015"></script>
+<script>
+(function(){
+'use strict';
+const ENDPOINT=window.JR_ENVIO_URL||'', CURSO_CODE='TMC-2026-2', PREFIX='jr-402-v1:';
+const T=JR.tecnicas, A=JR.aspectos, MIN_PAL=20;
+const COLOR=['#a83f2b','#b8722a','#7d7b3a','#3f7d53','#1f6f78'];
+const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const palabras=t=>(String(t||'').trim().match(/\S+/g)||[]).length;
+let resp={}, busy=false, ackTimer=null, ackDeadline=0, rid='';
+let mem={nombre:'',grupo:'',hechos:{}};
+function guardarMem(){try{localStorage.setItem(PREFIX+'mem',JSON.stringify(mem));}catch(e){}}
+
+function renderItems(){
+  el('items').innerHTML='';
+  A.forEach((a,k)=>{
+    const caja=document.createElement('div');caja.className='item';caja.dataset.k=k;
+    caja.innerHTML=`<span class="item-texto"><span class="item-num">A${k+1}</span>${esc(a.titulo)}</span><div class="item-pista">${esc(a.pista)}</div>
+      <button type="button" class="ver-niveles" aria-expanded="false">ver los cinco niveles</button>
+      <div class="todos-niveles" hidden>${a.niveles.map((t,i)=>`<div class="nivel-fila"><span class="nivel-cifra" style="background:${COLOR[i]}">${i+1}</span><span>${esc(t)}</span></div>`).join('')}</div>
+      <div class="opciones">${JR.etiquetas.map((e,i)=>`<button type="button" class="opcion" data-valor="${i+1}" aria-pressed="false"><span class="cifra">${i+1}</span><span class="etiqueta">${e}</span></button>`).join('')}</div>
+      <div class="descriptor" hidden></div>`;
+    const vn=caja.querySelector('.ver-niveles'),tn=caja.querySelector('.todos-niveles');
+    vn.onclick=()=>{const ab=tn.hidden;tn.hidden=!ab;vn.setAttribute('aria-expanded',String(ab));vn.textContent=ab?'ocultar los niveles':'ver los cinco niveles';};
+    caja.querySelectorAll('.opcion').forEach(b=>b.onclick=()=>elegir(k,Number(b.dataset.valor),caja));
+    el('items').appendChild(caja);
+  });
+}
+function elegir(k,v,caja){
+  // Volver a tocar el nivel marcado lo desmarca: en vivo uno se equivoca de botón.
+  if(resp[k]===v)delete resp[k];else resp[k]=v;
+  caja.querySelectorAll('.opcion').forEach(b=>b.setAttribute('aria-pressed',String(resp[k]===Number(b.dataset.valor))));
+  caja.classList.toggle('respondido',!!resp[k]);caja.classList.remove('invalid');
+  const d=caja.querySelector('.descriptor');d.hidden=!resp[k];if(resp[k])d.textContent=A[k].niveles[resp[k]-1];
+  rid='';progreso();
+}
+function progreso(){el('progreso').textContent=Object.keys(resp).length+' de '+A.length+' aspectos valorados';
+  const n=palabras(el('f-desc').value);el('cuenta-desc').textContent=n+' palabras'+(n<MIN_PAL?' · mínimo '+MIN_PAL:'');el('cuenta-desc').className='palabras'+(n>=MIN_PAL?' ok':'');}
+
+function esAuto(){return el('f-mi-grupo').value&&el('f-mi-grupo').value===el('f-escena').value;}
+function pintarHechos(){
+  const h=mem.hechos[el('f-mi-grupo').value]||[];
+  el('hechos').hidden=!h.length;
+  el('hechos').innerHTML=h.length?'Ya enviadas: '+h.slice().sort((a,b)=>a-b).map(g=>`<span class="g${String(g)===el('f-mi-grupo').value?' auto':''}">${String(g)===el('f-mi-grupo').value?'Propio':'G'+g}</span>`).join(''):'';
+}
+function asignacion(){
+  const mi=el('f-mi-grupo').value,es=el('f-escena').value,caja=el('asignacion');
+  pintarHechos();
+  if(!mi||!es){caja.className='asignacion vacia';caja.textContent='Elijan su grupo y el grupo en escena; la técnica se muestra sola.';el('contenido').hidden=true;return;}
+  const t=T[Number(es)-1],auto=mi===es;
+  caja.className='asignacion'+(auto?' auto':'');
+  caja.innerHTML=(auto?'<b>Autoevaluación</b> · su propio grupo, con los mismos cuatro aspectos.':'Grupo <b>'+es+'</b> en escena')+
+    `<span class="tec">${esc(t.nombre)}</span>${t.autor?esc(t.autor)+' · ':''}${esc(t.proposito)}`+
+    `<button type="button" class="ver" id="ver-pasos">ver los pasos de la técnica</button><ol class="pasos" id="pasos" hidden>${t.pasos.map(p=>`<li>${esc(p)}</li>`).join('')}</ol>`;
+  el('ver-pasos').onclick=()=>{const p=el('pasos');p.hidden=!p.hidden;el('ver-pasos').textContent=p.hidden?'ver los pasos de la técnica':'ocultar los pasos';};
+  el('tit-sug').textContent=auto?'Lo que harían distinto':'Una sugerencia de mejora';
+  el('nota-sug').textContent=auto?'Lo que su grupo cambiaría en la próxima sesión con Andrés.':'Algo concreto que el grupo podría hacer distinto en la próxima sesión con Andrés.';
+  el('nota-desc').textContent=auto?'Cómo vieron su propio desempeño, con términos de la técnica.':'Lo que vieron en la escena que explica los puntajes, con términos de la técnica.';
+  el('campo-preg').hidden=auto;
+  el('contenido').hidden=false;progreso();
+}
+function limpiar(){resp={};rid='';['f-desc','f-sug','f-preg'].forEach(i=>el(i).value='');renderItems();progreso();}
+
+function setEstado(m,ok){const s=el('estado');s.textContent=m||'';s.className='estado'+(m?(ok?' ok':' warn'):'');}
+function faltante(){
+  document.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));
+  for(const id of ['f-mi-grupo','f-nombre','f-escena'])if(!el(id).value.trim()){el(id).classList.add('invalid');return el(id);}
+  if(palabras(el('f-nombre').value)<2){el('f-nombre').classList.add('invalid');return el('f-nombre');}
+  for(let k=0;k<A.length;k++)if(!resp[k]){const c=document.querySelector('.item[data-k="'+k+'"]');c.classList.add('invalid');return c;}
+  if(palabras(el('f-desc').value)<MIN_PAL){el('f-desc').classList.add('invalid');return el('f-desc');}
+  if(!el('f-sug').value.trim()){el('f-sug').classList.add('invalid');return el('f-sug');}
+  return null;
+}
+function uid(){if(globalThis.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}
+function payload(){const es=Number(el('f-escena').value);
+  return {tipo:'juego-roles-402',version:1,curso:CURSO_CODE,cursoGrupo:el('f-curso').value,rid:rid,
+    evaluador:el('f-nombre').value.trim().replace(/\s+/g,' '),grupoEvaluador:Number(el('f-mi-grupo').value),
+    grupo:es,tecnica:T[es-1].nombre,auto:esAuto(),puntajes:A.map((a,k)=>resp[k]),
+    descripcion:el('f-desc').value.trim(),sugerencia:el('f-sug').value.trim(),pregunta:esAuto()?'':el('f-preg').value.trim()};}
+let pend=null;
+function confirmado(r){if(!busy||!r||r.rid!==rid||r.ok!==true)return;clearTimeout(ackTimer);busy=false;
+  const mi=el('f-mi-grupo').value,es=Number(el('f-escena').value);
+  mem.hechos[mi]=Array.from(new Set([...(mem.hechos[mi]||[]),es]));guardarMem();
+  limpiar();el('f-escena').value='';asignacion();el('btn-enviar').disabled=false;
+  setEstado('Valoración del '+(String(es)===mi?'grupo propio':'grupo '+es)+' registrada. Elijan el siguiente grupo en escena.',true);window.scrollTo({top:0,behavior:'smooth'});}
+function poll(){if(!busy)return;if(Date.now()>ackDeadline){busy=false;el('btn-enviar').disabled=false;setEstado('Aún no hay confirmación. Revisen la pestaña de envío o reintenten.',false);return;}
+  const name='jrAck_'+rid.replace(/-/g,'')+'_'+Date.now(),s=document.createElement('script');
+  const clean=()=>{s.remove();globalThis[name]=()=>{};};globalThis[name]=r=>{confirmado(r);clean();};
+  s.onerror=clean;s.src=ENDPOINT+'?estado='+encodeURIComponent(rid)+'&callback='+name;document.head.appendChild(s);setTimeout(clean,12000);ackTimer=setTimeout(poll,5000);}
+function enviar(){
+  if(busy)return;
+  if(!ENDPOINT){setEstado('El envío aún no está configurado.',false);return;}
+  const f=faltante();if(f){f.scrollIntoView({behavior:'smooth',block:'center'});setEstado(palabras(el('f-desc').value)<MIN_PAL&&Object.keys(resp).length===A.length&&f===el('f-desc')?'La descripción necesita al menos '+MIN_PAL+' palabras.':'Falta completar un dato, un aspecto o un comentario.',false);return;}
+  // La pestaña se abre antes del envío: si el navegador la bloquea, no se da por enviada.
+  const w=window.open('','jr_envio');if(!w){setEstado('El navegador bloqueó la pestaña de envío. Permitan la ventana emergente y reintenten.',false);return;}
+  if(!rid)rid=uid();
+  mem.nombre=el('f-nombre').value.trim().replace(/\s+/g,' ');mem.grupo=el('f-mi-grupo').value;guardarMem();fijarNombre();
+  busy=true;el('btn-enviar').disabled=true;setEstado('Esperando confirmación de registro…');
+  const form=document.createElement('form');form.method='POST';form.action=ENDPOINT;form.target='jr_envio';form.hidden=true;
+  const i=document.createElement('input');i.name='payload';i.value=JSON.stringify(payload());form.appendChild(i);document.body.appendChild(form);
+  try{form.submit();ackDeadline=Date.now()+65000;ackTimer=setTimeout(poll,2500);}catch(e){busy=false;el('btn-enviar').disabled=false;setEstado('No fue posible abrir el envío.',false);}finally{form.remove();}
+}
+// El nombre y el grupo quedan fijos tras el primer envío: la nota como jurado se calcula
+// por persona, y un nombre escrito distinto en cada envío la partiría en dos.
+function fijarNombre(){const fijo=!!mem.nombre;el('f-nombre').readOnly=fijo;el('nombre-fijo').hidden=!fijo;if(fijo){el('f-nombre').value=mem.nombre;el('f-mi-grupo').value=mem.grupo;}el('f-mi-grupo').disabled=fijo;}
+function toast(){const t=el('toast');t.classList.add('is-visible');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('is-visible'),2400);}
+
+try{
+  el('js-warning').hidden=true;
+  const ops=T.map((t,i)=>`<option value="${i+1}">Grupo ${i+1} · ${esc(t.nombre)}</option>`).join('');
+  el('f-mi-grupo').insertAdjacentHTML('beforeend',T.map((t,i)=>`<option value="${i+1}">${i+1}</option>`).join(''));
+  el('f-escena').insertAdjacentHTML('beforeend',ops);
+  try{mem={...mem,...JSON.parse(localStorage.getItem(PREFIX+'mem')||'{}')};}catch(e){}
+  fijarNombre();renderItems();asignacion();
+  ['copy','cut','paste','drop','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{e.preventDefault();toast();}));
+  document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();if((e.ctrlKey||e.metaKey)&&['c','v','x'].includes(k)){e.preventDefault();toast();}});
+  el('f-mi-grupo').onchange=asignacion;
+  el('f-escena').onchange=()=>{limpiar();setEstado('');asignacion();};
+  el('f-desc').oninput=()=>{rid='';el('f-desc').classList.remove('invalid');progreso();};
+  ['f-sug','f-preg','f-nombre'].forEach(i=>el(i).oninput=()=>{rid='';el(i).classList.remove('invalid');});
+  el('cambiar-nombre').onclick=()=>{if(!confirm('¿Cambiar el nombre? Las valoraciones ya enviadas quedan con el nombre anterior.'))return;mem.nombre='';mem.grupo='';mem.hechos={};guardarMem();pintarHechos();el('f-nombre').readOnly=false;el('f-mi-grupo').disabled=false;el('nombre-fijo').hidden=true;el('f-nombre').focus();};
+  el('btn-enviar').onclick=enviar;
+}catch(e){el('js-warning').hidden=false;el('js-warning').textContent='La hoja no pudo iniciar. Recarguen la página o ábranla en otro navegador.';console.error(e);}
+})();
+</script></body></html>

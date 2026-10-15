@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juego de roles — Técnicas cognitivo-conductuales</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:980px; margin:0 auto; padding:40px clamp(16px,4vw,48px) 60px;}
+.eyebrow{font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+h1{font-size:clamp(28px,3.6vw,38px); margin-bottom:12px;}
+.intro{font-size:16px; color:var(--ink-soft); max-width:66ch; margin:0;}
+section{margin-top:40px;}
+h2{font-size:22px; margin-bottom:12px;}
+.sub{font-size:14.5px; color:var(--ink-soft); max-width:66ch; margin:0 0 16px;}
+.enlaces{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:26px;}
+.enlace{display:block; text-decoration:none; color:inherit; border:1px solid var(--border); border-radius:12px; padding:18px 20px; box-shadow:var(--shadow-card);}
+.enlace:hover{border-color:var(--accent); background:var(--accent-soft);}
+.enlace b{display:block; font-family:var(--font-display); font-size:19px; color:var(--accent-dark); margin-bottom:4px;}
+.enlace span{font-size:13.5px; color:var(--ink-soft);}
+.caso{border:1px solid var(--border); border-left:5px solid var(--accent); border-radius:12px; padding:20px 24px; background:var(--surface);}
+.caso .dx{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-bottom:10px;}
+.caso p{font-family:var(--font-display); font-size:17px; line-height:1.6; margin:0 0 12px;}
+.caso p:last-child{margin-bottom:0;}
+.tecnicas{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px;}
+.tec{border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow-card);}
+.tec .g{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent);}
+.tec h3{font-size:18px; margin:3px 0 2px;}
+.tec .autor{font-size:12.5px; color:var(--ink-faint); margin-bottom:8px;}
+.tec p{font-size:14px; color:var(--ink-soft); margin:0 0 8px;}
+.tec ol{margin:0; padding-left:20px; font-size:13.5px;}
+.tec li{margin-bottom:2px;}
+.roles{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+.rol{background:var(--surface); border-radius:10px; padding:14px 16px; font-size:14.5px;}
+.rol b{display:block; font-family:var(--font-display); font-size:17px; margin-bottom:3px;}
+.notas{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.nota{border:1px solid var(--border); border-radius:12px; padding:16px 18px;}
+.nota .peso{font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-dark); background:var(--accent-soft); padding:2px 8px; border-radius:99px;}
+.nota h3{font-size:18px; margin:8px 0 6px;}
+.nota p{font-size:14px; color:var(--ink-soft); margin:0;}
+.fuente{font-size:12px; color:var(--ink-faint); margin-top:14px;}
+.firma{font-size:11.5px; color:var(--ink-faint); margin-top:40px;}
+@media (max-width:700px){.notas{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+  <div class="eyebrow">Juego de roles · Técnicas cognitivo-conductuales</div>
+  <h1>Una sesión con Andrés, ocho técnicas</h1>
+  <p class="intro">Cada grupo atiende al mismo consultante con una técnica distinta. Mientras un grupo está en escena, el resto del curso es jurado y lo valora desde el celular con la matriz de evaluación. Al final se proyecta cómo vio el curso a cada grupo y dónde no coincidió.</p>
+  <div class="enlaces">
+    <a class="enlace" href="juego-roles-jurado.html"><b>Hoja del jurado</b><span>En clase, desde el celular. Una valoración por cada grupo y una autoevaluación del grupo propio.</span></a>
+    <a class="enlace" href="juego-roles-tablero.html"><b>Tablero</b><span>Para proyectar las valoraciones de cada grupo al terminar su escena.</span></a>
+  </div>
+
+  <section>
+    <h2>El caso</h2>
+    <div class="caso" id="caso"></div>
+  </section>
+
+  <section>
+    <h2>Las ocho técnicas</h2>
+    <p class="sub">El número de grupo define la técnica. Los pasos son los que el jurado verá en su hoja para valorar el seguimiento del protocolo.</p>
+    <div class="tecnicas" id="tecnicas"></div>
+    <p class="fuente">Técnicas y pasos: diapositivas «Representaciones mentales. Aplicabilidad de los principios teóricos». Debate de creencias en la terapia racional emotivo-conductual: Ruiz, Díaz y Villalobos, <i>Manual de técnicas de intervención cognitivo conductuales</i>, cap. 7.</p>
+  </section>
+
+  <section>
+    <h2>Cómo se arma cada grupo</h2>
+    <div class="roles">
+      <div class="rol"><b>Terapeuta</b>Conduce la sesión y aplica la técnica paso a paso.</div>
+      <div class="rol"><b>Andrés</b>Sostiene el caso con sus dudas, su culpa y sus resistencias, sin entregarlo todo de una vez.</div>
+      <div class="rol"><b>Equipo de apoyo</b>Prepara la sesión y sus materiales (jerarquías, registros, contrato) y responde en la socialización por qué la intervención se hizo así.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dos notas</h2>
+    <div class="notas">
+      <div class="nota"><span class="peso">20 %</span><h3>Como participantes</h3><p>El docente valora la escena del grupo con la rúbrica de participantes: eficacia de la técnica, integración teórica, trabajo en equipo y adaptación al caso.</p></div>
+      <div class="nota"><span class="peso">20 %</span><h3>Como jurado</h3><p>Cada estudiante es valorado por sus hojas de jurado: que califique a todos los grupos, que use la escala con criterio, que sustente cada puntaje y que su retroalimentación aporte en la socialización.</p></div>
+    </div>
+  </section>
+  <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
+</div>
+<script src="juego-roles-config.js?v=20261015"></script>
+<script>
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('caso').innerHTML=`<div class="dx">${esc(JR.caso.nombre)} · ${esc(JR.caso.dx)}</div>`+JR.caso.texto.map(p=>`<p>${esc(p)}</p>`).join('');
+document.getElementById('tecnicas').innerHTML=JR.tecnicas.map((t,i)=>`<div class="tec"><div class="g">Grupo ${i+1}</div><h3>${esc(t.nombre)}</h3><div class="autor">${esc(t.autor||' ')}</div><p>${esc(t.proposito)}</p><ol>${t.pasos.map(p=>`<li>${esc(p)}</li>`).join('')}</ol></div>`).join('');
+</script>
+</body></html>
