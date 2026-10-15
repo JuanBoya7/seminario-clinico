@@ -1,5 +1,5 @@
 // Receptor del juego de roles de técnicas cognitivo-conductuales de 402 (corte 3).
-// Pegar en un proyecto nuevo de Apps Script de la cuenta institucional, ejecutar prepararHoja
+// Pegar en el Apps Script de la hoja donde se quieren los datos (Extensiones → Apps Script), ejecutar prepararHoja
 // una vez y desplegar como aplicación web (ejecutar como: yo; acceso: cualquier usuario).
 // prepararHoja también crea la CLAVE DOCENTE (queda en el registro de ejecución): el tablero la
 // pide para mostrar los nombres de los jurados y su nota propuesta. Sin clave, el tablero solo
@@ -14,7 +14,10 @@ var HOJA = 'Juego de roles';
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('JR402_HOJA_ID');
-  var libro = id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Juego de roles');
+  // Si el proyecto se creó desde una hoja (Extensiones → Apps Script), los envíos van a esa
+  // hoja: es donde el docente consulta sus datos. Solo un proyecto independiente crea una aparte.
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  var libro = activa || (id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Juego de roles'));
   props.setProperty('JR402_HOJA_ID', libro.getId());
   var hoja = libro.getSheetByName(HOJA) || libro.insertSheet(HOJA);
   if (hoja.getLastRow() === 0) {

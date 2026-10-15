@@ -1,6 +1,6 @@
 // Receptor de los espacios de discusión de 402 (Teorías y métodos: conductismo y enfoque
 // cognitivo). Un solo proyecto para los tres cortes: una pestaña por corte.
-// Pegar en un proyecto nuevo de Apps Script de la cuenta institucional, ejecutar prepararHoja
+// Pegar en el Apps Script de la hoja donde se quieren los datos (Extensiones → Apps Script), ejecutar prepararHoja
 // una vez y desplegar como aplicación web (ejecutar como: yo; acceso: cualquier usuario).
 // Copiar la URL en forma de dominio en conductismo/discusion-envio.js.
 var CURSOS = {'TMC-2026-2':['402']};
@@ -14,7 +14,10 @@ function nombreHoja_(corte) { return 'Corte ' + corte; }
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('DISC402_HOJA_ID');
-  var libro = id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Espacios de discusión');
+  // Si el proyecto se creó desde una hoja (Extensiones → Apps Script), los envíos van a esa
+  // hoja: es donde el docente consulta sus datos. Solo un proyecto independiente crea una aparte.
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  var libro = activa || (id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Espacios de discusión'));
   props.setProperty('DISC402_HOJA_ID', libro.getId());
   CORTES.forEach(function(c) {
     var nombre = nombreHoja_(c);

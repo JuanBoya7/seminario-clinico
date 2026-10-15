@@ -1,6 +1,6 @@
 // Receptor de los debates de 402 (los tres cortes). Una pestaña por corte con registros e
 // intervenciones, y la pestaña «Valoración del docente» con la rúbrica por equipo.
-// Pegar en un proyecto nuevo de Apps Script de la cuenta institucional, ejecutar prepararHoja
+// Pegar en el Apps Script de la hoja donde se quieren los datos (Extensiones → Apps Script), ejecutar prepararHoja
 // una vez y desplegar como aplicación web (ejecutar como: yo; acceso: cualquier usuario).
 // prepararHoja crea la CLAVE DOCENTE (registro de ejecución y Propiedades de la secuencia de
 // comandos, DEB402_CLAVE): sin ella el tablero no recibe nombres ni puede escribir etiquetas.
@@ -28,7 +28,10 @@ function encabezar_(hoja, cols) {
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('DEB402_HOJA_ID');
-  var libro = id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Debates');
+  // Si el proyecto se creó desde una hoja (Extensiones → Apps Script), los envíos van a esa
+  // hoja: es donde el docente consulta sus datos. Solo un proyecto independiente crea una aparte.
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  var libro = activa || (id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Debates'));
   props.setProperty('DEB402_HOJA_ID', libro.getId());
   CORTES.forEach(function(c) { encabezar_(libro.getSheetByName(nombreHoja_(c)) || libro.insertSheet(nombreHoja_(c)), COLUMNAS); });
   encabezar_(libro.getSheetByName(VALORACION) || libro.insertSheet(VALORACION), COL_VAL);
