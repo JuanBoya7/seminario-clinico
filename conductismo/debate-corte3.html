@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debate</title>
+<style>
+/* Sistema visual de las hojas de clase en el celular (observador de Práctica II, jurado de 402). */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --eqA:#1f6f78; --eqA-soft:#e2eff0; --eqB:#b8722a; --eqB-soft:#faf1e4; --eqC:#5b4a8a; --eqC-soft:#ece8f5;
+  --mild:#3f7d53; --severe:#a83f2b; --severe-soft:#fbeae6;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea{-webkit-user-select:text; user-select:text;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+button{font-family:var(--font-body);}
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 40px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+h1{font-size:26px; margin-bottom:12px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+.js-warning[hidden],[hidden]{display:none !important;}
+.mocion{font-family:var(--font-display); font-size:19px; line-height:1.45; background:var(--accent-soft); color:var(--accent-dark); border-radius:12px; padding:16px 18px; margin:0 0 10px;}
+.mocion-rot{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:4px;}
+.pregunta{font-size:14.5px; color:var(--ink-soft); margin:0 0 10px;}
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+.nota{font-size:13px; color:var(--ink-faint); margin:-4px 0 12px;}
+label.rot{display:block; font-size:11.5px; font-weight:600; text-transform:uppercase; color:var(--ink-faint); margin:0 0 5px;}
+input[type=text],select{width:100%; font-size:15px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:11px 10px; font-family:var(--font-body);}
+textarea{width:100%; font-family:var(--font-body); font-size:15px; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:11px 12px; resize:vertical;}
+input:focus,textarea:focus,select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+.campo{margin-bottom:14px;}
+
+/* ---- Elegir equipo ---- */
+.equipos{display:grid; gap:10px;}
+.equipo{display:flex; gap:12px; align-items:flex-start; border:2px solid var(--border); border-radius:12px; padding:14px 16px; cursor:pointer; background:var(--bg);}
+.equipo input{margin-top:4px; width:20px; height:20px; flex-shrink:0;}
+.equipo b{display:block; font-family:var(--font-display); font-size:19px;}
+.equipo span{display:block; font-size:14px; color:var(--ink-soft);}
+.equipo.is-on{border-color:var(--c); background:var(--cs);}
+
+.btn{font-size:16px; font-weight:600; padding:15px 22px; border-radius:10px; border:1px solid transparent; cursor:pointer; background:var(--accent); color:#fff; width:100%;}
+.btn:hover{background:var(--accent-dark);}
+.btn:disabled{opacity:.5; cursor:not-allowed;}
+.btn-sec{background:#fff; color:var(--accent); border-color:var(--accent);}
+.btn-sec:hover{background:var(--accent-soft);}
+.fila-btn{display:flex; gap:10px; margin-top:10px;}
+.fila-btn .btn{flex:1;}
+.estado{font-size:13px; color:var(--ink-faint); text-align:center; min-height:18px; margin-top:10px;}
+.estado.ok{color:var(--mild);} .estado.warn{color:var(--severe);}
+
+/* ---- Identidad registrada ---- */
+.yo{display:flex; justify-content:space-between; align-items:center; gap:10px; border-left:5px solid var(--c); background:var(--cs); border-radius:0 10px 10px 0; padding:12px 14px;}
+.yo b{display:block; font-size:16px;}
+.yo span{font-size:13px; color:var(--ink-soft);}
+
+/* ---- Tomar la palabra ---- */
+.tipos{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
+.tipo{font-size:13.5px; font-weight:600; padding:9px 13px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); cursor:pointer;}
+.tipo[aria-pressed="true"]{background:var(--c); border-color:var(--c); color:#fff;}
+.mic-zona{text-align:center; padding:8px 0 4px;}
+.mic{width:150px; height:150px; border-radius:50%; border:none; background:var(--c); color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 6px 22px rgba(22,35,43,.18); line-height:1.25; padding:0 18px;}
+.mic.grabando{background:var(--severe); animation:latido 1.4s ease-in-out infinite;}
+@keyframes latido{0%,100%{box-shadow:0 0 0 0 rgba(168,63,43,.45);}50%{box-shadow:0 0 0 18px rgba(168,63,43,0);}}
+.reloj{font-family:var(--font-mono); font-size:22px; color:var(--ink); margin-top:12px;}
+.vivo{min-height:70px; border:1px dashed var(--border); border-radius:10px; padding:12px 14px; font-size:15.5px; line-height:1.5; color:var(--ink); margin-top:14px; text-align:left;}
+.vivo i{color:var(--ink-faint);}
+.aviso-voz{font-size:13px; color:var(--ink-soft); background:var(--surface); border-radius:8px; padding:10px 12px; margin-top:12px;}
+
+/* ---- Sus intervenciones ---- */
+.mias{display:flex; flex-direction:column; gap:8px;}
+.mia{border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:14px;}
+.mia .cab{display:flex; justify-content:space-between; gap:8px; font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px;}
+.mia .ok{color:var(--mild);} .mia .pend{color:var(--severe);}
+.mia button{margin-top:6px; font-size:12.5px; font-weight:600; color:var(--accent); background:none; border:none; padding:0; cursor:pointer;}
+.toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px; font-size:13px; text-align:center; max-width:calc(100% - 32px); opacity:0; pointer-events:none; transition:all .25s ease; z-index:999;}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+.firma{font-size:11.5px; color:var(--ink-faint); margin-top:30px; text-align:center;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, el debate no se está ejecutando. Ábranlo en Chrome, Safari o Edge, no dentro del visor de una app de mensajería.</div>
+  <div class="eyebrow" id="eyebrow"></div>
+  <h1 id="titulo"></h1>
+  <div class="mocion"><span class="mocion-rot">Moción</span><span id="mocion"></span></div>
+  <p class="pregunta" id="pregunta" hidden></p>
+
+  <section id="registro">
+    <div class="seccion-titulo">Registro</div>
+    <p class="nota">Una sola vez, antes de la primera intervención. El equipo no se puede cambiar después.</p>
+    <div class="campo"><label class="rot" for="f-nombre">Nombre y apellidos</label><input type="text" id="f-nombre" maxlength="80" autocomplete="name"></div>
+    <div class="campo"><label class="rot">Equipo</label><div class="equipos" id="equipos"></div></div>
+    <button class="btn" id="btn-registro">Registrarme</button>
+    <div class="estado" id="estado-registro"></div>
+  </section>
+
+  <section id="palabra" hidden>
+    <div class="seccion-titulo">Quién habla</div>
+    <div class="yo" id="yo"></div>
+
+    <div class="seccion-titulo">Tomar la palabra</div>
+    <div class="tipos" id="tipos"></div>
+    <div class="mic-zona">
+      <button class="mic" id="mic">Tomar la palabra</button>
+      <div class="reloj" id="reloj">00:00</div>
+    </div>
+    <div class="vivo" id="vivo" hidden></div>
+    <div class="aviso-voz" id="aviso-voz" hidden></div>
+
+    <div id="revision" hidden>
+      <div class="seccion-titulo">Su intervención</div>
+      <p class="nota" id="nota-revision">Corrijan solo lo que la transcripción entendió mal; el sentido debe ser el que dijeron.</p>
+      <textarea id="texto" rows="5" maxlength="4000"></textarea>
+      <div class="fila-btn"><button class="btn btn-sec" id="btn-descartar">Descartar</button><button class="btn" id="btn-enviar">Enviar intervención</button></div>
+    </div>
+    <div class="estado" id="estado"></div>
+
+    <div class="seccion-titulo">Sus intervenciones</div>
+    <div class="mias" id="mias"><p class="nota">Todavía no han tomado la palabra.</p></div>
+  </section>
+  <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
+</div>
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este debate.</div>
+<script src="debate-envio.js?v=20261015"></script>
+<script src="debate-corte3.js?v=20261015"></script>
+<script src="debate-motor.js?v=20261015"></script>
+</body></html>
