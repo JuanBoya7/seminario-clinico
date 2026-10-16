@@ -25,7 +25,8 @@
  * Modo de lectura para el tablero docente (los tres casos):
  * doGet con ?tablero=Susana&curso=…&grupo=… devuelve, por grupo de trabajo, su
  * última entrega resumida —criterios marcados, veredicto y la línea que lo
- * sostiene, y en Sergio también cómo leyó cada situación del autorregistro—. No escribe nada y no toca doPost: publicar esta versión no cambia
+ * sostiene, y en Sergio también cómo leyó cada situación del autorregistro—; en
+ * DBT, los ocho eslabones y el análisis de soluciones. No escribe nada y no toca doPost: publicar esta versión no cambia
  * cómo se reciben las entregas de ningún caso.
  *
  * Para publicarla: reemplazar el contenido de Codigo.gs por este archivo, y en
@@ -243,7 +244,11 @@ function doGet(e) {
 
 // Casos con tablero. La pestaña que se lee es "<grupo del curso> <caso>", la
 // misma que escribe doPost.
-var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio', 'Informe'];
+var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio', 'Informe', 'DBT'];
+
+// Eslabones del análisis en cadena (caso DBT), en orden: los id de las tarjetas
+// de la actividad, sin el prefijo «f-».
+var ESLABONES_DBT = ['vulnerabilidad', 'evento', 'pensamientos', 'emociones', 'impulso', 'conducta', 'corto', 'largo'];
 
 /**
  * Por cada grupo de trabajo devuelve su ÚLTIMA entrega —si un grupo envió dos
@@ -330,6 +335,22 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
               resultados: String(txt['f-resultados'] || '').substring(0, 3000),
               conclusion: String(txt['f-conclusion'] || '').substring(0, 3000)
             }
+          });
+          return;
+        }
+        // El análisis en cadena (DBT) tampoco tiene criterios: su tablero lee los
+        // ocho eslabones y el análisis de soluciones.
+        if (caso === 'DBT') {
+          var t = estado.text || {};
+          entregas.push({
+            cursoGrupo: g,
+            grupo: grupo,
+            enviado: ultima[clave].fecha ? ultima[clave].fecha.toISOString() : '',
+            eslabones: ESLABONES_DBT.map(function (k) { return String(t['f-' + k] || '').substring(0, 700); }),
+            nivel: String(t['ct-nivel'] || ''),
+            intervencion: String(t['ct-intervencion'] || ''),
+            habilidad: String(t['ct-habilidad'] || ''),
+            aplicacion: String(t['f-aplicacion'] || '').substring(0, 900)
           });
           return;
         }

@@ -210,49 +210,255 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .grupo .ref{border-left:4px solid var(--moderate); background:var(--moderate-soft); border-radius:0 8px 8px 0; padding:10px 12px; margin-top:10px; font-size:14.5px;}
 .grupo .ref .r{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--moderate); margin-bottom:4px;}
 .grupo .meta{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint); margin-top:8px;}
-</style></head>
-<body><div class="wrap">
+
+.aviso-demo[hidden]{display:none;}
+.estado.error{color:var(--severe);}
+.bt[hidden]{display:none;}
+.panel h2{margin-bottom:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="js-warning" id="js-warning-fallback">
+    Si ven este mensaje, el tablero no se está ejecutando. Ábranlo en un navegador de escritorio.
+  </div>
+  <div class="aviso-demo" id="aviso-demo" hidden></div>
+
   <div class="cabecera">
-    <div><div class="eyebrow">Caso Valeria · Tablero docente</div><h1>Análisis en cadena del curso</h1></div>
-    <div class="controles"><select id="curso"><option value="901">901</option><option value="902">902</option><option value="903">903</option></select><button class="bt" id="ver-ref" hidden>Mostrar una cadena posible</button><button class="bt" id="tapar" hidden>Tapar resultados</button><span class="estado" id="estado"></span></div>
+    <div>
+      <div class="eyebrow">Caso Valeria · Tablero docente</div>
+      <h1>Análisis en cadena del curso</h1>
+    </div>
+    <div class="controles">
+      <select id="f-grupo" aria-label="Grupo del curso"></select>
+      <button class="bt" id="bt-ref" hidden>Mostrar una cadena posible</button>
+      <button class="bt" id="bt-tapar" hidden>Volver a tapar</button>
+      <span class="estado" id="estado">—</span>
+    </div>
   </div>
-  <div class="panel" id="panel-espera">
-    <div class="contador" id="contador">0</div>
-    <div class="contador-t">grupos enviaron su análisis</div>
-    <div class="chips" id="chips"><span class="vacio-msg">Esperando la primera entrega…</span></div>
-    <p class="sub">Los análisis están tapados para que ningún grupo ajuste su cadena a la de los demás. Destápenlos cuando hayan enviado todos.</p>
-    <button class="btn-principal" id="destapar">Destapar resultados</button>
-  </div>
-  <div class="panel" id="panel-resultados" hidden>
-    <h2>Las seis cadenas</h2>
-    <p class="sub">Se muestra el último envío de cada grupo. Las cadenas son hipótesis sobre un caso ficticio.</p>
-    <div class="grupos" id="grupos"></div>
-  </div>
+
+  <main id="pantalla"></main>
+
 </div>
-<script src="dbt-cadena-envio.js?v=20261012b"></script>
+
 <script>
-const EP=[{"titulo": "La llamada de la universidad", "lectura": ["Dos noches sin dormir bien; la pareja de viaje.", "La llamada: no alcanzó el cupo de la materia.", "«Nunca voy a terminar»; «mi madre tenía razón».", "Desesperanza y vergüenza; nudo en el estómago.", "Esconderse, no enfrentar la universidad.", "No vuelve a clase en toda la semana.", "Evita el malestar de enfrentar la situación.", "Más atraso y más vergüenza para regresar."], "nivel": 3, "sugerencia": "Verificar los hechos sobre el cupo y acción opuesta a la vergüenza: ir a la siguiente clase y preguntar opciones."}, {"titulo": "Las fotos del sábado", "lectura": ["La discusión con su madre ese día.", "Las fotos de la reunión a la que no la invitaron.", "«Nadie me quiere cerca.»", "Dolor, ira y vergüenza; calor en la cara.", "Atacar para que sientan lo que ella siente.", "Mensajes hirientes; se sale del chat.", "Descarga y tranquilidad por unos minutos.", "Pierde a dos amigas: más aislamiento."], "nivel": 3, "sugerencia": "STOP antes de escribir; verificar los hechos sobre la invitación; DEAR MAN o AVES para decir que le dolió."}, {"titulo": "La puerta del cuarto", "lectura": ["Cansancio y un parcial que le fue mal.", "«Otra vez con tus dramas» (invalidación).", "«En esta casa nadie me va a entender nunca.»", "Ira intensa; calor y puños apretados.", "Golpear, hacer ruido, que la dejen en paz.", "Tira la puerta y rompe un portarretratos.", "La madre deja de insistir: alivio inmediato.", "Culpa; se aísla y no come; la relación empeora."], "nivel": 3, "sugerencia": "TIP para bajar la activación (agua fría, respiración pausada) y, ya en calma, DEAR MAN con su madre."}, {"titulo": "El dinero del mes", "lectura": ["Sin almorzar; semana cargada.", "La pareja cancela la salida una hora antes.", "«Soy la última opción.»", "Vacío y tristeza difíciles de nombrar.", "Hacer algo que la haga sentir mejor ya.", "Gasta el dinero del transporte del mes.", "Alivio mientras compra.", "No tiene cómo ir a clase; culpa y más estrés."], "nivel": 3, "sugerencia": "Mindfulness de la emoción actual para nombrarla; pros y contras antes de comprar; ACA CUIDA (comer)."}, {"titulo": "La fiesta", "lectura": ["Una semana de entregas, casi sin dormir.", "La pareja conectada y sin responderle.", "«Seguro está con otra persona.»", "Miedo y luego rabia.", "Dejar de sentir y de pensar.", "Bebe hasta que tienen que llevarla a casa.", "Deja de pensar esa noche.", "No recuerda lo que dijo; vergüenza; riesgo."], "nivel": 3, "sugerencia": "Verificar los hechos sobre la pareja; STOP y pros y contras ante el siguiente trago; ACA CUIDA (dormir)."}, {"titulo": "La sesión", "lectura": ["La discusión con su madre en la mañana.", "La propuesta de revisar la última autolesión.", "«Me va a juzgar como todos.»", "Vergüenza; estómago revuelto.", "Salir de ahí.", "Se va de la sesión antes de terminar.", "Alivio al salir.", "Duda si volver: la terapia está en riesgo."], "nivel": 2, "sugerencia": "Validación del terapeuta (V4 y V5) y acción opuesta a la vergüenza: quedarse y nombrarla en sesión."}];const NOMBRES=["Vulnerabilidad", "Evento desencadenante", "Pensamientos", "Emociones y sensaciones", "Impulso", "Conducta problema", "Consecuencias a corto plazo", "Consecuencias a largo plazo"];const KEYS=["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];const NIVELES=["1 · Conductas que amenazan la vida", "2 · Conductas que interfieren con la terapia", "3 · Conductas que interfieren con la calidad de vida", "4 · Aumentar las habilidades"];
-const ENDPOINT=window.DBT_CADENA_ENVIO_URL||'';const el=id=>document.getElementById(id);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let datos=[],destapado=false,verRef=false,timer=null;
-function ultimos(){const m={};datos.forEach(d=>{m[Number(d.grupo)]=d;});return m;}
-function render(){const u=ultimos();const env=Object.keys(u).map(Number).sort((a,b)=>a-b);
-el('contador').textContent=env.length;
-el('chips').innerHTML=env.length?env.map(g=>`<span class="chip">Grupo ${g}<small>${esc(EP[g-1].titulo)}</small></span>`).join(''):'<span class="vacio-msg">Esperando la primera entrega…</span>';
-el('panel-espera').hidden=destapado;el('panel-resultados').hidden=!destapado;el('tapar').hidden=!destapado;el('ver-ref').hidden=!destapado;
-el('ver-ref').textContent=verRef?'Ocultar la cadena posible':'Mostrar una cadena posible';
-if(!destapado)return;
-el('grupos').innerHTML=EP.map((e,i)=>{const g=i+1,d=u[g];
-const body=d?`<ol>${d.eslabones.map((t,k)=>`<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join('')}</ol><div class="sol"><b>Nivel:</b> ${esc(NIVELES[(d.nivel||1)-1])}<br><b>Intervenir en:</b> ${esc(NOMBRES[KEYS.indexOf(d.intervencion)]||d.intervencion)} · <b>${esc(d.habilidad)}</b><br>${esc(d.aplicacion)}</div>`:'<p class="vacio-msg">Sin envío todavía.</p>';
-const ref=verRef?`<div class="ref"><span class="r">Una cadena posible</span><ol>${e.lectura.map((t,k)=>`<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join('')}</ol><b>Nivel:</b> ${esc(NIVELES[e.nivel-1])}<br><b>Dónde cortarla:</b> ${esc(e.sugerencia)}</div>`:'';
-return `<article class="grupo"><div class="eyebrow">Grupo ${g}</div><h3>${esc(e.titulo)}</h3>${body}${ref}</article>`;}).join('');}
-function cargar(){const c=el('curso').value;if(!ENDPOINT){el('estado').textContent='receptor sin configurar';el('estado').className='estado error';return;}
-el('estado').textContent='actualizando…';el('estado').className='estado';const name='dbtTab_'+Date.now();const s=document.createElement('script');
-globalThis[name]=r=>{if(el('curso').value===c){datos=(r&&r.ok&&r.filas)||[];el('estado').textContent=r&&r.ok?'actualizado '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}):'no fue posible leer la hoja';el('estado').className='estado'+(r&&r.ok?'':' error');render();}s.remove();};
-s.onerror=()=>{el('estado').textContent='sin conexión con la hoja';el('estado').className='estado error';s.remove();};s.src=ENDPOINT+'?tablero='+encodeURIComponent(c)+'&callback='+name;document.head.appendChild(s);}
-function ciclo(){clearTimeout(timer);cargar();timer=setTimeout(ciclo,20000);}
-el('curso').onchange=()=>{datos=[];destapado=false;render();ciclo();};
-el('destapar').onclick=()=>{destapado=true;render();};el('tapar').onclick=()=>{destapado=false;render();};
-el('ver-ref').onclick=()=>{verRef=!verRef;render();};
-render();ciclo();
-</script></body></html>
+/* ============================================================
+   1. CONFIGURACIÓN
+   ============================================================ */
+const FUENTE = {
+  // La misma dirección que ENVIO.url en dbt-analisis-cadena.html: el receptor
+  // de los casos, que también atiende el modo de lectura (?tablero=DBT).
+  // Con "PENDIENTE" el tablero muestra datos de ejemplo.
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec",
+  // Reintenta con la otra forma de la misma dirección (de dominio / corta):
+  // cuál responde depende de si el navegador tiene sesión de Google abierta.
+  alterna: true,
+  curso: "SPI-2026-2",
+  caso: "DBT",             // la pestaña de la hoja es "<grupo del curso> DBT"
+  refrescoMs: 20000
+};
+
+// Opciones del selector. Deben coincidir con el desplegable "Grupo del curso"
+// de la actividad y con CURSOS en el receptor.
+const GRUPOS_CURSO = ["901", "902", "903"];
+
+const NOMBRES = ["Vulnerabilidad", "Evento desencadenante", "Pensamientos", "Emociones y sensaciones",
+  "Impulso", "Conducta problema", "Consecuencias a corto plazo", "Consecuencias a largo plazo"];
+const KEYS = ["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];
+const NIVELES = ["1 · Conductas que amenazan la vida", "2 · Conductas que interfieren con la terapia",
+  "3 · Conductas que interfieren con la calidad de vida", "4 · Aumentar las habilidades"];
+
+/* ============================================================
+   2. LOS SEIS EPISODIOS Y UNA CADENA POSIBLE DE CADA UNO
+   ============================================================
+   El grupo N trabaja el episodio ((N-1) mod 6) + 1, igual que en la actividad.
+   «Una cadena posible» es la lectura del docente: queda oculta hasta que la
+   pide, para cerrar sin adelantar la discusión.
+   ============================================================ */
+const EP = [
+  {"titulo": "La llamada de la universidad", "lectura": ["Dos noches sin dormir bien; la pareja de viaje.", "La llamada: no alcanzó el cupo de la materia.", "«Nunca voy a terminar»; «mi madre tenía razón».", "Desesperanza y vergüenza; nudo en el estómago.", "Esconderse, no enfrentar la universidad.", "No vuelve a clase en toda la semana.", "Evita el malestar de enfrentar la situación.", "Más atraso y más vergüenza para regresar."], "nivel": 3, "sugerencia": "Verificar los hechos sobre el cupo y acción opuesta a la vergüenza: ir a la siguiente clase y preguntar opciones."},
+  {"titulo": "Las fotos del sábado", "lectura": ["La discusión con su madre ese día.", "Las fotos de la reunión a la que no la invitaron.", "«Nadie me quiere cerca.»", "Dolor, ira y vergüenza; calor en la cara.", "Atacar para que sientan lo que ella siente.", "Mensajes hirientes; se sale del chat.", "Descarga y tranquilidad por unos minutos.", "Pierde a dos amigas: más aislamiento."], "nivel": 3, "sugerencia": "STOP antes de escribir; verificar los hechos sobre la invitación; DEAR MAN o AVES para decir que le dolió."},
+  {"titulo": "La puerta del cuarto", "lectura": ["Cansancio y un parcial que le fue mal.", "«Otra vez con tus dramas» (invalidación).", "«En esta casa nadie me va a entender nunca.»", "Ira intensa; calor y puños apretados.", "Golpear, hacer ruido, que la dejen en paz.", "Tira la puerta y rompe un portarretratos.", "La madre deja de insistir: alivio inmediato.", "Culpa; se aísla y no come; la relación empeora."], "nivel": 3, "sugerencia": "TIP para bajar la activación (agua fría, respiración pausada) y, ya en calma, DEAR MAN con su madre."},
+  {"titulo": "El dinero del mes", "lectura": ["Sin almorzar; semana cargada.", "La pareja cancela la salida una hora antes.", "«Soy la última opción.»", "Vacío y tristeza difíciles de nombrar.", "Hacer algo que la haga sentir mejor ya.", "Gasta el dinero del transporte del mes.", "Alivio mientras compra.", "No tiene cómo ir a clase; culpa y más estrés."], "nivel": 3, "sugerencia": "Mindfulness de la emoción actual para nombrarla; pros y contras antes de comprar; ACA CUIDA (comer)."},
+  {"titulo": "La fiesta", "lectura": ["Una semana de entregas, casi sin dormir.", "La pareja conectada y sin responderle.", "«Seguro está con otra persona.»", "Miedo y luego rabia.", "Dejar de sentir y de pensar.", "Bebe hasta que tienen que llevarla a casa.", "Deja de pensar esa noche.", "No recuerda lo que dijo; vergüenza; riesgo."], "nivel": 3, "sugerencia": "Verificar los hechos sobre la pareja; STOP y pros y contras ante el siguiente trago; ACA CUIDA (dormir)."},
+  {"titulo": "La sesión", "lectura": ["La discusión con su madre en la mañana.", "La propuesta de revisar la última autolesión.", "«Me va a juzgar como todos.»", "Vergüenza; estómago revuelto.", "Salir de ahí.", "Se va de la sesión antes de terminar.", "Alivio al salir.", "Duda si volver: la terapia está en riesgo."], "nivel": 2, "sugerencia": "Validación del terapeuta (V4 y V5) y acción opuesta a la vergüenza: quedarse y nombrarla en sesión."}
+];
+
+/* ============================================================
+   3. DATOS DE EJEMPLO
+   ============================================================
+   Se usan mientras FUENTE.url diga "PENDIENTE", o con ?demo=1 en la
+   dirección, para ensayar antes de la clase: cuatro grupos que copian la
+   cadena posible de su episodio.
+   ============================================================ */
+function entregasDemo(){
+  return [1, 2, 3, 5].map(g => {
+    const e = EP[(g - 1) % EP.length];
+    return { cursoGrupo: GRUPOS_CURSO[0], grupo: "Grupo " + g, enviado: new Date().toISOString(),
+             eslabones: e.lectura.slice(), nivel: String(e.nivel), intervencion: "evento",
+             habilidad: "Verificar los hechos", aplicacion: e.sugerencia };
+  });
+}
+
+/* ============================================================
+   4. CARGA (fetch, con JSONP de respaldo)
+   ============================================================
+   Igual que el tablero de Sergio: fetch primero —Apps Script responde con
+   Access-Control-Allow-Origin: *— y el <script> con callback como respaldo si
+   fetch falla. Se prueban las dos formas de la dirección.
+   ============================================================ */
+const MODO_DEMO = FUENTE.url === "PENDIENTE" || /[?&]demo=1\b/.test(location.search);
+
+function direcciones(){
+  const lista = [FUENTE.url];
+  if (!FUENTE.alterna) return lista;
+  const otra = FUENTE.url.indexOf("/a/macros/") !== -1
+    ? FUENTE.url.replace(/\/a\/macros\/[^/]+\/s\//, "/macros/s/")
+    : FUENTE.url.replace("/macros/s/", "/a/macros/areandina.edu.co/s/");
+  if (otra !== FUENTE.url) lista.push(otra);
+  return lista;
+}
+
+function urlResumen(base, grupo){
+  return base + "?tablero=" + encodeURIComponent(FUENTE.caso) +
+    "&curso=" + encodeURIComponent(FUENTE.curso) +
+    (grupo ? "&grupo=" + encodeURIComponent(grupo) : "") +
+    "&t=" + Date.now();
+}
+
+let contadorCallback = 0;
+function pedirJsonp(url){
+  return new Promise((resolver, rechazar) => {
+    const nombre = "__dbt_cb_" + (++contadorCallback);
+    const script = document.createElement("script");
+    const limpiar = () => { delete window[nombre]; script.remove(); };
+    const reloj = setTimeout(() => { limpiar(); rechazar(new Error("sin respuesta a tiempo")); }, 15000);
+    window[nombre] = datos => { clearTimeout(reloj); limpiar(); resolver(datos); };
+    script.onerror = () => { clearTimeout(reloj); limpiar(); rechazar(new Error("script bloqueado o sin respuesta")); };
+    script.src = url + "&callback=" + nombre;
+    document.body.appendChild(script);
+  });
+}
+
+async function pedirResumen(grupo){
+  let ultimoFallo = null;
+  for (const base of direcciones()) {
+    const url = urlResumen(base, grupo);
+    try {
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return await r.json();
+    } catch (errFetch) {
+      try { return await pedirJsonp(url); }
+      catch (errScript) { ultimoFallo = new Error("fetch: " + errFetch.message + " · script: " + errScript.message); }
+    }
+  }
+  throw ultimoFallo || new Error("sin dirección");
+}
+
+/* ============================================================
+   5. PANTALLAS
+   ============================================================ */
+const esc = s => String(s == null ? "" : s)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const numeroDeGrupo = e => parseInt(String(e.grupo).replace(/\D/g, ""), 10) || 0;
+const plural = (n, uno, varios) => n === 1 ? uno : varios;
+const episodioDe = e => EP[(Math.max(1, numeroDeGrupo(e)) - 1) % EP.length];
+
+let entregas = [], destapado = false, verRef = false;
+
+function pantallaEspera(E){
+  const orden = E.slice().sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
+  const chips = orden.map(e => `<span class="chip">${esc(e.grupo)}<small>${esc(episodioDe(e).titulo)}</small></span>`).join("");
+  return `<section class="panel">
+    <div class="contador">${E.length}</div>
+    <div class="contador-t">${plural(E.length, "grupo envió su análisis", "grupos enviaron su análisis")}</div>
+    <div class="chips">${chips || '<span class="vacio-msg">Esperando la primera entrega…</span>'}</div>
+    <p class="sub">Los análisis están tapados para que ningún grupo ajuste su cadena a la de los demás. Destápenlos cuando hayan enviado todos.</p>
+    <button class="btn-principal" id="bt-destapar">Destapar resultados</button>
+  </section>`;
+}
+
+function pantallaGrupos(E){
+  const orden = E.slice().sort((a, b) => numeroDeGrupo(a) - numeroDeGrupo(b));
+  const tarjetas = orden.map(e => {
+    const ep = episodioDe(e);
+    const nivel = NIVELES[(parseInt(e.nivel, 10) || 1) - 1] || e.nivel;
+    const donde = NOMBRES[KEYS.indexOf(e.intervencion)] || e.intervencion;
+    const ref = verRef ? `<div class="ref"><span class="r">Una cadena posible</span><ol>${ep.lectura.map((t, k) =>
+      `<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join("")}</ol><b>Nivel:</b> ${esc(NIVELES[ep.nivel - 1])}<br><b>Dónde cortarla:</b> ${esc(ep.sugerencia)}</div>` : "";
+    return `<article class="grupo"><div class="eyebrow">${esc(e.grupo)}</div><h3>${esc(ep.titulo)}</h3>
+      <ol>${(e.eslabones || []).map((t, k) => `<li><b>${esc(NOMBRES[k])}:</b> ${esc(t)}</li>`).join("")}</ol>
+      <div class="sol"><b>Nivel:</b> ${esc(nivel)}<br><b>Intervenir en:</b> ${esc(donde)} · <b>${esc(e.habilidad)}</b><br>${esc(e.aplicacion)}</div>${ref}</article>`;
+  }).join("");
+  return `<section class="panel"><h2>Las cadenas del curso</h2>
+    <p class="sub">Se muestra el último envío de cada grupo. Las cadenas son hipótesis sobre un caso ficticio.</p>
+    <div class="grupos">${tarjetas || '<p class="vacio-msg">Todavía no llegó ninguna entrega de este grupo.</p>'}</div></section>`;
+}
+
+function pintar(){
+  document.getElementById("pantalla").innerHTML = destapado ? pantallaGrupos(entregas) : pantallaEspera(entregas);
+  document.getElementById("bt-tapar").hidden = !destapado;
+  document.getElementById("bt-ref").hidden = !destapado;
+  document.getElementById("bt-ref").textContent = verRef ? "Ocultar la cadena posible" : "Mostrar una cadena posible";
+  const b = document.getElementById("bt-destapar");
+  if (b) b.addEventListener("click", () => { destapado = true; pintar(); });
+}
+
+/* ============================================================
+   6. ACTUALIZACIÓN
+   ============================================================ */
+async function actualizar(){
+  const estado = document.getElementById("estado");
+  const grupo = document.getElementById("f-grupo").value;
+  if (MODO_DEMO) {
+    entregas = entregasDemo();
+    estado.textContent = "datos de ejemplo";
+    pintar();
+    return;
+  }
+  try {
+    const datos = await pedirResumen(grupo);
+    if (!datos || datos.ok === false) throw new Error((datos && datos.error) || "respuesta vacía");
+    if (document.getElementById("f-grupo").value !== grupo) return;   // cambiaron de grupo mientras tanto
+    entregas = datos.entregas || [];
+    estado.textContent = "actualizado " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    estado.classList.remove("error");
+  } catch (err) {
+    estado.textContent = "no fue posible leer la hoja";
+    estado.classList.add("error");
+  }
+  pintar();
+}
+
+/* ============================================================
+   7. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const warn = document.getElementById("js-warning-fallback");
+  if (warn) warn.style.display = "none";
+  try {
+    const sel = document.getElementById("f-grupo");
+    sel.innerHTML = GRUPOS_CURSO.map(g => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
+    sel.addEventListener("change", () => { entregas = []; destapado = false; verRef = false; pintar(); actualizar(); });
+    document.getElementById("bt-tapar").addEventListener("click", () => { destapado = false; pintar(); });
+    document.getElementById("bt-ref").addEventListener("click", () => { verRef = !verRef; pintar(); });
+    if (MODO_DEMO) {
+      const aviso = document.getElementById("aviso-demo");
+      aviso.hidden = false;
+      aviso.textContent = "Modo de ensayo: se muestran datos de ejemplo, no las entregas reales.";
+    }
+    pintar();
+    actualizar();
+    setInterval(actualizar, FUENTE.refrescoMs);
+  } catch (err) {
+    if (warn) {
+      warn.style.display = "block";
+      warn.textContent = "Ocurrió un error al iniciar el tablero: " + (err && err.message ? err.message : err);
+    }
+  }
+});
+</script>
+</body>
+</html>
