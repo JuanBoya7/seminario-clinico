@@ -1,9 +1,645 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cierre docente · Práctica del hexaflex</title><style>
-:root{--ink:#16232b;--muted:#53676e;--accent:#1f6f78;--dark:#134349;--soft:#e2eff0;--line:#cedddd;--paper:#f6f8f8}*{box-sizing:border-box}body{margin:0;background:white;color:var(--ink);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif}header,main,footer{max-width:1000px;margin:auto;padding:26px}header{padding-bottom:12px}h1,h2{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;font-weight:600;line-height:1.18}h1{font-size:39px;margin:9px 0 16px}h2{font-size:29px;margin:0 0 12px}h3{font-size:18px;line-height:1.35;margin:0 0 8px}p{margin:0 0 13px}a{color:var(--accent)}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:var(--accent)}.resource-nav{display:flex;gap:22px;flex-wrap:wrap;margin:20px 0 0;border-bottom:1px solid var(--line)}.resource-nav a{padding:10px 0;text-decoration:none;color:var(--muted)}.resource-nav a[aria-current=page]{color:var(--dark);font-weight:700;border-bottom:3px solid var(--accent)}.intro{color:var(--muted);max-width:780px}.guide{background:var(--paper);border-left:3px solid var(--accent);padding:19px 22px;margin-bottom:26px}.guide ol{margin:8px 0 0;padding-left:23px}.guide li{padding:4px 0}.block{margin-bottom:24px}.context{display:grid;grid-template-columns:1fr 2fr 1fr;gap:16px;background:var(--soft);padding:20px;border-radius:12px}label{font-weight:600}select,textarea{font:inherit;line-height:1.5;width:100%;padding:11px 12px;border:1px solid #91afb2;border-radius:7px;background:white;color:var(--ink);margin-top:7px}textarea{min-height:115px;resize:vertical}select{max-width:100%}.muted,.card-help{color:var(--muted);font-size:14px;font-weight:400}.method{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0 23px}.method span{font-size:14px}.criterion{padding:23px 0;border-top:1px solid var(--line)}.criterion-head{display:flex;gap:14px}.criterion-num{font:italic 26px Georgia,serif;color:var(--accent);min-width:30px}.criterion-content{flex:1;min-width:0}.card-label{display:block;font-size:18px;font-weight:700;line-height:1.4}.card-help{display:block;margin:5px 0 12px}.ratings{display:flex;gap:9px;flex-wrap:wrap}.rating{position:relative;cursor:pointer;min-width:125px;flex:1;max-width:185px;border:1px solid #a6bec0;border-radius:8px;text-align:center;padding:11px 8px;font-size:14px;background:white;font-weight:500}.rating input{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}.rating:has(input:checked){background:var(--dark);color:white;border-color:var(--dark);font-weight:700}.rating:focus-within{outline:3px solid #b8722a;outline-offset:3px}.rating small{display:block;font-size:12px}.rating:hover{border-color:var(--dark)}details{padding-top:12px}summary{cursor:pointer;color:var(--accent);font-size:14px;font-weight:650}.descriptors{font-size:14px;color:var(--muted);padding:14px 0 0}.descriptors p{margin-bottom:8px}.score-panel{background:var(--soft);padding:20px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:15px}.score{font:600 32px Georgia,serif;color:var(--dark)}.score-caption{font-size:13px;color:var(--muted)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 12px}button{font:600 15px system-ui;padding:12px 20px;border:1px solid var(--accent);border-radius:7px;background:white;color:var(--dark);cursor:pointer}button.primary{background:var(--accent);color:white}button:disabled{cursor:default;opacity:.55}button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #b8722a;outline-offset:3px}.status{min-height:26px;color:var(--dark);font-size:14px}.sources{border-top:1px solid var(--line);padding-top:17px;color:var(--muted);font-size:13px}.sources p{margin-top:10px}.warning{padding:16px;background:#fff0dc}.notice{padding:10px 0;color:var(--muted);font-size:14px}.footer{font-size:12px;color:var(--muted)}.skip{position:absolute;top:-120px;left:10px}.skip:focus{top:5px;background:white;padding:12px}[hidden]{display:none!important}body.observer{user-select:none}body.observer input,body.observer textarea{user-select:text}.process-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 28px}.process-tabs button{padding:10px 13px;font-size:14px}.process-tabs button[aria-pressed=true]{background:var(--dark);color:white}.teacher-hero{border-top:1px solid var(--line);padding-top:25px}.teacher-hero .prompt{font:italic 24px/1.45 Georgia,serif;color:var(--dark);margin:18px 0 25px;max-width:850px}.teacher-section{padding:20px 0;border-top:1px solid var(--line)}.teacher-section p{max-width:850px}.teacher-section blockquote{margin:12px 0;padding:15px 22px;border-left:3px solid var(--accent);background:var(--soft);font:italic 20px/1.5 Georgia,serif}.teacher-section details{padding:0}.teacher-section summary{font-size:17px;color:var(--dark)}.teacher-section .reveal{padding-top:15px}.closing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}.closing-grid h3{color:var(--dark)}.closing-grid p{font-size:15px}.closing-list li{margin-bottom:12px}.teacher-tools{margin:18px 0}.source-ref{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:20px}
-@media(max-width:760px){header,main,footer{padding:20px}h1{font-size:32px}.context{grid-template-columns:1fr}.context label{min-width:0}.criterion{padding:20px 0}.rating{min-width:86px;max-width:none;padding:11px 6px;font-size:13px}.ratings{gap:6px}.criterion-head{gap:8px}.score-panel{align-items:flex-start}.closing-grid{grid-template-columns:1fr;gap:12px}.teacher-hero .prompt{font-size:22px}.process-tabs button{flex:1 1 135px}.resource-nav{gap:18px}.actions button{flex:1 1 160px}}
-@media print{@page{size:A4;margin:15mm}header,main,footer{padding:0;max-width:none}body{font-size:11pt}.no-pdf,.actions,.resource-nav,.process-tabs,.teacher-tools,.guide,.footer,.skip,.warning,.notice,.status{display:none!important}h1{font-size:22pt}h2{font-size:18pt}.context{display:block;background:white;padding:0}.context label{display:block;margin-bottom:8px}.criterion{break-inside:avoid;padding:14px 0}.criterion-head{display:block}.criterion-num{float:left;margin-right:10px}.rating{max-width:none;font-size:10pt;padding:8px}.score-panel{padding:12px;border:1px solid #aaa}.teacher-section{break-inside:avoid}.teacher-section .reveal{display:block}.teacher-hero .prompt{font-size:15pt}.closing-grid{grid-template-columns:1fr}.source-ref,.sources{font-size:9pt}}
-.cartas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:6px}.carta-grupo h3{color:var(--dark);font-size:16px}.carta{border:1px dashed #9fb8ba;border-radius:8px;padding:12px 14px;margin-bottom:10px;background:#fff}.carta-txt{font:italic 18px/1.45 Georgia,serif;color:var(--dark);margin-bottom:6px}.carta-obs{font-size:13px;color:var(--muted);margin:0}.cartas-intro{color:var(--muted)}.cartas-tools{margin-top:14px}.situacion{color:var(--muted);max-width:850px}@media(max-width:760px){.cartas-grid{grid-template-columns:1fr}}@media print{body:not(.print-cards) #cartas{display:none!important}body.print-cards header,body.print-cards footer,body.print-cards main>*:not(#cartas){display:none!important}body.print-cards #cartas{border:0;padding:0}body.print-cards #cartas summary,body.print-cards .cartas-intro,body.print-cards .cartas-tools,body.print-cards #cartas .source-ref{display:none!important}body.print-cards .carta-obs{display:none}body.print-cards .carta{break-inside:avoid;padding:18px;margin-bottom:14px}body.print-cards .carta-grupo{break-inside:avoid}}</style></head><body class=""><header><div class="eyebrow">Apoyo docente</div><h1>Cierre de la práctica del hexaflex</h1><p class="intro">Al finalizar las seis escenas, recuperar lo observado, afinar el sentido clínico de cada intervención e integrar los procesos.</p></header><main><section class="guide"><h3>Conducir la devolución</h3><div class="closing-grid"><div><h3>1 · Escuchar la experiencia</h3><p>Preguntar a quienes representaron el caso qué notaron y qué intervención les ayudó a participar. Evitar dar por hecho un efecto clínico por el desenlace actuado.</p></div><div><h3>2 · Recuperar la elección</h3><p>Preguntar al grupo qué mostró la persona para elegir ese proceso y ese recurso. Pedir a quienes observan un momento concreto de la escena y si veían otra entrada posible.</p></div><div><h3>3 · Afinar el proceso</h3><p>Usar la precisión correspondiente para explicar qué respuesta se intentó ampliar y cómo podría llevarse al caso.</p></div></div></section><nav class="process-tabs" id="tabs" aria-label="Proceso para el cierre"></nav><article id="process" class="teacher-hero"></article>
-<section class="teacher-section"><h2>Integrar las seis escenas</h2><p>Los procesos del hexaflex se apoyan entre sí. La misma intervención puede favorecer varios de ellos. Su función depende de cómo responde la persona en su contexto, de las opciones de acción que abre y de su vínculo con lo importante.</p><p class="prompt">¿Qué pudo hacer la persona de otra manera y al servicio de qué dirección elegida?</p><details><summary>Apoyo para la síntesis final</summary><div class="reveal"><ul class="closing-list"><li><strong>Experiencia interna:</strong> qué pensamiento, emoción o sensación apareció y cómo respondió la persona.</li><li><strong>Contexto:</strong> qué información de la situación orientó la intervención y qué alternativas había.</li><li><strong>Acción:</strong> qué elección relevante se exploró, qué obstáculos aparecieron y qué convendría revisar.</li></ul><blockquote>Las seis escenas muestran distintas entradas para ampliar la flexibilidad. La elección de una metáfora o ejercicio necesita responder a la función del problema y a lo que la persona quiere cuidar en su vida.</blockquote></div></details><p class="source-ref">Harris (2009), cap. 1, “The Six Core Therapeutic Processes of ACT”, y caps. 7–12. Luoma et al. (2017), “Clinician Processes in Context: Key ACT Competencies”: adaptación a la experiencia, el lenguaje y el contexto de la persona.</p></section>
-<section class="teacher-section" id="cartas"><details><summary>Cartas para la consultante</summary><div class="reveal"><p class="cartas-intro">Dos opciones por grupo; se usa una por escena. Mostrarla en privado a quien representa a la consultante antes de empezar. La usa cuando la conversación ya está en marcha; el resto del grupo no la conoce.</p><div class="cartas-grid"><article class="carta-grupo"><h3>Grupo 1 · Cuando me sienta lista</h3><div class="carta"><p class="carta-txt">«Aunque lo intentara, la frase «voy a hacer el ridículo» no me deja.»</p><p class="carta-obs"><strong>Permite observar:</strong> Un pensamiento que pide otra entrada. ¿Lo notan o siguen con el ejercicio previsto?</p></div><div class="carta"><p class="carta-txt">«Ya intenté respirar y aguantarme, y no me sirvió.»</p><p class="carta-obs"><strong>Permite observar:</strong> Si distinguen hacer espacio de soportar o controlar.</p></div></article><article class="carta-grupo"><h3>Grupo 2 · La frase de siempre</h3><div class="carta"><p class="carta-txt">«Cuando aparece la frase me da un nudo en el estómago que no soporto.»</p><p class="carta-obs"><strong>Permite observar:</strong> Una emoción que pide aceptación además de defusión.</p></div><div class="carta"><p class="carta-txt">«¿Entonces me estás diciendo que lo que pienso no es verdad?»</p><p class="carta-obs"><strong>Permite observar:</strong> Si evitan discutir la verdad del pensamiento y vuelven a su efecto.</p></div></article><article class="carta-grupo"><h3>Grupo 3 · Aquí, pero no aquí</h3><div class="carta"><p class="carta-txt">«Es que si no pienso en todo lo que puede salir mal, me va a ir peor.»</p><p class="carta-obs"><strong>Permite observar:</strong> Una regla sobre la utilidad de preocuparse: ¿la exploran o la discuten?</p></div><div class="carta"><p class="carta-txt">«Noto los pies, sí, pero sigo nerviosa. ¿Para qué sirve esto?»</p><p class="carta-obs"><strong>Permite observar:</strong> Si aclaran que el ejercicio no busca calmar, sino volver a la situación.</p></div></article><article class="carta-grupo"><h3>Grupo 4 · Yo soy así</h3><div class="carta"><p class="carta-txt">«Si no soy así, entonces ¿quién soy?»</p><p class="carta-obs"><strong>Permite observar:</strong> Si responden con perspectiva y no con una identidad nueva.</p></div><div class="carta"><p class="carta-txt">«¿O sea que debo pensar que soy una persona capaz?»</p><p class="carta-obs"><strong>Permite observar:</strong> Si evitan reemplazar la etiqueta por otra positiva.</p></div></article><article class="carta-grupo"><h3>Grupo 5 · Cuando lo consiga</h3><div class="carta"><p class="carta-txt">«Lo que me importa es que mi papá esté orgulloso de mí.»</p><p class="carta-obs"><strong>Permite observar:</strong> Si distinguen el valor de la aprobación que depende de otro.</p></div><div class="carta"><p class="carta-txt">«Ya sé lo que debería importarme, pero no lo siento.»</p><p class="carta-obs"><strong>Permite observar:</strong> Si exploran si el «debería» es elegido o impuesto.</p></div></article><article class="carta-grupo"><h3>Grupo 6 · Demasiado grande para empezar</h3><div class="carta"><p class="carta-txt">«Ya lo planeé mil veces; el problema es que me da pánico empezar.»</p><p class="carta-obs"><strong>Permite observar:</strong> Una barrera de malestar: ¿ajustan el plan o abren espacio a lo que siente?</p></div><div class="carta"><p class="carta-txt">«Si no lo hago completo, no vale la pena.»</p><p class="carta-obs"><strong>Permite observar:</strong> Una meta excesiva sostenida por un pensamiento: si reducen el paso sin perder la dirección.</p></div></article></div><p class="source-ref">Formulaciones docentes originales. Las confusiones que ponen a prueba se describen en Hayes, Strosahl y Wilson (2012), cap. Defusion; Harris (2009), caps. 7–12, y Luoma, Hayes y Walser (2017), «Troubleshooting ACT».</p><div class="cartas-tools"><button id="print-cards" type="button">Imprimir las cartas</button></div></div></details></section> <section class="teacher-section"><details><summary>Referencias y trazabilidad</summary><div class="reveal"><p>Harris, R. (2009). <em>ACT made simple: An easy-to-read primer on acceptance and commitment therapy</em>. New Harbinger Publications.</p><p>Luoma, J. B., Hayes, S. C., y Walser, R. D. (2017). <em>Learning ACT: An acceptance and commitment therapy skills-training manual for therapists</em> (2.ª ed.). New Harbinger Publications.</p><p>Las preguntas de devolución y las frases de cierre son formulaciones docentes originales. Las explicaciones parafrasean los apartados indicados de la biblioteca. Las metáforas orientan experiencias de aprendizaje y requieren ajuste según cada caso.</p></div></details></section><div class="teacher-tools"><button id="print" type="button">Imprimir el cierre seleccionado</button></div></main><footer class="footer">Apoyo de cierre docente · Terapia de aceptación y compromiso</footer><script>const DATA=[{"titulo": "Aceptación", "recurso": "El interruptor de la lucha", "cap": 8, "seccion": "The Struggle Switch", "pregunta": "¿En qué momento distinguieron sentir malestar de luchar contra él?", "precision": "La aceptación implica disposición voluntaria a contactar experiencias privadas cuando ello permite actuar en una dirección elegida. El malestar puede subir, bajar o permanecer. La utilidad se aprecia en la posibilidad de responder con mayor flexibilidad.", "error": "Presentar el interruptor como un modo de apagar la emoción o exigir que la persona tolere cualquier situación.", "ajuste": "Volver a una emoción concreta del caso, explorar lo que hace la persona para combatirla y ofrecer una prueba breve de apertura. Aceptar una experiencia interna puede coexistir con cambiar una situación externa o protegerse.", "frase": "Lo relevante fue comprobar si pudo hacer espacio a lo que sentía y elegir una respuesta que le importaba, aun con malestar.", "criterios": [["Distingue malestar y lucha", "Explora qué siente la persona, cómo intenta controlarlo y qué consecuencias tiene.", "Diferencia experiencia y estrategias de control con un ejemplo del caso y sus costes.", "Nombra la lucha, pero explora poco sus consecuencias.", "Confunde aceptación con eliminar la emoción o no explora la lucha."], ["Invita a una apertura voluntaria", "Propone notar la emoción y hacerle espacio, comprobando la disposición de la persona.", "Guía una prueba elegida y ajusta la invitación a la respuesta de la persona.", "Explica la apertura, pero la prueba o su ajuste quedan poco claros.", "Impone soportar el malestar o promete apagarlo."], ["Conecta apertura y elección", "Pregunta qué acción importante sería posible mientras la emoción está presente.", "Vincula la disposición con una acción relevante elegida por la persona.", "Menciona actuar, pero la conexión con lo importante queda genérica.", "Condiciona actuar a sentirse bien o no conecta con la vida del caso."]]}, {"titulo": "Defusión cognitiva", "recurso": "Hojas en un arroyo", "cap": 7, "seccion": "Meditative Techniques / Leaves on a Stream", "pregunta": "¿Qué cambió en la manera de responder al pensamiento, aunque sus palabras siguieran siendo las mismas?", "precision": "La defusión favorece notar el pensamiento como actividad verbal y elegir cómo responder. El ejercicio tiene sentido según la función del pensamiento en el caso. Los hechos y problemas que requieren acción siguen mereciendo evaluación.", "error": "Usar las hojas para expulsar pensamientos o debatir su verdad como objetivo del ejercicio.", "ajuste": "Preguntar qué ocurre al obedecer esa frase, invitar a observarla y permitir que permanezca. Si visualizar resulta difícil, ajustar el ejercicio a palabras o sensaciones sin convertirlo en una prueba de imaginación.", "frase": "La práctica abrió una opción de respuesta frente al pensamiento. Que aparezca de nuevo ofrece otra ocasión para observarlo.", "criterios": [["Sitúa el pensamiento en el caso", "Identifica una frase y explora cómo influye en la conducta.", "Relaciona un pensamiento concreto con una respuesta o restricción del caso.", "Identifica la frase, pero apenas explora su efecto.", "Aplica el ejercicio sin un pensamiento relevante o se limita a discutir su verdad."], ["Guía observar sin expulsar", "Permite colocar pensamientos en hojas y volver al ejercicio cuando la atención se engancha.", "Guía la observación, admite pensamientos recurrentes y adapta la visualización si hace falta.", "Guía las hojas, pero omite cómo volver o qué hacer si un pensamiento permanece.", "Ordena borrar pensamientos, acelerar el arroyo o conseguir la mente vacía."], ["Explora una respuesta más flexible", "Pregunta qué podría elegir la persona al notar la frase como pensamiento.", "Explora una alternativa concreta en el caso sin exigir que desaparezca la frase.", "Pregunta cómo fue el ejercicio, pero la alternativa queda imprecisa.", "Usa ausencia de pensamientos como único logro o no regresa al caso."]]}, {"titulo": "Momento presente", "recurso": "Echar el ancla", "cap": 9, "seccion": "Dropping Anchor / Contact with the Present Moment in a Nutshell", "pregunta": "¿Cómo volvió la atención a información útil para lo que estaba ocurriendo?", "precision": "El contacto con el presente supone atención flexible a la experiencia interna y al entorno, al servicio de la actividad actual. Apoyarse en el cuerpo y orientarse puede ayudar a participar mientras siguen presentes emociones difíciles.", "error": "Convertir el ancla en una distracción obligatoria hasta calmarse o exigir cerrar los ojos.", "ajuste": "Permitir ojos abiertos, reconocer la experiencia interna y orientar hacia cuerpo y entorno. Preguntar qué necesita atender o hacer ahora y ajustar el ritmo según la respuesta.", "frase": "El ancla permitió recuperar contacto con la situación y continuar una acción elegida. El criterio fue la participación posible.", "criterios": [["Reconoce dónde está la atención", "Pregunta qué ocupa a la persona y qué ocurre en la situación actual.", "Sitúa la desconexión o el enganche en una experiencia concreta del caso.", "Nombra la distracción, pero ofrece poco contexto.", "Inicia instrucciones sensoriales sin explorar qué está pasando."], ["Orienta cuerpo y entorno con flexibilidad", "Guía apoyo corporal y observación del lugar, admitiendo lo que la persona siente.", "Integra cuerpo, entorno y experiencia interna con instrucciones adaptables.", "Orienta solo un aspecto o comprueba poco la experiencia.", "Exige calma, impone cerrar los ojos o pretende ocultar lo que siente."], ["Regresa a la actividad del caso", "Pregunta qué puede atender o hacer ahora.", "Conecta la atención recuperada con una respuesta concreta en la situación.", "Habla de estar presente, pero sin una aplicación situada.", "Termina al distraerse o calmarse, sin conectar con la actividad."]]}, {"titulo": "Yo como contexto", "recurso": "El cielo y el clima", "cap": 10, "seccion": "The Sky and Weather Metaphor / Notice Who’s Noticing", "pregunta": "¿Qué permitió notar una etiqueta personal sin tratarla como toda la identidad?", "precision": "El yo como contexto se trabaja como toma de perspectiva sobre pensamientos, emociones e historias personales. La metáfora del cielo orienta una experiencia de observación. No demuestra una entidad interior, una identidad superior o una inmunidad al sufrimiento.", "error": "Reemplazar una etiqueta negativa por otra positiva o afirmar literalmente que existe un yo indestructible.", "ajuste": "Invitar a notar la etiqueta, una sensación y otro contenido que aparece. Preguntar desde dónde puede advertir esas experiencias y qué opciones de acción surgen. Mantenerlo experiencial y comprensible.", "frase": "La persona pudo advertir una historia sobre sí misma como parte de su experiencia y explorar cómo actuar sin reducirse a esa historia.", "criterios": [["Identifica una historia personal dominante", "Explora una etiqueta y qué ocurre cuando la persona se define por ella.", "Relaciona una historia sobre sí con una restricción concreta del caso.", "Identifica la etiqueta, pero poco su efecto.", "Ofrece elogios o una identidad alternativa sin explorar la historia."], ["Guía una experiencia de perspectiva", "Invita a notar contenidos y a advertir que puede observarlos.", "Usa la metáfora para guiar observación situada y comprueba qué experimenta la persona.", "Explica el cielo y clima, pero la experiencia de notar queda poco desarrollada.", "Afirma un yo literal invulnerable o convierte la metáfora en una explicación puramente abstracta."], ["Amplía opciones frente a la etiqueta", "Explora una acción que la persona pueda elegir al notar su historia.", "Conecta perspectiva y una alternativa concreta sin exigir otra identidad.", "Menciona libertad de elegir, pero queda genérica.", "Exige pensar positivamente o no explora opciones de respuesta."]]}, {"titulo": "Valores", "recurso": "La brújula", "cap": 11, "seccion": "Values vs. Goals / The Compass Metaphor / Values Are Freely Chosen", "pregunta": "¿Cuál fue la cualidad de acción elegida y cuál fue la meta concreta?", "precision": "Los valores describen cualidades elegidas de la acción continuada. Las metas pueden alcanzarse y servir a esos valores de varias maneras. Explorar qué importa exige atender al lenguaje y contexto de la persona, sin imponer la dirección del terapeuta.", "error": "Llamar valor a una meta o imponer lo que la persona debería valorar.", "ajuste": "Tomar la meta expresada y preguntar cómo quiere comportarse mientras avanza hacia ella. Comprobar si esa cualidad es elegida y cómo podría expresarse en más de una acción.", "frase": "La brújula ayudó a expresar cómo quiere actuar. Una meta concreta puede acercarla a esa dirección y puede ajustarse cuando las circunstancias cambien.", "criterios": [["Explora lo importante desde la persona", "Pregunta cómo quiere comportarse en un área significativa del caso.", "Ayuda a expresar una dirección en palabras de la persona y verifica su elección.", "Pregunta qué importa, pero la formulación queda genérica o asumida.", "Impone una dirección moral o decide por la persona."], ["Distingue dirección y meta", "Usa la brújula para diferenciar una cualidad continuada de un logro alcanzable.", "Diferencia ambas y las aplica al caso de manera comprensible.", "Explica la diferencia, pero el ejemplo queda ambiguo.", "Equipara valores con metas o con sentirse bien."], ["Conecta la dirección con alternativas", "Explora maneras de expresar el valor elegido.", "Identifica al menos una acción coherente y reconoce que existen distintas metas posibles.", "Propone una acción, pero su relación con el valor queda poco clara.", "Reduce el valor a una obligación o no lo conecta con una acción."]]}, {"titulo": "Acción comprometida", "recurso": "El paso más pequeño", "cap": 12, "seccion": "Committed Action Step by Step / The Tiniest Step? / Breaking Commitments", "pregunta": "¿Qué haría la persona, en qué situación y cómo revisaría lo ocurrido?", "precision": "La acción comprometida organiza patrones flexibles de conducta al servicio de valores. Un paso pequeño debe ser relevante y viable. Las barreras internas y externas, los apoyos y el seguimiento orientan ajustes posteriores.", "error": "Cerrar con una intención vaga, forzar un compromiso o interpretar un tropiezo como falta de voluntad.", "ajuste": "Acordar una conducta observable y su ocasión, explorar una barrera probable y un apoyo o ajuste viable. Pactar qué revisar, sin anticipar éxito ni exigir ausencia de malestar.", "frase": "El compromiso quedó en una acción situada y revisable. Lo que ocurra permitirá aprender y ajustar el siguiente paso.", "criterios": [["Vincula el paso con un valor elegido", "Explora por qué tendría sentido actuar para esa persona.", "Conecta una dirección elegida con la conducta que van a planear.", "Menciona un valor, pero la conexión con el paso queda débil.", "Impone una tarea sin una dirección relevante para la persona."], ["Concreta una acción viable", "Acuerda qué haría la persona y en qué ocasión.", "Define un paso observable y manejable, con una ocasión clara.", "El paso es pertinente, pero faltan detalles para llevarlo a cabo.", "Se limita a una intención general o fuerza una tarea inviable."], ["Prepara barreras y revisión", "Explora una dificultad probable, un apoyo o ajuste y qué revisar después.", "Anticipa una barrera y acuerda una respuesta viable y seguimiento.", "Explora barreras o revisión, pero el plan queda incompleto.", "Exige cumplir a toda costa o no contempla dificultades ni revisión."]]}];const SIT=["Cuando me sienta lista", "La frase de siempre", "Aquí, pero no aquí", "Yo soy así", "Cuando lo consiga", "Demasiado grande para empezar"];const SIT_TXT=["Una persona aplaza desde hace tiempo algo que le importa. Dice que empezará cuando deje de sentirse como se siente ahora. Ha probado prepararse más, distraerse y pedir consejo. Mientras tanto, el plazo se acerca y alguien cercano empieza a perder la paciencia.", "Cada vez que va a intentar algo importante, una persona escucha la misma frase en su cabeza y termina haciéndole caso. Ha intentado convencerse de lo contrario y buscar pruebas de que no es así. La frase vuelve, y ya dejó pasar dos oportunidades que le importaban.", "En las conversaciones que más le importan, una persona se va a lo que podría salir mal y deja de seguir lo que ocurre. Para no fallar, repasa mentalmente lo que va a decir antes y después de cada conversación. Las personas cercanas le dicen que la notan ausente.", "Una persona descarta opciones con una sola explicación sobre sí misma: «yo soy así». Lo dice desde hace años y nadie a su alrededor lo discute. Cuando surge una propuesta que le interesa, la rechaza antes de pensarla.", "Una persona persigue un resultado que depende en parte de otros y siente que, mientras no llegue, nada de lo que hace vale la pena. Ha hecho todo lo que se le ocurre para lograrlo y revisa a diario si ya llegó. Ha dejado de lado cosas que antes disfrutaba.", "Una persona sabe qué quiere cuidar, pero sus planes son tan amplios que no arranca o abandona al primer tropiezo. Cada lunes arma un plan completo con horarios. A mitad de semana falla un día, se dice que ya lo arruinó y vuelve a empezar desde cero el lunes siguiente."];const CLAVE=["defusión, si la espera se sostiene en una frase como «no voy a poder»; valores, si no está claro para qué hacerlo.", "aceptación, si lo que pesa es la emoción que acompaña la frase; yo como contexto, si la frase es una etiqueta sobre sí.", "defusión, si sigue enganchada a los «¿y si…?»; aceptación, si se aleja para no sentir la ansiedad.", "defusión (ponerle nombre a la historia) es una entrada cercana; valores, si la etiqueta tapa lo que quiere intentar.", "defusión, si se aferra a «sin eso nada vale»; acción comprometida, cuando la dirección ya está clara.", "valores, si se perdió el para qué; aceptación, si el freno es el malestar de empezar; defusión, si el freno es una frase."];const REC=[["El interruptor de la lucha", "Observar, respirar y hacer espacio", "La pregunta de disposición"], ["«Estoy teniendo el pensamiento de que…»", "Ponerle nombre a la historia", "Hojas en un arroyo"], ["Echar el ancla", "Notar cinco cosas"], ["El cielo y el clima", "Notar quién nota", "El tablero de ajedrez"], ["La brújula", "¿Qué quieres que represente tu vida?", "El cumpleaños número ochenta"], ["El paso más pequeño", "Cuatro barreras y su respuesta", "Plan de disposición y acción"]];const P=DATA;const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let current=Number(location.hash.replace('#proceso=',''))||1;if(current<1||current>6)current=1;
-function render(){document.getElementById('tabs').innerHTML=P.map((p,i)=>`<button type="button" data-id="${i+1}" aria-pressed="${current===i+1}">${i+1} · ${esc(p.titulo)}</button>`).join('');const p=P[current-1];document.getElementById('process').innerHTML=`<div class="eyebrow">Grupo ${current} · ${esc(SIT[current-1])}</div><h2>${esc(p.titulo)}</h2><p class="situacion">${esc(SIT_TXT[current-1])}</p><p class="prompt">${esc(p.pregunta)}</p><section class="teacher-section"><h3>Entrada esperada y otras posibles</h3><p>La entrada más directa es <strong>${esc(p.titulo)}</strong>. También se puede sostener: ${esc(CLAVE[current-1])}</p><p class="muted">Recursos del repertorio para este proceso: ${REC[current-1].map(esc).join(' · ')}.</p></section><section class="teacher-section"><h3>Precisión central</h3><p>${esc(p.precision)}</p></section><section class="teacher-section"><details><summary>Si aparece una confusión</summary><div class="reveal"><p><strong>Señal a revisar:</strong> ${esc(p.error)}</p><p><strong>Cómo reconducir:</strong> ${esc(p.ajuste)}</p></div></details></section><section class="teacher-section"><details><summary>Una formulación para cerrar</summary><div class="reveal"><blockquote>${esc(p.frase)}</blockquote><p class="muted">Ajustar esta formulación a lo observado en la escena.</p></div></details></section><p class="source-ref">Harris (2009), cap. ${p.cap}: ${esc(p.seccion)}.</p>`;}
-document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(!b)return;current=Number(b.dataset.id);history.replaceState(null,'','#proceso='+current);render();});document.getElementById('print').onclick=()=>{document.querySelectorAll('details').forEach(d=>d.open=true);window.print();};document.getElementById('print-cards').onclick=()=>{document.body.classList.add('print-cards');document.querySelector('#cartas details').open=true;window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('print-cards'));render();</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cierre docente · Práctica del hexaflex</title>
+<style>
+/* ============================================================
+   TOKENS — los mismos de los recursos de caso y de las guías
+   (hexaflex-juegos-roles.html, premisas de Práctica II)
+   ============================================================ */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+p{margin:0 0 12px;}
+a{color:var(--accent);}
+[hidden]{display:none !important;}
+button{font-family:var(--font-body); cursor:pointer;}
+button:focus-visible, a:focus-visible, summary:focus-visible{outline:3px solid var(--moderate); outline-offset:3px;}
+
+.wrap{max-width:980px; margin:0 auto; padding:28px 22px 60px;}
+.js-warning{background:var(--moderate-soft); border:1px solid var(--moderate); color:var(--moderate);
+  padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+
+/* ---- Encabezado ---- */
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:22px;}
+.masthead h1{font-size:clamp(27px,3.4vw,34px); line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0; font-size:15px; max-width:70ch;}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-faint);
+  margin:34px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+
+/* ---- Conducir la devolución: tres momentos ---- */
+.momentos{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.momento{background:var(--surface); border-left:4px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0; padding:14px 16px;}
+.momento h3{font-size:17px; color:var(--accent-dark); margin-bottom:6px;}
+.momento p{font-size:14.5px; margin:0; color:var(--ink-soft);}
+
+/* ---- Selector de proceso ---- */
+.process-tabs{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 16px;}
+.process-tabs button{font-size:13.5px; color:var(--ink-soft); background:var(--bg);
+  border:1px solid var(--border); border-radius:8px; padding:9px 13px;}
+.process-tabs button:hover{background:var(--surface);}
+.process-tabs button[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark); font-weight:600;}
+
+/* ---- Tarjeta del proceso elegido ---- */
+.card{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-card);}
+.hero{padding:22px 26px; background:var(--surface); border-bottom:1px solid var(--border);}
+.hero h2{font-size:clamp(24px,2.8vw,30px); margin:2px 0 10px;}
+.situacion{color:var(--ink-soft); max-width:72ch; margin:0 0 14px;}
+.prompt{font-family:var(--font-display); font-style:italic; font-size:21px; line-height:1.45; color:var(--accent-dark); margin:0; max-width:60ch;}
+.body{padding:6px 26px 20px;}
+.bloque{padding:16px 0; border-top:1px solid var(--border);}
+.bloque:first-child{border-top:0;}
+.bloque h3{font-size:18px; color:var(--accent-dark); margin-bottom:8px;}
+.bloque p{max-width:78ch;}
+.muted{color:var(--ink-soft); font-size:14px;}
+details > summary{cursor:pointer; font-size:15px; font-weight:600; color:var(--accent-dark);}
+.reveal{padding-top:12px;}
+blockquote{margin:0 0 10px; padding:14px 20px; border-left:4px solid var(--accent); background:var(--accent-soft);
+  border-radius:0 8px 8px 0; font-family:var(--font-display); font-style:italic; font-size:19px; line-height:1.5; color:var(--accent-dark);}
+.source-ref{font-size:12.5px; color:var(--ink-faint); border-top:1px solid var(--border); padding-top:12px; margin:16px 0 0;}
+
+/* ---- Secciones al pie ---- */
+.seccion{padding:4px 0 6px;}
+.seccion h2{font-size:clamp(21px,2.4vw,25px); margin-bottom:10px;}
+.seccion > p{max-width:78ch;}
+.closing-list{padding-left:20px; margin:0 0 12px;}
+.closing-list li{margin-bottom:10px;}
+.plegable{border:1px solid var(--border); border-radius:var(--radius); padding:13px 16px; margin-top:12px;}
+
+/* ---- Cartas para la consultante ---- */
+.cartas-intro{color:var(--ink-soft);}
+.cartas-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:6px;}
+.carta-grupo h3{font-size:16px; color:var(--accent-dark); margin-bottom:8px;}
+.carta{border:1px dashed #9fb8ba; border-radius:8px; padding:12px 14px; margin-bottom:10px; background:#fff;}
+.carta-txt{font-family:var(--font-display); font-style:italic; font-size:18px; line-height:1.45; color:var(--accent-dark); margin-bottom:6px;}
+.carta-obs{font-size:13px; color:var(--ink-soft); margin:0;}
+
+.tools{display:flex; justify-content:flex-end; margin:14px 0 0;}
+.tools button, .cartas-tools button{font-size:13.5px; font-weight:600; color:var(--accent); background:var(--bg);
+  border:1px solid var(--accent); border-radius:8px; padding:9px 16px;}
+.tools button:hover, .cartas-tools button:hover{background:var(--accent-soft);}
+.cartas-tools{margin-top:14px;}
+.firma{font-size:11.5px; color:var(--ink-faint); margin-top:30px;}
+
+@media (max-width:760px){
+  .wrap{padding:20px 16px 40px;}
+  .momentos, .cartas-grid{grid-template-columns:1fr;}
+  .hero, .body{padding-left:18px; padding-right:18px;}
+  .prompt{font-size:19px;}
+  .process-tabs button{flex:1 1 135px;}
+}
+
+/* «Imprimir el cierre seleccionado»: el proceso elegido con sus plegables
+   abiertos. «Imprimir las cartas»: solo las cartas, sin la nota para el
+   docente, para recortarlas. */
+@media print{
+  @page{size:A4; margin:15mm;}
+  body{font-size:11pt;}
+  .wrap{padding:0; max-width:none;}
+  .process-tabs, .tools, .firma, .js-warning, .seccion-titulo, #devolucion{display:none !important;}
+  .card{border:0; box-shadow:none;}
+  .hero{padding:0 0 10px; background:none;}
+  .body{padding:0;}
+  .prompt{font-size:15pt;}
+  .bloque, .seccion{break-inside:avoid;}
+  .source-ref{font-size:9pt;}
+  body:not(.print-cards) #cartas, body:not(.print-cards) #cartas-titulo{display:none !important;}
+  body.print-cards .wrap > *:not(#cartas){display:none !important;}
+  body.print-cards #cartas{border:0; padding:0;}
+  body.print-cards #cartas summary, body.print-cards .cartas-intro, body.print-cards .cartas-tools,
+  body.print-cards #cartas .source-ref, body.print-cards .carta-obs{display:none !important;}
+  body.print-cards .carta{break-inside:avoid; padding:18px; margin-bottom:14px;}
+  body.print-cards .carta-grupo{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <noscript><div class="js-warning">Esta página necesita JavaScript. Ábranla en un navegador (Chrome, Edge, Firefox o Safari).</div></noscript>
+  <div class="js-warning" id="js-warning">Si ven este mensaje, la página no se está ejecutando. Ábranla en un navegador (Chrome, Edge, Firefox o Safari).</div>
+
+  <header class="masthead">
+    <div class="eyebrow">Apoyo docente</div>
+    <h1>Cierre de la práctica del hexaflex</h1>
+    <p>Al finalizar las seis escenas, recuperar lo observado, afinar el sentido clínico de cada intervención e integrar los procesos.</p>
+  </header>
+
+  <div class="seccion-titulo" id="devolucion-titulo">Conducir la devolución</div>
+  <div class="momentos" id="devolucion">
+    <div class="momento"><h3>1 · Escuchar la experiencia</h3><p>Preguntar a quienes representaron el caso qué notaron y qué intervención les ayudó a participar. Evitar dar por hecho un efecto clínico por el desenlace actuado.</p></div>
+    <div class="momento"><h3>2 · Recuperar la elección</h3><p>Preguntar al grupo qué mostró la persona para elegir ese proceso y ese recurso. Pedir a quienes observan un momento concreto de la escena y si veían otra entrada posible.</p></div>
+    <div class="momento"><h3>3 · Afinar el proceso</h3><p>Usar la precisión correspondiente para explicar qué respuesta se intentó ampliar y cómo podría llevarse al caso.</p></div>
+  </div>
+
+  <div class="seccion-titulo">El cierre de cada proceso</div>
+  <nav class="process-tabs" id="tabs" aria-label="Proceso para el cierre"></nav>
+  <!-- La tarjeta la pinta pintarProceso() con el proceso elegido. -->
+  <article class="card" id="process"></article>
+  <div class="tools"><button id="print" type="button">Imprimir el cierre seleccionado</button></div>
+
+  <div class="seccion-titulo">Integración</div>
+  <section class="seccion">
+    <h2>Integrar las seis escenas</h2>
+    <p>Los procesos del hexaflex se apoyan entre sí. La misma intervención puede favorecer varios de ellos. Su función depende de cómo responde la persona en su contexto, de las opciones de acción que abre y de su vínculo con lo importante.</p>
+    <p class="prompt">¿Qué pudo hacer la persona de otra manera y al servicio de qué dirección elegida?</p>
+    <details class="plegable">
+      <summary>Apoyo para la síntesis final</summary>
+      <div class="reveal">
+        <ul class="closing-list">
+          <li><strong>Experiencia interna:</strong> qué pensamiento, emoción o sensación apareció y cómo respondió la persona.</li>
+          <li><strong>Contexto:</strong> qué información de la situación orientó la intervención y qué alternativas había.</li>
+          <li><strong>Acción:</strong> qué elección relevante se exploró, qué obstáculos aparecieron y qué convendría revisar.</li>
+        </ul>
+        <blockquote>Las seis escenas muestran distintas entradas para ampliar la flexibilidad. La elección de una metáfora o ejercicio necesita responder a la función del problema y a lo que la persona quiere cuidar en su vida.</blockquote>
+      </div>
+    </details>
+    <p class="source-ref">Harris (2009), cap. 1, “The Six Core Therapeutic Processes of ACT”, y caps. 7–12. Luoma et al. (2017), “Clinician Processes in Context: Key ACT Competencies”: adaptación a la experiencia, el lenguaje y el contexto de la persona.</p>
+  </section>
+
+  <div class="seccion-titulo" id="cartas-titulo">Para la escena</div>
+  <section class="seccion" id="cartas">
+    <details class="plegable">
+      <summary>Cartas para la consultante</summary>
+      <div class="reveal">
+        <p class="cartas-intro">Dos opciones por grupo; se usa una por escena. Mostrarla en privado a quien representa a la consultante antes de empezar. La usa cuando la conversación ya está en marcha; el resto del grupo no la conoce.</p>
+        <div class="cartas-grid" id="cartas-grid"></div>
+        <p class="source-ref">Formulaciones docentes originales. Las confusiones que ponen a prueba se describen en Hayes, Strosahl y Wilson (2012), cap. Defusion; Harris (2009), caps. 7–12, y Luoma, Hayes y Walser (2017), «Troubleshooting ACT».</p>
+        <div class="cartas-tools"><button id="print-cards" type="button">Imprimir las cartas</button></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="seccion">
+    <details class="plegable">
+      <summary>Referencias y trazabilidad</summary>
+      <div class="reveal">
+        <p>Harris, R. (2009). <em>ACT made simple: An easy-to-read primer on acceptance and commitment therapy</em>. New Harbinger Publications.</p>
+        <p>Luoma, J. B., Hayes, S. C., y Walser, R. D. (2017). <em>Learning ACT: An acceptance and commitment therapy skills-training manual for therapists</em> (2.ª ed.). New Harbinger Publications.</p>
+        <p>Las preguntas de devolución y las frases de cierre son formulaciones docentes originales. Las explicaciones parafrasean los apartados indicados de la biblioteca. Las metáforas orientan experiencias de aprendizaje y requieren ajuste según cada caso.</p>
+      </div>
+    </details>
+  </section>
+
+  <p class="firma">Apoyo de cierre docente · Terapia de aceptación y compromiso. Elaborado por Juan Boya Guerra.</p>
+</div>
+
+<script>
+/* ============================================================
+   1. DATOS DE CONTENIDO
+   ============================================================
+   PROCESOS: uno por proceso del hexaflex, en el orden de los grupos.
+   «criterios» viene de la hoja de observación retirada el 2026-10-14: se
+   conserva por si se recupera, pero esta página no lo muestra.
+   ============================================================ */
+const PROCESOS = [
+  {
+    "titulo": "Aceptación",
+    "recurso": "El interruptor de la lucha",
+    "cap": 8,
+    "seccion": "The Struggle Switch",
+    "pregunta": "¿En qué momento distinguieron sentir malestar de luchar contra él?",
+    "precision": "La aceptación implica disposición voluntaria a contactar experiencias privadas cuando ello permite actuar en una dirección elegida. El malestar puede subir, bajar o permanecer. La utilidad se aprecia en la posibilidad de responder con mayor flexibilidad.",
+    "error": "Presentar el interruptor como un modo de apagar la emoción o exigir que la persona tolere cualquier situación.",
+    "ajuste": "Volver a una emoción concreta del caso, explorar lo que hace la persona para combatirla y ofrecer una prueba breve de apertura. Aceptar una experiencia interna puede coexistir con cambiar una situación externa o protegerse.",
+    "frase": "Lo relevante fue comprobar si pudo hacer espacio a lo que sentía y elegir una respuesta que le importaba, aun con malestar.",
+    "criterios": [
+      [
+        "Distingue malestar y lucha",
+        "Explora qué siente la persona, cómo intenta controlarlo y qué consecuencias tiene.",
+        "Diferencia experiencia y estrategias de control con un ejemplo del caso y sus costes.",
+        "Nombra la lucha, pero explora poco sus consecuencias.",
+        "Confunde aceptación con eliminar la emoción o no explora la lucha."
+      ],
+      [
+        "Invita a una apertura voluntaria",
+        "Propone notar la emoción y hacerle espacio, comprobando la disposición de la persona.",
+        "Guía una prueba elegida y ajusta la invitación a la respuesta de la persona.",
+        "Explica la apertura, pero la prueba o su ajuste quedan poco claros.",
+        "Impone soportar el malestar o promete apagarlo."
+      ],
+      [
+        "Conecta apertura y elección",
+        "Pregunta qué acción importante sería posible mientras la emoción está presente.",
+        "Vincula la disposición con una acción relevante elegida por la persona.",
+        "Menciona actuar, pero la conexión con lo importante queda genérica.",
+        "Condiciona actuar a sentirse bien o no conecta con la vida del caso."
+      ]
+    ]
+  },
+  {
+    "titulo": "Defusión cognitiva",
+    "recurso": "Hojas en un arroyo",
+    "cap": 7,
+    "seccion": "Meditative Techniques / Leaves on a Stream",
+    "pregunta": "¿Qué cambió en la manera de responder al pensamiento, aunque sus palabras siguieran siendo las mismas?",
+    "precision": "La defusión favorece notar el pensamiento como actividad verbal y elegir cómo responder. El ejercicio tiene sentido según la función del pensamiento en el caso. Los hechos y problemas que requieren acción siguen mereciendo evaluación.",
+    "error": "Usar las hojas para expulsar pensamientos o debatir su verdad como objetivo del ejercicio.",
+    "ajuste": "Preguntar qué ocurre al obedecer esa frase, invitar a observarla y permitir que permanezca. Si visualizar resulta difícil, ajustar el ejercicio a palabras o sensaciones sin convertirlo en una prueba de imaginación.",
+    "frase": "La práctica abrió una opción de respuesta frente al pensamiento. Que aparezca de nuevo ofrece otra ocasión para observarlo.",
+    "criterios": [
+      [
+        "Sitúa el pensamiento en el caso",
+        "Identifica una frase y explora cómo influye en la conducta.",
+        "Relaciona un pensamiento concreto con una respuesta o restricción del caso.",
+        "Identifica la frase, pero apenas explora su efecto.",
+        "Aplica el ejercicio sin un pensamiento relevante o se limita a discutir su verdad."
+      ],
+      [
+        "Guía observar sin expulsar",
+        "Permite colocar pensamientos en hojas y volver al ejercicio cuando la atención se engancha.",
+        "Guía la observación, admite pensamientos recurrentes y adapta la visualización si hace falta.",
+        "Guía las hojas, pero omite cómo volver o qué hacer si un pensamiento permanece.",
+        "Ordena borrar pensamientos, acelerar el arroyo o conseguir la mente vacía."
+      ],
+      [
+        "Explora una respuesta más flexible",
+        "Pregunta qué podría elegir la persona al notar la frase como pensamiento.",
+        "Explora una alternativa concreta en el caso sin exigir que desaparezca la frase.",
+        "Pregunta cómo fue el ejercicio, pero la alternativa queda imprecisa.",
+        "Usa ausencia de pensamientos como único logro o no regresa al caso."
+      ]
+    ]
+  },
+  {
+    "titulo": "Momento presente",
+    "recurso": "Echar el ancla",
+    "cap": 9,
+    "seccion": "Dropping Anchor / Contact with the Present Moment in a Nutshell",
+    "pregunta": "¿Cómo volvió la atención a información útil para lo que estaba ocurriendo?",
+    "precision": "El contacto con el presente supone atención flexible a la experiencia interna y al entorno, al servicio de la actividad actual. Apoyarse en el cuerpo y orientarse puede ayudar a participar mientras siguen presentes emociones difíciles.",
+    "error": "Convertir el ancla en una distracción obligatoria hasta calmarse o exigir cerrar los ojos.",
+    "ajuste": "Permitir ojos abiertos, reconocer la experiencia interna y orientar hacia cuerpo y entorno. Preguntar qué necesita atender o hacer ahora y ajustar el ritmo según la respuesta.",
+    "frase": "El ancla permitió recuperar contacto con la situación y continuar una acción elegida. El criterio fue la participación posible.",
+    "criterios": [
+      [
+        "Reconoce dónde está la atención",
+        "Pregunta qué ocupa a la persona y qué ocurre en la situación actual.",
+        "Sitúa la desconexión o el enganche en una experiencia concreta del caso.",
+        "Nombra la distracción, pero ofrece poco contexto.",
+        "Inicia instrucciones sensoriales sin explorar qué está pasando."
+      ],
+      [
+        "Orienta cuerpo y entorno con flexibilidad",
+        "Guía apoyo corporal y observación del lugar, admitiendo lo que la persona siente.",
+        "Integra cuerpo, entorno y experiencia interna con instrucciones adaptables.",
+        "Orienta solo un aspecto o comprueba poco la experiencia.",
+        "Exige calma, impone cerrar los ojos o pretende ocultar lo que siente."
+      ],
+      [
+        "Regresa a la actividad del caso",
+        "Pregunta qué puede atender o hacer ahora.",
+        "Conecta la atención recuperada con una respuesta concreta en la situación.",
+        "Habla de estar presente, pero sin una aplicación situada.",
+        "Termina al distraerse o calmarse, sin conectar con la actividad."
+      ]
+    ]
+  },
+  {
+    "titulo": "Yo como contexto",
+    "recurso": "El cielo y el clima",
+    "cap": 10,
+    "seccion": "The Sky and Weather Metaphor / Notice Who’s Noticing",
+    "pregunta": "¿Qué permitió notar una etiqueta personal sin tratarla como toda la identidad?",
+    "precision": "El yo como contexto se trabaja como toma de perspectiva sobre pensamientos, emociones e historias personales. La metáfora del cielo orienta una experiencia de observación. No demuestra una entidad interior, una identidad superior o una inmunidad al sufrimiento.",
+    "error": "Reemplazar una etiqueta negativa por otra positiva o afirmar literalmente que existe un yo indestructible.",
+    "ajuste": "Invitar a notar la etiqueta, una sensación y otro contenido que aparece. Preguntar desde dónde puede advertir esas experiencias y qué opciones de acción surgen. Mantenerlo experiencial y comprensible.",
+    "frase": "La persona pudo advertir una historia sobre sí misma como parte de su experiencia y explorar cómo actuar sin reducirse a esa historia.",
+    "criterios": [
+      [
+        "Identifica una historia personal dominante",
+        "Explora una etiqueta y qué ocurre cuando la persona se define por ella.",
+        "Relaciona una historia sobre sí con una restricción concreta del caso.",
+        "Identifica la etiqueta, pero poco su efecto.",
+        "Ofrece elogios o una identidad alternativa sin explorar la historia."
+      ],
+      [
+        "Guía una experiencia de perspectiva",
+        "Invita a notar contenidos y a advertir que puede observarlos.",
+        "Usa la metáfora para guiar observación situada y comprueba qué experimenta la persona.",
+        "Explica el cielo y clima, pero la experiencia de notar queda poco desarrollada.",
+        "Afirma un yo literal invulnerable o convierte la metáfora en una explicación puramente abstracta."
+      ],
+      [
+        "Amplía opciones frente a la etiqueta",
+        "Explora una acción que la persona pueda elegir al notar su historia.",
+        "Conecta perspectiva y una alternativa concreta sin exigir otra identidad.",
+        "Menciona libertad de elegir, pero queda genérica.",
+        "Exige pensar positivamente o no explora opciones de respuesta."
+      ]
+    ]
+  },
+  {
+    "titulo": "Valores",
+    "recurso": "La brújula",
+    "cap": 11,
+    "seccion": "Values vs. Goals / The Compass Metaphor / Values Are Freely Chosen",
+    "pregunta": "¿Cuál fue la cualidad de acción elegida y cuál fue la meta concreta?",
+    "precision": "Los valores describen cualidades elegidas de la acción continuada. Las metas pueden alcanzarse y servir a esos valores de varias maneras. Explorar qué importa exige atender al lenguaje y contexto de la persona, sin imponer la dirección del terapeuta.",
+    "error": "Llamar valor a una meta o imponer lo que la persona debería valorar.",
+    "ajuste": "Tomar la meta expresada y preguntar cómo quiere comportarse mientras avanza hacia ella. Comprobar si esa cualidad es elegida y cómo podría expresarse en más de una acción.",
+    "frase": "La brújula ayudó a expresar cómo quiere actuar. Una meta concreta puede acercarla a esa dirección y puede ajustarse cuando las circunstancias cambien.",
+    "criterios": [
+      [
+        "Explora lo importante desde la persona",
+        "Pregunta cómo quiere comportarse en un área significativa del caso.",
+        "Ayuda a expresar una dirección en palabras de la persona y verifica su elección.",
+        "Pregunta qué importa, pero la formulación queda genérica o asumida.",
+        "Impone una dirección moral o decide por la persona."
+      ],
+      [
+        "Distingue dirección y meta",
+        "Usa la brújula para diferenciar una cualidad continuada de un logro alcanzable.",
+        "Diferencia ambas y las aplica al caso de manera comprensible.",
+        "Explica la diferencia, pero el ejemplo queda ambiguo.",
+        "Equipara valores con metas o con sentirse bien."
+      ],
+      [
+        "Conecta la dirección con alternativas",
+        "Explora maneras de expresar el valor elegido.",
+        "Identifica al menos una acción coherente y reconoce que existen distintas metas posibles.",
+        "Propone una acción, pero su relación con el valor queda poco clara.",
+        "Reduce el valor a una obligación o no lo conecta con una acción."
+      ]
+    ]
+  },
+  {
+    "titulo": "Acción comprometida",
+    "recurso": "El paso más pequeño",
+    "cap": 12,
+    "seccion": "Committed Action Step by Step / The Tiniest Step? / Breaking Commitments",
+    "pregunta": "¿Qué haría la persona, en qué situación y cómo revisaría lo ocurrido?",
+    "precision": "La acción comprometida organiza patrones flexibles de conducta al servicio de valores. Un paso pequeño debe ser relevante y viable. Las barreras internas y externas, los apoyos y el seguimiento orientan ajustes posteriores.",
+    "error": "Cerrar con una intención vaga, forzar un compromiso o interpretar un tropiezo como falta de voluntad.",
+    "ajuste": "Acordar una conducta observable y su ocasión, explorar una barrera probable y un apoyo o ajuste viable. Pactar qué revisar, sin anticipar éxito ni exigir ausencia de malestar.",
+    "frase": "El compromiso quedó en una acción situada y revisable. Lo que ocurra permitirá aprender y ajustar el siguiente paso.",
+    "criterios": [
+      [
+        "Vincula el paso con un valor elegido",
+        "Explora por qué tendría sentido actuar para esa persona.",
+        "Conecta una dirección elegida con la conducta que van a planear.",
+        "Menciona un valor, pero la conexión con el paso queda débil.",
+        "Impone una tarea sin una dirección relevante para la persona."
+      ],
+      [
+        "Concreta una acción viable",
+        "Acuerda qué haría la persona y en qué ocasión.",
+        "Define un paso observable y manejable, con una ocasión clara.",
+        "El paso es pertinente, pero faltan detalles para llevarlo a cabo.",
+        "Se limita a una intención general o fuerza una tarea inviable."
+      ],
+      [
+        "Prepara barreras y revisión",
+        "Explora una dificultad probable, un apoyo o ajuste y qué revisar después.",
+        "Anticipa una barrera y acuerda una respuesta viable y seguimiento.",
+        "Explora barreras o revisión, pero el plan queda incompleto.",
+        "Exige cumplir a toda costa o no contempla dificultades ni revisión."
+      ]
+    ]
+  }
+];
+
+// Situación de partida de cada grupo (las mismas de hexaflex-juegos-roles.html).
+const SITUACIONES = [
+  "Cuando me sienta lista",
+  "La frase de siempre",
+  "Aquí, pero no aquí",
+  "Yo soy así",
+  "Cuando lo consiga",
+  "Demasiado grande para empezar"
+];
+const SITUACIONES_TEXTO = [
+  "Una persona aplaza desde hace tiempo algo que le importa. Dice que empezará cuando deje de sentirse como se siente ahora. Ha probado prepararse más, distraerse y pedir consejo. Mientras tanto, el plazo se acerca y alguien cercano empieza a perder la paciencia.",
+  "Cada vez que va a intentar algo importante, una persona escucha la misma frase en su cabeza y termina haciéndole caso. Ha intentado convencerse de lo contrario y buscar pruebas de que no es así. La frase vuelve, y ya dejó pasar dos oportunidades que le importaban.",
+  "En las conversaciones que más le importan, una persona se va a lo que podría salir mal y deja de seguir lo que ocurre. Para no fallar, repasa mentalmente lo que va a decir antes y después de cada conversación. Las personas cercanas le dicen que la notan ausente.",
+  "Una persona descarta opciones con una sola explicación sobre sí misma: «yo soy así». Lo dice desde hace años y nadie a su alrededor lo discute. Cuando surge una propuesta que le interesa, la rechaza antes de pensarla.",
+  "Una persona persigue un resultado que depende en parte de otros y siente que, mientras no llegue, nada de lo que hace vale la pena. Ha hecho todo lo que se le ocurre para lograrlo y revisa a diario si ya llegó. Ha dejado de lado cosas que antes disfrutaba.",
+  "Una persona sabe qué quiere cuidar, pero sus planes son tan amplios que no arranca o abandona al primer tropiezo. Cada lunes arma un plan completo con horarios. A mitad de semana falla un día, se dice que ya lo arruinó y vuelve a empezar desde cero el lunes siguiente."
+];
+
+// Otras entradas que también se pueden sostener para cada situación.
+const OTRAS_ENTRADAS = [
+  "defusión, si la espera se sostiene en una frase como «no voy a poder»; valores, si no está claro para qué hacerlo.",
+  "aceptación, si lo que pesa es la emoción que acompaña la frase; yo como contexto, si la frase es una etiqueta sobre sí.",
+  "defusión, si sigue enganchada a los «¿y si…?»; aceptación, si se aleja para no sentir la ansiedad.",
+  "defusión (ponerle nombre a la historia) es una entrada cercana; valores, si la etiqueta tapa lo que quiere intentar.",
+  "defusión, si se aferra a «sin eso nada vale»; acción comprometida, cuando la dirección ya está clara.",
+  "valores, si se perdió el para qué; aceptación, si el freno es el malestar de empezar; defusión, si el freno es una frase."
+];
+
+// Recursos del repertorio de cada proceso.
+const RECURSOS = [
+  [
+    "El interruptor de la lucha",
+    "Observar, respirar y hacer espacio",
+    "La pregunta de disposición"
+  ],
+  [
+    "«Estoy teniendo el pensamiento de que…»",
+    "Ponerle nombre a la historia",
+    "Hojas en un arroyo"
+  ],
+  [
+    "Echar el ancla",
+    "Notar cinco cosas"
+  ],
+  [
+    "El cielo y el clima",
+    "Notar quién nota",
+    "El tablero de ajedrez"
+  ],
+  [
+    "La brújula",
+    "¿Qué quieres que represente tu vida?",
+    "El cumpleaños número ochenta"
+  ],
+  [
+    "El paso más pequeño",
+    "Cuatro barreras y su respuesta",
+    "Plan de disposición y acción"
+  ]
+];
+
+// Dos cartas por grupo para quien representa a la consultante.
+const CARTAS = [
+  [
+    {
+      "texto": "«Aunque lo intentara, la frase «voy a hacer el ridículo» no me deja.»",
+      "observar": "Un pensamiento que pide otra entrada. ¿Lo notan o siguen con el ejercicio previsto?"
+    },
+    {
+      "texto": "«Ya intenté respirar y aguantarme, y no me sirvió.»",
+      "observar": "Si distinguen hacer espacio de soportar o controlar."
+    }
+  ],
+  [
+    {
+      "texto": "«Cuando aparece la frase me da un nudo en el estómago que no soporto.»",
+      "observar": "Una emoción que pide aceptación además de defusión."
+    },
+    {
+      "texto": "«¿Entonces me estás diciendo que lo que pienso no es verdad?»",
+      "observar": "Si evitan discutir la verdad del pensamiento y vuelven a su efecto."
+    }
+  ],
+  [
+    {
+      "texto": "«Es que si no pienso en todo lo que puede salir mal, me va a ir peor.»",
+      "observar": "Una regla sobre la utilidad de preocuparse: ¿la exploran o la discuten?"
+    },
+    {
+      "texto": "«Noto los pies, sí, pero sigo nerviosa. ¿Para qué sirve esto?»",
+      "observar": "Si aclaran que el ejercicio no busca calmar, sino volver a la situación."
+    }
+  ],
+  [
+    {
+      "texto": "«Si no soy así, entonces ¿quién soy?»",
+      "observar": "Si responden con perspectiva y no con una identidad nueva."
+    },
+    {
+      "texto": "«¿O sea que debo pensar que soy una persona capaz?»",
+      "observar": "Si evitan reemplazar la etiqueta por otra positiva."
+    }
+  ],
+  [
+    {
+      "texto": "«Lo que me importa es que mi papá esté orgulloso de mí.»",
+      "observar": "Si distinguen el valor de la aprobación que depende de otro."
+    },
+    {
+      "texto": "«Ya sé lo que debería importarme, pero no lo siento.»",
+      "observar": "Si exploran si el «debería» es elegido o impuesto."
+    }
+  ],
+  [
+    {
+      "texto": "«Ya lo planeé mil veces; el problema es que me da pánico empezar.»",
+      "observar": "Una barrera de malestar: ¿ajustan el plan o abren espacio a lo que siente?"
+    },
+    {
+      "texto": "«Si no lo hago completo, no vale la pena.»",
+      "observar": "Una meta excesiva sostenida por un pensamiento: si reducen el paso sin perder la dirección."
+    }
+  ]
+];
+
+/* ============================================================
+   2. UTILIDADES
+   ============================================================ */
+const el = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// El proceso elegido viaja en la dirección (#proceso=3).
+let actual = Number(location.hash.replace("#proceso=", "")) || 1;
+if (actual < 1 || actual > PROCESOS.length) actual = 1;
+
+/* ============================================================
+   3. EL PROCESO ELEGIDO
+   ============================================================ */
+function pintarProceso(){
+  el("tabs").innerHTML = PROCESOS.map((p, i) =>
+    `<button type="button" data-id="${i + 1}" aria-pressed="${actual === i + 1}">${i + 1} · ${esc(p.titulo)}</button>`).join("");
+  const p = PROCESOS[actual - 1];
+  el("process").innerHTML = `
+    <div class="hero">
+      <div class="eyebrow">Grupo ${actual} · ${esc(SITUACIONES[actual - 1])}</div>
+      <h2>${esc(p.titulo)}</h2>
+      <p class="situacion">${esc(SITUACIONES_TEXTO[actual - 1])}</p>
+      <p class="prompt">${esc(p.pregunta)}</p>
+    </div>
+    <div class="body">
+      <section class="bloque">
+        <h3>Entrada esperada y otras posibles</h3>
+        <p>La entrada más directa es <strong>${esc(p.titulo)}</strong>. También se puede sostener: ${esc(OTRAS_ENTRADAS[actual - 1])}</p>
+        <p class="muted">Recursos del repertorio para este proceso: ${RECURSOS[actual - 1].map(esc).join(" · ")}.</p>
+      </section>
+      <section class="bloque">
+        <h3>Precisión central</h3>
+        <p>${esc(p.precision)}</p>
+      </section>
+      <section class="bloque">
+        <details>
+          <summary>Si aparece una confusión</summary>
+          <div class="reveal">
+            <p><strong>Señal a revisar:</strong> ${esc(p.error)}</p>
+            <p><strong>Cómo reconducir:</strong> ${esc(p.ajuste)}</p>
+          </div>
+        </details>
+      </section>
+      <section class="bloque">
+        <details>
+          <summary>Una formulación para cerrar</summary>
+          <div class="reveal">
+            <blockquote>${esc(p.frase)}</blockquote>
+            <p class="muted">Ajustar esta formulación a lo observado en la escena.</p>
+          </div>
+        </details>
+      </section>
+      <p class="source-ref">Harris (2009), cap. ${p.cap}: ${esc(p.seccion)}.</p>
+    </div>`;
+}
+
+/* ============================================================
+   4. CARTAS PARA LA CONSULTANTE
+   ============================================================ */
+function pintarCartas(){
+  el("cartas-grid").innerHTML = CARTAS.map((grupo, i) => `
+    <article class="carta-grupo">
+      <h3>Grupo ${i + 1} · ${esc(SITUACIONES[i])}</h3>
+      ${grupo.map(c => `<div class="carta"><p class="carta-txt">${esc(c.texto)}</p><p class="carta-obs"><strong>Permite observar:</strong> ${esc(c.observar)}</p></div>`).join("")}
+    </article>`).join("");
+}
+
+/* ============================================================
+   5. INICIALIZACIÓN
+   ============================================================ */
+try {
+  pintarProceso();
+  pintarCartas();
+  el("tabs").addEventListener("click", e => {
+    const b = e.target.closest("[data-id]");
+    if (!b) return;
+    actual = Number(b.dataset.id);
+    history.replaceState(null, "", "#proceso=" + actual);
+    pintarProceso();
+  });
+  // Al imprimir el cierre se abren todos los plegables, para que salga completo.
+  el("print").addEventListener("click", () => {
+    document.querySelectorAll("details").forEach(d => d.open = true);
+    window.print();
+  });
+  el("print-cards").addEventListener("click", () => {
+    document.body.classList.add("print-cards");
+    document.querySelector("#cartas details").open = true;
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-cards"));
+  el("js-warning").hidden = true;
+} catch (err) {
+  el("js-warning").hidden = false;
+  el("js-warning").textContent = "La página no pudo iniciar: " + (err && err.message ? err.message : err) + ". Recarguen la página.";
+  console.error(err);
+}
+</script>
+</body>
+</html>
