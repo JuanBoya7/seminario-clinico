@@ -53,6 +53,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--accent)
 .btn-sec:hover{background:var(--accent-soft);}
 .fila-btn{display:flex; gap:10px; margin-top:10px;}
 .fila-btn .btn{flex:1;}
+.reinicio{margin-top:26px;} .reinicio-nota{margin:8px 0 0; text-align:center;}
 .estado{font-size:13px; color:var(--ink-faint); text-align:center; min-height:18px; margin-top:10px;}
 .estado.ok{color:var(--mild);} .estado.warn{color:var(--severe);}
 
@@ -124,11 +125,13 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--accent)
 
     <div class="seccion-titulo">Sus intervenciones</div>
     <div class="mias" id="mias"><p class="nota">Todavía no han tomado la palabra.</p></div>
+    <div class="fila-btn reinicio"><button type="button" class="btn btn-sec" id="btn-reiniciar">Empezar de nuevo</button></div>
+    <p class="nota reinicio-nota">Borra de este celular el nombre, el equipo y la lista de intervenciones. Lo ya registrado se conserva en la hoja del docente.</p>
   </section>
   <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
 </div>
 <div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este debate.</div>
-<script src="debate-envio.js?v=20261016"></script>
-<script src="debate-corte2.js?v=20261016"></script>
-<script src="debate-motor.js?v=20261016"></script>
+<script src="debate-envio.js?v=20261016b"></script>
+<script src="debate-corte2.js?v=20261016b"></script>
+<script src="debate-motor.js?v=20261016b"></script>
 </body></html>

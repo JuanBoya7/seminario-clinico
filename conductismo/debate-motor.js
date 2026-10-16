@@ -187,6 +187,18 @@ try {
   cargar(); pintarEquipos(); pintar();
   if (st.nombre && !st.registrado) el('f-nombre').value = st.nombre;
   el('btn-registro').onclick = registrar;
+  el('btn-reiniciar').onclick = () => {
+    if (grabando) { setEstado('estado', 'Terminen la intervención antes de empezar de nuevo.', false); return; }
+    const pend = st.mias.filter(m => !m.enviado).length;
+    const msg = (pend ? `Hay ${pend} ${pend === 1 ? 'intervención pendiente' : 'intervenciones pendientes'} de envío que se perderán. ` : '')
+      + '¿Borrar de este celular el nombre, el equipo y la lista de intervenciones?';
+    if (!confirm(msg)) return;
+    try { localStorage.removeItem(PREFIX + 'estado'); } catch (e) {}
+    st = {nombre: '', equipo: '', ridReg: '', registrado: false, mias: []};
+    el('f-nombre').value = ''; el('texto').value = ''; el('revision').hidden = true; el('reloj').textContent = '00:00';
+    el('btn-registro').disabled = false; setEstado('estado-registro', '');
+    pintarEquipos(); pintar(); setEstado('estado', ''); window.scrollTo(0, 0);
+  };
   el('mic').onclick = tomar;
   el('btn-enviar').onclick = () => enviarIntervencion();
   el('btn-descartar').onclick = () => { if (confirm('¿Descartar esta intervención?')) { el('revision').hidden = true; el('texto').value = ''; el('reloj').textContent = '00:00'; setEstado('estado', ''); } };
