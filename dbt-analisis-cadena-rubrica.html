@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso Valeria — Rúbrica</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n1-soft:#fbeae6;
+  --n2:#b8722a; --n2-soft:#faf1e4;
+  --n3:#3f7d53; --n3-soft:#e7f3ea;
+  --n4:#1f6f78; --n4-soft:#e2eff0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:1000px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:24px; max-width:760px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+.masthead b{color:var(--ink);}
+
+/* ---- Reparto del peso ---- */
+.pesos{display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap;}
+.peso-bloque{flex:1 1 240px; border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px 16px; background:var(--surface);}
+.peso-cifra{font-family:var(--font-mono); font-size:23px; font-weight:700; color:var(--accent-dark);}
+.peso-bloque h3{font-size:15px; margin:2px 0 4px;}
+.peso-bloque p{margin:0; font-size:13px; color:var(--ink-soft);}
+
+/* ---- Escala de desempeño ---- */
+.escala{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:26px;}
+.nivel-chip{border-radius:8px; padding:11px 10px; font-size:12.6px; line-height:1.35;}
+.nivel-chip b{display:block; font-size:13.5px; margin-bottom:2px;}
+.nivel-chip:nth-child(1){background:var(--n1-soft); color:var(--n1);}
+.nivel-chip:nth-child(2){background:var(--n2-soft); color:var(--n2);}
+.nivel-chip:nth-child(3){background:var(--n3-soft); color:var(--n3);}
+.nivel-chip:nth-child(4){background:var(--n4-soft); color:var(--n4);}
+
+/* ---- Criterios ---- */
+.criterio{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:18px; overflow:hidden;}
+.criterio-cabeza{background:var(--surface); padding:16px 18px; border-bottom:1px solid var(--border);}
+.criterio-meta{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.criterio-num{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:var(--accent); letter-spacing:0.06em;}
+.criterio-peso{font-family:var(--font-mono); font-size:11.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:3px 9px; border-radius:99px;}
+.criterio-cabeza h2{font-size:19px; margin:3px 0 6px;}
+.criterio-cabeza p{margin:0; font-size:14px; color:var(--ink-soft); max-width:720px;}
+
+.niveles{display:grid; grid-template-columns:repeat(4,1fr);}
+.nivel{padding:14px; font-size:13px; border-right:1px solid var(--border); color:var(--ink-soft);}
+.nivel:last-child{border-right:none;}
+.nivel-titulo{font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;}
+.nivel:nth-child(1) .nivel-titulo{color:var(--n1);}
+.nivel:nth-child(2) .nivel-titulo{color:var(--n2);}
+.nivel:nth-child(3) .nivel-titulo{color:var(--n3);}
+.nivel:nth-child(4) .nivel-titulo{color:var(--n4);}
+
+.nota{border-radius:var(--radius); padding:16px 18px; font-size:14px;
+  margin-top:22px; max-width:820px;}
+.nota b{display:block; margin-bottom:5px;}
+.nota ul{margin:8px 0 0; padding-left:19px;}
+.nota li{margin-bottom:5px;}
+.nota-limite{background:var(--n2-soft); border:1px solid var(--n2); color:#6d4415;}
+.nota-limite b{color:var(--n2);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+@media (max-width:820px){
+  .escala{grid-template-columns:repeat(2,1fr);}
+  .niveles{grid-template-columns:1fr;}
+  .nivel{border-right:none; border-bottom:1px solid var(--border);}
+  .nivel:last-child{border-bottom:none;}
+}
+@media print{.nav{display:none;}}
+[hidden]{display:none !important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Caso Valeria · Terapia dialéctico-conductual</div>
+    <h1>Rúbrica de la actividad</h1>
+    <p>
+      Tres criterios, los mismos para todos los grupos. Están escritos antes del
+      análisis y a la vista desde el comienzo: <b>saber contra qué se los mide es parte
+      de la actividad</b>, no información reservada.
+    </p>
+    <p>
+      Todos los criterios evalúan <b>al grupo</b>, no a sus integrantes, y ninguno
+      pregunta quién escribió cada casilla: preguntan qué lectura del episodio produjo este
+      grupo.
+    </p>
+  </header>
+
+  <div class="pesos">
+    <div class="peso-bloque">
+      <div class="peso-cifra">40%</div>
+      <h3>La cadena</h3>
+      <p>Los ocho eslabones del episodio, en su orden, desde la vulnerabilidad hasta las consecuencias.</p>
+    </div>
+    <div class="peso-bloque">
+      <div class="peso-cifra">35%</div>
+      <h3>Dónde cortarla</h3>
+      <p>El nivel de la jerarquía de metas, el eslabón donde intervenir y la habilidad elegida.</p>
+    </div>
+    <div class="peso-bloque">
+      <div class="peso-cifra">25%</div>
+      <h3>La habilidad en el episodio</h3>
+      <p>Cómo la usaría Valeria, en ese momento y con esos pasos.</p>
+    </div>
+  </div>
+
+  <div class="escala">
+    <div class="nivel-chip"><b>Insuficiente</b>No aparece, o aparece de un modo que contradice el episodio.</div>
+    <div class="nivel-chip"><b>En proceso</b>Está enunciado, pero no aterrizado a este episodio.</div>
+    <div class="nivel-chip"><b>Satisfactorio</b>Está y se sostiene con lo que el episodio cuenta.</div>
+    <div class="nivel-chip"><b>Sobresaliente</b>Además agrega una lectura que la consigna no pedía.</div>
+  </div>
+
+  <!-- ============ CRITERIO 1 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 1</span>
+        <span class="criterio-peso">40%</span>
+      </div>
+      <h2>La cadena, eslabón por eslabón</h2>
+      <p>El grupo reconstruye el episodio en ocho eslabones: lo que hacía vulnerable a Valeria, el evento que inicia la cadena, sus pensamientos, emociones e impulso, la conducta problema y sus consecuencias a corto y a largo plazo. Este criterio mira si cada eslabón está en su lugar y se desprende del relato.</p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        Faltan eslabones, o están cambiados de lugar: el evento aparece como vulnerabilidad, una emoción como conducta, o una consecuencia antes de la conducta problema.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Los ocho eslabones están, pero varios copian frases del relato sin separarlas, o los pensamientos, emociones e impulso no se desprenden de lo que el episodio cuenta.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Cada eslabón está en su casilla y en orden, con un dato del episodio. La vulnerabilidad es una condición previa, no el evento. Pensamientos, emociones e impulso son hipótesis coherentes con el relato, y las consecuencias distinguen el alivio inmediato del costo posterior.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además señala el eslabón clave, aquel sin el cual la conducta problema habría sido menos probable, o lo que la consecuencia a corto plazo le resuelve a Valeria y por qué la cadena tiende a repetirse.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CRITERIO 2 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 2</span>
+        <span class="criterio-peso">35%</span>
+      </div>
+      <h2>Dónde cortar la cadena</h2>
+      <p>El grupo ubica la conducta problema en la jerarquía de metas de la primera etapa del tratamiento, elige el eslabón donde intervenir y la habilidad para hacerlo. Este criterio mira la coherencia entre las tres decisiones y el episodio.</p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        El nivel de la jerarquía no corresponde a la conducta problema del episodio, o la habilidad no tiene relación con el eslabón elegido.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        El nivel es coherente, pero la habilidad es genérica: podría usarse en cualquier eslabón y no actúa sobre el que eligieron.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        El nivel corresponde a la conducta problema; el eslabón elegido es uno donde la cadena puede romperse, y la función de la habilidad corresponde a ese eslabón.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además dejan ver por qué ese eslabón y no otro, o proponen cómo reducir la vulnerabilidad para que la cadena no empiece.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CRITERIO 3 ============ -->
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta">
+        <span class="criterio-num">CRITERIO 3</span>
+        <span class="criterio-peso">25%</span>
+      </div>
+      <h2>La habilidad en el episodio</h2>
+      <p>El grupo escribe cómo usaría Valeria la habilidad elegida en ese momento del episodio. Este criterio mira si la habilidad baja del manual a la situación concreta.</p>
+    </div>
+    <div class="niveles">
+      <div class="nivel">
+        <div class="nivel-titulo">Insuficiente</div>
+        No hay aplicación, o solo se nombra la habilidad.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">En proceso</div>
+        Define la habilidad en general, sin situarla en el episodio de Valeria.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Satisfactorio</div>
+        Dice qué haría Valeria, en qué momento del episodio y siguiendo los pasos de la habilidad.
+      </div>
+      <div class="nivel">
+        <div class="nivel-titulo">Sobresaliente</div>
+        Además anticipa un obstáculo y qué haría si la habilidad no le funciona, o incluye cómo reparar lo que la conducta problema dañó.
+      </div>
+    </div>
+  </div>
+
+  <div class="nota nota-limite">
+    <b>Lo que no se califica</b>
+    <ul>
+      <li><b>Coincidir con la cadena que muestra el docente.</b> Al cierre se proyecta una cadena posible de cada episodio; es una lectura, no la respuesta. Una cadena distinta, bien sostenida en el relato, vale igual.</li>
+      <li><b>La redacción.</b> Se espera claridad, no estilo. Un eslabón bien ubicado no pierde por estar escrito de forma simple.</li>
+      <li><b>El reparto interno del trabajo.</b> Quién escribió qué casilla no entra en ningún criterio.</li>
+    </ul>
+  </div>
+
+  <div class="nota">
+    <b>Fuentes</b>
+    <p style="margin:0;">Linehan, M. M. (2020). <i>Manual de entrenamiento en habilidades DBT para el/la terapeuta</i> (P. Gagliesi, ed.). EDULP. Habilidades generales, apartado «Análisis en cadena de conductas problema» (fichas generales 7–7a). ·
+    Rathus, J. H. y Miller, A. L. (2022). <i>Manual de habilidades DBT para adolescentes</i> (P. Gagliesi y D. M. Quant, eds.). EDULP. «Las etapas de tratamiento DBT y los objetivos primarios». Los descriptores y los pesos son decisiones docentes para el aula.</p>
+  </div>
+
+  <div class="nav">
+    <a href="dbt-analisis-cadena.html">&rarr; Ir a la actividad</a>
+  </div>
+
+</div>
+</body>
+</html>

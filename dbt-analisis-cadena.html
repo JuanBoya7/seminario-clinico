@@ -553,6 +553,10 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         el menú para compartirlo (WhatsApp, correo, Drive) y en el computador se descarga. Al terminar,
         presionen además "Enviar al docente": se abrirá una pestaña confirmando que las respuestas llegaron.
       </p>
+      <a class="link-rubrica" target="_blank" rel="noopener"
+         href="https://juanboya7.github.io/seminario-clinico/dbt-analisis-cadena-rubrica.html">
+        Ver la rúbrica de evaluación &rarr;
+      </a>
     </header>
 
     <!-- ============ BLOQUE 0 — DATOS DEL GRUPO ============ -->
@@ -1522,10 +1526,42 @@ function highlightInvalidFields(){
    11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
    ============================================================ */
 
+// Los tres criterios de dbt-analisis-cadena-rubrica.html, condensados y
+// colgados de lo que cada uno evalúa. Si cambian allá hay que cambiarlos acá
+// también: la rúbrica es una página aparte y este recurso tiene que seguir
+// funcionando sin conexión.
 const RUBRICA_CAMPOS = {
-  // Vacío hasta que el docente defina la rúbrica del análisis en cadena. Cada
-  // entrada cuelga un plegable con los niveles del criterio al pie del bloque o
-  // de la tarjeta indicada (ver el recurso de Sergio para la forma).
+  "bloque-2": {
+    peso: "40%",
+    rotulo: "Ver cómo se evalúa la cadena",
+    destino: "seccion",
+    niveles: [
+      "Faltan eslabones, o están cambiados de lugar: el evento como vulnerabilidad, una emoción como conducta, una consecuencia antes de la conducta problema.",
+      "Están los ocho, pero varios copian frases del relato sin separarlas, o pensamientos, emociones e impulso no se desprenden del episodio.",
+      "Cada eslabón en su casilla y en orden, con un dato del episodio; la vulnerabilidad es una condición previa y las consecuencias distinguen el alivio inmediato del costo posterior.",
+      "Además señala el eslabón clave, sin el cual la conducta habría sido menos probable, o lo que la consecuencia a corto plazo le resuelve a Valeria."
+    ]
+  },
+  "ct-habilidad": {
+    peso: "35%",
+    rotulo: "Ver cómo se evalúa dónde cortar la cadena",
+    niveles: [
+      "El nivel de la jerarquía no corresponde a la conducta problema, o la habilidad no tiene relación con el eslabón elegido.",
+      "El nivel es coherente, pero la habilidad es genérica y no actúa sobre el eslabón que eligieron.",
+      "Nivel acorde con la conducta problema, un eslabón donde la cadena puede romperse y una habilidad cuya función corresponde a ese eslabón.",
+      "Además dejan ver por qué ese eslabón y no otro, o cómo reducir la vulnerabilidad para que la cadena no empiece."
+    ]
+  },
+  "f-aplicacion": {
+    peso: "25%",
+    rotulo: "Ver cómo se evalúa la aplicación",
+    niveles: [
+      "No hay aplicación, o solo se nombra la habilidad.",
+      "Define la habilidad en general, sin situarla en el episodio.",
+      "Dice qué haría Valeria, en qué momento del episodio y siguiendo los pasos de la habilidad.",
+      "Además anticipa un obstáculo y qué haría si no le funciona, o cómo reparar lo que la conducta dañó."
+    ]
+  }
 };
 
 const RUBRICA_ETIQUETAS = ["Insuficiente", "En proceso", "Satisfactorio", "Sobresaliente"];
