@@ -10,6 +10,26 @@ var COLUMNAS = ['Fecha de envío','ID de envío','Curso','Grupo','Episodio'].con
 
 function nombreHoja_(curso, grupo) { return curso === 'SPI-2026-2' ? grupo + ' DBT' : 'Práctica II DBT'; }
 
+// La hoja de datos: la del proyecto si se creó desde una hoja (Extensiones → Apps Script);
+// si el proyecto es independiente, la que creó prepararHoja.
+function libroDatos_() {
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  if (activa) return activa;
+  var id = PropertiesService.getScriptProperties().getProperty('DBT_HOJA_ID');
+  if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
+  return SpreadsheetApp.openById(id);
+}
+// Como en los receptores de casos y tamizaje: si la pestaña no existe, el primer envío la crea
+// con sus encabezados. prepararHoja sigue sirviendo para dejarlas todas listas de antemano.
+function pestana_(libro, nombre, cols) {
+  var hoja = libro.getSheetByName(nombre) || libro.insertSheet(nombre);
+  if (hoja.getLastRow() === 0) {
+    hoja.appendRow(cols); hoja.setFrozenRows(1);
+    hoja.getRange(1,1,1,cols.length).setBackground('#3e294e').setFontColor('#ffffff').setFontWeight('bold');
+  }
+  return hoja;
+}
+
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('DBT_HOJA_ID');
@@ -54,10 +74,7 @@ function registrar_(d) {
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
-    var id = PropertiesService.getScriptProperties().getProperty('DBT_HOJA_ID');
-    if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
-    var hoja = SpreadsheetApp.openById(id).getSheetByName(nombreHoja_(d.curso, d.cursoGrupo));
-    if (!hoja) throw new Error('Falta la pestaña del curso. Ejecuten prepararHoja.');
+    var hoja = pestana_(libroDatos_(), nombreHoja_(d.curso, d.cursoGrupo), COLUMNAS);
     var anterior = hoja.getLastRow() > 1 ? hoja.getRange(2,2,hoja.getLastRow()-1,1).createTextFinder(d.rid).matchEntireCell(true).findNext() : null;
     if (!anterior) {
       hoja.appendRow([new Date(), d.rid, d.cursoGrupo, d.grupo, EPISODIOS[d.grupo-1]]
@@ -91,8 +108,7 @@ function doGet(e) {
     var curso = null;
     Object.keys(CURSOS).forEach(function(c) { if (CURSOS[c].indexOf(p.tablero) >= 0) curso = c; });
     if (!curso) return jsonp_(p.callback, {ok:false});
-    var id = PropertiesService.getScriptProperties().getProperty('DBT_HOJA_ID');
-    var hoja = id ? SpreadsheetApp.openById(id).getSheetByName(nombreHoja_(curso, p.tablero)) : null;
+    var hoja = libroDatos_().getSheetByName(nombreHoja_(curso, p.tablero));
     if (!hoja || hoja.getLastRow() < 2) return jsonp_(p.callback, {ok:true, filas:[]});
     var v = hoja.getRange(2,1,hoja.getLastRow()-1,COLUMNAS.length).getValues();
     var filas = v.map(function(r) {
@@ -100,5 +116,5 @@ function doGet(e) {
     });
     return jsonp_(p.callback, {ok:true, filas:filas});
   }
-  return ContentService.createTextOutput(JSON.stringify({servicio:'Análisis en cadena DBT', version:1, preparado:!!PropertiesService.getScriptProperties().getProperty('DBT_HOJA_ID')})).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({servicio:'Análisis en cadena DBT', version:1, preparado:!!(SpreadsheetApp.getActiveSpreadsheet() || PropertiesService.getScriptProperties().getProperty('DBT_HOJA_ID'))})).setMimeType(ContentService.MimeType.JSON);
 }

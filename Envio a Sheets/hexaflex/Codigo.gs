@@ -8,6 +8,28 @@ var COLUMNAS = ['Fecha de envío','ID de envío','Curso','Grupo observado','Proc
   '1. Encuadre y acuerdo','2. Escucha y conexión con el caso','3. Foco del proceso',
   '4. Desarrollo del ejercicio','5. Aplicación al caso','6. Cierre colaborativo','Promedio sobre 5','Comentario'];
 
+// La hoja de datos: la del proyecto si se creó desde una hoja (Extensiones → Apps Script);
+// si el proyecto es independiente, la que creó prepararHoja.
+function libroDatos_() {
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  if (activa) return activa;
+  var id = PropertiesService.getScriptProperties().getProperty('ACT_HOJA_ID');
+  if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
+  return SpreadsheetApp.openById(id);
+}
+// Como en los receptores de casos y tamizaje: si la pestaña no existe, el primer envío la crea
+// con sus encabezados. prepararHoja sigue sirviendo para dejarlas todas listas de antemano.
+function pestana_(libro, nombre, cols) {
+  var hoja = libro.getSheetByName(nombre) || libro.insertSheet(nombre);
+  if (hoja.getLastRow() === 0) {
+    hoja.appendRow(cols); hoja.setFrozenRows(1);
+    hoja.getRange(1,1,1,cols.length).setBackground('#1f6f78').setFontColor('#ffffff').setFontWeight('bold');
+    hoja.getRange('M:M').setNumberFormat('0.00');
+    hoja.setColumnWidth(14,420);
+  }
+  return hoja;
+}
+
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('ACT_HOJA_ID');
@@ -54,12 +76,9 @@ function registrar_(d) {
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
-    var id = PropertiesService.getScriptProperties().getProperty('ACT_HOJA_ID');
-    if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir valoraciones.');
-    var libro = SpreadsheetApp.openById(id);
+    var libro = libroDatos_();
     var nombre = d.curso === 'SPI-2026-2' ? d.cursoGrupo + ' ACT' : 'Práctica II ACT';
-    var hoja = libro.getSheetByName(nombre);
-    if (!hoja) throw new Error('Falta la pestaña del curso. Ejecuten prepararHoja.');
+    var hoja = pestana_(libro, nombre, COLUMNAS);
     var anterior = hoja.getLastRow() > 1 ? hoja.getRange(2,2,hoja.getLastRow()-1,1).createTextFinder(d.rid).matchEntireCell(true).findNext() : null;
     if (!anterior) {
       var promedio = Math.round(d.puntajes.reduce(function(a,b) {return a+b;},0) / 6 * 100) / 100;
@@ -92,5 +111,5 @@ function doGet(e) {
     var ack = {ok:CacheService.getScriptCache().get('ACT_ACK_' + p.estado) === '1',rid:p.estado};
     return ContentService.createTextOutput(p.callback + '(' + JSON.stringify(ack) + ');').setMimeType(ContentService.MimeType.JAVASCRIPT);
   }
-  return ContentService.createTextOutput(JSON.stringify({servicio:'Valoraciones ACT',version:1,preparado:!!PropertiesService.getScriptProperties().getProperty('ACT_HOJA_ID')})).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({servicio:'Valoraciones ACT',version:1,preparado:!!(SpreadsheetApp.getActiveSpreadsheet() || PropertiesService.getScriptProperties().getProperty('ACT_HOJA_ID'))})).setMimeType(ContentService.MimeType.JSON);
 }

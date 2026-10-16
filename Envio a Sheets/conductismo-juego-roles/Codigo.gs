@@ -11,6 +11,26 @@ var COLUMNAS = ['Fecha de envío','ID de envío','Evaluador','Grupo del evaluado
   .concat(ASPECTOS).concat(['Descripción general del desempeño','Sugerencia de mejora','Pregunta para el grupo']);
 var HOJA = 'Juego de roles';
 
+// La hoja de datos: la del proyecto si se creó desde una hoja (Extensiones → Apps Script);
+// si el proyecto es independiente, la que creó prepararHoja.
+function libroDatos_() {
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  if (activa) return activa;
+  var id = PropertiesService.getScriptProperties().getProperty('JR402_HOJA_ID');
+  if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
+  return SpreadsheetApp.openById(id);
+}
+// Como en los receptores de casos y tamizaje: si la pestaña no existe, el primer envío la crea
+// con sus encabezados. prepararHoja sigue sirviendo para dejarlas todas listas de antemano.
+function pestana_(libro, nombre, cols) {
+  var hoja = libro.getSheetByName(nombre) || libro.insertSheet(nombre);
+  if (hoja.getLastRow() === 0) {
+    hoja.appendRow(cols); hoja.setFrozenRows(1);
+    hoja.getRange(1,1,1,cols.length).setBackground('#134349').setFontColor('#ffffff').setFontWeight('bold');
+  }
+  return hoja;
+}
+
 function prepararHoja() {
   var props = PropertiesService.getScriptProperties();
   var id = props.getProperty('JR402_HOJA_ID');
@@ -57,10 +77,7 @@ function registrar_(d) {
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
-    var id = PropertiesService.getScriptProperties().getProperty('JR402_HOJA_ID');
-    if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
-    var hoja = SpreadsheetApp.openById(id).getSheetByName(HOJA);
-    if (!hoja) throw new Error('Falta la pestaña. Ejecuten prepararHoja.');
+    var hoja = pestana_(libroDatos_(), HOJA, COLUMNAS);
     var anterior = hoja.getLastRow() > 1 ? hoja.getRange(2,2,hoja.getLastRow()-1,1).createTextFinder(d.rid).matchEntireCell(true).findNext() : null;
     if (!anterior) {
       hoja.appendRow([new Date(), d.rid, seguro_(d.evaluador), d.grupoEvaluador, d.grupo, d.tecnica, d.auto ? 'Autoevaluación' : 'Par']
@@ -96,8 +113,7 @@ function doGet(e) {
     var clave = props.getProperty('JR402_CLAVE');
     var docente = !!(p.clave && clave && p.clave === clave);
     if (p.clave && !docente) return jsonp_(p.callback, {ok:false, error:'clave'});
-    var id = props.getProperty('JR402_HOJA_ID');
-    var hoja = id ? SpreadsheetApp.openById(id).getSheetByName(HOJA) : null;
+    var hoja = libroDatos_().getSheetByName(HOJA);
     if (!hoja || hoja.getLastRow() < 2) return jsonp_(p.callback, {ok:true, docente:docente, filas:[]});
     var v = hoja.getRange(2,1,hoja.getLastRow()-1,COLUMNAS.length).getValues();
     // Sin clave, el evaluador se reemplaza por un número de orden: el tablero proyectado
@@ -114,5 +130,5 @@ function doGet(e) {
     });
     return jsonp_(p.callback, {ok:true, docente:docente, filas:filas});
   }
-  return ContentService.createTextOutput(JSON.stringify({servicio:'Juego de roles 402', version:1, preparado:!!PropertiesService.getScriptProperties().getProperty('JR402_HOJA_ID')})).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({servicio:'Juego de roles 402', version:1, preparado:!!(SpreadsheetApp.getActiveSpreadsheet() || PropertiesService.getScriptProperties().getProperty('JR402_HOJA_ID'))})).setMimeType(ContentService.MimeType.JSON);
 }

@@ -13,10 +13,21 @@ var VALORACION = 'Valoración del docente';
 var COL_VAL = ['Corte','Equipo','Criterio 1','Criterio 2','Criterio 3','Criterio 4','Actualizado'];
 
 function nombreHoja_(corte) { return 'Debate corte ' + corte; }
+// La hoja de datos: la del proyecto si se creó desde una hoja (Extensiones → Apps Script);
+// si el proyecto es independiente, la que creó prepararHoja.
 function libro_() {
+  var activa = SpreadsheetApp.getActiveSpreadsheet();
+  if (activa) return activa;
   var id = PropertiesService.getScriptProperties().getProperty('DEB402_HOJA_ID');
   if (!id) throw new Error('El docente debe ejecutar prepararHoja antes de recibir envíos.');
   return SpreadsheetApp.openById(id);
+}
+// Como en los receptores de casos y tamizaje: si la pestaña no existe, el primer envío la crea
+// con sus encabezados. prepararHoja sigue sirviendo para dejarlas todas listas de antemano.
+function pestana_(libro, nombre, cols) {
+  var hoja = libro.getSheetByName(nombre) || libro.insertSheet(nombre);
+  encabezar_(hoja, cols);
+  return hoja;
 }
 function encabezar_(hoja, cols) {
   if (hoja.getLastRow() === 0) {
@@ -68,8 +79,7 @@ function registrar_(d) {
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
-    var hoja = libro_().getSheetByName(nombreHoja_(d.corte));
-    if (!hoja) throw new Error('Falta la pestaña del corte. Ejecuten prepararHoja.');
+    var hoja = pestana_(libro_(), nombreHoja_(d.corte), COLUMNAS);
     // Hojas creadas antes de la columna de conceptos: se le pone el encabezado al vuelo.
     if (!hoja.getRange(1, COLUMNAS.length).getValue()) hoja.getRange(1, COLUMNAS.length).setValue(COLUMNAS[COLUMNAS.length - 1]).setBackground('#134349').setFontColor('#ffffff').setFontWeight('bold');
     var anterior = hoja.getLastRow() > 1 ? hoja.getRange(2,2,hoja.getLastRow()-1,1).createTextFinder(d.rid).matchEntireCell(true).findNext() : null;
@@ -140,7 +150,7 @@ function valorar_(corte, equipo, v) {
   if (EQUIPOS.indexOf(equipo) < 0) throw new Error('Equipo no válido.');
   var n = String(v || '').split(',').map(Number);
   if (n.length !== 4 || !n.every(function(x) { return x >= 0 && x <= 5; })) throw new Error('Valoración no válida.');
-  var hoja = libro_().getSheetByName(VALORACION);
+  var hoja = pestana_(libro_(), VALORACION, COL_VAL);
   var datos = hoja.getLastRow() > 1 ? hoja.getRange(2,1,hoja.getLastRow()-1,2).getValues() : [];
   var fila = -1;
   datos.forEach(function(r, i) { if (Number(r[0]) === corte && String(r[1]) === equipo) fila = i + 2; });
@@ -173,5 +183,5 @@ function doGet(e) {
       return jsonp_(p.callback, {ok:true, docente:docente, filas:r.filas, valoraciones:r.valoraciones});
     } catch (err) { return jsonp_(p.callback, {ok:false, error:err.message}); }
   }
-  return ContentService.createTextOutput(JSON.stringify({servicio:'Debates 402', version:1, preparado:!!PropertiesService.getScriptProperties().getProperty('DEB402_HOJA_ID')})).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({servicio:'Debates 402', version:1, preparado:!!(SpreadsheetApp.getActiveSpreadsheet() || PropertiesService.getScriptProperties().getProperty('DEB402_HOJA_ID'))})).setMimeType(ContentService.MimeType.JSON);
 }
