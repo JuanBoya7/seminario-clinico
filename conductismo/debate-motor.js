@@ -182,6 +182,7 @@ try {
   el('js-warning').hidden = true;
   el('eyebrow').textContent = C.eyebrow; el('titulo').textContent = C.titulo; document.title = C.titulo + ' — Debate';
   el('mocion').textContent = C.mocion;
+  if (C.rotulo) el('mocion-rot').textContent = C.rotulo;   // «Moción» salvo que el debate parta de un planteamiento
   if (C.pregunta) { el('pregunta').hidden = false; el('pregunta').textContent = C.pregunta; }
   cargar(); pintarEquipos(); pintar();
   if (st.nombre && !st.registrado) el('f-nombre').value = st.nombre;

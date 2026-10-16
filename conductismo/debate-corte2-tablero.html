@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debate — Tablero</title><style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  /* Un color por equipo, los mismos de la hoja del estudiante; ninguno sugiere acierto. */
+  --eqA:#1f6f78; --eqA-soft:#e2eff0; --eqB:#b8722a; --eqB-soft:#faf1e4; --eqC:#5b4a8a; --eqC-soft:#ece8f5;
+  --severe:#a83f2b; --severe-soft:#fbeae6; --mild:#3f7d53;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+button,input,select{font-family:var(--font-body);}
+[hidden]{display:none !important;}
+.wrap{max-width:1280px; margin:0 auto; padding:22px 24px 40px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select,input[type=password]{font-size:14.5px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
+.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
+.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
+.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+.panel{border:1px solid var(--border); border-radius:16px; padding:24px 28px 28px;}
+.panel .sub{font-size:14.5px; color:var(--ink-faint); margin:6px 0 20px; max-width:74ch;}
+.vacio-msg{color:var(--ink-faint); font-size:15px; font-style:italic;}
+.mocion{font-family:var(--font-display); font-size:clamp(20px,2.2vw,27px); line-height:1.4; color:var(--accent-dark); background:var(--accent-soft); border-radius:12px; padding:16px 22px; margin-bottom:20px;}
+.frase{font-family:var(--font-display); font-size:clamp(19px,2.1vw,25px); line-height:1.35; border-left:5px solid var(--accent); padding:4px 0 4px 18px; margin:0 0 22px;}
+.frase em{font-style:normal; color:var(--accent-dark);}
+
+/* ---- Barra del tiempo de palabra ---- */
+.tiempo{display:flex; height:42px; border-radius:8px; overflow:hidden; background:var(--surface-alt); margin:0 0 6px;}
+.tiempo span{display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:15px; white-space:nowrap; overflow:hidden; padding:0 8px;}
+.tiempo-rot{font-size:13px; color:var(--ink-faint); margin-bottom:22px;}
+
+/* ---- Columnas por equipo ---- */
+.equipos{display:grid; gap:18px;}
+.eq{border-top:5px solid var(--c); border-radius:12px; background:var(--surface); padding:16px 18px;}
+.eq h2{font-size:22px;}
+.eq .post{font-size:14px; color:var(--ink-soft); margin-bottom:12px;}
+.cifras{display:flex; gap:22px; flex-wrap:wrap; margin-bottom:12px;}
+.cifra b{display:block; font-family:var(--font-display); font-size:34px; line-height:1; color:var(--c);}
+.cifra span{font-size:12px; color:var(--ink-faint);}
+.int{background:var(--bg); border-left:4px solid var(--c); border-radius:0 8px 8px 0; padding:10px 13px; margin-bottom:8px; font-size:15.5px; line-height:1.45;}
+.int .de{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:2px;}
+.chips{display:flex; flex-wrap:wrap; gap:6px;}
+.chip{font-size:13px; padding:4px 10px; border-radius:99px; background:var(--bg); border:1px solid var(--border);}
+.chip b{font-family:var(--font-mono); margin-left:4px; color:var(--c);}
+
+/* ---- Vista docente ---- */
+.clave{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:6px 0 18px;}
+.valorar{display:grid; gap:14px; margin-bottom:24px;}
+.val{border:1px solid var(--border); border-top:4px solid var(--c); border-radius:10px; padding:12px 14px;}
+.val h3{font-size:17px; margin-bottom:8px;}
+.val label{display:flex; justify-content:space-between; gap:10px; align-items:center; font-size:13.5px; margin-bottom:6px;}
+.val label select{padding:5px 8px; font-size:14px;}
+.val .base{font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-top:6px;}
+table{width:100%; border-collapse:collapse; font-size:14.5px;}
+th,td{padding:8px 9px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top;}
+th{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+td.num,th.num{text-align:right; font-family:var(--font-mono); white-space:nowrap;}
+td.nota{font-family:var(--font-display); font-size:19px; color:var(--accent-dark); text-align:right;}
+.marca{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; background:var(--c);}
+.lider{font-size:10.5px; font-family:var(--font-mono); text-transform:uppercase; color:var(--mild); margin-left:6px;}
+.como{font-size:13.5px; color:var(--ink-soft); background:var(--surface); border-radius:10px; padding:12px 16px; margin:0 0 18px;}
+.como summary{cursor:pointer; font-weight:600; color:var(--accent);}
+.etq{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px;}
+.etq button{font-size:12px; font-weight:600; padding:4px 9px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); cursor:pointer;}
+.etq button[aria-pressed="true"]{background:var(--c); border-color:var(--c); color:#fff;}
+.lista-int .int{background:var(--surface);}
+.lectura{font-family:var(--font-display); font-size:17.5px; line-height:1.5; margin:0 0 14px;}
+.lectura em{font-style:normal; color:var(--c); font-weight:600;}
+h3.sec{font-size:19px; margin:26px 0 10px;}
+@media (max-width:860px){.equipos,.valorar{grid-template-columns:1fr !important;} .wrap{padding:16px 14px 30px;} .panel{padding:18px 16px;}}
+</style></head>
+<body><div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, el tablero no se está ejecutando. Ábranlo en un navegador.</div>
+  <div class="cabecera">
+    <div><div class="eyebrow" id="eyebrow"></div><h1 id="titulo"></h1></div>
+    <div class="controles"><select id="curso"><option value="402">402</option></select><span class="estado" id="estado"></span></div>
+  </div>
+  <div class="nav-pantallas">
+    <button class="pill is-on" data-p="vivo">El debate</button>
+    <button class="pill" data-p="balance">Balance</button>
+    <button class="pill" data-p="docente">Vista docente</button>
+  </div>
+
+  <div class="panel" id="v-vivo">
+    <div class="mocion" id="mocion"></div>
+    <div class="tiempo" id="tiempo"></div><div class="tiempo-rot" id="tiempo-rot"></div>
+    <div class="equipos" id="vivo-eq"></div>
+  </div>
+
+  <div class="panel" id="v-balance" hidden>
+    <h2>Balance del debate</h2>
+    <p class="sub">Una lectura de cada bando hecha con cifras y conceptos: cuánto habló, cuántas voces lo sostuvieron, en qué conceptos se apoyó y si replicó al otro lado.</p>
+    <p class="frase" id="bal-frase"></p>
+    <div class="equipos" id="bal-eq"></div>
+  </div>
+
+  <div class="panel" id="v-docente" hidden>
+    <h2>Participación y nota propuesta</h2>
+    <p class="sub">La nota parte de la valoración del equipo con la rúbrica y se ajusta por la participación de cada persona dentro de su equipo. Es una propuesta: revísenla antes de pasarla a la planilla.</p>
+    <div class="clave" id="caja-clave"><input type="password" id="clave" placeholder="Clave docente" autocomplete="off"><button class="bt" id="entrar">Entrar</button><span class="estado" id="clave-estado"></span></div>
+    <div id="docente-cont" hidden>
+      <details class="como"><summary>Cómo se calcula</summary><ul>
+        <li><b>Base del equipo</b>: los cuatro criterios de la rúbrica (1 a 5) que el docente marca abajo, con sus pesos.</li>
+        <li><b>Índice de participación</b> de cada persona, relativo a quien más aportó en su equipo: intervenciones (30 %), tiempo de palabra (30 %), conceptos del curso en lo que dijo (20 %) y etiquetas del docente (20 %).</li>
+        <li><b>Ajuste</b>: de −0,5 (participó lo mínimo) a +0,5 (la voz que más lideró). Quien se registró y no intervino: −1,0. La nota no pasa de 5,0.</li>
+        <li>Quien no se registró no aparece: en la planilla va con dos asteriscos rojos.</li>
+      </ul></details>
+      <h3 class="sec">Valoración de los equipos</h3>
+      <div class="valorar" id="valorar"></div>
+      <h3 class="sec">Participación individual</h3>
+      <div class="controles" style="margin-bottom:10px"><button class="bt" id="copiar">Copiar tabla</button><span class="estado" id="copiar-estado"></span></div>
+      <div id="tabla"></div>
+      <h3 class="sec">Transcripciones</h3>
+      <p class="sub">Solo se ven en esta vista. Etiqueten las intervenciones que muestran liderazgo: las etiquetas cuentan en el índice de participación.</p>
+      <div class="controles" style="margin-bottom:12px"><button class="bt" id="bajar-txt">Descargar por equipo (texto)</button><button class="bt" id="bajar-csv">Descargar para Excel (CSV)</button></div>
+      <div class="equipos lista-int" id="lista-int"></div>
+    </div>
+  </div>
+</div>
+<script src="debate-envio.js?v=20261016"></script>
+<script src="debate-corte2.js?v=20261016"></script>
+<script src="debate-tablero.js?v=20261016"></script>
+</body></html>

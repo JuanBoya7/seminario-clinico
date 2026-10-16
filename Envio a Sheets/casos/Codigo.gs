@@ -47,7 +47,8 @@
 // que un envío accidental o de otro curso ensucie la hoja.
 var CURSOS = {
   'SPI-2026-2': ['901', '902', '903'],   // Seminario Profesional I - Clínico (FUAA)
-  'PII-2026-B': ['Práctica II']          // Práctica II - Clínica (UDES)
+  'PII-2026-B': ['Práctica II'],         // Práctica II - Clínica (UDES)
+  'TMC-2026-2': ['402']                  // Teorías y métodos: conductismo y enfoque cognitivo (FUAA)
 };
 
 // Nombres de las columnas fijas, siempre en este orden y siempre primero.
@@ -244,7 +245,11 @@ function doGet(e) {
 
 // Casos con tablero. La pestaña que se lee es "<grupo del curso> <caso>", la
 // misma que escribe doPost.
-var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio', 'Informe', 'DBT'];
+var CASOS_CON_TABLERO = ['Elisa', 'Susana', 'Sergio', 'Informe', 'DBT', 'Contingencias', 'Taller C1', 'Taller C2'];
+
+// Actividades de 402 cuyo tablero lee las respuestas tal como quedaron en el estado: los
+// textos (sin curso ni número de grupo) y las opciones elegidas.
+var CASOS_DE_TEXTOS = ['Contingencias', 'Taller C1', 'Taller C2'];
 
 // Eslabones del análisis en cadena (caso DBT), en orden: los id de las tarjetas
 // de la actividad, sin el prefijo «f-».
@@ -340,6 +345,21 @@ function resumenCaso(caso, curso, grupoCurso, callback) {
         }
         // El análisis en cadena (DBT) tampoco tiene criterios: su tablero lee los
         // ocho eslabones y el análisis de soluciones.
+        if (CASOS_DE_TEXTOS.indexOf(caso) !== -1) {
+          var textos402 = {};
+          Object.keys(estado.text || {}).forEach(function (k) {
+            if (k === 'ct-curso' || k === 'f-grupo') return;
+            textos402[k] = String(estado.text[k] || '').substring(0, 1500);
+          });
+          entregas.push({
+            cursoGrupo: g,
+            grupo: grupo,
+            enviado: ultima[clave].fecha ? ultima[clave].fecha.toISOString() : '',
+            textos: textos402,
+            opciones: estado.radio || {}
+          });
+          return;
+        }
         if (caso === 'DBT') {
           var t = estado.text || {};
           entregas.push({

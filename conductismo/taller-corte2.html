@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El interconductismo a debate — Espacio de discusión</title>
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --surface:#f6f8f8;
+  --surface-alt:#eef2f2;
+  --border:#dde5e5;
+  --ink:#16232b;
+  --ink-soft:#4b5c63;
+  --ink-faint:#7d8c91;
+  --accent:#1f6f78;
+  --accent-dark:#134349;
+  --accent-soft:#e2eff0;
+  --mild:#3f7d53;
+  --mild-soft:#e7f3ea;
+  --moderate:#b8722a;
+  --moderate-soft:#faf1e4;
+  --severe:#a83f2b;
+  --severe-soft:#fbeae6;
+  --none:#8a97a0;
+  --none-soft:#eef1f2;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+  --shadow-card:0 1px 2px rgba(22,35,43,0.04), 0 4px 16px rgba(22,35,43,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+/* El texto de la página no se selecciona; los campos de escritura sí, para poder corregirlos. */
+body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+input,textarea,select,[contenteditable]{-webkit-user-select:text; user-select:text;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-soft);}
+
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink);}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.app-shell{
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  min-height:100vh;
+}
+@media (max-width:900px){
+  .app-shell{grid-template-columns:1fr;}
+}
+
+/* ---- Sidebar / nav ---- */
+.sidebar{
+  border-right:1px solid var(--border);
+  padding:28px 20px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  background:var(--surface);
+}
+@media (max-width:900px){
+  .sidebar{
+    position:relative;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding:18px 16px;
+  }
+}
+.sidebar-brand{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:6px;
+}
+.sidebar-title{
+  font-size:19px;
+  margin-bottom:22px;
+  line-height:1.3;
+}
+.nav-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+@media (max-width:900px){
+  .nav-list{flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:4px;}
+}
+.nav-item{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  white-space:nowrap;
+  transition:background 0.15s ease, color 0.15s ease;
+}
+.nav-item:hover{background:var(--surface-alt); color:var(--ink);}
+.nav-item.is-complete .nav-dot{background:var(--accent); border-color:var(--accent);}
+.nav-dot{
+  width:7px; height:7px; border-radius:50%;
+  border:1.5px solid var(--ink-faint);
+  flex-shrink:0;
+}
+
+/* ---- Progress block (sidebar) ---- */
+.progress-block{margin-top:26px; padding-top:20px; border-top:1px solid var(--border);}
+.progress-label{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:12px; color:var(--ink-soft); margin-bottom:8px;
+}
+.progress-pct{font-family:var(--font-mono); font-size:15px; color:var(--accent-dark); font-weight:600;}
+.progress-track{
+  height:6px; border-radius:99px; background:var(--surface-alt); overflow:hidden;
+}
+.progress-fill{
+  height:100%; background:var(--accent); border-radius:99px;
+  transition:width 0.4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+.autosave-note{font-size:11.5px; color:var(--ink-faint); margin-top:10px;}
+
+/* ---- Main content ---- */
+.main{padding:36px clamp(20px,4vw,64px) 100px; max-width:880px;}
+.masthead{margin-bottom:34px;}
+.masthead-eyebrow{
+  font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;
+}
+.masthead h1{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); font-size:15px; max-width:60ch;}
+
+/* Enlace a la rúbrica, en el encabezado. Apunta a la URL absoluta de Pages y no
+   al archivo vecino: el recurso se guarda y viaja solo, y un enlace relativo
+   quedaría roto en cuanto el grupo descarga su copia. */
+.link-rubrica{
+  display:inline-block; margin-top:14px;
+  font-size:14px; font-weight:600; color:var(--accent); text-decoration:none;
+  border:1px solid var(--border); border-radius:8px; padding:9px 14px;
+}
+.link-rubrica:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+/* Criterio de evaluación al pie de las preguntas abiertas. Se muestra PLEGADO:
+   la regla del curso es que una consigna abierta no enumere qué observar,
+   porque entonces el estudiante ya no desarrolla la mirada clínica, sólo
+   verifica una lista. Plegado respeta las dos cosas — quien quiere saber contra
+   qué se lo mide lo abre, y quien responde de frente lo hace sin la lista
+   delante. */
+.rubrica-inline{margin-top:12px; border-top:1px solid var(--border); padding-top:10px;}
+.rubrica-inline > summary{
+  cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:600; color:var(--accent);
+  /* El relleno vertical es el área táctil: sin él, el disparador mide 19 px de
+     alto y en un celular hay que apuntarle. */
+  padding:9px 4px 9px 0;
+}
+.rubrica-inline > summary::-webkit-details-marker{display:none;}
+.rubrica-inline > summary::before{
+  content:""; width:7px; height:7px; flex-shrink:0;
+  border-right:1.8px solid var(--accent); border-bottom:1.8px solid var(--accent);
+  transform:rotate(-45deg); transition:transform 0.2s ease;
+}
+.rubrica-inline[open] > summary::before{transform:rotate(45deg);}
+.rubrica-peso{
+  font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:2px 7px; border-radius:99px;
+}
+.rubrica-niveles{margin-top:10px; display:flex; flex-direction:column; gap:6px;}
+.rubrica-nivel{
+  display:flex; gap:10px; align-items:flex-start;
+  font-size:12.5px; line-height:1.45; color:var(--ink-soft);
+  padding:7px 11px; border-radius:7px; background:var(--surface);
+}
+.rubrica-nivel b{
+  flex:0 0 96px; font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.04em; text-transform:uppercase; margin-top:1px;
+}
+.rubrica-nivel:nth-child(1) b{color:var(--severe);}
+.rubrica-nivel:nth-child(2) b{color:var(--moderate);}
+.rubrica-nivel:nth-child(3) b{color:var(--mild);}
+.rubrica-nivel:nth-child(4) b{color:var(--accent);}
+@media (max-width:900px){
+  .rubrica-inline > summary{padding:14px 4px 14px 0;}
+}
+@media (max-width:560px){
+  .rubrica-nivel{flex-direction:column; gap:3px;}
+  .rubrica-nivel b{flex:none;}
+}
+
+
+section.block{margin-bottom:40px; scroll-margin-top:24px;}
+.block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+.block-heading h2{font-size:20px;}
+.block-index{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint);}
+.block-sub{color:var(--ink-soft); font-size:14px; margin-bottom:18px; max-width:64ch;}
+
+/* ---- Card ---- */
+.card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow-card);
+}
+.card + .card{margin-top:0;}
+.card-label{
+  font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px;
+  display:flex; align-items:center; gap:6px;
+}
+.required-mark{color:var(--severe); font-size:13px;}
+.card-help{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
+
+/* ---- Inputs ---- */
+input[type="text"], textarea, select{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:14.5px;
+  color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:11px 13px;
+  transition:border-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* Campo con prefijo fijo: la palabra "Grupo" es parte del disenio, no la
+   escribe el estudiante. Evita que cada grupo invente su propio formato. */
+.input-prefixed{display:flex; align-items:stretch;}
+.input-prefix{
+  display:flex; align-items:center; white-space:nowrap;
+  padding:0 14px; font-size:14.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft);
+  border:1px solid var(--border); border-right:none;
+  border-radius:8px 0 0 8px;
+}
+.input-prefixed input[type="text"]{border-radius:0 8px 8px 0; flex:1 1 auto; min-width:0;}
+
+input[type="text"]:focus, textarea:focus, select:focus{
+  outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+  background:var(--bg);
+}
+textarea{resize:vertical; min-height:76px; line-height:1.5;}
+textarea.evidence-box{min-height:56px; font-size:13.5px;}
+
+/* ---- Radio / checkbox groups ---- */
+.option-list{display:flex; flex-direction:column; gap:8px;}
+.option-row{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 12px; border:1px solid var(--border); border-radius:8px;
+  cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease;
+  font-size:14px;
+}
+.option-row:hover{border-color:var(--accent); background:var(--accent-soft);}
+.option-row input{margin-top:2px; accent-color:var(--accent); flex-shrink:0;}
+.option-row.is-checked{border-color:var(--accent); background:var(--accent-soft);}
+/* Familias de explicaciones (caso Sergio): los mismos colores que el deck,
+   turquesa para lo que hace la sustancia y coral para lo que hace la persona. */
+.option-fam{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; margin:6px 0 -2px; padding-left:10px; border-left:4px solid;}
+.option-fam:first-child{margin-top:0;}
+.option-fam.fam-sustancia{color:#1C7A70; border-color:#1C7A70;}
+.option-fam.fam-persona{color:#C8583A; border-color:#C8583A; margin-top:10px;}
+.option-fam.fam-ninguna{margin-top:10px; border-color:transparent; padding-left:0;}
+
+/* ---- Checklist diagnóstico (dos condiciones evaluadas en paralelo) ---- */
+.condition-card{
+  border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:20px; overflow:hidden; box-shadow:var(--shadow-card);
+}
+.condition-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:18px 22px; background:var(--surface); cursor:pointer;
+  user-select:none;
+}
+.condition-header h3{font-size:17px;}
+.condition-header-left{display:flex; align-items:center; gap:12px;}
+.chevron{
+  width:9px; height:9px; border-right:2px solid var(--ink-faint); border-bottom:2px solid var(--ink-faint);
+  transform:rotate(45deg); transition:transform 0.2s ease; flex-shrink:0;
+}
+.condition-card.is-open .chevron{transform:rotate(-135deg);}
+
+/* Insignia neutra (trastornos sin gravedad oficial del DSM-5: solo cuenta criterios) */
+.count-badge{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  padding:6px 12px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+
+/* Insignia de gravedad (solo trastorno por consumo: el DSM-5 sí define
+   leve/moderado/grave por conteo de criterios) */
+.severity-badge{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  padding:6px 12px; border-radius:99px; white-space:nowrap;
+  background:var(--none-soft); color:var(--none);
+}
+.severity-badge[data-level="leve"]{background:var(--mild-soft); color:var(--mild);}
+.severity-badge[data-level="moderada"]{background:var(--moderate-soft); color:var(--moderate);}
+.severity-badge[data-level="grave"]{background:var(--severe-soft); color:var(--severe);}
+
+.condition-body{
+  max-height:0; overflow:hidden; transition:max-height 0.35s ease;
+}
+.condition-card.is-open .condition-body{max-height:8000px;}
+.condition-body-inner{padding:20px 22px 22px;}
+
+/* Alerta de cumplimiento de criterios (trastornos sin gravedad oficial: se
+   informa en cambio si el patrón completo queda o no diagnósticamente
+   cumplido con lo marcado hasta el momento) */
+.criteria-alert{
+  margin-bottom:18px; padding:13px 16px; border-radius:8px;
+  border:1px solid var(--border); background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;
+}
+.criteria-alert .alert-dot{width:9px; height:9px; border-radius:50%; background:var(--ink-faint); flex-shrink:0;}
+.criteria-alert strong{color:var(--ink);}
+.criteria-alert.is-met{background:var(--mild-soft); border-color:var(--mild);}
+.criteria-alert.is-met .alert-dot{background:var(--mild);}
+.criteria-alert.is-met strong{color:var(--mild);}
+
+.criterion{
+  border-top:1px solid var(--border); padding:16px 0;
+}
+.criterion:first-child{border-top:none; padding-top:6px;}
+.criterion-main{display:flex; gap:12px; align-items:flex-start;}
+.criterion-main input{margin-top:3px; width:20px; height:20px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.criterion-num{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); flex-shrink:0; margin-top:2px;}
+.criterion-text{font-size:14px; color:var(--ink); cursor:pointer;}
+.criterion-evidence{margin-top:10px; margin-left:29px; display:none;}
+.criterion.is-checked .criterion-evidence{display:block;}
+.criterion-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+.severity-summary{
+  margin-top:8px; padding:14px 16px; border-radius:8px; background:var(--surface);
+  font-size:13.5px; color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.severity-summary strong{color:var(--ink); font-family:var(--font-mono);}
+
+/* ---- Bloque "pool": un mínimo de N síntomas dentro de un mismo criterio ---- */
+.pool-block{border-top:1px solid var(--border); padding:16px 0;}
+.pool-block:first-child{border-top:none; padding-top:6px;}
+.pool-heading{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.pool-heading-text{font-size:14px; color:var(--ink); flex:1; min-width:200px;}
+.pool-counter{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:99px; white-space:nowrap;
+  background:var(--accent-soft); color:var(--accent-dark);
+}
+.pool-items{display:flex; flex-direction:column; gap:2px; margin-left:29px;}
+.pool-item{display:flex; align-items:flex-start; gap:10px; padding:6px 0; font-size:13.5px; color:var(--ink); cursor:pointer;}
+.pool-item input{margin-top:3px; width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; cursor:pointer;}
+.pool-evidence{margin-top:10px; margin-left:29px;}
+.pool-evidence label{font-size:12px; color:var(--ink-faint); display:block; margin-bottom:5px;}
+
+/* ---- Lista dinámica (integrantes) ---- */
+.dynamic-list-row{display:flex; gap:8px; align-items:center; margin-bottom:8px;}
+.dynamic-list-row input{flex:1;}
+.btn-remove-item{
+  flex-shrink:0; width:40px; height:40px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--ink-faint); font-size:18px; line-height:1;
+  cursor:pointer; transition:all 0.15s ease;
+}
+.btn-remove-item:hover{border-color:var(--severe); color:var(--severe); background:var(--severe-soft);}
+.btn-add-item{
+  margin-top:4px; font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--accent); background:var(--accent-soft); border:1px solid transparent;
+  border-radius:8px; padding:9px 16px; cursor:pointer; transition:background 0.15s ease;
+}
+.btn-add-item:hover{background:var(--accent); color:#fff;}
+
+/* ---- Buttons ---- */
+.btn{
+  font-family:var(--font-body); font-size:14.5px; font-weight:600;
+  padding:13px 26px; border-radius:9px; border:1px solid transparent;
+  cursor:pointer; transition:transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-primary:active{transform:scale(0.98);}
+.btn-secondary{background:#fff; color:var(--accent); border-color:var(--accent);}
+.btn-secondary:hover{background:var(--accent-soft);}
+.btn-secondary:active{transform:scale(0.98);}
+.btn:disabled{opacity:0.5; cursor:not-allowed;}
+.save-actions{display:flex; gap:10px; flex-wrap:wrap;}
+
+.save-bar{
+  position:sticky; bottom:0; left:0; right:0;
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(6px);
+  border-top:1px solid var(--border);
+  padding:16px clamp(20px,4vw,64px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.save-status{font-size:12.5px; color:var(--ink-faint); flex:1 1 200px; min-width:0;}
+.save-status.ok{color:var(--mild);}
+.save-status.warn{color:var(--severe);}
+
+/* En pantallas angostas la barra deja de flotar. Fija ocupaba casi media
+   pantalla del celular mientras el grupo escribia, y ahi no sirve para nada:
+   se usa al final. Pasa al cierre del documento, despues del ultimo bloque. */
+@media (max-width:900px){
+  .save-bar{
+    position:static;
+    margin:0;
+    padding:20px 16px 30px;
+    background:var(--surface);
+    backdrop-filter:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea */
+  /* El aviso de autoguardado va arriba de los botones y en una sola linea.
+     El flex:0 0 auto es imprescindible: la regla de escritorio usa
+     flex:1 1 200px, y al apilarse en columna esos 200px dejan de ser ancho y
+     pasan a ser ALTO. Ese era el bulto que se comia media pantalla. */
+  .save-status{order:-1; text-align:center; font-size:12px; flex:0 0 auto;}
+  /* Los dos botones comparten una fila: la mitad de alto que apilados */
+  .save-actions{flex-direction:row; gap:10px;}
+  .save-actions .btn{flex:1 1 0; min-width:0; padding:13px 8px; font-size:13.5px;}
+  /* Ya no hay barra flotante que tapar: se recupera ese espacio al final */
+  .main{padding-bottom:8px;}
+}
+
+/* Muy angosto: los dos rotulos no entran lado a lado */
+@media (max-width:360px){
+  .save-actions{flex-direction:column;}
+}
+
+/* ---- Restriction toast ---- */
+.toast{
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px;
+  font-size:13px; opacity:0; pointer-events:none; transition:all 0.25s ease;
+  z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+
+/* ---- Aviso de JavaScript (visible solo si el script no arranca) ---- */
+.js-warning{
+  background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe);
+  padding:14px 18px; border-radius:var(--radius); font-size:14px; margin-bottom:24px;
+  line-height:1.5;
+}
+
+/* ---- Veredicto: una opción y una línea ---- */
+.campo-sub{font-size:12.5px; color:var(--ink-soft); font-weight:600; display:block; margin:14px 0 6px;}
+.option-list.invalid{border-radius:8px;}
+
+@media print{.sidebar,.save-bar{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     EMBEDDED DATA
+     Al guardar la actividad, este bloque se reescribe con las
+     respuestas del estudiante para que el archivo, al reabrirse,
+     se rehidrate automáticamente.
+     ============================================================ -->
+<script id="saved-data" type="application/json">{}</script>
+
+<div class="app-shell">
+
+  <!-- ============================================================
+       SIDEBAR / NAVEGACIÓN
+       ============================================================ -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">ESPACIO DE DISCUSIÓN</div>
+    <div class="sidebar-title">Corte 2<br>El interconductismo a debate</div>
+
+    <ul class="nav-list" id="nav-list">
+      <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>Ruptura o evolución</a></li>
+      <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>El lenguaje ordinario</a></li>
+    </ul>
+
+    <div class="progress-block">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span class="progress-pct" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="autosave-note" id="autosave-note">Guardado automático activo</div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       CONTENIDO PRINCIPAL
+       ============================================================ -->
+  <main class="main">
+
+    <!-- Aviso si el archivo se abre en un visor que NO ejecuta JavaScript.
+         Se oculta automáticamente en cuanto el script arranca. -->
+    <noscript>
+      <div class="js-warning">
+        Este recurso necesita JavaScript para funcionar. Ábranlo en un navegador
+        (Chrome, Edge, Firefox o Safari), no dentro de un visor de archivos ni de la
+        vista previa de una app de mensajería.
+      </div>
+    </noscript>
+    <div class="js-warning" id="js-warning-fallback">
+      Si ven este mensaje, el recurso no se está ejecutando. Ábranlo en un navegador
+      (Chrome, Edge, Firefox o Safari), no dentro de un visor de archivos ni de la vista
+      previa de una app de mensajería.
+    </div>
+
+    <header class="masthead">
+      <div class="masthead-eyebrow">Espacio de discusión · Interconductismo, J. R. Kantor</div>
+      <h1>El interconductismo a debate</h1>
+      <p>Kantor rechaza la fórmula estímulo–respuesta como unidad de análisis y propone en su lugar la interconducta, la interacción en un campo entre organismo y entorno. Tomen postura en las dos preguntas y sosténganla con argumentos; el tablero mostrará cómo se repartió el curso.</p>
+      <p>
+        Escriban sus respuestas manualmente: copiar, pegar y cortar están deshabilitados en este formulario.
+        Al presionar "Guardar actividad" se genera un PDF rellenable con sus respuestas: en el celular se abre
+        el menú para compartirlo (WhatsApp, correo, Drive) y en el computador se descarga. Al terminar,
+        presionen además "Enviar al docente": se abrirá una pestaña confirmando que las respuestas llegaron.
+      </p>
+      <a class="link-rubrica" target="_blank" rel="noopener"
+         href="https://juanboya7.github.io/seminario-clinico/conductismo/taller-corte2-rubrica.html">
+        Ver la rúbrica de evaluación &rarr;
+      </a>
+    </header>
+
+    <!-- ============ BLOQUE 0 — DATOS DEL GRUPO ============ -->
+    <section class="block" id="bloque-0">
+      <div class="block-heading"><h2>Datos del grupo</h2></div>
+      <div class="card">
+        <div class="card-label">Grupo del curso <span class="required-mark">*</span></div>
+        <div class="card-help">Seleccionen el grupo de la asignatura.</div>
+        <select id="ct-curso" data-required="true">
+          <option value="">— Seleccionar —</option>
+          <option value="402">402</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="card-label">Grupo de trabajo <span class="required-mark">*</span></div>
+        <div class="card-help">Escriban únicamente el número.</div>
+        <div class="input-prefixed">
+          <span class="input-prefix">Grupo</span>
+          <input type="text" id="f-grupo" data-required="true" inputmode="numeric" maxlength="3" placeholder="4">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Integrantes <span class="required-mark">*</span></div>
+        <div class="card-help">Agreguen el nombre de cada integrante del grupo.</div>
+        <div class="dynamic-list" id="list-integrantes"></div>
+        <button type="button" class="btn-add-item" id="btn-add-integrante">+ Agregar integrante</button>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 1 — RUPTURA O EVOLUCIÓN ============ -->
+    <section class="block" id="bloque-1">
+      <div class="block-heading">
+        <span class="block-index">01</span>
+        <h2>Ruptura o evolución</h2>
+      </div>
+      <div class="card">
+        <div class="card-label">¿La propuesta de Kantor es una ruptura con el conductismo clásico o una evolución dentro de él? <span class="required-mark">*</span></div>
+        <div class="option-list" data-group="p1-postura" data-required="true">
+          <label class="option-row"><input type="radio" name="p1-postura" value="ruptura"><span>Una ruptura con el conductismo clásico</span></label>
+          <label class="option-row"><input type="radio" name="p1-postura" value="evolucion"><span>Una evolución dentro del conductismo</span></label>
+        </div>
+        <label class="campo-sub" for="f-p1">¿Por qué?</label>
+        <textarea id="f-p1" data-etiqueta="Ruptura o evolución — por qué" data-required="true" rows="4" maxlength="1200"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ BLOQUE 2 — EL LENGUAJE ORDINARIO ============ -->
+    <section class="block" id="bloque-2">
+      <div class="block-heading">
+        <span class="block-index">02</span>
+        <h2>El lenguaje ordinario</h2>
+      </div>
+      <div class="card">
+        <div class="card-label">¿Aprueban o desaprueban la crítica del interconductismo al uso del lenguaje ordinario en psicología? <span class="required-mark">*</span></div>
+        <div class="option-list" data-group="p2-postura" data-required="true">
+          <label class="option-row"><input type="radio" name="p2-postura" value="aprueba"><span>La aprobamos</span></label>
+          <label class="option-row"><input type="radio" name="p2-postura" value="desaprueba"><span>La desaprobamos</span></label>
+        </div>
+        <label class="campo-sub" for="f-p2">Justifiquen con argumentos teóricos y prácticos.</label>
+        <textarea id="f-p2" data-etiqueta="Lenguaje ordinario — argumentos" data-required="true" rows="4" maxlength="1200"></textarea>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Barra fija de guardado -->
+<div class="save-bar">
+  <div class="save-status" id="save-status">Los cambios se guardan automáticamente en este navegador.</div>
+  <div class="save-actions">
+    <button class="btn btn-secondary" id="btn-guardar">Guardar actividad</button>
+    <button class="btn btn-primary" id="btn-enviar">Enviar al docente</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
+
+<script>
+/* ============================================================
+   1. DATOS DE CONTENIDO
+   ============================================================ */
+// Sin contenido variable: las preguntas están en el marcado. Consigna: diapositiva «Taller en clase» (lámina 12) del deck «Jacob R. Kantor: interconductismo».
+
+/* ============================================================
+   2. ESTADO DE LA APLICACIÓN
+   ============================================================ */
+const state = {
+  text: {},      // inputs / textareas simples,  { id: valor }
+  radio: {},     // grupos de selección única,   { groupName: valor }
+  checkbox: {},  // grupos de selección múltiple,{ groupName: [valores] }
+  criteria: {},  // sin checklist en esta actividad: se conserva por compatibilidad del motor
+  conditionOpen: {},
+  lists: { integrantes: [] } // listas dinámicas: { id, value }[]
+};
+
+/* ============================================================
+   3. RESTRICCIÓN DE COPIAR / PEGAR / CORTAR
+   ============================================================ */
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg || "Copiar, cortar y pegar están deshabilitados en este formulario.";
+  t.classList.add("is-visible");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove("is-visible"), 2400);
+}
+
+function initInputRestrictions(){
+  const block = (e) => { e.preventDefault(); showToast(); };
+  // No entra ni sale texto del formulario: se bloquean copiar, cortar, pegar, soltar
+  // y arrastrar una selección hacia afuera. Las respuestas se leen en la hoja de envíos.
+  ["copy","cut","paste","drop","dragstart"].forEach(evt => {
+    document.addEventListener(evt, block);
+  });
+  // Atajos de teclado: Ctrl/Cmd + C (copiar), V (pegar) y X (cortar)
+  document.addEventListener("keydown", (e) => {
+    const key = (e.key || "").toLowerCase();
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && ["c","v","x"].includes(key)) {
+      e.preventDefault();
+      showToast();
+    }
+  });
+}
+
+/* ============================================================
+   5. LISTA DINÁMICA REUTILIZABLE (integrantes)
+   ============================================================ */
+let dynamicListCounter = 0;
+
+// state.lists = { integrantes: [{id, value}] }
+
+function createDynamicListRow(listKey, id, value, placeholder, removeTitle){
+  const row = document.createElement("div");
+  row.className = "dynamic-list-row";
+  row.dataset.itemId = id;
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = placeholder;
+  input.value = value || "";
+
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "btn-remove-item";
+  removeBtn.title = removeTitle;
+  removeBtn.textContent = "×";
+
+  input.addEventListener("input", () => {
+    const item = state.lists[listKey].find(i => i.id === id);
+    if (item) item.value = input.value;
+    updateProgress();
+    persistToLocalStorage();
+  });
+
+  removeBtn.addEventListener("click", () => {
+    state.lists[listKey] = state.lists[listKey].filter(i => i.id !== id);
+    row.remove();
+    updateProgress();
+    persistToLocalStorage();
+  });
+
+  row.appendChild(input);
+  row.appendChild(removeBtn);
+  return row;
+}
+
+function addDynamicListItem(listKey, containerId, placeholder, removeTitle, value){
+  dynamicListCounter++;
+  const id = "item" + dynamicListCounter;
+  state.lists[listKey].push({ id, value: value || "" });
+  document.getElementById(containerId).appendChild(
+    createDynamicListRow(listKey, id, value || "", placeholder, removeTitle)
+  );
+  updateProgress();
+  persistToLocalStorage();
+}
+
+function initDynamicList(listKey, containerId, addButtonId, placeholder, removeTitle, minRows){
+  const loaded = (state.lists[listKey] && state.lists[listKey].length > 0) ? state.lists[listKey].slice() : null;
+  state.lists[listKey] = [];
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  if (loaded) {
+    loaded.forEach(item => addDynamicListItem(listKey, containerId, placeholder, removeTitle, item.value));
+  } else {
+    for (let i = 0; i < minRows; i++) addDynamicListItem(listKey, containerId, placeholder, removeTitle, "");
+  }
+
+  document.getElementById(addButtonId).addEventListener("click", () =>
+    addDynamicListItem(listKey, containerId, placeholder, removeTitle, "")
+  );
+}
+
+function listHasContent(listKey){
+  return state.lists[listKey] && state.lists[listKey].some(i => i.value && i.value.trim().length > 0);
+}
+
+/* ============================================================
+   6. CAMPOS SIMPLES (texto, textarea, radio, checkbox, select)
+   ============================================================ */
+function initSimpleFields(){
+  // inputs de texto y textareas identificados por id
+  document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
+    el.addEventListener("input", () => {
+      state.text[el.id] = el.value;
+      updateProgress();
+      persistToLocalStorage();
+    });
+    el.addEventListener("change", () => {
+      state.text[el.id] = el.value;
+      updateProgress();
+      persistToLocalStorage();
+    });
+  });
+
+  // grupos de opción única (radio)
+  document.querySelectorAll('.option-list[data-group]').forEach(group => {
+    const name = group.dataset.group;
+    const isMulti = group.dataset.multi === "true";
+    group.querySelectorAll("input").forEach(input => {
+      input.addEventListener("change", () => {
+        group.querySelectorAll(".option-row").forEach(row => {
+          const inp = row.querySelector("input");
+          row.classList.toggle("is-checked", inp.checked);
+        });
+        if (isMulti) {
+          const values = Array.from(group.querySelectorAll("input:checked")).map(i => i.value);
+          state.checkbox[name] = values;
+        } else {
+          state.radio[name] = input.value;
+        }
+        updateProgress();
+        persistToLocalStorage();
+      });
+    });
+  });
+}
+
+/* ============================================================
+   6-bis. NUMERO DE GRUPO (solo digitos)
+   ============================================================
+   La palabra "Grupo" es parte del disenio del campo, no algo que el estudiante
+   escriba: si cada grupo elige su propio formato ("Grupo 7", "7", "grupo7"),
+   se pierde la trazabilidad en el nombre del archivo y en la hoja de entregas.
+   Este filtro descarta todo lo que no sea un digito.
+   ============================================================ */
+function initGrupoNumerico(){
+  const el = document.getElementById("f-grupo");
+  if (!el) return;
+  // Se registra despues del listener generico de initSimpleFields, asi que el
+  // valor que queda en el estado es siempre el ya filtrado.
+  el.addEventListener("input", () => {
+    const limpio = el.value.replace(/\D/g, "");
+    if (el.value !== limpio) el.value = limpio;
+    state.text["f-grupo"] = limpio;
+    updateProgress();
+    persistToLocalStorage();
+  });
+}
+
+/* ============================================================
+   7. BARRA DE PROGRESO
+   ============================================================ */
+function computeProgress(){
+  let total = 0, filled = 0;
+
+  // Lista dinámica obligatoria: integrantes del grupo
+  total++;
+  if (listHasContent("integrantes")) filled++;
+
+  // Campos de texto obligatorios
+  document.querySelectorAll('[data-required="true"]').forEach(el => {
+    if (el.classList && el.classList.contains("option-list")) {
+      total++;
+      const name = el.dataset.group;
+      const isMulti = el.dataset.multi === "true";
+      if (isMulti) {
+        if (state.checkbox[name] && state.checkbox[name].length > 0) filled++;
+      } else {
+        if (state.radio[name]) filled++;
+      }
+    } else if (el.tagName === "TEXTAREA" || el.tagName === "INPUT" || el.tagName === "SELECT") {
+      total++;
+      if (el.value && el.value.trim().length > 0) filled++;
+    }
+  });
+
+  const pct = total === 0 ? 0 : Math.round((filled / total) * 100);
+  return pct;
+}
+
+function updateProgress(){
+  const pct = computeProgress();
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-pct").textContent = pct + "%";
+
+  // marcar secciones completas en el menú lateral
+  document.querySelectorAll(".block").forEach(section => {
+    const requiredEls = section.querySelectorAll('[data-required="true"]');
+    let done = true;
+    let requiredCount = requiredEls.length;
+    if (section.id === "bloque-0") {
+      requiredCount++;
+      if (!listHasContent("integrantes")) done = false;
+    }
+    requiredEls.forEach(el => {
+      if (el.classList.contains("option-list")) {
+        const name = el.dataset.group;
+        const isMulti = el.dataset.multi === "true";
+        const ok = isMulti ? (state.checkbox[name] && state.checkbox[name].length > 0) : !!state.radio[name];
+        if (!ok) done = false;
+      } else if (!el.value || !el.value.trim()) {
+        done = false;
+      }
+    });
+    const navItem = document.querySelector(`.nav-item[data-target="${section.id}"]`);
+    if (navItem) navItem.classList.toggle("is-complete", done && requiredCount > 0);
+  });
+}
+
+/* ============================================================
+   8. PERSISTENCIA — localStorage (autoguardado) + JSON incrustado
+   ============================================================ */
+// El autoguardado se vincula a una "sesión" concreta. Un archivo en blanco (saved-data = {})
+// genera una sesión nueva y limpia cada vez que se abre por primera vez, de modo que la
+// plantilla repartida NUNCA hereda respuestas de una sesión anterior en el mismo navegador.
+// Un archivo ya guardado (con datos incrustados) reabre su propia sesión y conserva el respaldo.
+// Cada vez que cambian los campos de la actividad cambia la clave: así un
+// navegador que guardó la versión anterior no le rehidrata a nadie campos que
+// ya no existen.
+const STORAGE_PREFIX = "c402_taller2_v1:";
+let SESSION_KEY = null;
+
+function computeSessionKey(embeddedRaw){
+  if (embeddedRaw && embeddedRaw !== "{}") {
+    // Archivo guardado: clave estable derivada del contenido, para reabrir su propio respaldo.
+    let hash = 0;
+    for (let i = 0; i < embeddedRaw.length; i++) {
+      hash = ((hash << 5) - hash + embeddedRaw.charCodeAt(i)) | 0;
+    }
+    return STORAGE_PREFIX + "saved_" + Math.abs(hash);
+  }
+  // Archivo en blanco: sesión nueva por pestaña (no persiste entre reaperturas de la plantilla).
+  try {
+    // Si el grupo ya se identifico en esta pestana, se reusa SU clave. Esto es
+    // lo que hace seguro volver atras despues de enviar: al regresar, la pagina
+    // se ejecuta de nuevo y sin esto arrancaria con una sesion vacia mientras el
+    // navegador repone los textos en pantalla — el grupo veria sus respuestas
+    // pero la actividad estaria vacia por dentro, y un segundo envio saldria
+    // incompleto.
+    const fijada = sessionStorage.getItem(STORAGE_PREFIX + "clave");
+    if (fijada) return fijada;
+
+    let sid = sessionStorage.getItem(STORAGE_PREFIX + "sid");
+    if (!sid) {
+      sid = "s" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+      sessionStorage.setItem(STORAGE_PREFIX + "sid", sid);
+    }
+    return STORAGE_PREFIX + sid;
+  } catch (e) {
+    return STORAGE_PREFIX + "fallback";
+  }
+}
+
+// ---- Identidad del grupo: curso + numero de grupo ----------------------
+// Antes la clave del autoguardado se derivaba de sessionStorage, que muere al
+// cerrar la pestana. Con los recursos repartidos como enlace, eso significaba
+// perder la actividad entera si el grupo cerraba el navegador.
+// Ahora, en cuanto el grupo se identifica (curso + numero), el autoguardado
+// pasa a una clave estable derivada de esos dos datos: el mismo grupo recupera
+// su trabajo al reabrir el enlace, y otro grupo distinto en el mismo
+// computador sigue viendo el formulario limpio, que era el motivo original de
+// no usar una clave fija.
+let ARCHIVO_GUARDADO = false;
+
+function claveDeGrupo(){
+  const curso = (state.text["ct-curso"] || "").trim();
+  const grupo = (state.text["f-grupo"] || "").trim();
+  if (!curso || !grupo) return null;
+  return STORAGE_PREFIX + "g" + curso + "-" + grupo;
+}
+
+// Distingue "el formulario esta vacio" de "ya hay trabajo hecho". El curso y el
+// numero de grupo no cuentan: son la identificacion, no una respuesta.
+function hayRespuestas(datos){
+  if (!datos) return false;
+  const textos = datos.text || {};
+  const escrito = Object.keys(textos).some(k =>
+    k !== "ct-curso" && k !== "f-grupo" && (textos[k] || "").trim().length > 0);
+  if (escrito) return true;
+  const criterios = datos.criteria || {};
+  if (Object.keys(criterios).some(k => criterios[k] && criterios[k].checked)) return true;
+  const listas = datos.lists || {};
+  return Object.keys(listas).some(k =>
+    (listas[k] || []).some(i => (i.value || "").trim().length > 0));
+}
+
+// Se dispara cuando el grupo termina de identificarse (al salir del campo, no
+// en cada tecla: si corriera por tecla, escribir "12" pasaria por el grupo "1"
+// y podria ofrecer la actividad de otro grupo).
+function vincularClaveAlGrupo(){
+  if (ARCHIVO_GUARDADO) return;          // archivo ya entregado: conserva su clave
+  const clave = claveDeGrupo();
+  if (!clave || clave === SESSION_KEY) return;
+
+  let guardado = null;
+  try {
+    const bruto = localStorage.getItem(clave);
+    if (bruto) guardado = JSON.parse(bruto);
+  } catch (e) { guardado = null; }
+
+  if (hayRespuestas(guardado) && !hayRespuestas(state)) {
+    // Se pregunta siempre. Restaurar en silencio seria peor: si el numero se
+    // tecleo mal, el grupo veria respuestas ajenas sin entender de donde salen.
+    const seguir = window.confirm(
+      "Encontramos una actividad guardada en este navegador para el grupo " +
+      state.text["f-grupo"] + " del " + state.text["ct-curso"] + ".\n\n" +
+      "Aceptar: continuar esa actividad.\n" +
+      "Cancelar: empezar de cero (se reemplaza lo anterior).");
+    if (seguir) {
+      try {
+        // Se fija la clave del grupo y se recarga: la rehidratacion usa el
+        // camino de siempre y no hay que repintar a mano los checklists de
+        // cada caso.
+        sessionStorage.setItem(STORAGE_PREFIX + "clave", clave);
+        sessionStorage.setItem(STORAGE_PREFIX + "recuperado", "1");
+        location.reload();
+        return;
+      } catch (e) { /* si falla, se sigue de largo sin recuperar */ }
+    }
+  }
+
+  const anterior = SESSION_KEY;
+  SESSION_KEY = clave;
+  try { sessionStorage.setItem(STORAGE_PREFIX + "clave", clave); } catch (e) {}
+  persistToLocalStorage();
+
+  // La clave temporal de sesion ya no sirve: su contenido acaba de quedar bajo
+  // la clave del grupo. Sin esto se acumula una por cada apertura del enlace y,
+  // en un computador compartido, con el tiempo se llena el almacenamiento del
+  // navegador y el autoguardado deja de funcionar.
+  try {
+    const esTemporal = anterior && anterior !== clave &&
+      anterior.indexOf(STORAGE_PREFIX + "saved_") !== 0 &&
+      anterior.indexOf(STORAGE_PREFIX + "g") !== 0;
+    if (esTemporal) localStorage.removeItem(anterior);
+  } catch (e) { /* si el navegador lo impide, solo queda una clave de mas */ }
+}
+
+function initClavePorGrupo(){
+  const curso = document.getElementById("ct-curso");
+  const grupo = document.getElementById("f-grupo");
+  if (curso) curso.addEventListener("change", vincularClaveAlGrupo);
+  if (grupo) grupo.addEventListener("change", vincularClaveAlGrupo);  // al salir del campo
+  if (grupo) grupo.addEventListener("blur", vincularClaveAlGrupo);
+  // Si ya venian cargados (recarga tras recuperar), se vincula de entrada.
+  vincularClaveAlGrupo();
+}
+
+function avisarSiSeRecupero(){
+  try {
+    if (sessionStorage.getItem(STORAGE_PREFIX + "recuperado") !== "1") return;
+    sessionStorage.removeItem(STORAGE_PREFIX + "recuperado");
+    const status = document.getElementById("save-status");
+    status.textContent = "Se recuperó la actividad guardada de este grupo.";
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  } catch (e) { /* sin sessionStorage no hay aviso, pero tampoco error */ }
+}
+
+function persistToLocalStorage(){
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(state));
+    const status = document.getElementById("save-status");
+    status.textContent = "Cambios guardados automáticamente · " + new Date().toLocaleTimeString();
+    status.classList.remove("warn");
+    status.classList.add("ok");
+  } catch (err) {
+    const status = document.getElementById("save-status");
+    status.textContent = "No se pudo autoguardar en este navegador.";
+    status.classList.add("warn");
+  }
+}
+
+function loadInitialState(){
+  // 1) Prioridad: datos incrustados en el propio archivo HTML (al reabrir uno ya guardado)
+  const embedded = document.getElementById("saved-data").textContent.trim();
+  ARCHIVO_GUARDADO = !!(embedded && embedded !== "{}");
+  SESSION_KEY = computeSessionKey(embedded);
+  let loaded = null;
+  if (embedded && embedded !== "{}") {
+    try { loaded = JSON.parse(embedded); } catch (e) { loaded = null; }
+  }
+  // 2) Si no hay datos incrustados, recuperar solo el autoguardado de ESTA sesión (misma pestaña)
+  if (!loaded) {
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (raw) loaded = JSON.parse(raw);
+    } catch (e) { loaded = null; }
+  }
+  if (loaded) {
+    Object.assign(state.text, loaded.text || {});
+    Object.assign(state.radio, loaded.radio || {});
+    Object.assign(state.checkbox, loaded.checkbox || {});
+    Object.assign(state.criteria, loaded.criteria || {});
+    Object.assign(state.conditionOpen, loaded.conditionOpen || {});
+    state.lists.integrantes = Array.isArray(loaded.lists && loaded.lists.integrantes) ? loaded.lists.integrantes : [];
+  }
+}
+
+function applyStateToDOM(){
+  // texto / textarea / select
+  Object.keys(state.text).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = state.text[id];
+  });
+
+  // radios
+  Object.keys(state.radio).forEach(name => {
+    const value = state.radio[name];
+    const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (input) {
+      input.checked = true;
+      const row = input.closest(".option-row");
+      if (row) row.classList.add("is-checked");
+    }
+  });
+
+  // checkboxes múltiples
+  Object.keys(state.checkbox).forEach(name => {
+    (state.checkbox[name] || []).forEach(value => {
+      const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+      if (input) {
+        input.checked = true;
+        const row = input.closest(".option-row");
+        if (row) row.classList.add("is-checked");
+      }
+    });
+  });
+
+}
+
+/* ============================================================
+   9. GUARDAR ACTIVIDAD (genera un PDF rellenable: ver pdf-rellenable.js)
+   ============================================================ */
+function slugify(text){
+  return (text || "grupo")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "") || "grupo";
+}
+
+function buildDownloadableHTML(){
+  const clone = document.documentElement.cloneNode(true);
+  const dataScript = clone.querySelector("#saved-data");
+  dataScript.textContent = JSON.stringify(state);
+  return "<!DOCTYPE html>\n" + clone.outerHTML;
+}
+
+function initSaveButton(){
+  document.getElementById("btn-guardar").addEventListener("click", async () => {
+    const grupo = state.text["f-grupo"] || "";
+    const curso = (state.text["ct-curso"] || "sin-curso");
+    const numero = grupo.trim() || "sin-numero";
+    const filename = `${curso}-taller-corte2-grupo-${numero}.pdf`;
+    const status = document.getElementById("save-status");
+    const boton = document.getElementById("btn-guardar");
+    const textoBoton = boton.textContent;
+    boton.disabled = true;
+    boton.textContent = "Preparando PDF…";
+    try {
+      // El PDF rellenable se arma en el navegador con un módulo compartido
+      // por todas las actividades; se carga solo al guardar.
+      if (!window.PDFActividad) {
+        await new Promise((ok, mal) => {
+          const s = document.createElement("script");
+          s.src = "https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js?v=" + Date.now();   // siempre la versión vigente
+          s.onload = ok; s.onerror = mal;
+          document.head.appendChild(s);
+        });
+      }
+      const r = await PDFActividad.compartir({ archivo: filename });
+      if (r === "cancelado") return;   // cerraron el menú de compartir a propósito
+      status.textContent = (r === "compartido" ? "PDF listo para enviar · " : "PDF descargado · ") +
+        new Date().toLocaleTimeString();
+      status.classList.remove("warn");
+      status.classList.add("ok");
+    } catch (err) {
+      status.textContent = "No se pudo generar el PDF. Revisen la conexión a internet e intenten de nuevo.";
+      status.classList.remove("ok");
+      status.classList.add("warn");
+    } finally {
+      boton.disabled = false;
+      boton.textContent = textoBoton;
+    }
+  });
+}
+
+/* ============================================================
+   9-bis. ENVÍO AL DOCENTE (Google Apps Script → hoja de cálculo)
+   ============================================================
+
+   Función ADICIONAL al guardado local: el archivo se sigue guardando y
+   entregando igual que antes. Esto solo agrega una copia de las respuestas en
+   una hoja de cálculo del docente.
+
+   Se envía con un formulario HTML oculto, no con fetch(). Es deliberado: los
+   estudiantes abren el archivo con doble clic (origen "file://" = null) y ahí
+   fetch() queda bloqueado por CORS. El formulario no tiene esa restricción, y
+   al abrirse en una pestaña nueva el grupo VE la confirmación de que llegó.
+   ============================================================ */
+
+const ENVIO = {
+  // Pegar acá la URL de la web app de Apps Script (termina en /exec).
+  // Mientras diga "PENDIENTE", el botón avisa que el envío no está configurado
+  // en vez de fallar en silencio.
+  url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxmCer6MqE9JD9MEAhyQnbvDZ8nWfTk1vIkaGZn7we2BAGtb6aDJoNCF6fdYXbIvBrY/exec",
+  curso: "TMC-2026-2",     // Teorías y métodos (402): CURSOS del receptor de casos
+  caso: "taller-corte2",
+  casoLabel: "Taller C2"   // la pestaña de la hoja es "402 Taller C2"
+};
+
+// Grupos de criterios que se vuelcan a la hoja. Es lo único que cambia entre
+// los recursos de cada caso.
+function gruposDeCriterios(){
+  return [];   // esta actividad no tiene checklist de criterios
+}
+
+function etiquetaDeCampo(el){
+  // Una tarjeta con dos respuestas (la opción y su línea) le da a la segunda un
+  // rótulo propio; si no, las dos caerían en la misma columna de la hoja.
+  if (el.dataset && el.dataset.etiqueta) return el.dataset.etiqueta;
+  const card = el.closest(".card");
+  const label = card && card.querySelector(".card-label");
+  return label ? label.textContent.replace(/\*/g, "").trim() : el.id;
+}
+
+function textoDeCriterio(stateKey){
+  const cb = document.getElementById("crit-" + stateKey);
+  if (!cb) return stateKey;
+  const row = cb.closest(".criterion");
+  if (row) {
+    const num = row.querySelector(".criterion-num");
+    const txt = row.querySelector(".criterion-text");
+    return ((num ? num.textContent.trim() + " " : "") + (txt ? txt.textContent.trim() : "")).trim();
+  }
+  const span = cb.parentElement && cb.parentElement.querySelector("span");
+  return span ? span.textContent.trim() : stateKey;
+}
+
+// Ordena las claves de criterio para que en la hoja aparezcan en el mismo orden
+// que en el checklist, no en el orden en que el grupo los fue marcando.
+function ordenarClaves(claves){
+  const peso = (k) => {
+    const m = k.match(/-(pool|req)-(\d+)$/) || k.match(/-(\d+)$/);
+    if (!m) return [9, 0];
+    if (m.length === 3) return [m[1] === "pool" ? 0 : 1, parseInt(m[2], 10)];
+    return [0, parseInt(m[1], 10)];
+  };
+  return claves.slice().sort((a, b) => {
+    const pa = peso(a), pb = peso(b);
+    return pa[0] - pb[0] || pa[1] - pb[1];
+  });
+}
+
+function recogerEnvio(){
+  const campos = {};
+
+  // Campos de texto y selects, etiquetados con el enunciado real de la pregunta
+  document.querySelectorAll(
+    'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
+  ).forEach(el => {
+    if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
+    let valor = el.value;
+    if (el.tagName === "SELECT" && el.selectedIndex >= 0) valor = el.options[el.selectedIndex].text;
+    if (valor && valor.trim()) campos[etiquetaDeCampo(el)] = valor.trim();
+  });
+
+  // Selección única (el veredicto): se vuelca el texto de la opción elegida.
+  document.querySelectorAll(".option-list[data-group]").forEach(grupo => {
+    const elegido = grupo.querySelector("input:checked");
+    if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
+  });
+
+  // Listas dinámicas (menos integrantes, que también tiene columna propia)
+  Object.keys(state.lists).forEach(listKey => {
+    if (listKey === "integrantes") return;
+    const valores = state.lists[listKey].map(i => (i.value || "").trim()).filter(Boolean);
+    if (!valores.length) return;
+    const cont = document.getElementById("list-" + listKey);
+    const card = cont && cont.closest(".card");
+    const label = card && card.querySelector(".card-label");
+    const etiqueta = label ? label.textContent.replace(/\*/g, "").trim() : listKey;
+    campos[etiqueta] = valores.map((v, i) => (i + 1) + ". " + v).join("\n");
+  });
+
+  // Checklist diagnóstico: criterios marcados, evidencia y resultado
+  gruposDeCriterios().forEach(g => {
+    const marcados = ordenarClaves(
+      Object.keys(state.criteria).filter(k =>
+        k.indexOf(g.key + "-") === 0 && state.criteria[k] && state.criteria[k].checked
+      )
+    );
+
+    campos["Criterios marcados — " + g.label] = marcados.length
+      ? marcados.map(k => "• " + textoDeCriterio(k)).join("\n")
+      : "(ninguno)";
+
+    const evidencias = marcados
+      .map(k => {
+        const e = (state.criteria[k].evidence || "").trim();
+        return e ? "• " + textoDeCriterio(k) + "\n   → " + e : null;
+      })
+      .filter(Boolean);
+
+    Object.keys(state.text).forEach(k => {
+      if (k.indexOf("poolevid-" + g.key) === 0 && (state.text[k] || "").trim()) {
+        evidencias.push("• Evidencia de los síntomas: " + state.text[k].trim());
+      }
+    });
+
+    if (evidencias.length) campos["Evidencia — " + g.label] = evidencias.join("\n");
+
+    const partes = [];
+    const badge = document.getElementById("badge-" + g.key);
+    const resumen = document.getElementById("summary-" + g.key);
+    const aviso = document.getElementById("alert-" + g.key);
+    if (badge) partes.push(badge.textContent.trim());
+    if (resumen) partes.push(resumen.textContent.trim());
+    else if (aviso) partes.push(aviso.textContent.trim());
+    if (partes.length) campos["Resultado — " + g.label] = partes.join(" · ");
+  });
+
+  return {
+    curso: ENVIO.curso,
+    caso: ENVIO.caso,
+    casoLabel: ENVIO.casoLabel,
+    cursoGrupo: (state.text["ct-curso"] || "").trim(),
+    grupo: (state.text["f-grupo"] || "").trim()
+      ? "Grupo " + state.text["f-grupo"].trim() : "",
+    integrantes: state.lists.integrantes
+      .map(i => (i.value || "").trim()).filter(Boolean).join("; "),
+    campos: campos,
+    estado: JSON.stringify(state)
+  };
+}
+
+function initSendButton(){
+  const boton = document.getElementById("btn-enviar");
+  if (!boton) return;
+
+  boton.addEventListener("click", () => {
+    const status = document.getElementById("save-status");
+    const avisar = (msg, ok) => {
+      status.textContent = msg;
+      status.classList.toggle("ok", !!ok);
+      status.classList.toggle("warn", !ok);
+    };
+
+    if (!/^https?:\/\//.test(ENVIO.url)) {
+      avisar("El envío en línea no está configurado en este archivo: guarden la actividad y entréguenla como archivo.", false);
+      return;
+    }
+
+    const faltante = highlightInvalidFields();
+    if (faltante) {
+      faltante.scrollIntoView({ behavior: "smooth", block: "center" });
+      avisar("Faltan campos obligatorios por completar antes de enviar.", false);
+      return;
+    }
+
+    // Se intenta abrir la confirmacion en una pestana nueva, pero muchos
+    // navegadores integrados bloquean las emergentes — entre ellos el de
+    // WhatsApp, que es justo por donde llega el enlace a los estudiantes.
+    // Con la emergente bloqueada, un form.submit() a target="_blank" no envia
+    // NADA y el grupo se queda creyendo que entrego. Por eso se sondea primero
+    // y, si esta bloqueada, se envia en la MISMA pestana: es preferible perder
+    // de vista el formulario que dar por entregada una actividad que no salio.
+    // Volver atras es seguro: el autoguardado quedo bajo la clave del grupo.
+    let destino = "_self";
+    try {
+      const ventana = window.open("", "entrega-actividad");
+      if (ventana) destino = "entrega-actividad";
+    } catch (e) { destino = "_self"; }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = ENVIO.url;
+    form.target = destino;
+    const campo = document.createElement("input");
+    campo.type = "hidden";
+    campo.name = "payload";
+    campo.value = JSON.stringify(recogerEnvio());
+    form.appendChild(campo);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+
+    avisar("Actividad enviada · " + new Date().toLocaleTimeString() +
+           " — revisen la pestaña de confirmación que se abrió.", true);
+  });
+}
+
+/* ============================================================
+   10. NAVEGACIÓN LATERAL (scroll suave)
+   ============================================================ */
+function initNav(){
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.getElementById(item.dataset.target);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+/* ============================================================
+   11. VALIDACIÓN AL GUARDAR (resalta campos obligatorios vacíos)
+   ============================================================ */
+function highlightInvalidFields(){
+  let firstInvalid = null;
+  document.querySelectorAll('[data-required="true"]').forEach(el => {
+    let ok = true;
+    if (el.classList.contains("option-list")) {
+      const name = el.dataset.group;
+      const isMulti = el.dataset.multi === "true";
+      ok = isMulti ? (state.checkbox[name] && state.checkbox[name].length > 0) : !!state.radio[name];
+      el.classList.toggle("invalid", !ok);
+    } else {
+      ok = !!(el.value && el.value.trim());
+      el.classList.toggle("invalid", !ok);
+    }
+    if (!ok && !firstInvalid) firstInvalid = el;
+  });
+  return firstInvalid;
+}
+
+
+/* ============================================================
+   11.5 RÚBRICA PLEGABLE AL PIE DE CADA CONSIGNA
+   ============================================================ */
+
+// Tres de los cuatro criterios de la rúbrica institucional 2.2 (el cuarto, el
+// trabajo en equipo y la expresión de ideas, se valora en la discusión y está en
+// taller-corte2-rubrica.html). Si cambian allá hay que cambiarlos acá también.
+const RUBRICA_CAMPOS = {
+  "bloque-1": {
+    peso: "30%",
+    rotulo: "Ver cómo se evalúa la profundidad",
+    destino: "seccion",
+    niveles: [
+      "No demuestra lectura ni comprensión del aporte de Kantor.",
+      "Reduce el interconductismo al esquema estímulo–respuesta o presenta errores conceptuales de base.",
+      "Describe el interconductismo de forma general, con imprecisiones en la noción de campo.",
+      "Explica los conceptos centrales del interconductismo con precisión, sin profundizar en el contraste con otras propuestas del enfoque.",
+      "Explica el campo interconductual y el segmento conductual como unidad de análisis, y diferencia la propuesta de Kantor de la del conductismo radical."
+]
+  },
+  "f-p1": {
+    peso: "25%",
+    rotulo: "Ver cómo se evalúa el contraste de ideas",
+    niveles: [
+      "No establece comparación alguna entre las propuestas discutidas.",
+      "Confunde las propuestas o atribuye a un autor planteamientos que corresponden a otro.",
+      "Señala diferencias evidentes entre las propuestas, sin sustento conceptual.",
+      "Contrasta correctamente dos de las propuestas trabajadas en la unidad.",
+      "Contrasta con fundamento el interconductismo con el conductismo radical y con la Teoría de los Marcos Relacionales, identificando continuidades y rupturas."
+]
+  },
+  "f-p2": {
+    peso: "25%",
+    rotulo: "Ver cómo se evalúa la conexión con el presente",
+    niveles: [
+      "No establece relación entre lo discutido y la aplicabilidad del enfoque.",
+      "Los ejemplos no corresponden al planteamiento interconductual.",
+      "Propone ejemplos genéricos, poco articulados con la noción de campo interconductual.",
+      "Presenta ejemplos pertinentes de aplicación, sin discutir los límites del planteamiento.",
+      "Ilustra con ejemplos propios cómo el análisis de campo permite comprender situaciones psicológicas actuales, señalando alcances y límites."
+]
+  }
+};
+
+const RUBRICA_ETIQUETAS = ["Deficiente", "Bajo", "Medio", "Alto", "Superior"];   // escala de la rúbrica institucional
+
+function construirPlegableRubrica(criterio){
+  const det = document.createElement("details");
+  det.className = "rubrica-inline";
+
+  const sum = document.createElement("summary");
+  sum.innerHTML = "<span>" + criterio.rotulo + "</span>" +
+                  "<span class=\"rubrica-peso\">" + criterio.peso + "</span>";
+  det.appendChild(sum);
+
+  const cont = document.createElement("div");
+  cont.className = "rubrica-niveles";
+  criterio.niveles.forEach((texto, i) => {
+    const fila = document.createElement("div");
+    fila.className = "rubrica-nivel";
+    fila.innerHTML = "<b>" + RUBRICA_ETIQUETAS[i] + "</b><span>" + texto + "</span>";
+    cont.appendChild(fila);
+  });
+  det.appendChild(cont);
+  return det;
+}
+
+function initRubricaEnLinea(){
+  Object.keys(RUBRICA_CAMPOS).forEach(id => {
+    const criterio = RUBRICA_CAMPOS[id];
+    const ancla = document.getElementById(id);
+    if (!ancla) return;
+    // Los plegables de bloque se cuelgan del final de la sección, no de una
+    // tarjeta: el checklist lo dibuja renderConditionChecklists dentro de
+    // #condition-checklists y cualquier cosa que quede ahí adentro se pierde en
+    // el siguiente redibujado; el de las situaciones evalúa las cuatro juntas.
+    const destino = criterio.destino === "seccion" ? ancla : ancla.closest(".card");
+    if (!destino) return;
+    const plegable = construirPlegableRubrica(criterio);
+    if (criterio.destino === "seccion") plegable.style.marginTop = "22px";
+    destino.appendChild(plegable);
+  });
+}
+
+/* ============================================================
+   12. INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  // El script arrancó: ocultamos el aviso de "no se está ejecutando".
+  const warn = document.getElementById("js-warning-fallback");
+  if (warn) warn.style.display = "none";
+
+  try {
+    loadInitialState();
+    initRubricaEnLinea();
+    initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
+    initSimpleFields();
+    initGrupoNumerico();
+    initClavePorGrupo();
+    avisarSiSeRecupero();
+    initInputRestrictions();
+    initSaveButton();
+    initSendButton();
+    initNav();
+    applyStateToDOM();
+    updateProgress();
+
+    // Autoguardado periódico de respaldo, además del guardado en cada evento
+    setInterval(persistToLocalStorage, 15000);
+  } catch (err) {
+    // Si algo falla al iniciar, mostramos el motivo en lugar de dejar la página inerte.
+    if (warn) {
+      warn.style.display = "block";
+      warn.textContent = "Ocurrió un error al iniciar el recurso: " + (err && err.message ? err.message : err) +
+        ". Intenta recargar la página en un navegador actualizado.";
+    }
+  }
+});
+</script>
+</body>
+</html>

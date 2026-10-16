@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un aporte, tres preguntas — Rúbrica</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n1-soft:#fbeae6;
+  --n2:#b8722a; --n2-soft:#faf1e4;
+  --n3:#3f7d53; --n3-soft:#e7f3ea;
+  --n4:#1f6f78; --n4-soft:#e2eff0;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:1000px; margin:0 auto; padding:24px 18px 60px;}
+
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead{margin-bottom:24px; max-width:760px;}
+.masthead h1{font-size:27px; line-height:1.2; margin-bottom:10px;}
+.masthead p{color:var(--ink-soft); margin:0 0 10px; font-size:14.5px;}
+.masthead b{color:var(--ink);}
+
+/* ---- Reparto del peso ---- */
+.pesos{display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap;}
+.peso-bloque{flex:1 1 240px; border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px 16px; background:var(--surface);}
+.peso-cifra{font-family:var(--font-mono); font-size:23px; font-weight:700; color:var(--accent-dark);}
+.peso-bloque h3{font-size:15px; margin:2px 0 4px;}
+.peso-bloque p{margin:0; font-size:13px; color:var(--ink-soft);}
+
+/* ---- Escala de desempeño ---- */
+.escala{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:26px;}
+.nivel-chip{border-radius:8px; padding:11px 10px; font-size:12.6px; line-height:1.35;}
+.nivel-chip b{display:block; font-size:13.5px; margin-bottom:2px;}
+.nivel-chip:nth-child(1){background:var(--n1-soft); color:var(--n1);}
+.nivel-chip:nth-child(2){background:var(--n2-soft); color:var(--n2);}
+.nivel-chip:nth-child(3){background:var(--n3-soft); color:var(--n3);}
+.nivel-chip:nth-child(4){background:var(--n4-soft); color:var(--n4);}
+
+/* ---- Criterios ---- */
+.criterio{border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:18px; overflow:hidden;}
+.criterio-cabeza{background:var(--surface); padding:16px 18px; border-bottom:1px solid var(--border);}
+.criterio-meta{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.criterio-num{font-family:var(--font-mono); font-size:11px; font-weight:700;
+  color:var(--accent); letter-spacing:0.06em;}
+.criterio-peso{font-family:var(--font-mono); font-size:11.5px; font-weight:700;
+  color:var(--accent-dark); background:var(--accent-soft);
+  padding:3px 9px; border-radius:99px;}
+.criterio-cabeza h2{font-size:19px; margin:3px 0 6px;}
+.criterio-cabeza p{margin:0; font-size:14px; color:var(--ink-soft); max-width:720px;}
+
+.niveles{display:grid; grid-template-columns:repeat(4,1fr);}
+.nivel{padding:14px; font-size:13px; border-right:1px solid var(--border); color:var(--ink-soft);}
+.nivel:last-child{border-right:none;}
+.nivel-titulo{font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;}
+.nivel:nth-child(1) .nivel-titulo{color:var(--n1);}
+.nivel:nth-child(2) .nivel-titulo{color:var(--n2);}
+.nivel:nth-child(3) .nivel-titulo{color:var(--n3);}
+.nivel:nth-child(4) .nivel-titulo{color:var(--n4);}
+
+.nota{border-radius:var(--radius); padding:16px 18px; font-size:14px;
+  margin-top:22px; max-width:820px;}
+.nota b{display:block; margin-bottom:5px;}
+.nota ul{margin:8px 0 0; padding-left:19px;}
+.nota li{margin-bottom:5px;}
+.nota-limite{background:var(--n2-soft); border:1px solid var(--n2); color:#6d4415;}
+.nota-limite b{color:var(--n2);}
+
+.nav{margin-top:36px; padding-top:18px; border-top:1px solid var(--border);
+  display:flex; gap:10px; flex-wrap:wrap;}
+.nav a{font-size:14px; color:var(--accent); text-decoration:none; font-weight:600;
+  border:1px solid var(--border); border-radius:8px; padding:10px 14px;}
+.nav a:hover{border-color:var(--accent); background:var(--accent-soft);}
+
+@media (max-width:820px){
+  .escala{grid-template-columns:repeat(2,1fr);}
+  .niveles{grid-template-columns:1fr;}
+  .nivel{border-right:none; border-bottom:1px solid var(--border);}
+  .nivel:last-child{border-bottom:none;}
+}
+@media print{.nav{display:none;}}
+[hidden]{display:none !important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Espacio de discusión · Contexto histórico y epistemológico del conductismo</div>
+    <h1>Rúbrica de la actividad</h1>
+    <p>Los criterios evalúan <b>al grupo</b>. Los tres primeros se leen en lo que el grupo escribe; el último, en la discusión en clase.</p>
+  </header>
+
+  <div class="pesos">
+    <div class="peso-bloque"><div class="peso-cifra">30%</div><h3>Profundidad en la comprensión del aporte</h3></div>
+    <div class="peso-bloque"><div class="peso-cifra">25%</div><h3>Capacidad de diferenciar y contrastar ideas</h3></div>
+    <div class="peso-bloque"><div class="peso-cifra">25%</div><h3>Conexión con el presente y su aplicabilidad</h3></div>
+    <div class="peso-bloque"><div class="peso-cifra">20%</div><h3>Trabajo en equipo y expresión de ideas</h3></div>
+  </div>
+
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta"><span class="criterio-num">CRITERIO 1</span><span class="criterio-peso">30%</span></div>
+      <h2>Profundidad en la comprensión del aporte</h2>
+    </div>
+    <div class="niveles">
+      <div class="nivel"><div class="nivel-titulo">Superior · 4,5 a 5,0</div>Explica el aporte del autor o corriente asignada con dominio conceptual, lo ubica en su contexto histórico y epistemológico y reconoce sus supuestos de base sobre la conducta.</div>
+      <div class="nivel"><div class="nivel-titulo">Alto · 4,0 a 4,4</div>Explica el aporte con precisión conceptual y lo ubica en su contexto histórico, aunque no profundiza en los supuestos epistemológicos que lo sustentan.</div>
+      <div class="nivel"><div class="nivel-titulo">Medio · 3,0 a 3,9</div>Describe el aporte de manera general, con imprecisiones menores; se queda en la reseña y no lo relaciona con el contexto de su surgimiento.</div>
+      <div class="nivel"><div class="nivel-titulo">Bajo · 2,0 a 2,9</div>Menciona el aporte de forma superficial o con errores conceptuales que afectan la comprensión del autor o de la corriente.</div>
+      <div class="nivel"><div class="nivel-titulo">Deficiente · 0,1 a 1,9</div>No demuestra lectura ni comprensión del aporte asignado; su intervención no corresponde al contenido trabajado.</div>
+    </div>
+  </div>
+
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta"><span class="criterio-num">CRITERIO 2</span><span class="criterio-peso">25%</span></div>
+      <h2>Capacidad de diferenciar y contrastar ideas</h2>
+    </div>
+    <div class="niveles">
+      <div class="nivel"><div class="nivel-titulo">Superior · 4,5 a 5,0</div>Establece semejanzas y diferencias sustentadas entre autores, escuelas o momentos históricos, identificando puntos de ruptura y de continuidad.</div>
+      <div class="nivel"><div class="nivel-titulo">Alto · 4,0 a 4,4</div>Contrasta correctamente al menos dos posturas, aunque el análisis de las rupturas y continuidades es incipiente.</div>
+      <div class="nivel"><div class="nivel-titulo">Medio · 3,0 a 3,9</div>Señala diferencias evidentes entre posturas, sin sustentarlas conceptualmente.</div>
+      <div class="nivel"><div class="nivel-titulo">Bajo · 2,0 a 2,9</div>Confunde posturas o autores al intentar contrastarlos.</div>
+      <div class="nivel"><div class="nivel-titulo">Deficiente · 0,1 a 1,9</div>No establece ninguna comparación; repite la información sin distinguir posiciones.</div>
+    </div>
+  </div>
+
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta"><span class="criterio-num">CRITERIO 3</span><span class="criterio-peso">25%</span></div>
+      <h2>Conexión con el presente y su aplicabilidad</h2>
+    </div>
+    <div class="niveles">
+      <div class="nivel"><div class="nivel-titulo">Superior · 4,5 a 5,0</div>Ilustra con ejemplos propios y pertinentes la vigencia del planteamiento en contextos actuales de la psicología, señalando sus alcances y sus límites.</div>
+      <div class="nivel"><div class="nivel-titulo">Alto · 4,0 a 4,4</div>Presenta ejemplos pertinentes de aplicación actual, aunque no discute los límites del planteamiento.</div>
+      <div class="nivel"><div class="nivel-titulo">Medio · 3,0 a 3,9</div>Propone ejemplos genéricos o poco articulados con el concepto discutido.</div>
+      <div class="nivel"><div class="nivel-titulo">Bajo · 2,0 a 2,9</div>Los ejemplos son inadecuados o no corresponden al planteamiento teórico asignado.</div>
+      <div class="nivel"><div class="nivel-titulo">Deficiente · 0,1 a 1,9</div>No establece relación alguna entre lo discutido y su aplicabilidad.</div>
+    </div>
+  </div>
+
+  <div class="criterio">
+    <div class="criterio-cabeza">
+      <div class="criterio-meta"><span class="criterio-num">CRITERIO 4</span><span class="criterio-peso">20%</span></div>
+      <h2>Trabajo en equipo y expresión de ideas</h2>
+    </div>
+    <div class="niveles">
+      <div class="nivel"><div class="nivel-titulo">Superior · 4,5 a 5,0</div>Todos los integrantes participan con dominio del tema, retoman y complementan las intervenciones de sus compañeros y comunican sus ideas con claridad y lenguaje disciplinar.</div>
+      <div class="nivel"><div class="nivel-titulo">Alto · 4,0 a 4,4</div>La mayoría de los integrantes participa con claridad; se evidencia preparación conjunta, con un leve desbalance en la distribución de la palabra.</div>
+      <div class="nivel"><div class="nivel-titulo">Medio · 3,0 a 3,9</div>La participación se concentra en pocos integrantes; la expresión es comprensible pero poco técnica y con escasa articulación entre las intervenciones.</div>
+      <div class="nivel"><div class="nivel-titulo">Bajo · 2,0 a 2,9</div>La participación es fragmentada, sin escucha entre integrantes o con dificultades marcadas para expresar las ideas del grupo.</div>
+      <div class="nivel"><div class="nivel-titulo">Deficiente · 0,1 a 1,9</div>No hay evidencia de trabajo conjunto ni de participación efectiva en el espacio de discusión.</div>
+    </div>
+  </div>
+
+  <div class="nota nota-limite">
+    <b>Lo que no se califica</b>
+    <ul>
+      <li><b>La postura o el autor elegidos.</b> Se califica cómo se sostienen, no cuál se eligió.</li>
+      <li><b>La redacción.</b> Se espera claridad, no estilo.</li>
+    </ul>
+  </div>
+
+  <div class="nota">
+    <b>Fuente</b>
+    <p style="margin:0;">Rúbrica institucional «1.1 RUBRICA - ESPACIO DE DISCUSION» de la asignatura. Consigna: diapositiva «Actividad evaluativa: taller» (lámina 15) del deck «Contexto histórico y epistemológico».</p>
+  </div>
+
+  <div class="nav">
+    <a href="taller-corte1.html">&rarr; Ir a la actividad</a>
+  </div>
+
+</div>
+</body>
+</html>
