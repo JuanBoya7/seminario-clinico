@@ -182,15 +182,12 @@ const ES_MOVIL = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
   (navigator.maxTouchPoints > 1 && !window.matchMedia("(pointer:fine)").matches);
 
 // El índice completo solo se abre desde las guías de planes (o en la copia local);
-// quien recibe el enlace de una prueba no puede recorrer las demás.
+// quien recibe el enlace de una prueba no puede recorrer las demás. Basta el referrer:
+// el navegador lo conserva al volver atrás y al recargar; escribir la dirección lo borra.
 function indiceAbierto(){
   if (location.protocol === "file:") return true;
-  let desdeGuia = false;
-  try { desdeGuia = /\/planes-(intervencion|infancia)(\.html)?$/.test(new URL(document.referrer).pathname); } catch (e) {}
-  try {
-    if (desdeGuia) sessionStorage.setItem("calif-indice", "1");
-    return desdeGuia || sessionStorage.getItem("calif-indice") === "1";
-  } catch (e) { return desdeGuia; }
+  try { return /\/planes-(intervencion|infancia)(\.html)?$/.test(new URL(document.referrer).pathname); }
+  catch (e) { return false; }
 }
 
 function indice(){
