@@ -318,8 +318,7 @@ function instrumento(a, d){
     (d.hoja && !d.local ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
     (d.cifrado ? '<button class="bt completa" id="cerrar-completa">Cerrar la versión completa</button>' : '') +
     '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" id="imprimir">' +
-    (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button>' +
-    '<a class="bt" href="calificar.html">Otros instrumentos</a></div>' +
+    (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button></div>' +
     (d.hoja && !d.local ? '<div class="candado" id="candado" hidden><p>Escriba la contraseña para ver los ítems y calificar con la versión completa.</p>' +
       '<form id="form-clave"><input type="password" id="clave" autocomplete="current-password" aria-label="Contraseña">' +
       '<label><input type="checkbox" id="recordar"> Recordar en este dispositivo</label>' +
