@@ -332,7 +332,10 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 }
 .plan[hidden]{display:none;}
 .plan-cab{display:flex; flex-wrap:wrap; align-items:flex-start; gap:10px;}
-.plan-tit{flex:1 1 320px; display:flex; flex-direction:column; align-items:flex-start; gap:6px;}
+.plan-tit{flex:1 1 320px; min-width:0; max-width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:6px;}
+/* Las etiquetas largas deben ajustarse al ancho real de la tarjeta. */
+.plan-tit > .insignia{max-width:100%; white-space:normal; overflow-wrap:anywhere;}
+.plan-tit > h4{max-width:100%; overflow-wrap:anywhere;}
 .plan-cab h4{font-size:clamp(19px,2vw,24px); line-height:1.25;}
 .plan-fuente{margin-top:6px; font-size:13px; color:var(--ink-faint);}
 .plan-fuente strong{color:var(--ink-soft); font-weight:600;}
@@ -18197,7 +18200,7 @@ const VARIABLES = [
 {
   cat: "Enfermedad médica y final de la vida",
   t: "Hábitos de salud",
-  sub: "Lo que se interviene es una conducta de salud concreta que la persona quiere o necesita cambiar: la actividad física, la alimentación, el tabaco, el sueño, el autocuidado de una enfermedad crónica. Aplica en prevención y en enfermedad médica. Si el problema es tomar la medicación, ver <em>Adherencia al tratamiento</em>; si es un consumo problemático, ver <em>Consumo de sustancias</em>.",
+  sub: "Lo que se interviene es una conducta de salud concreta que la persona quiere o necesita cambiar: la actividad física, la alimentación, el tabaco, el sueño, el autocuidado de una enfermedad crónica. Aplica en prevención y en enfermedad médica. Si el problema es tomar la medicación, ver Adherencia al tratamiento; si es un consumo problemático, ver Consumo de sustancias.",
   elegir: [
     "<strong>Si no hay un protocolo listo para esa conducta en ese contexto</strong>, la rueda del cambio de conducta ofrece un método para diseñarlo: diagnosticar qué falla —capacidad, oportunidad o motivación— y elegir las intervenciones que corresponden.",
     "Si la persona duda de si quiere cambiar, empezar por la entrevista motivacional del plan de <em>Consumo de sustancias</em> o de <em>Adherencia al tratamiento</em>."

@@ -330,7 +330,10 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 }
 .plan[hidden]{display:none;}
 .plan-cab{display:flex; flex-wrap:wrap; align-items:flex-start; gap:10px;}
-.plan-tit{flex:1 1 320px; display:flex; flex-direction:column; align-items:flex-start; gap:6px;}
+.plan-tit{flex:1 1 320px; min-width:0; max-width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:6px;}
+/* Las etiquetas largas deben ajustarse al ancho real de la tarjeta. */
+.plan-tit > .insignia{max-width:100%; white-space:normal; overflow-wrap:anywhere;}
+.plan-tit > h4{max-width:100%; overflow-wrap:anywhere;}
 .plan-cab h4{font-size:clamp(19px,2vw,24px); line-height:1.25;}
 .plan-fuente{margin-top:6px; font-size:13px; color:var(--ink-faint);}
 .plan-fuente strong{color:var(--ink-soft); font-weight:600;}
@@ -956,6 +959,10 @@ const ENFOQUES = {
   est:  { et: "Intervención en crisis",   largo: "Intervención en crisis" },
   em:   { et: "Entrevista motivacional",  largo: "Entrevista motivacional" },
   pp:   { et: "Psicología positiva",      largo: "Intervenciones de psicología positiva" },
+  // Enfoques citados por el glosario; los filtros solo muestran los usados por planes.
+  esq:  { et: "Esquemas",                largo: "Terapia de esquemas" },
+  mct:  { et: "Metacognitiva",           largo: "Terapia metacognitiva" },
+  par:  { et: "Pareja",                  largo: "Terapia integral de pareja" },
   psp:  { et: "Programa psicosocial",     largo: "Programa psicosocial basado en recomendaciones de la OMS" }
 };
 
