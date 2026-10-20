@@ -1649,6 +1649,7 @@ Object.assign(INSTRUMENTOS, {
 REFERENCIAS.push(
   { k: "Sexton, 2011", ref: "Sexton, T. L. (2011). <em>Functional family therapy in clinical practice: An evidence-based treatment model for working with troubled adolescents</em>. Routledge." },
   { k: "Palermo, 2012", ref: "Palermo, T. M. (2012). <em>Cognitive-behavioral therapy for chronic pain in children and adolescents</em>. Oxford University Press." },
+  { k: "Fisher et al., 2011", ref: "Fisher, W. W., Piazza, C. C. y Roane, H. S. (Eds.). (2011). <em>Handbook of applied behavior analysis</em>. Guilford Press." },
   { k: "Sinha et al., 2025", ref: "Sinha, A. B., Sy, A. F., Derenne, J. L. y Carlson, J. L. (Eds.). (2025). <em>Comprehensive clinical care for adolescents with avoidant/restrictive food intake disorder (ARFID)</em>. Springer." }
 );
 
@@ -6702,7 +6703,8 @@ const VARIABLES = [
   sub: "Dificultades persistentes en la comunicación y la interacción social recíproca, con intereses restringidos, conductas repetitivas e insistencia en las rutinas, desde la primera infancia. La intensidad varía mucho, y a menudo se suman un retraso del lenguaje o cognitivo, ansiedad, rabietas o autolesiones. Lo que se interviene depende de la edad y de lo que más afecta la vida del niño: la comunicación y el juego en los pequeños; la comprensión de lo que se espera, la ansiedad y las relaciones con los pares en los mayores.",
   elegir: [
     "<strong>No hay un tratamiento único para el autismo:</strong> la elección depende de la edad, el nivel de desarrollo y lo que más interfiere. Las intervenciones conductuales son las de mayor respaldo. La más estudiada es la intervención conductual intensiva temprana, que exige de 20 a 40 horas semanales de enseñanza individual durante dos años o más, con un equipo entrenado: produce ganancias importantes en muchos niños, pero no en todos, y su intensidad es difícil de lograr en muchos servicios (Smith, 2010; Klinger y Dudley, 2019).",
-    "Para niños pequeños, las intervenciones naturalistas del desarrollo llevan esos principios al juego y a las rutinas de la familia, con los padres como coterapeutas; el Modelo Denver de atención temprana es la versión integral e intensiva, para niños de 1 a 5 años, con un ensayo aleatorizado a su favor (Rogers y Dawson, 2010). Los apoyos visuales sirven a todas las edades, en casa y en el colegio. En niños y adolescentes con capacidad verbal, la OMS recomienda la terapia cognitivo-conductual adaptada para la ansiedad y el entrenamiento en habilidades sociales (OMS, 2023, recomendaciones 3.1 y 3.2): en grupo para niños en edad escolar y con el programa para adolescentes con sus padres (White, 2011; Klinger y Dudley, 2019). Si predominan las rabietas y la desobediencia, el entrenamiento a padres de Conducta oposicionista y desafiante, adaptado con apoyos visuales, reduce la conducta disruptiva en niños con autismo de 3 a 7 años (Klinger y Dudley, 2019)."
+    "Para niños pequeños, las intervenciones naturalistas del desarrollo llevan esos principios al juego y a las rutinas de la familia, con los padres como coterapeutas; el Modelo Denver de atención temprana es la versión integral e intensiva, para niños de 1 a 5 años, con un ensayo aleatorizado a su favor (Rogers y Dawson, 2010). Los apoyos visuales sirven a todas las edades, en casa y en el colegio. En niños y adolescentes con capacidad verbal, la OMS recomienda la terapia cognitivo-conductual adaptada para la ansiedad y el entrenamiento en habilidades sociales (OMS, 2023, recomendaciones 3.1 y 3.2): en grupo para niños en edad escolar y con el programa para adolescentes con sus padres (White, 2011; Klinger y Dudley, 2019). Si predominan las rabietas y la desobediencia, el entrenamiento a padres de Conducta oposicionista y desafiante, adaptado con apoyos visuales, reduce la conducta disruptiva en niños con autismo de 3 a 7 años (Klinger y Dudley, 2019).",
+    "<strong>Si hay autolesiones, agresión o destrucción que un análisis funcional relaciona con la atención, un objeto o escapar de una tarea</strong>, el entrenamiento en comunicación funcional enseña una forma sencilla de pedir lo mismo y deja de reforzar la conducta problema (Fisher et al., 2011, cap. 20)."
   ],
   planes: [
     {
@@ -7374,6 +7376,106 @@ const VARIABLES = [
         "La mayoría de los estudios incluyó a adolescentes con habilidades cognitivas promedio o superiores; se sabe menos de los demás y de las mujeres con autismo (OMS, 2023, rec. 3.1).",
         "Aun con efectos medianos a grandes, las dificultades sociales frente a los pares suelen persistir: las metas se ajustan a lo que el adolescente quiere lograr (OMS, 2023, rec. 3.1)."
       ]
+    },
+    {
+      id: "tea-fct",
+      mod: "funcion-conducta",
+      inst: ["Registro ABC", "Vineland-3"],
+      enf: "cond",
+      nivel: "preliminar",
+      t: "Entrenamiento en comunicación funcional para la conducta problema",
+      fuente: "Fisher et al., 2011, cap. 20",
+      cuando: "Un niño o adolescente con autismo o discapacidad intelectual con <strong>autolesiones, agresión o destrucción</strong> que un análisis funcional mostró que se mantienen por una consecuencia social: obtener atención, un objeto o actividad preferidos, o escapar de una tarea. Comunicar esa necesidad de otra forma es en sí una meta importante.",
+      respaldo: "El entrenamiento en comunicación funcional es una de las intervenciones operantes más investigadas para la conducta problema, sobre todo con diseños de caso único. En una revisión de 21 casos, combinado con extinción fue eficaz en la mayoría; al espaciar el reforzamiento, la eficacia bajó en cerca de la mitad, por lo que el adelgazamiento se hace de forma gradual y con criterios. Basar el tratamiento en el análisis funcional permite concentrarlo en los pocos contextos en que la conducta aparece (Fisher et al., 2011, cap. 20).",
+      secuencia: "<strong>Secuencia:</strong> sin número fijo de sesiones. Análisis funcional, elección y enseñanza de la respuesta de comunicación, reforzamiento denso de esa respuesta con extinción de la conducta problema, y adelgazamiento gradual del reforzamiento hasta un horario práctico para la casa y el colegio. Lo diseña y supervisa un profesional formado en análisis de conducta (Fisher et al., 2011, cap. 20).",
+      esc: ["salud-mental", "colegio", "primer-nivel"],
+      edad: ["0-5", "6-11", "12-17"],
+      actividades: [
+        {
+          t: "Identificar la función de la conducta",
+          tecs: ["registro-abc", "analisis-funcional-breve"],
+          obj: "Saber qué consecuencia mantiene la conducta problema.",
+          pasos: [
+            "Definir la conducta de forma observable y registrarla con sus antecedentes y consecuencias.",
+            "Con un profesional formado, comparar condiciones breves: atención, tarea, objeto preferido, a solas y una de juego como control.",
+            "Identificar si la conducta busca atención, un objeto, escapar de una tarea o si se mantiene por sí misma.",
+            "Si la función es automática, el plan es otro: buscar estímulos que compitan con la conducta."
+          ],
+          casa: "Registro de antecedentes, conducta y consecuencias.",
+          avance: "La función de la conducta está identificada.",
+          fuente: "Fisher et al., 2011, cap. 20",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Elegir y enseñar la respuesta de comunicación",
+          tecs: ["comunicacion-funcional", "moldeamiento"],
+          obj: "Que el niño tenga una forma sencilla de pedir lo mismo que obtenía con la conducta problema.",
+          pasos: [
+            "Elegir una respuesta simple y de poco esfuerzo, mejor si ya está en su repertorio: una frase corta como «juega conmigo, por favor» o, si no habla, tocar o entregar una tarjeta con la imagen de lo que pide.",
+            "Enseñarla con ayudas que se retiran de forma gradual.",
+            "Practicarla en los contextos en que suele aparecer la conducta problema.",
+            "Comprobar que la respuesta produce de inmediato lo que pide."
+          ],
+          casa: "Tener la tarjeta o la frase a mano en las situaciones de riesgo.",
+          avance: "El niño usa la respuesta de comunicación sin ayuda.",
+          fuente: "Fisher et al., 2011, cap. 20, «Selecting and Teaching the FCT Response»"
+        },
+        {
+          t: "Reforzar la comunicación y no la conducta problema",
+          tecs: ["reforzamiento-diferencial", "extincion"],
+          obj: "Que la comunicación funcione siempre y la conducta problema deje de funcionar.",
+          pasos: [
+            "Al principio, dar lo que pide cada vez que usa la respuesta de comunicación, para que no pase periodos sin el reforzador.",
+            "Dejar de entregar esa consecuencia cuando aparece la conducta problema.",
+            "Si la conducta es peligrosa y hay riesgo inmediato, el equipo puede empezar dando el reforzador por tiempo, sin esperar la conducta, porque no requiere entrenamiento previo.",
+            "Registrar la conducta problema y la comunicación en cada sesión."
+          ],
+          casa: "Aplicar las mismas consecuencias en casa.",
+          avance: "La conducta problema baja a niveles muy bajos y la comunicación aumenta.",
+          fuente: "Fisher et al., 2011, cap. 20, «Functional Communication Training» y «Choosing between FCT and NCR»"
+        },
+        {
+          t: "Adelgazar el reforzamiento",
+          tecs: ["adelgazamiento-reforzamiento"],
+          obj: "Llegar a un horario de reforzamiento que los padres y docentes puedan sostener.",
+          pasos: [
+            "Con la tarjeta, retirarla unos segundos después de entregar lo pedido y alargar ese intervalo poco a poco, por ejemplo duplicándolo cada dos sesiones si la conducta sigue baja.",
+            "Con una respuesta hablada, usar señales visibles de cuándo hay y cuándo no hay reforzamiento, como un cartel verde y uno rojo.",
+            "Si la función es escapar de la tarea, pedir primero una tarea antes de que la respuesta permita el descanso, y aumentar el número de tareas de forma gradual.",
+            "Avanzar solo si la conducta problema se mantiene baja; si reaparece, volver al paso anterior."
+          ],
+          casa: "Aplicar el paso de adelgazamiento acordado.",
+          avance: "La conducta problema se mantiene baja con un horario práctico.",
+          fuente: "Fisher et al., 2011, cap. 20, «Increasing the Practicality of Reinforcement-Based Interventions»"
+        },
+        {
+          t: "Generalizar y mantener",
+          tecs: ["generalizacion"],
+          obj: "Que el niño use la comunicación con distintas personas y en distintos lugares.",
+          pasos: [
+            "Entrenar a padres y docentes en el plan y supervisar cómo lo aplican.",
+            "Llevar el tratamiento al aula y a la casa, en los contextos en que la conducta aparecía.",
+            "Ofrecer reforzadores alternativos para los momentos en que el adulto no puede atender, como juguetes muy preferidos.",
+            "Revisar periódicamente los registros y ajustar el plan si la conducta resurge."
+          ],
+          casa: "Mantener el plan y su registro.",
+          avance: "La mejoría se mantiene en casa y en el colegio.",
+          fuente: "Fisher et al., 2011, cap. 20, «Increasing the Practicality of Reinforcement-Based Interventions» y «Concluding Comments»"
+        }
+      ],
+      medir: [
+        "Frecuencia de la conducta problema y de la respuesta de comunicación en cada sesión y en casa.",
+        "<strong>Vineland-3</strong> para la conducta adaptativa, al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Colegio:</strong> los efectos del reforzamiento por tiempo se trasladaron de la clínica al aula y se mantuvieron a los dos meses en un estudio (Fisher et al., 2011, cap. 20).",
+        "<strong>Discapacidad intelectual:</strong> se aplica igual cuando la conducta tiene una función social; ver también el plan de evaluación funcional y apoyo conductual positivo de <em>Discapacidad intelectual</em>."
+      ],
+      cuidado: [
+        "Puede haber una explosión de la conducta al empezar la extinción o reaparecer al espaciar el reforzamiento; se planifica con el equipo cómo manejarlas con seguridad (Fisher et al., 2011, cap. 20).",
+        "El análisis funcional y la extinción los diseña y supervisa un profesional formado en análisis de conducta.",
+        "La evidencia viene sobre todo de estudios de caso único."
+      ]
     }
   ]
 },
@@ -7383,7 +7485,7 @@ const VARIABLES = [
   sub: "Limitaciones en el funcionamiento intelectual y en la conducta adaptativa —comunicación, cuidado personal, vida en casa y en la comunidad, habilidades sociales— desde el desarrollo temprano. Con frecuencia se suman conductas desafiantes, como agresión, autolesiones o estereotipias, más probables a menor edad y con mayores dificultades cognitivas y de comunicación. Lo que se interviene es lo que el niño puede hacer por sí mismo y la función que cumplen sus conductas desafiantes.",
   elegir: [
     "<strong>Para las conductas desafiantes, la intervención conductual basada en un análisis funcional es la de mejor respaldo</strong>, y se recomienda antes de recurrir a la medicación. Las habilidades adaptativas y sociales se enseñan con técnicas conductuales, que tienen respaldo; la evidencia sobre la psicoterapia en esta población es escasa y no permite recomendarla todavía (Matson et al., 2019).",
-    "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo.",
+    "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo, que trae el entrenamiento en comunicación funcional como plan completo, con el adelgazamiento del reforzamiento para la casa y el colegio.",
     "Como complemento, el plan de fortalezas del carácter ayuda a que el niño se conozca por sus cualidades y a llevarlas al plan educativo individual; su evidencia es todavía inicial."
   ],
   planes: [
@@ -10174,7 +10276,7 @@ const VARIABLES = [
           casa: "Aplicar el sistema de puntos acordado.",
           avance: "Los padres responden al afrontamiento más que a las quejas y el niño retoma actividades.",
           fuente: "Palermo, 2012, cap. 7",
-          fichas: ["tabla-puntos"]
+          fichas: ["pautas-dolor-padres", "tabla-puntos"]
         },
         {
           t: "Pensamientos sobre el dolor",
@@ -10452,10 +10554,11 @@ const VARIABLES = [
 {
   cat: "Salud, sueño y hábitos",
   t: "Evitación y restricción de la ingesta de alimentos",
-  sub: "El adolescente come muy poco o muy pocos alimentos, no por miedo a engordar ni por la imagen corporal, sino porque lo rechaza por su textura, olor o aspecto, porque casi no le interesa comer o porque teme que comer le haga daño —atragantarse, vomitar, sentir dolor—. Con eso pierde peso o no crece como se espera, tiene carencias nutricionales, depende de suplementos o ve afectada su vida social. Es el trastorno de evitación y restricción de la ingesta de alimentos (TERIA, en inglés ARFID).",
+  sub: "El niño o el adolescente come muy poco o muy pocos alimentos, no por miedo a engordar ni por la imagen corporal, sino porque lo rechaza por su textura, olor o aspecto, porque casi no le interesa comer o porque teme que comer le haga daño —atragantarse, vomitar, sentir dolor—. Con eso pierde peso o no crece como se espera, tiene carencias nutricionales, depende de suplementos o ve afectada su vida social. Es el trastorno de evitación y restricción de la ingesta de alimentos (TERIA, en inglés ARFID).",
   elegir: [
     "<strong>Primero se reconoce el subtipo</strong>, porque cambia el plan de alimentación y las estrategias: sensorial —muy selectivo con los alimentos—, de poco interés —come para vivir y se aburre comiendo— o de miedo a consecuencias aversivas —restringe después de atragantarse, vomitar o sentir dolor—. Una misma persona puede tener rasgos de más de uno (Sinha et al., 2025, cap. 1).",
-    "Si hay restricción intencional, deseo de bajar de peso o ejercicio compulsivo, el cuadro es más probablemente una anorexia: ver <em>Anorexia en la adolescencia</em> (Sinha et al., 2025, cap. 2). En niños pequeños, el manual menciona programas con los padres, como el apoyo a la crianza ante la ansiedad infantil adaptado al TERIA, que no se desarrollan aquí (Sinha et al., 2025, cap. 2)."
+    "Si hay restricción intencional, deseo de bajar de peso o ejercicio compulsivo, el cuadro es más probablemente una anorexia: ver <em>Anorexia en la adolescencia</em> (Sinha et al., 2025, cap. 2).",
+    "<strong>En adolescentes</strong>, el plan es la atención multidisciplinaria con exposición graduada a los alimentos. <strong>En niños pequeños con un problema grave de alimentación</strong> —rechazo de la comida, muy pocos alimentos o dependencia del biberón, con bajo peso—, el tratamiento conductual con análisis funcional del rechazo se aplica en programas especializados (Fisher et al., 2011, cap. 26). Para los menores, el manual de TERIA menciona además programas con los padres, como el apoyo a la crianza ante la ansiedad infantil adaptado al TERIA, que no se desarrollan aquí (Sinha et al., 2025, cap. 2)."
   ],
   planes: [
     {
@@ -10527,7 +10630,8 @@ const VARIABLES = [
           ],
           casa: "Exposiciones acordadas, con su registro.",
           avance: "Aumenta el número de alimentos que el adolescente acepta.",
-          fuente: "Sinha et al., 2025, cap. 5"
+          fuente: "Sinha et al., 2025, cap. 5",
+          fichas: ["exposicion-alimentos"]
         },
         {
           t: "Estrategias según el subtipo",
@@ -10572,6 +10676,105 @@ const VARIABLES = [
         "Algunos adolescentes niegan la preocupación por la imagen y alegan saciedad temprana o miedo al vómito, pero con el tiempo se ve que se trata de una anorexia: se reevalúa si resisten la recuperación de peso o solo aceptan alimentos de pocas calorías (Sinha et al., 2025, cap. 2).",
         "Los premios no pueden ser cosas que el adolescente ya tiene ni depender de que los padres puedan darlos de forma consistente (Sinha et al., 2025, cap. 9).",
         "Las decisiones sobre la sonda, los suplementos y la medicación las toma el equipo médico (Sinha et al., 2025, caps. 3, 4 y 12)."
+      ]
+    },
+    {
+      id: "teria-conductual-pediatrico",
+      mod: "funcion-conducta",
+      inst: ["Registro ABC"],
+      enf: "cond",
+      nivel: "preliminar",
+      t: "Tratamiento conductual de los problemas graves de alimentación en niños pequeños",
+      fuente: "Fisher et al., 2011, cap. 26",
+      cuando: "Un niño pequeño que <strong>rechaza comer, acepta muy pocos alimentos o texturas o depende de una fuente de nutrición propia de una edad menor</strong> —por ejemplo, el biberón a los 3 años—, con bajo peso o mal crecimiento. Durante las comidas aparta la cuchara, voltea la cabeza o llora, y los adultos responden retirando el plato, insistiendo o dándole otra cosa. El equipo de salud ya evaluó las causas médicas y la seguridad de la alimentación por boca.",
+      respaldo: "Los problemas graves de alimentación suelen tener causas combinadas: en una serie de 700 niños, el 86 % tenía factores médicos, el 61 % problemas de motricidad oral y el 18 % factores conductuales, y en más del 60 % se combinaban. En un estudio con análisis funcional, en el 90 % de los niños la conducta de rechazo se mantenía por escapar de los bocados, y en muchos también por la atención o por obtener un alimento preferido. Los estudios, en su mayoría de caso único, muestran que la extinción del escape es un componente importante, quizá necesario, y que el reforzamiento positivo solo no basta, aunque combinado reduce el llanto (Fisher et al., 2011, cap. 26).",
+      secuencia: "<strong>Secuencia:</strong> sin número fijo de sesiones; los estudios se hicieron en programas especializados, a menudo de día. Primero la evaluación interdisciplinaria, después el análisis funcional del rechazo, y luego un tratamiento que combina el reforzamiento de la aceptación con la extinción del escape, avanzando por los eslabones de la cadena de comer y por el volumen indicado por nutrición (Fisher et al., 2011, cap. 26).",
+      esc: ["hospital", "primer-nivel"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Evaluación interdisciplinaria antes de intervenir",
+          tecs: ["entrevista-clinica"],
+          obj: "Descartar lo que hace doloroso o inseguro comer y definir qué puede comer el niño sin riesgo.",
+          pasos: [
+            "Coordinar con medicina la búsqueda de causas que producen dolor, náusea o cansancio al comer, como el reflujo, las alergias o los problemas digestivos.",
+            "Pedir la evaluación de terapia ocupacional o fonoaudiología para los problemas de motricidad oral y para saber si la alimentación por boca es segura, porque algunos niños tienen riesgo de aspiración con ciertos líquidos o sólidos.",
+            "Pedir a nutrición los alimentos, las cantidades y las restricciones que correspondan a la edad, el tamaño y la condición médica del niño.",
+            "No iniciar el tratamiento conductual hasta tener esta evaluación."
+          ],
+          casa: "Registrar lo que come el niño durante una semana.",
+          avance: "El equipo definió qué alimentos y volúmenes son seguros y adecuados.",
+          fuente: "Fisher et al., 2011, cap. 26, «Evaluation»"
+        },
+        {
+          t: "Observar las comidas y el análisis funcional del rechazo",
+          tecs: ["registro-abc", "analisis-funcional-breve"],
+          obj: "Identificar qué mantiene la conducta de rechazo.",
+          pasos: [
+            "Observar comidas con los cuidadores y registrar qué hace el niño y cómo responden: retirar la cuchara o terminar la comida, insistir o regañar, o darle un juguete o un alimento preferido.",
+            "Con un profesional formado, comparar en sesiones breves qué pasa cuando el rechazo produce escapar del bocado, atención o un objeto preferido, frente a una condición de control.",
+            "Recordar que, aunque el problema empezara por una causa física, el rechazo puede mantenerse después por esas consecuencias.",
+            "Compartir con los padres el resultado sin culparlos: sus respuestas son comprensibles ante un hijo que no come."
+          ],
+          casa: "Registro de antecedentes, conducta y consecuencias en las comidas.",
+          avance: "Se conoce la función del rechazo.",
+          fuente: "Fisher et al., 2011, cap. 26, «Etiology»",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Reforzar la aceptación y dejar de reforzar el rechazo",
+          tecs: ["reforzamiento-diferencial", "extincion"],
+          obj: "Que aceptar el bocado produzca consecuencias positivas y que el rechazo deje de servir para escapar.",
+          pasos: [
+            "Reforzar de inmediato cada bocado aceptado, con elogio, un juguete o una actividad preferida.",
+            "Aplicar la extinción del escape según el plan del equipo: mantener la cuchara en los labios del niño hasta que acepte el bocado, sin retirarla ante el rechazo.",
+            "Si se usa una guía física suave, la decide y la aplica el equipo especializado, no los padres por su cuenta.",
+            "Sumar reforzamiento no contingente, como juguetes disponibles durante la comida, para reducir el llanto y la explosión de la extinción."
+          ],
+          casa: "Aplicar en casa solo los componentes que el equipo ya transfirió a los padres.",
+          avance: "Aumenta la aceptación de bocados y baja el rechazo.",
+          fuente: "Fisher et al., 2011, cap. 26, «Treatment»"
+        },
+        {
+          t: "La cadena de comer y el volumen",
+          tecs: ["moldeamiento"],
+          obj: "Avanzar de aceptar el bocado a masticarlo, tragarlo y retenerlo, en las cantidades adecuadas.",
+          pasos: [
+            "Revisar cada eslabón de la cadena —aceptar, manipular en la boca, masticar, tragar y retener— y trabajar el que falle.",
+            "Aumentar de forma gradual el volumen de alimentos y líquidos hacia lo que recomienda nutrición.",
+            "Si al subir el volumen aparece el vómito, comparar volúmenes y, si hace falta, dar comidas más frecuentes y de menor volumen.",
+            "Registrar las cantidades y los vómitos en cada comida."
+          ],
+          casa: "Registro de cantidades y vómitos.",
+          avance: "El niño come las cantidades indicadas sin vomitar.",
+          fuente: "Fisher et al., 2011, cap. 26, «Treatment»"
+        },
+        {
+          t: "Llevar el tratamiento a casa y coordinar con el pediatra",
+          tecs: ["seguimiento-derivacion"],
+          obj: "Que los padres sostengan el tratamiento en casa y el pediatra conozca los resultados.",
+          pasos: [
+            "Llevar a casa, con la guía del equipo, los procedimientos que ya funcionaron en el programa.",
+            "Mantener el trabajo médico y conductual a la vez: tratar solo la causa física no basta si el niño sigue evitando comer, y tratar solo la conducta puede empeorar el problema si comer sigue siendo doloroso.",
+            "Enviar al pediatra los datos del avance para que queden en la historia clínica."
+          ],
+          casa: "Comidas en casa con el plan acordado y su registro.",
+          avance: "Los padres sostienen el tratamiento y el crecimiento mejora en los controles.",
+          fuente: "Fisher et al., 2011, cap. 26, «Treatment» y «Conclusion»"
+        }
+      ],
+      medir: [
+        "Bocados aceptados, rechazos y cantidades consumidas en cada comida.",
+        "Peso y crecimiento en los controles pediátricos."
+      ],
+      adapt: [
+        "<strong>Hospital pediátrico:</strong> los niños con enfermedades complejas que pasaron por procedimientos en la boca y la cara pueden rechazar también el cepillado o el lavado de la cara; se trabaja con el equipo médico y de terapia (Fisher et al., 2011, cap. 26).",
+        "<strong>Consulta externa:</strong> muchas dificultades leves con la comida se resuelven solas; el plan es para los problemas graves que comprometen la salud y el crecimiento (Fisher et al., 2011, cap. 26)."
+      ],
+      cuidado: [
+        "La extinción del escape y la guía física solo se aplican en programas especializados, con un equipo formado en análisis de conducta y supervisión médica, nunca como consejo general a los padres.",
+        "Algunos niños tienen dietas que no pueden saltarse por su condición médica; el plan las respeta (Fisher et al., 2011, cap. 26).",
+        "La evidencia viene sobre todo de estudios de caso único en programas especializados."
       ]
     }
   ]
@@ -11745,6 +11948,7 @@ const GLOSARIO = [
 /* ---------- Dolor crónico ---------- */
 { k: "pautas-operantes-dolor", t: "Pautas operantes para los padres ante el dolor", tipo: "Técnica", enf: ["pad"],
   d: "Cambios en cómo responden los padres al dolor del hijo para no reforzar sin querer la conducta de dolor y sí el afrontamiento: animar la actividad normal durante el dolor, dejar de preguntar si le duele, tratar los días en que deja sus actividades como días de enfermo sin privilegios, atender el afrontamiento y no las quejas menores, y elogiar el uso de las habilidades.",
+  ficha: "pautas-dolor-padres",
   fuente: "Palermo, 2012, cap. 7, tabla 7.2" },
 { k: "reingreso-escolar-gradual", t: "Regreso gradual al colegio", tipo: "Técnica", enf: ["tcc", "col"],
   d: "Plan acordado con la familia y el colegio para que el niño que falta por dolor vuelva a clase por pasos, con metas que pueda cumplir y que suben a medida que las logra, y con las adaptaciones escolares razonables, cuidando de que no mantengan la evitación.",
@@ -11765,7 +11969,12 @@ const GLOSARIO = [
 { k: "exposicion-alimentaria", t: "Exposición a los alimentos", alias: ["alimento de exposición", "alimentos de exposición"], tipo: "Técnica", enf: ["tcc"],
   d: "Exposición planificada a alimentos nuevos o evitados, elegidos con la persona entre los que ella querría poder comer, con una porción real, una descripción previa de cómo son, una meta y un registro de cómo cambia la experiencia con las repeticiones.",
   como: ["Elegir juntos el alimento, la variante, la porción y el momento.", "Describir antes el sabor, la textura y el olor.", "Ponerse una meta y probar al menos tres bocados, del tamaño que quiera.", "Ofrecerlo al inicio de la comida y registrar el resultado."],
-  fuente: "Sinha et al., 2025, cap. 5" }
+  ficha: "exposicion-alimentos",
+  fuente: "Sinha et al., 2025, cap. 5" },
+/* ---------- Conducta problema ---------- */
+{ k: "adelgazamiento-reforzamiento", t: "Adelgazamiento del reforzamiento", tipo: "Técnica", enf: ["cond"],
+  d: "Paso gradual de un reforzamiento muy frecuente, necesario al empezar, a uno que los padres y docentes puedan sostener. En la comunicación funcional se hace, por ejemplo, retirando la tarjeta de comunicación unos segundos después de cada entrega y alargando ese tiempo poco a poco, o pidiendo cada vez más tareas antes de que la respuesta permita el descanso. Solo se avanza si la conducta problema sigue baja.",
+  fuente: "Fisher et al., 2011, cap. 20" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -11837,6 +12046,8 @@ const FICHAS = {
   "ojos-nuevos": { t: "Ojos nuevos y regalos del perdón", d: "Cuando alguien fue injusto contigo, puedes elegir mirarlo con ojos nuevos: ver que también tiene valor y que quizá también sufre. Perdonar no es decir que estuvo bien, ni olvidar, ni volver a ser amigos. Tú decides si quieres hacerlo, y cuándo.", n: 37, q: "M0 0.5h7m4 0h3m1 0h2m1 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h2m3 0h2m2 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m5 0h3m3 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h3m2 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h3m2 0h2m4 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h2m1 0h2m1 0h1m1 0h4m1 0h2m1 0h2m-28 1h1m1 0h5m2 0h1m1 0h6m1 0h2m2 0h1m1 0h3m3 0h5m-35 1h2m1 0h2m6 0h1m2 0h2m2 0h3m1 0h3m3 0h2m1 0h1m2 0h2m-33 1h1m1 0h4m2 0h8m2 0h1m3 0h4m2 0h1m2 0h3m-36 1h1m1 0h3m2 0h8m2 0h1m2 0h4m1 0h2m5 0h1m2 0h1m-37 1h3m1 0h1m1 0h1m3 0h3m1 0h2m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h1m1 0h1m1 0h2m4 0h3m3 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m1 0h1m2 0h3m2 0h2m1 0h3m1 0h1m1 0h3m4 0h2m1 0h4m1 0h2m-35 1h3m4 0h7m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m3 0h1m1 0h1m3 0h1m7 0h3m1 0h1m2 0h2m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h1m5 0h1m1 0h1m2 0h1m1 0h6m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h1m2 0h3m1 0h2m8 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h3m4 0h3m1 0h2m1 0h1m1 0h1m2 0h5m4 0h3m1 0h1m3 0h1m-36 1h2m1 0h3m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m3 0h1m1 0h3m1 0h2m1 0h3m-35 1h2m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h6m1 0h1m4 0h1m4 0h1m-32 1h3m1 0h3m5 0h2m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-34 1h1m3 0h4m1 0h7m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h3m2 0h2m1 0h5m3 0h1m2 0h1m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h2m1 0h1m1 0h1m4 0h2m1 0h1m1 0h3m2 0h2m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h4m2 0h7m-37 1h1m1 0h2m5 0h2m3 0h2m3 0h1m1 0h4m1 0h1m1 0h3m4 0h2m-37 1h1m5 0h5m3 0h2m1 0h2m3 0h5m1 0h8m-28 1h2m4 0h1m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h2m1 0h1m1 0h2m5 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h3m1 0h4m2 0h1m1 0h1m1 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h3m1 0h3m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h1m8 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m2 0h6m1 0h1m2 0h5m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
   "diario-bienestar-nino": { t: "Mi diario de cosas buenas", d: "Cada día pasan cosas que te hacen sentir bien, aunque sean pequeñitas. En este diario puedes guardarlas y ver cuánto te gustaron, de 0 (nada) a 100 (muchísimo).", n: 41, q: "M0 0.5h7m2 0h2m4 0h2m2 0h1m1 0h3m2 0h2m1 0h3m2 0h7m-41 1h1m5 0h1m3 0h3m4 0h1m2 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m5 0h2m3 0h3m2 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h6m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h7m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-30 1h1m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m2 0h1m1 0h2m1 0h3m2 0h2m1 0h1m1 0h2m1 0h1m2 0h5m4 0h1m1 0h1m-35 1h3m3 0h1m4 0h2m3 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h4m-40 1h7m1 0h1m1 0h2m1 0h1m3 0h2m1 0h2m1 0h3m3 0h2m5 0h3m-40 1h2m1 0h3m1 0h1m1 0h3m1 0h3m2 0h2m1 0h5m4 0h1m2 0h1m1 0h2m1 0h1m-38 1h3m1 0h2m5 0h2m1 0h3m2 0h2m1 0h1m1 0h1m2 0h2m1 0h4m2 0h1m-37 1h1m2 0h2m3 0h3m2 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m3 0h3m-40 1h1m2 0h1m1 0h2m5 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h5m4 0h1m1 0h5m-40 1h1m7 0h3m2 0h1m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m-37 1h3m3 0h1m4 0h1m1 0h6m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m4 0h1m-41 1h1m3 0h2m1 0h1m3 0h1m2 0h4m3 0h1m1 0h2m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m-41 1h3m1 0h4m1 0h4m2 0h3m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h1m3 0h1m-40 1h1m2 0h1m3 0h1m2 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m2 0h3m3 0h2m1 0h1m-38 1h2m2 0h3m2 0h1m1 0h1m2 0h2m1 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h3m3 0h2m-40 1h1m1 0h1m2 0h1m2 0h5m7 0h1m1 0h1m1 0h1m3 0h3m1 0h3m3 0h3m-41 1h2m4 0h3m1 0h3m1 0h1m1 0h2m1 0h1m5 0h2m1 0h1m2 0h1m5 0h1m1 0h1m-40 1h1m3 0h1m2 0h2m3 0h3m1 0h1m3 0h4m1 0h1m4 0h3m1 0h3m1 0h1m1 0h1m-39 1h1m2 0h2m1 0h2m2 0h1m3 0h2m3 0h1m2 0h2m2 0h2m2 0h3m4 0h2m-41 1h2m2 0h1m4 0h2m3 0h1m2 0h1m1 0h3m3 0h1m5 0h1m1 0h1m3 0h1m1 0h1m-39 1h4m1 0h1m1 0h4m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h3m1 0h1m2 0h2m-40 1h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h2m1 0h3m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m3 0h2m-39 1h5m1 0h2m1 0h1m2 0h1m1 0h3m2 0h2m1 0h1m2 0h4m1 0h2m5 0h2m-39 1h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h3m2 0h1m1 0h2m1 0h1m1 0h5m1 0h4m-41 1h1m1 0h1m2 0h2m1 0h4m1 0h2m8 0h2m5 0h1m1 0h1m2 0h3m1 0h2m-38 1h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m2 0h1m1 0h8m3 0h1m2 0h1m-41 1h1m2 0h6m1 0h4m1 0h2m3 0h2m2 0h3m5 0h5m1 0h2m-32 1h1m1 0h1m1 0h6m2 0h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m2 0h2m-41 1h7m6 0h1m1 0h1m2 0h2m1 0h2m1 0h3m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-40 1h1m5 0h1m1 0h1m1 0h1m2 0h2m3 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m-39 1h1m1 0h3m1 0h1m3 0h2m3 0h2m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h2m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m3 0h1m2 0h2m1 0h1m2 0h1m5 0h2m1 0h1m3 0h5m-41 1h1m5 0h1m3 0h1m2 0h1m5 0h1m1 0h1m1 0h1m1 0h8m1 0h2m1 0h1m1 0h1m-40 1h7m1 0h3m1 0h4m1 0h1m2 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
   "mis-fortalezas": { t: "Mis fortalezas", d: "Todos tenemos cualidades que nos hacen especiales. Aquí puedes marcar las que más se parecen a ti y pedirle a tu familia y a tus profes que te cuenten cuándo las han visto.", n: 37, q: "M0 0.5h7m2 0h1m2 0h2m1 0h2m1 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h4m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h4m1 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m2 0h2m1 0h2m4 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m4 0h2m1 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m2 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h3m3 0h5m-35 1h3m1 0h1m3 0h1m2 0h1m1 0h1m1 0h2m2 0h2m1 0h2m4 0h2m1 0h1m2 0h2m-35 1h1m1 0h4m1 0h2m1 0h1m2 0h1m2 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-33 1h1m5 0h1m1 0h2m2 0h1m1 0h1m2 0h2m3 0h2m5 0h1m2 0h1m-37 1h1m2 0h6m2 0h2m4 0h1m4 0h4m1 0h4m1 0h5m-36 1h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m3 0h4m3 0h6m1 0h1m1 0h1m6 0h2m1 0h4m1 0h2m-37 1h1m1 0h2m3 0h1m1 0h4m2 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-36 1h2m1 0h2m1 0h1m3 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h4m1 0h4m2 0h1m2 0h1m2 0h2m-34 1h3m1 0h2m1 0h1m1 0h6m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m3 0h1m2 0h1m4 0h3m3 0h1m1 0h4m3 0h3m1 0h1m3 0h1m-37 1h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-34 1h1m1 0h1m1 0h1m2 0h2m2 0h1m3 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-33 1h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m4 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h3m3 0h2m1 0h4m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-37 1h2m3 0h3m1 0h2m1 0h3m2 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m2 0h1m5 0h3m1 0h6m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h1m1 0h1m1 0h6m5 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h2m3 0h8m1 0h1m3 0h3m1 0h1m1 0h1m1 0h3m5 0h1m-37 1h1m3 0h3m1 0h2m2 0h2m3 0h2m3 0h5m1 0h7m1 0h1m-29 1h1m2 0h1m2 0h1m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m1 0h7m2 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m3 0h2m4 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h1m1 0h5m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m3 0h3m12 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m4 0h2m4 0h3m3 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m3 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
+  "exposicion-alimentos": { t: "Mi registro de alimentos nuevos", d: "Probar alimentos nuevos es como subir una escalera: se avanza de a poco y empezando por lo que tú quieres poder comer. Este registro te ayuda a ver cómo cambia tu experiencia con cada alimento a medida que lo repites.", n: 41, q: "M0 0.5h7m2 0h2m2 0h2m1 0h6m1 0h3m2 0h1m1 0h3m1 0h7m-41 1h1m5 0h1m2 0h2m2 0h1m1 0h1m1 0h1m2 0h2m2 0h5m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h2m4 0h2m1 0h4m1 0h1m5 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m4 0h2m4 0h1m1 0h1m1 0h2m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h1m1 0h8m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m3 0h2m1 0h3m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h1m1 0h2m3 0h1m2 0h2m2 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h1m1 0h1m-40 1h1m2 0h3m4 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-28 1h1m3 0h2m4 0h1m4 0h4m2 0h1m4 0h3m1 0h1m1 0h1m2 0h1m-41 1h2m4 0h1m1 0h7m2 0h1m2 0h1m1 0h8m1 0h1m5 0h2m1 0h1m-40 1h1m3 0h1m3 0h1m4 0h2m9 0h1m1 0h1m2 0h1m1 0h9m-41 1h1m4 0h2m6 0h1m2 0h1m3 0h5m2 0h2m2 0h1m1 0h1m1 0h4m-35 1h1m2 0h1m2 0h2m2 0h1m1 0h1m4 0h3m2 0h2m3 0h2m1 0h2m1 0h1m-37 1h1m1 0h1m1 0h3m2 0h3m1 0h2m1 0h1m4 0h8m1 0h1m1 0h1m1 0h1m1 0h4m-40 1h1m1 0h2m4 0h3m1 0h1m4 0h3m2 0h1m4 0h2m1 0h1m2 0h7m-41 1h3m2 0h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m4 0h3m2 0h3m1 0h1m1 0h2m-40 1h3m2 0h1m2 0h3m1 0h1m1 0h1m1 0h1m6 0h1m2 0h1m1 0h3m5 0h2m2 0h1m-41 1h4m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h2m1 0h4m7 0h1m5 0h1m1 0h1m-41 1h2m1 0h2m2 0h2m5 0h1m2 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h7m2 0h2m-40 1h6m1 0h1m1 0h3m2 0h3m2 0h2m5 0h2m3 0h2m2 0h3m-39 1h2m2 0h1m2 0h4m2 0h2m1 0h1m1 0h2m1 0h4m1 0h1m7 0h1m1 0h1m2 0h2m-41 1h1m5 0h1m1 0h1m3 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h1m-39 1h1m2 0h3m1 0h3m4 0h1m1 0h1m1 0h8m2 0h4m1 0h5m1 0h2m-40 1h1m1 0h1m2 0h1m4 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h1m2 0h2m-37 1h2m2 0h1m2 0h2m3 0h5m4 0h1m1 0h1m4 0h1m2 0h4m1 0h2m1 0h1m-39 1h2m2 0h3m4 0h2m2 0h4m2 0h1m2 0h2m2 0h3m1 0h1m3 0h2m-39 1h2m1 0h3m2 0h2m1 0h1m3 0h4m1 0h2m2 0h1m2 0h4m2 0h1m1 0h2m2 0h2m-41 1h1m2 0h1m2 0h1m2 0h4m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m4 0h1m2 0h6m-39 1h1m2 0h2m3 0h1m1 0h4m4 0h5m1 0h1m1 0h1m1 0h1m1 0h1m2 0h5m-38 1h1m5 0h2m2 0h1m1 0h1m3 0h2m1 0h1m2 0h1m1 0h3m2 0h1m2 0h5m1 0h1m1 0h1m-33 1h1m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m3 0h2m1 0h2m-41 1h7m5 0h1m2 0h3m3 0h1m3 0h3m2 0h3m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h5m1 0h2m1 0h2m1 0h3m1 0h2m1 0h1m3 0h2m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h1m3 0h1m1 0h1m1 0h2m1 0h2m2 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h6m4 0h1m2 0h1m1 0h1m1 0h1m1 0h2m-39 1h1m1 0h3m1 0h1m1 0h4m2 0h5m1 0h3m4 0h2m1 0h1m1 0h5m1 0h1m-39 1h1m5 0h1m2 0h4m4 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h1m1 0h1m2 0h2m3 0h2m2 0h2m1 0h1m3 0h1m1 0h1m1 0h6" },
+  "pautas-dolor-padres": { t: "Cómo responder al dolor de mi hijo", d: "El dolor de su hijo es real. Cuando dura meses, la forma en que los adultos responden puede ayudarle a seguir con su vida o, sin querer, a dejar de hacer cosas. Estas pautas le ayudan a atender su esfuerzo por afrontar el dolor más que las quejas.", n: 41, q: "M0 0.5h7m2 0h1m8 0h3m2 0h1m2 0h1m1 0h2m1 0h2m1 0h7m-41 1h1m5 0h1m3 0h2m1 0h2m3 0h1m1 0h1m1 0h1m1 0h1m2 0h3m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h4m2 0h2m10 0h2m1 0h4m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m2 0h4m2 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h4m1 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h3m1 0h4m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m2 0h1m1 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h1m1 0h3m2 0h1m3 0h2m1 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-40 1h3m1 0h4m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1m-38 1h2m1 0h1m1 0h1m1 0h2m9 0h4m2 0h1m4 0h5m1 0h1m2 0h1m-41 1h1m1 0h1m3 0h1m1 0h7m2 0h1m4 0h2m1 0h3m1 0h1m1 0h3m3 0h3m-40 1h1m3 0h1m6 0h1m2 0h1m1 0h1m3 0h1m3 0h1m2 0h2m1 0h1m2 0h1m1 0h6m-41 1h1m4 0h2m3 0h1m3 0h1m1 0h1m2 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h1m1 0h1m1 0h4m1 0h5m1 0h1m1 0h1m1 0h1m1 0h1m3 0h2m1 0h1m-38 1h1m3 0h1m1 0h4m1 0h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m3 0h1m3 0h1m1 0h1m1 0h4m-39 1h1m1 0h2m1 0h5m1 0h3m1 0h1m1 0h5m1 0h1m2 0h1m1 0h2m2 0h7m-41 1h2m1 0h1m1 0h2m2 0h2m2 0h1m1 0h3m3 0h1m3 0h3m2 0h1m1 0h3m1 0h1m1 0h2m-40 1h4m1 0h1m1 0h2m1 0h2m3 0h4m2 0h3m1 0h1m1 0h2m7 0h2m2 0h1m-41 1h2m4 0h1m1 0h1m1 0h1m5 0h1m4 0h1m1 0h2m1 0h2m2 0h1m1 0h1m5 0h1m1 0h1m-41 1h5m2 0h1m1 0h2m2 0h2m2 0h4m1 0h2m1 0h1m2 0h1m2 0h10m-40 1h6m1 0h1m2 0h2m1 0h4m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m-39 1h1m3 0h1m2 0h2m7 0h1m1 0h2m1 0h4m1 0h1m7 0h4m-35 1h4m7 0h4m2 0h1m1 0h1m1 0h4m1 0h1m7 0h2m-39 1h2m3 0h1m1 0h1m1 0h4m5 0h8m2 0h4m1 0h5m2 0h1m-41 1h3m2 0h3m5 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h2m1 0h2m-35 1h1m5 0h1m2 0h5m5 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-38 1h1m1 0h1m1 0h1m1 0h1m5 0h2m3 0h4m1 0h1m1 0h3m1 0h4m1 0h1m3 0h2m-39 1h1m2 0h2m3 0h2m3 0h1m2 0h1m1 0h1m2 0h1m3 0h1m1 0h1m2 0h1m1 0h2m1 0h2m2 0h2m-41 1h1m2 0h2m1 0h1m2 0h6m2 0h2m1 0h1m2 0h2m1 0h3m1 0h2m1 0h6m-39 1h1m2 0h1m1 0h1m2 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m3 0h7m-38 1h1m2 0h1m1 0h10m2 0h1m2 0h1m2 0h7m1 0h6m1 0h1m1 0h1m-33 1h2m3 0h2m3 0h3m2 0h1m4 0h2m2 0h1m3 0h2m1 0h2m-41 1h7m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h1m1 0h3m2 0h2m3 0h1m5 0h7m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m9 0h2m1 0h2m1 0h1m2 0h1m4 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h4m2 0h3m4 0h2m1 0h1m1 0h5m-37 1h1m5 0h1m4 0h3m3 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h3m1 0h3m1 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
 };
 /* @@FIN-DATOS@@ */
 

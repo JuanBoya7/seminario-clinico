@@ -2198,6 +2198,7 @@ REFERENCIAS.push(
   { k: "Craske y Barlow, 2022", ref: "Craske, M. G. y Barlow, D. H. (2022). <em>Mastery of your anxiety and panic: Therapist guide</em> (5.ª ed.). Oxford University Press." },
   { k: "Heimberg y Becker, 2002", ref: "Heimberg, R. G. y Becker, R. E. (2002). <em>Cognitive-behavioral group therapy for social phobia: Basic mechanisms and clinical strategies</em>. Guilford Press." },
   { k: "Miller y Rollnick, 2023", ref: "Miller, W. R. y Rollnick, S. (2023). <em>Motivational interviewing: Helping people change and grow</em> (4.ª ed.). Guilford Press." },
+  { k: "Miltenberger, 2024", ref: "Miltenberger, R. G. (2024). <em>Behavior modification: Principles and procedures</em> (7.ª ed.). Cengage Learning." },
   { k: "APA, 2022", ref: "American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5.ª ed., texto revisado). American Psychiatric Publishing." }
 );
 
@@ -5021,6 +5022,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Para el arrancamiento del pelo</strong>, la terapia de conducta potenciada con aceptación y compromiso combina la reversión del hábito y el control de estímulos, que actúan sobre el arrancamiento automático, con la aceptación y compromiso, que trabaja la lucha contra los impulsos que lleva al arrancamiento focalizado.",
     "<strong>Si pellizcarse la piel busca corregir imperfecciones del aspecto</strong>, puede ser parte de un trastorno dismórfico corporal: ver <em>Preocupación por la apariencia</em>, que incluye un módulo con reversión del hábito.",
+    "<strong>Para otros hábitos nerviosos</strong> —morderse las uñas o los labios, pellizcarse la piel, apretar los dientes, chuparse el dedo—, la reversión del hábito, con su entrenamiento en conciencia y su respuesta competitiva, es el tratamiento preferido.",
     "Son frecuentes la depresión y la ansiedad; si son graves, se atienden con su propio plan. La medicación tiene poco respaldo para el arrancamiento del pelo en sí."
   ],
   planes: [
@@ -5142,6 +5144,77 @@ const VARIABLES = [
       cuidado: [
         "Aceptación no significa aceptar el arrancamiento, sino los impulsos y emociones que no se pueden controlar (Woods y Twohig, 2008, cap. 1).",
         "Si la persona se lleva el pelo a la boca o lo ingiere, derivar a evaluación médica: puede formarse un tricobezoar en el tubo digestivo (Woods y Twohig, 2008, cap. 1)."
+      ]
+    },
+    {
+      id: "crc-reversion",
+      mod: "woods-tricotilomania",
+      inst: [],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Reversión del hábito para los hábitos nerviosos",
+      fuente: "Miltenberger, 2024, cap. 21",
+      cuando: "La persona tiene un <strong>hábito repetitivo que hace casi sin darse cuenta</strong> —morderse las uñas, pellizcarse la piel, morderse los labios, apretar los dientes, chuparse el dedo— con una frecuencia o intensidad que le causa daño, molestia o vergüenza. Suele aparecer en momentos de tensión o de inactividad, y quiere dejarlo.",
+      respaldo: "La reversión del hábito se ha mostrado eficaz de forma consistente en numerosos estudios con hábitos nerviosos, tics y tartamudez, y es el tratamiento preferido para estos problemas. Sus componentes más activos son el entrenamiento en conciencia y la respuesta competitiva. En niños pequeños y en personas con discapacidad intelectual puede no funcionar, y entonces se usan otros procedimientos conductuales (Miltenberger, 2024, cap. 21).",
+      secuencia: "<strong>Secuencia:</strong> el procedimiento se enseña en sesión y la persona lo aplica fuera de ella. Tiene cuatro componentes: entrenamiento en conciencia, entrenamiento en la respuesta competitiva, apoyo social y estrategias de motivación (Miltenberger, 2024, cap. 21).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Entrenamiento en conciencia",
+          tecs: ["autorregistro"],
+          obj: "Que la persona detecte cada vez que hace el hábito o está a punto de hacerlo.",
+          pasos: [
+            "Describir con la persona, paso a paso, los movimientos que forman el hábito.",
+            "Practicar en sesión que avise cada vez que lo hace o empieza a hacerlo, por ejemplo cuando la mano va hacia la boca.",
+            "Identificar las situaciones en que el hábito es más probable: tensión, aburrimiento, estar sentado viendo una pantalla.",
+            "Registrar cada vez que ocurre durante la semana: el propio registro ayuda a notarlo."
+          ],
+          casa: "Registro del hábito durante la semana.",
+          avance: "La persona detecta la mayoría de las veces que hace el hábito.",
+          fuente: "Miltenberger, 2024, cap. 21, «Habit Reversal Procedures»",
+          fichas: ["registro-habito"]
+        },
+        {
+          t: "La respuesta competitiva",
+          tecs: ["respuesta-competitiva"],
+          obj: "Aprender una conducta incompatible con el hábito, poco visible, para usar cuando aparece.",
+          pasos: [
+            "Elegir una respuesta que use los mismos músculos que el hábito y no llame la atención: cerrar el puño con el brazo al costado, tomar un lápiz, meter la mano en el bolsillo o cruzar los brazos; para morderse el labio o apretar los dientes, juntar suavemente los dientes de arriba y de abajo.",
+            "Practicarla en sesión al notar el hábito o el impulso, y mantenerla de uno a tres minutos.",
+            "Ensayar en sesión situaciones que imitan las de riesgo.",
+            "Acordar usarla también de forma anticipada, cuando aparezca la situación de riesgo."
+          ],
+          casa: "Usar la respuesta competitiva cada vez que note el hábito, y registrarlo.",
+          avance: "La persona usa la respuesta competitiva fuera de la sesión.",
+          fuente: "Miltenberger, 2024, cap. 21, «Applications of Habit Reversal»",
+          fichas: ["registro-habito"]
+        },
+        {
+          t: "Apoyo social y motivación",
+          tecs: ["apoyo-social", "autorrefuerzo"],
+          obj: "Sostener la práctica con la ayuda de alguien cercano y con razones claras para cambiar.",
+          pasos: [
+            "Pedir a una persona cercana —pareja, padre o madre— que le recuerde usar la respuesta competitiva cuando vea el hábito y que lo elogie cuando no lo hace o la usa bien.",
+            "Revisar con la persona todas las situaciones en que el hábito le ha causado molestias o vergüenza, como estrategia de motivación.",
+            "Revisar cada semana el registro y reconocer los avances.",
+            "Planear qué hacer si el hábito aumenta en una época de más tensión."
+          ],
+          casa: "Mantener la práctica con el apoyo acordado.",
+          avance: "El hábito disminuye y la persona sigue usando la respuesta competitiva.",
+          fuente: "Miltenberger, 2024, cap. 21, «Habit Reversal Procedures»"
+        }
+      ],
+      medir: [
+        "Frecuencia del hábito en el registro diario, antes y durante el tratamiento.",
+        "Daño visible —uñas, piel, labios— al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Con la familia:</strong> en niños, el padre o la madre puede guiar físicamente la respuesta competitiva —por ejemplo, decir «manos en el regazo» y llevar con suavidad las manos del niño a su regazo— hasta que el niño la haga solo (Miltenberger, 2024, cap. 21).",
+        "<strong>Si no funciona:</strong> con niños pequeños o personas con discapacidad intelectual se han usado otros procedimientos, como el reforzamiento de la ausencia del hábito, el costo de respuesta o impedir la respuesta, por ejemplo con guantes delgados al dormir para el arrancamiento del pelo nocturno (Miltenberger, 2024, cap. 21)."
+      ],
+      cuidado: [
+        "Para el arrancamiento del pelo, sobre todo el focalizado, el plan de terapia de conducta potenciada con aceptación y compromiso tiene más componentes; los tics y la tartamudez tienen respuestas competitivas propias (Miltenberger, 2024, cap. 21).",
+        "Si el daño en la piel es importante o hay infección, se coordina con medicina."
       ]
     }
   ]
@@ -14611,7 +14684,8 @@ const VARIABLES = [
           ],
           casa: "Dos o tres ejercicios de focalización sensorial en la semana.",
           avance: "La pareja tiene contacto sin presión y ella comunica lo que le gusta.",
-          fuente: "Hall y Binik, 2020, cap. 1, «Sensate Focus» y caso de Tae"
+          fuente: "Hall y Binik, 2020, cap. 1, «Sensate Focus» y caso de Tae",
+          fichas: ["focalizacion-sensorial"]
         },
         {
           t: "Atención plena durante el encuentro y mantenimiento",
@@ -14708,7 +14782,8 @@ const VARIABLES = [
           ],
           casa: "Ejercicios de focalización sensorial acordados para la semana.",
           avance: "Baja la ansiedad de desempeño y la pareja vuelve a tener contacto sexual.",
-          fuente: "Hall y Binik, 2020, cap. 4, «Sex Therapy/Cognitive-Behavioral Therapy Approaches» y caso de Philippe y Catherine"
+          fuente: "Hall y Binik, 2020, cap. 4, «Sex Therapy/Cognitive-Behavioral Therapy Approaches» y caso de Philippe y Catherine",
+          fichas: ["focalizacion-sensorial"]
         },
         {
           t: "Comunicación de la pareja sobre el sexo",
@@ -14804,7 +14879,8 @@ const VARIABLES = [
           ],
           casa: "Ejercicios de pareja acordados.",
           avance: "La mujer llega al orgasmo en el encuentro con su pareja o se siente capaz de pedir lo que necesita.",
-          fuente: "Hall y Binik, 2020, cap. 5, «Psychological Interventions»"
+          fuente: "Hall y Binik, 2020, cap. 5, «Psychological Interventions»",
+          fichas: ["focalizacion-sensorial"]
         },
         {
           t: "Complementos y mantenimiento",
@@ -15012,7 +15088,8 @@ const VARIABLES = [
           ],
           casa: "Ejercicios de focalización sensorial sin coito.",
           avance: "La pareja tiene encuentros satisfactorios sin intentar el coito.",
-          fuente: "Hall y Binik, 2020, cap. 8, caso de Nadine y Ben"
+          fuente: "Hall y Binik, 2020, cap. 8, caso de Nadine y Ben",
+          fichas: ["focalizacion-sensorial"]
         },
         {
           t: "Dilatación gradual y cierre",
@@ -20516,6 +20593,7 @@ const GLOSARIO = [
 { k: "focalizacion-sensorial", t: "Focalización sensorial", alias: ["focalizacion sensorial"], tipo: "Técnica", enf: ["tcc"],
   d: "Ejercicios graduales en pareja, desarrollados por Masters y Johnson, en los que los dos se tocan por turnos con la consigna de notar las sensaciones, no de excitarse ni de llegar al coito. Reduce la ansiedad de desempeño y la autoobservación crítica, funciona como una exposición en vivo y amplía el repertorio sexual. Es la técnica más usada por los terapeutas sexuales.",
   como: ["Dejar el coito fuera durante esta etapa.", "Turnarse: uno toca y explora, el otro atiende a lo que siente y dice qué le agrada.", "Cuando la mente se vaya a evaluar o a anticipar, volver a las sensaciones.", "Avanzar del contacto no genital al genital según cómo se sientan los dos."],
+  ficha: "focalizacion-sensorial",
   fuente: "Hall y Binik, 2020, caps. 1, 4 y 5" },
 { k: "rol-espectador", t: "Rol de espectador", alias: ["autoobservación durante el sexo"], tipo: "Concepto", enf: ["tcc"],
   d: "Tendencia a observarse y evaluarse durante el encuentro sexual —«¿tendré la erección?», «¿qué estará pensando?»— en lugar de atender a las sensaciones. Distrae de los estímulos eróticos, activa la ansiedad y empeora la respuesta sexual; la focalización sensorial y la atención plena se dirigen contra ella.",
@@ -20746,6 +20824,8 @@ const FICHAS = {
   "analisis-racional-ira": { t: "Análisis racional de un episodio de ira", d: "Revisar lo que se dijo a sí mismo en un episodio de ira. No se discute si lo que pasó fue injusto o molesto: se revisa cómo lo evaluó, porque algunas evaluaciones convierten una molestia en furia.", n: 37, q: "M0 0.5h7m8 0h1m2 0h3m2 0h1m2 0h1m1 0h1m1 0h7m-37 1h1m5 0h1m5 0h2m1 0h2m1 0h1m3 0h1m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m3 0h1m2 0h1m4 0h1m1 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m3 0h2m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h3m2 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m1 0h1m2 0h1m1 0h1m5 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h3m7 0h4m1 0h2m1 0h2m-28 1h1m1 0h5m4 0h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h3m3 0h5m-34 1h5m2 0h1m4 0h4m1 0h3m2 0h1m4 0h2m1 0h1m2 0h2m-35 1h3m1 0h2m1 0h1m2 0h1m2 0h1m2 0h2m2 0h1m3 0h3m3 0h1m2 0h3m-36 1h4m4 0h2m1 0h3m1 0h1m1 0h5m1 0h1m1 0h3m4 0h1m2 0h1m-34 1h1m2 0h4m1 0h4m2 0h1m1 0h1m2 0h4m2 0h3m1 0h5m-37 1h1m2 0h1m1 0h1m10 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-30 1h1m2 0h4m1 0h1m4 0h3m2 0h2m5 0h2m1 0h4m1 0h2m-32 1h1m1 0h1m2 0h1m4 0h1m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h2m1 0h1m1 0h2m4 0h2m3 0h1m1 0h2m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m6 0h4m2 0h2m1 0h3m3 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-32 1h1m1 0h2m6 0h3m1 0h1m1 0h1m1 0h1m2 0h6m3 0h3m-36 1h2m2 0h1m3 0h1m2 0h1m1 0h2m5 0h4m2 0h1m1 0h2m1 0h1m3 0h1m-37 1h3m1 0h1m1 0h2m1 0h2m2 0h3m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h1m1 0h4m1 0h2m1 0h2m2 0h1m1 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-31 1h2m1 0h4m3 0h1m1 0h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m4 0h1m2 0h1m1 0h2m1 0h4m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m1 0h2m2 0h2m-34 1h1m1 0h3m3 0h1m6 0h2m3 0h3m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h3m2 0h1m2 0h1m2 0h1m2 0h7m2 0h1m4 0h1m2 0h1m-32 1h1m2 0h1m2 0h1m1 0h1m1 0h5m2 0h1m4 0h1m2 0h3m2 0h7m-37 1h1m2 0h3m3 0h6m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h3m-31 1h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h1m2 0h2m3 0h1m1 0h3m1 0h8m-28 1h1m1 0h2m1 0h1m2 0h5m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m1 0h1m2 0h4m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h2m3 0h1m1 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h5m1 0h1m1 0h6m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h2m3 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m3 0h1m3 0h2m5 0h4m1 0h3m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
   "impulsores-suicidio": { t: "Los problemas que me llevan a pensar en el suicidio", d: "Poner por escrito, con sus palabras, los dos problemas que más lo llevan a pensar en el suicidio y lo que vamos a hacer con cada uno. Es una parte del plan de tratamiento que se revisa en cada sesión: los problemas pueden cambiar con el tiempo.", n: 37, q: "M0 0.5h7m2 0h1m1 0h2m5 0h1m4 0h1m2 0h1m1 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h4m1 0h1m1 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h3m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h6m1 0h1m1 0h1m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h3m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h2m1 0h2m3 0h1m5 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m2 0h3m1 0h7m1 0h2m-28 1h1m1 0h5m4 0h4m3 0h2m2 0h1m1 0h3m3 0h5m-35 1h2m1 0h3m1 0h4m1 0h2m1 0h2m1 0h3m2 0h1m4 0h2m1 0h1m2 0h2m-35 1h3m1 0h2m2 0h2m1 0h3m2 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-36 1h2m2 0h1m3 0h1m1 0h3m2 0h1m1 0h1m1 0h3m3 0h3m4 0h1m2 0h1m-36 1h1m3 0h2m1 0h2m1 0h1m5 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h1m2 0h1m1 0h1m1 0h2m1 0h5m1 0h5m2 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m1 0h1m1 0h3m2 0h9m2 0h2m3 0h4m1 0h4m1 0h2m-35 1h1m2 0h1m3 0h1m2 0h4m1 0h2m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h3m2 0h2m2 0h1m1 0h3m2 0h1m2 0h1m2 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m2 0h1m4 0h1m2 0h1m1 0h2m1 0h4m2 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-36 1h2m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-29 1h3m1 0h1m2 0h1m5 0h4m2 0h1m1 0h2m1 0h1m3 0h1m-36 1h1m4 0h1m3 0h1m1 0h1m1 0h2m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h1m1 0h1m5 0h2m6 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-32 1h2m2 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m4 0h1m4 0h1m2 0h4m3 0h2m2 0h1m4 0h1m1 0h2m2 0h2m-37 1h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h6m1 0h1m1 0h1m-35 1h2m1 0h1m5 0h1m1 0h3m1 0h3m1 0h2m2 0h1m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m2 0h1m1 0h4m2 0h1m4 0h1m2 0h4m1 0h7m-37 1h1m1 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1m2 0h4m3 0h5m5 0h1m-37 1h1m1 0h5m4 0h1m1 0h1m3 0h3m2 0h5m1 0h8m-28 1h1m2 0h1m1 0h1m2 0h5m1 0h2m3 0h2m3 0h2m-34 1h7m2 0h1m4 0h4m2 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m5 0h1m2 0h2m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h3m5 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m4 0h2m1 0h3m1 0h1m1 0h8m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h2m3 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m1 0h1m3 0h1m3 0h6m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m1 0h2m1 0h2m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
   "sintomas-diana-peso": { t: "Mis síntomas diana y mi peso", d: "Seguir semana a semana los síntomas que acordó trabajar con su terapeuta y la evolución de su peso. Se revisa al comienzo de cada sesión.", n: 37, q: "M0 0.5h7m2 0h1m5 0h2m1 0h1m4 0h2m3 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m2 0h5m1 0h1m3 0h1m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h2m3 0h3m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h6m1 0h1m1 0h1m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h3m1 0h1m3 0h2m2 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h2m2 0h1m3 0h1m2 0h2m1 0h1m1 0h3m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h4m2 0h3m1 0h7m1 0h2m-28 1h1m1 0h5m3 0h3m5 0h2m2 0h1m1 0h3m3 0h5m-35 1h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h3m1 0h2m4 0h2m1 0h1m2 0h2m-35 1h3m1 0h2m1 0h3m1 0h3m2 0h2m2 0h1m2 0h4m3 0h1m2 0h3m-36 1h1m3 0h1m2 0h2m1 0h3m2 0h1m1 0h1m1 0h4m2 0h3m4 0h1m2 0h1m-36 1h2m2 0h5m1 0h1m5 0h1m4 0h4m1 0h4m1 0h5m-34 1h1m1 0h1m1 0h2m1 0h5m1 0h6m1 0h1m4 0h2m1 0h1m-31 1h2m2 0h2m2 0h4m1 0h4m2 0h2m5 0h2m1 0h4m1 0h2m-36 1h2m7 0h1m1 0h2m1 0h1m1 0h2m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-35 1h3m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m2 0h2m1 0h3m1 0h2m2 0h1m1 0h4m2 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-36 1h3m1 0h1m1 0h4m3 0h1m1 0h2m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-35 1h1m5 0h5m2 0h1m5 0h2m1 0h1m3 0h3m1 0h1m3 0h1m-36 1h2m3 0h2m2 0h3m1 0h2m1 0h1m7 0h2m2 0h2m1 0h3m-35 1h1m1 0h1m1 0h1m3 0h2m6 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-34 1h11m1 0h4m2 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m-28 1h1m4 0h3m3 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h2m-37 1h1m1 0h1m1 0h1m1 0h1m6 0h1m4 0h3m1 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m6 0h2m1 0h2m1 0h3m1 0h2m1 0h2m4 0h2m1 0h1m-32 1h1m2 0h2m1 0h2m1 0h1m3 0h2m2 0h1m4 0h1m2 0h4m1 0h7m-37 1h1m1 0h2m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m2 0h4m1 0h1m1 0h2m1 0h2m5 0h1m-37 1h1m2 0h5m3 0h1m1 0h1m3 0h3m2 0h5m1 0h8m-28 1h1m2 0h1m1 0h1m2 0h8m1 0h1m1 0h2m3 0h2m-34 1h7m3 0h1m4 0h3m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m2 0h2m2 0h2m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m2 0h6m5 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m6 0h2m3 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m1 0h2m2 0h1m3 0h4m3 0h3m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h2m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5" },
+  "focalizacion-sensorial": { t: "Registro de focalización sensorial", d: "Anotar cada ejercicio de focalización sensorial con su pareja. La consigna es tocar y recibir caricias para notar las sensaciones, no para excitarse ni para llegar al coito. Cuando la mente se vaya a evaluar o a anticipar, vuelva a las sensaciones.", n: 37, q: "M0 0.5h7m2 0h1m3 0h3m3 0h2m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h2m6 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h1m5 0h3m1 0h2m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m2 0h1m3 0h3m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h6m4 0h1m2 0h2m1 0h1m2 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h3m4 0h1m2 0h7m1 0h2m-28 1h1m1 0h5m2 0h1m1 0h1m1 0h5m1 0h1m2 0h1m2 0h2m3 0h5m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m2 0h1m1 0h2m1 0h1m2 0h2m-31 1h2m1 0h3m3 0h5m2 0h1m3 0h4m2 0h1m2 0h3m-36 1h3m3 0h1m1 0h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h2m5 0h1m2 0h1m-37 1h1m2 0h4m3 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-37 1h1m1 0h1m2 0h1m1 0h2m4 0h2m1 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-32 1h2m1 0h1m1 0h2m2 0h1m5 0h2m3 0h1m1 0h1m2 0h1m1 0h2m1 0h4m1 0h2m-37 1h2m1 0h1m3 0h1m2 0h2m2 0h2m2 0h1m2 0h1m6 0h2m1 0h2m2 0h1m-35 1h3m1 0h2m1 0h2m2 0h2m3 0h1m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h5m2 0h2m1 0h1m2 0h1m1 0h6m1 0h4m2 0h1m2 0h1m2 0h2m-36 1h1m1 0h1m1 0h3m4 0h1m1 0h2m3 0h1m1 0h1m1 0h1m1 0h7m3 0h3m-37 1h1m4 0h1m1 0h4m5 0h1m4 0h3m5 0h2m1 0h1m3 0h1m-37 1h3m2 0h4m3 0h1m4 0h1m5 0h1m1 0h3m1 0h2m1 0h3m-34 1h1m5 0h2m3 0h1m3 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-31 1h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m2 0h1m3 0h1m1 0h4m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h2m-33 1h4m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h6m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m2 0h1m3 0h2m3 0h2m1 0h4m2 0h1m4 0h1m2 0h1m-32 1h1m2 0h1m2 0h1m1 0h2m1 0h3m1 0h3m2 0h1m1 0h1m2 0h4m1 0h7m-37 1h1m2 0h2m4 0h1m1 0h5m5 0h3m2 0h1m1 0h3m4 0h1m-36 1h1m3 0h4m1 0h2m1 0h2m1 0h1m1 0h3m2 0h5m1 0h8m-28 1h3m3 0h1m1 0h1m1 0h3m1 0h2m3 0h2m3 0h2m-34 1h7m2 0h2m3 0h3m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h4m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h2m4 0h2m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h10m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m14 0h1m6 0h2m-37 1h1m5 0h1m4 0h1m1 0h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h5m1 0h1m3 0h1m-37 1h7m1 0h2m7 0h1m4 0h2m1 0h2m5 0h5" },
+  "registro-habito": { t: "Registro del hábito y de la respuesta competitiva", d: "Darse cuenta de cada vez que hace el hábito, o está a punto de hacerlo, y usar en ese momento la respuesta competitiva que acordó con el terapeuta. Anotarlo ayuda por sí mismo a notarlo.", n: 37, q: "M0 0.5h7m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m1 0h1m1 0h1m3 0h2m2 0h1m1 0h1m2 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h1m6 0h3m4 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m6 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m1 0h3m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h5m6 0h6m2 0h1m-28 1h1m1 0h5m2 0h7m2 0h3m4 0h2m1 0h1m1 0h5m-35 1h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h2m6 0h1m2 0h1m1 0h2m1 0h1m2 0h2m-35 1h2m1 0h3m4 0h1m5 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-34 1h2m5 0h3m3 0h1m1 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-35 1h2m1 0h4m1 0h2m1 0h2m2 0h1m4 0h4m2 0h3m1 0h5m-36 1h2m2 0h1m1 0h1m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-32 1h1m2 0h7m3 0h5m2 0h1m1 0h1m2 0h1m1 0h2m1 0h4m1 0h2m-37 1h1m1 0h2m3 0h2m2 0h2m1 0h2m1 0h2m2 0h1m6 0h2m1 0h2m2 0h1m-34 1h2m2 0h1m2 0h2m3 0h1m1 0h1m2 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-36 1h2m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h2m-34 1h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h2m2 0h1m1 0h7m3 0h3m-35 1h4m2 0h4m3 0h1m3 0h6m3 0h3m1 0h1m3 0h1m-35 1h3m1 0h1m1 0h2m3 0h1m1 0h1m1 0h1m1 0h1m5 0h3m1 0h2m1 0h3m-33 1h4m2 0h1m2 0h1m4 0h1m1 0h4m1 0h1m1 0h1m2 0h1m4 0h1m-33 1h3m2 0h1m2 0h3m3 0h1m2 0h1m1 0h2m2 0h4m1 0h1m1 0h3m1 0h2m-37 1h2m3 0h1m4 0h4m1 0h2m3 0h2m2 0h1m1 0h1m2 0h1m1 0h2m2 0h2m-37 1h4m1 0h3m1 0h2m1 0h3m3 0h2m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m3 0h1m1 0h2m4 0h1m1 0h3m5 0h1m4 0h2m1 0h1m-32 1h1m1 0h6m2 0h5m2 0h1m4 0h1m2 0h4m1 0h7m-37 1h1m1 0h3m5 0h2m2 0h1m1 0h1m4 0h2m1 0h1m1 0h5m5 0h1m-37 1h1m1 0h3m1 0h2m1 0h2m2 0h1m3 0h2m3 0h1m1 0h11m-27 1h3m3 0h1m1 0h8m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m2 0h1m2 0h3m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h3m5 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h4m7 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h2m2 0h1m1 0h1m3 0h4m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m4 0h2m1 0h2m5 0h5" },
 };
 
 /* Fichas de los instrumentos de evaluación, en la carpeta instrumentos/.
