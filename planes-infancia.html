@@ -1608,6 +1608,50 @@ Object.assign(MODELOS, {
   }
 });
 
+/* Libros agregados a la biblioteca el 2026-10-20: variables nuevas Problemas de
+   conducta graves en la adolescencia (Sexton, 2011), Dolor crónico (Palermo,
+   2012) y Evitación y restricción de la ingesta de alimentos (Sinha et al.,
+   2025). La primera ya se nombraba en Conducta oposicionista y desafiante. */
+Object.assign(MODELOS, {
+  "fft-relacional": {
+    tipo: "marco",
+    t: "Modelo relacional de la terapia familiar funcional",
+    autor: "Sexton",
+    d: "La conducta problema del adolescente se entiende dentro de las relaciones de su familia: cumple una función relacional —busca más cercanía o más distancia en una relación— y se sostiene en una secuencia de interacción y en factores de riesgo y protección de la familia y de su entorno. El cambio es sistemático y por fases: primero se reducen la culpa y la negatividad y se construye un foco familiar compartido, después se cambian conductas concretas ajustadas a la función relacional de cada familia y por último se generaliza a los sistemas que la rodean.",
+    dim: ["Función relacional de la conducta", "Secuencia del problema", "Factores de riesgo y protección", "Vinculación y motivación", "Cambio de conducta", "Generalización"],
+    fuente: "Sexton, 2011, caps. 2 y 3"
+  },
+  "dolor-pediatrico": {
+    tipo: "explicativo",
+    t: "Marco biopsicosocial del dolor crónico pediátrico",
+    autor: "Palermo",
+    d: "Todo dolor tiene contribuciones físicas y psicológicas que se influyen entre sí. En el dolor crónico del niño y del adolescente intervienen factores biológicos, psicológicos —miedo, catastrofismo, ánimo—, sociales —las respuestas de los padres, el colegio, los compañeros— y los hábitos de salud —sueño, actividad, alimentación—. Las respuestas que sirven ante el dolor agudo, como quedarse en casa o descansar, en el crónico aumentan la discapacidad; por eso el tratamiento apunta a reducir la interferencia y el malestar, no solo el dolor.",
+    dim: ["Factores biológicos", "Factores psicológicos", "Factores sociales: padres y colegio", "Hábitos de salud"],
+    fuente: "Palermo, 2012, caps. 1 y 5"
+  },
+  "teria-subtipos": {
+    tipo: "marco",
+    t: "Subtipos del trastorno de evitación y restricción de la ingesta",
+    autor: "Sinha, Sy, Derenne y Carlson",
+    d: "El TERIA no es una sola entidad: se reconocen tres subtipos, que pueden coexistir. En el sensorial, la persona rechaza alimentos por su textura, color, sabor, olor o marca, a menudo con rigidez en otras áreas. En el de poco interés, casi no tiene hambre, se llena rápido y le cuesta priorizar la comida. En el de miedo a consecuencias aversivas, restringe tras una experiencia de atragantamiento, vómito o dolor. Cada subtipo pide un plan de alimentación y unas estrategias distintas, dentro de una atención multidisciplinaria.",
+    dim: ["Sensorial", "Poco interés", "Miedo a consecuencias aversivas", "Atención multidisciplinaria"],
+    fuente: "Sinha et al., 2025, caps. 1 y 2"
+  }
+});
+
+Object.assign(INSTRUMENTOS, {
+  "FDI": { n: "Inventario de Discapacidad Funcional", rol: "Prueba específica", d: "Cuánto interfiere el dolor en las actividades del niño o del adolescente.", med: "Autoinforme", guia: false, fuente: "Walker y Greene, 1991, en Palermo, 2012, cap. 4" },
+  "PCS-C": { n: "Escala de Catastrofización del Dolor para Niños", rol: "Prueba específica", d: "Pensamientos catastróficos sobre el dolor en niños y adolescentes.", med: "Autoinforme", guia: false, fuente: "Palermo, 2012, cap. 4" },
+  "NIAS": { n: "Tamizaje de Nueve Ítems para el TERIA", rol: "Tamizaje", d: "Tamizaje breve y validado de los síntomas del trastorno de evitación y restricción de la ingesta.", med: "9 ítems", guia: false, fuente: "Sinha et al., 2025, cap. 2" },
+  "PARDI": { n: "Entrevista de Pica, TERIA y Rumiación", rol: "Entrevista específica", d: "Entrevista semiestructurada validada para el diagnóstico del trastorno de evitación y restricción de la ingesta; sus puntajes bajaron con el tratamiento en los estudios piloto.", med: "Entrevista · unos 45 minutos", guia: false, fuente: "Sinha et al., 2025, cap. 2" }
+});
+
+REFERENCIAS.push(
+  { k: "Sexton, 2011", ref: "Sexton, T. L. (2011). <em>Functional family therapy in clinical practice: An evidence-based treatment model for working with troubled adolescents</em>. Routledge." },
+  { k: "Palermo, 2012", ref: "Palermo, T. M. (2012). <em>Cognitive-behavioral therapy for chronic pain in children and adolescents</em>. Oxford University Press." },
+  { k: "Sinha et al., 2025", ref: "Sinha, A. B., Sy, A. F., Derenne, J. L. y Carlson, J. L. (Eds.). (2025). <em>Comprehensive clinical care for adolescents with avoidant/restrictive food intake disorder (ARFID)</em>. Springer." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -5028,6 +5072,132 @@ const VARIABLES = [
 },
 {
   cat: "Alteraciones conductuales",
+  t: "Problemas de conducta graves en la adolescencia",
+  sub: "Adolescentes con conductas que ya traspasaron la casa: robos, peleas, fugas, ausentismo escolar, consumo, problemas con la justicia o con el sistema de protección. Las familias suelen llegar agotadas, con mucha culpa y negatividad entre sus miembros y desconfiadas tras pasar por otros servicios. Lo que se interviene es la relación familiar en la que aparece la conducta y los factores de riesgo y protección de la familia y de su entorno.",
+  elegir: [
+    "<strong>El plan es la terapia familiar funcional</strong>, para adolescentes de 11 a 18 años de alto riesgo y sus familias. Trabaja primero la motivación y la culpa de todos, después cambia conductas concretas de la familia y por último extiende los cambios al colegio y a la comunidad (Sexton, 2011).",
+    "Si el problema central es el consumo de alcohol u otras sustancias, la variable <em>Consumo de alcohol y otras sustancias</em> trae además la terapia familiar multidimensional. Si la conducta es desafiante, pero sin robos, fugas ni problemas con la justicia, corresponde <em>Conducta oposicionista y desafiante</em>."
+  ],
+  planes: [
+    {
+      id: "conducta-fft",
+      mod: "fft-relacional",
+      inst: ["SDQ", "APQ"],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Terapia familiar funcional",
+      fuente: "Sexton, 2011",
+      cuando: "Un adolescente de 11 a 18 años con <strong>problemas de conducta graves</strong> —violencia, robos, fugas, ausentismo, consumo— derivado a menudo por la justicia juvenil, el sistema de protección o salud mental, cuya familia está atrapada en la culpa y la negatividad mutuas y duda de que algo pueda cambiar. La familia acepta reunirse, en casa o en la consulta.",
+      respaldo: "En el primer ensayo, con adolescentes de 13 a 16 años derivados del juzgado, la terapia familiar funcional redujo la reincidencia frente a no recibir tratamiento y frente a otras dos terapias familiares; a los dos o tres años, solo el 20 % de sus hermanos tuvo problemas con la justicia, frente al 40 % o más en los otros grupos. En servicios comunitarios logró que entre el 78 y el 89 % de las familias se mantuviera en el tratamiento, cuando con otros servicios lo completa entre una cuarta parte y la mitad de los jóvenes. Es uno de los programas modelo para la violencia juvenil (Sexton, 2011, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> de 8 a 12 sesiones en los casos leves y hasta 30 horas de atención directa en los más difíciles, a lo largo de tres a seis meses, en tres fases: vinculación y motivación, cambio de conducta y generalización. La evaluación no es una fase aparte: se hace en cada sesión, a partir de lo que pasa en la conversación con la familia (Sexton, 2011, caps. 1 y 3).",
+      esc: ["comunidad", "proteccion", "salud-mental"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Vinculación: alianza con todos y menos culpa",
+          tecs: ["reencuadre-relacional", "validacion"],
+          obj: "Lograr que todos los miembros quieran volver, sintiendo que el terapeuta no está de parte de nadie.",
+          pasos: [
+            "Desde la primera llamada, buscar la participación de todos y una alianza equilibrada con cada uno.",
+            "Escuchar cómo define cada uno el problema y notar las atribuciones de culpa y las emociones que aparecen.",
+            "Reencuadrar en tres pasos: reconocer lo que la persona siente y dice, ofrecer otra lectura de la conducta del otro y ver cómo la reciben para seguir construyendo sobre ella.",
+            "Interrumpir o desviar con respeto los intercambios de culpa que se repiten en la sesión."
+          ],
+          casa: "No aplica: el cambio de esta fase ocurre en la sesión.",
+          avance: "Baja la negatividad entre los miembros y la familia vuelve a la siguiente sesión.",
+          fuente: "Sexton, 2011, cap. 4"
+        },
+        {
+          t: "Un foco familiar y un tema organizador",
+          tecs: ["tema-organizador"],
+          obj: "Pasar de «el problema es él» a un problema que la familia comparte.",
+          pasos: [
+            "Identificar la secuencia del problema: qué pasa antes, durante y después de la conducta, y quién hace qué.",
+            "Construir con la familia un tema que explique la conducta problema por una intención comprensible, aunque mal dirigida, sin culpar a nadie.",
+            "Usar el tema para que cada uno comparta la responsabilidad del cambio.",
+            "Identificar los factores de riesgo y de protección de la familia y del entorno."
+          ],
+          casa: "Notar en la semana un momento en que el tema se vio en la casa.",
+          avance: "La familia describe el problema como algo de todos y tiene esperanza en el cambio.",
+          fuente: "Sexton, 2011, cap. 4"
+        },
+        {
+          t: "Evaluar las funciones relacionales",
+          tecs: ["funcion-relacional", "analisis-funcional"],
+          obj: "Entender qué tipo de relación busca cada par de miembros, para ajustar a ella los cambios de conducta.",
+          pasos: [
+            "Observar cómo se relaciona cada pareja de miembros —el adolescente con cada padre, los padres entre sí—: con mucha cercanía y contacto, con distancia e independencia, o con una mezcla.",
+            "Precisar en qué parte de la secuencia del problema conviene intervenir.",
+            "Elegir los blancos de cambio más relevantes y alcanzables: crianza, comunicación, solución de problemas o manejo de conflictos.",
+            "No intentar cambiar la función relacional: el plan se ajusta a ella."
+          ],
+          casa: "No aplica.",
+          avance: "Hay un plan de cambio individualizado para esta familia.",
+          fuente: "Sexton, 2011, cap. 5"
+        },
+        {
+          t: "Cambio de conducta: crianza y supervisión",
+          tecs: ["supervision-parental", "manejo-contingencias"],
+          obj: "Fortalecer la supervisión activa y la aplicación consistente de consecuencias.",
+          pasos: [
+            "Acordar con los padres cómo saber dónde, con quién y haciendo qué está el adolescente.",
+            "Definir normas claras y consecuencias que los padres puedan cumplir de forma consistente.",
+            "Ajustar la forma a la función relacional: con más contacto en las relaciones cercanas y más breve y concreta en las más distantes.",
+            "Presentar el cambio con el lenguaje del tema organizador, por ejemplo como una forma de proteger al hijo."
+          ],
+          casa: "Aplicar las normas y consecuencias acordadas.",
+          avance: "Los padres supervisan y aplican consecuencias con más consistencia.",
+          fuente: "Sexton, 2011, cap. 5",
+          fichas: ["contrato-familiar"]
+        },
+        {
+          t: "Cambio de conducta: comunicación, problemas y conflicto",
+          tecs: ["entrenamiento-comunicacion", "solucion-problemas"],
+          obj: "Que la familia resuelva sus problemas y conflictos sin escalar.",
+          pasos: [
+            "Traer a la sesión los problemas de la semana y entrenar en vivo, con indicaciones, modelado y práctica.",
+            "Enseñar los pasos de solución de problemas con conductas concretas y anticipando los obstáculos para cumplir el plan.",
+            "Entrenar el manejo de los conflictos y una comunicación que funcione para esa familia, no una idealizada.",
+            "Reencuadrar una y otra vez los tropiezos para sostener la motivación."
+          ],
+          casa: "Una conversación familiar de solución de problemas.",
+          avance: "La familia resuelve un problema real sin escalar y baja la conducta de riesgo.",
+          fuente: "Sexton, 2011, cap. 5",
+          fichas: ["solucion-problemas-adolescente"]
+        },
+        {
+          t: "Generalización: colegio, comunidad y recaídas",
+          tecs: ["prevencion-recaidas", "seguimiento-derivacion"],
+          obj: "Extender los cambios a otras áreas y a los sistemas que rodean a la familia, y prepararla para los tropiezos.",
+          pasos: [
+            "Aplicar lo aprendido a otros problemas de la familia y en la relación con el colegio, la justicia o el sistema de protección.",
+            "Identificar las situaciones de riesgo que pueden reactivar la negatividad y planear cómo responder a un tropiezo sin perder lo logrado.",
+            "Conectar a la familia con apoyos de la comunidad, emocionales y prácticos, y derivar a otros servicios si hace falta.",
+            "Destacar lo que la familia logró por sí misma para fortalecer su sensación de eficacia."
+          ],
+          casa: "Plan familiar para las situaciones de riesgo.",
+          avance: "La familia mantiene los cambios con apoyos de su comunidad.",
+          fuente: "Sexton, 2011, cap. 6"
+        }
+      ],
+      medir: [
+        "<strong>SDQ</strong> para los problemas de conducta y <strong>APQ</strong> para las prácticas de crianza, al inicio y al final.",
+        "Registros del colegio y de la justicia juvenil: asistencia, nuevas faltas o detenciones."
+      ],
+      adapt: [
+        "<strong>Comunidad y protección:</strong> se aplica en casa y en servicios de justicia juvenil, protección y salud mental, con familias de muy distintos orígenes culturales; los servicios que la adoptan usan supervisión clínica y controles de fidelidad al modelo (Sexton, 2011, caps. 1, 8 y 9).",
+        "<strong>Consumo:</strong> trata también el consumo de alcohol y drogas de los adolescentes (Sexton, 2011, cap. 1)."
+      ],
+      cuidado: [
+        "El terapeuta mantiene una alianza equilibrada con todos los miembros y no busca culpables: la culpa y la negatividad entre ellos son el primer blanco del tratamiento (Sexton, 2011, cap. 4).",
+        "Las habilidades se ajustan a cómo funciona esa familia: imponer una forma «sana» de comunicarse, ajena a ella, suele fracasar (Sexton, 2011, cap. 5).",
+        "Si hay maltrato o riesgo para algún miembro, se activa la ruta de protección antes de seguir."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones conductuales",
   t: "Agresividad e ira",
   sub: "Peleas, golpes, amenazas, insultos o intimidación, con enojo que escala rápido ante provocaciones o conflictos con compañeros, docentes o familiares. Lo que se interviene es cómo el niño o el adolescente percibe e interpreta la provocación, cómo maneja la activación y qué alternativas tiene a la agresión.",
   elegir: [
@@ -5526,7 +5696,8 @@ const VARIABLES = [
   sub: "El adolescente consume alcohol, marihuana u otras sustancias con una frecuencia o en unas situaciones que le traen problemas en el colegio, con la familia o con la ley, o sigue haciéndolo pese a esos problemas. Suele consumir por presión de los pares, para sentirse bien o para escapar de un malestar. Lo que se interviene es la motivación para cambiar, las situaciones de riesgo y las habilidades para enfrentarlas, y la familia como apoyo y como límite.",
   elegir: [
     "<strong>La entrevista motivacional combinada con terapia cognitivo-conductual, la terapia cognitivo-conductual sola, el enfoque de reforzamiento comunitario y las terapias familiares son tratamientos bien establecidos</strong> para el consumo en adolescentes. El manejo de contingencias, que premia la abstinencia verificada, es probablemente eficaz combinado con los anteriores. Las recaídas son frecuentes en los primeros meses: dos de cada tres adolescentes en tratamiento ambulatorio recaen en seis meses, por lo que conviene prever un cuidado continuado (Chung y Bachrach, 2019).",
-    "La participación de la familia, la alianza con el terapeuta y permanecer al menos tres meses en tratamiento se asocian con mejores resultados; los problemas de conducta asociados empeoran el pronóstico. Si predominan los conflictos familiares, la supervisión débil o los problemas en varios ámbitos, conviene el plan familiar (Chung y Bachrach, 2019)."
+    "La participación de la familia, la alianza con el terapeuta y permanecer al menos tres meses en tratamiento se asocian con mejores resultados; los problemas de conducta asociados empeoran el pronóstico. Si predominan los conflictos familiares, la supervisión débil o los problemas en varios ámbitos, conviene el plan familiar (Chung y Bachrach, 2019).",
+    "Si el consumo viene con robos, peleas, fugas o problemas con la justicia y una familia atrapada en la culpa, la terapia familiar funcional de <em>Problemas de conducta graves en la adolescencia</em> trabaja también el consumo (Sexton, 2011, cap. 1)."
   ],
   planes: [
     {
@@ -9939,11 +10110,144 @@ const VARIABLES = [
 },
 {
   cat: "Salud, sueño y hábitos",
+  t: "Dolor crónico",
+  sub: "Dolor que dura meses —de cabeza, de estómago, musculoesquelético o por una enfermedad— y que hace que el niño o el adolescente falte al colegio, deje sus actividades y a sus amigos, duerma mal y se angustie. Lo que se interviene no es solo el dolor, sino cuánto interfiere en su vida: lo que el niño piensa y hace con el dolor y cómo responden sus padres y el colegio. Se trabaja en coordinación con el médico tratante.",
+  elegir: [
+    "<strong>El plan es la terapia cognitivo-conductual para el dolor crónico pediátrico</strong>, con tres componentes centrales —relajación, estrategias de manejo de los padres y habilidades cognitivas—, a los que se suman el colegio, el sueño y la actividad física según lo que más interfiera (Palermo, 2012, cap. 5).",
+    "Si el dolor viene con mucha ansiedad, ver también <em>Ansiedad y miedos</em>; si viene con ánimo bajo, <em>Depresión</em>. Si el niño dejó de ir al colegio por otros motivos además del dolor, la variable <em>Rechazo escolar</em> ayuda a entender la función de esa evitación."
+  ],
+  planes: [
+    {
+      id: "dolor-tcc-pediatrico",
+      mod: "dolor-pediatrico",
+      inst: ["FDI", "PCS-C", "RCADS"],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Terapia cognitivo-conductual para el dolor crónico en niños y adolescentes",
+      fuente: "Palermo, 2012",
+      cuando: "Un niño o un adolescente con <strong>dolor recurrente o persistente</strong> —cefaleas, dolor abdominal funcional, dolor musculoesquelético o asociado a una enfermedad— que interfiere con el colegio, las actividades, el sueño o el ánimo, cuya evaluación médica está hecha y que sigue en control con su médico.",
+      respaldo: "Cinco metaanálisis coinciden en que las terapias psicológicas, en especial la cognitivo-conductual, reducen el dolor en niños y adolescentes con cefalea, dolor abdominal y dolor musculoesquelético. En el más reciente, con 25 ensayos y 1247 niños, y tratamientos breves de unas seis horas en promedio, la probabilidad de una reducción clínicamente importante del dolor fue unas seis veces mayor que con el control al terminar y casi diez veces mayor a los tres meses; los efectos sobre la discapacidad y el ánimo fueron pequeños. Sumar estrategias operantes para los padres puede potenciar la terapia (Palermo, 2012, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> en consulta externa, un compromiso inicial de al menos seis sesiones de 50 a 60 minutos, cada una o dos semanas, o de 75 a 80 minutos si se combinan sesiones con el niño, con los padres y conjuntas. La evaluación y el tratamiento se integran: desde la primera visita se enseña una habilidad. Después se trabajan la relajación, las estrategias de los padres y las habilidades cognitivas, y se suman el colegio, el sueño y la actividad según la interferencia (Palermo, 2012, cap. 5).",
+      esc: ["hospital", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Primera visita: evaluación, explicación y metas",
+          tecs: ["entrevista-clinica", "psicoeducacion"],
+          obj: "Evaluar el dolor y su impacto, explicar cómo funciona el dolor crónico y acordar metas realistas.",
+          pasos: [
+            "Evaluar con el niño y los padres la historia del dolor, los medicamentos, el funcionamiento, el ánimo, el sueño, la familia y el colegio; pedir un diario de dolor.",
+            "Aclarar desde el principio que nadie cree que el dolor sea inventado o «está en la cabeza»: el dolor es real y en él influyen el cuerpo, las conductas y las emociones.",
+            "Explicar la diferencia entre el dolor agudo, que avisa de un daño, y el crónico, que puede activarse sin que haya peligro, como una alarma de carro que suena sin ladrón; por eso responden a tratamientos distintos y no conviene quedarse en casa ante cada episodio.",
+            "Acordar metas: no solo que desaparezca el dolor, sino manejarlo, volver a las actividades y al colegio, y que los padres hagan de entrenadores. Recordar que es una maratón, no una carrera de velocidad."
+          ],
+          casa: "Llevar el diario de dolor y practicar la respiración aprendida.",
+          avance: "La familia entiende el modelo y acepta metas de funcionamiento.",
+          fuente: "Palermo, 2012, caps. 4 y 5",
+          fichas: ["registro-relajacion"]
+        },
+        {
+          t: "Relajación e imaginería",
+          tecs: ["respiracion-diafragmatica", "relajacion", "imagineria"],
+          obj: "Dar al niño herramientas para bajar la tensión y manejar los episodios de dolor.",
+          pasos: [
+            "Enseñar la respiración abdominal desde la primera sesión: la mayoría la aprende en cinco a diez minutos.",
+            "Practicar la relajación muscular progresiva con el guion adecuado a la edad, menores o mayores de diez años.",
+            "Usar la imaginería de un lugar agradable y relajaciones breves para usar en el colegio o al empezar el dolor.",
+            "Acordar la práctica diaria en casa y revisar qué la dificulta."
+          ],
+          casa: "Práctica diaria de relajación con su registro.",
+          avance: "El niño usa la relajación por su cuenta cuando aparece el dolor.",
+          fuente: "Palermo, 2012, cap. 6",
+          fichas: ["registro-relajacion"]
+        },
+        {
+          t: "Pautas para los padres ante el dolor",
+          tecs: ["pautas-operantes-dolor", "sistema-puntos", "elogio-especifico"],
+          obj: "Que los padres dejen de reforzar sin querer la conducta de dolor y refuercen el afrontamiento.",
+          pasos: [
+            "Explorar las expectativas de los padres, sus consultas previas y su propia historia de dolor, y validar que les cueste cambiar: puede parecerles frío no atender cada queja.",
+            "Revisar las pautas: animar la actividad normal durante el dolor, dejar de preguntar «¿te duele?», tratar los días en que el dolor obliga a dejar actividades como días de enfermo, sin privilegios especiales, atender el afrontamiento y no las quejas menores, y elogiar el uso de las habilidades.",
+            "Diseñar con los padres, y que ellos lo lideren, un sistema de puntos o de privilegios para la asistencia al colegio y las actividades.",
+            "Anticipar los errores frecuentes: premios accidentales, instrucciones vagas, inconsistencia entre los cuidadores y metas demasiado altas al principio."
+          ],
+          casa: "Aplicar el sistema de puntos acordado.",
+          avance: "Los padres responden al afrontamiento más que a las quejas y el niño retoma actividades.",
+          fuente: "Palermo, 2012, cap. 7",
+          fichas: ["tabla-puntos"]
+        },
+        {
+          t: "Pensamientos sobre el dolor",
+          tecs: ["triangulo-cognitivo", "reestructuracion-cognitiva", "pensamientos-afrontamiento"],
+          obj: "Reducir el catastrofismo y aumentar los pensamientos de afrontamiento.",
+          pasos: [
+            "Mostrar la conexión entre pensamientos, emociones y conductas con ejemplos del niño.",
+            "Identificar los pensamientos catastróficos sobre el dolor —«nunca se va a pasar», «no puedo hacer nada»—.",
+            "Revisarlos y construir pensamientos de afrontamiento y valoraciones positivas, usando técnicas de continuo.",
+            "Animar a usarlos en los momentos difíciles y revisar en sesión cómo funcionaron."
+          ],
+          casa: "Anotar un pensamiento sobre el dolor y su pensamiento de afrontamiento.",
+          avance: "El niño reconoce sus pensamientos catastróficos y usa alternativas.",
+          fuente: "Palermo, 2012, cap. 8",
+          fichas: ["pensamientos-rojos-verdes"]
+        },
+        {
+          t: "Volver al colegio",
+          tecs: ["reingreso-escolar-gradual"],
+          obj: "Recuperar la asistencia escolar con las adaptaciones que de verdad hagan falta.",
+          pasos: [
+            "Explorar lo que el niño y los padres piensan y temen del colegio.",
+            "Revisar con la familia y el colegio qué adaptaciones son razonables —tiempo extra para tareas, ratos de descanso en la enfermería, contacto con el orientador— y cuáles mantienen la evitación.",
+            "Armar un plan de regreso gradual, con metas que el niño pueda cumplir y que suban a medida que lo logra.",
+            "Atender los temas con los compañeros: qué contar del dolor y cómo retomar las amistades."
+          ],
+          casa: "Cumplir la meta de asistencia de la semana.",
+          avance: "Aumenta la asistencia y el tiempo en clase.",
+          fuente: "Palermo, 2012, cap. 9",
+          fichas: ["registro-asistencia"]
+        },
+        {
+          t: "Sueño, actividad física y mantenimiento",
+          tecs: ["higiene-sueno", "dosificar-actividad", "prevencion-recaidas"],
+          obj: "Mejorar el sueño, retomar la actividad de forma dosificada y sostener lo logrado.",
+          pasos: [
+            "Revisar el sueño con un diario y aplicar las pautas: horario regular, sin recuperar el fin de semana, siestas limitadas, cama solo para dormir y sin pantallas en el cuarto.",
+            "Dosificar la actividad por tiempo y no por cómo se siente el dolor, y exponerse de forma gradual a las actividades que se evitan.",
+            "Programar actividades agradables y usar incentivos para la actividad física.",
+            "Repasar las habilidades que más le sirvieron y planear qué hacer ante una crisis de dolor."
+          ],
+          casa: "Diario de sueño y plan de actividad dosificada.",
+          avance: "El niño duerme mejor, está más activo y tiene un plan para las crisis.",
+          fuente: "Palermo, 2012, caps. 10 y 11",
+          fichas: ["diario-sueno-nino", "plan-mantenimiento-nino"]
+        }
+      ],
+      medir: [
+        "Diario de dolor: intensidad, frecuencia y lo que dejó de hacer.",
+        "<strong>FDI</strong> para la interferencia del dolor en las actividades y <strong>PCS-C</strong> para el catastrofismo.",
+        "<strong>RCADS</strong> para la ansiedad y el ánimo."
+      ],
+      adapt: [
+        "<strong>Hospital pediátrico:</strong> en los programas de rehabilitación del dolor en hospitalización o de día, de tres a cuatro semanas, el psicólogo ve al niño cada pocos días y puede observarlo en la fisioterapia y asesorar a los otros terapeutas (Palermo, 2012, cap. 5).",
+        "<strong>Consulta externa:</strong> se comunica al médico remitente el resultado de la evaluación, las metas y la duración prevista del tratamiento, y se mantiene esa comunicación durante el proceso (Palermo, 2012, cap. 5).",
+        "<strong>Colegio:</strong> el tratamiento cognitivo-conductual en grupo también se ha aplicado en el colegio (Palermo, 2012, cap. 3)."
+      ],
+      cuidado: [
+        "Si la primera visita revela un riesgo de expulsión por inasistencia u otro problema urgente, ese tema pasa a ser el primer foco (Palermo, 2012, cap. 5).",
+        "Se evalúan los problemas emocionales y de conducta que acompañan al dolor; los programas intensivos suelen excluir a quienes tienen trastornos psiquiátricos graves (Palermo, 2012, caps. 4 y 5).",
+        "El plan no sustituye el tratamiento médico del dolor."
+      ]
+    }
+  ]
+},
+{
+  cat: "Salud, sueño y hábitos",
   t: "Anorexia en la adolescencia",
   sub: "El adolescente se niega a mantener un peso mínimo para su edad y estatura, tiene un miedo intenso a engordar y se ve más grande de lo que está, o niega la gravedad de su bajo peso. La desnutrición nubla su pensamiento y le impide beneficiarse de una terapia centrada en la comprensión. Lo que se interviene es la restauración del peso, con los padres a cargo, y después el desarrollo adolescente que el trastorno detuvo.",
   elegir: [
     "<strong>La terapia familiar es la intervención que ha resultado más eficaz en los ensayos con adolescentes con anorexia:</strong> ayuda a cerca de dos tercios a recuperar la salud, y a los 4 o 5 años la mayoría se ha recuperado por completo. Los elementos comunes son no culpar al adolescente ni a los padres, poner a los padres a cargo de restaurar el peso, atender juntos, hablar directamente del peso y la comida, devolver el control al adolescente de forma gradual y, al final, ocuparse del desarrollo adolescente (Robin y Le Grange, 2010).",
-    "El tratamiento basado en la familia deja que los padres decidan cómo alimentar y trabaja con toda la familia; la terapia familiar conductual sistémica da a los padres un programa estructurado con un nutricionista y suma reestructuración cognitiva. No se ha estudiado si esas diferencias cambian los resultados. El tratamiento basado en la familia se ha adaptado también para la bulimia en adolescentes (Robin y Le Grange, 2010). La anorexia pone en riesgo la vida: el tratamiento se hace siempre con un médico que controla el peso y decide la hospitalización."
+    "El tratamiento basado en la familia deja que los padres decidan cómo alimentar y trabaja con toda la familia; la terapia familiar conductual sistémica da a los padres un programa estructurado con un nutricionista y suma reestructuración cognitiva. No se ha estudiado si esas diferencias cambian los resultados. El tratamiento basado en la familia se ha adaptado también para la bulimia en adolescentes (Robin y Le Grange, 2010). La anorexia pone en riesgo la vida: el tratamiento se hace siempre con un médico que controla el peso y decide la hospitalización.",
+    "Si el adolescente restringe la comida sin miedo a engordar ni preocupación por la imagen —por la textura u olor de los alimentos, por falta de interés o por miedo a atragantarse o vomitar—, ver <em>Evitación y restricción de la ingesta de alimentos</em>."
   ],
   planes: [
     {
@@ -10141,6 +10445,133 @@ const VARIABLES = [
       cuidado: [
         "Dura en promedio más que el tratamiento basado en la familia (Robin y Le Grange, 2010).",
         "Si los padres tienen problemas graves de pareja, pueden concentrar demasiada energía en el adolescente y frenar su autonomía (Robin y Le Grange, 2010)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Salud, sueño y hábitos",
+  t: "Evitación y restricción de la ingesta de alimentos",
+  sub: "El adolescente come muy poco o muy pocos alimentos, no por miedo a engordar ni por la imagen corporal, sino porque lo rechaza por su textura, olor o aspecto, porque casi no le interesa comer o porque teme que comer le haga daño —atragantarse, vomitar, sentir dolor—. Con eso pierde peso o no crece como se espera, tiene carencias nutricionales, depende de suplementos o ve afectada su vida social. Es el trastorno de evitación y restricción de la ingesta de alimentos (TERIA, en inglés ARFID).",
+  elegir: [
+    "<strong>Primero se reconoce el subtipo</strong>, porque cambia el plan de alimentación y las estrategias: sensorial —muy selectivo con los alimentos—, de poco interés —come para vivir y se aburre comiendo— o de miedo a consecuencias aversivas —restringe después de atragantarse, vomitar o sentir dolor—. Una misma persona puede tener rasgos de más de uno (Sinha et al., 2025, cap. 1).",
+    "Si hay restricción intencional, deseo de bajar de peso o ejercicio compulsivo, el cuadro es más probablemente una anorexia: ver <em>Anorexia en la adolescencia</em> (Sinha et al., 2025, cap. 2). En niños pequeños, el manual menciona programas con los padres, como el apoyo a la crianza ante la ansiedad infantil adaptado al TERIA, que no se desarrollan aquí (Sinha et al., 2025, cap. 2)."
+  ],
+  planes: [
+    {
+      id: "teria-multidisciplinario",
+      mod: "teria-subtipos",
+      inst: ["NIAS", "PARDI", "RCADS"],
+      enf: "tcc",
+      nivel: "preliminar",
+      t: "Atención multidisciplinaria con exposición graduada a los alimentos",
+      fuente: "Sinha et al., 2025",
+      cuando: "Un adolescente con TERIA confirmado, <strong>médicamente estable para la atención ambulatoria</strong> y capaz de alimentarse por boca, con una familia que puede participar. El equipo incluye medicina, salud mental, nutrición y, si es posible, terapia ocupacional o fonoaudiología.",
+      respaldo: "La evidencia todavía es limitada. Los enfoques con más respaldo son el tratamiento basado en la familia adaptado al TERIA, que en estudios piloto superó a la atención médica habitual, y la terapia cognitivo-conductual para el TERIA: en un estudio pediátrico, el 70 % dejó de cumplir criterios al terminar y se incorporaron en promedio 17 alimentos nuevos. Los autores concluyen que conviene incluir a los padres y ajustar el tratamiento al subtipo, la edad y el desarrollo (Sinha et al., 2025, cap. 2).",
+      secuencia: "<strong>Secuencia:</strong> la terapia cognitivo-conductual para el TERIA, en mayores de diez años, dura de 20 a 30 sesiones en seis a doce meses, en cuatro etapas: psicoeducación, nutrición y carencias, exposición graduada en sesión a lo que mantiene el problema y prevención de recaídas; en los más jóvenes o menos motivados conviene que participen los padres. El plan de alimentación, las estrategias del equipo y el plan de conducta se ajustan al subtipo (Sinha et al., 2025, caps. 2, 5 y 8).",
+      esc: ["primer-nivel", "hospital"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Evaluación psicológica y del subtipo",
+          tecs: ["entrevista-clinica"],
+          obj: "Confirmar el diagnóstico, identificar el subtipo y descartar otros problemas.",
+          pasos: [
+            "Reconstruir con el adolescente y los padres cuándo y cómo empezó, si hubo un desencadenante y cómo ha evolucionado la alimentación; pedir un recuento de lo que comió en las últimas 24 horas.",
+            "Revisar la historia del desarrollo y de la alimentación: embarazo, parto, cuidados intensivos o sonda en la infancia, lactancia y la introducción de alimentos.",
+            "Descartar la restricción intencional, el deseo de bajar de peso, el ejercicio compulsivo y los atracones y purgas, y tamizar ansiedad, ánimo, TDAH, autismo, TOC y riesgo suicida.",
+            "Distinguir si los síntomas de ánimo, ansiedad o concentración son trastornos aparte o efectos de la desnutrición, y coordinar con medicina la estabilidad médica."
+          ],
+          casa: "Registrar durante la semana lo que come y lo que rechaza.",
+          avance: "Hay un diagnóstico, un subtipo y un nivel de atención acordados con el equipo.",
+          fuente: "Sinha et al., 2025, caps. 1 y 2",
+          fichas: ["registro-comidas"]
+        },
+        {
+          t: "Explicación a la familia y capa de neutralidad",
+          tecs: ["psicoeducacion", "capa-neutralidad"],
+          obj: "Que la familia entienda el TERIA sin culparse y aprenda a acompañar las comidas sin presión ni reproches.",
+          pasos: [
+            "Explicar el subtipo y que la familia no causa el TERIA, aunque la crítica, la emoción expresada y los límites inconsistentes pueden dificultar la recuperación.",
+            "Enseñar la capa de neutralidad: apoyar que coma con una actitud tranquila y sin reaccionar, con conversaciones agradables en la mesa y sin temas tensos.",
+            "Usar un lenguaje neutro sobre la comida y el cuerpo.",
+            "Acordar un horario regular de tres comidas y dos meriendas."
+          ],
+          casa: "Comer en familia en el horario acordado, practicando la neutralidad.",
+          avance: "Las comidas son más tranquilas y regulares.",
+          fuente: "Sinha et al., 2025, caps. 1, 6 y 8"
+        },
+        {
+          t: "Plan de alimentación con el equipo",
+          tecs: ["guia-cinco-alimentos", "comer-reemplazar"],
+          obj: "Asegurar una nutrición suficiente mientras se amplía la variedad.",
+          pasos: [
+            "Completar con el adolescente, y con los padres si conviene, la guía de cinco alimentos, en la que colorea cada alimento según su interés y su familiaridad con él: preferidos, neutros, los que comía antes, entre otras categorías.",
+            "Con nutrición, armar un plan con mayoría de alimentos seguros y algunos neutros, usando el modelo del plato como guía.",
+            "Acordar el modelo comer y reemplazar: si no termina lo previsto, completa con un suplemento que tolere bien.",
+            "Ajustar al subtipo: en el sensorial, variar dentro de los preferidos para evitar las rachas; en el de poco interés, empezar cerca de lo que ya come, con alimentos densos y fáciles; en el de miedo, una gran mayoría de alimentos que siente seguros."
+          ],
+          casa: "Seguir el plan de alimentación acordado.",
+          avance: "La ingesta es suficiente y estable.",
+          fuente: "Sinha et al., 2025, cap. 5"
+        },
+        {
+          t: "Exposición graduada a los alimentos",
+          tecs: ["exposicion-alimentaria", "exposicion-graduada"],
+          obj: "Ampliar los alimentos que el adolescente come, empezando por los que él quiere.",
+          pasos: [
+            "Preguntar qué le gustaría poder comer: lo que comen sus amigos, lo que hay en los cumpleaños, en las salidas o en los restaurantes de la familia.",
+            "Elegir con él el primer alimento, su variante, la porción —estándar o algo menor, pero no mínima— y el momento; describir antes cómo sabe, huele y se siente.",
+            "Pedir que se ponga una meta para la exposición y que pruebe al menos tres bocados, del tamaño que quiera; registrarlo para ver cómo cambia su experiencia con el tiempo.",
+            "Ofrecer el alimento nuevo al inicio de la comida, cuando hay más hambre, y no junto a otro postre preferido; si es muy difícil, que el resto del plato sean alimentos preferidos."
+          ],
+          casa: "Exposiciones acordadas, con su registro.",
+          avance: "Aumenta el número de alimentos que el adolescente acepta.",
+          fuente: "Sinha et al., 2025, cap. 5"
+        },
+        {
+          t: "Estrategias según el subtipo",
+          tecs: ["respiracion-diafragmatica", "exposicion-vivo"],
+          obj: "Atender lo que mantiene la restricción en cada subtipo.",
+          pasos: [
+            "Miedo a vomitar: enseñar la respiración abdominal con una postura relajada y explicar cómo ayuda a evitar el vómito.",
+            "Miedo a atragantarse: descartar primero con medicina una causa física; explicar que si puede hablar no se está ahogando, acordar una frase de control como «A, B, C» y enseñar una sola vez qué hacer si de verdad se atraganta.",
+            "Poco interés: hacer que participe en preparar la comida, usar juegos como el de «científico de los alimentos» y permitir intercambios por alimentos de valor parecido.",
+            "Sensorial: graduar las texturas con cuidado, porque los alimentos de consistencia inesperada o que exigen mucho masticar son los más difíciles."
+          ],
+          casa: "La práctica que corresponda a su subtipo.",
+          avance: "Bajan el miedo o la desgana que sostienen la restricción.",
+          fuente: "Sinha et al., 2025, caps. 5 y 7"
+        },
+        {
+          t: "Plan de conducta, colegio y mantenimiento",
+          tecs: ["sistema-puntos", "prevencion-recaidas"],
+          obj: "Sostener la motivación, adaptar el colegio y preparar la continuidad.",
+          pasos: [
+            "Proponer a los padres un plan de modificación de conducta con metas de comidas realistas y premios inmediatos, valiosos, que ellos controlen y que el adolescente no tenga ya.",
+            "Pedir al colegio las adaptaciones que hagan falta: salir antes al almuerzo, terminar de comer aunque llegue tarde a clase o comer en clase.",
+            "Revisar periódicamente con el equipo el peso, el plan y la lista de alimentos.",
+            "Repasar lo aprendido y planear la práctica futura, también ante cambios como la transición a la universidad."
+          ],
+          casa: "Aplicar el plan de puntos acordado.",
+          avance: "El adolescente mantiene una alimentación suficiente y variada con menos supervisión.",
+          fuente: "Sinha et al., 2025, caps. 2, 8, 9 y 13",
+          fichas: ["tabla-puntos"]
+        }
+      ],
+      medir: [
+        "<strong>NIAS</strong> como tamizaje y <strong>PARDI</strong>, entrevista semiestructurada de unos 45 minutos, para el diagnóstico y el seguimiento.",
+        "Peso, crecimiento y número de alimentos aceptados, con el equipo médico y de nutrición.",
+        "<strong>RCADS</strong> para la ansiedad y el ánimo que acompañan."
+      ],
+      adapt: [
+        "<strong>Hospital pediátrico:</strong> con desnutrición grave o inestabilidad médica, la internación médica corrige primero las complicaciones; muchos pacientes pueden pasar después directamente al tratamiento ambulatorio, sin recorrer todos los niveles de atención (Sinha et al., 2025, caps. 2 y 4).",
+        "<strong>Con la familia:</strong> el tratamiento basado en la familia adaptado al TERIA dura unas 22 sesiones en seis meses: los padres se hacen cargo de planear, comprar, preparar y servir las comidas, primero para aumentar la cantidad y después la variedad (Sinha et al., 2025, cap. 2)."
+      ],
+      cuidado: [
+        "Algunos adolescentes niegan la preocupación por la imagen y alegan saciedad temprana o miedo al vómito, pero con el tiempo se ve que se trata de una anorexia: se reevalúa si resisten la recuperación de peso o solo aceptan alimentos de pocas calorías (Sinha et al., 2025, cap. 2).",
+        "Los premios no pueden ser cosas que el adolescente ya tiene ni depender de que los padres puedan darlos de forma consistente (Sinha et al., 2025, cap. 9).",
+        "Las decisiones sobre la sonda, los suplementos y la medicación las toma el equipo médico (Sinha et al., 2025, caps. 3, 4 y 12)."
       ]
     }
   ]
@@ -11299,7 +11730,42 @@ const GLOSARIO = [
   fuente: "Niemiec y Tomasulo, 2023, cap. 3" },
 { k: "soportar-dolor", t: "Soportar el dolor", tipo: "Técnica", enf: ["pp"],
   d: "Aceptar el dolor de una injusticia en lugar de pasárselo a otros, por ejemplo a compañeros más débiles. En la guía contra el acoso, es lo que permite cortar la cadena de quien fue herido y ahora hiere.",
-  fuente: "Enright y Fitzgibbons, 2015, cap. 12" }
+  fuente: "Enright y Fitzgibbons, 2015, cap. 12" },
+/* ---------- Problemas de conducta graves en la adolescencia ---------- */
+{ k: "reencuadre-relacional", t: "Reencuadre relacional", tipo: "Técnica", enf: ["fam"],
+  d: "Serie de intercambios con la familia que ofrecen otra lectura de la conducta del otro, para bajar la culpa y la negatividad y repartir la responsabilidad del problema entre todos. No es una frase ingeniosa del terapeuta: se construye con la familia y se retoma a lo largo de toda la terapia.",
+  como: ["Reconocer lo que la persona siente y dice.", "Ofrecer una reatribución: otra forma, no culpabilizante, de entender lo que hace el otro.", "Ver cómo la recibe la familia y construir sobre ella hasta llegar a un tema organizador."],
+  fuente: "Sexton, 2011, cap. 4" },
+{ k: "tema-organizador", t: "Tema organizador", alias: ["temas organizadores"], tipo: "Concepto", enf: ["fam"],
+  d: "Descripción de la familia y de su problema que explica la conducta problemática por una intención comprensible, aunque mal dirigida, sin culpar a nadie. Se construye con la familia a partir de los reencuadres y sirve de hilo para presentar después los cambios de conducta.",
+  fuente: "Sexton, 2011, caps. 4 y 5" },
+{ k: "funcion-relacional", t: "Función relacional", alias: ["funciones relacionales"], tipo: "Concepto", enf: ["fam"],
+  d: "Lo que caracteriza la forma habitual de relacionarse de dos miembros de la familia a lo largo del tiempo: más cercanía y contacto, más distancia e independencia, o una mezcla. La terapia familiar funcional no intenta cambiarla; ajusta a ella la forma en que se aplican las nuevas habilidades.",
+  fuente: "Sexton, 2011, cap. 5" },
+/* ---------- Dolor crónico ---------- */
+{ k: "pautas-operantes-dolor", t: "Pautas operantes para los padres ante el dolor", tipo: "Técnica", enf: ["pad"],
+  d: "Cambios en cómo responden los padres al dolor del hijo para no reforzar sin querer la conducta de dolor y sí el afrontamiento: animar la actividad normal durante el dolor, dejar de preguntar si le duele, tratar los días en que deja sus actividades como días de enfermo sin privilegios, atender el afrontamiento y no las quejas menores, y elogiar el uso de las habilidades.",
+  fuente: "Palermo, 2012, cap. 7, tabla 7.2" },
+{ k: "reingreso-escolar-gradual", t: "Regreso gradual al colegio", tipo: "Técnica", enf: ["tcc", "col"],
+  d: "Plan acordado con la familia y el colegio para que el niño que falta por dolor vuelva a clase por pasos, con metas que pueda cumplir y que suben a medida que las logra, y con las adaptaciones escolares razonables, cuidando de que no mantengan la evitación.",
+  fuente: "Palermo, 2012, cap. 9" },
+{ k: "dosificar-actividad", t: "Dosificación de la actividad", alias: ["dosificar la actividad"], tipo: "Técnica", enf: ["tcc"],
+  d: "Organizar las actividades por tiempo, con pausas planeadas, y no según cómo se sienta el dolor en el momento, para evitar el ciclo de hacer demasiado en los días buenos y nada en los malos.",
+  fuente: "Palermo, 2012, cap. 11" },
+/* ---------- Evitación y restricción de la ingesta ---------- */
+{ k: "capa-neutralidad", t: "Capa de neutralidad", tipo: "Técnica", enf: ["pad"],
+  d: "Actitud que se enseña a los padres para acompañar las comidas: apoyar que el hijo coma manteniendo una actitud tranquila y sin reaccionar, con conversaciones agradables y sin temas tensos en la mesa, y con un lenguaje neutro sobre la comida y el cuerpo.",
+  fuente: "Sinha et al., 2025, caps. 6 y 8" },
+{ k: "guia-cinco-alimentos", t: "Guía de cinco alimentos", tipo: "Técnica", enf: ["tcc"],
+  d: "Lista de alimentos y bebidas de uso común, organizada por comida y grupo de alimentos, que la persona colorea según su interés y su familiaridad con cada uno. Muestra qué come, qué comía antes y qué querría probar, y es la base del plan de alimentación y de la elección de los alimentos de exposición.",
+  fuente: "Sinha et al., 2025, cap. 5" },
+{ k: "comer-reemplazar", t: "Modelo comer y reemplazar", tipo: "Técnica", enf: ["tcc"],
+  d: "Plan de respaldo para asegurar la nutrición: la persona come lo que puede de lo previsto y lo que falta se completa con un suplemento que tolere bien, en fracciones fáciles de calcular. Permite practicar comer la cantidad acordada mientras el estómago se acostumbra.",
+  fuente: "Sinha et al., 2025, caps. 5 y 8" },
+{ k: "exposicion-alimentaria", t: "Exposición a los alimentos", alias: ["alimento de exposición", "alimentos de exposición"], tipo: "Técnica", enf: ["tcc"],
+  d: "Exposición planificada a alimentos nuevos o evitados, elegidos con la persona entre los que ella querría poder comer, con una porción real, una descripción previa de cómo son, una meta y un registro de cómo cambia la experiencia con las repeticiones.",
+  como: ["Elegir juntos el alimento, la variante, la porción y el momento.", "Describir antes el sabor, la textura y el olor.", "Ponerse una meta y probar al menos tres bocados, del tamaño que quiera.", "Ofrecerlo al inicio de la comida y registrar el resultado."],
+  fuente: "Sinha et al., 2025, cap. 5" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
