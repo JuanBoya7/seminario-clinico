@@ -1381,6 +1381,40 @@ REFERENCIAS.push(
   { k: "Kotrba, 2015", ref: "Kotrba, A. (2015). <em>Selective mutism: An assessment and intervention guide for therapists, educators &amp; parents</em>. PESI Publishing &amp; Media." }
 );
 
+/* Dificultades de aprendizaje (2026-10-21): modelos, instrumentos y
+   referencias. La variable la anunciaba ya 13-tdah. El enfoque es de
+   consulta con el colegio porque McGill y Ndip (2019, «Treatment
+   Settings») señalan que el psicólogo rara vez da la intervención académica
+   directa: la recomienda y la sostiene con el docente o un tutor. Las normas
+   de fluidez de Shapiro son de escolares de habla inglesa; los planes piden
+   comparar con el propio avance y con normas locales (Shapiro, 2011, cap. 4). */
+Object.assign(MODELOS, {
+  "solucion-problemas-academicos": {
+    tipo: "marco",
+    t: "Evaluación basada en el currículo y modelo de solución de problemas",
+    autor: "Shapiro; Deno",
+    d: "La dificultad académica se evalúa donde ocurre: en el aula y con el material que el estudiante usa. Primero se examina el entorno de enseñanza —qué pide el docente, cuánto tiempo dedica el estudiante a la tarea, qué produce—, después se mide la habilidad directamente para saber en qué nivel enseñar, se modifica la enseñanza y se sigue el avance con mediciones breves y repetidas que se grafican. Las decisiones se toman con esos datos: si el estudiante no avanza al ritmo previsto, se cambia la intervención o su intensidad.",
+    dim: ["Identificar la habilidad que falla", "Definir la meta con una línea de base", "Elegir una intervención con respaldo", "Aplicarla con fidelidad", "Evaluar con el gráfico de avance"],
+    fuente: "Shapiro, 2011, caps. 1 a 4 · McGill y Ndip, 2019, «Case Example»"
+  },
+  "instruccion-directa-academica": {
+    tipo: "explicativo",
+    t: "Instrucción directa y explícita de las habilidades académicas",
+    autor: "McGill y Ndip; Shapiro",
+    d: "Las dificultades de aprendizaje son específicas de un área —lectura, cálculo o escritura— y cada una necesita su propia intervención. Lo que mejora el desempeño es enseñar la habilidad que falla de manera explícita y ordenada, de lo básico a lo complejo, con muchas oportunidades de practicar, corrección inmediata y suficiente intensidad y duración. Entrenar supuestos procesos de fondo, o ajustar la enseñanza al perfil cognitivo del estudiante, no ha mostrado beneficios claros.",
+    dim: ["Habilidad específica que falla", "Enseñanza explícita y en secuencia", "Práctica frecuente con corrección", "Intensidad y duración suficientes", "Medición del avance"],
+    fuente: "McGill y Ndip, 2019, «Conceptual Models for Intervention» y «Treatment Moderators» · Shapiro, 2011, cap. 5"
+  }
+});
+Object.assign(INSTRUMENTOS, {
+  "Sondeos MBC": { n: "Sondeos de medición basada en el currículo", rol: "Registro", d: "Pruebas breves y cronometradas con material del propio curso: palabras leídas correctamente en un minuto, dígitos correctos por minuto en cálculo o palabras bien escritas en un dictado. Se repiten cada semana y se grafican para ver si el estudiante avanza al ritmo de su meta.", med: "1 a 3 minutos · docente o psicólogo", guia: false, fuente: "Shapiro, 2011, caps. 4 y 7" }
+});
+REFERENCIAS.push(
+  { k: "McGill y Ndip, 2019", ref: "McGill, R. J. y Ndip, N. (2019). Learning disabilities. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed.). Guilford Press." },
+  { k: "Shapiro, 2011", ref: "Shapiro, E. S. (2011). <em>Academic skills problems: Direct assessment and intervention</em> (4.ª ed.). Guilford Press." },
+  { k: "Ardila y Rosselli, 2019", ref: "Ardila, A. y Rosselli, M. (2019). <em>Neuropsicología clínica</em> (2.ª ed.). El Manual Moderno." }
+);
+
 /* Estrés postraumático: modelos, instrumentos y referencias. */
 Object.assign(MODELOS, {
   "aprendizaje-trauma": {
@@ -6229,7 +6263,7 @@ const VARIABLES = [
   elegir: [
     "<strong>El manejo conductual funciona en el lugar donde se aplica</strong>: lo que se trabaja con los padres mejora la casa, pero rara vez se traslada solo al colegio. Por eso los planes se combinan según dónde está el problema (Evans et al., 2019).",
     "<strong>En preescolar y primaria</strong>, el entrenamiento conductual a padres y el manejo conductual en el aula tienen el nivel más alto de evidencia. <strong>En la adolescencia</strong>, lo que más ayuda en el colegio es entrenar habilidades de organización con práctica frecuente, más que el entrenamiento a padres (Evans et al., 2019).",
-    "El tratamiento farmacológico lo decide el médico; en preescolares, las guías recomiendan empezar por la intervención conductual (Evans et al., 2019). Si hay además desafío y agresión marcados, conviene revisar Conducta oposicionista y desafiante; si hay dificultades de lectura o cálculo, Dificultades de aprendizaje, porque esos problemas necesitan su propia intervención."
+    "El tratamiento farmacológico lo decide el médico; en preescolares, las guías recomiendan empezar por la intervención conductual (Evans et al., 2019). Si hay además desafío y agresión marcados, conviene revisar Conducta oposicionista y desafiante; si hay dificultades de lectura o cálculo, <em>Dificultades de aprendizaje</em>, porque esos problemas necesitan su propia intervención."
   ],
   planes: [
     {
@@ -7749,6 +7783,358 @@ const VARIABLES = [
       cuidado: [
         "La evidencia de resultados es todavía inicial: se usa como complemento de las intervenciones conductuales y educativas con respaldo, no en su lugar.",
         "Las fortalezas más abstractas, como la creatividad, la justicia, la esperanza o la espiritualidad, pueden ser más difíciles de entender; se explican con ejemplos concretos (Niemiec y Tomasulo, 2023, cap. 3)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Neurodesarrollo",
+  t: "Dificultades de aprendizaje",
+  sub: "Dificultades persistentes para aprender una habilidad escolar básica —leer palabras con precisión y fluidez, comprender lo leído, escribir con buena ortografía y organización, manejar los números y el cálculo o razonar problemas— que aparecen en los años escolares, dejan al estudiante muy por debajo de lo esperado para su edad y no se explican por discapacidad intelectual, problemas sensoriales, otra lengua o falta de enseñanza adecuada. Son específicas de un área: la lectura, el cálculo y la escritura necesitan intervenciones distintas. Con frecuencia se acompañan de inatención, ansiedad o baja autoestima académica.",
+  elegir: [
+    "<strong>La intervención académica la dan casi siempre el docente, un tutor o un especialista, no el psicólogo</strong>: su papel es evaluar, recomendar una intervención con respaldo, acordar con el colegio cómo aplicarla y seguir el avance con datos. Por eso el plan de base es la evaluación del entorno académico y la consulta con el colegio (McGill y Ndip, 2019).",
+    "<strong>Si la dificultad está en la lectura</strong>, el plan de lectura reúne lo que hay que recomendar y enseñar a quien la trabaje: conciencia fonológica, fluidez y comprensión. <strong>Si está en el cálculo o en la escritura</strong>, el plan de cálculo y escritura; lo que se gana en un área no se traslada sola a otra.",
+    "Si hay además inatención marcada, ver <em>Inatención, hiperactividad e impulsividad</em>; si el colegio se volvió un lugar que el niño evita, <em>Rechazo escolar</em>; si hay burlas o agresiones de los compañeros, <em>Acoso escolar</em>. Si las dificultades abarcan casi todas las áreas, se evalúan la inteligencia y la conducta adaptativa y se revisa <em>Discapacidad intelectual</em>."
+  ],
+  planes: [
+    {
+      id: "apr-consulta",
+      mod: "solucion-problemas-academicos",
+      inst: ["Sondeos MBC"],
+      enf: "col",
+      nivel: "ensayos",
+      t: "Evaluación del entorno académico y consulta con el colegio",
+      fuente: "Shapiro, 2011 · McGill y Ndip, 2019",
+      cuando: "Un niño o adolescente es remitido porque <strong>no avanza en lectura, escritura o matemáticas</strong> como sus compañeros, a pesar de la enseñanza y los refuerzos que le ha dado el colegio, y los padres o el docente preguntan si tiene un problema de aprendizaje y qué hacer.",
+      respaldo: "Las intervenciones con mejor resultado comparten rasgos: identificación temprana, instrucción directa y explícita de la habilidad que falla, decisiones basadas en datos objetivos, una intensidad acorde con la gravedad —30 minutos o más, varias veces por semana—, habilidades básicas antes que las complejas y una duración de 15 semanas o más. La fidelidad con que se aplica la intervención modera los resultados. En cambio, elegir la enseñanza según el perfil cognitivo del estudiante no tiene respaldo suficiente (McGill y Ndip, 2019, «Treatment Moderators» y «Remediation of Cognitive Weaknesses/ATI»; Shapiro, 2011, cap. 5).",
+      secuencia: "<strong>Secuencia:</strong> sigue el modelo de solución de problemas. Se identifica la habilidad que falla, se define la meta con una línea de base, se elige una intervención con respaldo, se acuerda con el colegio cómo aplicarla y se evalúa con el gráfico de avance después de unas 8 a 15 semanas; si no funciona, se vuelve al primer paso (McGill y Ndip, 2019, «Case Example»; Shapiro, 2011, caps. 1 a 4).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Recibir la remisión y descartar otras explicaciones",
+          tecs: ["entrevista-clinica", "psicoeducacion"],
+          obj: "Precisar en qué área está la dificultad y descartar lo que podría explicarla mejor.",
+          pasos: [
+            "Preguntar a los padres y al docente en qué área está la dificultad, desde cuándo, qué refuerzos ha recibido y cómo respondió a ellos.",
+            "Descartar problemas de visión o de audición, una discapacidad intelectual, falta de enseñanza adecuada o que el estudiante esté aprendiendo en una lengua que no domina.",
+            "Explorar inatención, ansiedad, ánimo bajo y la relación con los compañeros, que suelen acompañar a las dificultades de aprendizaje.",
+            "Si se necesita una evaluación normativa para el diagnóstico, remitir a evaluación neuropsicológica o psicoeducativa con pruebas que tengan normas para hispanohablantes, como la Evaluación Neuropsicológica Infantil (Ardila y Rosselli, 2019, cap. 14).",
+            "Explicar a la familia que la dificultad es específica de un área y que se trabaja enseñando esa habilidad de forma directa."
+          ],
+          casa: "Reunir boletines, cuadernos e informes anteriores.",
+          avance: "Se sabe en qué área está la dificultad y qué otras condiciones la acompañan.",
+          fuente: "McGill y Ndip, 2019, «DSM-5» y «Age, Developmental Course, and Comorbidity»"
+        },
+        {
+          t: "Evaluar el entorno académico",
+          tecs: ["evaluacion-entorno-academico", "consultoria-docente"],
+          obj: "Ver cómo se enseña y cómo responde el estudiante en el aula.",
+          pasos: [
+            "Entrevistar al docente sobre el problema, el material, la forma de enseñar, los grupos y las consecuencias del trabajo en clase.",
+            "Observar al estudiante en la clase del área afectada: cuánto tiempo trabaja en la tarea, cuántas oportunidades de responder tiene y cómo se compara con un compañero.",
+            "Entrevistar al estudiante después de una tarea: si entendió lo que se pedía, si sabe pedir ayuda, si cree que puede hacerlo y si le alcanza el tiempo.",
+            "Revisar cuadernos, tareas y evaluaciones para ver qué tipo de errores comete."
+          ],
+          casa: "No aplica.",
+          avance: "Hay una hipótesis sobre si el problema está en la habilidad, en la enseñanza o en ambas.",
+          fuente: "Shapiro, 2011, cap. 3"
+        },
+        {
+          t: "Medir la habilidad y fijar la meta",
+          tecs: ["medicion-basada-curriculo"],
+          obj: "Saber en qué nivel enseñar y tener una línea de base contra la cual comparar.",
+          pasos: [
+            "Aplicar sondeos breves con material del curso: palabras leídas correctamente en un minuto, dígitos correctos por minuto en cálculo o palabras bien escritas en un dictado.",
+            "Probar con material de grados anteriores hasta encontrar el nivel en que el estudiante tiene reto y posibilidad real de éxito.",
+            "Comparar con los compañeros del mismo curso o con normas locales, porque las normas publicadas son de escolares de habla inglesa.",
+            "Definir la meta en las mismas unidades del sondeo y la fecha en que se espera alcanzarla."
+          ],
+          casa: "No aplica.",
+          avance: "Hay línea de base, nivel de enseñanza y una meta medible.",
+          fuente: "Shapiro, 2011, cap. 4 · McGill y Ndip, 2019, «Case Example», paso 2"
+        },
+        {
+          t: "Elegir la intervención según el área",
+          tecs: ["instruccion-explicita"],
+          obj: "Recomendar una intervención con respaldo que corresponda a la habilidad que falla.",
+          pasos: [
+            "En lectura, elegir según lo que falla: decodificación y conciencia fonológica, fluidez o comprensión; si hay varias, preferir una intervención que las trabaje juntas.",
+            "En matemáticas, distinguir si falla el cálculo y los hechos numéricos o la resolución de problemas, porque cada intervención mejora sobre todo lo que entrena.",
+            "En escritura, preferir la enseñanza de estrategias para planear, escribir y revisar; la enseñanza aislada de la gramática no ayuda.",
+            "Desaconsejar tratamientos que no enseñan la habilidad y tienen escaso respaldo, como los lentes especiales o los ejercicios de estimulación cerebral."
+          ],
+          casa: "No aplica.",
+          avance: "Hay una intervención elegida para la habilidad que falla.",
+          fuente: "McGill y Ndip, 2019, «Review of the Treatment Outcome Literature» y «Medical Model»"
+        },
+        {
+          t: "Acordar con el colegio cómo se aplica",
+          tecs: ["consultoria-docente", "nota-casa-colegio"],
+          obj: "Que la intervención se aplique con la intensidad y la fidelidad necesarias.",
+          pasos: [
+            "Definir con el docente quién la aplica, en qué horario, con qué material y en qué formato: individual o en grupo de no más de cinco estudiantes.",
+            "Acordar la intensidad: 30 minutos o más, varias veces por semana, durante 15 semanas o más.",
+            "Entregar a quien la aplica los pasos por escrito y una lista de chequeo para registrar si se hizo como se acordó.",
+            "Sumar a la familia con una práctica breve en casa que refuerce lo del colegio."
+          ],
+          casa: "Practicar en casa lo acordado, unos minutos al día.",
+          avance: "La intervención se aplica con regularidad y queda registro de cómo se hizo.",
+          fuente: "McGill y Ndip, 2019, «Case Example», pasos 3 y 4, y «Conclusion»"
+        },
+        {
+          t: "Graficar el avance y decidir",
+          tecs: ["monitoreo-progreso", "medicion-basada-curriculo"],
+          obj: "Saber con datos si la intervención está funcionando.",
+          pasos: [
+            "Aplicar cada semana un sondeo del mismo tipo y graficarlo junto a la línea de base y a la línea que lleva a la meta.",
+            "Fijar de antemano la regla de decisión, por ejemplo cuatro puntos seguidos por debajo o por encima de la línea de la meta.",
+            "Si el estudiante avanza al ritmo previsto, mantener la intervención aunque todavía esté por debajo de sus compañeros, porque el resto del curso también avanza.",
+            "Si no avanza, revisar primero si se aplicó como se acordó; después, aumentar la intensidad o volver a evaluar para elegir otra intervención."
+          ],
+          casa: "Mostrar el gráfico al estudiante y a la familia.",
+          avance: "Las decisiones sobre la intervención se toman con el gráfico de avance.",
+          fuente: "Shapiro, 2011, cap. 7 · McGill y Ndip, 2019, «Case Example», paso 5"
+        }
+      ],
+      medir: [
+        "<strong>Sondeos de medición basada en el currículo</strong> cada semana, graficados contra la meta.",
+        "Lista de chequeo de fidelidad de quien aplica la intervención.",
+        "Calificaciones y evaluaciones del área en el periodo."
+      ],
+      adapt: [
+        "<strong>Consecuencias emocionales:</strong> las dificultades de aprendizaje aumentan el riesgo de ansiedad, depresión, rechazo escolar, baja autoestima académica y acoso; no se encontraron estudios que combinaran la intervención académica con una de salud mental, así que esos problemas se atienden con sus propios planes (McGill y Ndip, 2019, «Psychosocial Interventions»).",
+        "<strong>Detección temprana:</strong> en los colegios que tamizan a todos los estudiantes y dan apoyo escalonado, la evaluación sirve para identificar pronto a quien necesita más; en lectura, los beneficios disminuyen si la intervención empieza después del tercer grado (McGill y Ndip, 2019, «Treatment Moderators»)."
+      ],
+      cuidado: [
+        "El diagnóstico de trastorno específico del aprendizaje requiere que la dificultad persista a pesar de una intervención adecuada y que se descarten otras explicaciones; un bajo rendimiento por sí solo no basta (McGill y Ndip, 2019, «DSM-5»).",
+        "Las normas de fluidez de los libros son de escolares de habla inglesa; en español se compara con el propio avance del estudiante y con su curso (Shapiro, 2011, cap. 4)."
+      ]
+    },
+    {
+      id: "apr-lectura",
+      mod: "instruccion-directa-academica",
+      inst: ["Sondeos MBC"],
+      enf: "col",
+      nivel: "ensayos",
+      t: "Instrucción directa en lectura: decodificación, fluidez y comprensión",
+      fuente: "McGill y Ndip, 2019 · Shapiro, 2011",
+      cuando: "La evaluación mostró que la dificultad está en <strong>la lectura</strong>: el estudiante confunde letras y sonidos, lee despacio y con errores o no comprende lo que lee. El psicólogo enseña las técnicas al docente, al tutor o a los padres que las aplicarán, y sigue el avance.",
+      respaldo: "Hay consenso en que la enseñanza sistemática y explícita de la lectura es lo que ayuda, y los mejores resultados se obtienen con intervenciones de varios componentes —conciencia fonológica, vocabulario, comprensión y velocidad— aplicadas con intensidad. La evidencia sobre la lectura repetida fue mixta en revisiones con criterios estrictos, pero en una síntesis más reciente de 34 estudios tuvo un efecto grande sobre la fluidez; la enseñanza de estrategias de comprensión tuvo un efecto promedio grande en una revisión de calidad, y la de resumir la idea principal, en secundaria, uno muy grande. La tutoría entre pares en lectura fue calificada como potencialmente eficaz para la fluidez y la comprensión (McGill y Ndip, 2019, «Impairment in Reading»). En estudios de caso, el repaso incremental retuvo más palabras que otros procedimientos de práctica (Shapiro, 2011, cap. 6).",
+      secuencia: "<strong>Secuencia:</strong> se empieza por la habilidad más básica que falla y no se pasa a la siguiente hasta dominarla. Sesiones de 15 a 30 minutos varias veces por semana, durante 15 semanas o más, con un sondeo de fluidez al final de cada semana (McGill y Ndip, 2019, «Treatment Moderators»; Shapiro, 2011, cap. 6).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Conciencia fonológica y relación entre letras y sonidos",
+          tecs: ["conciencia-fonologica", "instruccion-explicita"],
+          obj: "Que el estudiante descomponga las palabras en sonidos y los asocie con sus letras.",
+          pasos: [
+            "Practicar oralmente separar palabras en sílabas y sonidos, unir sonidos para formar palabras y reconocer rimas.",
+            "Enseñar de forma explícita la relación entre cada letra y su sonido, y usarla para leer palabras nuevas.",
+            "Pasar de las palabras sueltas a la lectura de textos cortos con esas mismas palabras.",
+            "Repasar de forma acumulativa lo ya aprendido en cada sesión."
+          ],
+          casa: "Juegos de sonidos y lectura de palabras con la familia, cinco a diez minutos al día.",
+          avance: "El estudiante decodifica palabras nuevas con precisión.",
+          fuente: "McGill y Ndip, 2019, «Phonemic Awareness/Phonics Instruction» · Shapiro, 2011, cap. 6"
+        },
+        {
+          t: "Lectura previa",
+          tecs: ["lectura-previa"],
+          obj: "Darle práctica con el texto antes de leerlo en clase.",
+          pasos: [
+            "Elegir el texto que se trabajará en clase.",
+            "Antes de la clase, que el estudiante siga con la vista mientras el adulto lo lee en voz alta, o que lo lea él primero en silencio o en voz alta.",
+            "Explicar las palabras clave del texto antes de leerlo.",
+            "Después, que lo lea en voz alta y comparar con la lectura anterior."
+          ],
+          casa: "Escuchar o leer en casa el texto de la clase siguiente.",
+          avance: "El estudiante lee el texto de clase con más fluidez.",
+          fuente: "Shapiro, 2011, cap. 6"
+        },
+        {
+          t: "Lectura repetida con retroalimentación",
+          tecs: ["lectura-repetida", "retroalimentacion", "monitoreo-progreso"],
+          obj: "Aumentar la fluidez lectora.",
+          pasos: [
+            "Elegir un pasaje del nivel de enseñanza del estudiante.",
+            "Pedirle que lo lea en voz alta tres o cuatro veces, corrigiendo al final de cada lectura las palabras que leyó mal.",
+            "Fijar con él una meta de palabras correctas por minuto y mostrarle si la alcanzó.",
+            "Al final de la sesión, aplicar un sondeo y graficarlo."
+          ],
+          casa: "Releer en voz alta un pasaje ya trabajado.",
+          avance: "Suben las palabras leídas correctamente por minuto en el gráfico.",
+          fuente: "McGill y Ndip, 2019, «Repeated Reading» y «Case Example»"
+        },
+        {
+          t: "Repaso incremental de palabras",
+          tecs: ["repaso-incremental"],
+          obj: "Que el estudiante reconozca de inmediato las palabras que lo frenan.",
+          pasos: [
+            "Mientras lee un pasaje de clase, anotar las palabras que le cuestan y escribir cada una en una tarjeta; hacer otras tarjetas con palabras del mismo texto que ya conoce.",
+            "Presentar una palabra nueva, explicarla y usarla en una oración, y pedirle que haga lo mismo.",
+            "Intercalar la palabra nueva entre las conocidas, de modo que la mayoría del material —del 70 al 85 %— sea conocido.",
+            "Al terminar, que vuelva a leer el pasaje y graficar las palabras correctas por minuto antes y después; en la sesión siguiente, repasar las tarjetas y retirar una conocida por cada nueva que se agregue."
+          ],
+          casa: "Repasar las tarjetas con un adulto o un compañero.",
+          avance: "El estudiante reconoce sin dudar las palabras practicadas.",
+          fuente: "Shapiro, 2011, cap. 6"
+        },
+        {
+          t: "Comprensión: recontar y usar estrategias",
+          tecs: ["recontado", "instruccion-estrategias", "modelado"],
+          obj: "Que el estudiante entienda y recuerde lo que lee.",
+          pasos: [
+            "Después de leer, pedirle que cuente con sus palabras lo que leyó, y revisar si incluye la idea principal, los personajes, la secuencia y los hechos clave.",
+            "Enseñar una estrategia a la vez —encontrar la idea principal y resumir, hacerse preguntas antes y durante la lectura—: el adulto la modela, la practican juntos y después la usa solo.",
+            "Enseñar el vocabulario clave antes de leer.",
+            "Planear que use la estrategia en otras materias y que revise cuándo le sirvió."
+          ],
+          casa: "Contarle a un familiar lo que leyó.",
+          avance: "El estudiante recuenta los elementos principales del texto y usa la estrategia solo.",
+          fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Cognitive Strategy Instruction» y tabla 14.1"
+        },
+        {
+          t: "Tutoría entre pares y práctica en casa",
+          tecs: ["tutoria-pares", "reforzamiento-positivo"],
+          obj: "Multiplicar las oportunidades de practicar.",
+          pasos: [
+            "Proponer al docente parejas de estudiantes que se turnen como tutor y lector en actividades estructuradas de lectura, tres o más veces por semana.",
+            "Enseñar a los tutores a señalar y corregir los errores y a dar puntos por las respuestas correctas.",
+            "Enseñar a los padres a practicar unos minutos al día con el mismo procedimiento del colegio, con elogios por el esfuerzo.",
+            "Revisar el gráfico con el docente y ajustar."
+          ],
+          casa: "Práctica breve diaria de lectura con un familiar.",
+          avance: "El estudiante practica lectura todos los días, en el colegio y en casa.",
+          fuente: "McGill y Ndip, 2019, «Peer-Assisted Learning Strategies» · Shapiro, 2011, caps. 5 y 6"
+        }
+      ],
+      medir: [
+        "Palabras leídas correctamente en un minuto, cada semana, en el gráfico de avance.",
+        "Recontado de un texto del nivel del estudiante al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Adolescentes:</strong> en secundaria pesa más la comprensión de los textos de las materias, y la enseñanza de estrategias tiene buen respaldo; en un ensayo con estudiantes de bachillerato con dificultades lectoras graves, la lectura repetida no superó a la enseñanza habitual (McGill y Ndip, 2019, «Repeated Reading» y «Cognitive Strategy Instruction»).",
+        "<strong>Dificultad grave:</strong> los programas más eficaces fueron muy intensivos —una hora al día durante 70 días, con un adulto por cada cuatro estudiantes o menos—; la intensidad se ajusta a la gravedad (McGill y Ndip, 2019, «Treatment Moderators»)."
+      ],
+      cuidado: [
+        "Los estudios citados se hicieron con escolares de habla inglesa; las metas de fluidez se fijan con el propio avance del estudiante y con su curso, no con normas extranjeras (Shapiro, 2011, cap. 4).",
+        "Si después de 8 a 15 semanas de aplicación fiel no hay avance, se vuelve a evaluar en lugar de seguir igual (McGill y Ndip, 2019, «Case Example»)."
+      ]
+    },
+    {
+      id: "apr-calculo-escritura",
+      mod: "instruccion-directa-academica",
+      inst: ["Sondeos MBC"],
+      enf: "col",
+      nivel: "ensayos",
+      t: "Instrucción directa en cálculo, ortografía y escritura",
+      fuente: "McGill y Ndip, 2019 · Shapiro, 2011",
+      cuando: "La evaluación mostró que la dificultad está en <strong>las matemáticas</strong> —no domina los hechos numéricos, se equivoca en los procedimientos o no sabe plantear los problemas— o en <strong>la escritura</strong> —ortografía muy pobre o textos cortos y desorganizados—. El psicólogo enseña las técnicas a quien las aplicará y sigue el avance.",
+      respaldo: "En un metaanálisis de 42 ensayos con estudiantes con dificultades en matemáticas, la instrucción explícita fue el enfoque más consistentemente eficaz, con un efecto grande; la práctica de hechos numéricos con tarjetas y retroalimentación también tuvo efectos grandes. Lo que se gana en cálculo no se traslada a los problemas con enunciado, ni al revés. En ortografía, una revisión de 31 estudios encontró un efecto de moderado a fuerte de cubrir, copiar y comparar. En escritura, el desarrollo de estrategias autorreguladas tuvo efectos grandes en estudiantes con dificultades de aprendizaje, mayores que los de otras intervenciones, mientras que enseñar gramática de forma aislada no ayudó (McGill y Ndip, 2019, «Impairment in Mathematics» e «Impairment in Written Language»).",
+      secuencia: "<strong>Secuencia:</strong> se trabajan primero las habilidades básicas que fallan —sentido numérico y hechos, o escritura correcta de palabras— y después las más complejas —problemas o composición—. Sesiones breves y frecuentes durante 15 semanas o más, con un sondeo semanal (McGill y Ndip, 2019, «Treatment Moderators»; Shapiro, 2011, cap. 6).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Sentido numérico y hechos básicos",
+          tecs: ["instruccion-explicita", "reforzamiento-positivo"],
+          obj: "Que el estudiante entienda las cantidades y responda con rapidez los hechos numéricos.",
+          pasos: [
+            "En los más pequeños, trabajar el conteo, la comparación de cantidades y la recta numérica con situaciones cotidianas, como contar los cubiertos de la mesa.",
+            "Enseñar los hechos de suma, resta o multiplicación de forma explícita, pocos a la vez.",
+            "Practicar con tarjetas y corrección inmediata hasta que responda con precisión y rapidez.",
+            "Elogiar la precisión y la mejora, y mostrarle su avance."
+          ],
+          casa: "Práctica breve diaria con tarjetas.",
+          avance: "Suben los hechos respondidos correctamente por minuto.",
+          fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Number Sense, Math Calculation, and Math Fact Fluency»"
+        },
+        {
+          t: "Cubrir, copiar y comparar",
+          tecs: ["cubrir-copiar-comparar"],
+          obj: "Practicar con corrección inmediata, que el estudiante puede hacer solo.",
+          pasos: [
+            "Preparar una hoja con operaciones resueltas, o palabras bien escritas, a la izquierda.",
+            "Que el estudiante mire el modelo, lo tape, lo escriba de memoria a la derecha y destape para comparar.",
+            "Si se equivocó, que corrija de inmediato antes de pasar al siguiente.",
+            "Registrar cuántos hizo bien y graficarlo."
+          ],
+          casa: "Una hoja de cubrir, copiar y comparar al día.",
+          avance: "El estudiante responde los hechos o escribe las palabras practicadas sin modelo.",
+          fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Spelling/Orthographic Processing»"
+        },
+        {
+          t: "Pistas y autoinstrucciones para los procedimientos",
+          tecs: ["autoinstrucciones", "modelado"],
+          obj: "Que el estudiante siga los pasos correctos en operaciones más complejas.",
+          pasos: [
+            "Si confunde las operaciones, resaltar el signo con colores antes de empezar.",
+            "Si se equivoca al llevar o al prestar, darle problemas con recuadros que marquen el orden de los pasos.",
+            "Analizar cómo resuelve el problema alguien competente, dividirlo en pasos y enseñar al estudiante a decírselos en voz alta mientras lo hace.",
+            "Retirar las pistas y pasar las autoinstrucciones a voz baja a medida que gana precisión."
+          ],
+          casa: "Resolver pocos ejercicios diciendo los pasos en voz alta.",
+          avance: "El estudiante sigue el procedimiento sin pistas.",
+          fuente: "Shapiro, 2011, cap. 6"
+        },
+        {
+          t: "Problemas con enunciado",
+          tecs: ["instruccion-esquemas", "instruccion-estrategias"],
+          obj: "Que el estudiante plantee los problemas antes de calcular.",
+          pasos: [
+            "Enseñar a reconocer el tipo de problema —un cambio, una combinación de grupos o una comparación— con historias sin pregunta.",
+            "Ubicar los datos en el diagrama del tipo de problema y después decidir la operación.",
+            "Modelar en voz alta una estrategia de pasos —leer, decirlo con sus palabras, representar, estimar, calcular y comprobar— y practicarla juntos.",
+            "Pasar a problemas completos y mezclados."
+          ],
+          casa: "Inventar con la familia un problema de cada tipo.",
+          avance: "El estudiante identifica el tipo de problema y lo plantea bien.",
+          fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Problem-Solving/Cognitive Strategy Instruction»"
+        },
+        {
+          t: "Ortografía con práctica y corrección",
+          tecs: ["instruccion-explicita", "cubrir-copiar-comparar", "retroalimentacion"],
+          obj: "Que el estudiante escriba bien las palabras que usa.",
+          pasos: [
+            "Elegir palabras de lo que el estudiante lee y escribe en clase.",
+            "Enseñarlas de forma explícita, con práctica repetida y corrección inmediata, en lugar de esperar que las aprenda leyendo.",
+            "Llevar una lista de unas diez palabras: la que escribe bien dos días seguidos sale y entra una nueva.",
+            "Dictar cada semana y graficar las palabras bien escritas."
+          ],
+          casa: "Practicar las palabras de la lista unos minutos al día.",
+          avance: "Suben las palabras bien escritas en el dictado semanal.",
+          fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Spelling/Orthographic Processing»"
+        },
+        {
+          t: "Escribir con estrategias autorreguladas",
+          tecs: ["estrategias-autorreguladas-escritura", "autoinstrucciones", "modelado"],
+          obj: "Que el estudiante planee, escriba y revise sus textos.",
+          pasos: [
+            "Enseñar una estrategia para planear: generar ideas y ordenarlas según las partes del texto —personaje, lugar, problema, acciones, final—.",
+            "Que elija metas para su texto, como su propósito, que tenga todas las partes y cuántas palabras escribir.",
+            "Modelar la estrategia escribiendo en voz alta, escribir un texto juntos y después que escriba solo, dándose las instrucciones cada vez más en voz baja.",
+            "Enseñar a revisar el contenido, no solo la letra y la presentación, con ayuda de un compañero que resuma el texto y sugiera cambios.",
+            "Que cuente las palabras de cada texto, lo registre y evalúe si cumplió sus metas."
+          ],
+          casa: "Escribir un texto corto con la estrategia y contar las palabras.",
+          avance: "Los textos son más largos, completos y organizados.",
+          fuente: "McGill y Ndip, 2019, «Written Composition/Cognitive Strategy Instruction» · Shapiro, 2011, cap. 6"
+        }
+      ],
+      medir: [
+        "Dígitos correctos por minuto en sondeos de cálculo, cada semana.",
+        "Palabras bien escritas en el dictado semanal.",
+        "Número de palabras y de partes del texto en una composición, al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Lectura y matemáticas juntas:</strong> cuando coexisten, el deterioro es mayor y los efectos de la intervención en problemas son menores, por lo que se planea más intensidad (McGill y Ndip, 2019, «Mathematics Summary»).",
+        "<strong>Adolescentes:</strong> la enseñanza de estrategias de pasos para resolver problemas se ha probado con estudiantes de secundaria, y las revisiones de escritura incluyen estudiantes de primero a último grado (McGill y Ndip, 2019, «Problem-Solving/Cognitive Strategy Instruction» y «Written Composition/Cognitive Strategy Instruction»)."
+      ],
+      cuidado: [
+        "Las estrategias para resolver problemas no sirven si el estudiante todavía no domina los hechos y el cálculo básico: primero lo básico (McGill y Ndip, 2019, «Mathematics Summary»).",
+        "La evidencia en escritura es menor que en lectura y matemáticas, salvo para la ortografía explícita y la enseñanza de estrategias (McGill y Ndip, 2019, «Impairment in Written Language»)."
       ]
     }
   ]
@@ -11685,6 +12071,49 @@ const GLOSARIO = [
 { k: "escala-dificultad", t: "Escala de dificultad", alias: ["escala de «qué tan difícil»"], tipo: "Técnica", enf: ["cond"],
   d: "Escala visual de 1 a 5 con la que el niño dice qué tan difícil cree que será un paso y qué tan difícil fue. Se pregunta por la dificultad y no por el miedo, porque muchos niños con mutismo selectivo no dicen sentir miedo. Al comparar lo esperado con lo vivido, suelen descubrir que el paso fue más fácil de lo que creían.",
   fuente: "Kotrba, 2015, cap. 4" },
+/* ---------- Dificultades de aprendizaje ---------- */
+{ k: "evaluacion-entorno-academico", t: "Evaluación del entorno académico", tipo: "Procedimiento", enf: ["col"],
+  d: "Primer paso de la evaluación basada en el currículo: entrevista estructurada al docente sobre el problema y la forma de enseñar, observación directa del estudiante en clase —tiempo dedicado a la tarea, oportunidades de responder, conducta—, entrevista al estudiante sobre si entiende lo que se le pide y si cree poder hacerlo, y revisión de cuadernos, tareas y evaluaciones. Muestra si el problema está en la habilidad, en la enseñanza o en ambas.",
+  fuente: "Shapiro, 2011, cap. 3" },
+{ k: "medicion-basada-curriculo", t: "Medición basada en el currículo", alias: ["sondeos de fluidez"], tipo: "Procedimiento", enf: ["col"],
+  d: "Pruebas breves, cronometradas y repetibles con el material del curso: palabras leídas correctamente en un minuto, dígitos correctos por minuto en cálculo, palabras bien escritas en un dictado. Sirven para saber en qué nivel enseñar —con suficiente reto y posibilidad real de éxito—, fijar la línea de base y la meta, y seguir el avance semana a semana porque cambian con la enseñanza.",
+  fuente: "Shapiro, 2011, caps. 4 y 7 · McGill y Ndip, 2019, «Case Example»" },
+{ k: "instruccion-explicita", t: "Instrucción explícita", alias: ["instrucción directa y explícita"], tipo: "Técnica", enf: ["col"],
+  d: "Enseñar la habilidad que falla de forma directa: el adulto muestra el paso, lo hace con el estudiante, lo deja practicar con corrección inmediata y avanza solo cuando la domina, de lo más básico a lo más complejo. Es el rasgo común de las intervenciones con mejor respaldo en lectura, cálculo y ortografía.",
+  fuente: "McGill y Ndip, 2019, «Treatment Moderators» y «Impairment in Mathematics»" },
+{ k: "monitoreo-progreso", t: "Monitoreo del progreso", alias: ["gráfico de avance"], tipo: "Procedimiento", enf: ["col"],
+  d: "Se aplica cada semana un sondeo breve, se grafica junto a la línea de base y a la línea que lleva a la meta, y se decide con reglas fijadas de antemano: si varios puntos seguidos quedan por debajo de esa línea, se cambia la intervención o su intensidad; si quedan por encima, se sube la meta. Sin el gráfico no se puede saber si la intervención funciona.",
+  fuente: "Shapiro, 2011, cap. 7 · McGill y Ndip, 2019, «Case Example»" },
+{ k: "conciencia-fonologica", t: "Conciencia fonológica", alias: ["conciencia fonémica"], tipo: "Concepto", enf: ["col"],
+  d: "Capacidad de oír y manipular los sonidos de las palabras: separarlas en sílabas y sonidos, unir sonidos para formar una palabra, reconocer rimas. Su déficit predice el fracaso temprano en la lectura y es el núcleo de la mayoría de las dificultades lectoras; se enseña de forma explícita junto con la correspondencia entre letras y sonidos.",
+  fuente: "McGill y Ndip, 2019, «Phonemic Awareness/Phonics Instruction» · Shapiro, 2011, cap. 6" },
+{ k: "lectura-previa", t: "Lectura previa", alias: ["escucha previa"], tipo: "Técnica", enf: ["col"],
+  d: "El estudiante lee o escucha el texto antes de trabajarlo en clase o de leerlo en voz alta: lo lee en silencio, lo lee en voz alta una vez o sigue la lectura del adulto con la vista. Da práctica con las mismas palabras y mejora la fluidez.",
+  fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Repeated Reading»" },
+{ k: "lectura-repetida", t: "Lectura repetida", tipo: "Técnica", enf: ["col"],
+  d: "El estudiante lee en voz alta el mismo pasaje varias veces, con corrección de las palabras que lee mal, hasta alcanzar un criterio de fluidez. Funciona mejor con metas y retroalimentación sobre su desempeño; es una de las técnicas más usadas para la fluidez lectora.",
+  fuente: "McGill y Ndip, 2019, «Repeated Reading»" },
+{ k: "repaso-incremental", t: "Repaso incremental", alias: ["intercalado de palabras"], tipo: "Técnica", enf: ["col"],
+  d: "Práctica en tarjetas en la que cada palabra nueva se intercala entre palabras que el estudiante ya conoce, de modo que entre el 70 y el 85 % del material sea conocido. Da muchas repeticiones con éxito asegurado; cada palabra nueva aprendida reemplaza poco a poco a una conocida.",
+  fuente: "Shapiro, 2011, cap. 6" },
+{ k: "recontado", t: "Recontado", alias: ["recontar lo leído"], tipo: "Técnica", enf: ["col"],
+  d: "Después de leer, el estudiante cuenta con sus palabras lo que leyó, y se revisa si incluye la idea principal, los personajes, la secuencia y los hechos clave. Sirve para enseñar y para medir la comprensión; las pistas del adulto se aumentan poco a poco si hace falta.",
+  fuente: "Shapiro, 2011, caps. 6 y 7" },
+{ k: "instruccion-estrategias", t: "Instrucción en estrategias cognitivas", alias: ["enseñanza de estrategias cognitivas"], tipo: "Técnica", enf: ["col"],
+  d: "Enseñar al estudiante pasos concretos para abordar una tarea —buscar la idea principal y resumir, hacerse preguntas mientras lee, planear un texto, representar un problema—: el adulto los modela, los practican juntos y el estudiante los usa solo y revisa cómo le fue. Se enseña una estrategia a la vez y se planea que la use en otras clases.",
+  fuente: "McGill y Ndip, 2019, «Cognitive Strategy Instruction» y tabla 14.1" },
+{ k: "tutoria-pares", t: "Tutoría entre pares", tipo: "Formato", enf: ["col"],
+  d: "Parejas de estudiantes que se turnan como tutor y como aprendiz en actividades estructuradas de lectura o matemáticas, con puntos por las respuestas correctas y corrección de los errores. Aumenta mucho las oportunidades de practicar dentro del aula; los programas que la usan rinden mejor con tres o más sesiones semanales durante varios meses.",
+  fuente: "McGill y Ndip, 2019, «Peer-Assisted Learning Strategies» · Shapiro, 2011, cap. 5" },
+{ k: "cubrir-copiar-comparar", t: "Cubrir, copiar y comparar", tipo: "Técnica", enf: ["col"],
+  d: "El estudiante mira el modelo —una operación resuelta o una palabra bien escrita—, lo tapa, lo escribe de memoria, destapa el modelo y compara; si se equivocó, corrige enseguida. Es sencilla, barata y la puede aplicar el propio estudiante; tiene respaldo para los hechos numéricos y para la ortografía.",
+  fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Spelling/Orthographic Processing»" },
+{ k: "instruccion-esquemas", t: "Instrucción basada en esquemas", alias: ["esquemas de problemas"], tipo: "Técnica", enf: ["col"],
+  d: "Para los problemas con enunciado, se enseña a reconocer el tipo de problema —cambio, combinación o comparación— y a ubicar los datos en un diagrama propio de ese tipo antes de calcular. Primero se trabaja con situaciones sin pregunta y después con problemas completos.",
+  fuente: "Shapiro, 2011, cap. 6 · McGill y Ndip, 2019, «Problem-Solving/Cognitive Strategy Instruction»" },
+{ k: "estrategias-autorreguladas-escritura", t: "Desarrollo de estrategias autorreguladas para la escritura", alias: ["estrategias autorreguladas"], tipo: "Técnica", enf: ["col"],
+  d: "Programa para enseñar a escribir textos con estrategias de planeación, redacción y revisión, junto con autorregulación: fijarse metas, darse instrucciones, contar lo producido y evaluar si se cumplió. El adulto modela en voz alta, escriben juntos y el estudiante pasa a hacerlo solo. Es la intervención de escritura con más respaldo.",
+  fuente: "McGill y Ndip, 2019, «Written Composition/Cognitive Strategy Instruction» · Shapiro, 2011, cap. 6" },
 { k: "exposicion-gradual-trauma", t: "Exposición gradual al trauma", tipo: "Concepto", enf: ["tcc"],
   d: "Acercamiento progresivo a los recordatorios del trauma que atraviesa todo el tratamiento: empieza nombrando lo ocurrido en la psicoeducación, sigue aplicando cada habilidad a recordatorios cada vez más específicos y culmina en el relato y en compartirlo con el cuidador. Contrarresta la evitación y crea asociaciones nuevas con el recuerdo.",
   fuente: "Deblinger et al., 2012, «Theoretical Rationale for Gradual Exposure»" },
