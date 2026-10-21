@@ -2205,6 +2205,26 @@ REFERENCIAS.push(
   { k: "APA, 2022", ref: "American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5.ª ed., texto revisado). American Psychiatric Publishing." }
 );
 
+/* Libro agregado a la biblioteca el 2026-10-21: reforzamiento comunitario y
+   entrenamiento familiar (CRAFT) para familiares de quien consume y rechaza
+   el tratamiento (Meyers y Wolfe, 2004). Es la versión para familiares del
+   modelo clínico; las cifras de los ensayos son las que reportan los
+   autores en el libro. El manual para terapeutas no está en la biblioteca. */
+Object.assign(MODELOS, {
+  "craft": {
+    tipo: "explicativo",
+    t: "Modelo de reforzamiento comunitario y entrenamiento familiar",
+    autor: "Meyers y Wolfe",
+    d: "Las personas cercanas son las que más influyen en quien consume, para bien o para mal. Sin darse cuenta, la familia suele hacer más fácil el consumo —arregla lo que se rompe, cubre las ausencias, discute y da atención justo después de beber— y le quita lo gratificante a los momentos sin consumo. El programa no enseña a desprenderse de la persona: enseña al familiar a mapear cómo se afectan mutuamente y a cambiar sus propias respuestas para que no consumir resulte más gratificante que consumir, mientras recupera su propia calidad de vida, cambie o no el otro.",
+    dim: ["Desencadenantes, señales y consecuencias del consumo", "Respuestas del familiar que facilitan el consumo", "Recompensas de los momentos sin consumo", "Seguridad y bienestar del familiar", "Momentos de apertura al tratamiento"],
+    fuente: "Meyers y Wolfe, 2004, caps. 1 y 2"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Meyers y Wolfe, 2004", ref: "Meyers, R. J. y Wolfe, B. L. (2004). <em>Get your loved one sober: Alternatives to nagging, pleading, and threatening</em>. Hazelden." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -9981,6 +10001,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Si la persona no reconoce el problema o duda de cambiar</strong>, se trabaja primero la motivación. En consulta y en hospital, el plan por estadios de cambio empieza con tamizaje e intervención breve y ajusta la estrategia a la disposición de la persona. Si hay más tiempo, o el consumo aparece dentro de otro tratamiento, la entrevista motivacional es el estilo de conversación que más respaldo tiene para resolver la ambivalencia.",
     "<strong>Si el consumo ocupa el lugar de casi todo lo que le resulta gratificante</strong> —amistades, ocio, rutinas— y faltan trabajo y relaciones que compitan con él, la aproximación de reforzamiento comunitario reorganiza esos reforzadores a partir del análisis funcional del consumo; tiene ensayos con alcohol y, combinada con manejo de contingencias, con cocaína.",
+    "<strong>Si quien consulta es un familiar y la persona que consume se niega a buscar ayuda</strong>, el reforzamiento comunitario y entrenamiento familiar trabaja solo con el familiar: le enseña a recompensar los momentos sin consumo, a dejar de facilitarlo y a proponer el tratamiento en el momento oportuno, y cuida su propio bienestar aunque el otro no cambie.",
     "<strong>Si ya decidió cambiar</strong> o está en tratamiento, la prevención de recaídas la prepara para las situaciones de alto riesgo y para manejar los deslices; con cocaína u otros estimulantes se le suma el manejo de contingencias.",
     "<strong>Si el consumo convive con una desregulación emocional grave</strong>, como en el trastorno límite, las habilidades dialéctico-conductuales para conductas adictivas se diseñaron para esa combinación. <strong>Si el consumo funciona sobre todo como una forma de no sentir</strong>, el plan de aceptación y compromiso trabaja esa evitación."
   ],
@@ -10667,6 +10688,139 @@ const VARIABLES = [
       cuidado: [
         "El disulfiram lo indica y controla el médico, con consentimiento informado de la persona (Meyers y Smith, 1995, cap. 4).",
         "Los autores advierten contra errores frecuentes: no darle importancia a tener un trabajo con sentido, no vigilar el contacto con los desencadenantes y no comprobar que las habilidades se usen fuera de la sesión (Meyers y Smith, 1995, cap. 11)."
+      ]
+    },
+    {
+      id: "cons-craft",
+      mod: "craft",
+      inst: ["PHQ-9", "GAD-7"],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Reforzamiento comunitario y entrenamiento familiar para familiares de quien rechaza el tratamiento",
+      fuente: "Meyers y Wolfe, 2004",
+      cuando: "Quien consulta <strong>no es la persona que consume, sino su pareja, su madre, su padre, un hijo o un amigo cercano</strong>. La persona que consume se niega a buscar ayuda, y el familiar ya probó regañar, rogar y amenazar sin resultado; vive con angustia, rabia o tristeza, y quiere que el otro entre a tratamiento y, a la vez, recuperar su propia vida.",
+      respaldo: "En un ensayo con 130 familiares de bebedores que rechazaban el tratamiento, asignados al azar a tres programas individuales de hasta doce horas, el 64 % de los que recibieron este entrenamiento logró que su familiar entrara a tratamiento, frente a unos tres de cada diez con la intervención confrontativa del Instituto Johnson y poco más de uno de cada diez con un programa basado en Al-Anon; en los tres grupos los familiares estaban menos deprimidos y menos enojados a los tres y seis meses. Con drogas, un estudio sin grupo de comparación con 62 familiares llegó al 74 %, y un ensayo aleatorizado, al 67 % frente al 29 % de un programa basado en Nar-Anon y Al-Anon. Los familiares mejoraron aunque su ser querido no entrara a tratamiento (Meyers y Wolfe, 2004, nota de Meyers). Son las cifras que reportan los autores del programa.",
+      secuencia: "<strong>Secuencia:</strong> el mapa del consumo y la seguridad van primero, porque todo lo demás se apoya en ellos; las habilidades siguientes se eligen según lo que el familiar necesite en cada momento, con un cambio pequeño a la vez, y el tratamiento se deja listo para ofrecerlo en cuanto aparezca la oportunidad. En los ensayos, el programa duró hasta doce horas de sesiones individuales con el familiar (Meyers y Wolfe, 2004, nota de Meyers y caps. 1 a 3).",
+      esc: ["consumo", "cuidadores", "primer-nivel"],
+      actividades: [
+        {
+          t: "Mapa del consumo y línea de base",
+          tecs: ["analisis-funcional"],
+          obj: "Que el familiar describa cuándo, cómo y con qué consecuencias consume su ser querido, y qué papel cumplen sus propias respuestas.",
+          pasos: [
+            "Listar los desencadenantes del consumo: situaciones, personas, días, horas, estados de ánimo o pensamientos que suelen anunciarlo.",
+            "Describir las señales que muestran que ya empezó a consumir, antes de que esté intoxicado, porque desde ese momento ya no sirve razonar ni negociar.",
+            "Anotar las consecuencias del consumo a corto y a largo plazo, para la persona y para el familiar, incluidas las que le resultan cómodas a alguno de los dos.",
+            "Estimar cuánto y con qué frecuencia consume en una semana típica, y qué días consume más, para tener una línea de base contra la cual ver los cambios.",
+            "Escribir paso a paso una escena típica de consumo, con lo que dice y hace cada uno, y marcar en qué punto el familiar podría responder distinto."
+          ],
+          casa: "Anotar durante la semana los desencadenantes y las señales que observe, sin comentarlos con su ser querido.",
+          avance: "El familiar reconoce los desencadenantes, las señales y las consecuencias del consumo, y ve dónde puede cambiar su parte.",
+          fuente: "Meyers y Wolfe, 2004, caps. 1 y 2"
+        },
+        {
+          t: "Seguridad frente a la violencia",
+          tecs: ["planificacion-seguridad"],
+          obj: "Proteger al familiar y a quienes dependen de él antes de cambiar cualquier respuesta que pueda provocar al otro.",
+          pasos: [
+            "Repasar los episodios de violencia o casi violencia del pasado, incluidos gritos, amenazas, empujones, objetos rotos o abuso sexual, y cuántas veces ocurrieron.",
+            "Reconstruir el episodio más reciente para encontrar las señales que lo anunciaron —una frase, un tono, caminar de un lado a otro— y planear una respuesta segura para cada una: dejar el tema, cambiar de conversación, salir.",
+            "Preparar un plan de salida: un bolso con lo necesario para el familiar y los hijos, una casa segura de alguien de confianza y los teléfonos de emergencia y de atención a víctimas de la zona.",
+            "Acordar que, si la violencia estalla, lo único importante es terminarla y ponerse a salvo; las discusiones se retoman después, en calma.",
+            "Revisar cada cambio que el familiar quiera hacer en las actividades siguientes según el riesgo de que desate violencia."
+          ],
+          casa: "Dejar listo el bolso y la casa segura, y repasar mentalmente la respuesta ante cada señal.",
+          avance: "El familiar sabe reconocer las señales de peligro y tiene a dónde ir.",
+          fuente: "Meyers y Wolfe, 2004, cap. 3"
+        },
+        {
+          t: "Metas propias y vida propia del familiar",
+          tecs: ["autorrefuerzo"],
+          obj: "Que el familiar mejore su calidad de vida aunque su ser querido no cambie.",
+          pasos: [
+            "Describir cómo sería una vida mejor y traducirla en metas concretas, que dependan de lo que el familiar hace y no de lo que haga el otro.",
+            "Revisar las ideas de culpa: el familiar influye en el patrón de consumo, pero no causó que su ser querido consumiera.",
+            "Planear recompensas para sí mismo de tres tipos —gratis e inmediatas, de bajo costo y que requieren tiempo o dinero— y programar algunas cada semana, la mayoría sin depender de que el otro esté sobrio.",
+            "Identificar a las personas de su red con quienes quiere volver a pasar tiempo y a una o dos de confianza con quienes hablar de lo que vive."
+          ],
+          casa: "Hacer al menos dos actividades gratificantes de la lista y contactar a una persona de su red.",
+          avance: "El familiar tiene metas propias y espacios gratificantes que no dependen del consumo del otro.",
+          fuente: "Meyers y Wolfe, 2004, caps. 4 a 6",
+          fichas: ["cuidado-cuidador"]
+        },
+        {
+          t: "Comunicación positiva y solución de problemas",
+          tecs: ["comunicacion-pius", "solucion-problemas", "juego-roles"],
+          obj: "Cambiar los reproches por mensajes que el otro pueda escuchar sin contraatacar.",
+          pasos: [
+            "Reescribir con el familiar tres discusiones pasadas sobre el consumo y detectar qué las hizo escalar.",
+            "Practicar la comunicación PIUS: mensajes positivos, en primera persona, que muestren comprensión y que compartan parte de la responsabilidad.",
+            "Ensayar en sesión, con juego de roles, lo que dirá en una situación difícil que ya sabe que vendrá.",
+            "Aplicar la solución de problemas a un obstáculo concreto: definirlo, generar alternativas sin juzgarlas, elegir una, ponerla a prueba y revisar cómo salió."
+          ],
+          casa: "Usar un mensaje planeado en una conversación real y anotar cómo respondió el otro.",
+          avance: "Las conversaciones sobre el consumo terminan con menos peleas.",
+          fuente: "Meyers y Wolfe, 2004, caps. 8 y 9"
+        },
+        {
+          t: "Recompensar los momentos sin consumo y dejar de facilitar el consumo",
+          tecs: ["reforzamiento-positivo", "habilitacion", "retiro-recompensa"],
+          obj: "Que estar sin consumir resulte más gratificante que consumir.",
+          pasos: [
+            "Listar las conductas sin consumo que el familiar quiere ver más —llegar temprano y sobrio, quedarse en casa— y, para cada una, recompensas que su ser querido valore de verdad.",
+            "Ofrecer esas recompensas justo cuando ocurre la conducta, y planear actividades agradables que no se puedan hacer bajo el efecto para los horarios en que suele consumir.",
+            "Identificar las conductas de habilitación del consumo: arreglar lo que rompe, inventar excusas, comprarle licor, sacarlo de los problemas.",
+            "Dejar que viva las consecuencias naturales de su consumo cuando eso no ponga a nadie en peligro.",
+            "Ante el consumo, usar el retiro de la recompensa en lugar del regaño: decir con calma que no quiere estar con él así y retirarse.",
+            "Anticipar la tentación de volver a lo conocido cuando la relación empiece a cambiar."
+          ],
+          casa: "Recompensar al menos una vez un momento sin consumo y no arreglar una consecuencia del consumo.",
+          avance: "El familiar recompensa los momentos sin consumo y ya no amortigua las consecuencias.",
+          fuente: "Meyers y Wolfe, 2004, caps. 7 y 10"
+        },
+        {
+          t: "Invitar al tratamiento en el momento oportuno",
+          tecs: ["ventanas-oportunidad"],
+          obj: "Lograr que la persona acepte una primera cita cuando su motivación sube.",
+          pasos: [
+            "Revisar qué gana la persona con el consumo, para ofrecerle alternativas que llenen esas mismas necesidades si deja de consumir.",
+            "Tener el tratamiento listo antes de proponerlo: buscar y entrevistar opciones con enfoque cognitivo-conductual, que involucren a la familia y que cuenten con apoyo médico si hay dependencia física.",
+            "Identificar sus ventanas de oportunidad: cuando se siente mal por algo que hizo bajo el efecto o cuando la relación va bien y quiere complacer.",
+            "Preparar con comunicación positiva qué dirá en ese momento, y ensayarlo.",
+            "Si la persona acepta, conseguir la cita de inmediato; si dice que no, retirarse sin discutir y esperar la siguiente ventana."
+          ],
+          casa: "Dejar acordada una cita de tratamiento que pueda usarse en cuanto la persona acepte.",
+          avance: "La persona que consume asiste a una primera sesión.",
+          fuente: "Meyers y Wolfe, 2004, cap. 11"
+        },
+        {
+          t: "Deslices, abandono del tratamiento y decisiones del familiar",
+          tecs: ["prevencion-recaidas", "situaciones-alto-riesgo"],
+          obj: "Sostener los cambios cuando haya deslices de cualquiera de los dos y decidir con claridad cómo seguir.",
+          pasos: [
+            "Presentar los deslices como parte esperable del cambio, tanto los de quien consume como los del familiar cuando vuelve a regañar o a arreglar.",
+            "Identificar las situaciones de alto riesgo del propio familiar —estados de ánimo, horas, frases del otro— y hacer un mapa nuevo de la más difícil.",
+            "Si la persona abandona el tratamiento, mantener los cambios y volver a buscar una ventana de oportunidad.",
+            "Si el familiar ha hecho todo lo que estaba a su alcance y nada cambia, revisar con él las preguntas que proponen los autores para decidir si sigue en la relación, sabiendo que tiene derecho a cuidar de su propia vida."
+          ],
+          casa: "Escribir el plan para su situación de mayor riesgo y repasarlo en imaginación.",
+          avance: "El familiar sostiene los cambios ante los deslices y toma decisiones sobre la relación con claridad.",
+          fuente: "Meyers y Wolfe, 2004, cap. 12"
+        }
+      ],
+      medir: [
+        "Si la persona que consume entra a tratamiento y cuánto tiempo se mantiene.",
+        "Consumo estimado por el familiar en una semana típica, comparado con la línea de base.",
+        "<strong>PHQ-9</strong> y <strong>GAD-7</strong> del familiar al inicio y en el seguimiento, porque su bienestar es una meta en sí misma."
+      ],
+      adapt: [
+        "<strong>Drogas:</strong> el mismo programa se usa con familiares de quienes consumen marihuana, heroína, anfetaminas y otras drogas; los autores piden más precaución cuando la vida de la persona gira alrededor de la violencia o el delito (Meyers y Wolfe, 2004, introducción y nota de Meyers).",
+        "<strong>Padres de adolescentes:</strong> los autores describen su uso con padres, que identifican primero las cualidades y los privilegios que su hijo valora antes de pedirle cambios (Meyers y Wolfe, 2004, cap. 1).",
+        "<strong>Adherencia:</strong> según los autores, quienes entran a tratamiento por esta vía permanecen en él seis o siete veces más tiempo que otros consumidores (Meyers y Wolfe, 2004, cap. 1)."
+      ],
+      cuidado: [
+        "El riesgo de violencia se evalúa antes que todo: no se retiran recompensas ni se dejan correr las consecuencias si eso puede desatar una agresión, y cada cambio se hace con cautela y a su tiempo (Meyers y Wolfe, 2004, caps. 2, 3 y 10). Si hay violencia de pareja, ver también <em>Violencia de pareja</em>.",
+        "Si hay dependencia física, la entrada al tratamiento se coordina con apoyo médico para la desintoxicación (Meyers y Wolfe, 2004, cap. 11)."
       ]
     }
   ]
@@ -13150,6 +13304,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Si el cuidador necesita atención y apoyo directos</strong>, el plan de apoyo psicológico sigue la recomendación de la OMS para cuidadores de adultos mayores dependientes: psicoeducación, entrenamiento en habilidades y apoyo.",
     "<strong>Si la persona cuidada tiene demencia y el cuidador puede trabajar por su cuenta</strong>, con o sin acompañamiento, iSupport de la OMS organiza en cinco módulos lo que necesita saber y hacer, incluido cuidarse a sí mismo.",
+    "Si quien consulta convive con alguien que consume alcohol o drogas y se niega a buscar ayuda, <em>Consumo de sustancias</em> tiene un plan para el familiar: el reforzamiento comunitario y entrenamiento familiar.",
     "Si quien cuida a una persona con cáncer se pregunta por el sentido de lo que vive, la psicoterapia centrada en el sentido de <em>Sufrimiento y sentido al final de la vida</em> tiene una adaptación para cuidadores (Applebaum et al., 2026)."
   ],
   planes: [
@@ -20698,7 +20853,20 @@ const GLOSARIO = [
   fuente: "Laidlaw et al., 2003, caps. 3 y 4" },
 { k: "guia-supervivencia", t: "Guía de supervivencia", tipo: "Técnica", enf: ["tcc"],
   d: "Documento que la persona escribe al final de la terapia con las dos o tres habilidades que más le sirvieron y las situaciones previsibles en las que las usará para no recaer, como una visita difícil a un familiar.",
-  fuente: "Laidlaw et al., 2003, cap. 4" }
+  fuente: "Laidlaw et al., 2003, cap. 4" },
+/* ---------- Familiares de quien consume (CRAFT) ---------- */
+{ k: "habilitacion", t: "Habilitación del consumo", alias: ["facilitar el consumo"], tipo: "Concepto", enf: ["tcc"],
+  d: "Lo que hace la familia, con buena intención, que le ahorra a quien consume las consecuencias de su consumo: arreglar lo que rompe, limpiar, inventar excusas en el trabajo o con la familia, comprarle el licor para que no salga, sacarlo de los problemas. Desgasta a quien lo hace y le enseña a la persona que consumir no le cuesta nada. Se reemplaza dejando que viva las consecuencias naturales de su consumo, siempre que eso no ponga en peligro a nadie.",
+  fuente: "Meyers y Wolfe, 2004, cap. 7" },
+{ k: "comunicacion-pius", t: "Comunicación PIUS", alias: ["mensajes PIUS"], tipo: "Técnica", enf: ["tcc", "fam"],
+  d: "Cuatro rasgos que las conversaciones de una relación en conflicto suelen perder y que se entrenan de nuevo: mensajes positivos —lo que se quiere, no lo que molesta—, en primera persona («yo me siento…» en lugar de «usted siempre…»), que muestran comprensión de lo que vive el otro y que comparten parte de la responsabilidad de la situación. Bajan la probabilidad de que el otro se sienta atacado y contraataque.",
+  fuente: "Meyers y Wolfe, 2004, cap. 9" },
+{ k: "retiro-recompensa", t: "Retiro de la recompensa", alias: ["retirar la recompensa"], tipo: "Técnica", enf: ["tcc"],
+  d: "Cuando la persona consume, el familiar no la regaña ni la castiga: le dice con calma que no quiere estar con ella así y se retira, o retira lo agradable que había prometido —la cena, el plan juntos—. Evita que la discusión misma se vuelva una forma de atención para el consumo. Se prefiere al castigo, que suele empeorar la relación y puede desatar violencia.",
+  fuente: "Meyers y Wolfe, 2004, cap. 10" },
+{ k: "ventanas-oportunidad", t: "Ventanas de oportunidad", alias: ["ventana de oportunidad"], tipo: "Técnica", enf: ["tcc"],
+  d: "Momentos en que la motivación de quien consume para cambiar sube: cuando se siente mal consigo misma por algo que hizo bajo el efecto o cuando la relación va bien y quiere complacer al familiar. El familiar los identifica de antemano, prepara qué decir y tiene una cita de tratamiento lista para usarla de inmediato, porque el interés baja rápido.",
+  fuente: "Meyers y Wolfe, 2004, cap. 11" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
