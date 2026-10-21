@@ -1574,6 +1574,70 @@ Object.assign(MODELOS, {
   }
 });
 
+/* Brechas de cobertura frente a Prinstein et al. (2019), cerradas el
+   2026-10-21 con capítulos que ya estaban en la biblioteca: bulimia y
+   atracones (Lock y Osipov), trastorno bipolar (Fristad y Roley-Roberts),
+   obesidad (Hayes et al.) y primeros años (Acosta, Bagner y Carter). Los
+   programas de primeros años vienen resumidos en su fuente: sus planes son
+   más cortos y no inventan pasos que el capítulo no describe. */
+Object.assign(MODELOS, {
+  "ciclo-bulimico": {
+    t: "Ciclo de dieta, atracón y compensación",
+    autor: "Fairburn; Lock",
+    d: "Darle demasiado peso a la figura y al peso para valorarse lleva a hacer dieta y a seguir reglas rígidas con la comida. La restricción deja al adolescente con hambre y le da al primer «error» el sentido de un fracaso total, lo que dispara el atracón; después vienen la vergüenza, el vómito, los laxantes, el ejercicio excesivo o el ayuno, y la promesa de una dieta más estricta, que vuelve a empezar el ciclo. Comer de forma regular corta el ciclo por la base.",
+    dim: ["Sobrevaloración de la figura y el peso", "Dieta y reglas rígidas", "Atracón", "Conductas compensatorias", "Vergüenza y nueva dieta"],
+    fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» y tabla 22.5"
+  },
+  "psicoeducacion-familiar-bipolar": {
+    tipo: "marco",
+    t: "Psicoeducación familiar con entrenamiento en habilidades",
+    autor: "Fristad; Miklowitz; Pavuluri",
+    d: "Clase de tratamientos «bien establecida» para niños y adolescentes con trastornos del espectro bipolar. La familia aprende qué es el trastorno, cómo se distinguen los síntomas de la forma de ser del niño y qué tratamientos existen, y padres e hijos entrenan regulación de las emociones, comunicación y solución de problemas. Busca reducir la frecuencia, la duración y la gravedad de los episodios maníacos y depresivos, y bajar la crítica, la hostilidad y la sobreimplicación en la familia, que se asocian con recuperaciones más lentas.",
+    dim: ["Psicoeducación sobre el trastorno y su tratamiento", "Regulación de las emociones", "Comunicación familiar", "Solución de problemas", "Rutinas, sueño y hábitos"],
+    fuente: "Fristad y Roley-Roberts, 2019, «Well-Established Psychosocial Intervention for BPSD in Youth»"
+  },
+  "ritmos-sociales-adolescentes": {
+    t: "Ritmos sociales y regulación circadiana",
+    autor: "Hlastala; Frank",
+    d: "En el trastorno bipolar, los ritmos biológicos —el sueño, en primer lugar— son vulnerables, y los cambios en las rutinas sociales y los conflictos interpersonales los desordenan y pueden precipitar episodios. Estabilizar las rutinas diarias, sostener la medicación y resolver los problemas interpersonales protege del siguiente episodio.",
+    dim: ["Ritmos de sueño y rutinas diarias", "Adherencia a la medicación", "Problemas interpersonales", "Prevención de recaídas"],
+    fuente: "Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»"
+  },
+  "balance-energia-familiar": {
+    t: "Cambio conductual familiar del balance de energía",
+    autor: "Epstein; Wilfley",
+    d: "El peso del niño depende de lo que come y de cuánto se mueve, y esas conductas se aprenden y se sostienen en la casa, con los amigos y en el barrio. Los padres compran, cocinan y organizan las actividades, por eso son los principales agentes de cambio. El tratamiento cambia la alimentación y la actividad con metas graduales, autorregistro, recompensas y cambios en el ambiente, y prepara a la familia para sostener los cambios en todos los contextos, porque los hábitos nuevos conviven con los viejos.",
+    dim: ["Alimentación", "Actividad física y sedentarismo", "Metas, autorregistro y recompensas", "Ambiente de la casa", "Pares y comunidad"],
+    fuente: "Hayes et al., 2019, «Multicomponent Treatment Protocol» y «Importance of Intervening across Time and Contexts»"
+  },
+  "crianza-contexto-riesgo": {
+    tipo: "marco",
+    t: "Crianza positiva y manejo familiar en contextos de riesgo",
+    autor: "Dishion y Shaw",
+    d: "En familias que viven en entornos de alto riesgo, los problemas de conducta de los niños pequeños se sostienen en las prácticas de crianza y en el manejo de la familia, que a su vez se resienten con la depresión de los padres, el conflicto de pareja o los peligros del barrio. Una evaluación de la familia devuelta con entrevista motivacional ayuda a los padres a decidir qué cambiar; el cambio en la crianza mejora la conducta del niño y la relación.",
+    dim: ["Evaluación de la familia", "Motivación para el cambio", "Crianza positiva", "Manejo familiar", "Ánimo de los padres"],
+    fuente: "Acosta et al., 2019, «The Family Check-Up»"
+  },
+  "vinculo-temprano": {
+    t: "Sensibilidad del cuidador y seguridad del apego",
+    autor: "Bakermans-Kranenburg, van IJzendoorn y Juffer; Lieberman",
+    d: "Un apego inseguro o desorganizado en los primeros años se asocia con problemas emocionales y sociales posteriores. Las intervenciones de apego ayudan a los padres a leer las señales del niño y a responder con sensibilidad, y algunas trabajan también cómo sus propias experiencias de crianza interfieren con esa respuesta. Las más eficaces son de duración moderada y con un foco conductual.",
+    dim: ["Señales del niño", "Respuesta sensible del cuidador", "Representaciones del cuidador", "Seguridad del apego", "Regulación del niño"],
+    fuente: "Acosta et al., 2019, «Attachment-Based Interventions»"
+  }
+});
+Object.assign(INSTRUMENTOS, {
+  "Registro de atracones y purgas": { n: "Registro de atracones y purgas", rol: "Registro", d: "Anotación diaria de los atracones, los vómitos y otras conductas compensatorias, que se revisa al comienzo de cada sesión con el adolescente y los padres.", med: "Adolescente, cada día", guia: false, fuente: "Lock y Osipov, 2019, tabla 22.4" },
+  "Gráfico del ánimo": { n: "Gráfico diario del ánimo y el sueño", rol: "Registro", d: "La familia anota cada día el ánimo del niño o adolescente y sus horas de sueño. Con él se reconocen las primeras señales de un episodio y se arma el plan de manejo del ánimo.", med: "Familia, cada día", guia: false, fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»" },
+  "Libro de hábitos": { n: "Libro de hábitos", rol: "Registro", d: "Autorregistro diario de lo que se come —con su color del semáforo—, de la actividad física y el tiempo de pantalla, y del peso semanal en casa, que llevan juntos el niño y uno de los padres.", med: "Niño y padre, cada día", guia: false, fuente: "Hayes et al., 2019, «Self-Monitoring»" }
+});
+REFERENCIAS.push(
+  { k: "Lock y Osipov, 2019", ref: "Lock, J. y Osipov, L. (2019). Eating disorders. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 747–784). Guilford Press." },
+  { k: "Fristad y Roley-Roberts, 2019", ref: "Fristad, M. A. y Roley-Roberts, M. E. (2019). Bipolar disorder. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 212–257). Guilford Press." },
+  { k: "Hayes et al., 2019", ref: "Hayes, J. F., Balantekin, K. N., Brown, M. L. y Wilfley, D. E. (2019). Obesity. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 785–806). Guilford Press." },
+  { k: "Acosta et al., 2019", ref: "Acosta, J., Bagner, D. M. y Carter, A. S. (2019). Common issues in infancy and toddlerhood. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 339–375). Guilford Press." }
+);
+
 /* Psicología positiva: educación en el perdón (Enright), terapia de bienestar
    para niños, adolescentes y el colegio (Fava) y fortalezas del carácter en la
    discapacidad intelectual (Niemiec y Tomasulo). */
@@ -3339,7 +3403,8 @@ const VARIABLES = [
     "<strong>En la adolescencia, la terapia cognitivo-conductual y la psicoterapia interpersonal son tratamientos bien establecidos</strong>, y la combinación de terapia cognitivo-conductual con medicación también lo es en la depresión moderada a grave (Curry y Meyer, 2019).",
     "<strong>En la niñez la evidencia es más débil</strong>: la terapia cognitivo-conductual es probablemente eficaz, sobre todo en grupo y en el colegio. La activación conductual es una opción posiblemente eficaz para adolescentes, con resultados comparables a la terapia cognitivo-conductual en el único estudio que las comparó. ACT tiene todavía evidencia experimental (Curry y Meyer, 2019).",
     "<strong>La desesperanza y la ideación suicida se evalúan desde el primer encuentro</strong> y predicen peor respuesta; si hay riesgo, va primero el plan de seguridad (Curry y Meyer, 2019). Si hay autolesiones repetidas, corresponde también Autolesión y riesgo suicida. Si la depresión viene con ansiedad marcada, el protocolo unificado de Ansiedad y miedos trabaja ambas.",
-    "<strong>Si la depresión ya respondió a la medicación</strong>, la prevención de recaídas con terapia cognitivo-conductual y de bienestar redujo las recaídas en un ensayo con niños y adolescentes."
+    "<strong>Si la depresión ya respondió a la medicación</strong>, la prevención de recaídas con terapia cognitivo-conductual y de bienestar redujo las recaídas en un ensayo con niños y adolescentes.",
+    "Si además ha habido periodos de ánimo muy elevado o irritable, con mucha energía y poca necesidad de dormir, ver <em>Trastorno bipolar</em>."
   ],
   planes: [
     {
@@ -3778,6 +3843,369 @@ const VARIABLES = [
       cuidado: [
         "Fuera de este ensayo, la terapia de bienestar con niños tiene solo estudios preliminares; el protocolo infantil se considera una herramienta inicial (Fava, 2016, cap. 19).",
         "La desesperanza y la ideación suicida se siguen evaluando durante la prevención de recaídas; si hay riesgo, va primero el plan de seguridad."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones emocionales",
+  t: "Trastorno bipolar",
+  sub: "El niño o adolescente tiene periodos de ánimo muy elevado o irritable, con mucha energía, poca necesidad de dormir, ideas aceleradas o conductas arriesgadas, que alternan con periodos de depresión; en la ciclotimia y en otras formas del espectro los episodios son más leves o más cortos. El diagnóstico se hace con la historia de toda la vida y lo confirma un psiquiatra, que decide la medicación. Lo que se interviene desde la psicología es lo que hacen el niño y su familia con el trastorno: entenderlo, reconocer las primeras señales, regular las emociones, cuidar el sueño y las rutinas, y bajar el conflicto en la casa.",
+  elegir: [
+    "<strong>La psicoeducación familiar con entrenamiento en habilidades es la única clase de tratamiento psicológico «bien establecida»</strong> para el espectro bipolar en niños y adolescentes, y siempre acompaña la medicación (Fristad y Roley-Roberts, 2019). Tiene tres versiones: <strong>en niños de 7 a 13 años</strong>, la psicoterapia psicoeducativa o la terapia cognitivo-conductual centrada en el niño y la familia; <strong>en adolescentes</strong>, la terapia centrada en la familia, que también se probó con jóvenes en alto riesgo.",
+    "<strong>Si el sueño y las rutinas se desordenan con facilidad</strong> o los problemas interpersonales disparan los episodios, la terapia interpersonal y de ritmos sociales es una opción posiblemente eficaz para adolescentes. <strong>Si hay autolesiones o ideación suicida</strong>, la terapia dialéctico-conductual para adolescentes se adaptó para el trastorno bipolar: ver <em>Autolesión y riesgo suicida</em>.",
+    "Si hay solo episodios depresivos, ver <em>Depresión</em>; si lo que predomina son explosiones de rabia frecuentes sin episodios, <em>Irritabilidad y explosiones de rabia</em>."
+  ],
+  planes: [
+    {
+      id: "bip-pep",
+      mod: "psicoeducacion-familiar-bipolar",
+      inst: ["Gráfico del ánimo", "Diario de sueño"],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Psicoterapia psicoeducativa para niños y sus familias",
+      fuente: "Fristad y Roley-Roberts, 2019",
+      cuando: "Un niño de 7 a 13 años con un trastorno del espectro bipolar o con depresión y riesgo de bipolaridad, que recibe tratamiento médico, y cuya familia necesita entender el trastorno, manejar los síntomas y salir de los ciclos de conflicto.",
+      respaldo: "Se evaluó en cinco ensayos aleatorizados, cuatro con jóvenes con trastornos del espectro bipolar, uno de ellos con 165 niños. Mejora la comprensión de los síntomas, la crítica y la hostilidad de los padres, el funcionamiento, el apoyo que el niño percibe y el uso de los servicios, y en jóvenes de alto riesgo redujo el paso a un trastorno bipolar. También funcionó fuera de los centros de investigación (Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy»).",
+      secuencia: "<strong>Secuencia:</strong> en grupo multifamiliar, ocho sesiones de 90 minutos que empiezan y terminan con padres e hijos juntos y en el medio se dividen en un grupo de padres y otro de niños; en formato individual, de 17 a 24 sesiones semanales de 50 minutos que alternan entre padres y niño, con dos sesiones sobre hábitos saludables. Cada sesión del niño empieza y termina con el padre en la sala: al inicio, cómo les fue en la semana; al final, el niño le cuenta lo que trabajó (Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy» y «Treatment in Action»).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender el trastorno y su tratamiento",
+          tecs: ["psicoeducacion", "grafico-animo"],
+          obj: "Que la familia tenga un lenguaje común para hablar de los síntomas y sepa qué tratamientos existen.",
+          pasos: [
+            "Explicar a padres e hijo los síntomas de la manía y la depresión y distinguirlos de la forma de ser del niño.",
+            "Revisar las opciones de tratamiento —medicación, psicoterapia y apoyos en el colegio— y orientar a los padres sobre cómo moverse en el sistema de salud y en el colegio.",
+            "Recordar que el niño no tiene la culpa de sentirse así y que el trabajo es aprender a manejar esas emociones.",
+            "Empezar a anotar en casa el ánimo y el sueño de cada día."
+          ],
+          casa: "Llevar el gráfico del ánimo y el sueño.",
+          avance: "Padres e hijo describen los síntomas con las mismas palabras.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy» y «Treatment in Action»"
+        },
+        {
+          t: "Ciclos negativos en la familia",
+          tecs: ["ciclos-familiares-negativos", "emocion-expresada"],
+          obj: "Que los padres reconozcan los círculos de conflicto que se repiten y sepan salir de ellos.",
+          pasos: [
+            "Describir con los padres los ciclos negativos que son esperables en una familia con un hijo con un trastorno del ánimo.",
+            "Identificar los suyos: qué hace el niño, cómo responden ellos y cómo termina.",
+            "Entrenar formas de salir de esos ciclos con menos crítica y menos hostilidad.",
+            "Enseñar a los padres estrategias para cuidar su propia salud mental."
+          ],
+          casa: "Anotar un ciclo negativo de la semana y qué hicieron distinto.",
+          avance: "Baja la crítica y la hostilidad en la casa.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy»"
+        },
+        {
+          t: "Disparadores, señales del cuerpo y caja de herramientas",
+          tecs: ["caja-herramientas", "conciencia-emocional"],
+          obj: "Que el niño reconozca qué le dispara emociones fuertes y tenga herramientas a mano para manejarlas.",
+          pasos: [
+            "Ubicar en un termómetro qué tan fuerte fue una emoción reciente y anotar las situaciones que le hacen sentir triste, enojado o mal.",
+            "Colorear en una silueta dónde siente en el cuerpo cada emoción, para que note la activación antes de perder el control.",
+            "Revisar una conducta reciente que le hizo daño a él o a otros y pensar qué podría haber hecho en su lugar.",
+            "Armar una caja de herramientas con actividades creativas, activas, de descanso y relajación y sociales que sirvan en distintos momentos —en el colegio, en la casa, de noche—, y acordar con el padre una clave para recordarle usarla."
+          ],
+          casa: "Decorar la caja y anotar tres veces en la semana el disparador, lo que sintió, la herramienta que usó y cómo le fue.",
+          avance: "El niño usa una herramienta al comienzo de una emoción fuerte.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Treatment in Action»",
+          fichas: ["termometro-emociones", "caja-herramientas"]
+        },
+        {
+          t: "Pensamientos, emociones y conductas",
+          tecs: ["triangulo-cognitivo", "reestructuracion-cognitiva"],
+          obj: "Que padres e hijo cambien pensamientos y conductas para cambiar cómo se sienten.",
+          pasos: [
+            "Mostrar la relación entre lo que se piensa, lo que se siente y lo que se hace con ejemplos de la semana.",
+            "Practicar con el niño cómo responder a los pensamientos negativos.",
+            "Practicar conductas que mejoran el ánimo, como actividades agradables y la respiración profunda."
+          ],
+          casa: "Practicar la respiración y registrar un pensamiento cambiado.",
+          avance: "El niño identifica y responde a un pensamiento negativo.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy»",
+          fichas: ["triangulo-cognitivo"]
+        },
+        {
+          t: "Comunicación y solución de problemas",
+          tecs: ["entrenamiento-comunicacion", "pasos-solucion-problemas"],
+          obj: "Mejorar cómo se hablan padres e hijo y cómo resuelven juntos los problemas.",
+          pasos: [
+            "Entrenar la comunicación verbal y no verbal en la familia.",
+            "Enseñar los pasos de la solución de problemas: identificar el problema, ver qué se puede hacer, generar soluciones, elegir un plan, cumplirlo y evaluar el resultado.",
+            "Enseñar a los padres formas específicas de manejar los síntomas maníacos y depresivos."
+          ],
+          casa: "Resolver juntos un problema real con los pasos.",
+          avance: "La familia resuelve problemas con menos discusiones.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy»"
+        },
+        {
+          t: "Hábitos saludables: sueño, alimentación y ejercicio",
+          tecs: ["higiene-sueno"],
+          obj: "Proteger el ánimo con rutinas regulares de sueño, comida y actividad.",
+          pasos: [
+            "Explicar por qué el sueño regular es especialmente importante en el trastorno bipolar.",
+            "Elegir con el niño un primer hábito, por ejemplo registrar el sueño, y revisarlo cada semana con un pequeño premio por cumplir.",
+            "Relacionar en el registro las noches cortas con los días de peor ánimo y resolver con la familia cómo mantener los horarios aunque haya planes familiares.",
+            "Sumar después la alimentación balanceada y el ejercicio."
+          ],
+          casa: "Registrar el sueño cada día.",
+          avance: "El niño duerme con horarios regulares la mayoría de los días.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy» y «Treatment in Action»",
+          fichas: ["diario-sueno-nino"]
+        }
+      ],
+      medir: [
+        "<strong>Gráfico del ánimo</strong> y <strong>diario de sueño</strong> cada semana.",
+        "Conflictos familiares y crisis, en la revisión de cada sesión."
+      ],
+      adapt: [
+        "<strong>Dificultades de lectura o escritura:</strong> el cuaderno de trabajo tiene dibujos de cada concepto para que el niño lo entienda y lo recuerde (Fristad y Roley-Roberts, 2019, «Treatment in Action»).",
+        "<strong>Colegio:</strong> se coordina con el colegio qué puede hacer el niño cuando se siente muy mal en clase, por ejemplo ir con el orientador (Fristad y Roley-Roberts, 2019, «Treatment in Action»)."
+      ],
+      cuidado: [
+        "La medicación la decide y controla el psiquiatra; la psicoeducación la acompaña, no la reemplaza (Fristad y Roley-Roberts, 2019, «Psychopharmacological Interventions»).",
+        "Ante ideas suicidas, autolesiones o síntomas psicóticos, se evalúa el riesgo y se coordina con el equipo médico (Fristad y Roley-Roberts, 2019, «Clinical Considerations»)."
+      ]
+    },
+    {
+      id: "bip-fft",
+      mod: "psicoeducacion-familiar-bipolar",
+      inst: ["Gráfico del ánimo"],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Terapia centrada en la familia para adolescentes",
+      fuente: "Fristad y Roley-Roberts, 2019",
+      cuando: "Un adolescente de 12 a 17 años con trastorno bipolar, o de 9 a 17 en alto riesgo —un familiar de primer grado con trastorno bipolar y síntomas del ánimo activos—, en una familia con mucha crítica, hostilidad o sobreimplicación.",
+      respaldo: "En un ensayo con 58 adolescentes, quienes recibieron la terapia centrada en la familia se recuperaron antes de la depresión y tuvieron episodios depresivos más cortos durante dos años. En 40 jóvenes de alto riesgo, la versión adaptada aceleró la recuperación, aumentó el tiempo en remisión y redujo el paso al trastorno bipolar frente a un control educativo. Las familias con mucha crítica y hostilidad tardaron más en recuperarse (Fristad y Roley-Roberts, 2019, «Family-Focused Treatment» y tabla 7.2).",
+      secuencia: "<strong>Secuencia:</strong> 21 sesiones en nueve meses, en tres fases: psicoeducación, entrenamiento en comunicación y entrenamiento en solución de problemas (Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»).",
+      esc: ["salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Psicoeducación y gráfico del ánimo",
+          tecs: ["psicoeducacion", "grafico-animo"],
+          obj: "Que la familia conozca el trastorno y registre a diario el ánimo y el sueño.",
+          pasos: [
+            "Explicar a la familia los signos y síntomas del trastorno bipolar y las opciones de terapia y medicación.",
+            "Revisar la experiencia propia de la familia con el trastorno.",
+            "Enseñar a llevar un gráfico diario del ánimo y de las horas de sueño y vigilia."
+          ],
+          casa: "Llevar el gráfico del ánimo y el sueño.",
+          avance: "La familia completa el gráfico y conoce los síntomas.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»"
+        },
+        {
+          t: "Plan de manejo del ánimo",
+          tecs: ["plan-manejo-animo"],
+          obj: "Tener acordado qué hacer cuando el ánimo o el sueño empiezan a cambiar.",
+          pasos: [
+            "Revisar con la familia los gráficos del ánimo para reconocer las primeras señales de un episodio.",
+            "Acordar estrategias conductuales o médicas para usar en cuanto el ánimo o el sueño cambien.",
+            "Escribir el plan y dejarlo a mano para toda la familia."
+          ],
+          casa: "Tener el plan visible y revisarlo ante cualquier señal.",
+          avance: "La familia actúa ante las primeras señales y hay periodos de bienestar más largos.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»"
+        },
+        {
+          t: "Entrenamiento en comunicación",
+          tecs: ["entrenamiento-comunicacion", "juego-roles"],
+          obj: "Que los miembros de la familia se expresen sin crítica ni hostilidad.",
+          pasos: [
+            "Enseñar a escuchar de forma activa.",
+            "Enseñar a hacer pedidos positivos de cambio en lugar de quejas.",
+            "Practicar cada habilidad en la sesión con juego de roles."
+          ],
+          casa: "Practicar las habilidades en una conversación real de la semana.",
+          avance: "Baja la crítica en las conversaciones familiares.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»"
+        },
+        {
+          t: "Solución de problemas en familia",
+          tecs: ["pasos-solucion-problemas"],
+          obj: "Resolver juntos los problemas sin que crezca la sobreimplicación de los padres.",
+          pasos: [
+            "Identificar los problemas que generan más conflicto en la familia.",
+            "Dividir los problemas grandes en partes más manejables.",
+            "Generar, elegir y poner en práctica soluciones en conjunto, apoyándose en las habilidades de comunicación."
+          ],
+          casa: "Aplicar los pasos a un problema familiar y revisar cómo salió.",
+          avance: "La familia resuelve problemas en conjunto con menos conflicto.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»",
+          fichas: ["solucion-problemas-adolescente"]
+        }
+      ],
+      medir: [
+        "<strong>Gráfico del ánimo</strong> y del sueño.",
+        "Duración de los episodios y del tiempo en remisión, en el seguimiento con el psiquiatra."
+      ],
+      adapt: [
+        "<strong>Jóvenes en alto riesgo:</strong> la versión para jóvenes de 9 a 17 años con un familiar con trastorno bipolar y síntomas activos redujo el paso al trastorno (Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»)."
+      ],
+      cuidado: [
+        "La terapia acompaña el tratamiento médico; la medicación la indica el psiquiatra (Fristad y Roley-Roberts, 2019, «Psychopharmacological Interventions»)."
+      ]
+    },
+    {
+      id: "bip-rainbow",
+      mod: "psicoeducacion-familiar-bipolar",
+      inst: ["Gráfico del ánimo"],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Terapia cognitivo-conductual centrada en el niño y la familia (RAINBOW)",
+      fuente: "Fristad y Roley-Roberts, 2019",
+      cuando: "Un niño de 7 a 13 años con un trastorno del espectro bipolar, en una familia con estrés en el ambiente que dispara o empeora los síntomas, y padres que necesitan habilidades para manejar las emociones del niño y cuidarse ellos.",
+      respaldo: "En un ensayo con 69 niños de 7 a 13 años, bajaron los síntomas maníacos y depresivos, y la mejoría en la depresión se mantuvo a los seis meses. Mejoraron también las habilidades de afrontamiento del niño y el estrés y el afrontamiento de los padres; los cambios en la crianza y en la flexibilidad de la familia explicaron la mejoría del ánimo. En un estudio piloto con sesiones de mantenimiento cada tres meses, los logros se sostuvieron tres años (Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»).",
+      secuencia: "<strong>Secuencia:</strong> 12 sesiones semanales en tres meses, en formato individual con la familia o en grupo. Las habilidades se resumen en la sigla RAINBOW: rutinas, regulación del afecto, «yo puedo», nada de pensamientos negativos y vivir el presente, ser un buen amigo y llevar una vida balanceada, «¿cómo resolvemos este problema?» y formas de conseguir apoyo (Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Rutinas",
+          tecs: ["higiene-sueno"],
+          obj: "Ordenar los horarios de la casa para que el niño anticipe lo que viene y tenga un ciclo de sueño estable.",
+          pasos: [
+            "Explicar a los padres por qué las rutinas ayudan: el niño predice qué va a pasar y se preocupa menos.",
+            "Fijar con la familia horarios para comer, dormir y hacer tareas.",
+            "Usar las rutinas para notar antes cuándo empiezan los problemas."
+          ],
+          casa: "Mantener los horarios acordados.",
+          avance: "La casa tiene horarios regulares de comida y sueño.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»",
+          fichas: ["rutina-dormir"]
+        },
+        {
+          t: "Regulación del afecto y «yo puedo»",
+          tecs: ["conciencia-emocional", "respiracion-diafragmatica", "autoinstrucciones"],
+          obj: "Que el niño identifique y regule sus emociones y se hable de forma positiva.",
+          pasos: [
+            "Enseñar a padres e hijo a identificar y nombrar las emociones.",
+            "Practicar habilidades de regulación como la respiración relajada.",
+            "Enseñar a los padres a manejar con eficacia las emociones del niño.",
+            "Practicar frases positivas que el niño se dice para sentirse capaz."
+          ],
+          casa: "Practicar la respiración y las frases positivas.",
+          avance: "El niño se calma con las herramientas aprendidas.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»"
+        },
+        {
+          t: "Pensamientos negativos y vivir el presente",
+          tecs: ["reestructuracion-cognitiva", "atencion-plena"],
+          obj: "Reducir el peso de los pensamientos negativos y el estrés.",
+          pasos: [
+            "Enseñar a la familia a cambiar los pensamientos negativos.",
+            "Practicar ejercicios de atención al momento presente."
+          ],
+          casa: "Practicar un ejercicio de atención plena al día.",
+          avance: "El niño responde a un pensamiento negativo y vuelve al presente.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»"
+        },
+        {
+          t: "Ser un buen amigo y llevar una vida balanceada",
+          tecs: ["entrenamiento-hhss", "modelado"],
+          obj: "Mejorar las relaciones con los compañeros y el clima en la casa.",
+          pasos: [
+            "Enseñar al niño habilidades sociales.",
+            "Enseñar a los padres a modelar la empatía y a crear oportunidades de interacciones positivas."
+          ],
+          casa: "Organizar un encuentro positivo con un compañero.",
+          avance: "El niño tiene más interacciones positivas con sus pares.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»"
+        },
+        {
+          t: "«¿Cómo resolvemos este problema?» y formas de conseguir apoyo",
+          tecs: ["pasos-solucion-problemas", "apoyo-social"],
+          obj: "Que el niño resuelva problemas interpersonales y que la familia tenga apoyo.",
+          pasos: [
+            "Enseñar al niño habilidades de comunicación interpersonal.",
+            "Enseñar a los padres a ayudar al niño a resolver problemas en los momentos de desregulación.",
+            "Enseñar al niño a buscar apoyo social y a crear recuerdos agradables.",
+            "Enseñar a los padres estrategias de autocuidado y cómo encontrar apoyo social."
+          ],
+          casa: "Resolver un problema con los pasos y hacer algo agradable para los padres.",
+          avance: "La familia resuelve problemas en los momentos difíciles y tiene apoyo.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»"
+        }
+      ],
+      medir: [
+        "<strong>Gráfico del ánimo</strong> cada semana.",
+        "Estrés de los padres al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Mantenimiento:</strong> sesiones de 50 minutos cada tres meses ayudaron a sostener los logros durante tres años (Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»)."
+      ],
+      cuidado: [
+        "La medicación la decide y controla el psiquiatra (Fristad y Roley-Roberts, 2019, «Psychopharmacological Interventions»)."
+      ]
+    },
+    {
+      id: "bip-ipsrt",
+      mod: "ritmos-sociales-adolescentes",
+      inst: ["Gráfico del ánimo", "Diario de sueño"],
+      enf: "ipt",
+      nivel: "preliminar",
+      t: "Terapia interpersonal y de ritmos sociales para adolescentes",
+      fuente: "Fristad y Roley-Roberts, 2019",
+      cuando: "Un adolescente de 12 a 18 años con trastorno bipolar cuyos episodios se asocian con desorden en el sueño y las rutinas, problemas con la medicación o conflictos interpersonales.",
+      respaldo: "En un estudio abierto con 12 adolescentes tratados durante 20 semanas mejoraron los síntomas bipolares, los síntomas psiquiátricos generales y el funcionamiento global. Se considera posiblemente eficaz (Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»).",
+      secuencia: "<strong>Secuencia:</strong> de 16 a 18 sesiones de una hora en 20 semanas —12 semanales y de cuatro a seis cada dos semanas—, en tres fases, con participación de los padres e intervenciones para el colegio (Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»).",
+      esc: ["salud-mental"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Registro de síntomas y rutinas, medicación y área interpersonal",
+          tecs: ["ritmos-sociales", "areas-problema"],
+          obj: "Conocer cómo se relacionan el ánimo, las rutinas y los problemas interpersonales.",
+          pasos: [
+            "Registrar los síntomas y las rutinas sociales y de sueño de cada día.",
+            "Dar psicoeducación sobre el manejo de la medicación.",
+            "Elegir el problema interpersonal en que se va a trabajar: un duelo, una transición de rol, una disputa o un déficit interpersonal."
+          ],
+          casa: "Registrar a diario el sueño y las rutinas.",
+          avance: "El adolescente ve cómo sus rutinas y sus relaciones afectan su ánimo.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»",
+          fichas: ["diario-sueno-adolescente"]
+        },
+        {
+          t: "Estabilizar las rutinas y manejar las relaciones",
+          tecs: ["ritmos-sociales", "experimento-conductual"],
+          obj: "Regularizar las rutinas diarias y mejorar el manejo de las emociones y los problemas interpersonales.",
+          pasos: [
+            "Enseñar estrategias para estabilizar las rutinas diarias, sobre todo el sueño.",
+            "Proponer experimentos en casa para observar los ritmos sociales y aumentar la regularidad.",
+            "Entrenar el manejo de las emociones y la solución de problemas interpersonales.",
+            "Ajustar las expectativas sobre las rutinas y las habilidades nuevas."
+          ],
+          casa: "Hacer el experimento de rutina acordado.",
+          avance: "Las rutinas y el sueño son más regulares.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»"
+        },
+        {
+          t: "Repaso de habilidades y prevención de recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Sostener lo logrado y anticipar las recaídas.",
+          pasos: [
+            "Repasar las habilidades aprendidas.",
+            "Planear qué hacer ante las señales de un nuevo episodio."
+          ],
+          casa: "Escribir el plan ante señales de recaída.",
+          avance: "El adolescente tiene un plan de prevención de recaídas.",
+          fuente: "Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»"
+        }
+      ],
+      medir: [
+        "<strong>Diario de sueño</strong> y <strong>gráfico del ánimo</strong>.",
+        "Adherencia a la medicación, con el psiquiatra."
+      ],
+      adapt: [
+        "<strong>Terapia cognitivo-conductual individual:</strong> una versión de 10 a 12 sesiones para jóvenes de 10 a 17 años, con psicoeducación, adherencia a la medicación, reestructuración cognitiva, sueño y asertividad, mostró mejorías en un estudio abierto (Fristad y Roley-Roberts, 2019, «Cognitive-Behavioral Therapy»)."
+      ],
+      cuidado: [
+        "La evidencia viene de un solo estudio abierto con 12 adolescentes, sin grupo de comparación (Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»).",
+        "La medicación la decide y controla el psiquiatra; la adherencia es uno de los focos de la terapia (Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»)."
       ]
     }
   ]
@@ -9392,6 +9820,282 @@ const VARIABLES = [
 },
 {
   cat: "Trauma, pérdidas y adversidad",
+  t: "Vínculo y crianza en los primeros años",
+  sub: "Cerca del 20 % de los niños presenta un problema de salud mental en los tres primeros años, y los que aparecen temprano tienden a persistir. Lo que se interviene en esta edad es la relación entre el niño y sus cuidadores: que lean sus señales y respondan con sensibilidad, que pongan límites sin dureza y que el vínculo sea un lugar seguro, sobre todo cuando la familia vive pobreza, depresión de los padres, violencia o maltrato. Intervenir pronto requiere intervenciones más cortas y previene problemas más graves.",
+  elegir: [
+    "<strong>Si el problema principal son las rabietas, la desobediencia o la agresión</strong> de un niño de 2 a 7 años, el entrenamiento a padres tiene el mejor respaldo: ver <em>Conducta oposicionista y desafiante</em>. <strong>Si la familia vive en un entorno de alto riesgo</strong> y está poco dispuesta a un tratamiento largo, el chequeo familiar es una puerta de entrada breve y motivacional.",
+    "<strong>Si lo que preocupa es el vínculo</strong> —un bebé o niño pequeño que no busca consuelo, padres que no leen sus señales—, la retroalimentación en video para una crianza sensible es breve y tiene ensayos en poblaciones muy distintas; el Círculo de Seguridad es una alternativa grupal todavía prometedora. Con bebés que vivieron maltrato o negligencia, o en acogimiento, ver el programa de apego y ajuste bioconductual en <em>Maltrato y crianza violenta</em>.",
+    "<strong>Si el niño estuvo expuesto a violencia o a otro trauma</strong>, la psicoterapia padres-hijo trabaja la relación y el trauma juntos. Para el sueño, ver <em>Problemas de sueño</em>; para los problemas graves de alimentación, <em>Evitación y restricción de la ingesta de alimentos</em>; ante señales de autismo, <em>Autismo</em>."
+  ],
+  planes: [
+    {
+      id: "temp-vipp",
+      mod: "vinculo-temprano",
+      inst: ["ECBI"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Retroalimentación en video para una crianza sensible y una disciplina sensible",
+      fuente: "Acosta et al., 2019",
+      cuando: "Padres de un bebé o niño pequeño, de 7 meses a 3 años, que necesitan aprender a leer y responder a sus señales; en la versión con disciplina sensible, padres de niños de 2 a 5 años con riesgo de problemas de conducta.",
+      respaldo: "Varios ensayos aleatorizados mostraron que aumenta la sensibilidad de los padres y la seguridad del apego en poblaciones muy distintas: padres adoptivos, madres primerizas, madres con trastornos alimentarios, niños con discapacidad visual e intelectual, niños con autismo y bebés con riesgo familiar de autismo. La versión con disciplina sensible aumentó la crianza sensible y la disciplina adecuada en familias de niños con problemas de conducta, de bajos recursos y migrantes (Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»).",
+      secuencia: "<strong>Secuencia:</strong> intervención breve en el hogar: cuatro sesiones en la versión para bebés y niños pequeños. En cada visita se graba a los padres con el niño y se revisa el video con ellos (Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»).",
+      esc: ["primer-nivel", "comunidad", "proteccion"],
+      edad: ["0-5"],
+      actividades: [
+        {
+          t: "Grabar interacciones cotidianas en casa",
+          tecs: ["retroalimentacion-video"],
+          obj: "Tener ejemplos reales de cómo se relacionan los padres y el niño.",
+          pasos: [
+            "Visitar a la familia en su casa.",
+            "Grabar a los padres con el niño en situaciones de todos los días, como el juego o momentos en que el niño se frustra."
+          ],
+          casa: "No aplica.",
+          avance: "Hay grabaciones de la interacción en casa.",
+          fuente: "Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»"
+        },
+        {
+          t: "Retroalimentación sobre la respuesta sensible",
+          tecs: ["retroalimentacion-video", "respuesta-sensible"],
+          obj: "Que los padres reconozcan las señales del niño y respondan a lo que necesita.",
+          pasos: [
+            "Ver con los padres fragmentos del video y señalar las señales del niño.",
+            "Destacar los momentos en que respondieron con sensibilidad y lo que el niño hizo después.",
+            "Enseñar a responder de forma adecuada a lo que el niño necesita en los momentos en que no lo lograron."
+          ],
+          casa: "Observar en la semana las señales del niño y cómo responden.",
+          avance: "Los padres responden con más sensibilidad en las grabaciones siguientes.",
+          fuente: "Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»"
+        },
+        {
+          t: "Disciplina sensible ante la frustración del niño",
+          tecs: ["disciplina-sensible", "retroalimentacion-video"],
+          obj: "Poner límites teniendo en cuenta la perspectiva y las señales del niño.",
+          pasos: [
+            "Con las grabaciones de momentos de frustración, guiar a los padres para que reaccionen con sensibilidad, empatía y firmeza.",
+            "Enseñar a tomar en cuenta lo que el niño siente y comunica al poner un límite.",
+            "Comparar en las visitas siguientes cómo manejan esos momentos."
+          ],
+          casa: "Practicar un límite sensible en una situación de frustración.",
+          avance: "Los padres ponen límites con calma y empatía.",
+          fuente: "Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»"
+        }
+      ],
+      medir: [
+        "Observación de la sensibilidad en las grabaciones sucesivas.",
+        "<strong>ECBI</strong> en la versión con disciplina sensible, para niños desde los 2 años."
+      ],
+      adapt: [
+        "<strong>Familias migrantes y de bajos recursos:</strong> la versión con disciplina sensible funcionó en familias de minorías étnicas migrantes y de bajo nivel socioeconómico (Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»)."
+      ],
+      cuidado: [
+        "La versión centrada en la sensibilidad es para bebés y niños de 7 meses a 3 años; la que suma disciplina sensible, para niños de 2 a 5 años con riesgo de problemas de conducta (Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»)."
+      ]
+    },
+    {
+      id: "temp-chequeo",
+      mod: "crianza-contexto-riesgo",
+      inst: ["ECBI"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Chequeo familiar",
+      fuente: "Acosta et al., 2019",
+      cuando: "Una familia en un entorno de alto riesgo —pobreza, depresión de los padres, conflicto de pareja, barrio peligroso— con un niño pequeño con problemas de conducta, que difícilmente buscaría un tratamiento largo.",
+      respaldo: "En ensayos aleatorizados redujo la conducta disruptiva del niño y aumentó la conducta positiva y el involucramiento de los cuidadores; previno una trayectoria persistente de problemas de conducta en niños de alto riesgo y mejoró la relación entre padres e hijo. También bajó la depresión de las madres, lo que a su vez mejoró los problemas de conducta y emocionales de niños de 2 a 4 años (Acosta et al., 2019, «The Family Check-Up»).",
+      secuencia: "<strong>Secuencia:</strong> una sesión de evaluación en el hogar, una sesión de devolución y, si la familia quiere, hasta seis sesiones de seguimiento y dos sesiones anuales (Acosta et al., 2019, «The Family Check-Up»).",
+      esc: ["primer-nivel", "comunidad"],
+      edad: ["0-5"],
+      actividades: [
+        {
+          t: "Evaluación en el hogar",
+          tecs: ["entrevista-clinica"],
+          obj: "Conocer el funcionamiento del niño y de la familia.",
+          pasos: [
+            "Hacer en la casa una entrevista con la familia.",
+            "Evaluar de forma integral el funcionamiento del niño y de la familia: la emocionalidad del niño, el ánimo de los padres, la relación de pareja y los peligros del barrio."
+          ],
+          casa: "No aplica.",
+          avance: "Hay una evaluación completa de la familia.",
+          fuente: "Acosta et al., 2019, «The Family Check-Up»"
+        },
+        {
+          t: "Devolución motivacional",
+          tecs: ["devolucion-evaluacion", "entrevista-motivacional"],
+          obj: "Aumentar la motivación de los padres para cambiar sus prácticas de crianza.",
+          pasos: [
+            "Presentar a los padres los resultados de la evaluación.",
+            "Abordar los temas que aparecieron, como la emocionalidad negativa del niño, la depresión de los padres, la relación de pareja o los peligros del barrio.",
+            "Usar la entrevista motivacional para que los padres decidan qué quieren cambiar en su crianza.",
+            "Ofrecer las sesiones de seguimiento."
+          ],
+          casa: "Elegir un cambio en la crianza para la semana.",
+          avance: "Los padres eligen qué quieren cambiar.",
+          fuente: "Acosta et al., 2019, «The Family Check-Up»"
+        },
+        {
+          t: "Seguimiento en crianza positiva y manejo familiar",
+          tecs: ["elogio-especifico"],
+          obj: "Practicar la crianza positiva y la organización de la familia.",
+          pasos: [
+            "Practicar con los padres las prácticas de crianza positiva que eligieron.",
+            "Practicar habilidades de manejo familiar.",
+            "Volver a ver a la familia una vez al año para revisar y ajustar."
+          ],
+          casa: "Practicar la habilidad de la semana.",
+          avance: "Mejoran la conducta del niño y la relación con los padres.",
+          fuente: "Acosta et al., 2019, «The Family Check-Up»"
+        }
+      ],
+      medir: [
+        "<strong>ECBI</strong> al inicio y en el seguimiento.",
+        "Ánimo de los padres en la evaluación anual."
+      ],
+      adapt: [
+        "<strong>Depresión materna:</strong> el cambio en la depresión de la madre fue uno de los caminos por los que mejoraron los niños, por lo que conviene atenderla o derivarla (Acosta et al., 2019, «The Family Check-Up»)."
+      ],
+      cuidado: [
+        "Los programas de visitas al hogar varían mucho en contenido y en eficacia; varios de los más difundidos tienen poca evidencia, a diferencia del chequeo familiar (Acosta et al., 2019, «Home Visiting Interventions» y «Other In-Home Interventions»)."
+      ]
+    },
+    {
+      id: "temp-cpp",
+      mod: "vinculo-temprano",
+      inst: [],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Psicoterapia padres-hijo",
+      fuente: "Acosta et al., 2019",
+      cuando: "Un niño de 0 a 5 años que vivió experiencias tempranas adversas —violencia entre los padres, maltrato, negligencia— o cuya madre tiene depresión, con problemas de conducta, síntomas de estrés postraumático o un apego inseguro.",
+      respaldo: "Ensayos aleatorizados con niños pequeños con apego ansioso, con preescolares de bajos recursos expuestos a violencia de pareja, con niños maltratados y con hijos de madres con depresión mostraron menos apego desorganizado, menos representaciones negativas de sí mismos y menos síntomas de estrés postraumático, con logros que se mantenían a los 12 meses (Acosta et al., 2019, «Child–Parent Psychotherapy»).",
+      secuencia: "<strong>Secuencia:</strong> sesiones semanales durante más de un año, en la casa, el consultorio, el jardín infantil o un refugio, con el niño y el cuidador juntos (Acosta et al., 2019, «Child–Parent Psychotherapy»).",
+      esc: ["salud-mental", "proteccion", "comunidad"],
+      edad: ["0-5"],
+      actividades: [
+        {
+          t: "La historia de crianza de los padres",
+          tecs: ["psicoeducacion"],
+          obj: "Que los padres entiendan cómo sus propias experiencias de crianza interfieren con su forma de cuidar.",
+          pasos: [
+            "Explorar con los padres cómo fueron criados.",
+            "Relacionar esas experiencias con las dificultades que tienen hoy para responder con sensibilidad a su hijo."
+          ],
+          casa: "No aplica.",
+          avance: "Los padres reconocen cómo su historia afecta su forma de cuidar.",
+          fuente: "Acosta et al., 2019, «Child–Parent Psychotherapy»"
+        },
+        {
+          t: "Regulación de las emociones del niño y del padre",
+          tecs: ["conciencia-emocional"],
+          obj: "Que el niño y el cuidador manejen mejor sus emociones.",
+          pasos: [
+            "Trabajar en las sesiones conjuntas las conductas problemáticas del niño.",
+            "Ayudar al niño y al cuidador a regular sus emociones en los momentos difíciles.",
+            "Promover actividades adecuadas para el desarrollo del niño."
+          ],
+          casa: "Compartir con el niño una actividad de juego acorde con su edad.",
+          avance: "Hay menos desbordes emocionales en el niño y en el cuidador.",
+          fuente: "Acosta et al., 2019, «Child–Parent Psychotherapy»"
+        },
+        {
+          t: "Mejorar la interacción y restaurar la confianza",
+          tecs: ["sensibilidad-cuidador"],
+          obj: "Construir una relación de apoyo y seguridad entre el niño y el cuidador.",
+          pasos: [
+            "Enseñar al cuidador a construir una relación segura y de apoyo con el niño.",
+            "Buscar formas de resolver los conflictos entre ellos.",
+            "Restaurar la confianza dañada por las experiencias adversas."
+          ],
+          casa: "Practicar en casa la forma acordada de resolver un conflicto.",
+          avance: "La interacción entre niño y cuidador es más cálida y predecible.",
+          fuente: "Acosta et al., 2019, «Child–Parent Psychotherapy»"
+        },
+        {
+          t: "Relato conjunto del trauma",
+          tecs: ["relato-conjunto-trauma"],
+          obj: "Dar sentido juntos a lo que vivieron.",
+          pasos: [
+            "En sesiones con el niño y el cuidador, construir juntos un relato de lo que pasó."
+          ],
+          casa: "No aplica.",
+          avance: "El niño y el cuidador pueden hablar de lo que pasó con menos angustia.",
+          fuente: "Acosta et al., 2019, «Child–Parent Psychotherapy»"
+        }
+      ],
+      medir: [
+        "Síntomas de estrés postraumático del niño y de la madre, y problemas de conducta, al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Lugares de atención:</strong> se aplicó en hogares, consultorios, jardines infantiles y refugios para mujeres víctimas de violencia (Acosta et al., 2019, «Child–Parent Psychotherapy»)."
+      ],
+      cuidado: [
+        "Si la violencia o el maltrato siguen ocurriendo, lo primero es la protección del niño; ver <em>Maltrato y crianza violenta</em>."
+      ]
+    },
+    {
+      id: "temp-circulo",
+      mod: "vinculo-temprano",
+      inst: [],
+      enf: "pad",
+      nivel: "preliminar",
+      t: "Círculo de Seguridad para padres",
+      fuente: "Acosta et al., 2019",
+      cuando: "Padres de niños pequeños, en familias en riesgo de maltrato o negligencia, que pueden asistir a un grupo durante varios meses y beneficiarse de reflexionar sobre la relación con su hijo.",
+      respaldo: "En un estudio con un solo grupo, disminuyó el apego desorganizado e inseguro de los niños cuyos padres participaron. En un ensayo con una versión breve de cuatro sesiones con familias de bajos recursos y bebés irritables, no hubo efecto general; solo se beneficiaron los bebés más irritables. Se considera prometedor y faltan más estudios (Acosta et al., 2019, «Circle of Security»).",
+      secuencia: "<strong>Secuencia:</strong> 20 semanas en grupo, sin sesiones con el niño. Antes de empezar se evalúa la calidad del apego para individualizar el trabajo (Acosta et al., 2019, «Circle of Security»).",
+      esc: ["comunidad", "proteccion"],
+      edad: ["0-5"],
+      actividades: [
+        {
+          t: "Evaluar el apego antes del grupo",
+          tecs: ["entrevista-clinica"],
+          obj: "Conocer la calidad del apego de cada díada para individualizar el trabajo.",
+          pasos: [
+            "Evaluar la calidad del apego entre cada padre y su hijo antes de empezar.",
+            "Formular a partir de esa evaluación un plan individual para cada familia."
+          ],
+          casa: "No aplica.",
+          avance: "Cada familia tiene un plan individual.",
+          fuente: "Acosta et al., 2019, «Circle of Security»"
+        },
+        {
+          t: "Base segura y refugio",
+          tecs: ["base-segura", "psicoeducacion"],
+          obj: "Que los padres entiendan las necesidades de apego de su hijo.",
+          pasos: [
+            "Enseñar en el grupo los conceptos centrales del apego.",
+            "Explicar cómo los padres pueden ser un refugio seguro cuando el niño lo necesita y una base desde la que explore el mundo con confianza."
+          ],
+          casa: "Observar cuándo el niño busca refugio y cuándo sale a explorar.",
+          avance: "Los padres describen las necesidades de apego de su hijo.",
+          fuente: "Acosta et al., 2019, «Circle of Security»"
+        },
+        {
+          t: "Reflexión con video sobre la propia relación",
+          tecs: ["retroalimentacion-video"],
+          obj: "Que los padres reconozcan sus propias dificultades para responder a las necesidades de apego del niño.",
+          pasos: [
+            "Ver en el grupo grabaciones de cada padre con su hijo.",
+            "Conversar sobre lo que muestran de la relación y sobre las dificultades propias de cada padre para responder."
+          ],
+          casa: "No aplica.",
+          avance: "Los padres reconocen y nombran sus propias dificultades.",
+          fuente: "Acosta et al., 2019, «Circle of Security»"
+        }
+      ],
+      medir: [
+        "Calidad del apego antes y después del grupo, con la misma evaluación inicial."
+      ],
+      adapt: [
+        "<strong>Versión breve:</strong> la de cuatro sesiones solo benefició a los bebés muy irritables (Acosta et al., 2019, «Circle of Security»)."
+      ],
+      cuidado: [
+        "La evidencia todavía es preliminar: un estudio sin grupo de control y un ensayo sin efecto general (Acosta et al., 2019, «Circle of Security»)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Trauma, pérdidas y adversidad",
   t: "Separación de los padres",
   sub: "Después de la separación de los padres, el niño está triste, asustado o enojado, se culpa, fantasea con que vuelvan a estar juntos, teme que el otro padre también lo abandone o se siente atrapado entre los dos. Estas reacciones son esperables al comienzo; lo que se busca es que no se vuelvan problemas duraderos. Se interviene sobre la comprensión de lo que significa la separación, la expresión de las emociones y las habilidades para afrontar los problemas que trae.",
   elegir: [
@@ -10745,7 +11449,7 @@ const VARIABLES = [
   sub: "El adolescente se niega a mantener un peso mínimo para su edad y estatura, tiene un miedo intenso a engordar y se ve más grande de lo que está, o niega la gravedad de su bajo peso. La desnutrición nubla su pensamiento y le impide beneficiarse de una terapia centrada en la comprensión. Lo que se interviene es la restauración del peso, con los padres a cargo, y después el desarrollo adolescente que el trastorno detuvo.",
   elegir: [
     "<strong>La terapia familiar es la intervención que ha resultado más eficaz en los ensayos con adolescentes con anorexia:</strong> ayuda a cerca de dos tercios a recuperar la salud, y a los 4 o 5 años la mayoría se ha recuperado por completo. Los elementos comunes son no culpar al adolescente ni a los padres, poner a los padres a cargo de restaurar el peso, atender juntos, hablar directamente del peso y la comida, devolver el control al adolescente de forma gradual y, al final, ocuparse del desarrollo adolescente (Robin y Le Grange, 2010).",
-    "El tratamiento basado en la familia deja que los padres decidan cómo alimentar y trabaja con toda la familia; la terapia familiar conductual sistémica da a los padres un programa estructurado con un nutricionista y suma reestructuración cognitiva. No se ha estudiado si esas diferencias cambian los resultados. El tratamiento basado en la familia se ha adaptado también para la bulimia en adolescentes (Robin y Le Grange, 2010). La anorexia pone en riesgo la vida: el tratamiento se hace siempre con un médico que controla el peso y decide la hospitalización.",
+    "El tratamiento basado en la familia deja que los padres decidan cómo alimentar y trabaja con toda la familia; la terapia familiar conductual sistémica da a los padres un programa estructurado con un nutricionista y suma reestructuración cognitiva. No se ha estudiado si esas diferencias cambian los resultados. El tratamiento basado en la familia se ha adaptado también para la bulimia en adolescentes (Robin y Le Grange, 2010): ver <em>Bulimia y atracones en la adolescencia</em>. La anorexia pone en riesgo la vida: el tratamiento se hace siempre con un médico que controla el peso y decide la hospitalización.",
     "Si el adolescente restringe la comida sin miedo a engordar ni preocupación por la imagen —por la textura u olor de los alimentos, por falta de interés o por miedo a atragantarse o vomitar—, ver <em>Evitación y restricción de la ingesta de alimentos</em>."
   ],
   planes: [
@@ -10944,6 +11648,234 @@ const VARIABLES = [
       cuidado: [
         "Dura en promedio más que el tratamiento basado en la familia (Robin y Le Grange, 2010).",
         "Si los padres tienen problemas graves de pareja, pueden concentrar demasiada energía en el adolescente y frenar su autonomía (Robin y Le Grange, 2010)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Salud, sueño y hábitos",
+  t: "Bulimia y atracones en la adolescencia",
+  sub: "El adolescente tiene atracones —come mucho en poco tiempo sintiendo que no puede parar— y, en la bulimia, intenta compensarlos con vómitos, laxantes, ayunos o ejercicio excesivo; en el trastorno por atracón no hay compensación. Su autoestima depende mucho de la figura y el peso, y suele esconderlo por vergüenza, aunque casi siempre lo vive como un problema y quiere dejarlo. En niños, lo que más pesa es la sensación de perder el control al comer, más que la cantidad. El peso suele ser normal o alto, y lo que preocupa son las consecuencias médicas.",
+  elegir: [
+    "<strong>Ningún tratamiento para la bulimia o los atracones en adolescentes está todavía «bien establecido».</strong> El tratamiento basado en la familia y la terapia cognitivo-conductual guiada se consideran posiblemente eficaces para la bulimia; la terapia cognitivo-conductual adaptada para adolescentes, la psicoterapia interpersonal y la dialéctico-conductual son todavía experimentales (Lock y Osipov, 2019).",
+    "<strong>Si la familia puede acompañar y el conflicto familiar es bajo</strong>, el tratamiento basado en la familia logró más abstinencia y más rápido. <strong>Si el adolescente es mayor, reconoce el problema y prefiere trabajar por su cuenta</strong>, la terapia cognitivo-conductual, con los padres apoyando, es la alternativa; con un conflicto familiar alto, las dos dieron resultados parecidos (Lock y Osipov, 2019).",
+    "La bulimia se trata primero, antes que la depresión o la ansiedad que suelen acompañarla, salvo que haya ideación o conducta suicida; en ese caso ver <em>Autolesión y riesgo suicida</em>. Si el adolescente tiene bajo peso y restringe, ver <em>Anorexia en la adolescencia</em>; si hay obesidad sin atracones, <em>Obesidad infantil</em>."
+  ],
+  planes: [
+    {
+      id: "bul-fbt",
+      mod: "familia-recurso",
+      inst: ["EDE", "Registro de atracones y purgas"],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Tratamiento basado en la familia para la bulimia",
+      fuente: "Lock y Osipov, 2019",
+      cuando: "Un adolescente con bulimia o con atracones y purgas, médicamente estable para el tratamiento ambulatorio, que vive con su familia y cuyos padres pueden acompañar las comidas y los momentos posteriores.",
+      respaldo: "En un ensayo con 130 adolescentes con bulimia completa o parcial, el 39 % de los que recibieron el tratamiento basado en la familia dejó los atracones y las purgas al terminar, frente al 20 % con terapia cognitivo-conductual, y la diferencia se mantuvo a los seis meses, aunque no a los doce. También superó a una psicoterapia de apoyo inespecífica, y se asoció con menos hospitalizaciones. Se clasifica como posiblemente eficaz (Lock y Osipov, 2019, «Psychosocial Interventions» y tabla 22.3).",
+      secuencia: "<strong>Secuencia:</strong> de 10 a 20 sesiones en unos seis meses, en tres fases. Fase 1, de dos a tres meses, sesiones semanales: los padres, junto con el adolescente, frenan los atracones y las purgas y normalizan la alimentación. Fase 2, de uno a dos meses, cada dos semanas: el control de la alimentación vuelve poco a poco al adolescente. Fase 3, unas seis semanas, cada dos o tres: temas propios de la adolescencia y prevención de recaídas (Lock y Osipov, 2019, «Family-Based Treatment» y tabla 22.4).",
+      esc: ["salud-mental", "primer-nivel", "hospital"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Comprometer a la familia y separar la bulimia del adolescente",
+          tecs: ["separar-trastorno", "encargo-padres", "registro-atracones-purgas"],
+          obj: "Que la familia entienda la gravedad de la bulimia y se comprometa a enfrentarla junto con el adolescente.",
+          pasos: [
+            "Antes de empezar, por teléfono, transmitir que la familia enfrenta una crisis, explicar el tratamiento, el equipo y el control médico, y pedir que asistan todos los que viven en la casa.",
+            "Al inicio de cada sesión, ver a solas al adolescente por unos minutos, pesarlo y revisar con él el registro de atracones y purgas, que se introduce en la primera sesión.",
+            "Recibir a la familia de forma seria y cálida, y hacer una historia que involucre a cada miembro.",
+            "Separar la enfermedad del adolescente y mostrar con intensidad lo grave que es la bulimia y lo difícil de recuperarse.",
+            "Ayudar a padres y adolescente a pensar cómo trabajar juntos para normalizar la alimentación, y pedir al adolescente que diga cuál es un alimento «prohibido» o que le dispara atracones, para que los padres lo traigan a la sesión siguiente."
+          ],
+          casa: "Llevar el registro de atracones y purgas y preparar la comida familiar.",
+          avance: "La familia se compromete y el adolescente acepta colaborar con sus padres.",
+          fuente: "Lock y Osipov, 2019, tabla 22.4, pretratamiento y sesión 1"
+        },
+        {
+          t: "Comida familiar",
+          tecs: ["comida-familiar"],
+          obj: "Observar cómo se come en casa y entrenar a los padres para apoyar al adolescente frente a un alimento temido.",
+          pasos: [
+            "Pesar al adolescente y preguntar por la frecuencia de atracones y purgas.",
+            "Observar cómo se prepara y se sirve la comida y de qué se habla en la mesa.",
+            "Entrenar a los padres para que lo animen a comer al menos un bocado más, o lo apoyen a comer un alimento temido que suele disparar el ciclo.",
+            "Apoyar al adolescente para que exprese su vergüenza y su malestar con la comida, la figura o el peso, y aliarlo con algún hermano como apoyo."
+          ],
+          casa: "Repetir en casa el apoyo durante y después de las comidas.",
+          avance: "Los padres saben cómo acompañar una comida difícil.",
+          fuente: "Lock y Osipov, 2019, tabla 22.4, sesión 2"
+        },
+        {
+          t: "Frenar los atracones y las purgas en casa",
+          tecs: ["alimentacion-regular", "encargo-padres"],
+          obj: "Que los padres, con el adolescente, organicen comidas regulares y supervisen los momentos de riesgo.",
+          pasos: [
+            "Revisar el registro al comienzo de cada sesión y reconciliar lo que cuentan el adolescente y los padres.",
+            "Mantener el foco en la comida: tres comidas y meriendas planeadas, supervisión después de las comidas para prevenir el vómito y freno a otras conductas que mantienen la bulimia, como revisarse el cuerpo.",
+            "Dejar que los padres decidan cómo hacerlo, pero validando la experiencia del adolescente, que suele vivir la bulimia como un problema y puede colaborar.",
+            "Seguir separando al adolescente de la enfermedad y modificar las críticas de padres y hermanos.",
+            "Cerrar cada sesión revisando los avances."
+          ],
+          casa: "Comidas planeadas y supervisión después de comer.",
+          avance: "Los atracones y las purgas bajan cerca del 80 % y el peso se mantiene estable.",
+          fuente: "Lock y Osipov, 2019, «Family-Based Treatment» y tabla 22.4, sesiones 3 a 10",
+          fichas: ["registro-comidas"]
+        },
+        {
+          t: "Devolver el control de la alimentación",
+          tecs: ["devolucion-control"],
+          obj: "Que el adolescente vuelva a comer de forma independiente.",
+          pasos: [
+            "Cuando los atracones y las purgas bajaron mucho, negociar con la familia cómo reducir poco a poco la supervisión durante y después de las comidas.",
+            "Ajustar el apoyo a lo que el adolescente necesita: retirarse donde ya lo logra y acompañar en lo difícil, como salidas familiares o comer con amigos, aceptando avances y retrocesos.",
+            "Resolver juntos los problemas de las comidas difíciles y ayudarlo a volver a una vida de adolescente.",
+            "Seguir modificando las críticas y cerrar cada sesión con apoyo positivo."
+          ],
+          casa: "Un paso más de independencia con la comida por semana.",
+          avance: "El adolescente come bien en distintos lugares sin supervisión.",
+          fuente: "Lock y Osipov, 2019, «Family-Based Treatment» y tabla 22.4, sesiones 11 a 16"
+        },
+        {
+          t: "Temas de la adolescencia y prevención de recaídas",
+          tecs: ["prevencion-recaidas", "pasos-solucion-problemas"],
+          obj: "Que la relación entre padres e hijo deje de girar alrededor de la comida y se prevengan las recaídas.",
+          pasos: [
+            "Revisar con la familia los temas propios de la edad —pubertad, amistades, cambios futuros— y modelar cómo resolver problemas.",
+            "Comprobar que la relación ya no se centra en los síntomas y explorar cuánto hacen los padres como pareja.",
+            "Reflexionar sobre la experiencia de la enfermedad para identificar las señales tempranas de una recaída.",
+            "Terminar destacando lo que lograron los padres y el adolescente."
+          ],
+          casa: "Escribir juntos las señales de alarma y qué harán ante ellas.",
+          avance: "La familia termina con un plan ante las señales de recaída.",
+          fuente: "Lock y Osipov, 2019, «Family-Based Treatment» y tabla 22.4, sesiones 17 a 20"
+        }
+      ],
+      medir: [
+        "Frecuencia de atracones y purgas en el <strong>registro de atracones y purgas</strong>, en cada sesión.",
+        "<strong>EDE</strong> al inicio y al final.",
+        "Peso y control médico, a cargo del pediatra."
+      ],
+      adapt: [
+        "<strong>Familias monoparentales o reconstituidas:</strong> se puede invitar a amigos o familiares a ayudar, y alargar el número de sesiones si hace falta (Lock y Osipov, 2019, tabla 22.3).",
+        "<strong>Conflicto familiar:</strong> los adolescentes de familias con poco conflicto respondieron mejor al tratamiento basado en la familia que a la terapia cognitivo-conductual (Lock y Osipov, 2019, tabla 22.3)."
+      ],
+      cuidado: [
+        "Las conductas bulímicas tienen riesgos médicos serios —alteraciones de los electrolitos, arritmias, desgarros del esófago, daño dental—: el control lo lleva el pediatra y el tratamiento se hace con un equipo (Lock y Osipov, 2019, «Age, Developmental Course, Cultural Factors, and Comorbidity»).",
+        "Como el adolescente con bulimia suele ser mayor y más maduro que en la anorexia, el terapeuta equilibra el poder de los padres con la validación de su experiencia (Lock y Osipov, 2019, «Family-Based Treatment»)."
+      ]
+    },
+    {
+      id: "bul-tcc",
+      mod: "ciclo-bulimico",
+      inst: ["EDE", "Registro de atracones y purgas"],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Terapia cognitivo-conductual para la bulimia en adolescentes",
+      fuente: "Lock y Osipov, 2019",
+      cuando: "Un adolescente con bulimia o atracones, por lo general mayor, que reconoce el problema, está motivado y prefiere trabajar de forma individual, con los padres en un papel de apoyo. Es médicamente estable para el tratamiento ambulatorio.",
+      respaldo: "La terapia cognitivo-conductual es tratamiento de primera línea para la bulimia en adultos. En adolescentes, la versión de autoayuda guiada logró tasas de abstinencia parecidas al tratamiento basado en la familia, con menor costo, en un ensayo con 85 jóvenes, y se considera posiblemente eficaz. La versión adaptada para adolescentes logró menos abstinencia que el tratamiento familiar al terminar, pero la diferencia desapareció a los doce meses; por ahora se considera experimental. En una adaptación piloto para el trastorno por atracón, ocho sesiones lograron que las 26 adolescentes dejaran los atracones a los tres meses (Lock y Osipov, 2019, «Psychosocial Interventions»).",
+      secuencia: "<strong>Secuencia:</strong> unas 19 sesiones en 20 semanas, en tres etapas, con más contacto al comienzo —sesiones cercanas o breves llamadas— y sesiones con los padres para que apoyen. Etapa 1 (sesiones 1 a 8): comer de forma regular. Etapa 2 (9 a 16): dietas, alimentos temidos y preocupación por la figura. Etapa 3 (17 a 19, cada dos semanas): prevención de recaídas (Lock y Osipov, 2019, «CBT—Adolescent Version» y tabla 22.5).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Formulación del ciclo y autorregistro",
+          tecs: ["psicoeducacion", "autorregistro-tiempo-real"],
+          obj: "Que el adolescente entienda qué mantiene su bulimia y empiece a registrar en el momento.",
+          pasos: [
+            "Explicar la estructura del tratamiento y que se espera que mejore y mantenga la mejoría, aunque queden algunas dificultades.",
+            "Dibujar con sus palabras el círculo que mantiene la bulimia: atracones, purgas, dieta, reglas con la comida y preocupación por la figura.",
+            "Introducir el registro en el momento de lo que come, con sus pensamientos, emociones y actividades, y resolver lo que le impida hacerlo, por ejemplo tomar notas en el celular si no quiere llenarlo frente a sus amigos.",
+            "Pedirle que explique a sus padres el modelo y los riesgos de la bulimia."
+          ],
+          casa: "Registrar lo que come en el momento.",
+          avance: "El adolescente reconoce su ciclo y registra a diario.",
+          fuente: "Lock y Osipov, 2019, tabla 22.5, sesiones 1 y 2, y caso de Amy"
+        },
+        {
+          t: "Pesaje semanal y educación sobre peso y alimentación",
+          tecs: ["pesaje-semanal", "psicoeducacion"],
+          obj: "Desmontar creencias sobre el peso y sobre la utilidad de vomitar o usar laxantes.",
+          pasos: [
+            "Pesar al adolescente una vez por semana en la sesión, graficar el peso y comentar juntos su reacción.",
+            "Explicar que pesarse muchas veces al día aumenta la preocupación por la figura, y acordar dejar de hacerlo en casa.",
+            "Enseñar sobre el peso, las consecuencias físicas de los atracones y las purgas, la ineficacia del vómito y los laxantes para controlar el peso y los efectos de las dietas."
+          ],
+          casa: "No pesarse en casa entre sesiones.",
+          avance: "El adolescente ve que comer de forma normal no lo hace subir de peso como temía.",
+          fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» y tabla 22.5, sesiones 2 a 8"
+        },
+        {
+          t: "Comer de forma regular y controlar los estímulos",
+          tecs: ["alimentacion-regular", "control-estimulos-comida"],
+          obj: "Establecer tres comidas y una o dos meriendas al día para cortar el ciclo del atracón.",
+          pasos: [
+            "Acordar un horario de tres comidas y dos meriendas y volver a la siguiente comida planeada después de un atracón, sin compensar.",
+            "Pedir a los padres que garanticen las comidas, limiten por un tiempo el acceso a los alimentos que disparan atracones y lo acompañen un rato después de comer.",
+            "Usar el control de estímulos: comer en un solo lugar, sin hacer otra cosa, con pausas entre bocados, y no guardar sobrantes.",
+            "Planear actividades agradables y formas de tolerar el malestar para los momentos de riesgo.",
+            "Hacia el final de la etapa, tener una o dos sesiones con la familia o los amigos para reducir el secreto y sumar apoyo."
+          ],
+          casa: "Seguir el horario de comidas y anotar las dificultades.",
+          avance: "El adolescente come de forma regular la mayoría de los días.",
+          fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» y tabla 22.5, sesiones 3 a 8"
+        },
+        {
+          t: "Alimentos temidos, dietas y solución de problemas",
+          tecs: ["alimentos-temidos", "pasos-solucion-problemas"],
+          obj: "Eliminar las dietas y las reglas rígidas que mantienen el ciclo.",
+          pasos: [
+            "Hacer con el adolescente una lista de alimentos que quiere volver a comer con normalidad.",
+            "Incorporarlos en pequeñas cantidades dentro de las comidas planeadas; si hace falta, comerlos en la sesión y decidir juntos cómo pueden ayudar los padres.",
+            "Aumentar de forma gradual la cantidad total cuando restringe lo que come.",
+            "Resolver los problemas que llevan a perder el control y armar planes anticipados para los momentos y lugares de riesgo."
+          ],
+          casa: "Incluir un alimento temido en una merienda planeada.",
+          avance: "Come alimentos que antes evitaba sin que se dispare un atracón.",
+          fuente: "Lock y Osipov, 2019, tabla 22.5, sesiones 9 a 16, y caso de Amy"
+        },
+        {
+          t: "Preocupación por la figura y experimentos conductuales",
+          tecs: ["reestructuracion-cognitiva", "experimento-conductual", "sentirse-gordo"],
+          obj: "Reducir el peso que tienen la figura y el peso en su autoestima.",
+          pasos: [
+            "Usar reestructuración cognitiva con las actitudes sobre la figura y el peso, con preguntas y opciones adaptadas a su edad para que pueda observarse y generar alternativas.",
+            "Ayudarlo a distinguir entre «sentirse gordo» y estar gordo.",
+            "Planear experimentos conductuales para poner a prueba las creencias problemáticas."
+          ],
+          casa: "Hacer un experimento conductual acordado.",
+          avance: "La figura y el peso pesan menos en cómo se valora.",
+          fuente: "Lock y Osipov, 2019, tabla 22.5, sesiones 9 a 16"
+        },
+        {
+          t: "Plan de mantenimiento y prevención de recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Sostener los logros cuando termine el tratamiento.",
+          pasos: [
+            "Espaciar las sesiones cada dos semanas y quedarse más en segundo plano mientras practica.",
+            "Distinguir entre un desliz y una recaída, y revisar qué partes del tratamiento le sirvieron y cuáles son sus momentos y situaciones de riesgo.",
+            "Escribir con él un plan de mantenimiento y subrayar que volver a hacer dieta es el principal riesgo de recaída.",
+            "Revisar con el adolescente y sus padres los avances y las preocupaciones que quedan."
+          ],
+          casa: "Compartir el plan de mantenimiento con los padres.",
+          avance: "El adolescente tiene un plan escrito para sus situaciones de riesgo.",
+          fuente: "Lock y Osipov, 2019, tabla 22.5, sesiones 17 a 19",
+          fichas: ["plan-desliz"]
+        }
+      ],
+      medir: [
+        "Atracones y conductas compensatorias en el autorregistro y el <strong>registro de atracones y purgas</strong>.",
+        "<strong>EDE</strong> al inicio y al final.",
+        "Peso semanal en la sesión."
+      ],
+      adapt: [
+        "<strong>Trastorno por atracón:</strong> una adaptación de ocho sesiones individuales para normalizar la alimentación, el control del peso y la imagen corporal, con hasta cuatro sesiones opcionales sobre comida, ánimo y relaciones, tuvo buenos resultados en un estudio piloto con adolescentes (Lock y Osipov, 2019, «Psychosocial Interventions»).",
+        "<strong>Autoayuda guiada:</strong> la versión guiada logró resultados parecidos al tratamiento familiar con menor costo (Lock y Osipov, 2019, «Psychosocial Interventions»).",
+        "<strong>Emociones difíciles:</strong> cuando los atracones funcionan como forma de manejar emociones intensas, la terapia dialéctico-conductual tiene apoyo inicial en jóvenes (Lock y Osipov, 2019, «Dialectical Behavior Therapy»)."
+      ],
+      cuidado: [
+        "El pediatra controla los signos vitales para confirmar que el adolescente puede seguir en tratamiento ambulatorio (Lock y Osipov, 2019, caso de Amy).",
+        "Con adolescentes conviene más contacto al comienzo y que los padres apoyen con las comidas, los alimentos que disparan atracones y la supervisión después de comer (Lock y Osipov, 2019, tabla 22.5)."
       ]
     }
   ]
@@ -11172,6 +12104,135 @@ const VARIABLES = [
         "La extinción del escape y la guía física solo se aplican en programas especializados, con un equipo formado en análisis de conducta y supervisión médica, nunca como consejo general a los padres.",
         "Algunos niños tienen dietas que no pueden saltarse por su condición médica; el plan las respeta (Fisher et al., 2011, cap. 26).",
         "La evidencia viene sobre todo de estudios de caso único en programas especializados."
+      ]
+    }
+  ]
+},
+{
+  cat: "Salud, sueño y hábitos",
+  t: "Obesidad infantil",
+  sub: "El niño o adolescente tiene un peso para su edad y estatura en el rango de sobrepeso u obesidad, con riesgos para su salud actual y futura —diabetes, presión alta, apnea del sueño— y, a menudo, burlas, aislamiento, ánimo bajo o atracones. Lo que se interviene no es el peso en sí, sino las conductas que lo mantienen —qué y cuánto se come, cuánto se mueve y cuánto tiempo pasa frente a pantallas— y el ambiente de la casa, los amigos y el barrio que las sostiene. En los niños pequeños la meta suele ser mantener el peso mientras crecen; con la edad se busca una pérdida activa de peso.",
+  elegir: [
+    "<strong>El tratamiento conductual familiar con varios componentes es el único «bien establecido»</strong> y la línea de intervención más intensiva antes de pensar en medicación o cirugía. Dar solo información sobre nutrición o actividad no funciona. La dosis importa: los programas con 26 horas o más en seis meses logran cambios clínicamente importantes (Hayes et al., 2019).",
+    "La medicación y la cirugía solo se consideran en adolescentes mayores con obesidad grave y complicaciones médicas, cuando el tratamiento conductual no funcionó; las decide el equipo médico (Hayes et al., 2019).",
+    "Si hay atracones con sensación de pérdida de control, ver también <em>Bulimia y atracones en la adolescencia</em>; si el tiempo de pantalla es un problema en sí mismo, <em>Uso problemático de pantallas y videojuegos</em>; si hay burlas persistentes, <em>Acoso escolar</em>."
+  ],
+  planes: [
+    {
+      id: "obe-familiar",
+      mod: "balance-energia-familiar",
+      inst: ["Libro de hábitos"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Tratamiento conductual familiar del peso",
+      fuente: "Hayes et al., 2019",
+      cuando: "Un niño o adolescente con sobrepeso u obesidad, con el visto bueno de su médico, cuya familia puede comprometerse a cambiar la alimentación, la actividad y el ambiente de la casa. Un padre o cuidador participa como agente de cambio y, si también tiene sobrepeso, como participante.",
+      respaldo: "Tras revisar los ensayos, el Grupo de Trabajo de Servicios Preventivos de EE. UU. concluyó que los tratamientos con varios componentes y 26 horas o más en seis meses producen cambios clínicamente importantes en el índice de masa corporal para la edad. Los metaanálisis encuentran efectos frente a controles pasivos, mayores cuanto más horas de tratamiento, cuando participa la familia y cuanto más pequeño es el niño. Incluir a un padre como objetivo de pérdida de peso funcionó en una serie de estudios durante 30 años, incluso con obesidad grave, y el peso del padre y el del hijo bajan juntos. El tratamiento también reduce los atracones y los síntomas de ansiedad y depresión (Hayes et al., 2019, «Review of the Treatment Literature» y tabla 23.1).",
+      secuencia: "<strong>Secuencia:</strong> sesiones semanales en las que se revisan el libro de hábitos y el peso y se fijan metas nuevas; se trabajan a la vez la alimentación, la actividad y las estrategias de cambio conductual, y después se extienden los cambios a los amigos y la comunidad. Los mejores resultados llegan con 26 horas de tratamiento o más; una tarjeta de apoyo resume las metas de cada dominio y se califica de 0 a 3 (Hayes et al., 2019, «Multicomponent Treatment Protocol» y figura 23.1).",
+      esc: ["primer-nivel", "hospital", "comunidad"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Plan de alimentación del semáforo",
+          tecs: ["semaforo-alimentos"],
+          obj: "Mejorar la calidad de lo que come la familia y reducir los alimentos con más calorías, sin prohibirlos.",
+          pasos: [
+            "Clasificar con la familia los alimentos en verdes —verduras con muchos nutrientes y pocas calorías—, amarillos y rojos —con muchas calorías, grasa o azúcar—, adaptando la lista a la comida, las costumbres y el presupuesto de la familia.",
+            "Fijar metas: cinco o más porciones de verdes al día y, poco a poco, no más de 15 rojos a la semana, siempre con espacio para alguno al día.",
+            "Establecer tres comidas al día y una o dos meriendas planeadas, con porciones más pequeñas.",
+            "Evitar reemplazar los alimentos rojos por versiones «light», para que cambie la preferencia por los sabores.",
+            "Coordinar las metas de calorías con el equipo de salud."
+          ],
+          casa: "Anotar cada día los alimentos y su color.",
+          avance: "La familia come más verdes y menos rojos cada semana.",
+          fuente: "Hayes et al., 2019, «Dietary Modification»"
+        },
+        {
+          t: "Actividad física y tiempo frente a pantallas",
+          tecs: ["semaforo-actividad"],
+          obj: "Aumentar la actividad física y reducir el sedentarismo.",
+          pasos: [
+            "Clasificar las actividades en verdes —moderadas o vigorosas—, amarillas —suaves, como caminar o subir escaleras— y rojas —televisión, videojuegos, celular y computador por diversión—; las tareas escolares no cuentan como rojas.",
+            "Partir de lo que hace hoy el niño y buscar actividades que le gusten para acercarse a la meta de 90 minutos de actividad verde al día, al menos cinco días a la semana; para el padre, 60.",
+            "Bajar el tiempo de pantalla hasta un máximo de dos horas al día.",
+            "Sumar actividad en la vida diaria, como caminar o ir en bicicleta al colegio."
+          ],
+          casa: "Registrar los minutos de actividad y de pantalla.",
+          avance: "Suben los minutos de actividad verde y bajan los de pantalla.",
+          fuente: "Hayes et al., 2019, «Energy Expenditure Modification»"
+        },
+        {
+          t: "Metas graduales y libro de hábitos",
+          tecs: ["moldeamiento", "registro-conducta"],
+          obj: "Que la familia se fije metas alcanzables y registre su avance.",
+          pasos: [
+            "Fijar cada semana metas específicas, medibles y realistas, a partir de lo que la familia hace hoy, y acercarlas poco a poco a la meta final.",
+            "Llevar el libro de hábitos: lo que se come, la actividad y el peso de la semana en casa, y relacionar los cambios de peso con las conductas.",
+            "Acordar cómo registrarán juntos el niño y el padre, por ejemplo que el niño anote las meriendas cuando el padre no esté.",
+            "Revisar el libro en la sesión para reforzar los logros y corregir."
+          ],
+          casa: "Completar el libro de hábitos todos los días.",
+          avance: "La familia registra a diario y cumple la mayoría de sus metas.",
+          fuente: "Hayes et al., 2019, «Goal Setting» y «Self-Monitoring»"
+        },
+        {
+          t: "Recompensas y elogios",
+          tecs: ["sistema-puntos", "elogio-especifico"],
+          obj: "Reforzar las conductas saludables que el niño controla.",
+          pasos: [
+            "Hacer con el niño una lista de recompensas pequeñas y grandes, preferiblemente actividades con otras personas, como ir al parque con amigos; nunca comida ni pantallas.",
+            "Dar puntos por cumplir las metas de alimentación, actividad y peso, canjeables por las recompensas.",
+            "Elogiar las conductas específicas apenas ocurren, sin mezclar el elogio con correcciones.",
+            "No dar la recompensa si no se cumplió lo acordado."
+          ],
+          casa: "Llevar la tabla de puntos.",
+          avance: "El niño gana puntos con regularidad.",
+          fuente: "Hayes et al., 2019, «Reward Systems»",
+          fichas: ["tabla-puntos"]
+        },
+        {
+          t: "Ambiente de la casa y papel de los padres",
+          tecs: ["control-estimulos-comida", "modelado"],
+          obj: "Que la casa facilite la elección saludable.",
+          pasos: [
+            "Retirar o esconder los alimentos rojos y los aparatos de juego, y dejar a la vista frutas, verduras picadas y los zapatos deportivos junto a la puerta.",
+            "Planear las comidas, comprar con lista y cocinar más en casa.",
+            "Enseñar a los padres a poner límites alrededor de los alimentos y las actividades rojas, a fijar rutinas de comida, actividad y sueño, y a modelar con su propio ejemplo.",
+            "Si el padre también tiene sobrepeso, incluirlo con sus propias metas."
+          ],
+          casa: "Hacer un cambio en la casa que facilite comer mejor o moverse más.",
+          avance: "La casa tiene más estímulos saludables y menos de los otros.",
+          fuente: "Hayes et al., 2019, «Stimulus Control» y «Family Involvement and Support»"
+        },
+        {
+          t: "Amigos, burlas y comunidad",
+          tecs: ["pasos-solucion-problemas"],
+          obj: "Sostener los cambios fuera de la casa.",
+          pasos: [
+            "Buscar amigos con intereses activos y planear encuentros activos y saludables.",
+            "Trabajar cómo responder a las burlas por el peso y cómo cuidar la imagen corporal y la autoestima.",
+            "Identificar con la familia los recursos del barrio —parques, ligas deportivas— y las trampas, como los lugares de comida rápida en el camino, y resolver cómo manejarlas.",
+            "Revisar las oportunidades y las barreras del colegio para comer bien y moverse."
+          ],
+          casa: "Hacer una actividad activa con amigos o en un lugar del barrio.",
+          avance: "El niño tiene actividades y amigos que apoyan sus hábitos.",
+          fuente: "Hayes et al., 2019, «Peer Level» y «Community Level»"
+        }
+      ],
+      medir: [
+        "Índice de masa corporal para la edad, con el equipo de salud.",
+        "Cumplimiento de las metas en el <strong>libro de hábitos</strong> y la tarjeta de apoyo."
+      ],
+      adapt: [
+        "<strong>Solo los padres:</strong> cuando el niño no puede asistir, trabajar solo con los padres logró una pérdida de peso comparable a la de padres e hijo, y se mantuvo 18 meses, aunque puede haber más abandono (Hayes et al., 2019, «Parent Only»).",
+        "<strong>Autoayuda guiada:</strong> doce visitas breves cada dos semanas lograron una pérdida de peso significativa frente a la lista de espera; es una opción de menor costo, todavía preliminar (Hayes et al., 2019, «Guided Self-Help»).",
+        "<strong>Adolescentes con atracones:</strong> la psicoterapia interpersonal para prevenir el aumento excesivo de peso redujo el crecimiento del índice de masa corporal en adolescentes en riesgo con pérdida de control al comer (Hayes et al., 2019, «Interpersonal Psychotherapy»).",
+        "<strong>Contador de pasos:</strong> sumarlo con metas de pasos al tratamiento ayudó a bajar más de peso (Hayes et al., 2019, «Technology Tools»)."
+      ],
+      cuidado: [
+        "El tratamiento se hace con el aval del médico o dentro de un equipo, por las complicaciones médicas de la obesidad (Hayes et al., 2019, «Comorbidities and Treatment Relevance»).",
+        "En niños pequeños la meta suele ser mantener el peso mientras crecen, no bajarlo (Hayes et al., 2019, «Differences in Treatment across Development»).",
+        "La evidencia no muestra que el tratamiento del peso dispare trastornos alimentarios; al contrario, tiende a reducir los atracones (Hayes et al., 2019, «Comorbidities and Treatment Relevance»)."
       ]
     }
   ]
@@ -12331,6 +13392,73 @@ const GLOSARIO = [
 { k: "botella-vacia", t: "La botella vacía", tipo: "Técnica", enf: ["cond"],
   d: "Para que el niño beba lo suficiente, en la mañana se llena una botella con la cantidad de agua que debe tomar en el día; cada vez que bebe, vacía de la botella lo mismo que tomó, hasta que quede vacía en la noche.",
   fuente: "Von Gontard y Nevéus, 2006, cap. 9" },
+/* ---------- Bulimia y atracones ---------- */
+{ k: "registro-atracones-purgas", t: "Registro de atracones y purgas", tipo: "Técnica", enf: ["fam", "tcc"],
+  d: "Anotación diaria que lleva el adolescente de sus atracones, vómitos y otras conductas compensatorias. Se revisa al comienzo de cada sesión y se contrasta con lo que cuentan los padres.",
+  fuente: "Lock y Osipov, 2019, tabla 22.4" },
+{ k: "alimentacion-regular", t: "Alimentación regular", alias: ["comer de forma regular"], tipo: "Técnica", enf: ["tcc", "fam"],
+  d: "Tres comidas y una o dos meriendas planeadas al día, repartidas a lo largo de la jornada y sin pasar mucho tiempo sin comer. Es lo primero que se trabaja en la bulimia y los atracones, porque el hambre y la restricción preparan el atracón; después de un atracón se vuelve a la siguiente comida planeada, sin compensar.",
+  fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» y tabla 22.5" },
+{ k: "autorregistro-tiempo-real", t: "Autorregistro en el momento", tipo: "Técnica", enf: ["tcc"],
+  d: "Anotar lo que se come justo cuando se come, junto con lo que se piensa, se siente y se está haciendo. Muestra qué dispara los atracones y las purgas; se buscan formas discretas de hacerlo, como notas en el celular, si al adolescente le incomoda frente a sus amigos.",
+  fuente: "Lock y Osipov, 2019, tabla 22.5 y caso de Amy" },
+{ k: "pesaje-semanal", t: "Pesaje semanal en la sesión", tipo: "Técnica", enf: ["tcc"],
+  d: "El terapeuta pesa al adolescente una vez por semana, grafica el peso y comenta con él su reacción, mientras deja de pesarse en casa. Desmonta la creencia de que comer de forma normal hará subir mucho el peso y reduce la preocupación que alimenta pesarse muchas veces al día.",
+  fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» y caso de Amy" },
+{ k: "control-estimulos-comida", t: "Control de estímulos en la alimentación", tipo: "Técnica", enf: ["tcc", "pad"],
+  d: "Ordenar el ambiente para que la elección saludable sea la fácil: no tener a mano o a la vista los alimentos que disparan atracones o que tienen muchas calorías, dejar visibles las opciones saludables, comer en un solo lugar, sin hacer otra cosa, con pausas entre bocados, y no guardar sobrantes.",
+  fuente: "Lock y Osipov, 2019, «CBT—Adolescent Version» · Hayes et al., 2019, «Stimulus Control»" },
+{ k: "alimentos-temidos", t: "Incorporar alimentos temidos", tipo: "Técnica", enf: ["tcc"],
+  d: "El adolescente hace una lista de los alimentos que evita y que quiere volver a comer con normalidad, y los incorpora en pequeñas cantidades dentro de las comidas planeadas. Desarma la división de los alimentos en buenos y malos, que hace que comer uno «prohibido» se viva como un fracaso y dispare el atracón.",
+  fuente: "Lock y Osipov, 2019, tabla 22.5 y caso de Amy" },
+{ k: "sentirse-gordo", t: "Sentirse gordo frente a estar gordo", tipo: "Concepto", enf: ["tcc"],
+  d: "Distinción que se trabaja en la bulimia: ayudar al adolescente a diferenciar la sensación de estar gordo de estarlo, mientras se reduce el peso que tienen la figura y el peso en su autoestima.",
+  fuente: "Lock y Osipov, 2019, tabla 22.5 y caso de Amy" },
+/* ---------- Trastorno bipolar ---------- */
+{ k: "grafico-animo", t: "Gráfico del ánimo", tipo: "Técnica", enf: ["fam"],
+  d: "Registro diario que lleva la familia del ánimo del niño o adolescente y de sus horas de sueño y vigilia. Permite ver cómo cambian el ánimo y el sueño, reconocer las primeras señales de un episodio y armar el plan de manejo del ánimo.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»" },
+{ k: "plan-manejo-animo", t: "Plan de manejo del ánimo", tipo: "Técnica", enf: ["fam"],
+  d: "Plan escrito que arma la familia a partir de su experiencia y del gráfico del ánimo, con las estrategias conductuales o médicas que se usarán en cuanto el ánimo o el sueño del adolescente empiecen a cambiar. Busca episodios más cortos y periodos de bienestar más largos.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment»" },
+{ k: "ciclos-familiares-negativos", t: "Ciclos familiares negativos", tipo: "Concepto", enf: ["fam"],
+  d: "Círculos de conflicto previsibles en las familias en que alguien tiene un trastorno del ánimo: la conducta del niño provoca una reacción de los padres que la empeora, y así sucesivamente. En la psicoeducación los padres aprenden a reconocerlos y reciben entrenamiento para salir de ellos.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Psychoeducational Psychotherapy»" },
+{ k: "emocion-expresada", t: "Emoción expresada", tipo: "Concepto", enf: ["fam"],
+  d: "Clima familiar de crítica, hostilidad o sobreimplicación de los cuidadores hacia quien tiene el trastorno. En el trastorno bipolar se asocia con recuperaciones más lentas, y bajarlo es una meta de la terapia centrada en la familia.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Family-Focused Treatment» y tabla 7.2" },
+{ k: "ritmos-sociales", t: "Ritmos sociales", tipo: "Concepto", enf: ["ipt"],
+  d: "Rutinas sociales y de sueño de cada día, que ordenan los ritmos biológicos. En el trastorno bipolar, se registran y se estabilizan porque sus cambios pueden desencadenar episodios.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Interpersonal and Social Rhythm Therapy—Adolescents»" },
+{ k: "atencion-plena", t: "Atención plena", tipo: "Técnica", enf: ["mind", "tcc"],
+  d: "Ejercicios para llevar la atención al momento presente, sin quedarse enganchado en los pensamientos negativos. En la terapia cognitivo-conductual centrada en el niño y la familia para el trastorno bipolar se usa para manejar el estrés y las emociones.",
+  fuente: "Fristad y Roley-Roberts, 2019, «Child- and Family-Focused CBT»" },
+/* ---------- Obesidad infantil ---------- */
+{ k: "semaforo-alimentos", t: "Plan de alimentación del semáforo", tipo: "Técnica", enf: ["pad"],
+  d: "Clasificación de los alimentos en verdes —verduras con muchos nutrientes y pocas calorías—, amarillos y rojos —con muchas calorías, grasa o azúcar—, con metas de al menos cinco porciones de verdes al día y, poco a poco, no más de 15 rojos a la semana. No prohíbe ningún alimento y cambia de a poco las preferencias de la familia.",
+  fuente: "Hayes et al., 2019, «Dietary Modification»" },
+{ k: "semaforo-actividad", t: "Plan de actividad del semáforo", tipo: "Técnica", enf: ["pad"],
+  d: "Clasificación de las actividades en verdes —moderadas o vigorosas—, amarillas —suaves— y rojas —televisión, videojuegos, celular y computador por diversión—, con metas de 90 minutos de actividad verde al día para el niño y no más de dos horas de actividad roja.",
+  fuente: "Hayes et al., 2019, «Energy Expenditure Modification»" },
+/* ---------- Primeros años ---------- */
+{ k: "retroalimentacion-video", t: "Retroalimentación en video", tipo: "Técnica", enf: ["pad"],
+  d: "Se graba a los padres con su hijo en situaciones cotidianas y se revisa el video con ellos para señalar las señales del niño y las respuestas sensibles, y para enseñar a responder mejor. En el Círculo de Seguridad, el video se usa en el grupo para reflexionar sobre la propia relación.",
+  fuente: "Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting» y «Circle of Security»" },
+{ k: "respuesta-sensible", t: "Respuesta sensible a las señales del niño", tipo: "Técnica", enf: ["pad"],
+  d: "Que el cuidador note las señales del bebé o del niño pequeño y responda de forma adecuada a lo que necesita. Es el foco común de las intervenciones de apego y se asocia con un apego más seguro.",
+  fuente: "Acosta et al., 2019, «Attachment-Based Interventions»" },
+{ k: "disciplina-sensible", t: "Disciplina sensible", tipo: "Técnica", enf: ["pad"],
+  d: "Poner límites teniendo en cuenta la perspectiva y las señales del niño, y reaccionar a su frustración con sensibilidad, empatía y firmeza. Es el componente que suma la versión de la retroalimentación en video para niños de 2 a 5 años con riesgo de problemas de conducta.",
+  fuente: "Acosta et al., 2019, «Video-Feedback Intervention to Promote Positive Parenting»" },
+{ k: "devolucion-evaluacion", t: "Devolución motivacional de la evaluación", tipo: "Técnica", enf: ["pad"],
+  d: "Sesión en la que se presentan a los padres los resultados de una evaluación de la familia y se usa la entrevista motivacional para que decidan qué quieren cambiar en su crianza. Es el corazón del chequeo familiar.",
+  fuente: "Acosta et al., 2019, «The Family Check-Up»" },
+{ k: "relato-conjunto-trauma", t: "Relato conjunto del trauma", tipo: "Técnica", enf: ["fam"],
+  d: "En la psicoterapia padres-hijo, el niño pequeño y su cuidador construyen juntos, en sesiones conjuntas, un relato de la experiencia traumática que vivieron.",
+  fuente: "Acosta et al., 2019, «Child–Parent Psychotherapy»" },
+{ k: "base-segura", t: "Base segura y refugio", tipo: "Concepto", enf: ["pad"],
+  d: "Idea central de la teoría del apego que trabaja el Círculo de Seguridad: el cuidador es un refugio al que el niño vuelve cuando se angustia y una base segura desde la que sale a explorar el mundo con confianza.",
+  fuente: "Acosta et al., 2019, «Circle of Security»" },
 { k: "valor-inherente", t: "Valor de toda persona", alias: ["valor inherente", "valor profundo"], tipo: "Concepto", enf: ["pp"],
   d: "Idea central de la educación en el perdón: toda persona tiene un valor que no se gana ni se pierde, que no depende de su aspecto, sus cosas, sus capacidades ni su grupo. Verlo también en quien actuó mal es lo que después permite perdonar, sin decir que lo que hizo estuvo bien.",
   ej: "«¿Por qué este juguete vale para ti? ¿Vale más porque tiene casa? ¿Y las personas, por qué valen?»",
