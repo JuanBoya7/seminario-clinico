@@ -1713,6 +1713,40 @@ Object.assign(MODELOS, {
   }
 });
 
+/* Psicosis de inicio temprano (Sharma y McClellan, 2019) y rasgos de
+   personalidad en niños y adolescentes (Perepletchikova y Nathanson, 2019),
+   agregados el 2026-10-21. El capítulo de psicosis trata sobre todo la
+   medicación; lo psicosocial cabe en un solo plan con evidencia preliminar.
+   La terapia dialéctico-conductual para adolescentes ya está en
+   06-autolesion-suicidio (sui-dbt), por eso aquí no se repite. */
+Object.assign(MODELOS, {
+  "psicosis-temprana": {
+    t: "Psicosis de inicio temprano como trastorno del neurodesarrollo",
+    autor: "Sharma y McClellan",
+    d: "La esquizofrenia que empieza antes de los 18 años es un trastorno grave del neurodesarrollo, a menudo crónico, que altera el pensamiento, la percepción, el afecto y la relación con los demás, y frena el desarrollo social y escolar. Los medicamentos antipsicóticos tratan los síntomas activos; las intervenciones psicosociales atienden las dificultades de funcionamiento, mejoran la vida social y el cuidado de sí, sostienen la adherencia y previenen las recaídas. Los mejores programas coordinan todo en un mismo equipo.",
+    dim: ["Síntomas positivos, negativos y de desorganización", "Medicación y efectos secundarios", "Funcionamiento social, escolar y personal", "Familia", "Recaídas"],
+    fuente: "Sharma y McClellan, 2019, «Clinical Presentation and Diagnosis» y «Treatment»"
+  },
+  "mentalizacion": {
+    t: "Mentalización",
+    autor: "Bateman y Fonagy",
+    d: "La capacidad de entender la propia conducta y la de los demás en términos de estados mentales —pensamientos, emociones, deseos, intenciones— se desarrolla dentro de un apego seguro, cuando los padres muestran a la vez que comprenden lo que siente el niño y que es distinto de lo que sienten ellos. En las personas con rasgos límite, asociados con un apego desorganizado, esa capacidad está debilitada, y sus relaciones tienden a ser inestables e intensas. El tratamiento la fortalece y la practica en una relación terapéutica cercana, observando y regulando la activación emocional.",
+    dim: ["Apego", "Estados mentales propios", "Estados mentales de los otros", "Activación emocional", "Relaciones"],
+    fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy» y «Discussion»"
+  },
+  "procedimientos-cat": {
+    t: "Procedimientos problemáticos",
+    autor: "Ryle",
+    d: "Las conductas problema se mantienen por «procedimientos defectuosos»: formas de actuar que se establecieron en la historia emocional, ambiental y cognitiva de la persona y que limitan su capacidad de responder con eficacia a lo que le causa malestar. La terapia los descubre en colaboración, los pone por escrito y en diagramas, y busca formas alternativas de salir de ellos.",
+    dim: ["Historia que formó los procedimientos", "Reformulación", "Reconocimiento", "Revisión", "Cierre"],
+    fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»"
+  }
+});
+REFERENCIAS.push(
+  { k: "Sharma y McClellan, 2019", ref: "Sharma, A. y McClellan, J. (2019). Early-onset schizophrenia. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 704–722). Guilford Press." },
+  { k: "Perepletchikova y Nathanson, 2019", ref: "Perepletchikova, F. y Nathanson, D. (2019). Personality disorders. En M. J. Prinstein, E. A. Youngstrom, E. J. Mash y R. A. Barkley (Eds.), <em>Treatment of disorders in childhood and adolescence</em> (4.ª ed., pp. 723–746). Guilford Press." }
+);
+
 /* Libros agregados a la biblioteca el 2026-10-20: variables nuevas Problemas de
    conducta graves en la adolescencia (Sexton, 2011), Dolor crónico (Palermo,
    2012) y Evitación y restricción de la ingesta de alimentos (Sinha et al.,
@@ -4936,6 +4970,285 @@ const VARIABLES = [
       cuidado: [
         "Los adolescentes con desregulación grave no suelen beneficiarse del grupo de habilidades solo: necesitan el tratamiento completo, con terapia individual (Rathus y Miller, 2022, cap. 1).",
         "Si se da solo el grupo, quien lo coordina evalúa el riesgo al ingreso, vigila las señales durante el tratamiento y deriva a terapia individual si aparece la conducta suicida (Rathus y Miller, 2022, cap. 1)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Alteraciones emocionales",
+  t: "Rasgos de personalidad en la infancia y la adolescencia",
+  sub: "Patrones persistentes de relacionarse, sentir, pensar y afrontar que aparecen en varios contextos y causan sufrimiento o deterioro, y que no se explican por la etapa de desarrollo. Los rasgos de personalidad límite son los más estudiados en niños y adolescentes: relaciones inestables e intensas, impulsividad que hace daño, autolesiones o conducta suicida repetidas, inestabilidad emocional grave, sentimientos crónicos de vacío e ideas paranoides o disociación con el estrés. El diagnóstico antes de la adultez es debatido por el riesgo de estigma, pero reconocer el patrón temprano permite tratarlo cuando la personalidad todavía es más moldeable.",
+  elegir: [
+    "<strong>Con niños, el diagnóstico se da solo si se cumplen suficientes criterios sin contar los esperables para la edad</strong>; en preadolescentes, el miedo al abandono, la imagen de sí inestable y la dificultad para controlar la rabia pueden ser propios de la etapa. Todo tratamiento incluye a los padres y la relación con ellos (Perepletchikova y Nathanson, 2019).",
+    "<strong>Si hay autolesiones o conducta suicida repetidas en un adolescente</strong>, la terapia dialéctico-conductual para adolescentes es la de mejor respaldo: ver <em>Autolesión y riesgo suicida</em>. <strong>En niños preadolescentes con desregulación grave</strong>, la versión para niños trabaja sobre todo con los padres. <strong>Si se prefiere un trabajo centrado en entender los estados mentales propios y ajenos</strong>, la terapia basada en la mentalización tiene un ensayo con adolescentes con autolesiones y depresión; la terapia cognitivo-analítica es breve y logró una mejoría más rápida.",
+    "Para otros rasgos hay poca investigación en jóvenes: los rasgos antisociales se tratan como la conducta oposicionista y disocial (ver <em>Conducta oposicionista y desafiante</em> y <em>Problemas de conducta graves en la adolescencia</em>); los evitativos, como la ansiedad social (<em>Ansiedad y miedos</em>); los del grupo excéntrico, con entrenamiento en habilidades sociales (<em>Habilidades sociales</em>); los dependientes y obsesivos, con participación de los padres para fomentar la autonomía y la flexibilidad (Perepletchikova y Nathanson, 2019)."
+  ],
+  planes: [
+    {
+      id: "per-dbtc",
+      mod: "biosocial",
+      inst: ["C-SSRS"],
+      enf: "dbt",
+      nivel: "ensayos",
+      t: "Terapia dialéctico-conductual para niños preadolescentes y sus padres",
+      fuente: "Perepletchikova y Nathanson, 2019",
+      cuando: "Un niño preadolescente con desregulación emocional y conductual grave —explosiones de rabia diarias, agresión, autolesiones o ideación suicida, relaciones muy conflictivas— con rasgos límite en formación, cuyos padres pueden comprometerse con el tratamiento.",
+      respaldo: "En un ensayo aleatorizado con niños con trastorno de desregulación disruptiva del estado de ánimo, la versión para niños superó al tratamiento habitual en reducir las explosiones de rabia y el ánimo irritable. No se probó específicamente en rasgos límite, pero mostró que es factible y tiene una eficacia inicial con niños con problemas emocionales y conductuales graves, incluidas la conducta suicida y las autolesiones (Perepletchikova y Nathanson, 2019, «Dialectical Behavior Therapy»).",
+      secuencia: "<strong>Secuencia:</strong> sesiones semanales de 90 minutos: unos 30 minutos de terapia individual con el niño, 20 de entrenamiento a los padres y 40 de habilidades con el niño y los padres juntos. Las primeras semanas son solo con los padres. La jerarquía de metas se comparte con ellos: reducir el riesgo de psicopatología futura, mejorar la relación entre padres e hijo y atender los problemas que motivaron la consulta. El tratamiento termina cuando los padres sostienen por su cuenta un ambiente que valida y favorece el cambio (Perepletchikova y Nathanson, 2019, «Case Example»).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Regulación emocional de los padres",
+          tecs: ["validacion", "jerarquia-metas"],
+          obj: "Que los padres aprendan a mantener la calma antes de pedirle al niño que se regule.",
+          pasos: [
+            "En las primeras semanas, trabajar solo con los padres: presentarles el modelo, que la desregulación surge del encuentro entre la sensibilidad emocional del niño y un ambiente que invalida, y la jerarquía de metas.",
+            "Revisar las respuestas de los padres que dificultan la crianza: gritos, amenazas, castigos excesivos, avergonzar, críticas, rigidez, pocos elogios o ceder para evitar las explosiones.",
+            "Enseñarles habilidades para regularse y tolerar la escalada sin responder según su estado de ánimo.",
+            "Tratar como conductas que interfieren con la terapia faltar, no practicar las habilidades o no llevar los registros."
+          ],
+          casa: "Practicar una habilidad de regulación propia ante una situación difícil.",
+          avance: "Los padres responden con más calma a las conductas difíciles del niño.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», metas 3 y 4"
+        },
+        {
+          t: "Validación y técnicas de crianza eficaces",
+          tecs: ["validacion", "atencion-diferencial", "reforzamiento-positivo"],
+          obj: "Reemplazar la crítica por la validación y usar bien el refuerzo, la ignorancia y los límites.",
+          pasos: [
+            "Enseñar a los padres cómo las técnicas de crianza afectan el desarrollo del niño.",
+            "Entrenar la validación del sufrimiento del niño en lugar de la crítica y el juicio, que es uno de los ingredientes principales del cambio.",
+            "Enseñar los principios de modificación de conducta: reforzar las conductas adecuadas, ignorar las inadecuadas que buscan atención y castigar solo cuando la seguridad inmediata lo exige.",
+            "Ayudar a los padres a poner límites adecuados en lugar de ceder para evitar las explosiones."
+          ],
+          casa: "Validar al niño y elogiar al menos una conducta adecuada cada día.",
+          avance: "Hay más validación y menos crítica en la casa.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», meta 5"
+        },
+        {
+          t: "Mejorar la relación entre padres e hijo",
+          tecs: ["juego-especial", "reforzamiento-positivo"],
+          obj: "Construir una relación basada en la aceptación, el refuerzo, los intereses compartidos y el respeto.",
+          pasos: [
+            "Explicar a los padres que, cuando la relación está muy dañada, ellos deben cambiar primero.",
+            "Planear tiempo agradable y compartido según los intereses del niño.",
+            "Aumentar el deseo del niño de pasar tiempo con sus padres, que es la ocasión para modelar, validar y reforzar."
+          ],
+          casa: "Un rato diario de actividad compartida y agradable.",
+          avance: "El niño busca pasar tiempo con sus padres.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», meta 6"
+        },
+        {
+          t: "Conductas de riesgo, autolesiones y agresión",
+          tecs: ["tarjeta-diaria", "plan-seguridad", "sistema-puntos"],
+          obj: "Reducir la ideación suicida, las autolesiones y la agresión.",
+          pasos: [
+            "Registrar la ideación suicida y las autolesiones en una tarjeta diaria y trabajarlas en la sesión individual.",
+            "Hacer un plan de seguridad con los padres y vigilarlo de cerca.",
+            "Reforzar con puntos el uso de habilidades en lugar de autolesionarse o agredir.",
+            "Usar el castigo, como el tiempo fuera, solo para detener en el momento una conducta insegura, y reforzar la conducta opuesta positiva."
+          ],
+          casa: "Llenar la tarjeta diaria con ayuda de los padres.",
+          avance: "Bajan las autolesiones, la ideación suicida y la agresión.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», metas 1 y 7",
+          fichas: ["plan-seguridad-familia", "tabla-puntos"]
+        },
+        {
+          t: "Entrenamiento en habilidades con práctica en juego",
+          tecs: ["mente-sabia", "tip", "juego-roles"],
+          obj: "Que el niño y sus padres aprendan las habilidades y las practiquen muchas veces.",
+          pasos: [
+            "Enseñar al niño y a los padres juntos cinco módulos: qué son las emociones, atención plena, tolerancia al malestar, regulación emocional y efectividad interpersonal.",
+            "Preferir juegos, juegos de roles, ejercicios vivenciales y videos a las explicaciones largas.",
+            "Pedir a los padres que practiquen las habilidades con el niño «en modo de juego», en situaciones imaginarias, varias veces al día.",
+            "Registrar en la tarjeta diaria tanto la práctica en juego como el uso real de las habilidades."
+          ],
+          casa: "Practicar una habilidad en modo de juego varias veces al día.",
+          avance: "El niño usa las habilidades en situaciones reales.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», meta 9"
+        },
+        {
+          t: "Problemas que afectan la calidad de vida y la terapia",
+          tecs: ["moldeamiento", "atencion-diferencial", "analisis-cadena"],
+          obj: "Atender los demás problemas del niño y las conductas que interfieren en la sesión.",
+          pasos: [
+            "Armar programas de refuerzo y moldeamiento para los problemas que afectan su calidad de vida: dificultades en el colegio, mentiras, robos, problemas con los compañeros o los de otros trastornos que lo acompañen.",
+            "En las sesiones individuales, aplicar las habilidades a los problemas cotidianos, con solución de problemas, análisis conductuales, exposición y reestructuración cognitiva.",
+            "Ignorar las conductas molestas del niño en la sesión —gritos, insultos, desvalorizar la terapia— y reforzar su participación; tratar la agresión física como una conducta que pone en riesgo la terapia.",
+            "Usar lo que pasa en la sesión para modelar a los padres las habilidades, la ignorancia y la solución de problemas."
+          ],
+          casa: "Seguir el programa de refuerzo acordado.",
+          avance: "Mejoran los problemas del colegio y la convivencia.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Case Example», metas 2, 8 y 10"
+        }
+      ],
+      medir: [
+        "Ideación suicida, autolesiones y explosiones en la tarjeta diaria.",
+        "<strong>C-SSRS</strong> cuando hay ideación o conducta suicida."
+      ],
+      adapt: [
+        "<strong>Relación muy dañada:</strong> si la presencia de los padres impide que el niño aprenda, el entrenamiento en habilidades se hace por separado hasta que la relación mejore (Perepletchikova y Nathanson, 2019, «Case Example»).",
+        "<strong>Adolescentes:</strong> la versión para adolescentes, con terapia individual semanal y un grupo multifamiliar de habilidades durante 6 a 12 meses, está en <em>Autolesión y riesgo suicida</em> (Perepletchikova y Nathanson, 2019, «Dialectical Behavior Therapy»)."
+      ],
+      cuidado: [
+        "La seguridad del niño va primero: el plan de seguridad se elabora con los padres y el terapeuta lo vigila de cerca (Perepletchikova y Nathanson, 2019, «Case Example»).",
+        "La evidencia de la versión para niños viene de un ensayo con desregulación disruptiva del estado de ánimo, no con diagnóstico de personalidad límite (Perepletchikova y Nathanson, 2019, «Dialectical Behavior Therapy»)."
+      ]
+    },
+    {
+      id: "per-mbt",
+      mod: "mentalizacion",
+      inst: ["PHQ-A"],
+      enf: "fam",
+      nivel: "ensayos",
+      t: "Terapia basada en la mentalización para adolescentes",
+      fuente: "Perepletchikova y Nathanson, 2019",
+      cuando: "Un adolescente con rasgos límite, autolesiones y depresión, con relaciones inestables e intensas, para quien un trabajo menos directivo, centrado en entender los propios estados mentales y los de los demás, resulta adecuado.",
+      respaldo: "En un ensayo con 80 adolescentes con autolesiones y depresión, un año de terapia individual semanal con grupos familiares mensuales fue más eficaz que el tratamiento habitual para reducir las autolesiones y la depresión; los cambios en la mentalización y en las relaciones explicaron la reducción de las autolesiones. Un estudio piloto en internación y otro con la versión grupal mostraron mejorías en síntomas, rasgos límite y vínculo con los padres (Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»).",
+      secuencia: "<strong>Secuencia:</strong> un año de terapia individual semanal con grupos familiares mensuales. En la versión grupal, dos sesiones individuales, 34 sesiones de grupo y siete sesiones psicoeducativas para los cuidadores (Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»).",
+      esc: ["salud-mental"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Una relación terapéutica cercana",
+          tecs: ["validacion"],
+          obj: "Crear el contexto seguro en que se puede practicar la mentalización.",
+          pasos: [
+            "Mantener la cercanía terapéutica como principio de cada sesión.",
+            "Representar con precisión el estado emocional actual del adolescente y seguir con empatía cómo cambian sus sentimientos."
+          ],
+          casa: "No aplica.",
+          avance: "El adolescente se siente comprendido en la sesión.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»"
+        },
+        {
+          t: "Observar y regular la activación emocional",
+          tecs: ["mentalizar"],
+          obj: "Sostener la capacidad de mentalizar cuando suben las emociones.",
+          pasos: [
+            "Observar junto con el adolescente cómo sube su activación emocional en la sesión.",
+            "Ayudarlo a regularla para poder seguir pensando sobre lo que siente."
+          ],
+          casa: "No aplica.",
+          avance: "El adolescente puede hablar de lo que siente aun con emociones intensas.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»"
+        },
+        {
+          t: "Separar los propios estados mentales de los de los demás",
+          tecs: ["mentalizar"],
+          obj: "Que el adolescente distinga sus pensamientos y emociones de los de las personas que lo rodean y entienda el efecto de su conducta en los demás.",
+          pasos: [
+            "Conversar de forma continua sobre los estados mentales del adolescente en relación con los del terapeuta y los de otras personas, en el presente.",
+            "Ayudarlo a diferenciar lo que él piensa y siente de lo que piensan y sienten los demás.",
+            "Trabajar las emociones que lo llevan a relaciones inestables e intensas y ayudarlo a notar el efecto de su conducta en los otros.",
+            "En el grupo, practicar la mentalización entre los miembros."
+          ],
+          casa: "Observar en una discusión qué pudo estar pensando y sintiendo la otra persona.",
+          avance: "El adolescente describe su estado mental y el de los otros en situaciones difíciles.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»"
+        },
+        {
+          t: "Grupos familiares",
+          tecs: ["psicoeducacion", "mentalizar"],
+          obj: "Que la familia comprenda los estados mentales del adolescente y mejore la relación.",
+          pasos: [
+            "Reunir a las familias una vez al mes.",
+            "Practicar la mentalización dentro de la familia, entendiendo lo que piensa y siente el adolescente como distinto de lo que sienten los padres.",
+            "En la versión grupal, dar a los cuidadores sesiones psicoeducativas."
+          ],
+          casa: "No aplica.",
+          avance: "Mejora el vínculo entre los padres y el adolescente.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy» y «Discussion»"
+        }
+      ],
+      medir: [
+        "Frecuencia de autolesiones.",
+        "<strong>PHQ-A</strong> al inicio y cada pocos meses."
+      ],
+      adapt: [
+        "<strong>Formato grupal:</strong> por la importancia de los pares en la adolescencia, se probó una versión grupal de un año; 23 de 25 participantes mejoraron (Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»)."
+      ],
+      cuidado: [
+        "Es una terapia menos directiva que la cognitivo-conductual o la dialéctico-conductual, y su aplicación se considera difícil, sobre todo en internación (Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy»).",
+        "Ante autolesiones o ideación suicida, ver el plan de seguridad en <em>Autolesión y riesgo suicida</em>."
+      ]
+    },
+    {
+      id: "per-cat",
+      mod: "procedimientos-cat",
+      inst: [],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Terapia cognitivo-analítica",
+      fuente: "Perepletchikova y Nathanson, 2019",
+      cuando: "Un adolescente de 13 a 18 años con algunos o muchos rasgos límite que puede comprometerse con una terapia breve, activa y con un número de sesiones acordado, en servicios con recursos limitados.",
+      respaldo: "En un ensayo con 78 adolescentes de 13 a 18 años con entre dos y nueve criterios de personalidad límite, la terapia cognitivo-analítica no se diferenció de una buena atención clínica manualizada a los 24 meses en psicopatología, autolesiones y funcionamiento, pero los adolescentes mejoraron más rápido. En adultos la evidencia es limitada (Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»).",
+      secuencia: "<strong>Secuencia:</strong> de 8 a 24 sesiones semanales, número que se acuerda antes de empezar, en etapas: reformulación (primer cuarto), reconocimiento (segundo cuarto) y revisión (segunda mitad); al final se escriben cartas de despedida y pueden programarse encuentros de seguimiento (Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Reformulación y carta",
+          tecs: ["carta-reformulacion"],
+          obj: "Entender juntos qué historia formó las conductas problema y acordar en qué se va a trabajar.",
+          pasos: [
+            "Recoger los problemas actuales y las experiencias pasadas del adolescente.",
+            "Al terminar esta etapa, escribirle una carta de reformulación con las conductas problema que conviene abordar.",
+            "Acordar juntos trabajar en esas conductas."
+          ],
+          casa: "Leer la carta y anotar lo que quiera agregar o cambiar.",
+          avance: "Hay una lista acordada de conductas problema.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»"
+        },
+        {
+          t: "Reconocimiento con diagramas",
+          tecs: ["diagrama-secuencial", "registro-conducta"],
+          obj: "Que el adolescente reconozca sus patrones cuando aparecen.",
+          pasos: [
+            "Construir juntos diagramas que muestren de forma visual los patrones de conducta problemáticos.",
+            "Usar hojas de calificación y diarios para seguir cuándo aparecen y cómo va el avance."
+          ],
+          casa: "Registrar en el diario cuándo aparece un patrón.",
+          avance: "El adolescente identifica sus patrones en el momento en que ocurren.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»"
+        },
+        {
+          t: "Revisión: salidas alternativas",
+          tecs: ["pasos-solucion-problemas"],
+          obj: "Encontrar y practicar otras formas de responder.",
+          pasos: [
+            "Identificar juntos formas alternativas de cortar las conductas problemáticas.",
+            "Practicarlas una y otra vez en situaciones concretas."
+          ],
+          casa: "Probar una salida alternativa en una situación real.",
+          avance: "El adolescente usa alternativas en lugar de los patrones problemáticos.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»"
+        },
+        {
+          t: "Cartas de despedida",
+          tecs: ["carta-reformulacion"],
+          obj: "Cerrar la terapia reconociendo lo logrado y lo que queda por trabajar.",
+          pasos: [
+            "Al final, el terapeuta y el adolescente se escriben cartas de despedida.",
+            "En ellas anotan los logros y los procedimientos que todavía hace falta trabajar.",
+            "Acordar, si hace falta, algunos encuentros de seguimiento."
+          ],
+          casa: "No aplica.",
+          avance: "El adolescente termina con un registro escrito de sus logros y de lo pendiente.",
+          fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»"
+        }
+      ],
+      medir: [
+        "Hojas de calificación de las conductas problema y diarios de seguimiento.",
+        "Autolesiones y funcionamiento al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Entrenamiento en regulación emocional en grupo:</strong> una adaptación para adolescentes de un programa grupal de habilidades no añadió beneficios al tratamiento habitual en dos ensayos, aunque aumentó la sensación de control interno (Perepletchikova y Nathanson, 2019, «Systems Training for Emotional Predictability and Problem Solving»)."
+      ],
+      cuidado: [
+        "Es muy estructurada y con tiempo limitado, pero no está manualizada (Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»).",
+        "Ante autolesiones o ideación suicida, ver el plan de seguridad en <em>Autolesión y riesgo suicida</em>."
       ]
     }
   ]
@@ -8675,6 +8988,114 @@ const VARIABLES = [
       cuidado: [
         "Decir a los padres que ignoren los tics, pero que presten atención a cómo el niño hace sus ejercicios (Woods et al., 2008, cap. 1).",
         "Si hay déficit de atención grave, consumo, oposicionismo, un trastorno del ánimo o de ansiedad grave o un ambiente familiar inestable, pueden requerir atención antes (Woods et al., 2008, cap. 1)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Neurodesarrollo",
+  t: "Psicosis de inicio temprano",
+  sub: "El adolescente —muy rara vez un niño menor de 12 años— presenta alucinaciones, ideas delirantes, lenguaje o conducta desorganizados, o síntomas negativos como la falta de motivación, el aplanamiento afectivo o hablar muy poco, con un deterioro en su vida social y escolar. Los contenidos suelen reflejar intereses de su edad, como redes sociales o compañeros. La esquizofrenia de inicio temprano es un trastorno grave del neurodesarrollo, a menudo crónico, que se trata combinando medicación antipsicótica e intervenciones psicosociales. La mayoría de los jóvenes que cuentan experiencias parecidas a las psicóticas no tienen una psicosis: el diagnóstico cuidadoso es la primera intervención.",
+  elegir: [
+    "<strong>Lo primero es un diagnóstico cuidadoso, con psiquiatría:</strong> la mayoría de los jóvenes con experiencias parecidas a las psicóticas tienen otro problema y otras necesidades; en menores de 12 años o en casos complicados conviene una segunda opinión. La medicación la decide el psiquiatra (Sharma y McClellan, 2019).",
+    "<strong>Una vez establecido el diagnóstico</strong>, el plan psicosocial acompaña la medicación: psicoeducación de la familia, terapia cognitivo-conductual adaptada para los pensamientos que molestan, habilidades sociales y de vida diaria, prevención de recaídas y apoyo escolar. La evidencia en jóvenes es escasa y buena parte viene de adultos; los planes de <em>Síntomas psicóticos</em> de la guía de adultos se pueden adaptar a adolescentes (Sharma y McClellan, 2019).",
+    "Si los síntomas psicóticos aparecen dentro de una depresión grave o de un episodio maníaco, ver <em>Depresión</em> o <em>Trastorno bipolar</em>; si hay ideación o conducta suicida, <em>Autolesión y riesgo suicida</em>; si hay consumo, <em>Consumo de alcohol y otras sustancias</em>."
+  ],
+  planes: [
+    {
+      id: "psi-psicosocial",
+      mod: "psicosis-temprana",
+      inst: [],
+      enf: "tcc",
+      nivel: "preliminar",
+      t: "Intervención psicosocial que acompaña el tratamiento médico",
+      fuente: "Sharma y McClellan, 2019",
+      cuando: "Un adolescente con un diagnóstico de esquizofrenia o de otro trastorno psicótico, que recibe tratamiento antipsicótico y está saliendo de un episodio o en fase de estabilización, con su familia dispuesta a participar.",
+      respaldo: "Hay muy pocos estudios psicosociales con jóvenes. Un programa psicoeducativo —seminarios para padres, sesiones de solución de problemas, terapia en el medio hospitalario e integración en la comunidad— se asoció con menos rehospitalizaciones en una muestra pequeña de adolescentes, y la remediación cognitiva mejoró la planificación y la flexibilidad cognitiva frente a la terapia habitual. En adultos, la terapia cognitivo-conductual para la psicosis alivia los síntomas positivos con efectos pequeños, y los programas que combinan seguimiento comunitario intensivo, apoyo a la familia, habilidades sociales y terapia cognitivo-conductual mejoran el funcionamiento independiente a largo plazo (Sharma y McClellan, 2019, «Psychosocial Treatments»).",
+      secuencia: "<strong>Secuencia:</strong> sin un número fijo de sesiones. Acompaña el tratamiento médico de largo plazo, con seguimiento regular de los síntomas, los efectos secundarios y la adherencia; las intervenciones se ajustan a las dificultades de cada joven (Sharma y McClellan, 2019, «Treatment Strategies» y «Psychotherapeutic Interventions»).",
+      esc: ["salud-mental", "hospital"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Psicoeducación de la familia",
+          tecs: ["psicoeducacion"],
+          obj: "Que la familia entienda la enfermedad, sus tratamientos y su curso, y tenga estrategias para manejar los síntomas.",
+          pasos: [
+            "Explicar a la familia qué es la enfermedad, las opciones de tratamiento y el pronóstico.",
+            "Explicar los tipos de síntomas —positivos, negativos y de desorganización— y que los negativos pueden confundirse con depresión o con efectos de la medicación.",
+            "Acordar con la familia estrategias para afrontar los síntomas en la casa.",
+            "Explicar que la mayoría de los jóvenes necesitan tratamiento por largo tiempo y que suspender la medicación aumenta mucho el riesgo de recaída."
+          ],
+          casa: "Anotar las preguntas que surjan para la siguiente sesión.",
+          avance: "La familia describe la enfermedad y sabe qué hacer ante los síntomas.",
+          fuente: "Sharma y McClellan, 2019, «Symptom Presentation», «Treatment Strategies» y «Psychotherapeutic Interventions»"
+        },
+        {
+          t: "Pensamientos que molestan: el triángulo y el afrontamiento",
+          tecs: ["triangulo-cognitivo", "reestructuracion-cognitiva"],
+          obj: "Que el adolescente aprenda a reconocer y manejar los pensamientos que le siguen molestando después del episodio.",
+          pasos: [
+            "Cuando la situación se calmó, presentar el triángulo de pensamientos, emociones y conductas con una situación común de su edad, como un mensaje que no recibe respuesta.",
+            "Buscar otras explicaciones posibles para esa situación y ver cómo cambian las emociones.",
+            "Hacer después el triángulo con uno de los pensamientos que le molestan: qué pensó, qué sintió y qué hizo.",
+            "Practicar formas de afrontarlo: decirse que no es real, revisar si hay pruebas o buscar otra forma de ver la situación, y pedir ayuda cuando aparezca."
+          ],
+          casa: "Hacer un triángulo cuando aparezca un pensamiento que moleste.",
+          avance: "El adolescente reconoce cuándo un pensamiento lo engaña y lo maneja sin meterse en problemas.",
+          fuente: "Sharma y McClellan, 2019, «Psychotherapeutic Interventions»",
+          fichas: ["triangulo-cognitivo"]
+        },
+        {
+          t: "Habilidades sociales, de vida diaria y solución de problemas",
+          tecs: ["entrenamiento-hhss", "pasos-solucion-problemas"],
+          obj: "Recuperar el funcionamiento social y el cuidado de sí.",
+          pasos: [
+            "Entrenar habilidades sociales.",
+            "Entrenar habilidades básicas de la vida diaria y de cuidado personal.",
+            "Enseñar a resolver problemas cotidianos paso a paso."
+          ],
+          casa: "Practicar la habilidad de la semana en una situación real.",
+          avance: "Mejoran sus interacciones y su autonomía en la vida diaria.",
+          fuente: "Sharma y McClellan, 2019, «Psychotherapeutic Interventions»"
+        },
+        {
+          t: "Adherencia, efectos secundarios y prevención de recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Sostener el tratamiento y detectar a tiempo las señales de una nueva crisis.",
+          pasos: [
+            "Revisar con el adolescente y su familia cómo va la medicación y si aparecen efectos secundarios —aumento de peso, sedación, rigidez o inquietud— para avisar al psiquiatra.",
+            "Promover hábitos saludables: no fumar, comer de forma saludable y hacer ejercicio con regularidad.",
+            "Hacer con la familia un plan de prevención de recaídas con las señales tempranas y qué hacer ante ellas."
+          ],
+          casa: "Tener a mano el plan de prevención de recaídas.",
+          avance: "El adolescente sigue el tratamiento y la familia reconoce las señales de alarma.",
+          fuente: "Sharma y McClellan, 2019, «Treatment Strategies», «Side-Effect Monitoring» y «Psychotherapeutic Interventions»"
+        },
+        {
+          t: "Apoyo escolar y atención coordinada",
+          tecs: ["seguimiento-derivacion"],
+          obj: "Que el adolescente reciba los apoyos educativos y comunitarios que necesita.",
+          pasos: [
+            "Evaluar con el colegio las dificultades cognitivas y de funcionamiento y gestionar programas educativos especiales o formación para el trabajo cuando hagan falta.",
+            "Coordinar con el equipo —psiquiatría, atención primaria, colegio, apoyo a la familia— para que el adolescente reciba una atención integrada."
+          ],
+          casa: "No aplica.",
+          avance: "El adolescente tiene apoyos escolares o laborales acordes con sus dificultades.",
+          fuente: "Sharma y McClellan, 2019, «Psychotherapeutic Interventions» y «Psychosocial Treatments»"
+        }
+      ],
+      medir: [
+        "Síntomas, efectos secundarios y adherencia, en el seguimiento con psiquiatría.",
+        "Funcionamiento social y escolar al inicio y cada pocos meses.",
+        "Rehospitalizaciones."
+      ],
+      adapt: [
+        "<strong>Primeras señales de psicosis:</strong> los programas de atención especializada coordinada, con búsqueda activa de casos, apoyo intensivo, educación familiar e intervenciones terapéuticas, mejoraron los síntomas y el funcionamiento y redujeron las hospitalizaciones en jóvenes con señales tempranas (Sharma y McClellan, 2019, «Psychosocial Treatments» y «Psychotherapeutic Interventions»).",
+        "<strong>Dificultades cognitivas:</strong> la remediación cognitiva, desarrollada para adultos, se puede adaptar y mejoró la planificación y la flexibilidad en adolescentes (Sharma y McClellan, 2019, «Psychosocial Treatments»)."
+      ],
+      cuidado: [
+        "La medicación antipsicótica la indica y controla el psiquiatra, con vigilancia periódica del peso, la glucosa, los lípidos y la presión (Sharma y McClellan, 2019, «Side-Effect Monitoring»).",
+        "La esquizofrenia tiene un riesgo aumentado de suicidio: se evalúa en cada etapa (Sharma y McClellan, 2019, «Comorbid Conditions»)."
       ]
     }
   ]
@@ -13504,6 +13925,16 @@ const GLOSARIO = [
 { k: "soportar-dolor", t: "Soportar el dolor", tipo: "Técnica", enf: ["pp"],
   d: "Aceptar el dolor de una injusticia en lugar de pasárselo a otros, por ejemplo a compañeros más débiles. En la guía contra el acoso, es lo que permite cortar la cadena de quien fue herido y ahora hiere.",
   fuente: "Enright y Fitzgibbons, 2015, cap. 12" },
+/* ---------- Rasgos de personalidad ---------- */
+{ k: "mentalizar", t: "Mentalizar", alias: ["mentalización"], tipo: "Concepto", enf: ["fam"],
+  d: "Entender la propia conducta y la de los demás en términos de estados mentales: pensamientos, emociones, deseos e intenciones. Se desarrolla en un apego seguro y es clave para regular las emociones; la terapia basada en la mentalización la practica en la relación con el terapeuta y en el grupo, distinguiendo lo que siente uno de lo que sienten los otros.",
+  fuente: "Perepletchikova y Nathanson, 2019, «Mentalization-Based Therapy» y «Discussion»" },
+{ k: "carta-reformulacion", t: "Cartas de reformulación y de despedida", tipo: "Técnica", enf: ["tcc"],
+  d: "En la terapia cognitivo-analítica, el terapeuta escribe al final de la primera etapa una carta que resume las conductas problema y su historia, para acordar en qué trabajar; al terminar, terapeuta y paciente se escriben cartas de despedida con los logros y lo que queda pendiente.",
+  fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»" },
+{ k: "diagrama-secuencial", t: "Diagrama secuencial", tipo: "Técnica", enf: ["tcc"],
+  d: "Diagrama que construyen juntos terapeuta y paciente en la terapia cognitivo-analítica para mostrar de forma visual los patrones de conducta problemáticos, de modo que se reconozcan cuando aparecen.",
+  fuente: "Perepletchikova y Nathanson, 2019, «Cognitive Analytic Therapy»" },
 /* ---------- Problemas de conducta graves en la adolescencia ---------- */
 { k: "reencuadre-relacional", t: "Reencuadre relacional", tipo: "Técnica", enf: ["fam"],
   d: "Serie de intercambios con la familia que ofrecen otra lectura de la conducta del otro, para bajar la culpa y la negatividad y repartir la responsabilidad del problema entre todos. No es una frase ingeniosa del terapeuta: se construye con la familia y se retoma a lo largo de toda la terapia.",
