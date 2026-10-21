@@ -2033,6 +2033,17 @@ Object.assign(INSTRUMENTOS, {
   "MoCA":     { n: "Evaluación Cognitiva de Montreal", rol: "Tamizaje", d: "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas. Exige certificación y registro del aplicador.", med: "30 puntos · 10-15 min", guia: true }
 });
 
+/* Trastorno límite de la personalidad como variable propia (2026-10-21):
+   terapia dialéctico-conductual estándar según Neacsiu y Linehan (2014, en
+   Barlow), con la evidencia del metaanálisis de Stoffers-Winterling et al.
+   (2022) y la revisión de Fonseca-Pedrero et al. (2021). La biblioteca no
+   tiene manuales de la terapia basada en la mentalización ni de la
+   psicoterapia centrada en la transferencia: se nombran sin plan. */
+REFERENCIAS.push(
+  { k: "Neacsiu y Linehan, 2014", ref: "Neacsiu, A. D. y Linehan, M. M. (2014). Borderline personality disorder. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed., pp. 394–461). Guilford Press." },
+  { k: "Fonseca-Pedrero et al., 2021", url: "https://doi.org/10.7334/psicothema2020.426", ref: "Fonseca-Pedrero, E., Pérez-Álvarez, M., Al-Halabí, S., Inchausti, F., Muñiz, J., López-Navarro, E., … Marrero, R. J. (2021). Tratamientos psicológicos empíricamente apoyados para adultos: una revisión selectiva. <em>Psicothema, 33</em>(2), 188–197." }
+);
+
 /* Planes nuevos con los manuales de los autores (octubre de 2026): modelos,
    instrumentos y referencias que no tenían archivo propio. */
 Object.assign(MODELOS, {
@@ -7712,7 +7723,7 @@ const VARIABLES = [
     "<strong>Si la desregulación es persistente y desemboca en conductas impulsivas</strong> —autolesiones, consumo, atracones, estallidos— o en relaciones intensas e inestables, el entrenamiento en habilidades dialéctico-conductuales es el plan con más respaldo: la terapia se diseñó para ese perfil y su grupo de habilidades se ha estudiado también como componente único.",
     "<strong>Si la dificultad está en reconocer, nombrar y tolerar las emociones</strong>, sin conductas de riesgo, como ocurre en los trastornos de ansiedad, el entrenamiento cognitivo-conductual en regulación emocional es más breve y se centra en conocerlas y dejar de evitarlas.",
     "<strong>Si las emociones intensas se acompañan de varios problemas emocionales a la vez</strong> —ansiedad, ánimo bajo, estallidos— y de conductas impulsivas sin riesgo grave, el Protocolo Unificado ofrece un tratamiento individual y más breve centrado en cómo la persona responde a sus emociones.",
-    "Los tres combinan estrategias de aceptación y de cambio. En todos, lo que el entorno haga con las habilidades nuevas pesa en el resultado."
+    "Los tres combinan estrategias de aceptación y de cambio. En todos, lo que el entorno haga con las habilidades nuevas pesa en el resultado. Si la desregulación forma parte de un trastorno límite de la personalidad con conducta suicida repetida, ver el programa completo en <em>Trastorno límite de la personalidad</em>."
   ],
   planes: [
     {
@@ -15613,7 +15624,7 @@ const VARIABLES = [
   elegir: [
     "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica.",
     "<strong>Si lo central es que la persona no sabe qué quiere, siente o piensa sin mirar a los demás</strong>, se desmorona ante la crítica o se siente vacía, la psicoterapia analítica funcional para los problemas del yo trabaja en la sesión, paso a paso, que lo que dice de sí misma salga de ella. Su respaldo es conceptual.",
-    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. En el trastorno límite de la personalidad, la terapia dialéctico-conductual tiene evidencia de certeza moderada frente al tratamiento habitual en autolesiones y funcionamiento psicosocial (Stoffers-Winterling et al., 2022)."
+    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. Para el trastorno límite de la personalidad, ver <em>Trastorno límite de la personalidad</em>, con la terapia dialéctico-conductual estándar."
   ],
   planes: [
     {
@@ -15851,6 +15862,144 @@ const VARIABLES = [
         "Las personas con problemas graves del yo abandonan con frecuencia la terapia; las tareas poco estructuradas al comienzo pueden precipitarlo (Kohlenberg y Tsai, 2022, cap. 6; Valero y Ferro, 2015, cap. 10).",
         "El objetivo no es que la persona piense como el terapeuta: reforzar solo lo que coincide con él repetiría el problema.",
         "El respaldo es conceptual y proviene de casos clínicos."
+      ]
+    }
+  ]
+},
+{
+  cat: "Afrontamiento y relaciones",
+  t: "Trastorno límite de la personalidad",
+  sub: "Un patrón persistente de inestabilidad en las emociones, las relaciones y la imagen de sí mismo, con impulsividad: emociones que se disparan con poco y tardan en bajar, relaciones intensas que pasan de la idealización al rechazo, miedo al abandono, sensación de vacío, rabia difícil de controlar, autolesiones o conductas suicidas repetidas y, con el estrés, ideas paranoides o disociación. Es el trastorno de la personalidad más estudiado. La psicoterapia es el tratamiento principal; la medicación solo complementa. Lo que se interviene, por orden, es lo que pone en riesgo la vida, lo que interfiere con la terapia y lo que impide una vida que valga la pena vivir.",
+  elegir: [
+    "<strong>Al menos cuatro tratamientos tienen eficacia demostrada para el trastorno límite:</strong> la terapia dialéctico-conductual, que es la de mayor respaldo y se considera de primera línea, la terapia basada en la mentalización, la terapia de esquemas y la psicoterapia centrada en la transferencia (Fonseca-Pedrero et al., 2021; Neacsiu y Linehan, 2014). En el metaanálisis más reciente, solo la dialéctico-conductual y la basada en la mentalización mostraron efectos frente a controles inespecíficos, con certeza baja (Stoffers-Winterling et al., 2022).",
+    "<strong>Si hay conducta suicida o autolesiones repetidas y la persona puede comprometerse con un programa completo</strong>, el plan es la terapia dialéctico-conductual estándar. Si lo urgente es la crisis suicida, empezar por <em>Riesgo suicida y autolesión</em>. <strong>Si solo es posible un grupo de habilidades</strong> que complemente otra terapia individual, el entrenamiento en habilidades de <em>Desregulación emocional</em> tuvo evidencia de certeza moderada sobre la gravedad del trastorno y el funcionamiento.",
+    "<strong>Si predominan patrones de relación y de visión de sí mismo arraigados</strong> sin conducta suicida grave, ver la terapia de esquemas en <em>Patrones interpersonales y de personalidad</em>. La terapia basada en la mentalización, que redujo autolesiones y conductas suicidas, no tiene plan en esta guía."
+  ],
+  planes: [
+    {
+      id: "tlp-dbt",
+      mod: "biosocial",
+      inst: ["DIARIO-DBT", "C-SSRS"],
+      enf: "dbt",
+      nivel: "ensayos",
+      t: "Terapia dialéctico-conductual estándar",
+      fuente: "Neacsiu y Linehan, 2014 · Stoffers-Winterling et al., 2022",
+      cuando: "Una persona con trastorno límite de la personalidad, con conductas suicidas o autolesiones repetidas, desregulación emocional grave y varios problemas a la vez —consumo, alimentación, crisis frecuentes, hospitalizaciones—, que puede comprometerse a un año de tratamiento con terapia individual y grupo de habilidades, en un servicio con un equipo que pueda sostenerlo.",
+      respaldo: "Es el tratamiento con más respaldo y se considera de primera línea. En personas con trastorno límite y alto riesgo suicida, un año de terapia dialéctico-conductual redujo más los estallidos de rabia, la conducta suicida y las hospitalizaciones que el tratamiento habitual, que una terapia centrada en el cliente y que un tratamiento comunitario por expertos no conductuales; con este último, la mitad de probabilidad de conducta suicida. La superioridad se mantuvo al igualar las horas de terapia y la experiencia de los terapeutas (Neacsiu y Linehan, 2014, «Efficacy»). En el metaanálisis de 31 ensayos con 1870 participantes, redujo las autolesiones y mejoró el funcionamiento psicosocial frente a controles inespecíficos, con certeza baja (Stoffers-Winterling et al., 2022).",
+      secuencia: "<strong>Secuencia:</strong> pretratamiento de una a cuatro sesiones para orientar y lograr el compromiso; luego, durante al menos un año, terapia individual semanal de 50 a 90 minutos, grupo de habilidades semanal de dos a dos horas y media —cuatro módulos que rotan cada seis meses—, coaching telefónico entre sesiones y equipo de consulta semanal para los terapeutas. La etapa 1 busca el control de la conducta; las etapas 2 a 4, el malestar emocional, los problemas de la vida y la sensación de plenitud (Neacsiu y Linehan, 2014, «Stages of Therapy and Treatment Goals» y «Structuring Treatment»).",
+      esc: ["salud-mental", "primer-nivel"],
+      actividades: [
+        {
+          t: "Pretratamiento: orientación y compromiso",
+          tecs: ["estrategias-compromiso", "vida-que-valga"],
+          obj: "Decidir juntos trabajar y acordar qué esperar de la terapia.",
+          pasos: [
+            "Usar las primeras sesiones para el diagnóstico, la historia y el análisis de las conductas más importantes, y para decidir con la persona si van a trabajar juntos.",
+            "Presentar la terapia como un programa para construir una vida que valga la pena vivir, no como un programa de prevención del suicidio, con terapeuta y paciente como equipo.",
+            "Explicar el modelo biosocial y la jerarquía de metas, y acordar lo que pueden esperar el uno del otro, el ritmo del cambio y los mitos sobre la terapia.",
+            "Obtener el compromiso de trabajar por el cambio y de permanecer al menos un año en tratamiento."
+          ],
+          casa: "Escribir las razones para comprometerse con el tratamiento.",
+          avance: "La persona se compromete con las metas y el formato de la terapia.",
+          fuente: "Neacsiu y Linehan, 2014, «Pretreatment: Orienting and Commitment» y «Case Study»"
+        },
+        {
+          t: "Jerarquía de metas y tarjeta diaria",
+          tecs: ["jerarquia-metas-dbt", "tarjeta-diaria"],
+          obj: "Ordenar cada sesión según lo que más pone en riesgo a la persona y a la terapia.",
+          pasos: [
+            "Revisar al comienzo de cada sesión la tarjeta diaria: conducta suicida y autolesiones, impulsos de 0 a 5, malestar, consumo y uso de habilidades.",
+            "Atender, por orden de prioridad, las conductas que ponen en riesgo la vida, las que interfieren con la terapia —de la persona y del terapeuta— y las que afectan la calidad de vida, y aumentar las habilidades; todas las que aparecen se abordan en la sesión.",
+            "Evaluar el riesgo suicida cuando los impulsos son altos o suben tres puntos o más en la semana.",
+            "Tratar no llenar o no traer la tarjeta como una conducta que interfiere con la terapia."
+          ],
+          casa: "Llenar la tarjeta diaria.",
+          avance: "La tarjeta guía cada sesión y bajan las conductas de mayor prioridad.",
+          fuente: "Neacsiu y Linehan, 2014, «Stage 1: Attaining Basic Capacities» e «Individual Therapy»"
+        },
+        {
+          t: "Análisis en cadena y análisis de soluciones",
+          tecs: ["analisis-cadena", "solucion-problemas"],
+          obj: "Entender qué dispara y mantiene cada conducta problema y encontrar alternativas.",
+          pasos: [
+            "Definir la conducta problema en términos concretos, a partir de la tarjeta y de lo que pasó en la semana.",
+            "Reconstruir paso a paso la cadena desde el evento del ambiente que la inició: qué pensó, sintió e hizo la persona y qué pasaba alrededor en cada eslabón, sin dar nada por supuesto.",
+            "Formular hipótesis sobre lo que la genera y la mantiene: refuerzos, falta de habilidades, evitación o creencias erróneas.",
+            "Generar soluciones alternativas, evaluarlas y elegir la que más beneficie a largo plazo; si hace falta, cambiar contingencias que refuerzan la conducta, como hospitalizaciones que siguen a las crisis."
+          ],
+          casa: "Hacer el análisis en cadena de una conducta de la semana.",
+          avance: "La persona identifica sus cadenas y usa una alternativa en un eslabón.",
+          fuente: "Neacsiu y Linehan, 2014, «Behavioral Analysis», «Solution Analysis» y «Case Study»"
+        },
+        {
+          t: "Validación y equilibrio entre aceptación y cambio",
+          tecs: ["validacion", "invalidacion"],
+          obj: "Equilibrar en cada sesión la aceptación de la persona con el trabajo por el cambio.",
+          pasos: [
+            "Validar en sus distintos niveles: escuchar y observar con atención, reflejar con precisión, decir lo que no se ha dicho, validar en términos de la historia o de la biología, validar en términos del presente y responder con genuinidad radical.",
+            "Equilibrar la validación con la solución de problemas según la urgencia de lo que hay que cambiar y la necesidad de comprensión de la persona.",
+            "Usar las estrategias dialécticas —metáforas, abogado del diablo, hacer limonada con limones— y alternar la comunicación recíproca con la irreverente."
+          ],
+          casa: "No aplica.",
+          avance: "La persona tolera trabajar en el cambio sin sentirse atacada.",
+          fuente: "Neacsiu y Linehan, 2014, «Core Strategies», «Dialectical Strategies» y «Stylistic Strategies»"
+        },
+        {
+          t: "Grupo de habilidades",
+          tecs: ["mente-sabia", "aceptacion-radical", "accion-opuesta", "dear-man"],
+          obj: "Adquirir y fortalecer habilidades para regular las emociones, tolerar el malestar y relacionarse.",
+          pasos: [
+            "Asistir a un grupo semanal, con un líder que enseña y un colíder que maneja el proceso del grupo.",
+            "Rotar los módulos de atención plena, tolerancia al malestar, regulación emocional y efectividad interpersonal, con dos semanas de atención plena al comienzo de cada módulo.",
+            "Dedicar la mitad de cada sesión a revisar la práctica de la semana y la otra mitad a enseñar y practicar habilidades nuevas.",
+            "Mantener al mismo tiempo la terapia individual; las crisis se remiten al terapeuta individual."
+          ],
+          casa: "Practicar las habilidades de la semana y anotarlas en la tarjeta.",
+          avance: "La persona usa habilidades en lugar de conductas problema.",
+          fuente: "Neacsiu y Linehan, 2014, «Skills Training» y «Behavioral Skills»"
+        },
+        {
+          t: "Coaching telefónico y equipo de consulta",
+          tecs: ["coaching-telefonico", "equipo-consulta"],
+          obj: "Generalizar las habilidades a la vida diaria y sostener al terapeuta.",
+          pasos: [
+            "Acordar desde el pretratamiento el uso del coaching entre sesiones: para crisis, para aplicar habilidades y para reparar la relación, y animar a llamar también en crisis no suicidas.",
+            "En la llamada, preguntar cuál es el problema y qué habilidades ha usado, y ayudar a elegir otras; no convertirla en una sesión.",
+            "Reunirse cada semana con el equipo de consulta para mantener la adherencia al modelo, apoyar al terapeuta y equilibrar su posición frente a la persona."
+          ],
+          casa: "Pedir coaching en un momento difícil antes de actuar.",
+          avance: "La persona usa habilidades en situaciones reales con apoyo oportuno.",
+          fuente: "Neacsiu y Linehan, 2014, «Telephone Consultation» y «Consultation Team»"
+        },
+        {
+          t: "Etapas siguientes: malestar emocional y vida propia",
+          tecs: ["exposicion-prolongada", "autovalidacion"],
+          obj: "Cuando la conducta está bajo control, trabajar el malestar emocional, los problemas de la vida y el respeto por sí mismo.",
+          pasos: [
+            "En la etapa 2, trabajar la «desesperación silenciosa»: recordar y aceptar los hechos traumáticos, reducir la autoculpa y el estigma; si hay estrés postraumático, se ha integrado un protocolo de exposición prolongada.",
+            "Si al trabajar el trauma vuelven las conductas de la etapa 1, volver a ellas antes de seguir.",
+            "En la etapa 3, trabajar la felicidad y la infelicidad ordinarias y el respeto por sí mismo: evaluar la propia conducta sin defenderse y validarse sin depender de la opinión de los demás.",
+            "En la etapa 4, si la persona lo busca, trabajar la sensación de vacío y la capacidad de plenitud."
+          ],
+          casa: "Practicar la autovalidación en una situación con otra persona.",
+          avance: "La persona vive sus emociones sin descontrol y se valida a sí misma.",
+          fuente: "Neacsiu y Linehan, 2014, «Stage 2» a «Stage 4», «Quality-of-Life–Interfering Behaviors» y «Case Study»"
+        }
+      ],
+      medir: [
+        "<strong>Diario dialéctico-conductual</strong> en cada sesión.",
+        "<strong>C-SSRS</strong> cuando suben los impulsos o hay conducta suicida.",
+        "Hospitalizaciones, visitas a urgencias y funcionamiento psicosocial."
+      ],
+      adapt: [
+        "<strong>Solo grupo de habilidades:</strong> trece semanas de grupo redujeron las emociones problemáticas más que una terapia de grupo de orientación psicodinámica, y en el metaanálisis el grupo de habilidades como complemento tuvo efectos con certeza moderada sobre la gravedad del trastorno y el funcionamiento (Neacsiu y Linehan, 2014, «Efficacy»; Stoffers-Winterling et al., 2022).",
+        "<strong>Internación:</strong> una adaptación de 12 semanas logró que más mujeres dejaran las autolesiones que el tratamiento habitual, 62 % frente a 31 % (Neacsiu y Linehan, 2014, «Efficacy»).",
+        "<strong>Consumo de drogas:</strong> también fue eficaz con trastorno límite y dependencia de drogas (Neacsiu y Linehan, 2014, «Efficacy»)."
+      ],
+      cuidado: [
+        "Mantener viva a la persona es siempre la primera prioridad; las llamadas se manejan de forma parecida en todas las crisis para no reforzar la conducta suicida con más contacto, salvo para protegerla cuando amenaza con suicidarse (Neacsiu y Linehan, 2014, «Telephone Consultation»).",
+        "La mayoría de los estudios se hicieron con mujeres; los hallazgos se aplican con cautela a los hombres, en quienes el trastorno puede expresarse de forma más explosiva (Stoffers-Winterling et al., 2022).",
+        "Tratar el trastorno límite es muy exigente para el terapeuta: el equipo de consulta es parte del tratamiento, no un añadido (Neacsiu y Linehan, 2014, «Consultation Team»)."
       ]
     }
   ]
@@ -20866,7 +21015,17 @@ const GLOSARIO = [
   fuente: "Meyers y Wolfe, 2004, cap. 10" },
 { k: "ventanas-oportunidad", t: "Ventanas de oportunidad", alias: ["ventana de oportunidad"], tipo: "Técnica", enf: ["tcc"],
   d: "Momentos en que la motivación de quien consume para cambiar sube: cuando se siente mal consigo misma por algo que hizo bajo el efecto o cuando la relación va bien y quiere complacer al familiar. El familiar los identifica de antemano, prepara qué decir y tiene una cita de tratamiento lista para usarla de inmediato, porque el interés baja rápido.",
-  fuente: "Meyers y Wolfe, 2004, cap. 11" }
+  fuente: "Meyers y Wolfe, 2004, cap. 11" },
+/* ---------- Trastorno límite de la personalidad ---------- */
+{ k: "coaching-telefonico", t: "Coaching telefónico", alias: ["coaching entre sesiones"], tipo: "Formato", enf: ["dbt"],
+  d: "Contacto breve entre sesiones con el terapeuta individual para tres fines, en este orden: intervenir en una crisis, ayudar a usar las habilidades en la situación real y reparar la relación terapéutica. No es una sesión: el terapeuta pregunta cuál es el problema y qué habilidades se usaron, y ayuda a elegir otras. Se anima a llamar también en crisis no suicidas para no ligar la conducta suicida con más contacto.",
+  fuente: "Neacsiu y Linehan, 2014, «Telephone Consultation»" },
+{ k: "equipo-consulta", t: "Equipo de consulta", tipo: "Formato", enf: ["dbt"],
+  d: "Reunión semanal de los terapeutas que aplican la terapia dialéctico-conductual, considerada parte del tratamiento: es una terapia entre pares para los terapeutas, que los mantiene dentro del modelo, los apoya frente al desgaste y equilibra su posición frente a cada paciente.",
+  fuente: "Neacsiu y Linehan, 2014, «Consultation Team»" },
+{ k: "autovalidacion", t: "Autovalidación", tipo: "Técnica", enf: ["dbt"],
+  d: "Capacidad de valorar, confiar y validar las propias respuestas y de evaluar la propia conducta sin ponerse a la defensiva, sin depender de la opinión de los demás. Es la meta de la etapa 3 de la terapia dialéctico-conductual; el terapeuta se retira poco a poco y refuerza los intentos de la persona de validarse, cuidarse y resolver problemas por sí misma.",
+  fuente: "Neacsiu y Linehan, 2014, «Stage 3: Resolving Problems in Living and Increasing Respect for Self»" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
