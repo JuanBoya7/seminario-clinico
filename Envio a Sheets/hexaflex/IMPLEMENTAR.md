@@ -11,3 +11,13 @@ Si el proyecto pertenece a otra cuenta, conserven el dominio que Google entregue
 La hoja registra una fila por observación: proceso, seis puntajes (5 / 2,5 / 0), promedio sobre 5 y comentario. Un reintento con el mismo identificador conserva una sola fila. El recurso confirma el registro antes de mostrar el envío como completado. La lectura pública solo informa si un identificador de envío quedó registrado.
 
 Para corregir el receptor después: **Implementar → Administrar implementaciones → Editar → Nueva versión**, conservando la URL.
+
+## Actualización a la versión 2 (valoración dentro de la práctica)
+
+La valoración volvió como la vista «Observar y valorar» de `hexaflex-juegos-roles.html`, con la estructura de la hoja del observador de PAP: cada estudiante marca Sí / Parcial / No en seis criterios, las casillas de lo que fue en contra del proceso y una apreciación general. Envía por separado su grupo (1 a 6, para reunir las valoraciones por grupo), el grupo en escena y el proceso que este eligió.
+
+1. Sustituyan el contenido de `Código.gs` por el de `Codigo.gs` de esta carpeta y guarden.
+2. **Implementar → Administrar implementaciones → Editar → Versión: nueva → Implementar**. La URL no cambia.
+3. No hace falta volver a ejecutar `prepararHoja`: el primer envío crea la pestaña `901 Valoración ACT` (y las de 902 y 903) con sus encabezados. Las pestañas `901 ACT`, etc., conservan las valoraciones anteriores.
+
+Mientras no se actualice, el envío responde «Formato de valoración no reconocido»; guardar el PDF funciona igual.

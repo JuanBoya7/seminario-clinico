@@ -175,12 +175,99 @@ details > summary{cursor:pointer; font-size:14px; font-weight:600; color:var(--a
   .rep-tag{display:block; margin:2px 0 0;}
 }
 
+/* ============================================================
+   VISTAS — participar en el rol / observar y valorar
+   ============================================================ */
+.vistas{display:flex; gap:4px; border-bottom:1px solid var(--border); margin:0 0 24px;}
+.vistas button{font-size:14.5px; font-weight:600; color:var(--ink-soft); background:none; border:0;
+  border-bottom:3px solid transparent; padding:10px 14px 9px; margin-bottom:-1px; text-align:left;}
+.vistas button span{display:block; font-family:var(--font-mono); font-size:10.5px; font-weight:400;
+  letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:2px;}
+.vistas button:hover{color:var(--accent-dark);}
+.vistas button[aria-selected="true"]{color:var(--accent-dark); border-bottom-color:var(--accent);}
+
+/* ---- Observar y valorar ----
+   Como en las demás actividades con escritura: no se selecciona el texto de
+   la vista (los campos sí) y se bloquean copiar, cortar y pegar. */
+#vista-valorar{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+#vista-valorar input, #vista-valorar textarea, #vista-valorar select{-webkit-user-select:text; user-select:text;}
+.val-intro{color:var(--ink-soft); max-width:72ch; margin:18px 0;}
+.block{border:1px solid var(--border); border-radius:var(--radius); background:var(--bg);
+  box-shadow:var(--shadow-card); padding:20px 22px; margin:0 0 16px;}
+.block > h2{font-size:clamp(21px,2.4vw,25px); margin:0 0 4px;}
+.block-sub{color:var(--ink-soft); font-size:14px; margin:0 0 14px;}
+.val-context{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 20px;}
+.card-label{display:block; font-weight:600; font-size:14.5px; color:var(--ink); margin-bottom:6px;}
+.card-help{display:block; font-size:13.5px; color:var(--ink-soft); margin:0 0 8px;}
+#vista-valorar select, #vista-valorar textarea, #vista-valorar input[type="text"]{width:100%; font:inherit;
+  font-size:15px; color:var(--ink); background:#fff; border:1px solid var(--border); border-radius:8px; padding:9px 11px;}
+#vista-valorar textarea{min-height:110px; resize:vertical; line-height:1.5;}
+#vista-valorar select:focus, #vista-valorar textarea:focus, #vista-valorar input[type="text"]:focus{
+  outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
+#vista-valorar :disabled{background:var(--surface); color:var(--ink-soft);}
+.notice{background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius);
+  padding:16px 18px; color:var(--ink-soft); font-size:14px; margin:0 0 16px;}
+.scale-key{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--ink-soft); margin:0 0 6px;}
+.scale-key strong{font-family:var(--font-mono); color:var(--accent-dark);}
+.criterion{display:grid; grid-template-columns:28px minmax(0,1fr); gap:12px; border-top:1px solid var(--border); padding:18px 0 6px;}
+.block-index{font-family:var(--font-mono); font-size:12px; color:var(--accent); padding-top:3px;}
+.ratings{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin:6px 0 8px; max-width:420px;}
+.rating{position:relative; display:block; text-align:center; border:1px solid var(--border); border-radius:8px;
+  padding:11px 4px; font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); cursor:pointer;
+  transition:background .12s ease, color .12s ease, border-color .12s ease;}
+.rating input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer;}
+.rating small{font-family:var(--font-mono); font-size:11px; font-weight:400; margin-left:4px; opacity:0.8;}
+.rating:hover{background:var(--surface);}
+.rating:focus-within{outline:3px solid var(--moderate); outline-offset:2px;}
+.rating:active{transform:scale(0.97);}
+.rating.is-checked[data-marca="si"]{background:var(--mild); border-color:var(--mild); color:#fff;}
+.rating.is-checked[data-marca="parcial"]{background:var(--moderate); border-color:var(--moderate); color:#fff;}
+.rating.is-checked[data-marca="no"]{background:#9b3b32; border-color:#9b3b32; color:#fff;}
+.criterion details > summary{font-size:13px; font-weight:500; color:var(--ink-faint);}
+.descriptors{font-size:13px; color:var(--ink-soft); padding-top:8px;}
+.descriptors p{margin:0 0 6px;}
+.error-lista{display:flex; flex-direction:column; gap:7px;}
+.error-fila{display:flex; align-items:flex-start; gap:10px; border:1px solid var(--border); border-radius:8px;
+  padding:11px 12px; font-size:14px; cursor:pointer; background:var(--bg);}
+.error-fila input{margin:3px 0 0; accent-color:#9b3b32; flex:0 0 auto;}
+.error-fila.is-checked{background:#f6e6e3; border-color:#9b3b32;}
+.score-panel{display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--surface);}
+.score-caption{font-size:13px; color:var(--ink-soft); margin:4px 0 0;}
+.score{font-family:var(--font-display); font-size:30px; font-weight:600; color:var(--accent-dark); white-space:nowrap;}
+.save-actions{display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; margin:4px 0 8px;}
+.save-actions button{font-size:14px; font-weight:600; border-radius:8px; padding:11px 18px;
+  border:1px solid var(--accent); background:var(--bg); color:var(--accent);}
+.save-actions button.primary{background:var(--accent); color:#fff;}
+.save-actions button:hover:not(:disabled){background:var(--accent-soft);}
+.save-actions button.primary:hover:not(:disabled){background:var(--accent-dark);}
+.save-actions button:disabled{opacity:0.5; cursor:not-allowed;}
+.status{font-size:14px; color:var(--accent-dark); min-height:1.4em; margin:6px 0; text-align:right;}
+.status.warn{color:var(--moderate);}
+.invalid{border-color:var(--moderate) !important; box-shadow:0 0 0 3px var(--moderate-soft) !important;}
+.toast{position:fixed; bottom:40px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 20px; border-radius:99px; font-size:13px; opacity:0;
+  pointer-events:none; transition:all 0.25s ease; z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.25);}
+.toast.is-visible{opacity:1; transform:translateX(-50%) translateY(0);}
+@media (max-width:760px){
+  .val-context{grid-template-columns:1fr;}
+  .ratings{max-width:none;}
+  .block{padding:16px;}
+  .score-panel{flex-direction:column; align-items:flex-start;}
+  .vistas button{flex:1 1 0; padding:10px 8px 9px;}
+}
+@media (max-width:440px){
+  .save-actions button{flex:1 1 100%;}
+  .status{text-align:left;}
+}
+
 /* «Imprimir pauta» imprime solo la situación del grupo elegido y sus pasos. */
 @media print{
   @page{size:A4; margin:13mm;}
   body{font-size:10.5pt; line-height:1.4;}
   .wrap{padding:0; max-width:none;}
-  .groups, .tools, .skip, .grading-rubric, .seccion-titulo, .repertoire, .sources, .firma, .body > details:not(.frame-guide){display:none !important;}
+  .groups, .tools, .skip, .grading-rubric, .seccion-titulo, .repertoire, .sources, .firma, .body > details:not(.frame-guide),
+  .vistas, #vista-valorar, .toast{display:none !important;}
+  #vista-rol{display:block !important;}
   .card{border:0; box-shadow:none;}
   .hero{padding:8px 0; background:none; border:0;}
   .hero h2{font-size:19pt;}
@@ -497,6 +584,13 @@ svg{width:104px;height:104px;stroke:currentColor;stroke-width:3;fill:none;stroke
     <p class="roles"><strong>Roles:</strong> una persona interviene, otra representa a la consultante y las demás observan. Usen una historia ficticia y manejable; cualquiera puede pedir una pausa.</p>
   </header>
 
+  <div class="vistas" role="tablist" aria-label="Partes de la actividad">
+    <button type="button" role="tab" id="tab-rol" aria-controls="vista-rol" aria-selected="true" data-vista="rol"><span>Grupo en escena</span>Participar en el rol</button>
+    <button type="button" role="tab" id="tab-valorar" aria-controls="vista-valorar" aria-selected="false" tabindex="-1" data-vista="valorar"><span>Grupos que observan</span>Observar y valorar</button>
+  </div>
+
+  <div id="vista-rol" role="tabpanel" aria-labelledby="tab-rol">
+
   <!-- Rúbrica del docente: plegada y fuera de la impresión. -->
   <details class="grading-rubric" id="rubrica-docente-rol"><summary>Rúbrica docente · Participación en el rol</summary><div class="grading-body"><p class="grading-intro"><strong>El docente califica la participación del grupo.</strong> Considera el caso, el trabajo de quienes representan los roles y la elección y adaptación del recurso a la persona. La precisión del proceso y la escucha orientan la valoración.</p><details class="grading-aspect"><summary>Encuadre y colaboración <span class="grading-weight">20 %</span></summary><p class="grading-focus">Recibir, acordar un foco y permitir ajustes.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>Reciben con calidez, acuerdan el foco y el ejercicio, y responden a las dudas o peticiones de ajuste.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>Reciben y acuerdan el trabajo con claridad; queda una oportunidad menor de comprobar la disposición.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>Presentan el propósito y ofrecen un trato respetuoso, pero el foco o el acuerdo quedan poco desarrollados.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>El inicio es apresurado y avanzan con escasa escucha o comprobación del acuerdo.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>Omiten el encuadre o continúan pese a una petición de pausa o desacuerdo.</dd></div></dl></details><details class="grading-aspect"><summary>Caso y respuesta a la persona <span class="grading-weight">25 %</span></summary><p class="grading-focus">Una historia coherente y una intervención que recoge las respuestas.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>El caso muestra una dificultad y su contexto; los roles son coherentes y adaptan la intervención a lo que expresa la persona, incluso cuando responde de forma inesperada.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>El caso y los roles son coherentes; escuchan y adaptan la mayor parte de las intervenciones.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>La historia permite practicar, pero algunos datos o respuestas quedan desconectados de la intervención.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>La historia es poco clara o siguen el guion aunque las respuestas pidan otra aproximación.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>La historia no permite comprender el problema o la intervención ignora sistemáticamente a la persona.</dd></div></dl></details><details class="grading-aspect"><summary>Elección y aplicación del recurso <span class="grading-weight">35 %</span></summary><p class="grading-focus">Elegir un proceso y un recurso acordes con lo que muestra la persona y usarlos para ampliar sus opciones.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>Eligen un proceso y un recurso coherentes con lo que expresa la persona, explican la elección, comprueban la experiencia y ajustan o cambian el recurso cuando hace falta.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>La elección es coherente y aplican bien los elementos centrales; queda un ajuste menor por explorar o sustentar.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>El proceso es reconocible, pero la elección se sustenta poco o la comprobación de la experiencia y el regreso al caso quedan incompletos.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>El recurso aparece de forma mecánica, sin relación clara con lo que muestra la persona, o mezclan su propósito con controlar el malestar, imponer valores o exigir cumplimiento.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>La intervención contradice el proceso: exige eliminar experiencias internas, impone una dirección o mantiene una práctica pese al desacuerdo.</dd></div></dl></details><details class="grading-aspect"><summary>Cierre y articulación del grupo <span class="grading-weight">20 %</span></summary><p class="grading-focus">Recoger la experiencia y acordar cómo continuar.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>El grupo sostiene el recorrido; al cerrar, preguntan qué ocurrió y acuerdan una aplicación o revisión concreta con la persona.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>La participación está articulada y el cierre recoge la experiencia con un acuerdo relevante, aunque poco detallado.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>Completan el recorrido y resumen, pero comprueban poco la experiencia o dejan el acuerdo general.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>La escena queda fragmentada o termina con una recomendación que apenas recoge lo conversado.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>El grupo no articula el recorrido y omite el cierre o declara un resultado sin consultar a la persona.</dd></div></dl></details><p class="grading-foot">El docente asigna una nota a cada criterio y la pondera según los pesos indicados.</p><p class="grading-foot">Rúbrica elaborada para el aula. Descriptores, bandas y pesos de calificación son decisiones docentes. Fundamento de las habilidades: Harris (2009), <em>ACT made simple</em>, cap. 5 y caps. 7–12; Luoma, Hayes y Walser (2017), <em>Learning ACT</em>, 2.ª ed., introducción y apéndice A, práctica, retroalimentación y supervisión.</p></div></details>
 
@@ -515,6 +609,67 @@ svg{width:104px;height:104px;stroke:currentColor;stroke-width:3;fill:none;stroke
   </section>
 
   <details class="sources" id="references"><summary>Fuentes de la práctica</summary><div class="more"><p>Cada recurso del repertorio indica el apartado en el que se apoya. Se presentan mediante paráfrasis y adaptaciones breves para el aula; las frases de ejemplo no son citas de los libros. Los tiempos y la organización son orientaciones para el aula. Los procesos del hexaflex se conectan entre sí y pueden aparecer juntos durante una escena.</p><p><strong>Harris, R. (2009).</strong> <em>ACT made simple: An easy-to-read primer on acceptance and commitment therapy.</em> New Harbinger. Primera edición, capítulos 7–12. <a href="https://www.newharbinger.com/9781684033010/act-made-simple/">Página editorial de la obra (edición actual)</a>.</p><p><strong>Hayes, S. C., Strosahl, K. D., &amp; Wilson, K. G. (2012).</strong> <em>Acceptance and commitment therapy: The process and practice of mindful change</em> (2.ª ed.). Guilford Press. Capítulos 7–12. <a href="https://www.guilford.com/books/Acceptance-and-Commitment-Therapy/Hayes-Strosahl-Wilson/9781462528943/contents">Índice editorial</a>.</p></div></details>
+  </div>
+
+  <!-- Vista de quienes observan: una valoración por escena, con envío a la hoja
+       de valoraciones ACT (pestañas «<curso> Valoración ACT»). -->
+  <div id="vista-valorar" role="tabpanel" aria-labelledby="tab-valorar" hidden>
+    <!-- Rúbrica del docente: plegada y fuera de la impresión. -->
+    <details class="grading-rubric" id="rubrica-docente-observacion"><summary>Rúbrica docente · Calidad de la valoración</summary><div class="grading-body"><p class="grading-intro"><strong>El docente califica su criterio como espectadores.</strong> Considera los puntajes marcados, el comentario y la sustentación en clase. Una diferencia de puntuación puede estar bien fundamentada: lo relevante es la evidencia y el razonamiento que la sostienen.</p><details class="grading-aspect"><summary>Evidencia de la escena <span class="grading-weight">25 %</span></summary><p class="grading-focus">Reconocer frases o conductas que realmente ocurrieron.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>Seleccionan evidencia concreta y pertinente para sus juicios; distinguen lo observado de sus interpretaciones.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>Sustentan los juicios centrales en hechos reconocibles de la escena, con alguna precisión pendiente.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>Mencionan hechos de la escena, pero parte de la valoración descansa en impresiones generales.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>Ofrecen evidencia vaga o atribuyen intenciones y resultados que la escena no permite establecer.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>No aportan evidencia reconocible o basan la valoración en hechos que no ocurrieron.</dd></div></dl></details><details class="grading-aspect"><summary>Comprensión del proceso <span class="grading-weight">30 %</span></summary><p class="grading-focus">Interpretar la función de la intervención en el caso.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>Explican cómo la intervención favorece o dificulta el proceso elegido y la conectan con la situación del caso.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>Reconocen correctamente el proceso y su propósito; la conexión con el caso podría ser más precisa.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>Reconocen el procedimiento, pero explican parcialmente su función o el vínculo con el caso.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>Confunden el proceso con repetir el recurso, actuar con fluidez o conseguir que disminuya el malestar.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>Sostienen una lectura contraria al proceso, como exigir eliminar emociones, imponer valores o calificar obediencia como flexibilidad.</dd></div></dl></details><details class="grading-aspect"><summary>Coherencia del criterio calificador <span class="grading-weight">25 %</span></summary><p class="grading-focus">Aplicar los descriptores y sostener los puntajes elegidos.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>Diferencian sí, parcial y no según las conductas; los puntajes y su explicación son consistentes, incluso ante una valoración distinta.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>Aplican los descriptores de forma consistente en los criterios centrales; queda una decisión por precisar.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>Utilizan los descriptores, pero algunos puntajes no quedan suficientemente sustentados o contradicen su explicación.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>Marcan de manera global por simpatía, impresión de éxito o calidad de actuación, con escasa diferenciación de criterios.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>Asignan puntajes sin considerar los descriptores o mantienen decisiones contradictorias sin poder sustentarlas.</dd></div></dl></details><details class="grading-aspect"><summary>Retroalimentación útil y respetuosa <span class="grading-weight">20 %</span></summary><p class="grading-focus">Comunicar una fortaleza y un ajuste aplicables.</p><dl class="grading-levels"><div class="grading-level"><dt>Superior<span>4,5–5,0</span></dt><dd>La devolución vincula una fortaleza y un ajuste con momentos de la escena, y propone una alternativa pertinente con lenguaje respetuoso.</dd></div><div class="grading-level"><dt>Alto<span>4,0–4,4</span></dt><dd>La devolución señala una fortaleza y un ajuste pertinentes; la alternativa podría ser más concreta.</dd></div><div class="grading-level"><dt>Medio<span>3,0–3,9</span></dt><dd>La devolución es respetuosa, pero la fortaleza, el ajuste o su aplicación quedan generales.</dd></div><div class="grading-level"><dt>Bajo<span>2,0–2,9</span></dt><dd>La devolución se limita a elogios o críticas vagas y ofrece poca orientación para mejorar.</dd></div><div class="grading-level"><dt>Deficiente<span>0,1–1,9</span></dt><dd>La devolución descalifica a las personas o no permite reconocer una fortaleza ni un ajuste útil.</dd></div></dl></details><p class="grading-foot">El docente asigna una nota a cada criterio y la pondera según los pesos indicados. La ponderación entre participación y valoración la define en clase. El promedio marcado para la escena corresponde a la valoración de pares; la nota de este componente corresponde a la calidad de esa valoración.</p><p class="grading-foot">Rúbrica elaborada para el aula. Descriptores, bandas y pesos de calificación son decisiones docentes. Fundamento de las habilidades: Harris (2009), <em>ACT made simple</em>, cap. 5 y caps. 7–12; Luoma, Hayes y Walser (2017), <em>Learning ACT</em>, 2.ª ed., introducción y apéndice A, práctica, retroalimentación y supervisión.</p></div></details>
+    <p class="val-intro">Una valoración por escena. Observen cómo quien interviene escucha, aplica el proceso y responde a la persona del caso.</p>
+
+    <div id="formulario">
+      <section class="block">
+        <div class="val-context">
+          <div><label class="card-label" for="val-curso">Curso</label>
+            <select id="val-curso"><option value="">Elijan el curso</option><option>901</option><option>902</option><option>903</option></select></div>
+          <div><label class="card-label" for="val-observador">Mi grupo</label>
+            <select id="val-observador"><option value="">Elijan su grupo</option></select></div>
+          <div><label class="card-label" for="val-grupo">Grupo en escena</label>
+            <select id="val-grupo"><option value="">Elijan el grupo que pasó a escena</option></select></div>
+          <div><label class="card-label" for="val-proceso">Proceso que trabajó</label>
+            <select id="val-proceso"><option value="">Elijan el proceso</option></select></div>
+        </div>
+      </section>
+
+      <p id="val-vacio" class="notice">Elijan el grupo en escena y el proceso que trabajó para abrir los criterios.</p>
+
+      <div id="val-rubrica" hidden>
+        <section class="block">
+          <h2 id="val-titulo"></h2>
+          <p class="block-sub" id="val-subtitulo"></p>
+          <div id="val-criterios"></div>
+        </section>
+        <section class="block">
+          <span class="card-label">Lo que fue en contra del proceso</span>
+          <span class="card-help">Marquen solo lo que hayan visto.</span>
+          <div class="error-lista" id="val-errores"></div>
+        </section>
+        <section class="block">
+          <label class="card-label" for="val-comentario">Apreciación general</label>
+          <p class="card-help">Retomen una frase o conducta de la escena: qué aportó a la intervención y qué podrían ajustar.</p>
+          <textarea id="val-comentario" maxlength="1600"></textarea>
+        </section>
+        <section class="block score-panel">
+          <div><strong>Valoración de esta escena</strong>
+            <p class="score-caption" id="val-progreso"></p>
+            <p class="score-caption">Sí vale 5, parcial 2,5 y no 0; la nota es el promedio de los seis criterios.</p></div>
+          <output class="score" id="val-nota">— / 5</output>
+        </section>
+      </div>
+    </div>
+
+    <div class="save-actions">
+      <button type="button" id="val-nueva">Otra valoración</button>
+      <button type="button" id="val-guardar">Guardar PDF</button>
+      <button type="button" id="val-enviar" class="primary">Enviar al docente</button>
+    </div>
+    <p class="status" id="val-estado" role="status" aria-live="polite"></p>
+
+    <details class="sources"><summary>Fundamento de la pauta</summary><div class="more"><p>Pauta docente elaborada para esta práctica. Los descriptores y la escala 5 / 2,5 / 0 son decisiones de evaluación del aula; no son un instrumento de competencia clínica validado.</p><p>Harris, R. (2009). <em>ACT made simple</em>. New Harbinger. Cap. 5, encuadre y relación terapéutica; caps. 7–12, procedimientos de los seis procesos.</p><p>Luoma, J. B., Hayes, S. C., y Walser, R. D. (2017). <em>Learning ACT</em> (2.ª ed.). New Harbinger. Introducción, “Using the Practice Exercises in This Book”; apéndice A, “Using the Form for Self-Supervision”. Se retoma la observación de habilidades y la revisión de respuestas para orientar el aprendizaje, con criterios originales para esta escena.</p></div></details>
+  </div>
+
+  <div class="toast" id="toast" role="status">Copiar, cortar y pegar están deshabilitados en este formulario.</div>
 
   <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
 </div>
@@ -808,6 +963,326 @@ const TEXTOS = {
 };
 
 // Encuadre de la conversación: se muestra abierto al inicio de cada situación.
+/* Criterios de la valoración de pares, por proceso (mismo orden que el
+   repertorio): [título, pista, sí, parcial, no]. ERRORES_VALORACION son las
+   casillas opcionales de «Lo que fue en contra del proceso».
+   Los criterios 1, 2 y 6 son comunes; 3 a 5 son el foco del proceso. Los
+   nombres de columna de la hoja son genéricos («3. Foco del proceso»), así
+   que se pueden ajustar textos sin romper la continuidad del registro. */
+const CRITERIOS_VALORACION = [
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Distingue malestar y lucha",
+   "Explora qué siente la persona, cómo intenta controlarlo y qué consecuencias tiene.",
+   "Diferencia experiencia y estrategias de control con un ejemplo del caso y sus costes.",
+   "Nombra la lucha, pero explora poco sus consecuencias.",
+   "No explora cómo intenta la persona controlar el malestar."
+  ],
+  [
+   "Invita a una apertura voluntaria",
+   "Propone notar la emoción y hacerle espacio, comprobando la disposición de la persona.",
+   "Guía una prueba elegida y ajusta la invitación a la respuesta de la persona.",
+   "Explica la apertura, pero la prueba o su ajuste quedan poco claros.",
+   "No propone notar la emoción ni hacerle espacio."
+  ],
+  [
+   "Conecta apertura y elección",
+   "Pregunta qué acción importante sería posible mientras la emoción está presente.",
+   "Vincula la disposición con una acción relevante elegida por la persona.",
+   "Menciona actuar, pero la conexión con lo importante queda genérica.",
+   "No vincula la apertura con una acción de la vida de la persona."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ],
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Sitúa el pensamiento en el caso",
+   "Identifica una frase y explora cómo influye en la conducta.",
+   "Relaciona un pensamiento concreto con una respuesta o restricción del caso.",
+   "Identifica la frase, pero apenas explora su efecto.",
+   "Aplica el recurso sin un pensamiento relevante del caso."
+  ],
+  [
+   "Guía notar el pensamiento sin expulsarlo",
+   "Ayuda a notar el pensamiento como pensamiento y a volver cuando la atención se engancha.",
+   "Guía la observación del pensamiento, admite que regrese y adapta el recurso si hace falta.",
+   "Usa el recurso, pero no muestra qué hacer cuando el pensamiento se engancha o permanece.",
+   "Nombra la defusión sin guiar la experiencia de notar el pensamiento."
+  ],
+  [
+   "Explora una respuesta más flexible",
+   "Pregunta qué podría elegir la persona al notar la frase como pensamiento.",
+   "Explora una alternativa concreta en el caso sin exigir que desaparezca la frase.",
+   "Pregunta cómo fue el ejercicio, pero la alternativa queda imprecisa.",
+   "No regresa al caso después del ejercicio."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ],
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Reconoce dónde está la atención",
+   "Pregunta qué ocupa a la persona y qué ocurre en la situación actual.",
+   "Sitúa la desconexión o el enganche en una experiencia concreta del caso.",
+   "Nombra la distracción, pero ofrece poco contexto.",
+   "Inicia instrucciones sensoriales sin explorar qué está pasando."
+  ],
+  [
+   "Orienta cuerpo y entorno con flexibilidad",
+   "Guía la atención al cuerpo y al lugar, admitiendo lo que la persona siente.",
+   "Integra cuerpo, entorno y experiencia interna con instrucciones adaptables.",
+   "Orienta solo un aspecto o comprueba poco la experiencia.",
+   "No guía la atención al cuerpo ni al entorno."
+  ],
+  [
+   "Regresa a la actividad del caso",
+   "Pregunta qué puede atender o hacer ahora.",
+   "Conecta la atención recuperada con una respuesta concreta en la situación.",
+   "Habla de estar presente, pero sin una aplicación situada.",
+   "Termina cuando la persona se calma, sin conectar con la actividad."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ],
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Identifica una historia personal dominante",
+   "Explora una etiqueta y qué ocurre cuando la persona se define por ella.",
+   "Relaciona una historia sobre sí con una restricción concreta del caso.",
+   "Identifica la etiqueta, pero poco su efecto.",
+   "No explora la etiqueta ni su efecto."
+  ],
+  [
+   "Guía una experiencia de perspectiva",
+   "Invita a notar contenidos y a advertir que puede observarlos.",
+   "Usa el recurso para guiar una observación situada y comprueba qué experimenta la persona.",
+   "Explica el recurso, pero la experiencia de notar queda poco desarrollada.",
+   "Habla de perspectiva sin guiar la experiencia de notar."
+  ],
+  [
+   "Amplía opciones frente a la etiqueta",
+   "Explora una acción que la persona pueda elegir al notar su historia.",
+   "Conecta perspectiva y una alternativa concreta sin exigir otra identidad.",
+   "Menciona libertad de elegir, pero queda genérica.",
+   "No explora opciones de respuesta."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ],
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Explora lo importante desde la persona",
+   "Pregunta cómo quiere comportarse en un área significativa del caso.",
+   "Ayuda a expresar una dirección en palabras de la persona y verifica su elección.",
+   "Pregunta qué importa, pero la formulación queda genérica o asumida.",
+   "No pregunta qué le importa a la persona."
+  ],
+  [
+   "Distingue dirección y meta",
+   "Diferencia una cualidad continuada de un logro alcanzable.",
+   "Diferencia ambas y las aplica al caso de manera comprensible.",
+   "Explica la diferencia, pero el ejemplo queda ambiguo.",
+   "No aborda la diferencia entre dirección y meta."
+  ],
+  [
+   "Conecta la dirección con alternativas",
+   "Explora maneras de expresar el valor elegido.",
+   "Identifica al menos una acción coherente y reconoce que existen distintas metas posibles.",
+   "Propone una acción, pero su relación con el valor queda poco clara.",
+   "No conecta el valor con una acción."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ],
+ [
+  [
+   "Encuadre y acuerdo",
+   "Recibe, acuerda un foco y ofrece ajustar o pausar el ejercicio.",
+   "Recibe con respeto, explica el propósito y comprueba el acuerdo antes de avanzar.",
+   "Recibe o explica, pero deja el foco o el acuerdo poco claros.",
+   "Entra directamente al ejercicio, sin acordar un foco."
+  ],
+  [
+   "Escucha y conexión con el caso",
+   "Recoge lo dicho y adapta las intervenciones a la historia representada.",
+   "Escucha, valida y utiliza información del caso para orientar la intervención.",
+   "Escucha, pero sigue lo planeado con poca adaptación al caso.",
+   "Aplica el recurso sin retomar lo que cuenta la persona."
+  ],
+  [
+   "Vincula el paso con un valor elegido",
+   "Explora por qué tendría sentido actuar para esa persona.",
+   "Conecta una dirección elegida con la conducta que van a planear.",
+   "Menciona un valor, pero la conexión con el paso queda débil.",
+   "Planea el paso sin explorar para qué le importa."
+  ],
+  [
+   "Concreta una acción viable",
+   "Acuerda qué haría la persona y en qué ocasión.",
+   "Define un paso observable y manejable, con una ocasión clara.",
+   "El paso es pertinente, pero faltan detalles para llevarlo a cabo.",
+   "Se queda en una intención general."
+  ],
+  [
+   "Prepara barreras y revisión",
+   "Explora una dificultad probable, un apoyo o ajuste y qué revisar después.",
+   "Anticipa una barrera y acuerda una respuesta viable y seguimiento.",
+   "Explora barreras o revisión, pero el plan queda incompleto.",
+   "No contempla dificultades ni revisión."
+  ],
+  [
+   "Cierre colaborativo",
+   "Pregunta qué notó la persona y acuerda cómo llevar lo practicado a su situación.",
+   "Revisa la experiencia y acuerda una aplicación o revisión concreta con la persona.",
+   "Resume, pero no comprueba la experiencia o deja el acuerdo impreciso.",
+   "Termina sin revisar la experiencia ni acordar cómo seguir."
+  ]
+ ]
+];
+const ERRORES_VALORACION = [
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Plantea la aceptación como una forma de eliminar la emoción.",
+  "Impone soportar el malestar o promete apagarlo.",
+  "Condiciona actuar a sentirse bien primero."
+ ],
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Se limita a discutir si el pensamiento es verdadero.",
+  "Pide borrar o alejar el pensamiento, o dejar la mente en blanco.",
+  "Toma la desaparición del pensamiento como único logro."
+ ],
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Presenta la atención al presente como una forma de escapar de lo que ocurre.",
+  "Exige calma, impone cerrar los ojos o pretende ocultar lo que siente.",
+  "Usa el ejercicio para evitar la situación del caso."
+ ],
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Ofrece elogios o una identidad alternativa para reemplazar la historia.",
+  "Presenta un yo literal invulnerable o propone una identidad nueva y fija.",
+  "Exige pensar positivamente sobre sí."
+ ],
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Impone una dirección moral o decide por la persona.",
+  "Equipara valores con metas o con sentirse bien.",
+  "Reduce el valor a una obligación."
+ ],
+ [
+  "Continúa pese a una petición de pausa o de ajuste.",
+  "Ignora o invalida las respuestas de la persona.",
+  "Impone una tarea sin una dirección relevante para la persona.",
+  "Fuerza una tarea inviable para la persona.",
+  "Exige cumplir a toda costa."
+ ]
+];
+
+// Receptor de Apps Script de las valoraciones ACT (Envio a Sheets/hexaflex).
+const ENVIO_URL = "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbyKX1_5yvXcyXTFWvncatq2Q4IwiHkHzwaEDTw0lqfBcZI5nlYP2XIyVuqvKD_DNlWGQg/exec";
+
 const ENCUADRE = "<details class=\"frame-guide\" open><summary>Antes de empezar · Encuadre de la conversación</summary><div class=\"frame-body\"><p>Representen un inicio cálido antes de entrar en el ejercicio. Si es un primer encuentro, quien hace de terapeuta se presenta y explica su papel; si es una continuación, pregunta cómo llega la persona y retoma lo anterior.</p><ol><li><strong>Reciban y escuchen.</strong> Dejen espacio para su motivo de consulta y reconozcan lo que está viviendo.<q>Gracias por contármelo. Quisiera entender mejor qué te preocupa.</q></li><li><strong>Acuerden el foco y el tiempo.</strong> Elijan juntos qué abordar en esta escena breve y reserven un momento para cerrar.<q>¿Te parece que hoy nos centremos en esto y al final revisemos qué te llevas?</q></li><li><strong>Anticipen cómo trabajarán.</strong> Expliquen que primero conversarán y después podrán ensayar un recurso, si tiene sentido para su situación.<q>Quisiera proponerte un ejercicio y luego conversar sobre cómo te resultó.</q></li><li><strong>Pidan acuerdo y permitan ajustes.</strong> Comprueben si desea probarlo; puede preguntar, cambiar la propuesta o detenerla.<q>¿Te parece probarlo? Si algo no te ayuda, me lo dices y lo ajustamos.</q></li></ol><p class=\"frame-ref\">Harris (2009), cap. 5: establecimiento de la relación, acuerdo sobre el trabajo y estructura de las sesiones. Adaptación para el juego de roles.</p></div></details>";
 
 /* ============================================================
@@ -1124,7 +1599,7 @@ function pintarSituacion(){
       </details>
       <div class="print-source" hidden>Adaptación docente. Harris, R. (2009). <em>ACT made simple.</em> New Harbinger, caps. 5 y 7–12.</div>
     </div>`;
-  document.title = s.titulo + " · Práctica del hexaflex";
+  if (!el("vista-rol").hidden) document.title = s.titulo + " · Práctica del hexaflex";
 }
 
 /* ============================================================
@@ -1235,7 +1710,349 @@ function cerrarDemostraciones(excepto, dentroDe){
 }
 
 /* ============================================================
-   7. INICIALIZACIÓN
+   7. OBSERVAR Y VALORAR
+   ============================================================
+   Hoja del observador, con la estructura de la de PAP: cada estudiante marca
+   Sí / Parcial / No en seis criterios mientras transcurre la escena, señala
+   si vio algo contrario al proceso y cierra con una apreciación general.
+   «Mi grupo» (1 a 6) permite reunir en la hoja las valoraciones de los
+   integrantes de cada grupo; la nómina de los grupos la lleva el docente.
+   Autoguardado en localStorage por curso, grupo propio y grupo en escena;
+   envío con formulario oculto y confirmación por JSONP, como en las demás
+   actividades (desde file:// fetch no sirve).
+   ============================================================ */
+const MARCAS = [["si", "Sí", "5", 5], ["parcial", "Parcial", "2,5", 2.5], ["no", "No", "0", 0]];
+const PUNTAJE = Object.fromEntries(MARCAS.map(m => [m[0], m[3]]));
+const PREFIJO = "hexaflex-valoracion-v2:";
+
+function valoracionVacia(base){
+  return { curso: "", observador: "", grupo: "", proceso: "", marcas: {}, errores: [],
+    comentario: "", rid: "", enviado: false, ...(base || {}) };
+}
+let val = valoracionVacia(), ocupado = false, ventanaEnvio = null, sondeo = null, plazoSondeo = 0;
+
+function claveValoracion(v){ return PREFIJO + [v.curso || "-", v.observador || "-", v.grupo || "-"].join(":"); }
+function persistirValoracion(){
+  try {
+    localStorage.setItem(claveValoracion(val), JSON.stringify(val));
+    localStorage.setItem(PREFIJO + "ultima", JSON.stringify({ curso: val.curso, observador: val.observador }));
+  } catch (e) { /* sin almacenamiento: la valoración sigue en pantalla */ }
+}
+function cargarValoracion(base){
+  let v = valoracionVacia(base);
+  try {
+    const guardada = JSON.parse(localStorage.getItem(claveValoracion(v)) || "null");
+    if (guardada && typeof guardada === "object" && guardada.marcas) v = valoracionVacia({ ...guardada, ...base });
+  } catch (e) {}
+  if (!Array.isArray(v.errores)) v.errores = [];
+  val = v;
+}
+
+function opciones(sel, vacio, items){
+  sel.innerHTML = `<option value="">${esc(vacio)}</option>` +
+    items.map(([v, t]) => `<option value="${esc(v)}">${esc(t)}</option>`).join("");
+}
+
+function pintarContextoValoracion(){
+  el("val-curso").value = val.curso;
+  el("val-observador").value = val.observador;
+  el("val-grupo").value = val.grupo;
+  el("val-proceso").value = val.proceso;
+  el("val-comentario").value = val.comentario;
+}
+
+function pintarCriterios(){
+  const p = Number(val.proceso), g = Number(val.grupo);
+  const abierto = !!(p && g);
+  el("val-vacio").hidden = abierto;
+  el("val-rubrica").hidden = !abierto;
+  if (!abierto) { el("val-criterios").innerHTML = el("val-errores").innerHTML = ""; return; }
+  el("val-titulo").textContent = `Grupo ${g} · ${REPERTORIO[p - 1].titulo}`;
+  el("val-subtitulo").textContent = SITUACIONES[g - 1].titulo;
+  el("val-criterios").innerHTML = CRITERIOS_VALORACION[p - 1].map((c, i) => `
+    <section class="criterion">
+      <span class="block-index" aria-hidden="true">${i + 1}</span>
+      <div>
+        <span class="card-label" id="crit-${i}">${esc(c[0])}</span>
+        <span class="card-help" id="pista-${i}">${esc(c[1])}</span>
+        <div class="ratings" role="radiogroup" aria-labelledby="crit-${i}" aria-describedby="pista-${i}">${MARCAS.map(m =>
+          `<label class="rating" data-marca="${m[0]}"><input type="radio" name="crit-${i}" value="${m[0]}" data-criterio="${i}">${m[1]}<small>${m[2]}</small></label>`).join("")}</div>
+        <details class="no-pdf"><summary>Cómo distinguir las opciones</summary><div class="descriptors">
+          <p><strong>Sí:</strong> ${esc(c[2])}</p>
+          <p><strong>Parcial:</strong> ${esc(c[3])}</p>
+          <p><strong>No:</strong> ${esc(c[4])}</p>
+        </div></details>
+      </div>
+    </section>`).join("");
+  el("val-errores").innerHTML = ERRORES_VALORACION[p - 1].map((e, k) =>
+    `<label class="error-fila"><input type="checkbox" value="${k}" data-error="${k}"><span>${esc(e)}</span></label>`).join("");
+  for (let i = 0; i < 6; i++) {
+    const marca = val.marcas[i];
+    if (marca) el("val-criterios").querySelector(`input[name="crit-${i}"][value="${marca}"]`).checked = true;
+  }
+  val.errores.forEach(k => { const c = el("val-errores").querySelector(`input[data-error="${k}"]`); if (c) c.checked = true; });
+  actualizarValoracion();
+}
+
+function marcasCompletas(){ return Array.from({ length: 6 }, (_, i) => val.marcas[i]); }
+function nota(){
+  const m = marcasCompletas();
+  return m.every(x => x in PUNTAJE) ? m.reduce((a, x) => a + PUNTAJE[x], 0) / 6 : null;
+}
+
+function actualizarValoracion(){
+  document.querySelectorAll("#formulario .rating, #formulario .error-fila").forEach(r =>
+    r.classList.toggle("is-checked", r.querySelector("input").checked));
+  const n = marcasCompletas().filter(x => x in PUNTAJE).length, s = nota();
+  el("val-progreso").textContent = n + " de 6 criterios valorados";
+  el("val-nota").textContent = s === null ? "— / 5" : s.toFixed(2).replace(".", ",") + " / 5";
+  // Curso, grupo propio y grupo en escena siguen activos tras el envío: con
+  // ellos se pasa a la escena siguiente. El resto queda fijo una vez confirmado.
+  const identificacion = ["val-curso", "val-observador", "val-grupo"];
+  el("formulario").querySelectorAll("input, textarea, select").forEach(c => {
+    c.disabled = identificacion.includes(c.id) ? ocupado : ocupado || val.enviado;
+  });
+  el("val-enviar").disabled = ocupado || val.enviado;
+  el("val-guardar").disabled = ocupado;
+  el("val-nueva").disabled = ocupado;
+}
+
+function avisarValoracion(texto, alerta){
+  el("val-estado").textContent = texto;
+  el("val-estado").classList.toggle("warn", !!alerta);
+}
+
+// Devuelve el primer dato que falta (para enfocarlo) o null si está completa.
+function faltante(){
+  const requeridos = [
+    ["val-curso", !val.curso, "Elijan el curso."],
+    ["val-observador", !val.observador, "Indiquen su grupo."],
+    ["val-grupo", !val.grupo, "Elijan el grupo en escena."],
+    ["val-grupo", val.grupo && val.grupo === val.observador, "El grupo en escena no puede ser el propio."],
+    ["val-proceso", !val.proceso, "Elijan el proceso que trabajó el grupo."]
+  ];
+  for (const [id, falta, texto] of requeridos) if (falta) return [id, texto];
+  for (let i = 0; i < 6; i++) if (!val.marcas[i]) return [`crit-${i}`, `Falta marcar el criterio ${i + 1}.`];
+  if (!val.comentario.trim()) return ["val-comentario", "Escriban la apreciación general."];
+  return null;
+}
+
+function validarValoracion(){
+  document.querySelectorAll("#formulario .invalid").forEach(c => c.classList.remove("invalid"));
+  const f = faltante();
+  if (!f) return true;
+  avisarValoracion(f[1], true);
+  const objetivo = f[0].startsWith("crit-") ? el("val-criterios").querySelector(`input[name="${f[0]}"]`) : el(f[0]);
+  if (objetivo) {
+    if (!f[0].startsWith("crit-")) objetivo.classList.add("invalid");
+    objetivo.focus();
+  }
+  return false;
+}
+
+function editada(){
+  val.rid = "";
+  val.enviado = false;
+  persistirValoracion();
+  actualizarValoracion();
+  avisarValoracion("");
+}
+
+// Cambiar curso, grupo propio o grupo en escena abre la valoración guardada de
+// esa combinación (o una vacía) y deja la anterior en el navegador.
+function cambiarIdentificacion(){
+  persistirValoracion();
+  cargarValoracion({ curso: el("val-curso").value, observador: el("val-observador").value, grupo: el("val-grupo").value });
+  persistirValoracion();
+  pintarContextoValoracion();
+  pintarCriterios();
+  avisarValoracion(val.enviado ? "Esta valoración ya tiene registro confirmado. Elijan el grupo siguiente." : "");
+}
+
+async function guardarValoracion(){
+  if (!validarValoracion()) return;
+  ocupado = true; actualizarValoracion();
+  avisarValoracion("Preparando el PDF…");
+  try {
+    if (!window.PDFActividad) await new Promise((ok, mal) => {
+      const s = document.createElement("script");
+      s.src = "https://juanboya7.github.io/seminario-clinico/pdf-rellenable.js?v=" + Date.now();   // siempre la versión vigente
+      s.onload = ok; s.onerror = () => { s.remove(); mal(new Error("conexión")); };
+      document.head.appendChild(s);
+    });
+    const r = await PDFActividad.compartir({
+      titulo: "Valoración · Grupo " + val.grupo + " · " + REPERTORIO[Number(val.proceso) - 1].titulo,
+      archivo: `${val.curso}-ACT-valoracion-grupo-${val.grupo}-por-grupo-${val.observador}.pdf`,
+      raiz: el("formulario")
+    });
+    if (r !== "cancelado") avisarValoracion((r === "compartido" ? "PDF listo para enviar · " : "PDF descargado · ") + new Date().toLocaleTimeString());
+  } catch (e) {
+    avisarValoracion("No fue posible crear el PDF. Revisen la conexión a internet e intenten de nuevo.", true);
+    console.error(e);
+  } finally { ocupado = false; actualizarValoracion(); }
+}
+
+function cargaUtil(){
+  const p = Number(val.proceso);
+  return {
+    tipo: "hexaflex", version: 2, curso: "SPI-2026-2", cursoGrupo: val.curso,
+    grupo: Number(val.grupo), grupoObservador: Number(val.observador), proceso: p,
+    marcas: marcasCompletas(),
+    errores: val.errores.slice().sort().map(k => ERRORES_VALORACION[p - 1][k]).filter(Boolean),
+    comentario: val.comentario.trim(), rid: val.rid
+  };
+}
+
+function nuevoId(){
+  if (globalThis.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
+}
+
+function detenerSondeo(){
+  clearTimeout(sondeo); sondeo = null;
+  document.querySelectorAll("script[data-act-ack]").forEach(s => s.remove());
+}
+function confirmado(r){
+  if (!ocupado || !r || r.rid !== val.rid || r.ok !== true) return;
+  detenerSondeo();
+  ocupado = false; val.enviado = true;
+  persistirValoracion(); actualizarValoracion();
+  avisarValoracion("Registro confirmado. Para la escena siguiente, elijan el grupo en escena.");
+}
+function sondear(){
+  if (!ocupado) return;
+  if (Date.now() > plazoSondeo) {
+    detenerSondeo(); ocupado = false; actualizarValoracion();
+    avisarValoracion("Aún no hay confirmación de registro. Revisen la pestaña de envío o reintenten; la valoración conserva su identificador para evitar duplicados.", true);
+    return;
+  }
+  const nombre = "actAck_" + val.rid.replace(/-/g, "") + "_" + Date.now();
+  const s = document.createElement("script");
+  s.dataset.actAck = "1";
+  const limpiar = () => { s.remove(); globalThis[nombre] = () => {}; };
+  globalThis[nombre] = r => { confirmado(r); limpiar(); };
+  s.onerror = limpiar;
+  s.src = ENVIO_URL + "?estado=" + encodeURIComponent(val.rid) + "&callback=" + nombre;
+  document.head.appendChild(s);
+  setTimeout(limpiar, 12000);
+  sondeo = setTimeout(sondear, 5000);
+}
+
+function enviarValoracion(){
+  if (ocupado || val.enviado || !validarValoracion()) return;
+  ventanaEnvio = window.open("", "hexaflex_envio");
+  if (!ventanaEnvio) {
+    avisarValoracion("El navegador bloqueó la pestaña de envío. Abran la actividad en un navegador o permitan la ventana emergente y reintenten.", true);
+    return;
+  }
+  if (!val.rid) val.rid = nuevoId();
+  persistirValoracion();
+  ocupado = true; actualizarValoracion();
+  avisarValoracion("Esperando confirmación de registro…");
+  const form = document.createElement("form");
+  form.method = "POST"; form.action = ENVIO_URL; form.target = "hexaflex_envio"; form.hidden = true;
+  const campo = document.createElement("input");
+  campo.name = "payload"; campo.value = JSON.stringify(cargaUtil());
+  form.appendChild(campo);
+  document.body.appendChild(form);
+  try {
+    form.submit();
+    plazoSondeo = Date.now() + 65000;
+    sondeo = setTimeout(sondear, 2500);
+  } catch (e) {
+    ocupado = false; actualizarValoracion();
+    avisarValoracion("No fue posible abrir el envío. Reintenten en un momento.", true);
+  } finally { form.remove(); }
+}
+
+function avisoCopia(){
+  const t = el("toast");
+  t.classList.add("is-visible");
+  clearTimeout(avisoCopia._t);
+  avisoCopia._t = setTimeout(() => t.classList.remove("is-visible"), 2400);
+}
+
+function iniciarValoracion(){
+  opciones(el("val-observador"), "Elijan su grupo", SITUACIONES.map((_, i) => [String(i + 1), "Grupo " + (i + 1)]));
+  opciones(el("val-grupo"), "Elijan el grupo que pasó a escena", SITUACIONES.map((s, i) => [String(i + 1), `Grupo ${i + 1} · ${s.titulo}`]));
+  opciones(el("val-proceso"), "Elijan el proceso", REPERTORIO.map((p, i) => [String(i + 1), p.titulo]));
+
+  let ultima = {};
+  try { ultima = JSON.parse(localStorage.getItem(PREFIJO + "ultima")) || {}; } catch (e) {}
+  cargarValoracion({
+    curso: ["901", "902", "903"].includes(ultima.curso) ? ultima.curso : "",
+    observador: /^[1-6]$/.test(ultima.observador || "") ? ultima.observador : "",
+    grupo: ""
+  });
+  pintarContextoValoracion();
+  pintarCriterios();
+
+  ["val-curso", "val-observador", "val-grupo"].forEach(id => el(id).addEventListener("change", cambiarIdentificacion));
+  el("val-proceso").addEventListener("change", () => {
+    const nuevo = el("val-proceso").value;
+    // Los criterios 3 a 5 y las casillas cambian con el proceso: no se trasladan.
+    if (nuevo !== val.proceso) { [2, 3, 4].forEach(i => delete val.marcas[i]); val.errores = []; }
+    val.proceso = nuevo;
+    pintarCriterios(); editada();
+  });
+  el("val-comentario").addEventListener("input", () => { val.comentario = el("val-comentario").value; editada(); });
+  el("val-criterios").addEventListener("change", e => {
+    const r = e.target.closest("input[data-criterio]");
+    if (!r) return;
+    val.marcas[r.dataset.criterio] = r.value;
+    editada();
+  });
+  el("val-errores").addEventListener("change", () => {
+    val.errores = [...el("val-errores").querySelectorAll("input:checked")].map(c => Number(c.value));
+    editada();
+  });
+  el("formulario").addEventListener("input", e => e.target.classList.remove("invalid"));
+
+  el("val-guardar").addEventListener("click", guardarValoracion);
+  el("val-enviar").addEventListener("click", enviarValoracion);
+  el("val-nueva").addEventListener("click", () => {
+    const conDatos = Object.keys(val.marcas).length || val.comentario;
+    if (conDatos && !val.enviado && !confirm("¿Empezar otra valoración y vaciar esta?")) return;
+    val = valoracionVacia({ curso: val.curso, observador: val.observador });
+    persistirValoracion();
+    pintarContextoValoracion(); pintarCriterios();
+    avisarValoracion("");
+    el("val-grupo").focus();
+  });
+
+  window.addEventListener("message", e => {
+    if (!/^https:\/\/([a-z0-9-]+\.)*(script\.google\.com|googleusercontent\.com)$/.test(e.origin) || e.source !== ventanaEnvio) return;
+    if (e.data && e.data.tipo === "hexaflex-confirmacion") confirmado(e.data);
+  });
+
+  // Copiar, cortar, pegar, soltar y arrastrar: bloqueados en la vista de valoración.
+  ["copy", "cut", "paste", "drop", "dragstart"].forEach(evt => el("vista-valorar").addEventListener(evt, e => { e.preventDefault(); avisoCopia(); }));
+  el("vista-valorar").addEventListener("keydown", e => {
+    if ((e.ctrlKey || e.metaKey) && ["c", "v", "x"].includes((e.key || "").toLowerCase())) { e.preventDefault(); avisoCopia(); }
+  });
+
+  setInterval(() => { if (!ocupado) persistirValoracion(); }, 15000);
+  window.addEventListener("pagehide", persistirValoracion);
+}
+
+
+/* ---- Cambio de vista ----
+   #valorar abre la vista de quienes observan (para compartirla directamente);
+   cualquier otra dirección, la del grupo en escena. */
+function mostrarVista(vista){
+  const valorar = vista === "valorar";
+  el("vista-rol").hidden = valorar;
+  el("vista-valorar").hidden = !valorar;
+  [["tab-rol", !valorar], ["tab-valorar", valorar]].forEach(([id, activa]) => {
+    el(id).setAttribute("aria-selected", String(activa));
+    el(id).tabIndex = activa ? 0 : -1;
+  });
+  document.title = valorar ? "Observar y valorar · Práctica del hexaflex" : SITUACIONES[grupoActual - 1].titulo + " · Práctica del hexaflex";
+}
+function vistaDeLaDireccion(){ return location.hash === "#valorar" ? "valorar" : "rol"; }
+
+/* ============================================================
+   8. INICIALIZACIÓN
    ============================================================ */
 document.addEventListener("click", e => {
   const enlace = e.target.closest('a[href="#repertorio"]');
@@ -1264,8 +2081,23 @@ try {
     pintarSituacion();
     el("title").focus({ preventScroll: true });
   });
-  window.addEventListener("hashchange", () => { leerGrupoDeLaDireccion(); pintarSituacion(); });
-  document.querySelector(".skip").addEventListener("click", e => { e.preventDefault(); el("title").focus(); });
+  iniciarValoracion();
+  mostrarVista(vistaDeLaDireccion());
+  el("tab-rol").parentElement.addEventListener("click", e => {
+    const b = e.target.closest("[data-vista]");
+    if (!b) return;
+    history.replaceState(null, "", b.dataset.vista === "valorar" ? "#valorar" : "#grupo=" + grupoActual);
+    mostrarVista(b.dataset.vista);
+  });
+  el("tab-rol").parentElement.addEventListener("keydown", e => {
+    if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+    const otra = vistaDeLaDireccion() === "valorar" ? el("tab-rol") : el("tab-valorar");
+    otra.click(); otra.focus();
+  });
+  window.addEventListener("hashchange", () => {
+    leerGrupoDeLaDireccion(); pintarSituacion(); mostrarVista(vistaDeLaDireccion());
+  });
+  document.querySelector(".skip").addEventListener("click", e => { e.preventDefault(); (el("vista-rol").hidden ? el("val-curso") : el("title")).focus(); });
   el("print").addEventListener("click", () => window.print());
   el("js-warning").hidden = true;
 } catch (err) {
