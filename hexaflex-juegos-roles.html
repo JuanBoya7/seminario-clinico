@@ -1777,7 +1777,9 @@ function pintarCriterios(){
   const abierto = !!(p && g);
   el("val-vacio").hidden = abierto;
   el("val-rubrica").hidden = !abierto;
-  if (!abierto) { el("val-criterios").innerHTML = el("val-errores").innerHTML = ""; return; }
+  // Aun sin criterios abiertos hay que recalcular qué campos quedan activos: tras
+  // un envío confirmado, «Otra valoración» llega aquí y debe desbloquear el proceso.
+  if (!abierto) { el("val-criterios").innerHTML = el("val-errores").innerHTML = ""; actualizarValoracion(); return; }
   el("val-titulo").textContent = `Grupo ${g} · ${REPERTORIO[p - 1].titulo}`;
   el("val-subtitulo").textContent = SITUACIONES[g - 1].titulo;
   el("val-criterios").innerHTML = CRITERIOS_VALORACION[p - 1].map((c, i) => `
