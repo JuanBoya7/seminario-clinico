@@ -11,8 +11,10 @@ var ETIQUETAS = ['Abre línea', 'Réplica sólida', 'Integra a su equipo', 'Cier
 var COLUMNAS = ['Fecha de envío','ID de envío','Fila','Nombre','Equipo','Tipo de intervención','Segundos','Transcripción','Modo','Etiquetas del docente','Conceptos del curso'];
 var VALORACION = 'Valoración del docente';
 var COL_VAL = ['Corte','Equipo','Criterio 1','Criterio 2','Criterio 3','Criterio 4','Actualizado'];
+var COL_ASIS = ['Nombre','Equipo','Hora de registro','Intervenciones','Segundos de palabra','Palabras','Última intervención'];
 
 function nombreHoja_(corte) { return 'Debate corte ' + corte; }
+function nombreAsistencia_(corte) { return 'Asistencia corte ' + corte; }
 // La hoja de datos: la del proyecto si se creó desde una hoja (Extensiones → Apps Script);
 // si el proyecto es independiente, la que creó prepararHoja.
 function libro_() {
@@ -44,7 +46,10 @@ function prepararHoja() {
   var activa = SpreadsheetApp.getActiveSpreadsheet();
   var libro = activa || (id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create('402 - Debates'));
   props.setProperty('DEB402_HOJA_ID', libro.getId());
-  CORTES.forEach(function(c) { encabezar_(libro.getSheetByName(nombreHoja_(c)) || libro.insertSheet(nombreHoja_(c)), COLUMNAS); });
+  CORTES.forEach(function(c) {
+    encabezar_(libro.getSheetByName(nombreHoja_(c)) || libro.insertSheet(nombreHoja_(c)), COLUMNAS);
+    encabezar_(libro.getSheetByName(nombreAsistencia_(c)) || libro.insertSheet(nombreAsistencia_(c)), COL_ASIS);
+  });
   encabezar_(libro.getSheetByName(VALORACION) || libro.insertSheet(VALORACION), COL_VAL);
   var sobra = libro.getSheetByName('Hoja 1') || libro.getSheetByName('Sheet1');
   if (sobra && sobra.getLastRow() === 0 && libro.getSheets().length > 1) libro.deleteSheet(sobra);
@@ -88,10 +93,46 @@ function registrar_(d) {
         ? [new Date(), d.rid, 'Registro', seguro_(d.nombre), d.equipo, '', '', '', '', '', '']
         : [new Date(), d.rid, 'Intervención', seguro_(d.nombre), d.equipo, d.tipoIntervencion, d.segundos, seguro_(d.texto), d.modo, '', (d.conceptos || []).join(' · ')]);
       SpreadsheetApp.flush();
+      // La asistencia es un resumen: si fallara, el envío ya quedó guardado y no se rechaza.
+      try { asistencia_(libro_(), d.corte); } catch (err) { console.error(err); }
     }
     CacheService.getScriptCache().put('DEB402_ACK_' + d.rid, '1', 21600);
     return {ok:true, rid:d.rid};
   } finally { lock.releaseLock(); }
+}
+
+// Una fila por estudiante y corte: registrarse con el nombre al empezar es la huella de que
+// estuvo en el aula durante el debate, aunque no tome la palabra; al lado, cuántas veces
+// intervino. Se rehace entera desde la pestaña del corte con cada envío, así que no se edita a
+// mano. La misma persona en dos celulares (mismo nombre y equipo) queda en una sola fila.
+function asistencia_(libro, corte) {
+  var hoja = libro.getSheetByName(nombreHoja_(corte));
+  var personas = {}, lista = [];
+  if (hoja && hoja.getLastRow() > 1) hoja.getRange(2,1,hoja.getLastRow()-1,9).getValues().forEach(function(r) {
+    var k = norm_(r[3]) + '|' + r[4], p = personas[k], f = r[0] instanceof Date ? r[0] : null;
+    if (!p) { p = personas[k] = {nombre:String(r[3]), equipo:String(r[4]), registro:null, n:0, seg:0, palabras:0, ultima:null}; lista.push(p); }
+    if (r[2] === 'Registro') { if (f && (!p.registro || f < p.registro)) p.registro = f; }
+    else {
+      p.n++; p.seg += Number(r[6]) || 0;
+      p.palabras += String(r[7]).trim() ? String(r[7]).trim().split(/\s+/).length : 0;
+      if (f && (!p.ultima || f > p.ultima)) p.ultima = f;
+    }
+  });
+  lista.sort(function(a, b) { return a.equipo.localeCompare(b.equipo) || a.nombre.localeCompare(b.nombre, 'es'); });
+  var asis = pestana_(libro, nombreAsistencia_(corte), COL_ASIS);
+  if (asis.getLastRow() > 1) asis.getRange(2,1,asis.getLastRow()-1,COL_ASIS.length).clearContent();
+  if (!lista.length) return;
+  asis.getRange(2,1,lista.length,COL_ASIS.length).setValues(lista.map(function(p) {
+    return [seguro_(p.nombre), p.equipo, p.registro || 'sin registro', p.n, p.seg, p.palabras, p.ultima || ''];
+  }));
+  asis.getRange(2,3,lista.length,1).setNumberFormat('dd/mm/yyyy hh:mm');
+  asis.getRange(2,7,lista.length,1).setNumberFormat('dd/mm/yyyy hh:mm');
+}
+// Para rehacer a mano la asistencia de los tres cortes (por ejemplo, con los envíos que
+// llegaron antes de que existiera la pestaña).
+function actualizarAsistencia() {
+  var libro = libro_();
+  CORTES.forEach(function(c) { if (libro.getSheetByName(nombreHoja_(c))) asistencia_(libro, c); });
 }
 
 function doPost(e) {
