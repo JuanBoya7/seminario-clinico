@@ -46,6 +46,8 @@
   --par:#9a4f7a;  --par-soft:#f6e9f1;
   --fam:#5a6b2f;  --fam-soft:#eff2e2;
   --afirm:#b3426f; --afirm-soft:#f9e7ef;
+  --fases:#6a4c93; --fases-soft:#efeaf6;
+  --rehab:#2e6f68; --rehab-soft:#e3f1ef;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --radius:12px;
@@ -301,6 +303,8 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .enf-par{--enf:var(--par); --enf-soft:var(--par-soft);}
 .enf-fam{--enf:var(--fam); --enf-soft:var(--fam-soft);}
 .enf-afirm{--enf:var(--afirm); --enf-soft:var(--afirm-soft);}
+.enf-fases{--enf:var(--fases); --enf-soft:var(--fases-soft);}
+.enf-rehab{--enf:var(--rehab); --enf-soft:var(--rehab-soft);}
 .insignia{
   display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
   color:var(--enf); background:var(--enf-soft); border-radius:999px; padding:3px 9px; white-space:nowrap;
@@ -2043,6 +2047,86 @@ REFERENCIAS.push(
   { k: "Neacsiu y Linehan, 2014", ref: "Neacsiu, A. D. y Linehan, M. M. (2014). Borderline personality disorder. En D. H. Barlow (Ed.), <em>Clinical handbook of psychological disorders: A step-by-step treatment manual</em> (5.ª ed., pp. 394–461). Guilford Press." },
   { k: "Fonseca-Pedrero et al., 2021", url: "https://doi.org/10.7334/psicothema2020.426", ref: "Fonseca-Pedrero, E., Pérez-Álvarez, M., Al-Halabí, S., Inchausti, F., Muñiz, J., López-Navarro, E., … Marrero, R. J. (2021). Tratamientos psicológicos empíricamente apoyados para adultos: una revisión selectiva. <em>Psicothema, 33</em>(2), 188–197." }
 );
+
+/* Trastorno de acumulación (2026-10-21): terapia cognitivo-conductual de
+   Steketee y Frost (2014, 2.ª ed. de la guía del terapeuta de Oxford). Las
+   escalas HRS, SI-R y CIR vienen en el apéndice de la guía, con sus puntos
+   de corte; no se reproducen sus ítems. */
+REFERENCIAS.push(
+  { k: "Steketee y Frost, 2014", ref: "Steketee, G. y Frost, R. O. (2014). <em>Treatment for hoarding disorder: Therapist guide</em> (2.ª ed.). Oxford University Press." }
+);
+
+Object.assign(MODELOS, {
+  "acumulacion-tcc": {
+    t: "Modelo cognitivo-conductual de la acumulación",
+    autor: "Frost, Hartl y Steketee",
+    d: "Adquirir, guardar y vivir entre el desorden resultan de vulnerabilidades personales —experiencias tempranas, ánimo, creencias nucleares, problemas para atender, categorizar, recordar y decidir— que alimentan creencias sobre el valor de las posesiones. Esas creencias despiertan emociones positivas al adquirir o guardar y negativas —duelo, ansiedad, culpa— al pensar en desprenderse. Adquirir y guardar se refuerzan por el placer que dan o por el malestar que evitan, y evitar decidir impide poner a prueba las creencias. El problema central no es el desorden, sino la dificultad para descartar: el desorden es su consecuencia.",
+    dim: ["Vulnerabilidades personales y familiares", "Problemas para atender, categorizar y decidir", "Significado de las posesiones", "Emociones al adquirir y al desprenderse", "Refuerzo de adquirir y guardar"],
+    fuente: "Steketee y Frost, 2014, caps. 1, 2 y 4"
+  }
+});
+
+Object.assign(INSTRUMENTOS, {
+  "HRS":  { n: "Escala de Valoración de la Acumulación", rol: "Tamizaje", d: "Cinco preguntas sobre desorden, dificultad para descartar, adquisición, malestar e interferencia, puntuadas de 0 a 8. Un total de 14 o más sugiere acumulación clínicamente significativa; en personas con el trastorno la media es de 24.", med: "5 ítems · 5-10 min · entrevista o autoinforme", guia: false, fuente: "Steketee y Frost, 2014, cap. 3" },
+  "SI-R": { n: "Inventario de Acumulación Revisado", rol: "Medida de resultado", d: "Tres subescalas: desorden, dificultad para descartar y adquisición excesiva. Un total de 41 o más indica acumulación; en el ensayo de la guía bajó en promedio un 27 % con el tratamiento.", med: "23 ítems · autoinforme", guia: false, fuente: "Steketee y Frost, 2014, caps. 3 y 12" },
+  "CIR":  { n: "Escala Pictórica del Desorden", rol: "Medida de resultado", d: "Nueve fotografías por habitación —cocina, sala y dormitorio—, de 1, sin desorden, a 9, desorden grave: la persona elige la que más se parece a la suya. De 3 a 4 en adelante indica desorden clínicamente significativo, y de 6 en adelante, muy grave. Se usa también para seguir el avance.", med: "3 habitaciones · 1-2 min", guia: false, fuente: "Steketee y Frost, 2014, cap. 3" }
+});
+
+/* Trastornos disociativos complejos (2026-10-21): entrenamiento en
+   habilidades de la fase de estabilización según Boon, Steele y van der
+   Hart (2011). El manual se escribió con el DSM-IV (TID y TDNE tipo 1b);
+   la equivalencia con el DSM-5-TR sale de APA, 2022. Sus autores reconocen
+   que no hay ensayos del manual: el nivel es conceptual. */
+Object.assign(ENFOQUES, {
+  fases: { et: "Tratamiento por fases", largo: "Tratamiento por fases del trauma complejo y la disociación" }
+});
+
+REFERENCIAS.push(
+  { k: "Boon et al., 2011", ref: "Boon, S., Steele, K. y van der Hart, O. (2011). <em>Coping with trauma-related dissociation: Skills training for patients and therapists</em>. W. W. Norton." }
+);
+
+Object.assign(MODELOS, {
+  "disociacion-fases": {
+    t: "Disociación de la personalidad y tratamiento por fases",
+    autor: "Van der Hart, Nijenhuis y Steele",
+    d: "Cuando una experiencia es demasiado amenazante para integrarse, sobre todo en la infancia y sin apoyo emocional, la personalidad puede quedar dividida en partes disociativas: unas siguen con la vida diaria y evitan lo no integrado, y otras quedan atrapadas en el pasado traumático. Lo que mantiene la división es la fobia de la experiencia interna: el miedo, la vergüenza o el asco ante las propias emociones, pensamientos, recuerdos y partes. El consenso clínico es un tratamiento por fases: primero estabilizar, reducir síntomas y entrenar habilidades; después tratar los recuerdos traumáticos, y al final integrar la personalidad y rehabilitar.",
+    dim: ["Partes disociativas de la personalidad", "Fobia de la experiencia interna", "Ventana de tolerancia", "Fase 1: estabilización y habilidades", "Fases 2 y 3: recuerdos traumáticos e integración"],
+    fuente: "Boon et al., 2011, prefacio y caps. 1, 3 y 5"
+  }
+});
+
+Object.assign(INSTRUMENTOS, {
+  "DES": { n: "Escala de Experiencias Disociativas", rol: "Tamizaje", d: "Frecuencia de experiencias disociativas en la vida diaria. Es solo de tamizaje: una puntuación alta no basta para diagnosticar, porque incluye experiencias comunes en la población general. El diagnóstico exige una entrevista clínica estructurada de los trastornos disociativos, como la SCID-D.", med: "28 ítems · autoinforme", guia: false, fuente: "Boon et al., 2011, cap. 33" }
+});
+
+/* Daño cerebral adquirido (2026-10-21): rehabilitación cognitiva según
+   Sohlberg y Mateer (2001), con el marco de Ardila y Rosselli (2019,
+   cap. 15). El libro de Sohlberg y Mateer resume la evidencia hasta 2001;
+   la biblioteca no tiene revisiones posteriores de rehabilitación
+   cognitiva, así que los niveles y el respaldo se limitan a lo que ese libro
+   describe. */
+Object.assign(ENFOQUES, {
+  rehab: { et: "Rehabilitación neuropsicológica", largo: "Rehabilitación neuropsicológica integral" }
+});
+
+REFERENCIAS.push(
+  { k: "Sohlberg y Mateer, 2001", ref: "Sohlberg, M. M. y Mateer, C. A. (2001). <em>Cognitive rehabilitation: An integrative neuropsychological approach</em>. Guilford Press." },
+  { k: "Ardila y Rosselli, 2019", ref: "Ardila, A. y Rosselli, M. (2019). <em>Neuropsicología clínica</em> (2.ª ed.). El Manual Moderno." }
+);
+
+Object.assign(MODELOS, {
+  "rehabilitacion-integral": {
+    t: "Rehabilitación cognitiva integral",
+    autor: "Sohlberg y Mateer",
+    d: "La meta es el cambio funcional en la vida diaria, no la mejora en una prueba. La atención, la memoria y las funciones ejecutivas son interdependientes y se relacionan con la emoción, la conducta y el contexto social, así que no se trabajan aisladas. Se combinan cuatro vías: restaurar procesos con práctica jerárquica y repetida, compensar con estrategias y ayudas externas, modificar el ambiente y dar apoyo psicosocial a la persona y a su familia. Cada decisión se toma con datos del desempeño de la persona, y la generalización se planea desde el inicio.",
+    dim: ["Atención", "Memoria y aprendizaje", "Funciones ejecutivas", "Conciencia de los déficits", "Emoción, conducta y familia"],
+    fuente: "Sohlberg y Mateer, 2001, caps. 1 y 5 · Ardila y Rosselli, 2019, cap. 15"
+  }
+});
+
+Object.assign(INSTRUMENTOS, {
+  "GAS": { n: "Escalamiento de logro de metas", rol: "Medida de resultado", d: "Se negocian con la persona de tres a seis metas concretas, se fija el plazo y, para cada meta, cinco niveles de logro de −2 a +2, donde 0 es el resultado esperado. Mide el cambio en lo que importa a cada persona, no en una prueba.", med: "3-6 metas · al inicio y al cumplirse el plazo", guia: false, fuente: "Sohlberg y Mateer, 2001, cap. 1" }
+});
 
 /* Planes nuevos con los manuales de los autores (octubre de 2026): modelos,
    instrumentos y referencias que no tenían archivo propio. */
@@ -4219,7 +4303,8 @@ const VARIABLES = [
     "<strong>Si los rituales son identificables</strong>, aunque sean solo mentales, la exposición con prevención de respuesta es el tratamiento psicológico con más respaldo para el trastorno obsesivo-compulsivo.",
     "<strong>Si lo que domina es la lucha contra el propio pensamiento</strong> —tomar las obsesiones como verdades u órdenes y organizar la vida alrededor de no sentir la duda—, el plan de aceptación y compromiso trabaja esa relación con el pensamiento.",
     "<strong>Si los pensamientos intrusos de daño al bebé aparecen en el embarazo o el posparto</strong>, el plan de pensamientos atemorizantes adapta este trabajo a la madre y al padre, empezando por distinguirlos de la psicosis posparto.",
-    "Los planes comparten un principio: dejar de neutralizar. Ninguno intenta suprimir la obsesión."
+    "Los planes comparten un principio: dejar de neutralizar. Ninguno intenta suprimir la obsesión.",
+    "<strong>Si lo que domina es no poder desprenderse de las cosas</strong> y la casa se llena hasta no poder usarla, ver <em>Trastorno de acumulación</em>: tiene su propio tratamiento, y la exposición con prevención de respuesta para el trastorno obsesivo-compulsivo no funciona en la mayoría de esos casos (Steketee y Frost, 2014, cap. 2)."
   ],
   planes: [
     {
@@ -5255,6 +5340,179 @@ const VARIABLES = [
 },
 {
   cat: "Ansiedad y miedo",
+  t: "Trastorno de acumulación",
+  sub: "Una dificultad persistente para desprenderse de las posesiones, sin importar su valor real, porque la persona siente que necesita guardarlas y sufre al pensar en descartarlas. Las cosas se acumulan hasta ocupar los espacios de la casa e impedir usarlos para lo que son —cocinar, comer en la mesa, dormir en la cama—, y a veces ponen en riesgo la seguridad. La mayoría adquiere en exceso, comprando o recogiendo cosas gratis. Empieza entre los 11 y los 15 años y se agrava con las décadas; afecta a entre el 2 % y el 6 % de la población (Steketee y Frost, 2014, cap. 1; APA, 2022). Lo que se interviene no es el desorden, sino la dificultad para descartar, la adquisición y las creencias que las sostienen.",
+  elegir: [
+    "<strong>Si la acumulación es el problema principal</strong>, el plan es la terapia cognitivo-conductual específica para la acumulación, con visitas domiciliarias. La exposición con prevención de respuesta pensada para el trastorno obsesivo-compulsivo no funciona en la mayoría de los casos, y los medicamentos tienen resultados pobres o modestos (Steketee y Frost, 2014, cap. 2).",
+    "<strong>Si los objetos se acumulan por obsesiones de contaminación o por rituales de comprobación</strong>, no es trastorno de acumulación: ver <em>Obsesiones y compulsiones</em>. Tampoco lo es cuando se explica por un deterioro cognitivo, una lesión cerebral, una depresión con falta de energía o intereses restringidos del autismo (Steketee y Frost, 2014, cap. 1).",
+    "<strong>Si la familia es la que consulta y la persona no reconoce el problema</strong>, empezar por el trabajo motivacional y por pedir a la familia que deje las críticas y las limpiezas forzadas, que no funcionan y dañan la confianza. La acumulación de animales no está cubierta por este plan."
+  ],
+  planes: [
+    {
+      id: "acum-tcc",
+      mod: "acumulacion-tcc",
+      inst: ["HRS", "SI-R", "CIR"],
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Terapia cognitivo-conductual para la acumulación",
+      fuente: "Steketee y Frost, 2014",
+      cuando: "Una persona adulta tiene <strong>la casa ocupada por cosas que no logra descartar</strong>: le cuesta decidir qué guardar, siente angustia, culpa o duelo al pensar en desprenderse de algo, sigue comprando o recogiendo objetos aunque no tenga dónde ponerlos, y el desorden le impide usar la cocina, la mesa o la cama, la aísla o genera conflictos con su familia.",
+      respaldo: "En un ensayo con lista de espera, a las 12 semanas quienes recibieron la terapia redujeron los síntomas entre un 15 % y un 27 %, frente a entre un 2 % y un 11 % de quienes esperaban. Tras 26 sesiones la reducción fue del 27 % al 39 % según la medida, el 71 % fue valorado por su terapeuta como mucho o muy mejorado y el 81 % se valoró así; solo el 10 % abandonó. Entre 3 y 12 meses después la mejoría se mantenía. Los terapeutas fueron estudiantes de doctorado con supervisión cercana. La remisión completa es poco frecuente: la persona suele terminar mejorada, con desorden pendiente y las habilidades para seguir trabajándolo (Steketee y Frost, 2014, caps. 2 y 12).",
+      secuencia: "<strong>Secuencia:</strong> unas 26 sesiones semanales en seis meses —15 en casos leves, 30 o más en un año en los graves—, idealmente tres en el consultorio y una al mes en casa o en un lugar donde la persona adquiere. Evaluación, de dos a tres sesiones; formulación, dos; adquisición, de dos a tres; habilidades de organización y solución de problemas, de dos a tres; clasificar, descartar y trabajo cognitivo, unas 15; trabajo motivacional en partes de varias sesiones, sobre todo al inicio; prevención de recaídas, dos. Es modular: el orden depende del caso (Steketee y Frost, 2014, cap. 2).",
+      esc: ["salud-mental", "primer-nivel", "comunidad", "mayores"],
+      actividades: [
+        {
+          t: "Evaluación en consulta y en casa",
+          tecs: ["visita-domiciliaria-acumulacion", "tamizaje"],
+          obj: "Conocer la gravedad, el riesgo y la vida diaria en la casa, y decidir por dónde empezar.",
+          pasos: [
+            "Preguntar qué palabras prefiere la persona para su problema y para desprenderse de las cosas; evitar «acumulador», «basura» o «cosas inservibles» y usar sus palabras o expresiones neutras como «sus cosas».",
+            "Hacer la entrevista de acumulación y aplicar la HRS, el SI-R y la escala pictórica del desorden; explorar depresión, ansiedad social, síntomas obsesivos y problemas de atención.",
+            "Visitar la casa dentro de las primeras cuatro sesiones: explicar antes que no se tocará nada y que las fotos son confidenciales, no mostrar sorpresa, valorar las actividades diarias, la seguridad —riesgo de incendio, salidas bloqueadas, acceso de emergencias— y la higiene, y fotografiar cada habitación.",
+            "Comparar las calificaciones de la persona con las propias: si ella califica mucho menos desorden, hay un problema de conciencia que se trabaja con estrategias motivacionales.",
+            "Decidir juntos por dónde empezar —el espacio más fácil o el que más beneficio inmediato traiga— y armar una caja con objetos de esa habitación para practicar en el consultorio."
+          ],
+          casa: "Llenar los cuestionarios y armar la caja o bolsa de objetos para traer a la consulta.",
+          avance: "Hay una línea de base con escalas y fotos, y un lugar acordado para empezar.",
+          fuente: "Steketee y Frost, 2014, caps. 1 y 3"
+        },
+        {
+          t: "Formulación del caso, metas y reglas",
+          tecs: ["analisis-funcional", "psicoeducacion"],
+          obj: "Entender con la persona por qué acumula y acordar cómo se trabajará.",
+          pasos: [
+            "Dibujar juntos el modelo general en una hoja: abajo la dificultad para descartar y el desorden, y arriba lo que contribuye —vulnerabilidades, problemas para atender, categorizar y decidir, lo que significan las posesiones, las emociones y lo que refuerza adquirir y guardar—, con preguntas de curiosidad como «¿de dónde cree que viene ese pensamiento?».",
+            "Hacer el análisis funcional de un episodio reciente de adquirir o de no poder descartar: la situación, lo que pensó, lo que sintió y lo que hizo.",
+            "Pedir sus metas personales —una sala donde pueda entrar una amiga, una cocina con mesones libres, poder bañarse— y no agregar «reducir el desorden» si la persona no lo dice: bajará al cumplir las demás.",
+            "Acordar las reglas: el terapeuta no toca ni saca nada sin permiso explícito, la persona toma todas las decisiones, se trabaja de forma sistemática de lo fácil a lo difícil, se fija un plan de organización antes de clasificar, la persona piensa en voz alta mientras clasifica y cada objeto se toca una sola vez.",
+            "Usar las visualizaciones —imaginar la habitación con desorden, luego despejada y luego la casa ideal— y las fotos de la casa para conocer el malestar y la motivación."
+          ],
+          casa: "Completar las metas personales y revisar las fotos de la casa anotando las reacciones.",
+          avance: "La persona explica con sus palabras qué mantiene su acumulación y tiene metas propias.",
+          fuente: "Steketee y Frost, 2014, caps. 4 y 6"
+        },
+        {
+          t: "Ambivalencia y motivación para el cambio",
+          tecs: ["entrevista-motivacional", "balance-decisional"],
+          obj: "Trabajar la ambivalencia, que aparece incluso en quien pidió ayuda cuando tiene que decidir qué sale de la casa.",
+          pasos: [
+            "Reconocer las señales de ambivalencia: quejas que desvían la conversación, discusiones, llegar tarde u olvidar citas, desánimo pese al avance.",
+            "Usar la entrevista motivacional: escuchar con empatía, desarrollar la discrepancia entre la casa actual y lo que la persona valora, y evitar discutir o presionar.",
+            "Explorar ventajas y desventajas de seguir igual y de cambiar.",
+            "Proponer problemas para resolver, experimentos conductuales y metáforas, y hablar de las tareas entre sesiones con otras palabras si la palabra «tarea» provoca rechazo."
+          ],
+          casa: "Hoja de ventajas y desventajas de cambiar.",
+          avance: "La persona sostiene su asistencia y sus tareas y habla más de razones para cambiar.",
+          fuente: "Steketee y Frost, 2014, caps. 3 y 5"
+        },
+        {
+          t: "Reducir la adquisición",
+          tecs: ["preguntas-antes-adquirir", "practica-no-adquirir", "jerarquia-exposicion"],
+          obj: "Controlar la compra excesiva y la recolección de cosas gratis, y encontrar otras fuentes de placer y de alivio.",
+          pasos: [
+            "Registrar durante una semana lo que entra a la casa, dónde se consiguió y cuánto malestar habría sentido de no traerlo, de 0 a 100.",
+            "Elaborar las preguntas antes de adquirir, llevarlas siempre y sacarlas ante cada impulso.",
+            "Revisar las ventajas y desventajas de adquirir y fijar reglas: adquirir solo lo que se usará en el próximo mes, lo que se puede pagar con dinero y no a crédito, y lo que tiene un lugar libre.",
+            "Practicar no adquirir de forma graduada —pasar frente a la tienda, recorrerla sin tocar, tomar objetos sin llevarlos—, con el terapeuta o el acompañante al principio, y comprobar que el impulso baja.",
+            "Planear actividades que reemplacen el placer y el alivio que daba adquirir; si no se hace, la recaída es probable."
+          ],
+          casa: "Practicar los pasos de la jerarquía de no adquirir y registrar el impulso.",
+          avance: "Disminuye lo que entra a la casa y la persona tolera el impulso sin actuar.",
+          fuente: "Steketee y Frost, 2014, caps. 4 y 7"
+        },
+        {
+          t: "Organizar y resolver problemas",
+          tecs: ["solucion-problemas", "plan-organizacion-posesiones", "tocar-una-vez"],
+          obj: "Aprender a decidir, categorizar y dar un lugar a cada cosa.",
+          pasos: [
+            "Enseñar los pasos de la solución de problemas y aplicarlos a los obstáculos de la tarea: no poder empezar, no tener dónde mover las cosas, no lograr sacar las bolsas de la casa, no pagar las cuentas a tiempo.",
+            "Definir pocas categorías para lo que sale —basura, reciclaje, donar, vender, sin decidir— y un plan concreto para sacarlo; preferir donar a vender, que consume tiempo, salvo objetos valiosos o necesidad de dinero.",
+            "Definir pocas categorías para lo que se queda y un lugar fijo para cada una; empezar por los objetos y dejar el papel para después, con un sistema de archivo simple.",
+            "Clasificar con la regla de tocar cada objeto una sola vez y acordar cómo mantener el orden con lo que entra nuevo."
+          ],
+          casa: "Aplicar el plan de organización a una zona de la habitación elegida.",
+          avance: "La persona usa sus categorías y lugares y saca de la casa lo que decidió.",
+          fuente: "Steketee y Frost, 2014, cap. 8"
+        },
+        {
+          t: "Clasificar y descartar con exposición",
+          tecs: ["listado-pensamientos-descartar", "experimento-conductual"],
+          obj: "Reducir el malestar de desprenderse de las cosas mediante la práctica repetida.",
+          pasos: [
+            "Explicar la habituación: el malestar sin peligro real baja con el tiempo, como el ruido del tren deja de despertar a quien vive cerca, y necesita repetición; algo de malestar es parte del aprendizaje.",
+            "Hacer el listado de pensamientos al descartar con objetos traídos de la casa que sean de verdad difíciles, sin influir en la decisión; tomar la calificación de malestar cada cinco a diez minutos y preguntar al final qué aprendió.",
+            "Después de varios objetos, pedir a la persona que escriba sus propias preguntas para decidir más rápido si guarda o descarta, sin dirigirla demasiado.",
+            "Ordenar de lo más fácil a lo más difícil los tipos de objeto para practicar y pasar a clasificar en casa.",
+            "Plantear experimentos conductuales para poner a prueba predicciones —«si lo boto lo voy a necesitar», «no voy a soportar el malestar»—: desprenderse de algo, registrar el malestar durante horas o días y sacar conclusiones.",
+            "Si ayuda, hacer jornadas largas de varias horas en la casa, siempre con el permiso de la persona."
+          ],
+          casa: "Repetir el listado de pensamientos con tres objetos en casa y llevar a su lugar los que decidió guardar.",
+          avance: "Baja el malestar al descartar y se despejan espacios de la casa.",
+          fuente: "Steketee y Frost, 2014, caps. 2, 6 y 9"
+        },
+        {
+          t: "Trabajo cognitivo con las creencias sobre las posesiones",
+          tecs: ["reestructuracion-cognitiva", "flecha-descendente", "registro-pensamientos"],
+          obj: "Examinar las creencias que dan a las cosas un valor desmedido.",
+          pasos: [
+            "Identificar los errores de pensamiento que aparecen al clasificar —todo o nada, sobregeneralizar, catastrofizar, razonamiento emocional, «debería»— y las creencias sobre el valor de los objetos, la responsabilidad de no desperdiciar, la confianza en la memoria, el control y el perfeccionismo.",
+            "Usar las preguntas sobre las posesiones que la persona escribió y examinar las ventajas y desventajas de guardar y de despejar, porque al decidir solo atiende a lo que costaría desprenderse.",
+            "Usar la flecha descendente para llegar a las creencias nucleares y el cuestionamiento socrático para examinar la evidencia; tomar la perspectiva de otra persona, diferenciar necesitar de querer y valorar el tiempo.",
+            "Trabajar el perfeccionismo con un continuo, porque predice peores resultados, y usar registros de pensamiento entre sesiones."
+          ],
+          casa: "Registro de pensamientos mientras se clasifica en casa.",
+          avance: "La persona cuestiona sola sus creencias al decidir y decide con más rapidez.",
+          fuente: "Steketee y Frost, 2014, caps. 2 y 10"
+        },
+        {
+          t: "Familia y acompañante en casa",
+          tecs: ["acompanante-acumulacion"],
+          obj: "Lograr que la familia apoye sin criticar ni decidir por la persona, y sumar ayuda para la práctica en casa.",
+          pasos: [
+            "Reunirse con la familia, con permiso de la persona, al final de la visita a casa: responder sus preguntas y explorar cómo se acomodan al problema —clasificar o botar por ella, guardar cosas, controlar la tarjeta de crédito—.",
+            "Advertir que el avance parecerá lento, pedir que eviten las críticas y que noten los cambios pequeños, y preguntar qué han logrado criticando hasta ahora.",
+            "Negociar el control de los espacios cuando otros familiares también acumulan, y pedir que dejen de decidir, tranquilizar o encargarse de sacar las cosas por la persona.",
+            "Elegir con la persona un acompañante tranquilo y empático, incluirlo en una o más sesiones y darle instrucciones escritas; animar a recibir visitas en casa desde temprano."
+          ],
+          casa: "Acordar con el acompañante una sesión de práctica en casa.",
+          avance: "Bajan las críticas y las acomodaciones de la familia, y hay práctica en casa entre sesiones.",
+          fuente: "Steketee y Frost, 2014, cap. 3 e «Instructions for Coaches»"
+        },
+        {
+          t: "Prevención de recaídas y trabajo por cuenta propia",
+          tecs: ["prevencion-recaidas"],
+          obj: "Consolidar lo logrado y planear cómo seguir con el desorden que queda.",
+          pasos: [
+            "Repetir las escalas del inicio y tomar fotos nuevas desde los mismos ángulos para comparar con las primeras; revisar las metas y los modelos de la formulación.",
+            "Repasar la caja de herramientas: las técnicas que más sirvieron en adquirir, organizar y descartar.",
+            "Programar autosesiones el mismo día y a la misma hora de las sesiones, con un plan para evitar que el desorden vuelva a crecer, y de dos a tres sesiones de refuerzo en el año siguiente.",
+            "Diferenciar una caída de una recaída y anticipar estresores, como heredar las cosas de un familiar; planear qué hacer con el tiempo que antes ocupaba la acumulación."
+          ],
+          casa: "Lista de todas las técnicas aprendidas y calendario de autosesiones.",
+          avance: "La persona sigue clasificando y controla la adquisición sin el terapeuta.",
+          fuente: "Steketee y Frost, 2014, cap. 12"
+        }
+      ],
+      medir: [
+        "<strong>HRS</strong> y <strong>SI-R</strong> al inicio, a mitad y al final; en el ensayo de la guía la HRS bajó de 28 a 17 puntos.",
+        "<strong>Escala pictórica del desorden</strong> por habitación y fotos tomadas desde los mismos ángulos.",
+        "Preguntas de seguridad e higiene de la casa: un 2 o más en cualquier pregunta pide atenderla pronto (Steketee y Frost, 2014, caps. 3 y 12)."
+      ],
+      adapt: [
+        "<strong>En grupo:</strong> el tratamiento se ha aplicado en grupo con buenos resultados, y los talleres de pares estructurados, de seis a nueve personas durante 15 sesiones, mostraron reducción de síntomas y sirven para continuar después de la terapia (Steketee y Frost, 2014, caps. 2 y 12).",
+        "<strong>Sin visitas del terapeuta:</strong> la persona puede tomar sus propias fotos con un poco de entrenamiento, y un acompañante puede ayudar con la práctica en casa (Steketee y Frost, 2014, caps. 2 y 3).",
+        "<strong>Con depresión o problemas de atención:</strong> son las comorbilidades más frecuentes y las que más frenan el trabajo; se atienden cuando interfieren (Steketee y Frost, 2014, caps. 3 y 11)."
+      ],
+      cuidado: [
+        "Si en la casa viven niños o personas mayores en condiciones que ponen en riesgo su salud o su seguridad, puede haber obligación de reportarlo: hablarlo con la persona en el consultorio antes de la visita (Steketee y Frost, 2014, caps. 2 y 3).",
+        "Las limpiezas forzadas por familiares o autoridades provocan rabia, dolor y nuevas acumulaciones; solo se justifican por salud o seguridad, involucrando a la persona en las decisiones (Steketee y Frost, 2014, cap. 2).",
+        "Llevar guantes, ropa de protección o tapabocas si hay suciedad grave, y pedir ayuda de saneamiento si hace falta. Los casos graves conviene que los atienda un terapeuta con experiencia (Steketee y Frost, 2014, cap. 2)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ansiedad y miedo",
   t: "Trauma y estrés postraumático",
   sub: "Lo que se interviene es la evitación de los recuerdos y de todo lo que los evoca, los significados que la persona sacó del trauma sobre sí misma y el mundo, y una memoria que no termina de procesarse: por eso se revive. La exposición se hace siempre a recordatorios seguros; si la situación traumática sigue ocurriendo, lo primero es la protección de la persona.",
   elegir: [
@@ -5262,6 +5520,7 @@ const VARIABLES = [
     "<strong>Si lo que más pesa son la culpa, la vergüenza o conclusiones extremas</strong> («fue mi culpa», «no puedo confiar en nadie»), la terapia de procesamiento cognitivo trabaja esos significados. Tiene dos versiones: sin relato escrito, la estándar, y con relato escrito, para quien disocia mucho o quiere contar su historia.",
     "<strong>Si la vida se ha ido encogiendo</strong> —aislamiento, abandono de actividades, embotamiento— y la persona no está lista para trabajar el recuerdo, la activación conductual para el TEPT recupera la vida cotidiana.",
     "<strong>Si hay autolesiones, conductas suicidas o una desregulación emocional marcada</strong>, primero se estabiliza con terapia dialéctico-conductual y la exposición llega después.",
+    "<strong>Si hay pérdidas de tiempo, partes disociativas que toman el control o voces internas</strong> tras traumas graves y repetidos en la infancia, ver <em>Trastornos disociativos complejos</em>: el trabajo empieza por la estabilización, y la exposición prematura a los recuerdos puede desestabilizar (Boon et al., 2011, prefacio).",
     "<strong>Si la situación estresante sigue presente</strong> o la persona no acepta todavía la exposición, la inoculación de estrés entrena el afrontamiento."
   ],
   planes: [
@@ -6010,6 +6269,158 @@ const VARIABLES = [
         "La exposición no empieza mientras haya conductas que atentan contra la vida.",
         "Validar no es aprobar: se validan la emoción y las razones de la persona, no la autolesión.",
         "Ante riesgo suicida inminente, se aplica el protocolo de riesgo y se activa la ruta de atención (ver la variable Riesgo suicida y autolesión)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Ansiedad y miedo",
+  t: "Trastornos disociativos complejos",
+  sub: "Una división de la personalidad y del sentido de sí mismo, casi siempre por traumas graves y repetidos en la infancia, en la que partes disociativas toman el control de la conducta o influyen desde dentro. La persona pierde tiempo, se siente fuera de su cuerpo o de su entorno, oye voces internas que critican o lloran, no recuerda lo que hizo, cambia de forma brusca, y suele consultar por otra cosa: ansiedad, depresión, autolesiones, problemas para dormir o comer, crisis o dificultades en las relaciones. Comprende el trastorno de identidad disociativo y otro trastorno disociativo especificado con síntomas mixtos crónicos (APA, 2022; Boon et al., 2011, cap. 1). Lo que se interviene primero es la vida en el presente: estabilizar y entrenar habilidades antes de tocar los recuerdos traumáticos.",
+  elegir: [
+    "<strong>Si hay un diagnóstico confirmado de trastorno disociativo complejo</strong> y una terapia individual en curso, el plan es el entrenamiento en habilidades de la fase de estabilización, en grupo o dentro de la terapia individual. No sustituye la terapia individual especializada, que es el estándar de atención.",
+    "<strong>Si solo hay sospecha</strong>, primero el diagnóstico con una entrevista estructurada; la DES no basta. Hay que diferenciarlo del trastorno límite, de la psicosis y del trastorno bipolar, y puede coexistir con ellos: ver <em>Trastorno límite de la personalidad</em> y <em>Síntomas psicóticos</em>. Las voces internas de las partes no deben tratarse como alucinaciones sin evaluarlas (Boon et al., 2011, caps. 5 y 33).",
+    "<strong>Si predomina el estrés postraumático sin disociación de la personalidad</strong>, ver <em>Trauma y estrés postraumático</em>. Las conductas suicidas y autolesiones son frecuentes en el trastorno de identidad disociativo: si hay riesgo, empezar por <em>Riesgo suicida y autolesión</em> (APA, 2022)."
+  ],
+  planes: [
+    {
+      id: "dis-estabilizacion",
+      mod: "disociacion-fases",
+      inst: ["DES"],
+      enf: "fases",
+      nivel: "conceptual",
+      t: "Entrenamiento en habilidades para la fase de estabilización",
+      fuente: "Boon et al., 2011",
+      cuando: "Una persona adulta con <strong>trastorno de identidad disociativo u otro trastorno disociativo complejo</strong> confirmado, en terapia individual con una alianza estable, que todavía no puede trabajar los recuerdos traumáticos porque se desborda o se desconecta: pierde tiempo, cambia a otras partes con el estrés, oye voces internas que la asustan, duerme y come mal, se lastima y no logra sostener la vida diaria.",
+      respaldo: "Los estudios disponibles, con limitaciones metodológicas, indican que estas personas se benefician de un tratamiento centrado en la disociación: dos tercios mejoran en disociación, ansiedad, depresión, malestar general y estrés postraumático. El tratamiento por fases es el consenso de los expertos, porque exponer antes de tiempo a los recuerdos traumáticos puede desestabilizar. El manual reúne las habilidades de la fase 1 a partir de unos 30 años de experiencia clínica de cada autor y de un curso holandés de estabilización con respaldo empírico para el estrés postraumático complejo, que había excluido a estos pacientes; los autores lo presentan como un protocolo listo para ponerse a prueba, sin ensayos propios (Boon et al., 2011, prefacio).",
+      secuencia: "<strong>Secuencia:</strong> en grupo, con dos coordinadores y de cinco a nueve participantes —ocho es lo óptimo—, una entrevista de admisión de cuatro a seis semanas antes, una sesión inicial y luego un tema por sesión, de una hora y 45 minutos con un descanso de 15: revisión de tareas en la primera mitad y tema nuevo con ejercicios en la segunda, con cierre de anclaje para salir seguros. En terapia individual, de forma estructurada tema por tema, o intercalando capítulos según lo que la persona necesite (Boon et al., 2011, cap. 33).",
+      esc: ["salud-mental"],
+      actividades: [
+        {
+          t: "Requisitos, diagnóstico y admisión",
+          tecs: ["tamizaje", "seguimiento-derivacion"],
+          obj: "Asegurar que la persona tiene el diagnóstico, el momento y la estabilidad para el entrenamiento.",
+          pasos: [
+            "Confirmar el diagnóstico con una entrevista estructurada de los trastornos disociativos hecha por un terapeuta entrenado; una DES alta no basta.",
+            "Verificar que la persona está en terapia individual centrada en la disociación, con una alianza estable, asistencia regular y metas claras; que reconoce que tiene partes; que está en la fase de estabilización y no trabajando recuerdos traumáticos; que no está psicótica, y que puede controlar los cambios a otras partes durante la sesión.",
+            "Esperar si hay una crisis vital, una adicción primaria, un trastorno alimentario grave o una depresión grave sin tratar; tampoco introducir el manual justo al recibir el diagnóstico, que suele desestabilizar.",
+            "En la admisión, explicar el formato, el papel de los coordinadores y las reglas del grupo, explorar expectativas y temores, y obtener la autorización para hablar con el terapeuta individual."
+          ],
+          casa: "Leer las reglas del grupo y anotar las dudas para la sesión inicial.",
+          avance: "La persona entiende el formato, acepta las reglas y su terapeuta individual está coordinado.",
+          fuente: "Boon et al., 2011, cap. 33"
+        },
+        {
+          t: "Entender la disociación y estar en el presente",
+          tecs: ["psicoeducacion", "anclaje-presente", "partes-disociativas"],
+          obj: "Dar sentido a los síntomas disociativos y aprender a volver al aquí y ahora.",
+          pasos: [
+            "Explicar qué es la disociación, cómo se origina y que el primer objetivo es entender las partes y manejar mejor el presente, no ir al pasado doloroso.",
+            "Revisar los síntomas: problemas de identidad, experiencias de sentir muy poco —desconexión, desrealización, amnesia— y de sentir demasiado —intrusiones, voces—, y los síntomas postraumáticos.",
+            "Practicar el ejercicio de estar en el presente: notar tres objetos que se ven, tres sonidos y tres cosas que se tocan, nombrando sus características en voz alta, y luego bajar a dos y a uno.",
+            "Buscar anclas propias para cada sentido —un olor agradable, un sabor intenso, apretar las manos, empujar el piso con los pies— y respirar lento contando hasta tres."
+          ],
+          casa: "Practicar el ejercicio de estar en el presente dos veces al día, al levantarse y al acostarse, y anotar lo que encaja o no con la propia experiencia.",
+          avance: "La persona nota cuándo se desconecta y usa sus anclas para volver.",
+          fuente: "Boon et al., 2011, caps. 1 a 4"
+        },
+        {
+          t: "Superar la fobia de la experiencia interna y reflexionar",
+          tecs: ["fobia-experiencia-interna", "autorregistro"],
+          obj: "Empezar a acercarse sin juicio a las propias emociones, pensamientos y partes.",
+          pasos: [
+            "Explicar que las experiencias internas no son buenas ni malas, y que evitarlas mantiene el problema.",
+            "Elegir una experiencia que dé poco miedo o vergüenza, 1 o 2 en una escala de 1 a 10, y notar cada día cuándo se la evita, qué se teme que pase si se acepta y qué se hace para evitarla, sin obligarse a dejar de evitarla.",
+            "Practicar la reflexión: estar en el presente, notar la experiencia interna sin juzgarla, notar semejanzas y diferencias con el pasado y ser empático con uno mismo y con los demás."
+          ],
+          casa: "Registro diario de una experiencia interna evitada.",
+          avance: "La persona describe sus experiencias internas con menos miedo y más curiosidad.",
+          fuente: "Boon et al., 2011, caps. 5 y 6"
+        },
+        {
+          t: "Comunicación y cooperación entre partes",
+          tecs: ["comunicacion-interna"],
+          obj: "Lograr que las partes cooperen en la vida diaria y en la terapia.",
+          pasos: [
+            "Reconocer y aceptar las partes sin juzgarlas, empezando por aquella con la que la persona se siente más cómoda.",
+            "Reservar un momento tranquilo cada día para escuchar y hablar con las partes, hacia adentro o por escrito, y buscar un terreno común: todas quieren sentirse mejor.",
+            "Entender que las partes críticas o amenazantes intentan proteger con recursos limitados, y que necesitan aprender formas más eficaces.",
+            "Dialogar solo sobre la vida diaria: llegar a tiempo a las citas, hacer las tareas de la casa, usar el tiempo libre; no compartir todavía recuerdos ni emociones traumáticas entre partes."
+          ],
+          casa: "Una conversación interna diaria sobre una tarea concreta de la vida diaria.",
+          avance: "Hay menos conflicto interno y las partes colaboran en tareas concretas.",
+          fuente: "Boon et al., 2011, cap. 7"
+        },
+        {
+          t: "Seguridad interna y vida diaria",
+          tecs: ["lugar-seguro-interno", "relajacion"],
+          obj: "Construir una sensación interna de seguridad y una rutina diaria estable.",
+          pasos: [
+            "Aprovechar los momentos en que el presente es realmente seguro para que todas las partes noten esa calma, y crear uno o varios lugares seguros internos.",
+            "Mejorar el sueño: rutinas para acostarse, un kit para dormir y qué hacer tras una pesadilla.",
+            "Armar una estructura diaria y semanal realista, con horarios de levantarse y acostarse, comidas, tareas, contacto social, tiempo personal y revisiones internas, y formas de llevar la cuenta del tiempo.",
+            "Resolver los conflictos internos sobre el descanso, el tiempo libre, el autocuidado y la alimentación, y aprender a relajarse con seguridad."
+          ],
+          casa: "Practicar el lugar seguro interno y seguir la rutina diaria acordada.",
+          avance: "Mejoran el sueño y la rutina, y la persona tiene un lugar interno al que recurrir.",
+          fuente: "Boon et al., 2011, caps. 8 a 13"
+        },
+        {
+          t: "Manejar los desencadenantes",
+          tecs: ["desencadenantes-traumaticos"],
+          obj: "Reducir el efecto de los recordatorios del trauma en la vida diaria.",
+          pasos: [
+            "Reconocer los desencadenantes y sus señales: una reacción más intensa de lo justificado o distinta de la habitual.",
+            "Evitar o eliminar algunos solo de forma temporal, mientras se ganan habilidades, porque si no la vida se restringe cada vez más.",
+            "Para los que no se pueden evitar, prepararse con todas las partes, ensayar en la imaginación la situación saliendo bien, buscar compañía y reconocer las opciones que se tienen, como salir si hace falta.",
+            "Distinguir en voz alta el pasado del presente: qué se parece y qué es distinto en el lugar, la persona y uno mismo, que ahora es adulto y tiene recursos.",
+            "Planear con anticipación las fechas difíciles, como las fiestas y los aniversarios."
+          ],
+          casa: "Hoja de desencadenantes y estrategias, y plan para una fecha difícil próxima.",
+          avance: "La persona anticipa sus desencadenantes y se recupera más rápido cuando aparecen.",
+          fuente: "Boon et al., 2011, caps. 14 a 16"
+        },
+        {
+          t: "Ventana de tolerancia: sentir demasiado o muy poco",
+          tecs: ["ventana-tolerancia", "contencion"],
+          obj: "Aprender a volver al rango en que se puede sentir y pensar a la vez.",
+          pasos: [
+            "Explicar la ventana de tolerancia, la hiperactivación y la hipoactivación, y la combinación de regularse uno mismo y con ayuda de otros.",
+            "Para sentir demasiado: distraerse de forma temporal y voluntaria, contener la emoción o el recuerdo para la terapia, calmarse con un reconocimiento empático de lo que se siente y anclarse en el presente.",
+            "Para sentir muy poco: activarse primero con el cuerpo —levantarse, moverse, una actividad breve y vigorosa— y luego con la mente, no fijar la mirada, nombrar en voz alta lo que perciben los sentidos y permitirse sentir un poco de emoción, una cucharadita, durante unos segundos."
+          ],
+          casa: "Hoja de la propia ventana de tolerancia y de lo que ayuda en cada extremo.",
+          avance: "La persona reconoce cuándo sale de la ventana y usa una estrategia para volver.",
+          fuente: "Boon et al., 2011, cap. 18"
+        },
+        {
+          t: "Emociones, creencias y relaciones",
+          tecs: ["reestructuracion-cognitiva"],
+          obj: "Ampliar las habilidades a las emociones difíciles, los pensamientos y la vida con otros.",
+          pasos: [
+            "Identificar las emociones y su función, las creencias nucleares negativas sobre uno mismo, los demás y el mundo, y los errores de pensamiento, y construir creencias realistas.",
+            "Trabajar con las partes implicadas en la ira, el miedo, la vergüenza, la culpa, las necesidades de las partes infantiles y las autolesiones, y tomar decisiones con un espacio interno de reunión.",
+            "Abordar el miedo al apego y a perderlo, los conflictos de pareja, la soledad, la asertividad y los límites personales, con la cooperación de las partes."
+          ],
+          casa: "Las hojas de trabajo del tema de cada sesión.",
+          avance: "La persona maneja mejor sus emociones difíciles y sus relaciones.",
+          fuente: "Boon et al., 2011, caps. 17 a 32"
+        }
+      ],
+      medir: [
+        "<strong>DES</strong> como tamizaje inicial, no como diagnóstico ni como medida única del cambio.",
+        "Frecuencia de pérdidas de tiempo, autolesiones, crisis y cambios a otras partes, revisada con el terapeuta individual.",
+        "Evaluación del curso al terminar y repaso de las habilidades de cada parte del manual (Boon et al., 2011, cap. 35 y anexo D)."
+      ],
+      adapt: [
+        "<strong>Terapia individual:</strong> de forma estructurada para quien necesita más habilidades para funcionar, alternando con sesiones de crisis, o intercalando capítulos para quien funciona mejor; casi todos se benefician de los temas de la fobia de las partes, la reflexión, la seguridad interna y la ventana de tolerancia (Boon et al., 2011, cap. 33).",
+        "<strong>Hospital de día o internación:</strong> grupos breves con capítulos seleccionados: educación sobre el diagnóstico, vida diaria, emociones o creencias (Boon et al., 2011, cap. 33).",
+        "<strong>Estrés postraumático complejo y trastornos de personalidad relacionados con el trauma:</strong> buena parte del contenido es útil también para estas personas (Boon et al., 2011, prefacio)."
+      ],
+      cuidado: [
+        "No se trabaja con recuerdos traumáticos durante el entrenamiento; si la persona se desborda, se contienen los recuerdos y se reestabiliza. Si lo necesita, puede dejar el grupo y repetirlo más adelante (Boon et al., 2011, prefacio y cap. 33).",
+        "Los coordinadores deben ser profesionales con años de experiencia en trastornos disociativos complejos, con supervisión; el grupo no reemplaza la terapia de un terapeuta sin formación, y nunca se trata a las partes como personas distintas (Boon et al., 2011, cap. 33).",
+        "Durante la sesión, quien necesite anclarse puede salir a lo sumo diez minutos avisando al grupo; si al final no está anclado, se llama a su contacto de emergencia (Boon et al., 2011, cap. 33)."
       ]
     }
   ]
@@ -17391,6 +17802,401 @@ const VARIABLES = [
   ]
 },
 {
+  cat: "Atención y funciones ejecutivas",
+  t: "Daño cerebral adquirido",
+  sub: "Las secuelas cognitivas, emocionales y de conducta de una lesión cerebral ocurrida después del nacimiento —un traumatismo craneoencefálico, un accidente cerebrovascular, una falta de oxígeno, una encefalitis o un tumor—: problemas para concentrarse, recordar lo nuevo, planear, iniciar y revisar lo que se hace, notar los propios cambios y controlar la irritabilidad, junto con depresión, ansiedad, dependencia y desconcierto ante lo que ya no sale como antes. La recuperación es más rápida al principio y puede seguir durante meses o años (Sohlberg y Mateer, 2001, caps. 2, 3 y 12; Ardila y Rosselli, 2019, cap. 15). Lo que se interviene es el funcionamiento en la vida diaria, con la persona y su familia, en coordinación con el equipo de neurología y rehabilitación.",
+  elegir: [
+    "<strong>Si predominan los problemas de atención y memoria</strong>, el plan de atención, memoria y ayudas externas. <strong>Si lo que más pesa es planear, organizarse y reconocer los propios cambios</strong>, el de funciones ejecutivas y conciencia de los déficits. En la mayoría de las personas se combinan, según la evaluación neuropsicológica.",
+    "<strong>Si lo que más afecta son la depresión, la ansiedad, la irritabilidad o los conflictos en casa</strong>, el plan de ajuste emocional, conducta y familia, que se suma a cualquiera de los anteriores.",
+    "<strong>Si fue una conmoción o un traumatismo leve</strong>, el plan de información temprana y manejo de síntomas persistentes. Si el deterioro es progresivo y en una persona mayor, ver <em>Deterioro cognitivo y demencia leve a moderada</em>; para quien cuida, <em>Sobrecarga del cuidador</em>."
+  ],
+  planes: [
+    {
+      id: "dca-atencion-memoria",
+      mod: "rehabilitacion-integral",
+      inst: ["GAS"],
+      enf: "rehab",
+      nivel: "preliminar",
+      t: "Rehabilitación de la atención y la memoria con ayudas externas",
+      fuente: "Sohlberg y Mateer, 2001",
+      cuando: "Una persona con <strong>daño cerebral adquirido</strong> tiene problemas para concentrarse en ambientes con distracciones, se cansa al leer o conversar, comete errores en tareas que antes hacía sin pensar, olvida citas, recados y conversaciones recientes, y eso le impide volver al trabajo o manejar su casa como antes.",
+      respaldo: "En la mayoría de los estudios, el entrenamiento en procesos atencionales mejoró las tareas entrenadas y, con resultados más variables, pruebas de atención no practicadas; varios estudios encontraron cambios en la vida diaria, como volver a vivir de forma independiente o al trabajo. En un estudio con 14 personas mejoró la atención más que la educación sobre la lesión, que a su vez mejoró más el funcionamiento psicosocial. Los ejercicios de memoria repetidos no tienen respaldo para restaurarla; sí lo tienen el aprendizaje sin errores, la recuperación espaciada y el entrenamiento sistemático en ayudas externas, aunque los estudios de estas son escasos y en su mayoría de pocos casos (Sohlberg y Mateer, 2001, caps. 5 a 7).",
+      secuencia: "<strong>Secuencia:</strong> evaluación neuropsicológica y funcional con metas acordadas; entrenamiento atencional varias veces por semana mientras haya progreso medible, junto con estrategias y cambios en el ambiente; elección de la técnica de memoria con un ensayo terapéutico; entrenamiento de la ayuda externa por fases hasta que se use en todos los contextos previstos; mantenimiento con la familia. La duración depende de los datos de desempeño (Sohlberg y Mateer, 2001, caps. 1, 5 y 7).",
+      esc: ["hospital", "salud-mental", "primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluación funcional y metas",
+          tecs: ["psicoeducacion"],
+          obj: "Conocer el perfil cognitivo y lo que la lesión cambió en la vida diaria, y acordar metas medibles.",
+          pasos: [
+            "Partir de la evaluación neuropsicológica y médica, e investigar la vida anterior a la lesión: capacidades, roles, valores, personalidad y rutinas.",
+            "Completar con cuestionarios, entrevistas y observación en situaciones reales —en casa, en el trabajo—, que dicen más sobre el funcionamiento que las pruebas.",
+            "Negociar con la persona de tres a seis metas concretas y escalarlas de −2 a +2 con un plazo.",
+            "Fijar una línea de base de cada conducta a cambiar, para ver después si la intervención hizo la diferencia."
+          ],
+          casa: "Lista, con un familiar, de las tareas diarias que más cuesta hacer desde la lesión.",
+          avance: "Hay metas acordadas, escaladas y con línea de base.",
+          fuente: "Sohlberg y Mateer, 2001, caps. 1 y 4"
+        },
+        {
+          t: "Entrenamiento en procesos atencionales",
+          tecs: ["entrenamiento-procesos-atencion"],
+          obj: "Mejorar la atención sostenida, selectiva, alternante y dividida.",
+          pasos: [
+            "Elegir los ejercicios según el modelo de atención y el perfil de la persona, ordenados de menor a mayor exigencia.",
+            "Practicar con repetición suficiente; si el horario de terapia no alcanza, entrenar a un familiar para dar práctica en casa.",
+            "Registrar precisión y velocidad en cada sesión y decidir con esos datos cuándo subir, bajar o cambiar la tarea; mostrar a la persona su progreso en un gráfico.",
+            "Planear desde el inicio actividades reales en las que se espera ver el cambio —minutos leyendo el periódico, tareas del trabajo— y medirlas."
+          ],
+          casa: "Ejercicios de atención en casa y registro de una actividad real elegida.",
+          avance: "Mejora el desempeño en los ejercicios y en la actividad real medida.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 5"
+        },
+        {
+          t: "Estrategias y cambios en el ambiente",
+          tecs: ["autorregistro"],
+          obj: "Reducir la carga sobre la atención y la memoria en la vida diaria.",
+          pasos: [
+            "Enseñar estrategias de autocontrol para enfocar la atención de forma deliberada en tareas que antes eran automáticas.",
+            "Hacer con la persona listas de ambientes que dificultan y que ayudan —restaurantes ruidosos o tranquilos, tiendas grandes o pequeñas— y elegir los que ayudan.",
+            "Organizar el espacio: un lugar para los mensajes, un sistema para pagar cuentas y archivar, alacenas rotuladas, menos desorden y distracciones visuales.",
+            "Atender el componente emocional: el duelo, la rabia o el miedo a «volverse loco» también reducen la capacidad de atender."
+          ],
+          casa: "Aplicar un cambio del ambiente en casa y registrar si ayuda.",
+          avance: "La persona elige ambientes que la ayudan y tiene su espacio organizado.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 5"
+        },
+        {
+          t: "Memoria: elegir la técnica y enseñar sin errores",
+          tecs: ["aprendizaje-sin-errores", "recuperacion-espaciada"],
+          obj: "Elegir según el perfil cómo trabajar la memoria y enseñar lo que la persona necesita saber.",
+          pasos: [
+            "Distinguir si el problema es de atención y codificación —entonces trabajar la atención— o de almacenamiento y recuperación; si hay dudas, hacer un ensayo terapéutico y ver la respuesta.",
+            "Al dar información: simplificar, reducir la cantidad, comprobar que se entendió, ligarla con lo que ya se sabe, organizarla y practicar varias veces al día unos minutos en vez de una hora seguida.",
+            "Enseñar conocimientos concretos útiles —nombres, rutas, horarios de medicación, procedimientos— con aprendizaje sin errores y recuperación espaciada.",
+            "Reservar las estrategias mnemotécnicas internas para tareas específicas o para personas con deterioro leve, que las aprenden y generalizan mejor."
+          ],
+          casa: "Practicar con un familiar la información aprendida en los intervalos indicados.",
+          avance: "La persona recuerda y usa la información entrenada en su vida diaria.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 6"
+        },
+        {
+          t: "Entrenar una ayuda externa",
+          tecs: ["ayudas-externas-memoria", "niveles-ayuda"],
+          obj: "Lograr que la persona use de forma habitual una ayuda que compense su memoria.",
+          pasos: [
+            "Evaluar las necesidades: perfil cognitivo y físico, uso previo de agendas, aceptación del problema de memoria, recursos, apoyo disponible y contextos donde se usará; elegir la ayuda más sencilla que sirva.",
+            "Si la persona no reconoce su problema de memoria, trabajar la conciencia antes o a la vez, porque si no, no usará la ayuda fuera de la sesión.",
+            "Descomponer el uso de la ayuda en pasos y listar los contextos en que se necesitará.",
+            "Enseñar cada paso modelándolo, sin errores, con instrucciones breves y mucha práctica, y retirar las ayudas por niveles: completa, pregunta que orienta y oportunidad.",
+            "Coordinar con la familia y el equipo para que den las mismas ayudas y registren el uso, y reforzar cada avance: adoptar un hábito nuevo toma tiempo."
+          ],
+          casa: "Usar la ayuda en los contextos acordados y registrar con un familiar cuándo se usó.",
+          avance: "La persona usa la ayuda sin claves en los contextos previstos.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 7"
+        },
+        {
+          t: "Generalización y mantenimiento",
+          tecs: ["prevencion-recaidas"],
+          obj: "Que lo logrado se mantenga y se use fuera de la terapia.",
+          pasos: [
+            "Entrenar de forma explícita y con sobreaprendizaje, practicar las estrategias en varios ambientes naturales y cambiar el ambiente para que las sostenga.",
+            "Involucrar a las personas cercanas y ayudar a la persona a atribuirse el cambio.",
+            "Identificar las barreras para mantenerlo, planear las situaciones de riesgo y cómo recuperarse de los retrocesos, y programar sesiones de refuerzo.",
+            "Revisar las metas escaladas al cumplirse el plazo."
+          ],
+          casa: "Plan escrito de mantenimiento con la familia.",
+          avance: "Se cumplen las metas acordadas y la persona sostiene las estrategias.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 1"
+        }
+      ],
+      medir: [
+        "<strong>Escalamiento de logro de metas</strong> al inicio y al cumplirse el plazo.",
+        "Precisión y velocidad en los ejercicios, en gráfico, y desempeño en la actividad real elegida.",
+        "Registro del uso de la ayuda externa en cada contexto (Sohlberg y Mateer, 2001, caps. 1, 5 y 7)."
+      ],
+      adapt: [
+        "<strong>En grupo o en casa:</strong> el entrenamiento atencional puede hacerse en grupo, y cuando la terapia no da la repetición suficiente, en un programa en casa con un familiar entrenado (Sohlberg y Mateer, 2001, cap. 5).",
+        "<strong>Sin lectura ni escritura:</strong> sistemas de ayuda auditivos o con símbolos (Sohlberg y Mateer, 2001, cap. 7).",
+        "<strong>Niños y adolescentes:</strong> las estrategias se adaptan a la escuela, con apoyos académicos y acomodaciones en el aula (Sohlberg y Mateer, 2001, cap. 14)."
+      ],
+      cuidado: [
+        "Los ejercicios repetidos de memoria, comunes en programas de computador, no tienen respaldo para restaurar la memoria (Sohlberg y Mateer, 2001, cap. 6).",
+        "La evidencia descrita llega hasta 2001 y viene sobre todo de estudios pequeños; la biblioteca no tiene revisiones más recientes de rehabilitación cognitiva.",
+        "La rehabilitación se hace en equipo —neurología, fonoaudiología, terapia ocupacional— y con la familia, que también necesita ayuda y educación (Sohlberg y Mateer, 2001, cap. 1; Ardila y Rosselli, 2019, cap. 15)."
+      ]
+    },
+    {
+      id: "dca-ejecutivas",
+      mod: "rehabilitacion-integral",
+      inst: ["GAS"],
+      enf: "rehab",
+      nivel: "preliminar",
+      t: "Funciones ejecutivas y conciencia de los déficits",
+      fuente: "Sohlberg y Mateer, 2001",
+      cuando: "Después de una lesión cerebral, a menudo frontal, la persona <strong>no logra planear, iniciar, organizar ni revisar lo que hace</strong>: deja tareas sin empezar o sin terminar, actúa de forma impulsiva, no corrige sus errores, se desorganiza con el tiempo, y a menudo <strong>no reconoce estos cambios</strong> o los minimiza, lo que dificulta aceptar ayuda.",
+      respaldo: "En un programa de autoinstrucciones con seis personas con lesión cerebral, el entrenamiento en verbalizar las acciones mejoró la planificación y el uso de los errores, y en un caso de lesión frontal grave la precisión en una tarea laboral pasó del 40 % al 100 % tras un año. Monitorear los errores ayudó en personas con poca conciencia, y dos estudios con un formato de juego de mesa mejoraron el conocimiento sobre la lesión. La investigación sobre intervenciones para la conciencia es todavía limitada (Sohlberg y Mateer, 2001, caps. 8 y 9).",
+      secuencia: "<strong>Secuencia:</strong> evaluar la conciencia y las funciones ejecutivas con observación, cuestionarios y entrevistas; construir la alianza; trabajar la conciencia con educación personalizada y ejercicios vivenciales; ordenar el ambiente y enseñar rutinas para tareas específicas; entrenar autoinstrucciones y planificación con generalización a la vida diaria. La elección depende del tiempo desde la lesión, la gravedad, la conciencia y el apoyo en casa (Sohlberg y Mateer, 2001, caps. 8 y 9).",
+      esc: ["hospital", "salud-mental"],
+      actividades: [
+        {
+          t: "Evaluar la conciencia de los déficits",
+          tecs: ["conciencia-deficits"],
+          obj: "Saber qué reconoce la persona de sus cambios y de dónde viene lo que no reconoce.",
+          pasos: [
+            "Pedir a la persona que describa su funcionamiento y comparar con lo que dicen un familiar y el equipo.",
+            "Comparar lo que predice que hará en una tarea con lo que hace, y observar si corrige sus errores y cómo responde a la retroalimentación.",
+            "Ubicar el nivel: si sabe que una función está alterada, si lo reconoce cuando ocurre y si lo anticipa.",
+            "Distinguir si la falta de conciencia viene de la lesión, de la negación psicológica o de no haber recibido la información, porque cada una pide otra intervención."
+          ],
+          casa: "No aplica.",
+          avance: "Está claro el nivel de conciencia y su origen.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 9"
+        },
+        {
+          t: "Educación personalizada sobre la lesión",
+          tecs: ["psicoeducacion"],
+          obj: "Ayudar a la persona a relacionar la lesión con los cambios que vive, sin provocar una reacción defensiva.",
+          pasos: [
+            "Dar información adaptada a su memoria y comprensión, y personalizarla: que subraye lo que le pasa a ella y escriba sus preguntas.",
+            "Revisar juntos la historia clínica para entender qué pasó y ligar el daño cerebral con los cambios en las capacidades.",
+            "Comparar las valoraciones de la persona con las de alguien cercano como un tema de conversación, sin forzarla a admitir déficits.",
+            "Vigilar el ánimo: al aumentar la conciencia suele aumentar el malestar emocional."
+          ],
+          casa: "Leer el material elegido y anotar lo que reconoce en sí misma.",
+          avance: "La persona explica algunos de sus cambios en relación con la lesión.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 9"
+        },
+        {
+          t: "Ejercicios vivenciales de conciencia",
+          tecs: ["prediccion-desempeno", "autorregistro"],
+          obj: "Que la persona experimente sus cambios en lugar de que se los digan.",
+          pasos: [
+            "Proponer tareas para predecir y luego hacer, presentadas como una forma de ver dónde están sus fortalezas; empezar con tareas que estén a su alcance.",
+            "Acordar qué registrar de su desempeño o su conducta y diseñar juntos la hoja de registro.",
+            "Detener la tarea cuando comete un error, dirigir su atención a él y pedirle que lo identifique y lo corrija.",
+            "Fijar metas con su participación, con el terapeuta en un papel de apoyo y no directivo."
+          ],
+          casa: "Registro del desempeño o la conducta acordada.",
+          avance: "Se acercan las predicciones de la persona a su desempeño real.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 9"
+        },
+        {
+          t: "Ambiente y rutinas para tareas específicas",
+          tecs: ["control-estimulos"],
+          obj: "Compensar con apoyos externos lo que la persona no logra organizar sola.",
+          pasos: [
+            "Organizar el espacio físico y cuidar lo que empeora el funcionamiento ejecutivo: la alimentación y la hidratación, el sueño, el nivel de actividad —con horarios que permitan descansar y aprovechar el mejor momento del día— y los efectos de la medicación.",
+            "Enseñar rutinas paso a paso para tareas concretas de la vida diaria, con práctica hasta que se automaticen.",
+            "Usar una hoja de programación semanal para planear el tiempo."
+          ],
+          casa: "Seguir la rutina entrenada y la hoja de programación.",
+          avance: "La persona completa las tareas entrenadas con menos ayuda.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 8"
+        },
+        {
+          t: "Autoinstrucciones y planificación",
+          tecs: ["autoinstruccion-desvanecida", "solucion-problemas"],
+          obj: "Que la persona aprenda a regular su conducta al planear, hacer y revisar.",
+          pasos: [
+            "Modelar la tarea en voz alta: qué pide, cómo se hará, cada paso mientras se hace y cómo se revisa y corrige.",
+            "Pedir a la persona que verbalice sus acciones antes y durante la tarea, primero en voz alta, luego en susurro y luego en silencio.",
+            "Enseñar un procedimiento de solución de problemas escrito en pocos encabezados —identificar y analizar el problema, generar hipótesis y decidir, evaluar la solución— y aplicarlo a tareas de planificación, recados y manejo del tiempo, primero en el centro y luego en la comunidad.",
+            "Dejar las instrucciones escritas para que sirvan de clave, y planear la generalización a las situaciones reales."
+          ],
+          casa: "Usar el procedimiento escrito en una tarea o recado de la semana.",
+          avance: "La persona planea y revisa sola tareas que antes dejaba incompletas.",
+          fuente: "Sohlberg y Mateer, 2001, caps. 8 y 11"
+        }
+      ],
+      medir: [
+        "<strong>Escalamiento de logro de metas</strong>.",
+        "Coincidencia entre lo que la persona predice y lo que hace, y entre su valoración y la de un familiar.",
+        "Desempeño en tareas de recados o de manejo del tiempo y registro de errores corregidos (Sohlberg y Mateer, 2001, caps. 8 y 9)."
+      ],
+      adapt: [
+        "<strong>Familia y cuidadores:</strong> los mismos ejercicios de educación ayudan a la familia, que también puede negar o no haber entendido la información (Sohlberg y Mateer, 2001, cap. 9).",
+        "<strong>Poca conciencia de origen orgánico:</strong> cuando la educación no basta, se compensa con entrenamiento de procedimientos y apoyos del ambiente (Sohlberg y Mateer, 2001, cap. 9).",
+        "<strong>Adolescentes:</strong> la lesión los vuelve más dependientes justo cuando buscan autonomía y pueden rechazar la ayuda; aliarse con ellos, evitar las luchas de poder y no intentar convencerlos de que tienen déficits, cuidando la autoestima con sus fortalezas (Sohlberg y Mateer, 2001, cap. 9)."
+      ],
+      cuidado: [
+        "El ejercicio de predicción no debe usarse para demostrarle a la persona que está afectada: si se siente atacada, el proceso fracasa (Sohlberg y Mateer, 2001, cap. 9).",
+        "Al aumentar la conciencia puede aparecer o empeorar la depresión: vigilar el ánimo y la autoestima, y ver el plan de ajuste emocional (Sohlberg y Mateer, 2001, cap. 9).",
+        "La evidencia descrita llega hasta 2001 y viene sobre todo de estudios pequeños o de caso único."
+      ]
+    },
+    {
+      id: "dca-ajuste",
+      mod: "rehabilitacion-integral",
+      inst: ["GAS"],
+      enf: "rehab",
+      nivel: "conceptual",
+      t: "Ajuste emocional, conducta y trabajo con la familia",
+      fuente: "Sohlberg y Mateer, 2001",
+      cuando: "Después de una lesión cerebral, la persona <strong>está deprimida, ansiosa, irritable o dependiente</strong>, se siente desconcertada por lo que ya no le sale, rechaza al «nuevo yo», tiene estallidos de rabia o conductas que desbordan a la familia, y la familia está agotada o en desacuerdo sobre qué esperar.",
+      respaldo: "La depresión, la ansiedad, la baja autoestima, la dependencia y el desconcierto son reacciones frecuentes a la lesión, y los trastornos mentales aumentan después de un traumatismo, porque las lesiones suelen afectar regiones que regulan el ánimo. Los autores proponen combinar la terapia cognitivo-conductual y el análisis aplicado de la conducta con el apoyo psicológico, adaptados a los déficits cognitivos, y trabajar en alianza con la familia; describen casos, pero no ensayos de este conjunto (Sohlberg y Mateer, 2001, caps. 11 a 13).",
+      secuencia: "<strong>Secuencia:</strong> alianza, validación y psicoeducación; identificar el problema con la persona y sus allegados y registrarlo; generar opciones, que la persona elija una, entrenarla y apoyarla en usarla; retirar el apoyo poco a poco hasta un seguimiento. En paralelo, entrevistas con la familia para acordar metas y revisarlas (Sohlberg y Mateer, 2001, caps. 12 y 13).",
+      esc: ["hospital", "salud-mental", "cuidadores"],
+      actividades: [
+        {
+          t: "Alianza, validación y psicoeducación",
+          tecs: ["psicoeducacion"],
+          obj: "Que la persona se sienta comprendida y entienda sus reacciones a la lesión.",
+          pasos: [
+            "Entrevistar dejando que la persona describa sus síntomas sin tener que convencer al terapeuta de que existen.",
+            "Validar su experiencia de forma constructiva, porque la lesión sacude el sentido de sí mismo y la confianza.",
+            "Usar una lista de los síntomas que más le molestan para priorizar y ordenar el relato.",
+            "Dar materiales escritos o en video sobre la lesión, con tareas: resumirlos, subrayar lo que reconoce, escribir sus preguntas o contarlos a su familia."
+          ],
+          casa: "Subrayar en el material lo que reconoce y escribir sus preguntas.",
+          avance: "La persona se siente entendida y nombra sus reacciones a la lesión.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 12"
+        },
+        {
+          t: "Terapia cognitivo-conductual adaptada",
+          tecs: ["reestructuracion-cognitiva", "relajacion"],
+          obj: "Reducir la depresión y la ansiedad y construir un sentido de sí más realista.",
+          pasos: [
+            "Enseñar relajación y cómo la tensión empeora el dolor, la concentración y el cansancio.",
+            "Hacer con la persona una lista de los rasgos y capacidades que no cambiaron con la lesión, para equilibrar el «viejo yo» y el «nuevo yo».",
+            "Examinar los pensamientos distorsionados con registros adaptados a sus déficits.",
+            "Escribir un plan breve, con palabras clave, para manejar los pensamientos y emociones difíciles, dejarlo a mano y llevar un registro de su uso.",
+            "Si la persona está muy centrada en los síntomas, validar su frustración y dirigir la terapia a aprovechar lo que conserva."
+          ],
+          casa: "Usar el plan escrito y registrar cuándo lo usó.",
+          avance: "Baja el malestar y la persona describe lo que conserva además de lo que perdió.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 12"
+        },
+        {
+          t: "Conductas desafiantes",
+          tecs: ["analisis-funcional"],
+          obj: "Reducir los estallidos y las conductas que desbordan a la familia o al equipo.",
+          pasos: [
+            "Identificar la conducta con la persona y sus allegados y registrar cuándo aparece, qué la antecede y qué la sigue.",
+            "Ajustar el ambiente: ruido, visitas, exigencias; la contención física solo como último recurso por seguridad.",
+            "Enseñar a los cuidadores a comunicarse: ignorar de forma selectiva, redirigir la atención, dar opciones, bajar las exigencias, esperar y volver a intentar, hablar con calma, reconocer las señales de que el malestar sube y evitar las luchas de poder.",
+            "Cuando la conducta persiste, aplicar un programa conductual estructurado y, si la persona tiene conciencia suficiente, estrategias de autorregulación de la ira con instrucciones escritas."
+          ],
+          casa: "Registro de la conducta y de la estrategia que usó el cuidador.",
+          avance: "Bajan la frecuencia y la intensidad de la conducta.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 11"
+        },
+        {
+          t: "Alianza con la familia",
+          tecs: ["solucion-problemas"],
+          obj: "Trabajar con la familia como socia: compartir información, acordar metas y sostenerlas.",
+          pasos: [
+            "Entrevistar a la familia con una guía, escuchando más de lo que se habla y atendiendo a lo que dicen y a lo que hay detrás de las palabras; si ayuda, ver a sus miembros por separado y luego reunirlos.",
+            "Explorar el estrés y también las formas de adaptación positiva que ha encontrado.",
+            "Identificar y priorizar las metas con la familia y la persona, según sus retos y fortalezas.",
+            "Revisar el cambio y las metas periódicamente."
+          ],
+          casa: "Lista de metas de la familia para la persona y para sí misma.",
+          avance: "Hay metas compartidas entre la persona, la familia y el equipo.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 13"
+        }
+      ],
+      medir: [
+        "<strong>Escalamiento de logro de metas</strong> de la persona y de la familia.",
+        "Registro de frecuencia de la conducta o la emoción objetivo.",
+        "Lista de síntomas que más molestan, al inicio y en el seguimiento (Sohlberg y Mateer, 2001, caps. 11 y 12)."
+      ],
+      adapt: [
+        "<strong>Rasgos de personalidad previos:</strong> la grandiosidad, los rasgos límite o el perfeccionismo previos a la lesión modifican el trabajo y se tienen en cuenta (Sohlberg y Mateer, 2001, cap. 12).",
+        "<strong>Con depresión mayor:</strong> diagnosticarla con cautela, porque muchos síntomas se superponen con las secuelas cognitivas de la lesión; ver también <em>Depresión</em> (Sohlberg y Mateer, 2001, cap. 12)."
+      ],
+      cuidado: [
+        "Las estrategias de comunicación parecen simples, pero los cuidadores necesitan modelado, práctica y apoyo para sostenerlas (Sohlberg y Mateer, 2001, cap. 11).",
+        "Las sujeciones físicas solo se usan como último recurso por seguridad, decididas con el equipo y explicadas a la familia (Sohlberg y Mateer, 2001, cap. 11).",
+        "Sin ensayos de este conjunto en la fuente: es un plan de respaldo clínico."
+      ]
+    },
+    {
+      id: "dca-leve",
+      mod: "rehabilitacion-integral",
+      inst: ["GAS"],
+      enf: "rehab",
+      nivel: "ensayos",
+      t: "Traumatismo craneoencefálico leve: información temprana y síntomas persistentes",
+      fuente: "Sohlberg y Mateer, 2001",
+      cuando: "Una persona tuvo una <strong>conmoción o un traumatismo craneoencefálico leve</strong> —un golpe con pérdida breve o sin pérdida de la conciencia— y tiene dolor de cabeza, cansancio, mareo, problemas de concentración y de memoria, irritabilidad o ansiedad; le dijeron que no tenía nada grave y teme estar «haciendo algo mal» o «volviéndose loca», o los síntomas siguen meses después.",
+      respaldo: "En un estudio con 29 personas con traumatismo leve, quienes recibieron un manual breve sobre la recuperación tuvieron síntomas más cortos, menos días con síntomas y menos síntomas a los seis meses que quienes solo recibieron la información habitual: el dolor de cabeza persistió en el 44 % frente al 86 % y los problemas de concentración en el 29 % frente al 80 %. En otro estudio, quienes no fueron informados tenían nueve veces más probabilidad de seguir con síntomas a los tres meses. Para los síntomas persistentes, estudios pequeños encontraron mejoría en la atención con entrenamiento atencional y ejercicios de generalización (Sohlberg y Mateer, 2001, cap. 15).",
+      secuencia: "<strong>Secuencia:</strong> en los primeros días, información oral y escrita que normaliza los síntomas y orienta el regreso gradual a las actividades; si los síntomas persisten, evaluación neuropsicológica y emocional completa y un programa con cambios en el ambiente, entrenamiento atencional con ejercicios de generalización, registros de fallas y logros de atención, manejo de la presión del tiempo, ayudas de memoria y terapia cognitivo-conductual (Sohlberg y Mateer, 2001, cap. 15).",
+      esc: ["hospital", "primer-nivel"],
+      actividades: [
+        {
+          t: "Información temprana",
+          tecs: ["informacion-temprana-tce", "psicoeducacion"],
+          obj: "Prevenir que los síntomas se prolonguen por falta de una explicación.",
+          pasos: [
+            "Explicar que los síntomas tras una conmoción son frecuentes y suelen ser pasajeros, y a qué se deben.",
+            "Dar un material escrito con lo que se puede esperar y cómo manejarlo.",
+            "Orientar el regreso gradual: unas semanas más fuera del trabajo, volver a medio tiempo, delegar algunas responsabilidades, descansar y reducir las distracciones.",
+            "Enseñar a reconocer las primeras señales de estrés y a controlarlo, y a usar una agenda u otra ayuda de memoria durante la recuperación."
+          ],
+          casa: "Leer el material y seguir el plan de regreso gradual.",
+          avance: "La persona entiende sus síntomas y retoma sus actividades de forma gradual.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 15"
+        },
+        {
+          t: "Evaluar cuando los síntomas persisten",
+          tecs: ["tamizaje"],
+          obj: "Entender qué mantiene los síntomas meses después de la lesión.",
+          pasos: [
+            "Hacer una evaluación neuropsicológica completa de las fortalezas y debilidades previas y actuales, y ver si coinciden con los efectos conocidos del traumatismo leve.",
+            "Evaluar el estado emocional, el sueño y las consecuencias en el trabajo, la familia y la vida social.",
+            "Explorar cómo interpreta la persona su lesión, que también influye en la persistencia.",
+            "Hacer con ella una lista de los problemas cognitivos que interfieren en su día: manejar, cocinar, errores en el trabajo."
+          ],
+          casa: "Completar la lista de problemas de la vida diaria.",
+          avance: "Hay una formulación de lo que mantiene los síntomas.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 15"
+        },
+        {
+          t: "Atención en la vida real",
+          tecs: ["entrenamiento-procesos-atencion", "autorregistro"],
+          obj: "Mejorar la atención y llevarla a las tareas del trabajo y de la casa.",
+          pasos: [
+            "Cambiar el ambiente: apagar la radio o la televisión al cocinar, hacer compras más cortas en tiendas pequeñas o a horas tranquilas.",
+            "Hacer ejercicios de atención y ejercicios de generalización diseñados para el trabajo o la casa, con actividad, lugar, momento, dificultad y medida de éxito definidos.",
+            "Llevar registros de las fallas de atención —qué hizo y qué pudo haber hecho— y de los logros, para encontrar patrones y notar que hay control.",
+            "Enseñar a darse el tiempo necesario para cada tarea con el manejo de la presión del tiempo, y tomar pausas regulares con respiración."
+          ],
+          casa: "Ejercicios de generalización y registro de fallas y logros de atención.",
+          avance: "Aumenta el tiempo en la tarea y bajan los errores en el trabajo o la casa.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 15"
+        },
+        {
+          t: "Memoria, ánimo y recaídas",
+          tecs: ["ayudas-externas-memoria", "reestructuracion-cognitiva"],
+          obj: "Compensar la memoria y manejar la ansiedad y el desánimo que mantienen los síntomas.",
+          pasos: [
+            "Facilitar ayudas de memoria y estrategias de organización; en el traumatismo leve también funcionan mejor las estrategias mnemotécnicas internas.",
+            "Fortalecer la confianza en la propia memoria y el autocontrol de las emociones.",
+            "Usar técnicas cognitivo-conductuales para la ansiedad, la depresión y las interpretaciones catastróficas de los síntomas.",
+            "Entrenar el afrontamiento y prepararse para las caídas."
+          ],
+          casa: "Usar la ayuda de memoria y el plan de afrontamiento.",
+          avance: "La persona vuelve a sus actividades con estrategias y menos síntomas.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 15"
+        }
+      ],
+      medir: [
+        "Síntomas posconmocionales al inicio, a los tres y a los seis meses.",
+        "<strong>Escalamiento de logro de metas</strong> en el regreso al trabajo o a las actividades.",
+        "Registros de fallas y logros de atención (Sohlberg y Mateer, 2001, cap. 15)."
+      ],
+      adapt: [
+        "<strong>Sueño o trastornos mentales previos:</strong> se atienden de forma específica, porque pueden mantener los síntomas (Sohlberg y Mateer, 2001, cap. 15)."
+      ],
+      cuidado: [
+        "Decir solo que «no tiene nada grave» deja a la persona sin explicación para sus síntomas y la hace temer que algo anda mal en ella (Sohlberg y Mateer, 2001, cap. 15).",
+        "Los estudios de información temprana son pequeños y anteriores a 2001; la biblioteca no tiene revisiones más recientes."
+      ]
+    }
+  ]
+},
+{
   cat: "Enfermedad médica y final de la vida",
   t: "Ansiedad prequirúrgica",
   sub: "La ansiedad ante una cirugía programada: miedo a la anestesia, a la operación y a sus resultados, junto con la necesidad de saber qué va a pasar. Es frecuente —entre el 11 % y el 92 % de los pacientes, según los estudios— y puede afectar el desarrollo de la cirugía y la recuperación.",
@@ -18384,7 +19190,8 @@ const VARIABLES = [
   elegir: [
     "<strong>Si hay quejas de memoria o dificultades nuevas en la vida diaria</strong>, primero se identifica el deterioro con un instrumento validado y se deriva a evaluación médica.",
     "<strong>Si hay deterioro cognitivo o una demencia leve a moderada</strong>, la estimulación cognitiva en grupo, seguida de sesiones de mantenimiento, junto con actividad física regular.",
-    "Si la persona tiene además depresión, ver <em>Depresión</em>; para quien cuida, <em>Sobrecarga del cuidador</em>, que incluye el programa iSupport."
+    "Si la persona tiene además depresión, ver <em>Depresión</em>; para quien cuida, <em>Sobrecarga del cuidador</em>, que incluye el programa iSupport.",
+    "<strong>Si el deterioro se debe a una lesión cerebral</strong> —un traumatismo, un accidente cerebrovascular— y no a una enfermedad progresiva, ver <em>Daño cerebral adquirido</em>."
   ],
   planes: [
     {
@@ -21025,7 +21832,79 @@ const GLOSARIO = [
   fuente: "Neacsiu y Linehan, 2014, «Consultation Team»" },
 { k: "autovalidacion", t: "Autovalidación", tipo: "Técnica", enf: ["dbt"],
   d: "Capacidad de valorar, confiar y validar las propias respuestas y de evaluar la propia conducta sin ponerse a la defensiva, sin depender de la opinión de los demás. Es la meta de la etapa 3 de la terapia dialéctico-conductual; el terapeuta se retira poco a poco y refuerza los intentos de la persona de validarse, cuidarse y resolver problemas por sí misma.",
-  fuente: "Neacsiu y Linehan, 2014, «Stage 3: Resolving Problems in Living and Increasing Respect for Self»" }
+  fuente: "Neacsiu y Linehan, 2014, «Stage 3: Resolving Problems in Living and Increasing Respect for Self»" },
+/* ---------- Trastorno de acumulación ---------- */
+{ k: "visita-domiciliaria-acumulacion", t: "Visita domiciliaria", alias: ["visitas domiciliarias"], tipo: "Formato", enf: ["tcc"],
+  d: "En la acumulación, la casa es el lugar de evaluación y de práctica. En la primera visita, dentro de las cuatro primeras sesiones, se recorre la casa sin tocar nada y sin mostrar sorpresa, se valoran el desorden, la seguridad y la higiene, se fotografía cada habitación desde ángulos que se puedan repetir y se decide por dónde empezar. Después, idealmente una de cada cuatro sesiones ocurre en casa o en los lugares donde la persona adquiere.",
+  fuente: "Steketee y Frost, 2014, caps. 2 y 3" },
+{ k: "listado-pensamientos-descartar", t: "Listado de pensamientos al descartar", tipo: "Técnica", enf: ["tcc"],
+  d: "La persona elige un objeto moderadamente difícil, estima cuánto malestar sentiría al desprenderse de él y cuánto le duraría, y durante cuatro minutos dice en voz alta, sin filtrar, todo lo que piensa sobre descartarlo. Luego decide ella sola si lo guarda o no —las dos decisiones enseñan algo— y califica su malestar cada cinco a diez minutos durante media hora, para notar si baja y cómo son sus apegos.",
+  fuente: "Steketee y Frost, 2014, cap. 9" },
+{ k: "preguntas-antes-adquirir", t: "Preguntas antes de adquirir", tipo: "Técnica", enf: ["tcc"],
+  d: "Lista de preguntas que la persona elabora y lleva consigo para responderse cuando siente el impulso de comprar o recoger algo: si ya tiene algo parecido, si lo usará pronto, si tiene un lugar libre para ponerlo, si lo quiere porque se siente mal en ese momento, si en una semana se arrepentirá. Amplía la atención, que en el momento de adquirir se estrecha sobre el objeto. Si después de responderlas aún lo quiere, puede adquirirlo.",
+  fuente: "Steketee y Frost, 2014, cap. 7" },
+{ k: "practica-no-adquirir", t: "Práctica de no adquirir", tipo: "Técnica", enf: ["tcc"],
+  d: "Exposición graduada a los lugares y objetos que despiertan el impulso de adquirir, sin adquirir: primero pasar en carro frente a la tienda, luego recorrerla sin tocar nada y después tomar objetos en la mano sin llevárselos. La persona califica el impulso y el malestar de 0 a 100 y comprueba que bajan al cabo de unos minutos.",
+  fuente: "Steketee y Frost, 2014, cap. 7" },
+{ k: "plan-organizacion-posesiones", t: "Plan de organización de las posesiones", tipo: "Técnica", enf: ["tcc"],
+  d: "Antes de empezar a clasificar se acuerdan pocas categorías para lo que sale de la casa —basura, reciclaje, donar, vender, sin decidir— con un plan concreto para sacarlo, y pocas categorías para lo que se queda, cada una con un lugar fijo. Se empieza por los objetos y se deja el papel, que exige más categorías, para después.",
+  fuente: "Steketee y Frost, 2014, cap. 8" },
+{ k: "tocar-una-vez", t: "Tocarlo una sola vez", alias: ["OHIO"], tipo: "Técnica", enf: ["tcc"],
+  d: "Regla de la clasificación: decidir sobre un objeto la primera vez que se toma, o a lo sumo la segunda, para no pasarlo de una pila desordenada a otra. Se aplica con flexibilidad cuando la persona avanza aunque todavía no logre una decisión final.",
+  fuente: "Steketee y Frost, 2014, cap. 6" },
+{ k: "acompanante-acumulacion", t: "Acompañante en casa", alias: ["coach"], tipo: "Formato", enf: ["tcc"],
+  d: "Familiar, amigo, estudiante u organizador profesional, tranquilo y empático, que ayuda a la persona a practicar en casa o en los lugares donde adquiere cuando el terapeuta no puede ir. Acompaña y ayuda a mantener la atención en la tarea, pero no decide por ella ni toca sus cosas sin permiso; recibe instrucciones escritas y asiste a alguna sesión.",
+  fuente: "Steketee y Frost, 2014, caps. 2 y 3, «Instructions for Coaches»" },
+/* ---------- Trastornos disociativos ---------- */
+{ k: "partes-disociativas", t: "Partes disociativas de la personalidad", alias: ["partes disociativas"], tipo: "Concepto", enf: ["fases"],
+  d: "Aspectos de la personalidad que no se integraron y tienen su propio sentido de sí mismos, sus recuerdos y sus reacciones: unos se ocupan de la vida diaria y otros quedan fijados en el trauma, como partes infantiles, partes enojadas o partes críticas. Pueden tomar el control de la conducta o influir desde dentro, por ejemplo como voces. Todas forman una sola persona: no se tratan como gente distinta.",
+  fuente: "Boon et al., 2011, caps. 1 y 3" },
+{ k: "fobia-experiencia-interna", t: "Fobia de la experiencia interna", tipo: "Concepto", enf: ["fases", "act"],
+  d: "Miedo, vergüenza o asco ante lo que uno mismo piensa, siente, recuerda o percibe, incluidas las partes disociativas, que lleva a evitarlo por cualquier medio, aun destructivo: trabajar sin parar, consumir, criticarse o aislarse. Se parece a la evitación experiencial y mantiene la disociación, porque no se puede cambiar lo que se evita.",
+  fuente: "Boon et al., 2011, cap. 5" },
+{ k: "comunicacion-interna", t: "Comunicación interna entre partes", tipo: "Técnica", enf: ["fases"],
+  d: "Reconocer las partes de uno mismo, aceptarlas sin juzgar y empezar a escucharlas y hablarles —hacia adentro, por escrito o imaginando una conversación— a una hora tranquila cada día, buscando un terreno común como «todas queremos sentirnos mejor». En la estabilización se dialoga solo sobre la vida diaria, la seguridad y la terapia; los recuerdos traumáticos no se comparten entre partes todavía.",
+  fuente: "Boon et al., 2011, cap. 7" },
+{ k: "lugar-seguro-interno", t: "Lugar seguro interno", alias: ["lugares seguros internos"], tipo: "Técnica", enf: ["fases"],
+  d: "Imagen de un lugar donde la persona y sus partes pueden estar a salvo, tranquilas y cuidadas; puede ser uno para todas o varios según lo que cada parte necesite. Calma a las partes asustadas o dolidas y alivia a las enojadas. Se acompaña siempre de medidas para estar seguro en la vida real.",
+  fuente: "Boon et al., 2011, cap. 8" },
+{ k: "ventana-tolerancia", t: "Ventana de tolerancia", tipo: "Concepto", enf: ["fases", "dbt"],
+  d: "Rango de activación dentro del cual la persona puede sentir, pensar, aprender y relacionarse. Por encima está la hiperactivación —sentir demasiado: pánico, rabia, recuerdos que invaden—; por debajo, la hipoactivación —sentir muy poco: entumecimiento, desconexión, quedarse paralizado—. El trabajo es ampliarla poco a poco y aprender a volver a ella.",
+  fuente: "Boon et al., 2011, cap. 18" },
+{ k: "contencion", t: "Contención", tipo: "Técnica", enf: ["fases"],
+  d: "Guardar por un tiempo una emoción, un recuerdo o una parte con una imagen —una bóveda, un globo que se eleva, un archivo— o por escrito, con la promesa de volver a ello en el lugar y el momento adecuados, por lo general la terapia. No es deshacerse de lo que se siente, sino posponerlo.",
+  fuente: "Boon et al., 2011, cap. 18" },
+{ k: "desencadenantes-traumaticos", t: "Desencadenantes traumáticos", alias: ["detonantes"], tipo: "Concepto", enf: ["fases"],
+  d: "Algo del presente —una situación, una persona, un objeto, un olor, una sensación o una postura— que se parece de forma literal o simbólica a un aspecto de una experiencia traumática no resuelta y dispara en algunas partes la reacción de entonces. Una señal es que la reacción es más intensa de lo que la situación justifica o distinta de la habitual.",
+  fuente: "Boon et al., 2011, cap. 14" },
+/* ---------- Daño cerebral adquirido ---------- */
+{ k: "entrenamiento-procesos-atencion", t: "Entrenamiento en procesos atencionales", alias: ["APT"], tipo: "Técnica", enf: ["rehab"],
+  d: "Ejercicios ordenados en jerarquía que estimulan de forma repetida los componentes de la atención —sostenida, selectiva, alternante y dividida— con exigencia creciente. Se basa en un modelo teórico de la atención, se ajusta con los datos de precisión y velocidad de la persona y planea desde el inicio cómo pasar lo entrenado a actividades reales, como leer el periódico o trabajar en una oficina con ruido.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 5" },
+{ k: "ayudas-externas-memoria", t: "Ayudas externas de memoria", alias: ["ayudas externas"], tipo: "Técnica", enf: ["rehab"],
+  d: "Agendas, cuadernos por secciones, alarmas, teléfonos u otros dispositivos que compensan la memoria o la organización sin pretender restaurarlas. Funcionan si se eligen según una evaluación de necesidades —factores orgánicos, personales y del contexto— y si se entrena su uso paso a paso, con el apoyo de quienes conviven con la persona.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 7" },
+{ k: "aprendizaje-sin-errores", t: "Aprendizaje sin errores", tipo: "Técnica", enf: ["rehab"],
+  d: "Forma de enseñar a personas con problemas graves de memoria en la que se evita que cometan errores mientras aprenden: se modela y se da la respuesta correcta antes de que intenten adivinar, porque el error, una vez cometido, tiende a fijarse. Es lo contrario del método habitual de ensayo y error.",
+  fuente: "Sohlberg y Mateer, 2001, caps. 6 y 7" },
+{ k: "recuperacion-espaciada", t: "Recuperación espaciada", tipo: "Técnica", enf: ["rehab"],
+  d: "La persona practica recordar con éxito una información concreta —un nombre, un procedimiento, el uso de una ayuda— en intervalos cada vez más largos. Sirve para enseñar conocimientos útiles para una tarea específica, incluso con problemas de memoria graves.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 6" },
+{ k: "niveles-ayuda", t: "Niveles de ayuda", alias: ["jerarquía de claves"], tipo: "Técnica", enf: ["rehab"],
+  d: "Escala de apoyos que se van retirando a medida que la persona aprende: primero una ayuda completa —el terapeuta hace el paso y la persona lo copia—, luego una pregunta que orienta («¿cómo va a recordar la cita?») y al final solo la oportunidad, con una pausa expectante. Se retiran rápido en personas con mejor memoria y en tareas simples, y despacio en las demás.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 7" },
+{ k: "conciencia-deficits", t: "Conciencia de los déficits", tipo: "Concepto", enf: ["rehab"],
+  d: "Grado en que la persona reconoce los cambios que dejó la lesión. Tiene tres niveles en jerarquía: saber que una función está alterada, reconocer el problema cuando ocurre y anticipar que ocurrirá. La falta de conciencia puede venir de la lesión, de la negación psicológica o de no haber recibido la información, y cambia qué intervención conviene.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 9" },
+{ k: "prediccion-desempeno", t: "Predicción y desempeño", tipo: "Técnica", enf: ["rehab"],
+  d: "La persona predice cómo le irá en una tarea, la hace y compara la predicción con el resultado, junto con el terapeuta. Se eligen tareas con alta probabilidad de éxito y se presenta como una forma de ver dónde están las fortalezas, no como prueba de que hay un déficit.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 9" },
+{ k: "autoinstruccion-desvanecida", t: "Entrenamiento autoinstruccional", tipo: "Técnica", enf: ["rehab", "tcc"],
+  d: "La persona aprende a guiar su conducta hablándose: primero en voz alta, luego en susurro y al final en silencio, mientras planea, ejecuta y revisa una tarea. Busca que interiorice la autorregulación, no que aprenda una tarea concreta. Viene del trabajo de Meichenbaum y se ha usado en problemas de planificación y de uso de los errores tras una lesión cerebral.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 8" },
+{ k: "informacion-temprana-tce", t: "Información temprana tras un TCE leve", tipo: "Técnica", enf: ["rehab"],
+  d: "Información breve, oral y escrita, que se da en los primeros días después de una conmoción o un traumatismo craneoencefálico leve: que los síntomas son frecuentes y suelen ser pasajeros, a qué se deben y cómo manejarlos, retomando las actividades de forma gradual. Quienes la reciben tienen menos síntomas meses después que quienes solo oyen que no tienen nada grave.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 15" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
