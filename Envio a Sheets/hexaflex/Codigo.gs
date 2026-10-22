@@ -128,17 +128,70 @@ function registrar_(d) {
   } finally {lock.releaseLock();}
 }
 
+function html_(t) {
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Resumen de la valoración v2 en la ventana de confirmación: sirve para socializar
+// lo marcado aunque el grupo haya enviado antes de hablarlo. Se arma con lo que
+// llegó en el envío; no lee la hoja.
+function resumenV2_(d) {
+  var ROTULO = {'si':'Sí','parcial':'Parcial','no':'No'};
+  var COLOR = {'si':'#3f7d53','parcial':'#b8722a','no':'#9b3b32'};
+  var titulos = Array.isArray(d.criterios) && d.criterios.length === 6 &&
+    d.criterios.every(function(c) {return typeof c === 'string' && c.length <= 120;})
+    ? d.criterios : CRITERIOS_V2.map(function(c) {return c.replace(/^\d+\.\s*/,'');});
+  var puntajes = d.marcas.map(function(m) {return PUNTAJE_MARCA_V2[m];});
+  var prom = (Math.round(puntajes.reduce(function(a,b) {return a+b;},0) / 6 * 100) / 100).toFixed(2).replace('.',',');
+  var filas = d.marcas.map(function(m, i) {
+    return '<li><span class="n">' + (i+1) + '</span><span class="t">' + html_(titulos[i]) + '</span>' +
+      '<span class="m" style="background:' + COLOR[m] + '">' + ROTULO[m] + '</span></li>';
+  }).join('');
+  var errores = d.errores.length
+    ? '<ul class="err">' + d.errores.map(function(e) {return '<li>' + html_(e) + '</li>';}).join('') + '</ul>'
+    : '<p class="vacio">No marcaron nada en contra del proceso.</p>';
+  return '<p class="eyebrow">' + html_(d.cursoGrupo) + ' · Grupo ' + d.grupoObservador + ' valora al grupo ' + d.grupo + '</p>' +
+    '<h1>Registro confirmado</h1>' +
+    '<p class="sub">' + html_(PROCESOS[d.proceso-1]) + '</p>' +
+    '<section><h2>Criterios</h2><ol class="crit">' + filas + '</ol>' +
+    '<p class="nota">Valoración de la escena <strong>' + prom + ' / 5</strong></p></section>' +
+    '<section><h2>Lo que fue en contra del proceso</h2>' + errores + '</section>' +
+    '<section><h2>Apreciación general</h2><p class="apr">' + html_(d.comentario).replace(/\n/g,'<br>') + '</p></section>' +
+    '<p class="pie">Pueden volver a la actividad.</p>';
+}
+
+var ESTILO_CONFIRMACION_ = '<style>' +
+  'body{font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#16232b;max-width:680px;margin:0 auto;padding:28px 18px 40px;background:#fff}' +
+  'h1{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:600;color:#134349;font-size:28px;margin:0 0 4px}' +
+  'h2{font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7d8c91;font-weight:600;margin:0 0 10px}' +
+  '.eyebrow{font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#134349;margin:0 0 6px}' +
+  '.sub{color:#4b5c63;margin:0 0 18px}' +
+  'section{border:1px solid #dde5e5;border-radius:10px;padding:16px 18px;margin:0 0 14px}' +
+  '.crit{list-style:none;margin:0;padding:0}.crit li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eef2f2}.crit li:first-child{border-top:0}' +
+  '.n{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#1f6f78;width:16px}.t{flex:1;font-size:15px}' +
+  '.m{color:#fff;font-size:13px;font-weight:700;border-radius:7px;padding:4px 12px;min-width:70px;text-align:center}' +
+  '.nota{margin:12px 0 0;padding-top:10px;border-top:1px solid #dde5e5;color:#4b5c63}.nota strong{color:#134349;font-size:18px}' +
+  '.err{margin:0;padding-left:20px}.err li{margin:4px 0;color:#7a3029}.vacio{margin:0;color:#7d8c91}' +
+  '.apr{margin:0;white-space:normal}.pie{color:#7d8c91;font-size:14px;margin-top:18px}' +
+  '</style>';
+
 function doPost(e) {
-  var respuesta;
+  var respuesta, datos = null;
   try {
     var raw = e && e.parameter && e.parameter.payload;
     if (!raw || raw.length > 12000) throw new Error('Envío vacío o demasiado extenso.');
-    respuesta = registrar_(JSON.parse(raw));
+    datos = JSON.parse(raw);
+    respuesta = registrar_(datos);
   } catch (err) {respuesta = {ok:false,error:err.message || 'No fue posible registrar la valoración.'};}
-  var json = JSON.stringify(respuesta).replace(/</g,'\\u003c');
-  var texto = respuesta.ok ? 'Valoración registrada. Pueden volver a la actividad.' : respuesta.error;
-  texto = String(texto).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Valoración ACT</title><body style="font:18px/1.5 system-ui;color:#134349;max-width:650px;margin:50px auto;padding:24px"><h1>' + (respuesta.ok ? 'Registro confirmado' : 'Revisen el envío') + '</h1><p>' + texto + '</p><script>try{if(window.opener)window.opener.postMessage(Object.assign({tipo:"hexaflex-confirmacion"},' + json + '),"*");}catch(e){}</script></body></html>');
+  var json = JSON.stringify(respuesta).replace(/</g,'\u003c');
+  var cuerpo;
+  if (respuesta.ok && datos && datos.version === 2) {
+    cuerpo = resumenV2_(datos);
+  } else {
+    var texto = respuesta.ok ? 'Valoración registrada. Pueden volver a la actividad.' : respuesta.error;
+    cuerpo = '<h1>' + (respuesta.ok ? 'Registro confirmado' : 'Revisen el envío') + '</h1><p>' + html_(texto) + '</p>';
+  }
+  return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Valoración ACT</title>' + ESTILO_CONFIRMACION_ + '<body>' + cuerpo + '<script>try{if(window.opener)window.opener.postMessage(Object.assign({tipo:"hexaflex-confirmacion"},' + json + '),"*");}catch(e){}</script></body></html>');
 }
 
 function doGet(e) {

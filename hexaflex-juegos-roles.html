@@ -1911,6 +1911,8 @@ function cargaUtil(){
     tipo: "hexaflex", version: 2, curso: "SPI-2026-2", cursoGrupo: val.curso,
     grupo: Number(val.grupo), grupoObservador: Number(val.observador), proceso: p,
     marcas: marcasCompletas(),
+    // Los títulos solo sirven para el resumen que muestra la ventana de confirmación.
+    criterios: CRITERIOS_VALORACION[p - 1].map(c => c[0]),
     errores: val.errores.slice().sort().map(k => ERRORES_VALORACION[p - 1][k]).filter(Boolean),
     comentario: val.comentario.trim(), rid: val.rid
   };

@@ -21,3 +21,5 @@ La valoración volvió como la vista «Observar y valorar» de `hexaflex-juegos-
 3. No hace falta volver a ejecutar `prepararHoja`: el primer envío crea la pestaña `901 Valoración ACT` (y las de 902 y 903) con sus encabezados. Las pestañas `901 ACT`, etc., conservan las valoraciones anteriores.
 
 Mientras no se actualice, el envío responde «Formato de valoración no reconocido»; guardar el PDF funciona igual.
+
+Desde el resumen en la ventana de confirmación (Sí / Parcial / No por criterio, lo marcado en contra del proceso y la apreciación general), el receptor necesita esa misma actualización: pegar el `Codigo.gs` y publicar **Nueva versión** en la implementación existente.
