@@ -77,7 +77,7 @@ details > summary{cursor:pointer; font-size:14px; font-weight:600; color:var(--a
 .grading-foot{font-size:12px; color:var(--ink-faint); margin:12px 0 0;}
 
 /* ---- Selector de grupo ---- */
-.groups{display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:16px;}
+.groups{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px;}
 .group{font-size:13.5px; line-height:1.3; text-align:left; color:var(--ink-soft);
   background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 11px;}
 .group span{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em;
@@ -154,7 +154,7 @@ details > summary{cursor:pointer; font-size:14px; font-weight:600; color:var(--a
 
 @media (max-width:760px){
   .wrap{padding:20px 16px 40px;}
-  .groups{grid-template-columns:repeat(3,1fr);}
+  .groups{grid-template-columns:repeat(4,1fr);}
   .hero, .body{padding:18px;}
   .steps, .frame-body ol{grid-template-columns:1fr;}
   .rep-tools{grid-template-columns:1fr;}
@@ -166,7 +166,7 @@ details > summary{cursor:pointer; font-size:14px; font-weight:600; color:var(--a
   .grading-level dt span{display:inline; margin-left:6px;}
 }
 @media (max-width:440px){
-  .groups{gap:6px;}
+  .groups{grid-template-columns:repeat(2,1fr); gap:6px;}
   .group{padding:9px; font-size:12.5px;}
   .rep-head{grid-template-columns:1fr;}
   .rep-figure{display:grid; grid-template-columns:110px minmax(0,1fr); gap:12px; align-items:center;}
@@ -589,7 +589,7 @@ svg{width:104px;height:104px;stroke:currentColor;stroke-width:3;fill:none;stroke
   <header class="masthead">
     <div class="eyebrow">Juego de roles · Terapia de aceptación y compromiso</div>
     <h1>Práctica del hexaflex</h1>
-    <p>Seis grupos, seis historias creadas por ustedes. Cada grupo recibe una situación de partida, inventa el caso y decide qué proceso trabajar y con qué recurso.</p>
+    <p>Ocho grupos, ocho historias creadas por ustedes. Cada grupo recibe una situación de partida, inventa el caso y decide qué proceso trabajar y con qué recurso.</p>
     <p class="roles"><strong>Roles:</strong> una persona interviene, otra representa a la consultante y las demás observan. Usen una historia ficticia y manejable; cualquiera puede pedir una pausa.</p>
   </header>
 
@@ -718,6 +718,14 @@ const SITUACIONES = [
   {
     "titulo": "Demasiado grande para empezar",
     "texto": "Una persona sabe qué quiere cuidar, pero sus planes son tan amplios que no arranca o abandona al primer tropiezo. Cada lunes arma un plan completo con horarios. A mitad de semana falla un día, se dice que ya lo arruinó y vuelve a empezar desde cero el lunes siguiente."
+  },
+  {
+    "titulo": "Tiene que quedar perfecto",
+    "texto": "Una persona revisa y rehace lo que entrega porque una regla en su cabeza le dice que, si no queda perfecto, no sirve. Ha intentado convencerse de que ya está bien y pedir a otros que lo revisen. La regla vuelve con cada entrega, y ya perdió un plazo por no darlo por terminado."
+  },
+  {
+    "titulo": "Lo que se espera de mí",
+    "texto": "Una persona cumple con todo lo que se espera de ella en el estudio, el trabajo y la familia. Cuando le preguntan qué quiere para sí, no sabe qué responder. Ha probado llenar la agenda de actividades nuevas y descansar más, pero siente que los días pasan sin dirección."
   }
 ];
 
@@ -1726,7 +1734,7 @@ function cerrarDemostraciones(excepto, dentroDe){
    Hoja del observador, con la estructura de la de PAP: cada estudiante marca
    Sí / Parcial / No en seis criterios mientras transcurre la escena, señala
    si vio algo contrario al proceso y cierra con una apreciación general.
-   «Mi grupo» (1 a 6) permite reunir en la hoja las valoraciones de los
+   «Mi grupo» (1 a 8) permite reunir en la hoja las valoraciones de los
    integrantes de cada grupo; la nómina de los grupos la lleva el docente.
    Autoguardado en localStorage por curso, grupo propio y grupo en escena;
    envío con formulario oculto y confirmación por JSONP, como en las demás
@@ -1998,7 +2006,7 @@ function iniciarValoracion(){
   try { ultima = JSON.parse(localStorage.getItem(PREFIJO + "ultima")) || {}; } catch (e) {}
   cargarValoracion({
     curso: ["901", "902", "903"].includes(ultima.curso) ? ultima.curso : "",
-    observador: /^[1-6]$/.test(ultima.observador || "") ? ultima.observador : "",
+    observador: /^[1-8]$/.test(ultima.observador || "") ? ultima.observador : "",
     grupo: ""
   });
   pintarContextoValoracion();

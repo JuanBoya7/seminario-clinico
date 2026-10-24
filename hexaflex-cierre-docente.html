@@ -141,7 +141,7 @@ blockquote{margin:0 0 10px; padding:14px 20px; border-left:4px solid var(--accen
   <header class="masthead">
     <div class="eyebrow">Apoyo docente</div>
     <h1>Cierre de la práctica del hexaflex</h1>
-    <p>Al finalizar las seis escenas, recuperar lo observado, afinar el sentido clínico de cada intervención e integrar los procesos.</p>
+    <p>Al finalizar las ocho escenas, recuperar lo observado, afinar el sentido clínico de cada intervención e integrar los procesos.</p>
   </header>
 
   <div class="seccion-titulo" id="devolucion-titulo">Conducir la devolución</div>
@@ -159,7 +159,7 @@ blockquote{margin:0 0 10px; padding:14px 20px; border-left:4px solid var(--accen
 
   <div class="seccion-titulo">Integración</div>
   <section class="seccion">
-    <h2>Integrar las seis escenas</h2>
+    <h2>Integrar las ocho escenas</h2>
     <p>Los procesos del hexaflex se apoyan entre sí. La misma intervención puede favorecer varios de ellos. Su función depende de cómo responde la persona en su contexto, de las opciones de acción que abre y de su vínculo con lo importante.</p>
     <p class="prompt">¿Qué pudo hacer la persona de otra manera y al servicio de qué dirección elegida?</p>
     <details class="plegable">
@@ -170,7 +170,7 @@ blockquote{margin:0 0 10px; padding:14px 20px; border-left:4px solid var(--accen
           <li><strong>Contexto:</strong> qué información de la situación orientó la intervención y qué alternativas había.</li>
           <li><strong>Acción:</strong> qué elección relevante se exploró, qué obstáculos aparecieron y qué convendría revisar.</li>
         </ul>
-        <blockquote>Las seis escenas muestran distintas entradas para ampliar la flexibilidad. La elección de una metáfora o ejercicio necesita responder a la función del problema y a lo que la persona quiere cuidar en su vida.</blockquote>
+        <blockquote>Las ocho escenas muestran distintas entradas para ampliar la flexibilidad. La elección de una metáfora o ejercicio necesita responder a la función del problema y a lo que la persona quiere cuidar en su vida.</blockquote>
       </div>
     </details>
     <p class="source-ref">Harris (2009), cap. 1, “The Six Core Therapeutic Processes of ACT”, y caps. 7–12. Luoma et al. (2017), “Clinician Processes in Context: Key ACT Competencies”: adaptación a la experiencia, el lenguaje y el contexto de la persona.</p>
@@ -425,7 +425,9 @@ const SITUACIONES = [
   "Aquí, pero no aquí",
   "Yo soy así",
   "Cuando lo consiga",
-  "Demasiado grande para empezar"
+  "Demasiado grande para empezar",
+  "Tiene que quedar perfecto",
+  "Lo que se espera de mí"
 ];
 const SITUACIONES_TEXTO = [
   "Una persona aplaza desde hace tiempo algo que le importa. Dice que empezará cuando deje de sentirse como se siente ahora. Ha probado prepararse más, distraerse y pedir consejo. Mientras tanto, el plazo se acerca y alguien cercano empieza a perder la paciencia.",
@@ -433,7 +435,9 @@ const SITUACIONES_TEXTO = [
   "En las conversaciones que más le importan, una persona se va a lo que podría salir mal y deja de seguir lo que ocurre. Para no fallar, repasa mentalmente lo que va a decir antes y después de cada conversación. Las personas cercanas le dicen que la notan ausente.",
   "Una persona descarta opciones con una sola explicación sobre sí misma: «yo soy así». Lo dice desde hace años y nadie a su alrededor lo discute. Cuando surge una propuesta que le interesa, la rechaza antes de pensarla.",
   "Una persona persigue un resultado que depende en parte de otros y siente que, mientras no llegue, nada de lo que hace vale la pena. Ha hecho todo lo que se le ocurre para lograrlo y revisa a diario si ya llegó. Ha dejado de lado cosas que antes disfrutaba.",
-  "Una persona sabe qué quiere cuidar, pero sus planes son tan amplios que no arranca o abandona al primer tropiezo. Cada lunes arma un plan completo con horarios. A mitad de semana falla un día, se dice que ya lo arruinó y vuelve a empezar desde cero el lunes siguiente."
+  "Una persona sabe qué quiere cuidar, pero sus planes son tan amplios que no arranca o abandona al primer tropiezo. Cada lunes arma un plan completo con horarios. A mitad de semana falla un día, se dice que ya lo arruinó y vuelve a empezar desde cero el lunes siguiente.",
+  "Una persona revisa y rehace lo que entrega porque una regla en su cabeza le dice que, si no queda perfecto, no sirve. Ha intentado convencerse de que ya está bien y pedir a otros que lo revisen. La regla vuelve con cada entrega, y ya perdió un plazo por no darlo por terminado.",
+  "Una persona cumple con todo lo que se espera de ella en el estudio, el trabajo y la familia. Cuando le preguntan qué quiere para sí, no sabe qué responder. Ha probado llenar la agenda de actividades nuevas y descansar más, pero siente que los días pasan sin dirección."
 ];
 
 // Otras entradas que también se pueden sostener para cada situación.
@@ -443,7 +447,9 @@ const OTRAS_ENTRADAS = [
   "defusión, si sigue enganchada a los «¿y si…?»; aceptación, si se aleja para no sentir la ansiedad.",
   "defusión (ponerle nombre a la historia) es una entrada cercana; valores, si la etiqueta tapa lo que quiere intentar.",
   "defusión, si se aferra a «sin eso nada vale»; acción comprometida, cuando la dirección ya está clara.",
-  "valores, si se perdió el para qué; aceptación, si el freno es el malestar de empezar; defusión, si el freno es una frase."
+  "valores, si se perdió el para qué; aceptación, si el freno es el malestar de empezar; defusión, si el freno es una frase.",
+  "aceptación, si lo que pesa es la incomodidad de entregar algo imperfecto; acción comprometida, si la dirección está clara y falta un paso concreto, como entregar a tiempo.",
+  "aceptación, si evita el vacío o la culpa que aparece al pensar en sí; defusión, si la frenan reglas como «primero los demás»; acción comprometida, cuando ya nombró una dirección."
 ];
 
 // Recursos del repertorio de cada proceso.
@@ -540,6 +546,26 @@ const CARTAS = [
       "texto": "«Si no lo hago completo, no vale la pena.»",
       "observar": "Una meta excesiva sostenida por un pensamiento: si reducen el paso sin perder la dirección."
     }
+  ],
+  [
+    {
+      "texto": "«Si lo entrego así, van a ver que no soy buena en esto.»",
+      "observar": "Una frase nueva sobre sí: si también la tratan como pensamiento, sin discutirla ni elogiarla."
+    },
+    {
+      "texto": "«Si dejo de exigirme, voy a hacer todo mal.»",
+      "observar": "Una regla sobre la utilidad de exigirse: si exploran lo que le cuesta obedecerla en vez de convencerla de que no la necesita."
+    }
+  ],
+  [
+    {
+      "texto": "«A mí lo que me importa es que todos estén bien.»",
+      "observar": "Si exploran cómo quiere actuar en esa área y también consigo misma, sin descartar ese valor."
+    },
+    {
+      "texto": "«Eso de pensar en mí suena egoísta.»",
+      "observar": "Un pensamiento que frena la exploración: si lo notan sin debatirlo y vuelven a lo que le importa."
+    }
   ]
 ];
 
@@ -549,17 +575,20 @@ const CARTAS = [
 const el = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-// El proceso elegido viaja en la dirección (#proceso=3).
+// Proceso de referencia de cada grupo: los grupos 7 y 8 repiten defusión y valores.
+const PROCESO_DE_GRUPO = [1, 2, 3, 4, 5, 6, 2, 5];
+
+// El grupo elegido viaja en la dirección (#proceso=3: se conserva el nombre por los enlaces ya compartidos).
 let actual = Number(location.hash.replace("#proceso=", "")) || 1;
-if (actual < 1 || actual > PROCESOS.length) actual = 1;
+if (actual < 1 || actual > SITUACIONES.length) actual = 1;
 
 /* ============================================================
    3. EL PROCESO ELEGIDO
    ============================================================ */
 function pintarProceso(){
-  el("tabs").innerHTML = PROCESOS.map((p, i) =>
-    `<button type="button" data-id="${i + 1}" aria-pressed="${actual === i + 1}">${i + 1} · ${esc(p.titulo)}</button>`).join("");
-  const p = PROCESOS[actual - 1];
+  el("tabs").innerHTML = PROCESO_DE_GRUPO.map((k, i) =>
+    `<button type="button" data-id="${i + 1}" aria-pressed="${actual === i + 1}">${i + 1} · ${esc(PROCESOS[k - 1].titulo)}</button>`).join("");
+  const p = PROCESOS[PROCESO_DE_GRUPO[actual - 1] - 1];
   el("process").innerHTML = `
     <div class="hero">
       <div class="eyebrow">Grupo ${actual} · ${esc(SITUACIONES[actual - 1])}</div>
@@ -571,7 +600,7 @@ function pintarProceso(){
       <section class="bloque">
         <h3>Entrada esperada y otras posibles</h3>
         <p>La entrada más directa es <strong>${esc(p.titulo)}</strong>. También se puede sostener: ${esc(OTRAS_ENTRADAS[actual - 1])}</p>
-        <p class="muted">Recursos del repertorio para este proceso: ${RECURSOS[actual - 1].map(esc).join(" · ")}.</p>
+        <p class="muted">Recursos del repertorio para este proceso: ${RECURSOS[PROCESO_DE_GRUPO[actual - 1] - 1].map(esc).join(" · ")}.</p>
       </section>
       <section class="bloque">
         <h3>Precisión central</h3>

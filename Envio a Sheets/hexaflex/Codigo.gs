@@ -84,10 +84,12 @@ function validar_(d) {
 }
 
 function validarV2_(d) {
-  var entero16 = function(x) {return typeof x === 'number' && x % 1 === 0 && x >= 1 && x <= 6;};
+  var entero = function(x, max) {return typeof x === 'number' && x % 1 === 0 && x >= 1 && x <= max;};
+  // Ocho grupos (desde el 2026-10-23) y seis procesos.
+  var entero18 = function(x) {return entero(x, 8);}, entero16 = function(x) {return entero(x, 6);};
   if (!CURSOS[d.curso] || CURSOS[d.curso].indexOf(d.cursoGrupo) < 0) throw new Error('Curso no autorizado.');
-  if (!entero16(d.grupoObservador)) throw new Error('Indiquen su grupo.');
-  if (!entero16(d.grupo)) throw new Error('Grupo en escena no válido.');
+  if (!entero18(d.grupoObservador)) throw new Error('Indiquen su grupo.');
+  if (!entero18(d.grupo)) throw new Error('Grupo en escena no válido.');
   if (d.grupoObservador === d.grupo) throw new Error('El grupo en escena no puede ser el propio.');
   if (!entero16(d.proceso)) throw new Error('Proceso no válido.');
   if (!/^[A-Za-z0-9-]{32,64}$/.test(d.rid || '')) throw new Error('Identificador no válido.');
