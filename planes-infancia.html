@@ -1792,6 +1792,27 @@ REFERENCIAS.push(
   { k: "Sinha et al., 2025", ref: "Sinha, A. B., Sy, A. F., Derenne, J. L. y Carlson, J. L. (Eds.). (2025). <em>Comprehensive clinical care for adolescents with avoidant/restrictive food intake disorder (ARFID)</em>. Springer." }
 );
 
+/* Manuales de aceptación y compromiso agregados el 2026-10-26 (bloque 3):
+   niños con el Kidflex (Black, 2022), adolescentes con DNA-V (Hayes y
+   Ciarrochi, 2015; cuaderno de Ciarrochi y Hayes, 2020) y padres
+   (Whittingham y Coyne, 2019). El libro de DNA-V no describe ensayos. */
+Object.assign(MODELOS, {
+  "dna-v": {
+    t: "Modelo DNA-V",
+    autor: "Hayes y Ciarrochi",
+    d: "Los adolescentes prosperan cuando pueden moverse con flexibilidad entre tres habilidades al servicio de sus valores: el descubridor, que explora y amplía lo que hacen; el observador, que nota sensaciones, emociones y lo que pasa alrededor; y el consejero, la voz interior que evalúa, predice y aconseja a partir de lo aprendido. Los problemas aparecen cuando el consejero domina —reglas rígidas, autocrítica, evitación— y se deja de notar y de explorar. El modelo se completa con la visión de sí mismo y la visión social.",
+    dim: ["Valores y vitalidad", "Descubridor", "Observador", "Consejero", "Visión de sí mismo", "Visión social"],
+    fuente: "Hayes y Ciarrochi, 2015, cap. 1"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Black, 2022", ref: "Black, T. D. (2022). <em>ACT for treating children: The essential guide to acceptance and commitment therapy for kids</em>. New Harbinger." },
+  { k: "Hayes y Ciarrochi, 2015", ref: "Hayes, L. L. y Ciarrochi, J. V. (2015). <em>The thriving adolescent: Using acceptance and commitment therapy and positive psychology to help teens manage emotions, achieve goals, and build connection</em>. Context Press / New Harbinger." },
+  { k: "Ciarrochi y Hayes, 2020", ref: "Ciarrochi, J. V. y Hayes, L. L. (2020). <em>Your life, your way: Acceptance and commitment therapy skills to help teens manage emotions and build resilience</em>. Instant Help / New Harbinger." },
+  { k: "Whittingham y Coyne, 2019", ref: "Whittingham, K. y Coyne, L. W. (2019). <em>Acceptance and commitment therapy: The clinician's guide for supporting parents</em>. Academic Press." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -2209,6 +2230,7 @@ const VARIABLES = [
     "<strong>Entre los 7 y los 13 años</strong>, el programa individual de Kendall es el más estudiado; hay versión para adolescentes. <strong>En grupo y con la familia</strong>, el programa de Barrett tiene versiones desde los 4 años y funciona también en el colegio. <strong>Si la ansiedad viene con tristeza o irritabilidad</strong>, el protocolo unificado trabaja todas las emociones a la vez. En adolescentes, ACT es una opción con evidencia todavía preliminar en esta edad.",
     "Si la ansiedad se centra en ir al colegio, conviene revisar también Rechazo escolar; si hay rituales u obsesiones, Obsesiones y compulsiones; si empezó después de un evento traumático, Trauma y estrés postraumático.",
     "La ansiedad de separación se trata dentro de estos mismos programas. Si hace falta un formato más corto, la versión breve del programa de Kendall tiene ocho sesiones.",
+    "<strong>Entre los 5 y los 12 años, si el niño deja de hacer lo que le importa para no sentir miedo</strong>, la terapia de aceptación y compromiso con el Kidflex trabaja esa evitación con juegos y ejercicios; si el niño no quiere participar, se trabaja con los padres.",
   ],
   planes: [
     {
@@ -2698,6 +2720,201 @@ const VARIABLES = [
       cuidado: [
         "La evidencia en adolescentes con ansiedad es preliminar; si la terapia cognitivo-conductual es aceptable para la familia, tiene más respaldo (Palitz et al., 2019).",
         "Los procesos de ACT no son técnicas para enseñar: se cultivan con ejercicios experienciales, y el manual recomienda que el terapeuta practique mindfulness antes de usarlo (Turrell y Bell, 2016, introducción)."
+      ]
+    },
+    {
+      id: "ans-kidflex",
+      mod: "flex",
+      inst: ["SCARED", "RCADS"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso para niños: el Kidflex",
+      fuente: "Black, 2022",
+      cuando: "Un <strong>niño de 5 a 12 años</strong> deja de hacer lo que le importa —ir a una fiesta, tocar en un recital, jugar con otros, ir al colegio— para no sentir miedo, vergüenza o preocupación, y esas reglas («no voy a fiestas porque nadie me habla») le están achicando la vida. Sirve también cuando la ansiedad se mezcla con tristeza u obsesiones, porque trabaja procesos comunes, no un diagnóstico (Black, 2022, caps. 1 y 2).",
+      respaldo: "Un metaanálisis de siete ensayos aleatorizados con niños de hasta 12 años encontró que la terapia de aceptación y compromiso redujo de forma significativa la ansiedad y la depresión, con una eficacia equivalente a la de la terapia cognitivo-conductual; una revisión anterior encontró tres estudios con resultados favorables en esa edad, uno de ellos aleatorizado (Black, 2022, cap. 1). En la ansiedad infantil, la terapia cognitivo-conductual sigue siendo el tratamiento con más estudios.",
+      secuencia: "<strong>Secuencia:</strong> no hay un orden ni un número de sesiones fijo. La primera sesión, con el niño y sus padres, construye la conceptualización del caso; desde ahí se empieza por el proceso del Kidflex que más falta haga —déjalo estar, déjalo ir, elige lo que importa, haz lo que importa, quédate aquí y date cuenta de ti— y se suma ser amable contigo. No siempre hace falta trabajar todos los procesos. Cada sesión enlaza los ejercicios nuevos con los anteriores y termina con sugerencias para los padres (Black, 2022, caps. 1 a 6).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11"],
+      opcA: {
+        t: "Con el niño en sesión",
+        cuando: "El niño acepta participar en los ejercicios. Los padres asisten a la primera sesión y reciben sugerencias al final de cada una (Black, 2022, caps. 2 a 6)."
+      },
+      actividades: [
+        {
+          t: "Primera sesión y conceptualización del caso",
+          tecs: ["entrevista-clinica", "desesperanza-creativa", "kidflex"],
+          obj: "Conocer el problema con los ojos del Kidflex y presentar la terapia como algo voluntario que se hace junto con el niño.",
+          pasos: [
+            "Recibir al niño con sus padres, presentarse y contar cómo será la sesión, en un lenguaje sencillo; pedirle que avise si algo no se entiende.",
+            "Completar con ellos la conceptualización: cuándo empezó, qué hace el niño cuando aparece el problema, qué pasa antes y después, qué se está perdiendo y si lo que hace le funciona.",
+            "Abrir con suavidad la desesperanza creativa con un ejemplo cotidiano, como aguantarse las ganas de ir al baño en el cine para no perderse la película.",
+            "Hablar de cosas seguras, invitar al niño a ser su propio superhéroe y dejar claro que participar es voluntario."
+          ],
+          casa: "Notar durante la semana qué hace cuando aparece el miedo o la preocupación.",
+          avance: "El terapeuta sabe por qué proceso empezar y el niño acepta volver.",
+          fuente: "Black, 2022, cap. 2"
+        },
+        {
+          t: "Déjalo estar y déjalo ir",
+          tecs: ["aceptacion-radical", "defusion", "botella-brillantina"],
+          obj: "Que el niño deje estar lo que siente sin intentar sacarlo y tome distancia de sus pensamientos.",
+          pasos: [
+            "Mostrar que no se puede ordenar a la mente que no piense en algo: no pensar en un pastel de chocolate.",
+            "Usar la botella de brillantina: al agitarla, todo se ve revuelto; si se la deja quieta, la brillantina baja sola. También invitar a los pensamientos y sentimientos y saludarlos.",
+            "Para déjalo ir: «estoy teniendo el pensamiento de que…», ponerle nombre a la historia, darle las gracias a la mente, dibujar los pensamientos, cantarlos, soplarlos en burbujas o verlos pasar como autos.",
+            "Hacer cada ejercicio junto con el niño, explicándole antes de qué se trata y pidiéndole permiso."
+          ],
+          casa: "Usar la botella de brillantina o un ejercicio de déjalo ir cuando aparezca la preocupación; los padres practican las mismas frases delante de él.",
+          avance: "El niño dice «estoy teniendo el pensamiento de que…» o deja estar un sentimiento sin huir.",
+          fuente: "Black, 2022, cap. 3"
+        },
+        {
+          t: "Elige lo que importa y haz lo que importa",
+          tecs: ["valores", "accion-comprometida"],
+          obj: "Descubrir qué le importa al niño y dar pasos pequeños hacia eso.",
+          pasos: [
+            "Preguntar qué haría si tuviera una varita mágica y dibujar o pintar un cofre del tesoro, una mochila o un corazón con lo que le importa; escribir una tarjeta de cumpleaños o de graduación para sí mismo.",
+            "Presentar dos caminos: uno hacia lo que importa, con miedo incluido, y otro de evitar.",
+            "Cerrar con tres preguntas: qué es lo que más le importa, qué pasos pequeños puede dar y qué podría ponérselo difícil; partir la tarea si hace falta.",
+            "Si hay obsesiones o rituales, la exposición con prevención de respuesta se hace al servicio de lo que le importa."
+          ],
+          casa: "Un paso pequeño y realista hacia lo que le importa, con ayuda de los padres si hace falta.",
+          avance: "El niño hace algo que evitaba porque le importa.",
+          fuente: "Black, 2022, cap. 4",
+          fichas: ["escalera-miedos"]
+        },
+        {
+          t: "Quédate aquí y date cuenta de ti",
+          tecs: ["atencion-plena", "yo-contexto"],
+          obj: "Practicar estar en el presente y observar los propios pensamientos y emociones desde un lugar que no cambia.",
+          pasos: [
+            "Practicar quédate aquí comiendo, escuchando música, moviéndose como un alga o respirando con atención; en casa, al cepillarse los dientes, al dibujar, en la cena o para dormirse.",
+            "Para date cuenta de ti, ejercicios de arte (bajo el mar, una flor con pétalos, gafas con etiquetas) y ejercicios de imaginación (un barco quieto en el mar, la playa, ver una película de la propia vida)."
+          ],
+          casa: "Un ejercicio de quédate aquí cada día, en familia.",
+          avance: "El niño puede notar lo que siente sin quedar atrapado en ello.",
+          fuente: "Black, 2022, cap. 5"
+        },
+        {
+          t: "Sé amable contigo",
+          tecs: ["autocompasion"],
+          obj: "Que el niño se trate con amabilidad cuando las cosas cuestan.",
+          pasos: [
+            "Presentar los dos entrenadores: imaginar en un deporte o una actividad lo que le diría un entrenador muy crítico y uno muy amable, cómo se sentiría y cómo le iría con cada uno, y a cuál se parece más cuando se habla a sí mismo.",
+            "Escribir una carta amable para sí mismo o imaginar a un amigo amable y cariñoso.",
+            "Con la silla vacía, que le dé consejo a un amigo con el mismo problema."
+          ],
+          casa: "Usar frases amables consigo mismo; los padres usan ese lenguaje delante de él.",
+          avance: "El niño se habla con más amabilidad cuando se equivoca o tiene miedo.",
+          fuente: "Black, 2022, cap. 6"
+        },
+        {
+          t: "Enlazar los procesos y cerrar",
+          tecs: ["prevencion-recaidas"],
+          obj: "Que el niño vea sus habilidades como una caja de herramientas y siga usándolas.",
+          pasos: [
+            "Mostrar cómo se relacionan los ejercicios de cada sesión: cada uno es una herramienta, ninguna más importante que otra.",
+            "Repasar las herramientas que más le sirvieron y cuándo usarlas.",
+            "Dar a los padres sugerencias para seguir practicando en casa."
+          ],
+          casa: "Su caja de herramientas a mano, con las que más le sirven.",
+          avance: "El niño usa las herramientas sin que se lo recuerden.",
+          fuente: "Black, 2022, caps. 4 y 8",
+          fichas: ["caja-herramientas"]
+        }
+      ],
+      opciones: [
+        {
+          t: "Trabajo con los padres solos",
+          cuando: "Pese a varios intentos, <strong>el niño no quiere participar</strong> en las sesiones, sobre todo si es pequeño (de 5 a 8 años). Se trabaja con los padres para que ayuden a su hijo con lo que piensa y siente y para que se traten con amabilidad cuando su hijo no responde (Black, 2022, cap. 7).",
+          fuente: "Black, 2022, cap. 7",
+          secuencia: "<strong>Secuencia:</strong> seis sesiones con los padres, las dos primeras con el niño presente: conceptualización del caso y déjalo estar; déjalo estar y déjalo ir; elige lo que importa y haz lo que importa; quédate aquí; date cuenta de ti; y sé amable contigo, con repaso y plan. En cada una los padres practican los procesos consigo mismos y reciben tareas para enseñárselos y modelárselos a su hijo (Black, 2022, cap. 7).",
+          actividades: [
+            {
+              t: "Conceptualización y déjalo estar",
+              tecs: ["entrevista-clinica", "aceptacion-radical", "botella-brillantina"],
+              obj: "Entender lo que pasa entre el niño y sus padres y empezar a enseñar a dejar estar.",
+              pasos: [
+                "Observar en las primeras sesiones cómo responden los padres cuando el niño se inquieta: sobreprotección, ansiedad, cómo se reparte el poder.",
+                "Reconocer ante los padres, sin culparlos, que no se ha logrado que el niño participe, y proponer trabajar con ellos.",
+                "Completar la conceptualización con los padres y preguntar qué cualidades esperan que su hijo desarrolle.",
+                "Hacer con ellos la botella de brillantina."
+              ],
+              casa: "Hacer una botella de brillantina con el niño y enseñarle a usarla.",
+              avance: "Los padres entienden cómo sus respuestas influyen en la conducta del niño.",
+              fuente: "Black, 2022, cap. 7"
+            },
+            {
+              t: "Déjalo ir y más independencia",
+              tecs: ["defusion", "reforzamiento-positivo"],
+              obj: "Que los padres usen y modelen frases de déjalo ir y den al niño más independencia.",
+              pasos: [
+                "Practicar con los padres: «me doy cuenta de que estoy sintiendo…», «estoy teniendo el pensamiento de que…», «gracias, mente».",
+                "Armar una tabla de pegatinas para premiar que el niño participe en lo que evita.",
+                "Darle más independencia y responsabilidad en casa y en el colegio."
+              ],
+              casa: "Modelar frases de déjalo estar y déjalo ir delante del niño y usar la tabla de pegatinas.",
+              avance: "El niño se suma a actividades que evitaba.",
+              fuente: "Black, 2022, cap. 7",
+              fichas: ["tabla-puntos"]
+            },
+            {
+              t: "Lo que importa en la crianza",
+              tecs: ["valores", "accion-comprometida"],
+              obj: "Que los padres aclaren qué les importa como padres y apoyen lo que le importa al niño.",
+              pasos: [
+                "Hacer con los padres la diana de la crianza: escribir en el centro algo que les importa para ayudar a su hijo a afrontar su dificultad y revisar si lo que hacen hoy lo acerca o lo aleja (por ejemplo, quedarse en la cama del niño hasta que se duerma).",
+                "Conversar con el niño por qué le gustan ciertas actividades e invitarlo a dibujar un corazón donde los padres escriban lo que le importa.",
+                "Elegir actividades en casa hacia lo que importa y modelar frases de elige lo que importa y haz lo que importa."
+              ],
+              casa: "Una actividad hacia lo que importa, con el niño.",
+              avance: "Los padres actúan según sus valores de crianza en situaciones difíciles.",
+              fuente: "Black, 2022, cap. 7"
+            },
+            {
+              t: "Quédate aquí y date cuenta de ti en familia",
+              tecs: ["atencion-plena", "yo-contexto"],
+              obj: "Practicar en familia la atención al presente y la mirada que observa.",
+              pasos: [
+                "Practicar quedarse aquí mientras comen y armar una lista de actividades para hacer en familia con atención.",
+                "Hacer con los padres el ejercicio de ver una película de la propia vida, y ayudar al niño con el dibujo bajo el mar.",
+                "Usar frases de date cuenta de ti delante del niño."
+              ],
+              casa: "Comer con atención en familia y una actividad de la lista.",
+              avance: "La familia comparte momentos de atención al presente.",
+              fuente: "Black, 2022, cap. 7"
+            },
+            {
+              t: "Sé amable contigo y plan",
+              tecs: ["autocompasion", "prevencion-recaidas"],
+              obj: "Que los padres se traten con amabilidad y preparen el paso siguiente del niño.",
+              pasos: [
+                "Escribir una carta amable para sí mismos, sobre todo cuando su hijo no responde a lo que intentan.",
+                "Planear su propio autocuidado.",
+                "Usar lenguaje amable delante de los niños y pedirles que inventen frases amables propias.",
+                "Repasar las sesiones y hacer un plan para el siguiente reto del niño, como su primer día de colegio."
+              ],
+              casa: "Plan escrito para el siguiente reto.",
+              avance: "Los padres siguen aplicando los procesos sin el terapeuta.",
+              fuente: "Black, 2022, cap. 7",
+              fichas: ["plan-mantenimiento-nino"]
+            }
+          ]
+        }
+      ],
+      medir: [
+        "<strong>SCARED</strong> o <strong>RCADS</strong> al inicio y al final, en versión para el niño y para los padres.",
+        "Lo que el niño hace hacia lo que le importa: actividades que evitaba y ahora hace.",
+        "Uso de las herramientas en casa, según el niño y los padres."
+      ],
+      adapt: [
+        "<strong>Edad:</strong> con niños de 5 a 8 años se usa un lenguaje todavía más simple y se les pide que avisen si el terapeuta habla «como a un adulto» (Black, 2022, cap. 1).",
+        "<strong>Obsesiones:</strong> el libro muestra cómo combinar estos procesos con la exposición con prevención de respuesta; ver también <em>Obsesiones y compulsiones</em> (Black, 2022, cap. 4)."
+      ],
+      cuidado: [
+        "Participar es siempre voluntario: se explica cada ejercicio antes, se pide permiso y el terapeuta lo hace junto con el niño (Black, 2022, cap. 3).",
+        "Ir despacio y con lenguaje simple: hacer los ejercicios, no hablar de ellos (Black, 2022, caps. 1 y 8).",
+        "Si la ansiedad es intensa y el niño no avanza, la terapia cognitivo-conductual con exposición es el tratamiento con más estudios."
       ]
     },
     {
@@ -4250,6 +4467,7 @@ const VARIABLES = [
   sub: "No es solo la ausencia de síntomas: sentirse capaz de manejar lo de cada día, seguir aprendiendo, tener metas, decidir por uno mismo, aceptarse y llevarse bien con los demás. Se trabaja para promover el bienestar de todo un grupo en el colegio y, a la vez, para proteger frente a la ansiedad y el malestar físico sin causa médica.",
   elegir: [
     "<strong>En el colegio, con todo un curso</strong>, la terapia de bienestar adaptada al aula tiene ensayos aleatorizados en secundaria.",
+    "<strong>Con un adolescente, en consulta o en grupo</strong>, el modelo DNA-V trabaja sus valores y tres habilidades —explorar, notar y tomar distancia de su voz interior— para su bienestar y sus relaciones; su respaldo es conceptual.",
     "Si un niño o adolescente ya tuvo una depresión y respondió al tratamiento, el plan de prevención de recaídas de Depresión usa la terapia de bienestar de forma individual. Con discapacidad intelectual, el plan de fortalezas del carácter de Discapacidad intelectual."
   ],
   planes: [
@@ -4357,6 +4575,138 @@ const VARIABLES = [
       cuidado: [
         "Es un programa de promoción para cursos completos: no reemplaza el tratamiento de un estudiante con un trastorno, que se deriva a su plan.",
         "Los estudios son pocos y del mismo grupo; la adaptación de las actividades al aula es una propuesta de esta guía."
+      ]
+    },
+    {
+      id: "bien-dnav",
+      mod: "dna-v",
+      inst: ["SDQ", "RCADS"],
+      enf: "act",
+      nivel: "conceptual",
+      t: "DNA-V: descubridor, observador, consejero y valores",
+      fuente: "Hayes y Ciarrochi, 2015",
+      cuando: "Un <strong>adolescente</strong> vive dominado por su voz interior —se juzga, predice lo peor, sigue reglas rígidas sobre quién es—, evita lo que siente o reacciona de inmediato, y ha dejado de explorar y de hacer lo que le importa: amistades, estudio, intereses. Sirve para promover su bienestar y su fortaleza ante la tristeza, la ansiedad, la ira, la autocrítica o los problemas con sus pares, sin partir de un diagnóstico (Hayes y Ciarrochi, 2015, introducción y cap. 1).",
+      respaldo: "El modelo integra la terapia de aceptación y compromiso, la psicología positiva y la ciencia del desarrollo; el libro no describe ensayos de él, y el prólogo invita a estudiarlo (Hayes y Ciarrochi, 2015, prólogo e introducción). Algunas de sus técnicas, como el contraste mental y las intenciones de implementación para las metas, tienen estudios propios (Hayes y Ciarrochi, 2015, cap. 6).",
+      secuencia: "<strong>Secuencia:</strong> no hay un punto de partida correcto: se empieza donde se pueda abrir espacio. El orden habitual es presentar el modelo, los valores, el consejero, el observador, el descubridor, la acción comprometida y la flexibilidad entre las tres habilidades; después, la visión de sí mismo, la autocompasión y la visión social. Se hace DNA-V, no se habla de él: se actúa, se juega y se experimenta en la sesión (Hayes y Ciarrochi, 2015, caps. 1 a 13).",
+      esc: ["primer-nivel", "salud-mental", "colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Presentar DNA-V y los valores",
+          tecs: ["dna-v", "valores"],
+          obj: "Presentar el modelo de forma vivencial y crear un espacio en el que lo que le importa al adolescente esté en el centro.",
+          pasos: [
+            "Hacer el paseo DNA-V: poner en el piso tres hojas con las letras D, N y A y caminar con el adolescente de una a otra. A es el consejero, la voz interior que evalúa; N, el observador, que nota lo que pasa dentro y fuera; D, el descubridor, que explora y prueba. Moverse entre ellas es más flexible que quedarse fijo en el consejero.",
+            "Presentar los valores como el centro del modelo: preguntas de «¿para qué?», como qué tipo de persona quiere ser.",
+            "Escuchar los valores en lo que el adolescente cuenta, en lugar de preguntarlos de frente, y redefinir el éxito en términos de vitalidad.",
+            "Construir con él la conceptualización: qué habilidades usa más y cuáles le faltan."
+          ],
+          casa: "Notar durante la semana en qué espacio estuvo —consejero, observador o descubridor— en un momento difícil.",
+          avance: "El adolescente usa el lenguaje del modelo para describir lo que le pasa.",
+          fuente: "Hayes y Ciarrochi, 2015, caps. 1 y 2",
+          fichas: ["valores-adolescente"]
+        },
+        {
+          t: "Desengancharse del consejero",
+          tecs: ["defusion"],
+          obj: "Que el adolescente vea su voz interior como un consejero que a veces ayuda y a veces no, y aprenda a desengancharse cuando no le sirve.",
+          pasos: [
+            "Presentar el consejero como una metáfora: protege del peligro y ahorra esfuerzo, pero también lleva a seguir reglas rígidas y distorsiona lo que llega.",
+            "Hacer ejercicios para notar cuán ocupado está el consejero, juzgando y etiquetando todo.",
+            "Preguntar si sus predicciones y evaluaciones le ayudan a vivir con vitalidad, si conviene escucharlo en esa situación o pasar a observar.",
+            "Practicar desengancharse: notar lo que dice el consejero y pasar al espacio del observador o del descubridor."
+          ],
+          casa: "Anotar un consejo del consejero en la semana y si escucharlo le sirvió.",
+          avance: "El adolescente reconoce cuándo su consejero lo está llevando a donde no quiere.",
+          fuente: "Hayes y Ciarrochi, 2015, cap. 3"
+        },
+        {
+          t: "Habilidades del observador",
+          tecs: ["atencion-plena", "aceptacion-radical"],
+          obj: "Aprender a notar las emociones, nombrarlas y dejarlas estar, en lugar de evitarlas o reaccionar.",
+          pasos: [
+            "Normalizar: todas las emociones son normales, ninguna tiene que controlarse y todas pasan, a menudo rápido.",
+            "Practicar darse cuenta, nombrar y describir lo que siente en el cuerpo.",
+            "Permitir: actuar juntos la metáfora del alga que se mueve con el mar, o la de la pelota que se intenta mantener bajo el agua.",
+            "Preguntar por la disposición: está dispuesto a sentir esto para hacer lo que le importa."
+          ],
+          casa: "Practicar darse cuenta, nombrar y permitir una emoción al día.",
+          avance: "El adolescente nombra lo que siente y lo deja estar sin actuar de inmediato.",
+          fuente: "Hayes y Ciarrochi, 2015, cap. 4"
+        },
+        {
+          t: "Habilidades del descubridor",
+          tecs: ["valores", "fortalezas-caracter"],
+          obj: "Ampliar lo que el adolescente hace, explorando qué funciona, qué valora y qué fortalezas tiene.",
+          pasos: [
+            "Revisar qué conductas le han funcionado para tener una vida más vital y cuáles no.",
+            "Descubrir valores buscando pruebas en su propia vida —fotos, publicaciones, objetos importantes— en lugar de pedírselos al consejero.",
+            "Descubrir y desarrollar fortalezas, sobre todo al servicio de sus valores.",
+            "Probar conductas nuevas y revisar qué le devuelve el mundo; ir despacio, porque descubrir da miedo."
+          ],
+          casa: "Probar algo nuevo ligado a un valor y notar qué pasó.",
+          avance: "El adolescente prueba conductas nuevas y las evalúa por cómo le funcionan.",
+          fuente: "Hayes y Ciarrochi, 2015, cap. 5",
+          fichas: ["mis-fortalezas"]
+        },
+        {
+          t: "Metas y acción comprometida",
+          tecs: ["accion-comprometida", "contraste-mental"],
+          obj: "Convertir los valores en metas y planes realistas que tengan en cuenta las dificultades.",
+          pasos: [
+            "Identificar una meta ligada a un valor.",
+            "Hacer el contraste mental: identificar los beneficios de lograrla y las barreras probables, sin separar lo bueno de lo malo.",
+            "Prepararse para las barreras con planes «si pasa esto, entonces haré esto» y prepararse para las oportunidades.",
+            "Revisar después si la meta lograda le hace la vida más vital; si no, elegir otra."
+          ],
+          casa: "Hoja de metas con beneficios, barreras y planes «si…, entonces…».",
+          avance: "El adolescente sigue con una meta aunque aparezcan barreras.",
+          fuente: "Hayes y Ciarrochi, 2015, cap. 6",
+          fichas: ["hoja-metas-semana"]
+        },
+        {
+          t: "Una visión flexible de sí mismo y autocompasión",
+          tecs: ["yo-contexto", "autocompasion"],
+          obj: "Aflojar las reglas rígidas sobre quién es y responder a la autocrítica con compasión.",
+          pasos: [
+            "Mostrar que la autoestima no es una sola cosa y que se juega en la conducta; promover una mentalidad de crecimiento y la esperanza.",
+            "Revisar una regla rígida sobre sí mismo («si saco mala nota, soy mal escritor»): no si es cierta, sino si seguirla le trae lo que quiere.",
+            "Ver la autocrítica como un intento de protección, notar lo que se siente en el cuerpo cuando aparece y responder con amabilidad.",
+            "Cambiar de perspectiva, por ejemplo imaginando que el niño que fue está en la sala."
+          ],
+          casa: "Una práctica de autocompasión cuando aparezca la autocrítica.",
+          avance: "El adolescente se describe de formas más variadas y se trata con menos dureza.",
+          fuente: "Hayes y Ciarrochi, 2015, caps. 8 a 10"
+        },
+        {
+          t: "Relaciones y redes de apoyo",
+          tecs: ["circulos-conexion"],
+          obj: "Fortalecer las conexiones del adolescente y su manera de enfrentar los problemas con otros.",
+          pasos: [
+            "Dibujar los círculos de conexión: el «yo» en el centro, un círculo interno y otro externo con las personas de su vida.",
+            "Trabajar los dilemas sociales con las tres habilidades: qué dice el consejero, qué nota el observador, qué puede descubrir.",
+            "Explorar sus valores en las relaciones y acciones para cuidarlas.",
+            "En grupo o en el colegio, ayudarles a crear su propia comunidad de apoyo."
+          ],
+          casa: "Una acción para cuidar una relación importante.",
+          avance: "El adolescente amplía o cuida sus relaciones de apoyo.",
+          fuente: "Hayes y Ciarrochi, 2015, caps. 11 y 12",
+          fichas: ["mapa-relaciones"]
+        }
+      ],
+      medir: [
+        "<strong>SDQ</strong> para las dificultades y fortalezas.",
+        "<strong>RCADS</strong> si hay ansiedad o tristeza.",
+        "Valores y acciones valiosas: cuánto actúa según lo que le importa."
+      ],
+      adapt: [
+        "<strong>Colegio y grupos:</strong> el modelo se usa en aulas y grupos; el paseo DNA-V puede hacerse con un voluntario frente al grupo (Hayes y Ciarrochi, 2015, caps. 1 y 12).",
+        "<strong>Autoayuda guiada:</strong> el cuaderno <em>Your Life, Your Way</em> trae los mismos ejercicios para el adolescente, con capítulos para la preocupación, la ansiedad, la tristeza, el acoso, la vida en línea y la confianza en sí mismo (Ciarrochi y Hayes, 2020)."
+      ],
+      cuidado: [
+        "No hablar del modelo como un adulto más que dice qué hacer: los adolescentes son críticos exigentes; hay que hacer los ejercicios con ellos (Hayes y Ciarrochi, 2015, cap. 13).",
+        "Si hay riesgo suicida o autolesiones, la ruta de atención va primero; ver <em>Autolesión y riesgo suicida</em>.",
+        "Su respaldo es conceptual: si hay un trastorno de ansiedad o depresión, los planes con ensayos de esas variables van primero."
       ]
     },
     {
@@ -5382,6 +5732,7 @@ const VARIABLES = [
   sub: "Desobediencia, rabietas, discusiones con los adultos, desafío a las normas y, a veces, agresión, que se repiten y afectan la vida familiar o escolar. Lo que se interviene es el ciclo de interacción entre el niño y los adultos que lo cuidan: cómo se dan las órdenes, a qué se presta atención y qué consecuencias siguen a la conducta.",
   elegir: [
     "<strong>En la niñez, la intervención con más respaldo es el entrenamiento a los padres</strong>: todas las intervenciones con el nivel de evidencia más alto para niños con problemas de conducta trabajan con la familia, y los programas centrados en los padres tienen efectos mayores que los centrados solo en el niño (McMahon y Frick, 2019).",
+    "<strong>Si a los padres les cuesta aplicar las estrategias</strong> —ceden ante el llanto, se desbordan, siguen reglas rígidas o se culpan—, la aceptación y compromiso para padres se suma al entrenamiento a padres; tiene ensayos con familias de niños con discapacidad.",
     "<strong>Entre los 2 y los 7 años</strong>, la terapia de interacción padres-hijos entrena a los padres en vivo mientras juegan con el niño. <strong>Entre los 2 y los 12</strong>, el entrenamiento a padres de Kazdin trabaja con los padres en la consulta y en casa. <strong>Desde los 7</strong>, el entrenamiento en solución de problemas trabaja directamente con el niño y funciona mejor combinado con el de los padres.",
     "En la adolescencia, cuando la conducta incluye robos, peleas, fugas o problemas con la justicia, corresponde la variable Problemas de conducta graves en la adolescencia. Si la conducta desafiante viene con explosiones de irritabilidad casi a diario, conviene revisar también Irritabilidad y explosiones de rabia."
   ],
@@ -5649,6 +6000,135 @@ const VARIABLES = [
       cuidado: [
         "El programa es menos eficaz con niños menores de 2 o mayores de 7 años, o con autismo, y cuando los padres tienen consumo activo de sustancias, depresión grave o un conflicto de pareja con violencia: en esos casos se atiende primero lo de los padres o se elige otro plan (Hembree-Kigin y McNeil, 1995, cap. 1).",
         "Si hay violencia de pareja, se informa a la persona afectada sobre los recursos para protegerse ella y proteger a los niños (Hembree-Kigin y McNeil, 1995, cap. 1)."
+      ]
+    },
+    {
+      id: "opos-act",
+      mod: "flex",
+      inst: ["ECBI", "APQ"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso para padres junto con el entrenamiento a padres",
+      fuente: "Whittingham y Coyne, 2019",
+      cuando: "Los padres conocen o están aprendiendo las estrategias del entrenamiento a padres, pero <strong>les cuesta aplicarlas de forma constante</strong>: ceden ante la rabieta porque no soportan el llanto, gritan cuando se sienten desbordados, siguen reglas rígidas («un buen padre no deja llorar a su hijo») o se culpan cuando algo sale mal. Se suma a una intervención conductual con los padres; no la reemplaza (Whittingham y Coyne, 2019, caps. 4 y 14).",
+      respaldo: "En dos ensayos aleatorizados se añadió una intervención breve en grupo de cuatro horas a un programa de crianza para familias de niños con discapacidad. Con niños con lesión cerebral adquirida, la combinación mejoró la conducta del niño, el estilo de crianza, el malestar de los padres, el funcionamiento familiar y la relación de pareja frente a la lista de espera. Con niños con parálisis cerebral, el programa de crianza solo mejoró la conducta y las emociones del niño; con la aceptación y compromiso añadida, mejoraron además la crianza disfuncional, la hiperactividad, los síntomas de los padres, el funcionamiento y la calidad de vida del niño. Los autores piden más investigación (Whittingham y Coyne, 2019, cap. 4).",
+      secuencia: "<strong>Secuencia:</strong> lo más sencillo es presentar primero los conceptos de aceptación y compromiso y luego recorrer el programa de crianza, recurriendo a ellos cuando hacen falta. La conducta de crianza se trae a la sesión —ensayo de conducta, observación de la interacción, entrenamiento en vivo— en lugar de solo conversarla, y el terapeuta no se presenta como experto, sino que apoya el ensayo y error de los padres con principios de crianza con evidencia (Whittingham y Coyne, 2019, cap. 14).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Conceptualización del caso con los padres",
+          tecs: ["entrevista-clinica", "analisis-funcional"],
+          obj: "Entender la conducta del niño y la de los padres, y compartir esa comprensión con ellos.",
+          pasos: [
+            "Entrevistar, aplicar cuestionarios y pedir registros.",
+            "Observar la interacción entre padres e hijo.",
+            "Hacer el análisis funcional de la conducta del niño y de la de los padres, incluidos los ciclos de coerción y las reglas que guían la crianza.",
+            "Compartir la conceptualización con los padres, en su lenguaje."
+          ],
+          casa: "Registro de antes, conducta y después de las situaciones difíciles de la semana.",
+          avance: "Los padres describen qué mantiene la conducta problema y qué hacen ellos en ese momento.",
+          fuente: "Whittingham y Coyne, 2019, caps. 4 y 5",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Valores de crianza",
+          tecs: ["valores"],
+          obj: "Que los padres conecten con el tipo de padres que quieren ser, para darle sentido a las estrategias difíciles.",
+          pasos: [
+            "Explorar qué les importa en la relación con su hijo, con preguntas, metáforas y una meditación de valores.",
+            "Presentar los valores como el otro lado del dolor: duele porque importa.",
+            "Distinguir valores de metas y de lo que «deberían» hacer.",
+            "Usar los valores para dar dignidad a estrategias exigentes, como ignorar a propósito una rabieta."
+          ],
+          casa: "Notar un momento de la semana en que actuaron según sus valores de crianza.",
+          avance: "Los padres nombran sus valores y los usan para elegir cómo responder.",
+          fuente: "Whittingham y Coyne, 2019, cap. 7"
+        },
+        {
+          t: "Aceptar lo que se siente al criar",
+          tecs: ["aceptacion-radical", "desesperanza-creativa"],
+          obj: "Dejar la agenda de controlar las emociones propias y las del niño, que lleva a ceder o a castigar.",
+          pasos: [
+            "Examinar con un experimento si controlar es la solución: qué pasa cuando intentan que el niño deje de llorar en una rabieta o que ellos mismos dejen de sentir.",
+            "Mostrar que intentar no tener un pensamiento lo trae de vuelta.",
+            "Practicar una meditación de espacio de aceptación para el padre y el niño, y usar una frase breve como recordatorio en el día a día.",
+            "Aclarar que aceptar las emociones del niño no significa reforzar su conducta: la emoción se valida y la conducta se moldea."
+          ],
+          casa: "Practicar la meditación de aceptación y usarla en un momento difícil.",
+          avance: "Los padres sostienen la emoción del niño, y la propia, sin ceder ni explotar.",
+          fuente: "Whittingham y Coyne, 2019, cap. 8"
+        },
+        {
+          t: "Crianza con atención plena",
+          tecs: ["atencion-plena"],
+          obj: "Estar presente con el niño, compartiendo la atención, en lugar de reaccionar en piloto automático.",
+          pasos: [
+            "Evaluar cuán presentes están los padres en la interacción con su hijo.",
+            "Practicar meditaciones breves —respiración, caminar— y una meditación sobre la crianza.",
+            "Llevar la atención plena a la vida diaria: el baño, la comida, el juego.",
+            "Si no tienen tiempo, privilegiar las prácticas breves dentro de las tareas de crianza."
+          ],
+          casa: "Un momento al día de atención plena compartida con el niño.",
+          avance: "Los padres notan antes la escalada y responden en lugar de reaccionar.",
+          fuente: "Whittingham y Coyne, 2019, cap. 9"
+        },
+        {
+          t: "Reglas de crianza y perspectiva",
+          tecs: ["defusion", "yo-contexto"],
+          obj: "Tomar distancia de las reglas rígidas sobre la crianza y ver la situación desde el lugar del niño.",
+          pasos: [
+            "Identificar las reglas de crianza que funcionan como obediencia a lo que «se debe» hacer y defusionarlas.",
+            "Pasar de seguir reglas a rastrear: notar qué pasa realmente cuando aplican una estrategia y ajustarla.",
+            "Practicar tomar la perspectiva del niño y viajar en el tiempo: cómo verán esta situación dentro de unos años."
+          ],
+          casa: "Anotar una regla de crianza que apareció y qué pasó al seguirla.",
+          avance: "Los padres ajustan sus estrategias según lo que observan, no según la regla.",
+          fuente: "Whittingham y Coyne, 2019, caps. 10 y 11"
+        },
+        {
+          t: "Compasión hacia sí mismos y hacia el niño",
+          tecs: ["autocompasion"],
+          obj: "Que los padres se traten con compasión cuando fallan y cultiven la compasión por su hijo.",
+          pasos: [
+            "Hacer el chequeo de realidad «no es tu culpa»: lo que sienten tiene una historia.",
+            "Practicar la respiración de ritmo calmante, la figura compasiva, la carta compasiva o la imagen del lugar seguro.",
+            "Practicar la compasión por el niño, sobre todo en sus peores momentos."
+          ],
+          casa: "Una práctica de autocompasión después de un momento difícil de crianza.",
+          avance: "Los padres se recuperan antes de sus errores y vuelven a la estrategia.",
+          fuente: "Whittingham y Coyne, 2019, cap. 12"
+        },
+        {
+          t: "Acción comprometida: conectar y moldear",
+          tecs: ["accion-comprometida", "reforzamiento-positivo", "conectar-moldear"],
+          obj: "Aplicar las estrategias de crianza de forma constante, también en los momentos de más emoción.",
+          pasos: [
+            "Fijar metas de crianza ligadas a los valores, concretas y medibles.",
+            "Practicar en situaciones ensayadas en las que no hay nada en juego —una compra de práctica, una mañana de fin de semana como si fuera de colegio— y en la sesión, con ensayo o con la interacción real.",
+            "Usar conectar y moldear: ante la emoción, no atender la conducta problema, validar la emoción en voz alta y ofrecer un apoyo para una conducta más adaptativa.",
+            "Revisar cada semana qué funcionó, con disposición a sentir lo que trae y sin buscar la perfección."
+          ],
+          casa: "Metas de crianza de la semana y registro de lo que pasó.",
+          avance: "Los padres aplican las estrategias con constancia y mejora la conducta del niño.",
+          fuente: "Whittingham y Coyne, 2019, caps. 4 y 13",
+          fichas: ["registro-conducta-casa"]
+        }
+      ],
+      medir: [
+        "<strong>ECBI</strong> para la conducta del niño.",
+        "<strong>APQ</strong> para las prácticas de crianza.",
+        "Malestar de los padres y su uso constante de las estrategias, según sus registros."
+      ],
+      adapt: [
+        "<strong>Discapacidad del niño:</strong> los ensayos se hicieron con familias de niños con lesión cerebral adquirida y con parálisis cerebral; ver también <em>Discapacidad intelectual</em> y <em>Autismo</em> (Whittingham y Coyne, 2019, cap. 4).",
+        "<strong>Bienestar de los padres:</strong> la terapia también se usa sola para el malestar de los padres, por ejemplo en un taller de dos días para padres de niños con autismo (Whittingham y Coyne, 2019, cap. 4).",
+        "<strong>Programa de crianza:</strong> se ha combinado con un programa de crianza para familias con hijos con discapacidad y con la terapia de interacción padres-hijos (Whittingham y Coyne, 2019, cap. 14)."
+      ],
+      cuidado: [
+        "Si la conducta problema es peligrosa, como una agresión física, se maneja primero y luego se trabaja la emoción (Whittingham y Coyne, 2019, cap. 4).",
+        "Aceptar la emoción del niño no es ignorar sus necesidades ni reforzar su conducta: se valida la emoción y se moldea la conducta (Whittingham y Coyne, 2019, cap. 4).",
+        "Si los padres tienen depresión u otro problema de salud mental, también se atiende: afecta la crianza (Whittingham y Coyne, 2019, cap. 14)."
       ]
     },
     {
@@ -8268,7 +8748,8 @@ const VARIABLES = [
   elegir: [
     "<strong>Para las conductas desafiantes, la intervención conductual basada en un análisis funcional es la de mejor respaldo</strong>, y se recomienda antes de recurrir a la medicación. Las habilidades adaptativas y sociales se enseñan con técnicas conductuales, que tienen respaldo; la evidencia sobre la psicoterapia en esta población es escasa y no permite recomendarla todavía (Matson et al., 2019).",
     "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo, que trae el entrenamiento en comunicación funcional como plan completo, con el adelgazamiento del reforzamiento para la casa y el colegio.",
-    "Como complemento, el plan de fortalezas del carácter ayuda a que el niño se conozca por sus cualidades y a llevarlas al plan educativo individual; su evidencia es todavía inicial."
+    "Como complemento, el plan de fortalezas del carácter ayuda a que el niño se conozca por sus cualidades y a llevarlas al plan educativo individual; su evidencia es todavía inicial.",
+    "Si a los padres les cuesta sostener la intervención conductual, la aceptación y compromiso para padres de la variable <em>Conducta oposicionista y desafiante</em> se probó junto con un programa de crianza en familias de niños con discapacidad."
   ],
   planes: [
     {
@@ -13975,7 +14456,36 @@ const GLOSARIO = [
 /* ---------- Conducta problema ---------- */
 { k: "adelgazamiento-reforzamiento", t: "Adelgazamiento del reforzamiento", tipo: "Técnica", enf: ["cond"],
   d: "Paso gradual de un reforzamiento muy frecuente, necesario al empezar, a uno que los padres y docentes puedan sostener. En la comunicación funcional se hace, por ejemplo, retirando la tarjeta de comunicación unos segundos después de cada entrega y alargando ese tiempo poco a poco, o pidiendo cada vez más tareas antes de que la respuesta permita el descanso. Solo se avanza si la conducta problema sigue baja.",
-  fuente: "Fisher et al., 2011, cap. 20" }
+  fuente: "Fisher et al., 2011, cap. 20" },
+/* ---------- Aceptación y compromiso con niños, adolescentes y padres (2026-10-26) ---------- */
+{ k: "kidflex", t: "Kidflex", tipo: "Concepto", enf: ["act"],
+  d: "Adaptación del modelo de la terapia de aceptación y compromiso para niños de 5 a 12 años, con nombres que pueden entender: déjalo estar (aceptación), déjalo ir (defusión), elige lo que importa (valores), haz lo que importa (acción comprometida), quédate aquí (momento presente) y date cuenta de ti (yo como contexto). Juntos llevan a «soy flexible». No siempre hace falta trabajar todos.",
+  fuente: "Black, 2022, cap. 1" },
+{ k: "botella-brillantina", t: "Botella de brillantina", tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio para que un niño practique dejar estar lo que siente: una botella con agua y brillantina se agita y todo se ve revuelto, como la mente cuando aparecen pensamientos y emociones fuertes; si se la deja quieta, la brillantina baja sola, sin hacer nada para que baje.",
+  como: ["Hacer la botella con el niño o mostrarla en la sesión.",
+         "Agitarla y mirar juntos cómo baja la brillantina sin intervenir.",
+         "Llevársela a casa para usarla cuando aparezca la preocupación; los padres pueden hacer una con él."],
+  fuente: "Black, 2022, caps. 3 y 7" },
+{ k: "dna-v", t: "DNA-V", alias: ["paseo DNA-V"], tipo: "Concepto", enf: ["act"],
+  d: "Modelo para adolescentes y jóvenes que integra la terapia de aceptación y compromiso y la psicología positiva. Describe tres habilidades: el descubridor (explorar y probar), el observador (notar lo que pasa dentro y fuera) y el consejero (la voz interior que evalúa y aconseja), al servicio de los valores y la vitalidad. La meta es moverse con flexibilidad entre las tres.",
+  como: ["Poner en el piso tres hojas con D, N y A y caminar con el adolescente de una a otra mientras se explica cada habilidad.",
+         "Mostrar que quedarse fijo en el consejero es menos flexible que moverse.",
+         "Volver a la pregunta de para qué: qué le importa."],
+  fuente: "Hayes y Ciarrochi, 2015, cap. 1" },
+{ k: "contraste-mental", t: "Contraste mental e intenciones de implementación", alias: ["contraste mental"], tipo: "Técnica", enf: ["act"],
+  d: "Forma de fijar metas que tiene en cuenta lo bueno y lo difícil a la vez: identificar los beneficios de lograr la meta y las barreras probables, y preparar planes del tipo «si pasa esto, entonces haré esto». Los estudios indican que ambas cosas aumentan el logro de las metas.",
+  como: ["Elegir una meta ligada a un valor.",
+         "Escribir sus beneficios y las barreras probables.",
+         "Preparar un plan «si…, entonces…» para cada barrera y para las oportunidades.",
+         "Revisar después si lograrla hizo la vida más vital."],
+  fuente: "Hayes y Ciarrochi, 2015, cap. 6" },
+{ k: "circulos-conexion", t: "Círculos de conexión", tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio para ver el mundo social del adolescente: dibuja un «yo» en el centro y dos círculos alrededor, y ubica a las personas de su vida según cuán conectado se siente con ellas. Sirve para hablar de conexión, distancia y de las relaciones que quiere cuidar.",
+  fuente: "Hayes y Ciarrochi, 2015, cap. 11" },
+{ k: "conectar-moldear", t: "Conectar y moldear", tipo: "Técnica", enf: ["act"],
+  d: "Estrategia para los padres cuando la conducta problema del niño ocurre junto con una emoción intensa: no prestar atención a la conducta, validar la emoción en voz alta («es difícil, estás triste») y ofrecer un apoyo para una conducta más adaptativa («si quieres ayuda, pídemela»). Si la conducta es peligrosa, se maneja primero.",
+  fuente: "Whittingham y Coyne, 2019, cap. 4" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
