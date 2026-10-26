@@ -2345,6 +2345,28 @@ REFERENCIAS.push(
   { k: "Harris, 2021a", ref: "Harris, R. (2021a). <em>Trauma-focused ACT: A practitioner's guide to working with mind, body, and emotion using acceptance and commitment therapy</em>. Context Press / New Harbinger." }
 );
 
+/* Manuales de aceptación y compromiso agregados el 2026-10-26, bloque 2:
+   trastornos alimentarios, imagen corporal, insomnio, psicosis, patrones
+   interpersonales y estrés de minorías. Sandoz et al. (2010) y Skinta y
+   Curtin (2016) no describen ensayos de su propuesta: los planes van con
+   respaldo conceptual. Pearson et al. (2010) advierten que su enfoque no
+   es por sí solo tratamiento del trastorno dismórfico ni de un trastorno
+   alimentario grave. */
+Object.assign(INSTRUMENTOS, {
+  "BI-AAQ": { n: "Cuestionario de Aceptación y Acción de la Imagen Corporal", rol: "Medida de proceso", d: "Flexibilidad con la imagen corporal: cuánto puede la persona tener percepciones, pensamientos y emociones sobre su cuerpo mientras actúa en otras áreas de su vida.", med: "12 ítems", guia: false, fuente: "Sandoz et al., 2010, apéndice A" },
+  "SPAQ": { n: "Cuestionario de Aceptación de los Problemas de Sueño", rol: "Medida de proceso", d: "Aceptación de los problemas de sueño, con dos factores: seguir con las actividades pese a dormir mal y disposición a dejar de luchar por controlar el sueño. Un puntaje más alto indica menos aceptación.", med: "8 ítems · 0 a 48", guia: false, fuente: "El Rafihi-Ferreira, 2024, cap. 8" },
+  "IIP-64": { n: "Inventario de Problemas Interpersonales", rol: "Medida de resultado", d: "Problemas interpersonales que la persona reconoce en sus relaciones; fue la medida principal del ensayo de la aceptación y compromiso con conciencia de los esquemas.", med: "64 ítems", guia: false, fuente: "McKay et al., 2012, apéndice B" }
+});
+
+REFERENCIAS.push(
+  { k: "Sandoz et al., 2010", ref: "Sandoz, E. K., Wilson, K. G. y DuFrene, T. (2010). <em>Acceptance and commitment therapy for eating disorders: A process-focused guide to treating anorexia and bulimia</em>. New Harbinger." },
+  { k: "Pearson et al., 2010", ref: "Pearson, A. N., Heffner, M. y Follette, V. M. (2010). <em>Acceptance and commitment therapy for body image dissatisfaction: A practitioner's guide to using mindfulness, acceptance, and values-based behavior change strategies</em>. New Harbinger." },
+  { k: "El Rafihi-Ferreira, 2024", ref: "El Rafihi-Ferreira, R. (Ed.). (2024). <em>Acceptance and commitment therapy for insomnia: A session-by-session guide</em>. Springer." },
+  { k: "Morris et al., 2013", ref: "Morris, E. M. J., Johns, L. C. y Oliver, J. E. (Eds.). (2013). <em>Acceptance and commitment therapy and mindfulness for psychosis</em>. Wiley-Blackwell." },
+  { k: "McKay et al., 2012", ref: "McKay, M., Lev, A. y Skeen, M. (2012). <em>Acceptance and commitment therapy for interpersonal problems: Using mindfulness, acceptance, and schema awareness to change interpersonal behaviors</em>. New Harbinger." },
+  { k: "Skinta y Curtin, 2016", ref: "Skinta, M. D. y Curtin, A. (Eds.). (2016). <em>Mindfulness and acceptance for gender and sexual minorities: A clinician's guide to fostering compassion, connection, and equality using contextual strategies</em>. Context Press / New Harbinger." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -5193,6 +5215,7 @@ const VARIABLES = [
   sub: "Lo que se interviene es la preocupación intensa por defectos del aspecto que los demás no notan o ven como mínimos —la piel, el pelo, la nariz, el peso, la musculatura— y las conductas repetitivas que la acompañan: revisarse en el espejo, arreglarse en exceso, compararse, camuflarse, pedir reaseguro o pellizcarse la piel. Suele acompañarse de vergüenza, evitación social, depresión e ideas suicidas, y muchas personas buscan tratamientos cosméticos que rara vez ayudan.",
   elegir: [
     "<strong>Si la preocupación por la apariencia ocupa horas del día y limita la vida social, el estudio o el trabajo</strong>, la terapia cognitivo-conductual específica para el trastorno dismórfico corporal. Puede combinarse con medicación, sobre todo si la convicción es delirante o hay riesgo suicida.",
+    "<strong>Si la insatisfacción con la imagen corporal persiste</strong> después de tratar el trastorno, o se quiere sumar al tratamiento cognitivo-conductual, la terapia de aceptación y compromiso trabaja la lucha con el cuerpo; no reemplaza al tratamiento específico.",
     "<strong>Si la preocupación se centra en el peso y la figura con conductas alimentarias de riesgo</strong>, ver <em>Conducta alimentaria</em>. Si hay pellizcamiento de la piel o arrancamiento del pelo, el manual incluye un módulo con reversión del hábito; ver también <em>Conductas repetitivas centradas en el cuerpo</em>.",
     "La ideación suicida es frecuente: se evalúa al inicio y en cada sesión."
   ],
@@ -5331,6 +5354,123 @@ const VARIABLES = [
         "Con ideación suicida leve y sin plan se puede avanzar con cautela, evaluando el riesgo durante todo el tratamiento; con mayor riesgo se necesitan estrategias adicionales o un nivel de atención más alto (Wilhelm et al., 2013, cap. 2).",
         "Si otro problema es hoy más grave —un trastorno alimentario con riesgo médico, psicosis, manía o un consumo que impide trabajar—, se atiende primero (Wilhelm et al., 2013, cap. 2).",
         "Si la persona tiene sobrepeso u obesidad real, no conviene el módulo de peso con exposición, porque podría ser objeto de miradas o burlas reales (Wilhelm et al., 2013, cap. 2)."
+      ]
+    },
+    {
+      id: "tdc-act",
+      mod: "flex",
+      inst: ["BI-AAQ", "AAQ-II"],
+      enf: "act",
+      nivel: "preliminar",
+      t: "Aceptación y compromiso para la insatisfacción con la imagen corporal",
+      fuente: "Pearson et al., 2010, caps. 3 a 10",
+      cuando: "La persona vive en una lucha constante con su cuerpo —revisarlo, compararse, esconderlo, hacer dietas, evitar el espejo o ciertas situaciones— y esa lucha le ocupa el tiempo y la aleja de lo que le importa. Sirve <strong>como complemento</strong> del tratamiento cognitivo-conductual del trastorno dismórfico o de un trastorno alimentario, <strong>cuando la insatisfacción persiste después de que esos cuadros remitieron</strong> y como prevención de recaídas, o cuando la insatisfacción es marcada sin llegar a un trastorno (Pearson et al., 2010, cap. 1).",
+      respaldo: "Los autores aclaran que este enfoque no es, por sí solo, un tratamiento para un trastorno alimentario grave ni para el trastorno dismórfico corporal, y que no existe todavía un tratamiento con apoyo empírico para la insatisfacción con la imagen corporal. En un ensayo, un taller de un día con este enfoque redujo, frente a la lista de espera, la psicopatología alimentaria, la ansiedad por la imagen corporal y la frecuencia de pensamientos sobre el peso, con mediación de la aceptación, a las dos semanas; en otro, un taller de un día en un programa de pérdida de peso redujo la evitación experiencial, los atracones y el malestar a los tres meses (Pearson et al., 2010, caps. 1, 3 y 6). La insatisfacción con la imagen corporal es el mejor predictor de recaída en los trastornos alimentarios.",
+      secuencia: "<strong>Secuencia:</strong> cinco componentes, uno por capítulo: desesperanza creativa, el control como problema y la aceptación como alternativa, atención plena de pensamientos, emociones y sensaciones, valores y metas, y barreras y compromiso. La versión más breve son cinco sesiones, individuales o en grupo, de una hora por componente; también se aplicó en un taller de ocho horas. Si no hay límite de sesiones, cada componente dura lo que la persona necesite, y el orden puede cambiar según la formulación: hay quienes se benefician de empezar por los valores (Pearson et al., 2010, cap. 3).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Contar la historia y ver si funciona",
+          tecs: ["evitacion-experiencial", "dolor-limpio-sucio"],
+          obj: "Que la persona describa su lucha con el cuerpo y empiece a mirarla por su funcionalidad, no por si tiene razón.",
+          pasos: [
+            "Invitarla a escribir dos cartas: una de su mente a su cuerpo y otra de su cuerpo a su mente, con lo que suele decirse.",
+            "Revisar con ella si sus estrategias para sentirse mejor con su cuerpo le funcionan a la larga: el criterio es la funcionalidad, no la verdad.",
+            "Distinguir el dolor —lo que inevitablemente duele— del sufrimiento que se agrega al luchar contra él.",
+            "Hacer una lista de cosas importantes que quisiera controlar y no puede."
+          ],
+          casa: "Escribir las dos cartas y la lista de lo que no se puede controlar.",
+          avance: "La persona describe el costo de su lucha con el cuerpo en su propia vida.",
+          fuente: "Pearson et al., 2010, cap. 4"
+        },
+        {
+          t: "Desesperanza creativa",
+          tecs: ["desesperanza-creativa", "metafora-hoyo", "metafora-poligrafo"],
+          obj: "Abrir la posibilidad de algo distinto al comprobar que los intentos de controlar la imagen corporal no han funcionado.",
+          pasos: [
+            "Listar las estrategias de control —dietas, ejercicio excesivo, revisarse, compararse, camuflarse, evitar— y ver cada una como una forma de evitar lo que siente.",
+            "Examinar en qué sentido la conducta alimentaria alterada sirve para no sentir.",
+            "Presentar la metáfora de la persona en el hoyo y la del polígrafo.",
+            "Sostener la desesperanza sobre las estrategias, no sobre la persona."
+          ],
+          casa: "Anotar las estrategias de control de la semana y lo que le costaron.",
+          avance: "La persona se muestra dispuesta a dejar de pelear con su imagen corporal para probar otra cosa.",
+          fuente: "Pearson et al., 2010, cap. 5"
+        },
+        {
+          t: "El control es el problema, la aceptación es la alternativa",
+          tecs: ["lucha-monstruo", "disposicion", "autorregistro"],
+          obj: "Mostrar cómo funcionan sus conductas de control y presentar la disposición como alternativa.",
+          pasos: [
+            "Analizar con ella situaciones concretas: qué la disparó, qué hizo y qué consiguió sentir menos, con una hoja de antecedente, conducta y consecuencia.",
+            "Distinguir la conducta guiada por la evitación de la guiada por los valores.",
+            "Usar el tira y afloja con el monstruo.",
+            "Practicar la disposición en la sesión ante un pensamiento o una sensación sobre su cuerpo."
+          ],
+          casa: "Hoja de antecedente, conducta y consecuencia con dos situaciones de la semana.",
+          avance: "La persona reconoce la función evitativa de sus conductas de control.",
+          fuente: "Pearson et al., 2010, cap. 6"
+        },
+        {
+          t: "Atención plena de pensamientos, emociones y sensaciones",
+          tecs: ["momento-presente", "defusion", "espejo-consciente"],
+          obj: "Practicar observar sin juzgar lo que aparece ante el propio cuerpo.",
+          pasos: [
+            "Empezar con la atención a la respiración y pasar a los pensamientos, las emociones y las sensaciones.",
+            "Armar con ella una lista de situaciones difíciles frecuentes, de la menos a la más estresante, para practicar en ellas.",
+            "Hacer el ejercicio del espejo consciente: mirarse de cuerpo entero unos minutos en silencio, decir en voz alta lo que piensa de cada parte mientras el terapeuta lo anota, y conversar sobre la diferencia entre describir y juzgar.",
+            "Practicar comer con atención un trozo pequeño de comida, notando los juicios sobre ella como pensamientos."
+          ],
+          casa: "Practicar la atención plena a diario y, en las situaciones de la lista, notar lo que aparece sin actuar para quitarlo.",
+          avance: "La persona puede mirarse o estar en situaciones difíciles notando sus juicios como pensamientos.",
+          fuente: "Pearson et al., 2010, cap. 7"
+        },
+        {
+          t: "Valores y metas",
+          tecs: ["hoja-valores"],
+          obj: "Definir hacia dónde quiere ir la persona cuando la imagen corporal deja de ser el centro.",
+          pasos: [
+            "Pedirle que escriba cómo sería su vida si no estuviera ocupada en la batalla con su peso, su cuerpo y la comida.",
+            "Revisar valores en nueve áreas —trabajo, ciudadanía, educación, familia, amistades, salud, ocio, pareja y espiritualidad— y ordenarlos.",
+            "Imaginar que le queda un año de vida y escribir, por área, qué valora y qué metas querría cumplir; preguntar si son posibles ahora.",
+            "Convertir los valores en metas concretas y alcanzables."
+          ],
+          casa: "Hoja de valores y metas.",
+          avance: "La persona tiene metas concretas que no dependen de cambiar su cuerpo.",
+          fuente: "Pearson et al., 2010, cap. 8",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Barreras y compromiso",
+          tecs: ["barreras", "accion-comprometida"],
+          obj: "Identificar lo que frena la acción valiosa y comprometerse con ella.",
+          pasos: [
+            "Identificar barreras sociales —las expectativas de los demás sobre el cuerpo—, por ejemplo imaginando a distintas personas que se acercan y notando lo que siente ante cada una.",
+            "Identificar las barreras internas (pensamientos y emociones), las conductuales y la falta de claridad en los valores.",
+            "Completar por área de vida las barreras y cómo responder a ellas.",
+            "Comprometerse con acciones concretas y revisar lo que pasó."
+          ],
+          casa: "Hoja de compromiso con la vida valiosa: acción, barreras previstas y lo que pasó.",
+          avance: "La persona hace cosas que evitaba por su cuerpo, con los pensamientos y emociones presentes.",
+          fuente: "Pearson et al., 2010, cap. 9",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>BI-AAQ</strong> como medida de la flexibilidad con la imagen corporal.",
+        "<strong>AAQ-II</strong> para la evitación experiencial general.",
+        "<strong>BDD-YBOCS</strong> o <strong>EAT-26</strong> si hay trastorno dismórfico o alimentario, para vigilar los síntomas.",
+        "Valores y metas por área, al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Grupos:</strong> los componentes se adaptan al grupo con técnicas propias, como el contacto visual para practicar la disposición o «surfear» los impulsos; en el centro de consejería universitario se dedicó una hora a cada componente (Pearson et al., 2010, caps. 3 y 10).",
+        "<strong>Atención primaria:</strong> si solo habrá una o dos consultas, se elige el componente según la evaluación; por ejemplo, unas sesiones para aprender a usar la atención plena (Pearson et al., 2010, cap. 3).",
+        "<strong>Seguimiento:</strong> conviene planear sesiones de refuerzo centradas en los componentes que más le cuestan a la persona (Pearson et al., 2010, cap. 3)."
+      ],
+      cuidado: [
+        "No reemplaza el tratamiento con evidencia del trastorno dismórfico ni de un trastorno alimentario: si la persona los tiene, se usa como complemento o después de su remisión (Pearson et al., 2010, cap. 1).",
+        "La ideación suicida es frecuente en el trastorno dismórfico: se evalúa al inicio y durante el tratamiento.",
+        "Si la persona no mejora o empeora, se consideran otros tratamientos (Pearson et al., 2010, cap. 3)."
       ]
     }
   ]
@@ -12225,6 +12365,7 @@ const VARIABLES = [
     "<strong>Si la persona quiere cambiar</strong> y puede tratarse de forma ambulatoria, la terapia cognitivo-conductual mejorada es el tratamiento de elección para la bulimia y el trastorno por atracón, y sirve también para otros trastornos alimentarios y para la anorexia sin riesgo médico: normaliza la alimentación, reduce las dietas y trabaja la importancia de la figura y el peso.",
     "<strong>Si el problema son los atracones</strong>, con o sin purgas, la terapia cognitivo-conductual de Agras y Apple es un protocolo específico para la bulimia y el trastorno por atracón; tiene una versión de autoayuda guiada, con sesiones breves, que rinde igual en los ensayos.",
     "<strong>Si se trata de una anorexia con bajo peso en una persona adulta</strong> que puede atenderse de forma ambulatoria, el manejo clínico de apoyo especializado combina la recuperación de la alimentación y el peso con una psicoterapia de apoyo.",
+    "<strong>Si la vida se ha estrechado alrededor de controlar la comida, el peso y el cuerpo</strong> y la persona quiere trabajar su relación con lo que piensa y siente sobre ellos, la terapia de aceptación y compromiso es una alternativa con respaldo conceptual; en la bulimia y el trastorno por atracón, los planes cognitivo-conductuales tienen más evidencia.",
     "<strong>Al terminar un tratamiento</strong>, o tras el alta hospitalaria en la anorexia, la prevención de recaídas prepara para las situaciones de alto riesgo y para que un desliz no se convierta en recaída."
   ],
   planes: [
@@ -12952,6 +13093,132 @@ const VARIABLES = [
         "No se negocia la meta de peso: se empatiza con la angustia y se reajustan los pasos, no el objetivo (McIntosh et al., 2010).",
         "Hablar del peso antes de tiempo puede aumentar la resistencia: la meta se acuerda al final de la fase inicial (McIntosh et al., 2010).",
         "La evidencia viene de un solo ensayo pequeño; los autores lo presentan como un tratamiento prometedor que requiere replicación (McIntosh et al., 2010)."
+      ]
+    },
+    {
+      id: "alim-act",
+      mod: "flex",
+      inst: ["EAT-26", "BI-AAQ"],
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso para la anorexia y la bulimia",
+      fuente: "Sandoz et al., 2010, caps. 4 a 14",
+      cuando: "La vida de la persona se ha estrechado alrededor de controlar la comida, el peso y la figura: <strong>restringir, darse atracones, purgar o evitar mirarse sirven para no sentir</strong> lo que traen los pensamientos y las emociones sobre el cuerpo, y lo que le importa —amistades, estudio, familia— ha quedado en segundo plano. El plan no apunta a que se sienta mejor con su cuerpo, sino a que tenga una vida amplia aunque esas experiencias aparezcan (Sandoz et al., 2010, caps. 3 y 4).",
+      respaldo: "Los autores presentan este enfoque como una forma de mirar el problema más que como un manual: proponen un protocolo de muestra, no exhaustivo ni de aplicación universal, y no describen ensayos de él (Sandoz et al., 2010, introducción y parte 3). Se apoya en estudios de laboratorio y clínicos según los cuales es más útil cambiar la relación con los pensamientos y emociones que su contenido. En esta variable, la terapia cognitivo-conductual mejorada y la de Agras y Apple sí tienen ensayos en la bulimia y el trastorno por atracón.",
+      secuencia: "<strong>Secuencia:</strong> doce sesiones en tres fases. La primera (sesiones 1 a 4) establece la línea base, el consentimiento informado y el contrato terapéutico; la segunda (5 a 8) moldea la flexibilidad psicológica dentro de la sesión, donde el terapeuta puede influir más; la tercera (9 a 12) la lleva a la vida diaria y cierra. Las sesiones de la primera fase son estructuradas; desde la quinta, el contenido sigue lo que la persona trae, aunque la función de cada sesión se mantiene. El permiso de la persona se pide antes de cada ejercicio difícil (Sandoz et al., 2010, parte 3).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Consentimiento informado y entrevista inicial",
+          tecs: ["entrevista-clinica", "valores"],
+          obj: "Empezar el consentimiento, recoger la línea base y conocer, además del problema, lo que la persona valora.",
+          pasos: [
+            "Explicar cómo será la sesión, la confidencialidad y el manejo de la información, y pedir permiso para seguir. Si la persona alarga esta parte para no hablar de su problema, señalarlo y dejarla elegir.",
+            "Hacer la entrevista habitual —síntomas, historia, salud física, consumo, funcionamiento— y preguntar también por las personas que quiere, los lugares donde se siente viva y lo que le gustaría hacer.",
+            "Con su permiso, contarle su historia tal como se escuchó, sin lenguaje de causa («las cosas se pusieron más difíciles después de que murió tu madre», no «su muerte lo hizo todo más difícil»).",
+            "Acordar las medidas que se repetirán y comprometerse con la siguiente sesión."
+          ],
+          casa: "Completar las medidas acordadas.",
+          avance: "La persona da su permiso para seguir y habla de algo que le importa además de la comida y el cuerpo.",
+          fuente: "Sandoz et al., 2010, cap. 12 (sesión 1)"
+        },
+        {
+          t: "Entrevista experiencial de los procesos de flexibilidad",
+          tecs: ["valores", "flexibilidad-psicologica"],
+          obj: "Conocer, en la propia sesión, cómo se relaciona la persona con lo que le importa y qué procesos de inflexibilidad aparecen.",
+          pasos: [
+            "Presentar el trabajo como algo que se hace al servicio de lo que le importa y pedir permiso.",
+            "Recorrer las doce áreas del cuestionario de vida valiosa: nombrar cada área, imaginar una escena que la represente y volver a nombrarla, y calificar cuán importante es, cuánto actuó en ella y cuánto le preocupa.",
+            "Dentro de cada área, explorar con calma cómo aparece la lucha con la comida y el cuerpo.",
+            "Observar y anotar, después de la sesión, el contacto con el presente, la defusión, la aceptación, el sentido de sí, los valores y la acción comprometida."
+          ],
+          casa: "Notar durante la semana los momentos en que la lucha con la comida la alejó de un área importante.",
+          avance: "La persona describe áreas de vida propias y cómo el problema las ha ido ocupando.",
+          fuente: "Sandoz et al., 2010, cap. 12 (sesiones 2 y 3) y cap. 11"
+        },
+        {
+          t: "Conceptualización y contrato terapéutico",
+          tecs: ["formulacion-caso"],
+          obj: "Proponer una formulación desde los seis procesos y acordar el trabajo, con la libertad de elegir otro camino.",
+          pasos: [
+            "Reconocer el trabajo hecho en las tres primeras sesiones.",
+            "Proponer la conceptualización como una forma de hablar de su vida, no como la verdad, y explicar el trabajo que se ofrece.",
+            "Aclarar que esta no es la única terapia posible y que puede cambiar de rumbo en cualquier momento.",
+            "Revisar las medidas: cómo le resultan, cómo se relacionan con el trabajo acordado y cómo se verían si el tratamiento funcionara."
+          ],
+          casa: "Seguir con las medidas acordadas.",
+          avance: "La persona se compromete con un trabajo que entiende y que conecta con lo que quiere.",
+          fuente: "Sandoz et al., 2010, cap. 12 (sesión 4)"
+        },
+        {
+          t: "Estar en la sala",
+          tecs: ["momento-presente"],
+          obj: "Entrenar el contacto con el presente dentro de la sesión.",
+          pasos: [
+            "Señalar en voz alta los momentos en que la persona estuvo presente y los momentos en que se fue, y preguntar si los notó.",
+            "Si le cuesta mucho, empezar con un ejercicio sobre un solo sentido, como escuchar los sonidos del momento; si avanza, ejercicios para hacer más lento lo que hace.",
+            "Volver al presente cada vez que la conversación se vuelva explicación o justificación."
+          ],
+          casa: "Practicar unos minutos al día un ejercicio de atención al presente.",
+          avance: "La persona nota por sí misma cuándo se ha ido de la sesión y vuelve.",
+          fuente: "Sandoz et al., 2010, caps. 5 y 13 (sesión 5)"
+        },
+        {
+          t: "Evocar y notar la inflexibilidad",
+          tecs: ["defusion", "aceptacion"],
+          obj: "Traer a la sesión, con permiso, lo que la persona más evita sobre la comida y el cuerpo, y notar cómo responde y qué le cuesta.",
+          pasos: [
+            "Pedir permiso, empezar con un breve ejercicio de presente y crear las condiciones para que aparezca el contenido difícil: imaginar una cinta con alimentos que pasan uno a uno, o una situación social en la que «se le escapa» un poco de lo que teme.",
+            "Ayudarla a notar lo que hace con eso —irse, explicar, endurecerse, cumplir— y lo que le cuesta en lo que valora, sin pedirle que lo explique en términos técnicos.",
+            "Trabajar el proceso que más le cuesta: defusión de los pensamientos sobre la grasa o la comida, aceptación (por ejemplo, contener la respiración con distintas instrucciones y notar cómo cambia lo que puede hacer con la incomodidad), o un sentido de sí más amplio que su diagnóstico.",
+            "Vigilar que la persona no pase a cumplir para complacer, y volver a pedir permiso si se desconecta."
+          ],
+          casa: "Registrar una situación de la semana en que respondió de forma rígida y una en que respondió con más flexibilidad.",
+          avance: "La persona distingue en la sesión cuándo responde con rigidez y cuándo con flexibilidad.",
+          fuente: "Sandoz et al., 2010, caps. 6 a 8 y 13 (sesiones 6 a 8)"
+        },
+        {
+          t: "Revisar el avance y volver a comprometerse",
+          tecs: ["valores"],
+          obj: "Comparar el presente con la línea base y renovar el contrato.",
+          pasos: [
+            "Reconocer el avance y repetir la entrevista del cuestionario de vida valiosa.",
+            "Comparar las calificaciones con las del inicio, dejando que la persona guíe la conversación.",
+            "Resumir lo que quiere priorizar desde ahora y renovar el compromiso con el trabajo."
+          ],
+          casa: "Seguir con las medidas y anotar qué área quiere trabajar primero.",
+          avance: "La persona ve cambios en su relación con las áreas que valora.",
+          fuente: "Sandoz et al., 2010, cap. 14 (sesión 9)"
+        },
+        {
+          t: "Acción fuera de la sesión y cierre",
+          tecs: ["accion-comprometida", "prevencion-recaidas"],
+          obj: "Llevar la flexibilidad a la vida diaria y terminar la terapia como el paso a hacer este trabajo por su cuenta.",
+          pasos: [
+            "Contactar con un área valorada e imaginar situaciones concretas en las que podría ser la persona que quiere ser en ella, sin analizar si saldrá bien.",
+            "Escribir acciones posibles, una por papel, presentadas como una elección libre, y comprometerse con una.",
+            "En la última sesión, mirar hacia atrás y hacia adelante: el cierre es una transición. La persona se lleva todos los papeles, incluidos los que quedaron en blanco."
+          ],
+          casa: "Hacer la acción elegida y anotar qué apareció.",
+          avance: "La persona emprende acciones valiosas aunque aparezcan los pensamientos y emociones sobre la comida y el cuerpo.",
+          fuente: "Sandoz et al., 2010, cap. 14 (sesiones 10 a 12)",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>EAT-26</strong> al inicio, cuando haya avances y al final.",
+        "<strong>BI-AAQ</strong> como medida del proceso: la flexibilidad con la imagen corporal; puede aplicarse cada semana.",
+        "<strong>VLQ-2</strong>, primero como entrevista y después cada dos semanas o cada mes como autoinforme.",
+        "Calidad de vida relacionada con la imagen corporal, cada una o dos semanas."
+      ],
+      adapt: [
+        "<strong>Equipo de salud:</strong> por el efecto de los trastornos alimentarios en la salud física, el trabajo con un equipo multidisciplinario es especialmente útil; conviene compartir la formulación en un lenguaje que el resto del equipo entienda (Sandoz et al., 2010, conclusión).",
+        "<strong>Grupos:</strong> los autores han adaptado los ejercicios al trabajo en grupo y señalan que buena parte de los estudios con buenos resultados de esta terapia incluyeron un componente grupal (Sandoz et al., 2010, conclusión)."
+      ],
+      cuidado: [
+        "El riesgo médico va primero: con bajo peso grave, purgas frecuentes o alteraciones físicas, la persona necesita valoración médica y, a veces, un nivel de atención más intensivo. Ver los otros planes de esta variable.",
+        "Pedir permiso antes de cada ejercicio difícil, y respetar el «no»: es la oportunidad de mostrar que la elección es real (Sandoz et al., 2010, cap. 12).",
+        "No se trata de que la persona se sienta bien con su cuerpo ni de convencerla de nada: se trabaja para que tenga una vida más amplia (Sandoz et al., 2010, cap. 12)."
       ]
     },
     {
@@ -14593,6 +14860,7 @@ const VARIABLES = [
   sub: "Lo que se interviene es el efecto sobre la salud mental del estigma, el prejuicio, la discriminación y la violencia que viven muchas personas lesbianas, gais, bisexuales, trans y de género no conforme: estrés cotidiano, victimización, actitudes negativas interiorizadas hacia la propia identidad, ocultamiento y rechazo familiar. La orientación sexual y la identidad de género no son trastornos mentales; los problemas que aparecen se explican en buena parte por ese estrés.",
   elegir: [
     "<strong>Si la persona consulta por malestar ligado a la discriminación, al rechazo o a su propia identidad</strong>, la práctica afirmativa ayuda a entender el efecto del estrés de minorías, a trabajar los mensajes negativos interiorizados y a construir apoyo y resiliencia.",
+    "<strong>Si lo que más pesa son la vergüenza y los mensajes negativos interiorizados</strong> sobre la propia identidad, la terapia de aceptación y compromiso trabaja la relación con ellos; su respaldo es conceptual.",
     "<strong>Si consulta por otro problema</strong> —depresión, ansiedad, consumo, trauma—, se trata con su plan, desde una postura afirmativa y sin suponer que el problema viene de su orientación o su identidad, ni ignorar el efecto de la discriminación.",
     "El riesgo suicida es mayor en estas poblaciones, sobre todo en jóvenes rechazados por su familia: evaluarlo siempre."
   ],
@@ -14677,6 +14945,121 @@ const VARIABLES = [
       cuidado: [
         "El código ético prohíbe basar el tratamiento en visiones patologizantes de la orientación sexual y tergiversar los datos científicos, como afirmar que la orientación puede cambiarse; se informa a la persona sobre el tratamiento, sus fundamentos, sus resultados razonables y sus alternativas (APA, 2000, guía 4).",
         "No atribuir de entrada una no conformidad de género a un proceso psicótico: esa relación es muy poco frecuente (APA, 2015, guía 10)."
+      ]
+    },
+    {
+      id: "min-act",
+      mod: "flex",
+      inst: ["AAQ-II", "MSPSS"],
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso para el estigma interiorizado y la vergüenza",
+      fuente: "Skinta y Curtin, 2016, caps. 1, 3, 5 y 11",
+      cuando: "La persona lesbiana, gay, bisexual, trans o de género no conforme <strong>se ha creído los mensajes negativos sobre su identidad</strong> («algo está mal en mí», «nadie me va a aceptar»), vive anticipando el rechazo, oculta quién es o trata de compensarlo con exigencia y logros, y ha ido dejando de lado lo que le importa. Lo que se interviene no es su orientación ni su identidad, sino la relación con la vergüenza y el estigma (Skinta y Curtin, 2016, caps. 5 y 11).",
+      respaldo: "Hay muy pocos ensayos de psicoterapias para estas poblaciones (Skinta y Curtin, 2016, prólogo). Entre los pocos estudios, esta terapia en grupo redujo el autoestigma y la depresión y mejoró la calidad de vida y el apoyo social en una muestra pequeña de personas gais y lesbianas en conflicto con su orientación (Skinta y Curtin, 2016, cap. 11). El libro aplica principios afirmativos a terapias con evidencia; sus capítulos se basan en la experiencia clínica de sus autores.",
+      secuencia: "<strong>Secuencia:</strong> no hay un protocolo único. El orden de abajo sigue la correspondencia que proponen los autores entre el estrés de minorías y los procesos de la terapia: el autoestigma se trabaja con defusión, la expectativa de rechazo con aceptación, el ocultamiento con acción guiada por valores y la discriminación con el contacto con el presente; la vergüenza, con atención plena, humanidad compartida y amabilidad hacia sí (Skinta y Curtin, 2016, caps. 5 y 11).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "El estrés de minorías y la propia historia",
+          tecs: ["psicoeducacion", "evitacion-experiencial"],
+          obj: "Ubicar el malestar de la persona en el estrés de minorías y en lo que ha hecho para protegerse, sin patologizar su identidad.",
+          pasos: [
+            "Explorar las cuatro fuentes del estrés de minorías: actitudes negativas interiorizadas, expectativa de rechazo, ocultamiento y discriminación o violencia vividas.",
+            "Mirar con ella cómo cada una se ha traducido en evitación, en fusión con estereotipos o en compensaciones, como exigirse logros para sentirse valiosa.",
+            "Validar que esas respuestas tuvieron sentido en un contexto hostil y preguntar qué le cuestan hoy.",
+            "Revisar la propia postura del terapeuta: soltar lo que «sabe» sobre cómo debe ser una identidad o una salida del clóset."
+          ],
+          casa: "Anotar situaciones de la semana en que anticipó rechazo y qué hizo.",
+          avance: "La persona distingue el estrés de minorías de un defecto propio.",
+          fuente: "Skinta y Curtin, 2016, caps. 3, 5 y 11"
+        },
+        {
+          t: "Defusión del autoestigma",
+          tecs: ["defusion", "tengo-pensamiento"],
+          obj: "Tomar distancia de los mensajes negativos interiorizados sobre la propia identidad.",
+          pasos: [
+            "Identificar los pensamientos de autoestigma más frecuentes.",
+            "Etiquetarlos: «estoy teniendo el pensamiento de que algo está mal en mí por ser gay».",
+            "Observar que tener un pensamiento no lo hace verdadero, y notar qué hace la persona cuando se engancha con él.",
+            "Practicar la observación de esos pensamientos en atención plena."
+          ],
+          casa: "Etiquetar los pensamientos de autoestigma cuando aparezcan.",
+          avance: "Los pensamientos de autoestigma pesan menos en lo que la persona decide hacer.",
+          fuente: "Skinta y Curtin, 2016, caps. 5 y 11"
+        },
+        {
+          t: "Vergüenza, humanidad compartida y amabilidad hacia sí",
+          tecs: ["pausa-autocompasion", "yo-contexto"],
+          obj: "Abrir la vergüenza en lugar de ocultarla, y responderle con compasión.",
+          pasos: [
+            "Ayudar a la persona a nombrar la vergüenza: decirla en voz alta ya empieza a cambiarla.",
+            "Observar con atención plena los pensamientos vergonzantes sobre la propia identidad.",
+            "Cultivar el sentido de humanidad compartida: mirarse con los ojos de alguien que la quiere y considerar la experiencia de otras personas de la diversidad sexual y de género.",
+            "Volver a un momento en que expresó su identidad y fue rechazada, mirarse desde fuera con compasión y notar la distancia entre lo que necesitaba y lo que recibió."
+          ],
+          casa: "Una práctica diaria de autocompasión.",
+          avance: "La persona habla de su vergüenza y se trata con más amabilidad.",
+          fuente: "Skinta y Curtin, 2016, caps. 1, 3 y 5",
+          fichas: ["pausa-autocompasion"]
+        },
+        {
+          t: "Aceptación de la expectativa de rechazo",
+          tecs: ["aceptacion", "matriz-act"],
+          obj: "Hacer espacio al miedo al rechazo sin que decida por la persona.",
+          pasos: [
+            "Practicar recibir el malestar ligado a mostrarse de dos maneras: con un «no» y con un «sí», y notar la diferencia; aclarar que aceptar no es que guste.",
+            "Separar lo que está bajo su control de lo que no, como la reacción de los demás.",
+            "Si está pensando en contar su orientación o su identidad, usar la matriz para ver si se acerca a un valor —autenticidad, cercanía— o huye de la vergüenza, e imaginar la misma escena antes y después de contarlo."
+          ],
+          casa: "Notar el miedo al rechazo en una situación y elegir qué hacer desde los valores.",
+          avance: "La persona toma decisiones sobre mostrarse según lo que valora, no solo según el miedo.",
+          fuente: "Skinta y Curtin, 2016, cap. 3"
+        },
+        {
+          t: "Valores y acción frente al ocultamiento",
+          tecs: ["ejercicio-funeral", "hoja-valores", "accion-comprometida"],
+          obj: "Clarificar la vida que la persona quiere, que puede diferir de la que esperan otros, y actuar en esa dirección.",
+          pasos: [
+            "Escribir dos discursos para el propio funeral: uno si sigue viviendo como hasta ahora y otro si vive según lo que le importa.",
+            "Revisar por áreas qué valora, cuán importante es y cuán de acuerdo vive, y definir metas, acciones, barreras y formas de enfrentarlas.",
+            "Respetar valores que se apartan de lo habitual —sobre la pareja, el matrimonio o la crianza— sin suponer cuáles deben ser."
+          ],
+          casa: "Una acción guiada por valores en un área afectada por el ocultamiento.",
+          avance: "La persona hace cosas que dejaba de hacer por ocultar su identidad.",
+          fuente: "Skinta y Curtin, 2016, cap. 11",
+          fichas: ["hoja-valores", "plan-accion-valores"]
+        },
+        {
+          t: "Presente, comunidad y resiliencia",
+          tecs: ["momento-presente", "accion-comprometida"],
+          obj: "Reducir el peso de las discriminaciones pasadas en el presente y fortalecer los apoyos.",
+          pasos: [
+            "Practicar el contacto con el presente cuando los recuerdos de discriminación o violencia lo invaden.",
+            "Explorar la conexión con comunidades de la diversidad sexual y de género, un factor protector importante.",
+            "Darle sentido a las experiencias difíciles a partir de lo que revelan sobre lo que importa; el terapeuta puede compartir, con cuidado, una experiencia propia.",
+            "Acordar cómo seguirá cuidando sus apoyos y sus acciones valiosas."
+          ],
+          casa: "Plan de apoyos y acciones valiosas.",
+          avance: "La persona cuenta con apoyos y sostiene acciones valiosas pese al estigma.",
+          fuente: "Skinta y Curtin, 2016, caps. 3, 5 y 11",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>AAQ-II</strong> para la evitación experiencial.",
+        "<strong>MSPSS</strong> para el apoyo social.",
+        "Síntomas que motivaron la consulta, con su instrumento (por ejemplo, PHQ-9 o GAD-7).",
+        "Acciones valiosas de la semana."
+      ],
+      adapt: [
+        "<strong>Grupo:</strong> el único estudio con este enfoque en estas poblaciones fue en grupo (Skinta y Curtin, 2016, cap. 11).",
+        "<strong>Relaciones y rechazo:</strong> el libro trae aplicaciones de la psicoterapia analítica funcional para la intimidad y la vulnerabilidad, y de la terapia centrada en la compasión para la vergüenza (Skinta y Curtin, 2016, caps. 4 y 7)."
+      ],
+      cuidado: [
+        "La orientación sexual y la identidad de género no son trastornos: el plan nunca busca cambiarlas.",
+        "Aceptar el malestar no es aceptar la discriminación ni la violencia: si la persona está en riesgo, va primero su protección.",
+        "El riesgo suicida es mayor en estas poblaciones, sobre todo en jóvenes rechazados por su familia: evaluarlo siempre."
       ]
     }
   ]
@@ -16494,6 +16877,7 @@ const VARIABLES = [
   sub: "Formas de verse a sí mismo, de ver a los demás y de relacionarse que se repiten desde hace años y que la persona reconoce como «así soy»: elegir parejas que la abandonan, someterse, exigirse sin descanso, desconfiar, sentirse defectuosa. Suelen empezar en la infancia, cuando necesidades básicas —seguridad, afecto, autonomía, límites— no se cubrieron. Aparecen en los trastornos de la personalidad y en problemas crónicos que no responden a un tratamiento breve.",
   elegir: [
     "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica.",
+    "<strong>Si los patrones se expresan sobre todo en conductas que dañan varias relaciones</strong> —atacar, controlar, someterse, aislarse, consumir—, la aceptación y compromiso con conciencia de los esquemas trabaja esas conductas, en grupo o de forma individual; tiene un ensayo pequeño.",
     "<strong>Si lo central es que la persona no sabe qué quiere, siente o piensa sin mirar a los demás</strong>, se desmorona ante la crítica o se siente vacía, la psicoterapia analítica funcional para los problemas del yo trabaja en la sesión, paso a paso, que lo que dice de sí misma salga de ella. Su respaldo es conceptual.",
     "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. Para el trastorno límite de la personalidad, ver <em>Trastorno límite de la personalidad</em>, con la terapia dialéctico-conductual estándar."
   ],
@@ -16615,6 +16999,135 @@ const VARIABLES = [
         "Es un tratamiento largo y exigente: requiere formación específica y supervisión.",
         "El trabajo experiencial con recuerdos traumáticos puede ser intenso: se hace cuando hay un vínculo sólido y se cuida que la persona salga estable de la sesión (Young et al., 2015, cap. 4).",
         "Con conducta suicida o autolesiones, el manejo del riesgo va primero; su evidencia en el trastorno límite es menor que la de la terapia dialéctico-conductual (Stoffers-Winterling et al., 2022)."
+      ]
+    },
+    {
+      id: "pers-act",
+      mod: "flex",
+      inst: ["IIP-64", "AAQ-II"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso con conciencia de los esquemas",
+      fuente: "McKay et al., 2012",
+      cuando: "La persona repite en varias relaciones —pareja, familia, trabajo, amistades— <strong>formas de responder que las dañan</strong>: atacar, controlar, someterse, aislarse, desconectarse, buscar estimulación o consumir. Esas conductas son rígidas, se apoyan en creencias formadas en la infancia (esquemas como el abandono, la desconfianza o la vergüenza) y sirven para no sentir el dolor que se activa cuando el esquema se dispara (McKay et al., 2012, caps. 1 a 3).",
+      respaldo: "En un ensayo aleatorizado con 44 hombres de un programa comunitario de recuperación del consumo, añadir diez sesiones de grupo con este enfoque al tratamiento habitual redujo los problemas interpersonales con un efecto grande frente al tratamiento habitual solo. Los autores piden cautela por el tamaño de la muestra (McKay et al., 2012, apéndice B).",
+      secuencia: "<strong>Secuencia:</strong> diez sesiones de grupo de 90 minutos, con ocho a diez personas: 1, esquemas y conductas de afrontamiento; 2 y 3, costos de esas conductas y desesperanza creativa; 4, valores e intenciones; 5 y 6, defusión y yo observador; 7, la ira y las emociones que esconde; 8, exposición al dolor del esquema con defusión; 9, repaso y comunicación eficaz; 10, compasión, práctica de conductas nuevas y cierre. Cada sesión empieza con atención plena; desde la sexta, con la revisión de la intención valiosa de la semana. Los capítulos del libro presentan el mismo trabajo para la terapia individual (McKay et al., 2012, introducción y apéndice C).",
+      esc: ["salud-mental","primer-nivel","consumo"],
+      actividades: [
+        {
+          t: "Esquemas, disparadores y conductas de afrontamiento",
+          tecs: ["psicoeducacion", "esquemas-precoces", "autorregistro"],
+          obj: "Que la persona identifique sus esquemas interpersonales, lo que los dispara y lo que hace cuando se activan.",
+          pasos: [
+            "Explicar los esquemas como creencias formadas cuando necesidades de la infancia no se cubrieron, y revisar diez que pesan en las relaciones: abandono, desconfianza y abuso, privación emocional, defectuosidad y vergüenza, aislamiento social, dependencia, fracaso, grandiosidad, subyugación y estándares inflexibles.",
+            "Identificarlos con un cuestionario, registros de pensamientos e imaginería, y devolverlos a la persona.",
+            "Revisar las conductas de afrontamiento: sobrecompensar (agresión, dominio, búsqueda de reconocimiento, manipulación, pasivo-agresividad), rendirse (sumisión, dependencia) o evitar (aislamiento, búsqueda de estimulación, consumo, desconexión).",
+            "Ligar cada conducta a situaciones interpersonales concretas."
+          ],
+          casa: "Diario de experiencias interpersonales: disparador, esquema, emoción y conducta.",
+          avance: "La persona reconoce sus esquemas y su forma típica de responder cuando se disparan.",
+          fuente: "McKay et al., 2012, caps. 2 y 3 y apéndice C (sesión 1)"
+        },
+        {
+          t: "Costos de las conductas de afrontamiento y desesperanza creativa",
+          tecs: ["desesperanza-creativa", "momento-presente"],
+          obj: "Que la persona vea, con su experiencia, que esas conductas alivian en el momento y dañan sus relaciones a la larga.",
+          pasos: [
+            "Evaluar los costos de cada conducta, de manera formal con una hoja y de manera informal en la conversación.",
+            "Llevar a la desesperanza creativa: si nada de lo intentado ha funcionado a la larga, puede ser hora de dejar de luchar con el dolor del esquema.",
+            "Entrenar la atención plena —enfocarse en la respiración, los cinco sentidos, actividades cotidianas con atención— y responder a las resistencias a practicar.",
+            "Observar en la sesión y en la vida diaria lo que pasa cuando un esquema se dispara."
+          ],
+          casa: "Práctica diaria de atención plena y diario de experiencias interpersonales con los costos de cada conducta.",
+          avance: "La persona está dispuesta a probar otra forma de responder.",
+          fuente: "McKay et al., 2012, cap. 4 y apéndice C (sesiones 2 y 3)"
+        },
+        {
+          t: "Valores interpersonales e intenciones",
+          tecs: ["valores", "accion-comprometida", "metafora-autobus"],
+          obj: "Definir cómo quiere ser la persona en sus relaciones y convertirlo en intenciones concretas.",
+          pasos: [
+            "Clarificar valores interpersonales por relación y contrastar las conductas guiadas por valores con las conductas de afrontamiento.",
+            "Cultivar la disposición a sentir el dolor del esquema al servicio de esas intenciones.",
+            "Nombrar y enfrentar las barreras; representar los monstruos del autobús: los pasajeros amenazan, pero quien conduce elige el camino.",
+            "Acordar cada semana una intención valiosa y revisarla en la siguiente sesión."
+          ],
+          casa: "Una intención valiosa en una relación, con las barreras previstas.",
+          avance: "La persona actúa según una intención valiosa en una situación que antes disparaba su conducta habitual.",
+          fuente: "McKay et al., 2012, cap. 5 y apéndice C (sesión 4)",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Defusión de los pensamientos del esquema y yo observador",
+          tecs: ["defusion", "tengo-pensamiento", "cuatro-preguntas", "yo-contexto"],
+          obj: "Tomar distancia de los pensamientos del esquema, de las evaluaciones y de las etiquetas negativas sobre sí.",
+          pasos: [
+            "Observar, etiquetar y soltar los pensamientos: «estoy teniendo el pensamiento de que me van a abandonar».",
+            "Practicar formas de distancia: agradecer a la mente, repetir una etiqueta negativa hasta que pierda fuerza, tratar el pensamiento como un objeto, llevarlo escrito en una tarjeta o «ponerse» la etiqueta.",
+            "Con los pensamientos más frecuentes, hacer las cuatro preguntas del esquema: cuán antiguo es, para qué sirve —de qué dolor intenta proteger—, cómo le funciona y si está dispuesta a tenerlo y aun así actuar según sus valores en sus relaciones.",
+            "Cambiar de perspectiva con la metáfora de la pantalla de cine, el tablero de ajedrez y un ejercicio del yo observador."
+          ],
+          casa: "Practicar una habilidad de defusión cada vez que se dispare un esquema.",
+          avance: "La persona nota los pensamientos del esquema sin actuar automáticamente según ellos.",
+          fuente: "McKay et al., 2012, cap. 6 y apéndice C (sesiones 5 y 6)"
+        },
+        {
+          t: "La ira y el dolor que esconde",
+          tecs: ["aceptacion", "dolor-limpio-sucio"],
+          obj: "Mirar la ira como una respuesta que suele cubrir un dolor más profundo.",
+          pasos: [
+            "Explorar en la persona qué emociones hay debajo de la ira cuando un esquema se dispara.",
+            "Distinguir el dolor primario, que es inevitable y se acepta, del dolor secundario que producen las conductas de afrontamiento: solo con el primero se hace exposición.",
+            "Revisar la intención valiosa de la semana y acordar la siguiente."
+          ],
+          casa: "Registrar los momentos de ira y lo que sentía debajo.",
+          avance: "La persona reconoce el dolor bajo su ira y elige otra respuesta en alguna ocasión.",
+          fuente: "McKay et al., 2012, cap. 7 y apéndice C (sesión 7)"
+        },
+        {
+          t: "Exposición al dolor del esquema con defusión",
+          tecs: ["exposicion-emocional", "defusion", "yo-contexto"],
+          obj: "Practicar quedarse con el dolor que activa el esquema sin responder con la conducta de siempre.",
+          pasos: [
+            "Cuando el esquema se activa en la sesión, traer la emoción a la sala en orden: sensaciones físicas, la emoción, los pensamientos, los impulsos de evitarla y los impulsos de responder como siempre.",
+            "Preguntar si está dispuesta a tener ese dolor al servicio de su intención valiosa.",
+            "Hacer ejercicios de exposición con defusión: escribir en una cara de una hoja los pensamientos y emociones del esquema y los costos de las conductas de siempre, y en la otra los valores ligados a ellos, para ver que son inseparables; o recordar el «peor yo» —una vez en que el esquema la llevó a actuar de forma que lamenta— notando que hay un observador que lo ve todo.",
+            "Soltar la cuerda frente a los viejos intentos de control."
+          ],
+          casa: "Practicar la disposición en una situación interpersonal difícil.",
+          avance: "La persona puede sentir el dolor del esquema en una relación y elegir una conducta guiada por sus valores.",
+          fuente: "McKay et al., 2012, cap. 7 y apéndice C (sesión 8)"
+        },
+        {
+          t: "Comunicación eficaz, compasión y cierre",
+          tecs: ["prevencion-recaidas", "bondad-amorosa"],
+          obj: "Consolidar conductas nuevas en las relaciones y cerrar.",
+          pasos: [
+            "Repasar los temas y habilidades del tratamiento.",
+            "Entrenar habilidades de comunicación eficaz para las situaciones que disparan los esquemas.",
+            "Practicar la compasión hacia sí y hacia los demás.",
+            "Ensayar conductas nuevas guiadas por valores, recibir retroalimentación y comprometerse con las próximas."
+          ],
+          casa: "Plan para seguir actuando según sus intenciones valiosas en sus relaciones.",
+          avance: "La persona sostiene conductas nuevas en relaciones que antes dañaba.",
+          fuente: "McKay et al., 2012, cap. 8 y apéndice C (sesiones 9 y 10)",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>IIP-64</strong> al inicio y al final: los problemas interpersonales.",
+        "<strong>YSQ</strong> para identificar los esquemas al inicio.",
+        "<strong>AAQ-II</strong> para la evitación experiencial.",
+        "Intenciones valiosas de la semana: cuántas se cumplieron."
+      ],
+      adapt: [
+        "<strong>Terapia individual:</strong> los capítulos del libro organizan el mismo trabajo por temas para la consulta individual; en una sesión se combinan técnicas de varios capítulos según lo que aparezca (McKay et al., 2012, introducción y cap. 8).",
+        "<strong>Consumo de sustancias:</strong> el ensayo se hizo con hombres en un programa de recuperación del consumo, añadido al tratamiento habitual (McKay et al., 2012, apéndice B)."
+      ],
+      cuidado: [
+        "La exposición se hace solo con el dolor primario, el que no se puede evitar; no con el dolor que producen las propias conductas de afrontamiento (McKay et al., 2012, apéndice C).",
+        "Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales.",
+        "El cuestionario del apéndice del libro es solo un ejemplo: los autores recomiendan el cuestionario de esquemas de Young, que tiene derechos de uso (McKay et al., 2012, introducción)."
       ]
     },
     {
@@ -17131,6 +17644,7 @@ const VARIABLES = [
   sub: "Dificultad para conciliar el sueño, mantenerlo o despertar demasiado temprano, al menos tres noches por semana, con malestar o deterioro durante el día. Lo que se interviene no es lo que lo desencadenó —un estrés, una enfermedad—, sino lo que lo mantiene: pasar mucho tiempo despierto en la cama, horarios irregulares, siestas, la preocupación por no dormir y la vigilancia del propio sueño. Es frecuente junto a la ansiedad, la depresión y las enfermedades médicas.",
   elegir: [
     "<strong>El plan es la terapia cognitivo-conductual para el insomnio</strong>, de seis a ocho sesiones. Según la formulación del caso, se empieza por los componentes conductuales —si predominan los horarios irregulares, las siestas y el exceso de tiempo en cama— o por los cognitivos —si predominan la preocupación, las creencias sobre el sueño y las conductas de seguridad—.",
+    "<strong>Si lo que mantiene el insomnio es el esfuerzo por dormir</strong> y la preocupación por no dormir, o la terapia cognitivo-conductual no funcionó o cuesta seguirla, la terapia de aceptación y compromiso es una alternativa con ensayos, sola o con control de estímulos y restricción del sueño.",
     "Si el insomnio acompaña a una depresión o a un trastorno de ansiedad, también se trata: hay estudios preliminares en que mejorar el sueño ayudó también a la depresión (Kaplan y Harvey, 2014). Si hay signos de otro trastorno del sueño, o somnolencia diurna muy marcada, se deriva primero a valoración médica."
   ],
   planes: [
@@ -17352,6 +17866,220 @@ const VARIABLES = [
       cuidado: [
         "La restricción del sueño y el control de estímulos pueden estar contraindicados con antecedentes de manía, epilepsia, apnea obstructiva del sueño, parasomnias o riesgo de caídas: la pérdida de sueño inicial puede desencadenar manía o bajar el umbral convulsivo (Perlis et al., 2005, cap. 3)."
       ]
+    },
+    {
+      id: "ins-act",
+      mod: "flex",
+      inst: ["ISI", "SPAQ"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso para el insomnio",
+      fuente: "El Rafihi-Ferreira, 2024, caps. 1, 7, 12 y 15",
+      cuando: "La persona <strong>se esfuerza por dormirse</strong> —vigila el reloj, intenta dejar la mente en blanco, se acuesta temprano para «asegurar» el sueño— y ese esfuerzo la mantiene despierta; el insomnio y el miedo a no dormir se han vuelto el centro de su vida. También sirve cuando la terapia cognitivo-conductual para el insomnio no funcionó o cuesta seguir sus indicaciones (El Rafihi-Ferreira, 2024, caps. 1 y 7).",
+      respaldo: "En un ensayo aleatorizado, esta terapia sola y la terapia cognitivo-conductual para el insomnio redujeron la gravedad del insomnio; la cognitivo-conductual tuvo más respondedores al terminar (64,7 % frente a 50 %), pero a los seis meses la respuesta siguió mejorando con la aceptación y compromiso y bajó con la otra. En otro ensayo, la versión combinada con control de estímulos y restricción del sueño fue tan eficaz como la cognitivo-conductual y mejoró además la ansiedad y la flexibilidad psicológica. Los autores aclaran que el respaldo no iguala todavía al de la terapia cognitivo-conductual, que sigue siendo el tratamiento establecido (El Rafihi-Ferreira, 2024, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> seis sesiones de unos 50 minutos (120 en grupo): vínculo y educación sobre el sueño; higiene del sueño y momento presente; desesperanza creativa y defusión; yo como contexto y aceptación; y dos de valores y acción comprometida. El número de sesiones puede ajustarse según la formulación; los protocolos estudiados van de 4 a 14 semanas. Se aplica en forma individual o en grupo, presencial o en línea, y no reemplaza el análisis funcional del caso (El Rafihi-Ferreira, 2024, caps. 7 y 15).",
+      esc: ["salud-mental","primer-nivel"],
+      opcA: {
+        t: "Aceptación y compromiso sola",
+        cuando: "Predominan la lucha por dormir, la preocupación y la vigilancia del sueño, más que los hábitos que lo desordenan; la respuesta es más lenta, pero se sostiene en el tiempo (El Rafihi-Ferreira, 2024, cap. 1)."
+      },
+      actividades: [
+        {
+          t: "Vínculo, propuesta de trabajo y educación sobre el sueño",
+          tecs: ["psicoeducacion", "diario-sueno"],
+          obj: "Construir el vínculo, explicar cómo será el tratamiento y qué es el sueño, y empezar el registro.",
+          pasos: [
+            "Evaluar el insomnio, sus síntomas de noche y de día, la rutina diaria y de sueño, otros trastornos del sueño y el uso de hipnóticos; derivar si hay signos de apnea u otro trastorno.",
+            "Presentar la propuesta y las reglas: confidencialidad, asistencia y tareas.",
+            "Usar la metáfora de la herida: curarla puede doler más por un tiempo, pero solo así deja de sangrar.",
+            "Explicar qué es el sueño, para qué sirve, qué produce su privación y qué es el insomnio."
+          ],
+          casa: "Llenar el diario de sueño cada mañana.",
+          avance: "La persona entiende el trabajo propuesto y lleva el diario.",
+          fuente: "El Rafihi-Ferreira, 2024, caps. 7 y 15 (sesión 1)",
+          fichas: ["diario-sueno"]
+        },
+        {
+          t: "Higiene del sueño y momento presente",
+          tecs: ["higiene-sueno", "escaner-corporal", "momento-presente"],
+          obj: "Ajustar los hábitos que interfieren con el sueño y empezar la práctica de atención plena.",
+          pasos: [
+            "Revisar el diario y entregar las pautas de higiene del sueño: ambiente, alimentación, estimulantes y rutina.",
+            "Distinguir la práctica formal de la informal y hacer en sesión el escáner corporal.",
+            "Aplicar los principios de la atención plena al sueño: no juzgar la vigilia como algo terrible, confiar en que el cuerpo se regula y dejar de forzar.",
+            "Proponer escribir antes de acostarse los pensamientos y sentimientos que aparecen."
+          ],
+          casa: "Diario de sueño, cambios de higiene, cuaderno de pensamientos al acostarse y escáner corporal diario.",
+          avance: "La persona hace cambios en sus hábitos y practica casi todos los días.",
+          fuente: "El Rafihi-Ferreira, 2024, caps. 10 y 15 (sesión 2)",
+          fichas: ["pautas-sueno"]
+        },
+        {
+          t: "Desesperanza creativa y defusión",
+          tecs: ["desesperanza-creativa", "lucha-monstruo", "hojas-rio"],
+          obj: "Revisar lo que la persona ha hecho para dormirse y notar que el esfuerzo la mantiene despierta.",
+          pasos: [
+            "Evaluar con ella los intentos de controlar el sueño y de evitar el malestar —medicación, acostarse antes, quedarse en la cama, intentar no pensar— y si le funcionaron a la larga.",
+            "Presentar la metáfora del tira y afloja con el monstruo.",
+            "Practicar las hojas en el río con los pensamientos sobre el sueño («si no duermo, mañana será un desastre»)."
+          ],
+          casa: "Diario de sueño, mantener la higiene y practicar las hojas en el río.",
+          avance: "La persona reconoce que el esfuerzo por dormir es parte del problema.",
+          fuente: "El Rafihi-Ferreira, 2024, cap. 15 (sesión 3)"
+        },
+        {
+          t: "Yo como contexto y aceptación",
+          tecs: ["yo-contexto", "aceptacion", "dolor-limpio-sucio"],
+          obj: "Abrirse a la vigilia y al cansancio sin luchar, desde una perspectiva más amplia que esas experiencias.",
+          pasos: [
+            "Distinguir el dolor del sufrimiento, con una metáfora sobre alguien que deja todo lo que le gusta por evitar un mal rato.",
+            "Leer un poema sobre recibir lo que llega como a un huésped.",
+            "Hacer el ejercicio de la hoja con dos caras: en una, recuerdos y pensamientos positivos; en la otra, negativos. Ninguno de los dos lados es la persona, y no se puede tirar uno sin el otro.",
+            "Elegir una acción que haya dejado de hacer por un pensamiento o un sentimiento y proponerla como la misión de la semana."
+          ],
+          casa: "Misión de la semana y lista de situaciones evitadas y enfrentadas.",
+          avance: "La persona hace algo que evitaba por el cansancio o el miedo a no dormir.",
+          fuente: "El Rafihi-Ferreira, 2024, cap. 15 (sesión 4)"
+        },
+        {
+          t: "Valores y acción comprometida",
+          tecs: ["brujula-vital", "accion-comprometida", "bondad-amorosa"],
+          obj: "Desplazar el centro de la vida del sueño a lo que importa.",
+          pasos: [
+            "Completar la brújula vital por áreas —familia, pareja, relaciones sociales, maternidad o paternidad, trabajo, crecimiento personal, ocio, espiritualidad, salud, comunidad y ambiente—, con la importancia y cuánto invierte hoy en cada una.",
+            "Definir objetivos, barreras y acciones para las áreas con más distancia.",
+            "Practicar una meditación de bondad amorosa."
+          ],
+          casa: "Acciones valiosas de la semana y práctica de la meditación.",
+          avance: "La persona hace acciones valiosas aunque haya dormido mal.",
+          fuente: "El Rafihi-Ferreira, 2024, cap. 15 (sesión 5)",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Sostener la acción y cerrar",
+          tecs: ["ejercicio-funeral", "metafora-vecino", "prevencion-recaidas"],
+          obj: "Afianzar los valores y la acción comprometida y preparar el cierre.",
+          pasos: [
+            "Hacer el ejercicio de asistir al propio funeral: qué mensaje querría dejar.",
+            "Usar la metáfora del vecino indeseable para la disposición: dejar entrar al invitado molesto permite volver a la fiesta.",
+            "Practicar una meditación centrada en los valores y la acción.",
+            "Revisar el diario de sueño del tratamiento y acordar cómo seguirá."
+          ],
+          casa: "Plan personal: prácticas, acciones valiosas y qué hará si vuelve una mala racha de sueño.",
+          avance: "Baja la gravedad del insomnio y la persona describe su relación con el sueño como menos central.",
+          fuente: "El Rafihi-Ferreira, 2024, cap. 15 (sesión 6)",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      opciones: [
+        {
+          t: "Aceptación y compromiso con control de estímulos y restricción del sueño",
+          cuando: "El diario muestra <strong>mucho tiempo despierto en la cama</strong> —eficiencia del sueño de 85 % o menos— y hábitos que desordenan el sueño, o la persona ya probó la restricción y el control de estímulos y le cuesta sostenerlos: la aceptación aumenta la disposición a tolerar el malestar que traen. Se usó, por ejemplo, con dependencia de hipnóticos (El Rafihi-Ferreira, 2024, caps. 7, 12 y 19).",
+          respaldo: "En un ensayo aleatorizado, esta versión fue tan eficaz como la terapia cognitivo-conductual para el insomnio: mejoró la eficiencia del sueño, la latencia, los despertares y los síntomas, además de la ansiedad, la flexibilidad psicológica y las creencias disfuncionales sobre el sueño (El Rafihi-Ferreira, 2024, cap. 1).",
+          fuente: "El Rafihi-Ferreira, 2024, caps. 11, 12 y 19",
+          secuencia: "<strong>Secuencia:</strong> una sesión de evaluación y formulación y nueve de tratamiento en el caso que describe el libro. La educación sobre el sueño, la higiene y el control de estímulos van en las dos primeras; la restricción del sueño empieza en la tercera semana, con sesiones semanales para ajustar la ventana; los procesos de flexibilidad se trabajan de la tercera a la novena (El Rafihi-Ferreira, 2024, cap. 19).",
+          actividades: [
+            {
+              t: "Evaluación, educación sobre el sueño y control de estímulos",
+              tecs: ["psicoeducacion", "control-estimulos", "higiene-sueno", "diario-sueno"],
+              obj: "Formular el caso y empezar a reasociar la cama con dormir.",
+              pasos: [
+                "Evaluar la queja, su historia, los síntomas de día, la rutina y los hábitos de sueño, el uso de hipnóticos y otros trastornos del sueño.",
+                "Explicar qué es el sueño, qué produce su privación y qué mantiene el insomnio.",
+                "Dar las indicaciones de control de estímulos: acostarse solo con sueño, levantarse si no se duerme en 20 o 30 minutos y volver solo con sueño, usar la cama solo para dormir y la actividad sexual, levantarse a la misma hora todos los días y evitar las siestas.",
+                "Revisar la higiene del sueño."
+              ],
+              casa: "Diario de sueño durante al menos dos semanas e indicaciones de control de estímulos.",
+              avance: "Hay dos semanas de diario para calcular la ventana de sueño.",
+              fuente: "El Rafihi-Ferreira, 2024, caps. 10, 11 y 19",
+              fichas: ["diario-sueno", "pautas-sueno"]
+            },
+            {
+              t: "Restricción del sueño",
+              tecs: ["restriccion-sueno", "eficiencia-sueno"],
+              obj: "Ajustar el tiempo en cama a lo que la persona duerme de verdad, para consolidar el sueño.",
+              pasos: [
+                "Calcular el promedio de horas dormidas en las dos últimas semanas de diario y fijar una ventana de sueño de esa duración, a una hora de levantarse fija; nunca menos de cinco horas.",
+                "Pedir que respete la ventana los siete días, sin siestas, y que si se despierta salga de la cama a una actividad tranquila.",
+                "Ver a la persona cada semana: si la eficiencia fue de 90 % o más, alargar la ventana entre 15 y 30 minutos; si fue menor de 85 %, acortarla.",
+                "Usar la disposición: el cansancio de las primeras semanas es el malestar que se acepta al servicio de dormir mejor y de lo que valora."
+              ],
+              casa: "Respetar la ventana de sueño y llevar el diario.",
+              avance: "Sube la eficiencia del sueño y baja el tiempo despierto en la cama.",
+              fuente: "El Rafihi-Ferreira, 2024, caps. 12 y 19"
+            },
+            {
+              t: "Desesperanza creativa y defusión",
+              tecs: ["desesperanza-creativa", "lucha-monstruo", "hojas-rio"],
+              obj: "Notar que el esfuerzo por dormir mantiene el insomnio y tomar distancia de los pensamientos sobre el sueño.",
+              pasos: [
+                "Revisar los intentos de controlar el sueño —hipnóticos, acostarse antes, quedarse en la cama— y si funcionaron a la larga.",
+                "Presentar la metáfora del tira y afloja con el monstruo.",
+                "Practicar las hojas en el río con los pensamientos que aparecen en la cama o al pensar en la ventana de sueño."
+              ],
+              casa: "Practicar las hojas en el río y seguir con la ventana.",
+              avance: "La persona deja de pelear con la vigilia y sigue las indicaciones aunque le incomoden.",
+              fuente: "El Rafihi-Ferreira, 2024, caps. 15 (sesión 3) y 19"
+            },
+            {
+              t: "Aceptación y yo como contexto",
+              tecs: ["aceptacion", "yo-contexto"],
+              obj: "Hacer espacio al cansancio y a la activación sin luchar con ellos.",
+              pasos: [
+                "Distinguir el dolor —una mala noche— del sufrimiento que se agrega al luchar contra ella.",
+                "Hacer el ejercicio de la hoja con dos caras: ningún lado es la persona.",
+                "Elegir una acción que dejó de hacer por el cansancio y hacerla esa semana."
+              ],
+              casa: "Misión de la semana y registro de situaciones evitadas y enfrentadas.",
+              avance: "La persona actúa aunque haya dormido poco.",
+              fuente: "El Rafihi-Ferreira, 2024, caps. 15 (sesión 4) y 19"
+            },
+            {
+              t: "Valores y acción comprometida",
+              tecs: ["brujula-vital", "accion-comprometida"],
+              obj: "Llevar la atención de la persona del sueño a lo que le importa.",
+              pasos: [
+                "Completar la brújula vital por áreas, con la importancia y la inversión actual.",
+                "Definir objetivos, barreras y acciones, y comprometerse con algunas cada semana.",
+                "Hacer el ejercicio de asistir al propio funeral."
+              ],
+              casa: "Acciones valiosas de la semana.",
+              avance: "La persona hace acciones valiosas aunque aparezca el miedo a no dormir.",
+              fuente: "El Rafihi-Ferreira, 2024, caps. 15 (sesiones 5 y 6) y 19",
+              fichas: ["plan-accion-valores"]
+            },
+            {
+              t: "Mantener la ventana y cerrar",
+              tecs: ["prevencion-recaidas"],
+              obj: "Dejar estable la ventana de sueño y preparar el cierre.",
+              pasos: [
+                "Mantener la ventana cuando la persona se sienta descansada y satisfecha con lo que duerme.",
+                "Repetir las medidas del inicio y comparar.",
+                "Acordar qué hará si vuelve una mala racha: volver al diario, al control de estímulos y a la disposición."
+              ],
+              casa: "Plan escrito para las malas rachas de sueño.",
+              avance: "La persona sostiene un patrón de sueño estable y sabe qué hacer si empeora.",
+              fuente: "El Rafihi-Ferreira, 2024, cap. 19",
+              fichas: ["plan-mantenimiento"]
+            }
+          ]
+        }
+      ],
+      medir: [
+        "<strong>ISI</strong> al inicio y al final.",
+        "<strong>SPAQ</strong> para la aceptación de los problemas de sueño, y <strong>AAQ-II</strong> para la flexibilidad psicológica.",
+        "Diario de sueño durante todo el tratamiento: latencia, despertares, tiempo total y eficiencia del sueño.",
+        "<strong>HADS</strong> si hay ansiedad o depresión."
+      ],
+      adapt: [
+        "<strong>Formato:</strong> individual o en grupo, presencial o en línea; las sesiones de grupo duran unos 120 minutos (El Rafihi-Ferreira, 2024, cap. 15).",
+        "<strong>Equipo:</strong> se recomienda el trabajo con un médico del sueño; si se indica medicación, se combina con la intervención no farmacológica. La dependencia de hipnóticos se retira de forma gradual y con el médico (El Rafihi-Ferreira, 2024, caps. 6 y 7)."
+      ],
+      cuidado: [
+        "Antes de empezar, descartar otros trastornos del sueño —apnea, piernas inquietas, trastornos del ritmo circadiano— y el insomnio causado por sustancias o por un episodio de manía (El Rafihi-Ferreira, 2024, cap. 5).",
+        "En la opción B, la restricción del sueño no se aplica, o se aplica con mucha cautela, en conductores, pilotos, operarios de máquinas y otros trabajos de riesgo, ni en personas con epilepsia, parasomnias o algunos trastornos psiquiátricos graves que la privación de sueño puede empeorar (El Rafihi-Ferreira, 2024, cap. 12).",
+        "Si la combinación de tratamientos no ayuda, se reevalúa qué mantiene el problema; la terapia cognitivo-conductual para el insomnio es la opción con más respaldo (El Rafihi-Ferreira, 2024, cap. 7)."
+      ]
     }
   ]
 },
@@ -17361,6 +18089,7 @@ const VARIABLES = [
   sub: "Alucinaciones, sobre todo voces, e ideas delirantes que persisten o reaparecen pese a la medicación, con el malestar, el miedo y la limitación que traen. Lo que se interviene no es solo el síntoma, sino cómo la persona lo interpreta y reacciona ante él —«la voz es todopoderosa», «tengo que obedecerla»—, porque esa reacción puede mantenerlo. La intervención psicológica se suma al tratamiento farmacológico y al seguimiento del equipo de salud mental; no lo reemplaza.",
   elegir: [
     "<strong>El plan es la terapia cognitivo-conductual para la psicosis</strong>, en el modelo de afrontamiento y recuperación: estrategias para manejar los síntomas, revisión de las creencias sobre ellos, mejora de la autoestima y prevención de recaídas.",
+    "<strong>Si la persona lucha con sus voces o las obedece</strong> y esa lucha le ha ido quitando la vida, la terapia de aceptación y compromiso trabaja la relación con ellas, sin buscar que desaparezcan; tiene ensayos, dos de ellos en hospitalización.",
     "La OMS recomienda ofrecer en la fase de mantenimiento, solas o combinadas, intervenciones familiares, psicoeducación familiar, psicoeducación y terapia cognitivo-conductual (recomendación fuerte, certeza moderada; OMS, 2023, PSY11). En la fase aguda, la terapia cognitivo-conductual puede considerarse donde hay apoyo especializado suficiente (PSY10). La conducta según el riesgo la define la ruta de <a href=\"rutas-mhgap.html\">Rutas de atención mhGAP</a>."
   ],
   planes: [
@@ -17626,6 +18355,122 @@ const VARIABLES = [
         "No se trata de convencer a la persona de que sus creencias son falsas: se examinan juntos, a su ritmo.",
         "Las sesiones con personas con psicosis requieren agendas cortas y tener en cuenta los efectos de la medicación, la desorganización del pensamiento y los problemas de memoria (Morrison et al., 2004, cap. 6).",
         "Se coordina con psiquiatría: la terapia acompaña a la medicación, no la reemplaza."
+      ]
+    },
+    {
+      id: "psi-act",
+      mod: "flex",
+      inst: ["PSYRATS", "AAQ-II"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso para las voces y las ideas delirantes",
+      fuente: "Morris et al., 2013, caps. 5 a 8 y 13 a 15",
+      cuando: "La persona <strong>lucha con sus voces o las obedece</strong> —discute con ellas, intenta callarlas, se encierra, hace lo que le ordenan— y esa lucha le ha ido quitando la vida: amistades, actividades, planes. La meta no es que las voces desaparezcan, sino que pesen menos en lo que la persona decide hacer. Se suma al tratamiento farmacológico y al seguimiento del equipo de salud mental (Morris et al., 2013, cap. 7).",
+      respaldo: "Hay tres ensayos aleatorizados de esta terapia en la psicosis, dos con pacientes hospitalizados y uno ambulatorio. En uno, con 40 hospitalizados, un promedio de tres sesiones añadidas al tratamiento habitual redujo el malestar por los síntomas psicóticos y mejoró el ánimo; la mejoría clínicamente significativa fue del 50 % frente al 7 %, y el reingreso tardó más en los cuatro meses siguientes. Los cambios se explicaron por una menor credibilidad de los síntomas, no por su desaparición (Morris et al., 2013, cap. 6). Los estudios tienen muestras modestas, pero sus resultados son prometedores (Morris et al., 2013, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> unas diez sesiones individuales, con los procesos trabajados en paralelo y enlazados entre sí. Se suele empezar por el costo de la lucha con las voces y la aceptación como alternativa, y dar cada vez más peso a los valores, la disposición y la acción. En el caso descrito: sesiones 1 a 3, defusión y aceptación con metáforas y atención plena, y clarificación de valores; 4 a 7, imaginería, hojas en el río y sacar a pasear las voces; 8 a 10, acción valiosa y repaso. Si la persona tiene pocas luchas o vive sus voces como benévolas, se puede empezar por los valores (Morris et al., 2013, cap. 7).",
+      esc: ["salud-mental","hospital"],
+      actividades: [
+        {
+          t: "Vínculo y formulación",
+          tecs: ["formulacion-caso", "entrevista-clinica"],
+          obj: "Conocer en detalle la experiencia de las voces o de las ideas delirantes y formular el caso desde los procesos de la terapia.",
+          pasos: [
+            "Preguntar por las voces: cuántas son, su género, volumen, frecuencia, duración y contenido; o por la idea delirante, su convicción y lo que la persona hace por ella.",
+            "Explorar cómo responde: qué hace, qué le ayuda en el momento y qué le cuesta a la larga.",
+            "Formular con ella qué parte del problema viene de la experiencia y qué parte de la lucha, la obediencia o la evitación.",
+            "Avanzar con suavidad: pedir permiso antes de cada ejercicio y dejar claro que puede detenerse cuando quiera."
+          ],
+          casa: "Registrar las voces de la semana y lo que hizo con ellas.",
+          avance: "La persona describe sus voces y sus respuestas sin sentirse cuestionada sobre si son reales.",
+          fuente: "Morris et al., 2013, caps. 4 a 7",
+          fichas: ["registro-voces"]
+        },
+        {
+          t: "Soltar la lucha con las voces",
+          tecs: ["lucha-monstruo", "aceptacion"],
+          obj: "Que la persona distinga las respuestas a las voces que funcionan de las que agravan el problema, y pruebe soltar la lucha.",
+          pasos: [
+            "Revisar las respuestas a las voces: las que alivian sin estrechar la vida —mantenerse ocupada, escuchar música— se pueden seguir usando; las que buscan suprimir o cambiar las voces suelen enredar más.",
+            "Hablar de lo controlable y lo no controlable, sin discutir si las voces vienen de dentro o de fuera.",
+            "Representar con el cuerpo el tira y afloja con el monstruo, con el terapeuta como monstruo imbatible, y notar que soltar la cuerda es una opción. Puede hacerse sentados si la persona lo prefiere."
+          ],
+          casa: "Notar los momentos en que soltó la cuerda y lo que pasó.",
+          avance: "La persona habla de soltar la cuerda como algo que puede elegir.",
+          fuente: "Morris et al., 2013, cap. 7 y apéndice H"
+        },
+        {
+          t: "Defusión del contenido de las voces",
+          tecs: ["defusion", "desliteralizacion"],
+          obj: "Tomar distancia de lo que dicen las voces y de lo que la persona piensa sobre ellas.",
+          pasos: [
+            "Distinguir tres capas de fusión: lo intrusivas que son las voces («no puedo hacer nada con ellas»), lo que dicen (críticas, amenazas) y lo que significan para la relación con ellas («si salgo, me castigarán»).",
+            "Escribir en papel lo que dicen las voces, llamarlo «palabras» o compararlo con una radio que solo da malas noticias.",
+            "Usar la metáfora del mono en la isla: trae cosas útiles, inútiles y desagradables; se toma lo que sirve.",
+            "Separar el pensamiento de la acción: levantar un bolígrafo mientras repite «no puedo levantar el bolígrafo» y, con cuidado, mientras repite una orden de las voces."
+          ],
+          casa: "Practicar una forma de distancia cuando aparezca una voz que engancha.",
+          avance: "La persona puede escuchar una orden de las voces y no seguirla.",
+          fuente: "Morris et al., 2013, cap. 7"
+        },
+        {
+          t: "Atención plena y yo observador",
+          tecs: ["momento-presente", "ejercicio-pasa", "hojas-rio", "yo-contexto"],
+          obj: "Entrenar la atención con un ancla y una perspectiva que observa las voces sin responderles.",
+          pasos: [
+            "Empezar pronto con ejercicios breves anclados en algo concreto —la respiración, una pasa, el cuerpo—, avisando antes qué se hará; alargar poco a poco hasta unos 20 minutos, con grabaciones de 10 a 15 minutos para casa.",
+            "Cuando aparezcan voces, practicar dos instrucciones: llevar la atención de vuelta al ancla dejándolas estar, o dirigirla hacia ellas para observarlas como sonidos, sin responder.",
+            "Si no aparecen en sesión, usar una grabación de habla, primero neutra y luego parecida a las voces.",
+            "Presentar un yo observador distinto del yo que piensa, con la meditación de la montaña, el tablero de ajedrez o el cielo y el clima si la persona puede seguir esas metáforas."
+          ],
+          casa: "Práctica diaria con la grabación.",
+          avance: "La persona practica y puede notar las voces sin quedar atrapada en ellas.",
+          fuente: "Morris et al., 2013, cap. 7"
+        },
+        {
+          t: "Valores y sacar a pasear las voces",
+          tecs: ["valores", "disposicion", "sacar-pasear-voces"],
+          obj: "Clarificar lo que importa a la persona y practicar actuar en esa dirección con las voces presentes.",
+          pasos: [
+            "Clarificar valores en relaciones, ocio, trabajo o estudio y salud, por ejemplo imaginando un premio a toda una vida o mirando atrás desde los 80 años; si los valores salen de las ideas delirantes, orientar hacia valores del mundo real.",
+            "Presentar la disposición con la metáfora del pantano: se atraviesa el barro para llegar a donde se quiere.",
+            "Sacar a pasear las voces: la persona camina hacia una meta mientras el terapeuta representa a las voces, primero con frases neutras, después con órdenes y por último con contenido parecido al de sus voces. Acordar antes el contenido y practicar tres posturas: luchar, obedecer y soltar la cuerda."
+          ],
+          casa: "Una acción valiosa en la semana, con las voces presentes.",
+          avance: "La persona hace algo que había dejado por las voces.",
+          fuente: "Morris et al., 2013, cap. 7",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Acción valiosa, barreras sociales y cierre",
+          tecs: ["accion-comprometida", "barreras", "prevencion-recaidas"],
+          obj: "Sostener la acción valiosa teniendo en cuenta los obstáculos reales y resumir lo aprendido.",
+          pasos: [
+            "Revisar las acciones de la semana, las que salieron bien y las que decepcionaron, con atención plena a ambas.",
+            "Tener en cuenta las barreras sociales que suelen pesar en la psicosis —soledad, pobreza, desempleo— y buscar acciones pequeñas y posibles.",
+            "En la última sesión, escribir con sus palabras lo aprendido, por ejemplo: «aunque las voces estén, no tengo que hacer lo que dicen»."
+          ],
+          casa: "Hoja propia con lo aprendido y las acciones que seguirá haciendo.",
+          avance: "La persona sigue actuando hacia sus valores con las voces presentes y sabe a quién acudir si empeora.",
+          fuente: "Morris et al., 2013, cap. 7",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PSYRATS</strong> al inicio y al final: malestar, convicción e interferencia de las voces y las ideas delirantes.",
+        "<strong>AAQ-II</strong> para la evitación experiencial.",
+        "Credibilidad de los síntomas: cuánto cree la persona lo que dicen las voces, de 0 a 100.",
+        "Acciones valiosas de la semana."
+      ],
+      adapt: [
+        "<strong>Hospitalización:</strong> en uno de los ensayos con pacientes hospitalizados, el número de sesiones individuales dependió de la estancia, con un promedio de tres, añadidas al tratamiento habitual. En la unidad de agudos conviene formar al personal y combinar sesiones individuales y de grupo (Morris et al., 2013, caps. 6 y 14).",
+        "<strong>Grupo:</strong> hay un protocolo de seis sesiones con la matriz de aceptación y compromiso: funcionalidad de las estrategias, la lucha por el control y la disposición, valores, moverse hacia ellos, el yo como contexto y un cierre, con una sesión opcional de seguimiento (Morris et al., 2013, cap. 15).",
+        "<strong>Primer episodio:</strong> se trabaja estar presente, abrirse y estar activo, también en grupo y con la familia (Morris et al., 2013, cap. 13)."
+      ],
+      cuidado: [
+        "Avanzar con más suavidad que en la ansiedad o la depresión: esta terapia confronta, y una persona con psicosis puede desbordarse con facilidad, lo que pone en riesgo el vínculo y puede aumentar los síntomas (Morris et al., 2013, cap. 7).",
+        "No insistir en que las voces son «internas»: se habla de lo que se puede controlar y lo que no. Las metáforas se eligen por lo concretas y se representan o dibujan (Morris et al., 2013, cap. 7).",
+        "Sacar a pasear las voces puede desbordar a quien se fusiona mucho con su contenido: se prepara con cuidado y se acuerdan los límites (Morris et al., 2013, cap. 7).",
+        "Ante órdenes de hacerse daño o de dañar a otros, se evalúa el riesgo y se activa la ruta de atención."
       ]
     },
     {
@@ -22432,7 +23277,25 @@ const GLOSARIO = [
   como: ["Escribir abajo la situación y lo que aparece dentro.",
          "A un lado, lo que hace cuando se engancha; al otro, lo que haría la persona que quiere ser.",
          "Preguntar qué habilidad la ayudaría a moverse hacia sus valores la próxima vez."],
-  fuente: "Harris, 2021a, cap. 5" }
+  fuente: "Harris, 2021a, cap. 5" },
+/* ---------- Aceptación y compromiso, bloque 2 (2026-10-26) ---------- */
+{ k: "espejo-consciente", t: "Espejo consciente", alias: ["ejercicio del espejo consciente"], tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio para la insatisfacción con la imagen corporal: la persona se mira de cuerpo entero frente a un espejo, nota en silencio lo que siente y piensa, y luego dice en voz alta lo que piensa de cada parte de su cuerpo mientras el terapeuta lo anota. Sirve para practicar la observación de los juicios sobre el cuerpo sin luchar contra ellos y para distinguir describir de juzgar.",
+  como: ["Normalizar que mirarse al espejo es difícil para muchas personas y pedir permiso.",
+         "Pedirle que se mire de tres a cinco minutos en silencio, notando las emociones, dónde las siente y los pensamientos que aparecen, y volviendo a su imagen.",
+         "Después, de los pies a la cabeza, que diga en voz alta lo que piensa de cada parte; el terapeuta lo escribe.",
+         "Conversar sobre lo que notó, leyendo lo escrito como pensamientos y no como hechos."],
+  fuente: "Pearson et al., 2010, cap. 7" },
+{ k: "sacar-pasear-voces", t: "Sacar a pasear las voces", tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio para la acción comprometida en presencia de las voces: la persona camina hacia un lugar elegido mientras el terapeuta, a su lado, dice frases como las de las voces; la tarea es seguir el propio rumbo sin dejarse llevar por lo que oye. Muestra que se puede actuar según los valores con las voces presentes.",
+  como: ["Acordar antes el contenido que se representará y la forma de detener el ejercicio.",
+         "Empezar con frases neutras, pasar a órdenes («¡gire a la izquierda!») y llegar a contenido parecido al de sus voces.",
+         "Practicar tres posturas —luchar, obedecer y soltar la cuerda— y conversar sobre cuál funciona mejor para lo que valora.",
+         "Avanzar con cuidado: si la persona se fusiona mucho con el contenido, puede desbordarse."],
+  fuente: "Morris et al., 2013, cap. 7" },
+{ k: "cuatro-preguntas", t: "Cuatro preguntas del esquema", tipo: "Técnica", enf: ["act"],
+  d: "Preguntas para tomar distancia de los pensamientos que disparan los esquemas interpersonales: cuán antiguo es el pensamiento, para qué sirve —de qué dolor intenta proteger—, cómo le está funcionando a la persona y si estaría dispuesta a tenerlo y aun así actuar según sus valores en sus relaciones.",
+  fuente: "McKay et al., 2012, cap. 6" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
