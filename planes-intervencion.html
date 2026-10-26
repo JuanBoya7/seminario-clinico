@@ -2367,6 +2367,19 @@ REFERENCIAS.push(
   { k: "Skinta y Curtin, 2016", ref: "Skinta, M. D. y Curtin, A. (Eds.). (2016). <em>Mindfulness and acceptance for gender and sexual minorities: A clinician's guide to fostering compassion, connection, and equality using contextual strategies</em>. Context Press / New Harbinger." }
 );
 
+/* Manuales de aceptación y compromiso agregados el 2026-10-26, bloque 4:
+   autoayuda guiada para el perfeccionismo, la ira y la pérdida, y la
+   versión focalizada en pocas sesiones (FACT). Los libros de autoayuda no
+   se han estudiado como tales; el de ira declara que no hay estudios
+   controlados de esta terapia para la ira. */
+REFERENCIAS.push(
+  { k: "Ong y Twohig, 2022", ref: "Ong, C. W. y Twohig, M. P. (2022). <em>The anxious perfectionist: How to manage perfectionism-driven anxiety using acceptance and commitment therapy</em>. New Harbinger." },
+  { k: "Kemp, 2021", ref: "Kemp, J. (2021). <em>The ACT workbook for perfectionism: Build your best (imperfect) life using powerful acceptance and commitment therapy and self-compassion skills</em>. New Harbinger." },
+  { k: "Eifert et al., 2006", ref: "Eifert, G. H., McKay, M. y Forsyth, J. P. (2006). <em>ACT on life not on anger: The new acceptance and commitment therapy guide to problem anger</em>. New Harbinger." },
+  { k: "Harris, 2021b", ref: "Harris, R. (2021b). <em>When life hits hard: How to transcend grief, crisis, and loss with acceptance and commitment therapy</em>. New Harbinger." },
+  { k: "Strosahl et al., 2012", ref: "Strosahl, K. D., Robinson, P. J. y Gustavsson, T. (2012). <em>Brief interventions for radical change: Principles and practice of focused acceptance and commitment therapy</em>. New Harbinger." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -8408,7 +8421,8 @@ const VARIABLES = [
     "<strong>Si el duelo es reciente y sigue su curso</strong>, aunque sea muy doloroso, el asesoramiento en las cuatro tareas acompaña a la persona para que las realice.",
     "<strong>Si el duelo se ha complicado</strong> —crónico, retrasado, exagerado o enmascarado en síntomas físicos o conductas—, la terapia del duelo identifica qué tarea quedó detenida y trabaja los conflictos de separación.",
     "Para distinguirlo: en el duelo prolongado el malestar se centra en la pérdida y la separación, no en un ánimo bajo general como en la depresión; y las intrusiones son recuerdos de la relación, con anhelo, no del suceso traumático como en el estrés postraumático. Los picos de dolor en aniversarios y fechas señaladas, por sí solos, no indican un trastorno (APA, 2022).",
-    "Si la muerte fue traumática y hay síntomas de estrés postraumático, ver <em>Trauma y estrés postraumático</em>. Si el duelo desencadenó una depresión, la psicoterapia interpersonal de <em>Depresión</em> tiene el duelo como una de sus áreas."
+    "Si la muerte fue traumática y hay síntomas de estrés postraumático, ver <em>Trauma y estrés postraumático</em>. Si el duelo desencadenó una depresión, la psicoterapia interpersonal de <em>Depresión</em> tiene el duelo como una de sus áreas.",
+    "<strong>Si la persona prefiere trabajar con un libro</strong>, o la pérdida no es una muerte —la salud, una separación, el trabajo—, la autoayuda guiada con aceptación y compromiso acompaña el duelo; su respaldo es conceptual."
   ],
   planes: [
     {
@@ -8600,6 +8614,130 @@ const VARIABLES = [
         "El duelo complicado puede venir con riesgo suicida: se evalúa y se sigue el protocolo. En el trastorno de duelo prolongado, el riesgo de ideación suicida es mayor aun descontando la depresión y el estrés postraumático (APA, 2022).",
         "El riesgo de un duelo prolongado es mayor tras la muerte de un hijo o de la pareja, una muerte violenta o inesperada, una gran dependencia previa de la persona fallecida o dificultades económicas (APA, 2022).",
         "Las técnicas de revivir emociones intensas requieren una alianza sólida y un ritmo que la persona pueda sostener."
+      ]
+    },
+    {
+      id: "duelo-act",
+      mod: "flex",
+      inst: ["AAQ-II", "PHQ-9"],
+      enf: "act",
+      nivel: "conceptual",
+      t: "Autoayuda guiada con aceptación y compromiso ante la pérdida",
+      fuente: "Harris, 2021b",
+      cuando: "La persona atraviesa una pérdida —la muerte de alguien querido, una separación, la pérdida de la salud, del trabajo o de la seguridad— y lucha con el dolor: lo evita, se pierde en los recuerdos, se critica o se aleja de lo que le importaba. Sirve <strong>cuando prefiere trabajar con un libro, con un acompañamiento breve</strong>, o como complemento del asesoramiento en duelo (Harris, 2021b, caps. 1 y 2).",
+      respaldo: "Es un libro de autoayuda basado en la terapia de aceptación y compromiso; no describe estudios propios. Se apoya en las habilidades de esta terapia, que han mostrado eficacia en otros problemas. Para el duelo prolongado, el tratamiento específico de esta variable tiene ensayos.",
+      secuencia: "<strong>Secuencia:</strong> tres partes. Reagruparse (caps. 1 a 12): cuidar lo básico, la amabilidad consigo, soltar la lucha, echar el ancla en las tormentas emocionales, desengancharse de los pensamientos, hacer espacio a las emociones y trabajar los recuerdos dolorosos. Reconstruir (caps. 13 a 17): valores, pasos pequeños, la fórmula del desafío, el perdón y cambiar hábitos. Revitalizar (caps. 18 a 20): estar presente en la vida, con su alegría y su tristeza. Si se acompaña, una parte de capítulos por semana (Harris, 2021b).",
+      esc: ["primer-nivel", "salud-mental", "hospital"],
+      actividades: [
+        {
+          t: "Lo primero: el dolor y el cuidado básico",
+          tecs: ["psicoeducacion", "pausa-autocompasion"],
+          obj: "Normalizar las reacciones a la pérdida y asegurar el cuidado básico.",
+          pasos: [
+            "Explicar que el dolor es proporcional a la pérdida y que las reacciones —choque, tristeza, rabia, culpa, embotamiento, lucha, huida o congelamiento— son humanas; las etapas del duelo no son fijas ni ordenadas.",
+            "Enfocarse en lo que está bajo su control, buscar apoyo y equilibrar el autocuidado.",
+            "Reconocer el dolor y responderle con amabilidad, con palabras amables hacia sí."
+          ],
+          casa: "Leer los capítulos 1 a 3 y elegir una acción de autocuidado diaria.",
+          avance: "La persona habla de su pérdida y de su dolor sin juzgarse.",
+          fuente: "Harris, 2021b, caps. 1 a 3",
+          fichas: ["pausa-autocompasion"]
+        },
+        {
+          t: "Soltar la lucha y echar el ancla",
+          tecs: ["echar-ancla", "aceptacion"],
+          obj: "Dejar de pelear con el dolor y sostenerse en medio de las tormentas emocionales.",
+          pasos: [
+            "Hacer el experimento de luchar con el dolor y de soltar la lucha, y notar la diferencia.",
+            "Practicar echar el ancla: reconocer lo que siente, conectar con el cuerpo e implicarse en lo que está haciendo.",
+            "Recordar que el ancla no controla la tormenta: mantiene firme hasta que pasa."
+          ],
+          casa: "Echar el ancla varias veces al día, también en momentos tranquilos.",
+          avance: "La persona se sostiene en un momento de dolor intenso sin escapar.",
+          fuente: "Harris, 2021b, caps. 4 y 5"
+        },
+        {
+          t: "Desengancharse de los pensamientos",
+          tecs: ["desengancharse", "defusion"],
+          obj: "Tomar distancia de los pensamientos de culpa, injusticia o desesperanza.",
+          pasos: [
+            "Mostrar por qué la mente hace lo que hace y cómo los pensamientos forman una niebla.",
+            "Practicar nombrar el pensamiento, el patrón y la historia («ahí está la historia de que fue mi culpa»), y agradecer a la mente.",
+            "Si nombrar no basta, echar el ancla, agradecer a la mente o neutralizar el pensamiento con los recursos del apéndice del libro."
+          ],
+          casa: "Nombrar los pensamientos que enganchan durante el día.",
+          avance: "Los pensamientos sobre la pérdida pesan menos en lo que la persona hace.",
+          fuente: "Harris, 2021b, caps. 6, 7 y apéndice A"
+        },
+        {
+          t: "Hacer espacio a las emociones y a los recuerdos",
+          tecs: ["aceptacion", "pausa-autocompasion"],
+          obj: "Hacer espacio a las emociones y trabajar los recuerdos dolorosos con amabilidad.",
+          pasos: [
+            "Practicar dejar ser: respirar, sostener y soltar; notar la emoción con curiosidad y hacerle espacio.",
+            "Ver las emociones como aliadas que comunican, motivan e iluminan lo que importa.",
+            "Poner una mano amable sobre donde duele.",
+            "Para los recuerdos: un tiempo y un lugar para recordar, un objeto o un acto simbólico, hablar con la persona querida, y dar apoyo al yo más joven si el recuerdo es de otra época."
+          ],
+          casa: "Una práctica de recuerdo elegida y una de amabilidad consigo.",
+          avance: "La persona puede recordar y sentir el dolor sin desbordarse ni evitarlo.",
+          fuente: "Harris, 2021b, caps. 8 a 12"
+        },
+        {
+          t: "Valores y pasos pequeños",
+          tecs: ["valores", "accion-comprometida"],
+          obj: "Reconstruir una vida con sentido a partir de lo que importa.",
+          pasos: [
+            "Preguntar para qué: qué valores hay detrás del dolor, distinguiéndolos de las metas.",
+            "Conectar y reflexionar: cómo se ve dentro de seis meses si actúa según esos valores.",
+            "Dar un paso pequeño cada vez, ladrillo a ladrillo, saboreando lo que va construyendo."
+          ],
+          casa: "Un paso pequeño cada día hacia un valor.",
+          avance: "La persona retoma actividades o relaciones que importan.",
+          fuente: "Harris, 2021b, caps. 13 y 14",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "La fórmula del desafío, el perdón y los hábitos",
+          tecs: ["formula-desafio", "perdon-accion", "barreras"],
+          obj: "Elegir cómo responder ante lo que no se puede cambiar y soltar lo que ata.",
+          pasos: [
+            "Presentar la fórmula del desafío: ante una situación difícil, se puede dejarla, o quedarse y vivir según los valores —mejorar lo que se pueda, hacer espacio al dolor y tratarse con amabilidad—, o quedarse y hacer cosas que no cambian nada o la empeoran.",
+            "Trabajar el perdón, hacia otros o hacia sí, como algo que se hace por uno mismo.",
+            "Cambiar los hábitos que empeoran la situación: qué hace, qué lo dispara, qué gana, qué le cuesta, cuál es la alternativa y qué habilidades puede usar."
+          ],
+          casa: "Elegir una situación y aplicar la fórmula del desafío.",
+          avance: "La persona elige activamente cómo responder a su pérdida.",
+          fuente: "Harris, 2021b, caps. 15 a 17"
+        },
+        {
+          t: "Revitalizar: estar presente en la vida",
+          tecs: ["momento-presente", "prevencion-recaidas"],
+          obj: "Volver a habitar la vida, con su alegría y su tristeza.",
+          pasos: [
+            "Presentar la vida como una obra de teatro: pensamientos, emociones, recuerdos y lo que se ve y se oye están en el escenario, y la persona puede acercar o alejar la mirada y dirigir el foco hacia lo que elige.",
+            "Abrirse a la experiencia completa, sin separar la alegría del dolor.",
+            "Planear cómo seguirá practicando en las fechas y momentos difíciles."
+          ],
+          casa: "Plan para las fechas difíciles y prácticas que seguirá haciendo.",
+          avance: "La persona vuelve a disfrutar de algo sin sentir que traiciona su pérdida.",
+          fuente: "Harris, 2021b, caps. 18 a 20",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>AAQ-II</strong> para la evitación experiencial.",
+        "<strong>PHQ-9</strong> para vigilar la depresión.",
+        "Actividades y relaciones retomadas."
+      ],
+      adapt: [
+        "<strong>Pérdidas no ligadas a la muerte:</strong> el libro aplica a la pérdida de la salud o de una función del cuerpo, la separación, el trabajo y las crisis; ver también <em>Impacto psicológico de una pérdida corporal</em> (Harris, 2021b, cap. 1).",
+        "<strong>Autoayuda pura o acompañada:</strong> el libro está escrito para la persona; con un acompañamiento breve se revisan las prácticas."
+      ],
+      cuidado: [
+        "Si el duelo es prolongado, con anhelo intenso que no cede y deterioro marcado, corresponde el tratamiento del duelo prolongado de esta variable.",
+        "Si hay ideas suicidas, la ruta de atención va primero.",
+        "Si la pérdida fue traumática y hay reexperimentación o evitación intensa, ver <em>Trauma y estrés postraumático</em>."
       ]
     }
   ]
@@ -9544,7 +9682,8 @@ const VARIABLES = [
   elegir: [
     "<strong>Si el perfeccionismo es el principal factor que mantiene el problema</strong>, la terapia cognitivo-conductual para el perfeccionismo, en diez sesiones individuales ajustadas a la formulación o en ocho sesiones en grupo.",
     "<strong>Si es leve o moderado</strong>, la autoayuda guiada con un libro de trabajo es un buen primer paso.",
-    "Si el perfeccionismo convive con otro trastorno que requiere su propio tratamiento, se pueden dividir las sesiones entre ambos. Si predomina la autocrítica, ver también <em>Autocrítica y vergüenza</em>."
+    "Si el perfeccionismo convive con otro trastorno que requiere su propio tratamiento, se pueden dividir las sesiones entre ambos. Si predomina la autocrítica, ver también <em>Autocrítica y vergüenza</em>.",
+    "<strong>Si la persona prefiere trabajar con un libro</strong>, o el perfeccionismo viene con mucha ansiedad, preocupación y autocrítica, la autoayuda guiada con aceptación y compromiso es una alternativa con evidencia preliminar."
   ],
   planes: [
     {
@@ -9697,6 +9836,122 @@ const VARIABLES = [
         "El perfeccionismo, sobre todo el que siente impuesto por los demás, se asocia con ideación y conducta suicida: se pregunta por ellas y se sigue el protocolo si aparecen (Egan et al., 2014, cap. 3).",
         "En el trastorno bipolar, el perfeccionismo puede ser un factor de vulnerabilidad para los episodios de hipomanía y manía: el trabajo se coordina con el tratamiento del trastorno (Egan et al., 2014, cap. 3)."
       ]
+    },
+    {
+      id: "per-act",
+      mod: "flex",
+      inst: ["FMPS", "AAQ-II"],
+      enf: "act",
+      nivel: "preliminar",
+      t: "Autoayuda guiada con aceptación y compromiso para el perfeccionismo",
+      fuente: "Ong y Twohig, 2022 · Kemp, 2021",
+      cuando: "La persona se exige estándares inflexibles, vive con ansiedad, preocupación y autocrítica por no alcanzarlos, y revisa, posterga o evita para no sentir que falló. Sirve <strong>cuando prefiere trabajar con un libro, con un acompañamiento breve</strong>, o como complemento de la terapia; también cuando el perfeccionismo acompaña a la ansiedad, la depresión, las obsesiones o los problemas alimentarios (Ong y Twohig, 2022, caps. 1 y 2; Kemp, 2021, cap. 1).",
+      respaldo: "Un ensayo aleatorizado de Ong y colaboradores encontró que la terapia de aceptación y compromiso para el perfeccionismo clínico redujo sus aspectos problemáticos, y la inflexibilidad psicológica aparece como un proceso central del perfeccionismo (Kemp, 2021, introducción). Los dos libros son cuadernos de autoayuda: no se han estudiado como tales. Para el perfeccionismo como foco principal, la terapia cognitivo-conductual de esta variable tiene más ensayos.",
+      secuencia: "<strong>Secuencia:</strong> sigue los diez capítulos del libro de Ong y Twohig, uno por semana si se acompaña: el costo de querer ser el mejor; cuándo el perfeccionismo estorba; reconocer el ruido sin rendirse a él; hacer espacio a sentirse imperfecto; soltar las etiquetas y las historias; lo que de verdad importa; el proceso por encima del resultado; ser amable consigo; vivir la vida que se quiere; y mantenerse en el camino. El cuaderno de Kemp trae actividades y hojas para cada tema. El terapeuta revisa las prácticas y ayuda con los bloqueos en sesiones breves (Ong y Twohig, 2022; Kemp, 2021).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "El costo de la perfección",
+          tecs: ["perfeccionismo-clinico", "desesperanza-creativa"],
+          obj: "Que la persona vea qué le da y qué le cuesta jugar al juego del perfeccionismo.",
+          pasos: [
+            "Revisar el juego del perfeccionismo: lo que promete (reconocimiento, logro) y lo que cobra (ansiedad, cansancio, relaciones, tiempo).",
+            "Explorar de dónde viene su perfeccionismo y la presión por lo inalcanzable.",
+            "Distinguir el perfeccionismo útil del que estorba, con ejemplos de sus propias conductas: revisar de más, postergar, evitar, pedir confirmación.",
+            "Preguntar qué quiere en realidad de su vida."
+          ],
+          casa: "Leer los capítulos 1 y 2 y anotar las conductas perfeccionistas de la semana y lo que le costaron.",
+          avance: "La persona describe el costo de su perfeccionismo en su vida.",
+          fuente: "Ong y Twohig, 2022, caps. 1 y 2 · Kemp, 2021, cap. 1",
+          fichas: ["registro-control"]
+        },
+        {
+          t: "Reconocer el ruido sin rendirse",
+          tecs: ["defusion"],
+          obj: "Ver las reglas del perfeccionismo como reglas, no como verdades, y notar que los pensamientos no obligan a actuar.",
+          pasos: [
+            "Mostrar por qué «deja de preocuparte» es un mal consejo.",
+            "Exponer el juego: identificar las reglas por sus frases típicas («debería», «tengo que») y verlas como reglas que se pueden seguir o no.",
+            "Notar los límites de discutir con la lógica.",
+            "Practicar reconocer el pensamiento sin obedecerlo: los pensamientos y las emociones no causan la conducta."
+          ],
+          casa: "Anotar las reglas de la semana y cuándo eligió no seguirlas.",
+          avance: "La persona nota sus reglas cuando aparecen y a veces actúa distinto.",
+          fuente: "Ong y Twohig, 2022, cap. 3"
+        },
+        {
+          t: "Hacer espacio a sentirse imperfecto",
+          tecs: ["aceptacion", "disposicion"],
+          obj: "Practicar sentir la incomodidad de lo imperfecto sin evitarla.",
+          pasos: [
+            "Validar que las emociones tienen una historia y una función.",
+            "Mostrar cómo la evitación emocional sostiene el perfeccionismo.",
+            "Aclarar que aceptar no es que guste: es darle espacio, como a un mueble feo heredado en la sala.",
+            "Practicar sentirse incómodo a propósito, por ejemplo quedándose unos minutos en una postura incómoda y notando lo que aparece."
+          ],
+          casa: "Hacer algo «imperfecto» a propósito y dejar espacio a lo que siente.",
+          avance: "La persona tolera la incomodidad de una tarea sin terminar o sin revisar.",
+          fuente: "Ong y Twohig, 2022, cap. 4 · Kemp, 2021, cap. 2"
+        },
+        {
+          t: "Soltar las etiquetas y la autocrítica",
+          tecs: ["yo-contexto", "pausa-autocompasion"],
+          obj: "Aflojar las historias sobre quién es y la autocrítica, y responderse con amabilidad.",
+          pasos: [
+            "Identificar las etiquetas e historias sobre sí misma y cuándo se vuelven un problema.",
+            "Practicar ser «yo» sin etiquetas, unos momentos.",
+            "Examinar la autocrítica: si de verdad la motiva o la paraliza.",
+            "Practicar la amabilidad hacia sí: qué le impide tratarse bien y cómo empezar."
+          ],
+          casa: "Una práctica de amabilidad consigo cada vez que aparezca la autocrítica.",
+          avance: "La persona se habla con menos dureza cuando se equivoca.",
+          fuente: "Ong y Twohig, 2022, caps. 5 y 8 · Kemp, 2021, cap. 6",
+          fichas: ["pausa-autocompasion"]
+        },
+        {
+          t: "Lo que importa y el proceso",
+          tecs: ["hoja-valores", "momento-presente"],
+          obj: "Pasar de «¿logré lo que quería?» a «¿lo hice como quiero?».",
+          pasos: [
+            "Identificar valores y conectar con ellos; revisar los problemas frecuentes al definirlos.",
+            "Entrenar la atención: mover el foco del ruido de la mente a lo que pasa ahora.",
+            "Practicar elegir el proceso por encima del resultado en una tarea concreta."
+          ],
+          casa: "Hacer una tarea atendiendo al proceso y a un valor, no al resultado.",
+          avance: "La persona evalúa sus días por cómo actuó y no solo por lo que logró.",
+          fuente: "Ong y Twohig, 2022, caps. 6 y 7 · Kemp, 2021, cap. 4",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Metas, barreras y seguir en el camino",
+          tecs: ["accion-comprometida", "barreras", "prevencion-recaidas"],
+          obj: "Convertir los valores en metas concretas y sostenerlas aunque se tropiece.",
+          pasos: [
+            "Fijar metas concretas, medibles, alcanzables, pertinentes y con plazo.",
+            "Anticipar las barreras, como la trampa de estar demasiado ocupada.",
+            "Practicar, practicar, practicar; reconocer cuándo el perfeccionismo se cuela en la propia práctica.",
+            "Tomar el fracaso como una opción: si se sale del camino, la montaña sigue ahí para volver."
+          ],
+          casa: "Metas de la semana, con barreras y planes para cada una.",
+          avance: "La persona sostiene sus metas y vuelve a ellas después de un tropiezo.",
+          fuente: "Ong y Twohig, 2022, caps. 9 y 10 · Kemp, 2021, caps. 5, 7 y 8",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>FMPS</strong> al inicio y al final.",
+        "<strong>AAQ-II</strong> para la inflexibilidad psicológica.",
+        "Conductas perfeccionistas de la semana y su costo."
+      ],
+      adapt: [
+        "<strong>Autoayuda pura o acompañada:</strong> los libros pueden leerse solos; con un acompañamiento breve se revisan las prácticas y se ayuda con los bloqueos.",
+        "<strong>Problemas asociados:</strong> el perfeccionismo aparece en la ansiedad, la depresión, las obsesiones y los trastornos alimentarios; el cuaderno de Kemp trata cada caso (Kemp, 2021, cap. 1)."
+      ],
+      cuidado: [
+        "Vigilar que el trabajo con el libro no se vuelva otra tarea a hacer a la perfección: leer de más, completar todo sin fallas o castigarse por saltarse un ejercicio.",
+        "Si hay depresión grave, riesgo suicida o un trastorno alimentario con riesgo médico, la autoayuda no basta: van primero los planes de esas variables.",
+        "Si la persona no avanza con la autoayuda, la terapia cognitivo-conductual para el perfeccionismo de esta variable es la opción con más ensayos."
+      ]
     }
   ]
 },
@@ -9841,7 +10096,8 @@ const VARIABLES = [
     "<strong>Si la ira aparece ante situaciones identificables</strong> —críticas, conflictos en el trabajo, la crianza, el tráfico— en una persona que por lo demás funciona, la inoculación de estrés adaptada a la ira es el plan con más tradición: el control de la ira fue una de sus primeras aplicaciones.",
     "<strong>Si la ira es el problema principal</strong> y se trabaja en consulta, en grupo, en una institución penitenciaria o junto con un tratamiento del consumo, el programa de Kassinove y Tafrate trae una secuencia para cada uno de esos contextos.",
     "<strong>Si la ira forma parte de una desregulación emocional más amplia</strong>, con impulsividad, relaciones inestables o conductas de riesgo, el plan dialéctico-conductual la trabaja dentro de ese cuadro. Si además hay autolesiones o consumo, se usa el plan completo de Desregulación emocional.",
-    "<strong>Si la ira es un rencor persistente hacia alguien por una injusticia concreta</strong> —se repasa la ofensa y hay deseos de revancha—, la variable Resentimiento y perdón trabaja ese resentimiento."
+    "<strong>Si la ira es un rencor persistente hacia alguien por una injusticia concreta</strong> —se repasa la ofensa y hay deseos de revancha—, la variable Resentimiento y perdón trabaja ese resentimiento.",
+    "<strong>Si la persona prefiere trabajar con un libro</strong> y la ira esconde dolor o miedo que no quiere sentir, la autoayuda guiada con aceptación y compromiso es una opción con respaldo conceptual; no reemplaza a los planes con ensayos cuando hay agresión."
   ],
   planes: [
     {
@@ -10405,6 +10661,131 @@ const VARIABLES = [
         "Si la ira se expresa como violencia contra otras personas, su protección y la ruta de atención van primero.",
         "La acción opuesta no busca bloquear la expresión de la ira, sino expresarla de otra forma (Linehan, 2020, cap. 9).",
         "El agua fría en la cara baja la frecuencia cardiaca: no se usa con riesgo cardiaco o alergia al frío sin autorización médica (Linehan, 2020, cap. 10)."
+      ]
+    },
+    {
+      id: "ira-act",
+      mod: "flex",
+      inst: ["STAXI-2", "AAQ-II"],
+      enf: "act",
+      nivel: "conceptual",
+      t: "Autoayuda guiada con aceptación y compromiso para la ira",
+      fuente: "Eifert et al., 2006",
+      cuando: "La ira le ha costado a la persona relaciones, trabajo o salud, y ya probó desahogarse, contenerse o controlarla sin resultado a la larga. Debajo de la ira hay dolor, miedo o juicios que no quiere sentir. Sirve <strong>cuando prefiere trabajar con un libro, con un acompañamiento breve</strong>, o como complemento de otro plan de esta variable (Eifert et al., 2006, introducción y caps. 2 a 4).",
+      respaldo: "El prólogo aclara que todavía no hay estudios controlados de esta terapia para la ira; el libro se apoya en procesos —aceptar las emociones y tomar distancia de los pensamientos— que han ayudado en muchos otros problemas, y en estudios que sugieren que la ira es en parte una forma de evitación. Pide al lector observar con atención si le está sirviendo (Eifert et al., 2006, prólogo). Para la ira como problema principal, los planes cognitivo-conductuales de esta variable tienen ensayos.",
+      secuencia: "<strong>Secuencia:</strong> sigue los diez capítulos del libro, uno por semana si se acompaña: los mitos sobre la ira; luchar con la ira no es la solución; el corazón de la lucha; controlar la ira y el dolor es el problema; cómo la mente crea la ira; salir de la trampa con la aceptación; practicar la aceptación con atención plena; tomar el control de la propia vida con los valores; enfrentar el dolor que alimenta la ira y perdonar; y comprometerse con acciones positivas. El terapeuta revisa las prácticas y ayuda con los bloqueos (Eifert et al., 2006).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Los mitos y el costo de la ira",
+          tecs: ["psicoeducacion", "desesperanza-creativa"],
+          obj: "Revisar las ideas que sostienen la ira y el costo que ha tenido en la vida de la persona.",
+          pasos: [
+            "Revisar los mitos: que la agresión es instintiva, que la frustración lleva siempre a la agresión, que desahogarse es sano, que la ira siempre ayuda y que la causan los demás.",
+            "Hacer el balance de lo que la ira le ha costado.",
+            "Revisar su historia de intentos de manejar la ira y si funcionaron a la larga."
+          ],
+          casa: "Leer la introducción y los capítulos 1 y 2, y completar el balance de costos.",
+          avance: "La persona reconoce que lo que ha hecho con la ira no le ha funcionado.",
+          fuente: "Eifert et al., 2006, caps. 1 y 2",
+          fichas: ["registro-ira"]
+        },
+        {
+          t: "El corazón de la lucha",
+          tecs: ["lucha-monstruo", "metafora-poligrafo"],
+          obj: "Soltar la lucha con la ira y ver qué hay detrás.",
+          pasos: [
+            "Proponer dejar el tira y afloja con la ira: la ira es un mensaje de que algo necesita atención.",
+            "Practicar el lugar del observador imparcial y trazar el mapa del propio proceso de ira: qué la dispara, qué siente, qué piensa y qué hace.",
+            "Distinguir dónde el control no funciona —los sentimientos y los pensamientos— de dónde sí: las elecciones y las acciones.",
+            "Preguntar si está listo para un cambio."
+          ],
+          casa: "Mapa del proceso de ira de una situación de la semana.",
+          avance: "La persona describe su ira como un proceso que puede observar.",
+          fuente: "Eifert et al., 2006, caps. 3 y 4"
+        },
+        {
+          t: "Cómo la mente crea la ira",
+          tecs: ["defusion"],
+          obj: "Ver cómo los juicios, las etiquetas y las historias de la mente avivan la ira, y tomar distancia de ellos.",
+          pasos: [
+            "Mostrar cómo la mente fabrica la ira con evaluaciones, culpas y «debería».",
+            "Practicar notar los pensamientos como pensamientos, sin comprar su contenido.",
+            "Identificar los juicios que más la enganchan."
+          ],
+          casa: "Anotar los juicios que aparecieron antes de enojarse.",
+          avance: "La persona nota sus juicios sin actuar de inmediato.",
+          fuente: "Eifert et al., 2006, cap. 5"
+        },
+        {
+          t: "Aceptación y atención plena ante la ira",
+          tecs: ["aceptacion", "momento-presente"],
+          obj: "Acercarse a la ira con aceptación y compasión, y no actuarla.",
+          pasos: [
+            "Practicar los cuatro pasos de la aceptación: reconocer la ira, aceptar la situación como es, identificar el dolor, el miedo y los juicios que la alimentan, y responder con perdón y compasión.",
+            "Aclarar que aceptar no es aprobar lo que pasó ni resignarse.",
+            "Practicar antes de enojarse; y cuando aparece la ira, parar, mirar y escuchar: observar las señales del cuerpo (calor, mandíbula apretada, puños) sin avivarlas, y vigilar lo que se dice."
+          ],
+          casa: "Práctica diaria de atención plena y observar las señales de alerta cuando aparezca la ira.",
+          avance: "La persona detecta antes las señales y deja pasar la ira sin actuarla.",
+          fuente: "Eifert et al., 2006, caps. 6 y 7"
+        },
+        {
+          t: "Valores: dejar de alimentar al tigre",
+          tecs: ["hoja-valores", "ejercicio-funeral"],
+          obj: "Conectar con lo que la persona quiere que represente su vida, en lugar de seguir alimentando la ira.",
+          pasos: [
+            "Presentar la metáfora del tigre de la ira: cada vez que se actúa la ira, el tigre crece un poco.",
+            "Distinguir metas de valores.",
+            "Explorar qué quiere que represente su vida."
+          ],
+          casa: "Escribir lo que quiere que represente su vida en las áreas que la ira ha dañado.",
+          avance: "La persona nombra valores que la ira le impedía vivir.",
+          fuente: "Eifert et al., 2006, cap. 8",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Enfrentar el dolor y perdonar",
+          tecs: ["exposicion-emocional", "perdon-accion"],
+          obj: "Entrar en contacto con el dolor que hay detrás de la ira y abrir el camino del perdón.",
+          pasos: [
+            "Practicar quedarse quieto con la ira y el dolor, reconocerlos y no huir de ellos.",
+            "Presentar el perdón como algo que no es aprobar ni olvidar el daño, sino soltar: un regalo para uno mismo que no necesita a la otra persona.",
+            "Recorrer los pasos hacia el perdón que propone el libro, sin forzarlo."
+          ],
+          casa: "Practicar en casa los ejercicios de contacto con el dolor antes de usarlos en situaciones de ira.",
+          avance: "La persona puede quedarse con el dolor sin convertirlo en ira.",
+          fuente: "Eifert et al., 2006, cap. 9"
+        },
+        {
+          t: "Acción positiva y amabilidad",
+          tecs: ["accion-comprometida", "pausa-autocompasion", "prevencion-recaidas"],
+          obj: "Comprometerse con metas guiadas por valores y cuidar de sí y de los demás.",
+          pasos: [
+            "Fijar metas concretas ligadas a los valores y planear cómo lograrlas.",
+            "Comprometerse con un acto de amabilidad hacia sí mismo cada día, sobre todo cuando está cansado o estresado, solo o con ansias de algo.",
+            "Practicar actos de amabilidad con los demás, sin esperar algo a cambio.",
+            "Prever las situaciones que disparan la ira y qué hará."
+          ],
+          casa: "Metas de la semana y un acto de amabilidad diario.",
+          avance: "Bajan los episodios de ira y aumentan las acciones guiadas por valores.",
+          fuente: "Eifert et al., 2006, cap. 10",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>STAXI-2</strong> al inicio y al final.",
+        "<strong>AAQ-II</strong> para la evitación experiencial.",
+        "Registro de episodios de ira: frecuencia, intensidad y lo que hizo."
+      ],
+      adapt: [
+        "<strong>Autoayuda pura o acompañada:</strong> el libro está escrito para la persona; con un acompañamiento breve se revisan los ejercicios y se ayuda con los bloqueos.",
+        "<strong>Complemento:</strong> puede sumarse a los planes cognitivo-conductuales de esta variable para trabajar la evitación del dolor que hay detrás de la ira."
+      ],
+      cuidado: [
+        "Si hay violencia contra otras personas, la seguridad de quienes la sufren va primero, y la autoayuda no basta; ver también <em>Violencia de pareja</em>.",
+        "Aceptar la ira no es actuarla ni justificarla: se acepta lo que se siente y se elige lo que se hace (Eifert et al., 2006, cap. 6).",
+        "Como no hay estudios de esta terapia para la ira, revisar con la persona, cada pocas semanas, si le está sirviendo (Eifert et al., 2006, prólogo)."
       ]
     }
   ]
@@ -13340,7 +13721,8 @@ const VARIABLES = [
     "<strong>Si el estrés es sostenido y viene con tensión física, dolor o una enfermedad crónica</strong>, la reducción del estrés basada en mindfulness trabaja la forma de responder a la experiencia del momento; se ha aplicado sobre todo en medicina conductual.",
     "<strong>Si la persona lleva tiempo luchando por no sentir el estrés</strong> y esa lucha ya le cuesta en su vida, el plan de aceptación y compromiso trabaja sobre los valores.",
     "<strong>Si la persona está en un contexto de adversidad</strong> —crisis, desplazamiento, pérdida de recursos— o prefiere un formato breve y autoaplicado, la guía «Haz lo que importa» de la OPS enseña en cinco partes habilidades de aceptación y compromiso.",
-    "Para promover el bienestar en población general, los ejercicios del plan de psicología positiva de Depresión se han estudiado también en formato autoaplicado y en grupos comunitarios, con efectos pequeños y sostenidos a los tres a seis meses (Bolier et al.). Si quien consulta cuida a una persona dependiente, ver <em>Sobrecarga del cuidador</em>; si el estrés es del trabajo, <em>Estrés laboral y burnout</em>."
+    "Para promover el bienestar en población general, los ejercicios del plan de psicología positiva de Depresión se han estudiado también en formato autoaplicado y en grupos comunitarios, con efectos pequeños y sostenidos a los tres a seis meses (Bolier et al.). Si quien consulta cuida a una persona dependiente, ver <em>Sobrecarga del cuidador</em>; si el estrés es del trabajo, <em>Estrés laboral y burnout</em>.",
+    "<strong>Si hay poco tiempo</strong> —atención primaria, hospital, una sola consulta probable—, la aceptación y compromiso focalizada trabaja en una a cuatro sesiones, con una habilidad para llevarse en cada una."
   ],
   planes: [
     {
@@ -13772,6 +14154,116 @@ const VARIABLES = [
       cuidado: [
         "Es una guía de autoayuda: si hay depresión moderada o grave, riesgo suicida o síntomas graves, se atienden con el plan correspondiente.",
         "Los ejercicios no eliminan los pensamientos y sentimientos difíciles; su finalidad es ayudar a manejar el estrés (OPS, 2022a, parte 1)."
+      ]
+    },
+    {
+      id: "estres-fact",
+      mod: "flex",
+      inst: ["K-10", "AAQ-II"],
+      enf: "act",
+      nivel: "preliminar",
+      t: "Aceptación y compromiso focalizada en pocas sesiones",
+      fuente: "Strosahl et al., 2012",
+      cuando: "La persona consulta en un servicio con poco tiempo —atención primaria, hospital, consejería universitaria, un programa de empleados, una crisis— o probablemente vendrá pocas veces, y está atrapada en intentar quitarse el malestar mientras su vida se estrecha. Sirve para problemas muy distintos, porque trabaja los mismos procesos en todos: la apertura, la conciencia y el compromiso con lo que importa (Strosahl et al., 2012, introducción y caps. 1 a 3).",
+      respaldo: "En un estudio controlado en un sistema de salud mental, los terapeutas entrenados en este enfoque lograron los mismos resultados clínicos que los entrenados en terapia breve centrada en soluciones, con menos abandono, más satisfacción, más cierres de mutuo acuerdo y menos derivaciones a psiquiatría; ambos grupos necesitaron unas cuatro sesiones. Muchos estudios de la terapia de aceptación y compromiso usan intervenciones de dos a cuatro sesiones o un taller de un día (Strosahl et al., 2012, introducción). El enfoque breve en sí tiene un solo estudio controlado.",
+      secuencia: "<strong>Secuencia:</strong> de una a cuatro sesiones, a veces separadas por un mes o dos para que la persona ensaye y asimile lo nuevo. Se supone que cada sesión puede ser la única: en la primera ya se interviene. Cada sesión combina la entrevista focalizada, la elección de una dirección de vida y uno o dos ejercicios de los tres pilares —conciencia, apertura y compromiso—, con una tarea para instigar una conducta nueva y asimilar lo que pase (Strosahl et al., 2012, caps. 3 a 6).",
+      esc: ["primer-nivel", "hospital", "salud-mental"],
+      actividades: [
+        {
+          t: "Entrevista focalizada",
+          tecs: ["entrevista-clinica", "desesperanza-creativa"],
+          obj: "Obtener en poco tiempo la información más útil y que la persona contacte con el costo de sus estrategias de control.",
+          pasos: [
+            "Hacer las cuatro preguntas de foco: qué busca, qué ha intentado, cómo le ha funcionado y qué le ha costado.",
+            "Observar las señales de lo que duele: evitación en la sesión —cambiar de tema, no contestar— y reglas dichas con mucha certeza («no puedo… mientras…»).",
+            "Reformular el problema en términos de lo que la persona hace con el malestar, no del malestar mismo."
+          ],
+          casa: "Notar durante la semana una situación en que usó su estrategia de siempre y qué le costó.",
+          avance: "La persona describe el costo de sus estrategias con sus palabras.",
+          fuente: "Strosahl et al., 2012, caps. 4 y 5"
+        },
+        {
+          t: "¿Qué vida elegiría si pudiera elegir?",
+          tecs: ["valores", "camino-de-vida"],
+          obj: "Conectar con una dirección de vida que justifique arriesgarse a hacer algo distinto.",
+          pasos: [
+            "Preguntar qué vida elegiría si no hubiera restricciones, dejando para después las barreras y las comparaciones.",
+            "Hacer el ejercicio del camino de vida: una línea con «más control» en un extremo y «más sentido» en el otro, donde la persona marca hacia dónde va hoy y revisa costos y beneficios del control.",
+            "Alternativamente, el ejercicio del norte verdadero: sus valores, sus estrategias actuales y si funcionan, y qué habilidades necesita para el viaje.",
+            "Identificar conductas que indicarían que va hacia más sentido y quién o qué la ayuda."
+          ],
+          casa: "Una conducta concreta hacia más sentido antes de la próxima consulta.",
+          avance: "La persona nombra una dirección y un primer paso.",
+          fuente: "Strosahl et al., 2012, caps. 4 y 5 y apéndice"
+        },
+        {
+          t: "Formulación breve",
+          tecs: ["formulacion-caso", "flexibilidad-psicologica"],
+          obj: "Si la persona no responde rápido, precisar qué pilar fortalecer.",
+          pasos: [
+            "Calificar después de la sesión, de 0 a 10, la apertura, la conciencia y el compromiso de la persona.",
+            "Usar los pilares más fuertes para apuntalar el más débil.",
+            "Con la herramienta de los cuatro cuadros, separar las conductas que funcionan, para aumentarlas, de las que no, para disminuirlas."
+          ],
+          casa: "Según el pilar elegido.",
+          avance: "El terapeuta tiene claro qué habilidad entrenar en la próxima sesión.",
+          fuente: "Strosahl et al., 2012, cap. 5 y apéndice"
+        },
+        {
+          t: "Conciencia",
+          tecs: ["momento-presente", "yo-contexto"],
+          obj: "Que la persona pueda estar en el presente y mirar su historia desde un lugar más amplio.",
+          pasos: [
+            "Practicar la respiración en el presente, un escáner corporal breve o simplemente notar lo que hay.",
+            "Practicar el yo pequeño y el yo grande, o ser testigo de la propia experiencia.",
+            "Proponer una actividad cotidiana hecha con atención."
+          ],
+          casa: "Un ejercicio breve de conciencia cada día.",
+          avance: "La persona sale antes de la rumiación y vuelve al presente.",
+          fuente: "Strosahl et al., 2012, cap. 6"
+        },
+        {
+          t: "Apertura",
+          tecs: ["aceptacion", "defusion"],
+          obj: "Hacer espacio a lo que duele y tomar distancia de las reglas que sostienen la evitación.",
+          pasos: [
+            "Practicar ver los pensamientos como nubes en el cielo, decir despacio lo que asusta o nombrarlo y jugar con él.",
+            "Enfrentar al abusón: poner la historia que oscurece el presente y el futuro frente a los valores que la persona declaró.",
+            "Dar pasos valientes pequeños hacia lo que se evita."
+          ],
+          casa: "Un paso valiente pequeño y lo que apareció.",
+          avance: "La persona puede quedarse con lo que siente y actuar.",
+          fuente: "Strosahl et al., 2012, cap. 6"
+        },
+        {
+          t: "Compromiso y asimilación",
+          tecs: ["accion-comprometida"],
+          obj: "Instigar conductas nuevas y aprender de lo que pasa al hacerlas.",
+          pasos: [
+            "Presentar el cambio como un experimento: probar una conducta nueva y ver qué pasa.",
+            "Usar ejercicios como la balanza de la elección —siempre habrá «razones» para la otra dirección— o palma arriba y palma abajo, para mostrar que actuar según los valores trae consigo lo difícil.",
+            "En la siguiente consulta, asimilar: qué aprendió, qué apareció al intentarlo, cómo se siente ahora.",
+            "Repetir hasta que la persona instigue y asimile por su cuenta, y espaciar las consultas."
+          ],
+          casa: "Una conducta nueva guiada por valores y una nota de lo que pasó.",
+          avance: "La persona prueba conductas nuevas sin necesitar al terapeuta para empezar.",
+          fuente: "Strosahl et al., 2012, caps. 3 y 6",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      medir: [
+        "<strong>K-10</strong> o el instrumento del problema que motivó la consulta.",
+        "<strong>AAQ-II</strong> para la flexibilidad psicológica.",
+        "Calificación de 0 a 10 de la apertura, la conciencia y el compromiso después de cada sesión."
+      ],
+      adapt: [
+        "<strong>Atención primaria y hospital:</strong> con consultas breves, en cada consulta se enseña al menos una habilidad que la persona pueda llevarse (Harris, 2021a, cap. 33).",
+        "<strong>Grupos y clases:</strong> el protocolo del camino de vida es una clase de tres sesiones de 60 a 90 minutos para cualquier persona (Strosahl et al., 2012, cap. 12).",
+        "<strong>Parejas:</strong> el libro trae cinco estrategias para aplicar este enfoque con parejas (Strosahl et al., 2012, cap. 11)."
+      ],
+      cuidado: [
+        "La brevedad no justifica saltarse la evaluación del riesgo: con ideas suicidas, violencia o una crisis, la ruta de atención va primero.",
+        "Si la persona no mejora con pocas sesiones, se hace la formulación más detallada o se pasa a un plan más extenso de la variable que corresponda."
       ]
     }
   ]
@@ -20619,7 +21111,8 @@ const VARIABLES = [
   sub: "Lo que se interviene es una conducta de salud concreta que la persona quiere o necesita cambiar: la actividad física, la alimentación, el tabaco, el sueño, el autocuidado de una enfermedad crónica. Aplica en prevención y en enfermedad médica. Si el problema es tomar la medicación, ver Adherencia al tratamiento; si es un consumo problemático, ver Consumo de sustancias.",
   elegir: [
     "<strong>Si no hay un protocolo listo para esa conducta en ese contexto</strong>, la rueda del cambio de conducta ofrece un método para diseñarlo: diagnosticar qué falla —capacidad, oportunidad o motivación— y elegir las intervenciones que corresponden.",
-    "Si la persona duda de si quiere cambiar, empezar por la entrevista motivacional del plan de <em>Consumo de sustancias</em> o de <em>Adherencia al tratamiento</em>."
+    "Si la persona duda de si quiere cambiar, empezar por la entrevista motivacional del plan de <em>Consumo de sustancias</em> o de <em>Adherencia al tratamiento</em>.",
+    "En atención primaria, con poco tiempo, la aceptación y compromiso focalizada de la variable <em>Estrés percibido</em> trabaja el cambio en pocas sesiones."
   ],
   planes: [
     {
@@ -20712,7 +21205,8 @@ const VARIABLES = [
   sub: "La reacción inmediata ante un acontecimiento médico que cambia la vida de golpe: una amputación por pie diabético, una lesión medular, un infarto, un diagnóstico de cáncer o la pérdida de la visión. La variable es la reacción al hecho —choque, ansiedad, negación, duelo, ira— y su evolución hacia el ajuste, no el repertorio de afrontamiento de la persona.",
   elegir: [
     "<strong>El plan se organiza por la reacción que predomina en cada momento</strong>, no por una secuencia fija: al principio, estrategias de apoyo y de expresión; más adelante, estrategias activas y dirigidas a metas.",
-    "Cuando lo que se quiere evaluar o entrenar es el afrontamiento en sí, corresponde la variable Estrés y afrontamiento. Si hay ideación suicida, primero el plan de riesgo suicida."
+    "Cuando lo que se quiere evaluar o entrenar es el afrontamiento en sí, corresponde la variable Estrés y afrontamiento. Si hay ideación suicida, primero el plan de riesgo suicida.",
+    "Si la persona prefiere trabajar con un libro, la autoayuda guiada con aceptación y compromiso de la variable <em>Duelo</em> sirve también para la pérdida de la salud o de una función del cuerpo."
   ],
   planes: [
     {
@@ -23295,7 +23789,18 @@ const GLOSARIO = [
   fuente: "Morris et al., 2013, cap. 7" },
 { k: "cuatro-preguntas", t: "Cuatro preguntas del esquema", tipo: "Técnica", enf: ["act"],
   d: "Preguntas para tomar distancia de los pensamientos que disparan los esquemas interpersonales: cuán antiguo es el pensamiento, para qué sirve —de qué dolor intenta proteger—, cómo le está funcionando a la persona y si estaría dispuesta a tenerlo y aun así actuar según sus valores en sus relaciones.",
-  fuente: "McKay et al., 2012, cap. 6" }
+  fuente: "McKay et al., 2012, cap. 6" },
+/* ---------- Aceptación y compromiso, bloque 4 (2026-10-26) ---------- */
+{ k: "camino-de-vida", t: "Camino de vida", alias: ["ejercicio del camino de vida"], tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio breve para ver hacia dónde va la vida de la persona: se dibuja una línea con «más control» en un extremo —lo que intenta controlar, evitar o quitarse— y «más sentido» en el otro —la vida que elegiría si pudiera—. La persona marca con una flecha dónde está y hacia dónde se mueve, y se revisan los costos y beneficios del control y las conductas que la llevarían hacia más sentido.",
+  como: ["Dibujar la línea y nombrar los dos extremos con las palabras de la persona.",
+         "Pedirle que marque con una flecha dónde está estos días y hacia dónde se mueve.",
+         "Revisar qué le cuesta y qué le da buscar el control.",
+         "Preguntar qué conductas mostrarían que va hacia más sentido, qué hará cuando se atasque y quién la ayuda."],
+  fuente: "Strosahl et al., 2012, cap. 5 y apéndice" },
+{ k: "formula-desafio", t: "Fórmula del desafío", tipo: "Técnica", enf: ["act"],
+  d: "Ante una situación difícil, siempre hay dos o tres opciones: dejarla; quedarse y vivir según los valores —mejorar lo que se pueda, hacer espacio al dolor inevitable y tratarse con amabilidad—; o quedarse y hacer cosas que no cambian nada o la empeoran. La tercera alivia un momento, pero a la larga quita vida. Sirve para recuperar la elección cuando la persona se siente sin salida.",
+  fuente: "Harris, 2021b, cap. 15" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
