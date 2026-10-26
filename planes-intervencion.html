@@ -2320,6 +2320,31 @@ REFERENCIAS.push(
   { k: "Meyers y Wolfe, 2004", ref: "Meyers, R. J. y Wolfe, B. L. (2004). <em>Get your loved one sober: Alternatives to nagging, pleading, and threatening</em>. Hazelden." }
 );
 
+/* Manuales de aceptación y compromiso agregados a la biblioteca el
+   2026-10-26 (bloque 1: ansiedad, depresión, obsesiones, ansiedad
+   generalizada y trauma). Cuando un libro no trae ensayos propios, el
+   plan lo dice en su respaldo; las cifras son las que reportan los autores.
+   Zurita Ona (2020) es un cuaderno de trabajo para el consultante. */
+Object.assign(MODELOS, {
+  "roemer-abbt": {
+    tipo: "explicativo",
+    t: "Modelo conductual basado en la aceptación",
+    autor: "Roemer y Orsillo",
+    d: "Los problemas clínicos, y en particular la ansiedad generalizada, se mantienen por tres procesos que se alimentan entre sí. Una relación problemática con la experiencia interna: conciencia estrecha, juicio crítico de lo que se siente y fusión con los pensamientos. La evitación experiencial: intentos de no sentir o de cambiar lo que se siente, entre ellos la preocupación misma. Y la restricción de la conducta: la persona deja de actuar en las áreas que valora. La terapia cultiva una conciencia abierta, curiosa y compasiva, reduce la evitación y aumenta la acción valiosa.",
+    dim: ["Conciencia estrecha, crítica y fusionada", "Evitación experiencial", "Restricción de la acción valiosa"],
+    fuente: "Roemer y Orsillo, 2009, caps. 1 y 3"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Eifert y Forsyth, 2005", ref: "Eifert, G. H. y Forsyth, J. P. (2005). <em>Acceptance and commitment therapy for anxiety disorders: A practitioner's treatment guide to using mindfulness, acceptance, and values-based behavior change strategies</em>. New Harbinger." },
+  { k: "Zettle, 2007", ref: "Zettle, R. D. (2007). <em>ACT for depression: A clinician's guide to using acceptance and commitment therapy in treating depression</em>. New Harbinger." },
+  { k: "Zurita Ona, 2020", ref: "Zurita Ona, P. E. (2020). <em>Living beyond OCD using acceptance and commitment therapy: A workbook for adults</em>. Routledge." },
+  { k: "Roemer y Orsillo, 2009", ref: "Roemer, L. y Orsillo, S. M. (2009). <em>Mindfulness- and acceptance-based behavioral therapies in practice</em>. Guilford Press." },
+  { k: "Walser y Westrup, 2007", ref: "Walser, R. D. y Westrup, D. (2007). <em>Acceptance and commitment therapy for the treatment of post-traumatic stress disorder and trauma-related problems: A practitioner's guide to using mindfulness and acceptance strategies</em>. New Harbinger." },
+  { k: "Harris, 2021a", ref: "Harris, R. (2021a). <em>Trauma-focused ACT: A practitioner's guide to working with mind, body, and emotion using acceptance and commitment therapy</em>. Context Press / New Harbinger." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -3038,7 +3063,7 @@ const VARIABLES = [
     "<strong>Si conviven varios cuadros emocionales</strong> —ansiedad con depresión, varios trastornos de ansiedad a la vez— o el problema es cómo la persona responde a cualquier emoción intensa, el Protocolo Unificado los trabaja juntos.",
     "<strong>Si lo que predomina es una lucha prolongada por no sentir ansiedad</strong> que ya ha estrechado la vida de la persona, el de aceptación y compromiso apunta a ese proceso.",
     "Todos usan la exposición, con fines distintos: en los cognitivo-conductuales, para aprender que lo temido no ocurre o se puede manejar; en el de aceptación, para ampliar lo que la persona hace con la ansiedad presente.",
-    "<strong>Si se trata de ansiedad generalizada</strong> y la meta, además de bajar la preocupación, es recuperar el funcionamiento, la terapia cognitivo-conductual seguida de terapia de bienestar dio mejores resultados que la cognitivo-conductual sola en un ensayo pequeño. Si el núcleo es no tolerar la incertidumbre, está la variable propia."
+    "<strong>Si se trata de ansiedad generalizada</strong> y la meta, además de bajar la preocupación, es recuperar el funcionamiento, la terapia cognitivo-conductual seguida de terapia de bienestar dio mejores resultados que la cognitivo-conductual sola en un ensayo pequeño. Si el núcleo es no tolerar la incertidumbre, está la variable propia; si la preocupación crónica se sostiene en la evitación de las propias emociones, la variable <em>Rumiación y preocupación</em> trae la terapia conductual basada en la aceptación."
   ],
   planes: [
     {
@@ -3048,119 +3073,139 @@ const VARIABLES = [
       enf: "act",
       nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
-      fuente: "Hayes et al., 2012, caps. 5 a 11 · Harris, 2009 · Luoma et al., 2017",
-      cuando: "La persona lleva tiempo intentando controlar la ansiedad —evitar, distraerse, pedir compañía, medicarse, esperar a estar tranquila para actuar— y cada vez más ámbitos de su vida se organizan alrededor de no sentirla. Su meta declarada es <strong>dejar de sentir ansiedad para poder vivir</strong>. El plan cambia esa meta: vivir hacia lo que le importa, con la ansiedad presente cuando aparezca.",
-      respaldo: "Una revisión de metaanálisis encontró que la terapia de aceptación y compromiso es eficaz en los trastornos de ansiedad, con efectos comparables a los de los tratamientos establecidos y superiores a los de las condiciones de control (Gloster et al., 2020). Hay ensayos controlados en ansiedad y fobia social, preocupación y patrones obsesivo-compulsivos, en formato breve o amplio, individual o grupal, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). La evitación experiencial es el proceso sobre el que el plan interviene y el que el AAQ-II mide.",
-      secuencia: "<strong>Secuencia:</strong> los seis procesos del modelo no se trabajan en un orden fijo: se entra por el que la persona trae a la sesión y se vuelve a los demás (Harris, 2009, cap. «The House of ACT»). El orden de abajo es el habitual cuando la agenda de control es fuerte: primero se examina si el control funciona, después se abren los valores que dan sentido a dejar de luchar y se entrenan la defusión, la disposición y la acción (Hayes et al., 2012, cap. 5).",
+      fuente: "Eifert y Forsyth, 2005, caps. 6 a 11",
+      cuando: "La persona lleva tiempo intentando controlar la ansiedad —evitar, distraerse, pedir compañía, medicarse, esperar a estar tranquila para actuar— y cada vez más ámbitos de su vida se organizan alrededor de no sentirla. Su meta declarada es <strong>dejar de sentir ansiedad para poder vivir</strong>. El plan cambia esa meta: vivir hacia lo que le importa, con la ansiedad presente cuando aparezca. Sirve para el pánico, la agorafobia, la ansiedad social, las fobias y la ansiedad generalizada, porque trabaja lo que tienen en común: la lucha contra la propia ansiedad (Eifert y Forsyth, 2005, caps. 2 y 4).",
+      respaldo: "Una revisión de metaanálisis encontró que la terapia de aceptación y compromiso es eficaz en los trastornos de ansiedad, con efectos comparables a los de los tratamientos establecidos y superiores a los de las condiciones de control (Gloster et al., 2020). El programa de doce sesiones de Eifert y Forsyth no se ha probado como paquete completo; sus autores señalan que casi todos sus componentes tienen apoyo en estudios de laboratorio o en ensayos clínicos (Eifert y Forsyth, 2005, cap. 12). La evitación experiencial es el proceso sobre el que el plan interviene y el que el AAQ-II mide.",
+      secuencia: "<strong>Secuencia:</strong> doce sesiones de una hora. La 1 explica la ansiedad y orienta el tratamiento; la 2 y la 3 examinan el costo de controlarla y abren la desesperanza creativa; la 4 y la 5 entrenan la aceptación con mindfulness, el yo observador y los valores; la 6 introduce los ejercicios FEEL, de exposición al servicio de los valores; de la 7 a la 12 se repiten esos ejercicios, se activa la vida guiada por valores y se trabajan las barreras; la 12 cierra con la prevención de recaídas. Cada sesión empieza con un ejercicio breve de centramiento. El número de sesiones es orientativo: con algunas personas se avanza más rápido y con otras hacen falta más, y los autores recomiendan no apurar el proceso (Eifert y Forsyth, 2005, cap. 6).",
       esc: ["hospital","salud-mental","primer-nivel"],
       actividades: [
         {
-          t: "Desesperanza creativa",
-          tecs: ["desesperanza-creativa", "metafora-hoyo"],
-          obj: "Que la persona compruebe, con su propia experiencia y sin que el terapeuta la convenza, que sus intentos de controlar la ansiedad no le han funcionado a la larga y le han costado vida.",
+          t: "La ansiedad y lo que la vuelve un problema",
+          tecs: ["psicoeducacion", "autorregistro"],
+          obj: "Que la persona entienda la función normal del miedo y la ansiedad, vea cómo su lucha contra ellos le ha estrechado la vida y conozca un tratamiento que se aprende haciendo.",
           pasos: [
-            "Pedirle que describa qué ha supuesto la ansiedad en su vida: qué ha dejado de hacer, qué evita, qué le preocupa.",
-            "Hacer con ella la lista de todo lo que ha intentado para no sentirla: evitar lugares, distraerse, pedir compañía, beber, medicarse, razonar consigo misma, esperar a sentirse lista.",
-            "Recorrer la lista con tres preguntas: «¿Qué ha probado?», «¿Cómo le ha funcionado a la larga?» y «¿Qué le ha costado?» (en salud, relaciones, trabajo, dinero y tiempo).",
-            "Validar el esfuerzo: cualquier persona razonable habría hecho lo mismo, y muchas de esas estrategias alivian en el momento.",
-            "Presentar la metáfora del hombre en el hoyo: la persona ha cavado con todas sus fuerzas y el hoyo solo crece; lo que no sirve no es ella, es la pala. Cerrar sin ofrecer todavía la salida: «Si cavar no funciona, ¿qué haría con la pala?»."
+            "Pedirle un episodio reciente de miedo o de preocupación, con lo que hizo durante y después, sin entrar en una historia larga de los síntomas. Calificar con ella, de 0 a 8, cuánto le angustia y cuánto le limita cada área de ansiedad.",
+            "Explicar con sus propios ejemplos el miedo (presente, ante un peligro) y la ansiedad (futura, ante lo que podría pasar), sus tres componentes —sensaciones, pensamientos y conductas— y para qué sirven: nos protegen y nos movilizan.",
+            "Buscar con ella un ejemplo de cómo evitar la ansiedad le ha hecho dejar algo importante. La ansiedad se vuelve un problema cuando la persona organiza su vida alrededor de no sentirla.",
+            "Si pregunta si la ansiedad se irá, no responder que bajarla no es la meta: presentar el tratamiento como la oportunidad de aprender maneras más flexibles de responder a la ansiedad, para que deje de estorbar lo que quiere hacer.",
+            "Explicar que lo nuevo se aprende con la experiencia, como montar en bicicleta, y que lo más importante pasa entre sesiones. Cerrar con un ejercicio de centramiento de cinco minutos, pidiendo antes su permiso."
           ],
-          casa: "Registro de intentos de control: qué hizo para no sentir, qué alivio le dio y qué le costó.",
-          avance: "La persona distingue que lo que no ha funcionado es la estrategia de control, no ella misma, y se muestra dispuesta a probar algo distinto aunque no sepa todavía qué.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5",
+          casa: "Registrar después de cada episodio la situación, lo que pensó, sintió e hizo, cuán dispuesta estuvo a sentirlo y en qué le estorbó; y calificar cada noche, de 0 a 10, el malestar por la ansiedad, el esfuerzo por quitarla, cuán vital fue el día y cuánto actuó según sus valores.",
+          avance: "La persona describe sus episodios en términos de lo que hace con la ansiedad y de lo que deja de hacer, y acepta registrar su experiencia.",
+          fuente: "Eifert y Forsyth, 2005, cap. 7",
           fichas: ["registro-control"]
         },
         {
-          t: "El control es el problema",
-          tecs: ["metafora-poligrafo", "lucha-monstruo"],
-          obj: "Mostrar que el control que funciona con el mundo exterior no funciona con los pensamientos y las emociones: aplicado a la ansiedad, produce más ansiedad.",
+          t: "El costo del control y la desesperanza creativa",
+          tecs: ["desesperanza-creativa", "trampa-dedos", "lucha-monstruo", "ejercicio-funeral"],
+          obj: "Que la persona compruebe, con su propia experiencia, que sus intentos de controlar la ansiedad no le han funcionado a la larga y le han costado vida, y que se abra a hacer algo distinto.",
           pasos: [
-            "Contrastar con ejemplos dónde el control sí sirve —si no le gusta el color de la pared, la pinta— y dónde no: pensamientos, emociones, recuerdos y sensaciones.",
-            "Presentar la metáfora del polígrafo: si la vida de la persona dependiera de no ponerse nerviosa mientras está conectada a un detector ultrasensible, el menor asomo de nervios la delataría.",
-            "Presentar la lucha con el monstruo de la ansiedad, si es posible actuándola con una correa: tirar más fuerte no lo vence; soltar la cuerda no hace desaparecer al monstruo, pero libera las manos para hacer otra cosa.",
-            "Preguntar qué haría con el tiempo y la energía que hoy gasta en esa lucha."
+            "Revisar el registro y listar con ella todo lo que ha hecho para no sentir ansiedad, incluidas las evitaciones sutiles. Preguntar por cada estrategia si funcionó a la larga y qué le costó.",
+            "Sostener la desesperanza sin rescatarla: lo que no tiene remedio son las soluciones intentadas, no ella. Ella no está desahuciada: lo están sus intentos de control.",
+            "Usar la trampa china para los dedos: tirar para sacar los dedos aprieta más; solo empujarlos hacia dentro da espacio. Luego el tira y afloja con el monstruo de la ansiedad, con una toalla: soltar la cuerda es una opción.",
+            "Introducir los valores como la alternativa a manejar la ansiedad, con el ejercicio del epitafio: qué quisiera que dijera su vida.",
+            "Practicar en sesión un ejercicio de aceptación de pensamientos y sentimientos: observar lo que aparece en lugar de reaccionar."
           ],
-          casa: "Anotar las situaciones de la semana en que tratar de no sentir ansiedad la aumentó.",
-          avance: "La persona empieza a hablar de la ansiedad como algo que tiene, no como algo que debe eliminar antes de actuar.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5 · Luoma et al., 2017, cap. 2"
+          casa: "Practicar el ejercicio de aceptación al menos 20 minutos al día, anotar qué dejó de hacer por la ansiedad esa semana y escribir su propio epitafio.",
+          avance: "La persona reconoce que el control es el problema y no la solución, y está dispuesta a probar otra cosa aunque no sepa todavía qué.",
+          fuente: "Eifert y Forsyth, 2005, cap. 8",
+          fichas: ["registro-control"]
         },
         {
-          t: "Clarificación de valores",
-          tecs: ["hoja-valores", "ejercicio-funeral"],
-          obj: "Definir las direcciones de vida que la ansiedad ha ido postergando: son la razón para estar dispuesto a sentirla.",
+          t: "Aceptar con mindfulness y elegir direcciones",
+          tecs: ["aceptacion", "metafora-poligrafo", "hoja-valores"],
+          obj: "Aprender a observar la ansiedad sin juzgarla ni intentar cambiarla, distinguir lo que se puede controlar de lo que no y empezar a definir valores y metas.",
           pasos: [
-            "Distinguir valor de meta: la meta se cumple y se tacha; el valor es una dirección, como ir hacia el oeste, que nunca se termina de alcanzar.",
-            "Completar juntos la hoja de valores por áreas: familia, pareja, amistades, trabajo, formación, ocio, salud, comunidad y espiritualidad.",
-            "Usar el ejercicio del funeral: la persona imagina qué le gustaría que dijeran de ella quienes la conocieron, si hubiera vivido según lo que le importa.",
-            "Puntuar en cada área la importancia (0 a 10) y cuánto actuó según ella la última semana (0 a 10). Empezar por el área con más importancia y menos acción.",
-            "Cuidar que la dirección sea de la persona y no un «debería» impuesto: preguntar «si nadie fuera a enterarse, ¿seguiría eligiendo esto?»."
+            "Guiar el ejercicio de aceptación de la ansiedad: observar las sensaciones, pensamientos e impulsos desde la posición de quien los nota, sin sostenerlos ni echarlos.",
+            "Aclarar que la aceptación no es un truco nuevo para que la ansiedad baje; si se usa para eso, se convierte en otra forma de control.",
+            "Usar la metáfora del polígrafo para contrastar lo que sí se controla (lo que uno hace) con lo que no (lo que siente y piensa).",
+            "Distinguir valores de metas y llenar con ella la hoja de direcciones valiosas por áreas de vida."
           ],
-          casa: "Revisar la hoja de valores y notar en qué momentos de la semana la ansiedad la alejó de una dirección valiosa.",
-          avance: "Terapeuta y persona coinciden en direcciones concretas, y ella se muestra dispuesta a traducirlas en acciones.",
-          fuente: "Hayes et al., 2012, cap. 10 · Harris, 2009, cap. «Know What Matters»",
+          casa: "Practicar 20 minutos diarios el ejercicio de aceptación de la ansiedad y completar la hoja de direcciones valiosas.",
+          avance: "La persona puede quedarse unos minutos con la ansiedad observándola, y nombra direcciones de vida que le importan.",
+          fuente: "Eifert y Forsyth, 2005, cap. 9 (sesión 4)",
           fichas: ["hoja-valores"]
         },
         {
-          t: "Defusión cognitiva y yo como contexto",
-          tecs: ["defusion", "desliteralizacion", "metafora-autobus", "ejercicio-observador"],
-          obj: "Que la persona vea los pensamientos de amenaza como lo que son —palabras e imágenes que pasan por la mente— y no como hechos ni como órdenes, desde una perspectiva que no se confunde con ellos.",
+          t: "El yo observador y la brújula vital",
+          tecs: ["metafora-ajedrez", "yo-contexto", "brujula-vital"],
+          obj: "Afianzar la perspectiva de quien observa la ansiedad sin ser la ansiedad y dejar claro para qué valdrá la pena exponerse.",
           pasos: [
-            "Pedirle que diga su pensamiento más frecuente («me va a dar algo») y repetirlo luego con el prefijo «estoy teniendo el pensamiento de que…». Preguntar qué cambió.",
-            "Hacer la repetición de una palabra: primero una neutra («leche») durante 30 segundos, luego una palabra cargada de su propio pensamiento, hasta que suene como un ruido.",
-            "Presentar la metáfora de los pasajeros del autobús: la persona conduce; los pasajeros —pensamientos, sensaciones, recuerdos— amenazan y dan órdenes, pero el volante lo lleva ella.",
-            "Presentar la metáfora del tablero de ajedrez y el ejercicio del observador: ella no es las piezas que se pelean, sino el tablero que las sostiene; hay una parte de ella que ha notado todo lo que ha vivido sin cambiar.",
-            "Practicar unos minutos al día la observación de pensamientos: dejarlos pasar como hojas en un río, sin discutirlos ni seguirlos."
+            "Presentar la metáfora del tablero de ajedrez, con un tablero y dos equipos: la persona no es ninguna de las piezas que pelean, sino el tablero que las sostiene.",
+            "Usar la «radio de noticias de la ansiedad»: la mente transmite sin parar boletines de alarma que se pueden escuchar sin obedecerlos.",
+            "Completar la brújula vital: valores por área, metas concretas y barreras. Comparar cuánto le importa cada área con el tiempo que le dedicó últimamente.",
+            "Señalar que esa distancia entre lo importante y lo vivido es la razón de los ejercicios de exposición que vienen."
           ],
-          casa: "Práctica diaria de observación de pensamientos; en cada episodio de ansiedad, preguntarse quién está conduciendo el autobús.",
-          avance: "La persona describe sus reacciones desde la posición de quien las observa («me vino el pensamiento de que…») y los episodios se viven con más distancia y menos urgencia.",
-          fuente: "Hayes et al., 2012, caps. 7 y 8 · Luoma et al., 2017, caps. 3 y 5 · Harris, 2009, cap. «Watch Your Thinking»"
+          casa: "Seguir con la práctica diaria de aceptación y reescribir la brújula vital con lo conversado.",
+          avance: "La persona habla de sus pensamientos y sensaciones como algo que tiene, y relaciona la exposición con metas suyas.",
+          fuente: "Eifert y Forsyth, 2005, cap. 9 (sesión 5)",
+          fichas: ["hoja-valores"]
         },
         {
-          t: "Disposición y exposición al servicio de los valores",
-          tecs: ["metafora-vecino", "exposicion-graduada"],
-          obj: "Practicar abrirse a la ansiedad cuando aparece en el camino de algo valioso, sin hacer nada para que desaparezca.",
+          t: "Disposición y ejercicios FEEL en sesión",
+          tecs: ["disposicion", "termostato-disposicion", "metafora-autobus", "ejercicios-feel"],
+          obj: "Practicar, primero en sesión, el estar con las sensaciones e imágenes temidas sin luchar contra ellas, para ampliar lo que la persona puede hacer cuando aparece la ansiedad.",
           pasos: [
-            "Presentar la disposición como una elección y no como un sentimiento: se está dispuesto o no, aunque el paso sea pequeño. Disposición no es desear la ansiedad ni resignarse a ella.",
-            "Usar la metáfora del vecino indeseable: en una fiesta abierta a todos llega un invitado molesto; vigilar la puerta para que no entre arruina la fiesta, dejarlo estar permite volver a ella.",
-            "Provocar en sesión, después de la metáfora, las sensaciones o pensamientos temidos —recordar la situación, respirar rápido, decir la frase temida— y practicar quedarse con ellos con curiosidad: dónde están en el cuerpo, qué forma tienen, qué pasa si se les hace espacio.",
-            "Dejar claro que el objetivo no es que la ansiedad baje: puede bajar, subir o seguir igual; lo que se entrena es actuar con ella."
+            "Distinguir intentar de hacer con el ejercicio del bolígrafo y presentar el termostato de la disposición: la ansiedad no se elige, la disposición sí.",
+            "Hacer el ejercicio del conductor del autobús con tarjetas: los pasajeros amenazan, pero el volante lo lleva ella.",
+            "Elegir los ejercicios FEEL según lo que le ha impedido avanzar hacia sus valores: girar en una silla, respirar rápido, respirar por una pajilla, contener la respiración, subir escalones, mirarse al espejo o imaginar el peor escenario. Modelar cada uno antes y pedir su permiso.",
+            "Mantener la inducción entre 30 segundos y un minuto después de notar las sensaciones, y cinco minutos después de que la imagen se vuelva vívida. Calificar de 0 a 10 la intensidad, la ansiedad, la disposición, la lucha y la evitación, y volver uno o dos minutos a la práctica de atención plena.",
+            "Si hay mucha lucha, guiar el ejercicio sensación por sensación y defusionar los juicios («estoy teniendo el pensamiento de que no aguanto»). Repetir hasta que la disposición llegue a 7 o más y la lucha y la evitación bajen a 3 o menos.",
+            "En la ansiedad social, hacer los ejercicios frente a un espejo y describir sin juzgar cómo se ve ansiosa."
           ],
-          casa: "Elegir una situación evitada que esté ligada a un valor y entrar en ella dispuesto a sentir lo que aparezca.",
-          avance: "La persona usa de forma espontánea un lenguaje de apertura hacia lo temido y emprende acciones de disposición que no se habían trabajado en sesión.",
-          fuente: "Hayes et al., 2012, cap. 9 · Luoma et al., 2017, cap. 2"
+          casa: "Practicar a diario el ejercicio de aceptación y, durante 30 minutos, uno o dos ejercicios FEEL elegidos por ella entre los que le estorban sus valores, con sus calificaciones.",
+          avance: "En sesión, la disposición sube y la lucha y la evitación bajan aunque la ansiedad siga alta.",
+          fuente: "Eifert y Forsyth, 2005, cap. 10"
         },
         {
-          t: "Acción comprometida y prevención de recaídas",
-          tecs: ["prevencion-recaidas"],
-          obj: "Convertir los valores en pautas de acción cada vez más amplias y preparar a la persona para caer y volver a la dirección elegida.",
+          t: "Activación guiada por valores y barreras",
+          tecs: ["accion-comprometida", "barreras", "senales-seguridad", "defusion"],
+          obj: "Llevar lo practicado a la vida diaria: actividades elegidas por sus valores, emprendidas con la ansiedad presente.",
           pasos: [
-            "Traducir cada valor prioritario en metas concretas, de corto a largo plazo: qué hará, cuándo y dónde, de forma que otro pudiera observarlo.",
-            "Anticipar las barreras internas —los pensamientos y emociones que van a aparecer— y decidir de antemano cómo hacerles espacio; y las externas, con un plan para cada una.",
-            "Presentar las caídas como parte del camino: el compromiso no es no fallar nunca, sino volver a la dirección cada vez que uno se desvía.",
-            "Ampliar gradualmente los patrones de acción y revisar en cada sesión lo que se hizo, no lo que se sintió."
+            "Repetir los ejercicios FEEL en sesión y en casa hasta consolidarlos.",
+            "Elegir actividades de la brújula vital, ordenarlas de menor a mayor dificultad y comprometerse cada semana con algunas, de forma concreta.",
+            "Ante cada barrera, preguntar si esa conducta la lleva hacia el norte —sus valores— o hacia el sur, y usar la defusión con los juicios y las razones que la frenan.",
+            "Identificar y retirar las señales y conductas de seguridad: la compañía, el reaseguro, las revisiones, los objetos que lleva por si acaso.",
+            "Revisar los problemas con los valores: no encontrarlos, dudar de ellos o descubrir que son de otros."
           ],
-          casa: "Plan de acción comprometida semanal, con la acción, las barreras previstas y lo que pasó.",
-          avance: "Aumenta el número y la variedad de acciones valiosas; la persona vuelve a su plan después de una caída sin necesitar que el terapeuta la guíe.",
-          fuente: "Hayes et al., 2012, cap. 11 · Harris, 2009, cap. «Do What It Takes»",
-          fichas: ["plan-accion-valores", "plan-mantenimiento"]
+          casa: "Registro semanal de actividades valiosas: lo que se comprometió a hacer, si lo hizo, y la ansiedad, la disposición y la lucha al empezar y al terminar.",
+          avance: "La persona hace cada semana más actividades que había evitado y no espera a que la ansiedad baje para empezarlas.",
+          fuente: "Eifert y Forsyth, 2005, cap. 11",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Contratiempos, prevención de recaídas y cierre",
+          tecs: ["prevencion-recaidas", "aceptacion"],
+          obj: "Preparar a la persona para tropezar y volver a la dirección elegida, y cerrar el tratamiento.",
+          pasos: [
+            "Presentar los contratiempos como parte del camino: se responde a ellos con aceptación y compasión, no con más control.",
+            "Resumir con ella lo aprendido, con sus propias palabras.",
+            "Identificar las situaciones de alto riesgo y anticipar qué hará cuando la vieja ansiedad y las viejas reglas vuelvan.",
+            "Recordar que seguir moviéndose hacia los valores con la ansiedad a bordo es la meta, no la ausencia de ansiedad."
+          ],
+          casa: "Plan escrito de mantenimiento: prácticas que seguirá, situaciones de riesgo y qué hará en cada una.",
+          avance: "La persona vuelve a su plan después de un tropiezo sin necesitar al terapeuta.",
+          fuente: "Eifert y Forsyth, 2005, cap. 11 (sesión 12)",
+          fichas: ["plan-mantenimiento"]
         }
       ],
       medir: [
-        "<strong>VLQ-2</strong> al inicio y al final: importancia y acción por área de vida.",
         "<strong>AAQ-II</strong> como medida del proceso que el plan trabaja: debe bajar la evitación experiencial.",
-        "<strong>GAD-7</strong> como medida complementaria de síntomas: en este plan la ansiedad puede no bajar al principio.",
-        "Registro semanal de acciones valiosas cumplidas."
+        "<strong>GAD-7</strong> como medida complementaria de síntomas: la ansiedad puede no bajar al principio.",
+        "Calificaciones diarias de 0 a 10: malestar por la ansiedad, esfuerzo por quitarla, vitalidad del día y acción según los valores.",
+        "En los ejercicios FEEL, disposición, lucha y evitación (de 0 a 10)."
       ],
       adapt: [
-        "<strong>Hospital general:</strong> ansiedad en el contexto de una enfermedad médica; hay ensayos controlados en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico (Ruiz et al., cap. 11).",
-        "<strong>Salud mental y consulta externa:</strong> admite formato breve o amplio, individual o grupal (Ruiz et al., cap. 11); las metáforas y ejercicios se eligen según lo que la persona trae, no en un orden fijo (Harris, 2009).",
-        "<strong>Cultura:</strong> la agenda de control que la persona trae —eliminar el malestar para poder vivir— está moldeada por reglas culturales; y como los valores varían entre culturas, si los de la persona son propios de un grupo que el terapeuta no conoce, conviene consultar con alguien que lo conozca para no descartarlos (Hayes et al., 2012, caps. 6 y 11)."
+        "<strong>Hospital general:</strong> ansiedad en el contexto de una enfermedad médica; hay ensayos controlados de la terapia de aceptación y compromiso en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico (Ruiz et al., cap. 11).",
+        "<strong>Salud mental y consulta externa:</strong> el ritmo se ajusta a la persona; los autores advierten que estos procesos tienen una historia larga y que el aprendizaje nuevo necesita tiempo (Eifert y Forsyth, 2005, cap. 6).",
+        "<strong>Cultura:</strong> los valores varían entre culturas; si los de la persona son propios de un grupo que el terapeuta no conoce, conviene consultar con alguien que lo conozca para no descartarlos (Hayes et al., 2012, cap. 11)."
       ],
       cuidado: [
-        "La desesperanza creativa es un momento delicado: lo que no tiene remedio es la estrategia de control, no la persona. No se intenta convencerla: se le pide que mire su experiencia (Harris, 2009).",
-        "En historias de abuso o trauma, el ejercicio del observador y la exposición en sesión pueden provocar ansiedad o miedo intensos: se preparan y se dosifican.",
-        "Aceptar no es resignarse ni aguantar: es abrirse a la experiencia mientras se actúa en la dirección elegida.",
-        "Las metáforas no se explican ni se discuten: se ofrecen y se dejan trabajar. Si la persona las usa para tener razón o para autocriticarse, se vuelve a la experiencia."
+        "En la primera sesión no se afirma que la meta no es reducir la ansiedad: para la persona todavía lo es, y oírlo puede alejarla del tratamiento. La experiencia de las sesiones siguientes hace ese trabajo (Eifert y Forsyth, 2005, cap. 7).",
+        "Si los ejercicios FEEL no se conectan con los valores, se viven como exposición disfrazada y la persona no tiene por qué sufrir más (Eifert y Forsyth, 2005, cap. 10).",
+        "En el estrés postraumático, las imágenes pueden provocar embotamiento, disociación o una reexperimentación completa: se acuerdan antes formas de anclarse en el presente y se gradúan (Eifert y Forsyth, 2005, cap. 10).",
+        "En las obsesiones no se ordena no hacer el ritual: se exploran los impulsos y se defusionan durante el ejercicio (Eifert y Forsyth, 2005, cap. 10).",
+        "Aceptar no es resignarse ni aguantar: es abrirse a la experiencia mientras se actúa en la dirección elegida."
       ]
     },
     {
@@ -3786,7 +3831,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Si la queja es preocuparse por todo</strong> —la salud, la familia, el trabajo, lo que podría pasar— y la persona intenta eliminar la incertidumbre con reaseguro, comprobaciones, evitación o postergando decisiones, este plan apunta al proceso que sostiene esa preocupación.",
     "Si la ansiedad se organiza alrededor de un objeto, una situación o una sensación concreta, corresponde un plan de la variable Ansiedad.",
-    "Si lo central es quedarse enganchado en la preocupación o la rumiación como proceso —darle vueltas a los problemas durante horas—, con o sin intolerancia a la incertidumbre, la variable Rumiación y preocupación trae planes metacognitivo, de aceptación y de mindfulness."
+    "Si lo central es quedarse enganchado en la preocupación o la rumiación como proceso —darle vueltas a los problemas durante horas—, con o sin intolerancia a la incertidumbre, la variable Rumiación y preocupación trae planes metacognitivo y de aceptación, entre ellos la terapia conductual basada en la aceptación para la ansiedad generalizada."
   ],
   planes: [
     {
@@ -3939,6 +3984,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Si la persona cree que preocuparse o darle vueltas le sirve</strong> —para estar preparada, para encontrar respuestas— y a la vez que no puede parar, la terapia metacognitiva trabaja justamente esas dos creencias y entrena otra forma de relacionarse con los pensamientos.",
     "<strong>Si la preocupación y la rumiación funcionan como una forma de evitar el malestar</strong> y alejan a la persona de lo que le importa, el protocolo breve de aceptación y compromiso las aborda en dos sesiones.",
+    "<strong>Si se trata de ansiedad generalizada</strong> —preocupación crónica por casi todo, con un juicio duro de las propias emociones y una vida que se ha ido restringiendo—, la terapia conductual basada en la aceptación es el tratamiento completo, de unas 16 sesiones.",
     "Si la rumiación aparece sobre todo como riesgo de recaída en quien ya tuvo varias depresiones, corresponde la terapia cognitiva basada en mindfulness de la variable Depresión; si el núcleo es no tolerar la incertidumbre, la variable Intolerancia a la incertidumbre."
   ],
   planes: [
@@ -4180,6 +4226,144 @@ const VARIABLES = [
         "Aplazar la preocupación no es suprimir el pensamiento; se comprueba que la persona entiende la diferencia (Wells, 2020, caps. 6 y 9).",
         "Los nuevos planes se trabajan solo después de debilitar la creencia en el peligro de la preocupación: si no, pueden volverse otra forma de protegerse (Wells, 2020, cap. 6).",
         "En la depresión con desesperanza, se evalúa el riesgo suicida y se refuerzan las razones para vivir antes de seguir (Wells, 2020, cap. 9)."
+      ]
+    },
+    {
+      id: "rum-abbt",
+      mod: "roemer-abbt",
+      inst: ["PSWQ", "AAQ-II"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Terapia conductual basada en la aceptación para la ansiedad generalizada",
+      fuente: "Roemer y Orsillo, 2009, caps. 2 a 9",
+      cuando: "La persona <strong>se preocupa de forma crónica y por casi todo</strong>, juzga con dureza lo que siente y lo que piensa, vive pendiente del futuro más que del presente y ha ido dejando de hacer lo que le importa para no sentir más ansiedad o estrés. Es el patrón de la ansiedad generalizada, con o sin otros diagnósticos (Roemer y Orsillo, 2009, introducción y cap. 1).",
+      respaldo: "En un ensayo aleatorizado con 31 personas con ansiedad generalizada, 16 sesiones individuales de esta terapia lograron más mejoría en los síntomas, el diagnóstico y la calidad de vida que la lista de espera; tres de cada cuatro tratados alcanzaron un funcionamiento alto al terminar y los cambios se mantuvieron a los nueve meses. No se ha comparado con otro tratamiento activo (Roemer y Orsillo, 2009, introducción). Integra elementos de la terapia de aceptación y compromiso, la dialéctico-conductual y la cognitiva basada en mindfulness con estrategias conductuales clásicas.",
+      secuencia: "<strong>Secuencia:</strong> después de las sesiones de evaluación, 14 sesiones semanales y dos quincenales; las cuatro primeras duran 90 minutos y las demás entre 50 y 60. Cada sesión empieza con un ejercicio de atención plena, revisa la práctica y los registros de la semana, presenta un concepto nuevo con una hoja, una metáfora o un ejercicio y la observación en la vida diaria, y termina con el compromiso de práctica. La primera mitad se dedica al modelo, la atención plena y los valores; la segunda, a la acción valiosa; las últimas sesiones, a la prevención de recaídas. Los componentes se integran en cada sesión en lugar de presentarse uno tras otro (Roemer y Orsillo, 2009, cap. 4).",
+      esc: ["salud-mental","primer-nivel"],
+      actividades: [
+        {
+          t: "Evaluación y formulación compartida",
+          tecs: ["entrevista-clinica", "formulacion-caso"],
+          obj: "Conocer los problemas de la persona desde tres ángulos —su relación con lo que siente, sus formas de evitar y lo que ha dejado de hacer— y acordar el plan.",
+          pasos: [
+            "Evaluar los síntomas, los diagnósticos que conviven y las conductas potencialmente dañinas.",
+            "Explorar cómo se relaciona con lo que siente y piensa: cuánto lo nota, cuánto lo juzga, cuánto se enreda en ello; qué estrategias ha usado para afrontarlo; su calidad de vida y lo que valora en cada área; y qué tratamientos previos tuvo.",
+            "Construir la formulación: una conciencia estrecha y enredada en lo interno, la evitación de la experiencia y la restricción de la conducta en las áreas que le importan.",
+            "Presentar el plan —cambiar la relación con lo que siente, reducir la evitación y aumentar la acción valiosa—, las alternativas, como la terapia cognitivo-conductual, y los papeles de cada uno."
+          ],
+          casa: "Hoja de conciencia de la ansiedad: anotar los momentos de ansiedad de la semana y lo que hizo con ellos.",
+          avance: "La persona reconoce en la formulación su forma de preocuparse y de evitar, y acepta el plan.",
+          fuente: "Roemer y Orsillo, 2009, caps. 2 a 4"
+        },
+        {
+          t: "La ansiedad, las emociones y el problema del control",
+          tecs: ["psicoeducacion", "emociones-claras-turbias", "agenda-control", "autorregistro"],
+          obj: "Que la persona entienda para qué sirven la ansiedad y las demás emociones, por qué a veces confunden, y qué pasa cuando intenta controlarlas.",
+          pasos: [
+            "Explicar que el miedo y la ansiedad son respuestas naturales ante una amenaza, que el pensamiento las complica porque puede anticipar y recordar, y que la preocupación aleja a la persona de lo que está pasando ahora.",
+            "Presentar la función de las emociones: informan y preparan para actuar.",
+            "Distinguir las emociones claras —acordes en tipo e intensidad con lo que pasó— de las turbias, que se enturbian por no cuidarse, por reaccionar a futuros imaginados, por restos de otras situaciones, por emociones sobre las propias emociones o por sentirse definida por ellas.",
+            "Mostrar el costo de intentar no sentir con una metáfora o un ejercicio, sin largas explicaciones, y pedir que observe estos conceptos en su propia semana."
+          ],
+          casa: "Observar varias emociones intensas en la semana y anotar qué la informaban y si eran claras o turbias.",
+          avance: "La persona describe sus emociones como respuestas con sentido y nota cuándo se le enturbian.",
+          fuente: "Roemer y Orsillo, 2009, cap. 5",
+          fichas: ["registro-control"]
+        },
+        {
+          t: "Atención plena de la respiración, los sentidos y las sensaciones",
+          tecs: ["respiracion-diafragmatica", "momento-presente", "ejercicio-pasa"],
+          obj: "Dar a la persona una primera experiencia de atención plena y empezar una práctica regular.",
+          pasos: [
+            "Pedirle que observe su respiración y note lo que aparece —tensión, pensamientos ansiosos— sin corregirlo; después, que lleve suavemente la respiración al abdomen y observe el efecto, sin buscar relajarse a la fuerza.",
+            "Dar una hoja sobre qué es la atención plena y sus habilidades: conciencia, observación sin juicio, quedarse en el momento y mente de principiante.",
+            "Hacer en sesión un ejercicio formal, como comer una pasa con atención o recorrer las sensaciones del cuerpo.",
+            "Acordar una práctica formal breve y otra informal, dentro de las actividades del día."
+          ],
+          casa: "Práctica diaria formal e informal, registrando lo que notó.",
+          avance: "La persona practica casi todos los días y puede notar sus juicios durante la práctica sin pelear con ellos.",
+          fuente: "Roemer y Orsillo, 2009, cap. 6"
+        },
+        {
+          t: "Atención plena de emociones y pensamientos, y autocompasión",
+          tecs: ["mindfulness-emociones", "defusion", "hojas-rio", "pausa-autocompasion"],
+          obj: "Extender la práctica a las emociones y los pensamientos, para verlos como experiencias pasajeras, y cultivar una respuesta compasiva hacia sí misma.",
+          pasos: [
+            "Recordar un suceso emocional reciente, primero moderado y luego más intenso, y practicar una conciencia amplia de lo que siente.",
+            "Observar los pensamientos como sucesos que pasan, con ejercicios como las hojas en el río o la meditación de la montaña.",
+            "Mostrar los límites del lenguaje: describir sin juzgar y nombrar las experiencias internas como tales.",
+            "Responder siempre con compasión a lo que la persona cuenta de sí misma, conversar sobre cómo aprendió a no tratarse con compasión y practicarla."
+          ],
+          casa: "Práctica diaria con emociones y pensamientos, también en momentos difíciles del día.",
+          avance: "La persona observa la preocupación como un pensamiento más y se habla con menos dureza.",
+          fuente: "Roemer y Orsillo, 2009, cap. 6",
+          fichas: ["pausa-autocompasion"]
+        },
+        {
+          t: "Valores y conciencia de la acción y la inacción",
+          tecs: ["escritura-valores", "hoja-valores"],
+          obj: "Ver cómo la preocupación ha restringido la vida de la persona y articular lo que quiere en sus relaciones, su trabajo o estudio y su cuidado personal.",
+          pasos: [
+            "Distinguir valores de metas y presentar los valores como elecciones, no como sentimientos.",
+            "Primera tarea de escritura: durante 20 minutos, cuatro días, escribir cómo la ansiedad interfiere en sus relaciones, su trabajo o estudio y su cuidado personal.",
+            "Segunda tarea de escritura, tres días: cómo quiere ser en cada una de esas áreas.",
+            "Revisar los escollos frecuentes: confundir valores con metas, valores que dependen de otros, valores guiados por la evitación o la sensación de que el cambio es imposible.",
+            "Llevar un registro de acciones valiosas —hechas y perdidas, con cuánta atención y qué obstáculos— durante una semana sin intentar cambiar nada."
+          ],
+          casa: "Tareas de escritura y registro de acciones valiosas.",
+          avance: "La persona redacta valores propios en las tres áreas y reconoce las oportunidades que deja pasar.",
+          fuente: "Roemer y Orsillo, 2009, cap. 7",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Acción valiosa con disposición",
+          tecs: ["accion-comprometida", "disposicion", "barreras"],
+          obj: "Comprometerse cada semana con acciones valiosas y sostenerlas con la ansiedad presente.",
+          pasos: [
+            "Tercera tarea de escritura: qué teme de comprometerse, cuál es su mayor obstáculo y qué pasó con sus compromisos anteriores.",
+            "Acordar cada semana unas pocas acciones valiosas y revisar las hechas, las perdidas y los obstáculos.",
+            "Ante una barrera externa, como la falta de una habilidad, entrenarla en sesión con ensayo de conducta; ante una interna, volver a la atención plena, la defusión y las razones para estar dispuesta.",
+            "Cuando la acción valiosa implica acercarse a lo temido, presentarla como exposición al servicio de lo que importa, no como una forma de bajar la ansiedad.",
+            "Si hace lo valioso de forma distraída, pedir que lo haga con atención."
+          ],
+          casa: "Registro semanal de acciones valiosas comprometidas, con la atención puesta en cada una.",
+          avance: "La persona amplía sus actividades en las áreas que valora y no espera dejar de preocuparse para hacerlas.",
+          fuente: "Roemer y Orsillo, 2009, caps. 8 y 10",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Prevención de recaídas y cierre",
+          tecs: ["prevencion-recaidas"],
+          obj: "Que la persona se lleve un modelo propio del tratamiento y sepa qué hacer ante los tropiezos.",
+          pasos: [
+            "Evaluar el avance cada semana con medidas breves, y decidir el final cuando el compromiso con el tratamiento y el cambio lo indiquen.",
+            "Ir cediendo la dirección de las sesiones: que la persona elija los ejercicios y note que los cambios son obra suya.",
+            "Repasar los conceptos y las metáforas que más le sirvieron y guardar en una carpeta las hojas y registros.",
+            "Escribir una revisión del tratamiento: qué aprendió, qué seguirá practicando, qué situaciones prevé difíciles y qué hará.",
+            "Espaciar las dos últimas sesiones a cada dos semanas y dejar abierta la posibilidad de sesiones de refuerzo."
+          ],
+          casa: "Revisión escrita del tratamiento.",
+          avance: "La persona describe su propio plan de mantenimiento y practica sin que el terapeuta lo indique.",
+          fuente: "Roemer y Orsillo, 2009, cap. 9",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PSWQ</strong> al inicio y al final: la preocupación.",
+        "<strong>AAQ-II</strong> como medida de la evitación experiencial.",
+        "<strong>VLQ</strong>: importancia y consistencia por área de vida.",
+        "Registro semanal de acciones valiosas hechas y perdidas."
+      ],
+      adapt: [
+        "<strong>Formato:</strong> se ha aplicado sobre todo en sesiones individuales; en grupo se gana la experiencia de que el sufrimiento es común, pero hay menos tiempo para los valores y los obstáculos de cada persona (Roemer y Orsillo, 2009, cap. 4).",
+        "<strong>Tiempo:</strong> si no son posibles sesiones de 90 minutos, se pueden hacer dos por semana al principio; si la persona no tiene tiempo para practicar, se privilegia la práctica informal dentro de las tareas del día (Roemer y Orsillo, 2009, cap. 4).",
+        "<strong>Cultura y religión:</strong> si la atención plena choca con las creencias de la persona, se busca una práctica equivalente dentro de su tradición; si su cultura desalienta expresar emociones, se examina con ella si la autocompasión la debilita o la ayuda a cumplir lo que valora, y puede incluirse a la familia (Roemer y Orsillo, 2009, cap. 11)."
+      ],
+      cuidado: [
+        "La atención plena puede volverse otra forma de evitar: si la persona la usa para relajarse o para no pensar, se amplía la atención a lo que aparezca, incluido el pensamiento ansioso (Roemer y Orsillo, 2009, cap. 6).",
+        "Al contrario, a quien ha evitado mucho la práctica puede resultarle angustiante al principio: se valida y se examina con su experiencia si alejarse del malestar le ha servido (Roemer y Orsillo, 2009, cap. 6).",
+        "Respirar con el abdomen no busca controlar la ansiedad: se cambia la respiración con suavidad y se observa lo que pase, incluso si la ansiedad sube.",
+        "Evitar las explicaciones largas y el tono de clase: los conceptos se aprenden con la experiencia de la persona, no con argumentos (Roemer y Orsillo, 2009, cap. 5)."
       ]
     },
     {
@@ -4441,99 +4625,114 @@ const VARIABLES = [
       inst: ["OCI-R", "AAQ-II"],
       enf: "act",
       nivel: "ensayos",
-      t: "Defusión y disposición frente a las obsesiones",
-      fuente: "Hayes et al., 2012 · Harris, 2009 · Ruiz et al., cap. 11",
-      cuando: "La persona <strong>toma sus obsesiones como verdades o como órdenes</strong> que hay que obedecer, dedica cada vez más tiempo a neutralizarlas y su vida se ha ido organizando alrededor de no sentir la duda o la ansiedad que traen. La lucha contra el propio pensamiento es el centro del problema.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en patrones obsesivo-compulsivos (Hayes et al., 2006, en Ruiz et al., cap. 11). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020). La evitación experiencial es el proceso que el modelo describe en estos cuadros (Hayes et al., 2012, cap. 2).",
-      secuencia: "<strong>Secuencia:</strong> los procesos del modelo no se trabajan en un orden fijo; los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso (Harris, 2009). El orden de abajo es el habitual cuando la persona llega muy apegada a controlar sus pensamientos.",
+      t: "Defusión, disposición y exposición guiada por valores",
+      fuente: "Zurita Ona, 2020 · Eifert y Forsyth, 2005, caps. 10 y 11",
+      cuando: "La persona <strong>toma sus obsesiones como verdades o como órdenes</strong> que hay que obedecer, dedica cada vez más tiempo a neutralizarlas —rituales visibles, revisiones, pedir confirmación, repasar mentalmente— y su vida se ha ido organizando alrededor de no sentir la duda o la ansiedad que traen. La lucha contra el propio pensamiento es el centro del problema.",
+      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en patrones obsesivo-compulsivos (Hayes et al., 2006, en Ruiz et al., cap. 11); un estudio de Twohig y colaboradores encontró reducciones grandes del trastorno obsesivo-compulsivo incluso sin exposición en sesión (Walser y Westrup, 2007, conclusión). Una revisión de 20 metaanálisis concluye que es eficaz en todas las condiciones examinadas y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020). La secuencia sigue un cuaderno de trabajo que combina la aceptación y compromiso con la exposición con prevención de respuesta, pensado para usarse solo o junto con la terapia (Zurita Ona, 2020, introducción).",
+      secuencia: "<strong>Secuencia:</strong> sigue las partes del cuaderno de Zurita Ona, una por semana o por sesión: identificar compulsiones, evitaciones y pensamientos que mandan; ver cómo funcionan y qué está bajo control; una nueva relación con la mente; habilidades de defusión y aceptación; valores, seguidos de dos o tres semanas de práctica antes de exponerse; exposición guiada por valores y retiro de las compulsiones; bloqueos; y seguir adelante. La autora pide no saltarse partes ni ir directo a la exposición: las habilidades previas son las que la hacen distinta (Zurita Ona, 2020, introducción).",
       esc: ["salud-mental","primer-nivel"],
       actividades: [
         {
-          t: "Desesperanza creativa sobre los rituales",
-          tecs: ["desesperanza-creativa"],
-          obj: "Que la persona compruebe, con su propia experiencia, que neutralizar las obsesiones no las ha hecho desaparecer y le ha costado vida.",
+          t: "Compulsiones, evitaciones y pensamientos que mandan",
+          tecs: ["obsesion", "ritual", "autorregistro"],
+          obj: "Hacer con la persona el mapa de lo que mantiene el problema: las compulsiones visibles y mentales, lo que evita y los pensamientos que toman el control.",
           pasos: [
-            "Pedirle que describa lo que las obsesiones han supuesto en su vida y cuánto tiempo del día ocupan.",
-            "Hacer con ella la lista de todo lo que ha intentado: rituales, evitar, pedir confirmación, tratar de no pensar, razonar.",
-            "Recorrer la lista con las tres preguntas: qué ha probado, cómo le ha funcionado a la larga y qué le ha costado.",
-            "Validar el esfuerzo y presentar la metáfora del hombre en el hoyo: cavar con más fuerza lo agranda."
+            "Listar las compulsiones visibles (lavar, revisar, ordenar, pedir confirmación) y las mentales (repasar, rezar, analizar, neutralizar con otra imagen). La regla práctica: la primera duda es la obsesión; lo que se hace después para resolverla es la compulsión.",
+            "Listar lo que evita: lugares, objetos, personas, actividades.",
+            "Identificar los pensamientos que mandan: las obsesiones y las estrategias mentales que sostienen el ciclo.",
+            "Explicar que tener pensamientos extraños es universal: el problema no es su contenido, sino lo que la persona hace para librarse de ellos."
           ],
-          casa: "Registrar cada intento de neutralizar una obsesión, el alivio que dio y lo que costó.",
-          avance: "La persona distingue que lo que no funciona es la estrategia de control, no ella misma.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5",
-          fichas: ["registro-control"]
+          casa: "Registro de rituales y evitaciones de la semana, con lo que la llevó a cada uno.",
+          avance: "La persona reconoce sus compulsiones mentales y su búsqueda de confirmación como compulsiones.",
+          fuente: "Zurita Ona, 2020, partes I y III",
+          fichas: ["registro-rituales"]
         },
         {
-          t: "El control del pensamiento es el problema",
-          tecs: ["metafora-poligrafo", "lucha-monstruo"],
-          obj: "Mostrar que intentar no tener un pensamiento lo trae de vuelta con más fuerza.",
+          t: "Cómo funciona la lucha contra las obsesiones",
+          tecs: ["desesperanza-creativa", "oso-blanco"],
+          obj: "Que la persona compruebe con su experiencia que tratar de deshacerse de las obsesiones las multiplica, y distinga lo que puede controlar de lo que no.",
           pasos: [
-            "Hacer un experimento breve: pedirle que durante un minuto no piense en un oso blanco y que cuente cuántas veces aparece.",
-            "Presentar la metáfora del polígrafo aplicada a la duda: si todo dependiera de no dudar, cada duda sería una alarma.",
-            "Presentar la lucha con el monstruo: tirar de la cuerda no lo vence; soltarla deja las manos libres.",
-            "Contrastar dónde el control funciona —lo que la persona hace— y dónde no: lo que piensa y siente."
+            "Revisar cada compulsión y evitación: qué alivio da, cuánto dura y qué le cuesta en tiempo, relaciones y libertad.",
+            "Hacer el experimento de no pensar en algo (el oso blanco o un pastel) y comparar con lo que pasa con sus obsesiones.",
+            "Revisar cómo se trata a sí misma cuando aparecen las obsesiones: la autocrítica también alimenta el ciclo.",
+            "Separar lo que está bajo su control —lo que hace con las manos y los pies— de lo que no —qué pensamientos aparecen— y proponer dejar las estrategias de «deshacerse de las obsesiones»."
           ],
-          casa: "Anotar las veces en que tratar de no pensar algo lo volvió más insistente.",
-          avance: "La persona empieza a tratar la obsesión como algo que aparece, no como algo que debe resolver.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5 · Barlow et al., 2015, módulo 5 · Ruiz et al., cap. 12 (§5)"
+          casa: "Anotar cada vez que intentó librarse de una obsesión y qué pasó después.",
+          avance: "La persona se muestra dispuesta a dejar de pelear con sus obsesiones aunque no sepa todavía cómo.",
+          fuente: "Zurita Ona, 2020, parte IV · Eifert y Forsyth, 2005, cap. 10"
         },
         {
-          t: "Defusión de las obsesiones",
+          t: "Una nueva relación con la mente",
           tecs: ["defusion", "desliteralizacion", "metafora-autobus"],
-          obj: "Que la persona vea la obsesión como un pensamiento que tiene, no como un hecho ni como una orden.",
+          obj: "Que la persona observe sus obsesiones como productos de una mente que genera contenido sin parar, y no como hechos ni como órdenes.",
           pasos: [
-            "Cambiar «me voy a contaminar» por «estoy teniendo el pensamiento de que me voy a contaminar».",
-            "Repetir en voz alta la palabra central de la obsesión hasta que pierda su significado inmediato.",
-            "Presentar la metáfora de los pasajeros del autobús: la obsesión es un pasajero que da órdenes; el volante lo lleva la persona.",
-            "Preguntar por la utilidad del pensamiento, no por su verdad: «Si le hace caso, ¿hacia dónde la lleva?». No discutir si la obsesión es cierta: eso funciona como otro ritual."
+            "Practicar mirar la mente: ponerle nombre a la obsesión («ahí está la historia de la contaminación»), imaginarla como un objeto, hacer un gesto que la represente o decirla de formas distintas.",
+            "Fijarse en para qué sirve un pensamiento en su vida y no en si es cierto.",
+            "Leer la obsesión como si fuera un boletín de noticias, sin obedecerla, o escribirla en una tarjeta y comparar el esfuerzo de empujarla con el de dejarla en el regazo.",
+            "Advertir la aceptación falsa: aceptar para que la obsesión se vaya es otra forma de control.",
+            "Volver una y otra vez a la pregunta de qué funciona en su vida."
           ],
-          casa: "Práctica diaria de observar las obsesiones como pensamientos que van y vienen (hojas en el río).",
-          avance: "La persona describe sus obsesiones desde la posición de quien las observa y responde menos a ellas.",
-          fuente: "Hayes et al., 2012, cap. 8 · Harris, 2009, cap. «Watch Your Thinking»"
+          casa: "Practicar a diario una forma de defusión con la obsesión más frecuente.",
+          avance: "La persona describe sus obsesiones desde la distancia («mi mente me trae otra vez lo del horno») sin entrar a discutirlas.",
+          fuente: "Zurita Ona, 2020, partes V y VI · Eifert y Forsyth, 2005, cap. 10"
         },
         {
-          t: "Clarificación de valores",
-          tecs: ["hoja-valores"],
-          obj: "Identificar lo que los rituales han ido desplazando: la razón para estar dispuesto a sentir la duda.",
+          t: "Hacer espacio y montar la ola",
+          tecs: ["aceptacion", "disposicion"],
+          obj: "Entrenar la apertura a la ansiedad, el asco o la duda que trae la obsesión, sin hacer nada para que se vaya.",
           pasos: [
-            "Distinguir valor de meta: la meta se cumple; el valor es una dirección.",
-            "Completar la hoja de valores por áreas.",
-            "Calcular con la persona cuánto tiempo de su día ocupan hoy los rituales y a qué área se lo quitan.",
-            "Redactar una frase de dirección por área y puntuar su importancia y la acción de la última semana."
+            "Practicar montar la ola: unas respiraciones lentas y describir lo que siente en el cuerpo, siguiéndolo con curiosidad.",
+            "Usar frases de aceptación («no tengo que pelear con esto») y gestos de apertura en lugar de neutralizar.",
+            "Revisar en qué momentos la aceptación se volvió una manera de controlar.",
+            "Llevar la práctica a momentos breves de la vida diaria."
           ],
-          casa: "Revisar la hoja y notar en qué momentos un ritual la alejó de una dirección valiosa.",
-          avance: "La persona puede decir para qué querría el tiempo que hoy ocupan los rituales.",
-          fuente: "Hayes et al., 2012, cap. 10",
+          casa: "Registrar los momentos en que hizo espacio a la emoción sin hacer la compulsión.",
+          avance: "La persona permanece con la ansiedad o la duda unos minutos sin neutralizarlas.",
+          fuente: "Zurita Ona, 2020, parte VI"
+        },
+        {
+          t: "Valores y práctica antes de exponerse",
+          tecs: ["hoja-valores", "accion-comprometida"],
+          obj: "Definir para qué vale la pena enfrentar las obsesiones y consolidar las habilidades antes de la exposición.",
+          pasos: [
+            "Explorar lo que le importa en cada área y cómo quiere comportarse en ella: los «cómo» de sus valores.",
+            "Contar cada semana los pasos dados en esa dirección.",
+            "Acordar dos o tres semanas de práctica de las habilidades de defusión y aceptación antes de pasar a la exposición."
+          ],
+          casa: "Llevar la cuenta de las acciones guiadas por valores y seguir practicando las habilidades.",
+          avance: "La persona tiene claros los valores que le dan sentido a la exposición.",
+          fuente: "Zurita Ona, 2020, parte VII",
           fichas: ["hoja-valores"]
         },
         {
-          t: "Disposición y exposición sin ritual",
-          tecs: ["metafora-vecino", "exposicion-graduada"],
-          obj: "Practicar tener la obsesión y la ansiedad sin hacer el ritual, al servicio de algo que importa.",
+          t: "Exposición guiada por valores",
+          tecs: ["exposicion-valores", "jerarquia-disparadores"],
+          obj: "Acercarse a lo que dispara las obsesiones como un paso hacia sus valores, con las habilidades aprendidas y sin rituales.",
           pasos: [
-            "Presentar la disposición como una elección: se está dispuesto a sentir la duda o no, aunque los pasos sean pequeños.",
-            "Usar la metáfora del vecino indeseable: vigilar la puerta arruina la fiesta; dejarlo pasar permite volver a ella.",
-            "Provocar en sesión la obsesión (tocar algo, escribir la frase temida) y quedarse con ella, con curiosidad, sin ritual y sin buscar certeza.",
-            "Dejar claro que el objetivo no es que la ansiedad baje, sino actuar con ella presente."
+            "Armar un menú de exposiciones ligado a sus valores: situaciones, objetos y personas; exposiciones en la imaginación, con un guion en presente y en primera persona que llega al peor escenario sin frases tranquilizadoras y que se lee o se escucha grabado, para obsesiones que no se pueden llevar a una situación; y exposiciones con el cuerpo, provocando las sensaciones que disparan la obsesión.",
+            "En cada exposición, recorrer los pasos que la autora agrupa en la sigla W.I.S.E. M.O.V.E.S.: observar la obsesión, invitarla, quedarse con la experiencia, preguntarse si va hacia sus valores o se aleja, elegir, observar lo que trae la elección, valorar el esfuerzo, seguir con lo siguiente del día y tratarse con amabilidad.",
+            "En sesión, si la obsesión es una imagen, construir la del peor escenario y sostenerla con atención unos cinco minutos después de que se vuelve vívida, sin neutralizarla.",
+            "Mezclar formas de exposición, variar los contextos, ajustar la dificultad y vigilar las compulsiones y evitaciones sutiles."
           ],
-          casa: "Elegir una situación evitada ligada a un valor y entrar en ella sin hacer el ritual.",
-          avance: "La persona emprende por su cuenta acciones de disposición que no se habían trabajado en sesión.",
-          fuente: "Hayes et al., 2012, cap. 9 · Ruiz et al., cap. 11 (§3.3)"
+          casa: "Exposiciones planeadas del menú y registro semanal de lo que hizo y de lo que apareció.",
+          avance: "La persona enfrenta disparadores que evitaba, sin rituales, y los vincula con algo que quiere.",
+          fuente: "Zurita Ona, 2020, parte VIII · Eifert y Forsyth, 2005, cap. 10",
+          fichas: ["jerarquia-disparadores"]
         },
         {
-          t: "Acción comprometida y prevención de recaídas",
-          tecs: ["fear-dare", "prevencion-recaidas"],
-          obj: "Ampliar las pautas de acción valiosa y preparar a la persona para caer y levantarse.",
+          t: "Retirar las compulsiones y desarmar los bloqueos",
+          tecs: ["ritual", "barreras", "prevencion-recaidas"],
+          obj: "Reducir las compulsiones por decisión de la persona y prepararla para lo que frena el avance.",
           pasos: [
-            "Para cada dirección valiosa, definir metas y acciones concretas, empezando por pasos pequeños.",
-            "Identificar las barreras con FEAR —fusión, metas excesivas, evitación del malestar, lejanía de los valores— y responder con DARE —defusión, aceptación del malestar, metas realistas, abrazar los valores—.",
-            "Llevar un registro diario de acciones cumplidas y de rituales que no se hicieron.",
-            "Presentar la recaída como ocasión para volver a elegir y espaciar las sesiones."
+            "No ordenar la prevención del ritual: invitar a la persona a comprometerse ella misma a no hacerlo, eligiendo de un inventario las compulsiones con las que está dispuesta a trabajar.",
+            "Si no puede dejar una compulsión de golpe, alterarla, acortarla, posponerla o hacerla más difícil de ejecutar, y ante el impulso, conectar con el cuerpo y con lo que tiene delante.",
+            "Trabajar los bloqueos: razones para no hacerlo, preferir estar segura antes que vivir, no tener claro para qué, y exposiciones hechas para sentirse bien de inmediato o para resolver la duda, que se vuelven otra compulsión.",
+            "Preparar la práctica breve en el momento cuando aparece un disparador inesperado, la autocompasión y la aceptación de que la vida es imperfecta."
           ],
-          casa: "Plan de acción comprometida semanal con las barreras que aparecieron.",
-          avance: "Crecen las pautas de acción valiosa y se reduce el tiempo dedicado a rituales.",
-          fuente: "Harris, 2009, cap. «Do What It Takes» · Hayes et al., 2012, cap. 11",
-          fichas: ["plan-accion-valores"]
+          casa: "Inventario de compulsiones con la que trabajará esa semana y cómo, y plan para los imprevistos.",
+          avance: "Baja el tiempo dedicado a los rituales y la persona maneja los tropiezos sin volver a la lucha.",
+          fuente: "Zurita Ona, 2020, partes VIII a X · Eifert y Forsyth, 2005, cap. 10",
+          fichas: ["registro-rituales", "plan-mantenimiento"]
         }
       ],
       medir: [
@@ -4543,11 +4742,13 @@ const VARIABLES = [
         "Registro diario de rituales: frecuencia y tiempo que ocupan."
       ],
       adapt: [
+        "<strong>Autoayuda guiada:</strong> el cuaderno está escrito para la persona; puede acompañar la terapia o usarse entre sesiones, a un capítulo por semana, sin reemplazar el tratamiento (Zurita Ona, 2020, introducción).",
         "<strong>Salud mental y consulta externa:</strong> admite formato breve o amplio, individual o grupal (Ruiz et al., cap. 11)."
       ],
       cuidado: [
-        "Responder a la obsesión con razones o con confirmaciones funciona como un ritual más: la defusión no consiste en convencerse de que el pensamiento es falso.",
-        "Si la persona usa las técnicas de defusión para librarse del pensamiento, se vuelven otra forma de control: se vuelve a la observación.",
+        "Responder a la obsesión con razones o con confirmaciones funciona como un ritual más, también cuando la confirmación la da el terapeuta: la defusión no consiste en convencerse de que el pensamiento es falso.",
+        "Si la persona usa la defusión o la aceptación para librarse del pensamiento, se vuelven otra forma de control: se vuelve a la observación.",
+        "Si la vergüenza o el miedo a que se cumpla impiden decir el contenido de la obsesión, eso también es evitación: se examina si callarlo la acerca o la aleja de lo que quiere (Eifert y Forsyth, 2005, cap. 10).",
         "Aceptar no es resignarse: es abrirse a la experiencia mientras se actúa."
       ]
     },
@@ -5519,6 +5720,7 @@ const VARIABLES = [
     "<strong>Si la persona está estable y dispuesta a enfrentar el recuerdo</strong>, la terapia de exposición prolongada trabaja sobre la evitación y la memoria del trauma.",
     "<strong>Si lo que más pesa son la culpa, la vergüenza o conclusiones extremas</strong> («fue mi culpa», «no puedo confiar en nadie»), la terapia de procesamiento cognitivo trabaja esos significados. Tiene dos versiones: sin relato escrito, la estándar, y con relato escrito, para quien disocia mucho o quiere contar su historia.",
     "<strong>Si la vida se ha ido encogiendo</strong> —aislamiento, abandono de actividades, embotamiento— y la persona no está lista para trabajar el recuerdo, la activación conductual para el TEPT recupera la vida cotidiana.",
+    "<strong>Si la persona no está lista para enfrentar el recuerdo y su vida se ha organizado alrededor de no sentir</strong> —o ya pasó por varios tratamientos—, la terapia de aceptación y compromiso trabaja esa evitación, con evidencia todavía preliminar en el estrés postraumático. Tiene dos versiones: el protocolo por componentes y, para el trauma complejo con extremos de activación o desconexión, una que empieza por anclarse en el presente.",
     "<strong>Si hay autolesiones, conductas suicidas o una desregulación emocional marcada</strong>, primero se estabiliza con terapia dialéctico-conductual y la exposición llega después.",
     "<strong>Si hay pérdidas de tiempo, partes disociativas que toman el control o voces internas</strong> tras traumas graves y repetidos en la infancia, ver <em>Trastornos disociativos complejos</em>: el trabajo empieza por la estabilización, y la exposición prematura a los recuerdos puede desestabilizar (Boon et al., 2011, prefacio).",
     "<strong>Si la situación estresante sigue presente</strong> o la persona no acepta todavía la exposición, la inoculación de estrés entrena el afrontamiento."
@@ -6045,6 +6247,242 @@ const VARIABLES = [
         "Las actividades deben ser seguras: la activación no incluye volver a situaciones de peligro real.",
         "Si hay consumo importante de alcohol o drogas, se trabaja como barrera explícita o se coordina con un plan de consumo.",
         "La mayoría de las personas con estrés postraumático no son agresivas, pero muchas temen perder el control de su ira y se aíslan por eso: se enseñan técnicas básicas de manejo de la ira (Jakupcak et al., 2019, cap. 10)."
+      ]
+    },
+    {
+      id: "tept-act",
+      mod: "flex",
+      inst: ["PCL-5", "AAQ-II"],
+      enf: "act",
+      nivel: "preliminar",
+      t: "Aceptación y compromiso para el trauma",
+      fuente: "Walser y Westrup, 2007 · Harris, 2021a",
+      cuando: "La persona quiere, sobre todo, que el trauma deje de haber ocurrido: que se borren los recuerdos y lo que traen. Ha probado muchas formas de no sentir —alcohol, aislamiento, trabajo sin descanso, olvidar, otros tratamientos— y su vida se ha ido estrechando alrededor de esa evitación. Es útil cuando la evitación de lo que siente es el problema central, cuando hubo varios tratamientos previos o cuando la persona no acepta todavía la exposición al recuerdo (Walser y Westrup, 2007, caps. 3 y 10).",
+      respaldo: "La evidencia específica en el estrés postraumático es menor que la de la exposición prolongada y el procesamiento cognitivo. En un estudio piloto sin grupo de control con excombatientes en programas residenciales, bajaron los síntomas de trauma, la depresión, la ansiedad y la disociación, y la menor evitación predijo la mejoría; un estudio con excombatientes de Vietnam encontró que la versión con el componente del yo como contexto mantuvo mejor la reducción de la evitación (Walser y Westrup, 2007, conclusión). En un ensayo aleatorizado de la OMS con mujeres refugiadas en Uganda, diez horas de un programa grupal basado en esta terapia, dirigido por facilitadores no especialistas, redujeron el estrés postraumático y la depresión (Harris, 2021a, cap. 1). Una revisión de metaanálisis la encuentra eficaz en un rango amplio de problemas (Gloster et al., 2020).",
+      secuencia: "<strong>Secuencia:</strong> entre ocho y dieciséis sesiones de una hora (90 minutos en grupo), organizadas en seis componentes que pueden ocupar varias sesiones cada uno: desesperanza creativa (1 o 2), el control como problema (1 o 2), disposición y defusión (2 o 3), yo como contexto (2 o 3), vivir según valores (2 o 3) y acción comprometida (3 o 4). Cada sesión abre con un ejercicio de atención plena de 10 a 15 minutos y un repaso de lo anterior, porque estas personas suelen olvidar lo trabajado. Los valores se trabajan a fondo más tarde que en otros protocolos, porque al principio cuesta identificarlos (Walser y Westrup, 2007, cap. 3).",
+      esc: ["salud-mental","primer-nivel"],
+      opcA: {
+        t: "Protocolo para el estrés postraumático",
+        cuando: "Estrés postraumático, a menudo crónico, en una persona estable, con la evitación de lo que siente como problema central. Los componentes siguen un orden sugerido, recomendable para quien empieza con esta terapia (Walser y Westrup, 2007, cap. 3)."
+      },
+      actividades: [
+        {
+          t: "Consentimiento y desesperanza creativa",
+          tecs: ["desesperanza-creativa", "metafora-hoyo"],
+          obj: "Presentar una terapia que se vive más de lo que se explica y que la persona compruebe que sus soluciones para el trauma no le han funcionado.",
+          pasos: [
+            "Explicar que es una terapia experiencial, en la que va a sentir con intensidad y no solo a pensar, sin presentarla como la respuesta que la persona espera ni asustarla.",
+            "Abrir cada sesión con un ejercicio de atención plena y un repaso de lo anterior.",
+            "Listar todo lo que ha hecho para librarse de los recuerdos y lo que traen: alcohol, drogas, medicación, terapias, huir, mantenerse ocupada, olvidar. Recorrer cada estrategia: ¿funcionó?, ¿qué le costó?",
+            "Quedarse con la sensación de estar atascada sin resolverla, y usar la metáfora de la persona en el hoyo: la desesperanza es sobre las soluciones, no sobre ella."
+          ],
+          casa: "Anotar durante la semana las formas en que intenta no sentir y lo que le cuestan.",
+          avance: "La persona reconoce que lo que no funciona es la lucha, y se queda en la terapia aunque no tenga todavía una salida.",
+          fuente: "Walser y Westrup, 2007, caps. 3 y 4",
+          fichas: ["registro-control"]
+        },
+        {
+          t: "El control es el problema",
+          tecs: ["oso-blanco", "trampa-dedos", "lucha-monstruo"],
+          obj: "Mostrar que el control que funciona con el mundo exterior no funciona con los recuerdos, las emociones y los pensamientos del trauma.",
+          pasos: [
+            "Pedirle que no piense en un helado de vainilla y comparar con lo que pasa con los recuerdos.",
+            "Usar la metáfora de las arenas movedizas, la trampa china para los dedos, luchar contra la ola y el tira y afloja con el monstruo.",
+            "Revisar cómo aprendimos a controlar lo que sentimos y en qué ámbitos el control sí funciona.",
+            "Señalar el lenguaje de control en lo que dice la persona y el control excesivo en su vida diaria."
+          ],
+          casa: "Anotar las situaciones en que intentar controlar lo interno agrandó el problema.",
+          avance: "La persona habla de dejar de luchar como una posibilidad.",
+          fuente: "Walser y Westrup, 2007, cap. 5"
+        },
+        {
+          t: "Disposición y defusión",
+          tecs: ["disposicion", "defusion", "desliteralizacion"],
+          obj: "Presentar la disposición a sentir como alternativa al control, y tomar distancia de los pensamientos ligados al trauma.",
+          pasos: [
+            "Presentar la disposición con el ejercicio de las manos: con permiso para tocarla, el terapeuta apoya su palma contra la de la persona y empuja; ella empuja de vuelta; luego deja de empujar y solo mantiene el contacto, y nota que se mueve con más libertad. El permiso importa especialmente con sobrevivientes de violencia interpersonal.",
+            "Defusionar con la metáfora de las dos computadoras —la programación que dejaron otros y la experiencia aparece en la pantalla, y una persona la toma como verdad mientras otra la lee como programación— y con el ejercicio de sacar a pasear la mente.",
+            "Hacer el ejercicio de mirarse a los ojos: sentados frente a frente, mirarse en silencio y notar lo que aparece —ansiedad, juicios, ganas de terminar— eligiendo quedarse.",
+            "Desarmar dos confusiones: disposición no es un sentimiento, y no es conceder que lo ocurrido estuvo bien."
+          ],
+          casa: "Practicar la disposición en una situación concreta que suele evitar.",
+          avance: "La persona puede tener un recuerdo o una emoción difícil en sesión sin escapar.",
+          fuente: "Walser y Westrup, 2007, cap. 6"
+        },
+        {
+          t: "Yo como contexto",
+          tecs: ["metafora-ajedrez", "ejercicio-observador", "yo-contexto"],
+          obj: "Que la persona contacte con un yo que observa sus experiencias y que el trauma no dañó.",
+          pasos: [
+            "Presentar la metáfora del tablero de ajedrez: las piezas pelean, el tablero las sostiene a todas.",
+            "Hacer el ejercicio del observador: notar que quien recuerda a la persona de la infancia, de la adolescencia y de hoy es la misma que observa.",
+            "Hacer el desfile de etiquetas: escribir en tarjetas aquello con lo que la persona lucha («mi vida es un desastre») y pegárselas encima: las etiquetas están sobre ella, no son ella.",
+            "Subrayar que el yo sigue intacto: los recuerdos, pensamientos y emociones pasan por él."
+          ],
+          casa: "Dos días de la semana, hacer tres pausas de cinco minutos para anotar lo que piensa, siente y percibe, y al final del día notar cómo cambió.",
+          avance: "La persona distingue entre lo que le pasó y quién es.",
+          fuente: "Walser y Westrup, 2007, cap. 7"
+        },
+        {
+          t: "Vivir según valores",
+          tecs: ["hoja-valores", "valores"],
+          obj: "Ayudar a la persona a elegir direcciones de vida después del trauma.",
+          pasos: [
+            "Presentar los valores como elecciones que dan dirección y sentido, no como sentimientos ni como resultados.",
+            "Completar la hoja de clarificación de valores por áreas, con la importancia de cada una.",
+            "Conversar sobre cómo el trauma cambió lo que la persona creía que podía querer, y sobre el sentido después del trauma.",
+            "Recordar que el proceso de vivir según los valores es el punto, no llegar a una meta."
+          ],
+          casa: "Hoja de valores y metas por área.",
+          avance: "La persona nombra direcciones propias aunque todavía no actúe en ellas.",
+          fuente: "Walser y Westrup, 2007, cap. 8",
+          fichas: ["hoja-valores"]
+        },
+        {
+          t: "Acción comprometida, perdón y exposición",
+          tecs: ["accion-comprometida", "perdon-accion", "metafora-vecino", "barreras"],
+          obj: "Pasar a la acción valiosa y trabajar lo que la frena, incluida la falta de perdón y, si hace falta, el recuerdo del trauma.",
+          pasos: [
+            "Contar con la persona la historia de la terapia y revisar los valores recuperados; desarmar la espera de volver a ser quien era antes.",
+            "Si la falta de perdón aparece como barrera, presentarlo como una acción —dar lo que había antes del daño—, no como un sentimiento ni como decir que lo ocurrido estuvo bien. Puede usarse la metáfora del gusano en el anzuelo o un ejercicio de silla vacía. No se impone perdonar.",
+            "Trabajar las demás barreras: la necesidad de tener razón y el apego a una imagen de sí. Volver a la disposición con la metáfora del vecino indeseable: en la casa abierta a todos, vigilar que no entre arruina la fiesta.",
+            "Hacer la pregunta de la disposición: ¿está dispuesta a tener lo que aparezca para hacer lo que valora? Acordar compromisos concretos y pequeños, y cerrar con el ejercicio de ponerse de pie y comprometerse.",
+            "Si el recuerdo del trauma sigue limitando su vida, la exposición prolongada puede hacerse después de esta terapia o a la vez, usando su lenguaje («está teniendo el recuerdo de…»)."
+          ],
+          casa: "Compromisos semanales con acciones valiosas y lo que apareció al hacerlas.",
+          avance: "La persona actúa en áreas que había abandonado, con los recuerdos y emociones presentes.",
+          fuente: "Walser y Westrup, 2007, caps. 9 y 10",
+          fichas: ["plan-accion-valores"]
+        }
+      ],
+      opciones: [
+        {
+          t: "Trauma complejo: anclarse primero",
+          cuando: "Traumas repetidos o en las relaciones de apego, con <strong>oscilaciones entre la hiperactivación y el embotamiento</strong>, reexperimentaciones, desconexión o irrealidad, vergüenza intensa, ideas suicidas o autolesiones. La terapia empieza por echar el ancla y deja la exposición formal a los recuerdos para el final, si hace falta. Si hay partes disociativas que toman el control, ver <em>Trastornos disociativos complejos</em> (Harris, 2021a, caps. 3, 6 y 8).",
+          fuente: "Harris, 2021a",
+          secuencia: "<strong>Secuencia:</strong> cuatro etapas flexibles. Comenzar la terapia (1 o 2 sesiones): historia, consentimiento, metas, psicoeducación sobre el trauma y echar el ancla. Vivir en el presente (4 a 6): defusión, aceptación y autocompasión, valores, acción comprometida, trabajo con el cuerpo, sueño y autocalma, y un sentido flexible de sí. Sanar el pasado (2 a 4): el trabajo con el «yo más joven», el duelo, el perdón y la exposición a los recuerdos. Construir el futuro (2 a 4): metas, plan de mantenimiento y cierre. Salvo la primera, las etapas se entrelazan; abarcarlo todo suele tomar de 8 a 12 sesiones, pero cada componente ayuda por sí solo, y hay una versión breve (Harris, 2021a, caps. 6 y 33).",
+          actividades: [
+            {
+              t: "Comenzar con seguridad",
+              tecs: ["psicoeducacion", "entrevista-clinica"],
+              obj: "Crear un espacio seguro, explicar las reacciones al trauma y acordar metas.",
+              pasos: [
+                "Tomar la historia sin pedir detalles del trauma que la persona no quiera dar, y acordar metas de terapia.",
+                "En el consentimiento, dejar claro que es un trabajo en equipo, que puede decir que no a cualquier ejercicio y pedir que el terapeuta «ponga pausa» cuando note algo importante; acordar una señal sin palabras para detenerse.",
+                "Explicar las respuestas de lucha, huida, congelamiento y colapso como reacciones del cuerpo ante la amenaza, no como debilidad.",
+                "Presentar la atención plena con lenguaje de invitación, como un experimento y en pasos pequeños."
+              ],
+              casa: "Notar durante la semana cuándo aparecen esas reacciones y qué las dispara.",
+              avance: "La persona entiende sus reacciones como respuestas del cuerpo y se siente en control de lo que pasa en sesión.",
+              fuente: "Harris, 2021a, caps. 3, 4 y 7"
+            },
+            {
+              t: "Echar el ancla",
+              tecs: ["echar-ancla"],
+              obj: "Dar a la persona una habilidad para sostenerse en medio de las tormentas emocionales, las reexperimentaciones, la disociación y los extremos de activación.",
+              pasos: [
+                "Presentar la metáfora: echar el ancla no detiene la tormenta, mantiene el barco firme hasta que pasa. Si la persona está disociando o desbordada, omitir la metáfora e ir directo al ejercicio.",
+                "Recorrer de tres a cinco ciclos de reconocer lo que hay dentro («estoy notando miedo»), conectar con el cuerpo (empujar los pies contra el suelo, estirarse, cambiar de postura) e implicarse con lo que se está haciendo (mirar, escuchar, volver a la tarea).",
+                "Si no puede nombrar lo que siente, decir solo «hay algo doloroso aquí» y nombrar más adelante.",
+                "Ajustar la duración, de segundos a varios minutos, y revisar después qué notó: más presencia y más control sobre lo que hace con los brazos y las piernas."
+              ],
+              casa: "Echar el ancla muchas veces al día, en versiones breves, también cuando está tranquila.",
+              avance: "La persona usa el ancla por sí misma cuando aparece una reexperimentación o un desbordamiento.",
+              fuente: "Harris, 2021a, cap. 8"
+            },
+            {
+              t: "Desengancharse y hacer espacio",
+              tecs: ["desengancharse", "aceptacion", "pausa-autocompasion"],
+              obj: "Tomar distancia de los pensamientos e imágenes que enganchan y hacer espacio a las emociones con amabilidad.",
+              pasos: [
+                "Practicar desengancharse de los pensamientos: notarlos, nombrarlos («estoy teniendo el pensamiento de que…», «ahí está la historia de siempre»), normalizarlos, ver para qué intentan servir y si funcionan, y agradecer a la mente.",
+                "Hacer espacio a las emociones y sensaciones: observarlas, respirar hacia ellas, dejarlas estar.",
+                "Practicar la autocompasión, por ejemplo poniendo una mano amable donde duele.",
+                "Trabajar con el cuerpo, el sueño y las formas de autocalmarse cuando hagan falta."
+              ],
+              casa: "Practicar una habilidad de defusión, de aceptación o de autocompasión cada día.",
+              avance: "La persona describe sus experiencias internas con distancia y se trata con menos dureza.",
+              fuente: "Harris, 2021a, caps. 10, 13, 14, 22 y 23",
+              fichas: ["pausa-autocompasion"]
+            },
+            {
+              t: "Valores, acción y patrones destructivos",
+              tecs: ["valores", "accion-comprometida", "punto-eleccion"],
+              obj: "Convertir lo que importa en acciones y reemplazar las conductas que alejan de ello.",
+              pasos: [
+                "Usar el punto de elección: ante lo que dispara el malestar, ver qué acciones alejan de lo que le importa y cuáles acercan.",
+                "Clarificar valores y fijar metas y acciones concretas.",
+                "Examinar los patrones destructivos —beber, aislarse, autolesionarse— con cuatro preguntas: qué los dispara, qué costos y beneficios tienen, qué alternativa serviría y qué habilidades hacen falta.",
+                "Anticipar las barreras, apoyar el cambio con recordatorios, registros, rutinas y relaciones, y acordar qué hará cuando las cosas salgan mal."
+              ],
+              casa: "Acciones valiosas de la semana y lo que hizo cuando apareció el impulso de alejarse.",
+              avance: "La persona hace más movimientos hacia lo que le importa y menos movimientos de alejamiento.",
+              fuente: "Harris, 2021a, caps. 5 y 15 a 19",
+              fichas: ["plan-accion-valores"]
+            },
+            {
+              t: "Vergüenza, daño moral y riesgo suicida",
+              tecs: ["defusion", "pausa-autocompasion"],
+              obj: "Trabajar los temas que con frecuencia acompañan al trauma complejo, cuando aparecen.",
+              pasos: [
+                "Ante la vergüenza, notarla, nombrarla y normalizarla, explorar para qué le ha servido y si le funciona, y responder con autocompasión: ninguna emoción es el problema, sino responderle con rigidez.",
+                "Ante el daño moral —haber hecho, presenciado o no impedido algo que viola los propios principios—, validarlo como una reacción normal, distinguir estar atascado de estar roto, y trabajar el duelo, el perdón, la compasión y el sentido.",
+                "Ante ideas suicidas, evaluar el riesgo y activar la ruta de atención cuando sea alto. Trabajar el dolor que se vive como intolerable, interminable e ineludible: defusión de la desesperanza, valores como razones para vivir, aceptación y autocompasión ante el dolor, y acción comprometida con solución de problemas."
+              ],
+              casa: "Según el tema: una práctica de autocompasión, una acción guiada por valores o el plan de seguridad.",
+              avance: "La vergüenza y la culpa pesan menos en lo que la persona decide hacer.",
+              fuente: "Harris, 2021a, caps. 24 a 26",
+              fichas: ["plan-seguridad"]
+            },
+            {
+              t: "Sanar el pasado",
+              tecs: ["exposicion-valores", "echar-ancla"],
+              obj: "Si hace falta, exponerse a un recuerdo traumático de forma flexible y compasiva, al servicio de una meta valiosa, y trabajar el duelo y el perdón.",
+              pasos: [
+                "Antes de la exposición formal, comprobar que hay una señal para detenerse, que la persona sabe echar el ancla y tiene habilidades de defusión, aceptación, autocompasión y yo observador, que la motiva una meta valiosa y que eligió un recuerdo concreto.",
+                "Anticipar lo que dirá su mente y escribirlo para reconocerlo cuando aparezca.",
+                "Empezar y terminar con uno o dos minutos de ancla; durante la exposición, medir de 0 a 10 la presencia, la disposición y el control sobre los movimientos, y moverse entre pensamientos, imágenes, recuerdos, emociones y sensaciones según lo que aparezca. Si se desborda o disocia, echar el ancla y volver.",
+                "Recordar cada pocos minutos para qué lo hace. Detenerse si ya no sostiene la disposición.",
+                "Según el caso, trabajar con el «yo más joven», el duelo y el perdón."
+              ],
+              casa: "Practicar lo acordado de la exposición, con las mismas escalas.",
+              avance: "La persona puede estar con el recuerdo sin desbordarse y hacer lo que la exposición le estaba impidiendo.",
+              fuente: "Harris, 2021a, caps. 20 y 29 a 31"
+            },
+            {
+              t: "Construir el futuro",
+              tecs: ["prevencion-recaidas", "valores"],
+              obj: "Afianzar los cambios y preparar el cierre.",
+              pasos: [
+                "Fijar metas a largo plazo ligadas a los valores.",
+                "Hacer un plan de mantenimiento y de prevención: qué seguirá practicando y qué hará ante las señales de recaída.",
+                "Explorar, sin imponerlo, el crecimiento después del trauma.",
+                "Cerrar la terapia."
+              ],
+              casa: "Plan de mantenimiento escrito.",
+              avance: "La persona tiene un plan propio y sabe cuándo pedir ayuda.",
+              fuente: "Harris, 2021a, cap. 32",
+              fichas: ["plan-mantenimiento"]
+            }
+          ]
+        }
+      ],
+      medir: [
+        "<strong>PCL-5</strong> al inicio y al final.",
+        "<strong>AAQ-II</strong> como medida del proceso: la evitación experiencial.",
+        "<strong>VLQ</strong>: importancia y acción por área de vida.",
+        "En la opción B, las escalas de 0 a 10 de presencia, disposición y control sobre los movimientos durante los ejercicios."
+      ],
+      adapt: [
+        "<strong>Salud mental y hospitalización:</strong> se ha usado en terapia individual y en grupo, sin que una sea superior. En programas residenciales conviene que el equipo conozca sus ideas, porque la persona puede oír en otro grupo que debe arreglar lo que aquí aprende a sostener (Walser y Westrup, 2007, cap. 10).",
+        "<strong>Atención breve:</strong> si solo habrá una o pocas sesiones, se enseña en cada una una habilidad que la persona pueda llevarse —echar el ancla, un valor, una acción— (Harris, 2021a, cap. 33).",
+        "<strong>Refugiados y población desplazada:</strong> el programa grupal de la OMS, en el que echar el ancla es la habilidad central, fue aplicado por facilitadores no especialistas (Harris, 2021a, caps. 1 y 8). Ver también la variable <em>Migración y desplazamiento</em>."
+      ],
+      cuidado: [
+        "Aceptar se refiere a las experiencias internas, nunca a la violencia o al peligro: si la situación sigue ocurriendo, se trabaja primero para que la persona esté a salvo (Walser y Westrup, 2007, cap. 11).",
+        "Si la persona está en psicosis activa o en proceso de hospitalización, primero se estabiliza; si empeora durante la terapia —deja de vivir según sus valores y aumentan las conductas dañinas—, se detiene (Walser y Westrup, 2007, cap. 10).",
+        "Si la persona disocia o se desborda en sesión, se echa el ancla antes de seguir; nunca se insiste en un ejercicio sin su disposición (Harris, 2021a, caps. 4 y 8).",
+        "Atender la propia evitación del terapeuta: es fácil desviar la conversación del trauma o del suicidio, o hablar de la terapia en lugar de practicarla (Harris, 2021a, cap. 6)."
       ]
     },
     {
@@ -6921,111 +7359,133 @@ const VARIABLES = [
       enf: "act",
       nivel: "ensayos",
       t: "Aceptación y acción guiada por valores",
-      fuente: "Hayes et al., 2012 · Harris, 2009 · Ruiz et al., cap. 11",
-      cuando: "La persona está <strong>atrapada en la lucha contra la tristeza</strong> —aislarse, dormir, distraerse, esperar a sentirse mejor para hacer algo— y fusionada con pensamientos como «soy un fracasado» o «no vale la pena», mientras su vida se vacía de lo que le importa.",
-      respaldo: "La terapia de aceptación y compromiso ha mostrado eficacia en ensayos controlados en depresión, con resultados especialmente favorables en el seguimiento (Hayes et al., 2006, en Ruiz et al., cap. 11). Una revisión de 20 metaanálisis, con 133 estudios y 12.477 participantes, concluye que es eficaz en todas las condiciones examinadas —ansiedad, depresión, consumo de sustancias, dolor y muestras transdiagnósticas— y que en general no se diferencia de la terapia cognitivo-conductual (Gloster et al., 2020). La OMS incluye las terapias de tercera ola entre las intervenciones psicológicas estructuradas que recomienda en la depresión moderada a grave (recomendación fuerte, certeza moderada; OMS, 2023, DEP3).",
-      secuencia: "<strong>Secuencia:</strong> los procesos del modelo no siguen un orden fijo; los valores están presentes desde la primera sesión y la defusión atraviesa todo el proceso (Harris, 2009). El orden de abajo es el habitual cuando la persona llega muy apegada a no sentir.",
+      fuente: "Zettle, 2007, caps. 4 a 9",
+      cuando: "La persona está <strong>atrapada en la lucha contra la tristeza</strong> —aislarse, dormir, distraerse, esperar a sentirse mejor para hacer algo— y fusionada con pensamientos como «soy un fracasado» o «no vale la pena», mientras su vida se vacía de lo que le importa. Las razones que da para estar deprimida («no puedo porque me siento mal») funcionan como reglas que la mantienen quieta (Zettle, 2007, caps. 2 y 3).",
+      respaldo: "En el primer ensayo comparativo, 18 mujeres con depresión recibieron doce sesiones semanales de una versión temprana de esta terapia o de terapia cognitiva; ambas mejoraron, y a los dos meses las tratadas con aceptación y compromiso estaban menos deprimidas según un evaluador que no sabía qué tratamiento habían recibido. Un segundo ensayo, en grupo, no encontró diferencias, lo que sugiere que el efecto puede ser menor fuera del formato individual. La terapia redujo más que la cognitiva cuánto creían las personas sus pensamientos depresivos, aunque no cuántas veces los tenían (Zettle, 2007, cap. 1). Una revisión de metaanálisis la encontró eficaz en la depresión y, en general, comparable a la terapia cognitivo-conductual (Gloster et al., 2020).",
+      secuencia: "<strong>Secuencia:</strong> una sesión previa para el consentimiento y la evaluación inicial, y doce sesiones semanales. De la 1 a la 3 se socava el control de las emociones y se introduce la disposición; de la 3 a la 6 se trabaja la defusión de pensamientos, razones e historia de vida, junto con una progresión de ejercicios de atención plena y el yo como contexto; la 5 y la 7 clarifican valores y metas; de la 7 a la 11 se instiga y sostiene la acción comprometida; la 12 cierra. El autor presenta también una forma más flexible, guiada por la formulación del caso, y aclara que no hay estudios que muestren que una sea mejor que la otra (Zettle, 2007, cap. 9).",
       esc: ["hospital","salud-mental","primer-nivel"],
       actividades: [
         {
-          t: "Desesperanza creativa",
-          tecs: ["desesperanza-creativa"],
-          obj: "Que la persona compruebe con su experiencia que tratar de no sentir la tristeza no le ha devuelto la vida que quiere.",
+          t: "Consentimiento, historia de vida y primera desesperanza creativa",
+          tecs: ["entrevista-clinica", "desesperanza-creativa", "metafora-hoyo"],
+          obj: "Que la persona elija informada este tratamiento, contar con una línea base y empezar a examinar si sus intentos de controlar el ánimo le han funcionado.",
           pasos: [
-            "Pedirle que describa lo que la depresión ha supuesto en su vida.",
-            "Listar lo que ha hecho para no sentirse mal: aislarse, dormir, distraerse, beber, esperar a tener ganas.",
-            "Recorrer la lista con las tres preguntas: qué ha probado, cómo le ha funcionado a la larga y qué le ha costado.",
-            "Validar el esfuerzo y presentar la metáfora del hombre en el hoyo."
+            "Antes de empezar, explicar el tratamiento de palabra y por escrito: que se aprende haciendo, que habrá tareas y que en los estudios rindió igual que la terapia cognitiva. Dejar claro que puede pedir cambiar de enfoque.",
+            "Aplicar una medida de depresión, que se repetirá antes de cada sesión, y un cuestionario de valores.",
+            "Pedirle su historia de vida y preguntar por el riesgo suicida: intentos previos, ideas actuales y para qué le servirían. Si el suicidio aparece como una forma de escapar del malestar, dosificar la desesperanza creativa.",
+            "Recorrer lo que ha hecho para sentirse mejor, preguntando por cada estrategia si funcionó a la larga y a qué costo, y presentar la metáfora de la persona en el hoyo.",
+            "Acordar metas de tratamiento ligadas a lo que le importa, no solo a sentirse mejor."
           ],
-          casa: "Registrar los intentos de no sentir, el alivio que dieron y lo que costaron.",
-          avance: "La persona distingue que lo que no funciona es la estrategia, no ella misma.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5",
+          casa: "Diario de regulación del ánimo: anotar cada cambio de ánimo que no le gustó y todo lo que hizo o pensó para cambiarlo.",
+          avance: "La persona empieza a ver la variedad de formas en que «cava» y acepta probar algo distinto.",
+          fuente: "Zettle, 2007, caps. 4 y 9 (sesión previa y sesión 1)",
           fichas: ["registro-control"]
         },
         {
-          t: "El control es el problema",
-          tecs: ["lucha-monstruo"],
-          obj: "Mostrar que las reglas que ponen la tristeza en contra de la vida la agrandan.",
+          t: "El control de las emociones y la disposición",
+          tecs: ["metafora-poligrafo", "disposicion"],
+          obj: "Mostrar que el control de las emociones es normal y omnipresente, pero inútil y costoso, y presentar la disposición como alternativa.",
           pasos: [
-            "Examinar reglas como «con estos pensamientos no se puede vivir» o «primero tengo que sentirme bien».",
-            "Presentar la lucha con el monstruo de la depresión: tirar de la cuerda ata a la persona al borde del foso.",
-            "Contrastar lo que sí se puede controlar —lo que se hace— con lo que no: lo que se siente."
+            "Revisar el diario: cuántas formas de regular el ánimo encontró, sin juzgarlas. Validar por qué todos lo hacemos: funciona con el mundo exterior, otros lo aconsejan («anímate») y a veces alivia en el momento.",
+            "Mostrar su inutilidad con ejercicios: no pensar en un pastel de chocolate, la metáfora del polígrafo, intentar enamorarse a voluntad.",
+            "Presentar la metáfora de las dos escalas: si la del malestar está alta, la de la disposición es la que se puede mover.",
+            "Proponer el ejercicio de cargar la depresión: llevar el malestar consigo mientras se hace lo que importa."
           ],
-          casa: "Anotar las veces que tratar de no estar triste aumentó el malestar.",
-          avance: "La persona empieza a hablar de la tristeza como algo que tiene, no como un obstáculo que debe desaparecer antes de actuar.",
-          fuente: "Harris, 2009, cap. «Creative What??!!» · Hayes et al., 2012, cap. 5"
+          casa: "Anotar en tarjetas los pensamientos que más la afectan durante la semana y lo que hizo con ellos.",
+          avance: "La persona distingue lo que puede elegir —lo que hace— de lo que no puede ordenar —lo que siente—.",
+          fuente: "Zettle, 2007, caps. 6 y 9 (sesión 2)"
         },
         {
-          t: "Clarificación de valores",
-          tecs: ["hoja-valores", "ejercicio-funeral"],
-          obj: "Reconectar con las direcciones de vida que la depresión fue apagando.",
+          t: "Defusión de pensamientos, razones e historia de vida",
+          tecs: ["defusion", "desliteralizacion", "tengo-pensamiento", "historia-vida"],
+          obj: "Que la persona vea sus pensamientos depresivos, sus autoevaluaciones y sus razones como lo que son —palabras— y no como verdades que le ordenan qué hacer.",
           pasos: [
-            "Distinguir valor de meta.",
-            "Completar la hoja de valores por áreas y el ejercicio del funeral.",
-            "Redactar una frase de dirección por área y puntuar importancia y acción de la última semana."
+            "Presentar «su mente no es su amiga»: hablar de la mente en tercera persona y agradecerle cada comentario.",
+            "Defusionar los pensamientos automáticos con la repetición de una palabra («leche, leche, leche»), dichos en voz distinta y con el inventario de pensamientos.",
+            "Hacer espacio a las emociones con el ejercicio de fisicalizarlas y de sentarse con ellas.",
+            "Distinguir autoevaluaciones («soy un desastre») de descripciones («olvidé la cita»), y defusionar las razones con «¿por qué?» repetido, la metáfora de la llanta pinchada y el cambio de «pero» por «y».",
+            "Pedirle que escriba su historia de vida y, después, que la reescriba con los mismos hechos y un final que no lleve a la depresión: no para cambiar de historia, sino para sostenerla con menos fuerza."
           ],
-          casa: "Revisar la hoja y notar qué área importa más y cuál está más descuidada.",
-          avance: "La persona identifica al menos una dirección valiosa por la que está dispuesta a moverse.",
-          fuente: "Hayes et al., 2012, cap. 10 · Harris, 2009, cap. «Know What Matters»",
-          fichas: ["hoja-valores"]
+          casa: "Inventario de pensamientos, ejercicio de razones de la depresión, escritura y reescritura de la historia de vida.",
+          avance: "La persona dice «estoy teniendo el pensamiento de que…» de forma espontánea y sus razones pesan menos en lo que decide.",
+          fuente: "Zettle, 2007, caps. 6 y 9 (sesiones 3 a 6)"
         },
         {
-          t: "Defusión y yo como contexto",
-          tecs: ["defusion", "desliteralizacion", "metafora-ajedrez"],
-          obj: "Que la persona vea «soy un fracasado» como un pensamiento que tiene, no como lo que es.",
+          t: "Atención plena y yo como contexto",
+          tecs: ["ejercicio-pasa", "momento-presente", "hojas-rio", "metafora-ajedrez", "ejercicio-observador"],
+          obj: "Entrenar el contacto con el presente en una progresión que va de lo concreto a los pensamientos y emociones, y una perspectiva de sí mismo más amplia que la historia depresiva.",
           pasos: [
-            "Cambiar «soy un inútil» por «estoy teniendo el pensamiento de que soy un inútil».",
-            "Repetir en voz alta la palabra cargada hasta que pierda su significado inmediato.",
-            "Usar el tablero de ajedrez: la persona no es las piezas que luchan, sino el tablero que las contiene.",
-            "Practicar a diario la observación de pensamientos con hojas en el río."
+            "Empezar con el ejercicio de la uva pasa y seguir con actividades cotidianas hechas con atención.",
+            "Pasar a la respiración consciente, dos veces al día, de 5 a 15 minutos a lo largo de la semana.",
+            "Terminar con la observación de pensamientos y emociones: hojas en el río, soldados en el desfile o nubes que pasan.",
+            "Presentar la metáfora del tablero de ajedrez y el ejercicio del observador: hay una parte de ella que ha notado todo lo que ha vivido sin ser nada de eso."
           ],
-          casa: "Práctica diaria de observar los pensamientos negativos como pensamientos.",
-          avance: "La persona describe sus pensamientos desde la posición de quien los observa.",
-          fuente: "Hayes et al., 2012, caps. 7 y 8 · Harris, 2009, cap. «Watch Your Thinking»"
+          casa: "Un ejercicio de atención plena al día, anotado en un diario de práctica.",
+          avance: "La persona practica casi todos los días y describe sus estados de ánimo desde la posición de quien los observa.",
+          fuente: "Zettle, 2007, caps. 8 y 9 (sesiones 4 a 7)"
         },
         {
-          t: "Aceptación y acción en presencia de la tristeza",
-          tecs: [],
-          obj: "Practicar hacer lo que importa sin esperar a tener ganas.",
+          t: "Valores, metas y primera acción comprometida",
+          tecs: ["hoja-valores", "ejercicio-funeral", "accion-comprometida", "barreras"],
+          obj: "Clarificar qué quiere la persona que represente su vida y convertirlo en una primera acción concreta.",
           pasos: [
-            "Presentar la disposición como una elección, no como un sentimiento.",
-            "Elegir con la persona una acción valiosa pequeña para hacer con la tristeza presente.",
-            "Dejar claro que el objetivo no es sentirse mejor antes de actuar, sino actuar con lo que se siente."
+            "Explorar valores de forma indirecta: deseos de la infancia, vidas que admira, qué quiere que represente su vida, su epitafio.",
+            "Revisar el cuestionario de valores y cuidar que sean suyos y no de sus padres, de su cultura o del terapeuta.",
+            "Elegir una meta coherente con un valor y una acción para la semana, registrada en un formulario de metas y acciones.",
+            "Anticipar las barreras del entorno y las internas —pensamientos y emociones— y cómo hacerles espacio."
           ],
-          casa: "Hacer la acción valiosa acordada, aunque no haya ganas.",
-          avance: "La persona hace acciones valiosas sin esperar a que cambie su ánimo.",
-          fuente: "Hayes et al., 2012, cap. 9"
+          casa: "Hacer la acción acordada y anotar las barreras que aparecieron.",
+          avance: "La persona hace una acción valiosa a pesar de la tristeza y puede contar qué la frenaba.",
+          fuente: "Zettle, 2007, caps. 7 y 9 (sesiones 5 y 7)",
+          fichas: ["hoja-valores", "plan-accion-valores"]
         },
         {
-          t: "Acción comprometida y prevención de recaídas",
-          tecs: ["fear-dare", "prevencion-recaidas"],
-          obj: "Ampliar las pautas de acción valiosa y preparar a la persona para caer y levantarse.",
+          t: "La naturaleza del compromiso",
+          tecs: ["accion-comprometida", "metafora-autobus"],
+          obj: "Sostener la acción valiosa cuando aparecen los pensamientos y emociones que la frenan.",
           pasos: [
-            "Definir metas y acciones concretas por cada dirección valiosa, desde pasos pequeños.",
-            "Identificar las barreras con FEAR y responder con DARE.",
-            "Llevar un registro diario de acciones cumplidas.",
-            "Presentar la recaída como ocasión de volver a elegir y espaciar las sesiones."
+            "Si no hizo la tarea y dice que lo intentó, usar el ejercicio de intentar contra hacer: intentar levantar un bolígrafo.",
+            "Distinguir compromisos parciales de totales y elegir de decidir: se elige por los valores, no por las razones.",
+            "Presentar la metáfora de los pasajeros del autobús y la del pantano: se atraviesa el barro porque se va hacia la montaña, no para embarrarse.",
+            "Acordar el siguiente paso de una progresión de acciones."
           ],
-          casa: "Plan de acción comprometida semanal con sus barreras.",
-          avance: "Crecen las pautas de acción valiosa en la vida de la persona.",
-          fuente: "Hayes et al., 2012, cap. 11 · Harris, 2009, cap. «Do What It Takes»",
-          fichas: ["plan-accion-valores", "plan-mantenimiento"]
+          casa: "Nueva acción comprometida en el formulario de metas y acciones, con las barreras previstas.",
+          avance: "La persona mantiene sus compromisos semanales y vuelve a ellos después de no cumplirlos.",
+          fuente: "Zettle, 2007, caps. 7 y 9 (sesión 8)",
+          fichas: ["plan-accion-valores"]
+        },
+        {
+          t: "Sostener la acción y cerrar",
+          tecs: ["metafora-vecino", "fear-dare", "prevencion-recaidas"],
+          obj: "Afianzar la acción guiada por valores ante el éxito y el fracaso, y preparar la vida después de la terapia.",
+          pasos: [
+            "Ante el éxito, cuidar que la meta lograda no se use para comprobar si se fueron las dudas o la tristeza: con la metáfora del vecino indeseable, vigilar la puerta para que no entre arruina la fiesta. Separar el proceso de vivir según los valores de los resultados. Ante el fracaso, usar la metáfora del jardín —se cuida lo que se siembra aunque no florezca enseguida— y la de la píldora mágica.",
+            "Seguir con la práctica de atención plena y una acción valiosa por semana.",
+            "En la última sesión, conversar sobre las reacciones al cierre sin tranquilizar a la persona, y resumir con ella las barreras con la sigla FEAR: fusión con los pensamientos, evaluación de la experiencia, evitación y razones.",
+            "Resumir la alternativa: aceptar las reacciones y estar presente, elegir una dirección y actuar. Conversar sobre la vida después de la terapia y dejar abierta la posibilidad de volver."
+          ],
+          casa: "Plan personal para seguir con la práctica y con metas guiadas por valores.",
+          avance: "La persona sigue actuando hacia sus valores con altibajos del ánimo y sabe cuándo pedir ayuda.",
+          fuente: "Zettle, 2007, cap. 9 (sesiones 9 a 12)",
+          fichas: ["plan-mantenimiento"]
         }
       ],
       medir: [
-        "<strong>PHQ-9</strong> al inicio y al final.",
+        "<strong>PHQ-9</strong> o <strong>BDI-II</strong> antes de cada sesión: un aumento sostenido puede anunciar abandono y permite vigilar el riesgo suicida (Zettle, 2007, cap. 9).",
         "<strong>AAQ-II</strong> como medida del proceso.",
-        "<strong>VLQ-2</strong>: importancia y acción por área de vida.",
-        "<strong>WHODAS 2.0</strong> para el funcionamiento."
+        "<strong>VLQ</strong>: importancia y acción por área de vida.",
+        "Formulario semanal de metas y acciones: acciones cumplidas y barreras."
       ],
       adapt: [
-        "<strong>Hospital general:</strong> hay ensayos controlados en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico (Ruiz et al., cap. 11).",
-        "<strong>Salud mental y consulta externa:</strong> admite formato breve o amplio, individual o grupal (Ruiz et al., cap. 11).",
+        "<strong>Formato:</strong> en grupo, la ventaja sobre la terapia cognitiva desapareció en el único ensayo disponible; si se hace en grupo, conviene no esperar más de lo que se ha visto (Zettle, 2007, cap. 1).",
+        "<strong>Medicación:</strong> si la persona pregunta si el antidepresivo es otra forma de «cavar», no se responde por ella ni se sugiere dejarlo: se le devuelven las dos preguntas de siempre, si funciona a la larga y a qué costo (Zettle, 2007, cap. 9).",
+        "<strong>Hospital general:</strong> hay ensayos controlados de la terapia de aceptación y compromiso en esclerosis múltiple, psicooncología, diabetes, epilepsia y dolor crónico (Ruiz et al., cap. 11).",
         "<strong>Cultura:</strong> los valores varían entre culturas; si los de la persona son propios de un grupo que el terapeuta no conoce, conviene consultar con alguien que lo conozca para no tratar como «no valores» elecciones que solo son distintas (Hayes et al., 2012, cap. 11)."
       ],
       cuidado: [
-        "Con ideación suicida, la ruta de atención va primero.",
-        "La desesperanza creativa no es desesperanza: lo que no tiene remedio es la estrategia de control, no la persona. En depresión, esta distinción es crítica.",
+        "Si el suicidio ha funcionado como una forma de escapar de la desesperanza, la desesperanza creativa se dosifica: puede vivirse como «ni mi terapeuta cree que haya salida». El autor aclara que no hay estudios sobre cuánto dosificarla (Zettle, 2007, cap. 4).",
+        "Con riesgo suicida, la ruta de atención va primero. En el manejo se busca ganar tiempo y usarlo para aumentar la tolerancia al dolor emocional, conectar con razones para vivir y ensayar otras formas de resolver problemas (Zettle, 2007, cap. 10).",
+        "La desesperanza creativa no es desesperanza: lo que no tiene remedio es la estrategia de control, no la persona.",
         "Aceptar la tristeza no es resignarse a la vida como está: es dejar de esperar a no sentirla para actuar."
       ]
     },
@@ -21904,7 +22364,75 @@ const GLOSARIO = [
   fuente: "Sohlberg y Mateer, 2001, cap. 8" },
 { k: "informacion-temprana-tce", t: "Información temprana tras un TCE leve", tipo: "Técnica", enf: ["rehab"],
   d: "Información breve, oral y escrita, que se da en los primeros días después de una conmoción o un traumatismo craneoencefálico leve: que los síntomas son frecuentes y suelen ser pasajeros, a qué se deben y cómo manejarlos, retomando las actividades de forma gradual. Quienes la reciben tienen menos síntomas meses después que quienes solo oyen que no tienen nada grave.",
-  fuente: "Sohlberg y Mateer, 2001, cap. 15" }
+  fuente: "Sohlberg y Mateer, 2001, cap. 15" },
+/* ---------- Manuales de aceptación y compromiso agregados el 2026-10-26 ---------- */
+{ k: "trampa-dedos", t: "Trampa china para los dedos", alias: ["trampa china"], tipo: "Metáfora", enf: ["act"],
+  d: "Ejercicio con un tubo de paja trenzada en el que se meten los dos índices: al tirar para sacarlos, el tubo se cierra y aprieta; solo empujando los dedos hacia dentro se gana espacio para moverlos. Muestra en el cuerpo que luchar por salir del malestar lo estrecha, y que acercarse a él da más libertad.",
+  como: ["Pedir permiso y dar el tubo a la persona; el terapeuta puede hacerlo a la vez.",
+         "Invitarla a sacar los dedos tirando, y luego a probar empujarlos hacia dentro.",
+         "Preguntar qué notó y qué se parece a lo que hace con su ansiedad o su tristeza, sin explicar la moraleja."],
+  fuente: "Eifert y Forsyth, 2005, cap. 8 · Zettle, 2007, cap. 6" },
+{ k: "brujula-vital", t: "Brújula vital", tipo: "Técnica", enf: ["act"],
+  d: "Hoja en la que la persona anota, para cada área de vida, su valor, metas concretas y las barreras que se interponen, y califica cuánto le importa el área y cuánto tiempo le dedicó últimamente. La distancia entre las dos calificaciones señala dónde la ansiedad le está quitando vida y da la razón para exponerse.",
+  como: ["Partir de la hoja de direcciones valiosas que la persona llenó en casa.",
+         "Escribir por área el valor, una o dos metas y las barreras previstas.",
+         "Calificar importancia y consistencia reciente, y conversar sobre las áreas con más distancia.",
+         "Reescribirla en casa con lo conversado y usarla para elegir las actividades de la exposición."],
+  fuente: "Eifert y Forsyth, 2005, cap. 9 (sesión 5)" },
+{ k: "termostato-disposicion", t: "Termostato de la disposición", tipo: "Metáfora", enf: ["act"],
+  d: "Dos termostatos de 0 a 10, uno de ansiedad y otro de disposición. La persona llega queriendo bajar el de la ansiedad y tiene el de la disposición en cero; así, la ansiedad se vuelve algo que temer y se queda fija. El de la ansiedad no lo controla; el de la disposición sí, y es el que cambia lo que puede hacer con su vida, aunque nadie sepa qué pasará con la ansiedad al subirlo.",
+  ej: "«No sé qué pasará con su ansiedad si sube el termostato de la disposición. Lo que sí sé es que ese termostato lo maneja usted.»",
+  fuente: "Eifert y Forsyth, 2005, cap. 10" },
+{ k: "ejercicios-feel", t: "Ejercicios FEEL", alias: ["ejercicio FEEL"], tipo: "Técnica", enf: ["act"],
+  d: "Ejercicios de exposición en el marco de la aceptación y compromiso (la sigla en inglés dice que sentir las experiencias enriquece la vida). Se provocan a propósito sensaciones o imágenes temidas, no para que la ansiedad baje, sino para practicar observarlas y hacerles espacio, y así ampliar lo que la persona puede hacer cuando aparecen en el camino de sus valores.",
+  como: ["Elegir sensaciones o imágenes que hayan frenado a la persona en un área que valora; modelar el ejercicio y pedir permiso.",
+         "Provocar las sensaciones (girar, respirar rápido o por una pajilla, contener la respiración, subir escalones, mirarse al espejo) entre 30 segundos y un minuto después de notarlas; las imágenes, cinco minutos después de que se vuelvan vívidas.",
+         "Calificar de 0 a 10 intensidad, ansiedad, disposición, lucha y evitación; volver uno o dos minutos a la atención plena y conversar sobre lo que hizo.",
+         "Si hay mucha lucha, guiar el ejercicio sensación por sensación. Repetir hasta disposición de 7 o más y lucha y evitación de 3 o menos.",
+         "Practicar en casa los ejercicios elegidos por la persona, siempre conectados con sus valores."],
+  fuente: "Eifert y Forsyth, 2005, cap. 10" },
+{ k: "historia-vida", t: "Escribir y reescribir la historia de vida", alias: ["que la reescriba con los mismos hechos"], tipo: "Técnica", enf: ["act"],
+  d: "Ejercicio de defusión para la depresión: la persona escribe su historia de vida, subraya en ella los hechos y luego la reescribe con los mismos hechos y un final que no lleve a la depresión. No busca convencerla de otra versión, sino aflojar la fuerza con que sostiene la suya.",
+  como: ["Pedir la historia por escrito como tarea y subrayar juntos los hechos.",
+         "Pedir una segunda versión que incluya todos esos hechos y termine de otra forma.",
+         "Comparar las dos versiones: los mismos hechos admiten varias historias."],
+  fuente: "Zettle, 2007, caps. 6 y 9 (sesiones 4 a 6)" },
+{ k: "exposicion-valores", t: "Exposición guiada por valores", alias: ["exposiciones guiadas por valores"], tipo: "Técnica", enf: ["act"],
+  d: "Acercarse de forma planeada a lo que dispara las obsesiones, los recuerdos o el miedo —situaciones, imágenes o sensaciones— como un paso hacia algo que la persona valora, practicando observar y hacer espacio a lo que aparece. No se mide por cuánto baja la ansiedad, sino por la flexibilidad con que la persona responde.",
+  como: ["Armar un menú de exposiciones ligado a los valores: en situaciones, en la imaginación y con el cuerpo.",
+         "Antes de cada una, recordar para qué la hace.",
+         "Durante la exposición, observar lo que aparece, invitarlo, quedarse con la experiencia y elegir el movimiento hacia los valores; después, valorar el esfuerzo y seguir con el día.",
+         "Variar contextos y formas, vigilar las compulsiones o conductas de seguridad sutiles y detenerse si la persona ya no está dispuesta."],
+  fuente: "Zurita Ona, 2020, parte VIII · Harris, 2021a, cap. 20" },
+{ k: "emociones-claras-turbias", t: "Emociones claras y turbias", alias: ["emociones claras"], tipo: "Concepto", enf: ["act"],
+  d: "Una emoción es clara cuando su tipo e intensidad corresponden a lo que está pasando, y por eso informa. Se enturbia cuando la persona no se cuida (cansancio, mala alimentación), reacciona a futuros imaginados, arrastra restos de otras situaciones, tiene emociones sobre sus emociones o se siente definida por ellas. Distinguirlas ayuda a entender qué le está diciendo una emoción.",
+  fuente: "Roemer y Orsillo, 2009, cap. 5" },
+{ k: "escritura-valores", t: "Tareas de escritura sobre valores", alias: ["tarea de escritura"], tipo: "Técnica", enf: ["act"],
+  d: "Serie de tareas de escritura de 20 minutos en varios días. La primera explora cómo la preocupación y la ansiedad interfieren en las relaciones, el trabajo o estudio y el cuidado personal; la segunda, cómo quisiera ser la persona en esas áreas; la tercera, qué teme de comprometerse y qué pasó con sus compromisos anteriores.",
+  como: ["Pedir que escriba en privado, sin cuidar la ortografía, dejando salir lo que piensa y siente durante todo el tiempo.",
+         "Leer juntos lo escrito y señalar valores, no metas.",
+         "Revisar confusiones frecuentes: valores que dependen de otros o que nacen de evitar."],
+  fuente: "Roemer y Orsillo, 2009, caps. 7 y 8" },
+{ k: "echar-ancla", t: "Echar el ancla", tipo: "Técnica", enf: ["act"],
+  d: "Habilidad de atención plena para las tormentas emocionales, las reexperimentaciones, la disociación y los extremos de activación. Como un ancla, no detiene la tormenta: mantiene a la persona firme hasta que pasa. Sigue tres pasos que se repiten varias veces: reconocer lo que hay dentro, conectar con el cuerpo e implicarse en lo que se está haciendo.",
+  como: ["Reconocer: notar y nombrar lo que aparece («estoy notando miedo»); si no se puede nombrar, «hay algo doloroso aquí».",
+         "Conectar con el cuerpo: empujar los pies contra el suelo, enderezarse, estirarse, cambiar de postura.",
+         "Implicarse: mirar y escuchar lo que hay alrededor y volver a la tarea o la conversación.",
+         "Repetir de tres a cinco ciclos, desde segundos hasta varios minutos, y revisar después cuánto más presente y en control de sus movimientos está la persona.",
+         "Si está disociando o desbordada, omitir la explicación y empezar directamente."],
+  fuente: "Harris, 2021a, cap. 8" },
+{ k: "perdon-accion", t: "Perdón como acción", alias: ["dar lo que había antes del daño"], tipo: "Concepto", enf: ["act"],
+  d: "En la aceptación y compromiso, perdonar no es un sentimiento ni decir que lo ocurrido estuvo bien: es una acción, «dar lo que había antes del daño», que se puede elegir aunque la rabia vuelva. Con la metáfora del gusano en el anzuelo se muestra que quien no perdona queda atrapado junto con la otra persona. Nunca se impone: se trabaja solo si la falta de perdón frena la vida de la persona.",
+  como: ["Preguntar cómo se trataría a sí misma si se hubiera perdonado, o qué haría distinto con la otra persona, y convertirlo en acciones.",
+         "Si es pertinente, ofrecer un ejercicio de silla vacía en el que diga lo que necesita decir a quien quiere perdonar, incluida ella misma.",
+         "Presentarlo como un proceso que puede durar mucho tiempo."],
+  fuente: "Walser y Westrup, 2007, cap. 9" },
+{ k: "punto-eleccion", t: "Punto de elección", tipo: "Técnica", enf: ["act"],
+  d: "Diagrama sencillo para ver en qué momento la persona elige: ante una situación y los pensamientos y emociones que dispara, puede hacer movimientos de alejamiento —que la apartan de lo que le importa— o movimientos hacia sus valores. Sirve para formular el caso con la persona y para elegir qué habilidad practicar.",
+  como: ["Escribir abajo la situación y lo que aparece dentro.",
+         "A un lado, lo que hace cuando se engancha; al otro, lo que haría la persona que quiere ser.",
+         "Preguntar qué habilidad la ayudaría a moverse hacia sus valores la próxima vez."],
+  fuente: "Harris, 2021a, cap. 5" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
