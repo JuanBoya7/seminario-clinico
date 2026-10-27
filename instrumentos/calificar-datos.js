@@ -14906,6 +14906,88 @@ const CALIFICAR = {
   },
   "hoja": true
  },
+ "bi-aaq": {
+  "clave": "BI-AAQ",
+  "sigla": "BI-AAQ",
+  "titulo": "Cuestionario de Aceptación y Acción de la Imagen Corporal",
+  "para": "Medir la inflexibilidad psicológica con la imagen corporal: cuánto los pensamientos y sentimientos sobre el peso y la forma del cuerpo dirigen lo que la persona hace y le impiden vivir según lo que valora. Es una medida de proceso de las terapias basadas en la aceptación para los problemas de imagen corporal y de la conducta alimentaria.",
+  "areas": [
+   "Alimentación",
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Sandoz et al. (2013); versión en castellano de Hernández-López et al. (2024), Journal of Contextual Behavioral Science, apéndice, CC BY-NC-ND.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Abajo encontrarás una serie de frases. Por favor, indica cómo de cierta es cada una de estas frases aplicadas a ti. Usa la siguiente escala para hacer tus elecciones."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca es cierto",
+     "Muy raramente es cierto",
+     "Raramente es cierto",
+     "A veces es cierto",
+     "Frecuentemente es cierto",
+     "Casi siempre es cierto",
+     "Siempre es cierto"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Preocuparme por mi peso me hace difícil vivir una vida que yo valore.",
+     "Me importan demasiado mi peso y la forma de mi cuerpo.",
+     "Me desconecto cuando me siento mal por la forma de mi cuerpo o por mi peso.",
+     "Mis pensamientos y sentimientos sobre mi peso y la forma de mi cuerpo deberían cambiar antes de que yo pueda dar pasos importantes en mi vida.",
+     "Preocuparme por mi cuerpo consume gran parte de mi tiempo.",
+     "Si empiezo a sentirme gordo/a intento pensar en otra cosa.",
+     "Antes de hacer ningún plan serio tengo que sentirme mejor con mi cuerpo.",
+     "Tendré un mejor control de mi vida si logro controlar mis pensamientos negativos sobre mi cuerpo.",
+     "Para controlar mi vida necesito controlar mi peso.",
+     "Sentirme gordo/a me causa problemas en la vida.",
+     "Cuando empiezo a pensar en el tamaño y la forma de mi cuerpo es duro hacer cualquier otra cosa.",
+     "Mis relaciones personales serían mejores si mi peso o la forma de mi cuerpo no me molestasen."
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,12)",
+     "texto": "12 a 84. A mayor puntuación, mayor inflexibilidad con la imagen corporal. Sin puntos de corte: compare con las aplicaciones anteriores de la misma persona."
+    },
+    {
+     "n": "Flexibilidad (puntaje invertido)",
+     "js": "r.slice(1,13).some(x => x == null) ? 'Pendiente' : 96 - S(1,12)",
+     "texto": "12 a 84. Forma que usa la validación española: a mayor puntuación, mayor flexibilidad."
+    },
+    {
+     "n": "BI-AAQ-5 (ítems 1, 3, 4, 8 y 10)",
+     "js": "L([1,3,4,8,10])",
+     "texto": "5 a 35. Versión breve; a mayor puntuación, mayor inflexibilidad."
+    }
+   ]
+  }
+ },
  "acips": {
   "clave": "ACIPS",
   "sigla": "ACIPS",
