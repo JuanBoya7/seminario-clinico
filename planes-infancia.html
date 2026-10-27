@@ -1813,6 +1813,44 @@ REFERENCIAS.push(
   { k: "Whittingham y Coyne, 2019", ref: "Whittingham, K. y Coyne, L. W. (2019). <em>Acceptance and commitment therapy: The clinician's guide for supporting parents</em>. Academic Press." }
 );
 
+/* Terapias de tercera generación, bloque 5 (2026-10-27): el manual clínico
+   de la terapia dialéctico-conductual con adolescentes suicidas (Miller et
+   al., 2007), la terapia cognitiva basada en mindfulness para niños
+   ansiosos (Semple y Lee, 2011; un ensayo pequeño), el curso de crianza
+   consciente para padres (Bögels y Restifo, 2014; estudios sin grupo
+   control) y un libro de autoayuda de autocompasión para adolescentes
+   (Bluth, 2020). */
+Object.assign(MODELOS, {
+  "mbct-ninos": {
+    t: "Atención plena y ansiedad infantil",
+    autor: "Semple y Lee",
+    d: "La ansiedad del niño vive en el futuro: anticipa amenazas, se preocupa y juzga lo que le pasa como peligroso, y esos juicios desatan reacciones de acercarse, alejarse o quedarse indiferente. La atención plena entrena la atención en el presente, con los sentidos, para notar pensamientos, sentimientos y sensaciones del cuerpo sin juzgarlos, verlos como sucesos que van y vienen, y descubrir los momentos en que se puede elegir cómo responder.",
+    dim: ["Vivir en el futuro y preocuparse", "Juzgar en lugar de notar", "Pensamientos, sentimientos y sensaciones", "Tomar distancia", "Momentos de elección"],
+    fuente: "Semple y Lee, 2011, caps. 1 a 3"
+  },
+  "autocompasion-adolescentes": {
+    t: "Autocompasión en la adolescencia",
+    autor: "Bluth, a partir de Neff y Germer",
+    d: "En la adolescencia la voz crítica interior se intensifica con la presión del colegio, la comparación en las redes, los cambios del cuerpo y la búsqueda de identidad. La autocompasión combina tres elementos: atención plena para notar el sufrimiento sin perderse en él, la humanidad compartida —saber que no se está solo— y la amabilidad con uno mismo, para responder a la voz crítica con la propia voz verdadera.",
+    dim: ["Atención plena", "Humanidad compartida", "Amabilidad con uno mismo", "Voz crítica interior"],
+    fuente: "Bluth, 2020, introducción y caps. 1 a 3"
+  },
+  "crianza-consciente": {
+    t: "Crianza consciente y estrés parental",
+    autor: "Bögels y Restifo",
+    d: "El estrés de la crianza activa en los padres la reacción de lucha, huida o congelamiento, y con ella una crianza en piloto automático: reacciones impulsivas, etiquetas sobre el hijo y patrones aprendidos en la propia infancia que reaparecen en los momentos difíciles. La atención plena permite notar el estrés en el cuerpo, hacer una pausa y responder en lugar de reaccionar; la autocompasión y la compasión por el hijo ayudan a reparar después de un conflicto y a poner límites con amor.",
+    dim: ["Estrés parental y reacción de amenaza", "Crianza en piloto automático", "Patrones y esquemas de la propia infancia", "Pausa y respuesta consciente", "Compasión, reparación y límites"],
+    fuente: "Bögels y Restifo, 2014, caps. 1, 2 y 4"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Miller et al., 2007", ref: "Miller, A. L., Rathus, J. H. y Linehan, M. M. (2007). <em>Dialectical behavior therapy with suicidal adolescents</em>. Guilford Press." },
+  { k: "Semple y Lee, 2011", ref: "Semple, R. J. y Lee, J. (2011). <em>Mindfulness-based cognitive therapy for anxious children: A manual for treating childhood anxiety</em>. New Harbinger." },
+  { k: "Bögels y Restifo, 2014", ref: "Bögels, S. y Restifo, K. (2014). <em>Mindful parenting: A guide for mental health practitioners</em>. Springer." },
+  { k: "Bluth, 2020", ref: "Bluth, K. (2020). <em>The self-compassionate teen: Mindfulness and compassion skills to conquer your critical inner voice</em>. Instant Help Books." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -2231,6 +2269,7 @@ const VARIABLES = [
     "Si la ansiedad se centra en ir al colegio, conviene revisar también Rechazo escolar; si hay rituales u obsesiones, Obsesiones y compulsiones; si empezó después de un evento traumático, Trauma y estrés postraumático.",
     "La ansiedad de separación se trata dentro de estos mismos programas. Si hace falta un formato más corto, la versión breve del programa de Kendall tiene ocho sesiones.",
     "<strong>Entre los 5 y los 12 años, si el niño deja de hacer lo que le importa para no sentir miedo</strong>, la terapia de aceptación y compromiso con el Kidflex trabaja esa evitación con juegos y ejercicios; si el niño no quiere participar, se trabaja con los padres.",
+    "<strong>Entre los 9 y los 12 años, si la vida del niño está dominada por preocupaciones y estrés cotidiano</strong> y los padres pueden acompañar la práctica diaria, la terapia cognitiva basada en mindfulness trabaja la atención y la relación con las preocupaciones en doce sesiones de grupo; su respaldo es un ensayo pequeño, sobre todo con niños sin un trastorno diagnosticado.",
   ],
   planes: [
     {
@@ -2915,6 +2954,101 @@ const VARIABLES = [
         "Participar es siempre voluntario: se explica cada ejercicio antes, se pide permiso y el terapeuta lo hace junto con el niño (Black, 2022, cap. 3).",
         "Ir despacio y con lenguaje simple: hacer los ejercicios, no hablar de ellos (Black, 2022, caps. 1 y 8).",
         "Si la ansiedad es intensa y el niño no avanza, la terapia cognitivo-conductual con exposición es el tratamiento con más estudios."
+      ]
+    },
+    {
+      id: "ans-mbctc",
+      mod: "mbct-ninos",
+      inst: ["SCARED", "SDQ"],
+      enf: "mind",
+      nivel: "preliminar",
+      t: "Terapia cognitiva basada en mindfulness para niños ansiosos",
+      fuente: "Semple y Lee, 2011",
+      cuando: "Niños de <strong>9 a 12 años</strong> cuya vida está dominada por preocupaciones, ansiedad y estrés cotidiano, con padres dispuestos a acompañar la práctica diaria en casa. Se hace en grupo de seis a ocho niños o de forma individual; si la ansiedad impide ir al colegio, conviene un tratamiento más centrado en el problema (Semple y Lee, 2011, caps. 4 y 5).",
+      respaldo: "En un ensayo con 25 niños de 9 a 13 años de una clínica universitaria en barrios de bajos ingresos, casi todos sin un trastorno de ansiedad diagnosticado, quienes completaron el programa redujeron los problemas de atención, con mejoras mantenidas a los tres meses, y hubo una tendencia a menos ansiedad y problemas de conducta, significativa solo en los pocos niños con ansiedad clínica al inicio. La asistencia superó el 90 % y el abandono fue del 20 %. Los autores piden ensayos con más niños con ansiedad clínica (Semple y Lee, 2011, cap. 14). Para los trastornos de ansiedad, la terapia cognitivo-conductual de esta variable tiene mucho más respaldo.",
+      secuencia: "<strong>Secuencia:</strong> una entrevista inicial con el niño y sus padres, una sesión de orientación para los padres y doce sesiones semanales de hora y media en grupo, o de una hora en formato individual. Las sesiones 1 a 3 orientan a la atención plena con la respiración y el cuerpo; las 4 a 10 la profundizan con cada sentido; las 11 y 12 integran lo aprendido y preparan la práctica diaria. Al terminar hay una sesión de revisión con los padres y, a los tres meses, el niño recibe una carta que se escribió a sí mismo (Semple y Lee, 2011, caps. 4 y 5).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Entrevista inicial y orientación de los padres",
+          tecs: ["entrevista-clinica", "psicoeducacion"],
+          obj: "Decidir si el programa es adecuado y comprometer a los padres como coterapeutas.",
+          pasos: [
+            "Valorar el malestar del niño, el compromiso y la motivación de los padres, y si hay TDAH, para decidir entre grupo e individual.",
+            "No incluir a niños con ideación suicida activa, síntomas psicóticos o consumo de sustancias, que necesitan otros tratamientos.",
+            "Hacer una sesión de orientación para los padres sobre la atención plena y explicarles que acompañan la práctica en casa durante las doce semanas."
+          ],
+          casa: "Los padres practican la atención plena antes de empezar el programa.",
+          avance: "Los padres entienden el programa y se comprometen con la práctica en casa.",
+          fuente: "Semple y Lee, 2011, cap. 5"
+        },
+        {
+          t: "Sesiones 1 a 3: piloto automático, respiración y cuerpo",
+          tecs: ["piloto-automatico", "ejercicio-pasa", "atencion-plena"],
+          obj: "Presentar la atención plena y anclarla en la respiración y el cuerpo.",
+          pasos: [
+            "Acordar las normas del grupo y presentar la atención plena con juegos sencillos.",
+            "Practicar tres respiraciones conscientes, comer una pasa con atención y moverse muy despacio.",
+            "Practicar la atención plena del cuerpo y notar que se tienen pensamientos, sentimientos y sensaciones."
+          ],
+          casa: "Práctica diaria breve con los padres y registro de la práctica.",
+          avance: "El niño hace sus tres respiraciones conscientes en casa.",
+          fuente: "Semple y Lee, 2011, sesiones 1 a 3"
+        },
+        {
+          t: "Sesiones 4 a 10: atención plena con los sentidos",
+          tecs: ["atencion-plena-sentidos", "espacio-respiracion"],
+          obj: "Profundizar la atención con cada sentido y separar juzgar de notar.",
+          pasos: [
+            "Practicar con el gusto —abrir una naranja con atención—, con los sonidos y la música, con la vista, con el tacto y con el olfato.",
+            "Aprender el espacio de respiración de tres minutos para usarlo en los momentos de ansiedad.",
+            "Notar cómo los pensamientos, sentimientos y sensaciones aumentan o reducen la ansiedad.",
+            "Distinguir juzgar de notar y descubrir los momentos en que se puede elegir cómo responder."
+          ],
+          casa: "Una práctica con el sentido de la semana y el espacio de respiración cada día.",
+          avance: "El niño usa el espacio de respiración cuando se preocupa.",
+          fuente: "Semple y Lee, 2011, sesiones 4 a 10"
+        },
+        {
+          t: "Sesión 11: los pensamientos no son hechos",
+          tecs: ["pensamientos-no-hechos"],
+          obj: "Tomar distancia de las preocupaciones.",
+          pasos: [
+            "Practicar ver los pensamientos como pensamientos, y los sentimientos como sentimientos, que van y vienen.",
+            "Repasar las prácticas de las semanas anteriores con más presencia.",
+            "Conversar sobre cómo seguir practicando cada día."
+          ],
+          casa: "Notar una preocupación de la semana como un pensamiento que pasa.",
+          avance: "El niño describe una preocupación sin tratarla como un hecho.",
+          fuente: "Semple y Lee, 2011, sesión 11"
+        },
+        {
+          t: "Sesión 12 y seguimiento: vivir con atención",
+          tecs: ["prevencion-recaidas"],
+          obj: "Integrar lo aprendido y sostener la práctica.",
+          pasos: [
+            "Celebrar el recorrido del grupo y despedirse.",
+            "Cada niño se escribe una carta que recibirá a los tres meses como recordatorio de practicar.",
+            "Hacer una sesión de revisión con los padres."
+          ],
+          casa: "Práctica diaria con los padres después del programa.",
+          avance: "El niño mantiene alguna práctica a los tres meses.",
+          fuente: "Semple y Lee, 2011, sesión 12 y cap. 5"
+        }
+      ],
+      medir: [
+        "<strong>SCARED</strong> al inicio y al final.",
+        "<strong>SDQ</strong> para los problemas de atención y de conducta, que fueron los que más cambiaron en el ensayo.",
+        "Registro de la práctica diaria en casa."
+      ],
+      adapt: [
+        "<strong>Edad:</strong> si es posible, separar a los de 9 y 10 años de los de 11 y 12, y agrupar a niños con un desarrollo físico parecido (Semple y Lee, 2011, cap. 4).",
+        "<strong>Individual:</strong> el programa puede hacerse de forma individual, con sesiones de una hora (Semple y Lee, 2011, cap. 5)."
+      ],
+      cuidado: [
+        "La relajación es un efecto secundario: la meta es cambiar la relación con los pensamientos y sentimientos, no calmarse (Semple y Lee, 2011, cap. 5).",
+        "Quien conduce el programa necesita una práctica personal de atención plena (Semple y Lee, 2011, prólogo y cap. 3)."
       ]
     },
     {
@@ -4467,7 +4601,7 @@ const VARIABLES = [
   sub: "No es solo la ausencia de síntomas: sentirse capaz de manejar lo de cada día, seguir aprendiendo, tener metas, decidir por uno mismo, aceptarse y llevarse bien con los demás. Se trabaja para promover el bienestar de todo un grupo en el colegio y, a la vez, para proteger frente a la ansiedad y el malestar físico sin causa médica.",
   elegir: [
     "<strong>En el colegio, con todo un curso</strong>, la terapia de bienestar adaptada al aula tiene ensayos aleatorizados en secundaria.",
-    "<strong>Con un adolescente, en consulta o en grupo</strong>, el modelo DNA-V trabaja sus valores y tres habilidades —explorar, notar y tomar distancia de su voz interior— para su bienestar y sus relaciones; su respaldo es conceptual.",
+    "<strong>Con un adolescente, en consulta o en grupo</strong>, el modelo DNA-V trabaja sus valores y tres habilidades —explorar, notar y tomar distancia de su voz interior— para su bienestar y sus relaciones; su respaldo es conceptual. <strong>Si lo que más pesa es una voz interior muy crítica</strong> y el adolescente prefiere trabajar con un libro, la autoayuda guiada de autocompasión es otra opción conceptual.",
     "Si un niño o adolescente ya tuvo una depresión y respondió al tratamiento, el plan de prevención de recaídas de Depresión usa la terapia de bienestar de forma individual. Con discapacidad intelectual, el plan de fortalezas del carácter de Discapacidad intelectual."
   ],
   planes: [
@@ -4788,6 +4922,99 @@ const VARIABLES = [
       ]
     },
     {
+      id: "bien-autocomp",
+      mod: "autocompasion-adolescentes",
+      inst: ["SDQ", "RCADS"],
+      enf: "mind",
+      nivel: "conceptual",
+      t: "Autoayuda guiada de autocompasión para adolescentes",
+      fuente: "Bluth, 2020",
+      cuando: "Un adolescente con una <strong>voz interior muy crítica</strong>, que se compara con los demás, se presiona con el colegio, sufre por su imagen o por las redes sociales, o vive conflictos con su familia o con su identidad, y prefiere trabajar con un libro, con un acompañamiento breve (Bluth, 2020, introducción).",
+      respaldo: "Es un libro de autoayuda basado en el programa de autocompasión consciente para adultos y en su versión para adolescentes, «Haciéndote amigo de ti mismo». La autora describe estudios de ese programa que muestran que reduce el estrés y, en algunos casos, la ansiedad y la depresión; el libro en sí no se ha estudiado (Bluth, 2020, introducción).",
+      secuencia: "<strong>Secuencia:</strong> nueve capítulos: atención plena, humanidad compartida, la voz crítica, el asombro en lo pequeño, el estrés del colegio, las redes sociales, las relaciones difíciles, la imagen de sí y la identidad LGBTQIA+. Cada capítulo trae prácticas, ejercicios y relatos de adolescentes. Si se acompaña, un capítulo por semana, con sesiones breves para revisar las prácticas (Bluth, 2020).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Atención plena y humanidad compartida",
+          tecs: ["atencion-plena", "autocompasion"],
+          obj: "Escuchar la propia voz verdadera y ver que no se está solo en el sufrimiento.",
+          pasos: [
+            "Practicar la respiración consciente con un poco de compasión y las plantas de los pies.",
+            "Ver la humanidad compartida con el ejercicio «una persona igual a mí».",
+            "Explorar los valores propios y hacerse una promesa."
+          ],
+          casa: "Respiración consciente cada día.",
+          avance: "El adolescente nota cuándo su mente se va a los problemas.",
+          fuente: "Bluth, 2020, caps. 1 y 2"
+        },
+        {
+          t: "La voz crítica",
+          tecs: ["bondad-amorosa", "autocompasion"],
+          obj: "Tomar distancia de la voz crítica y encontrar la propia voz amable.",
+          pasos: [
+            "Imaginar el encuentro con la voz crítica y con otra persona que lo apoya.",
+            "Practicar la bondad hacia alguien querido y buscar frases propias para uno mismo.",
+            "Usar el tacto que da apoyo y reconocer las conductas amables consigo que ya tiene."
+          ],
+          casa: "Frases propias de amabilidad cuando aparece la crítica.",
+          avance: "El adolescente se habla con menos dureza ante un error.",
+          fuente: "Bluth, 2020, cap. 3"
+        },
+        {
+          t: "Lo bueno y el estrés del colegio",
+          tecs: ["amigo-compasivo"],
+          obj: "Notar lo bueno y afrontar la presión académica con amabilidad.",
+          pasos: [
+            "Practicar el asombro, fotografiar lo que lo despierta y anotar tres cosas buenas.",
+            "Practicar la meditación del amigo compasivo ante el miedo a fracasar."
+          ],
+          casa: "Tres cosas buenas cada día.",
+          avance: "El adolescente se trata con amabilidad cuando le va mal en el colegio.",
+          fuente: "Bluth, 2020, caps. 4 y 5"
+        },
+        {
+          t: "Redes sociales y emociones difíciles",
+          tecs: ["autocompasion"],
+          obj: "Dejar de compararse y atravesar las emociones difíciles.",
+          pasos: [
+            "Explorar cómo usa las redes y qué necesita en realidad.",
+            "Trabajar las emociones difíciles: nombrarlas para calmarlas, sentirlas para sanarlas, y suavizarse y abrirse.",
+            "Practicar «un momento para mí» en los momentos difíciles."
+          ],
+          casa: "«Un momento para mí» ante una comparación en redes.",
+          avance: "El adolescente reduce la comparación en redes.",
+          fuente: "Bluth, 2020, cap. 6"
+        },
+        {
+          t: "Relaciones, imagen e identidad",
+          tecs: ["autocompasion", "prevencion-recaidas"],
+          obj: "Llevar la autocompasión a las relaciones, al cuerpo y a la identidad.",
+          pasos: [
+            "Explorar la rabia y las necesidades no cubiertas, y practicar «una persona igual a mí» con un padre o cuidador.",
+            "Hacer el escaneo corporal autocompasivo y trabajar con la crítica hacia el propio cuerpo.",
+            "Si el adolescente lo necesita, trabajar la vergüenza, las creencias negativas sobre sí y recordar su propia bondad, también en relación con su identidad LGBTQIA+.",
+            "Elegir las prácticas que mantendrá."
+          ],
+          casa: "Plan personal de práctica.",
+          avance: "El adolescente se trata con más amabilidad en las áreas que lo hacían sufrir.",
+          fuente: "Bluth, 2020, caps. 7 a 9 y conclusión"
+        }
+      ],
+      medir: [
+        "<strong>RCADS</strong> para la ansiedad y la depresión.",
+        "<strong>SDQ</strong> para el bienestar general.",
+        "Registro de la práctica."
+      ],
+      adapt: [
+        "<strong>Autoayuda pura o acompañada:</strong> el libro está escrito para el adolescente; con un acompañamiento breve se revisan las prácticas.",
+        "<strong>Colegio:</strong> una versión del programa en que se basa puede usarse en el aula (Bluth, 2020, introducción)."
+      ],
+      cuidado: [
+        "Si hay depresión, autolesiones o ideación suicida, el libro no basta: van primero los planes de <em>Depresión</em> y de <em>Autolesión y riesgo suicida</em>."
+      ]
+    },
+    {
       id: "bien-fort",
       mod: "aea",
       inst: ["VIA-J"],
@@ -4980,7 +5207,7 @@ const VARIABLES = [
   elegir: [
     "<strong>Toda evaluación inicial incluye preguntar por el suicidio y la autolesión</strong>, sea cual sea el motivo de consulta: los adolescentes muchas veces no lo cuentan si no se les pregunta directamente (Nock et al., 2019). El primer plan de esta variable, la evaluación del riesgo y el plan de seguridad, va siempre antes que cualquier otro.",
     "<strong>Ningún tratamiento para la autolesión y la conducta suicida en adolescentes alcanza todavía el nivel de bien establecido.</strong> La terapia dialéctico-conductual, la terapia cognitivo-conductual combinada con trabajo familiar y entrenamiento a padres, la psicoterapia interpersonal y algunas terapias familiares son probablemente eficaces. Todas comparten el entrenamiento en habilidades, la mejora de la comunicación y el apoyo en la familia y el entrenamiento a padres (Nock et al., 2019).",
-    "Si hay autolesiones repetidas con desregulación emocional intensa, conviene la terapia dialéctico-conductual; si hubo un intento reciente, la terapia cognitiva para adolescentes con intento de suicidio. Si el cuadro de fondo es una depresión, se trabaja también el plan de Depresión."
+    "Si hay autolesiones repetidas con desregulación emocional intensa, conviene la terapia dialéctico-conductual, que en la adolescencia incluye a la familia en un grupo multifamiliar; si hubo un intento reciente, la terapia cognitiva para adolescentes con intento de suicidio. Si el cuadro de fondo es una depresión, se trabaja también el plan de Depresión."
   ],
   planes: [
     {
@@ -5216,10 +5443,10 @@ const VARIABLES = [
       enf: "dbt",
       nivel: "ensayos",
       t: "Terapia dialéctico-conductual para adolescentes",
-      fuente: "Rathus y Miller, 2022 · Nock et al., 2019",
-      cuando: "Un <strong>adolescente con autolesiones o conductas suicidas repetidas</strong> y desregulación emocional intensa: emociones que se disparan rápido y tardan en bajar, impulsividad, conflictos frecuentes, confusión sobre sí mismo. Hay un equipo que puede sostener el tratamiento completo.",
-      respaldo: "Es un tratamiento probablemente eficaz para la conducta suicida y autolesiva en adolescentes. En un ensayo con 77 adolescentes con autolesiones repetidas y rasgos de personalidad límite, fue superior a la atención habitual mejorada para reducir las autolesiones, la ideación suicida, la depresión y los síntomas límite, y la reducción de las autolesiones se mantuvo al año (Rathus y Miller, 2022, cap. 1; Nock et al., 2019).",
-      secuencia: "<strong>Secuencia:</strong> un pretratamiento de hasta cuatro sesiones para orientar y lograr el compromiso; después, terapia individual semanal, un grupo de habilidades con los padres, coaching telefónico para el adolescente y los padres, sesiones familiares si hacen falta y un equipo de consultoría para los terapeutas. La jerarquía de metas pone primero las conductas que amenazan la vida (Rathus y Miller, 2022, caps. 1 y 2).",
+      fuente: "Miller et al., 2007 · Rathus y Miller, 2022 · Nock et al., 2019",
+      cuando: "Un <strong>adolescente con autolesiones o conductas suicidas repetidas</strong> y desregulación emocional intensa: emociones que se disparan rápido y tardan en bajar, impulsividad, conflictos frecuentes, confusión sobre sí mismo. Hay un equipo que puede sostener el tratamiento completo. En el programa original, los adolescentes tenían un intento de suicidio en las últimas 16 semanas o ideación suicida actual y al menos tres rasgos del trastorno límite; se excluía la psicosis activa y las dificultades de aprendizaje o el deterioro cognitivo graves (Miller et al., 2007, cap. 4).",
+      respaldo: "Es un tratamiento probablemente eficaz para la conducta suicida y autolesiva en adolescentes. En un ensayo con 77 adolescentes con autolesiones repetidas y rasgos de personalidad límite, fue superior a la atención habitual mejorada para reducir las autolesiones, la ideación suicida, la depresión y los síntomas límite, y la reducción de las autolesiones se mantuvo al año (Rathus y Miller, 2022, cap. 1; Nock et al., 2019). En el estudio cuasiexperimental que dio origen al programa, con 29 adolescentes en terapia dialéctico-conductual frente a 82 en atención habitual, ninguno fue hospitalizado frente al 13 %, y completó el tratamiento el 62 % frente al 40 % (Miller et al., 2007, cap. 2).",
+      secuencia: "<strong>Secuencia:</strong> evaluación en cuatro pasos —riesgo suicida y diagnóstico, conductas de la etapa 1, viabilidad del tratamiento para el adolescente y la familia, y plan inicial—; orientación y compromiso del adolescente y de la familia, con los acuerdos en la segunda o tercera sesión; y una primera fase de 16 semanas con terapia individual semanal, un grupo multifamiliar de habilidades con cinco módulos —atención plena, tolerancia al malestar, regulación emocional, efectividad interpersonal y recorrer el camino del medio—, coaching telefónico para el adolescente y los padres, sesiones familiares si hacen falta y un equipo de consulta para los terapeutas. Después se ofrece un grupo de egresados optativo. La jerarquía de metas pone primero las conductas que amenazan la vida (Miller et al., 2007, caps. 4, 6, 7, 10 y 11 · Rathus y Miller, 2022, caps. 1 y 2).",
       esc: ["salud-mental", "primer-nivel", "hospital"],
       edad: ["12-17"],
       actividades: [
@@ -5228,14 +5455,15 @@ const VARIABLES = [
           tecs: ["estrategias-compromiso", "psicoeducacion"],
           obj: "Que el adolescente y su familia entiendan el tratamiento y se comprometan con él.",
           pasos: [
-            "Evaluar al adolescente e informar a él y a su familia cómo funciona el tratamiento.",
+            "Evaluar en cuatro pasos: riesgo suicida y diagnóstico, conductas de la etapa 1, viabilidad del tratamiento para el adolescente y la familia, y plan inicial.",
+            "Informar al adolescente y a su familia cómo funciona el tratamiento.",
             "Explicar la teoría biosocial: una sensibilidad emocional alta que se encontró con un entorno que invalidaba lo que sentía.",
             "Usar estrategias de compromiso, como evaluar pros y contras o hacer de abogado del diablo.",
-            "Acordar las metas individuales del adolescente y de los padres."
+            "Acordar las metas individuales del adolescente y de los padres y, en la segunda o tercera sesión, los compromisos del adolescente, del terapeuta y de la familia: permanecer el tiempo acordado y asistir a la terapia individual y al grupo."
           ],
           casa: "Empezar la tarjeta diaria de conductas, impulsos y habilidades.",
           avance: "El adolescente y la familia se comprometen con el tratamiento.",
-          fuente: "Rathus y Miller, 2022, caps. 1 y 3",
+          fuente: "Miller et al., 2007, caps. 6 y 7 · Rathus y Miller, 2022, caps. 1 y 3",
           fichas: ["tarjeta-diaria-adolescente"]
         },
         {
@@ -5254,10 +5482,25 @@ const VARIABLES = [
           fichas: ["analisis-cadena-adolescente"]
         },
         {
+          t: "Dilemas dialécticos y sesiones con la familia",
+          tecs: ["dilemas-dialecticos-familia", "validacion", "limites-confidencialidad"],
+          obj: "Reducir los extremos en la familia y sumar a los padres al tratamiento.",
+          pasos: [
+            "Identificar hacia qué extremo se polarizan los padres, el adolescente y el terapeuta: permisividad o control autoritario, normalizar lo problemático o ver como patológico lo propio de la edad, fomentar la dependencia o forzar la autonomía.",
+            "Convertir la síntesis de cada dilema en una meta secundaria del tratamiento.",
+            "Hacer sesiones familiares cuando los patrones de la familia mantienen las conductas problema: practicar la validación, las habilidades y las contingencias con entrenamiento en el momento.",
+            "Acordar desde el inicio qué se comparte con los padres y cómo se manejan las crisis suicidas y las llamadas de los familiares."
+          ],
+          casa: "Una tarea familiar de validación.",
+          avance: "La familia responde a las crisis desde una postura menos extrema.",
+          fuente: "Miller et al., 2007, caps. 5 y 9"
+        },
+        {
           t: "Mindfulness y tolerancia al malestar",
-          tecs: ["tip", "pros-contras", "aceptacion-radical"],
+          tecs: ["grupo-multifamiliar", "tip", "pros-contras", "aceptacion-radical"],
           obj: "Atravesar las crisis sin hacerse daño.",
           pasos: [
+            "En el grupo multifamiliar, el adolescente asiste con un familiar que vive con él y se compromete a ir siempre, para que pueda entrenarlo en casa.",
             "Enseñar la mente sabia y las habilidades de observar, describir y participar sin juzgar.",
             "Enseñar a distraerse, calmarse con los cinco sentidos y mejorar el momento.",
             "Enseñar a cambiar rápido la química del cuerpo con temperatura, ejercicio intenso, respiración pausada y relajación.",
@@ -5265,7 +5508,7 @@ const VARIABLES = [
           ],
           casa: "Practicar una habilidad de supervivencia a la crisis y registrarla en la tarjeta.",
           avance: "El adolescente usa habilidades en lugar de autolesionarse.",
-          fuente: "Rathus y Miller, 2022, cap. 1 (tabla 1.6)"
+          fuente: "Miller et al., 2007, cap. 10 · Rathus y Miller, 2022, cap. 1 (tabla 1.6)"
         },
         {
           t: "Regulación emocional",
@@ -5282,7 +5525,7 @@ const VARIABLES = [
         },
         {
           t: "Efectividad interpersonal y sendero del medio",
-          tecs: ["dear-man", "aves-vida", "validacion"],
+          tecs: ["dear-man", "aves-vida", "camino-del-medio"],
           obj: "Pedir y decir que no sin dañar la relación, y reducir los extremos en la familia.",
           pasos: [
             "Enseñar a pedir lo que se quiere o decir que no, cuidar la relación y mantener el respeto por uno mismo.",
@@ -5292,20 +5535,21 @@ const VARIABLES = [
           ],
           casa: "Practicar una habilidad interpersonal con la familia.",
           avance: "Bajan los conflictos familiares y aumentan las respuestas de validación.",
-          fuente: "Rathus y Miller, 2022, cap. 1 (tabla 1.6) y «Sesiones de entrenamiento para padres»"
+          fuente: "Miller et al., 2007, cap. 10 y apéndice B · Rathus y Miller, 2022, cap. 1 (tabla 1.6) y «Sesiones de entrenamiento para padres»"
         },
         {
           t: "Coaching telefónico, consolidación y graduación",
-          tecs: ["prevencion-recaidas"],
+          tecs: ["prevencion-recaidas", "grupo-egresados"],
           obj: "Llevar las habilidades a la vida diaria y sostenerlas al terminar.",
           pasos: [
             "Ofrecer coaching telefónico para usar las habilidades en el momento, al adolescente y a los padres.",
             "Repasar los módulos del grupo de habilidades hasta completarlos.",
-            "Cerrar con un ritual de despedida y ofrecer un grupo de graduados para mantener lo logrado."
+            "Evaluar el progreso con la tarjeta diaria, la conducta en las sesiones, el funcionamiento familiar y el equipo de consulta.",
+            "Cerrar con un ritual de despedida y ofrecer el grupo de egresados, sin padres ni terapia individual, en el que los adolescentes asumen más responsabilidad y se aconsejan entre ellos."
           ],
           casa: "Seguir usando las habilidades y la tarjeta diaria.",
           avance: "El adolescente sostiene la reducción de autolesiones después del programa.",
-          fuente: "Rathus y Miller, 2022, caps. 1 y 2"
+          fuente: "Miller et al., 2007, caps. 10 y 11 · Rathus y Miller, 2022, caps. 1 y 2"
         }
       ],
       medir: [
@@ -5319,7 +5563,8 @@ const VARIABLES = [
       ],
       cuidado: [
         "Los adolescentes con desregulación grave no suelen beneficiarse del grupo de habilidades solo: necesitan el tratamiento completo, con terapia individual (Rathus y Miller, 2022, cap. 1).",
-        "Si se da solo el grupo, quien lo coordina evalúa el riesgo al ingreso, vigila las señales durante el tratamiento y deriva a terapia individual si aparece la conducta suicida (Rathus y Miller, 2022, cap. 1)."
+        "Si se da solo el grupo, quien lo coordina evalúa el riesgo al ingreso, vigila las señales durante el tratamiento y deriva a terapia individual si aparece la conducta suicida (Rathus y Miller, 2022, cap. 1).",
+        "No se incluye al familiar en el grupo si hay maltrato en curso, un conflicto tan intenso que haría estallar el grupo o un trastorno grave sin tratar del padre; el adolescente elige a otro adulto de su casa (Miller et al., 2007, cap. 10)."
       ]
     }
   ]
@@ -5732,7 +5977,7 @@ const VARIABLES = [
   sub: "Desobediencia, rabietas, discusiones con los adultos, desafío a las normas y, a veces, agresión, que se repiten y afectan la vida familiar o escolar. Lo que se interviene es el ciclo de interacción entre el niño y los adultos que lo cuidan: cómo se dan las órdenes, a qué se presta atención y qué consecuencias siguen a la conducta.",
   elegir: [
     "<strong>En la niñez, la intervención con más respaldo es el entrenamiento a los padres</strong>: todas las intervenciones con el nivel de evidencia más alto para niños con problemas de conducta trabajan con la familia, y los programas centrados en los padres tienen efectos mayores que los centrados solo en el niño (McMahon y Frick, 2019).",
-    "<strong>Si a los padres les cuesta aplicar las estrategias</strong> —ceden ante el llanto, se desbordan, siguen reglas rígidas o se culpan—, la aceptación y compromiso para padres se suma al entrenamiento a padres; tiene ensayos con familias de niños con discapacidad.",
+    "<strong>Si a los padres les cuesta aplicar las estrategias</strong> —ceden ante el llanto, se desbordan, siguen reglas rígidas o se culpan—, la aceptación y compromiso para padres se suma al entrenamiento a padres; tiene ensayos con familias de niños con discapacidad. <strong>Si lo que más pesa es el estrés de la crianza</strong> y los padres reaccionan en automático o repiten patrones de su propia infancia, la crianza consciente es otro complemento, con estudios sin grupo control.",
     "<strong>Entre los 2 y los 7 años</strong>, la terapia de interacción padres-hijos entrena a los padres en vivo mientras juegan con el niño. <strong>Entre los 2 y los 12</strong>, el entrenamiento a padres de Kazdin trabaja con los padres en la consulta y en casa. <strong>Desde los 7</strong>, el entrenamiento en solución de problemas trabaja directamente con el niño y funciona mejor combinado con el de los padres.",
     "En la adolescencia, cuando la conducta incluye robos, peleas, fugas o problemas con la justicia, corresponde la variable Problemas de conducta graves en la adolescencia. Si la conducta desafiante viene con explosiones de irritabilidad casi a diario, conviene revisar también Irritabilidad y explosiones de rabia."
   ],
@@ -6129,6 +6374,114 @@ const VARIABLES = [
         "Si la conducta problema es peligrosa, como una agresión física, se maneja primero y luego se trabaja la emoción (Whittingham y Coyne, 2019, cap. 4).",
         "Aceptar la emoción del niño no es ignorar sus necesidades ni reforzar su conducta: se valida la emoción y se moldea la conducta (Whittingham y Coyne, 2019, cap. 4).",
         "Si los padres tienen depresión u otro problema de salud mental, también se atiende: afecta la crianza (Whittingham y Coyne, 2019, cap. 14)."
+      ]
+    },
+    {
+      id: "opos-mp",
+      mod: "crianza-consciente",
+      inst: ["ECBI", "APQ"],
+      enf: "mind",
+      nivel: "preliminar",
+      t: "Crianza consciente para padres junto con el entrenamiento a padres",
+      fuente: "Bögels y Restifo, 2014",
+      cuando: "Los padres viven con <strong>mucho estrés en la crianza</strong> y reaccionan en automático —gritan, ceden, se desconectan— ante las conductas difíciles del hijo, o repiten patrones de su propia infancia. Se suma al entrenamiento a padres de esta variable cuando el estrés y la reactividad les impiden aplicar lo que aprenden. El curso se dirige al estrés de los padres, cualquiera sea el problema del hijo (Bögels y Restifo, 2014, caps. 1 y 4).",
+      respaldo: "En el primer estudio, con 86 padres derivados a un centro de salud mental infantil —hijos con TDAH, autismo, ansiedad, depresión o problemas de conducta—, tras el curso bajaron los problemas internalizantes y externalizantes de los hijos y el estrés parental, con efectos medianos, y mejoró la crianza; la espera previa al curso no produjo esos cambios. Un segundo estudio en otros centros y un tercero con la versión del libro, con 14 padres, mostraron resultados parecidos. Ninguno tuvo un grupo control aleatorizado (Bögels y Restifo, 2014, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> ocho sesiones semanales de tres horas en grupo y una sesión de seguimiento dos meses después: crianza en piloto automático, mente de principiante, el cuerpo como padre, responder en lugar de reaccionar al estrés, patrones y esquemas de crianza, conflicto y crianza, amor y límites, un camino consciente por la crianza, y volver a empezar. Hay práctica diaria en casa entre sesiones (Bögels y Restifo, 2014, caps. 3 y 4).",
+      esc: ["salud-mental", "primer-nivel"],
+      edad: ["0-5", "6-11", "12-17"],
+      actividades: [
+        {
+          t: "Sesiones 1 y 2: crianza automática y mente de principiante",
+          tecs: ["piloto-automatico", "ejercicio-pasa", "mente-principiante-crianza"],
+          obj: "Notar la crianza en piloto automático y mirar al hijo sin etiquetas.",
+          pasos: [
+            "Explorar las reacciones de los padres ante una situación típica de estrés y relacionarlas con la reacción de lucha, huida o congelamiento.",
+            "Presentar la meta del curso: hacer una pausa antes de reaccionar para responder con intención.",
+            "Comer una pasa con atención y llevar esa misma atención al hijo.",
+            "En la sesión 2, observar al hijo con mente de principiante y practicar la amabilidad con uno mismo como padre."
+          ],
+          casa: "Observar al hijo con mente de principiante durante unos minutos al día.",
+          avance: "Los padres describen cualidades del hijo que no veían.",
+          fuente: "Bögels y Restifo, 2014, caps. 5 y 6"
+        },
+        {
+          t: "Sesiones 3 y 4: el cuerpo y el estrés de la crianza",
+          tecs: ["escaner-corporal", "espacio-respiracion"],
+          obj: "Reconocer el estrés en el cuerpo y responder en lugar de reaccionar.",
+          pasos: [
+            "Notar las sensaciones del cuerpo al criar, las agradables y las de estrés, y los propios límites físicos.",
+            "Aceptar el estrés en lugar de rechazarlo y ver cómo los pensamientos lo aumentan.",
+            "Usar el espacio de respiración para salir de la reacción automática y responder con intención."
+          ],
+          casa: "Espacio de respiración en un momento difícil con el hijo.",
+          avance: "Los padres hacen una pausa antes de reaccionar en alguna situación de la semana.",
+          fuente: "Bögels y Restifo, 2014, caps. 7 y 8"
+        },
+        {
+          t: "Sesión 5: patrones y esquemas de crianza",
+          tecs: ["autocompasion"],
+          obj: "Reconocer cómo la propia infancia aparece en la forma de criar.",
+          pasos: [
+            "Investigar los patrones reactivos con el hijo y si se parecen a los de la relación con los propios padres.",
+            "Reconocer los estados del niño enojado o vulnerable y del padre exigente o punitivo que aparecen en las interacciones difíciles.",
+            "Dar autocompasión a ese niño interior cuando aparecen."
+          ],
+          casa: "Notar un patrón repetido y responderle con autocompasión.",
+          avance: "Los padres reconocen un patrón heredado mientras ocurre.",
+          fuente: "Bögels y Restifo, 2014, cap. 9"
+        },
+        {
+          t: "Sesión 6: conflicto y reparación",
+          tecs: ["reparar-conflicto", "validacion"],
+          obj: "Ver los conflictos como oportunidades y reparar la relación.",
+          pasos: [
+            "Ampliar la atención a la perspectiva del hijo durante el conflicto.",
+            "Sostener a la vez la propia emoción y la del hijo.",
+            "Volver al hijo después del conflicto para reparar."
+          ],
+          casa: "Una reparación después de un conflicto.",
+          avance: "Los padres reparan después de los conflictos.",
+          fuente: "Bögels y Restifo, 2014, cap. 10"
+        },
+        {
+          t: "Sesión 7: amor y límites",
+          tecs: ["bondad-amorosa", "limites-compasivos"],
+          obj: "Cultivar la amabilidad y poner límites como forma de amor.",
+          pasos: [
+            "Practicar la meditación de bondad amorosa.",
+            "Notar en el cuerpo cuándo el hijo cruzó un límite propio y responder desde esa conciencia.",
+            "Explorar los obstáculos para poner límites que vienen de la propia infancia o de las dificultades del hijo."
+          ],
+          casa: "Bondad amorosa y poner un límite con calma.",
+          avance: "Los padres ponen límites sin explotar ni ceder.",
+          fuente: "Bögels y Restifo, 2014, cap. 11"
+        },
+        {
+          t: "Sesión 8 y seguimiento: seguir el camino",
+          tecs: ["prevencion-recaidas"],
+          obj: "Reflexionar sobre lo vivido y sostener la práctica.",
+          pasos: [
+            "Compartir un objeto, dibujo o relato que represente el recorrido.",
+            "Decidir qué prácticas formales e informales seguirán.",
+            "En el seguimiento, a los dos meses, revisar dificultades y renovar la intención de volver al presente con el hijo."
+          ],
+          casa: "Plan personal de práctica.",
+          avance: "Los padres mantienen una práctica después del curso.",
+          fuente: "Bögels y Restifo, 2014, caps. 12 y 13"
+        }
+      ],
+      medir: [
+        "<strong>ECBI</strong> para la conducta del hijo.",
+        "<strong>APQ</strong> para las prácticas de crianza.",
+        "Estrés parental al inicio, al final y en el seguimiento."
+      ],
+      adapt: [
+        "<strong>Diversidad de problemas:</strong> el curso se aplicó a padres de hijos con TDAH, autismo, ansiedad, depresión y problemas de conducta, y a padres cuyas propias dificultades interferían con la crianza (Bögels y Restifo, 2014, cap. 3).",
+        "<strong>Complemento:</strong> no reemplaza al entrenamiento a padres, que es la intervención con más respaldo para la conducta desafiante."
+      ],
+      cuidado: [
+        "Los estudios no tuvieron grupo control aleatorizado y los participantes fueron sobre todo madres de nivel educativo alto (Bögels y Restifo, 2014, cap. 3).",
+        "Si hay maltrato, la protección del niño va primero; ver <em>Maltrato y crianza violenta</em>."
       ]
     },
     {
@@ -14485,7 +14838,50 @@ const GLOSARIO = [
   fuente: "Hayes y Ciarrochi, 2015, cap. 11" },
 { k: "conectar-moldear", t: "Conectar y moldear", tipo: "Técnica", enf: ["act"],
   d: "Estrategia para los padres cuando la conducta problema del niño ocurre junto con una emoción intensa: no prestar atención a la conducta, validar la emoción en voz alta («es difícil, estás triste») y ofrecer un apoyo para una conducta más adaptativa («si quieres ayuda, pídemela»). Si la conducta es peligrosa, se maneja primero.",
-  fuente: "Whittingham y Coyne, 2019, cap. 4" }
+  fuente: "Whittingham y Coyne, 2019, cap. 4" },
+/* ---------- Tercera generación: DBT con adolescentes, mindfulness y autocompasión (2026-10-27) ---------- */
+{ k: "dilemas-dialecticos-familia", t: "Dilemas dialécticos de la adolescencia", alias: ["dilemas dialécticos con adolescentes"], tipo: "Concepto", enf: ["dbt"],
+  d: "Tres pares de extremos entre los que oscilan los padres, el adolescente y hasta el terapeuta: demasiada permisividad o control autoritario; normalizar conductas problemáticas o ver como patológicas conductas propias de la edad; y fomentar la dependencia o forzar la autonomía. El trabajo es encontrar una síntesis entre cada par, que se convierte en meta secundaria del tratamiento.",
+  fuente: "Miller et al., 2007, cap. 5" },
+{ k: "camino-del-medio", t: "Recorrer el camino del medio", alias: ["camino del medio"], tipo: "Técnica", enf: ["dbt"],
+  d: "Módulo de habilidades creado para adolescentes y sus familias, que se suma a los cuatro de la terapia dialéctico-conductual: pensar y actuar de forma dialéctica, validar al otro y a uno mismo, y usar los principios del aprendizaje —reforzar, extinguir, castigar con mesura— en la vida familiar.",
+  fuente: "Miller et al., 2007, cap. 10 y apéndices B y C" },
+{ k: "grupo-multifamiliar", t: "Grupo multifamiliar de habilidades", alias: ["grupo de habilidades con padres"], tipo: "Formato", enf: ["dbt"],
+  d: "Grupo semanal en el que varios adolescentes aprenden las habilidades junto con un familiar que vive con ellos y se compromete a asistir siempre. Así el familiar puede entrenar al adolescente en casa y cambia el ambiente invalidante. No se incluye al familiar si hay maltrato en curso, un conflicto tan intenso que haría estallar el grupo o un trastorno grave sin tratar del padre.",
+  fuente: "Miller et al., 2007, cap. 10" },
+{ k: "grupo-egresados", t: "Grupo de egresados", alias: ["grupo de graduados"], tipo: "Formato", enf: ["dbt"],
+  d: "Segunda fase optativa, al terminar las 16 semanas: un grupo solo de adolescentes, sin padres ni terapia individual, en el que los participantes asumen más responsabilidad, enseñan y se aconsejan entre ellos. Ayuda a sostener lo logrado y acompaña el paso hacia la autonomía.",
+  fuente: "Miller et al., 2007, cap. 11" },
+{ k: "piloto-automatico", t: "Piloto automático", alias: ["funcionar en automático"], tipo: "Concepto", enf: ["mind"],
+  d: "Hacer las cosas sin darse cuenta, guiado por la costumbre. Los programas de atención plena empiezan mostrando cuánto tiempo se pasa así —comiendo, caminando o reaccionando— para aprender a notar el momento y elegir cómo responder.",
+  fuente: "Semple y Lee, 2011, sesión 1 · Bögels y Restifo, 2014, cap. 5" },
+{ k: "ejercicio-pasa", t: "Ejercicio de la pasa", alias: ["comer una pasa con atención"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Comer una uva pasa despacio, como si fuera la primera vez, usando todos los sentidos: mirarla, olerla, sentirla en la mano y en la boca y saborearla. Muestra la diferencia entre hacer algo en automático y hacerlo con atención.",
+  fuente: "Semple y Lee, 2011, sesión 2 · Bögels y Restifo, 2014, cap. 5" },
+{ k: "espacio-respiracion", t: "Espacio de respiración de tres minutos", alias: ["espacio de respiración"], tipo: "Técnica", enf: ["mind"],
+  d: "Práctica breve en tres pasos: darse cuenta de lo que se está pensando, sintiendo y notando en el cuerpo; llevar la atención a la respiración; y ampliarla al cuerpo entero. Sirve para hacer una pausa en medio del estrés antes de reaccionar.",
+  fuente: "Semple y Lee, 2011, sesión 4 · Bögels y Restifo, 2014, cap. 8" },
+{ k: "atencion-plena-sentidos", t: "Atención plena con los sentidos", alias: ["atención a los sentidos"], tipo: "Técnica", enf: ["mind"],
+  d: "Practicar la atención plena con cada sentido —gusto, oído, vista, tacto y olfato— mediante juegos y ejercicios concretos para niños: saborear, escuchar el silencio, mirar con claridad, tocar sin ver, oler. Ayuda a notar que pensamientos, emociones y sensaciones pueden aumentar o reducir la ansiedad, y a distinguir juzgar de simplemente notar.",
+  fuente: "Semple y Lee, 2011, sesiones 4 a 10" },
+{ k: "pensamientos-no-hechos", t: "Los pensamientos no son hechos", alias: ["los sentimientos tampoco son hechos"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Ejercicios para ver que los pensamientos y los sentimientos son sucesos de la mente que van y vienen, y no la verdad sobre uno mismo o el mundo. Ayudan al niño a tomar distancia de las preocupaciones y a descubrir que puede elegir cómo responder.",
+  fuente: "Semple y Lee, 2011, sesión 11" },
+{ k: "mente-principiante-crianza", t: "Mirar al hijo con mente de principiante", alias: ["mente de principiante con el hijo"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Observar al hijo como si fuera la primera vez, sin las etiquetas ni los diagnósticos que hacen ver sobre todo sus dificultades. Muchos padres descubren cualidades que no veían; otros, lo difícil que es soltar sus juicios.",
+  fuente: "Bögels y Restifo, 2014, cap. 6" },
+{ k: "reparar-conflicto", t: "Reparar después de un conflicto", alias: ["reparación con el hijo"], tipo: "Técnica", enf: ["mind"],
+  d: "Tras un conflicto con el hijo, el padre se da compasión a sí mismo, amplía su atención a lo que vivió el hijo y vuelve a él desde ese lugar para reparar la relación. El conflicto se ve como una oportunidad de crecer y acercarse.",
+  fuente: "Bögels y Restifo, 2014, cap. 10" },
+{ k: "limites-compasivos", t: "Límites con amor", alias: ["poner límites como compasión"], tipo: "Técnica", enf: ["mind"],
+  d: "Poner límites como una forma de compasión firme: notar en el cuerpo cuándo el hijo cruzó un límite propio y responder desde esa conciencia, dando al hijo la estructura que necesita y cuidándose uno mismo. Se exploran también los obstáculos para poner límites que vienen de la propia infancia.",
+  fuente: "Bögels y Restifo, 2014, cap. 11" },
+{ k: "bondad-amorosa", t: "Bondad amorosa", alias: ["meditación de bondad amorosa"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Meditación en la que se desea bienestar, primero a alguien querido y luego a uno mismo, con frases propias que suenen auténticas —«que esté a salvo», «que me trate con amabilidad»—. Cultiva la capacidad de amabilidad y cuidado.",
+  fuente: "Bögels y Restifo, 2014, cap. 11 · Bluth, 2020, cap. 3" },
+{ k: "amigo-compasivo", t: "Amigo compasivo", alias: ["meditación del amigo compasivo"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Meditación en la que el adolescente imagina a un amigo sabio y cariñoso que lo acepta tal como es y escucha lo que ese amigo le diría ante una dificultad, como el miedo a fracasar en el colegio.",
+  fuente: "Bluth, 2020, cap. 5" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
