@@ -2406,6 +2406,31 @@ REFERENCIAS.push(
   { k: "Harned, 2022", ref: "Harned, M. S. (2022). <em>Treating trauma in dialectical behavior therapy: The DBT prolonged exposure protocol (DBT PE)</em>. Guilford Press." }
 );
 
+/* Terapias de tercera generación, bloque 2 (2026-10-27): mindfulness en
+   adultos. Reducción del estrés basada en mindfulness según el protocolo de
+   Woods y Rockman (2021), con una opción de autoayuda guiada; prevención de
+   recaídas basada en mindfulness (Bowen et al., 2021); terapia basada en
+   mindfulness para el insomnio (Ong, 2017, un ensayo pequeño), y autoayuda
+   guiada para el pánico (Stahl y Millstine, 2017, sin estudios propios). */
+Object.assign(MODELOS, {
+  "ong-metacognitivo": {
+    t: "Modelo metacognitivo del insomnio",
+    autor: "Ong",
+    d: "El insomnio crónico se mantiene por dos niveles de activación. La primaria es el malestar por los pensamientos y las consecuencias de dormir mal. La secundaria nace del apego a dormir y de tomar como hechos los pensamientos sobre el sueño: amplifica la primaria y sostiene el esfuerzo por dormir. El tratamiento apunta a la secundaria: conciencia metacognitiva, un cambio en la relación con los pensamientos —no en su contenido— y una postura nueva de equilibrio, flexibilidad, ecuanimidad y compromiso con los valores.",
+    dim: ["Activación primaria", "Activación secundaria o metacognitiva", "Apego y esfuerzo por dormir", "Equilibrio, flexibilidad, ecuanimidad y valores"],
+    fuente: "Ong, 2017, cap. 4"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Woods y Rockman, 2021", ref: "Woods, S. L. y Rockman, P. (2021). <em>Mindfulness-based stress reduction: Protocol, practice, and teaching skills</em>. New Harbinger." },
+  { k: "Stahl y Goldstein, 2010", ref: "Stahl, B. y Goldstein, E. (2010). <em>A mindfulness-based stress reduction workbook</em>. New Harbinger." },
+  { k: "Goldstein y Stahl, 2015", ref: "Goldstein, E. y Stahl, B. (2015). <em>MBSR every day: Daily practices from the heart of mindfulness-based stress reduction</em>. New Harbinger." },
+  { k: "Bowen et al., 2021", ref: "Bowen, S., Chawla, N., Grow, J. y Marlatt, G. A. (2021). <em>Mindfulness-based relapse prevention for addictive behaviors: A clinician's guide</em> (2.ª ed.). Guilford Press." },
+  { k: "Ong, 2017", ref: "Ong, J. C. (2017). <em>Mindfulness-based therapy for insomnia</em>. American Psychological Association." },
+  { k: "Stahl y Millstine, 2017", ref: "Stahl, B. y Millstine, W. (2017). <em>Calmar los ataques de pánico: una guía de reducción del estrés basada en mindfulness</em> (M. C. Blanco Moreno, Trad.). Desclée De Brouwer. (Trabajo original publicado en 2013)" }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -3118,7 +3143,7 @@ const VARIABLES = [
   t: "Ansiedad",
   sub: "La ansiedad es una respuesta normal. Lo que se interviene es lo que la vuelve un problema: la evitación de lo temido, las conductas de seguridad y la lectura de amenaza. Aplica a fobias, pánico con o sin agorafobia, ansiedad social y ansiedad generalizada; las obsesiones, el trauma y la preocupación persistente tienen variable propia.",
   elegir: [
-    "<strong>Si la queja son crisis de miedo a las propias sensaciones</strong> —taquicardia, mareo, falta de aire, irrealidad— y la persona evita lo que las produce o los lugares donde le costaría escapar, el plan de pánico es el más específico.",
+    "<strong>Si la queja son crisis de miedo a las propias sensaciones</strong> —taquicardia, mareo, falta de aire, irrealidad— y la persona evita lo que las produce o los lugares donde le costaría escapar, el plan de pánico es el más específico. Si los ataques no son frecuentes ni graves y la persona prefiere trabajar con un libro, la autoayuda guiada con mindfulness para el pánico es una opción o un complemento, sin estudios propios.",
     "<strong>Si lo temido es la evaluación de los demás</strong> —hablar, comer, trabajar o conversar mientras otros miran—, el de ansiedad social.",
     "<strong>Si el miedo es a un objeto o una situación concreta</strong> (fobias, agorafobia sin pánico), el de exposición graduada con reestructuración.",
     "<strong>Si conviven varios cuadros emocionales</strong> —ansiedad con depresión, varios trastornos de ansiedad a la vez— o el problema es cómo la persona responde a cualquier emoción intensa, el Protocolo Unificado los trabaja juntos.",
@@ -3512,6 +3537,101 @@ const VARIABLES = [
         "La respiración, el medicamento a mano o la compañía pueden volverse señales de seguridad; si la persona los necesita para exponerse, se retiran de forma gradual.",
         "Si la persona toma benzodiacepinas, su retiro se coordina con el médico; la terapia cognitivo-conductual reduce las recaídas en ese retiro.",
         "Una exposición que se interrumpe no es un fracaso: se analiza qué la interrumpió y se vuelve a intentar."
+      ]
+    },
+    {
+      id: "ans-pan-mind",
+      mod: "kabat",
+      inst: ["PDSS"],
+      enf: "mind",
+      nivel: "conceptual",
+      t: "Autoayuda guiada con mindfulness para el pánico",
+      fuente: "Stahl y Millstine, 2017",
+      cuando: "La persona tiene ataques de pánico o ansiedad intensa en situaciones concretas —hablar en público, un ascensor, una multitud, estar lejos de casa— y <strong>prefiere trabajar con un libro, con un acompañamiento breve</strong>, o como complemento del plan de pánico. Los ataques no son frecuentes ni graves y ya se descartaron causas médicas (Stahl y Millstine, 2017, introducción y fundamentos).",
+      respaldo: "Es un libro de autoayuda basado en el programa de reducción del estrés basada en mindfulness y traducido al castellano. Cita un seguimiento a tres años de personas con pánico y ansiedad que aprendieron la meditación, pero no reporta estudios del libro (Stahl y Millstine, 2017, introducción). Para el trastorno de pánico, el plan cognitivo-conductual de esta variable tiene ensayos.",
+      secuencia: "<strong>Secuencia:</strong> unos fundamentos —las actitudes de la atención plena, la práctica formal e informal y cómo afrontar las dificultades de la práctica— y cuatro capítulos: el pánico en el cuerpo, en las emociones, en los pensamientos y la vida más allá del pánico. Cada capítulo trae prácticas formales, informales y ocho prácticas aplicadas a situaciones concretas. Si se acompaña, un capítulo cada una o dos semanas, con sesiones breves para revisar la práctica (Stahl y Millstine, 2017, introducción).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Fundamentos: descartar causas y empezar a practicar",
+          tecs: ["psicoeducacion", "practica-informal"],
+          obj: "Preparar la práctica y asegurar que el pánico no tiene una causa médica sin atender.",
+          pasos: [
+            "Revisar si el pánico podría tener un origen físico —tiroides muy activa, azúcar baja en sangre, arritmias, efectos de medicamentos o hierbas— y el consumo de cafeína y azúcar; si hace falta, consultar a un profesional de salud.",
+            "Presentar las actitudes de la atención plena y la diferencia entre práctica formal e informal.",
+            "Anticipar las dificultades de la práctica: la mente que divaga, desear o evitar, la agitación o la somnolencia, y la duda."
+          ],
+          casa: "Leer la introducción y los fundamentos, y elegir un momento diario para practicar.",
+          avance: "La persona tiene un horario de práctica y descartó causas médicas.",
+          fuente: "Stahl y Millstine, 2017, fundamentos"
+        },
+        {
+          t: "El pánico en el cuerpo",
+          tecs: ["escaner-corporal", "stop-mindfulness"],
+          obj: "Relacionarse de otra forma con las sensaciones físicas del pánico.",
+          pasos: [
+            "Practicar la respiración consciente y la exploración corporal.",
+            "Usar el S.T.O.P. a ratos durante el día y al comenzar el pánico: detenerse, respirar, observar y seguir.",
+            "Elegir algunas prácticas aplicadas del capítulo, como empezar el día con atención o manejar con más calma."
+          ],
+          casa: "Respiración consciente o exploración corporal cada día y S.T.O.P. varias veces.",
+          avance: "La persona usa el S.T.O.P. cuando aparecen sensaciones de pánico.",
+          fuente: "Stahl y Millstine, 2017, cap. 1"
+        },
+        {
+          t: "El pánico en las emociones",
+          tecs: ["indagacion-consciente", "rain"],
+          obj: "Explorar con curiosidad las emociones que alimentan el pánico.",
+          pasos: [
+            "Practicar la indagación consciente: reconocer lo que aparece y dejarlo estar, sin analizarlo.",
+            "Usar R.A.I.N. ante una emoción fuerte: reconocerla, admitirla, investigarla y no identificarse con ella.",
+            "Elegir prácticas aplicadas del capítulo, como trabajar las emociones dolorosas o sentirse fuera de control."
+          ],
+          casa: "Indagación consciente alternada con las prácticas anteriores y R.A.I.N. durante la semana.",
+          avance: "La persona describe el miedo y la vergüenza del pánico sin quedar atrapada en ellos.",
+          fuente: "Stahl y Millstine, 2017, cap. 2"
+        },
+        {
+          t: "El pánico en los pensamientos",
+          tecs: ["meditacion-sedente", "pausa-observa-permite"],
+          obj: "Ver los pensamientos de pánico como pensamientos, no como hechos.",
+          pasos: [
+            "Practicar la meditación sentada: atención a la respiración, a los sonidos y conciencia sin elección.",
+            "Notar la rumiación, la anticipación de nuevos ataques y los «¿y si…?».",
+            "Usar «haz una pausa, observa y permite» al comenzar un ataque.",
+            "Elegir prácticas aplicadas del capítulo, como el miedo a la enfermedad, a estar solo o a lo desconocido."
+          ],
+          casa: "Meditación sentada y «haz una pausa, observa y permite» cuando aparezca el pánico.",
+          avance: "La persona deja pasar un pensamiento de pánico sin evitar la situación.",
+          fuente: "Stahl y Millstine, 2017, cap. 3"
+        },
+        {
+          t: "La vida más allá del pánico",
+          tecs: ["bondad-amorosa", "prevencion-recaidas"],
+          obj: "Cultivar la amabilidad consigo y volver a lo que importa.",
+          pasos: [
+            "Practicar la meditación de la bondad y la de la red de la vida.",
+            "Usar las prácticas aplicadas del capítulo para acercarse a lo que importa: la familia, el amor, la alegría y las cosas sencillas.",
+            "Decidir qué prácticas se mantendrán y cómo apoyarlas."
+          ],
+          casa: "Plan de práctica para seguir por su cuenta.",
+          avance: "Bajan los ataques y la persona retoma lo que había dejado por el pánico.",
+          fuente: "Stahl y Millstine, 2017, cap. 4",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PDSS</strong> al inicio y al final.",
+        "Registro de los ataques de pánico y de las situaciones que la persona evita.",
+        "Registro de la práctica formal e informal."
+      ],
+      adapt: [
+        "<strong>Autoayuda pura o acompañada:</strong> el libro está escrito para la persona; con un acompañamiento breve se revisan las prácticas y se ayuda con las dificultades.",
+        "<strong>Complemento:</strong> puede sumarse al plan cognitivo-conductual del pánico de esta variable."
+      ],
+      cuidado: [
+        "Si los ataques son frecuentes o graves, el libro aconseja trabajar bajo la guía de un profesional de salud (Stahl y Millstine, 2017, fundamentos); en ese caso va primero el plan cognitivo-conductual del pánico.",
+        "Si la persona usa la práctica para escapar de las sensaciones o de las situaciones temidas, puede volverse otra forma de evitación: se revisa en el acompañamiento."
       ]
     },
     {
@@ -11450,6 +11570,7 @@ const VARIABLES = [
     "<strong>Si el consumo ocupa el lugar de casi todo lo que le resulta gratificante</strong> —amistades, ocio, rutinas— y faltan trabajo y relaciones que compitan con él, la aproximación de reforzamiento comunitario reorganiza esos reforzadores a partir del análisis funcional del consumo; tiene ensayos con alcohol y, combinada con manejo de contingencias, con cocaína.",
     "<strong>Si quien consulta es un familiar y la persona que consume se niega a buscar ayuda</strong>, el reforzamiento comunitario y entrenamiento familiar trabaja solo con el familiar: le enseña a recompensar los momentos sin consumo, a dejar de facilitarlo y a proponer el tratamiento en el momento oportuno, y cuida su propio bienestar aunque el otro no cambie.",
     "<strong>Si ya decidió cambiar</strong> o está en tratamiento, la prevención de recaídas la prepara para las situaciones de alto riesgo y para manejar los deslices; con cocaína u otros estimulantes se le suma el manejo de contingencias.",
+    "<strong>Si ya pasó por una fase de tratamiento y lo que la pone en riesgo son los disparadores, el deseo intenso y las reacciones automáticas al malestar</strong>, la prevención de recaídas basada en mindfulness trabaja en grupo esas reacciones; a los 12 meses tuvo menos recaídas que la prevención de recaídas estándar y que el tratamiento habitual.",
     "<strong>Si el consumo convive con una desregulación emocional grave</strong>, como en el trastorno límite, las habilidades dialéctico-conductuales para conductas adictivas se diseñaron para esa combinación. <strong>Si el consumo funciona sobre todo como una forma de no sentir</strong>, el plan de aceptación y compromiso trabaja esa evitación."
   ],
   planes: [
@@ -11802,6 +11923,123 @@ const VARIABLES = [
         "La meta puede ser la abstinencia o la reducción de daños; el plan sirve para ambas (Marlatt y Donovan, prefacio).",
         "El manejo de contingencias tiene efectos inmediatos fuertes que se debilitan cuando terminan los incentivos, y la prevención de recaídas tiene efectos que se consolidan después; combinados dieron los mejores resultados al año (Rawson et al., 2002; Epstein et al., 2003; en Marlatt y Donovan, cap. 5).",
         "En la dependencia del alcohol, la OMS recomienda combinar intervenciones psicosociales y farmacológicas (recomendación fuerte, certeza moderada; OMS, 2023, ALC4)."
+      ]
+    },
+    {
+      id: "cons-mbrp",
+      mod: "marlatt-rp",
+      inst: ["AUDIT", "ASSIST"],
+      enf: "mind",
+      nivel: "ensayos",
+      t: "Prevención de recaídas basada en mindfulness",
+      fuente: "Bowen et al., 2021",
+      cuando: "La persona ya decidió cambiar y terminó una fase de tratamiento —por ejemplo, internación o un programa ambulatorio intensivo— o está en mantenimiento, y lo que la pone en riesgo son los disparadores, el deseo intenso y las reacciones automáticas ante el malestar. Integra la prevención de recaídas cognitivo-conductual con prácticas de mindfulness, en grupo (Bowen et al., 2021, introducción y parte I).",
+      respaldo: "En el primer ensayo, con 168 personas que pasaban a la fase de seguimiento, el programa redujo el consumo y el deseo más que el tratamiento habitual a los dos meses. En el segundo, a los 12 meses solo la prevención basada en mindfulness, frente a la prevención de recaídas estándar y al tratamiento habitual, mostró menos probabilidad de recaída y menos días de consumo o de consumo excesivo de alcohol. En mujeres de un programa residencial de justicia penal, una versión de ingreso continuo redujo los días de consumo frente a la prevención estándar (Bowen et al., 2021, parte III).",
+      secuencia: "<strong>Secuencia:</strong> una reunión breve con cada persona antes del curso y ocho sesiones semanales de dos horas, o de dos horas y media si es posible, en grupos de 8 a 12. Las sesiones 1 a 3 trabajan el piloto automático; las 4 a 6, las situaciones de riesgo; y las 7 y 8, un estilo de vida que sostenga la recuperación. La práctica diaria en casa, con grabaciones, es parte esencial (Bowen et al., 2021, partes I y II).",
+      esc: ["consumo", "salud-mental"],
+      actividades: [
+        {
+          t: "Reunión previa y sesión 1: piloto automático",
+          tecs: ["piloto-automatico", "ejercicio-pasa", "escaner-corporal", "indagacion-mindfulness"],
+          obj: "Ver cómo el piloto automático lleva a actuar los deseos sin darse cuenta.",
+          pasos: [
+            "Antes del curso, reunirse con cada persona para aclarar expectativas, la estructura y la importancia de la práctica en casa, y preguntar por su motivación y sus obstáculos, sin intentar «venderle» el curso.",
+            "En la sesión 1, acordar las normas del grupo e invitar a cada uno a decir con honestidad por qué está ahí.",
+            "Comer una uva pasa con atención y conversar sobre el piloto automático y su relación con el consumo.",
+            "Practicar la exploración corporal, con indagación después."
+          ],
+          casa: "Exploración corporal, atención plena en una actividad diaria y registro diario de la práctica.",
+          avance: "La persona hace la práctica diaria y reconoce momentos de piloto automático.",
+          fuente: "Bowen et al., 2021, parte I y sesión 1"
+        },
+        {
+          t: "Sesión 2: una nueva relación con la incomodidad",
+          tecs: ["caminar-calle", "surfear-impulso", "meditacion-montana"],
+          obj: "Vivir los disparadores y el deseo de consumir sin reaccionar en automático.",
+          pasos: [
+            "Revisar las dificultades comunes de la práctica: aversión, deseo, inquietud, somnolencia y duda.",
+            "Hacer el ejercicio de caminar por la calle para ver cómo una interpretación alimenta pensamientos, emociones e impulsos.",
+            "Surfear el impulso: imaginar una situación difícil de 3 o 4 en una escala de 10, hasta el momento en que se reaccionaría, y observar con curiosidad las sensaciones, los pensamientos y la necesidad que hay debajo del deseo.",
+            "Cerrar con la meditación de la montaña."
+          ],
+          casa: "Exploración corporal o meditación de la montaña, y registrar disparadores y reacciones.",
+          avance: "La persona describe un deseo de consumir en sus sensaciones, pensamientos e impulsos.",
+          fuente: "Bowen et al., 2021, sesión 2",
+          fichas: ["surfear-impulso"]
+        },
+        {
+          t: "Sesión 3: de reaccionar a responder",
+          tecs: ["meditacion-sedente", "refugio-falso", "espacio-sober"],
+          obj: "Llevar la atención plena de la práctica formal a las situaciones diarias.",
+          pasos: [
+            "Practicar la atención a los sonidos y la meditación sentada en la respiración.",
+            "Hacer el ejercicio del falso refugio: lo que se busca al consumir y lo que el consumo termina dando.",
+            "Aprender el espacio SOBER: detenerse, observar, respirar, expandir la atención y responder."
+          ],
+          casa: "Meditación sentada y espacio SOBER varias veces al día, también en momentos de estrés o de deseo.",
+          avance: "La persona usa el espacio SOBER en una situación real.",
+          fuente: "Bowen et al., 2021, sesión 3"
+        },
+        {
+          t: "Sesiones 4 y 5: situaciones de riesgo y acción hábil",
+          tecs: ["espacio-sober", "aceptacion", "movimiento-consciente"],
+          obj: "Estar presente en las situaciones de riesgo y elegir una acción hábil.",
+          pasos: [
+            "Practicar la meditación sentada con sonidos, respiración, sensaciones, pensamientos y, en la sesión 5, emociones.",
+            "Identificar los riesgos de recaída propios y los comunes del grupo.",
+            "Practicar el espacio SOBER en una situación difícil imaginada y, en la sesión 5, en parejas.",
+            "Conversar sobre la aceptación como primer paso para cuidarse y ver con claridad la mejor acción, y practicar la meditación caminando y el movimiento consciente."
+          ],
+          casa: "Meditación sentada o movimiento consciente, y espacio SOBER en situaciones de riesgo.",
+          avance: "La persona hace una pausa en una situación de riesgo y elige qué hacer.",
+          fuente: "Bowen et al., 2021, sesiones 4 y 5",
+          fichas: ["situaciones-riesgo"]
+        },
+        {
+          t: "Sesión 6: los pensamientos como pensamientos",
+          tecs: ["defusion", "ciclo-recaida-mbrp", "efecto-violacion-abstinencia"],
+          obj: "Reconocer los pensamientos como lo que son y su papel en la recaída.",
+          pasos: [
+            "Practicar la meditación sentada observando y nombrando los pensamientos.",
+            "Dibujar el ciclo de la recaída con un ejemplo del grupo, incluido el «ya da igual» que sigue a un desliz, y el camino alternativo de pausar y responder.",
+            "Preparar el final del curso."
+          ],
+          casa: "Meditación de pensamientos y espacio SOBER.",
+          avance: "La persona reconoce un pensamiento de permiso para consumir sin seguirlo.",
+          fuente: "Bowen et al., 2021, sesión 6",
+          fichas: ["plan-desliz"]
+        },
+        {
+          t: "Sesiones 7 y 8: bienestar y apoyo",
+          tecs: ["bondad-amorosa", "actividades-nutren-agotan", "apoyo-social"],
+          obj: "Construir un estilo de vida y una red de apoyo que sostengan la recuperación.",
+          pasos: [
+            "Practicar la meditación de la bondad.",
+            "Revisar las actividades diarias que nutren y las que agotan, y preguntarse dónde empieza la recaída.",
+            "Hacer tarjetas recordatorio con las señales de advertencia y qué hacer ante ellas.",
+            "En la sesión 8, conversar sobre la importancia de la red de apoyo, reflexionar sobre el curso y compartir el plan para seguir practicando."
+          ],
+          casa: "Plan personal de práctica formal e informal y la tarjeta recordatorio a mano.",
+          avance: "La persona tiene un plan de práctica y de apoyo para después del curso.",
+          fuente: "Bowen et al., 2021, sesiones 7 y 8",
+          fichas: ["actividades-nutren-agotan", "plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>AUDIT</strong> o <strong>ASSIST</strong> al inicio y al seguimiento.",
+        "Días de consumo y deslices, que fueron resultados principales de los ensayos.",
+        "Intensidad del deseo de consumir y registro diario de la práctica."
+      ],
+      adapt: [
+        "<strong>Formatos:</strong> hay versiones de ingreso continuo, dos veces por semana y de seis sesiones, una sesión introductoria y una de práctica extendida (Bowen et al., 2021, parte III).",
+        "<strong>Trauma:</strong> se ofrecen opciones —ojos abiertos, sentarse o pararse, otro ancla distinto de la respiración— y se enseñan las zonas de comodidad, desafío y desborde; con historias de trauma interpersonal, algunos se benefician de grupos de un solo género (Bowen et al., 2021, parte I).",
+        "<strong>Otras poblaciones:</strong> se ha adaptado a apuestas, problemas alimentarios, estrés postraumático con consumo, cárceles y jóvenes en tratamiento residencial (Bowen et al., 2021, parte III)."
+      ],
+      cuidado: [
+        "Si la participación es obligatoria por orden judicial, puede costar la honestidad; se pide que lo dicho sobre el consumo en el grupo no tenga consecuencias punitivas (Bowen et al., 2021, parte I).",
+        "Un desliz durante el curso se trabaja en el grupo con aceptación, como una oportunidad de observar la mente y volver a empezar (Bowen et al., 2021, parte I).",
+        "Si hay dependencia que requiere desintoxicación o el consumo es activo y grave, van primero los planes de motivación y de tratamiento de esta variable.",
+        "Quien facilita necesita una práctica personal de meditación: el programa se apoya en ella más que en la formación en adicciones (Bowen et al., 2021, introducción)."
       ]
     },
     {
@@ -13762,7 +14000,7 @@ const VARIABLES = [
   sub: "Lo que se interviene es la distancia entre las demandas y los recursos: el estrés aparece cuando la persona percibe que lo que la situación le exige supera su capacidad de afrontarlo. Es la variable general del bloque de afrontamiento: aplica al estrés que acompaña una enfermedad crónica o un procedimiento médico, una evaluación o una etapa exigente. Las formas más específicas tienen su propia variable: solución de problemas, afrontamiento evitativo, estrés laboral y burnout, transiciones vitales y sobrecarga del cuidador. No requiere un diagnóstico.",
   elegir: [
     "<strong>Si el estrés responde a situaciones identificables</strong> —un procedimiento médico, una evaluación, una transición, un trabajo exigente—, la inoculación de estrés prepara a la persona para afrontarlas por fases; es el plan más estructurado.",
-    "<strong>Si el estrés es sostenido y viene con tensión física, dolor o una enfermedad crónica</strong>, la reducción del estrés basada en mindfulness trabaja la forma de responder a la experiencia del momento; se ha aplicado sobre todo en medicina conductual.",
+    "<strong>Si el estrés es sostenido y viene con tensión física, dolor o una enfermedad crónica</strong>, la reducción del estrés basada en mindfulness trabaja la forma de responder a la experiencia del momento; se ha aplicado sobre todo en medicina conductual. Tiene dos versiones: el programa grupal de ocho semanas y, si no hay grupo disponible o la persona prefiere un libro, la autoayuda guiada con el cuaderno del programa.",
     "<strong>Si la persona lleva tiempo luchando por no sentir el estrés</strong> y esa lucha ya le cuesta en su vida, el plan de aceptación y compromiso trabaja sobre los valores.",
     "<strong>Si la persona está en un contexto de adversidad</strong> —crisis, desplazamiento, pérdida de recursos— o prefiere un formato breve y autoaplicado, la guía «Haz lo que importa» de la OPS enseña en cinco partes habilidades de aceptación y compromiso.",
     "Para promover el bienestar en población general, los ejercicios del plan de psicología positiva de Depresión se han estudiado también en formato autoaplicado y en grupos comunitarios, con efectos pequeños y sostenidos a los tres a seis meses (Bolier et al.). Si quien consulta cuida a una persona dependiente, ver <em>Sobrecarga del cuidador</em>; si el estrés es del trabajo, <em>Estrés laboral y burnout</em>.",
@@ -13891,95 +14129,190 @@ const VARIABLES = [
       mod: "kabat",
       inst: ["K-10", "BPI"],
       enf: "mind",
-      nivel: "preliminar",
+      nivel: "ensayos",
       t: "Reducción del estrés basada en mindfulness",
-      fuente: "Ruiz et al., cap. 10 (§7.1) · OMS, 2023",
-      cuando: "El estrés es <strong>sostenido</strong> y viene con tensión física, dolor o una enfermedad crónica; la persona reacciona en automático y quiere aprender a responder de otra forma. El programa exige compromiso: práctica diaria de 45 minutos y tareas de hasta una hora.",
-      respaldo: "Los primeros estudios en dolor crónico mostraron mejorías en la intensidad, la frecuencia y la duración del dolor, en su interferencia con la vida diaria y en los síntomas médicos y psicológicos, pero sin grupo de control o con lista de espera; en cáncer se observaron mejorías del ánimo, del estrés asociado a la enfermedad, de la calidad de vida y del sueño. En general, los estudios carecen de grupos de control y se interpretan con cautela (Ruiz et al., cap. 10, §7.1.4). La OMS sugiere técnicas de manejo del estrés —relajación o mindfulness— en la ansiedad generalizada y el pánico (condicional, certeza baja; OMS, 2023, ANX4) y recomienda intervenciones basadas en mindfulness, entre otras, para los cuidadores de personas con demencia (fuerte, certeza baja; OMS, 2023, DEM1).",
-      secuencia: "<strong>Secuencia:</strong> el programa de reducción del estrés basada en mindfulness tiene ocho sesiones semanales de dos horas y media, con unos 30 participantes y material grabado para la práctica en casa. La exploración corporal y la respiración son la base de las primeras semanas; luego se suman el yoga, la meditación sentada y caminando, y la práctica informal. La octava sesión se dedica a sostener la práctica como forma de vida (Ruiz et al., cap. 10, §7.1.1 y §7.1.3).",
-      esc: ["hospital","primer-nivel","cuidadores","mayores"],
+      fuente: "Woods y Rockman, 2021 · Stahl y Goldstein, 2010",
+      cuando: "El estrés es <strong>sostenido</strong>, con frecuencia junto con dolor, una enfermedad crónica u otra condición de salud, y la persona reacciona en automático y quiere aprender a responder de otra forma. El programa exige compromiso: dos horas y media por semana y práctica en casa seis de cada siete días (Woods y Rockman, 2021, caps. 3 y 6).",
+      respaldo: "La reducción del estrés basada en mindfulness ha mostrado reducir el estrés, la ansiedad y la depresión. En la revisión sistemática y el metaanálisis más grande, con 142 estudios, la evidencia más consistente de los programas basados en mindfulness fue para la depresión, el dolor, el tabaquismo y las adicciones. Los autores advierten que gran parte de la investigación son estudios piloto con lista de espera o tratamiento habitual como control, y que hay pocos estudios de efectividad en la comunidad (Woods y Rockman, 2021, cap. 9). La OMS sugiere técnicas de manejo del estrés, como la relajación o el mindfulness, en la ansiedad generalizada y el pánico (condicional, certeza baja; OMS, 2023, ANX4).",
+      secuencia: "<strong>Secuencia:</strong> una sesión de orientación o entrevista previa; ocho sesiones semanales de dos horas y media; y un día de práctica en silencio entre la sexta y la séptima. Cada sesión abre con una o varias prácticas, sigue con la indagación sobre lo vivido, revisa la práctica en casa, presenta el tema de la semana y asigna la práctica siguiente. En la primera mitad se aprenden las prácticas formales e informales y el origen del estrés; en la segunda, a reconocer la reactividad y responder con habilidad (Woods y Rockman, 2021, cap. 3).",
+      esc: ["hospital", "primer-nivel", "cuidadores", "mayores"],
+      opcA: {
+        t: "Programa grupal de ocho semanas",
+        cuando: "Personas que pueden asistir a un grupo semanal con un instructor formado, en un servicio de salud, una institución educativa o un lugar de trabajo (Woods y Rockman, 2021, caps. 6 y 7)."
+      },
       actividades: [
         {
-          t: "Entrevista previa y compromiso",
+          t: "Orientación y entrevista previa",
           tecs: ["entrevista-clinica", "psicoeducacion"],
-          obj: "Conocer a cada participante y asegurar que entiende el compromiso que exige el programa.",
+          obj: "Presentar el programa, sus riesgos y beneficios, y valorar si es adecuado para cada persona.",
           pasos: [
-            "Recibir a cada participante de forma individual en los días previos.",
-            "Hablar de su pasado, de sus preocupaciones actuales y de lo que espera conseguir.",
-            "Explicar la naturaleza de las clases y advertir que asistir puede ser estresante, porque exige un alto compromiso.",
-            "Acordar la práctica formal: 45 minutos al día."
+            "Explicar el programa, su estructura y lo que exige, y responder preguntas.",
+            "Revisar el consentimiento informado y los acuerdos del grupo, como la confidencialidad.",
+            "Valorar si el programa es adecuado: capacidad de regular las emociones, de seis meses a un año sin consumo, trauma procesado, sin hospitalización reciente por riesgo suicida u homicida, seguimiento con un profesional de salud, sin psicosis activa ni un trastorno del ánimo grave y agudo, y posibilidad de participar en grupo y practicar en casa.",
+            "Escuchar en privado lo que la persona no quiera contar en el grupo y derivar cuando el malestar supera lo que el programa puede ofrecer."
           ],
           casa: "Preparar un espacio y un horario para la práctica diaria.",
           avance: "La persona conoce el compromiso y lo acepta.",
-          fuente: "Ruiz et al., cap. 10 (§7.1.1 y §7.1.3)"
+          fuente: "Woods y Rockman, 2021, cap. 3 y sesión de orientación"
         },
         {
-          t: "Salir del piloto automático",
-          tecs: ["ejercicio-pasa", "escaner-corporal"],
-          obj: "Tomar conciencia de la tendencia a funcionar y vivir de forma automática.",
+          t: "Sesiones 1 y 2: piloto automático y percepción",
+          tecs: ["piloto-automatico", "ejercicio-pasa", "escaner-corporal", "indagacion-mindfulness"],
+          obj: "Notar la tendencia a funcionar en automático y cómo la forma de ver determina la forma de reaccionar.",
           pasos: [
-            "Comer una uva pasa con atención plena.",
-            "Practicar la exploración corporal: recorrer con la atención las partes del cuerpo, momento a momento, sin intentar cambiar lo que se siente.",
-            "Presentar la actitud de base: sin esfuerzo, sin juicio, con aceptación."
+            "En la sesión 1, comer una uva pasa con atención plena y practicar la exploración corporal, cada una seguida de indagación.",
+            "Presentar el modo de «ser»: dirigir la atención a los sentidos y a las sensaciones, y ver lo fácil que es quedar atrapado en la reacción automática.",
+            "En la sesión 2, repetir la exploración corporal, hacer una meditación de ver y un ejercicio sobre los sesgos de percepción, y empezar la meditación sentada en la respiración."
           ],
-          casa: "Semanas 1 y 2: exploración corporal 45 minutos, seis días a la semana, y 10 minutos diarios de meditación en la respiración.",
+          casa: "Exploración corporal grabada seis de cada siete días; atención plena en una comida y en una actividad rutinaria; desde la semana 2, de 10 a 15 minutos de respiración y el calendario de experiencias agradables.",
           avance: "La persona sostiene la práctica diaria y nota momentos en que funciona en automático.",
-          fuente: "Ruiz et al., cap. 10 (§7.1.2 y §7.1.3)",
-          fichas: ["registro-practica-mbct"]
+          fuente: "Woods y Rockman, 2021, sesiones 1 y 2",
+          fichas: ["registro-practica-mbct", "calendario-experiencias"]
         },
         {
-          t: "Respiración y dificultades de la práctica",
-          tecs: ["meditacion-sedente"],
-          obj: "Desarrollar la concentración y aprender a relacionarse con las dificultades que aparecen al practicar.",
+          t: "Sesión 3: ser y hacer",
+          tecs: ["movimiento-consciente", "meditacion-caminando", "meditacion-sedente"],
+          obj: "Aprender a estar con las sensaciones, pensamientos, emociones e impulsos sin tener que reaccionar de inmediato.",
           pasos: [
-            "Practicar la meditación sentada con atención a la respiración, dejando que pensamientos, sentimientos y sensaciones vayan y vengan.",
-            "Notar cómo la mente tiende a juzgar la experiencia como positiva o negativa.",
-            "Ante las dificultades —no sentir partes del cuerpo o sentir más dolor—, mantenerse abierto, respirar y seguir con la atención."
+            "Practicar una secuencia de yoga acostado, la meditación caminando y la meditación sentada en la respiración y el cuerpo, con indagación.",
+            "Notar cómo la reactividad y la resistencia amplifican los momentos de estrés.",
+            "Reconocer que hay opciones en la forma de responder."
           ],
-          casa: "Semanas 3 y 4: alternar exploración corporal y yoga durante 45 minutos, y de 15 a 20 minutos diarios de meditación en la respiración.",
-          avance: "La persona vuelve a la respiración cuando se distrae, sin reprocharse.",
-          fuente: "Ruiz et al., cap. 10 (§7.1.2 y §7.1.3)",
-          fichas: ["registro-practica-mbct"]
-        },
-        {
-          t: "Movimiento consciente",
-          tecs: ["movimiento-consciente", "meditacion-caminando"],
-          obj: "Llevar la atención plena al cuerpo en movimiento.",
-          pasos: [
-            "Practicar estiramientos y posturas de hatha yoga con atención a las sensaciones.",
-            "Introducir la meditación caminando.",
-            "Aceptar y no forzar: dejar que el cuerpo reaccione de manera natural en cada momento."
-          ],
-          casa: "Semanas 5 y 6: meditación sentada de 30 a 45 minutos al día, alternada con yoga, y meditación caminando.",
-          avance: "La persona sostiene la práctica formal con movimiento.",
-          fuente: "Ruiz et al., cap. 10 (§7.1.2 y §7.1.3)"
-        },
-        {
-          t: "Práctica informal y autonomía",
-          tecs: ["practica-informal"],
-          obj: "Llevar la atención plena a las situaciones diarias y elegir la propia práctica.",
-          pasos: [
-            "Detenerse a prestar atención, con sinceridad y sin juicio, dondequiera que se esté.",
-            "Llevar la atención plena a los momentos de estrés, para responder en lugar de reaccionar en automático.",
-            "En la séptima semana, elegir el método que resulte más agradable y practicarlo sin las grabaciones."
-          ],
-          casa: "Práctica elegida durante 45 minutos al día y práctica informal en la vida diaria.",
-          avance: "La persona describe situaciones en que respondió al estrés en lugar de reaccionar.",
-          fuente: "Ruiz et al., cap. 10 (§7.1, §7.1.1 y §7.1.3)",
+          casa: "Alternar exploración corporal y yoga acostado seis días; meditación sentada de 15 a 20 minutos; calendario de experiencias desagradables.",
+          avance: "La persona puede quedarse un momento con una sensación incómoda sin reaccionar.",
+          fuente: "Woods y Rockman, 2021, sesión 3",
           fichas: ["calendario-experiencias"]
         },
         {
-          t: "La octava semana dura el resto de la vida",
-          tecs: ["escaner-corporal", "practica-informal"],
-          obj: "Adoptar la atención plena como forma de vida.",
+          t: "Sesiones 4 y 5: reactividad al estrés y responder",
+          tecs: ["circulo-conciencia", "meditacion-sedente", "psicoeducacion"],
+          obj: "Reconocer la propia reacción al estrés y empezar a responder con atención plena.",
           pasos: [
-            "Volver a las grabaciones y hacer la exploración corporal al menos dos veces en la semana.",
-            "Revisar las actitudes que ayudan a sostener la práctica.",
-            "Acordar cómo continuar la práctica formal e informal después del programa."
+            "Practicar la meditación sentada trabajando con sensaciones físicas intensas: acercarse a ellas y quedarse cuando sea posible.",
+            "Conversar sobre el estrés: la activación del cuerpo ante la amenaza, sus efectos en los pensamientos, las emociones y la conducta, y las formas de afrontarlo que con el tiempo se vuelven desadaptativas.",
+            "Presentar el círculo de la conciencia con una situación de un participante.",
+            "En la sesión 5, practicar la meditación sentada con varios focos y conversar sobre cómo la atención plena permite elegir la respuesta."
           ],
-          casa: "Plan personal de práctica continuada.",
+          casa: "Registrar las reacciones al estrés con el círculo de la conciencia y, en la semana 5, intervenir con atención plena cuando sea posible.",
+          avance: "La persona identifica su reacción al estrés en pensamientos, cuerpo, emociones y conducta, y a veces responde distinto.",
+          fuente: "Woods y Rockman, 2021, sesiones 4 y 5"
+        },
+        {
+          t: "Sesión 6 y día de práctica: comunicaciones difíciles",
+          tecs: ["comunicaciones-dificiles", "retiro-dia"],
+          obj: "Llevar la atención plena a las relaciones y sostener la práctica por un período largo.",
+          pasos: [
+            "Hacer el ejercicio de comunicaciones difíciles, notar en el cuerpo lo que despierta cada forma de responder y practicarlas en parejas.",
+            "Preparar al grupo para el día de práctica en silencio.",
+            "En ese día, repetir en silencio las prácticas de las seis semanas, con una comida hecha con atención, y salir del silencio de forma guiada."
+          ],
+          casa: "Calendario de comunicaciones difíciles seis días y alternar la meditación sentada con la exploración corporal o el yoga.",
+          avance: "La persona nota sus reacciones en una conversación difícil y elige cómo responder.",
+          fuente: "Woods y Rockman, 2021, sesión 6 y día de práctica"
+        },
+        {
+          t: "Sesiones 7 y 8: elegir y mantener la práctica",
+          tecs: ["practica-informal", "escaner-corporal"],
+          obj: "Llevar la atención plena a la vida diaria y sostener la práctica después del programa.",
+          pasos: [
+            "En la sesión 7, revisar el programa y lo aprendido sobre la relación con el estrés, y reflexionar sobre la «dieta» diaria: noticias, tecnología, comida, y cómo se relaciona la persona con ella.",
+            "Elegir una práctica para hacer sin guía durante la semana.",
+            "En la sesión 8, repasar lo aprendido, decidir cómo seguir practicando y cerrar el grupo con un ritual."
+          ],
+          casa: "Práctica autoguiada elegida y práctica informal al despertar, antes de dormir y durante el día; al final, un plan propio de práctica formal e informal.",
           avance: "La persona mantiene la práctica después del programa.",
-          fuente: "Ruiz et al., cap. 10 (§7.1.3)"
+          fuente: "Woods y Rockman, 2021, sesiones 7 y 8",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      opciones: [
+        {
+          t: "Autoayuda guiada con el cuaderno",
+          cuando: "La persona no puede asistir a un grupo, prefiere trabajar con un libro o el programa no está disponible donde vive. Sirve como autoayuda pura o con un acompañamiento breve, y también como complemento de otra terapia. Los autores advierten que el cuaderno no reemplaza al programa (Stahl y Goldstein, 2010, introducción).",
+          fuente: "Stahl y Goldstein, 2010 · Goldstein y Stahl, 2015",
+          respaldo: "El cuaderno sigue la organización del programa de reducción del estrés basada en mindfulness y no reporta estudios propios (Stahl y Goldstein, 2010, introducción).",
+          secuencia: "<strong>Secuencia:</strong> once capítulos en orden, al menos una semana con cada uno. Los tres primeros, con prácticas cortas, en un par de semanas; del cuarto al octavo, meditaciones más largas de 15, 30 o 45 minutos; el noveno y el décimo llevan la atención plena a las relaciones y a la salud; y el último arma la práctica propia. Cada capítulo trae registros de práctica y un plan para la semana. Si se acompaña, el terapeuta revisa los registros y ayuda con las dificultades (Stahl y Goldstein, 2010, introducción).",
+          actividades: [
+            {
+              t: "Empezar: qué es la atención plena",
+              tecs: ["ejercicio-pasa", "psicoeducacion"],
+              obj: "Entender qué es la atención plena y cómo se relaciona con el estrés.",
+              pasos: [
+                "Medir al inicio cuánto estrés siente la persona con la escala del cuaderno.",
+                "Comer una uva pasa con atención y hacer el chequeo consciente de tres minutos.",
+                "Leer sobre la diferencia entre reaccionar y responder al estrés, y entretejer momentos de atención en el día.",
+                "Practicar cinco minutos de respiración consciente y las ocho actitudes de la atención plena."
+              ],
+              casa: "Chequeo consciente y respiración de cinco minutos cada día, con su registro.",
+              avance: "La persona practica a diario unos minutos.",
+              fuente: "Stahl y Goldstein, 2010, caps. 1 a 3"
+            },
+            {
+              t: "Respiración, caminar y S.T.O.P.",
+              tecs: ["meditacion-caminando", "stop-mindfulness"],
+              obj: "Alargar la práctica y llevarla a los momentos de estrés.",
+              pasos: [
+                "Revisar qué ha funcionado y qué no para manejar el estrés, y las trampas de la mente.",
+                "Practicar 15 minutos de respiración consciente y la meditación caminando.",
+                "Usar el S.T.O.P. durante el día."
+              ],
+              casa: "Respiración de 15 minutos o caminar con atención, y S.T.O.P. varias veces al día.",
+              avance: "La persona usa el S.T.O.P. en un momento de estrés.",
+              fuente: "Stahl y Goldstein, 2010, cap. 4"
+            },
+            {
+              t: "El cuerpo y el dolor",
+              tecs: ["escaner-corporal"],
+              obj: "Conocer las sensaciones del cuerpo, incluido el dolor y las emociones que se sienten en él.",
+              pasos: [
+                "Practicar la exploración corporal.",
+                "Trabajar el dolor físico con atención y notar las emociones en el cuerpo y lo que impide sentirlas."
+              ],
+              casa: "Exploración corporal cada día y la práctica informal del dolor.",
+              avance: "La persona describe sus sensaciones sin intentar cambiarlas.",
+              fuente: "Stahl y Goldstein, 2010, cap. 5"
+            },
+            {
+              t: "Profundizar la práctica",
+              tecs: ["meditacion-sedente", "movimiento-consciente"],
+              obj: "Sostener prácticas formales más largas y notar los hábitos.",
+              pasos: [
+                "Practicar la meditación sentada y el yoga acostado con atención.",
+                "Explorar los propios patrones habituales y ser consciente de los hábitos durante el día."
+              ],
+              casa: "Alternar meditación sentada y yoga; registro de hábitos.",
+              avance: "La persona sostiene 30 minutos o más de práctica formal.",
+              fuente: "Stahl y Goldstein, 2010, cap. 6"
+            },
+            {
+              t: "Ansiedad, estrés y bondad",
+              tecs: ["indagacion-consciente", "rain", "bondad-amorosa"],
+              obj: "Explorar con curiosidad lo que alimenta la ansiedad y responder con amabilidad.",
+              pasos: [
+                "Practicar la autoindagación consciente ante el estrés y la ansiedad, y R.A.I.N. durante el día.",
+                "Revisar las reglas internas y los juicios que sostienen el estrés.",
+                "Practicar la meditación de la bondad amorosa y llevarla a la vida diaria, también cuando no se siente amor."
+              ],
+              casa: "Autoindagación o bondad amorosa, alternadas con las prácticas anteriores; R.A.I.N. ante una emoción fuerte.",
+              avance: "La persona puede estar con la ansiedad sin perderse en ella.",
+              fuente: "Stahl y Goldstein, 2010, caps. 7 y 8"
+            },
+            {
+              t: "Relaciones, salud y práctica propia",
+              tecs: ["practica-informal", "prevencion-recaidas"],
+              obj: "Llevar la atención plena a las relaciones y a la salud, y armar la práctica propia.",
+              pasos: [
+                "Practicar la escucha atenta y revisar los patrones en las relaciones importantes y con personas difíciles.",
+                "Volver a la comida, el ejercicio, el descanso y la conexión con atención.",
+                "Diseñar la práctica formal e informal que se mantendrá.",
+                "Para sostenerla, usar prácticas breves diarias como las de <em>MBSR Every Day</em>: empezar de nuevo, respirar, ser amable consigo y meditar."
+              ],
+              casa: "Plan personal de práctica y una práctica breve diaria.",
+              avance: "La persona mantiene una práctica regular y baja su nivel de estrés en la escala del cuaderno.",
+              fuente: "Stahl y Goldstein, 2010, caps. 9 a 11 · Goldstein y Stahl, 2015",
+              fichas: ["plan-mantenimiento"]
+            }
+          ]
         }
       ],
       medir: [
@@ -13988,13 +14321,16 @@ const VARIABLES = [
         "Con dolor crónico, <strong>BPI</strong>; en cuidadores, <strong>Zarit</strong>."
       ],
       adapt: [
-        "<strong>Hospital general:</strong> se ha aplicado en dolor crónico, fibromialgia, cáncer, enfermedades cardiacas, hipertensión y problemas gastrointestinales vinculados al estrés, y existen versiones adaptadas para pacientes hospitalizados (Ruiz et al., cap. 10, §7.1.4).",
-        "<strong>Cuidadores y familia:</strong> la OMS recomienda intervenciones basadas en mindfulness, entre otras, para los cuidadores de personas con demencia (recomendación fuerte, certeza baja; OMS, 2023, DEM1).",
-        "<strong>Adultos mayores:</strong> en personas mayores con síntomas que no llegan a un trastorno, las intervenciones psicosociales preventivas, entre ellas el entrenamiento en mindfulness, redujeron los síntomas depresivos y ansiosos, sin diferencias entre tipos de intervención (Saldivia et al.)."
+        "<strong>Hospital general:</strong> se ha aplicado en dolor crónico, cáncer, enfermedades cardiovasculares, esclerosis múltiple, diabetes y otras condiciones médicas; casi siempre se mide el estrés, la ansiedad y la depresión que las acompañan, no la condición física (Woods y Rockman, 2021, caps. 6 y 9).",
+        "<strong>Cuidadores y familia:</strong> se ha estudiado con padres y cuidadores de familiares dependientes (Woods y Rockman, 2021, cap. 9), y la OMS recomienda intervenciones basadas en mindfulness, entre otras, para los cuidadores de personas con demencia (recomendación fuerte, certeza baja; OMS, 2023, DEM1).",
+        "<strong>Adultos mayores:</strong> en personas mayores con síntomas que no llegan a un trastorno, las intervenciones psicosociales preventivas, entre ellas el entrenamiento en mindfulness, redujeron los síntomas depresivos y ansiosos, sin diferencias entre tipos de intervención (Saldivia et al.).",
+        "<strong>Educación, trabajo y diversidad:</strong> el libro describe adaptaciones para instituciones educativas y lugares de trabajo, y cómo hacer el programa accesible a comunidades poco atendidas (Woods y Rockman, 2021, caps. 7 y 8).",
+        "<strong>Trauma:</strong> hay adaptaciones del programa sensibles al trauma (Woods y Rockman, 2021, cap. 9)."
       ],
       cuidado: [
-        "Al atender al cuerpo, al comienzo pueden intensificarse las sensaciones de dolor; se trabaja con apertura dentro de la práctica (Ruiz et al., cap. 10, §7.1.2).",
-        "Muchos estudios carecen de grupo de control: los resultados son prometedores, pero se interpretan con cautela (Ruiz et al., cap. 10, §7.1.4)."
+        "La meditación puede traer efectos adversos, como más ansiedad o pánico; por eso la entrevista previa, con criterios claros, es parte del programa (Woods y Rockman, 2021, cap. 9).",
+        "Con depresiones repetidas, ansiedad grave, trauma no procesado, consumo activo, ideas suicidas activas o psicosis, el programa conviene en manos de clínicos con formación en esas condiciones; para prevenir recaídas de la depresión está la terapia cognitiva basada en mindfulness de <em>Depresión</em> (Woods y Rockman, 2021, cap. 9).",
+        "Al atender al cuerpo, al comienzo pueden intensificarse las sensaciones de dolor; se trabaja con apertura dentro de la práctica (Ruiz et al., cap. 10, §7.1.2)."
       ]
     },
     {
@@ -18556,7 +18892,7 @@ const VARIABLES = [
   sub: "Dificultad para conciliar el sueño, mantenerlo o despertar demasiado temprano, al menos tres noches por semana, con malestar o deterioro durante el día. Lo que se interviene no es lo que lo desencadenó —un estrés, una enfermedad—, sino lo que lo mantiene: pasar mucho tiempo despierto en la cama, horarios irregulares, siestas, la preocupación por no dormir y la vigilancia del propio sueño. Es frecuente junto a la ansiedad, la depresión y las enfermedades médicas.",
   elegir: [
     "<strong>El plan es la terapia cognitivo-conductual para el insomnio</strong>, de seis a ocho sesiones. Según la formulación del caso, se empieza por los componentes conductuales —si predominan los horarios irregulares, las siestas y el exceso de tiempo en cama— o por los cognitivos —si predominan la preocupación, las creencias sobre el sueño y las conductas de seguridad—.",
-    "<strong>Si lo que mantiene el insomnio es el esfuerzo por dormir</strong> y la preocupación por no dormir, o la terapia cognitivo-conductual no funcionó o cuesta seguirla, la terapia de aceptación y compromiso es una alternativa con ensayos, sola o con control de estímulos y restricción del sueño.",
+    "<strong>Si lo que mantiene el insomnio es el esfuerzo por dormir</strong> y la preocupación por no dormir, o la terapia cognitivo-conductual no funcionó o cuesta seguirla, la terapia de aceptación y compromiso es una alternativa con ensayos, sola o con control de estímulos y restricción del sueño. <strong>Si además pesa la activación al acostarse</strong> y la persona puede trabajar en grupo con meditación diaria, la terapia basada en mindfulness para el insomnio combina meditación con consolidación y reacondicionamiento del sueño; su respaldo es un ensayo pequeño.",
     "Si el insomnio acompaña a una depresión o a un trastorno de ansiedad, también se trata: hay estudios preliminares en que mejorar el sueño ayudó también a la depresión (Kaplan y Harvey, 2014). Si hay signos de otro trastorno del sueño, o somnolencia diurna muy marcada, se deriva primero a valoración médica."
   ],
   planes: [
@@ -18991,6 +19327,132 @@ const VARIABLES = [
         "Antes de empezar, descartar otros trastornos del sueño —apnea, piernas inquietas, trastornos del ritmo circadiano— y el insomnio causado por sustancias o por un episodio de manía (El Rafihi-Ferreira, 2024, cap. 5).",
         "En la opción B, la restricción del sueño no se aplica, o se aplica con mucha cautela, en conductores, pilotos, operarios de máquinas y otros trabajos de riesgo, ni en personas con epilepsia, parasomnias o algunos trastornos psiquiátricos graves que la privación de sueño puede empeorar (El Rafihi-Ferreira, 2024, cap. 12).",
         "Si la combinación de tratamientos no ayuda, se reevalúa qué mantiene el problema; la terapia cognitivo-conductual para el insomnio es la opción con más respaldo (El Rafihi-Ferreira, 2024, cap. 7)."
+      ]
+    },
+    {
+      id: "ins-mbti",
+      mod: "ong-metacognitivo",
+      inst: ["ISI", "PSQI"],
+      enf: "mind",
+      nivel: "preliminar",
+      t: "Terapia basada en mindfulness para el insomnio",
+      fuente: "Ong, 2017",
+      cuando: "Insomnio crónico en el que pesan la activación al acostarse, el esfuerzo por dormir y el apego a dormir bien: la persona vive pendiente del sueño, ya no reconoce cuándo tiene sueño y decide acostarse por reglas o por cansancio. Se trabaja en grupo. Para un insomnio ocasional o agudo hay opciones más breves (Ong, 2017, caps. 4 y 9).",
+      respaldo: "En un ensayo con 54 adultos con insomnio crónico, la terapia redujo más que el autorregistro el tiempo despierto en la cama, la activación antes de dormir y la gravedad del insomnio. Respondió el 60 % al terminar y el 79 % a los seis meses, con remisión del 33 % y del 50 %, y a los seis meses redujo los síntomas de insomnio más que la reducción del estrés basada en mindfulness (Ong, 2017, introducción y cap. 9). Es un único ensayo pequeño, con participantes en su mayoría mujeres con estudios altos y sin otros trastornos del sueño ni medicación para dormir (Ong, 2017, caps. 4 y 9).",
+      secuencia: "<strong>Secuencia:</strong> una evaluación previa y ocho sesiones semanales de dos horas y media, en grupos de seis a ocho personas. Cada sesión combina meditación formal, indagación y estrategias conductuales para el sueño, con al menos 30 minutos de meditación seis días por semana y diario de sueño. Las primeras sesiones establecen la práctica, la consolidación y el reacondicionamiento del sueño; las siguientes trabajan el territorio del insomnio, la aceptación y la relación con el sueño; la última arma un plan para futuros episodios (Ong, 2017, introducción y caps. 4 a 8).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Evaluación previa",
+          tecs: ["entrevista-clinica", "diario-sueno"],
+          obj: "Confirmar un insomnio crónico y descartar lo que deba atenderse antes o de otra forma.",
+          pasos: [
+            "Caracterizar los síntomas de noche, sus consecuencias de día y la historia del problema, con una o dos semanas de diario de sueño.",
+            "Valorar la gravedad de la depresión o la ansiedad que acompañen, para decidir si se tratan antes.",
+            "Derivar a una clínica del sueño si hay ronquidos, pausas en la respiración o boca seca al despertar, y revisar en el diario patrones de un trastorno del ritmo circadiano."
+          ],
+          casa: "Diario de sueño una o dos semanas.",
+          avance: "Hay un diagnóstico de insomnio crónico sin condiciones que lo impidan.",
+          fuente: "Ong, 2017, cap. 4",
+          fichas: ["diario-sueno"]
+        },
+        {
+          t: "Sesiones 1 y 2: practicar y salir del piloto automático",
+          tecs: ["meditacion-sedente", "escaner-corporal", "higiene-sueno"],
+          obj: "Establecer una práctica de meditación y ver el insomnio como un problema de las 24 horas.",
+          pasos: [
+            "Presentar el programa y su idea central: no apegarse al resultado, ni siquiera al de dormir mejor.",
+            "Practicar la alimentación atenta y la meditación sentada, con las metáforas de mirar pasar los trenes o las nubes para observar los pensamientos.",
+            "Presentar el insomnio como un problema de día y de noche.",
+            "En la sesión 2, practicar la exploración corporal, conversar sobre por qué importa la conciencia en el insomnio y dar las pautas de higiene del sueño."
+          ],
+          casa: "Meditación al menos 30 minutos, seis días por semana, y diario de sueño y de meditación.",
+          avance: "La persona sostiene la práctica y nota sus reacciones automáticas ante el sueño.",
+          fuente: "Ong, 2017, cap. 5",
+          fichas: ["diario-sueno"]
+        },
+        {
+          t: "Sesión 3: somnolencia, vigilia y consolidación del sueño",
+          tecs: ["somnolencia-cansancio", "meditacion-caminando", "restriccion-sueno"],
+          obj: "Reconocer la somnolencia y ajustar el tiempo en cama al sueño real.",
+          pasos: [
+            "Practicar la meditación caminando.",
+            "Distinguir la somnolencia del cansancio, el aburrimiento o el ánimo bajo.",
+            "Fijar una hora de levantarse realista, también los fines de semana, y calcular la ventana de sueño: el promedio de sueño del diario más 30 minutos.",
+            "Ayudar a cada persona a elegir su ventana, porque se cumple mejor cuando la elige ella."
+          ],
+          casa: "Mantener la hora de levantarse y la ventana de sueño, y seguir con la meditación y el diario.",
+          avance: "La persona respeta su ventana de sueño la mayoría de los días.",
+          fuente: "Ong, 2017, cap. 6",
+          fichas: ["pautas-sueno"]
+        },
+        {
+          t: "Sesión 4: el insomnio de noche",
+          tecs: ["movimiento-consciente", "reacondicionamiento-sueno", "control-estimulos"],
+          obj: "Responder a la vigilia nocturna sin esfuerzo por dormir.",
+          pasos: [
+            "Practicar movimiento consciente o estiramientos.",
+            "Revisar la ventana de sueño con el diario y ajustarla.",
+            "Presentar el reacondicionamiento: acostarse solo con somnolencia; si no llega, salir del modo sueño, idealmente del dormitorio, y hacer con luz tenue algo que calme y se disfrute; volver solo con somnolencia."
+          ],
+          casa: "Aplicar el reacondicionamiento cada noche que haga falta.",
+          avance: "Baja el tiempo despierto en la cama.",
+          fuente: "Ong, 2017, cap. 6"
+        },
+        {
+          t: "Sesiones 5 y 6: el territorio del insomnio, aceptar y soltar",
+          tecs: ["territorio-insomnio", "aceptacion"],
+          obj: "Relacionarse de otra forma con todo lo que rodea al insomnio.",
+          pasos: [
+            "Revisar a mitad del programa los avances y las dificultades.",
+            "Presentar el territorio del insomnio: síntomas, conductas, pensamientos y valores de día y de noche, y cómo usar en él las habilidades aprendidas.",
+            "En la sesión 6, trabajar la aceptación y el dejar ir, sobre todo si la persona practica y sigue las pautas pero no ve mejoras."
+          ],
+          casa: "Meditación, pautas de sueño y notar los pensamientos y emociones sobre el sueño.",
+          avance: "La persona se preocupa menos por dormir y sostiene sus actividades aunque duerma mal.",
+          fuente: "Ong, 2017, cap. 7"
+        },
+        {
+          t: "Sesión 7: la relación con el sueño",
+          tecs: ["espacio-respiracion", "actividades-nutren-agotan", "pausa-autocompasion"],
+          obj: "Revisar las reacciones a las noches buenas y malas y cuidarse durante el día.",
+          pasos: [
+            "Conversar sobre cómo reacciona la persona a una buena y a una mala noche.",
+            "Practicar el espacio de respiración de tres minutos y la meditación informal en la vida diaria.",
+            "Trabajar la autocompasión y revisar las actividades que nutren y las que agotan."
+          ],
+          casa: "Espacio de respiración varias veces al día y más actividades que nutren.",
+          avance: "La persona responde a una mala noche sin aumentar el esfuerzo por dormir.",
+          fuente: "Ong, 2017, cap. 7",
+          fichas: ["actividades-nutren-agotan"]
+        },
+        {
+          t: "Sesión 8: plan para futuros episodios",
+          tecs: ["prevencion-recaidas", "practica-informal"],
+          obj: "Prepararse para nuevos episodios de insomnio y seguir practicando.",
+          pasos: [
+            "Armar un plan de acción: primero darse cuenta de lo que pasa —somnolencia, cansancio, patrones de sueño, estrés, reacciones automáticas—; después elegir cómo responder: aceptar y soltar, aumentar las actividades que nutren, volver a la ventana y al reacondicionamiento.",
+            "Acordar cómo seguir con la meditación y cerrar el grupo.",
+            "Si es posible, ofrecer después un retiro de meditación."
+          ],
+          casa: "Plan de acción para el insomnio y práctica continuada.",
+          avance: "La persona maneja un nuevo episodio con su plan.",
+          fuente: "Ong, 2017, cap. 8",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>ISI</strong> al inicio, al final y en el seguimiento.",
+        "Diario de sueño: tiempo despierto en la cama, latencia y despertares.",
+        "<strong>PSQI</strong> para la calidad global del sueño, y registro de la meditación."
+      ],
+      adapt: [
+        "<strong>Comorbilidad y medicación:</strong> no se ha probado en personas con otros trastornos del sueño, condiciones psiquiátricas o médicas no controladas, ni en quienes toman medicación para dormir; el libro sugiere que lo decida el juicio clínico, según la formación de quien conduce el grupo (Ong, 2017, cap. 4).",
+        "<strong>Tamaño del grupo:</strong> de seis a ocho personas es lo óptimo; con menos de cuatro, las ausencias afectan mucho al grupo (Ong, 2017, cap. 4)."
+      ],
+      cuidado: [
+        "En un estudio de los autores, dormir menos de cuatro horas en promedio y una depresión elevada fueron los mayores predictores de abandono temprano de la terapia grupal para el insomnio; con depresión, valorar si conviene tratarla antes (Ong, 2017, caps. 4 y 10).",
+        "Si hay signos de apnea u otro trastorno del sueño, se deriva antes de empezar (Ong, 2017, cap. 4)."
       ]
     }
   ]
@@ -24284,7 +24746,59 @@ const GLOSARIO = [
   fuente: "Harned, 2022, cap. 9" },
 { k: "terapeuta-propia-exposicion", t: "Ser su propio terapeuta de exposición", alias: ["estilo de vida de exposición"], tipo: "Técnica", enf: ["dbt"],
   d: "Al terminar el protocolo, la persona planea exposiciones en vivo y en imaginación para seguir haciéndolas por su cuenta y adopta la costumbre de acercarse a lo que teme en lugar de evitarlo. Sirve para mantener lo logrado y detectar a tiempo un aumento de los síntomas.",
-  fuente: "Harned, 2022, cap. 13" }
+  fuente: "Harned, 2022, cap. 13" },
+/* ---------- Tercera generación, bloque 2: mindfulness (2026-10-27) ---------- */
+{ k: "indagacion-mindfulness", t: "Indagación después de la práctica", alias: ["indagación del grupo"], tipo: "Técnica", enf: ["mind"],
+  d: "Conversación que sigue a cada práctica de meditación en los programas basados en mindfulness. El facilitador pregunta con curiosidad qué notó cada persona, si eso le resulta conocido o distinto, cómo se relaciona con su vida diaria y qué tiene de común con lo que viven otros. No busca explicar ni corregir, sino que la persona descubra por sí misma sus hábitos de mente y de conducta.",
+  fuente: "Bowen et al., 2021, parte I" },
+{ k: "circulo-conciencia", t: "Círculo de la conciencia", alias: ["círculo de conciencia del estrés"], tipo: "Técnica", enf: ["mind"],
+  d: "Se dibuja un círculo con la situación estresante en el centro y alrededor sus cuatro componentes: pensamientos, sensaciones del cuerpo, emociones y conductas o impulsos de actuar. Primero solo se registran, para notar la propia reacción al estrés; después se usa para darse cuenta del momento de reactividad y responder con atención plena.",
+  fuente: "Woods y Rockman, 2021, sesiones 4 y 5" },
+{ k: "comunicaciones-dificiles", t: "Ejercicio de comunicaciones difíciles", alias: ["estilos de comunicación difícil"], tipo: "Ejercicio", enf: ["mind"],
+  d: "El facilitador y un voluntario representan cuatro formas de responder a alguien que llega con un reclamo: asumir toda la culpa, esquivar la conversación, plantarse y contraatacar, o abrirse a conversar y buscar un acuerdo. Después de cada una, el grupo nota qué ve, qué siente y qué pasa en el cuerpo, y luego lo practican en parejas.",
+  fuente: "Woods y Rockman, 2021, sesión 6" },
+{ k: "retiro-dia", t: "Día de práctica en silencio", alias: ["retiro de un día"], tipo: "Formato", enf: ["mind"],
+  d: "Jornada completa, o media, entre la sexta y la séptima semana del programa, en la que el grupo repite en silencio las prácticas aprendidas: exploración corporal, meditación sentada, movimiento consciente y meditación caminando, con una comida hecha con atención. Al final se sale del silencio de forma guiada.",
+  fuente: "Woods y Rockman, 2021, cap. 3" },
+{ k: "meditacion-montana", t: "Meditación de la montaña", alias: ["imagen de la montaña"], tipo: "Ejercicio", enf: ["mind"],
+  d: "Meditación sentada en la que la persona trae la imagen de una montaña, o sus cualidades —arraigo, solidez, quietud—, y la encarna mientras afuera cambian el clima y las estaciones. Sirve para notar que hay un recurso de estabilidad disponible aun en medio de situaciones o emociones difíciles.",
+  fuente: "Bowen et al., 2021, sesión 2" },
+{ k: "espacio-sober", t: "Espacio SOBER", alias: ["espacio de respiración SOBER"], tipo: "Técnica", enf: ["mind"],
+  d: "Práctica breve para situaciones de riesgo, de estrés o de deseo intenso de consumir, cuyo nombre en inglés recuerda los pasos: detenerse, observar lo que pasa en el cuerpo y en la mente, llevar la atención a la respiración, expandirla al resto de la experiencia y responder con conciencia en lugar de reaccionar. Es una adaptación del espacio de respiración de tres minutos.",
+  fuente: "Bowen et al., 2021, sesión 3" },
+{ k: "refugio-falso", t: "Ejercicio del falso refugio", alias: ["falso refugio"], tipo: "Ejercicio", enf: ["mind"],
+  d: "El grupo hace dos columnas: lo que en el fondo se busca al consumir —alivio, libertad, conexión, sentirse visto— y lo que el consumo termina dando —vergüenza, culpa, relaciones dañadas, pérdida de confianza o de dinero—. Ayuda a reconocer como humanas las necesidades que hay detrás del deseo y a ver que la conducta no las satisface.",
+  fuente: "Bowen et al., 2021, sesión 3" },
+{ k: "caminar-calle", t: "Ejercicio de caminar por la calle", alias: ["caminar por la calle"], tipo: "Ejercicio", enf: ["mind"],
+  d: "En imaginación, la persona camina por una calle conocida, ve venir a alguien a quien le alegra encontrar, lo saluda y la otra persona sigue de largo sin responder. Se observan los pensamientos, emociones, sensaciones e impulsos que despierta una situación ambigua, y cómo cada interpretación alimenta a las demás.",
+  fuente: "Bowen et al., 2021, sesión 2" },
+{ k: "zonas-implicacion", t: "Zonas de comodidad, desafío y desborde", alias: ["zonas de implicación"], tipo: "Concepto", enf: ["mind"],
+  d: "Tres zonas para regular la práctica, como en el ejercicio físico: la del hábito o la comodidad, segura pero sin crecimiento; la del desafío, incómoda pero manejable, donde hay cambio; y la del desborde, que no sirve y puede dañar. Ante el desborde se da un paso atrás: abrir los ojos, atender a los pies o las manos, moverse. Es especialmente importante con historias de trauma.",
+  fuente: "Bowen et al., 2021, parte I" },
+{ k: "ciclo-recaida-mbrp", t: "Ciclo de la recaída", alias: ["ciclo de recaída"], tipo: "Técnica", enf: ["mind"],
+  d: "Sobre un ejemplo del grupo se dibuja la cadena que va de un disparador a la reacción inicial —pensamientos, emociones, sensaciones—, al consumo y a la recaída, con la culpa y el «ya da igual» que siguen. Al lado se traza el camino alternativo: pausar, ver los pensamientos como pensamientos, quedarse con la incomodidad y responder con conciencia.",
+  fuente: "Bowen et al., 2021, sesión 6" },
+{ k: "territorio-insomnio", t: "Territorio del insomnio", alias: ["el insomnio como territorio"], tipo: "Concepto", enf: ["mind"],
+  d: "Todo lo que abarca la experiencia del insomnio crónico, de día y de noche: síntomas, conductas, pensamientos y valores. Verlo como un territorio ayuda a dejar de centrarse solo en dormir más y a usar las habilidades de atención plena en todo lo que rodea al sueño.",
+  fuente: "Ong, 2017, caps. 4 y 7" },
+{ k: "somnolencia-cansancio", t: "Distinguir somnolencia y cansancio", alias: ["somnolencia o fatiga"], tipo: "Técnica", enf: ["mind"],
+  d: "Con la práctica de atención plena, la persona aprende a reconocer las señales del cuerpo cuando tiene sueño y a separarlas del cansancio, el aburrimiento o el ánimo bajo. Ir a la cama solo con somnolencia, y no por una regla o por estar agotado, es la base de los cambios conductuales del programa.",
+  fuente: "Ong, 2017, cap. 6" },
+{ k: "reacondicionamiento-sueno", t: "Reacondicionamiento del sueño con atención plena", alias: ["reacondicionamiento del sueño"], tipo: "Técnica", enf: ["mind"],
+  d: "Versión del control de estímulos guiada por la atención: si en la cama no hay somnolencia, se sale del «modo sueño», idealmente del dormitorio, y se hace con luz tenue una actividad que calme y se disfrute por sí misma —no una aburrida para volver pronto a la cama—; se vuelve solo con somnolencia. La cama se usa solo para dormir y la hora de levantarse es fija.",
+  fuente: "Ong, 2017, cap. 6" },
+{ k: "stop-mindfulness", t: "S.T.O.P. de atención plena", alias: ["práctica S.T.O.P."], tipo: "Técnica", enf: ["mind"],
+  d: "Práctica informal breve: detenerse un momento, tomar un respiro, observar lo que pasa en el cuerpo, la mente y las emociones dejando que sea como es, y seguir adelante con conciencia. Puede hacerse a ratos durante el día y también al comenzar el pánico.",
+  fuente: "Stahl y Millstine, 2017, cap. 1" },
+{ k: "rain", t: "R.A.I.N.", alias: ["práctica RAIN"], tipo: "Técnica", enf: ["mind"],
+  d: "Práctica informal ante una emoción fuerte: reconocer que está presente, admitirla o aceptarla, investigar cómo se vive en el cuerpo, los pensamientos y las emociones, y no identificarse con ella, sin tomarla como algo personal ni como la definición de quién se es.",
+  fuente: "Stahl y Millstine, 2017, cap. 2" },
+{ k: "indagacion-consciente", t: "Indagación consciente", alias: ["autoindagación consciente"], tipo: "Técnica", enf: ["mind"],
+  d: "Meditación en la que la persona explora con curiosidad qué está provocando o alimentando su pánico o su estrés: reconoce lo que aparece en el cuerpo y la mente como un dato, sin analizarlo ni intentar sentirse mejor, y lo deja estar.",
+  fuente: "Stahl y Millstine, 2017, cap. 2 · Stahl y Goldstein, 2010, cap. 7" },
+{ k: "pausa-observa-permite", t: "Haz una pausa, observa y permite", alias: ["pausa, observa y permite"], tipo: "Técnica", enf: ["mind"],
+  d: "Práctica informal para el comienzo de un ataque de pánico: respirar desde el abdomen y hacer una pausa para estar presente, observar y experimentar las sensaciones, pensamientos y emociones, y permitir que estén ahí, viéndolos como estados mentales que van y vienen.",
+  fuente: "Stahl y Millstine, 2017, cap. 3" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
