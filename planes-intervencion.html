@@ -2431,6 +2431,29 @@ REFERENCIAS.push(
   { k: "Stahl y Millstine, 2017", ref: "Stahl, B. y Millstine, W. (2017). <em>Calmar los ataques de pánico: una guía de reducción del estrés basada en mindfulness</em> (M. C. Blanco Moreno, Trad.). Desclée De Brouwer. (Trabajo original publicado en 2013)" }
 );
 
+/* Terapias de tercera generación, bloque 3 (2026-10-27): terapia
+   dialéctico-conductual adaptada para los atracones y la bulimia (Safer et
+   al., 2009; tres ensayos pequeños, recomendada sobre todo tras no mejorar
+   con los tratamientos de primera línea) y terapia dialéctico-conductual
+   radicalmente abierta para el sobrecontrol (Lynch, 2018a, 2018b; dos
+   ensayos pequeños en depresión resistente; el libro no trae los
+   resultados del ensayo grande). */
+Object.assign(MODELOS, {
+  "lynch-sobrecontrol": {
+    t: "Teoría neurobiosocial del sobrecontrol",
+    autor: "Lynch",
+    d: "El sobrecontrol desadaptativo surge de tres componentes. Uno es un temperamento con alta sensibilidad a la amenaza, baja sensibilidad a la recompensa, gran control inhibitorio y atención al detalle. Otro es una crianza y una cultura que valoran tener razón, rendir y controlarse: los errores son intolerables y nunca se muestra debilidad. El tercero es un afrontamiento que oculta lo que se siente, evita los riesgos no planeados, se esfuerza de forma compulsiva y señala distancia. Lo central no es el exceso de emoción sino el déficit de señales sociales abiertas, que deja a la persona sola. El bienestar requiere receptividad, flexibilidad y conexión social.",
+    dim: ["Temperamento: amenaza alta, recompensa baja, control inhibitorio, detalle", "Crianza que valora el control y castiga el error", "Afrontamiento inhibido y distante", "Déficit de señales sociales y soledad"],
+    fuente: "Lynch, 2018a, cap. 2"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Safer et al., 2009", ref: "Safer, D. L., Telch, C. F. y Chen, E. Y. (2009). <em>Dialectical behavior therapy for binge eating and bulimia</em>. Guilford Press." },
+  { k: "Lynch, 2018a", ref: "Lynch, T. R. (2018a). <em>Radically open dialectical behavior therapy: Theory and practice for treating disorders of overcontrol</em>. New Harbinger." },
+  { k: "Lynch, 2018b", ref: "Lynch, T. R. (2018b). <em>The skills training manual for radically open dialectical behavior therapy: A clinician's guide for treating disorders of overcontrol</em>. New Harbinger." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -7189,6 +7212,7 @@ const VARIABLES = [
     "<strong>Si el episodio empezó con un acontecimiento interpersonal</strong> —una muerte, un conflicto con alguien cercano, un cambio de rol como una separación, una jubilación o una migración—, la psicoterapia interpersonal se centra en ese problema.",
     "<strong>Si el ánimo bajo se sostiene en problemas vitales concretos sin resolver</strong>, la solución de problemas es la opción más breve; también conviene con síntomas que no llegan a un episodio depresivo.",
     "<strong>Si la persona ya se recuperó y ha tenido varios episodios</strong>, la terapia cognitiva basada en mindfulness está diseñada para prevenir la recaída.",
+    "<strong>Si la depresión es crónica o no ha respondido al tratamiento</strong> y la persona es sobrecontrolada —contenida, perfeccionista, rígida, distante y sola—, la terapia dialéctico-conductual radicalmente abierta trabaja sus señales sociales y su apertura; tiene dos ensayos pequeños.",
     "<strong>Si la depresión se sostiene en la lucha por no sentir</strong> y en una vida que se ha ido vaciando de lo que importa, el plan de aceptación y compromiso trabaja sobre los valores. La psicoterapia positiva puede ser el tratamiento en cuadros leves o moderados o complementar cualquiera de los anteriores.",
     "<strong>Si la persona respondió al tratamiento del episodio pero quedan síntomas residuales</strong> o está mejor pero no bien, la terapia de bienestar trabaja esa fase y el riesgo de recaída. <strong>Si lo que más pesa es no poder disfrutar ni interesarse por nada</strong>, la variable Anhedonia y afecto positivo bajo trae un tratamiento dirigido a eso.",
     "<strong>Si la persona es mayor</strong> y la depresión viene con pérdidas acumuladas, enfermedades crónicas o la idea de que estar así es parte de envejecer, la terapia cognitivo-conductual para personas mayores adapta la formulación y el ritmo de la terapia a esa etapa."
@@ -7947,6 +7971,134 @@ const VARIABLES = [
         "Quien conduce el programa necesita práctica personal de mindfulness.",
         "Al atender a las sensaciones, al principio puede intensificarse la percepción de tensión o malestar; se trabaja como parte de la práctica.",
         "No se incluye en el grupo a quien tuvo un intento de suicidio y no cuenta con otro apoyo, ni a quien consume alcohol o drogas de forma problemática en ese momento. Con participantes en riesgo, el instructor identifica una persona de contacto —médico o psiquiatra— a quien avisar si aparece un riesgo inmediato (Segal et al., 2015, caps. 5 y 6)."
+      ]
+    },
+    {
+      id: "dep-rodbt",
+      mod: "lynch-sobrecontrol",
+      inst: ["PHQ-9", "AAQ-II"],
+      enf: "dbt",
+      nivel: "preliminar",
+      t: "Terapia dialéctico-conductual radicalmente abierta para el sobrecontrol",
+      fuente: "Lynch, 2018a · Lynch, 2018b",
+      cuando: "Depresión crónica o que no responde al tratamiento en una persona <strong>sobrecontrolada</strong>: contenida en lo que expresa, perfeccionista, cautelosa, rígida con sus reglas, distante y sola aunque desea conexión, con frecuencia con rasgos obsesivo-compulsivos, evitativos o paranoides de la personalidad. Por fuera puede parecer que todo va bien. No es para el bajo control, con impulsividad y desregulación dramática, como en el trastorno límite (Lynch, 2018a, caps. 1 a 3).",
+      respaldo: "Hay dos ensayos pequeños en depresión crónica o resistente. En el primero, con 34 personas mayores de 60 años, al terminar estaba en remisión el 71 % con la terapia y la medicación, frente al 47 % solo con medicación, y a los seis meses el 75 % frente al 31 %. En el segundo, con 37 personas que no respondieron a la medicación, la remisión fue del 71 % frente al 50 %, una ventaja que se igualó a los seis meses, con mejoras en el funcionamiento de la personalidad. El autor reconoce que ninguno tuvo potencia suficiente para detectar diferencias entre grupos. El libro describe un ensayo multicéntrico con 250 personas con depresión resistente, pero no trae sus resultados (Lynch, 2018a, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> unas 30 semanas, con una sesión individual semanal de una hora y una clase de habilidades de dos horas y media, que empieza en la tercera semana. La orientación y el compromiso toman hasta cuatro sesiones. Cada sesión individual sigue una jerarquía: primero, la conducta que pone en riesgo la vida; luego, reparar las rupturas de la alianza; y la mayor parte del tiempo, los déficits de señales sociales ligados a los temas del sobrecontrol. La clase recorre 30 lecciones y repite el bloque de atención plena. Se recomienda un equipo de consulta para los terapeutas (Lynch, 2018a, cap. 4 · Lynch, 2018b).",
+      esc: ["salud-mental"],
+      actividades: [
+        {
+          t: "Evaluación del sobrecontrol",
+          tecs: ["sobrecontrol", "entrevista-clinica"],
+          obj: "Identificar si el sobrecontrol es el estilo de afrontamiento que mantiene el problema.",
+          pasos: [
+            "Pedir a la persona tres medidas breves: una lista de pares de palabras sobre estilos de afrontamiento, una de necesidad de estructura y el AAQ-II.",
+            "Completar con las escalas del clínico sobre los rasgos y el prototipo del sobrecontrol, que trae el libro.",
+            "Buscar los cinco temas: expresión emocional inhibida, cautela extrema y foco en los detalles, conducta rígida y regida por reglas, estilo distante y comparación social con envidia o amargura."
+          ],
+          casa: "No aplica.",
+          avance: "Hay un diagnóstico de sobrecontrol acordado con la persona.",
+          fuente: "Lynch, 2018a, cap. 3 y apéndices 1 a 3"
+        },
+        {
+          t: "Orientación y compromiso",
+          tecs: ["estrategias-compromiso", "senales-sociales", "psicoeducacion"],
+          obj: "Que la persona vea el sobrecontrol como su problema central y se comprometa con el tratamiento.",
+          pasos: [
+            "Confirmar con la persona que el sobrecontrol es el problema central.",
+            "Pedir el compromiso de hablar en la sesión de cualquier deseo de abandonar el tratamiento antes de abandonarlo.",
+            "Explicar la teoría neurobiosocial y el mecanismo de cambio: expresarse abiertamente genera confianza, y la confianza, conexión social.",
+            "Identificar los valores y metas de la persona, y los déficits de señales sociales que le impiden vivirlos.",
+            "Si hay riesgo, aplicar el protocolo de manejo de crisis del libro."
+          ],
+          casa: "Escribir los valores y las metas que guiarán el tratamiento.",
+          avance: "La persona acepta el foco en sus señales sociales y conoce las metas.",
+          fuente: "Lynch, 2018a, caps. 4 y 5"
+        },
+        {
+          t: "Jerarquía de metas y tarjeta diaria",
+          tecs: ["tarjeta-diaria", "senales-sociales"],
+          obj: "Organizar cada sesión y vigilar las conductas de sobrecontrol propias de la persona.",
+          pasos: [
+            "Seguir la agenda de la sesión: saludo, revisión de la tarjeta diaria, asistencia a la clase, tareas, acuerdo de la agenda, análisis en cadena, otros temas y cierre.",
+            "Convertir los temas del sobrecontrol en metas individuales concretas de señales sociales: por ejemplo, sonreír cuando se siente rabia, alejarse en un conflicto o no revelar nada personal.",
+            "Volver a la conducta de riesgo o a la ruptura de la alianza en cuanto aparezcan, y luego retomar."
+          ],
+          casa: "Llenar la tarjeta diaria con las metas de señales sociales.",
+          avance: "La persona identifica en su tarjeta sus señales sociales problemáticas.",
+          fuente: "Lynch, 2018a, caps. 4 y 9"
+        },
+        {
+          t: "Análisis en cadena de las señales sociales",
+          tecs: ["analisis-cadena", "autoindagacion-ro"],
+          obj: "Entender qué lleva a una señal social que aleja a los demás y qué se puede hacer distinto.",
+          pasos: [
+            "Elegir, de la tarjeta, una señal social de la semana y no solo una experiencia interna.",
+            "Reconstruir la cadena, con atención a lo que la persona mostró por fuera y cómo lo leyeron los demás.",
+            "Buscar soluciones que aumenten la expresión abierta y la conexión.",
+            "Cerrar con una pregunta de autoindagación para la semana."
+          ],
+          casa: "Practicar la solución acordada y escribir en el diario de autoindagación.",
+          avance: "La persona muestra con más apertura lo que siente en alguna situación.",
+          fuente: "Lynch, 2018a, cap. 10 y apéndices 6 y 7"
+        },
+        {
+          t: "Rupturas y reparaciones de la alianza",
+          tecs: ["ruptura-reparacion", "apertura-radical"],
+          obj: "Usar los conflictos con el terapeuta para aprender que el conflicto puede acercar.",
+          pasos: [
+            "Estar atento a las señales de que la persona se siente incomprendida o siente que el tratamiento no tiene que ver con ella.",
+            "Asumir, como terapeuta, la responsabilidad de reparar la ruptura, aunque no la haya causado solo.",
+            "Reforzar la expresión franca de desacuerdo y de emociones en la sesión.",
+            "Practicar el terapeuta la apertura radical y la autoindagación, con supervisión o equipo de consulta."
+          ],
+          casa: "No aplica.",
+          avance: "Hubo varias rupturas reparadas antes de la sesión 14.",
+          fuente: "Lynch, 2018a, caps. 4, 7 y 8"
+        },
+        {
+          t: "Clase de habilidades: apertura, señales y conexión",
+          tecs: ["apertura-radical", "tres-grandes-mas-uno", "mente-fija-fatalista", "igualar-mas-uno"],
+          obj: "Aprender a estar abierto, a señalar seguridad y a conectar con los demás.",
+          pasos: [
+            "Aprender la apertura radical y la autoindagación, y activar la seguridad social con los tres grandes más uno.",
+            "Practicar la meditación de bondad amorosa, las conductas nuevas y el entender para qué sirven las emociones y por qué importa la tribu.",
+            "En el bloque de atención plena, reconocer la mente fija y la fatalista y buscar la mente flexible; observar con apertura y describir con integridad.",
+            "Practicar la integridad interpersonal, la asertividad con mente abierta, la validación, la conexión con «igualar más uno» y aprender de la retroalimentación correctiva."
+          ],
+          casa: "Hojas de trabajo de cada lección y práctica diaria de la habilidad de la semana.",
+          avance: "La persona usa habilidades de apertura y conexión en sus relaciones.",
+          fuente: "Lynch, 2018b, lecciones 1 a 26"
+        },
+        {
+          t: "Envidia, amargura, perdón e integración",
+          tecs: ["perdon-accion", "autoindagacion-ro"],
+          obj: "Trabajar la comparación social y la amargura, y cerrar el tratamiento.",
+          pasos: [
+            "Reconocer la envidia y el resentimiento, y practicar ir en sentido opuesto a ellos.",
+            "Trabajar el cinismo, la amargura y la resignación.",
+            "Aprender a perdonar.",
+            "En la semana de integración, repasar lo aprendido y decidir cómo seguir practicando; si hace falta, repetir lecciones o sumar sesiones individuales."
+          ],
+          casa: "Plan personal para seguir practicando.",
+          avance: "La persona describe una relación en la que se siente más conectada.",
+          fuente: "Lynch, 2018b, lecciones 27 a 30 · Lynch, 2018a, cap. 4",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PHQ-9</strong> para la depresión; en los ensayos se usó la escala de Hamilton.",
+        "<strong>AAQ-II</strong> y las escalas de sobrecontrol del libro al inicio.",
+        "Tarjeta diaria con las metas de señales sociales y las rupturas reparadas."
+      ],
+      adapt: [
+        "<strong>Anorexia nerviosa:</strong> una versión en internación con 47 personas con anorexia restrictiva mejoró el peso con un efecto grande; entre quienes terminaron, el 35 % alcanzó la remisión completa y el 55 % la parcial. Fue un estudio sin grupo control (Lynch, 2018a, cap. 1). Ver también <em>Conducta alimentaria</em>.",
+        "<strong>Personalidad:</strong> el sobrecontrol incluye el trastorno obsesivo-compulsivo, el evitativo y el paranoide de la personalidad, que fueron frecuentes en los ensayos (Lynch, 2018a, cap. 1). Ver también <em>Patrones interpersonales y de personalidad</em>.",
+        "<strong>Solo clase de habilidades:</strong> el entrenamiento en habilidades solo muestra resultados prometedores (Lynch, 2018a, caps. 1 y 4)."
+      ],
+      cuidado: [
+        "En la anorexia, el bajo peso o las purgas pasan a ser la primera prioridad cuando un médico los declara un riesgo inminente para la vida; antes, el terapeuta evita mostrar una preocupación excesiva que pueda reforzar la restricción (Lynch, 2018a, cap. 4).",
+        "La conducta suicida o las autolesiones van siempre primero, con el protocolo de crisis del libro o la ruta de atención.",
+        "Con bajo control —impulsividad, desregulación emocional dramática—, el tratamiento indicado es la terapia dialéctico-conductual estándar de <em>Trastorno límite de la personalidad</em> o de <em>Desregulación emocional</em>."
       ]
     },
     {
@@ -13027,7 +13179,8 @@ const VARIABLES = [
     "<strong>Si la persona está ambivalente</strong> —quiere dejar los atracones pero no la restricción, o no ve un problema en su peso—, la entrevista motivacional trabaja síntoma por síntoma: la disposición al cambio suele ser distinta para cada uno.",
     "<strong>Si la persona quiere cambiar</strong> y puede tratarse de forma ambulatoria, la terapia cognitivo-conductual mejorada es el tratamiento de elección para la bulimia y el trastorno por atracón, y sirve también para otros trastornos alimentarios y para la anorexia sin riesgo médico: normaliza la alimentación, reduce las dietas y trabaja la importancia de la figura y el peso.",
     "<strong>Si el problema son los atracones</strong>, con o sin purgas, la terapia cognitivo-conductual de Agras y Apple es un protocolo específico para la bulimia y el trastorno por atracón; tiene una versión de autoayuda guiada, con sesiones breves, que rinde igual en los ensayos.",
-    "<strong>Si se trata de una anorexia con bajo peso en una persona adulta</strong> que puede atenderse de forma ambulatoria, el manejo clínico de apoyo especializado combina la recuperación de la alimentación y el peso con una psicoterapia de apoyo.",
+    "<strong>Si los atracones se disparan claramente con emociones negativas</strong> y la persona no mejoró con la terapia cognitivo-conductual o la interpersonal, la terapia dialéctico-conductual para los atracones y la bulimia trabaja la regulación emocional en 20 sesiones; tiene ensayos pequeños y no reduce el peso.",
+    "<strong>Si se trata de una anorexia con bajo peso en una persona adulta</strong> que puede atenderse de forma ambulatoria, el manejo clínico de apoyo especializado combina la recuperación de la alimentación y el peso con una psicoterapia de apoyo. Si la anorexia se acompaña de un estilo muy sobrecontrolado —rigidez, perfeccionismo, emociones contenidas, aislamiento—, la terapia dialéctico-conductual radicalmente abierta de <em>Depresión</em> tiene un estudio sin grupo control en internación.",
     "<strong>Si la vida se ha estrechado alrededor de controlar la comida, el peso y el cuerpo</strong> y la persona quiere trabajar su relación con lo que piensa y siente sobre ellos, la terapia de aceptación y compromiso es una alternativa con respaldo conceptual; en la bulimia y el trastorno por atracón, los planes cognitivo-conductuales tienen más evidencia.",
     "<strong>Al terminar un tratamiento</strong>, o tras el alta hospitalaria en la anorexia, la prevención de recaídas prepara para las situaciones de alto riesgo y para que un desliz no se convierta en recaída."
   ],
@@ -13625,6 +13778,124 @@ const VARIABLES = [
         "No se empieza por los conflictos de la persona: el foco de las primeras sesiones es la alimentación regular; los desencadenantes se trabajan en la segunda fase (Agras y Apple, 2008, cap. 9).",
         "La terapia no busca bajar de peso: hacer dieta durante el tratamiento favorece la recaída (Agras y Apple, 2008, cap. 1).",
         "Si aparecen ideas de suicidio o una depresión que se agrava, se atiende antes de seguir."
+      ]
+    },
+    {
+      id: "alim-dbt",
+      mod: "biosocial",
+      inst: ["EDE", "PHQ-9"],
+      enf: "dbt",
+      nivel: "ensayos",
+      t: "Terapia dialéctico-conductual para los atracones y la bulimia",
+      fuente: "Safer et al., 2009",
+      cuando: "Atracones o bulimia en los que <strong>los episodios se disparan claramente con emociones negativas</strong> —rabia, tristeza, ansiedad— y la persona reconoce en el modelo de la regulación emocional su propia experiencia. Los autores la recomiendan sobre todo cuando la persona ya recibió el tratamiento de primera línea —cognitivo-conductual o interpersonal— y no mejoró o mejoró poco (Safer et al., 2009, introducción).",
+      respaldo: "Es la única adaptación de la terapia dialéctico-conductual a la conducta alimentaria con ensayos aleatorizados. En el trastorno por atracón en grupo, el 89 % de quienes terminaron dejó los atracones, frente al 12,5 % en lista de espera, y a los seis meses el 56 % seguía sin ellos; en una réplica que incluyó a todos los participantes, el 64 % los dejó y se mantuvo a los 12 meses, cifras parecidas a las de la terapia cognitivo-conductual y la interpersonal. En la bulimia, de forma individual, el 28,6 % dejó atracones y purgas frente a ninguno en lista de espera. Los autores advierten que el respaldo es prometedor pero limitado (Safer et al., 2009, introducción y cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> una entrevista previa y 20 sesiones semanales: en grupo de dos horas para el trastorno por atracón, o individuales para la bulimia. Cada sesión dedica la primera mitad a revisar la tarjeta diaria, los análisis en cadena y la práctica de habilidades, y la segunda a enseñar una habilidad nueva. Las sesiones 1 y 2 trabajan el compromiso y la abstinencia dialéctica; la 3 a la 5, la atención plena; la 6 a la 13, la regulación emocional; la 14 a la 18, la tolerancia al malestar; y la 19 y la 20, la prevención de recaídas (Safer et al., 2009, cap. 2 y apéndice).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Entrevista previa y compromiso con la abstinencia",
+          tecs: ["camino-alimentacion-consciente", "estrategias-compromiso", "pros-contras"],
+          obj: "Presentar el modelo y obtener el compromiso de dejar los atracones.",
+          pasos: [
+            "En la entrevista previa, preguntar por los tratamientos anteriores y presentar el modelo de la desregulación emocional: el atracón como una forma de manejar emociones que se viven como intolerables.",
+            "Presentar el camino a la alimentación consciente y acordar las metas.",
+            "Aclarar que la meta no es bajar de peso, y firmar los acuerdos de la persona, del grupo y de los terapeutas.",
+            "En la sesión 1, revisar los pros y contras de los atracones y obtener un compromiso verbal con la abstinencia, escrito en una tarjeta."
+          ],
+          casa: "Pros y contras de seguir con los atracones y llevar la tarjeta del compromiso.",
+          avance: "La persona se compromete con la abstinencia de atracones.",
+          fuente: "Safer et al., 2009, cap. 3"
+        },
+        {
+          t: "Tarjeta diaria, análisis en cadena y abstinencia dialéctica",
+          tecs: ["tarjeta-diaria", "analisis-cadena", "abstinencia-dialectica", "conductas-aparentemente-irrelevantes"],
+          obj: "Entender cómo se llega a cada atracón y prepararse para responder a un desliz.",
+          pasos: [
+            "Registrar cada día en la tarjeta los atracones, las purgas, los impulsos y las habilidades usadas.",
+            "Hacer el análisis en cadena de cada atracón: vulnerabilidad, desencadenante, eslabones, consecuencias y el eslabón clave donde cambiar.",
+            "Buscar en la cadena las conductas aparentemente irrelevantes y los momentos de capitular.",
+            "En la sesión 2, presentar la abstinencia dialéctica: compromiso total con no darse atracones y decisión de responder bien a un desliz.",
+            "Practicar la respiración diafragmática."
+          ],
+          casa: "Tarjeta diaria y un análisis en cadena por cada atracón.",
+          avance: "La persona identifica el eslabón clave de sus atracones.",
+          fuente: "Safer et al., 2009, cap. 3",
+          fichas: ["tarjeta-diaria", "analisis-cadena"]
+        },
+        {
+          t: "Atención plena y alimentación consciente",
+          tecs: ["mente-sabia", "habilidades-que-como", "surfear-impulso", "rebelion-alternativa"],
+          obj: "Comer con atención y observar los impulsos sin actuarlos.",
+          pasos: [
+            "Presentar la mente razonable, la mente emocional y la mente sabia.",
+            "Practicar observar, describir y participar, y comer con atención plena.",
+            "Practicar las habilidades «cómo»: sin juzgar, con una sola cosa a la vez y con eficacia.",
+            "Surfear el impulso de comer, por ejemplo con un dulce delante, y usar la rebelión alternativa: rebelarse de otra forma que no sea con la comida."
+          ],
+          casa: "Hojas de práctica de la mente sabia, de las habilidades «qué» y «cómo» y del surfeo del impulso.",
+          avance: "La persona surfea un impulso de comer sin atracón.",
+          fuente: "Safer et al., 2009, cap. 4",
+          fichas: ["surfear-impulso"]
+        },
+        {
+          t: "Regulación emocional",
+          tecs: ["regulacion-emocional", "accion-opuesta", "aca-cuida"],
+          obj: "Reconocer, entender y cambiar las emociones que llevan al atracón.",
+          pasos: [
+            "Practicar la atención plena a la emoción del momento y distinguir las emociones primarias de las reacciones secundarias.",
+            "Describir las emociones con su modelo y entender su función.",
+            "Distinguir las emociones justificadas de las injustificadas y reducir la vulnerabilidad a la mente emocional: sueño, comida regular, ejercicio, actividades de dominio.",
+            "Aumentar las experiencias positivas y actuar en sentido opuesto a la emoción cuando no se ajusta a los hechos."
+          ],
+          casa: "Hojas de observación y descripción de emociones y programa de actividades agradables.",
+          avance: "La persona nombra la emoción que precede a un impulso y usa una habilidad.",
+          fuente: "Safer et al., 2009, cap. 5",
+          fichas: ["modelo-emociones", "registro-emociones-diario"]
+        },
+        {
+          t: "Tolerancia al malestar",
+          tecs: ["aceptacion-radical", "quemar-puentes"],
+          obj: "Atravesar los momentos de malestar intenso sin recurrir a la comida.",
+          pasos: [
+            "Practicar la observación de la respiración, la media sonrisa y los ejercicios de conciencia para aceptar la realidad.",
+            "Practicar la aceptación radical, girar la mente y la disposición.",
+            "Quemar los puentes: aceptar que el atracón ya no es una opción y cortar el acceso a él.",
+            "Usar las habilidades para sobrevivir a las crisis: distraerse, calmarse, mejorar el momento y los pros y contras."
+          ],
+          casa: "Hojas de práctica de tolerancia al malestar.",
+          avance: "La persona atraviesa una crisis sin atracón.",
+          fuente: "Safer et al., 2009, cap. 6"
+        },
+        {
+          t: "Prevención de recaídas y cierre",
+          tecs: ["afrontar-anticipacion", "prevencion-recaidas"],
+          obj: "Consolidar lo aprendido y prepararse para las situaciones de riesgo.",
+          pasos: [
+            "Renovar el compromiso con la abstinencia y el uso de las habilidades.",
+            "Repasar las habilidades de los tres módulos.",
+            "Afrontar con anticipación las situaciones de riesgo, imaginándolas con detalle.",
+            "Escribir el plan para el futuro y despedirse del grupo."
+          ],
+          casa: "Hoja de planificación del futuro.",
+          avance: "La persona tiene un plan para las situaciones de riesgo.",
+          fuente: "Safer et al., 2009, cap. 7",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>EDE</strong> al inicio, al final y en el seguimiento, para la frecuencia de atracones y purgas.",
+        "Tarjeta diaria: atracones, purgas, impulsos y habilidades.",
+        "<strong>PHQ-9</strong> para el ánimo; peso, si la persona lo acepta."
+      ],
+      adapt: [
+        "<strong>Formato:</strong> se estudió en grupo para el trastorno por atracón y de forma individual para la bulimia; en hospital de día o internación necesitaría más modificaciones (Safer et al., 2009, introducción).",
+        "<strong>Adolescentes y obesidad:</strong> el libro plantea cómo adaptarla a adolescentes y cómo sumar la pérdida de peso como meta en personas con obesidad y atracones (Safer et al., 2009, cap. 9)."
+      ],
+      cuidado: [
+        "No se recomienda si hay conducta suicida activa, trastorno límite con problemas múltiples graves o consumo activo: para eso está la terapia dialéctico-conductual estándar o el tratamiento del consumo (Safer et al., 2009, introducción).",
+        "No hay datos en la anorexia nerviosa; en los ensayos se excluyó a quienes tenían un índice de masa corporal menor de 17,5 (Safer et al., 2009, introducción y apéndice).",
+        "No reduce el peso: tras 20 sesiones, quienes tenían atracones no bajaron más de peso que la lista de espera (Safer et al., 2009, cap. 9)."
       ]
     },
     {
@@ -17751,6 +18022,7 @@ const VARIABLES = [
     "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica. Tiene dos versiones: la que trabaja con esquemas y estilos de afrontamiento, y el enfoque de modos, para los trastornos de la personalidad y los problemas en los que la persona pasa de un estado a otro.",
     "<strong>Si los patrones se expresan sobre todo en conductas que dañan varias relaciones</strong> —atacar, controlar, someterse, aislarse, consumir—, la aceptación y compromiso con conciencia de los esquemas trabaja esas conductas, en grupo o de forma individual; tiene un ensayo pequeño.",
     "<strong>Si lo central es que la persona no sabe qué quiere, siente o piensa sin mirar a los demás</strong>, se desmorona ante la crítica o se siente vacía, la psicoterapia analítica funcional para los problemas del yo trabaja en la sesión, paso a paso, que lo que dice de sí misma salga de ella. Su respaldo es conceptual.",
+    "<strong>Si el patrón es de sobrecontrol</strong> —emociones contenidas, perfeccionismo, reglas rígidas, distancia y comparación con los demás, como en el trastorno obsesivo-compulsivo, el evitativo o el paranoide de la personalidad—, ver la terapia dialéctico-conductual radicalmente abierta en <em>Depresión</em>, estudiada sobre todo cuando ese estilo acompaña a una depresión crónica.",
     "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. Para el trastorno límite de la personalidad, ver <em>Trastorno límite de la personalidad</em>, con la terapia dialéctico-conductual, la terapia de esquemas y el tratamiento basado en la mentalización."
   ],
   planes: [
@@ -24798,7 +25070,47 @@ const GLOSARIO = [
   fuente: "Stahl y Millstine, 2017, cap. 2 · Stahl y Goldstein, 2010, cap. 7" },
 { k: "pausa-observa-permite", t: "Haz una pausa, observa y permite", alias: ["pausa, observa y permite"], tipo: "Técnica", enf: ["mind"],
   d: "Práctica informal para el comienzo de un ataque de pánico: respirar desde el abdomen y hacer una pausa para estar presente, observar y experimentar las sensaciones, pensamientos y emociones, y permitir que estén ahí, viéndolos como estados mentales que van y vienen.",
-  fuente: "Stahl y Millstine, 2017, cap. 3" }
+  fuente: "Stahl y Millstine, 2017, cap. 3" },
+/* ---------- Tercera generación, bloque 3: DBT para atracones y RO DBT (2026-10-27) ---------- */
+{ k: "camino-alimentacion-consciente", t: "Camino a la alimentación consciente", alias: ["jerarquía de la alimentación consciente"], tipo: "Concepto", enf: ["dbt"],
+  d: "Jerarquía de metas de la terapia dialéctico-conductual para los atracones: primero, detener lo que interfiere con el tratamiento; luego, dejar los atracones y las purgas; eliminar el comer sin atención; bajar los deseos, los impulsos y la preocupación por la comida; dejar de capitular; y reducir las conductas aparentemente irrelevantes. Al mismo tiempo se aumentan las habilidades para regular las emociones. Comer con atención es lo opuesto al atracón.",
+  fuente: "Safer et al., 2009, cap. 3" },
+{ k: "capitular", t: "Capitular", alias: ["rendirse a la comida"], tipo: "Concepto", enf: ["dbt"],
+  d: "Estado de la mente en que la persona se rinde ante la comida («ya me cansé de pelear») y cierra las opciones de no darse un atracón. Parece pasivo, pero es una decisión activa: siempre hay elección. Reducirlo es una de las metas del tratamiento.",
+  fuente: "Safer et al., 2009, cap. 3" },
+{ k: "conductas-aparentemente-irrelevantes", t: "Conductas aparentemente irrelevantes", alias: ["conducta aparentemente irrelevante"], tipo: "Concepto", enf: ["dbt"],
+  d: "Conductas que a primera vista no tienen que ver con el atracón, pero que lo preparan: llevar a casa sobras «para el hijo», comprar postre «para las visitas» o dejar de pesarse. La persona se dice que no importan, aunque en el fondo sabe que la están llevando al atracón.",
+  fuente: "Safer et al., 2009, cap. 3" },
+{ k: "quemar-puentes", t: "Quemar los puentes", alias: ["quemar las naves"], tipo: "Técnica", enf: ["dbt"],
+  d: "Habilidad de aceptación radical: aceptar a fondo que el atracón ya no es una opción, sea lo que sea que se sienta, como quien deja de fumar de golpe. Incluye cortar el acceso: deshacerse de la comida de los atracones, no exponerse a las situaciones que siempre llevan a ellos y no hacer las conductas aparentemente irrelevantes.",
+  fuente: "Safer et al., 2009, cap. 6" },
+{ k: "afrontar-anticipacion", t: "Afrontar con anticipación", alias: ["preparar el afrontamiento"], tipo: "Técnica", enf: ["dbt"],
+  d: "Al final del tratamiento, la persona identifica las situaciones que podrán llevarla de nuevo al atracón, imagina con mucho detalle cómo aparecerían los impulsos y ensaya en imaginación las habilidades que usará, por ejemplo antes de una fiesta con mucha comida.",
+  fuente: "Safer et al., 2009, cap. 7" },
+{ k: "sobrecontrol", t: "Sobrecontrol desadaptativo", alias: ["sobrecontrol"], tipo: "Concepto", enf: ["dbt"],
+  d: "Estilo de afrontamiento con exceso de autocontrol que se asocia a la depresión crónica, la anorexia nerviosa y el trastorno obsesivo-compulsivo de la personalidad. Se expresa en cinco temas: expresión emocional inhibida o poco genuina, cautela extrema y foco en los detalles, conducta rígida y regida por reglas, un estilo distante de relacionarse y comparación social frecuente, con envidia o amargura. Es lo opuesto al bajo control del trastorno límite.",
+  fuente: "Lynch, 2018a, caps. 1 y 4" },
+{ k: "apertura-radical", t: "Apertura radical", alias: ["radicalmente abierto"], tipo: "Concepto", enf: ["dbt"],
+  d: "Disposición a cuestionarse cuando algo desafía la propia visión, preguntándose qué podría necesitar aprender, en lugar de defenderse o descartarlo. Parte de que no vemos las cosas como son, sino como somos. Es la habilidad central de la terapia dialéctico-conductual radicalmente abierta, y el terapeuta la practica él mismo.",
+  fuente: "Lynch, 2018a, caps. 4 y 7" },
+{ k: "autoindagacion-ro", t: "Autoindagación de la apertura radical", alias: ["diario de autoindagación"], tipo: "Técnica", enf: ["dbt"],
+  d: "Práctica de buscar en uno mismo, ante una reacción fuerte o una crítica, qué hay que aprender, en lugar de buscar la respuesta. La persona se hace una pregunta —por ejemplo, «¿qué podría necesitar aprender de esto?»— y anota en un diario lo que aparece, sin resolverlo de inmediato.",
+  fuente: "Lynch, 2018b, lecciones 1 y 13" },
+{ k: "senales-sociales", t: "Señales sociales", alias: ["señalización social"], tipo: "Concepto", enf: ["dbt"],
+  d: "Todo lo que una persona transmite a los demás con su cara, su voz, sus gestos y sus acciones, sea o no intencional. En el sobrecontrol, el problema central es el déficit de señales prosociales —ocultar lo que se siente, no mostrar calidez—, que hace que los demás desconfíen y deja a la persona sola. Expresarse abiertamente genera confianza, y la confianza, conexión.",
+  fuente: "Lynch, 2018a, caps. 4 y 6 · Lynch, 2018b, lección 9" },
+{ k: "tres-grandes-mas-uno", t: "Los tres grandes más uno", alias: ["tres grandes más uno"], tipo: "Técnica", enf: ["dbt"],
+  d: "Habilidad para activar el sistema de seguridad social en cualquier momento: si se está sentado, recostarse en la silla (el «más uno»), y luego tomar una respiración lenta y profunda, sonreír con la boca cerrada y levantar las cejas. El cuerpo le indica al cerebro que todo está bien, y la persona se muestra más abierta.",
+  fuente: "Lynch, 2018b, lección 3" },
+{ k: "mente-fija-fatalista", t: "Mente fija, mente fatalista y mente flexible", alias: ["mente flexible"], tipo: "Concepto", enf: ["dbt"],
+  d: "Estados de la mente en el sobrecontrol. La mente fija insiste en seguir igual pese a las advertencias, como el capitán del Titanic que ordena avanzar a toda máquina; la mente fatalista dice que cambiar no sirve porque no hay respuesta, como el capitán que, tras el choque, se encierra en su camarote. La mente flexible cambia de rumbo o baja la velocidad cuando ve los icebergs, sin abandonar el barco. Se aprende a ser amable con la mente fija y a ir en contra de la fatalista.",
+  fuente: "Lynch, 2018b, lección 11" },
+{ k: "igualar-mas-uno", t: "Igualar más uno", alias: ["Match + 1"], tipo: "Técnica", enf: ["dbt"],
+  d: "Habilidad para crear o profundizar relaciones: igualar el nivel de apertura personal de la otra persona y revelar un poco más. Si el otro iguala o aumenta, quiere conocer más a la persona. El grado de apertura se ajusta a cuánto se conocen.",
+  fuente: "Lynch, 2018b, lección 21" },
+{ k: "ruptura-reparacion", t: "Rupturas y reparaciones de la alianza", alias: ["reparar la alianza"], tipo: "Técnica", enf: ["dbt"],
+  d: "Una ruptura ocurre cuando la persona se siente incomprendida o siente que el tratamiento no tiene que ver con sus problemas. Repararla es responsabilidad del terapeuta y es una oportunidad: enseña que el conflicto puede acercar. Como las personas sobrecontroladas ocultan su malestar, si hacia la sesión 14 no ha habido varias rupturas y reparaciones, la relación se considera superficial.",
+  fuente: "Lynch, 2018a, caps. 4 y 8" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
