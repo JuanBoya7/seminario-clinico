@@ -41,6 +41,7 @@
   --em:#8a5a1c;   --em-soft:#f6ede0;
   --mct:#3d5c78;  --mct-soft:#e7edf3;
   --esq:#7a3e5c;  --esq-soft:#f4e8ee;
+  --mbt:#4a7a7a;  --mbt-soft:#e6f0f0;
   --fap:#4d6b3a;  --fap-soft:#ebf1e6;
   --ipt:#8a4b3a;  --ipt-soft:#f6ebe7;
   --par:#9a4f7a;  --par-soft:#f6e9f1;
@@ -298,6 +299,7 @@ h1{font-size:clamp(26px,3.2vw,40px); line-height:1.15; letter-spacing:-.015em; m
 .enf-em {--enf:var(--em);  --enf-soft:var(--em-soft);}
 .enf-mct{--enf:var(--mct); --enf-soft:var(--mct-soft);}
 .enf-esq{--enf:var(--esq); --enf-soft:var(--esq-soft);}
+.enf-mbt{--enf:var(--mbt); --enf-soft:var(--mbt-soft);}
 .enf-fap{--enf:var(--fap); --enf-soft:var(--fap-soft);}
 .enf-ipt{--enf:var(--ipt); --enf-soft:var(--ipt-soft);}
 .enf-par{--enf:var(--par); --enf-soft:var(--par-soft);}
@@ -946,6 +948,7 @@ const ENFOQUES = {
   msc: { et: "Autocompasión consciente", largo: "Programa de autocompasión consciente (Mindful Self-Compassion)" },
   cft: { et: "Compasión",               largo: "Terapia centrada en la compasión" },
   esq: { et: "Esquemas",                largo: "Terapia de esquemas" },
+  mbt: { et: "Mentalización",           largo: "Tratamiento basado en la mentalización" },
   fap: { et: "Analítica funcional",     largo: "Psicoterapia analítica funcional" },
   ipt: { et: "Interpersonal",           largo: "Psicoterapia interpersonal" },
   par: { et: "Pareja",                  largo: "Terapia integral de pareja" },
@@ -2378,6 +2381,29 @@ REFERENCIAS.push(
   { k: "Eifert et al., 2006", ref: "Eifert, G. H., McKay, M. y Forsyth, J. P. (2006). <em>ACT on life not on anger: The new acceptance and commitment therapy guide to problem anger</em>. New Harbinger." },
   { k: "Harris, 2021b", ref: "Harris, R. (2021b). <em>When life hits hard: How to transcend grief, crisis, and loss with acceptance and commitment therapy</em>. New Harbinger." },
   { k: "Strosahl et al., 2012", ref: "Strosahl, K. D., Robinson, P. J. y Gustavsson, T. (2012). <em>Brief interventions for radical change: Principles and practice of focused acceptance and commitment therapy</em>. New Harbinger." }
+);
+
+/* Terapias de tercera generación, bloque 1 (2026-10-27): trastorno límite
+   con terapia de esquemas y tratamiento basado en la mentalización, la
+   exposición prolongada integrada en la terapia dialéctico-conductual y el
+   enfoque de modos para los patrones de personalidad. Arntz y van Genderen
+   (2021) reconocen un solo ensayo grande frente a otro tratamiento; Arntz y
+   Jacob (2013) no reportan ensayos fuera del trastorno límite. */
+Object.assign(MODELOS, {
+  mentalizacion: {
+    t: "Mentalización y apego",
+    autor: "Bateman y Fonagy",
+    d: "Mentalizar es entender la conducta propia y la de los demás por sus estados mentales: pensamientos, emociones, deseos e intenciones. En el trastorno límite, esa capacidad es frágil y se pierde cuando se activa el apego —ante una pérdida, un rechazo o el miedo—. Entonces reaparecen formas previas de vivir la mente: la equivalencia psíquica, en la que lo que se piensa o se siente se vive como real; el modo teleológico, en el que solo cuenta lo que se hace físicamente; y el modo simulado, en el que los pensamientos se separan de la realidad, con vacío o disociación. Las autolesiones son intentos de recuperar la estabilidad en esos momentos.",
+    dim: ["Capacidad de mentalizar", "Activación del apego", "Equivalencia psíquica, modo teleológico y modo simulado", "Confianza epistémica"],
+    fuente: "Bateman y Fonagy, 2016, caps. 1 y 7"
+  }
+});
+
+REFERENCIAS.push(
+  { k: "Arntz y van Genderen, 2021", ref: "Arntz, A. y van Genderen, H. (2021). <em>Schema therapy for borderline personality disorder</em> (2.ª ed.). Wiley." },
+  { k: "Arntz y Jacob, 2013", ref: "Arntz, A. y Jacob, G. (2013). <em>Schema therapy in practice: An introductory guide to the schema mode approach</em>. Wiley-Blackwell." },
+  { k: "Bateman y Fonagy, 2016", ref: "Bateman, A. y Fonagy, P. (2016). <em>Mentalization-based treatment for personality disorders: A practical guide</em>. Oxford University Press." },
+  { k: "Harned, 2022", ref: "Harned, M. S. (2022). <em>Treating trauma in dialectical behavior therapy: The DBT prolonged exposure protocol (DBT PE)</em>. Guilford Press." }
 );
 
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
@@ -5874,7 +5900,7 @@ const VARIABLES = [
     "<strong>Si lo que más pesa son la culpa, la vergüenza o conclusiones extremas</strong> («fue mi culpa», «no puedo confiar en nadie»), la terapia de procesamiento cognitivo trabaja esos significados. Tiene dos versiones: sin relato escrito, la estándar, y con relato escrito, para quien disocia mucho o quiere contar su historia.",
     "<strong>Si la vida se ha ido encogiendo</strong> —aislamiento, abandono de actividades, embotamiento— y la persona no está lista para trabajar el recuerdo, la activación conductual para el TEPT recupera la vida cotidiana.",
     "<strong>Si la persona no está lista para enfrentar el recuerdo y su vida se ha organizado alrededor de no sentir</strong> —o ya pasó por varios tratamientos—, la terapia de aceptación y compromiso trabaja esa evitación, con evidencia todavía preliminar en el estrés postraumático. Tiene dos versiones: el protocolo por componentes y, para el trauma complejo con extremos de activación o desconexión, una que empieza por anclarse en el presente.",
-    "<strong>Si hay autolesiones, conductas suicidas o una desregulación emocional marcada</strong>, primero se estabiliza con terapia dialéctico-conductual y la exposición llega después.",
+    "<strong>Si hay autolesiones, conductas suicidas o una desregulación emocional marcada</strong>, primero se estabiliza con terapia dialéctico-conductual, y la exposición prolongada se integra cuando la persona cumple los criterios de preparación.",
     "<strong>Si hay pérdidas de tiempo, partes disociativas que toman el control o voces internas</strong> tras traumas graves y repetidos en la infancia, ver <em>Trastornos disociativos complejos</em>: el trabajo empieza por la estabilización, y la exposición prematura a los recuerdos puede desestabilizar (Boon et al., 2011, prefacio).",
     "<strong>Si la situación estresante sigue presente</strong> o la persona no acepta todavía la exposición, la inoculación de estrés entrena el afrontamiento."
   ],
@@ -6751,115 +6777,133 @@ const VARIABLES = [
     {
       id: "tept-dbt",
       mod: "biosocial",
-      inst: ["PCL-5", "C-SSRS"],
+      inst: ["PCL-5", "C-SSRS", "DIARIO-DBT"],
       enf: "dbt",
       nivel: "ensayos",
-      t: "Estabilización dialéctico-conductual y exposición prolongada",
-      fuente: "Elices, caps. 2 y 4.3 · Linehan, 2020",
-      cuando: "El trauma coexiste con <strong>autolesiones, conductas suicidas o una desregulación emocional marcada</strong> —con frecuencia en historias de abuso en la infancia— y la exposición directa al recuerdo sería prematura. Primero se estabiliza; la exposición llega cuando las conductas que atentan contra la vida están bajo control.",
-      respaldo: "En un ensayo controlado, agregar exposición prolongada a la terapia dialéctico-conductual logró más remisión del estrés postraumático que la terapia dialéctico-conductual sola, en pacientes con trastorno límite, estrés postraumático y autolesiones (Harned et al., 2014). Una adaptación para trauma por abuso sexual en la infancia mejoró los síntomas frente a lista de espera, con independencia del diagnóstico de trastorno límite (Bohus et al., 2013). Ambos en Elices, cap. 4.3.",
-      secuencia: "<strong>Secuencia:</strong> sigue las etapas de la terapia dialéctico-conductual. La etapa 1 reduce las conductas que atentan contra la vida y entrena habilidades; el trabajo con el trauma corresponde a la etapa 2. En el protocolo de Harned, la exposición empieza tras dos meses sin intentos de suicidio ni autolesiones (Elices, caps. 2.3 y 4.3).",
-      esc: ["salud-mental","primer-nivel"],
+      t: "Terapia dialéctico-conductual con el protocolo de exposición prolongada",
+      fuente: "Harned, 2022",
+      cuando: "El estrés postraumático coexiste con <strong>conductas suicidas, autolesiones o una desregulación emocional grave</strong> —con frecuencia con trastorno límite y traumas en la infancia— en una persona que recibe o puede recibir terapia dialéctico-conductual. Primero se estabiliza; la exposición se integra cuando la persona cumple los criterios de preparación y el estrés postraumático pasa a ser su prioridad (Harned, 2022, caps. 2 y 6).",
+      respaldo: "En un ensayo con 26 mujeres suicidas y con autolesiones, con trastorno límite y estrés postraumático, quienes completaron el protocolo de exposición duplicaron la remisión del estrés postraumático frente a la terapia dialéctico-conductual sola (80 % frente a 40 %), y tuvieron menos intentos de suicidio (17 % frente a 40 %) y menos autolesiones. Hacer las exposiciones no aumentó el riesgo de autolesión. Mejoraron también la disociación, la depresión, la culpa, la vergüenza y el funcionamiento. El protocolo integra dos tratamientos con más de 35 ensayos cada uno (Harned, 2022, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> pretratamiento, en el que la exposición se presenta como una opción con condiciones claras; etapa 1 de la terapia dialéctico-conductual hasta cumplir los criterios de preparación —en los estudios, unas 20 semanas—; y el protocolo, por lo general de 12 a 16 sesiones. La sesión 1 trae la entrevista del trauma y el plan de habilidades; la 2, la jerarquía de exposición en vivo; la 3, la primera exposición en imaginación; las intermedias, exposición y procesamiento; y la final, la prevención de recaídas. Cada semana hay 90 minutos de exposición y de 30 a 60 de terapia dialéctico-conductual, en una o dos sesiones, sin dejar el grupo de habilidades, el coaching ni el equipo de consulta (Harned, 2022, caps. 1, 7 y 8 a 13).",
+      esc: ["salud-mental", "primer-nivel"],
       actividades: [
         {
-          t: "Pretratamiento: metas, conductas problema y compromiso",
-          tecs: ["estrategias-compromiso"],
-          obj: "Acordar para qué es la terapia, qué conductas se van a trabajar y obtener un compromiso explícito.",
+          t: "Pretratamiento: el trauma como meta y la exposición como opción",
+          tecs: ["estrategias-compromiso", "psicoeducacion"],
+          obj: "Que la persona elija trabajar su estrés postraumático y sepa qué tiene que lograr antes.",
           pasos: [
-            "Clarificar qué sería para la persona una vida que valga la pena ser vivida: lo que querría que entrara en su vida, no solo lo que debería salir.",
-            "Definir las conductas problema: las que ocurren en exceso, como cortarse, y las que faltan, como salir de la cama o estudiar.",
-            "Explicar el modelo biosocial con ejemplos de su propia historia.",
-            "Obtener el compromiso con estrategias como pros y contras, pie en la puerta o libertad de elección."
+            "Evaluar el estrés postraumático, orientar a la persona sobre él y acordar que reducirlo sea una meta del tratamiento.",
+            "Presentar el protocolo de exposición como una opción, con información sobre lo que implica, y atender las preocupaciones: evaluar, validar, informar o resolver problemas, y animar.",
+            "Aclarar desde el principio las condiciones: la exposición empieza cuando las conductas que ponen en riesgo la vida están bajo control.",
+            "Obtener el compromiso con estrategias como los pros y contras, el pie en la puerta, la libertad de elegir sin alternativas, el abogado del diablo y la conexión con compromisos previos."
           ],
-          casa: "Empezar la tarjeta diaria de conductas problema.",
-          avance: "Hay metas acordadas, conductas problema definidas y un compromiso explícito.",
-          fuente: "Elices, cap. 2.4.3"
+          casa: "Anotar los pros y contras de hacer el tratamiento del trauma.",
+          avance: "La persona elige trabajar el trauma y conoce lo que debe lograr antes de empezar.",
+          fuente: "Harned, 2022, caps. 3 y 5"
         },
         {
-          t: "Jerarquía de metas y tarjeta diaria",
-          tecs: ["tarjeta-diaria"],
-          obj: "Ordenar cada sesión según la prioridad: primero la vida, después la terapia, después la calidad de vida.",
+          t: "Etapa 1: seguridad, estabilidad y habilidades",
+          tecs: ["jerarquia-metas-dbt", "tarjeta-diaria", "analisis-cadena"],
+          obj: "Controlar las conductas que ponen en riesgo la vida y aprender a manejar el trauma con habilidades.",
           pasos: [
-            "Compartir la jerarquía: reducir las conductas suicidas y autolesivas; luego lo que interfiere con la terapia; luego lo que interfiere con la calidad de vida; y aumentar habilidades.",
-            "Empezar cada sesión revisando la tarjeta diaria de la semana.",
-            "Cuando aparece una autolesión, ese es el tema de la sesión, aunque se viniera trabajando otro."
+            "Ordenar las metas: las conductas que ponen en riesgo la vida, las que interfieren con la terapia y las que afectan la calidad de vida, entre ellas el estrés postraumático.",
+            "Hacer el análisis en cadena de cada conducta problema, buscando los eslabones ligados al trauma: recordatorios, creencias, emociones y evitación.",
+            "En el análisis de soluciones, aplicar las habilidades al estrés postraumático, exponer a emociones evitadas, modificar creencias y manejar contingencias.",
+            "Trabajar las tensiones de esta etapa: evitar o sentir las emociones, enfocarse en el presente o en el pasado, aceptar o cambiar el trastorno."
           ],
-          casa: "Tarjeta diaria de conductas problema, emociones y habilidades usadas, completada cada día.",
-          avance: "La persona trae la tarjeta y las sesiones se ordenan por la jerarquía sin discusión.",
-          fuente: "Elices, caps. 2.4 y 2.4.3",
-          fichas: ["tarjeta-diaria"]
+          casa: "Llenar la tarjeta diaria y practicar las habilidades.",
+          avance: "Bajan las conductas de riesgo y la persona usa habilidades ante los recordatorios del trauma.",
+          fuente: "Harned, 2022, cap. 4",
+          fichas: ["tarjeta-diaria", "analisis-cadena"]
         },
         {
-          t: "Análisis en cadena y análisis de soluciones",
-          tecs: ["analisis-cadena"],
-          obj: "Entender qué llevó a una conducta problema concreta y qué podría hacerse distinto la próxima vez.",
+          t: "Criterios de preparación",
+          tecs: ["criterios-preparacion-dbtpe", "evaluacion-riesgo-suicida"],
+          obj: "Decidir con la persona si está lista para empezar la exposición.",
           pasos: [
-            "Elegir un episodio específico de la tarjeta —el corte del viernes, no «cortarse»— y describirlo en detalle.",
-            "Reconstruir el suceso desencadenante, los eslabones —pensamientos, emociones, sensaciones y hechos— y las consecuencias a corto y largo plazo.",
-            "Identificar los factores de vulnerabilidad previos: sueño, consumo, enfermedad, medicación.",
-            "Generar soluciones alternativas para los eslabones clave, ensayarlas y pedir compromiso para usarlas."
+            "Verificar los seis criterios: sin riesgo inminente de suicidio; sin conductas suicidas ni autolesiones en los últimos dos meses —uno en programas intensivos—; capacidad de controlarlas ante sus disparadores; sin conductas graves que interfieran con la terapia; el estrés postraumático como prioridad; y capacidad y disposición para sentir emociones intensas sin escapar.",
+            "Tener en cuenta que las ideas suicidas, aun frecuentes, no impiden empezar si no hay intención ni plan.",
+            "Pedir que restrinja el acceso a medios letales, sobre todo a sus métodos preferidos.",
+            "Traducir los criterios que faltan en metas concretas de conducta y trabajarlas."
           ],
-          casa: "Practicar la solución acordada en la siguiente situación parecida.",
-          avance: "La persona identifica por sí misma los eslabones de sus episodios y aplica soluciones alternativas.",
-          fuente: "Elices, cap. 2.4.3 · Linehan, 2020, «Análisis en cadena»",
-          fichas: ["analisis-cadena"]
+          casa: "Trabajar las metas de preparación pendientes.",
+          avance: "La persona cumple los criterios y empieza el protocolo.",
+          fuente: "Harned, 2022, cap. 6"
         },
         {
-          t: "Habilidades para estabilizar",
-          tecs: ["stop", "tip", "habilidades-que-como", "aca-cuida"],
-          obj: "Reemplazar la autolesión como forma de regular emociones intensas por habilidades.",
+          t: "Sesiones 1 y 2: entrevista del trauma, plan de habilidades y jerarquía en vivo",
+          tecs: ["plan-habilidades-postexposicion", "reacciones-dialecticas-trauma", "jerarquia-exposicion"],
+          obj: "Preparar la exposición: elegir los traumas, asegurar las habilidades y planear la exposición en vivo.",
           pasos: [
-            "Entrenar las habilidades para sobrevivir a las crisis: detenerse sin actuar (STOP), cambiar la química del cuerpo con temperatura, ejercicio intenso y respiración (TIP), distraerse y autocalmarse.",
-            "Entrenar la observación y la descripción de las emociones sin juzgarlas.",
-            "Reducir la vulnerabilidad: sueño, alimentación, ejercicio, evitar el consumo.",
-            "Practicar cada habilidad en sesión y en la vida diaria."
+            "Explicar qué mantiene el estrés postraumático y cómo funciona el tratamiento.",
+            "Hacer la entrevista del trauma y elegir hasta tres traumas objetivo, ordenados por el malestar que causan, con su punto de inicio y de cierre.",
+            "Escribir el plan de habilidades para después de la exposición, que combine habilidades para bajar la intensidad y para sentir la emoción, y las conductas que hay que evitar.",
+            "En la sesión 2, revisar las reacciones dialécticas al trauma y construir la jerarquía de exposición en vivo con situaciones que parecen peligrosas, recordatorios del trauma, actividades abandonadas por la depresión y situaciones que producen vergüenza injustificada."
           ],
-          casa: "Usar una habilidad de crisis cada vez que aparezca la urgencia de autolesionarse, y registrarlo.",
-          avance: "Pasan dos meses sin intentos de suicidio ni autolesiones: criterio para empezar la exposición.",
-          fuente: "Elices, caps. 2.5.2, 2.5.3 y 4.3 · Linehan, 2020",
-          fichas: ["plan-crisis-dbt"]
+          casa: "Practicar cada día el plan de habilidades, escuchar la grabación de la sesión y empezar las tareas en vivo.",
+          avance: "Hay traumas elegidos, un plan de habilidades y una jerarquía acordados.",
+          fuente: "Harned, 2022, caps. 8 y 9",
+          fichas: ["jerarquia-exposicion"]
         },
         {
-          t: "Exposición prolongada al trauma",
-          tecs: ["exposicion-prolongada"],
-          obj: "Procesar el recuerdo traumático una vez lograda la estabilización.",
+          t: "Exposición en imaginación y procesamiento",
+          tecs: ["exposicion-imaginacion", "puntos-criticos", "procesamiento-exposicion"],
+          obj: "Procesar los recuerdos traumáticos y ajustar las emociones que generan.",
           pasos: [
-            "Verificar el criterio de inicio: dos meses sin intentos de suicidio ni autolesiones.",
-            "Aplicar la exposición en vivo y en imaginación, como en la terapia de exposición prolongada de esta variable.",
-            "Mantener las habilidades de la etapa 1 para las urgencias que aparezcan durante la exposición."
+            "Desde la sesión 3, narrar el trauma con detalle, en voz alta, en presente, con los ojos cerrados y repitiéndolo durante 30 a 45 minutos, mientras el terapeuta observa, anima y guía; antes y después, calificar el malestar, los impulsos, la disociación y siete emociones.",
+            "Avanzar de la historia completa a los puntos críticos y, cuando bajan, pasar al siguiente trauma.",
+            "Procesar después de cada exposición con un enfoque de regulación emocional: nombrar las emociones, elegir una que no se ajusta a los hechos o no es eficaz, y cambiarla con estrategias de aceptación, de cambio y dialécticas.",
+            "Acordar qué habilidades se usan durante la exposición: las que ayudan a sentir, como la atención plena, se permiten; las que sirven para escapar suelen desaconsejarse."
           ],
-          casa: "Tareas de exposición acordadas y registro de urgencias y habilidades usadas.",
-          avance: "Bajan los síntomas de estrés postraumático sin reaparición de autolesiones.",
-          fuente: "Elices, cap. 4.3 · Ruiz et al., cap. 4 (§6.3)",
+          casa: "Escuchar la grabación de la exposición y hacer las tareas en vivo.",
+          avance: "Baja el malestar de una sesión a otra y las emociones se ajustan a los hechos.",
+          fuente: "Harned, 2022, caps. 11 y 12",
           fichas: ["registro-escucha-relato"]
         },
         {
-          t: "Consolidación y prevención de recaídas",
-          tecs: ["prevencion-recaidas"],
-          obj: "Consolidar lo aprendido y construir planes de vida sostenibles.",
+          t: "Sesiones con allegados",
+          tecs: ["apoyo-social"],
+          obj: "Que una persona cercana sepa cómo apoyar durante el tratamiento.",
           pasos: [
-            "Trabajar el respeto por sí mismo y la validación de las propias experiencias.",
-            "Hacer planes realistas en lo laboral, académico o familiar, y llevarlos a cabo.",
-            "Anticipar situaciones de riesgo y el plan para usar habilidades en ellas."
+            "Si la persona lo desea, invitar a alguien de su entorno a una sesión de orientación, por lo general entre las sesiones 1 y 3.",
+            "Preparar antes qué quiere que la otra persona sepa o no sepa, qué puede hacer para ayudar y qué habilidades usará si la conversación se pone difícil.",
+            "Mantener el control y la privacidad de la persona: el terapeuta la asesora para que ella misma pida lo que necesita."
           ],
-          casa: "Plan escrito de metas a corto y mediano plazo.",
-          avance: "La persona sostiene metas vitales sin recurrir a conductas problema.",
-          fuente: "Elices, cap. 2.3",
+          casa: "Acordar con el allegado cómo apoyará después de las exposiciones.",
+          avance: "La persona cuenta con apoyo durante el tratamiento.",
+          fuente: "Harned, 2022, cap. 10"
+        },
+        {
+          t: "Sesión final y prevención de recaídas",
+          tecs: ["terapeuta-propia-exposicion", "prevencion-recaidas"],
+          obj: "Cerrar el protocolo y preparar a la persona para mantener lo logrado.",
+          pasos: [
+            "Decidir juntos cuándo terminar las sesiones intermedias, según los síntomas, el malestar en las exposiciones, las emociones, las creencias y la sensación de haber terminado.",
+            "Hacer una exposición breve, volver a calificar la jerarquía en vivo y revisar el progreso.",
+            "Planear exposiciones para seguir por su cuenta y adoptar la costumbre de acercarse a lo que teme.",
+            "Identificar los factores de riesgo de recaída —vulnerabilidad emocional, afrontamiento evitativo y situaciones de alto riesgo— y qué hacer si aumentan los síntomas; después se pasa a la etapa 3 de la terapia dialéctico-conductual."
+          ],
+          casa: "Plan de exposiciones para continuar por su cuenta.",
+          avance: "Remite el estrés postraumático sin conductas de riesgo.",
+          fuente: "Harned, 2022, caps. 12, 13 y 18",
           fichas: ["plan-mantenimiento"]
         }
       ],
       medir: [
-        "Tarjeta diaria: frecuencia de autolesiones y de urgencias.",
-        "<strong>PCL-5</strong> antes y después de la exposición.",
-        "<strong>WHODAS 2.0</strong> para el funcionamiento."
+        "<strong>PCL-5</strong> a lo largo del protocolo.",
+        "<strong>Diario dialéctico-conductual</strong>: impulsos y conductas suicidas y autolesivas, también después de cada exposición.",
+        "<strong>C-SSRS</strong> para el riesgo inminente.",
+        "Malestar subjetivo y siete emociones —miedo, tristeza, rabia, culpa, vergüenza, asco y alegría— antes y después de cada exposición."
       ],
       adapt: [
-        "<strong>Salud mental y consulta externa:</strong> la versión estándar combina terapia individual, grupo de habilidades, contacto telefónico entre sesiones y equipo de consultoría; donde no hay esos recursos, se han probado formatos reducidos como el grupo de habilidades solo (Elices, caps. 2.2 y 3)."
+        "<strong>Programas intensivos:</strong> en hospital parcial, programa ambulatorio intensivo o residencial, el criterio es un mes sin conductas suicidas ni autolesiones (Harned, 2022, cap. 6).",
+        "<strong>Tipos de trauma y poblaciones:</strong> el libro adapta el protocolo a distintos tipos de trauma y a poblaciones diversas (Harned, 2022, caps. 16 y 17).",
+        "<strong>Donde no hay terapia dialéctico-conductual completa:</strong> se han probado formatos reducidos, como el grupo de habilidades solo (Elices, caps. 2.2 y 3)."
       ],
       cuidado: [
-        "La exposición no empieza mientras haya conductas que atentan contra la vida.",
-        "Validar no es aprobar: se validan la emoción y las razones de la persona, no la autolesión.",
-        "Ante riesgo suicida inminente, se aplica el protocolo de riesgo y se activa la ruta de atención (ver la variable Riesgo suicida y autolesión)."
+        "Si aparece una conducta suicida o una autolesión durante el protocolo, se pausa la exposición, cualquiera sea su gravedad, hasta resolverla y reforzar las habilidades. Esta regla se explica antes de empezar: saberla ayuda a muchas personas a no actuar sus impulsos (Harned, 2022, cap. 14).",
+        "Ante riesgo suicida inminente, reducir la amenaza a la vida va antes que seguir con la exposición; se aplica el protocolo de riesgo y se activa la ruta de atención (ver la variable Riesgo suicida y autolesión).",
+        "Validar no es aprobar: se validan la emoción y las razones de la persona, no la autolesión."
       ]
     }
   ]
@@ -17368,10 +17412,10 @@ const VARIABLES = [
   t: "Patrones interpersonales y de personalidad",
   sub: "Formas de verse a sí mismo, de ver a los demás y de relacionarse que se repiten desde hace años y que la persona reconoce como «así soy»: elegir parejas que la abandonan, someterse, exigirse sin descanso, desconfiar, sentirse defectuosa. Suelen empezar en la infancia, cuando necesidades básicas —seguridad, afecto, autonomía, límites— no se cubrieron. Aparecen en los trastornos de la personalidad y en problemas crónicos que no responden a un tratamiento breve.",
   elegir: [
-    "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica.",
+    "<strong>El plan es la terapia de esquemas</strong>, pensada para problemas de larga duración y para quienes no avanzan con la terapia cognitivo-conductual habitual: combina técnicas cognitivas, experienciales y conductuales con la relación terapéutica. Tiene dos versiones: la que trabaja con esquemas y estilos de afrontamiento, y el enfoque de modos, para los trastornos de la personalidad y los problemas en los que la persona pasa de un estado a otro.",
     "<strong>Si los patrones se expresan sobre todo en conductas que dañan varias relaciones</strong> —atacar, controlar, someterse, aislarse, consumir—, la aceptación y compromiso con conciencia de los esquemas trabaja esas conductas, en grupo o de forma individual; tiene un ensayo pequeño.",
     "<strong>Si lo central es que la persona no sabe qué quiere, siente o piensa sin mirar a los demás</strong>, se desmorona ante la crítica o se siente vacía, la psicoterapia analítica funcional para los problemas del yo trabaja en la sesión, paso a paso, que lo que dice de sí misma salga de ella. Su respaldo es conceptual.",
-    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. Para el trastorno límite de la personalidad, ver <em>Trastorno límite de la personalidad</em>, con la terapia dialéctico-conductual estándar."
+    "Si el problema se expresa sobre todo en la relación con el terapeuta y en la dificultad para la cercanía, la psicoterapia analítica funcional de la variable Habilidades sociales trabaja esos patrones en la sesión. Si hay autolesiones, conducta suicida o una desregulación emocional grave, van primero los planes dialéctico-conductuales de Desregulación emocional y de Riesgo suicida y autolesión. Para el trastorno límite de la personalidad, ver <em>Trastorno límite de la personalidad</em>, con la terapia dialéctico-conductual, la terapia de esquemas y el tratamiento basado en la mentalización."
   ],
   planes: [
     {
@@ -17382,11 +17426,15 @@ const VARIABLES = [
       enf: "esq",
       nivel: "preliminar",
       t: "Terapia de esquemas",
-      fuente: "Young et al., 2015",
+      fuente: "Young et al., 2015 · Arntz y Jacob, 2013",
       cuando: "La persona repite <strong>los mismos patrones en sus relaciones y en su vida desde hace años</strong> —en la pareja, en el trabajo, con la familia—, los vive como parte de su forma de ser y ya pasó por tratamientos breves que no los cambiaron. Puede haber un trastorno de la personalidad o síntomas crónicos de ansiedad o depresión que vuelven una y otra vez.",
-      respaldo: "El Cuestionario de Esquemas de Young ha mostrado buena consistencia interna y una estructura factorial que coincide en gran parte con los esquemas propuestos, en muestras clínicas y no clínicas (Young et al., 2015, cap. 1). En el trastorno límite de la personalidad, un metaanálisis no encontró suficientes ensayos que compararan la terapia de esquemas con condiciones de control inespecíficas: se ha comparado sobre todo con otros tratamientos activos (Stoffers-Winterling et al., 2022). La evidencia de su eficacia es, por eso, más limitada que la de la terapia dialéctico-conductual.",
+      respaldo: "El Cuestionario de Esquemas de Young ha mostrado buena consistencia interna y una estructura factorial que coincide en gran parte con los esquemas propuestos, en muestras clínicas y no clínicas (Young et al., 2015, cap. 1). En el trastorno límite de la personalidad, un metaanálisis no encontró suficientes ensayos que compararan la terapia de esquemas con condiciones de control inespecíficas: se ha comparado sobre todo con otros tratamientos activos (Stoffers-Winterling et al., 2022). La evidencia de su eficacia es, por eso, más limitada que la de la terapia dialéctico-conductual. El enfoque de modos se desarrolló a partir de los estudios en el trastorno límite, que mostraron muy buenos efectos; para los demás trastornos de la personalidad, el libro presenta modelos prototípicos sin ensayos propios (Arntz y Jacob, 2013, cap. 2).",
       secuencia: "<strong>Secuencia:</strong> dos fases. En la de evaluación y educación, la persona identifica sus esquemas, entiende su origen y reconoce sus formas de afrontarlos; termina con una conceptualización del caso y un plan acordado. En la fase de cambio, el terapeuta combina con flexibilidad, según lo que traiga la persona cada semana, estrategias cognitivas, experienciales, de ruptura de patrones de conducta y de la relación terapéutica; con los casos más graves se trabaja con los modos. Es un tratamiento de duración larga (Young et al., 2015, caps. 1 a 8).",
       esc: ["salud-mental"],
+      opcA: {
+        t: "Esquemas y estilos de afrontamiento",
+        cuando: "Patrones de larga duración que se pueden describir con unos pocos esquemas y las formas de rendirse a ellos, evitarlos o sobrecompensarlos, en una persona que no cambia bruscamente de un estado a otro (Young et al., 2015, caps. 1 y 2)."
+      },
       actividades: [
         {
           t: "Evaluación y educación en esquemas",
@@ -17479,18 +17527,119 @@ const VARIABLES = [
           fuente: "Young et al., 2015, cap. 8"
         }
       ],
+      opciones: [
+        {
+          t: "Enfoque de modos",
+          cuando: "Trastornos de la personalidad —evitativo, dependiente, obsesivo-compulsivo, narcisista, histriónico, paranoide— y otros problemas en los que la persona pasa de un estado a otro, incluidos algunos trastornos crónicos y problemas de personalidad más leves. Se construye un modelo de modos individual a partir del prototipo de su trastorno. Para el trastorno límite, ver la terapia de esquemas de <em>Trastorno límite de la personalidad</em> (Arntz y Jacob, 2013, introducción y cap. 2).",
+          fuente: "Arntz y Jacob, 2013",
+          respaldo: "Los estudios en el trastorno límite, hechos con el manual basado en modos, mostraron muy buenos efectos, y a partir de ellos se desarrollaron modelos para otros trastornos de la personalidad. Los autores advierten que esos modelos son prototipos que hay que ajustar a cada persona, y el libro no reporta ensayos propios fuera del trastorno límite (Arntz y Jacob, 2013, cap. 2).",
+          secuencia: "<strong>Secuencia:</strong> se formula y se acuerda con la persona un modelo de modos individual. El tratamiento sigue las metas de cada grupo de modos: confrontar con empatía y flexibilizar los modos de afrontamiento, cuidar a los modos de niño vulnerable, encauzar a los de niño enojado o impulsivo, debilitar a los modos parentales disfuncionales y fortalecer al adulto sano. Al principio predominan las técnicas emocionales; después, llevar los cambios a la vida diaria. En los trastornos graves se recomiendan de dos a tres años, empezando con dos sesiones por semana; en los más leves, menos tiempo y menor frecuencia (Arntz y Jacob, 2013, caps. 3, 4 y 9).",
+          actividades: [
+            {
+              t: "Modelo de modos y su comunicación",
+              tecs: ["modos-esquema", "formulacion-caso"],
+              obj: "Construir con la persona un modelo de modos propio y acordar desde él las metas de la terapia.",
+              pasos: [
+                "Reunir los problemas y síntomas principales, la información biográfica —por autoinforme o con un ejercicio de imaginación— y los patrones de interacción con el terapeuta.",
+                "Partir del prototipo del trastorno y ajustarlo a la persona: por ejemplo, en el evitativo, un niño solo y vulnerable, un padre punitivo que induce culpa, un protector evitativo y la rendición complaciente; en el obsesivo-compulsivo, un niño solo, un padre exigente o punitivo, un sobrecontrolador perfeccionista y un autoengrandecedor.",
+                "Presentar el modelo con los ejemplos de la persona y acordarlo; si no está de acuerdo con una parte, se deja anotada la diferencia y se vuelve a discutir más adelante.",
+                "Explicar desde el modelo las metas del tratamiento y revisar si algún modo le da beneficios que harán difícil cambiarlo."
+              ],
+              casa: "Observar durante la semana cuándo aparece cada modo.",
+              avance: "La persona y el terapeuta comparten un modelo de modos.",
+              fuente: "Arntz y Jacob, 2013, caps. 2 y 3",
+              fichas: ["conceptualizacion-esquemas"]
+            },
+            {
+              t: "Rodear los modos de afrontamiento",
+              tecs: ["confrontacion-empatica", "pros-contras-modo", "trabajo-sillas"],
+              obj: "Reducir la influencia de los modos de afrontamiento para que aparezcan las emociones y las necesidades.",
+              pasos: [
+                "Nombrar el modo de afrontamiento cuando aparece y explorar su origen: por qué fue importante y protector en la infancia.",
+                "Revisar sus pros y contras, entonces y ahora.",
+                "Con un diálogo de sillas, dar voz al modo, explorarlo, confrontarlo con empatía y, si domina la sesión, ponerle límites.",
+                "Fuera de la sesión, pasar más tiempo en otros modos y practicar formas más sanas de relacionarse."
+              ],
+              casa: "Lista de pros y contras del modo de afrontamiento.",
+              avance: "El modo de afrontamiento cede en la sesión y aparecen emociones.",
+              fuente: "Arntz y Jacob, 2013, caps. 4 y 5"
+            },
+            {
+              t: "Cuidar al niño vulnerable",
+              tecs: ["reparentalizacion-limitada", "puente-afectivo", "reescritura-imaginacion"],
+              obj: "Validar, consolar y cubrir las necesidades del modo de niño vulnerable.",
+              pasos: [
+                "Validar y consolar al niño vulnerable en la relación, dentro de los límites de una relación terapéutica, y explicar qué necesitan los niños para crecer sanos.",
+                "Hacer reescritura en imaginación: desde una emoción actual, con un puente afectivo, llegar a un recuerdo de la infancia; introducir una figura que ayude —al principio el terapeuta— y cubrir las necesidades del niño hasta que se sienta seguro y acompañado.",
+                "Usar tarjetas de esquema y grabaciones de consuelo hechas por el terapeuta.",
+                "Ayudar a la persona a buscar relaciones y actividades que cubran sus necesidades."
+              ],
+              casa: "Escuchar la grabación de consuelo y leer la tarjeta cuando aparezca el modo.",
+              avance: "La persona expresa sus necesidades y acepta cuidado.",
+              fuente: "Arntz y Jacob, 2013, cap. 6",
+              fichas: ["tarjeta-recordatorio"]
+            },
+            {
+              t: "Encauzar al niño enojado o impulsivo",
+              tecs: ["expresion-emocional", "fijar-limites"],
+              obj: "Validar la necesidad que hay detrás de la rabia o la impulsividad y expresarla de forma adecuada.",
+              pasos: [
+                "Dejar que la rabia se ventile en la sesión y validar la necesidad que hay detrás.",
+                "Enseñar a expresar esa necesidad de forma más adecuada y ensayarlo en la sesión.",
+                "Con el niño impulsivo o indisciplinado, validar la necesidad, poner límites, revisar pros y contras y entrenar la disciplina y la tolerancia a la frustración.",
+                "Si la persona nunca expresa enojo, explorar el origen de esa supresión y reforzar en la sesión cualquier expresión de enojo."
+              ],
+              casa: "Decir con calma una necesidad ante una situación que molesta.",
+              avance: "La persona expresa el enojo sin agredir ni callarlo.",
+              fuente: "Arntz y Jacob, 2013, caps. 4 y 7"
+            },
+            {
+              t: "Debilitar a los modos parentales",
+              tecs: ["trabajo-sillas", "reestructuracion-cognitiva"],
+              obj: "Reducir los estándares exagerados y la autodevaluación de los modos de padre exigente o punitivo.",
+              pasos: [
+                "Explorar el origen biográfico del modo y discutir quién era responsable del mal trato: no el niño.",
+                "Trabajar la culpa: cuándo se es responsable y cuándo hubo mala suerte, y el derecho a equivocarse.",
+                "En un diálogo de sillas, sentar al modo parental en otra silla y enfrentarlo —primero el terapeuta, luego la persona desde el adulto sano— hasta debilitarlo o sacarlo.",
+                "En la vida diaria, bajar los estándares, aceptar los errores y hacer actividades en las que tenga éxito.",
+                "Dejar para después la comprensión de los padres: primero se permite la rabia, y perdonar es una elección de la persona."
+              ],
+              casa: "Responder al modo parental desde el adulto sano cuando aparezca.",
+              avance: "La voz crítica pierde fuerza y la persona se habla con menos dureza.",
+              fuente: "Arntz y Jacob, 2013, caps. 4 y 8"
+            },
+            {
+              t: "Fortalecer al adulto sano y terminar",
+              tecs: ["modos-esquema", "prevencion-recaidas"],
+              obj: "Llevar los cambios a la vida diaria y terminar de forma gradual.",
+              pasos: [
+                "Incluir a la persona, paso a paso, como adulto sano en los ejercicios emocionales, y revisar con ella lo que se hizo.",
+                "Grabar las sesiones y los ejercicios para escucharlos en casa.",
+                "Llevar los cambios a la vida diaria: relaciones, tiempo libre y deporte.",
+                "Terminar de forma gradual, espaciando las sesiones y ofreciendo por un tiempo sesiones de refuerzo mensuales."
+              ],
+              casa: "Aplicar en una situación real lo trabajado en la sesión.",
+              avance: "La persona responde desde el adulto sano en situaciones que antes activaban sus modos.",
+              fuente: "Arntz y Jacob, 2013, cap. 9",
+              fichas: ["plan-mantenimiento"]
+            }
+          ]
+        }
+      ],
       medir: [
         "<strong>YSQ</strong> al inicio y a lo largo del tratamiento, analizando los ítems más altos.",
         "Frecuencia de las conductas de afrontamiento desadaptativas elegidas como objetivo.",
         "Medidas de los síntomas que acompañan, como el <strong>PHQ-9</strong> o el <strong>GAD-7</strong>."
       ],
       adapt: [
-        "<strong>Salud mental:</strong> el manual incluye adaptaciones específicas para el trastorno límite y el trastorno narcisista de la personalidad (Young et al., 2015, caps. 9 y 10)."
+        "<strong>Salud mental:</strong> el manual incluye adaptaciones específicas para el trastorno límite y el trastorno narcisista de la personalidad (Young et al., 2015, caps. 9 y 10); para el trastorno límite hay un plan propio en <em>Trastorno límite de la personalidad</em>.",
+        "<strong>Trastornos crónicos y problemas puntuales:</strong> el enfoque de modos también se ha aplicado a trastornos crónicos, como el obsesivo-compulsivo; en los problemas menos graves, la terapia es más corta y menos frecuente, y para un problema bien delimitado pueden bastar pocas sesiones (Arntz y Jacob, 2013, caps. 2 y 9)."
       ],
       cuidado: [
         "Es un tratamiento largo y exigente: requiere formación específica y supervisión.",
         "El trabajo experiencial con recuerdos traumáticos puede ser intenso: se hace cuando hay un vínculo sólido y se cuida que la persona salga estable de la sesión (Young et al., 2015, cap. 4).",
-        "Con conducta suicida o autolesiones, el manejo del riesgo va primero; su evidencia en el trastorno límite es menor que la de la terapia dialéctico-conductual (Stoffers-Winterling et al., 2022)."
+        "Con conducta suicida o autolesiones, el manejo del riesgo va primero; su evidencia en el trastorno límite es menor que la de la terapia dialéctico-conductual (Stoffers-Winterling et al., 2022).",
+        "La medicación sedante puede quitar intensidad al trabajo con imágenes; en el trastorno límite, la terapia fue mucho menos eficaz en quienes tomaban otros psicofármacos, aunque esto no se ha probado en un ensayo (Arntz y Jacob, 2013, cap. 6)."
       ]
     },
     {
@@ -17749,7 +17898,9 @@ const VARIABLES = [
   elegir: [
     "<strong>Al menos cuatro tratamientos tienen eficacia demostrada para el trastorno límite:</strong> la terapia dialéctico-conductual, que es la de mayor respaldo y se considera de primera línea, la terapia basada en la mentalización, la terapia de esquemas y la psicoterapia centrada en la transferencia (Fonseca-Pedrero et al., 2021; Neacsiu y Linehan, 2014). En el metaanálisis más reciente, solo la dialéctico-conductual y la basada en la mentalización mostraron efectos frente a controles inespecíficos, con certeza baja (Stoffers-Winterling et al., 2022).",
     "<strong>Si hay conducta suicida o autolesiones repetidas y la persona puede comprometerse con un programa completo</strong>, el plan es la terapia dialéctico-conductual estándar. Si lo urgente es la crisis suicida, empezar por <em>Riesgo suicida y autolesión</em>. <strong>Si solo es posible un grupo de habilidades</strong> que complemente otra terapia individual, el entrenamiento en habilidades de <em>Desregulación emocional</em> tuvo evidencia de certeza moderada sobre la gravedad del trastorno y el funcionamiento.",
-    "<strong>Si predominan patrones de relación y de visión de sí mismo arraigados</strong> sin conducta suicida grave, ver la terapia de esquemas en <em>Patrones interpersonales y de personalidad</em>. La terapia basada en la mentalización, que redujo autolesiones y conductas suicidas, no tiene plan en esta guía."
+    "<strong>Si lo que más pesa son la imagen de sí misma, el miedo al abandono y patrones que vienen de una infancia con maltrato o abandono</strong>, y la persona acepta hablar de su pasado y comprometerse con unos dos años, la terapia de esquemas trabaja con los modos; en su ensayo principal, más personas se recuperaron que con la psicoterapia centrada en la transferencia.",
+    "<strong>Si las crisis y las autolesiones aparecen cuando se activan las relaciones de apego</strong> y la persona deja de poder pensar en lo que ella y los demás sienten, sobre todo si tiene más de un trastorno de la personalidad, el tratamiento basado en la mentalización combina terapia individual y grupal durante 12 a 18 meses.",
+    "Si los patrones de relación y de visión de sí mismo no llegan a un trastorno límite, ver <em>Patrones interpersonales y de personalidad</em>."
   ],
   planes: [
     {
@@ -17876,6 +18027,275 @@ const VARIABLES = [
         "Mantener viva a la persona es siempre la primera prioridad; las llamadas se manejan de forma parecida en todas las crisis para no reforzar la conducta suicida con más contacto, salvo para protegerla cuando amenaza con suicidarse (Neacsiu y Linehan, 2014, «Telephone Consultation»).",
         "La mayoría de los estudios se hicieron con mujeres; los hallazgos se aplican con cautela a los hombres, en quienes el trastorno puede expresarse de forma más explosiva (Stoffers-Winterling et al., 2022).",
         "Tratar el trastorno límite es muy exigente para el terapeuta: el equipo de consulta es parte del tratamiento, no un añadido (Neacsiu y Linehan, 2014, «Consultation Team»)."
+      ]
+    },
+    {
+      id: "tlp-esq",
+      mod: "young-esquemas",
+      inst: ["YSQ", "C-SSRS"],
+      instEst: ["YSQ"],
+      enf: "esq",
+      nivel: "ensayos",
+      t: "Terapia de esquemas para el trastorno límite",
+      fuente: "Arntz y van Genderen, 2021",
+      cuando: "Una persona con trastorno límite de la personalidad en la que, además de las crisis, pesan una imagen muy negativa de sí misma, el miedo al abandono y patrones que vienen de una infancia con maltrato, abandono o negligencia. Acepta hablar de su pasado y puede comprometerse con unos dos años de terapia. Antes se atiende lo que no puede esperar: una depresión muy grave, una dependencia que requiere desintoxicación, la anorexia nerviosa, o un trastorno bipolar o psicótico predominante (Arntz y van Genderen, 2021, caps. 2 y 3).",
+      respaldo: "En el primer ensayo aleatorizado, con tres años de tratamiento, la terapia de esquemas superó a la psicoterapia centrada en la transferencia. Cuatro años después de empezar, el 52 % se había recuperado del trastorno límite frente al 29 %, contando a quienes abandonaron. Mejoraron todos los rasgos del trastorno, no solo las autolesiones, y la terapia resultó costo-efectiva. Un estudio en la práctica clínica halló la misma eficacia y la misma permanencia en el tratamiento, y los estudios en grupo y en formato combinado son prometedores. Los autores advierten que solo un ensayo grande la ha comparado con otro tratamiento (Arntz y van Genderen, 2021, cap. 2). En el metaanálisis más reciente no hubo suficientes ensayos frente a controles inespecíficos para estimar su efecto (Stoffers-Winterling et al., 2022).",
+      secuencia: "<strong>Secuencia:</strong> unos dos años. Una fase inicial de unas cinco sesiones para el inventario de problemas y la conceptualización con el modelo de modos, con un plan de crisis si hace falta. Una fase de tratamiento de alrededor de un año, en la que casi cada sesión incluye trabajo experiencial con el modo que esté activo. Y una fase final, desde el segundo año, centrada en cambiar patrones de conducta. El primer año se recomiendan dos sesiones por semana —dos individuales, o una individual y una grupal—, y en el segundo la frecuencia baja de forma gradual hasta una al mes (Arntz y van Genderen, 2021, caps. 3 y 11).",
+      esc: ["salud-mental"],
+      actividades: [
+        {
+          t: "Inicio: modelo de modos y acuerdos",
+          tecs: ["modos-esquema", "formulacion-caso"],
+          obj: "Construir con la persona su modelo de modos y acordar las condiciones de la terapia.",
+          pasos: [
+            "Hacer el inventario de los problemas actuales y la historia, con la relación con los cuidadores, y revisar las contraindicaciones.",
+            "Reunir información por tres vías: cognitiva —entrevista, flecha descendente y cuestionarios de esquemas y de modos—, conductual —los patrones que relata y lo que pasa con el terapeuta— y experiencial, con imágenes de la infancia.",
+            "Explicar el modelo con sus propios ejemplos: el protector desapegado, el niño abandonado o maltratado, el niño enojado o impulsivo, el padre punitivo, el adulto sano y el niño feliz.",
+            "Acordar la frecuencia, la duración y la forma de contacto fuera de las sesiones —por ejemplo, el correo, sin respuesta inmediata—, y qué hacer en una crisis si el terapeuta no está.",
+            "Proponer grabar las sesiones para escucharlas antes de la siguiente."
+          ],
+          casa: "Escuchar la grabación de la sesión.",
+          avance: "La persona reconoce sus modos en ejemplos de su vida.",
+          fuente: "Arntz y van Genderen, 2021, caps. 2 y 3",
+          fichas: ["conceptualizacion-esquemas"]
+        },
+        {
+          t: "Crisis y conducta suicida según el modo",
+          tecs: ["evaluacion-riesgo-suicida", "modos-esquema"],
+          obj: "Responder a las crisis y a la conducta suicida trabajando el modo que las impulsa.",
+          pasos: [
+            "Hacer con la persona un plan de crisis ligado a los modos: en cada crisis pueden estar activos modos distintos, que piden respuestas distintas.",
+            "Ante deseos de suicidio o de autolesión, poner toda la atención en eso y averiguar qué modo lo impulsa: el protector, para no sentir; el padre punitivo, como castigo; el niño enojado, para castigar a otros.",
+            "En la crisis, consolar al niño abandonado, dar espacio a la rabia del niño enojado o enfrentar al padre punitivo en una silla vacía, sin buscar todavía soluciones prácticas.",
+            "Si hay riesgo suicida, aumentar por un tiempo la frecuencia de las sesiones, consultar con colegas y, si no basta, organizar una hospitalización y mantener el contacto."
+          ],
+          casa: "Tener a mano el plan de crisis.",
+          avance: "Las crisis se resuelven más rápido y bajan las autolesiones.",
+          fuente: "Arntz y van Genderen, 2021, caps. 3 y 8"
+        },
+        {
+          t: "Reparentalización limitada",
+          tecs: ["reparentalizacion-limitada", "confrontacion-empatica", "fijar-limites"],
+          obj: "Ofrecer en la relación terapéutica, dentro de sus límites, algo de lo que la persona no tuvo.",
+          pasos: [
+            "Actuar «como si» el terapeuta fuera una figura parental: cuidar, dar dirección cuando la persona no puede y animarla a ganar autonomía.",
+            "Confrontar con empatía la conducta que daña, reconociendo a la vez la necesidad que hay detrás.",
+            "Al principio ser flexible y, una vez formado el vínculo, poner límites a lo que pone en riesgo la terapia: contacto excesivo fuera de sesión, ausencias, amenazas o abuso de sustancias.",
+            "Revisar en el grupo de supervisión los propios esquemas que la persona activa en el terapeuta."
+          ],
+          casa: "No aplica.",
+          avance: "La persona acepta cuidado y tolera los límites sin romper el vínculo.",
+          fuente: "Arntz y van Genderen, 2021, cap. 4"
+        },
+        {
+          t: "Trabajo con el modo activo en cada sesión",
+          tecs: ["modos-esquema", "trabajo-sillas", "diario-cognitivo-modos"],
+          obj: "Reconocer en cada sesión el modo que está hablando y responderle con la técnica que le corresponde.",
+          pasos: [
+            "Abrir con una pregunta general y, en unos cinco minutos, identificar por el tono y el contenido qué modo está activo; al principio lo nombra el terapeuta.",
+            "Usar la técnica de ese modo y cambiar si la persona cambia de modo: tranquilizar y rodear al protector desapegado, consolar al niño abandonado, ventilar y luego encauzar la rabia del niño enojado, y combatir y sacar al padre punitivo con la silla vacía.",
+            "Buscar en cada sesión llegar al niño vulnerable y responder a sus necesidades.",
+            "Dedicar de 15 a 30 minutos al trabajo con los modos y reservar de 5 a 10 al final para sacar conclusiones y fortalecer al adulto sano."
+          ],
+          casa: "Diario cognitivo de modos de una situación que los activó.",
+          avance: "La persona nombra el modo en que está mientras ocurre.",
+          fuente: "Arntz y van Genderen, 2021, caps. 3, 6 y 9"
+        },
+        {
+          t: "Reescritura en imaginación y juego de roles histórico",
+          tecs: ["reescritura-imaginacion", "juego-roles-historico"],
+          obj: "Cambiar el significado de los recuerdos de la infancia en los que se formaron los modos.",
+          pasos: [
+            "Explicar que el pasado no se puede cambiar, pero sí las conclusiones que la persona sacó de él.",
+            "Al principio, la persona imagina el recuerdo desde la perspectiva de la niña o el niño que fue, y el terapeuta entra en la imagen para detener lo que pasa, proteger y consolar.",
+            "En la fase final, la persona entra en la imagen como adulta sana y luego vuelve a la perspectiva infantil para pedir lo que todavía le falta.",
+            "Con el juego de roles histórico, representar una situación de la infancia, intercambiar los papeles para verla desde el otro lado y ensayar una respuesta nueva.",
+            "No posponer estas técnicas: desde el inicio de la fase de tratamiento, casi cada sesión incluye trabajo experiencial."
+          ],
+          casa: "Escuchar la grabación del ejercicio o una grabación breve del terapeuta que consuela al niño abandonado.",
+          avance: "La persona saca conclusiones distintas sobre sí misma a partir de sus recuerdos.",
+          fuente: "Arntz y van Genderen, 2021, caps. 3, 5 y 8"
+        },
+        {
+          t: "Técnicas cognitivas y conductuales",
+          tecs: ["registro-positivo", "prueba-historica", "tarjeta-recordatorio", "experimento-conductual"],
+          obj: "Construir esquemas nuevos y llevar al adulto sano a la vida diaria.",
+          pasos: [
+            "Con el diálogo socrático, separar la parte justificada de una reacción de la exagerada y formular la reacción deseada.",
+            "Usar el registro de lo positivo y la prueba histórica para debilitar las creencias del padre punitivo.",
+            "Escribir tarjetas recordatorio para leerlas cuando se active un modo.",
+            "Hacer experimentos conductuales, ensayar habilidades en juego de roles y resolver problemas.",
+            "Recomendar las tareas sin exigirlas; si no se hacen, explorar qué modo lo impidió."
+          ],
+          casa: "Anotar cada día algo en el registro de lo positivo.",
+          avance: "La persona usa por su cuenta la tarjeta y el registro cuando se activa un modo.",
+          fuente: "Arntz y van Genderen, 2021, caps. 6 a 8",
+          fichas: ["tarjeta-recordatorio"]
+        },
+        {
+          t: "Fase final: patrones de conducta y cierre",
+          tecs: ["experimento-conductual", "prevencion-recaidas"],
+          obj: "Llevar los cambios a la vida diaria y terminar sin que la separación se viva como un abandono.",
+          pasos: [
+            "Pasar del pasado a cambiar patrones de conducta: probar conductas nuevas con personas actuales y nuevas, hacer amigos y explorar estudios o trabajo.",
+            "Cambiar el papel del terapeuta, de padre de un niño pequeño a padre de un adolescente: más de entrenador, para que la persona encuentre sus propias soluciones.",
+            "Trabajar el duelo por lo que no tuvo y la relación actual con los padres y la pareja.",
+            "Espaciar las sesiones, atender el miedo al abandono que reaparece y ofrecer sesiones de refuerzo si hacen falta."
+          ],
+          casa: "Probar una conducta nueva fuera de la terapia.",
+          avance: "La persona sostiene relaciones y actividades con más autonomía.",
+          fuente: "Arntz y van Genderen, 2021, caps. 3, 4 y 11",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>YSQ</strong> y un inventario de modos al inicio, para la conceptualización.",
+        "<strong>C-SSRS</strong> cuando hay deseos de suicidio o de autolesión.",
+        "Gravedad y frecuencia de los síntomas del trastorno límite en los últimos meses, que fue el resultado principal de los ensayos."
+      ],
+      adapt: [
+        "<strong>Grupo:</strong> la terapia de esquemas en grupo, con dos terapeutas, mostró efectos prometedores; en un estudio internacional, la combinación de grupo e individual tuvo los mejores resultados y la mayor permanencia (Arntz y van Genderen, 2021, caps. 2 y 10).",
+        "<strong>Hospital de día, internación y pareja:</strong> el libro describe adaptaciones para estos formatos (Arntz y van Genderen, 2021, cap. 10).",
+        "<strong>Comorbilidad:</strong> en lugar de excluir a la persona, se integra en el modelo de modos; si un síntoma no cambia al trabajar el modo asociado, se agrega una técnica específica (Arntz y van Genderen, 2021, cap. 3)."
+      ],
+      cuidado: [
+        "Si el terapeuta no puede sostener unos dos años de trabajo, mejor no empezar: una interrupción a mitad de camino se vive como un nuevo abandono y puede llevar a una recaída grave (Arntz y van Genderen, 2021, cap. 3).",
+        "En el formato grupal, la agresión física reciente o el desprecio poco controlado hacia los demás son un riesgo para el grupo (Arntz y van Genderen, 2021, cap. 2).",
+        "Si tras al menos un año no hay ningún avance, considerar en serio terminar: es poco probable que la mejoría llegue después (Arntz y van Genderen, 2021, cap. 3).",
+        "Con conducta suicida grave y frecuente, la terapia dialéctico-conductual estándar de esta variable tiene más respaldo frente a controles inespecíficos (Stoffers-Winterling et al., 2022)."
+      ]
+    },
+    {
+      id: "tlp-mbt",
+      mod: "mentalizacion",
+      inst: ["C-SSRS", "PHQ-9"],
+      enf: "mbt",
+      nivel: "ensayos",
+      t: "Tratamiento basado en la mentalización",
+      fuente: "Bateman y Fonagy, 2016",
+      cuando: "Una persona con trastorno límite de la personalidad cuyas crisis, autolesiones e intentos de suicidio aparecen cuando se activan sus relaciones de apego —una pérdida, un rechazo, un conflicto—, y que en esos momentos deja de poder pensar en lo que ella y los demás sienten y piensan. Es especialmente indicado cuando hay más de un trastorno de la personalidad, y requiere comprometerse con 12 a 18 meses de terapia individual y grupal (Bateman y Fonagy, 2016, caps. 2 y 5).",
+      respaldo: "En un ensayo en hospital de día, 18 meses de este tratamiento lograron beneficios grandes frente al tratamiento habitual, con un número necesario a tratar de cerca de dos. Ocho años después del ingreso, el 23 % tenía conducta suicida frente al 74 %. En formato ambulatorio, superó al manejo clínico estructurado en la reducción de autolesiones, intentos de suicidio y depresión, sobre todo a largo plazo y en quienes tenían más de un trastorno de la personalidad. Un ensayo danés frente a una terapia de apoyo menos intensa mostró mejoras grandes en ambos grupos y ventaja en el funcionamiento global (Bateman y Fonagy, 2016, cap. 2). En el metaanálisis más reciente fue, con la dialéctico-conductual, uno de los dos tratamientos con efectos frente a controles inespecíficos, con certeza baja (Stoffers-Winterling et al., 2022).",
+      secuencia: "<strong>Secuencia:</strong> evaluación de la mentalización y grupo introductorio de 10 a 12 sesiones; luego, durante 12 a 18 meses, una sesión individual semanal de 50 minutos y una grupal de 75, que no se toman por separado. La fase inicial da el diagnóstico, la formulación escrita, el plan de crisis y los acuerdos. La intermedia trabaja la mentalización en medio de la emoción y de las relaciones. La final empieza a los 12 meses, con seis por delante, y se ocupa del funcionamiento social, la separación y el seguimiento (Bateman y Fonagy, 2016, caps. 5 y 11).",
+      esc: ["salud-mental"],
+      actividades: [
+        {
+          t: "Evaluación, diagnóstico y formulación",
+          tecs: ["mentalizacion", "modos-prementalizadores", "formulacion-caso"],
+          obj: "Entender con la persona cuándo pierde la capacidad de mentalizar y acordar el foco del tratamiento.",
+          pasos: [
+            "Evaluar la mentalización: en qué relaciones y con qué emociones se pierde, y si aparecen la equivalencia psíquica, el modo teleológico o el modo simulado.",
+            "Dar el diagnóstico de forma directa y explicativa, preguntando antes cómo se describe la persona y qué sabe del trastorno, para estimular su reflexión y no para convencerla.",
+            "Escribir tras las primeras sesiones, con el equipo, una formulación que se entrega a la persona: el riesgo en términos de intenciones, las creencias sobre sí misma ligadas a estados internos, los patrones de apego que se activan y los momentos en que mentalizar le funcionó.",
+            "Revisar y reformular la formulación a lo largo del tratamiento."
+          ],
+          casa: "Leer la formulación y anotar lo que cambiaría.",
+          avance: "La persona reconoce la formulación como propia.",
+          fuente: "Bateman y Fonagy, 2016, caps. 4 y 5"
+        },
+        {
+          t: "Plan de crisis y acuerdos",
+          tecs: ["escalera-crisis", "evaluacion-riesgo-suicida"],
+          obj: "Construir con la persona una ruta para pedir ayuda antes de llegar a un acto autodestructivo.",
+          pasos: [
+            "Revisar al menos tres crisis que terminaron en autolesión o en contacto con los servicios, buscando las señales tempranas: una emoción, un cambio de conducta o de pensamiento.",
+            "Ubicar las crisis en una escalera de 0, en control, a 3, fuera de control, y definir con detalle cada escalón.",
+            "Acordar qué puede hacer y qué no la persona, los demás —con allegados invitados a la sesión— y los servicios.",
+            "Aclarar el límite de la responsabilidad del terapeuta: no puede impedir que la persona se haga daño, pero puede ayudarla a entender qué la lleva a hacerlo y a encontrar otras salidas.",
+            "Acordar la asistencia a las dos partes del programa: la ausencia repetida se habla en la siguiente sesión, no lleva al alta inmediata."
+          ],
+          casa: "Tener el plan de crisis por escrito y compartirlo con quien la persona elija.",
+          avance: "La persona detecta antes los escalones de la crisis y usa el plan.",
+          fuente: "Bateman y Fonagy, 2016, caps. 5 y 7"
+        },
+        {
+          t: "Grupo introductorio de mentalización",
+          tecs: ["mbt-introductorio", "psicoeducacion"],
+          obj: "Que la persona entienda qué es mentalizar y para qué es el tratamiento.",
+          pasos: [
+            "Participar en un grupo psicoeducativo de hasta diez personas, de 12 sesiones de hora y media.",
+            "Recorrer los temas: qué es mentalizar, qué significa tener problemas para hacerlo, las emociones, el apego y su relación con la mentalización, qué es un trastorno de la personalidad, en qué consiste el tratamiento, y la ansiedad y la depresión.",
+            "Pasar de ejercicios con situaciones lejanas a ejemplos personales solo cuando el grupo tenga confianza.",
+            "Asistir al menos a dos tercios de las sesiones para continuar el tratamiento."
+          ],
+          casa: "Tarea voluntaria de observar los propios estados mentales.",
+          avance: "La persona reconoce cuándo deja de mentalizar.",
+          fuente: "Bateman y Fonagy, 2016, cap. 11"
+        },
+        {
+          t: "Postura mentalizadora y espectro de intervenciones",
+          tecs: ["postura-no-saber", "espectro-intervenciones-mbt"],
+          obj: "Estimular la mentalización en cada sesión sin desbordar a la persona.",
+          pasos: [
+            "Adoptar una postura de no saber: preguntar activamente para entender cómo ve la persona las cosas, sin suponer lo que hay en su mente.",
+            "Elegir la intervención según la activación: con la emoción alta, validación empática; cuando puede pensar, clarificar, explorar y desafiar; luego, el foco en el afecto; y solo cuando puede sostener la emoción, mentalizar la relación.",
+            "Si la emoción amenaza con desbordarse, volver un paso hacia la superficie.",
+            "Ir de los sucesos de afuera al tratamiento y a la relación entre persona y terapeuta, y de vuelta."
+          ],
+          casa: "Anotar una situación de la semana en que no entendió lo que la otra persona pensaba o sentía.",
+          avance: "La persona considera perspectivas distintas de la suya sin desorganizarse.",
+          fuente: "Bateman y Fonagy, 2016, caps. 6 a 9"
+        },
+        {
+          t: "Análisis funcional mentalizador de las autolesiones",
+          tecs: ["analisis-funcional-mentalizador", "parar-rebobinar"],
+          obj: "Entender el estado mental y el contexto interpersonal que llevaron a una autolesión o a un intento de suicidio.",
+          pasos: [
+            "Responder primero con validación empática del estado actual de la persona.",
+            "Pedir el relato de lo que llevó al acto y definir el contexto interpersonal: con quién estaba o en quién pensaba.",
+            "Rebobinar hasta un momento en que sí podía mentalizar y avanzar en detalle, buscando la pérdida o el rechazo que activó el apego.",
+            "Devolver a la persona la responsabilidad de mantener la mente activa e identificar cuándo pudo recuperar el control.",
+            "No interpretar el acto como manipulación ni por la historia personal, y no mentalizar la relación terapéutica en el momento inmediato del intento."
+          ],
+          casa: "Revisar el plan de crisis con lo aprendido.",
+          avance: "Bajan las autolesiones y la persona identifica sus puntos de vulnerabilidad.",
+          fuente: "Bateman y Fonagy, 2016, cap. 7"
+        },
+        {
+          t: "Grupo de mentalización y relación terapéutica",
+          tecs: ["mentalizar-relacion", "parar-rebobinar"],
+          obj: "Practicar la mentalización en interacciones reales, con otras personas del grupo y con el terapeuta.",
+          pasos: [
+            "Asistir cada semana al grupo de mentalización, un lugar para entrenar la comprensión de la mente propia y la de los demás.",
+            "Cuando se pierde la mentalización en la sesión o en el grupo, parar, rebobinar hasta el último momento de diálogo constructivo y explorar quién sintió qué.",
+            "Mentalizar la relación con el terapeuta paso a paso: validar la experiencia, explorarla en la relación actual, reconocer la contribución del terapeuta, construir juntos una comprensión, ofrecer otra perspectiva y ver cómo la recibe la persona.",
+            "No interpretar lo que pasa en la relación como repetición del pasado."
+          ],
+          casa: "Anotar lo que sintió en el grupo para hablarlo en la sesión individual.",
+          avance: "La persona habla de lo que siente hacia el terapeuta o el grupo sin romper el vínculo.",
+          fuente: "Bateman y Fonagy, 2016, caps. 6, 10 y 12"
+        },
+        {
+          t: "Fase final y seguimiento",
+          tecs: ["prevencion-recaidas", "apoyo-social"],
+          obj: "Consolidar el funcionamiento social y terminar sin que reaparezcan las formas antiguas de manejar las emociones.",
+          pasos: [
+            "Desde los 12 meses, con seis por delante, trabajar las relaciones y el funcionamiento social: estudio, trabajo o voluntariado.",
+            "Dejar que la persona tome la iniciativa al planear la salida: la fecha, sus planes y los planes de contingencia.",
+            "Atender los sentimientos de pérdida que trae el final.",
+            "Acordar entre la persona y el terapeuta un seguimiento a su medida."
+          ],
+          casa: "Escribir el plan para después del tratamiento.",
+          avance: "La persona sostiene relaciones y actividades sin crisis graves.",
+          fuente: "Bateman y Fonagy, 2016, cap. 5",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "Autolesiones, intentos de suicidio y hospitalizaciones, que fueron resultados principales de los ensayos.",
+        "<strong>C-SSRS</strong> cuando hay conducta suicida.",
+        "<strong>PHQ-9</strong> para la depresión.",
+        "Funcionamiento social e interpersonal."
+      ],
+      adapt: [
+        "<strong>Hospital de día:</strong> la versión intensiva, de hasta cinco días por semana, se pensó para el riesgo alto, las hospitalizaciones repetidas, el consumo grave y la vivienda inestable; luego se vio que estas personas mejoraban igual en el programa ambulatorio (Bateman y Fonagy, 2016, cap. 5).",
+        "<strong>Adolescentes:</strong> en un ensayo con adolescentes con autolesiones, la mayoría con rasgos límite, el 44 % se recuperó frente al 17 % con el tratamiento habitual (Bateman y Fonagy, 2016, cap. 2).",
+        "<strong>Trastorno antisocial:</strong> el libro describe un programa grupal adaptado (Bateman y Fonagy, 2016, cap. 13).",
+        "<strong>Familias:</strong> el programa FACTS entrena a familiares y cuidadores en cinco módulos: el trastorno, la mentalización, la atención plena y el manejo de las emociones, la validación y la solución de problemas (Bateman y Fonagy, 2016, cap. 14)."
+      ],
+      cuidado: [
+        "Las intervenciones que activan demasiado el apego antes de tiempo pueden reducir la mentalización y provocar las conductas que se busca reducir; ante la duda, empezar por la superficie (Bateman y Fonagy, 2016, cap. 7).",
+        "Un equipo que comparte propósito, supervisión y moral es parte del tratamiento (Bateman y Fonagy, 2016, cap. 5).",
+        "Tras 12 a 18 meses, la mayoría de las personas con un trastorno grave necesitará algún apoyo posterior (Bateman y Fonagy, 2016, cap. 5)."
       ]
     }
   ]
@@ -23800,7 +24220,71 @@ const GLOSARIO = [
   fuente: "Strosahl et al., 2012, cap. 5 y apéndice" },
 { k: "formula-desafio", t: "Fórmula del desafío", tipo: "Técnica", enf: ["act"],
   d: "Ante una situación difícil, siempre hay dos o tres opciones: dejarla; quedarse y vivir según los valores —mejorar lo que se pueda, hacer espacio al dolor inevitable y tratarse con amabilidad—; o quedarse y hacer cosas que no cambian nada o la empeoran. La tercera alivia un momento, pero a la larga quita vida. Sirve para recuperar la elección cuando la persona se siente sin salida.",
-  fuente: "Harris, 2021b, cap. 15" }
+  fuente: "Harris, 2021b, cap. 15" },
+/* ---------- Tercera generación, bloque 1 (2026-10-27) ---------- */
+{ k: "reescritura-imaginacion", t: "Reescritura en imaginación", alias: ["reescritura de imágenes"], tipo: "Técnica", enf: ["esq"],
+  d: "La persona revive con los ojos cerrados un recuerdo doloroso de la infancia desde la perspectiva de la niña o el niño que fue, y la escena se cambia en la imaginación para que se cubran sus necesidades: alguien detiene lo que pasa, la protege y la consuela. Al principio entra el terapeuta; cuando el adulto sano es fuerte, entra la propia persona y después vuelve a la perspectiva infantil para pedir lo que todavía le falta. No cambia el pasado, sino las conclusiones que la persona sacó de él.",
+  fuente: "Arntz y van Genderen, 2021, cap. 5" },
+{ k: "juego-roles-historico", t: "Juego de roles histórico", alias: ["juego de roles de una situación del pasado"], tipo: "Técnica", enf: ["esq"],
+  d: "Se representa una situación de la infancia con el terapeuta en el papel de la otra persona; luego se intercambian los papeles para que la persona vea la escena desde el otro lado, y por último se ensaya una respuesta nueva. Sirve para revisar la interpretación que la niña o el niño hizo de lo que pasó.",
+  fuente: "Arntz y van Genderen, 2021, cap. 5" },
+{ k: "fijar-limites", t: "Poner límites en la terapia", alias: ["límites a la conducta en la terapia"], tipo: "Técnica", enf: ["esq"],
+  d: "Parte de la reparentalización: cuando la confrontación empática no basta, el terapeuta pone un límite a la conducta que pone en riesgo a la persona, a otros o a la terapia, como el contacto excesivo fuera de sesión, las ausencias, las amenazas o el abuso de sustancias. Ante un peligro inmediato se hace de inmediato; con los límites personales, paso a paso y solo cuando el terapeuta está dispuesto a detener la terapia si la conducta no cambia.",
+  fuente: "Arntz y van Genderen, 2021, cap. 4" },
+{ k: "diario-cognitivo-modos", t: "Diario cognitivo de modos", alias: ["diario de modos"], tipo: "Técnica", enf: ["esq"],
+  d: "Registro de una situación que activó un modo: qué pasó, qué sintió, pensó e hizo la persona, qué modo se activó, qué parte de su reacción era justificada, cuál fue excesiva y cómo habría querido reaccionar. Ayuda a reconocer los modos y a fortalecer al adulto sano.",
+  fuente: "Arntz y van Genderen, 2021, cap. 6 y apéndice B" },
+{ k: "registro-positivo", t: "Registro de lo positivo", alias: ["bitácora positiva"], tipo: "Técnica", enf: ["esq"],
+  d: "Cuaderno, que se lleva durante mucho tiempo, en el que la persona anota experiencias y hechos que contradicen sus esquemas viejos y apoyan los nuevos, incluidos los pequeños de cada día —cocinar algo rico, ir al gimnasio— y las veces en que respondió bien aunque el resultado no fuera el esperado. Contrarresta una memoria que solo retiene lo que confirma los esquemas.",
+  fuente: "Arntz y van Genderen, 2021, cap. 6 y apéndice C" },
+{ k: "prueba-historica", t: "Prueba histórica", alias: ["prueba histórica de un esquema"], tipo: "Técnica", enf: ["esq"],
+  d: "Para poner a prueba la idea de «siempre fui una mala persona», se recorre la vida de la persona por etapas del desarrollo: primero se informa sobre lo normal en un niño de esa edad y luego se revisan fotografías, informes escolares y cartas, y, si es posible, se pregunta a familiares, vecinos o maestros. Casi nunca aparece la prueba temida, y la persona entiende mejor a la niña o el niño que fue y el papel de su crianza.",
+  fuente: "Arntz y van Genderen, 2021, cap. 6 y apéndice D" },
+{ k: "pros-contras-modo", t: "Pros y contras del modo de afrontamiento", alias: ["ventajas y desventajas del modo"], tipo: "Técnica", enf: ["esq"],
+  d: "Se valida primero para qué sirvió el modo de afrontamiento en la infancia —protegía de algo— y luego se revisa con la persona lo que le da y lo que le cuesta hoy. Prepara para reducir su influencia, primero en la sesión y después en la vida diaria.",
+  fuente: "Arntz y Jacob, 2013, cap. 5" },
+{ k: "puente-afectivo", t: "Puente afectivo", alias: ["puente de afecto"], tipo: "Técnica", enf: ["esq"],
+  d: "Puerta de entrada a la reescritura en imaginación: a partir de una emoción intensa de una situación actual, con los ojos cerrados, se deja que aparezca una imagen de la infancia en la que la persona se sintió igual. Así se llega al recuerdo ligado al modo que está activo.",
+  fuente: "Arntz y Jacob, 2013, cap. 6" },
+{ k: "mentalizacion", t: "Mentalización", alias: ["mentalizar"], tipo: "Concepto", enf: ["mbt"],
+  d: "Capacidad de entender la conducta propia y la de los demás por sus estados mentales: pensamientos, emociones, deseos e intenciones. Casi siempre ocurre de forma automática. En el trastorno límite es frágil y se pierde cuando se activa el apego, y eso precede a muchas crisis y autolesiones.",
+  fuente: "Bateman y Fonagy, 2016, cap. 1" },
+{ k: "modos-prementalizadores", t: "Equivalencia psíquica, modo teleológico y modo simulado", alias: ["equivalencia psíquica", "modo teleológico", "modo simulado"], tipo: "Concepto", enf: ["mbt"],
+  d: "Formas de vivir la mente que reaparecen cuando se pierde la mentalización. En la equivalencia psíquica, lo que se piensa o se siente se vive como real y cierto. En el modo teleológico, solo cuenta lo que se hace físicamente: el afecto solo es real si se demuestra con una acción. En el modo simulado, los pensamientos y emociones se separan de la realidad, con vacío o, en el extremo, disociación.",
+  fuente: "Bateman y Fonagy, 2016, cap. 1" },
+{ k: "postura-no-saber", t: "Postura de no saber", alias: ["postura mentalizadora"], tipo: "Técnica", enf: ["mbt"],
+  d: "Actitud del terapeuta que reconoce que los estados mentales son opacos: no sabe más que la persona sobre lo que hay en su mente, y pregunta activamente para ver las cosas como ella las ve. No es ignorancia: el terapeuta usa su conocimiento, pero acepta que otra mente puede cambiar la suya.",
+  fuente: "Bateman y Fonagy, 2016, cap. 6" },
+{ k: "espectro-intervenciones-mbt", t: "Espectro de intervenciones de la mentalización", alias: ["de la superficie a la profundidad"], tipo: "Procedimiento", enf: ["mbt"],
+  d: "Orden de las intervenciones según su intensidad emocional: validación empática; clarificación, exploración y desafío; foco en el afecto; y mentalizar la relación. Se elige según la activación de la persona: con emoción alta, la validación; solo cuando puede sostener la emoción, la relación. Si la emoción amenaza con desbordarse, se vuelve un paso hacia la superficie.",
+  fuente: "Bateman y Fonagy, 2016, cap. 7" },
+{ k: "parar-rebobinar", t: "Parar, rebobinar y explorar", alias: ["rebobinar la sesión"], tipo: "Técnica", enf: ["mbt"],
+  d: "Cuando la persona, el terapeuta o el grupo pierden la mentalización, el terapeuta detiene la conversación y la lleva de vuelta al último momento en que sí se podía pensar con claridad; desde ahí avanza «cuadro a cuadro», viendo quién sintió qué, hasta entender cómo se perdió el hilo.",
+  fuente: "Bateman y Fonagy, 2016, cap. 6" },
+{ k: "analisis-funcional-mentalizador", t: "Análisis funcional mentalizador", alias: ["análisis mentalizador de una autolesión"], tipo: "Técnica", enf: ["mbt"],
+  d: "Revisión de una autolesión o un intento de suicidio centrada en el estado mental de la persona y su contexto interpersonal: con validación primero, se busca el punto de vulnerabilidad, se rebobina hasta antes de perder la mentalización y se avanza en detalle hasta el acto, identificando cuándo pudo recuperar el control. No se interpreta el acto en caliente ni como manipulación.",
+  fuente: "Bateman y Fonagy, 2016, cap. 7" },
+{ k: "mentalizar-relacion", t: "Mentalizar la relación", alias: ["mentalizar la transferencia"], tipo: "Técnica", enf: ["mbt"],
+  d: "Trabajo con lo que la persona siente hacia el terapeuta en el momento: validar la experiencia, explorarla en la relación actual, reconocer la contribución del propio terapeuta, construir juntos una comprensión, ofrecer otra perspectiva y ver cómo la recibe. No se interpreta como repetición del pasado.",
+  fuente: "Bateman y Fonagy, 2016, cap. 10" },
+{ k: "escalera-crisis", t: "Escalera de la crisis", alias: ["plan de crisis por escalones"], tipo: "Técnica", enf: ["mbt"],
+  d: "Parte del plan de crisis: a partir de crisis pasadas, la persona ubica en una escalera de 0, en control, a 3, fuera de control, las señales de cada escalón —emociones, conductas, pensamientos— y acuerda qué puede hacer y qué no ella, los demás y los servicios para detener la escalera o bajarla.",
+  fuente: "Bateman y Fonagy, 2016, cap. 5" },
+{ k: "mbt-introductorio", t: "Grupo introductorio de mentalización", alias: ["MBT-I"], tipo: "Formato", enf: ["mbt"],
+  d: "Grupo psicoeducativo de hasta diez personas, 12 sesiones de hora y media, que abre el tratamiento basado en la mentalización: qué es mentalizar, los problemas para hacerlo, las emociones, el apego, el trastorno de la personalidad y el tratamiento. Los ejercicios pasan de situaciones lejanas a personales cuando el grupo tiene confianza.",
+  fuente: "Bateman y Fonagy, 2016, cap. 11" },
+{ k: "criterios-preparacion-dbtpe", t: "Criterios de preparación para la exposición", alias: ["criterios de preparación"], tipo: "Procedimiento", enf: ["dbt"],
+  d: "Seis condiciones para empezar el protocolo de exposición dentro de la terapia dialéctico-conductual: sin riesgo inminente de suicidio; sin conductas suicidas ni autolesiones en los últimos dos meses; capacidad de controlarlas ante sus disparadores; sin conductas graves que interfieran con la terapia; el estrés postraumático como prioridad; y capacidad y disposición para sentir emociones intensas sin escapar. Las ideas suicidas sin intención ni plan no impiden empezar.",
+  fuente: "Harned, 2022, cap. 6" },
+{ k: "plan-habilidades-postexposicion", t: "Plan de habilidades para después de la exposición", alias: ["plan de habilidades posterior a la exposición"], tipo: "Técnica", enf: ["dbt"],
+  d: "Lista escrita de habilidades para manejar las emociones intensas después de cada exposición sin caer en conductas problema: unas para bajar la intensidad —distraerse, calmarse, cambiar la química del cuerpo— y otras para sentir la emoción —atención plena, aceptación radical—, más las conductas que hay que evitar, como aislarse o tomar decisiones importantes.",
+  fuente: "Harned, 2022, cap. 8" },
+{ k: "reacciones-dialecticas-trauma", t: "Reacciones dialécticas al trauma", alias: ["extremos tras el trauma"], tipo: "Concepto", enf: ["dbt"],
+  d: "Pares de extremos entre los que oscilan muchas personas tras un trauma: inundación y embotamiento emocional, descontrol imprudente y control rígido, conexión desesperada e independencia distante. Ayudan a entender conductas que parecen contradictorias.",
+  fuente: "Harned, 2022, cap. 9" },
+{ k: "terapeuta-propia-exposicion", t: "Ser su propio terapeuta de exposición", alias: ["estilo de vida de exposición"], tipo: "Técnica", enf: ["dbt"],
+  d: "Al terminar el protocolo, la persona planea exposiciones en vivo y en imaginación para seguir haciéndolas por su cuenta y adopta la costumbre de acercarse a lo que teme en lugar de evitarlo. Sirve para mantener lo logrado y detectar a tiempo un aumento de los síntomas.",
+  fuente: "Harned, 2022, cap. 13" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
