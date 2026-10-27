@@ -642,6 +642,7 @@ a.ficha .fmt{font-weight:500; font-size:11.5px; color:var(--ink-faint);}
 #hoja .h-fichas{display:grid; grid-template-columns:1fr 1fr; gap:8px 16px;}
 #hoja .h-ficha{display:flex; gap:9px; align-items:flex-start; break-inside:avoid;}
 #hoja .h-ficha .qr{flex:none; width:23mm; height:23mm;}
+#hoja .h-ficha .fc{font-size:7.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint);}
 #hoja .h-ficha .ft{display:block; line-height:1.25; font-weight:700; font-size:9.5px; color:var(--ink); text-decoration:none;}
 #hoja .h-ficha .fd{font-size:8.5px; line-height:1.3; color:var(--ink-soft); margin-top:2px;}
 #hoja .h-ficha .fu{font-size:7px; color:var(--ink-soft); margin-top:3px; word-break:break-all;}
@@ -15136,6 +15137,9 @@ function botonesTecnicas(claves){
     '<button type="button" class="gl tec" data-g="' + k + '">' + escapar(GLOSARIO_K[k].t) + '</button>').join("") + '</span>';
 }
 const fichasDe = claves => (claves || []).map(k => Object.assign({ k }, FICHAS[k])).filter(f => f.t);
+// Clase de ficha (c en FICHAS): sin c es un registro que se llena; las guías
+// de práctica y los guiones para el terapeuta se leen y se siguen.
+const CLASE_FICHA = { guia: { ver: "Ver guía", et: "Guía de práctica" }, guion: { ver: "Ver guion", et: "Guion para el terapeuta" } };
 // En el PDF exportado las fichas se enlazan a su dirección pública: el PDF
 // circula solo, lejos de la carpeta fichas/.
 const urlFicha = k => FICHAS_URL + k + ".pdf";
@@ -15150,7 +15154,7 @@ function botonesFichas(claves){
   if (!fs.length) return "";
   return '<div class="act-fichas">' + fs.map(f =>
     '<a class="ficha" href="fichas-infancia/' + f.k + '.pdf" target="_blank" rel="noopener" title="' + escapar(f.d || "") + ' (se abre en una pestaña nueva; desde ahí se descarga o se imprime)">' +
-      'Ver ficha · ' + escapar(f.t) + ' <span class="fmt">PDF · de esta guía</span></a>').join("") +
+      (CLASE_FICHA[f.c] ? CLASE_FICHA[f.c].ver : 'Ver ficha') + ' · ' + escapar(f.t) + ' <span class="fmt">PDF · de esta guía</span></a>').join("") +
   '</div>';
 }
 
@@ -15902,9 +15906,10 @@ function construirHoja(id, o, notas){
     const vistas = new Set(), fs = [];
     op.actividades.forEach(a => fichasDe(a.fichas).forEach(f => { if (!vistas.has(f.k)){ vistas.add(f.k); fs.push(f); } }));
     if (fs.length){
-      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Son fichas elaboradas para esta guía a partir de las actividades del plan; no forman parte del material de sus autores. Cada ficha es un PDF rellenable. Se abre con un clic en su nombre o escaneando el código con el celular.</p>' +
+      h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Son fichas elaboradas para esta guía a partir de las actividades del plan; no forman parte del material de sus autores. ' + (fs.some(f => f.c) ? 'Las fichas de registro son PDF rellenables; las guías de práctica y los guiones para el terapeuta se leen y se siguen. Todas se abren' : 'Cada ficha es un PDF rellenable. Se abre') + ' con un clic en su nombre o escaneando el código con el celular.</p>' +
         '<div class="h-fichas">' + fs.map(f =>
           '<div class="h-ficha">' + qrFicha(f) + '<div>' +
+            (CLASE_FICHA[f.c] ? '<div class="fc">' + CLASE_FICHA[f.c].et + '</div>' : '') +
             '<a class="ft" href="' + urlFicha(f.k) + '">' + escapar(f.t) + '</a>' +
             '<div class="fd">' + escapar(f.d) + '</div>' +
             '<div class="fu">' + escapar(urlFicha(f.k)) + '</div>' +
