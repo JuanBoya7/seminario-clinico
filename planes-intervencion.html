@@ -2454,6 +2454,20 @@ REFERENCIAS.push(
   { k: "Lynch, 2018b", ref: "Lynch, T. R. (2018b). <em>The skills training manual for radically open dialectical behavior therapy: A clinician's guide for treating disorders of overcontrol</em>. New Harbinger." }
 );
 
+/* Terapias de tercera generación, bloque 4 (2026-10-27): compasión.
+   Terapia centrada en la compasión por fases para el trauma complejo
+   (Lee, cap. 25 de Gilbert y Simos, 2022, con la guía de Lee y James,
+   2011; evidencia emergente), autoayuda guiada para comer en exceso
+   (Goss, 2011, con el cap. 22; un ensayo breve de autoayuda en atracones)
+   y la versión de autoayuda del programa de autocompasión consciente
+   (Neff y Germer, 2018). */
+REFERENCIAS.push(
+  { k: "Gilbert y Simos, 2022", ref: "Gilbert, P. y Simos, G. (Eds.). (2022). <em>Compassion focused therapy: Clinical practice and applications</em>. Routledge." },
+  { k: "Lee y James, 2011", ref: "Lee, D. A. y James, S. (2011). <em>The compassionate-mind guide to recovering from trauma and PTSD: Using compassion-focused therapy to overcome flashbacks, shame, guilt, and fear</em>. New Harbinger." },
+  { k: "Goss, 2011", ref: "Goss, K. (2011). <em>The compassionate-mind guide to ending overeating: Using compassion-focused therapy to overcome bingeing and disordered eating</em>. New Harbinger." },
+  { k: "Neff y Germer, 2018", ref: "Neff, K. y Germer, C. (2018). <em>The mindful self-compassion workbook: A proven way to accept yourself, build inner strength, and thrive</em>. Guilford Press." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -6043,6 +6057,7 @@ const VARIABLES = [
     "<strong>Si lo que más pesa son la culpa, la vergüenza o conclusiones extremas</strong> («fue mi culpa», «no puedo confiar en nadie»), la terapia de procesamiento cognitivo trabaja esos significados. Tiene dos versiones: sin relato escrito, la estándar, y con relato escrito, para quien disocia mucho o quiere contar su historia.",
     "<strong>Si la vida se ha ido encogiendo</strong> —aislamiento, abandono de actividades, embotamiento— y la persona no está lista para trabajar el recuerdo, la activación conductual para el TEPT recupera la vida cotidiana.",
     "<strong>Si la persona no está lista para enfrentar el recuerdo y su vida se ha organizado alrededor de no sentir</strong> —o ya pasó por varios tratamientos—, la terapia de aceptación y compromiso trabaja esa evitación, con evidencia todavía preliminar en el estrés postraumático. Tiene dos versiones: el protocolo por componentes y, para el trauma complejo con extremos de activación o desconexión, una que empieza por anclarse en el presente.",
+    "<strong>Si el trauma fue repetido, en relaciones cercanas o en la infancia, y lo que más pesa son la vergüenza, el autodesprecio y no poder sentirse a salvo</strong>, la terapia centrada en la compasión por fases construye primero la capacidad de calmarse y después trabaja los recuerdos con un relato compasivo; su respaldo es preliminar.",
     "<strong>Si hay autolesiones, conductas suicidas o una desregulación emocional marcada</strong>, primero se estabiliza con terapia dialéctico-conductual, y la exposición prolongada se integra cuando la persona cumple los criterios de preparación.",
     "<strong>Si hay pérdidas de tiempo, partes disociativas que toman el control o voces internas</strong> tras traumas graves y repetidos en la infancia, ver <em>Trastornos disociativos complejos</em>: el trabajo empieza por la estabilización, y la exposición prematura a los recuerdos puede desestabilizar (Boon et al., 2011, prefacio).",
     "<strong>Si la situación estresante sigue presente</strong> o la persona no acepta todavía la exposición, la inoculación de estrés entrena el afrontamiento."
@@ -6805,6 +6820,122 @@ const VARIABLES = [
         "Si la persona está en psicosis activa o en proceso de hospitalización, primero se estabiliza; si empeora durante la terapia —deja de vivir según sus valores y aumentan las conductas dañinas—, se detiene (Walser y Westrup, 2007, cap. 10).",
         "Si la persona disocia o se desborda en sesión, se echa el ancla antes de seguir; nunca se insiste en un ejercicio sin su disposición (Harris, 2021a, caps. 4 y 8).",
         "Atender la propia evitación del terapeuta: es fácil desviar la conversación del trauma o del suicidio, o hablar de la terapia en lugar de practicarla (Harris, 2021a, cap. 6)."
+      ]
+    },
+    {
+      id: "tept-cft",
+      mod: "gilbert-tres-sistemas",
+      inst: ["PCL-5", "FSCRS"],
+      enf: "cft",
+      nivel: "preliminar",
+      t: "Terapia centrada en la compasión por fases para el trauma complejo",
+      fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011",
+      cuando: "Estrés postraumático complejo tras <strong>violencia interpersonal repetida</strong>, muchas veces en la infancia y por parte de figuras de apego, en el que pesan la vergüenza, el autodesprecio y la incapacidad de sentirse a salvo o cuidado, y en el que a la persona le cuesta tomar una perspectiva sin culpa sobre lo que le pasó. En el estrés postraumático basado en el miedo, las terapias de exposición son muy eficaces y van primero (Gilbert y Simos, 2022, cap. 25).",
+      respaldo: "El tratamiento por fases —primero recursos, seguridad y estabilidad, después el trabajo con los recuerdos— es la práctica establecida en el trauma complejo. El enfoque centrado en la compasión se dirige a la vergüenza y a la dificultad para sentirse seguro que dejan los traumas tempranos, y el capítulo describe una evidencia todavía emergente que lo respalda (Gilbert y Simos, 2022, cap. 25). La guía de Lee y James es un libro de autoayuda que puede trabajarse solo o con un terapeuta y no reporta estudios propios (Lee y James, 2011, prefacio).",
+      secuencia: "<strong>Secuencia:</strong> cinco procesos que se suceden con flexibilidad: diferenciar, con psicoeducación sobre el trauma y la formulación; tolerar el malestar y crear contextos emocionales nuevos, con imágenes compasivas; integrar, trabajando el abusador interiorizado; dar contexto a los recuerdos fragmentados en un relato compasivo de la vida; y transformar, encarnando la versión compasiva de uno mismo. La guía de Lee y James sigue el mismo orden en tres partes —entender las reacciones al trauma, desarrollar las habilidades de la mente compasiva y usarlas con la mente traumatizada— y sirve como material entre sesiones (Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011).",
+      esc: ["salud-mental"],
+      actividades: [
+        {
+          t: "Diferenciar: formulación y psicoeducación sobre el trauma",
+          tecs: ["formulacion-caso", "tres-sistemas-emocion", "ventana-tolerancia"],
+          obj: "Que la persona entienda sus reacciones al trauma sin culparse por ellas.",
+          pasos: [
+            "Construir una formulación compasiva: la historia de amenaza y falta de cuidado, las estrategias de seguridad —desconexión, rabia sin voz, evitación— y sus consecuencias.",
+            "Explicar la cascada de defensa y el paso de la hiperactivación al apagamiento, para que la persona entienda por qué se paraliza o se desconecta.",
+            "Explicar los recuerdos traumáticos, los recuerdos intrusivos, las pesadillas, la vergüenza y la autocrítica después del trauma.",
+            "Anticipar por qué la compasión cuesta al principio: abrir el sistema de cuidado despierta recuerdos, anhelo y rabia."
+          ],
+          casa: "Leer la primera parte de la guía y anotar las propias reacciones al trauma.",
+          avance: "La persona describe sus reacciones como respuestas aprendidas para protegerse.",
+          fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, caps. 1 a 5",
+          fichas: ["tres-sistemas"]
+        },
+        {
+          t: "Tolerar el malestar y crear un contexto emocional nuevo",
+          tecs: ["respiracion-ritmo-tranquilizador", "lugar-seguro-cft", "cuidador-ideal", "miedos-compasion"],
+          obj: "Construir la capacidad de calmarse y de sentirse acompañado antes de tocar los recuerdos.",
+          pasos: [
+            "Usar la empatía con lo sola, herida y perdida que estuvo la persona como puerta de entrada a la tristeza, construyendo de a poco la tolerancia emocional.",
+            "Practicar la respiración de ritmo tranquilizador, la atención plena y el lugar seguro.",
+            "Crear la imagen del cuidador compasivo ideal y practicar la compasión que fluye hacia los demás y hacia uno mismo.",
+            "Trabajar los miedos, bloqueos y resistencias que aparezcan."
+          ],
+          casa: "Respiración de ritmo tranquilizador e imágenes compasivas cada día, con la segunda parte de la guía.",
+          avance: "La persona puede calmarse con estas prácticas cuando aparece el malestar.",
+          fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, caps. 6 a 8"
+        },
+        {
+          t: "Integrar: el abusador interiorizado",
+          tecs: ["abusador-interiorizado", "funcion-autocritica", "trabajo-sillas"],
+          obj: "Distinguir el autodesprecio que repite la voz de quien maltrató y debilitar su poder.",
+          pasos: [
+            "Preguntar si la crítica es realmente propia o el eco de otra voz, casi siempre ligada a los recuerdos del maltrato.",
+            "Diseñar con la persona una exposición gradual: empezar escribiendo o revisando las credenciales del crítico, antes de trabajar con sillas.",
+            "Explorar en la silla, con cuidado, la relación con el abusador interiorizado y las distintas partes de la persona.",
+            "Conocer y responder al «matón interior» desde el yo compasivo."
+          ],
+          casa: "Hojas de la guía sobre el matón interior.",
+          avance: "La persona reconoce la voz del abusador como algo que le hicieron, no como lo que es.",
+          fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, cap. 9",
+          fichas: ["registro-autocritica"]
+        },
+        {
+          t: "Recuerdos intrusivos y pesadillas",
+          tecs: ["reencuadre-compasivo", "cuidador-ideal", "reescritura-pesadillas"],
+          obj: "Tener más control sobre los recuerdos intrusivos y quitarles la vergüenza.",
+          pasos: [
+            "Practicar formas de recordar que el recuerdo es del pasado y bajar el sistema de amenaza con las habilidades compasivas.",
+            "Escribir un reencuadre compasivo para cada recuerdo intrusivo.",
+            "Revisar los recuerdos que producen vergüenza acompañado por la imagen del cuidador ideal, y trabajar el asco con una reescritura.",
+            "Reescribir las pesadillas y cuidar el sueño."
+          ],
+          casa: "Reencuadre compasivo de los recuerdos de la semana y reescritura de una pesadilla.",
+          avance: "Los recuerdos intrusivos se vuelven menos frecuentes o menos cargados de vergüenza.",
+          fuente: "Lee y James, 2011, caps. 9 y 10"
+        },
+        {
+          t: "Un relato compasivo de la propia vida",
+          tecs: ["relato-compasivo", "carta-compasiva"],
+          obj: "Transformar los recuerdos fragmentados en un relato coherente y compasivo.",
+          pasos: [
+            "Empezar cada sesión con respiración, imágenes de compasión y el recordatorio del compromiso de ayudar, no dañar.",
+            "Recorrer la historia de vida con una línea de vida, preguntando con curiosidad y amabilidad, y actualizar el significado de los hechos de la vergüenza a la compasión.",
+            "Escribir una carta compasiva sobre la historia del trauma, siguiendo los pasos de la guía: reconocer la valentía y la fortaleza, la empatía, «no es tu culpa, pero sí tu responsabilidad» y lo que se necesita para seguir."
+          ],
+          casa: "Escribir y releer la carta compasiva.",
+          avance: "La persona cuenta su historia sin culparse.",
+          fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, cap. 11",
+          fichas: ["carta-compasiva"]
+        },
+        {
+          t: "Transformación: vivir con compasión",
+          tecs: ["yo-compasivo", "botiquin-compasivo", "prevencion-recaidas"],
+          obj: "Encarnar la versión compasiva de uno mismo y sostenerla en el tiempo.",
+          pasos: [
+            "Escribir un plan para mantener viva la compasión: cuando vivo sin miedo…, esto es lo que soy…, así me trato…, esto hago cuando me cuesta…",
+            "Armar rutinas y una caja de herramientas compasivas: cartas, respiración, gratitud, atención plena.",
+            "Preparar un botiquín compasivo.",
+            "Dar tiempo a esta fase, aunque la persona se sienta mucho mejor después de narrar su historia."
+          ],
+          casa: "Plan de compasión y botiquín.",
+          avance: "La persona mantiene sus prácticas y se trata con amabilidad en los momentos difíciles.",
+          fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, cap. 12",
+          fichas: ["plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>PCL-5</strong> al inicio y en cada fase.",
+        "<strong>FSCRS</strong> para la autocrítica y la capacidad de tranquilizarse.",
+        "Frecuencia de recuerdos intrusivos y pesadillas, y conductas de autolesión."
+      ],
+      adapt: [
+        "<strong>Autoayuda acompañada:</strong> la guía puede trabajarse con un terapeuta; si los síntomas duran meses y afectan la vida, o los ejercicios abruman, conviene hacerlo con un profesional con experiencia en trauma (Lee y James, 2011, prefacio y cap. 1).",
+        "<strong>Trauma moral:</strong> el capítulo incluye el trauma por actos cometidos en estados como la guerra, el consumo o la psicosis, con culpa intensa (Gilbert y Simos, 2022, cap. 25)."
+      ],
+      cuidado: [
+        "Al dejar la evitación, los recuerdos intrusivos y las pesadillas suelen aumentar al principio; es esperable y se enseñan antes habilidades para manejarlos (Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, cap. 9).",
+        "Entender que «no es tu culpa» puede traer la pregunta de quién fue el culpable, dilemas sobre denunciar a familiares y el peso de la vida que no se tuvo; en algunos casos aumentan las ideas suicidas y las autolesiones, y hay que cuidar el riesgo (Gilbert y Simos, 2022, cap. 25).",
+        "Si hay partes disociativas que toman el control, ver <em>Trastornos disociativos complejos</em>."
       ]
     },
     {
@@ -9679,7 +9810,7 @@ const VARIABLES = [
   sub: "Una forma dura y hostil de tratarse a uno mismo ante los errores y las dificultades —«eres un inútil», «das asco»— y la vergüenza de sentirse inferior o defectuoso. Son problemas transdiagnósticos: aparecen en la depresión, la ansiedad, los trastornos alimentarios o el trauma, y suelen venir de historias de maltrato, acoso, críticas o falta de afecto. Quien las padece puede entender la lógica de un pensamiento alternativo y aun así no sentirse mejor.",
   elegir: [
     "<strong>El plan es la terapia centrada en la compasión</strong>, que se desarrolló precisamente para personas con mucha vergüenza y autocrítica que no logran sentirse tranquilas ni tratarse con amabilidad. Puede usarse sola o integrada en otro tratamiento, cuando la autocrítica frena el avance.",
-    "<strong>Si la persona no está en una fase aguda y busca aprender a tratarse con amabilidad</strong>, el programa de autocompasión consciente lo enseña en grupo, con práctica diaria; también sus prácticas se pueden llevar a la consulta.",
+    "<strong>Si la persona no está en una fase aguda y busca aprender a tratarse con amabilidad</strong>, el programa de autocompasión consciente lo enseña en grupo, con práctica diaria; también sus prácticas se pueden llevar a la consulta. Si no hay grupo disponible o la persona prefiere un libro, tiene una versión de autoayuda guiada con el cuaderno del programa.",
     "<strong>Si la autocrítica gira alrededor de algo concreto que la persona hizo y que dañó a otro</strong>, el autoperdón responsable trabaja primero la responsabilidad y la reparación, y después la condena a uno mismo.",
     "Si la autocrítica forma parte de patrones de relación y de personalidad muy estables, conviene revisar también la variable Patrones interpersonales y de personalidad; si hay conductas autolesivas, la variable Riesgo suicida y autolesión va primero."
   ],
@@ -9807,11 +9938,15 @@ const VARIABLES = [
       enf: "msc",
       nivel: "ensayos",
       t: "Programa de autocompasión consciente",
-      fuente: "Germer y Neff, 2019",
+      fuente: "Germer y Neff, 2019 · Neff y Germer, 2018",
       cuando: "La persona se trata con dureza y quiere aprender a tratarse con amabilidad, <strong>sin estar en una fase aguda</strong> de un trastorno. El programa fue diseñado para población general, no como tratamiento de un cuadro clínico; sus prácticas se pueden integrar en la psicoterapia.",
       respaldo: "En un ensayo aleatorizado con 51 personas, el programa aumentó la autocompasión un 43 % frente a la lista de espera, con un efecto grande, y también la atención plena, la compasión hacia otros y la satisfacción con la vida, y redujo la depresión, la ansiedad, el estrés y la evitación emocional; las ganancias se mantuvieron a los seis meses y al año. En otro ensayo con 63 personas con diabetes, redujo la depresión y el malestar por la diabetes y mejoró el control de la glucosa a los tres meses. El primer ensayo no tuvo un grupo de control activo y la mayoría de los participantes ya meditaba; cuanto más se practicó, más creció la autocompasión (Germer y Neff, 2019, cap. 3).",
       secuencia: "<strong>Secuencia:</strong> ocho sesiones semanales de unas dos horas y tres cuartos más un retiro de cuatro horas después de la quinta sesión, en grupos de 8 a 25 personas con dos instructores, uno de ellos de preferencia profesional de salud mental. Se pide practicar unos 30 minutos al día, con prácticas formales e informales. Cada sesión combina meditación, temas breves, prácticas y la indagación sobre lo que cada uno notó (Germer y Neff, 2019, cap. 5).",
       esc: ["salud-mental", "primer-nivel", "comunidad"],
+      opcA: {
+        t: "Programa grupal de ocho semanas",
+        cuando: "Personas que pueden asistir a un grupo con dos instructores formados, de preferencia uno de ellos profesional de salud mental (Germer y Neff, 2019, cap. 5)."
+      },
       actividades: [
         {
           t: "Descubrir la autocompasión",
@@ -9880,6 +10015,99 @@ const VARIABLES = [
           casa: "Plan personal de práctica.",
           avance: "La persona mantiene una práctica diaria por su cuenta.",
           fuente: "Germer y Neff, 2019, sesiones 7 y 8"
+        }
+      ],
+      opciones: [
+        {
+          t: "Autoayuda guiada con el cuaderno",
+          cuando: "La persona no puede asistir a un grupo, el programa no se ofrece donde vive o prefiere trabajar con un libro. El cuaderno contiene la mayor parte del programa y está pensado como un camino independiente; sirve también para repasar el curso. Con historia de trauma o dificultades de salud mental actuales, los autores recomiendan hacerlo con la supervisión de un terapeuta (Neff y Germer, 2018, introducción).",
+          fuente: "Neff y Germer, 2018",
+          respaldo: "El cuaderno sigue la estructura del programa de autocompasión consciente, que tiene los ensayos descritos para la versión grupal; el cuaderno en sí no se ha estudiado como autoayuda (Neff y Germer, 2018, introducción).",
+          secuencia: "<strong>Secuencia:</strong> 24 capítulos en orden, porque las habilidades se construyen unas sobre otras. Cada capítulo trae una explicación breve, prácticas y ejercicios, y relatos de participantes. Si se acompaña, el terapeuta revisa las prácticas y ayuda con la reactivación del dolor y con los bloqueos (Neff y Germer, 2018, introducción).",
+          actividades: [
+            {
+              t: "Descubrir la autocompasión",
+              tecs: ["pausa-autocompasion", "tacto-tranquilizador"],
+              obj: "Entender qué es y qué no es la autocompasión, y empezar a usarla en los momentos difíciles.",
+              pasos: [
+                "Comparar cómo se trataría a un amigo que sufre con cómo se trata uno mismo.",
+                "Revisar qué no es la autocompasión —lástima de sí, debilidad, autoindulgencia— y sus beneficios.",
+                "Entender la fisiología de la autocrítica y de la autocompasión, y sus dos caras: la que consuela y la que protege y motiva.",
+                "Practicar el tacto tranquilizador y la pausa de autocompasión."
+              ],
+              casa: "Pausa de autocompasión en una situación difícil de la semana.",
+              avance: "La persona usa la pausa en algún momento de malestar.",
+              fuente: "Neff y Germer, 2018, caps. 1 a 5",
+              fichas: ["pausa-autocompasion"]
+            },
+            {
+              t: "Atención plena, resistencia y reactivación del dolor",
+              tecs: ["respiracion-afectuosa"],
+              obj: "Anclar la autocompasión en la atención plena y saber qué hacer cuando remueve dolores antiguos.",
+              pasos: [
+                "Practicar la respiración afectuosa y la atención plena.",
+                "Notar cómo la resistencia al dolor lo aumenta y practicar soltarla.",
+                "Entender la reactivación: tratarse con amabilidad puede despertar dolores antiguos; si aparece, volver a algo neutro y bajar el ritmo."
+              ],
+              casa: "Respiración afectuosa cada día.",
+              avance: "La persona reconoce la reactivación y sabe cómo cuidarse ante ella.",
+              fuente: "Neff y Germer, 2018, caps. 6 a 8"
+            },
+            {
+              t: "Bondad amorosa y voz compasiva",
+              tecs: ["bondad-amorosa", "motivarse-compasion"],
+              obj: "Encontrar frases propias de bondad y motivarse sin atacarse.",
+              pasos: [
+                "Practicar la bondad amorosa hacia otro y hacia uno mismo, buscando frases auténticas.",
+                "Elegir una conducta que se quiere cambiar, de dificultad leve o moderada, escuchar a la voz crítica y lo que intenta proteger, y escribir un mensaje desde la voz compasiva.",
+                "Llevar la autocompasión al propio cuerpo."
+              ],
+              casa: "Frases de bondad amorosa y el mensaje de la voz compasiva.",
+              avance: "La persona se alienta ante un error sin atacarse.",
+              fuente: "Neff y Germer, 2018, caps. 9 a 12"
+            },
+            {
+              t: "Valores y emociones difíciles",
+              tecs: ["suavizar-calmar-permitir"],
+              obj: "Vivir según los propios valores y relacionarse con las emociones difíciles y la vergüenza.",
+              pasos: [
+                "Revisar las etapas del progreso: del entusiasmo inicial a la desilusión y a la aceptación radical, en la que se practica no para dejar de sentirse mal, sino porque se siente mal.",
+                "Descubrir los valores centrales y vivir según ellos.",
+                "Estar para los demás sin perderse.",
+                "Ante una emoción difícil o la vergüenza, nombrarla, ubicarla en el cuerpo, suavizar, calmar y permitir."
+              ],
+              casa: "Suavizar, calmar y permitir ante una emoción difícil.",
+              avance: "La persona se queda con una emoción difícil sin engancharse en la autocrítica.",
+              fuente: "Neff y Germer, 2018, caps. 13 a 17"
+            },
+            {
+              t: "Relaciones, cuidado, ira y perdón",
+              tecs: ["pausa-autocompasion", "perdon-accion"],
+              obj: "Llevar la autocompasión a las relaciones difíciles.",
+              pasos: [
+                "Aplicar la autocompasión a las relaciones y al cansancio de quien cuida.",
+                "Trabajar la ira en las relaciones buscando la necesidad que hay detrás.",
+                "Explorar el perdón, hacia otros y hacia uno mismo, sin forzarlo."
+              ],
+              casa: "Una práctica de autocompasión en una relación difícil.",
+              avance: "La persona responde con más amabilidad en un conflicto.",
+              fuente: "Neff y Germer, 2018, caps. 18 a 21"
+            },
+            {
+              t: "Acoger lo bueno y seguir adelante",
+              tecs: ["saborear", "autoaprecio"],
+              obj: "Acoger lo positivo y sostener la práctica.",
+              pasos: [
+                "Practicar saborear y la gratitud.",
+                "Practicar el aprecio por las propias cualidades.",
+                "Elegir las prácticas que se mantendrán."
+              ],
+              casa: "Plan personal de práctica.",
+              avance: "La persona mantiene una práctica regular por su cuenta.",
+              fuente: "Neff y Germer, 2018, caps. 22 a 24",
+              fichas: ["plan-mantenimiento"]
+            }
+          ]
         }
       ],
       medir: [
@@ -13179,7 +13407,7 @@ const VARIABLES = [
     "<strong>Si la persona está ambivalente</strong> —quiere dejar los atracones pero no la restricción, o no ve un problema en su peso—, la entrevista motivacional trabaja síntoma por síntoma: la disposición al cambio suele ser distinta para cada uno.",
     "<strong>Si la persona quiere cambiar</strong> y puede tratarse de forma ambulatoria, la terapia cognitivo-conductual mejorada es el tratamiento de elección para la bulimia y el trastorno por atracón, y sirve también para otros trastornos alimentarios y para la anorexia sin riesgo médico: normaliza la alimentación, reduce las dietas y trabaja la importancia de la figura y el peso.",
     "<strong>Si el problema son los atracones</strong>, con o sin purgas, la terapia cognitivo-conductual de Agras y Apple es un protocolo específico para la bulimia y el trastorno por atracón; tiene una versión de autoayuda guiada, con sesiones breves, que rinde igual en los ensayos.",
-    "<strong>Si los atracones se disparan claramente con emociones negativas</strong> y la persona no mejoró con la terapia cognitivo-conductual o la interpersonal, la terapia dialéctico-conductual para los atracones y la bulimia trabaja la regulación emocional en 20 sesiones; tiene ensayos pequeños y no reduce el peso.",
+    "<strong>Si los atracones se disparan claramente con emociones negativas</strong> y la persona no mejoró con la terapia cognitivo-conductual o la interpersonal, la terapia dialéctico-conductual para los atracones y la bulimia trabaja la regulación emocional en 20 sesiones; tiene ensayos pequeños y no reduce el peso. <strong>Si lo que más pesa son la vergüenza y la autocrítica</strong> por la comida, el peso o el cuerpo, y la persona prefiere trabajar con un libro, la autoayuda guiada centrada en la compasión es una opción o un complemento, con evidencia preliminar.",
     "<strong>Si se trata de una anorexia con bajo peso en una persona adulta</strong> que puede atenderse de forma ambulatoria, el manejo clínico de apoyo especializado combina la recuperación de la alimentación y el peso con una psicoterapia de apoyo. Si la anorexia se acompaña de un estilo muy sobrecontrolado —rigidez, perfeccionismo, emociones contenidas, aislamiento—, la terapia dialéctico-conductual radicalmente abierta de <em>Depresión</em> tiene un estudio sin grupo control en internación.",
     "<strong>Si la vida se ha estrechado alrededor de controlar la comida, el peso y el cuerpo</strong> y la persona quiere trabajar su relación con lo que piensa y siente sobre ellos, la terapia de aceptación y compromiso es una alternativa con respaldo conceptual; en la bulimia y el trastorno por atracón, los planes cognitivo-conductuales tienen más evidencia.",
     "<strong>Al terminar un tratamiento</strong>, o tras el alta hospitalaria en la anorexia, la prevención de recaídas prepara para las situaciones de alto riesgo y para que un desliz no se convierta en recaída."
@@ -13896,6 +14124,121 @@ const VARIABLES = [
         "No se recomienda si hay conducta suicida activa, trastorno límite con problemas múltiples graves o consumo activo: para eso está la terapia dialéctico-conductual estándar o el tratamiento del consumo (Safer et al., 2009, introducción).",
         "No hay datos en la anorexia nerviosa; en los ensayos se excluyó a quienes tenían un índice de masa corporal menor de 17,5 (Safer et al., 2009, introducción y apéndice).",
         "No reduce el peso: tras 20 sesiones, quienes tenían atracones no bajaron más de peso que la lista de espera (Safer et al., 2009, cap. 9)."
+      ]
+    },
+    {
+      id: "alim-cft",
+      mod: "gilbert-tres-sistemas",
+      inst: ["FSCRS", "EDE"],
+      enf: "cft",
+      nivel: "preliminar",
+      t: "Autoayuda guiada centrada en la compasión para comer en exceso",
+      fuente: "Goss, 2011 · Gilbert y Simos, 2022, cap. 22",
+      cuando: "La persona come en exceso o tiene atracones, y la <strong>vergüenza y la autocrítica</strong> por su forma de comer, su peso o su cuerpo la llevan a comer más. Sirve cuando <strong>prefiere trabajar con un libro, con un acompañamiento breve</strong>, o como complemento de otro plan de esta variable (Goss, 2011, introducción · Gilbert y Simos, 2022, cap. 22).",
+      respaldo: "La vergüenza y la autocrítica son más altas en los trastornos alimentarios, se asocian a síntomas más graves y a peores resultados, y persisten aun cuando los síntomas mejoran. En un ensayo, tres semanas de autoayuda centrada en la compasión —responder a las ganas de atracón con una imagen compasiva— redujeron los atracones frente al control, igual que una autoayuda cognitivo-conductual, y redujeron más la preocupación por el peso y la figura. Un programa grupal que integró la compasión con la terapia cognitivo-conductual tuvo resultados prometedores, sin grupo control (Gilbert y Simos, 2022, cap. 22). El libro de Goss no reporta estudios propios.",
+      secuencia: "<strong>Secuencia:</strong> quince capítulos en orden: entender la relación con la comida (caps. 1 a 3), desarrollar la mente compasiva (caps. 4 a 6), entender el propio comer en exceso y la motivación para cambiar (caps. 7 a 10), lo que el cuerpo necesita y una nueva forma de comer en seis pasos (caps. 11 a 13), y la carta compasiva y el cierre (caps. 14 y 15). Desde el capítulo 5, cada uno trae ejercicios y registros. Si se acompaña, el terapeuta revisa los registros y sigue el orden del capítulo 22: psicoeducación, formulación, calma, motivación compasiva, otras fuentes de logro y conexión social, y después el cambio en la forma de comer (Goss, 2011, introducción · Gilbert y Simos, 2022, cap. 22).",
+      esc: ["primer-nivel", "salud-mental"],
+      actividades: [
+        {
+          t: "Entender la relación con la comida sin culpa",
+          tecs: ["psicoeducacion", "tres-sistemas-emocion"],
+          obj: "Ver que buena parte de la dificultad para regular la comida no es culpa de la persona.",
+          pasos: [
+            "Revisar cómo el cerebro evolucionó en la escasez para buscar alimentos ricos en grasa y azúcar, y cómo el entorno actual empuja a comer más.",
+            "Explicar que desde que nacemos asociamos la comida con el consuelo, y que la comida cumple muchas funciones a lo largo de la vida.",
+            "Ver cómo dietas, restricción y críticas por el peso alimentan el ciclo de comer de más.",
+            "Presentar los tres sistemas de emociones y su relación con la comida."
+          ],
+          casa: "Leer los capítulos 1 a 3 y anotar qué funciones cumple la comida en su vida.",
+          avance: "La persona habla de su forma de comer con menos culpa.",
+          fuente: "Goss, 2011, caps. 1 a 3 · Gilbert y Simos, 2022, cap. 22",
+          fichas: ["tres-sistemas"]
+        },
+        {
+          t: "Desarrollar la mente compasiva",
+          tecs: ["respiracion-ritmo-tranquilizador", "yo-compasivo", "miedos-compasion"],
+          obj: "Construir la capacidad de calmarse y de tratarse con amabilidad.",
+          pasos: [
+            "Conocer la mente compasiva y sus cualidades.",
+            "Practicar la respiración de ritmo tranquilizador y las imágenes compasivas.",
+            "Desarrollar el yo compasivo y la autocompasión.",
+            "Revisar los miedos a la compasión, que en los problemas alimentarios suelen ser altos."
+          ],
+          casa: "Ejercicios de los capítulos 4 a 6, cada día.",
+          avance: "La persona usa una práctica compasiva cuando aparece la autocrítica.",
+          fuente: "Goss, 2011, caps. 4 a 6 · Gilbert y Simos, 2022, cap. 22"
+        },
+        {
+          t: "Por qué y cómo como en exceso",
+          tecs: ["formulacion-caso"],
+          obj: "Entender con compasión el propio patrón de comer en exceso.",
+          pasos: [
+            "Registrar el patrón actual de comidas: cuándo, qué, cuánto y en qué situación.",
+            "Identificar las funciones que cumple comer en exceso y sus consecuencias buscadas y no buscadas.",
+            "Construir una formulación compasiva del propio comer en exceso."
+          ],
+          casa: "Registro de alimentación durante una semana.",
+          avance: "La persona identifica las situaciones y emociones que llevan a comer de más.",
+          fuente: "Goss, 2011, caps. 7 a 9",
+          fichas: ["registro-alimentacion"]
+        },
+        {
+          t: "Motivarse con compasión",
+          tecs: ["motivarse-compasion"],
+          obj: "Cambiar desde el cuidado de sí y no desde la competencia o la autocrítica.",
+          pasos: [
+            "Revisar las razones para cambiar y lo que puede bloquear el cambio.",
+            "Notar si la motivación para cambiar repite la misma lógica competitiva y crítica que en otros ámbitos.",
+            "Buscar personas que apoyen el cambio."
+          ],
+          casa: "Escribir las razones compasivas para cambiar.",
+          avance: "La persona describe su motivación como cuidado de sí.",
+          fuente: "Goss, 2011, cap. 10 · Gilbert y Simos, 2022, cap. 22"
+        },
+        {
+          t: "Una nueva forma de comer",
+          tecs: ["nueva-forma-comer", "alimentacion-regular"],
+          obj: "Establecer una forma de comer regular, suficiente y disfrutable.",
+          pasos: [
+            "Revisar lo que el cuerpo necesita: energía, nutrientes, actividad física y descanso.",
+            "Empezar por un patrón regular de comidas y reducir los alimentos de alto riesgo.",
+            "Seguir con el equilibrio nutricional, la energía según las necesidades, el hambre y la saciedad, y el disfrute de comer.",
+            "Avanzar un paso cuando se logra unos cinco días de la semana y volver atrás si cuesta dos o tres días seguidos; planificar las comidas de tres a seis meses."
+          ],
+          casa: "Plan de comidas de la semana y registro de lo que se comió fuera del plan.",
+          avance: "La persona sostiene un patrón regular de comidas y bajan los atracones.",
+          fuente: "Goss, 2011, caps. 11 a 13",
+          fichas: ["registro-alimentacion"]
+        },
+        {
+          t: "Carta compasiva, otras fuentes de logro y conexión",
+          tecs: ["carta-compasiva", "apoyo-social", "prevencion-recaidas"],
+          obj: "Sostener el cambio y responder con compasión a los deslices.",
+          pasos: [
+            "Escribirse una carta compasiva sobre la relación con la comida y el cuerpo.",
+            "Buscar logros y placeres que no dependan de comer ni del peso, y fortalecer la conexión con otros.",
+            "Responder a los deslices con compasión, no con autocrítica.",
+            "Planificar cómo seguir."
+          ],
+          casa: "Carta compasiva y plan para los momentos de riesgo.",
+          avance: "Tras un desliz, la persona retoma su plan sin castigarse.",
+          fuente: "Goss, 2011, caps. 14 y 15 · Gilbert y Simos, 2022, cap. 22",
+          fichas: ["carta-compasiva", "plan-mantenimiento"]
+        }
+      ],
+      medir: [
+        "<strong>EDE</strong> o registro de la frecuencia de atracones al inicio y al final.",
+        "<strong>FSCRS</strong> para la autocrítica y la capacidad de tranquilizarse.",
+        "Registro de alimentación."
+      ],
+      adapt: [
+        "<strong>Autoayuda pura o acompañada:</strong> el libro está escrito para la persona; con un acompañamiento breve se revisan los registros y se ayuda con los bloqueos.",
+        "<strong>Complemento:</strong> la terapia centrada en la compasión puede integrarse a la terapia cognitivo-conductual o sumarse al tratamiento habitual de los trastornos alimentarios (Gilbert y Simos, 2022, cap. 22)."
+      ],
+      cuidado: [
+        "Si hay depresión marcada, vómitos o uso de laxantes para manejar la comida o la figura, o autolesiones, el libro solo no basta: se busca ayuda profesional (Goss, 2011, introducción); van primero los planes de tratamiento de esta variable.",
+        "En el embarazo o con una enfermedad física importante, consultar con un médico o un nutricionista, porque las pautas de energía generales pueden no bastar (Goss, 2011, introducción).",
+        "Al principio de la recuperación, comer con atención plena puede aumentar los pensamientos intrusivos y el asco, y llevar al abandono; se introduce más adelante (Gilbert y Simos, 2022, cap. 22)."
       ]
     },
     {
@@ -25110,7 +25453,35 @@ const GLOSARIO = [
   fuente: "Lynch, 2018b, lección 21" },
 { k: "ruptura-reparacion", t: "Rupturas y reparaciones de la alianza", alias: ["reparar la alianza"], tipo: "Técnica", enf: ["dbt"],
   d: "Una ruptura ocurre cuando la persona se siente incomprendida o siente que el tratamiento no tiene que ver con sus problemas. Repararla es responsabilidad del terapeuta y es una oportunidad: enseña que el conflicto puede acercar. Como las personas sobrecontroladas ocultan su malestar, si hacia la sesión 14 no ha habido varias rupturas y reparaciones, la relación se considera superficial.",
-  fuente: "Lynch, 2018a, caps. 4 y 8" }
+  fuente: "Lynch, 2018a, caps. 4 y 8" },
+/* ---------- Tercera generación, bloque 4: compasión (2026-10-27) ---------- */
+{ k: "miedos-compasion", t: "Miedos, bloqueos y resistencias a la compasión", alias: ["miedo a la compasión"], tipo: "Concepto", enf: ["cft"],
+  d: "Temores que aparecen al intentar ser compasivo consigo, recibir compasión o darla: que sea debilidad, que no se la merezca, que bajar la guardia sea peligroso. Cuando el sistema de cuidado quedó ligado a experiencias de maltrato, abrirlo despierta primero recuerdos traumáticos, anhelo y rabia. Se explican y se trabajan con calma, antes de seguir.",
+  fuente: "Gilbert y Simos, 2022, caps. 22 y 25 · Lee y James, 2011, cap. 6" },
+{ k: "lugar-seguro-cft", t: "Lugar seguro compasivo", alias: ["imagen del lugar seguro"], tipo: "Ejercicio", enf: ["cft"],
+  d: "Imaginar con detalle —colores, clima, sonidos— un lugar, real o inventado, en el que la persona se sienta segura, tranquila y contenta, para activar el sistema de calma. Ayuda a tolerar y cortar los recuerdos intrusivos y a pensar en los recuerdos con más compasión. Muchas personas nunca se sintieron físicamente seguras, por eso se ayuda a construirlo sin prisa.",
+  fuente: "Lee y James, 2011, cap. 8" },
+{ k: "cuidador-ideal", t: "Imagen del cuidador compasivo ideal", alias: ["cuidador perfecto"], tipo: "Ejercicio", enf: ["cft"],
+  d: "La persona crea en su imaginación una figura —humana o no— con todas las cualidades de alguien completamente dedicado a su bienestar: sabiduría, fortaleza, calidez y ausencia de juicio. Practica sentir que esa mente se dirige a ella con bondad. Después se usa para acompañar la revisión de los recuerdos que producen vergüenza. No reemplaza las relaciones reales, sino que ayuda a sentirse seguro para buscarlas.",
+  fuente: "Lee y James, 2011, caps. 8 y 10" },
+{ k: "abusador-interiorizado", t: "Abusador interiorizado", alias: ["voz del abusador"], tipo: "Concepto", enf: ["cft"],
+  d: "En el trauma complejo, el autodesprecio suele ser el eco de la voz de quien maltrató, incorporado como una estrategia de seguridad. Distinguirlo de la autocrítica propia ayuda a ver «esto no es lo que soy, es lo que me hicieron ser». Se trabaja de forma gradual: primero con escritura o preguntas sobre las credenciales del crítico, y solo después con sillas.",
+  fuente: "Gilbert y Simos, 2022, cap. 25" },
+{ k: "reencuadre-compasivo", t: "Reencuadre compasivo", alias: ["perspectiva compasiva del trauma"], tipo: "Técnica", enf: ["cft"],
+  d: "Construir, desde el yo compasivo, otra forma de ver un hecho traumático o de tratarse a sí mismo: comprensiva, cálida, alentadora y sin culpa —«entiendo por qué me culpo; tiene sentido por lo que viví, pero no es mi culpa»—. Se aplica a cada recuerdo intrusivo y a los pensamientos de amenaza que lo acompañan.",
+  fuente: "Lee y James, 2011, caps. 9 y 10" },
+{ k: "reescritura-pesadillas", t: "Reescritura de las pesadillas", alias: ["cambiar el final de las pesadillas"], tipo: "Técnica", enf: ["cft"],
+  d: "La persona anota la pesadilla al despertar. Durante el día, tras calmarse con la respiración de ritmo tranquilizador, identifica la parte más aterradora y le escribe un final distinto, con conductas compasivas, que luego ensaya varias veces en imaginación. Junto a la cama tiene objetos que la ayudan a anclarse al despertar, como un aroma asociado a la compasión.",
+  fuente: "Lee y James, 2011, cap. 9" },
+{ k: "relato-compasivo", t: "Relato compasivo de la propia vida", alias: ["historia compasiva de vida"], tipo: "Técnica", enf: ["cft"],
+  d: "Se recorre la historia de vida, con una línea de vida adaptada de la terapia de exposición narrativa, para dar contexto a los recuerdos traumáticos y pasar de un significado de vergüenza y culpa a uno de compasión. Cada sesión empieza activando la mente compasiva y se pregunta con curiosidad y amabilidad: quién estaba, cómo la hacía sentir, qué necesitaba.",
+  fuente: "Gilbert y Simos, 2022, cap. 25 · Lee y James, 2011, cap. 9" },
+{ k: "botiquin-compasivo", t: "Botiquín compasivo", alias: ["caja de primeros auxilios compasivos"], tipo: "Técnica", enf: ["cft"],
+  d: "Caja con objetos que recuerdan cómo acceder a la mente compasiva: un aroma, piedras o conchas, el dibujo del cuidador ideal, fotos de seres queridos sonriendo, cartas importantes, el relato compasivo de la vida y una carta compasiva a sí mismo. Acompaña un plan escrito para mantener la compasión en la vida diaria.",
+  fuente: "Lee y James, 2011, cap. 12 · Gilbert y Simos, 2022, cap. 25" },
+{ k: "nueva-forma-comer", t: "Programa de seis pasos para comer de otra forma", alias: ["seis pasos para comer de otra forma"], tipo: "Procedimiento", enf: ["cft"],
+  d: "Plan gradual para el comer en exceso: establecer un patrón regular de comidas, reducir los alimentos de alto riesgo, equilibrar la nutrición, ajustar la energía a lo que el cuerpo necesita, aprender a responder al hambre y a la saciedad, y disfrutar de comer. Requiere planificar las comidas de tres a seis meses; no es una dieta. Se sube de paso cuando se logra unos cinco días de la semana y se vuelve atrás si cuesta dos o tres días seguidos.",
+  fuente: "Goss, 2011, caps. 12 y 13" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
