@@ -13774,6 +13774,335 @@ const CALIFICAR = {
    ]
   }
  },
+ "whoqol-bref": {
+  "clave": "WHOQOL-BREF",
+  "sigla": "WHOQOL-BREF",
+  "titulo": "Instrumento de Calidad de Vida de la Organización Mundial de la Salud, versión breve",
+  "para": "Medir la calidad de vida percibida en las dos últimas semanas: cómo valora la persona su salud física y psicológica, sus relaciones sociales y su ambiente (seguridad, dinero, vivienda, servicios, transporte), según sus propias metas y expectativas. Sirve para describir el impacto de un problema de salud y para seguir el cambio con el tratamiento. No es una medida de síntomas ni diagnostica.",
+  "areas": [
+   "Bienestar y apoyo social",
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "WHOQOL Group (1998); calificación de la OMS (1996) · versión colombiana descargable en who.int · referencia de Cardona-Arias e Higuita-Gutiérrez (2021).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Este cuestionario sirve para conocer su opinión acerca de su calidad de vida, su salud y otras áreas de su vida. Por favor, conteste a todas las preguntas. Si no está seguro(a) sobre qué respuesta dar a una pregunta, escoja la que le parezca más apropiada. A veces, ésta puede ser su primera respuesta. Tenga presente su modo de vivir, expectativas, placeres y preocupaciones. Le pedimos que piense en su vida durante las últimas dos semanas (15 días). Por favor lea cada pregunta, valore sus sentimientos, y haga un círculo en el número de la escala de cada pregunta que sea su mejor respuesta."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy mala",
+     "Poca",
+     "Lo normal",
+     "Bastante buena",
+     "Muy buena"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Cómo puntuaría su calidad de vida?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy insatisfecho/a",
+     "Insatisfecho/a",
+     "Lo normal",
+     "Bastante satisfecho/a",
+     "Muy satisfecho/a"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "2. ¿Cuán satisfecho/a está con su salud?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Las siguientes preguntas hacen referencia a cuánto ha experimentado ciertos hechos en las últimas dos semanas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Lo normal",
+     "Bastante",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "3. ¿En qué medida piensa que el dolor (físico) le impide hacer lo que necesita?",
+     "4. ¿Cuánto necesita de cualquier tratamiento médico para funcionar en su vida diaria?",
+     "5. ¿Cuánto disfruta de la vida?",
+     "6. ¿En qué medida siente que su vida tiene sentido?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Lo normal",
+     "Bastante",
+     "Muchísima"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "7. ¿Cuál es su capacidad de concentración?",
+     "8. ¿Cuánta seguridad siente en su vida diaria?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Lo normal",
+     "Bastante",
+     "Muchísimo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "9. ¿Cuán saludable es el ambiente físico a su alrededor?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Las siguientes preguntas hacen referencia a cuán totalmente usted experimenta o fue capaz de hacer ciertas cosas en las últimas dos semanas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Moderado",
+     "Bastante",
+     "Totalmente"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "10. ¿Tiene energía suficiente para la vida diaria?",
+     "11. ¿Es capaz de aceptar su apariencia física?",
+     "12. ¿Tiene suficiente dinero para cubrir sus necesidades?",
+     "13. ¿Qué disponibilidad tiene de la información que necesita en su vida diaria?",
+     "14. ¿Hasta qué punto tiene oportunidad para realizar actividades de ocio?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Lo normal",
+     "Bastante",
+     "Extremadamente bien"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "15. ¿Es capaz de desplazarse de un lugar a otro?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "Las siguientes preguntas hacen referencia a cuán satisfecho(a) o bien se ha sentido en varios aspectos de su vida en las últimas dos semanas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Poco",
+     "Lo normal",
+     "Bastante satisfecho/a",
+     "Muy satisfecho/a"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "16. ¿Cuán satisfecho/a está con su sueño?",
+     "17. ¿Cuán satisfecho/a está con su habilidad para realizar sus actividades de la vida diaria?",
+     "18. ¿Cuán satisfecho/a está con su capacidad de trabajo?",
+     "19. ¿Cuán satisfecho/a está de sí mismo?",
+     "20. ¿Cuán satisfecho/a está con sus relaciones personales?",
+     "21. ¿Cuán satisfecho está con su vida sexual?",
+     "22. ¿Cuán satisfecho/a está con el apoyo que obtiene de sus amigos?",
+     "23. ¿Cuán satisfecho/a está de las condiciones del lugar donde vive?",
+     "24. ¿Cuán satisfecho/a está con el acceso que tiene a los servicios sanitarios?",
+     "25. ¿Cuán satisfecho/a está con su transporte?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "consigna",
+    "x": "La siguiente pregunta hace referencia a la frecuencia con que usted ha sentido o experimentado ciertos hechos en las últimas dos semanas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Raramente",
+     "Medianamente",
+     "Frecuentemente",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "26. ¿Con qué frecuencia tiene sentimientos negativos, tales como tristeza, desesperanza, ansiedad, depresión?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Calidad de vida global (pregunta 1)",
+     "js": "S(1,1)",
+     "texto": "De 1 (muy mala) a 5 (muy buena). Se lee por separado: no entra en ningún dominio."
+    },
+    {
+     "n": "Satisfacción con la salud (pregunta 2)",
+     "js": "S(2,2)",
+     "texto": "De 1 (muy insatisfecho/a) a 5 (muy satisfecho/a). Se lee por separado."
+    },
+    {
+     "n": "Salud física (0 a 100)",
+     "js": "((l) => { const a = l.filter(i => r[i] != null).map(i => [3, 4, 26].includes(i) ? 6 - r[i] : r[i]); return a.length ? Math.round((a.reduce((x, y) => x + y, 0) / a.length - 1) * 250) / 10 : 0; })([3,4,10,15,16,17,18])",
+     "texto": "A mayor puntaje, mejor calidad de vida. Media en población sana de Medellín: 65,0. Sin puntos de corte oficiales."
+    },
+    {
+     "n": "Salud psicológica (0 a 100)",
+     "js": "((l) => { const a = l.filter(i => r[i] != null).map(i => [3, 4, 26].includes(i) ? 6 - r[i] : r[i]); return a.length ? Math.round((a.reduce((x, y) => x + y, 0) / a.length - 1) * 250) / 10 : 0; })([5,6,7,11,19,26])",
+     "texto": "A mayor puntaje, mejor calidad de vida. Media en población sana de Medellín: 71,4. Sin puntos de corte oficiales."
+    },
+    {
+     "n": "Relaciones sociales (0 a 100)",
+     "js": "((l) => { const a = l.filter(i => r[i] != null).map(i => [3, 4, 26].includes(i) ? 6 - r[i] : r[i]); return a.length ? Math.round((a.reduce((x, y) => x + y, 0) / a.length - 1) * 250) / 10 : 0; })([20,21,22])",
+     "texto": "A mayor puntaje, mejor calidad de vida. Media en población sana de Medellín: 65,1. Sin puntos de corte oficiales."
+    },
+    {
+     "n": "Ambiente (0 a 100)",
+     "js": "((l) => { const a = l.filter(i => r[i] != null).map(i => [3, 4, 26].includes(i) ? 6 - r[i] : r[i]); return a.length ? Math.round((a.reduce((x, y) => x + y, 0) / a.length - 1) * 250) / 10 : 0; })([8,9,12,13,14,23,24,25])",
+     "texto": "A mayor puntaje, mejor calidad de vida. Media en población sana de Medellín: 61,1. Sin puntos de corte oficiales."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "(r[25] != null || r[26] != null) && RANGO(1, 26).filter(i => r[i] == null).length >= 6",
+     "texto": "Falta más del 20 % del cuestionario: según la OMS, no se califica."
+    },
+    {
+     "js": "RANGO(19, 26).some(i => r[i] != null) && [3,4,10,15,16,17,18].filter(i => r[i] == null).length > 2",
+     "texto": "Salud física: faltan más de dos respuestas y el dominio no se califica."
+    },
+    {
+     "js": "RANGO(26, 26).some(i => r[i] != null) && [5,6,7,11,19,26].filter(i => r[i] == null).length > 2",
+     "texto": "Salud psicológica: faltan más de dos respuestas y el dominio no se califica."
+    },
+    {
+     "js": "RANGO(23, 26).some(i => r[i] != null) && [20,21,22].filter(i => r[i] == null).length > 0",
+     "texto": "Relaciones sociales: falta una respuesta y este dominio solo se califica completo."
+    },
+    {
+     "js": "RANGO(26, 26).some(i => r[i] != null) && [8,9,12,13,14,23,24,25].filter(i => r[i] == null).length > 2",
+     "texto": "Ambiente: faltan más de dos respuestas y el dominio no se califica."
+    }
+   ]
+  }
+ },
  "whiteley": {
   "clave": "Whiteley",
   "sigla": "Whiteley",
