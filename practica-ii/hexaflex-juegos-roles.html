@@ -146,11 +146,7 @@ details > summary{cursor:pointer; font-size:14px; font-weight:600; color:var(--a
 .rep-chips{display:flex; gap:6px; flex-wrap:wrap; margin:0 0 9px !important;}
 .rep-chips span{font-size:11px; background:#fff; border:1px solid var(--border); border-radius:99px; padding:2px 9px; color:var(--ink-soft);}
 .rep-tools p{font-size:14px; margin:0 0 8px;}
-.rep-pasos{list-style:none; margin:4px 0 10px !important; padding:0; display:grid; gap:7px;}
-.rep-pasos li{border:0 !important; border-left:3px solid var(--accent-soft) !important; border-radius:0 !important;
-  background:none !important; padding:1px 0 1px 9px !important; font-size:13.5px; line-height:1.45; color:var(--ink-soft);}
-.rep-pasos strong{display:block; font-family:var(--font-mono); font-size:10.5px; font-weight:600; letter-spacing:0.07em;
-  text-transform:uppercase; color:var(--accent-dark);}
+.rep-link a{color:var(--accent); font-weight:600; font-size:13.5px;}
 .rep-src{font-size:12px !important; color:var(--ink-faint); margin:0 !important;}
 
 .sources{border-top:1px solid var(--border); margin-top:26px; padding-top:12px; font-size:13px; color:var(--ink-soft);}
@@ -622,7 +618,7 @@ svg{width:104px;height:104px;stroke:currentColor;stroke-width:3;fill:none;stroke
     <div id="repertorio-procesos"></div>
   </section>
 
-  <details class="sources" id="references"><summary>Fuentes de la práctica</summary><div class="more"><p>Cada recurso del repertorio indica el apartado en el que se apoya. Se presentan mediante paráfrasis y adaptaciones breves para el aula; las frases de ejemplo no son citas de los libros. Los tiempos y la organización son orientaciones para el aula. Los procesos del hexaflex se conectan entre sí y pueden aparecer juntos durante una escena.</p><p><strong>Harris, R. (2009).</strong> <em>ACT made simple: An easy-to-read primer on acceptance and commitment therapy.</em> New Harbinger. Primera edición, capítulos 7–12. <a href="https://www.newharbinger.com/9781684033010/act-made-simple/">Página editorial de la obra (edición actual)</a>.</p><p><strong>Hayes, S. C., Strosahl, K. D., &amp; Wilson, K. G. (2012).</strong> <em>Acceptance and commitment therapy: The process and practice of mindful change</em> (2.ª ed.). Guilford Press. Capítulos 7–12. <a href="https://www.guilford.com/books/Acceptance-and-Commitment-Therapy/Hayes-Strosahl-Wilson/9781462528943/contents">Índice editorial</a>.</p></div></details>
+  <details class="sources" id="references"><summary>Fuentes de la práctica</summary><div class="more"><p>Cada recurso del repertorio indica el apartado en el que se apoya. Se presentan mediante paráfrasis y adaptaciones breves para el aula; las frases de ejemplo no son citas de los libros. Los enlaces de las metáforas y los ejercicios llevan a materiales de libre acceso de otros autores. Los tiempos y la organización son orientaciones para el aula. Los procesos del hexaflex se conectan entre sí y pueden aparecer juntos durante una escena.</p><p><strong>Harris, R. (2009).</strong> <em>ACT made simple: An easy-to-read primer on acceptance and commitment therapy.</em> New Harbinger. Primera edición, capítulos 7–12. <a href="https://www.newharbinger.com/9781684033010/act-made-simple/">Página editorial de la obra (edición actual)</a>.</p><p><strong>Hayes, S. C., Strosahl, K. D., &amp; Wilson, K. G. (2012).</strong> <em>Acceptance and commitment therapy: The process and practice of mindful change</em> (2.ª ed.). Guilford Press. Capítulos 7–12. <a href="https://www.guilford.com/books/Acceptance-and-Commitment-Therapy/Hayes-Strosahl-Wilson/9781462528943/contents">Índice editorial</a>.</p></div></details>
   </div>
 
   <!-- Vista de quienes observan: una valoración por escena, con envío a la hoja
@@ -777,11 +773,10 @@ const REPERTORIO = [
         "texto": "Encendido, la persona combate lo que siente y suma malestar sobre el malestar: ansiedad por la ansiedad. Apagado, la emoción sigue y puede subir o bajar por sí sola, sin esa carga añadida.",
         "cuidado": "El interruptor representa la lucha, no la emoción.",
         "fuente": "Harris (2009), cap. 8, The Struggle Switch",
-        "pasos": [
-          "Retomar cómo intenta la persona quitarse la emoción del caso y presentar el interruptor con esa emoción, no con un ejemplo general.",
-          "Preguntar de 0 a 10 cuánto le pesa la emoción y cuánto lucha con ella; invitarla a bajar la lucha uno o dos puntos notando la emoción y dejándole espacio.",
-          "Preguntar qué pasó con la lucha, no solo con la emoción, y qué podría hacer en el caso con el interruptor más bajo."
-        ]
+        "enlace": {
+          "url": "https://www.youtube.com/watch?v=rCp1l16GCXI",
+          "rotulo": "Video: Russ Harris explica el interruptor (inglés)"
+        }
       },
       {
         "nombre": "Observar, respirar y hacer espacio",
@@ -790,11 +785,10 @@ const REPERTORIO = [
         "texto": "Ubicar dónde se siente la emoción, describirla con curiosidad (forma, peso, temperatura), respirar con ella y dejarle espacio. En el rol, la consultante describe en voz alta lo que nota.",
         "cuidado": "Pidan permiso y empiecen con una sensación manejable.",
         "fuente": "Harris (2009), cap. 8, Acceptance of Emotions",
-        "pasos": [
-          "Pedir permiso y elegir juntos una sensación manejable ligada a la situación del caso.",
-          "Guiar en orden: ubicarla, describirla (forma, peso, temperatura), respirar hacia ella y dejarle espacio; comprobar a mitad de camino si pueden seguir.",
-          "Ampliar la atención al cuerpo y al lugar y preguntar qué notó. Que la sensación cambie o no da igual: lo buscado es dejar de pelear con ella."
-        ]
+        "enlace": {
+          "url": "https://www.paho.org/es/documentos/tiempos-estres-haz-lo-que-importa-guia-ilustrada-version-adaptada-para-america-latina",
+          "rotulo": "Audio: «Dejar espacio», guía de la OMS/OPS (español)"
+        }
       },
       {
         "nombre": "La pregunta de disposición",
@@ -802,12 +796,7 @@ const REPERTORIO = [
         "modo": "Conversacional",
         "texto": "Preguntar si estaría dispuesta a sentir lo que siente, si eso le permite hacer lo que le importa. Estar dispuesta no es querer la emoción ni que guste.",
         "cuidado": "«No quiero sentirlo» no equivale a «no estoy dispuesta».",
-        "fuente": "Hayes, Strosahl y Wilson (2012), cap. Acceptance, Willingness Is Not Wanting",
-        "pasos": [
-          "Nombrar lo que la persona quiere hacer en el caso y lo que siente cuando se acerca a hacerlo.",
-          "Hacer la pregunta con sus palabras y explorar la respuesta, separando «no lo quiero sentir» de «no estoy dispuesta a sentirlo».",
-          "Si dice que sí, concretar dónde y cuándo; si dice que no, buscar un paso más pequeño para el que sí esté dispuesta."
-        ]
+        "fuente": "Hayes, Strosahl y Wilson (2012), cap. Acceptance, Willingness Is Not Wanting"
       }
     ]
   },
@@ -825,11 +814,10 @@ const REPERTORIO = [
         "texto": "La persona dice la frase tal como aparece; luego la repite anteponiendo «estoy teniendo el pensamiento de que…» y después «me doy cuenta de que estoy teniendo el pensamiento de que…». Se pregunta qué cambia.",
         "cuidado": "No discutan si la frase es verdadera.",
         "fuente": "Harris (2009), cap. 7, I'm Having the Thought That",
-        "pasos": [
-          "Pedir la frase exacta que engancha a la persona y cuánto la atrapa cuando aparece.",
-          "Que la diga tal cual, luego con «estoy teniendo el pensamiento de que…» y después con «me doy cuenta de que estoy teniendo el pensamiento de que…», con una pausa entre cada versión.",
-          "Preguntar qué cambió en la distancia con la frase y acordar usar la fórmula cuando aparezca en la situación del caso."
-        ]
+        "enlace": {
+          "url": "https://contextualscience.org/book/export/html/7014",
+          "rotulo": "Artículo: Steven Hayes, ejercicios de defusión (español)"
+        }
       },
       {
         "nombre": "Ponerle nombre a la historia",
@@ -838,11 +826,10 @@ const REPERTORIO = [
         "texto": "Si esos pensamientos fueran un libro o una película, ¿qué título tendría? Cuando vuelvan a aparecer, la persona puede reconocerlos: «ahí está otra vez la historia de…».",
         "cuidado": "El tono es de curiosidad, nunca de burla.",
         "fuente": "Harris (2009), cap. 7, Naming the Story; Hayes et al. (2012), cap. Defusion, Humor Rather Than Derision",
-        "pasos": [
-          "Reunir los pensamientos que se repiten en el caso y señalar que suelen aparecer juntos.",
-          "Pedir que la persona elija un título, «la historia de…», que respete lo que ha vivido sin ridiculizarlo.",
-          "Ensayar reconocerla ante un momento del caso («ahí está otra vez la historia de…») y preguntar qué podría hacer después de nombrarla."
-        ]
+        "enlace": {
+          "url": "https://pavlov.psyciencia.com/2024/12/Ponle-un-nombre-a-tu-mente.pdf",
+          "rotulo": "Ficha: «Ponle un nombre a tu mente», Steven Hayes (español)"
+        }
       },
       {
         "nombre": "Hojas en un arroyo",
@@ -852,11 +839,10 @@ const REPERTORIO = [
         "texto": "Colocar cada pensamiento que llega sobre una hoja y dejarla ir a su ritmo. A quien le cuesta imaginar le sirve algo que avanza despacio, como una franja oscura. En el rol: un minuto, ojos abiertos si lo prefiere, y la consultante nombra en voz baja lo que coloca (adaptación para el aula).",
         "cuidado": "No sirve para expulsar pensamientos: una hoja puede quedarse.",
         "fuente": "Harris (2009), cap. 7, Leaves on a Stream",
-        "pasos": [
-          "Aclarar que cada quien imagina a su manera, ofrecer ojos abiertos u otra imagen que avance despacio y acordar la duración.",
-          "Guiar: cada pensamiento a una hoja, el arroyo a su propio ritmo; si una hoja se queda, se deja estar; si la persona se engancha, vuelve a empezar sin juzgarse.",
-          "Volver al lugar y preguntar qué pensamientos engancharon y cómo fue dejarlos pasar, sin medir el logro por cuántos se fueron."
-        ]
+        "enlace": {
+          "url": "https://www.therapistaid.com/worksheets/leaves-on-a-stream-worksheet?language=es",
+          "rotulo": "Ficha: «Hojas en un arroyo», Therapist Aid (español)"
+        }
       }
     ]
   },
@@ -875,11 +861,10 @@ const REPERTORIO = [
         "texto": "Reconocer lo que aparece por dentro; presionar los pies contra el suelo y notar el cuerpo; después notar qué se ve y se oye, dónde se está y qué se está haciendo.",
         "cuidado": "El ancla no calma el mar: no es una condición para seguir.",
         "fuente": "Harris (2009), cap. 9, Dropping Anchor",
-        "pasos": [
-          "Interrumpir con amabilidad cuando la persona se pierde en lo que podría pasar y nombrar la tormenta de pensamientos y emociones.",
-          "Reconocer lo que hay por dentro; presionar los pies contra el suelo y notar el cuerpo; después notar qué se ve, qué se oye y qué están haciendo ahora. Repetir si la mente la arrastra.",
-          "Preguntar qué necesita atender o hacer ahora en la situación del caso, aunque siga nerviosa."
-        ]
+        "enlace": {
+          "url": "https://www.paho.org/es/documentos/tiempos-estres-haz-lo-que-importa-guia-ilustrada-version-adaptada-para-america-latina",
+          "rotulo": "Audios: «Poner los pies en la tierra», guía de la OMS/OPS (español)"
+        }
       },
       {
         "nombre": "Notar cinco cosas",
@@ -887,12 +872,7 @@ const REPERTORIO = [
         "modo": "En voz alta",
         "texto": "Notar cinco cosas que se ven, cinco que se oyen y cinco que se sienten en contacto con el cuerpo; al final, todo a la vez. En el rol, la consultante las nombra.",
         "cuidado": "Úsenlo para volver a la situación, no como una distracción obligatoria.",
-        "fuente": "Harris (2009), cap. 9, Notice Five Things",
-        "pasos": [
-          "Proponerlo como una pausa breve cuando la atención se fue de la situación.",
-          "Que nombre cinco cosas que ve, cinco que oye y cinco que siente en contacto con el cuerpo; al final, notarlas todas a la vez.",
-          "Volver a la conversación o a la tarea del caso y preguntar qué cambió en su manera de estar ahí."
-        ]
+        "fuente": "Harris (2009), cap. 9, Notice Five Things"
       }
     ]
   },
@@ -911,11 +891,10 @@ const REPERTORIO = [
         "texto": "Pensamientos, emociones y etiquetas son como el clima, que aparece y cambia. El cielo representa la perspectiva desde la que se notan: por fuerte que sea el clima, no daña el cielo, y el cielo tiene espacio para todo.",
         "cuidado": "Es una comparación; el malestar se sigue sintiendo.",
         "fuente": "Harris (2009), cap. 10, The Sky and the Weather",
-        "pasos": [
-          "Tomar la etiqueta o los pensamientos que la persona trajo y nombrarlos como el clima de ese momento.",
-          "Presentar la comparación y luego invitarla a notar ese clima ahora mismo, desde el lugar desde donde lo observa.",
-          "Preguntar qué nota desde esa perspectiva y qué podría elegir hacer en el caso con la etiqueta presente."
-        ]
+        "enlace": {
+          "url": "https://providence.org/-/media/project/psjh/providence/or/files/act-group-handouts/act-and-the-observing-self.pdf",
+          "rotulo": "Ficha: «ACT and the Observing Self», Providence (inglés)"
+        }
       },
       {
         "nombre": "Notar quién nota",
@@ -924,11 +903,10 @@ const REPERTORIO = [
         "texto": "Invitar a notar un sonido, una sensación y la frase sobre sí misma, y con cada una agregar: «ahí está eso… y ahí estás tú, notándolo».",
         "cuidado": "No pidan una respuesta filosófica.",
         "fuente": "Harris (2009), cap. 10, Notice Who's Noticing",
-        "pasos": [
-          "Pedir permiso para un ejercicio breve de notar, sin necesidad de entenderlo.",
-          "Notar un sonido, luego una sensación y al final la frase sobre sí misma; con cada una, agregar: «ahí está eso… y ahí estás tú, notándolo».",
-          "Preguntar cómo es tener la frase y a la vez notarla, y llevarlo a una decisión concreta del caso."
-        ]
+        "enlace": {
+          "url": "https://pavlov.psyciencia.com/2024/12/Atrapar-al-vuelo-la-conciencia-de-uno-mismo.pdf",
+          "rotulo": "Ficha: «Atrapar al vuelo la conciencia de uno mismo», Steven Hayes (español)"
+        }
       },
       {
         "nombre": "El tablero de ajedrez",
@@ -938,11 +916,10 @@ const REPERTORIO = [
         "texto": "Las piezas blancas y negras libran una batalla que no termina. El tablero está en contacto con todas, pero no participa en la pelea. Más adelante basta preguntar: «¿ahora estás en el nivel de las piezas o del tablero?».",
         "cuidado": "Si la imagen no conecta, vuelvan a notar la experiencia concreta.",
         "fuente": "Harris (2009), cap. 10, The Chessboard Metaphor; Hayes et al. (2012), cap. Dimensions of Self",
-        "pasos": [
-          "Reunir las piezas del caso: los pensamientos a favor y en contra con los que la persona pelea.",
-          "Contar la metáfora con esas piezas, explorar qué pasa cuando intenta ganar la partida y luego cómo sería estar en el nivel del tablero.",
-          "Acordar la pregunta breve para después («¿piezas o tablero?») y ensayarla con una situación del caso."
-        ]
+        "enlace": {
+          "url": "https://comunidadact.com/ht_portfolios/metafora-rio-de-experiencias-2/",
+          "rotulo": "Artículo: la metáfora del tablero, Comunidad ACT (español)"
+        }
       }
     ]
   },
@@ -961,11 +938,10 @@ const REPERTORIO = [
         "texto": "Un valor es como ir hacia el oeste: por mucho que se avance, nunca se llega. Las metas son los lugares que se alcanzan en el camino y se tachan; la dirección sigue.",
         "cuidado": "La dirección la elige la persona.",
         "fuente": "Harris (2009), cap. 11, Values vs. Goals y The Compass Metaphor",
-        "pasos": [
-          "Retomar la meta o el resultado que la persona menciona en el caso.",
-          "Presentar la diferencia entre dirección y meta, y preguntar qué dirección expresa esa meta: cómo quiere actuar mientras la busca.",
-          "Identificar una forma de ir en esa dirección hoy, aunque la meta todavía no llegue."
-        ]
+        "enlace": {
+          "url": "https://psychwire.com/free-resources/expert-insights/resource-1b0mdpi/values-vs-goals",
+          "rotulo": "Video: Russ Harris, valores y metas (inglés, con transcripción)"
+        }
       },
       {
         "nombre": "¿Qué quieres que represente tu vida?",
@@ -973,12 +949,7 @@ const REPERTORIO = [
         "modo": "Conversacional",
         "texto": "Preguntar qué quiere que represente su vida en esa área y cómo se vería eso en un día cualquiera. Si responde con un resultado, explorar cómo actuaría mientras lo busca.",
         "cuidado": "Si aparece un «debería», exploren si es elegido o impuesto.",
-        "fuente": "Hayes et al. (2012), cap. Connecting with Values, What Do You Want Your Life to Stand For?; Harris (2009), cap. 11, Values Are Freely Chosen",
-        "pasos": [
-          "Elegir con la persona un área del caso: estudio, familia, amistad, trabajo.",
-          "Hacer la pregunta y pedir cómo se vería en un día cualquiera; si responde con un resultado o con un «debería», explorar cómo quiere actuar y si es una elección propia.",
-          "Resumir la dirección con sus palabras y comprobar si la reconoce como suya."
-        ]
+        "fuente": "Hayes et al. (2012), cap. Connecting with Values, What Do You Want Your Life to Stand For?; Harris (2009), cap. 11, Values Are Freely Chosen"
       },
       {
         "nombre": "El cumpleaños número ochenta",
@@ -987,11 +958,10 @@ const REPERTORIO = [
         "texto": "Imaginar el cumpleaños ochenta ideal y lo que diría de la persona alguien importante. En el rol: versión breve, con una sola persona que habla y ojos abiertos si lo prefiere (adaptación para el aula).",
         "cuidado": "Es una fantasía, no una predicción.",
         "fuente": "Harris (2009), cap. 11, Imagine Your Eightieth Birthday",
-        "pasos": [
-          "Aclarar que es una fantasía, no una predicción, y ofrecer hacerlo con los ojos abiertos.",
-          "Guiar la escena breve: una persona importante, elegida por ella, dice unas frases sobre lo que representó en su vida; dejar silencio para imaginar.",
-          "Volver al lugar y preguntar qué escuchó, qué emociones aparecieron y qué le dice eso sobre lo que le importa."
-        ]
+        "enlace": {
+          "url": "https://contextualscience.org/node/9751",
+          "rotulo": "Ficha: el ejercicio del cumpleaños, ACBS (inglés)"
+        }
       }
     ]
   },
@@ -1008,12 +978,7 @@ const REPERTORIO = [
         "modo": "Conversacional",
         "texto": "Buscar el paso más pequeño y fácil que exprese la dirección, idealmente posible en las próximas 24 horas, y precisar cuándo y dónde.",
         "cuidado": "Si el paso no cabe en los recursos de la persona, se reduce.",
-        "fuente": "Harris (2009), cap. 12, The Tiniest Step?",
-        "pasos": [
-          "Partir de la dirección que ya nombró la persona.",
-          "Preguntar por el paso más pequeño y fácil en esa dirección para las próximas 24 horas; precisar qué, cuándo y dónde, y reducirlo si no cabe en sus recursos.",
-          "Anticipar qué podría detenerla y cómo retomarlo si no ocurre."
-        ]
+        "fuente": "Harris (2009), cap. 12, The Tiniest Step?"
       },
       {
         "nombre": "Cuatro barreras y su respuesta",
@@ -1021,12 +986,7 @@ const REPERTORIO = [
         "modo": "Conversacional",
         "texto": "Revisar qué detuvo a la persona: un pensamiento que engancha, una meta que excede sus recursos, evitar el malestar o perder de vista lo que importa. Cada barrera pide su respuesta: observar el pensamiento, ajustar la meta, hacer espacio al malestar o reconectar con el valor.",
         "cuidado": "Las dificultades materiales necesitan apoyos concretos.",
-        "fuente": "Harris (2009), cap. 12, From FEAR to DARE",
-        "pasos": [
-          "Retomar un intento reciente que no se cumplió, sin juzgarlo.",
-          "Revisar con la persona cuál de las cuatro barreras apareció y elegir la respuesta que le corresponde.",
-          "Formular el siguiente intento con esa respuesta incluida."
-        ]
+        "fuente": "Harris (2009), cap. 12, From FEAR to DARE"
       },
       {
         "nombre": "Plan de disposición y acción",
@@ -1034,12 +994,7 @@ const REPERTORIO = [
         "modo": "Conversacional",
         "texto": "Acordar la meta, el valor que la sostiene, las acciones, lo que la persona está dispuesta a sentir en el camino y el primer paso con su momento.",
         "cuidado": "Un compromiso roto se revisa y se retoma; no es un juicio sobre la persona.",
-        "fuente": "Harris (2009), cap. 12, The Willingness and Action Plan y Breaking Commitments",
-        "pasos": [
-          "Acordar con la persona la meta concreta y el valor que la sostiene.",
-          "Completar juntos las acciones, los pensamientos y emociones que probablemente aparecerán, lo que está dispuesta a sentir y el primer paso con su momento.",
-          "Pedir que diga el plan en voz alta como compromiso y hablar de qué hará si lo rompe: revisarlo y retomarlo."
-        ]
+        "fuente": "Harris (2009), cap. 12, The Willingness and Action Plan y Breaking Commitments"
       }
     ]
   }
@@ -1721,8 +1676,7 @@ function tarjetaDeRecurso(r){
   return `<li><h4>${esc(r.nombre)}</h4>
     <p class="rep-chips"><span>${esc(r.tipo)}</span><span>${esc(r.modo)}</span></p>
     <p>${esc(r.texto)}</p>
-    <ol class="rep-pasos">${["Inicio", "Desarrollo", "Cierre"].map((rotulo, k) =>
-      `<li><strong>${rotulo}</strong>${esc(r.pasos[k])}</li>`).join("")}</ol>
+    ${r.enlace ? `<p class="rep-link"><a href="${esc(r.enlace.url)}" target="_blank" rel="noopener">${esc(r.enlace.rotulo)} ↗</a></p>` : ""}
     <p><strong>Cuidado:</strong> ${esc(r.cuidado)}</p>
     <p class="rep-src">${esc(r.fuente)}</p></li>`;
 }
