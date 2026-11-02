@@ -2037,6 +2037,39 @@ REFERENCIAS.push(
   { k: "Mazza et al., 2016", ref: "Mazza, J. J., Dexter-Mazza, E. T., Miller, A. L., Rathus, J. H. y Murphy, H. E. (2016). <em>DBT skills in schools: Skills training for emotional problem solving for adolescents (DBT STEPS-A)</em>. Guilford Press." }
 );
 
+/* Tercera generación y trabajo con padres, bloque 5 (2026-11-02): SPACE
+   para la ansiedad y el TOC (Lebowitz, 2020), aceptación y compromiso para
+   padres de niños ansiosos (McCurry, 2009) y para el dolor crónico
+   pediátrico (Wicksell y Greco, 2008). */
+Object.assign(MODELOS, {
+  "space": {
+    t: "La ansiedad como sistema familiar",
+    autor: "Lebowitz",
+    d: "La ansiedad del niño no vive solo en él: los padres, por amor, participan en lo que la ansiedad pide o cambian las rutinas para evitarla. Esa acomodación alivia en el momento, pero le confirma al niño que no puede con lo que teme y mantiene la ansiedad. Cuando los padres reducen la acomodación y responden con aceptación del miedo y confianza en que el hijo puede soportarlo, la ansiedad disminuye, sin necesidad de que el hijo colabore.",
+    dim: ["Acomodación", "Exigir o proteger", "Apoyo: aceptación y confianza", "Plan de los padres", "Respuestas difíciles"],
+    fuente: "Lebowitz, 2020, caps. 4, 5 y 7"
+  },
+  "baile-ansiedad": {
+    t: "El baile entre padres e hijos alrededor de la ansiedad",
+    autor: "McCurry",
+    d: "El escape y la evitación alivian la ansiedad y por eso se repiten. Padres e hijos se mueven juntos en un baile: cuando el niño se angustia, el padre protege, discute o cede, y la respuesta del uno moldea la del otro. Aprender a notar la ansiedad sin obedecerla, validar al niño y elegir respuestas guiadas por los valores de crianza cambia el baile.",
+    dim: ["Escape y evitación", "Baile padres e hijo", "Valores de crianza", "Validación", "Dar espacio"],
+    fuente: "McCurry, 2009, caps. 3 y 4"
+  },
+  "act-dolor": {
+    t: "Aceptación y discapacidad en el dolor crónico pediátrico",
+    autor: "Wicksell y Greco",
+    d: "En el dolor crónico, los intentos de controlar el dolor y la espera a que desaparezca para volver a vivir pueden aumentar la discapacidad. Los adultos, con buena intención, refuerzan esa agenda de control al excusar al niño del colegio y de las actividades. La aceptación del dolor, la defusión y los valores, con los padres como entrenadores, mejoran el funcionamiento aunque el dolor siga.",
+    dim: ["Agenda de control", "Evitación", "Valores", "Aceptación", "Padres como entrenadores"],
+    fuente: "Wicksell y Greco, 2008"
+  }
+});
+REFERENCIAS.push(
+  { k: "Lebowitz, 2020", ref: "Lebowitz, E. R. (2020). <em>Breaking free of child anxiety and OCD: A scientifically proven program for parents</em>. Oxford University Press." },
+  { k: "McCurry, 2009", ref: "McCurry, C. (2009). <em>Parenting your anxious child with mindfulness and acceptance: A powerful new approach to overcoming fear, panic, and worry using acceptance and commitment therapy</em>. New Harbinger." },
+  { k: "Wicksell y Greco, 2008", ref: "Wicksell, R. K. y Greco, L. A. (2008). Acceptance and commitment therapy for pediatric chronic pain. En L. A. Greco y S. C. Hayes (Eds.), <em>Acceptance and mindfulness treatments for children and adolescents</em>. New Harbinger." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -2455,7 +2488,9 @@ const VARIABLES = [
     "Si la ansiedad se centra en ir al colegio, conviene revisar también Rechazo escolar; si hay rituales u obsesiones, Obsesiones y compulsiones; si empezó después de un evento traumático, Trauma y estrés postraumático.",
     "La ansiedad de separación se trata dentro de estos mismos programas. Si hace falta un formato más corto, la versión breve del programa de Kendall tiene ocho sesiones.",
     "<strong>Entre los 5 y los 12 años, si el niño deja de hacer lo que le importa para no sentir miedo</strong>, la terapia de aceptación y compromiso con el Kidflex trabaja esa evitación con juegos y ejercicios; si el niño no quiere participar, se trabaja con los padres.",
-    "<strong>Entre los 9 y los 12 años, si la vida del niño está dominada por preocupaciones y estrés cotidiano</strong> y los padres pueden acompañar la práctica diaria, la terapia cognitiva basada en mindfulness trabaja la atención y la relación con las preocupaciones en doce sesiones de grupo; su respaldo es un ensayo pequeño, sobre todo con niños sin un trastorno diagnosticado.",
+    "<strong>Entre los 9 y los 12 años, si la vida del niño está dominada por preocupaciones y estrés cotidiano</strong> y los padres pueden acompañar la práctica diaria, la terapia cognitiva basada en mindfulness trabaja la atención y la relación con las preocupaciones en doce sesiones de grupo; su respaldo es un ensayo pequeño, sobre todo con niños sin un trastorno diagnosticado.",,
+    "<strong>Si el hijo no quiere ir a terapia o la familia se ha organizado alrededor de su ansiedad</strong>, el programa para padres SPACE trabaja solo con ellos para reducir la acomodación, con aceptación y confianza.",
+    "<strong>Si los padres sienten que la ansiedad del hijo los arrastra</strong>, la aceptación y el compromiso para padres trabaja su forma de responder desde sus valores."
   ],
   planes: [
     {
@@ -3303,6 +3338,205 @@ const VARIABLES = [
       cuidado: [
         "Con depresión u otros problemas asociados, los autores dan pautas de ajuste; si son graves, puede hacer falta la versión completa u otro plan (Kendall et al., 2013, recursos para el terapeuta)."
       ]
+    },
+    {
+      id: "ans-space",
+      mod: "space",
+      inst: ["SCARED"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Programa para padres para reducir la acomodación a la ansiedad (SPACE)",
+      fuente: "Lebowitz, 2020",
+      cuando: "Padres de un <strong>niño o adolescente con ansiedad</strong> —separación, social, generalizada, fobias, pánico, rechazo escolar o mutismo— cuya familia ha cambiado rutinas o hace cosas por él para que no sufra, sobre todo si el hijo no quiere ir a terapia o no colabora.",
+      respaldo: "El programa se ha probado en ensayos clínicos y resultó eficaz para reducir la ansiedad de los niños, trabajando solo con los padres, en estudios con reuniones semanales con un terapeuta durante unas 12 semanas (Lebowitz, 2020, prólogo).",
+      secuencia: "<strong>Secuencia:</strong> unas 12 sesiones semanales solo con los padres, siguiendo los pasos en orden, porque cada uno se apoya en el anterior. No se le exige al niño que haga nada (Lebowitz, 2020, prólogo).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender la ansiedad y la acomodación familiar",
+          tecs: ["psicoeducacion", "acomodacion-familiar"],
+          obj: "Que los padres vean cómo la ansiedad del hijo se ha vuelto parte de la vida familiar.",
+          pasos: [
+            "Explicar la ansiedad y aclarar que los padres no la causaron, pero pueden ayudar a superarla.",
+            "Revisar las trampas: exigir que no sienta ansiedad o protegerlo de todo lo que la provoca.",
+            "Explicar la acomodación: participar en lo que la ansiedad pide, como dormir con él, responder las mismas preguntas o hablar por él, o cambiar rutinas para evitarla. Alivia en el momento, pero mantiene la ansiedad."
+          ],
+          casa: "Anotar las frases propias que exigen o protegen.",
+          avance: "Los padres reconocen sus acomodaciones.",
+          fuente: "Lebowitz, 2020, caps. 1 a 5"
+        },
+        {
+          t: "El mapa de acomodaciones",
+          tecs: ["acomodacion-familiar"],
+          obj: "Tener una lista completa de lo que la familia hace por la ansiedad.",
+          pasos: [
+            "Listar las acomodaciones que se conocen y preguntarse por cada conducta: ¿lo hago por su ansiedad?, ¿se pone más ansioso si no lo hago?, ¿lo haría por otro hijo?, ¿siento que no tengo opción?",
+            "Recorrer el día completo, de la mañana a la noche, buscando lo que se hace distinto por la ansiedad.",
+            "Llevar un registro de las acomodaciones durante la semana."
+          ],
+          casa: "Completar el mapa y llevar el registro.",
+          avance: "Hay un mapa completo de las acomodaciones.",
+          fuente: "Lebowitz, 2020, cap. 6",
+          fichas: ["mapa-acomodaciones"]
+        },
+        {
+          t: "Responder con apoyo: aceptación y confianza",
+          tecs: ["validacion", "respuestas-apoyo"],
+          obj: "Reemplazar la exigencia y la protección por apoyo.",
+          pasos: [
+            "Apoyar es mostrar dos cosas a la vez: que se entiende que el hijo de verdad tiene miedo, y la confianza en que puede soportarlo.",
+            "Anotar lo que los padres suelen decir cuando el hijo está ansioso y revisar si incluye las dos partes.",
+            "Practicar frases de apoyo en situaciones reales."
+          ],
+          casa: "Usar una frase de apoyo cada día.",
+          avance: "Los padres responden con aceptación y confianza.",
+          fuente: "Lebowitz, 2020, cap. 7",
+          fichas: ["guia-apoyo-space"]
+        },
+        {
+          t: "Elegir la acomodación y planear",
+          tecs: ["acomodacion-familiar", "plan-crianza"],
+          obj: "Elegir una acomodación para reducir y planear qué hacer en su lugar.",
+          pasos: [
+            "Elegir una acomodación frecuente, que dependa de los padres y que les moleste; que los dos padres estén de acuerdo.",
+            "Planear qué se dejará de hacer, cuándo, quién, cómo y cuánto, y qué harán en su lugar.",
+            "Anticipar qué lo hará difícil."
+          ],
+          casa: "Escribir el plan.",
+          avance: "Hay un plan concreto acordado por los padres.",
+          fuente: "Lebowitz, 2020, caps. 8 y 9",
+          fichas: ["anuncio-space"]
+        },
+        {
+          t: "Anunciar el plan y sostenerlo",
+          tecs: ["respuestas-apoyo"],
+          obj: "Contarle el plan al hijo y llevarlo a cabo.",
+          pasos: [
+            "Escribir un mensaje breve y cariñoso: una frase de apoyo, por qué cambian, qué harán distinto, cuándo, quién y cómo.",
+            "Leerlo al hijo en un momento tranquilo, sin discutirlo.",
+            "Aplicar el plan cada vez, registrar cómo va y mantener las frases de apoyo."
+          ],
+          casa: "Aplicar el plan y registrar cómo va.",
+          avance: "La acomodación elegida disminuye.",
+          fuente: "Lebowitz, 2020, caps. 10 y 11",
+          fichas: ["anuncio-space"]
+        },
+        {
+          t: "Respuestas difíciles y trabajo en pareja",
+          tecs: ["validacion", "plan-seguridad"],
+          obj: "Sostener el plan ante la rabia, la angustia o las amenazas.",
+          pasos: [
+            "Ante la agresión, no castigar la ansiedad ni discutir: seguir con el plan, cuidarse y buscar ayuda si hace falta.",
+            "Ante la angustia prolongada, no seguir explicando: las discusiones son como una luz amarilla que el hijo lee como posibilidad de cambio.",
+            "Tomar en serio cualquier amenaza de hacerse daño y consultar enseguida para evaluar el riesgo.",
+            "Resolver los desacuerdos entre los padres y, al final, elegir la siguiente acomodación."
+          ],
+          casa: "Seguir con el plan y elegir el siguiente objetivo.",
+          avance: "Los padres sostienen el plan y pasan a otra acomodación.",
+          fuente: "Lebowitz, 2020, caps. 12 a 14"
+        }
+      ],
+      medir: [
+        "Registro de las acomodaciones de la semana.",
+        "<strong>SCARED</strong> de padres e hijo al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Cuando el hijo no quiere terapia:</strong> el programa trabaja solo con los padres y no requiere que el hijo colabore (Lebowitz, 2020, prólogo)."
+      ],
+      cuidado: [
+        "Las amenazas de hacerse daño son comunes, pero nunca se ignoran: consultar para evaluar el riesgo antes de seguir (Lebowitz, 2020, cap. 12).",
+        "No se trata de que el hijo deje de sentir ansiedad ni de presionarlo: los padres cambian su propia conducta (Lebowitz, 2020, prólogo)."
+      ]
+    },
+    {
+      id: "ans-act-padres",
+      mod: "baile-ansiedad",
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso para padres de niños ansiosos",
+      fuente: "McCurry, 2009",
+      cuando: "Padres de un <strong>niño ansioso o rígido</strong> que sienten que la ansiedad del hijo los arrastra a protegerlo, a discutir o a ceder, y que quieren cambiar su forma de responder guiados por lo que les importa como padres.",
+      respaldo: "Libro para padres que aplica la terapia de aceptación y compromiso a la crianza de niños ansiosos; no presenta datos propios (McCurry, 2009).",
+      secuencia: "<strong>Secuencia:</strong> nueve capítulos en cuatro fases —atención plena y defusión, habilidades básicas, validación y manejo de situaciones de ansiedad—, trabajados en orientación a padres (McCurry, 2009).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "El baile de la ansiedad",
+          tecs: ["psicoeducacion", "analisis-funcional"],
+          obj: "Ver cómo padres e hijo se mueven juntos alrededor de la ansiedad.",
+          pasos: [
+            "Explicar cómo el escape y la evitación se refuerzan porque alivian el malestar.",
+            "Identificar el «baile» entre padres e hijo: lo que hace uno cuando el otro se angustia.",
+            "Revisar los escapes y las evitaciones de cada día."
+          ],
+          casa: "Registrar un baile de ansiedad de la semana.",
+          avance: "Los padres describen su baile con la ansiedad del hijo.",
+          fuente: "McCurry, 2009, caps. 2 y 3",
+          fichas: ["antes-durante-despues"]
+        },
+        {
+          t: "Valores de crianza y metas de proceso",
+          tecs: ["valores"],
+          obj: "Orientar la crianza a lo que importa, no solo a que el niño deje de tener miedo.",
+          pasos: [
+            "Aclarar los valores de los padres.",
+            "Pasar de metas de resultado («que no tenga miedo») a metas de proceso («acompañarlo mientras lo intenta»)."
+          ],
+          casa: "Escribir una meta de proceso para la semana.",
+          avance: "Los padres tienen metas de proceso.",
+          fuente: "McCurry, 2009, caps. 4 y 5",
+          fichas: ["matriz-act"]
+        },
+        {
+          t: "Atención plena y defusión para padres e hijos",
+          tecs: ["atencion-plena-sentidos", "defusion"],
+          obj: "Notar la ansiedad sin dejarse llevar por ella.",
+          pasos: [
+            "Practicar ejercicios de atención con los sentidos y la respiración, también con el hijo.",
+            "Practicar nombrar y catalogar los pensamientos en lugar de obedecerlos."
+          ],
+          casa: "Hacer un ejercicio de atención plena con el hijo.",
+          avance: "Padres e hijo practican juntos.",
+          fuente: "McCurry, 2009, cap. 6",
+          fichas: ["guia-respiracion-globo"]
+        },
+        {
+          t: "Validar sin ceder",
+          tecs: ["validacion"],
+          obj: "Mostrar que se entiende el miedo del hijo sin quitarle la oportunidad de enfrentarlo.",
+          pasos: [
+            "Practicar devolverle al niño lo que siente, pensar en voz alta y usar frases de «me pregunto».",
+            "Encuadrar las situaciones de forma más amplia y respetar su derecho a decir que no cuando corresponde."
+          ],
+          casa: "Validar una vez al día.",
+          avance: "Los padres validan sin ceder a la evitación.",
+          fuente: "McCurry, 2009, cap. 8"
+        },
+        {
+          t: "Manejar las situaciones de ansiedad",
+          tecs: ["instrucciones-eficaces", "valores"],
+          obj: "Responder a las situaciones de ansiedad con menos conflicto.",
+          pasos: [
+            "Reducir el número de órdenes y no hacer preguntas cuando se está dando una orden.",
+            "Dar espacio: a veces «no hacer algo, solo quedarse ahí».",
+            "Decidir, según los propios valores, cuándo intervenir y cuándo dejar que el hijo resuelva."
+          ],
+          casa: "Practicar dar espacio en una situación de ansiedad.",
+          avance: "Hay menos conflicto en las situaciones de ansiedad.",
+          fuente: "McCurry, 2009, cap. 9"
+        }
+      ],
+      medir: [
+        "<strong>SCARED</strong> de padres al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Habilidades sociales:</strong> el libro incluye una fase para enseñar habilidades sociales básicas a los niños ansiosos (McCurry, 2009, cap. 7)."
+      ],
+      cuidado: [
+        "Si la ansiedad es grave o el niño no avanza, sumar un tratamiento con evidencia, como la terapia cognitivo-conductual o el programa para padres SPACE."
+      ]
     }
   ]
 },
@@ -3313,7 +3547,8 @@ const VARIABLES = [
   elegir: [
     "<strong>Antes de tratar, se descarta que haya una razón legítima para no ir</strong>: acoso escolar, amenazas, un conflicto con un docente o un currículo que no se ajusta al estudiante. Si la hay, se resuelve primero (Kearney et al., 2008; Kearney y Albano, 2018, cap. 2).",
     "<strong>El tratamiento depende de la función del rechazo</strong>, y el plan de esta variable trae una secuencia para cada una: evitar el malestar que provoca el colegio (opción A), escapar de situaciones sociales o de evaluación (B), conseguir la atención de los padres (C) u obtener cosas más agradables fuera del colegio (D). En las dos primeras se trabaja sobre todo con el niño; en las dos últimas, con los padres y la familia. Si hay más de una función, se combinan (Kearney y Albano, 2018, cap. 1).",
-    "Si la ansiedad aparece también fuera del colegio, conviene revisar Ansiedad y miedos. Si detrás del rechazo hay tristeza, desesperanza o pensamientos de muerte, se evalúan primero la depresión y el riesgo."
+    "Si la ansiedad aparece también fuera del colegio, conviene revisar Ansiedad y miedos. Si detrás del rechazo hay tristeza, desesperanza o pensamientos de muerte, se evalúan primero la depresión y el riesgo.",
+    "<strong>Si el hijo se niega a cualquier tratamiento o la familia se ha organizado alrededor de su ansiedad</strong>, ver el programa para padres SPACE en la variable de ansiedad: trabaja solo con los padres para reducir la acomodación."
   ],
   planes: [
     {
@@ -3706,7 +3941,8 @@ const VARIABLES = [
   elegir: [
     "<strong>El tratamiento con más respaldo es conductual:</strong> exposición gradual al habla en los lugares y con las personas donde hoy no habla, con refuerzo de cada paso, y con los adultos del entorno aprendiendo a no rescatarlo. Intervenir temprano da mejores resultados; esperar a que hable solo no funciona.",
     "Antes de empezar, evaluar el lenguaje y la audición y descartar el autismo; si hay un trastorno de la comunicación, se trata en paralelo.",
-    "Si el problema es una ansiedad social amplia en un adolescente, ver también <em>Ansiedad</em>."
+    "Si el problema es una ansiedad social amplia en un adolescente, ver también <em>Ansiedad</em>.",
+    "<strong>Si la familia habla por el niño o cambia rutinas para que no tenga que hablar</strong>, ver el programa para padres SPACE en la variable de ansiedad, que reduce esa acomodación trabajando solo con los padres."
   ],
   planes: [
     {
@@ -3846,7 +4082,8 @@ const VARIABLES = [
   elegir: [
     "<strong>La terapia cognitivo-conductual con exposición y prevención de rituales es el tratamiento inicial de elección</strong>, sola o combinada con medicación. En el estudio más grande, alcanzó la remisión el 39 % de los niños con la terapia sola y el 54 % con la combinación, frente al 21 % con el medicamento solo (Franklin et al., 2010).",
     "Entre los 7 y los 17 años se trabaja con el niño y la familia participa en varias sesiones. En niños de 5 a 8 años, los padres participan en todas las sesiones. Si hay tics, conviene que el médico valore la medicación junto con la terapia (Franklin et al., 2010).",
-    "Si predominan los miedos y la preocupación sin rituales, corresponde Ansiedad y miedos."
+    "Si predominan los miedos y la preocupación sin rituales, corresponde Ansiedad y miedos.",
+    "<strong>Si los padres participan en los rituales o dan seguridad una y otra vez, o el hijo rechaza la exposición</strong>, el programa para padres SPACE reduce la acomodación al TOC trabajando solo con ellos."
   ],
   planes: [
     {
@@ -3965,6 +4202,116 @@ const VARIABLES = [
         "Distraerse o intentar no pensar también son formas de evitar y mantienen el TOC (Franklin et al., 2010).",
         "Retirar la acomodación de golpe y sin acuerdo con el niño genera un malestar difícil de manejar y conflictos; se planifica con él (Franklin et al., 2010).",
         "La acumulación, la alta emoción expresada de los padres y la conducta desafiante se asocian a peor respuesta (Kemp y Freeman, 2019)."
+      ]
+    },
+    {
+      id: "toc-space",
+      mod: "space",
+      inst: ["CY-BOCS"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Programa para padres para reducir la acomodación al TOC (SPACE)",
+      fuente: "Lebowitz, 2020",
+      cuando: "Padres de un <strong>niño o adolescente con TOC</strong> que participan en sus rituales —lavar más la ropa, escuchar confesiones, repetir frases, dar seguridad una y otra vez— o cambian la vida familiar por los rituales, sobre todo si el hijo rechaza la exposición con prevención de rituales.",
+      respaldo: "El programa se ha probado en ensayos clínicos y resultó eficaz para reducir la ansiedad de los niños, trabajando solo con los padres, en estudios con reuniones semanales con un terapeuta durante unas 12 semanas (Lebowitz, 2020, prólogo).",
+      secuencia: "<strong>Secuencia:</strong> unas 12 sesiones semanales solo con los padres, siguiendo los pasos en orden, porque cada uno se apoya en el anterior. No se le exige al niño que haga nada (Lebowitz, 2020, prólogo).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender la ansiedad y la acomodación familiar",
+          tecs: ["psicoeducacion", "acomodacion-familiar"],
+          obj: "Que los padres vean cómo la ansiedad del hijo se ha vuelto parte de la vida familiar.",
+          pasos: [
+            "Explicar la ansiedad y aclarar que los padres no la causaron, pero pueden ayudar a superarla.",
+            "Revisar las trampas: exigir que no sienta ansiedad o protegerlo de todo lo que la provoca.",
+            "Explicar la acomodación: participar en lo que la ansiedad pide, como ayudar en los rituales, escuchar confesiones o dar seguridad una y otra vez, o cambiar rutinas para evitarla. Alivia en el momento, pero mantiene la ansiedad."
+          ],
+          casa: "Anotar las frases propias que exigen o protegen.",
+          avance: "Los padres reconocen sus acomodaciones.",
+          fuente: "Lebowitz, 2020, caps. 1 a 5"
+        },
+        {
+          t: "El mapa de acomodaciones",
+          tecs: ["acomodacion-familiar"],
+          obj: "Tener una lista completa de lo que la familia hace por la ansiedad.",
+          pasos: [
+            "Listar las acomodaciones que se conocen y preguntarse por cada conducta: ¿lo hago por su ansiedad?, ¿se pone más ansioso si no lo hago?, ¿lo haría por otro hijo?, ¿siento que no tengo opción?",
+            "Recorrer el día completo, de la mañana a la noche, buscando lo que se hace distinto por la ansiedad.",
+            "Llevar un registro de las acomodaciones durante la semana."
+          ],
+          casa: "Completar el mapa y llevar el registro.",
+          avance: "Hay un mapa completo de las acomodaciones.",
+          fuente: "Lebowitz, 2020, cap. 6",
+          fichas: ["mapa-acomodaciones"]
+        },
+        {
+          t: "Responder con apoyo: aceptación y confianza",
+          tecs: ["validacion", "respuestas-apoyo"],
+          obj: "Reemplazar la exigencia y la protección por apoyo.",
+          pasos: [
+            "Apoyar es mostrar dos cosas a la vez: que se entiende que el hijo de verdad tiene miedo, y la confianza en que puede soportarlo.",
+            "Anotar lo que los padres suelen decir cuando el hijo está ansioso y revisar si incluye las dos partes.",
+            "Practicar frases de apoyo en situaciones reales."
+          ],
+          casa: "Usar una frase de apoyo cada día.",
+          avance: "Los padres responden con aceptación y confianza.",
+          fuente: "Lebowitz, 2020, cap. 7",
+          fichas: ["guia-apoyo-space"]
+        },
+        {
+          t: "Elegir la acomodación y planear",
+          tecs: ["acomodacion-familiar", "plan-crianza"],
+          obj: "Elegir una acomodación para reducir y planear qué hacer en su lugar.",
+          pasos: [
+            "Elegir una acomodación frecuente, que dependa de los padres y que les moleste; que los dos padres estén de acuerdo.",
+            "Planear qué se dejará de hacer, cuándo, quién, cómo y cuánto, y qué harán en su lugar.",
+            "Anticipar qué lo hará difícil."
+          ],
+          casa: "Escribir el plan.",
+          avance: "Hay un plan concreto acordado por los padres.",
+          fuente: "Lebowitz, 2020, caps. 8 y 9",
+          fichas: ["anuncio-space"]
+        },
+        {
+          t: "Anunciar el plan y sostenerlo",
+          tecs: ["respuestas-apoyo"],
+          obj: "Contarle el plan al hijo y llevarlo a cabo.",
+          pasos: [
+            "Escribir un mensaje breve y cariñoso: una frase de apoyo, por qué cambian, qué harán distinto, cuándo, quién y cómo.",
+            "Leerlo al hijo en un momento tranquilo, sin discutirlo.",
+            "Aplicar el plan cada vez, registrar cómo va y mantener las frases de apoyo."
+          ],
+          casa: "Aplicar el plan y registrar cómo va.",
+          avance: "La acomodación elegida disminuye.",
+          fuente: "Lebowitz, 2020, caps. 10 y 11",
+          fichas: ["anuncio-space"]
+        },
+        {
+          t: "Respuestas difíciles y trabajo en pareja",
+          tecs: ["validacion", "plan-seguridad"],
+          obj: "Sostener el plan ante la rabia, la angustia o las amenazas.",
+          pasos: [
+            "Ante la agresión, no castigar la ansiedad ni discutir: seguir con el plan, cuidarse y buscar ayuda si hace falta.",
+            "Ante la angustia prolongada, no seguir explicando: las discusiones son como una luz amarilla que el hijo lee como posibilidad de cambio.",
+            "Tomar en serio cualquier amenaza de hacerse daño y consultar enseguida para evaluar el riesgo.",
+            "Resolver los desacuerdos entre los padres y, al final, elegir la siguiente acomodación."
+          ],
+          casa: "Seguir con el plan y elegir el siguiente objetivo.",
+          avance: "Los padres sostienen el plan y pasan a otra acomodación.",
+          fuente: "Lebowitz, 2020, caps. 12 a 14"
+        }
+      ],
+      medir: [
+        "Registro de las acomodaciones de la semana.",
+        "<strong>CY-BOCS</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Cuando el hijo no quiere terapia:</strong> el programa trabaja solo con los padres y no requiere que el hijo colabore (Lebowitz, 2020, prólogo)."
+      ],
+      cuidado: [
+        "Las amenazas de hacerse daño son comunes, pero nunca se ignoran: consultar para evaluar el riesgo antes de seguir (Lebowitz, 2020, cap. 12).",
+        "La terapia cognitivo-conductual con el propio hijo es otro tratamiento eficaz (Lebowitz, 2020, cap. 2); este programa es útil sobre todo cuando el hijo no quiere participar."
       ]
     }
   ]
@@ -15047,7 +15394,8 @@ const VARIABLES = [
   sub: "Dolor que dura meses —de cabeza, de estómago, musculoesquelético o por una enfermedad— y que hace que el niño o el adolescente falte al colegio, deje sus actividades y a sus amigos, duerma mal y se angustie. Lo que se interviene no es solo el dolor, sino cuánto interfiere en su vida: lo que el niño piensa y hace con el dolor y cómo responden sus padres y el colegio. Se trabaja en coordinación con el médico tratante.",
   elegir: [
     "<strong>El plan es la terapia cognitivo-conductual para el dolor crónico pediátrico</strong>, con tres componentes centrales —relajación, estrategias de manejo de los padres y habilidades cognitivas—, a los que se suman el colegio, el sueño y la actividad física según lo que más interfiera (Palermo, 2012, cap. 5).",
-    "Si el dolor viene con mucha ansiedad, ver también <em>Ansiedad y miedos</em>; si viene con ánimo bajo, <em>Depresión</em>. Si el niño dejó de ir al colegio por otros motivos además del dolor, la variable <em>Rechazo escolar</em> ayuda a entender la función de esa evitación."
+    "Si el dolor viene con mucha ansiedad, ver también <em>Ansiedad y miedos</em>; si viene con ánimo bajo, <em>Depresión</em>. Si el niño dejó de ir al colegio por otros motivos además del dolor, la variable <em>Rechazo escolar</em> ayuda a entender la función de esa evitación.",
+    "<strong>Si el niño dejó de vivir esperando que el dolor se vaya</strong>, la aceptación y el compromiso trabajan el regreso a lo que le importa aunque haya dolor, con los padres como entrenadores."
   ],
   planes: [
     {
@@ -15169,6 +15517,97 @@ const VARIABLES = [
         "Si la primera visita revela un riesgo de expulsión por inasistencia u otro problema urgente, ese tema pasa a ser el primer foco (Palermo, 2012, cap. 5).",
         "Se evalúan los problemas emocionales y de conducta que acompañan al dolor; los programas intensivos suelen excluir a quienes tienen trastornos psiquiátricos graves (Palermo, 2012, caps. 4 y 5).",
         "El plan no sustituye el tratamiento médico del dolor."
+      ]
+    },
+    {
+      id: "dolor-act-pediatrico",
+      mod: "act-dolor",
+      inst: ["FDI"],
+      enf: "act",
+      nivel: "preliminar",
+      t: "Aceptación y compromiso para el dolor crónico en niños y adolescentes",
+      fuente: "Wicksell y Greco, 2008",
+      cuando: "Un <strong>niño o adolescente con dolor crónico</strong> que dejó de ir al colegio, de ver a sus amigos o de moverse esperando que el dolor se vaya primero, con una evaluación médica hecha y unos padres que, sin querer, lo protegen de hacer cosas.",
+      respaldo: "La evidencia en adultos con dolor y un estudio piloto con adolescentes con dolor abdominal funcional sugieren que la aceptación mejora el funcionamiento y la calidad de vida; los autores la presentan como un enfoque prometedor en pediatría (Wicksell y Greco, 2008).",
+      secuencia: "<strong>Secuencia:</strong> sesiones con el niño y sesiones individuales y conjuntas con los padres, dentro de un enfoque interdisciplinario con el médico (Wicksell y Greco, 2008).",
+      esc: ["hospital", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Evaluación de la conducta de dolor y validación",
+          tecs: ["analisis-funcional", "validacion"],
+          obj: "Entender qué mantiene la discapacidad y validar a la familia.",
+          pasos: [
+            "Validar la experiencia de la familia: el dolor es real.",
+            "Informar sobre el dolor crónico y el enfoque del tratamiento.",
+            "Hacer un análisis funcional de lo que el niño evita por el dolor y de lo que pasa después."
+          ],
+          casa: "Registrar las actividades que deja de hacer por el dolor.",
+          avance: "Hay un análisis funcional compartido.",
+          fuente: "Wicksell y Greco, 2008"
+        },
+        {
+          t: "Del dolor a los valores",
+          tecs: ["valores", "desesperanza-creativa"],
+          obj: "Cambiar la meta de quitar el dolor por la de vivir mejor.",
+          pasos: [
+            "Explorar lo que le importa al niño: amigos, colegio, deporte.",
+            "Revisar si las estrategias para controlar el dolor le han funcionado y qué le han costado."
+          ],
+          casa: "Anotar sus valores.",
+          avance: "El niño describe lo que le importa más allá del dolor.",
+          fuente: "Wicksell y Greco, 2008",
+          fichas: ["valores-adolescente"]
+        },
+        {
+          t: "Aceptación y defusión",
+          tecs: ["disposicion", "defusion"],
+          obj: "Tener el dolor y los pensamientos sobre él sin dejar que decidan.",
+          pasos: [
+            "Practicar la disposición a sentir el dolor mientras hace algo que le importa.",
+            "Practicar ver los pensamientos como «no puedo» o «tengo que esperar a estar bien» como pensamientos."
+          ],
+          casa: "Hacer una actividad valiosa aunque haya dolor.",
+          avance: "Retoma actividades aunque haya dolor.",
+          fuente: "Wicksell y Greco, 2008"
+        },
+        {
+          t: "Los padres como entrenadores",
+          tecs: ["valores", "pautas-operantes-dolor"],
+          obj: "Que los padres dejen de proteger y acompañen el regreso a la vida.",
+          pasos: [
+            "En sesiones individuales, trabajar las emociones de los padres ante el dolor del hijo y sus valores de crianza.",
+            "En sesiones conjuntas, practicar juntos la atención plena y los valores.",
+            "Pedir a los padres que pasen de cuidar a entrenar: animar los pasos del hijo en lugar de excusarlo."
+          ],
+          casa: "Los padres acompañan un paso de regreso al colegio o a una actividad.",
+          avance: "Los padres animan la actividad en lugar de proteger.",
+          fuente: "Wicksell y Greco, 2008",
+          fichas: ["pautas-dolor-padres"]
+        },
+        {
+          t: "Volver al colegio y a las actividades",
+          tecs: ["accion-comprometida", "reingreso-escolar-gradual"],
+          obj: "Recuperar el colegio, los amigos y el movimiento.",
+          pasos: [
+            "Acordar pasos concretos hacia el colegio, los amigos y la actividad física.",
+            "Hablar con los adultos que, sin querer, sostienen la evitación, como docentes o familiares."
+          ],
+          casa: "Cumplir los pasos de la semana.",
+          avance: "Aumenta la asistencia y la actividad.",
+          fuente: "Wicksell y Greco, 2008",
+          fichas: ["registro-asistencia"]
+        }
+      ],
+      medir: [
+        "<strong>FDI</strong> para la discapacidad funcional al inicio y al final.",
+        "Asistencia al colegio."
+      ],
+      adapt: [
+        "<strong>Terapia cognitivo-conductual:</strong> si se prefiere un plan con más ensayos, ver la terapia cognitivo-conductual para el dolor pediátrico (Palermo, 2012)."
+      ],
+      cuidado: [
+        "Siempre dentro de un enfoque interdisciplinario, con la evaluación y el seguimiento médico al día (Wicksell y Greco, 2008)."
       ]
     }
   ]
@@ -17452,7 +17891,11 @@ const GLOSARIO = [
 /* ---------- Bloque 4: conducta, irritabilidad y habilidades en el colegio (2026-11-02) ---------- */
 { k: "tolerancia-malestar", t: "Tolerancia al malestar", alias: ["habilidades de crisis", "actividades para calmarse"], tipo: "Técnica", enf: ["dbt"],
   d: "Habilidades para sobrellevar un momento de malestar intenso sin empeorarlo: actividades que distraen de las emociones dolorosas y que calman, como escuchar música, dibujar o ir a un lugar tranquilo, además de las habilidades de crisis de la terapia dialéctico-conductual.",
-  fuente: "Harvey y Penzo, 2009, caps. 4 y 5 · Mazza et al., 2016", ficha: "guia-calma-crisis" }
+  fuente: "Harvey y Penzo, 2009, caps. 4 y 5 · Mazza et al., 2016", ficha: "guia-calma-crisis" },
+/* ---------- Bloque 5: SPACE y aceptación y compromiso con padres (2026-11-02) ---------- */
+{ k: "respuestas-apoyo", t: "Respuestas de apoyo", alias: ["aceptación y confianza", "frases de apoyo"], tipo: "Técnica", enf: ["pad"],
+  d: "Responder a la ansiedad del hijo mostrando a la vez aceptación —que se entiende que de verdad tiene miedo, sin juzgarlo— y confianza en que puede soportarlo. Es lo contrario de exigir que no sienta ansiedad y de protegerlo de todo lo que la provoca.",
+  fuente: "Lebowitz, 2020, cap. 7", ficha: "guia-apoyo-space" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -17573,6 +18016,9 @@ const FICHAS = {
   "plan-encuentro": { t: "Mi plan para un encuentro con amigos", d: "Los amigos se hacen pasando tiempo juntos. Si no planeas un encuentro, probablemente no pasa. Usa esta hoja para organizarlo y para revisar cómo te fue.", n: 37, q: "M0 0.5h7m2 0h2m2 0h3m2 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h1m4 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h8m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m3 0h2m1 0h2m3 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m7 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m6 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-35 1h1m1 0h1m1 0h1m2 0h1m3 0h3m1 0h2m2 0h2m2 0h2m3 0h2m1 0h1m2 0h2m-35 1h7m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5m2 0h1m2 0h3m-35 1h1m1 0h1m2 0h1m2 0h4m2 0h1m1 0h2m1 0h3m2 0h2m5 0h1m2 0h1m-37 1h1m1 0h7m3 0h1m4 0h1m4 0h4m1 0h4m1 0h5m-37 1h2m1 0h1m1 0h1m1 0h1m3 0h2m3 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-28 1h4m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-35 1h2m1 0h1m1 0h1m2 0h4m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-31 1h2m2 0h1m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m2 0h2m3 0h2m2 0h1m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-32 1h1m1 0h1m1 0h2m1 0h1m1 0h4m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m1 0h1m1 0h1m1 0h1m4 0h4m4 0h3m1 0h1m3 0h3m1 0h1m3 0h1m-37 1h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m7 0h3m1 0h2m1 0h3m-34 1h1m1 0h3m2 0h1m3 0h2m2 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-34 1h1m2 0h2m1 0h2m6 0h2m4 0h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h6m1 0h2m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-36 1h1m3 0h3m1 0h1m2 0h3m2 0h1m1 0h2m1 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m8 0h1m1 0h2m1 0h6m1 0h2m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m2 0h3m5 0h1m4 0h1m1 0h4m2 0h7m-37 1h1m6 0h1m1 0h2m2 0h2m1 0h1m2 0h4m3 0h1m1 0h3m5 0h1m-37 1h1m1 0h1m1 0h6m2 0h2m3 0h3m2 0h5m1 0h7m1 0h1m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h2m1 0h4m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h6m1 0h1m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m3 0h3m1 0h5m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h5m4 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m4 0h3m1 0h1m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h2m1 0h2m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
   "guia-calma-crisis": { t: "Cuando su hijo explota: calmar sin pelear", c: "guia", d: "En plena explosión su hijo no puede escuchar razones ni consecuencias. Lo que más ayuda es que usted se calme primero, le muestre que entiende lo que siente y le dé un lugar y una forma de calmarse. Las conversaciones y las consecuencias quedan para después.", n: 37, q: "M0 0.5h7m2 0h3m2 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m3 0h2m4 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h2m1 0h1m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h3m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m1 0h1m3 0h3m5 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h2m4 0h6m1 0h2m-28 1h1m1 0h5m3 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-33 1h1m1 0h1m2 0h2m5 0h2m2 0h3m2 0h2m3 0h2m1 0h1m2 0h2m-34 1h1m1 0h4m1 0h1m1 0h1m1 0h3m1 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-33 1h2m4 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-36 1h2m2 0h2m2 0h5m1 0h1m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h3m2 0h1m1 0h1m2 0h1m5 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m1 0h6m2 0h1m2 0h4m1 0h1m1 0h2m5 0h2m1 0h4m1 0h2m-36 1h1m8 0h1m4 0h1m5 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m3 0h1m1 0h1m2 0h2m2 0h2m2 0h1m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h2m1 0h3m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-36 1h3m3 0h2m4 0h2m1 0h1m2 0h1m1 0h2m1 0h1m3 0h3m1 0h1m3 0h1m-36 1h2m1 0h8m1 0h3m1 0h1m5 0h1m1 0h3m1 0h2m1 0h3m-33 1h4m1 0h2m7 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-34 1h4m2 0h2m2 0h1m4 0h1m1 0h2m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m1 0h1m2 0h1m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-37 1h7m1 0h1m1 0h1m6 0h3m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h4m1 0h1m1 0h1m3 0h2m3 0h5m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m2 0h3m1 0h1m1 0h4m1 0h3m3 0h3m3 0h1m1 0h3m4 0h1m-36 1h1m1 0h5m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m2 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m1 0h1m5 0h5m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h3m1 0h3m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h1m4 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m3 0h2m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m4 0h1m1 0h3m5 0h3m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m6 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
   "guion-aviones-papel": { t: "Los aviones de papel: dejar volar los pensamientos", c: "guion", d: "Ayudar al niño a ver de otra manera los pensamientos que lo meten en problemas en el colegio o en casa: no para que desaparezcan, sino para que no tenga que agarrarlos ni pelear con ellos.", n: 41, q: "M0 0.5h7m6 0h1m1 0h1m2 0h3m2 0h1m5 0h4m1 0h7m-41 1h1m5 0h1m2 0h1m1 0h1m1 0h2m3 0h1m3 0h1m4 0h1m1 0h1m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m6 0h1m2 0h1m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m2 0h1m2 0h4m6 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h6m2 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h3m1 0h4m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m2 0h1m1 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h2m1 0h1m3 0h1m3 0h2m1 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-41 1h2m2 0h3m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1m-40 1h2m3 0h1m2 0h3m9 0h4m2 0h1m4 0h5m1 0h1m1 0h1m-35 1h7m1 0h2m2 0h1m4 0h2m1 0h3m1 0h1m1 0h3m3 0h2m1 0h1m-41 1h1m3 0h2m3 0h1m1 0h6m3 0h1m3 0h2m1 0h2m1 0h1m2 0h1m1 0h6m-41 1h1m4 0h2m4 0h1m2 0h2m2 0h2m2 0h1m3 0h1m2 0h1m2 0h2m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h1m1 0h1m3 0h1m3 0h3m2 0h1m1 0h1m1 0h1m5 0h2m1 0h1m-38 1h1m3 0h1m1 0h4m1 0h5m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m3 0h1m1 0h1m1 0h4m-39 1h1m1 0h2m1 0h2m3 0h6m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m2 0h7m-41 1h2m1 0h1m1 0h2m2 0h2m2 0h3m1 0h1m2 0h2m3 0h4m1 0h1m1 0h3m1 0h1m1 0h2m-40 1h4m1 0h1m1 0h2m1 0h1m2 0h2m2 0h2m1 0h3m1 0h2m2 0h1m7 0h2m2 0h1m-41 1h2m4 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m5 0h1m1 0h1m-40 1h1m2 0h1m3 0h3m2 0h2m2 0h4m1 0h2m1 0h1m2 0h1m2 0h10m-37 1h3m4 0h2m1 0h4m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m-39 1h1m1 0h1m1 0h2m2 0h1m7 0h1m1 0h2m1 0h4m1 0h1m7 0h4m-38 1h4m1 0h4m5 0h4m2 0h1m1 0h1m1 0h4m1 0h1m7 0h2m-39 1h1m2 0h2m2 0h1m1 0h4m5 0h8m2 0h4m1 0h5m1 0h2m-40 1h1m2 0h1m1 0h1m6 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h2m1 0h2m-37 1h1m10 0h5m5 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-32 1h1m6 0h1m3 0h4m1 0h1m1 0h3m1 0h4m1 0h1m3 0h2m-39 1h2m1 0h3m2 0h1m2 0h1m6 0h1m2 0h1m5 0h1m2 0h1m1 0h2m1 0h2m2 0h2m-41 1h1m2 0h2m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h5m2 0h2m2 0h1m1 0h6m-39 1h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h2m1 0h1m2 0h3m2 0h2m3 0h7m-38 1h1m2 0h1m1 0h13m4 0h6m1 0h1m1 0h6m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h2m2 0h2m2 0h1m1 0h3m1 0h1m3 0h2m1 0h2m-41 1h7m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h3m3 0h2m3 0h1m3 0h1m2 0h2m1 0h4m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m2 0h1m2 0h2m1 0h1m7 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h4m2 0h3m4 0h2m1 0h1m1 0h5m-37 1h1m5 0h1m4 0h3m3 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h3m1 0h3m1 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
+  "guia-apoyo-space": { t: "Apoyar: entender el miedo y confiar en su hijo", c: "guia", d: "Cuando su hijo está ansioso, es fácil caer en una de dos trampas: exigirle que no tenga miedo o protegerlo de todo lo que lo asusta. Apoyar tiene dos ingredientes, y hacen falta los dos: aceptar que de verdad tiene miedo y mostrarle que confía en que puede soportarlo.", n: 37, q: "M0 0.5h7m4 0h3m4 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h6m1 0h1m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m8 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h5m2 0h1m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m6 0h2m2 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h2m1 0h3m3 0h6m1 0h2m-28 1h1m1 0h5m3 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-34 1h4m2 0h3m2 0h5m1 0h3m1 0h3m3 0h2m1 0h1m2 0h2m-35 1h1m2 0h3m3 0h1m1 0h3m2 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-32 1h1m7 0h2m1 0h1m1 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h3m1 0h1m1 0h1m1 0h1m4 0h2m2 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h2m1 0h1m1 0h1m2 0h3m2 0h2m1 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m3 0h2m1 0h1m1 0h1m2 0h4m3 0h2m5 0h2m1 0h4m1 0h2m-37 1h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h3m5 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-34 1h1m3 0h1m1 0h7m2 0h4m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h4m3 0h3m2 0h1m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h3m1 0h1m1 0h2m4 0h1m2 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-37 1h1m1 0h1m4 0h1m2 0h1m1 0h2m1 0h1m3 0h1m1 0h2m1 0h1m3 0h3m1 0h1m3 0h1m-36 1h1m4 0h2m3 0h2m2 0h1m1 0h1m5 0h1m1 0h3m1 0h2m1 0h3m-35 1h2m2 0h1m2 0h2m1 0h3m1 0h1m1 0h5m2 0h1m4 0h1m4 0h1m-34 1h4m2 0h2m1 0h2m1 0h4m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m1 0h2m1 0h1m1 0h1m4 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-36 1h2m2 0h2m3 0h3m4 0h1m1 0h2m1 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m6 0h3m1 0h1m1 0h2m1 0h1m1 0h2m1 0h2m4 0h1m2 0h1m-32 1h1m1 0h2m2 0h2m3 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m2 0h2m2 0h3m1 0h2m1 0h1m1 0h1m3 0h3m3 0h1m1 0h3m-31 1h1m1 0h1m3 0h1m2 0h1m1 0h1m2 0h2m1 0h3m2 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m1 0h2m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m3 0h1m1 0h1m2 0h2m1 0h1m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h3m3 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m4 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h3m1 0h3m1 0h4m1 0h1m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m3 0h2m3 0h2m2 0h5m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
+  "mapa-acomodaciones": { t: "Mapa de acomodaciones", d: "Las acomodaciones son lo que la familia hace o deja de hacer por la ansiedad de su hijo. Alivian en el momento, pero mantienen la ansiedad. Recorra un día completo y anote todo lo que hace distinto por ella.", n: 37, q: "M0 0.5h7m2 0h1m2 0h1m1 0h2m2 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m5 0h2m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h1m7 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h4m1 0h2m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m5 0h3m3 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m3 0h4m3 0h6m1 0h2m-28 1h1m1 0h5m6 0h1m3 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-35 1h1m1 0h3m3 0h8m2 0h3m2 0h2m3 0h2m1 0h1m2 0h2m-35 1h1m3 0h2m1 0h1m1 0h4m1 0h1m1 0h2m1 0h2m3 0h4m2 0h1m2 0h3m-36 1h1m3 0h1m1 0h3m2 0h1m3 0h1m1 0h2m1 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h3m1 0h3m1 0h3m1 0h4m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h1m1 0h1m2 0h1m1 0h4m2 0h1m2 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-31 1h3m1 0h2m1 0h1m6 0h3m2 0h1m6 0h2m1 0h4m1 0h2m-35 1h1m2 0h1m2 0h1m3 0h4m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h2m1 0h4m1 0h1m1 0h1m3 0h1m2 0h1m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-36 1h1m1 0h2m3 0h2m1 0h3m2 0h5m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h4m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h4m1 0h2m3 0h3m-37 1h2m2 0h1m2 0h2m2 0h6m4 0h2m1 0h1m3 0h3m1 0h1m3 0h1m-37 1h1m2 0h1m2 0h3m1 0h3m1 0h2m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h2m6 0h2m1 0h2m3 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-31 1h1m2 0h1m1 0h1m1 0h3m2 0h1m4 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h5m2 0h3m3 0h1m1 0h2m3 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-36 1h1m1 0h1m2 0h1m2 0h2m2 0h2m2 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h2m3 0h3m2 0h3m1 0h2m1 0h2m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h6m3 0h2m2 0h1m1 0h1m4 0h1m2 0h3m2 0h7m-37 1h1m3 0h2m6 0h4m4 0h3m1 0h1m1 0h1m1 0h3m5 0h1m-37 1h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m3 0h1m1 0h3m1 0h9m-29 1h3m5 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m3 0h2m2 0h5m1 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h3m1 0h1m7 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m4 0h6m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h6m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m2 0h6m1 0h1m2 0h4m3 0h3m3 0h1m3 0h1m-37 1h7m1 0h5m4 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
+  "anuncio-space": { t: "Nuestro plan y el mensaje para nuestro hijo", d: "Elijan una acomodación frecuente, que dependa de ustedes y que les moleste, y planeen qué harán en su lugar. Después escriban un mensaje breve y cariñoso para leérselo a su hijo en un momento tranquilo.", n: 37, q: "M0 0.5h7m2 0h2m2 0h1m5 0h2m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m1 0h1m3 0h1m1 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m2 0h1m5 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m2 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h1m3 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m1 0h3m4 0h1m2 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m6 0h1m2 0h7m1 0h2m-28 1h1m1 0h5m2 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h5m-32 1h3m2 0h2m2 0h1m2 0h1m2 0h2m3 0h1m4 0h2m1 0h1m2 0h2m-34 1h1m2 0h3m1 0h3m2 0h5m1 0h2m2 0h5m2 0h1m2 0h3m-36 1h1m1 0h1m5 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h4m2 0h2m5 0h1m2 0h1m-37 1h1m1 0h5m3 0h2m1 0h1m1 0h1m1 0h1m4 0h4m1 0h4m1 0h5m-35 1h1m1 0h2m1 0h2m4 0h2m1 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m1 0h4m2 0h1m5 0h2m3 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-37 1h1m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h4m2 0h1m3 0h1m1 0h3m2 0h1m1 0h1m4 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m2 0h3m1 0h2m1 0h1m2 0h1m1 0h6m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h1m1 0h1m1 0h4m4 0h3m3 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-37 1h1m4 0h1m1 0h1m1 0h2m5 0h1m2 0h1m1 0h2m5 0h3m1 0h1m3 0h1m-37 1h2m3 0h2m1 0h1m3 0h1m4 0h1m7 0h3m1 0h2m1 0h3m-34 1h1m5 0h3m2 0h1m3 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-31 1h1m2 0h3m3 0h2m1 0h1m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-34 1h1m3 0h1m1 0h5m1 0h2m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h2m1 0h2m1 0h2m2 0h1m3 0h1m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m1 0h1m4 0h2m1 0h1m3 0h1m1 0h4m1 0h2m4 0h1m2 0h1m-32 1h1m1 0h1m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h4m2 0h7m-37 1h1m1 0h1m1 0h1m2 0h3m3 0h3m5 0h3m2 0h1m1 0h3m4 0h1m-36 1h1m1 0h1m1 0h4m1 0h2m1 0h2m1 0h1m1 0h2m3 0h5m1 0h8m-28 1h3m3 0h1m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h2m2 0h1m1 0h2m1 0h1m1 0h1m3 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h6m4 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h3m4 0h1m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h10m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m14 0h1m6 0h2m-37 1h1m5 0h1m5 0h2m2 0h1m4 0h2m1 0h1m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m1 0h1m5 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
 };
 /* @@FIN-DATOS@@ */
 
