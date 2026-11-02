@@ -1923,6 +1923,78 @@ REFERENCIAS.push(
   { k: "Woods y Twohig, 2008", ref: "Woods, D. W. y Twohig, M. P. (2008). <em>Trichotillomania: An ACT-enhanced behavior therapy approach. Therapist guide</em>. Oxford University Press." }
 );
 
+/* Neurodesarrollo, bloque 3 (2026-11-02): autismo (Bearss et al., 2018;
+   Scarpa et al., 2013; OMS, 2022; Szabo, 2023; Kerns et al., 2017;
+   Laugeson, 2013 y 2014), déficit de atención (Barkley, 2013; Bertin, 2015;
+   Bertin y Bluth, 2021), discapacidad intelectual (Whittingham y Coyne,
+   2019; Baker y Brightman, 2004) y aprendizaje (Meltzer, 2018). */
+Object.assign(MODELOS, {
+  "rubi": {
+    t: "Conducta disruptiva en el autismo desde el análisis aplicado de la conducta",
+    autor: "Bearss, Johnson, Handen, Butter, Lecavalier y Scahill",
+    d: "Hasta la mitad de los niños con autismo tienen conductas disruptivas, que cumplen una función para el niño y se mantienen por lo que pasa antes y después de ellas. Los padres aprenden a prevenirlas cambiando los antecedentes y las rutinas, a reforzar las conductas adecuadas, a dejar de reforzar sin querer las inadecuadas y a enseñar formas de comunicarse y habilidades que las reemplacen.",
+    dim: ["Antecedentes y prevención", "Reforzamiento", "Extinción planificada", "Obediencia guiada", "Comunicación funcional y habilidades"],
+    fuente: "Bearss et al., 2018, introducción"
+  },
+  "explorando-emociones": {
+    t: "Competencia emocional en el autismo",
+    autor: "Attwood, Scarpa y colaboradores",
+    d: "A los niños con autismo les cuesta reconocer las señales del cuerpo y nombrar sus emociones, y tienden a usar formas poco eficaces de regularse, como evitar o agredir. La educación emocional enseña la relación entre pensamientos, emociones y conductas; la caja de herramientas les da formas variadas y concretas de calmarse, y la reestructuración cambia los pensamientos que suben la ansiedad o el enojo.",
+    dim: ["Reconocer emociones", "Intensidad", "Caja de herramientas", "Pensamientos que ayudan", "Padres"],
+    fuente: "Scarpa et al., 2013, cap. 7"
+  },
+  "cst-oms": {
+    t: "Habilidades de los cuidadores para el desarrollo",
+    autor: "Organización Mundial de la Salud",
+    d: "Los cuidadores pueden aprender estrategias que favorecen la atención compartida, la comunicación, las habilidades diarias y la conducta adecuada de sus hijos con retrasos o discapacidades del desarrollo, en el juego y en las rutinas de la casa. Las sesiones en grupo y las visitas a casa permiten llegar a más familias donde hay pocos especialistas, y el bienestar del cuidador es parte del programa.",
+    dim: ["Atención compartida", "Comunicación", "Enseñar en pasos pequeños", "Prevenir conductas difíciles", "Bienestar del cuidador"],
+    fuente: "OMS, 2022, introducción"
+  },
+  "act-aba": {
+    t: "Aceptación y compromiso dentro del análisis de la conducta",
+    autor: "Szabo; Dixon, Hayes y Belisle",
+    d: "Las reglas verbales y la evitación de lo que se siente pueden volver la conducta insensible a las contingencias. Cuando el manejo directo de contingencias no basta, los procesos de aceptación y compromiso —disposición, defusión, presente, toma de perspectiva, valores y acción comprometida— se tratan como repertorios conductuales que se enseñan, se refuerzan y se miden.",
+    dim: ["Conducta gobernada por reglas", "Evitación", "Repertorios relacionales", "Seis procesos", "Medición conductual"],
+    fuente: "Szabo, 2023, caps. 1 y 2"
+  },
+  "barkley-desafio": {
+    t: "Causas de la conducta desafiante",
+    autor: "Barkley",
+    d: "La desobediencia resulta de la interacción entre las características del niño —como el déficit de atención—, las de los padres, las consecuencias que siguen a la conducta y el estrés familiar. El tratamiento busca un mejor ajuste entre el niño y su ambiente: primero se vuelve valiosa la atención de los padres y se crean incentivos, y solo después se agregan castigos leves.",
+    dim: ["Características del niño", "Características de los padres", "Consecuencias", "Estrés familiar", "Incentivos antes que castigos"],
+    fuente: "Barkley, 2013, paso 1"
+  },
+  "crianza-consciente-tdah": {
+    t: "Atención plena y déficit de atención",
+    autor: "Bertin",
+    d: "El déficit de atención es un problema de funciones ejecutivas que afecta la atención, las tareas, las emociones y la acción. La atención plena no lo trata por sí sola, pero ayuda a padres, docentes y adolescentes a notar sin juicio lo que pasa, manejar el estrés y responder con intención en lugar de reaccionar, lo que facilita sostener el tratamiento conductual, educativo y médico.",
+    dim: ["Funciones ejecutivas", "Estrés de los padres", "Pausa", "Autocompasión", "Tratamiento integrado"],
+    fuente: "Bertin, 2015 · Willard y Saltzman, 2015, cap. 20"
+  },
+  "act-padres-discapacidad": {
+    t: "Flexibilidad psicológica en la crianza de niños con discapacidad",
+    autor: "Whittingham y Coyne",
+    d: "Los padres de niños con discapacidad pueden vivir un duelo cíclico por la vida que esperaban. Evitar ese dolor puede llevar a una crianza centrada solo en la terapia o a abandonar las pautas que funcionan. Los valores de crianza, la aceptación, la presencia y la compasión permiten sostener una relación sensible y una crianza eficaz, ajustada al propio hijo.",
+    dim: ["Duelo", "Valores de crianza", "Aceptación", "Presencia compartida", "Compasión"],
+    fuente: "Whittingham y Coyne, 2019, caps. 6 a 8"
+  }
+});
+REFERENCIAS.push(
+  { k: "Bearss et al., 2018", ref: "Bearss, K., Johnson, C. R., Handen, B. L., Butter, E., Lecavalier, L. y Scahill, L. (2018). <em>Parent training for disruptive behavior: The RUBI Autism Network, clinician manual</em>. Oxford University Press." },
+  { k: "Scarpa et al., 2013", ref: "Scarpa, A., White, S. W. y Attwood, T. (Eds.). (2013). <em>CBT for children and adolescents with high-functioning autism spectrum disorders</em>. Guilford Press." },
+  { k: "OMS, 2022", ref: "Organización Mundial de la Salud. (2022). <em>Caregiver skills training for families of children with developmental delays or disabilities</em>. OMS." },
+  { k: "Szabo, 2023", ref: "Szabo, T. G. (2023). <em>ACT and applied behavior analysis: A practical guide to ensuring better behavior outcomes using acceptance and commitment training</em>. Context Press." },
+  { k: "Dixon et al., 2023", ref: "Dixon, M. R., Hayes, S. C. y Belisle, J. (2023). <em>Acceptance and commitment therapy for behavior analysts: A practice guide from theory to treatment</em>. Routledge." },
+  { k: "Kerns et al., 2017", ref: "Kerns, C. M., Renno, P., Storch, E. A., Kendall, P. C. y Wood, J. J. (Eds.). (2017). <em>Anxiety in children and adolescents with autism spectrum disorder: Evidence-based assessment and treatment</em>. Academic Press." },
+  { k: "Laugeson, 2014", ref: "Laugeson, E. A. (2014). <em>The PEERS curriculum for school-based professionals: Social skills training for adolescents with autism spectrum disorder</em>. Routledge." },
+  { k: "Laugeson, 2013", ref: "Laugeson, E. A. (2013). <em>The science of making friends: Helping socially challenged teens and young adults</em>. Jossey-Bass." },
+  { k: "Barkley, 2013", ref: "Barkley, R. A. (2013). <em>Defiant children: A clinician's manual for assessment and parent training</em> (3.ª ed.). Guilford Press." },
+  { k: "Bertin, 2015", ref: "Bertin, M. (2015). <em>Mindful parenting for ADHD: A guide to cultivating calm, reducing stress, and helping children thrive</em>. New Harbinger." },
+  { k: "Bertin y Bluth, 2021", ref: "Bertin, M. y Bluth, K. (2021). <em>Mindfulness and self-compassion for teen ADHD: Build executive functioning skills, increase motivation, and improve self-confidence</em>. Instant Help Books." },
+  { k: "Willard y Saltzman, 2015", ref: "Willard, C. y Saltzman, A. (Eds.). (2015). <em>Teaching mindfulness skills to kids and teens</em>. Guilford Press." },
+  { k: "Baker y Brightman, 2004", ref: "Baker, B. L. y Brightman, A. J. (2004). <em>Steps to independence: Teaching everyday skills to children with special needs</em> (4.ª ed.). Paul H. Brookes." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -7925,7 +7997,10 @@ const VARIABLES = [
   elegir: [
     "<strong>El manejo conductual funciona en el lugar donde se aplica</strong>: lo que se trabaja con los padres mejora la casa, pero rara vez se traslada solo al colegio. Por eso los planes se combinan según dónde está el problema (Evans et al., 2019).",
     "<strong>En preescolar y primaria</strong>, el entrenamiento conductual a padres y el manejo conductual en el aula tienen el nivel más alto de evidencia. <strong>En la adolescencia</strong>, lo que más ayuda en el colegio es entrenar habilidades de organización con práctica frecuente, más que el entrenamiento a padres (Evans et al., 2019).",
-    "El tratamiento farmacológico lo decide el médico; en preescolares, las guías recomiendan empezar por la intervención conductual (Evans et al., 2019). Si hay además desafío y agresión marcados, conviene revisar Conducta oposicionista y desafiante; si hay dificultades de lectura o cálculo, <em>Dificultades de aprendizaje</em>, porque esos problemas necesitan su propia intervención."
+    "El tratamiento farmacológico lo decide el médico; en preescolares, las guías recomiendan empezar por la intervención conductual (Evans et al., 2019). Si hay además desafío y agresión marcados, conviene revisar Conducta oposicionista y desafiante; si hay dificultades de lectura o cálculo, <em>Dificultades de aprendizaje</em>, porque esos problemas necesitan su propia intervención.",
+    "<strong>Si además hay desafío y oposición en un niño de 2 a 12 años</strong>, el programa de diez pasos de Barkley sigue un orden fijo: atención e incentivos primero, castigos leves después, lugares públicos y colegio al final.",
+    "<strong>Si los padres están desbordados y reaccionan con gritos</strong>, la crianza consciente complementa el entrenamiento conductual con prácticas de pausa y de autocuidado.",
+    "<strong>Si el adolescente se critica duramente por sus olvidos y su rendimiento</strong>, la atención plena y la autocompasión pueden trabajarse como autoayuda acompañada."
   ],
   planes: [
     {
@@ -8398,6 +8473,296 @@ const VARIABLES = [
       cuidado: [
         "Si el adolescente no se compromete, se vuelve a la entrevista motivacional antes de entrenar habilidades (Sibley, 2017, caps. 4 y 8)."
       ]
+    },
+    {
+      id: "tdah-barkley",
+      mod: "barkley-desafio",
+      inst: ["Vanderbilt"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Entrenamiento a padres en diez pasos para niños desafiantes (Barkley)",
+      fuente: "Barkley, 2013",
+      cuando: "Un <strong>niño de 2 a 12 años desobediente, desafiante u oposicionista</strong>, a menudo con déficit de atención, cuyos padres pueden asistir a sesiones semanales y aplicar en casa un sistema de incentivos antes que los castigos.",
+      respaldo: "El autor resume un metaanálisis de programas de entrenamiento conductual a padres como este, en el que aumentar las interacciones positivas entre padres e hijos, enseñar a comunicar emociones, usar el tiempo fuera, ser constantes y practicar en las sesiones se asoció con mayores efectos; este programa incluye todos esos componentes (Barkley, 2013, introducción).",
+      secuencia: "<strong>Secuencia:</strong> diez pasos, uno por sesión, en el orden del manual: primero la atención y los incentivos, después el castigo leve; el paso 8, la tarjeta diaria del colegio, es opcional. Puede ser un programa completo en sí mismo o parte de una terapia familiar más amplia (Barkley, 2013, parte I).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Por qué se portan mal los niños",
+          tecs: ["psicoeducacion", "analisis-funcional"],
+          obj: "Entender las causas de la desobediencia en el niño y en la familia.",
+          pasos: [
+            "Revisar las características del niño, las de los padres, las consecuencias de las situaciones y el estrés familiar, y cómo se influyen entre sí.",
+            "Plantear la meta como un mejor ajuste entre el niño y su ambiente: en el déficit de atención, el niño necesita un ambiente social que lo apoye."
+          ],
+          casa: "Anotar el perfil del niño y los estresores de la familia.",
+          avance: "Los padres describen por qué ocurre la desobediencia en su caso.",
+          fuente: "Barkley, 2013, paso 1"
+        },
+        {
+          t: "Prestar atención y aumentar la obediencia",
+          tecs: ["juego-especial", "atencion-diferencial", "instrucciones-eficaces"],
+          obj: "Volver valiosa la atención de los padres y usarla para la obediencia.",
+          pasos: [
+            "Un rato diario de juego especial en que el padre atiende y comenta sin dar órdenes ni criticar.",
+            "Atender y elogiar la obediencia; dar órdenes eficaces: claras, una a la vez y sin hacerlas pregunta.",
+            "Practicar periodos de entrenamiento con órdenes sencillas y elogiar cuando el niño juega solo sin interrumpir."
+          ],
+          casa: "Juego especial diario y elogio de la obediencia.",
+          avance: "Los padres atienden más lo positivo y el niño obedece más.",
+          fuente: "Barkley, 2013, pasos 2 y 3",
+          fichas: ["guia-juego-especial", "guia-instrucciones", "guia-elogio"]
+        },
+        {
+          t: "Fichas y puntos",
+          tecs: ["sistema-puntos"],
+          obj: "Motivar la obediencia con privilegios cuando el elogio no basta.",
+          pasos: [
+            "Fichas para los niños de 4 a 8 años y puntos anotados en un cuaderno para los de 9 a 11.",
+            "El niño gana fichas o puntos por obedecer órdenes, reglas y tareas, y los cambia por privilegios diarios, semanales o a largo plazo."
+          ],
+          casa: "Aplicar el sistema de fichas o puntos a diario.",
+          avance: "El niño obedece más para ganar privilegios.",
+          fuente: "Barkley, 2013, paso 4",
+          fichas: ["tabla-puntos"]
+        },
+        {
+          t: "Costo de respuesta y tiempo fuera",
+          tecs: ["costo-respuesta", "tiempo-fuera"],
+          obj: "Agregar castigos leves para la desobediencia que persiste.",
+          pasos: [
+            "Quitar puntos o fichas por la conducta inadecuada.",
+            "Usar el tiempo fuera en una silla aburrida para una o dos conductas elegidas.",
+            "Extenderlo después a una o dos conductas más y resolver los tropiezos."
+          ],
+          casa: "Aplicar el tiempo fuera a la conducta elegida.",
+          avance: "La desobediencia elegida disminuye.",
+          fuente: "Barkley, 2013, pasos 5 y 6",
+          fichas: ["guia-tiempo-fuera", "tiempo-fuera"]
+        },
+        {
+          t: "Anticipar problemas en lugares públicos",
+          tecs: ["pensar-voz-alta-anticipar"],
+          obj: "Prevenir la mala conducta fuera de la casa y en las transiciones.",
+          pasos: [
+            "Antes de entrar a un lugar público, detenerse y repasar tres o cuatro reglas.",
+            "Acordar un incentivo por cumplirlas y la consecuencia si no.",
+            "Asignarle al niño una actividad o una responsabilidad durante la salida.",
+            "Usar el mismo procedimiento antes de las transiciones difíciles en casa."
+          ],
+          casa: "Aplicar los cuatro pasos en una salida.",
+          avance: "Menos problemas en lugares públicos.",
+          fuente: "Barkley, 2013, paso 7",
+          fichas: ["guia-lugares-publicos"]
+        },
+        {
+          t: "Colegio, problemas futuros y seguimiento",
+          tecs: ["tarjeta-diaria", "prevencion-recaidas"],
+          obj: "Llevar el programa al colegio y prepararse para problemas nuevos.",
+          pasos: [
+            "Si hay problemas en el colegio, usar una tarjeta diaria de conducta que el niño trae a casa y que suma o resta puntos.",
+            "Ensayar cómo aplicar los métodos a problemas nuevos.",
+            "Hacer una sesión de refuerzo y reuniones de seguimiento."
+          ],
+          casa: "Usar la tarjeta diaria si aplica.",
+          avance: "Los padres aplican el programa a problemas nuevos.",
+          fuente: "Barkley, 2013, pasos 8 a 10",
+          fichas: ["nota-casa-colegio"]
+        }
+      ],
+      medir: [
+        "<strong>Vanderbilt</strong> de padres y docentes al inicio y al final.",
+        "Registro de la obediencia en casa."
+      ],
+      adapt: [
+        "<strong>Desobediencia leve:</strong> puede bastar con entrenar el elogio y luego el tiempo fuera, sin el programa completo (Barkley, 2013, parte I)."
+      ],
+      cuidado: [
+        "Los padres con depresión, consumo de sustancias, déficit de atención propio —frecuente en estas familias— o mucho conflicto de pareja suelen responder menos: evaluarlos y atenderlos antes o a la vez (Barkley, 2013, introducción).",
+        "Enseñar primero los incentivos y después el castigo: empezar por el castigo lleva a depender de él (Barkley, 2013, parte I)."
+      ]
+    },
+    {
+      id: "tdah-mind-padres",
+      mod: "crianza-consciente-tdah",
+      enf: "mind",
+      nivel: "conceptual",
+      t: "Crianza consciente para padres de niños con déficit de atención",
+      fuente: "Bertin, 2015",
+      cuando: "Padres de un <strong>niño con déficit de atención</strong> agotados, que reaccionan con gritos o se sienten desbordados por las rutinas, las tareas y los conflictos, como complemento del tratamiento conductual y médico.",
+      respaldo: "El autor integra la atención plena con el tratamiento basado en la evidencia del déficit de atención —conductual, educativo y médico—, pero no presenta datos de un programa propio (Bertin, 2015; Willard y Saltzman, 2015, cap. 20).",
+      secuencia: "<strong>Secuencia:</strong> once capítulos, cada uno con prácticas y un plan de acción, que pueden trabajarse en sesiones de orientación a padres o como lectura guiada (Bertin, 2015).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender el déficit de atención como un problema de funciones ejecutivas",
+          tecs: ["psicoeducacion"],
+          obj: "Mirar el déficit de atención sin juicio y como un todo.",
+          pasos: [
+            "Explicar el déficit de atención como un problema de manejo de la atención, las tareas, las emociones y la acción.",
+            "Soltar suposiciones, como que el niño es flojo o no quiere.",
+            "Practicar la atención a la respiración y la atención en las actividades diarias."
+          ],
+          casa: "Practicar la atención a la respiración unos minutos al día.",
+          avance: "Los padres describen las dificultades del niño sin juzgarlo.",
+          fuente: "Bertin, 2015, caps. 1 y 2"
+        },
+        {
+          t: "El cuidado de los padres",
+          tecs: ["atencion-plena", "autocuidado-padres"],
+          obj: "Atender el estrés de los padres como parte del tratamiento.",
+          pasos: [
+            "Revisar el propio estrés y los propios síntomas, incluida la posibilidad de déficit de atención en los padres.",
+            "Hacer una lista de prioridades de conducta para no pelear todas las batallas.",
+            "Practicar quince respiraciones conscientes en los momentos de agobio."
+          ],
+          casa: "Hacer quince respiraciones conscientes al menos una vez al día.",
+          avance: "Los padres tienen momentos de pausa en el día.",
+          fuente: "Bertin, 2015, caps. 3 y 4",
+          fichas: ["guia-pausa-padres-tdah"]
+        },
+        {
+          t: "Pausar antes de reaccionar",
+          tecs: ["stop-transiciones"],
+          obj: "Responder en lugar de reaccionar en los conflictos y las transiciones.",
+          pasos: [
+            "Practicar STOP —parar, respirar, observar, proceder— en las transiciones del día, y enseñárselo al niño para que recuerde terminar lo que empieza.",
+            "Observar el propio estilo de comunicación y lo que funciona con el niño.",
+            "Ponerle atención plena al establecimiento de límites."
+          ],
+          casa: "Usar STOP en las transiciones del día.",
+          avance: "Hay menos discusiones escaladas.",
+          fuente: "Bertin, 2015, caps. 2, 5 y 7",
+          fichas: ["guia-pausa-padres-tdah"]
+        },
+        {
+          t: "Elogios, recompensas y rutinas",
+          tecs: ["elogio-especifico", "sistema-puntos", "rutina-actividad-conjunta"],
+          obj: "Sostener el plan conductual y las rutinas con calma.",
+          pasos: [
+            "Identificar lo opuesto de las conductas difíciles y premiarlo con constancia.",
+            "Armar rutinas que funcionen y externalizar el sistema: listas, horarios, recordatorios.",
+            "Coordinar con el colegio y revisar con el médico las decisiones sobre medicación."
+          ],
+          casa: "Mantener una rutina y el sistema de recompensas.",
+          avance: "Las rutinas se cumplen con menos conflicto.",
+          fuente: "Bertin, 2015, caps. 6, 8 a 10",
+          fichas: ["tabla-puntos"]
+        },
+        {
+          t: "Atención plena para el niño",
+          tecs: ["atencion-plena", "atencion-plena-sentidos"],
+          obj: "Ofrecer al niño prácticas breves de atención plena.",
+          pasos: [
+            "Practicar con el niño ejercicios cortos: movimiento consciente, respiración, escáner corporal.",
+            "Sostener una práctica regular de la familia."
+          ],
+          casa: "Una práctica breve con el niño varias veces por semana.",
+          avance: "El niño participa en prácticas breves.",
+          fuente: "Bertin, 2015, cap. 11",
+          fichas: ["guia-tres-respiraciones", "guia-cuerpo-atento-ninos"]
+        }
+      ],
+      medir: [
+        "Estrés de los padres y número de conflictos en la semana."
+      ],
+      adapt: [
+        "<strong>Docentes y profesionales:</strong> la misma práctica de manejar el propio estrés sirve a docentes y profesionales de la salud que trabajan con niños con déficit de atención (Willard y Saltzman, 2015, cap. 20)."
+      ],
+      cuidado: [
+        "No reemplaza el tratamiento con evidencia del déficit de atención —entrenamiento conductual a padres, apoyos escolares y, si corresponde, medicación—: lo complementa (Willard y Saltzman, 2015, cap. 20)."
+      ]
+    },
+    {
+      id: "tdah-mind-adol",
+      mod: "crianza-consciente-tdah",
+      enf: "mind",
+      nivel: "conceptual",
+      t: "Atención plena y autocompasión para adolescentes con déficit de atención",
+      fuente: "Bertin y Bluth, 2021",
+      cuando: "Un <strong>adolescente con déficit de atención</strong> que se critica duramente por sus olvidos, su rendimiento o su desorganización, que posterga las tareas y se frustra con facilidad, y que puede leer y practicar con acompañamiento.",
+      respaldo: "Libro de autoayuda que combina la atención plena, la autocompasión adaptada a adolescentes y las funciones ejecutivas; no presenta datos propios (Bertin y Bluth, 2021).",
+      secuencia: "<strong>Secuencia:</strong> diez capítulos con prácticas formales e informales, que el adolescente lee y practica entre sesiones de acompañamiento (Bertin y Bluth, 2021).",
+      esc: ["primer-nivel", "colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Qué es el déficit de atención y cómo ayudan la atención plena y la autocompasión",
+          tecs: ["psicoeducacion", "autocompasion"],
+          obj: "Entender el déficit de atención sin culparse.",
+          pasos: [
+            "Explicar el déficit de atención como un problema del «administrador» del cerebro: la atención, las tareas y el esfuerzo.",
+            "Presentar la atención plena y la autocompasión como formas de manejarlo.",
+            "Practicar plantas de los pies, tres respiraciones y movimiento consciente."
+          ],
+          casa: "Practicar tres respiraciones antes de empezar una tarea.",
+          avance: "El adolescente describe su déficit de atención sin culparse.",
+          fuente: "Bertin y Bluth, 2021, caps. 1 y 2",
+          fichas: ["guia-calma-cuerpo-adolescentes", "guia-tres-respiraciones"]
+        },
+        {
+          t: "Hábitos que se mantienen",
+          tecs: ["jerarquia-metas", "atencion-plena"],
+          obj: "Crear hábitos y rutinas con amabilidad hacia uno mismo.",
+          pasos: [
+            "Elegir un hábito pequeño y hacer que se mantenga.",
+            "Crear un hábito de atención plena.",
+            "Hablarse con amabilidad cuando el hábito falla, en vez de criticarse."
+          ],
+          casa: "Practicar el hábito elegido cada día.",
+          avance: "Mantiene un hábito nuevo.",
+          fuente: "Bertin y Bluth, 2021, cap. 3"
+        },
+        {
+          t: "Comunicación y emociones difíciles",
+          tecs: ["autocompasion", "atencion-plena"],
+          obj: "Comunicarse con claridad y manejar las emociones intensas.",
+          pasos: [
+            "Practicar escuchar y hablar con atención.",
+            "Usar el contacto de apoyo en los momentos difíciles.",
+            "Practicar trabajar con emociones difíciles sin dejar que tomen el control."
+          ],
+          casa: "Usar el contacto de apoyo cuando se frustre.",
+          avance: "Se calma antes de reaccionar.",
+          fuente: "Bertin y Bluth, 2021, caps. 4 y 5",
+          fichas: ["guia-calma-cuerpo-adolescentes"]
+        },
+        {
+          t: "Lo social, el colegio y la salud",
+          tecs: ["autocompasion", "stop-transiciones"],
+          obj: "Llevar las prácticas a los amigos, el colegio y el autocuidado.",
+          pasos: [
+            "Practicar la humanidad compartida: todos tienen dificultades.",
+            "En el colegio, usar STOP en las transiciones y prácticas breves para empezar las tareas.",
+            "Cuidar el sueño, la alimentación y el ejercicio."
+          ],
+          casa: "Usar STOP al terminar cada tarea.",
+          avance: "Empieza y termina más tareas.",
+          fuente: "Bertin y Bluth, 2021, caps. 6, 8 y 9",
+          fichas: ["guia-amigo-compasivo-adolescentes"]
+        },
+        {
+          t: "El futuro que elige",
+          tecs: ["valores"],
+          obj: "Orientarse hacia lo que le importa.",
+          pasos: [
+            "Identificar lo que le importa para el futuro.",
+            "Planear los pasos y sostenerlos con autocompasión."
+          ],
+          casa: "Dar un paso hacia una meta propia.",
+          avance: "Tiene metas propias y pasos claros.",
+          fuente: "Bertin y Bluth, 2021, cap. 10",
+          fichas: ["valores-adolescente"]
+        }
+      ],
+      medir: [
+        "Autocrítica y tareas completadas, según lo que el adolescente registre."
+      ],
+      cuidado: [
+        "Es un libro de autoayuda: complementa, no reemplaza, el tratamiento del déficit de atención."
+      ]
     }
   ]
 },
@@ -8408,7 +8773,11 @@ const VARIABLES = [
   elegir: [
     "<strong>No hay un tratamiento único para el autismo:</strong> la elección depende de la edad, el nivel de desarrollo y lo que más interfiere. Las intervenciones conductuales son las de mayor respaldo. La más estudiada es la intervención conductual intensiva temprana, que exige de 20 a 40 horas semanales de enseñanza individual durante dos años o más, con un equipo entrenado: produce ganancias importantes en muchos niños, pero no en todos, y su intensidad es difícil de lograr en muchos servicios (Smith, 2010; Klinger y Dudley, 2019).",
     "Para niños pequeños, las intervenciones naturalistas del desarrollo llevan esos principios al juego y a las rutinas de la familia, con los padres como coterapeutas; el Modelo Denver de atención temprana es la versión integral e intensiva, para niños de 1 a 5 años, con un ensayo aleatorizado a su favor (Rogers y Dawson, 2010). Los apoyos visuales sirven a todas las edades, en casa y en el colegio. En niños y adolescentes con capacidad verbal, la OMS recomienda la terapia cognitivo-conductual adaptada para la ansiedad y el entrenamiento en habilidades sociales (OMS, 2023, recomendaciones 3.1 y 3.2): en grupo para niños en edad escolar y con el programa para adolescentes con sus padres (White, 2011; Klinger y Dudley, 2019). Si predominan las rabietas y la desobediencia, el entrenamiento a padres de Conducta oposicionista y desafiante, adaptado con apoyos visuales, reduce la conducta disruptiva en niños con autismo de 3 a 7 años (Klinger y Dudley, 2019).",
-    "<strong>Si hay autolesiones, agresión o destrucción que un análisis funcional relaciona con la atención, un objeto o escapar de una tarea</strong>, el entrenamiento en comunicación funcional enseña una forma sencilla de pedir lo mismo y deja de reforzar la conducta problema (Fisher et al., 2011, cap. 20)."
+    "<strong>Si hay autolesiones, agresión o destrucción que un análisis funcional relaciona con la atención, un objeto o escapar de una tarea</strong>, el entrenamiento en comunicación funcional enseña una forma sencilla de pedir lo mismo y deja de reforzar la conducta problema (Fisher et al., 2011, cap. 20).",
+    "<strong>Si las rabietas, la agresión o la desobediencia afectan la vida familiar</strong>, el entrenamiento a padres para conductas disruptivas en el autismo (RUBI) enseña a prevenirlas, reforzar, ignorar de forma planificada, dar instrucciones guiadas y enseñar alternativas.",
+    "<strong>Si un niño sin discapacidad intelectual explota de enojo o se angustia y no sabe calmarse</strong>, la educación emocional con caja de herramientas (STAMP para 5 a 7 años, Exploring Feelings para 9 a 12) trabaja en grupo con los padres.",
+    "<strong>Si hay pocos especialistas o la familia está en lista de espera</strong>, el entrenamiento de habilidades para cuidadores de la OMS se ofrece en grupos y no requiere diagnóstico.",
+    "<strong>Si la rigidez con las reglas o la evitación de lo que siente mantienen la conducta problema</strong> en un niño con lenguaje verbal, y el manejo de contingencias no basta, se puede sumar la aceptación y el compromiso dentro del análisis de la conducta."
   ],
   planes: [
     {
@@ -8774,6 +9143,60 @@ const VARIABLES = [
       cuando: "Un <strong>niño o adolescente con autismo y capacidad verbal</strong> con ansiedad que interfiere, como miedo a equivocarse, preocupaciones o miedos específicos, con un padre o cuidador que puede participar.",
       respaldo: "La OMS recomienda ofrecer terapia cognitivo-conductual a los niños y adolescentes con autismo y ansiedad (recomendación fuerte, certeza moderada), con efectos tanto antes como después de los 10 años. Más de diez ensayos aleatorizados muestran efectos positivos, con programas grupales como el que se describe aquí y programas individuales; los estudios incluyeron sobre todo a niños sin discapacidad intelectual (OMS, 2023, rec. 3.2; Klinger y Dudley, 2019).",
       secuencia: "<strong>Secuencia:</strong> 14 sesiones grupales semanales de 90 minutos para niños y padres, con momentos juntos, momentos por separado y trabajo en parejas padre-hijo. Cada sesión tiene un horario visible y la misma rutina de inicio y cierre (Klinger y Dudley, 2019, «CBT and Video Modeling»).",
+      opcA: { t: "Grupo con video de enfrentar el miedo", cuando: "Niños y adolescentes con autismo y ansiedad, en un formato grupal con sus padres." },
+      opciones: [
+        {
+          t: "Terapia individual con la familia (BIACA)",
+          cuando: "Niños de 7 a 11 años, o adolescentes tempranos con la versión adaptada, con autismo y ansiedad clínica, a menudo con problemas sociales, de habilidades de la vida diaria o de conducta que también conviene atender.",
+          respaldo: "Cuatro ensayos aleatorizados de dos grupos de investigación, frente a lista de espera o al tratamiento habitual, con niños de 7 a 11 años y con adolescentes de 11 a 16; en uno de ellos, el 79 % respondió frente al 28 %. Cumple criterios de tratamiento probablemente eficaz (Kerns et al., 2017, cap. 7).",
+          fuente: "Kerns et al., 2017, cap. 7",
+          secuencia: "<strong>Secuencia:</strong> 16 sesiones semanales de unos 90 minutos, unos 30 con el niño y 60 con los padres o la familia. Es modular: al menos tres sesiones de habilidades de afrontamiento y ocho de exposición en vivo, y los módulos de autismo se intercalan según la necesidad (Kerns et al., 2017, cap. 7).",
+          actividades: [
+            {
+              t: "Habilidades de afrontamiento y jerarquía",
+              tecs: ["psicoeducacion", "reestructuracion-cognitiva", "jerarquia-exposicion"],
+              obj: "Entender la ansiedad, aprender a afrontarla y ordenar los miedos.",
+              pasos: [
+                "Psicoeducación, reconocimiento de emociones y cambio de pensamientos, usando los intereses especiales del niño como ejemplos.",
+                "Armar con el niño y los padres la jerarquía de situaciones temidas.",
+                "Montar el sistema de puntos y premios."
+              ],
+              casa: "Practicar las habilidades de afrontamiento.",
+              avance: "Hay una jerarquía y el niño usa sus habilidades.",
+              fuente: "Kerns et al., 2017, cap. 7",
+              fichas: ["escalera-miedos", "tabla-puntos"]
+            },
+            {
+              t: "Exposición en vivo",
+              tecs: ["exposicion-vivo", "sistema-puntos"],
+              obj: "Enfrentar los miedos de forma gradual y repetida.",
+              pasos: [
+                "Empezar por las situaciones menos temidas, en la sesión y con tareas en casa.",
+                "Premiar el esfuerzo con el sistema de puntos.",
+                "Enseñar a los padres a reforzar, reflejar las emociones e ignorar de forma planificada."
+              ],
+              casa: "Hacer las tareas de exposición de la semana.",
+              avance: "Sube por la jerarquía.",
+              fuente: "Kerns et al., 2017, cap. 7",
+              fichas: ["registro-exposicion-nino"]
+            },
+            {
+              t: "Módulos de autismo: amigos, independencia y conducta",
+              tecs: ["entrenamiento-hhss", "analisis-tareas", "nota-casa-colegio"],
+              obj: "Atender los problemas propios del autismo que mantienen la ansiedad.",
+              pasos: [
+                "Habilidades para invitar a un amigo y ser buen anfitrión, con un programa de compañeros tutores en el colegio.",
+                "Dos o tres habilidades de la vida diaria, como vestirse o bañarse, divididas en pasos.",
+                "Metas de conducta en la tabla de puntos y una nota diaria entre el colegio y la casa."
+              ],
+              casa: "Practicar el módulo de la semana.",
+              avance: "Mejoran las relaciones, la independencia o la conducta.",
+              fuente: "Kerns et al., 2017, cap. 7",
+              fichas: ["nota-casa-colegio"]
+            }
+          ]
+        }
+      ],
       esc: ["salud-mental", "primer-nivel"],
       edad: ["6-11", "12-17"],
       actividades: [
@@ -9000,6 +9423,70 @@ const VARIABLES = [
       cuando: "Un <strong>adolescente con autismo</strong>, sin discapacidad intelectual, que quiere tener amigos pero monopoliza las conversaciones, no sabe cómo acercarse a otros o es objeto de burlas, con un padre o cuidador que puede asistir a un grupo paralelo.",
       respaldo: "La OMS recomienda las intervenciones de habilidades sociales para mejorar el desarrollo y el funcionamiento en el autismo (recomendación fuerte, certeza baja). El programa que se describe tiene dos ensayos aleatorizados en adolescentes y adultos jóvenes, con mejoras en el conocimiento de las habilidades, en las habilidades reportadas por los padres y en la frecuencia de encuentros con pares (OMS, 2023, rec. 3.1; Klinger y Dudley, 2019).",
       secuencia: "<strong>Secuencia:</strong> 14 sesiones de 90 minutos, con los adolescentes y los padres en salas separadas al mismo tiempo. Cada sesión repasa la tarea, presenta la habilidad con reglas concretas, el terapeuta la modela y el grupo la practica; los padres aprenden a apoyarla en casa (Klinger y Dudley, 2019, «Social Skills Training Group and Visual Supports»).",
+      opcA: { t: "Formato clínico con grupo de padres", cuando: "Adolescentes con autismo que asisten con sus padres a un grupo en un servicio de salud mental." },
+      opciones: [
+        {
+          t: "Currículo escolar de 16 semanas (PEERS en el colegio)",
+          cuando: "Adolescentes con autismo sin discapacidad intelectual en un colegio cuyos docentes u orientadores pueden dar una lección diaria de habilidades sociales.",
+          respaldo: "En un ensayo con 73 estudiantes de secundaria con autismo, el currículo dado en el aula por docentes mejoró, frente a otro currículo de habilidades sociales, la respuesta social y los problemas de conducta según los docentes, y el conocimiento de las habilidades y los encuentros con amigos según los propios estudiantes (Laugeson, 2014, introducción).",
+          fuente: "Laugeson, 2014",
+          secuencia: "<strong>Secuencia:</strong> 16 semanas, con una lección diaria de 20 a 30 minutos dada por docentes o profesionales del colegio, un tema por semana, y folletos para que los padres sigan las tareas en casa (Laugeson, 2014, introducción).",
+          actividades: [
+            {
+              t: "Conversación: intercambiar información y empezar y salir de conversaciones",
+              tecs: ["entrenamiento-hhss", "reglas-concretas", "juego-roles"],
+              obj: "Conversar en dos direcciones y entrar y salir de una conversación.",
+              pasos: [
+                "Enseñar a intercambiar información y buscar intereses comunes.",
+                "Practicar la comunicación por teléfono y en internet.",
+                "Practicar los pasos para empezar una conversación, unirse a un grupo y salir cuando no lo aceptan."
+              ],
+              casa: "Practicar con un compañero y con los padres.",
+              avance: "Conversa en dos direcciones.",
+              fuente: "Laugeson, 2014, semanas 1 a 7 · Laugeson, 2013, caps. 3 a 6",
+              fichas: ["guia-conversacion-peers"]
+            },
+            {
+              t: "Amigos y encuentros",
+              tecs: ["entrenamiento-hhss"],
+              obj: "Elegir amigos adecuados y organizar encuentros.",
+              pasos: [
+                "Elegir amigos según los intereses comunes.",
+                "Usar el humor de forma adecuada y ser buen deportista.",
+                "Planear un encuentro: quién, qué, dónde, cuándo y cómo."
+              ],
+              casa: "Organizar un encuentro con un compañero.",
+              avance: "Organiza encuentros con amigos.",
+              fuente: "Laugeson, 2014, semanas 4, 5, 8 y 9 · Laugeson, 2013, caps. 2, 7 y 8",
+              fichas: ["plan-encuentro"]
+            },
+            {
+              t: "Desacuerdos, burlas y acoso",
+              tecs: ["solucion-problemas", "reglas-concretas"],
+              obj: "Manejar los conflictos con los pares.",
+              pasos: [
+                "Manejar las discusiones y cambiar una mala reputación.",
+                "Manejar las burlas, el acoso físico, el ciberacoso, los rumores y los chismes con estrategias concretas."
+              ],
+              casa: "Aplicar una estrategia y contarla en clase.",
+              avance: "Maneja mejor los conflictos.",
+              fuente: "Laugeson, 2014, semanas 10 a 15 · Laugeson, 2013, caps. 9 a 13"
+            },
+            {
+              t: "Repaso y graduación",
+              tecs: ["prevencion-recaidas"],
+              obj: "Repasar lo aprendido y mantener los encuentros.",
+              pasos: [
+                "Repasar las reglas y evaluar al final.",
+                "Celebrar la graduación y acordar cómo seguir viéndose con amigos."
+              ],
+              casa: "Mantener los encuentros con amigos.",
+              avance: "Mantiene al menos una amistad.",
+              fuente: "Laugeson, 2014, semana 16"
+            }
+          ]
+        }
+      ],
       esc: ["salud-mental", "colegio"],
       edad: ["12-17"],
       actividades: [
@@ -9180,6 +9667,457 @@ const VARIABLES = [
         "El análisis funcional y la extinción los diseña y supervisa un profesional formado en análisis de conducta.",
         "La evidencia viene sobre todo de estudios de caso único."
       ]
+    },
+    {
+      id: "tea-rubi",
+      mod: "rubi",
+      inst: ["Vineland-3"],
+      enf: "pad",
+      nivel: "ensayos",
+      t: "Entrenamiento a padres para las conductas disruptivas en el autismo (RUBI)",
+      fuente: "Bearss et al., 2018",
+      cuando: "Un <strong>niño con autismo</strong> con rabietas, agresión, desobediencia, autolesiones o destrucción de objetos que afectan la vida familiar, con un padre o cuidador que puede asistir cada semana y practicar en casa.",
+      respaldo: "En un ensayo multicéntrico con 180 niños de 3 a 7 años, el entrenamiento a padres redujo más las conductas disruptivas y la desobediencia que un programa de educación a padres: el 69 % respondió, frente al 40 %. Una versión anterior, sumada a la risperidona en 124 niños de 4 a 14 años, redujo más la irritabilidad y la desobediencia que la medicación sola (Bearss et al., 2018, introducción).",
+      secuencia: "<strong>Secuencia:</strong> 11 sesiones semanales de 60 a 90 minutos con al menos un padre o cuidador fijo, una visita a casa, sesiones opcionales para el sueño, la alimentación, el control de esfínteres y el tiempo fuera, y luego refuerzos telefónicos cada dos semanas. El orden se puede ajustar a las necesidades de la familia (Bearss et al., 2018, introducción).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Principios de la conducta y registro ABC",
+          tecs: ["registro-abc", "analisis-funcional", "psicoeducacion"],
+          obj: "Entender qué pasa antes y después de la conducta problema y para qué le sirve al niño.",
+          pasos: [
+            "Explicar cómo se aprenden las conductas y qué puede ofrecer el entrenamiento a padres.",
+            "Enseñar a registrar el antes, la conducta y el después de las conductas problema.",
+            "Empezar el plan de apoyo conductual, que se actualiza en cada sesión."
+          ],
+          casa: "Registrar el antes, la conducta y el después durante la semana.",
+          avance: "Los padres registran y reconocen los antecedentes y las consecuencias.",
+          fuente: "Bearss et al., 2018, sesión 1",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Prevención y horarios del día",
+          tecs: ["manipulacion-antecedentes", "horario-visual", "apoyos-visuales"],
+          obj: "Evitar que los problemas aparezcan cambiando lo que pasa antes.",
+          pasos: [
+            "Revisar las ocho formas de prevenir: evitar situaciones, controlar el ambiente, hacer las cosas en dosis pequeñas, cambiar el orden de las actividades, responder a las primeras señales, cambiar cómo se pide, atender el cansancio, el hambre o la enfermedad, y usar señales visuales o sonoras.",
+            "Elegir una o dos estrategias de prevención para la semana.",
+            "Revisar el horario del día del niño y ajustarlo; armar un horario visual y usar temporizadores para avisar los cambios."
+          ],
+          casa: "Aplicar las estrategias de prevención y el horario visual.",
+          avance: "Hay menos conductas problema en los momentos difíciles del día.",
+          fuente: "Bearss et al., 2018, sesiones 2 y 3",
+          fichas: ["guia-prevencion-rubi", "horario-visual"]
+        },
+        {
+          t: "Reforzamiento",
+          tecs: ["reforzamiento-positivo", "elogio-especifico", "sistema-puntos"],
+          obj: "Aumentar las conductas adecuadas con refuerzo y atención positiva.",
+          pasos: [
+            "Elegir una conducta para reforzar que esté al alcance del niño, como una habilidad de la vida diaria que sabe hacer pero no hace sola.",
+            "Reforzar cada vez al principio y justo después de la conducta; luego espaciar.",
+            "Aumentar la atención positiva durante el día: «pillarlo portándose bien» y dar un rato de juego juntos."
+          ],
+          casa: "Reforzar la conducta elegida y dar atención positiva a diario.",
+          avance: "La conducta reforzada aumenta.",
+          fuente: "Bearss et al., 2018, sesiones 4 y 5",
+          fichas: ["tabla-puntos"]
+        },
+        {
+          t: "Ignorar de forma planificada",
+          tecs: ["extincion", "atencion-diferencial"],
+          obj: "Dejar de reforzar sin querer las conductas que buscan atención.",
+          pasos: [
+            "Elegir conductas que buscan atención y no son peligrosas.",
+            "Ignorarlas por completo —sin mirar ni hablar— y atender al niño apenas se comporte bien.",
+            "Anticipar que la conducta puede aumentar al principio antes de bajar."
+          ],
+          casa: "Aplicar el plan de ignorar a una conducta elegida.",
+          avance: "La conducta ignorada disminuye.",
+          fuente: "Bearss et al., 2018, sesión 6",
+          fichas: ["guia-atender-ignorar"]
+        },
+        {
+          t: "Obediencia guiada en cuatro pasos",
+          tecs: ["instrucciones-eficaces", "guia-fisica"],
+          obj: "Enseñarle a seguir instrucciones la primera vez.",
+          pasos: [
+            "Hacer dos listas: ocho instrucciones que el niño ya sigue y ocho que suele no seguir aunque puede.",
+            "Acercarse y lograr su atención; decirle con claridad qué hacer, como orden y no como pregunta.",
+            "Al mismo tiempo, guiarlo físicamente con el mínimo contacto necesario.",
+            "Elogiarlo de inmediato y en concreto, aunque haya cumplido gracias a la ayuda; ir quitando la guía y dar las órdenes cada vez desde más lejos."
+          ],
+          casa: "Practicar varias veces al día con las instrucciones de la lista.",
+          avance: "El niño sigue instrucciones con menos ayuda.",
+          fuente: "Bearss et al., 2018, sesión 7",
+          fichas: ["guia-obediencia-guiada"]
+        },
+        {
+          t: "Comunicación funcional",
+          tecs: ["comunicacion-funcional"],
+          obj: "Enseñarle una forma adecuada de pedir lo que busca con la conducta problema.",
+          pasos: [
+            "Identificar para qué le sirve la conducta: conseguir algo, atención o escapar de una tarea.",
+            "Elegir una forma de comunicarse que cumpla la misma función —una palabra, una seña o una imagen— y que sea fácil para él.",
+            "Responder enseguida cuando la usa, y no a la conducta problema."
+          ],
+          casa: "Practicar la nueva forma de pedir en las situaciones de riesgo.",
+          avance: "El niño usa la nueva forma de pedir.",
+          fuente: "Bearss et al., 2018, sesión 8"
+        },
+        {
+          t: "Enseñar habilidades paso a paso",
+          tecs: ["analisis-tareas", "ayudas-desvanecimiento"],
+          obj: "Aumentar la independencia del niño en las tareas diarias.",
+          pasos: [
+            "Dividir una habilidad, como ponerse las medias, en pasos pequeños.",
+            "Enseñar los pasos en orden y practicar a diario.",
+            "Usar el nivel de ayuda necesario —física, con gestos, verbal— y retirarlo poco a poco."
+          ],
+          casa: "Practicar la habilidad elegida cada día.",
+          avance: "El niño hace más pasos de la tarea solo.",
+          fuente: "Bearss et al., 2018, sesiones 9 y 10",
+          fichas: ["lista-pasos"]
+        },
+        {
+          t: "Generalización, mantenimiento y refuerzos",
+          tecs: ["generalizacion", "prevencion-recaidas"],
+          obj: "Mantener los cambios y llevarlos a otros lugares y personas.",
+          pasos: [
+            "Practicar las técnicas en otros lugares y con otras personas que cuidan al niño.",
+            "Revisar el plan de apoyo conductual completo.",
+            "Pasar a llamadas de refuerzo cada dos semanas."
+          ],
+          casa: "Aplicar el plan en un lugar nuevo.",
+          avance: "Los cambios se mantienen en distintos contextos.",
+          fuente: "Bearss et al., 2018, sesión 11 y apéndice A"
+        }
+      ],
+      medir: [
+        "Registro de la frecuencia de las conductas problema elegidas.",
+        "<strong>Vineland-3</strong> para las habilidades adaptativas al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Cada familia:</strong> se pueden adelantar temas, como el tiempo fuera, según la necesidad; las sesiones opcionales atienden el sueño, la alimentación y el control de esfínteres (Bearss et al., 2018, introducción)."
+      ],
+      cuidado: [
+        "El manual está pensado para profesionales con conocimientos de análisis aplicado de la conducta o experiencia con niños con autismo (Bearss et al., 2018, introducción).",
+        "Las tareas de cada semana son el centro del tratamiento: deben producir cambios pequeños pero visibles (Bearss et al., 2018, introducción)."
+      ]
+    },
+    {
+      id: "tea-ira-emociones",
+      mod: "explorando-emociones",
+      enf: "tcc",
+      nivel: "ensayos",
+      t: "Educación emocional y manejo del estrés y el enojo en el autismo",
+      fuente: "Scarpa et al., 2013",
+      cuando: "Un <strong>niño con autismo sin discapacidad intelectual</strong> con explosiones de enojo o ansiedad, al que le cuesta reconocer sus emociones y calmarse, con padres que pueden asistir a un grupo paralelo.",
+      respaldo: "Tres estudios aleatorizados evaluaron el programa: con 71 niños de 10 a 12 años con ansiedad, con 45 niños de 9 a 13 años con problemas de enojo, con menos episodios de enojo según los padres, y la adaptación para 5 a 7 años con 11 niños asignados a tratamiento o lista de espera (Scarpa et al., 2013, cap. 7).",
+      secuencia: "<strong>Secuencia:</strong> nueve sesiones semanales de 60 minutos en grupos de dos a cuatro niños de 5 a 7 años, con dos adultos, el mismo horario en cada sesión y apoyos visuales; los padres se reúnen al mismo tiempo con otro terapeuta (Scarpa et al., 2013, cap. 7).",
+      opcA: { t: "Programa para niños pequeños (5 a 7 años)", cuando: "Niños de 5 a 7 años con desarrollo similar al de preescolar o primer grado." },
+      opciones: [
+        {
+          t: "Programa original para niños de 9 a 12 años",
+          cuando: "Niños de 9 a 12 años con autismo sin discapacidad intelectual y problemas de ansiedad o de enojo.",
+          fuente: "Scarpa et al., 2013, cap. 7",
+          secuencia: "<strong>Secuencia:</strong> seis sesiones de dos horas en grupo, con un programa para la ansiedad y otro para el enojo; cada niño tiene un cuaderno y un proyecto para hacer entre sesiones (Scarpa et al., 2013, cap. 7).",
+          actividades: [
+            {
+              t: "Educación emocional",
+              tecs: ["educacion-emocional", "termometro-emociones"],
+              obj: "Entender la relación entre pensamientos, emociones y conductas.",
+              pasos: [
+                "Explorar las emociones positivas y negativas y el vocabulario para nombrarlas.",
+                "Medir la intensidad de las emociones con un termómetro.",
+                "Reconocer las señales del cuerpo de la ansiedad o el enojo."
+              ],
+              casa: "Hacer el proyecto de la semana en el cuaderno.",
+              avance: "El niño nombra sus emociones y su intensidad.",
+              fuente: "Scarpa et al., 2013, cap. 7",
+              fichas: ["termometro-emociones"]
+            },
+            {
+              t: "La caja de herramientas y el cambio de pensamientos",
+              tecs: ["caja-herramientas", "reestructuracion-cognitiva"],
+              obj: "Tener herramientas variadas para calmarse y pensamientos que ayudan.",
+              pasos: [
+                "Armar la caja de herramientas: físicas, de relajación, sociales, de pensamiento y de intereses especiales.",
+                "Identificar los pensamientos que suben la ansiedad o el enojo y cambiarlos por antídotos, como «puedo mantener la calma»."
+              ],
+              casa: "Usar una herramienta en una situación real.",
+              avance: "Usa herramientas de su caja para calmarse.",
+              fuente: "Scarpa et al., 2013, cap. 7",
+              fichas: ["caja-herramientas"]
+            },
+            {
+              t: "Elegir la mejor respuesta",
+              tecs: ["solucion-problemas"],
+              obj: "Escoger respuestas que funcionen a largo plazo.",
+              pasos: [
+                "Explorar respuestas adecuadas e inadecuadas a situaciones que desatan ansiedad o enojo.",
+                "Revisar las consecuencias de cada una y elegir, con ayuda del terapeuta, la mejor a largo plazo.",
+                "Practicar la respuesta elegida en el grupo antes de usarla en casa y en el colegio."
+              ],
+              casa: "Usar la respuesta elegida en una situación real y contarla en la sesión.",
+              avance: "Elige respuestas adecuadas con menos ayuda.",
+              fuente: "Scarpa et al., 2013, cap. 7"
+            }
+          ]
+        }
+      ],
+      esc: ["salud-mental", "primer-nivel", "colegio"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Emociones positivas: alegría y relajación",
+          tecs: ["educacion-emocional", "termometro-emociones"],
+          obj: "Reconocer las emociones positivas y su intensidad.",
+          pasos: [
+            "Explorar la alegría con canciones, cuentos y actividades.",
+            "Medir qué tan intensa es una emoción con un termómetro visual.",
+            "Presentar la relajación como una emoción agradable."
+          ],
+          casa: "Recortar con los padres caras de alegría de revistas y ordenarlas por intensidad.",
+          avance: "El niño reconoce la alegría y su intensidad.",
+          fuente: "Scarpa et al., 2013, cap. 7, sesiones 1 y 2",
+          fichas: ["termometro-emociones"]
+        },
+        {
+          t: "Ansiedad y enojo: el cuerpo y la relajación",
+          tecs: ["educacion-emocional", "relajacion"],
+          obj: "Reconocer la ansiedad y el enojo en el cuerpo y empezar a calmarse.",
+          pasos: [
+            "Explorar cómo se sienten la ansiedad y el enojo en el cuerpo, con gestos y apoyos visuales.",
+            "Practicar herramientas físicas y de relajación."
+          ],
+          casa: "Practicar una herramienta de relajación con los padres.",
+          avance: "Señala dónde siente el enojo o la ansiedad.",
+          fuente: "Scarpa et al., 2013, cap. 7, sesiones 2 y 3",
+          fichas: ["guia-apretar-soltar"]
+        },
+        {
+          t: "Herramientas sociales, de pensamiento y de intereses especiales",
+          tecs: ["caja-herramientas"],
+          obj: "Ampliar la caja de herramientas para calmarse.",
+          pasos: [
+            "Herramientas sociales: buscar a alguien que ayude.",
+            "Herramientas de pensamiento: frases que ayudan a calmarse.",
+            "Herramientas de intereses especiales: usar lo que le gusta para calmarse.",
+            "Distinguir herramientas adecuadas e inadecuadas."
+          ],
+          casa: "Usar una herramienta nueva cuando se sienta mal.",
+          avance: "Elige herramientas adecuadas para calmarse.",
+          fuente: "Scarpa et al., 2013, cap. 7, sesiones 4 a 7",
+          fichas: ["caja-herramientas"]
+        },
+        {
+          t: "Repaso y celebración",
+          tecs: ["prevencion-recaidas"],
+          obj: "Consolidar lo aprendido.",
+          pasos: [
+            "Repasar con un cuento grupal y un anuncio creado por los niños.",
+            "Celebrar con una recompensa grupal."
+          ],
+          casa: "Seguir usando la caja de herramientas en casa.",
+          avance: "El niño usa las herramientas fuera de la sesión.",
+          fuente: "Scarpa et al., 2013, cap. 7, sesiones 8 y 9"
+        }
+      ],
+      medir: [
+        "Registro de los episodios de enojo o de crisis en casa."
+      ],
+      adapt: [
+        "<strong>Niños con poco lenguaje:</strong> acompañar todos los conceptos con imágenes y gestos (Scarpa et al., 2013, cap. 7)."
+      ],
+      cuidado: [
+        "Si un niño se pone agresivo, retirarlo para proteger al grupo; mejor anticiparlo con un plan de conducta, como ganar una pausa (Scarpa et al., 2013, cap. 7)."
+      ]
+    },
+    {
+      id: "tea-cst",
+      mod: "cst-oms",
+      enf: "pad",
+      nivel: "preliminar",
+      t: "Entrenamiento de habilidades para cuidadores de niños con retrasos o discapacidades del desarrollo (OMS)",
+      fuente: "OMS, 2022",
+      cuando: "Cuidadores de <strong>niños de 2 a 9 años con retraso o discapacidad del desarrollo</strong>, sobre todo en la comunicación y lo social, en servicios con pocos especialistas. No requiere diagnóstico: basta con que se haya identificado el retraso.",
+      respaldo: "El paquete se basa en la evidencia sobre las intervenciones mediadas por los cuidadores en países de ingresos altos, medios y bajos. En las pruebas de campo resultó factible, aceptable y pertinente, y ayudó a mejorar las habilidades de crianza y el bienestar de los cuidadores (OMS, 2022, introducción).",
+      secuencia: "<strong>Secuencia:</strong> nueve sesiones grupales de 2,5 a 3 horas, semanales o cada dos semanas, y tres visitas a casa de 1,5 a 2 horas: antes de la sesión 1, entre la 5 y la 6, y después de la última (OMS, 2022, introducción).",
+      esc: ["comunidad", "primer-nivel", "colegio"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Primera visita a casa: conocer y fijar metas",
+          tecs: ["observacion-interaccion", "jerarquia-metas"],
+          obj: "Conocer a la familia y al niño y acordar metas.",
+          pasos: [
+            "Revisar la historia de la familia con los servicios y evaluar la comunicación, la conducta y el funcionamiento del niño.",
+            "Observar al cuidador jugando con el niño.",
+            "Fijar metas con el cuidador e invitarlo al grupo."
+          ],
+          casa: "Observar los momentos en que el niño está más atento y conectado.",
+          avance: "Hay metas acordadas con la familia.",
+          fuente: "OMS, 2022, visita a casa 1"
+        },
+        {
+          t: "Lograr y mantener la atención compartida",
+          tecs: ["seguir-iniciativa-agrado", "rutina-actividad-conjunta"],
+          obj: "Que el niño participe en el juego y en las rutinas con el cuidador.",
+          pasos: [
+            "Lograr que el niño se involucre siguiendo sus intereses.",
+            "Mantenerlo involucrado y compartir el juego.",
+            "Llevar el juego compartido a las rutinas de la casa."
+          ],
+          casa: "Practicar el juego compartido en una rutina diaria.",
+          avance: "El niño participa más tiempo en el juego con el cuidador.",
+          fuente: "OMS, 2022, sesiones 1 a 3"
+        },
+        {
+          t: "Entender y promover la comunicación",
+          tecs: ["tentaciones-comunicativas", "habla-paralela"],
+          obj: "Entender cómo se comunica el niño y darle más oportunidades.",
+          pasos: [
+            "Identificar cómo se comunica el niño: gestos, sonidos, palabras.",
+            "Crear oportunidades para que se comunique y responder a sus intentos.",
+            "Dar modelos de lenguaje ajustados a su nivel."
+          ],
+          casa: "Crear oportunidades de comunicación en el día.",
+          avance: "El niño se comunica más a menudo.",
+          fuente: "OMS, 2022, sesiones 4 y 5",
+          fichas: ["guia-lenguaje-padres"]
+        },
+        {
+          t: "Enseñar habilidades en pasos pequeños",
+          tecs: ["analisis-tareas", "ayudas-desvanecimiento"],
+          obj: "Enseñar habilidades nuevas con el nivel de ayuda justo.",
+          pasos: [
+            "Dividir la habilidad en pasos pequeños.",
+            "Dar el nivel de ayuda necesario y retirarlo poco a poco.",
+            "En la segunda visita a casa, entrenar al cuidador mientras practica."
+          ],
+          casa: "Practicar una habilidad nueva cada día.",
+          avance: "El niño aprende la habilidad con menos ayuda.",
+          fuente: "OMS, 2022, sesión 6 y visita a casa 2",
+          fichas: ["lista-pasos"]
+        },
+        {
+          t: "Prevenir las conductas difíciles y enseñar alternativas",
+          tecs: ["manipulacion-antecedentes", "comunicacion-funcional", "registro-abc"],
+          obj: "Ayudar al niño a mantenerse regulado y a pedir de otra forma.",
+          pasos: [
+            "Registrar el antes, la conducta y el después de las conductas difíciles.",
+            "Prevenirlas ayudando al niño a mantenerse involucrado y regulado.",
+            "Enseñar una conducta alternativa que cumpla la misma función."
+          ],
+          casa: "Aplicar una estrategia de prevención y una alternativa.",
+          avance: "Las conductas difíciles disminuyen.",
+          fuente: "OMS, 2022, sesiones 7 y 8",
+          fichas: ["antes-durante-despues"]
+        },
+        {
+          t: "Solución de problemas y autocuidado del cuidador",
+          tecs: ["solucion-problemas", "plan-crianza"],
+          obj: "Cuidar el bienestar del cuidador y dejar un plan para seguir.",
+          pasos: [
+            "Resolver en grupo los problemas que encuentran los cuidadores.",
+            "Trabajar estrategias de autocuidado y bienestar.",
+            "En la tercera visita a casa, armar un plan para seguir practicando."
+          ],
+          casa: "Seguir el plan de práctica.",
+          avance: "El cuidador tiene un plan para seguir y estrategias de autocuidado.",
+          fuente: "OMS, 2022, sesión 9 y visita a casa 3"
+        }
+      ],
+      medir: [
+        "Metas fijadas en la primera visita, revisadas en la segunda y la tercera."
+      ],
+      adapt: [
+        "<strong>Adaptación cultural:</strong> el paquete trae una guía para adaptar el contenido y el formato —horarios, cuidado de los niños durante las sesiones, refrigerios— al contexto local (OMS, 2022, introducción).",
+        "<strong>Niños con poco o ningún lenguaje:</strong> se pueden sumar sesiones y visitas para estrategias específicas y para el bienestar del cuidador (OMS, 2022, introducción)."
+      ],
+      cuidado: [
+        "No reemplaza la evaluación ni los servicios especializados: es un apoyo a los cuidadores que puede darse mientras llegan o junto con ellos."
+      ]
+    },
+    {
+      id: "tea-act-aba",
+      mod: "act-aba",
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso dentro del análisis aplicado de la conducta en el autismo",
+      fuente: "Szabo, 2023",
+      cuando: "Un <strong>niño o adolescente con autismo y lenguaje verbal</strong> cuya rigidez con las reglas, la evitación de lo que siente o el apego a pensamientos literales mantienen conductas problema o lo bloquean, cuando el manejo directo de contingencias no ha bastado. También para padres y equipos que trabajan con él.",
+      respaldo: "El autor presenta la aceptación y el compromiso como complemento del análisis aplicado de la conducta, a partir de la investigación sobre la conducta gobernada por reglas y la teoría de los marcos relacionales; la investigación del análisis de la conducta se basa sobre todo en diseños de caso único, y los autores proponen cómo estudiar la aceptación y el compromiso dentro de él (Szabo, 2023, cap. 1; Dixon et al., 2023, cap. 13).",
+      secuencia: "<strong>Secuencia:</strong> integrada en el programa de análisis aplicado de la conducta; las metas siguen siendo conductas observables y medibles (Szabo, 2023, cap. 3).",
+      esc: ["primer-nivel", "salud-mental", "colegio"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Análisis funcional y decisión",
+          tecs: ["analisis-funcional"],
+          obj: "Decidir si hace falta trabajar con aceptación y compromiso o basta el manejo de contingencias.",
+          pasos: [
+            "Definir una conducta socialmente relevante, observable y medible.",
+            "Buscar primero las variables del ambiente que se pueden cambiar; si cambiarlas basta, no se necesita más.",
+            "Si no, hacer el análisis funcional breve de aceptación y compromiso: evitación, rigidez de perspectiva, falta de dirección, y evaluar los repertorios relacionales."
+          ],
+          casa: "Los padres registran la conducta elegida.",
+          avance: "Está claro qué procesos sostienen la conducta problema.",
+          fuente: "Szabo, 2023, cap. 3"
+        },
+        {
+          t: "La matriz y las metáforas",
+          tecs: ["matriz", "metaforas-concretas"],
+          obj: "Ordenar con el niño lo que le importa y lo que lo aleja de ello.",
+          pasos: [
+            "Usar la matriz para ubicar lo que le importa, lo que siente y piensa, y lo que hace para acercarse o alejarse.",
+            "Usar metáforas y ejercicios activos, concretos y visuales, ajustados a su lenguaje."
+          ],
+          casa: "Completar la matriz con los padres.",
+          avance: "El niño distingue lo que lo acerca y lo que lo aleja de lo que le importa.",
+          fuente: "Szabo, 2023, caps. 5 a 7",
+          fichas: ["matriz-act"]
+        },
+        {
+          t: "Disposición, defusión y presente",
+          tecs: ["disposicion", "defusion", "atencion-plena"],
+          obj: "Tener lo incómodo sin que dirija la conducta.",
+          pasos: [
+            "Practicar la disposición a tener sensaciones, cambios o incomodidades para hacer algo que le importa.",
+            "Practicar ver los pensamientos y las reglas como palabras, no como órdenes.",
+            "Practicar notar el momento presente."
+          ],
+          casa: "Practicar un ejercicio breve en una situación difícil.",
+          avance: "Hace lo acordado aunque esté incómodo.",
+          fuente: "Szabo, 2023, caps. 8 a 10"
+        },
+        {
+          t: "Toma de perspectiva, valores y acción comprometida",
+          tecs: ["toma-perspectiva", "valores", "accion-comprometida"],
+          obj: "Moverse hacia lo que importa con conductas medibles.",
+          pasos: [
+            "Practicar la toma de perspectiva: yo y otro, aquí y allá, ahora y antes.",
+            "Identificar lo que le importa y traducirlo en metas observables.",
+            "Reforzar las acciones comprometidas y medir su avance."
+          ],
+          casa: "Hacer una acción acordada hacia lo que le importa.",
+          avance: "Aumentan las acciones hacia lo que le importa.",
+          fuente: "Szabo, 2023, caps. 11 a 13",
+          fichas: ["valores-adolescente"]
+        }
+      ],
+      medir: [
+        "Registro de la conducta problema y de las acciones comprometidas elegidas."
+      ],
+      adapt: [
+        "<strong>Lenguaje:</strong> ajustar las metáforas y los ejercicios a los repertorios relacionales que el niño ya tiene, evaluados en el análisis funcional (Szabo, 2023, cap. 3)."
+      ],
+      cuidado: [
+        "Trabajar dentro de la propia competencia profesional: el libro dedica un capítulo al alcance de la práctica de quien aplica aceptación y compromiso desde el análisis de la conducta (Szabo, 2023, cap. 14).",
+        "No hay metas distintas de las del análisis de la conducta: el cambio se mide en conductas observables (Szabo, 2023, cap. 3)."
+      ]
     }
   ]
 },
@@ -9191,7 +10129,8 @@ const VARIABLES = [
     "<strong>Para las conductas desafiantes, la intervención conductual basada en un análisis funcional es la de mejor respaldo</strong>, y se recomienda antes de recurrir a la medicación. Las habilidades adaptativas y sociales se enseñan con técnicas conductuales, que tienen respaldo; la evidencia sobre la psicoterapia en esta población es escasa y no permite recomendarla todavía (Matson et al., 2019).",
     "Los apoyos educativos son la intervención más común: los estudiantes incluidos en aulas regulares rinden igual o mejor que en aulas especiales, aunque los estudios tienen limitaciones. La intervención conductual intensiva temprana también ha mostrado ganancias en niños pequeños con discapacidad intelectual. La terapia del lenguaje y los sistemas alternativos de comunicación, como tabletas, ayudan a comunicarse (Matson et al., 2019). Si hay autismo, ver también Autismo, que trae el entrenamiento en comunicación funcional como plan completo, con el adelgazamiento del reforzamiento para la casa y el colegio.",
     "Como complemento, el plan de fortalezas del carácter ayuda a que el niño se conozca por sus cualidades y a llevarlas al plan educativo individual; su evidencia es todavía inicial.",
-    "Si a los padres les cuesta sostener la intervención conductual, la aceptación y compromiso para padres de la variable <em>Conducta oposicionista y desafiante</em> se probó junto con un programa de crianza en familias de niños con discapacidad."
+    "Si a los padres les cuesta sostener la intervención conductual, la aceptación y compromiso para padres de la variable <em>Conducta oposicionista y desafiante</em> se probó junto con un programa de crianza en familias de niños con discapacidad.",
+    "<strong>Si los padres viven un duelo por la vida que esperaban o se agotan intentando que el hijo alcance a los demás</strong>, la aceptación y el compromiso para padres se suma al entrenamiento conductual."
   ],
   planes: [
     {
@@ -9298,6 +10237,80 @@ const VARIABLES = [
       cuando: "Un niño o adolescente con discapacidad intelectual que necesita aprender habilidades de cuidado personal, de vida en casa y en la comunidad, o habilidades para relacionarse con otros, con padres o docentes que pueden practicar con él.",
       respaldo: "Las intervenciones conductuales han sido eficaces para enseñar habilidades adaptativas. Las intervenciones basadas en el análisis de conducta tienen un respaldo empírico importante para aumentar las habilidades sociales, y las intervenciones mediadas por pares en el colegio también las aumentan. El entrenamiento a padres ha sido eficaz para enseñarles a enseñar y para reducir los problemas de conducta, con efectos duraderos (Matson et al., 2019).",
       secuencia: "<strong>Secuencia:</strong> sin número fijo de sesiones; se eligen habilidades según la edad, el nivel cognitivo y lo que más necesita el niño, y se entrenan con los padres y el colegio (Matson et al., 2019).",
+      opcA: { t: "Habilidades adaptativas y sociales con padres y colegio", cuando: "Niños y adolescentes que necesitan habilidades de cuidado personal, de la casa, de la comunidad o sociales, enseñadas por padres y docentes." },
+      opciones: [
+        {
+          t: "Enseñar habilidades de la vida diaria en casa (Pasos hacia la independencia)",
+          cuando: "Padres de un niño con discapacidad intelectual o del desarrollo que quieren enseñarle en casa habilidades de autocuidado, del hogar, de juego o de uso del tiempo y del dinero.",
+          respaldo: "Las técnicas se basan en los principios del análisis aplicado de la conducta, derivados de miles de estudios publicados; el libro es una guía para que los padres las apliquen (Baker y Brightman, 2004, cap. 1).",
+          fuente: "Baker y Brightman, 2004",
+          secuencia: "<strong>Secuencia:</strong> los padres eligen una habilidad, la dividen en pasos, preparan el ambiente y las recompensas, enseñan en sesiones cortas y registran el avance; luego pasan a otra habilidad (Baker y Brightman, 2004, caps. 2 a 7).",
+          actividades: [
+            {
+              t: "Elegir la habilidad y dividirla en pasos",
+              tecs: ["analisis-tareas", "jerarquia-metas"],
+              obj: "Definir qué enseñar y en qué pasos.",
+              pasos: [
+                "Revisar con la lista de habilidades qué hace solo, qué hace con ayuda y qué no hace todavía.",
+                "Elegir una habilidad y dividirla en pasos pequeños."
+              ],
+              casa: "Anotar los pasos de la habilidad elegida.",
+              avance: "Hay una habilidad elegida con sus pasos.",
+              fuente: "Baker y Brightman, 2004, caps. 2, 3 y 9",
+              fichas: ["lista-pasos"]
+            },
+            {
+              t: "Recompensas y preparación del ambiente",
+              tecs: ["reforzamiento-positivo", "arreglo-ambiente"],
+              obj: "Que el niño quiera aprender y que el lugar ayude.",
+              pasos: [
+                "Elegir recompensas que le gusten, incluidas fichas que pueda cambiar.",
+                "Preparar un lugar y un momento sin distracciones y con los materiales listos."
+              ],
+              casa: "Preparar el lugar y las recompensas.",
+              avance: "El niño participa en las sesiones.",
+              fuente: "Baker y Brightman, 2004, caps. 4 y 5",
+              fichas: ["tabla-puntos"]
+            },
+            {
+              t: "Enseñar: decir, mostrar y guiar",
+              tecs: ["ayudas-desvanecimiento", "modelado"],
+              obj: "Enseñar cada paso con la ayuda justa.",
+              pasos: [
+                "Dar instrucciones simples, mostrar cómo se hace y guiar físicamente cuando haga falta.",
+                "Retirar la ayuda poco a poco y recompensar cada logro."
+              ],
+              casa: "Sesiones cortas diarias.",
+              avance: "El niño hace más pasos solo.",
+              fuente: "Baker y Brightman, 2004, cap. 6"
+            },
+            {
+              t: "Registrar el avance y resolver problemas",
+              tecs: ["monitoreo-progreso"],
+              obj: "Ver si el niño avanza y ajustar.",
+              pasos: [
+                "Registrar en qué paso está después de cada sesión.",
+                "Si no avanza, revisar los pasos, la ayuda o las recompensas."
+              ],
+              casa: "Registrar cada sesión.",
+              avance: "El registro muestra avance.",
+              fuente: "Baker y Brightman, 2004, cap. 7"
+            },
+            {
+              t: "Habilidades de la casa, el juego y la vida diaria",
+              tecs: ["analisis-tareas", "generalizacion"],
+              obj: "Ampliar la independencia a más áreas.",
+              pasos: [
+                "Pasar a habilidades de autocuidado, del hogar, de juego, de uso de la hora y del dinero.",
+                "Coordinar con los docentes para que practiquen lo mismo."
+              ],
+              casa: "Practicar una habilidad nueva cada semana.",
+              avance: "Más independencia en casa.",
+              fuente: "Baker y Brightman, 2004, caps. 11 a 14 y 20"
+            }
+          ]
+        }
+      ],
       esc: ["colegio", "primer-nivel", "comunidad"],
       edad: ["6-11", "12-17"],
       actividades: [
@@ -9447,6 +10460,108 @@ const VARIABLES = [
       cuidado: [
         "La evidencia de resultados es todavía inicial: se usa como complemento de las intervenciones conductuales y educativas con respaldo, no en su lugar.",
         "Las fortalezas más abstractas, como la creatividad, la justicia, la esperanza o la espiritualidad, pueden ser más difíciles de entender; se explican con ejemplos concretos (Niemiec y Tomasulo, 2023, cap. 3)."
+      ]
+    },
+    {
+      id: "di-act-padres",
+      mod: "act-padres-discapacidad",
+      enf: "act",
+      nivel: "ensayos",
+      t: "Aceptación y compromiso para padres de niños con discapacidad",
+      fuente: "Whittingham y Coyne, 2019",
+      cuando: "Padres de un <strong>niño con discapacidad intelectual o del desarrollo</strong> que viven un duelo por la vida que esperaban, se agotan intentando que el niño alcance a los demás o tienen dificultades para aplicar las pautas de crianza, como complemento del entrenamiento conductual a padres.",
+      respaldo: "Dos ensayos aleatorizados combinaron un programa conductual para padres de niños con discapacidades del neurodesarrollo con una intervención grupal breve de aceptación y compromiso: con 59 familias de niños con lesión cerebral adquirida, mejoraron la conducta del niño, el estilo de crianza, el malestar de los padres, el funcionamiento familiar y la relación de pareja; con 67 familias de niños con parálisis cerebral se probó lo que agrega la aceptación y el compromiso al programa conductual solo (Whittingham y Coyne, 2019, cap. 3).",
+      secuencia: "<strong>Secuencia:</strong> en los ensayos, unas 4 horas de aceptación y compromiso en grupo sumadas al programa conductual para padres; en la consulta, los procesos se trabajan según la formulación del caso (Whittingham y Coyne, 2019, caps. 3 y 4).",
+      esc: ["primer-nivel", "salud-mental", "comunidad"],
+      edad: ["0-5", "6-11", "12-17"],
+      actividades: [
+        {
+          t: "Formulación con los padres",
+          tecs: ["formulacion-caso"],
+          obj: "Entender qué mantiene el malestar de los padres y la crianza que no funciona.",
+          pasos: [
+            "Explorar el duelo por la vida esperada, que puede volver en momentos clave de la vida del niño.",
+            "Identificar lo que los padres evitan sentir o pensar y cómo eso afecta la crianza.",
+            "Definir con ellos qué quieren para su relación con el hijo."
+          ],
+          casa: "Anotar los momentos en que la crianza se vuelve más difícil.",
+          avance: "Hay una formulación compartida con los padres.",
+          fuente: "Whittingham y Coyne, 2019, cap. 4"
+        },
+        {
+          t: "Valores de crianza flexibles",
+          tecs: ["valores"],
+          obj: "Vivir los valores de crianza aunque la vida no sea como esperaban.",
+          pasos: [
+            "Identificar los valores de crianza y cómo vivirlos de formas nuevas.",
+            "Ajustar las expectativas al propio hijo y no a sus compañeros de edad.",
+            "Buscar formas pequeñas y posibles de vivir valores en otras áreas de su vida."
+          ],
+          casa: "Hacer una acción pequeña guiada por un valor de crianza.",
+          avance: "Los padres describen sus valores y los viven en lo cotidiano.",
+          fuente: "Whittingham y Coyne, 2019, cap. 6",
+          fichas: ["matriz-act"]
+        },
+        {
+          t: "Aceptar el duelo y no vivir solo para la terapia",
+          tecs: ["aceptacion-radical", "disposicion"],
+          obj: "Hacer espacio al dolor sin que domine la crianza.",
+          pasos: [
+            "Normalizar el duelo: no se supera rápido y puede durar toda la vida.",
+            "Notar cuando la crianza se convierte solo en terapia para no pensar en el futuro del niño.",
+            "Cuidar una relación sensible y cariñosa, además de la estimulación."
+          ],
+          casa: "Pasar un rato con el hijo sin objetivo terapéutico.",
+          avance: "Los padres hablan del duelo y disfrutan ratos con el hijo.",
+          fuente: "Whittingham y Coyne, 2019, cap. 7"
+        },
+        {
+          t: "Presencia compartida y observación de la conducta",
+          tecs: ["atencion-plena", "registro-abc"],
+          obj: "Estar presentes con el hijo y observar con precisión su conducta.",
+          pasos: [
+            "Practicar la presencia compartida con el hijo.",
+            "Observar con atención qué pasa antes y después de su conducta, porque en la discapacidad las reglas generales de crianza fallan más."
+          ],
+          casa: "Registrar el antes y el después de una conducta.",
+          avance: "Los padres identifican los antecedentes y las consecuencias propios de su hijo.",
+          fuente: "Whittingham y Coyne, 2019, cap. 8",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Lenguaje flexible, perspectiva y compasión",
+          tecs: ["defusion", "toma-perspectiva", "autocompasion"],
+          obj: "Soltar las reglas rígidas y tratarse con compasión.",
+          pasos: [
+            "Notar las reglas y los juicios sobre la crianza y el futuro del hijo, y soltarlas cuando no ayudan.",
+            "Practicar ponerse en el lugar del hijo.",
+            "Practicar la autocompasión ante los errores de crianza."
+          ],
+          casa: "Practicar una frase compasiva en un momento difícil.",
+          avance: "Los padres son menos duros consigo mismos.",
+          fuente: "Whittingham y Coyne, 2019, caps. 9 a 11"
+        },
+        {
+          t: "Acción comprometida e integración con la crianza conductual",
+          tecs: ["accion-comprometida"],
+          obj: "Sostener las pautas de crianza guiados por los valores.",
+          pasos: [
+            "Comprometerse con acciones concretas de crianza.",
+            "Integrar la aceptación y el compromiso con el entrenamiento conductual a padres."
+          ],
+          casa: "Aplicar la pauta acordada.",
+          avance: "Los padres sostienen las pautas de crianza.",
+          fuente: "Whittingham y Coyne, 2019, caps. 12 y 13"
+        }
+      ],
+      medir: [
+        "Malestar de los padres y problemas de conducta del niño al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Duelo perinatal o por la muerte de un hijo:</strong> el libro aplica los mismos procesos al duelo por la pérdida de un hijo (Whittingham y Coyne, 2019, caps. 6 y 7)."
+      ],
+      cuidado: [
+        "No reemplaza el entrenamiento conductual a padres: en los ensayos se sumó a él (Whittingham y Coyne, 2019, cap. 3)."
       ]
     }
   ]
@@ -9759,7 +10874,8 @@ const VARIABLES = [
   elegir: [
     "<strong>La intervención académica la dan casi siempre el docente, un tutor o un especialista, no el psicólogo</strong>: su papel es evaluar, recomendar una intervención con respaldo, acordar con el colegio cómo aplicarla y seguir el avance con datos. Por eso el plan de base es la evaluación del entorno académico y la consulta con el colegio (McGill y Ndip, 2019).",
     "<strong>Si la dificultad está en la lectura</strong>, el plan de lectura reúne lo que hay que recomendar y enseñar a quien la trabaje: conciencia fonológica, fluidez y comprensión. <strong>Si está en el cálculo o en la escritura</strong>, el plan de cálculo y escritura; lo que se gana en un área no se traslada sola a otra.",
-    "Si hay además inatención marcada, ver <em>Inatención, hiperactividad e impulsividad</em>; si el colegio se volvió un lugar que el niño evita, <em>Rechazo escolar</em>; si hay burlas o agresiones de los compañeros, <em>Acoso escolar</em>. Si las dificultades abarcan casi todas las áreas, se evalúan la inteligencia y la conducta adaptativa y se revisa <em>Discapacidad intelectual</em>."
+    "Si hay además inatención marcada, ver <em>Inatención, hiperactividad e impulsividad</em>; si el colegio se volvió un lugar que el niño evita, <em>Rechazo escolar</em>; si hay burlas o agresiones de los compañeros, <em>Acoso escolar</em>. Si las dificultades abarcan casi todas las áreas, se evalúan la inteligencia y la conducta adaptativa y se revisa <em>Discapacidad intelectual</em>.",
+    "<strong>Si además le cuesta organizarse, planear y revisar</strong>, o tiene un perfil de trastorno de aprendizaje no verbal, las estrategias de función ejecutiva en la lectura, la escritura y las matemáticas complementan la enseñanza del área."
   ],
   planes: [
     {
@@ -10104,6 +11220,111 @@ const VARIABLES = [
       cuidado: [
         "Las estrategias para resolver problemas no sirven si el estudiante todavía no domina los hechos y el cálculo básico: primero lo básico (McGill y Ndip, 2019, «Mathematics Summary»).",
         "La evidencia en escritura es menor que en lectura y matemáticas, salvo para la ortografía explícita y la enseñanza de estrategias (McGill y Ndip, 2019, «Impairment in Written Language»)."
+      ]
+    },
+    {
+      id: "apr-neuro-fe",
+      mod: "smarts-fe",
+      inst: ["BRIEF2"],
+      enf: "col",
+      nivel: "preliminar",
+      t: "Estrategias de función ejecutiva en la lectura, la escritura y las matemáticas",
+      fuente: "Meltzer, 2018 · Rosselli et al., 2010",
+      cuando: "Un estudiante con <strong>dificultades de aprendizaje</strong> —en la lectura, la escritura o las matemáticas, o un trastorno de aprendizaje no verbal— cuyas dificultades para organizarse, planear, recordar y revisar empeoran su rendimiento, con un colegio que puede enseñar estrategias de forma explícita.",
+      respaldo: "Los capítulos describen estrategias de función ejecutiva aplicadas a cada área; el desarrollo de estrategias autorreguladas en la escritura y el programa de estrategias en el aula se apoyan en estudios que sus autores reseñan (Meltzer, 2018, caps. 11 a 13). Rosselli et al. describen la evaluación y el tratamiento de la dislexia en niños hispanohablantes (Rosselli et al., 2010).",
+      secuencia: "<strong>Secuencia:</strong> se elige el área con más dificultad y se enseñan las estrategias dentro de las clases, en grupos pequeños o en sesiones de apoyo, con práctica hasta que el estudiante las use solo (Meltzer, 2018, caps. 12 y 13).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Perfil neuropsicológico y de función ejecutiva",
+          tecs: ["evaluacion-neuropsicologica"],
+          obj: "Saber en qué falla el estudiante y qué estrategias necesita.",
+          pasos: [
+            "Evaluar la lectura, la escritura, el cálculo y las funciones ejecutivas, con pruebas para niños hispanohablantes cuando sea posible.",
+            "Completar con cuestionarios de padres y docentes y con la observación del trabajo en clase.",
+            "Identificar si hay un perfil de trastorno de aprendizaje no verbal: buen lenguaje, pero dificultad para integrar detalles y ver el conjunto."
+          ],
+          casa: "Los padres describen cómo hace las tareas en casa.",
+          avance: "Hay un perfil que orienta las estrategias.",
+          fuente: "Rosselli et al., 2010 · Meltzer, 2018, caps. 5 y 6"
+        },
+        {
+          t: "Lectura: habilidades fonológicas y comprensión",
+          tecs: ["conciencia-fonologica"],
+          obj: "Mejorar la relación entre sonidos y letras y la comprensión.",
+          pasos: [
+            "Entrenar las habilidades metalingüísticas y fonológicas: reflexionar sobre el lenguaje y asociar los sonidos con las letras.",
+            "Apoyar la comprensión con estrategias de estudio cuando la lectura todavía es lenta.",
+            "Atender las dificultades visoespaciales, como la orientación arriba y abajo o izquierda y derecha, si las hay."
+          ],
+          casa: "Lectura diaria acompañada.",
+          avance: "Lee con más precisión y comprende más.",
+          fuente: "Rosselli et al., 2010"
+        },
+        {
+          t: "Escritura: desarrollo de estrategias autorreguladas",
+          tecs: ["estrategias-autorreguladas-escritura"],
+          obj: "Planear, escribir y revisar con una estrategia aprendida.",
+          pasos: [
+            "Desarrollar el conocimiento previo y conversar sobre la estrategia.",
+            "Modelar la estrategia en voz alta, incluidas las frases que uno se dice para regularse.",
+            "Memorizar la estrategia con una sigla, practicar con apoyo y retirarlo hasta que la use solo."
+          ],
+          casa: "Escribir un texto corto usando la estrategia.",
+          avance: "Planea y revisa sus textos sin ayuda.",
+          fuente: "Meltzer, 2018, cap. 13"
+        },
+        {
+          t: "Matemáticas: recordar, organizar, ser flexible y priorizar",
+          tecs: ["mnemotecnias", "organizadores-graficos", "flexibilidad-cognitiva"],
+          obj: "Resolver problemas con estrategias de función ejecutiva.",
+          pasos: [
+            "Estrategias para recordar: verbales, visuales y con material concreto.",
+            "Organizar con listas, tablas y apuntes en tres columnas.",
+            "Ser flexible: representar el mismo concepto de varias formas, como los números negativos con la temperatura o el dinero.",
+            "Priorizar: anclarse en un concepto central y sus variaciones; en los exámenes, marcar las preguntas difíciles y volver a ellas al final."
+          ],
+          casa: "Usar una estrategia en las tareas de matemáticas.",
+          avance: "Usa las estrategias en tareas y exámenes.",
+          fuente: "Meltzer, 2018, cap. 12"
+        },
+        {
+          t: "Trastorno de aprendizaje no verbal: ver el conjunto y avanzar por partes",
+          tecs: ["instruccion-explicita", "analisis-tareas"],
+          obj: "Ayudar a integrar los detalles en un todo.",
+          pasos: [
+            "Mostrar primero el resultado final con modelos y rúbricas.",
+            "Presentar la tarea en partes pequeñas y en secuencia.",
+            "Modelar y verbalizar los pasos, con instrucción explícita y práctica."
+          ],
+          casa: "Revisar el modelo antes de empezar una tarea.",
+          avance: "Organiza tareas complejas con menos ayuda.",
+          fuente: "Meltzer, 2018, cap. 6"
+        },
+        {
+          t: "Revisar antes de entregar",
+          tecs: ["autoverificacion"],
+          obj: "Detectar los propios errores antes de entregar.",
+          pasos: [
+            "Armar una lista personal de revisión para cada área.",
+            "Usarla en tareas y exámenes, y ajustarla con los errores que se repiten."
+          ],
+          casa: "Revisar las tareas con la lista.",
+          avance: "Entrega trabajos con menos errores.",
+          fuente: "Meltzer, 2018, cap. 11",
+          fichas: ["lista-autoverificacion"]
+        }
+      ],
+      medir: [
+        "<strong>BRIEF2</strong> de padres y docentes.",
+        "Rendimiento en el área trabajada con medidas basadas en el currículo."
+      ],
+      adapt: [
+        "<strong>Diseño universal:</strong> el uso de herramientas digitales y del diseño universal para el aprendizaje puede apoyar las funciones ejecutivas en el aula (Meltzer, 2018, cap. 14)."
+      ],
+      cuidado: [
+        "En el trastorno de aprendizaje no verbal, las instrucciones detalladas paso a paso no bastan si el estudiante no ve primero el objetivo de la tarea (Meltzer, 2018, cap. 6)."
       ]
     }
   ]
@@ -15778,7 +16999,29 @@ const GLOSARIO = [
   fuente: "Sohlberg y Mateer, 2001, cap. 14" },
 { k: "autorregistro-arrancarse", t: "Registro del arrancarse el pelo", tipo: "Técnica", enf: ["act"],
   d: "Registro diario de cada episodio de arrancarse el pelo —cuándo, dónde, qué hacía, qué sentía— y de las ganas que aparecieron y qué hizo con ellas.",
-  fuente: "Woods y Twohig, 2008, cap. 3", ficha: "registro-habito" }
+  fuente: "Woods y Twohig, 2008, cap. 3", ficha: "registro-habito" },
+/* ---------- Neurodesarrollo, bloque 3: autismo, déficit de atención y discapacidad (2026-11-02) ---------- */
+{ k: "guia-fisica", t: "Obediencia guiada", alias: ["guía física", "obediencia en cuatro pasos"], tipo: "Técnica", enf: ["pad"],
+  d: "Cuatro pasos para enseñar a seguir instrucciones: acercarse y lograr la atención del niño, decirle con claridad qué hacer, guiarlo físicamente al mismo tiempo con el mínimo contacto necesario y elogiarlo de inmediato. La guía se retira poco a poco y las órdenes se dan cada vez desde más lejos.",
+  fuente: "Bearss et al., 2018, sesión 7", ficha: "guia-obediencia-guiada" },
+{ k: "analisis-tareas", t: "Análisis de tareas", alias: ["dividir en pasos"], tipo: "Técnica", enf: ["cond"],
+  d: "Dividir una habilidad, como ponerse las medias o lavarse las manos, en pasos pequeños que se enseñan en orden hasta que el niño hace la tarea completa solo.",
+  fuente: "Bearss et al., 2018, sesión 9 · Baker y Brightman, 2004, cap. 3", ficha: "lista-pasos" },
+{ k: "ayudas-desvanecimiento", t: "Ayudas y su retiro gradual", alias: ["niveles de ayuda", "desvanecimiento de ayudas"], tipo: "Técnica", enf: ["cond"],
+  d: "Dar el nivel de ayuda que el niño necesita para lograr el paso —física, con gestos, con un modelo o verbal— y retirarla poco a poco a medida que lo hace solo.",
+  fuente: "Bearss et al., 2018, sesión 10 · OMS, 2022, sesión 6" },
+{ k: "metaforas-concretas", t: "Metáforas y ejercicios concretos", tipo: "Técnica", enf: ["act"],
+  d: "Metáforas y ejercicios activos de aceptación y compromiso, visuales y ajustados al lenguaje del niño, que se usan dentro del análisis de la conducta para enseñar los procesos como conductas.",
+  fuente: "Szabo, 2023, caps. 6 y 7" },
+{ k: "pensar-voz-alta-anticipar", t: "Pensar en voz alta y anticipar", tipo: "Técnica", enf: ["pad"],
+  d: "Procedimiento de cuatro pasos antes de entrar a un lugar público o de una transición difícil: repasar tres o cuatro reglas, acordar un incentivo por cumplirlas, acordar la consecuencia si no, y asignarle al niño una actividad durante la salida.",
+  fuente: "Barkley, 2013, paso 7", ficha: "guia-lugares-publicos" },
+{ k: "autocuidado-padres", t: "Autocuidado de los padres", tipo: "Técnica", enf: ["mind"],
+  d: "Atender el propio estrés, el cansancio y los propios síntomas como parte del tratamiento del hijo, con pausas breves, prioridades claras sobre qué conductas trabajar y prácticas como quince respiraciones conscientes.",
+  fuente: "Bertin, 2015, caps. 3 y 4", ficha: "guia-pausa-padres-tdah" },
+{ k: "stop-transiciones", t: "STOP en las transiciones", tipo: "Técnica", enf: ["mind"],
+  d: "Pausa de cuatro pasos —parar, respirar, observar y proceder con intención— que se practica al pasar de una actividad a otra. Ayuda a los padres a responder en lugar de reaccionar, y al niño o adolescente con déficit de atención a recordar terminar lo que empezó.",
+  fuente: "Bertin, 2015, cap. 2 · Bertin y Bluth, 2021, cap. 8", ficha: "guia-pausa-padres-tdah" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -15891,6 +17134,12 @@ const FICHAS = {
   "lista-autoverificacion": { t: "Mi lista para revisar antes de entregar", d: "Revisar tu trabajo antes de entregarlo atrapa errores que se te pasan cuando vas rápido. Arma tu propia lista con lo que sueles olvidar y úsala en tareas y exámenes.", n: 41, q: "M0 0.5h7m1 0h2m1 0h1m2 0h1m1 0h8m1 0h1m4 0h3m1 0h7m-41 1h1m5 0h1m1 0h2m3 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h2m4 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h2m4 0h1m2 0h1m2 0h2m3 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m3 0h4m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m3 0h3m2 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m-33 1h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m3 0h1m1 0h1m2 0h6m2 0h1m2 0h1m1 0h2m-41 1h4m1 0h1m5 0h1m6 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-39 1h1m1 0h1m1 0h2m1 0h1m1 0h5m1 0h1m3 0h3m2 0h1m2 0h1m3 0h4m1 0h2m-39 1h1m1 0h1m1 0h1m1 0h1m5 0h1m2 0h1m1 0h3m2 0h6m1 0h1m1 0h1m2 0h2m2 0h1m-39 1h1m4 0h1m1 0h3m2 0h5m2 0h1m1 0h8m1 0h1m5 0h3m-40 1h5m3 0h1m4 0h1m1 0h1m2 0h1m1 0h1m2 0h4m5 0h3m2 0h1m2 0h1m-40 1h1m1 0h2m1 0h2m3 0h2m2 0h2m2 0h3m1 0h1m1 0h2m3 0h2m2 0h2m2 0h3m-36 1h1m1 0h1m1 0h3m3 0h1m5 0h1m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m-36 1h1m2 0h6m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m4 0h1m1 0h1m3 0h2m2 0h1m-41 1h3m5 0h1m3 0h1m1 0h1m1 0h1m3 0h6m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m-39 1h2m1 0h1m1 0h2m2 0h2m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h2m-39 1h3m3 0h1m1 0h3m2 0h2m1 0h2m1 0h2m1 0h2m3 0h1m3 0h2m1 0h1m1 0h4m-39 1h1m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m9 0h1m2 0h1m1 0h5m1 0h4m-40 1h3m4 0h1m6 0h1m2 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h5m1 0h1m1 0h3m-41 1h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m4 0h2m1 0h1m1 0h3m4 0h5m-40 1h2m3 0h1m1 0h1m4 0h2m1 0h1m7 0h1m1 0h4m1 0h2m1 0h1m1 0h2m3 0h1m-41 1h2m2 0h7m4 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h3m-41 1h3m1 0h1m3 0h1m2 0h1m3 0h1m1 0h1m1 0h1m2 0h1m2 0h4m2 0h2m1 0h1m2 0h2m1 0h1m-40 1h3m1 0h2m2 0h2m5 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h5m1 0h2m1 0h1m1 0h2m-41 1h2m3 0h1m2 0h1m2 0h1m1 0h4m4 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-36 1h3m1 0h1m1 0h2m1 0h4m1 0h1m2 0h7m1 0h1m3 0h3m1 0h3m-33 1h1m1 0h4m1 0h2m2 0h1m2 0h2m1 0h1m2 0h1m3 0h1m2 0h1m2 0h1m1 0h1m-38 1h1m2 0h2m1 0h1m7 0h2m1 0h3m1 0h2m7 0h1m2 0h6m-37 1h1m2 0h1m3 0h1m1 0h1m1 0h3m1 0h3m2 0h2m3 0h4m3 0h1m2 0h3m-39 1h1m2 0h1m1 0h1m2 0h3m2 0h5m2 0h1m2 0h1m1 0h2m1 0h11m-32 1h1m4 0h3m1 0h7m1 0h2m1 0h1m3 0h1m3 0h2m1 0h2m-41 1h7m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m2 0h3m2 0h2m1 0h2m1 0h1m1 0h1m2 0h1m-40 1h1m5 0h1m1 0h1m1 0h3m1 0h1m1 0h2m6 0h1m2 0h2m1 0h1m1 0h1m3 0h1m2 0h2m-41 1h1m1 0h3m1 0h1m2 0h2m4 0h1m5 0h1m2 0h1m1 0h2m2 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h1m1 0h1m1 0h7m3 0h2m1 0h1m-40 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m2 0h4m3 0h2m5 0h2m2 0h1m2 0h3m-41 1h1m5 0h1m2 0h5m7 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h2m1 0h2m2 0h1m3 0h4m1 0h4m2 0h3m1 0h1m4 0h1" },
   "rutina-externa": { t: "Mi cuaderno de memoria", d: "Cuando la memoria falla, apuntarlo todo en un solo lugar y revisarlo a horas fijas te ayuda a no olvidar tareas, citas ni lo que tienes que llevar. Lleva esta hoja contigo y revísala cuando suene tu alarma.", n: 37, q: "M0 0.5h7m2 0h6m1 0h1m1 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m6 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h10m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m3 0h1m1 0h2m3 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m3 0h2m1 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m5 0h4m1 0h1m1 0h1m4 0h3m3 0h5m-35 1h1m3 0h2m4 0h1m1 0h2m1 0h2m2 0h2m2 0h1m4 0h2m1 0h1m2 0h2m-35 1h1m1 0h4m2 0h1m1 0h2m1 0h1m2 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-33 1h1m3 0h1m1 0h1m2 0h1m2 0h1m1 0h5m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h1m2 0h4m1 0h1m3 0h1m4 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-36 1h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m2 0h1m1 0h2m2 0h3m2 0h2m1 0h1m1 0h3m4 0h2m1 0h4m1 0h2m-35 1h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m2 0h2m1 0h1m2 0h3m4 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-34 1h1m1 0h1m1 0h1m1 0h2m3 0h4m1 0h1m3 0h1m1 0h4m1 0h2m3 0h3m-37 1h2m3 0h1m2 0h1m4 0h3m3 0h1m1 0h2m5 0h3m1 0h1m3 0h1m-37 1h3m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h2m1 0h3m2 0h1m3 0h1m3 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-31 1h2m1 0h2m1 0h1m3 0h1m1 0h1m4 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h3m1 0h1m1 0h3m1 0h6m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h1m5 0h3m3 0h2m3 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h2m3 0h1m2 0h1m2 0h8m1 0h2m4 0h1m2 0h1m-32 1h1m3 0h1m1 0h5m6 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h1m4 0h1m1 0h2m1 0h3m1 0h1m3 0h3m3 0h1m1 0h3m5 0h1m-37 1h1m1 0h1m1 0h3m1 0h2m1 0h3m3 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h5m1 0h3m2 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h2m2 0h2m4 0h1m1 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m2 0h1m3 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m2 0h4m1 0h7m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h5m8 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m1 0h1m2 0h2m4 0h5m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m3 0h1m1 0h2m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
   "registro-habito": { t: "Registro de las ganas de arrancarme el pelo", d: "Anotar cada vez que te arrancas el pelo o sientes ganas te ayuda a ver cuándo y dónde pasa, y qué haces con esas ganas. No es para juzgarte: es información para el tratamiento.", n: 37, q: "M0 0.5h7m3 0h2m2 0h2m2 0h3m1 0h2m4 0h1m1 0h7m-37 1h1m5 0h1m4 0h1m6 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h3m5 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h6m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m2 0h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m2 0h2m3 0h1m3 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h1m2 0h1m1 0h2m2 0h3m1 0h2m1 0h2m-28 1h1m1 0h5m2 0h2m2 0h1m2 0h5m1 0h1m2 0h2m3 0h5m-35 1h6m2 0h3m1 0h1m1 0h2m2 0h3m1 0h2m4 0h2m1 0h1m2 0h2m-32 1h4m2 0h1m1 0h1m1 0h5m1 0h2m3 0h4m2 0h1m2 0h3m-35 1h2m4 0h1m2 0h1m1 0h3m2 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-35 1h2m2 0h1m2 0h3m2 0h2m1 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-36 1h2m1 0h2m2 0h1m2 0h4m1 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-30 1h2m2 0h1m1 0h5m1 0h4m2 0h1m6 0h2m1 0h4m1 0h2m-37 1h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-36 1h4m2 0h1m2 0h2m6 0h1m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h4m6 0h1m1 0h2m1 0h3m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h1m2 0h4m1 0h2m2 0h1m1 0h1m3 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-35 1h2m1 0h1m1 0h1m2 0h1m2 0h1m2 0h1m2 0h1m1 0h3m4 0h3m1 0h1m3 0h1m-37 1h2m3 0h2m1 0h1m1 0h3m1 0h1m2 0h1m7 0h3m1 0h2m1 0h3m-35 1h1m1 0h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-31 1h1m2 0h2m4 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h3m1 0h2m3 0h3m1 0h4m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m3 0h3m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h4m1 0h1m3 0h1m3 0h3m1 0h4m2 0h1m4 0h1m2 0h1m-32 1h1m3 0h1m1 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h1m2 0h1m3 0h1m1 0h5m5 0h2m3 0h1m1 0h3m4 0h2m-37 1h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h2m6 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m2 0h5m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h2m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h1m4 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h5m1 0h5m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h4m8 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h3m1 0h1m2 0h1m4 0h4m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m3 0h3m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
+  "guia-prevencion-rubi": { t: "Ocho formas de prevenir los problemas de conducta", c: "guia", d: "Muchas rabietas y conductas difíciles se pueden evitar cambiando lo que pasa antes de ellas. Seguramente usted ya hace algunas de estas cosas; la idea es elegir una o dos más para probar esta semana.", n: 41, q: "M0 0.5h7m4 0h9m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h7m-41 1h1m5 0h1m4 0h1m1 0h1m3 0h1m3 0h1m3 0h4m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h7m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m3 0h1m1 0h1m2 0h1m1 0h1m3 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h5m1 0h1m1 0h8m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m3 0h2m1 0h3m1 0h3m2 0h5m2 0h1m4 0h5m-38 1h1m1 0h3m2 0h1m1 0h2m2 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-41 1h2m1 0h1m2 0h2m3 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-33 1h6m3 0h2m4 0h1m4 0h4m2 0h1m4 0h3m1 0h1m1 0h1m1 0h2m-41 1h1m1 0h1m2 0h2m1 0h7m1 0h2m2 0h1m1 0h8m1 0h1m5 0h3m-39 1h1m11 0h2m2 0h1m9 0h1m2 0h1m1 0h9m-41 1h1m4 0h2m2 0h4m2 0h1m4 0h1m1 0h3m2 0h3m1 0h1m1 0h1m1 0h4m-35 1h1m2 0h1m1 0h2m3 0h2m5 0h1m1 0h1m3 0h1m3 0h2m1 0h2m1 0h1m-37 1h1m1 0h1m1 0h3m2 0h1m1 0h4m1 0h1m4 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-40 1h1m1 0h2m4 0h1m1 0h1m1 0h3m3 0h2m2 0h1m2 0h1m2 0h1m1 0h1m2 0h7m-41 1h3m2 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h3m2 0h3m1 0h1m1 0h2m-40 1h3m2 0h1m2 0h4m1 0h2m1 0h1m2 0h2m2 0h1m2 0h2m1 0h2m5 0h2m2 0h1m-41 1h3m3 0h1m1 0h4m1 0h4m1 0h2m1 0h2m1 0h1m2 0h1m4 0h1m5 0h1m1 0h1m-41 1h2m2 0h1m2 0h1m2 0h1m3 0h1m2 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h7m1 0h3m-40 1h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h3m2 0h2m5 0h2m3 0h2m2 0h2m-38 1h1m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h2m1 0h4m1 0h1m7 0h1m1 0h1m2 0h2m-41 1h3m2 0h2m5 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h1m-38 1h1m1 0h2m4 0h1m4 0h1m1 0h1m1 0h8m2 0h4m1 0h5m1 0h2m-40 1h3m1 0h4m2 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h1m2 0h2m-30 1h1m4 0h5m4 0h1m1 0h1m4 0h1m2 0h4m1 0h2m-36 1h1m3 0h2m4 0h2m3 0h3m2 0h1m2 0h2m2 0h3m1 0h1m3 0h2m-39 1h2m1 0h2m3 0h1m2 0h2m2 0h2m1 0h1m1 0h2m2 0h1m2 0h2m1 0h1m2 0h1m1 0h2m2 0h2m-41 1h1m2 0h1m2 0h1m2 0h1m1 0h1m2 0h2m1 0h3m5 0h1m7 0h6m-39 1h1m2 0h2m3 0h1m1 0h7m1 0h5m1 0h1m3 0h1m4 0h5m-38 1h1m5 0h2m1 0h2m1 0h1m4 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5m1 0h1m1 0h1m-33 1h2m2 0h2m3 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m-41 1h7m5 0h6m2 0h2m3 0h4m1 0h3m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m2 0h2m2 0h1m1 0h1m3 0h2m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h2m1 0h1m7 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h2m1 0h6m4 0h1m2 0h1m1 0h1m1 0h1m1 0h2m-39 1h1m1 0h3m1 0h1m1 0h4m2 0h5m1 0h3m4 0h2m1 0h1m1 0h5m1 0h1m-39 1h1m5 0h1m2 0h4m4 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h1m1 0h1m2 0h2m3 0h2m2 0h2m1 0h1m3 0h1m1 0h1m1 0h6" },
+  "guia-obediencia-guiada": { t: "Obediencia guiada en cuatro pasos", c: "guia", d: "Para enseñarle a su hijo a seguir instrucciones la primera vez. Se practica con órdenes que él puede hacer, varias veces al día, y la ayuda se retira poco a poco.", n: 41, q: "M0 0.5h7m1 0h1m3 0h3m3 0h1m1 0h3m3 0h1m2 0h2m3 0h7m-41 1h1m5 0h1m1 0h2m3 0h1m3 0h1m1 0h1m8 0h1m1 0h2m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h4m1 0h1m2 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m4 0h1m1 0h4m3 0h1m1 0h3m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h4m1 0h2m1 0h3m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m3 0h1m2 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-32 1h1m2 0h2m4 0h3m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m-33 1h1m2 0h6m2 0h3m1 0h4m4 0h2m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h3m-41 1h1m1 0h2m3 0h1m1 0h3m2 0h3m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m3 0h2m-35 1h2m1 0h2m1 0h1m2 0h1m1 0h2m2 0h2m3 0h3m1 0h2m1 0h2m3 0h2m2 0h1m-39 1h3m5 0h1m2 0h2m3 0h2m2 0h1m5 0h4m1 0h2m4 0h1m1 0h2m-41 1h3m2 0h3m1 0h1m1 0h2m2 0h1m3 0h1m4 0h1m2 0h1m4 0h1m1 0h2m3 0h1m-38 1h3m2 0h3m1 0h3m1 0h1m1 0h1m1 0h2m5 0h1m3 0h7m3 0h1m-41 1h2m2 0h1m1 0h2m3 0h3m2 0h1m2 0h3m1 0h2m1 0h2m1 0h1m1 0h1m1 0h4m1 0h1m1 0h1m-39 1h4m1 0h2m11 0h1m2 0h1m4 0h1m2 0h1m1 0h1m1 0h1m1 0h4m-41 1h1m1 0h2m1 0h4m2 0h1m2 0h1m5 0h1m1 0h1m1 0h2m1 0h1m4 0h2m3 0h1m1 0h2m-39 1h1m2 0h1m1 0h6m2 0h8m4 0h2m2 0h1m1 0h1m2 0h3m-39 1h1m1 0h3m1 0h3m1 0h2m2 0h1m2 0h3m3 0h5m3 0h1m1 0h1m1 0h3m1 0h2m-41 1h1m1 0h2m1 0h1m6 0h1m3 0h1m2 0h3m3 0h1m3 0h5m2 0h1m1 0h3m-41 1h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h2m2 0h1m2 0h1m2 0h2m1 0h2m2 0h2m1 0h1m2 0h2m-39 1h5m2 0h3m4 0h4m1 0h1m1 0h3m1 0h1m1 0h1m2 0h2m4 0h1m1 0h1m-39 1h5m1 0h1m2 0h2m1 0h5m4 0h1m1 0h1m2 0h4m3 0h1m2 0h3m-36 1h1m1 0h1m5 0h1m3 0h1m1 0h3m4 0h1m1 0h4m3 0h1m1 0h3m2 0h1m-39 1h1m2 0h2m2 0h1m1 0h1m1 0h4m2 0h1m3 0h2m2 0h2m2 0h2m1 0h2m1 0h1m1 0h1m-40 1h1m1 0h1m4 0h2m3 0h2m1 0h1m2 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h1m1 0h1m-41 1h4m2 0h1m3 0h1m1 0h1m2 0h5m6 0h4m1 0h7m2 0h1m-41 1h1m4 0h1m1 0h1m1 0h3m1 0h1m6 0h1m1 0h2m2 0h2m3 0h1m2 0h1m1 0h5m-35 1h1m1 0h1m2 0h1m1 0h4m1 0h3m1 0h2m1 0h1m4 0h3m2 0h1m1 0h1m-38 1h2m3 0h1m2 0h5m2 0h4m1 0h5m4 0h4m3 0h1m-37 1h4m1 0h4m1 0h1m2 0h1m2 0h1m3 0h1m2 0h1m2 0h1m1 0h2m1 0h3m2 0h1m3 0h1m-41 1h3m4 0h1m2 0h1m1 0h1m1 0h3m7 0h5m2 0h1m2 0h3m1 0h2m-40 1h2m1 0h2m1 0h1m5 0h2m1 0h1m1 0h1m6 0h1m1 0h1m1 0h2m1 0h8m-31 1h1m2 0h2m4 0h1m1 0h1m2 0h2m1 0h3m2 0h1m1 0h1m3 0h3m-39 1h7m1 0h1m3 0h1m3 0h1m4 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m-37 1h1m5 0h1m1 0h7m1 0h1m1 0h2m3 0h1m1 0h1m2 0h2m1 0h2m3 0h2m1 0h2m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h7m2 0h10m1 0h1m-40 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m1 0h1m3 0h2m1 0h4m3 0h1m2 0h1m2 0h2m-40 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h2m1 0h1m1 0h3m3 0h1m1 0h1m2 0h4m1 0h3m2 0h1m-41 1h1m5 0h1m4 0h6m3 0h1m1 0h1m1 0h1m8 0h1m2 0h3m1 0h1m-41 1h7m1 0h1m2 0h1m6 0h3m1 0h1m2 0h2m4 0h4m1 0h1" },
+  "guia-lugares-publicos": { t: "Antes de entrar: pensar en voz alta y anticipar", c: "guia", d: "Los problemas de conducta en tiendas, restaurantes o la iglesia se pueden prevenir si se planea antes. Use estos cuatro pasos justo antes de entrar a un lugar público o antes de un cambio de actividad difícil en casa.", n: 41, q: "M0 0.5h7m6 0h1m4 0h2m1 0h3m2 0h2m1 0h3m2 0h7m-41 1h1m5 0h1m3 0h1m2 0h1m1 0h3m2 0h1m2 0h1m3 0h1m2 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m2 0h1m3 0h1m2 0h3m1 0h1m1 0h1m3 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m5 0h2m3 0h1m1 0h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h6m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h7m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-30 1h1m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m2 0h1m1 0h2m1 0h3m2 0h2m1 0h1m1 0h2m1 0h1m2 0h5m4 0h1m1 0h1m-34 1h1m2 0h1m1 0h2m3 0h2m3 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h4m-41 1h1m1 0h6m1 0h1m1 0h2m1 0h1m3 0h2m1 0h2m1 0h3m3 0h2m5 0h3m-37 1h3m3 0h3m1 0h3m2 0h2m1 0h5m4 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-41 1h1m2 0h2m1 0h1m6 0h1m1 0h3m2 0h2m1 0h1m1 0h1m2 0h2m1 0h4m2 0h1m2 0h1m-40 1h1m2 0h2m3 0h2m3 0h1m1 0h3m1 0h4m1 0h1m1 0h1m1 0h1m3 0h1m3 0h3m-40 1h1m2 0h1m1 0h2m2 0h2m1 0h1m2 0h2m1 0h2m3 0h1m2 0h3m5 0h1m1 0h5m-40 1h1m8 0h1m2 0h3m1 0h1m2 0h4m1 0h1m2 0h4m2 0h1m1 0h1m-37 1h3m3 0h1m2 0h1m5 0h3m3 0h2m4 0h1m1 0h1m1 0h2m2 0h1m4 0h1m-41 1h1m3 0h2m1 0h1m1 0h1m2 0h1m4 0h1m3 0h4m5 0h1m1 0h1m1 0h2m3 0h2m-41 1h3m1 0h4m1 0h3m1 0h2m1 0h2m2 0h1m1 0h1m2 0h1m4 0h1m5 0h1m3 0h1m-40 1h1m2 0h1m3 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h1m1 0h4m3 0h2m1 0h1m-38 1h2m2 0h3m6 0h2m2 0h1m4 0h3m1 0h1m1 0h3m1 0h3m3 0h2m-40 1h1m4 0h1m1 0h1m1 0h1m1 0h2m7 0h1m1 0h1m1 0h1m3 0h3m1 0h3m3 0h3m-41 1h3m2 0h2m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m5 0h2m1 0h1m2 0h1m7 0h1m-40 1h1m1 0h2m1 0h1m1 0h1m4 0h3m1 0h1m3 0h4m1 0h1m4 0h3m1 0h3m1 0h1m1 0h1m-39 1h1m2 0h3m1 0h1m2 0h1m3 0h2m3 0h1m2 0h2m2 0h2m2 0h3m2 0h1m1 0h2m-40 1h2m1 0h2m1 0h4m3 0h1m2 0h1m1 0h3m3 0h1m5 0h1m1 0h1m3 0h1m1 0h1m-39 1h1m1 0h5m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h3m1 0h1m2 0h2m-41 1h3m1 0h1m2 0h2m3 0h1m1 0h2m1 0h3m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m-36 1h2m1 0h2m1 0h4m1 0h1m2 0h1m1 0h3m2 0h2m1 0h1m2 0h4m1 0h2m6 0h1m-40 1h3m1 0h1m1 0h1m1 0h1m2 0h6m1 0h3m2 0h4m3 0h5m1 0h4m-41 1h1m1 0h1m2 0h2m1 0h2m11 0h4m7 0h1m2 0h3m1 0h2m-38 1h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h1m3 0h1m2 0h1m1 0h8m3 0h1m2 0h1m-41 1h1m2 0h6m1 0h2m8 0h3m1 0h3m1 0h1m3 0h5m1 0h2m-32 1h3m1 0h4m1 0h1m2 0h1m3 0h2m2 0h1m2 0h2m3 0h1m2 0h2m-41 1h7m3 0h2m2 0h1m3 0h2m1 0h2m2 0h2m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-40 1h1m5 0h1m1 0h1m6 0h1m2 0h2m3 0h3m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m-39 1h1m1 0h3m1 0h1m2 0h1m3 0h1m1 0h2m1 0h3m3 0h1m1 0h3m3 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h2m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m3 0h1m2 0h2m1 0h1m2 0h1m5 0h2m1 0h1m3 0h5m-41 1h1m5 0h1m3 0h1m2 0h1m5 0h1m1 0h1m1 0h1m1 0h8m1 0h2m1 0h1m1 0h1m-40 1h7m1 0h3m1 0h4m1 0h1m2 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
+  "guia-pausa-padres-tdah": { t: "Pausas para padres: STOP y quince respiraciones", c: "guia", d: "Criar a un hijo con déficit de atención cansa. Dos prácticas breves le ayudan a responder en lugar de reaccionar y a cuidarse en medio del día. STOP también puede enseñárselo a su hijo, para que recuerde terminar lo que empieza.", n: 41, q: "M0 0.5h7m1 0h1m1 0h1m1 0h7m4 0h2m2 0h2m1 0h1m3 0h7m-41 1h1m5 0h1m2 0h2m2 0h5m1 0h2m7 0h1m1 0h2m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m5 0h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h4m2 0h3m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h6m1 0h1m3 0h3m1 0h5m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h1m2 0h1m2 0h2m1 0h6m6 0h4m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h2m2 0h4m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m3 0h1m1 0h9m2 0h2m1 0h5m2 0h1m1 0h1m1 0h7m2 0h1m-41 1h2m1 0h2m4 0h1m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m3 0h3m4 0h4m2 0h1m-39 1h2m2 0h3m1 0h4m2 0h2m2 0h1m2 0h1m3 0h3m2 0h1m2 0h2m3 0h1m-41 1h1m1 0h1m1 0h2m1 0h3m1 0h1m3 0h4m1 0h2m2 0h1m1 0h1m1 0h6m2 0h2m1 0h2m-41 1h5m1 0h2m2 0h1m1 0h1m3 0h2m1 0h1m1 0h4m3 0h2m2 0h2m5 0h1m-39 1h5m1 0h2m2 0h2m2 0h2m2 0h3m3 0h2m3 0h7m3 0h1m-37 1h3m2 0h4m1 0h1m1 0h3m1 0h2m5 0h1m2 0h1m2 0h2m2 0h2m1 0h1m-41 1h1m3 0h1m2 0h1m1 0h2m1 0h1m2 0h4m2 0h1m2 0h1m2 0h6m3 0h2m2 0h1m-41 1h3m3 0h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h4m4 0h1m1 0h2m2 0h1m4 0h1m-40 1h1m2 0h1m5 0h1m1 0h2m2 0h1m4 0h3m1 0h3m1 0h1m2 0h5m3 0h1m-40 1h1m1 0h2m1 0h1m5 0h2m1 0h3m5 0h2m2 0h1m2 0h1m1 0h2m1 0h1m2 0h3m-40 1h1m2 0h1m2 0h2m4 0h2m1 0h3m1 0h1m1 0h1m3 0h3m5 0h2m1 0h1m-38 1h1m2 0h1m2 0h1m3 0h1m5 0h1m1 0h3m1 0h1m1 0h3m4 0h1m1 0h1m3 0h1m1 0h2m-38 1h1m4 0h2m3 0h1m1 0h1m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-40 1h4m1 0h2m1 0h1m3 0h1m1 0h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h4m4 0h1m-39 1h2m4 0h2m1 0h2m4 0h1m1 0h1m1 0h1m4 0h1m1 0h3m4 0h3m1 0h2m-40 1h1m2 0h5m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m2 0h1m-41 1h3m2 0h1m1 0h2m3 0h2m1 0h1m2 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h3m-41 1h2m1 0h4m3 0h2m1 0h1m1 0h2m6 0h6m1 0h1m1 0h3m5 0h1m-41 1h2m2 0h2m4 0h1m1 0h4m1 0h2m2 0h2m1 0h1m4 0h7m1 0h1m2 0h1m-39 1h2m1 0h2m1 0h2m4 0h1m2 0h2m1 0h3m4 0h1m1 0h2m1 0h2m5 0h2m-41 1h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3m2 0h2m4 0h3m1 0h1m1 0h1m3 0h5m1 0h1m-38 1h1m1 0h2m3 0h1m3 0h3m2 0h1m1 0h4m3 0h3m2 0h1m3 0h2m1 0h1m-38 1h3m2 0h3m4 0h1m1 0h7m2 0h1m2 0h2m1 0h2m3 0h1m2 0h1m-41 1h3m3 0h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h3m4 0h1m1 0h1m1 0h7m1 0h2m-33 1h1m2 0h2m2 0h1m1 0h2m4 0h1m3 0h2m1 0h3m3 0h1m1 0h1m1 0h1m-41 1h7m1 0h2m2 0h5m1 0h1m1 0h8m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-41 1h1m5 0h1m2 0h3m2 0h1m1 0h1m4 0h1m1 0h3m1 0h6m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m3 0h2m1 0h1m2 0h8m2 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h1m1 0h1m3 0h2m1 0h4m3 0h1m2 0h1m1 0h3m-40 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m1 0h2m1 0h2m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1m-41 1h1m5 0h1m2 0h1m3 0h1m2 0h3m2 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m-41 1h7m1 0h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
+  "guia-conversacion-peers": { t: "Cómo empezar una conversación", c: "guia", d: "Las buenas conversaciones van y vienen: tú cuentas algo, la otra persona cuenta algo relacionado, y así se encuentran intereses en común, que son la base de una amistad. Estos pasos te ayudan a empezar con alguien que no conoces.", n: 41, q: "M0 0.5h7m1 0h4m1 0h1m1 0h1m2 0h1m2 0h3m1 0h4m1 0h1m3 0h7m-41 1h1m5 0h1m2 0h2m1 0h1m5 0h2m1 0h2m2 0h2m1 0h2m1 0h1m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m6 0h2m3 0h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h3m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m4 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h2m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h6m6 0h4m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h2m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m3 0h1m1 0h4m1 0h4m2 0h2m1 0h5m2 0h1m1 0h1m1 0h7m2 0h1m-41 1h3m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m3 0h3m4 0h4m2 0h1m-41 1h1m1 0h1m2 0h3m2 0h2m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m3 0h3m2 0h5m3 0h1m-41 1h2m1 0h1m1 0h1m2 0h2m2 0h1m2 0h4m1 0h2m2 0h1m1 0h1m1 0h5m3 0h2m1 0h2m-41 1h1m1 0h2m1 0h2m3 0h3m4 0h1m1 0h5m5 0h1m2 0h1m-33 1h5m2 0h2m3 0h2m3 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h3m3 0h1m-35 1h1m2 0h1m4 0h1m1 0h1m1 0h2m2 0h4m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m-36 1h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h7m2 0h1m2 0h2m1 0h1m3 0h2m2 0h1m-39 1h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h3m2 0h3m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m4 0h1m-40 1h5m2 0h1m4 0h2m2 0h2m3 0h2m2 0h2m4 0h5m3 0h1m-40 1h2m1 0h1m1 0h6m2 0h1m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m2 0h2m1 0h1m2 0h3m-40 1h2m1 0h1m2 0h2m1 0h2m3 0h1m3 0h1m1 0h1m2 0h2m1 0h3m4 0h2m1 0h1m-38 1h1m1 0h2m2 0h1m3 0h2m1 0h1m1 0h2m2 0h2m3 0h2m4 0h2m1 0h1m1 0h1m1 0h1m1 0h2m-38 1h2m2 0h1m2 0h1m3 0h2m1 0h2m2 0h3m2 0h3m1 0h1m3 0h3m1 0h1m1 0h1m-41 1h1m3 0h4m7 0h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h6m2 0h1m-40 1h2m2 0h1m2 0h1m1 0h5m2 0h1m1 0h1m1 0h1m4 0h1m1 0h3m4 0h1m1 0h1m2 0h1m-41 1h1m3 0h1m1 0h1m1 0h1m8 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m2 0h1m-37 1h2m1 0h1m3 0h1m1 0h1m1 0h1m2 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h3m-38 1h6m1 0h1m2 0h1m2 0h1m6 0h6m1 0h1m1 0h1m7 0h1m-40 1h2m4 0h2m1 0h2m1 0h6m2 0h2m1 0h1m4 0h5m1 0h1m1 0h1m2 0h1m-38 1h4m1 0h2m1 0h2m1 0h2m1 0h2m2 0h2m1 0h1m2 0h4m1 0h2m5 0h2m-41 1h1m1 0h1m4 0h1m4 0h1m1 0h2m1 0h4m5 0h1m3 0h1m2 0h6m1 0h1m-38 1h2m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m2 0h1m3 0h2m1 0h1m-38 1h3m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m2 0h1m1 0h5m2 0h1m3 0h1m2 0h1m-41 1h3m3 0h1m2 0h1m1 0h1m2 0h1m1 0h8m5 0h1m1 0h7m1 0h2m-33 1h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h8m3 0h1m1 0h1m1 0h1m-41 1h7m1 0h3m1 0h3m1 0h2m2 0h1m2 0h1m3 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m-41 1h1m5 0h1m2 0h2m2 0h6m3 0h1m1 0h1m1 0h3m2 0h2m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m2 0h3m1 0h6m3 0h7m2 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h2m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h2m-40 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h2m1 0h2m1 0h2m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1m-41 1h1m5 0h1m6 0h1m2 0h2m3 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m-41 1h7m1 0h2m2 0h1m1 0h2m4 0h4m2 0h2m1 0h1m2 0h1m1 0h3m2 0h1" },
+  "plan-encuentro": { t: "Mi plan para un encuentro con amigos", d: "Los amigos se hacen pasando tiempo juntos. Si no planeas un encuentro, probablemente no pasa. Usa esta hoja para organizarlo y para revisar cómo te fue.", n: 37, q: "M0 0.5h7m2 0h2m2 0h3m2 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h1m4 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h8m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m3 0h2m1 0h2m3 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m7 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m6 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-35 1h1m1 0h1m1 0h1m2 0h1m3 0h3m1 0h2m2 0h2m2 0h2m3 0h2m1 0h1m2 0h2m-35 1h7m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5m2 0h1m2 0h3m-35 1h1m1 0h1m2 0h1m2 0h4m2 0h1m1 0h2m1 0h3m2 0h2m5 0h1m2 0h1m-37 1h1m1 0h7m3 0h1m4 0h1m4 0h4m1 0h4m1 0h5m-37 1h2m1 0h1m1 0h1m1 0h1m3 0h2m3 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-28 1h4m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-35 1h2m1 0h1m1 0h1m2 0h4m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-31 1h2m2 0h1m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m2 0h2m3 0h2m2 0h1m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-32 1h1m1 0h1m1 0h2m1 0h1m1 0h4m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m1 0h1m1 0h1m1 0h1m4 0h4m4 0h3m1 0h1m3 0h3m1 0h1m3 0h1m-37 1h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m7 0h3m1 0h2m1 0h3m-34 1h1m1 0h3m2 0h1m3 0h2m2 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-34 1h1m2 0h2m1 0h2m6 0h2m4 0h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h6m1 0h2m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-36 1h1m3 0h3m1 0h1m2 0h3m2 0h1m1 0h2m1 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m8 0h1m1 0h2m1 0h6m1 0h2m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m2 0h3m5 0h1m4 0h1m1 0h4m2 0h7m-37 1h1m6 0h1m1 0h2m2 0h2m1 0h1m2 0h4m3 0h1m1 0h3m5 0h1m-37 1h1m1 0h1m1 0h6m2 0h2m3 0h3m2 0h5m1 0h7m1 0h1m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h2m1 0h4m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h6m1 0h1m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m3 0h3m1 0h5m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h5m4 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m4 0h3m1 0h1m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h2m1 0h2m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
 };
 /* @@FIN-DATOS@@ */
 
