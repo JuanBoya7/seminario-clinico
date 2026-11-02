@@ -1852,6 +1852,77 @@ REFERENCIAS.push(
   { k: "Bluth, 2020", ref: "Bluth, K. (2020). <em>The self-compassionate teen: Mindfulness and compassion skills to conquer your critical inner voice</em>. Instant Help Books." }
 );
 
+/* Neurodesarrollo, bloque 2 (2026-11-02): lenguaje, comunicación social y
+   fluidez (Onslow et al., 2003; Paul et al., 2018; Fryling et al., 2020),
+   funciones ejecutivas y rehabilitación (Cannon et al., 2011; Meltzer,
+   2018; Sohlberg y Mateer, 2001) y tricotilomanía en adolescentes (Woods y
+   Twohig, 2008). */
+Object.assign(MODELOS, {
+  "lidcombe": {
+    t: "Tratamiento operante de la tartamudez temprana",
+    autor: "Onslow, Packman y Harrison",
+    d: "La tartamudez es una conducta que puede cambiar con lo que pasa después de ella. Los padres, entrenados por el profesional, responden al habla sin tartamudez reconociéndola o elogiándola, y a la tartamudez clara reconociéndola o pidiendo que el niño la corrija, siempre de forma positiva y sin insistir. El tratamiento ocurre donde ocurre el problema, en las conversaciones de todos los días, y las decisiones se toman con medidas del habla dentro y fuera de la consulta.",
+    dim: ["Habla sin tartamudez", "Tartamudez clara", "Respuestas verbales de los padres", "Conversaciones estructuradas y del día", "Medida diaria de la gravedad"],
+    fuente: "Onslow et al., 2003, caps. 1 y 6"
+  },
+  "estimulacion-lenguaje": {
+    t: "Estimulación del lenguaje en la interacción",
+    autor: "Paul, Norbury y Gosse",
+    d: "El niño aprende el lenguaje en interacciones en las que quiere comunicarse y un adulto atento le responde con modelos un poco más avanzados que lo que él ya dice. Los enfoques van de los dirigidos por el profesional a los centrados en el niño; los híbridos, como la estimulación focalizada y la enseñanza en el ambiente, eligen metas concretas pero las trabajan en el juego. Los padres y los docentes, bien entrenados, son agentes eficaces.",
+    dim: ["Oportunidades para comunicarse", "Respuesta del adulto", "Modelos ajustados al nivel del niño", "Metas concretas", "Padres y docentes como agentes"],
+    fuente: "Paul et al., 2018, caps. 3 y 6"
+  },
+  "pragmatica-contexto": {
+    t: "La pragmática como contexto de la intervención",
+    autor: "Paul, Norbury y Gosse",
+    d: "Usar el lenguaje con otros no es un conjunto aparte de reglas, sino el contexto en el que se practica lo que el niño aprende: conversar, reparar malentendidos y contar historias. Por eso cada forma nueva se lleva a varios contextos de comunicación real, con adultos y con compañeros. Comprender lo que otros ven, piensan o sienten puede enseñarse como relaciones entre yo y otro, aquí y allá, ahora y antes.",
+    dim: ["Conversación", "Reparación", "Narración", "Pares", "Toma de perspectiva"],
+    fuente: "Paul et al., 2018, cap. 9 · Fryling et al., 2020, cap. 11"
+  },
+  "flexibilidad-unstuck": {
+    t: "Flexibilidad y metas en el autismo",
+    autor: "Cannon, Kenworthy y colaboradores",
+    d: "Muchos niños con autismo tienen dificultades de función ejecutiva, sobre todo de flexibilidad: les cuesta pasar de un tema, una tarea o una persona a otra, aceptar otro punto de vista o trabajar solos en tareas de varios pasos. La flexibilidad es una habilidad de autorregulación que se construye con el habla interna; por eso se enseñan de forma explícita un vocabulario y unos guiones que docentes y padres usan una y otra vez, y se hace que ser flexible resulte valioso para el niño.",
+    dim: ["Vocabulario común", "Guiones de autorregulación", "Metas y planes", "Refuerzo y humor", "Generalización a la casa"],
+    fuente: "Cannon et al., 2011, introducción"
+  },
+  "smarts-fe": {
+    t: "Función ejecutiva y estrategias en el aula",
+    autor: "Meltzer",
+    d: "El éxito académico depende de procesos de función ejecutiva —fijarse metas, planear, organizar y priorizar, cambiar de perspectiva, usar la memoria de trabajo y revisarse— que pueden enseñarse de forma explícita dentro de las materias. Cuando el estudiante entiende cómo aprende, elige estrategias, se esfuerza y ve que funcionan, mejora su confianza académica, lo que sostiene la persistencia.",
+    dim: ["Metacognición", "Metas y planificación", "Flexibilidad", "Organización y memoria", "Autoverificación"],
+    fuente: "Meltzer, 2018, cap. 11"
+  },
+  "rehab-infantil": {
+    t: "Rehabilitación cognitiva en niños",
+    autor: "Sohlberg y Mateer",
+    d: "Una lesión cerebral en la niñez puede retrasar o alterar el desarrollo de habilidades que todavía no han aparecido, de modo que el niño se queda atrás con el tiempo. La rehabilitación ocurre sobre todo en el colegio y en la familia, y combina tres vías: apoyos en la enseñanza, ayudas externas que compensan los déficits, y entrenamiento directo de procesos como la atención. El funcionamiento familiar es uno de los mejores predictores de la evolución.",
+    dim: ["Déficit o retraso", "Apoyos en la enseñanza", "Ayudas externas", "Entrenamiento directo", "Familia y colegio"],
+    fuente: "Sohlberg y Mateer, 2001, cap. 14"
+  },
+  "aebt-ttm": {
+    t: "Modelo conductual de la tricotilomanía",
+    autor: "Woods y Twohig",
+    d: "Arrancarse el pelo puede ser automático, cuando ocurre sin darse cuenta en ciertas actividades, o focalizado, cuando sirve para calmar una urgencia, una tensión o una emoción. Lo mantienen el alivio que sigue y la evitación de lo que se siente. La reversión del hábito y el control de estímulos atienden el arrancarse automático; la aceptación y la defusión ayudan a tener las ganas sin obedecerlas y a moverse hacia lo que importa.",
+    dim: ["Arrancarse automático", "Arrancarse focalizado", "Señales y situaciones", "Evitación de lo que se siente", "Valores"],
+    fuente: "Woods y Twohig, 2008, cap. 1"
+  }
+});
+Object.assign(INSTRUMENTOS, {
+  "BRIEF2": { n: "Inventario de Calificación Conductual de la Función Ejecutiva, segunda edición", rol: "Cuestionario de función ejecutiva", d: "Formas para padres, docentes y el propio estudiante de 11 a 18 años. Da índices de regulación conductual, emocional y cognitiva, con escalas como inhibición, flexibilidad, control emocional, memoria de trabajo y planificación, y un puntaje global.", med: "10-15 min", guia: false, fuente: "Gioia et al., 2015, en Meltzer, 2018, cap. 5" },
+  "MGH-HS": { n: "Escala de Arrancarse el Pelo del Hospital General de Massachusetts", rol: "Gravedad", d: "Siete preguntas de autoinforme, de 0 a 4, sobre la gravedad global de arrancarse el pelo; el total va de 0 a 28. Tiene una subescala de gravedad y otra de resistencia y control.", med: "5 min", guia: false, fuente: "Keuthen et al., 1995, en Woods y Twohig, 2008, cap. 2" }
+});
+REFERENCIAS.push(
+  { k: "Onslow et al., 2003", ref: "Onslow, M., Packman, A. y Harrison, E. (Eds.). (2003). <em>The Lidcombe Program of early stuttering intervention: A clinician's guide</em>. Pro-Ed." },
+  { k: "Paul et al., 2018", ref: "Paul, R., Norbury, C. y Gosse, C. (2018). <em>Language disorders from infancy through adolescence: Listening, speaking, reading, writing, and communicating</em> (5.ª ed.). Elsevier." },
+  { k: "Fryling et al., 2020", ref: "Fryling, M. J., Rehfeldt, R. A., Tarbox, J. y Hayes, L. J. (2020). <em>Applied behavior analysis of language and cognition: Core concepts and principles for practitioners</em>. Context Press." },
+  { k: "Cannon et al., 2011", ref: "Cannon, L., Kenworthy, L., Alexander, K. C., Werner, M. A. y Anthony, L. G. (2011). <em>Unstuck and on target! An executive function curriculum to improve flexibility for children with autism spectrum disorders</em> (ed. de investigación). Paul H. Brookes." },
+  { k: "Meltzer, 2018", ref: "Meltzer, L. (Ed.). (2018). <em>Executive function in education: From theory to practice</em> (2.ª ed.). Guilford Press." },
+  { k: "Sohlberg y Mateer, 2001", ref: "Sohlberg, M. M. y Mateer, C. A. (2001). <em>Cognitive rehabilitation: An integrative neuropsychological approach</em>. Guilford Press." },
+  { k: "Rosselli et al., 2010", ref: "Rosselli, M., Matute, E. y Ardila, A. (2010). <em>Neuropsicología del desarrollo infantil</em>. Manual Moderno." },
+  { k: "Woods y Twohig, 2008", ref: "Woods, D. W. y Twohig, M. P. (2008). <em>Trichotillomania: An ACT-enhanced behavior therapy approach. Therapist guide</em>. Oxford University Press." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -9382,6 +9453,307 @@ const VARIABLES = [
 },
 {
   cat: "Neurodesarrollo",
+  t: "Lenguaje, comunicación social y fluidez",
+  sub: "El niño habla tarde o poco para su edad, le cuesta entender o armar frases, usa el lenguaje con dificultad para conversar, contar lo que le pasó o entender lo que otros quieren decir, o tartamudea: repite sonidos o sílabas, alarga sonidos o se bloquea al hablar. Puede frustrarse, evitar hablar, aislarse o tener problemas en el colegio. La evaluación y la terapia del habla y el lenguaje son de fonoaudiología; el psicólogo coordina con ella, orienta a los padres y al colegio, y atiende la frustración, la ansiedad y la evitación al comunicarse.",
+  elegir: [
+    "<strong>Si el niño tartamudea y es menor de 6 años</strong>, el programa Lidcombe enseña a los padres a responder al habla del niño en conversaciones de todos los días. Lo dirige fonoaudiología; el psicólogo puede acompañar a la familia y la ansiedad del niño.",
+    "<strong>Si habla tarde o su lenguaje va atrasado</strong>, la estimulación mediada por los padres y el colegio aprovecha las rutinas y el juego para darle modelos y oportunidades de hablar. Antes, descartar problemas de audición y evaluar el desarrollo general.",
+    "<strong>Si habla bien pero le cuesta usar el lenguaje para relacionarse</strong> —conversar, contar historias, entender lo implícito—, el entrenamiento en comunicación social trabaja esas habilidades en contextos reales. Si hay además intereses restringidos o conductas repetitivas, evaluar el autismo.",
+    "Si la dificultad está en leer y escribir, ver la variable de dificultades de aprendizaje."
+  ],
+  planes: [
+    {
+      id: "leng-lidcombe",
+      mod: "lidcombe",
+      enf: "cond",
+      nivel: "preliminar",
+      t: "Programa Lidcombe para la tartamudez temprana con los padres",
+      fuente: "Onslow et al., 2003",
+      cuando: "Un niño <strong>menor de 6 años que tartamudea</strong>, con unos padres que pueden asistir cada semana a la consulta y dedicar un rato diario a conversar con él. Se coordina con fonoaudiología, que dirige el programa.",
+      respaldo: "Los estudios del programa siguieron a los niños con medidas del habla fuera de la consulta: en el primero, con 12 niños, casi no tartamudeaban 12 meses después, y en el seguimiento de 42 niños la tartamudez seguía casi en cero entre 4 y 7 años después. Al escribir el libro, un ensayo controlado aleatorizado estaba en curso en Nueva Zelanda. Con 250 niños, la mediana para llegar a casi cero tartamudez fue de 11 visitas a la consulta (Onslow et al., 2003, caps. 1 y 14).",
+      secuencia: "<strong>Secuencia:</strong> dos etapas. En la etapa 1, una visita semanal a la consulta en la que el profesional mide la tartamudez, revisa la semana con los padres y les enseña el paso siguiente; en casa, los padres hacen conversaciones estructuradas de 10 a 15 minutos una o dos veces al día y luego llevan el tratamiento a las conversaciones del día. La etapa 2 empieza cuando se cumplen los criterios de casi cero tartamudez y espacia las visitas, en promedio durante unos 12 meses (Onslow et al., 2003, caps. 1, 6 y 7).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["0-5"],
+      actividades: [
+        {
+          t: "Explicación del programa y medida de la tartamudez",
+          tecs: ["psicoeducacion", "escala-gravedad-tartamudez"],
+          obj: "Que los padres entiendan el programa y aprendan a medir la tartamudez cada día.",
+          pasos: [
+            "Explicar que el tratamiento lo hacen los padres en la vida diaria y que el profesional les enseña cómo hacerlo.",
+            "Enseñar la escala de gravedad de 1 a 10 (1 es sin tartamudez, 2 muy leve, 10 extremadamente grave) y practicarla hasta que la calificación de los padres coincida con la del profesional.",
+            "Pedir una calificación por día, para todo el día o para un rato de al menos 10 minutos, cambiando de situación de un día a otro.",
+            "Si la tartamudez varía mucho en el día, anotar dos calificaciones: el mejor y el peor momento."
+          ],
+          casa: "Calificar la tartamudez cada día y traer el registro a la consulta.",
+          avance: "Los padres califican la tartamudez de forma confiable.",
+          fuente: "Onslow et al., 2003, caps. 1 y 5",
+          fichas: ["registro-tartamudez"]
+        },
+        {
+          t: "Respuestas de los padres en conversaciones estructuradas",
+          tecs: ["contingencias-verbales-lidcombe", "reforzamiento-positivo"],
+          obj: "Que los padres respondan al habla del niño de forma positiva y en el momento justo.",
+          pasos: [
+            "Organizar una conversación tranquila, en la mesa o en el piso, con bloques o un cuento, a un nivel de dificultad en el que el niño casi no tartamudee.",
+            "Ante el habla sin tartamudez: reconocerla («eso fue suave»), elogiarla o, de vez en cuando, pedirle que la evalúe («¿hubo algún tropiezo?»).",
+            "Ante la tartamudez clara: reconocerla con calma («eso tuvo un tropiezo») y, después, pedirle que la corrija («¿lo intentas otra vez?»). Si no lo logra, responder con ánimo.",
+            "Comentar el habla sin tartamudez al menos cinco veces más que la tartamudez, y nunca de forma constante, intensa o invasiva."
+          ],
+          casa: "Hacer una o dos conversaciones estructuradas de 10 a 15 minutos al día.",
+          avance: "El niño disfruta las conversaciones y su tartamudez baja en ellas.",
+          fuente: "Onslow et al., 2003, cap. 6",
+          fichas: ["guia-lidcombe-padres"]
+        },
+        {
+          t: "Las respuestas en las conversaciones del día",
+          tecs: ["contingencias-verbales-lidcombe", "generalizacion"],
+          obj: "Llevar las respuestas de los padres a la vida diaria.",
+          pasos: [
+            "Cuando el niño ya está cómodo con las conversaciones estructuradas, empezar a reconocer y elogiar el habla sin tartamudez en momentos naturales del día.",
+            "Es preferible que un padre haga las conversaciones estructuradas y que los dos respondan en las del día; se puede sumar a otras personas cercanas.",
+            "Ajustar cada semana lo que hacen los padres según las calificaciones: si la tartamudez no baja, revisar la medida, cómo se aplica el tratamiento y si las respuestas le resultan valiosas al niño."
+          ],
+          casa: "Responder al habla del niño en las conversaciones del día y seguir calificando.",
+          avance: "La calificación diaria baja de forma sostenida.",
+          fuente: "Onslow et al., 2003, caps. 5 y 6"
+        },
+        {
+          t: "Mantenimiento",
+          tecs: ["prevencion-recaidas"],
+          obj: "Mantener la casi ausencia de tartamudez con cada vez menos visitas.",
+          pasos: [
+            "Pasar a la etapa 2 cuando, durante una semana, todas las calificaciones diarias son 1 o 2 y al menos cuatro son 1, y el profesional mide menos de 1 % de sílabas tartamudeadas en la consulta.",
+            "Espaciar las visitas mientras se mantengan los criterios, por ejemplo a las 2, 2, 4, 4, 8, 8 y 16 semanas.",
+            "Si la tartamudez reaparece, que los padres vuelvan a aumentar enseguida sus respuestas en las conversaciones del día, sin esperar a la siguiente visita."
+          ],
+          casa: "Seguir calificando y responder ante cualquier señal de tartamudez.",
+          avance: "La familia mantiene los resultados sin depender del profesional.",
+          fuente: "Onslow et al., 2003, cap. 7",
+          fichas: ["registro-tartamudez"]
+        }
+      ],
+      medir: [
+        "Calificación diaria de gravedad de los padres, de 1 a 10.",
+        "Porcentaje de sílabas tartamudeadas medido en cada visita por fonoaudiología."
+      ],
+      adapt: [
+        "<strong>Niños de 7 a 12 años:</strong> el programa se ha usado con ellos, aunque resulta algo menos eficaz que con los más pequeños (Onslow et al., 2003, cap. 1).",
+        "<strong>Cada familia:</strong> no es un conjunto fijo de pasos; se ajusta a cada niño y a cada familia, y lo que hacen los padres cambia semana a semana (Onslow et al., 2003, cap. 1)."
+      ],
+      cuidado: [
+        "Las respuestas de los padres nunca deben ser constantes, intensas ni invasivas; el tratamiento debe ser una experiencia agradable para el niño (Onslow et al., 2003, cap. 1).",
+        "Sin calificaciones fuera de la consulta no se pueden tomar decisiones: si la familia no las trae, buscar con ella cómo hacerlas posibles (Onslow et al., 2003, cap. 5)."
+      ]
+    },
+    {
+      id: "leng-estimulacion",
+      mod: "estimulacion-lenguaje",
+      enf: "pad",
+      nivel: "preliminar",
+      t: "Estimulación del lenguaje mediada por los padres y el colegio",
+      fuente: "Paul et al., 2018",
+      cuando: "Un niño que <strong>habla tarde o cuyo lenguaje va atrasado</strong> para su edad, con audición evaluada, cuyos padres o docentes pueden aprender a estimular el lenguaje en las rutinas y el juego. Se coordina con fonoaudiología.",
+      respaldo: "Los autores reseñan estudios en los que los padres de niños que hablan tarde aprendieron técnicas de estimulación y aumentaron cuánto hablaban sus hijos, su vocabulario y sus combinaciones de palabras, y presentan la enseñanza en el ambiente mejorada como especialmente eficaz para niños que ya imitan y tienen al menos 10 palabras (Paul et al., 2018, caps. 3 y 7).",
+      secuencia: "<strong>Secuencia:</strong> evaluación de la comunicación y descarte sensorial, y luego entrenamiento a los padres o docentes en técnicas que aplican en las rutinas del día. La frecuencia y la duración las fija la evaluación de fonoaudiología (Paul et al., 2018, caps. 3, 6 y 7).",
+      esc: ["primer-nivel", "colegio"],
+      edad: ["0-5", "6-11"],
+      actividades: [
+        {
+          t: "Evaluación de la comunicación y plan con la familia",
+          tecs: ["evaluacion-comunicacion", "psicoeducacion"],
+          obj: "Saber en qué punto está la comunicación del niño y acordar metas con la familia.",
+          pasos: [
+            "Coordinar con fonoaudiología la evaluación del lenguaje y con pediatría el descarte de problemas de audición.",
+            "Observar cómo se comunica el niño en el juego con sus padres: si señala, hace gestos, usa palabras o frases, y cuántas veces inicia la comunicación.",
+            "Explicar a los padres que ellos son los principales agentes del cambio y elegir con ellos pocas metas concretas."
+          ],
+          casa: "Anotar las palabras y los gestos que usa el niño durante una semana.",
+          avance: "Hay metas claras de comunicación acordadas con la familia.",
+          fuente: "Paul et al., 2018, caps. 6 y 7"
+        },
+        {
+          t: "Arreglo del ambiente y tentaciones comunicativas",
+          tecs: ["tentaciones-comunicativas", "arreglo-ambiente"],
+          obj: "Crear muchas ocasiones en que el niño quiera comunicarse.",
+          pasos: [
+            "Poner a la vista, pero fuera de su alcance, cosas que le gustan, o en frascos que no pueda abrir.",
+            "Empezar un juego conocido, pararlo cuando lo está disfrutando y esperar mirándolo.",
+            "Dar las piezas de una en una o darle algo distinto de lo que espera.",
+            "Responder enseguida y con gusto a cualquier gesto, sonido o palabra con que intente comunicarse."
+          ],
+          casa: "Preparar dos o tres tentaciones en las rutinas de cada día.",
+          avance: "El niño inicia la comunicación más veces.",
+          fuente: "Paul et al., 2018, cap. 6",
+          fichas: ["guia-lenguaje-padres"]
+        },
+        {
+          t: "Seguir su iniciativa y hablar sobre lo que hace",
+          tecs: ["seguir-iniciativa-agrado", "habla-paralela"],
+          obj: "Darle modelos de lenguaje ajustados a lo que el niño está haciendo.",
+          pasos: [
+            "Seguir el juego que el niño elige, sin dirigirlo.",
+            "Esperar: dar tiempo para que el niño haga o diga algo.",
+            "Describir en voz alta lo que uno hace (habla propia) y lo que hace el niño (habla paralela), con frases cortas y simples.",
+            "Imitar lo que el niño dice."
+          ],
+          casa: "Jugar a diario un rato siguiendo su iniciativa y hablando sobre lo que hace.",
+          avance: "Los padres siguen la iniciativa del niño y le dan modelos simples.",
+          fuente: "Paul et al., 2018, cap. 3",
+          fichas: ["guia-lenguaje-padres"]
+        },
+        {
+          t: "Expansiones, extensiones y reformulaciones",
+          tecs: ["expansiones-reformulaciones"],
+          obj: "Mostrarle al niño una forma un poco más completa de lo que quiso decir.",
+          pasos: [
+            "Expandir: repetir lo que dijo agregando lo que falta («perro casa» → «el perro está en la casa»).",
+            "Extender: agregar información nueva («sí, se fue adentro porque tenía frío»).",
+            "Reformular: devolverlo en otra forma, como pregunta o negación («¿el perro está en la casa?»).",
+            "Hacerlo sin pedirle que repita ni corregirlo."
+          ],
+          casa: "Expandir o reformular lo que dice el niño varias veces al día.",
+          avance: "El niño usa frases más largas o palabras nuevas.",
+          fuente: "Paul et al., 2018, cap. 3",
+          fichas: ["guia-lenguaje-padres"]
+        },
+        {
+          t: "Estimulación focalizada y enseñanza en el ambiente",
+          tecs: ["estimulacion-focalizada", "ensenanza-ambiente"],
+          obj: "Trabajar formas concretas del lenguaje dentro del juego.",
+          pasos: [
+            "Elegir con fonoaudiología una o pocas formas para trabajar, como una palabra o una estructura de frase.",
+            "Preparar un juego en el que esa forma aparezca muchas veces y usarla con mucha frecuencia, sin exigirle que la diga.",
+            "Cuando el niño pide algo, dar un modelo un poco más completo, hacer preguntas con opciones y esperar con expectativa a que hable.",
+            "Llevar las mismas técnicas al aula con los docentes."
+          ],
+          casa: "Usar la forma elegida muchas veces en un juego diario.",
+          avance: "El niño usa la forma trabajada sin ayuda.",
+          fuente: "Paul et al., 2018, caps. 3 y 9"
+        },
+        {
+          t: "Seguimiento y transición al colegio",
+          tecs: ["monitoreo-progreso", "consultoria-docente"],
+          obj: "Revisar los avances y preparar los apoyos en el colegio.",
+          pasos: [
+            "Revisar el vocabulario y la longitud de las frases del niño en cada etapa.",
+            "Compartir con los docentes las adaptaciones y las técnicas que funcionan.",
+            "Ajustar las metas con fonoaudiología a medida que avanza."
+          ],
+          casa: "Seguir usando las técnicas en las rutinas.",
+          avance: "El colegio aplica los apoyos y el niño sigue avanzando.",
+          fuente: "Paul et al., 2018, caps. 7 y 9"
+        }
+      ],
+      medir: [
+        "Número de palabras y longitud de las frases, registrados por fonoaudiología.",
+        "Cuántas veces inicia la comunicación el niño en un rato de juego."
+      ],
+      adapt: [
+        "<strong>Autismo:</strong> antes del lenguaje, muchos niños con autismo necesitan desarrollar las bases de la comunicación, como la atención conjunta (Paul et al., 2018, cap. 6).",
+        "<strong>Niños que se oponen o que casi no inician:</strong> empezar por las técnicas centradas en el niño antes de pasar a actividades dirigidas (Paul et al., 2018, cap. 3)."
+      ],
+      cuidado: [
+        "La evaluación y la intervención del lenguaje corresponden a fonoaudiología; el psicólogo orienta a la familia y coordina, sin reemplazarla.",
+        "En niños que hablan tarde sin otros factores de riesgo, el entrenamiento a los padres puede bastar en lugar de la terapia directa (Paul et al., 2018, cap. 7)."
+      ]
+    },
+    {
+      id: "leng-pragmatica",
+      mod: "pragmatica-contexto",
+      enf: "tcc",
+      nivel: "preliminar",
+      t: "Comunicación social: conversación, narración y comprensión de los demás",
+      fuente: "Paul et al., 2018 · Fryling et al., 2020",
+      cuando: "Un niño o adolescente con <strong>lenguaje formal suficiente</strong> que tiene dificultades para usarlo con otros: iniciar y mantener una conversación, reparar malentendidos, contar lo que le pasó o entender lo que otros piensan, como en el trastorno de la comunicación social o en el autismo sin discapacidad intelectual.",
+      respaldo: "Los autores describen programas de conversación, de narración y con pares como mediadores para niños con trastornos del lenguaje y autismo, y citan los estudios que los apoyan (Paul et al., 2018, cap. 9). La enseñanza de la toma de perspectiva con marcos relacionales se ha probado en estudios de caso único (Fryling et al., 2020, cap. 11).",
+      secuencia: "<strong>Secuencia:</strong> sesiones individuales o en grupos pequeños; con pares, por ejemplo, 16 sesiones de 20 minutos, dos por semana (Paul et al., 2018, cap. 9).",
+      esc: ["primer-nivel", "colegio"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Evaluación de la comunicación social",
+          tecs: ["evaluacion-comunicacion"],
+          obj: "Identificar qué dificultades concretas tiene el niño al usar el lenguaje con otros.",
+          pasos: [
+            "Observar una conversación semiestructurada y un relato del niño.",
+            "Identificar si le cuesta iniciar y tomar turnos, mantener el tema, reparar malentendidos o contar historias con orden.",
+            "Coordinar con fonoaudiología y, si hay intereses restringidos o conductas repetitivas, evaluar el autismo."
+          ],
+          casa: "Los padres anotan situaciones en las que la comunicación se rompe.",
+          avance: "Hay metas concretas de comunicación social.",
+          fuente: "Paul et al., 2018, caps. 8 y 11"
+        },
+        {
+          t: "Conversación guiada",
+          tecs: ["conversacion-guiada", "juego-roles"],
+          obj: "Practicar iniciar, responder y mantener una conversación.",
+          pasos: [
+            "Con los niños callados, empezar por juegos en los que deben hacer algo para que la interacción siga y luego pedir turnos más largos.",
+            "Con los que responden poco a los demás, practicar responder a lo que dice el otro y mantener el tema.",
+            "Fingir no entender para que practique reparar el malentendido.",
+            "Practicar las formas nuevas en distintos contextos de conversación."
+          ],
+          casa: "Practicar en casa una conversación corta sobre un tema elegido.",
+          avance: "Inicia y mantiene conversaciones con más turnos.",
+          fuente: "Paul et al., 2018, cap. 9",
+          fichas: ["metas-comunicacion"]
+        },
+        {
+          t: "Narración",
+          tecs: ["gramatica-historia"],
+          obj: "Contar y entender historias con su estructura.",
+          pasos: [
+            "Leer o escuchar una historia y preguntar dónde pasa, quién está, cuál es el problema, cómo intenta resolverlo y qué pasa al final.",
+            "Representar la historia con objetos o disfraces.",
+            "Repetir con varias historias para que interiorice su estructura y luego pedirle que cuente experiencias propias."
+          ],
+          casa: "Contar a los padres algo que pasó en el día siguiendo la estructura de la historia.",
+          avance: "Cuenta historias con un orden claro.",
+          fuente: "Paul et al., 2018, cap. 9"
+        },
+        {
+          t: "Pares como mediadores y guiones de juego",
+          tecs: ["mediacion-pares"],
+          obj: "Practicar la comunicación con compañeros.",
+          pasos: [
+            "Enseñar a compañeros a quedarse con el niño, jugar con él y hablar de lo que hacen.",
+            "En los más pequeños, armar guiones de juego de roles sobre actividades conocidas, como ir a la tienda o al médico, en grupos de tres.",
+            "Reforzar a los compañeros por mantener la interacción."
+          ],
+          casa: "Organizar un rato de juego con un compañero.",
+          avance: "Interactúa más con sus compañeros.",
+          fuente: "Paul et al., 2018, cap. 9"
+        },
+        {
+          t: "Toma de perspectiva",
+          tecs: ["toma-perspectiva"],
+          obj: "Entender lo que otros ven, piensan o sienten.",
+          pasos: [
+            "Usar tarjetas de dos caras para practicar qué veo yo y qué ve el otro.",
+            "Pasar a preguntas sobre lugares y momentos: «si yo estuviera allá, ¿qué vería?», «si fuera ayer, ¿qué sentiría?».",
+            "Llevarlo a situaciones reales: qué pensaba el compañero cuando dijo algo."
+          ],
+          casa: "Comentar en casa una escena de una película o un cuento desde la perspectiva de un personaje.",
+          avance: "Responde correctamente preguntas de perspectiva.",
+          fuente: "Fryling et al., 2020, caps. 11 y 17"
+        }
+      ],
+      medir: [
+        "Observación de la conversación y el relato al inicio y al final, con un protocolo de pragmática.",
+        "Número de interacciones con pares en el recreo."
+      ],
+      adapt: [
+        "<strong>Autismo:</strong> la enseñanza con pares y los guiones de juego se desarrollaron con niños con autismo (Paul et al., 2018, cap. 9). Ver también los planes de habilidades sociales de la variable de autismo."
+      ],
+      cuidado: [
+        "No enseñar la pragmática como reglas sueltas: practicar las formas nuevas en contextos reales de comunicación (Paul et al., 2018, cap. 9)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Neurodesarrollo",
   t: "Dificultades de aprendizaje",
   sub: "Dificultades persistentes para aprender una habilidad escolar básica —leer palabras con precisión y fluidez, comprender lo leído, escribir con buena ortografía y organización, manejar los números y el cálculo o razonar problemas— que aparecen en los años escolares, dejan al estudiante muy por debajo de lo esperado para su edad y no se explican por discapacidad intelectual, problemas sensoriales, otra lengua o falta de enseñanza adecuada. Son específicas de un área: la lectura, el cálculo y la escritura necesitan intervenciones distintas. Con frecuencia se acompañan de inatención, ansiedad o baja autoestima académica.",
   elegir: [
@@ -9738,12 +10110,335 @@ const VARIABLES = [
 },
 {
   cat: "Neurodesarrollo",
-  t: "Tics y síndrome de Tourette",
-  sub: "El niño o adolescente hace movimientos o sonidos repentinos, rápidos y repetidos —parpadear, mover la cabeza, carraspear, toser— que no elige hacer. Suelen ir precedidos de una sensación incómoda, como una picazón o una tensión, que se alivia al hacer el tic. Aumentan y disminuyen con el tiempo y según la situación: el estrés, la ansiedad, el cansancio o ciertas actividades los empeoran. Pueden traer burlas, aislamiento y problemas en el colegio.",
+  t: "Funciones ejecutivas, flexibilidad y rehabilitación neuropsicológica",
+  sub: "El niño o adolescente se queda «atascado» ante los cambios y los imprevistos, le cuesta pasar de una tarea a otra, planear, organizarse, recordar lo que tiene que hacer o revisar su trabajo. Es frecuente en el autismo, el déficit de atención y las dificultades de aprendizaje, y también después de una lesión cerebral o un tratamiento oncológico. En el colegio se ve como desorden, tareas incompletas, olvidos o explosiones cuando algo cambia.",
+  elegir: [
+    "<strong>Si el problema central es la rigidez</strong> —se atasca ante los cambios, no acepta otro plan, discute por cosas pequeñas— en un niño de primaria con autismo y lenguaje conservado, el currículo de flexibilidad enseña vocabulario y guiones para ser flexible, en el aula y en casa.",
+    "<strong>Si el problema está en organizarse, planear, recordar y revisar el trabajo escolar</strong>, las estrategias de función ejecutiva en el aula las enseña el docente dentro del currículo, con apoyo del psicólogo.",
+    "<strong>Si hubo una lesión cerebral, un tumor o un tratamiento que afectó la atención o la memoria</strong>, la rehabilitación combina apoyos en la enseñanza, ayudas externas y entrenamiento directo, coordinada con el colegio y la familia.",
+    "Si el problema principal es la atención con hiperactividad e impulsividad, ver también la variable de déficit de atención; si es la lectura, la escritura o el cálculo, la de dificultades de aprendizaje."
+  ],
+  planes: [
+    {
+      id: "fe-unstuck",
+      mod: "flexibilidad-unstuck",
+      inst: ["BRIEF2"],
+      enf: "tcc",
+      nivel: "preliminar",
+      t: "Currículo de flexibilidad y metas para niños con autismo (Unstuck and On Target!)",
+      fuente: "Cannon et al., 2011",
+      cuando: "Un niño de <strong>8 a 11 años con autismo, inteligencia promedio y lenguaje conservado</strong> que se atasca ante los cambios, insiste en su plan, tiene dificultades para organizarse y planear, y cuyo colegio o grupo terapéutico puede aplicar lecciones semanales con apoyo de la familia.",
+      respaldo: "En un piloto con 8 niños, padres y docentes informaron más flexibilidad en el 78 %, y los padres, cambios en pasar de una tarea a otra, planear y organizarse; en una tarea grupal los niños colaboraron más. Al escribir el manual, un estudio más grande en colegios inclusivos estaba en curso (Cannon et al., 2011, introducción).",
+      secuencia: "<strong>Secuencia:</strong> diez temas, cada uno con una a cuatro lecciones de actividades breves, en el aula o en grupos pequeños, con una tarea para la casa al final de cada lección (Cannon et al., 2011, introducción).",
+      esc: ["colegio", "primer-nivel"],
+      edad: ["6-11"],
+      actividades: [
+        {
+          t: "Qué es la flexibilidad y quedarse atascado",
+          tecs: ["vocabulario-flexibilidad", "psicoeducacion"],
+          obj: "Darle al niño, a los docentes y a los padres un vocabulario común sobre la flexibilidad.",
+          pasos: [
+            "Explorar la flexibilidad con experimentos concretos: objetos que se doblan y que no, un cuerpo rígido y uno flexible.",
+            "Enseñar las palabras flexible, atascado y acuerdo, y usarlas en el aula y en casa.",
+            "Pedir a docentes y padres que señalen y elogien cuando el niño es flexible."
+          ],
+          casa: "Agregar ejemplos de casa al diccionario de flexibilidad.",
+          avance: "El niño usa las palabras «flexible» y «atascado» para describir situaciones.",
+          fuente: "Cannon et al., 2011, temas 1 y 2"
+        },
+        {
+          t: "Plan A y plan B",
+          tecs: ["plan-a-plan-b"],
+          obj: "Que el niño acepte que cuando un plan no funciona, se necesita otro.",
+          pasos: [
+            "Representar escenas en las que el plan A falla y alguien pasa a un plan B.",
+            "Practicar hacer acuerdos cuando dos personas quieren cosas distintas.",
+            "Usar la frase «necesito un plan B» en las situaciones reales del día."
+          ],
+          casa: "Inventar con los padres un ejemplo de plan A y plan B de la vida en casa.",
+          avance: "Propone un plan B cuando el primero no funciona.",
+          fuente: "Cannon et al., 2011, tema 2",
+          fichas: ["mi-plan-a-b"]
+        },
+        {
+          t: "Por qué ser flexible: héroes y amigos",
+          tecs: ["valores"],
+          obj: "Hacer que ser flexible le resulte valioso y atractivo al niño.",
+          pasos: [
+            "Identificar a un héroe personal y cómo es flexible.",
+            "Mostrar cómo la flexibilidad da más opciones y hace que pasen cosas buenas.",
+            "Practicar la flexibilidad cuando un amigo se equivoca o no está de acuerdo."
+          ],
+          casa: "Contar a los padres una vez en que ser flexible le ayudó.",
+          avance: "Puede decir para qué le sirve ser flexible.",
+          fuente: "Cannon et al., 2011, temas 4, 5 y 9"
+        },
+        {
+          t: "Guiones para ser flexible",
+          tecs: ["guiones-autorregulacion", "plan-a-plan-b"],
+          obj: "Darle frases que pueda decirse para regularse ante los cambios.",
+          pasos: [
+            "Gran problema o pequeño problema: distinguir lo importante de lo que no lo es, y convertir un gran problema en uno pequeño cuando se pueda.",
+            "Puedo elegir o no puedo elegir: distinguir lo que está en sus manos de lo que no, y dejar de insistir en lo que no puede cambiar.",
+            "Manejar lo inesperado: pasos para adaptarse cuando algo cambia sin aviso.",
+            "Que docentes y padres usen los mismos guiones en sus conversaciones con el niño, una y otra vez."
+          ],
+          casa: "Los padres usan los guiones cuando surge un cambio o un problema.",
+          avance: "Aplica los guiones con pocas ayudas del adulto.",
+          fuente: "Cannon et al., 2011, tema 7",
+          fichas: ["mi-plan-a-b"]
+        },
+        {
+          t: "Metas: meta, plan, hacer, revisar",
+          tecs: ["meta-plan-hacer-revisar"],
+          obj: "Enseñar una rutina para fijarse metas y cumplirlas.",
+          pasos: [
+            "Definir qué es una meta y distinguir las metas importantes de los caprichos del momento.",
+            "Usar la rutina: fijar la meta, hacer un plan, hacerlo y revisar si funcionó; si no, hacer otro plan.",
+            "Aplicarla a tareas de varios pasos en el aula y a metas propias del niño."
+          ],
+          casa: "Usar la rutina para una tarea o una meta de la semana.",
+          avance: "Usa la rutina con pocas ayudas para una tarea de varios pasos.",
+          fuente: "Cannon et al., 2011, temas 6 y 8",
+          fichas: ["meta-plan-hacer-revisar"]
+        },
+        {
+          t: "Repaso y generalización",
+          tecs: ["generalizacion"],
+          obj: "Consolidar lo aprendido y llevarlo a otros contextos.",
+          pasos: [
+            "Repasar el vocabulario y los guiones con juegos.",
+            "Revisar con docentes y padres en qué situaciones el niño ya los usa y en cuáles todavía no.",
+            "Acordar cómo se seguirán usando el vocabulario y los guiones en el aula y en casa."
+          ],
+          casa: "Seguir usando el vocabulario y los guiones en casa.",
+          avance: "El niño es más flexible en el aula y en casa.",
+          fuente: "Cannon et al., 2011, tema 10"
+        }
+      ],
+      medir: [
+        "<strong>BRIEF2</strong> de padres y docentes al inicio y al final, sobre todo la escala de flexibilidad."
+      ],
+      adapt: [
+        "<strong>Estudiantes mayores:</strong> cada tema trae sugerencias para adaptarlo (Cannon et al., 2011, introducción).",
+        "<strong>Fuera del colegio:</strong> se ha aplicado en grupos terapéuticos pequeños y en campamentos, manteniendo lo central de las lecciones (Cannon et al., 2011, introducción)."
+      ],
+      cuidado: [
+        "Es una intervención verbal: requiere inteligencia promedio y un nivel de lenguaje y lectura de al menos segundo de primaria (Cannon et al., 2011, introducción).",
+        "Los guiones solo se interiorizan si docentes y padres los usan como hábito en sus interacciones con el niño (Cannon et al., 2011, tema 7)."
+      ]
+    },
+    {
+      id: "fe-aula-meltzer",
+      mod: "smarts-fe",
+      inst: ["BRIEF2"],
+      enf: "col",
+      nivel: "preliminar",
+      t: "Estrategias de función ejecutiva y metacognición en el aula",
+      fuente: "Meltzer, 2018",
+      cuando: "Estudiantes de <strong>primaria o bachillerato</strong> —con déficit de atención, dificultades de aprendizaje o sin diagnóstico— a quienes les cuesta organizarse, planear, recordar y revisar su trabajo, en un colegio que puede enseñar estrategias de forma explícita dentro de las materias.",
+      respaldo: "El programa de estrategias de función ejecutiva y mentoría (SMARTS) se ha puesto a prueba y evaluado durante ocho años en colegios públicos, privados y en casa, según sus autores (Meltzer, 2018, cap. 11).",
+      secuencia: "<strong>Secuencia:</strong> unidades del currículo enseñadas por el docente dentro de las materias, con mentores o pares que apoyan a los estudiantes; el psicólogo asesora al docente (Meltzer, 2018, cap. 11).",
+      esc: ["colegio"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Conciencia de cómo aprende cada estudiante",
+          tecs: ["metacognicion"],
+          obj: "Que el estudiante conozca sus fortalezas, sus dificultades y las estrategias que le sirven.",
+          pasos: [
+            "Aplicar encuestas de uso de estrategias y hojas de reflexión después de tareas y exámenes.",
+            "Compartir estrategias entre compañeros.",
+            "Ayudar al estudiante a describir su perfil de aprendizaje."
+          ],
+          casa: "Reflexionar después de una tarea sobre qué estrategia usó y si funcionó.",
+          avance: "El estudiante describe sus fortalezas y las estrategias que le sirven.",
+          fuente: "Meltzer, 2018, cap. 11"
+        },
+        {
+          t: "Metas y planificación",
+          tecs: ["jerarquia-metas", "meta-plan-hacer-revisar"],
+          obj: "Fijar metas realistas y dividir el trabajo en partes.",
+          pasos: [
+            "Fijar metas claras, realistas y por pasos para tareas, proyectos y actividades de la tarde.",
+            "Anticipar obstáculos y sus soluciones.",
+            "Usar horarios, calendarios y agendas, desde los primeros grados."
+          ],
+          casa: "Planear con un horario el estudio y las tareas de la semana.",
+          avance: "Divide los proyectos largos en partes y las cumple.",
+          fuente: "Meltzer, 2018, cap. 11",
+          fichas: ["meta-plan-hacer-revisar"]
+        },
+        {
+          t: "Flexibilidad cognitiva",
+          tecs: ["flexibilidad-cognitiva"],
+          obj: "Practicar ver los problemas y los textos de varias maneras.",
+          pasos: [
+            "Resolver problemas con más de una estrategia y discutirlas en grupo.",
+            "Usar chistes, adivinanzas, categorías de palabras y acertijos de números.",
+            "Al leer algo que no tiene sentido, preguntarse si una palabra tiene más de un significado."
+          ],
+          casa: "Hacer un acertijo o un juego de palabras con la familia.",
+          avance: "Prueba otra estrategia cuando la primera no funciona.",
+          fuente: "Meltzer, 2018, cap. 11"
+        },
+        {
+          t: "Organizar, priorizar y descargar la memoria",
+          tecs: ["organizadores-graficos", "mnemotecnias"],
+          obj: "Organizar la información y reducir lo que hay que memorizar.",
+          pasos: [
+            "Usar plantillas, mapas y organizadores gráficos para leer, tomar apuntes y escribir.",
+            "Separar las ideas principales de los detalles.",
+            "Agrupar la información y crear mnemotecnias propias para estudiar."
+          ],
+          casa: "Hacer un organizador gráfico de un tema de estudio.",
+          avance: "Usa organizadores gráficos y mnemotecnias sin que se lo pidan.",
+          fuente: "Meltzer, 2018, cap. 11"
+        },
+        {
+          t: "Autoverificación",
+          tecs: ["autoverificacion"],
+          obj: "Revisar el propio trabajo antes de entregarlo.",
+          pasos: [
+            "Analizar varios ejemplos del propio trabajo con la rúbrica de la tarea.",
+            "Crear listas y tarjetas personales de revisión, con una imagen o una frase fácil de recordar.",
+            "Revisar los exámenes con la lista antes de entregarlos."
+          ],
+          casa: "Revisar una tarea con la lista antes de entregarla.",
+          avance: "Revisa sus trabajos y exámenes con su lista.",
+          fuente: "Meltzer, 2018, cap. 11",
+          fichas: ["lista-autoverificacion"]
+        },
+        {
+          t: "Una cultura de estrategias en el aula",
+          tecs: ["consultoria-docente"],
+          obj: "Que el uso de estrategias se vuelva parte del aula.",
+          pasos: [
+            "Que el docente revise cómo su manera de enseñar exige funciones ejecutivas a los estudiantes.",
+            "Integrar las estrategias en tareas, proyectos y exámenes, y dar puntos por usarlas.",
+            "Relacionar el uso de estrategias con el esfuerzo, la confianza académica y los resultados."
+          ],
+          casa: "Los padres preguntan qué estrategia usó en las tareas.",
+          avance: "El aula usa y valora las estrategias de forma habitual.",
+          fuente: "Meltzer, 2018, cap. 11"
+        }
+      ],
+      medir: [
+        "<strong>BRIEF2</strong> de padres, docentes y el propio estudiante (desde los 11 años).",
+        "Proporción de tareas completas y entregadas a tiempo."
+      ],
+      adapt: [
+        "<strong>Trastorno de aprendizaje no verbal y autismo:</strong> el libro dedica capítulos a las funciones ejecutivas en cada uno (Meltzer, 2018, caps. 6 y 7).",
+        "<strong>Escritura y matemáticas:</strong> ver los capítulos de desarrollo de estrategias autorreguladas en la escritura y del aula estratégica de matemáticas (Meltzer, 2018, caps. 12 y 13)."
+      ],
+      cuidado: [
+        "Las pruebas breves estandarizadas captan poco de las funciones ejecutivas en la vida real; complementarlas con cuestionarios y observación (Meltzer, 2018, cap. 5)."
+      ]
+    },
+    {
+      id: "fe-rehab-infantil",
+      mod: "rehab-infantil",
+      enf: "cond",
+      nivel: "preliminar",
+      t: "Rehabilitación de la atención y la memoria después de una lesión cerebral",
+      fuente: "Sohlberg y Mateer, 2001",
+      cuando: "Un niño o adolescente con <strong>problemas de atención, memoria o aprendizaje adquiridos</strong> después de un traumatismo craneoencefálico, un tumor, una cirugía o un tratamiento oncológico, que vuelve al colegio y cuya familia puede participar.",
+      respaldo: "La investigación en rehabilitación cognitiva infantil es todavía escasa y se basa sobre todo en estudios de caso único o de grupos muy pequeños, con resultados consistentemente positivos; por ejemplo, el entrenamiento directo de la atención mejoró la atención en adolescentes y en una niña de 9 años (Sohlberg y Mateer, 2001, cap. 14).",
+      secuencia: "<strong>Secuencia:</strong> se arma según las necesidades del niño y de la familia; buena parte del trabajo ocurre en el colegio y en casa, con evaluaciones repetidas porque las habilidades cambian rápido con el desarrollo (Sohlberg y Mateer, 2001, cap. 14).",
+      esc: ["hospital", "colegio", "primer-nivel"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Evaluación funcional y repetida",
+          tecs: ["evaluacion-neuropsicologica"],
+          obj: "Conocer cómo funciona el niño en la vida real y volver a evaluarlo con frecuencia.",
+          pasos: [
+            "Distinguir lo que es un déficit permanente de lo que es un retraso que puede alcanzarse con el tiempo.",
+            "Evaluar el rendimiento académico además de la neuropsicología, para guiar la enseñanza.",
+            "Repetir la evaluación con frecuencia, porque la lesión interactúa con el desarrollo."
+          ],
+          casa: "Los padres anotan las dificultades que ven en casa y en las tareas.",
+          avance: "Hay un perfil funcional actualizado del niño.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 14"
+        },
+        {
+          t: "Apoyos en la enseñanza",
+          tecs: ["instruccion-explicita", "consultoria-docente"],
+          obj: "Ajustar la enseñanza a lo que el niño puede hacer ahora.",
+          pasos: [
+            "Instrucción clara, práctica suficiente, retroalimentación inmediata y repaso frecuente.",
+            "Estrategias de aula: sentarlo adelante y lejos de distracciones, dar pausas frecuentes, presentar la información corta y repetida, apoyar las instrucciones orales con instrucciones escritas o imágenes, pedir una sola actividad a la vez y repasar lo aprendido antes de pasar a algo nuevo.",
+            "Planear con el colegio el regreso y las adaptaciones."
+          ],
+          casa: "Mantener en casa las mismas instrucciones claras y el repaso.",
+          avance: "El colegio aplica las estrategias acordadas.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 14 y apéndice 14.1"
+        },
+        {
+          t: "Ayudas externas, estructura y rutinas",
+          tecs: ["ayudas-externas", "horario-visual"],
+          obj: "Compensar los problemas de memoria y organización con apoyos externos.",
+          pasos: [
+            "Entrenar el uso de un cuaderno de memoria, listas de pasos, agendas o alarmas, con aprendizaje sin errores y mucha repetición.",
+            "Establecer rutinas estables con organizadores previos y ayudas visuales.",
+            "Dar opciones y ajustar los apoyos a cada niño."
+          ],
+          casa: "Usar el cuaderno de memoria y las alarmas cada día.",
+          avance: "Usa las ayudas externas sin que se lo recuerden.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 14",
+          fichas: ["lista-pasos", "rutina-externa"]
+        },
+        {
+          t: "Entrenamiento directo de la atención",
+          tecs: ["entrenamiento-atencion"],
+          obj: "Practicar la atención con tareas graduadas.",
+          pasos: [
+            "Usar tareas de atención de dificultad creciente, adaptadas a la edad y a los intereses del niño.",
+            "Comprobar que el niño tiene las habilidades básicas que las tareas exigen, como manejar números o letras.",
+            "Relacionar las tareas con actividades académicas y revisar si las mejorías se ven en clase."
+          ],
+          casa: "Practicar las tareas acordadas varias veces por semana.",
+          avance: "Mejora en las tareas de atención y en clase.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 14"
+        },
+        {
+          t: "Apoyo a la familia",
+          tecs: ["psicoeducacion", "manejo-contingencias"],
+          obj: "Ayudar a la familia a adaptarse y a apoyar la rehabilitación.",
+          pasos: [
+            "Informar sobre la lesión cerebral y sus efectos, y sobre dónde buscar más información y apoyo.",
+            "Enseñar y supervisar estrategias de manejo de la conducta.",
+            "Orientar a los padres para abogar por su hijo en el colegio, enseñarles a manejar el estrés y remitir a apoyo psicológico o a descanso de los cuidadores si hace falta."
+          ],
+          casa: "Aplicar las estrategias de manejo de conducta acordadas.",
+          avance: "La familia entiende la lesión y apoya la rehabilitación.",
+          fuente: "Sohlberg y Mateer, 2001, cap. 14"
+        }
+      ],
+      medir: [
+        "Evaluación neuropsicológica y académica repetida.",
+        "Registro del uso de las ayudas externas y de las tareas completadas en el colegio."
+      ],
+      adapt: [
+        "<strong>Material de adultos:</strong> los programas de entrenamiento de la atención para adultos pueden no interesar a los adolescentes y exigir habilidades que los niños pequeños todavía no tienen; usar materiales adaptados a la edad (Sohlberg y Mateer, 2001, cap. 14).",
+        "<strong>Evaluación en español:</strong> la Evaluación Neuropsicológica Infantil (ENI) y otras pruebas para niños hispanohablantes se describen en Rosselli et al. (2010)."
+      ],
+      cuidado: [
+        "La familia antes de la lesión predice buena parte de la evolución: evaluar y apoyar su funcionamiento es parte del tratamiento (Sohlberg y Mateer, 2001, cap. 14).",
+        "Los cuidadores de niños con lesiones graves tienen más carga y más síntomas: atender también su salud mental (Sohlberg y Mateer, 2001, cap. 14)."
+      ]
+    }
+  ]
+},
+{
+  cat: "Neurodesarrollo",
+  t: "Tics, síndrome de Tourette y tricotilomanía",
+  sub: "El niño o adolescente hace movimientos o sonidos repentinos, rápidos y repetidos —parpadear, mover la cabeza, carraspear, toser— que no elige hacer. Suelen ir precedidos de una sensación incómoda, como una picazón o una tensión, que se alivia al hacer el tic. Aumentan y disminuyen con el tiempo y según la situación: el estrés, la ansiedad, el cansancio o ciertas actividades los empeoran. Pueden traer burlas, aislamiento y problemas en el colegio. En la tricotilomanía, el adolescente se arranca el pelo del cuero cabelludo, las cejas o las pestañas, a veces sin darse cuenta y a veces para calmar una tensión o una emoción.",
   elegir: [
     "<strong>Si los tics molestan o interfieren</strong>, la intervención conductual integral para los tics combina la reversión del hábito, las intervenciones sobre lo que empeora los tics en cada situación, la psicoeducación y la relajación. Puede usarse con o sin medicación.",
     "Antes de empezar, evaluar el déficit de atención, la ansiedad, las obsesiones, el ánimo y el ambiente familiar: si son graves o inestables, se atienden primero.",
-    "En los adolescentes mayores las sesiones pueden ser individuales, acordando con la familia cuánto participa."
+    "En los adolescentes mayores las sesiones pueden ser individuales, acordando con la familia cuánto participa.",
+    "<strong>Si un adolescente se arranca el pelo</strong>, la reversión del hábito con aceptación y compromiso combina la reversión del hábito y el control de estímulos, para el arrancarse automático, con la aceptación de las ganas y las emociones, para el que busca alivio. El manual se escribió para adultos y adolescentes mayores."
   ],
   planes: [
     {
@@ -9842,6 +10537,104 @@ const VARIABLES = [
       cuidado: [
         "Decir a los padres que ignoren los tics, pero que presten atención a cómo el niño hace sus ejercicios (Woods et al., 2008, cap. 1).",
         "Si hay déficit de atención grave, consumo, oposicionismo, un trastorno del ánimo o de ansiedad grave o un ambiente familiar inestable, pueden requerir atención antes (Woods et al., 2008, cap. 1)."
+      ]
+    },
+    {
+      id: "ttm-aebt",
+      mod: "aebt-ttm",
+      inst: ["MGH-HS"],
+      enf: "act",
+      nivel: "ensayos",
+      t: "Reversión del hábito con aceptación y compromiso para la tricotilomanía en adolescentes",
+      fuente: "Woods y Twohig, 2008",
+      cuando: "Un <strong>adolescente que se arranca el pelo</strong> —del cuero cabelludo, las cejas o las pestañas— con pérdida de pelo notoria y malestar o problemas por ello, ya sea que lo haga sin darse cuenta o para calmar una tensión, y que quiera trabajar en sesiones individuales.",
+      respaldo: "En un ensayo aleatorizado pequeño con 28 adultos, el arrancarse el pelo y el deterioro bajaron con este tratamiento y no en la lista de espera, con efectos grandes; el 66 % respondió y la diferencia se mantuvo a los tres meses. El manual se escribió para adultos y sus autores consideran que puede extenderse a la adolescencia media y tardía (Woods y Twohig, 2008, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> diez sesiones individuales; el ritmo y el cierre se ajustan según los registros, y pueden hacer falta sesiones de refuerzo (Woods y Twohig, 2008, cap. 1).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Evaluación, explicación y autorregistro",
+          tecs: ["psicoeducacion", "analisis-funcional", "autorregistro-arrancarse"],
+          obj: "Entender cuándo, dónde y para qué se arranca el pelo, y empezar a registrarlo.",
+          pasos: [
+            "Evaluar la historia, la gravedad, las zonas y lo que hace antes y después de arrancarse el pelo.",
+            "Identificar los lugares, las actividades, los objetos, las emociones y los pensamientos que lo hacen más probable, y qué le pasa después.",
+            "Explicar el modelo: un arrancarse automático, sin darse cuenta, y otro que busca calmar una tensión o una emoción.",
+            "Enseñar el registro diario de los episodios y de las ganas de arrancarse."
+          ],
+          casa: "Registrar cada episodio y qué hizo con las ganas.",
+          avance: "Hay un registro diario y se conocen las situaciones de riesgo.",
+          fuente: "Woods y Twohig, 2008, caps. 1 a 3",
+          fichas: ["registro-habito"]
+        },
+        {
+          t: "Reversión del hábito y control de estímulos",
+          tecs: ["reversion-habito", "respuesta-competitiva", "control-estimulos"],
+          obj: "Darse cuenta del arrancarse y hacerlo más difícil.",
+          pasos: [
+            "Describir el arrancarse con detalle, las sensaciones y conductas que lo anuncian, y señalarlo cada vez que ocurre o se simula en la sesión.",
+            "Elegir una respuesta competitiva y hacerla cuando se arranca, está por arrancarse o nota una señal.",
+            "Elegir cambios sencillos y poco llamativos que hagan más difícil arrancarse: dejar la puerta del baño abierta, quitar los espejos de aumento, sostener el libro con las dos manos, tener algo en las manos frente a una pantalla.",
+            "Aclarar que estos cambios hacen más difícil arrancarse, no evitan las ganas ni las emociones."
+          ],
+          casa: "Usar la respuesta competitiva y los cambios acordados.",
+          avance: "Usa la respuesta competitiva y los cambios en sus situaciones de riesgo.",
+          fuente: "Woods y Twohig, 2008, cap. 4",
+          fichas: ["registro-habito"]
+        },
+        {
+          t: "Lo que le importa y el costo de la lucha",
+          tecs: ["valores", "desesperanza-creativa"],
+          obj: "Identificar lo que le importa y cómo la lucha con las ganas lo aleja de ello.",
+          pasos: [
+            "Explorar qué es importante para el adolescente: amigos, estudio, deporte, familia.",
+            "Revisar qué ha hecho para controlar las ganas, las emociones y los pensamientos alrededor del arrancarse, y si le ha funcionado a largo plazo.",
+            "Mostrar con ejercicios y metáforas lo difícil que es suprimir o controlar lo que se siente y se piensa."
+          ],
+          casa: "Anotar una acción pequeña hacia algo que le importa.",
+          avance: "Ve el costo de intentar controlar las ganas.",
+          fuente: "Woods y Twohig, 2008, caps. 5 a 7",
+          fichas: ["valores-adolescente"]
+        },
+        {
+          t: "Disposición y defusión",
+          tecs: ["disposicion", "defusion"],
+          obj: "Tener las ganas y los pensamientos sin obedecerlos.",
+          pasos: [
+            "Proponer dejar que las ganas estén ahí, sin pelear con ellas ni arrancarse, mientras hace algo que le importa.",
+            "Practicar ver los pensamientos sobre arrancarse como lo que son, palabras y sensaciones, y no como órdenes o verdades: por ejemplo, imaginarlos como anuncios emergentes en una pantalla.",
+            "Exponerse en la sesión a señales que despiertan las ganas, para practicar tenerlas sin arrancarse."
+          ],
+          casa: "Practicar dejar estar las ganas en una situación de riesgo.",
+          avance: "Tiene ganas de arrancarse sin hacerlo y sigue con lo que estaba haciendo.",
+          fuente: "Woods y Twohig, 2008, caps. 8 y 9"
+        },
+        {
+          t: "Repaso y prevención de recaídas",
+          tecs: ["prevencion-recaidas"],
+          obj: "Mantener lo logrado y saber qué hacer ante un desliz.",
+          pasos: [
+            "Revisar qué procesos necesita reforzar: valores, aceptación, defusión, reversión del hábito o control de estímulos.",
+            "Distinguir un desliz de una recaída.",
+            "Mantener la atención sobre las estrategias y notar cuándo vuelve la lucha por controlar las ganas."
+          ],
+          casa: "Seguir con el registro y las estrategias.",
+          avance: "Sabe qué hacer ante un desliz.",
+          fuente: "Woods y Twohig, 2008, cap. 11",
+          fichas: ["plan-desliz"]
+        }
+      ],
+      medir: [
+        "<strong>MGH-HS</strong> al inicio, al final y en el seguimiento.",
+        "Registro diario de los episodios de arrancarse el pelo."
+      ],
+      adapt: [
+        "<strong>Adolescentes:</strong> el manual se escribió para adultos y podría extenderse a la adolescencia media y tardía; acordar con la familia cómo participa y ajustar los ejemplos a la edad (Woods y Twohig, 2008, cap. 1)."
+      ],
+      cuidado: [
+        "La MGH-HS valora el control de las ganas, que este tratamiento no busca; puede confundir al adolescente y subestimar la mejoría (Woods y Twohig, 2008, cap. 2).",
+        "Evaluar la ansiedad, la depresión y otras condiciones que acompañan a la tricotilomanía o se confunden con ella antes de empezar (Woods y Twohig, 2008, cap. 2)."
       ]
     }
   ]
@@ -14915,7 +15708,77 @@ const GLOSARIO = [
   fuente: "Bögels y Restifo, 2014, cap. 11 · Bluth, 2020, cap. 3" },
 { k: "amigo-compasivo", t: "Amigo compasivo", alias: ["meditación del amigo compasivo"], tipo: "Ejercicio", enf: ["mind"],
   d: "Meditación en la que el adolescente imagina a un amigo sabio y cariñoso que lo acepta tal como es y escucha lo que ese amigo le diría ante una dificultad, como el miedo a fracasar en el colegio.",
-  fuente: "Bluth, 2020, cap. 5" }
+  fuente: "Bluth, 2020, cap. 5" },
+/* ---------- Neurodesarrollo, bloque 2: lenguaje, funciones ejecutivas y tricotilomanía (2026-11-02) ---------- */
+{ k: "escala-gravedad-tartamudez", t: "Calificación diaria de la tartamudez", alias: ["escala de gravedad de la tartamudez"], tipo: "Instrumento", enf: ["cond"],
+  d: "Escala de 1 a 10 con la que los padres califican cada día la tartamudez del niño en situaciones naturales: 1 es sin tartamudez, 2 muy leve y 10 extremadamente grave. Se califica todo el día o un rato de al menos 10 minutos, y se practica en la consulta hasta que la calificación de los padres coincide con la del profesional.",
+  fuente: "Onslow et al., 2003, cap. 5", ficha: "registro-tartamudez" },
+{ k: "contingencias-verbales-lidcombe", t: "Respuestas verbales de los padres al habla", alias: ["contingencias verbales"], tipo: "Técnica", enf: ["cond"],
+  d: "Lo que dicen los padres después del habla del niño en el programa Lidcombe. Ante el habla sin tartamudez: reconocerla, elogiarla o pedirle que la evalúe. Ante la tartamudez clara: reconocerla o pedirle que la corrija. Se comenta el habla sin tartamudez al menos cinco veces más que la tartamudez, y nunca de forma constante, intensa o invasiva.",
+  fuente: "Onslow et al., 2003, cap. 6", ficha: "guia-lidcombe-padres" },
+{ k: "evaluacion-comunicacion", t: "Evaluación de la comunicación", tipo: "Procedimiento", enf: ["cond"],
+  d: "Observación de cómo se comunica el niño —gestos, palabras, frases, cuántas veces inicia, cómo conversa y cuenta historias— y coordinación con fonoaudiología para la evaluación formal del lenguaje y con pediatría para descartar problemas de audición.",
+  fuente: "Paul et al., 2018, caps. 6 a 8" },
+{ k: "tentaciones-comunicativas", t: "Tentaciones comunicativas", tipo: "Técnica", enf: ["pad"],
+  d: "Situaciones preparadas para que el niño quiera comunicarse: comer algo rico frente a él sin ofrecerle, darle un frasco que no puede abrir con algo que le gusta, empezar un juego conocido y pararlo. Se responde enseguida y con gusto a cualquier gesto, sonido o palabra con que lo intente.",
+  fuente: "Paul et al., 2018, cap. 6", ficha: "guia-lenguaje-padres" },
+{ k: "habla-paralela", t: "Habla propia y habla paralela", tipo: "Técnica", enf: ["pad"],
+  d: "Mientras se juega con el niño, describir en voz alta lo que uno hace (habla propia) o lo que hace el niño (habla paralela), con frases cortas y simples. Le da modelos de lenguaje ligados a lo que está haciendo, sin pedirle que hable.",
+  fuente: "Paul et al., 2018, cap. 3", ficha: "guia-lenguaje-padres" },
+{ k: "expansiones-reformulaciones", t: "Expansiones, extensiones y reformulaciones", alias: ["expansiones", "reformulaciones"], tipo: "Técnica", enf: ["pad"],
+  d: "Respuestas del adulto a lo que dice el niño. La expansión repite su frase agregando lo que falta («perro casa» → «el perro está en la casa»); la extensión agrega información nueva; la reformulación la devuelve en otra forma, como pregunta o negación. Se hacen sin pedirle que repita.",
+  fuente: "Paul et al., 2018, cap. 3", ficha: "guia-lenguaje-padres" },
+{ k: "estimulacion-focalizada", t: "Estimulación focalizada", tipo: "Técnica", enf: ["cond"],
+  d: "Enfoque híbrido en el que se prepara un juego para que una forma del lenguaje elegida aparezca muchas veces en los modelos del adulto; el niño no está obligado a decirla, solo tentado a hacerlo.",
+  fuente: "Paul et al., 2018, cap. 3" },
+{ k: "ensenanza-ambiente", t: "Enseñanza en el ambiente mejorada", alias: ["enseñanza en el medio"], tipo: "Técnica", enf: ["pad"],
+  d: "Combina el arreglo del ambiente para que el niño pida, esperar con expectativa, responder a lo que comunica, ampliar sus frases, dar modelos después de sus pedidos y hacer preguntas con opciones. Se ha usado sobre todo con los padres como agentes, en niños que ya imitan y tienen al menos 10 palabras.",
+  fuente: "Paul et al., 2018, cap. 3" },
+{ k: "conversacion-guiada", t: "Conversación guiada", tipo: "Técnica", enf: ["tcc"],
+  d: "Uso de la conversación como contexto de práctica. Con los niños callados, juegos en los que deben hacer algo para que la interacción siga; con los que responden poco a los demás, práctica de responder y mantener el tema; y malentendidos fingidos para practicar repararlos.",
+  fuente: "Paul et al., 2018, cap. 9" },
+{ k: "gramatica-historia", t: "Estructura de la historia", alias: ["gramática de la historia"], tipo: "Técnica", enf: ["tcc"],
+  d: "Enseñar las partes de una historia —dónde pasa, quién está, cuál es el problema, cómo intenta resolverlo y qué pasa al final— con preguntas sobre cuentos y representaciones, para que el niño las use al contar sus propias experiencias.",
+  fuente: "Paul et al., 2018, cap. 9" },
+{ k: "vocabulario-flexibilidad", t: "Vocabulario de la flexibilidad", tipo: "Técnica", enf: ["tcc"],
+  d: "Palabras como «flexible», «atascado», «plan A y plan B» y «acuerdo» que el niño, los docentes y los padres usan de la misma manera para hablar de la flexibilidad y señalarla cuando ocurre.",
+  fuente: "Cannon et al., 2011, temas 1 y 2" },
+{ k: "plan-a-plan-b", t: "Plan A y plan B", tipo: "Técnica", enf: ["tcc"],
+  d: "Idea, enseñada con escenas y en el día a día, de que cuando un plan no funciona no pasa nada: se necesita otro plan. El niño aprende a decir «necesito un plan B» en lugar de quedarse atascado.",
+  fuente: "Cannon et al., 2011, tema 2", ficha: "mi-plan-a-b" },
+{ k: "guiones-autorregulacion", t: "Guiones de autorregulación", alias: ["gran problema o pequeño problema", "puedo elegir o no puedo elegir"], tipo: "Técnica", enf: ["tcc"],
+  d: "Frases que el niño aprende a decirse para ser flexible: «¿es un gran problema o un pequeño problema?», «¿puedo elegir o no puedo elegir?» y los pasos para manejar lo inesperado. Se interiorizan solo si docentes y padres las usan como hábito con él.",
+  fuente: "Cannon et al., 2011, tema 7", ficha: "mi-plan-a-b" },
+{ k: "meta-plan-hacer-revisar", t: "Meta, plan, hacer, revisar", tipo: "Técnica", enf: ["tcc"],
+  d: "Rutina para tareas y metas: fijar la meta, hacer un plan, hacerlo y revisar si funcionó; si no funcionó, hacer otro plan. Sirve para tareas de varios pasos en el aula y en casa.",
+  fuente: "Cannon et al., 2011, tema 6", ficha: "meta-plan-hacer-revisar" },
+{ k: "metacognicion", t: "Conciencia metacognitiva", tipo: "Concepto", enf: ["col"],
+  d: "Que el estudiante sepa cómo aprende: sus fortalezas, sus dificultades y qué estrategias le funcionan. Se promueve con encuestas de uso de estrategias, hojas de reflexión después de tareas y exámenes, y estrategias compartidas entre compañeros.",
+  fuente: "Meltzer, 2018, cap. 11" },
+{ k: "flexibilidad-cognitiva", t: "Flexibilidad cognitiva", tipo: "Concepto", enf: ["col"],
+  d: "Capacidad de cambiar de perspectiva, de estrategia o de interpretación. En el aula se practica resolviendo problemas de varias maneras, con chistes, adivinanzas y juegos de palabras, y preguntándose si una palabra tiene más de un significado.",
+  fuente: "Meltzer, 2018, cap. 11" },
+{ k: "organizadores-graficos", t: "Organizadores gráficos", tipo: "Técnica", enf: ["col"],
+  d: "Plantillas, mapas y esquemas que ayudan a organizar la información al leer, tomar apuntes y escribir, y a separar las ideas principales de los detalles.",
+  fuente: "Meltzer, 2018, cap. 11" },
+{ k: "mnemotecnias", t: "Mnemotecnias", tipo: "Técnica", enf: ["col"],
+  d: "Formas de agrupar y recordar la información, como siglas o frases, que reducen lo que hay que memorizar. Funcionan mejor cuando el estudiante crea las propias según su manera de aprender.",
+  fuente: "Meltzer, 2018, cap. 11" },
+{ k: "autoverificacion", t: "Autoverificación", alias: ["listas de revisión"], tipo: "Técnica", enf: ["col"],
+  d: "Revisar el propio trabajo con una lista o una tarjeta personal antes de entregarlo, por ejemplo la estructura de las frases, los tiempos verbales, la organización, la puntuación y la ortografía.",
+  fuente: "Meltzer, 2018, cap. 11", ficha: "lista-autoverificacion" },
+{ k: "evaluacion-neuropsicologica", t: "Evaluación neuropsicológica infantil", tipo: "Procedimiento", enf: ["cond"],
+  d: "Evaluación de la atención, la memoria, el lenguaje, las funciones ejecutivas y el rendimiento académico. En los niños con lesiones cerebrales se repite con frecuencia, porque la lesión interactúa con el desarrollo, y se distingue el déficit permanente del retraso que puede alcanzarse.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 14 · Rosselli et al., 2010" },
+{ k: "ayudas-externas", t: "Ayudas externas", alias: ["cuaderno de memoria", "ayudas compensatorias"], tipo: "Técnica", enf: ["cond"],
+  d: "Herramientas que compensan los problemas de memoria y organización: cuadernos de memoria, listas de pasos, agendas y alarmas. Se entrenan con aprendizaje sin errores y mucha repetición, junto con rutinas estables y apoyos visuales.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 14", ficha: "rutina-externa" },
+{ k: "entrenamiento-atencion", t: "Entrenamiento directo de la atención", tipo: "Técnica", enf: ["cond"],
+  d: "Práctica de tareas de atención de dificultad creciente. En niños se adaptan los materiales a la edad y a los intereses, y se comprueba que las mejorías se vean en clase.",
+  fuente: "Sohlberg y Mateer, 2001, cap. 14" },
+{ k: "autorregistro-arrancarse", t: "Registro del arrancarse el pelo", tipo: "Técnica", enf: ["act"],
+  d: "Registro diario de cada episodio de arrancarse el pelo —cuándo, dónde, qué hacía, qué sentía— y de las ganas que aparecieron y qué hizo con ellas.",
+  fuente: "Woods y Twohig, 2008, cap. 3", ficha: "registro-habito" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -15020,6 +15883,14 @@ const FICHAS = {
   "guia-ejercicios-tics": { t: "Mis ejercicios para los tics", c: "guia", d: "Un ejercicio que hace tu cuerpo en lugar del tic y que no deja que el tic salga al mismo tiempo. Lo haces apenas sientes la señal que avisa que viene un tic, o apenas empieza.", n: 41, q: "M0 0.5h7m2 0h2m3 0h1m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h7m-41 1h1m5 0h1m4 0h1m2 0h1m1 0h2m2 0h2m3 0h4m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m6 0h3m1 0h5m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h1m5 0h1m2 0h1m1 0h1m3 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h4m1 0h1m1 0h8m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m3 0h2m1 0h3m1 0h3m2 0h5m2 0h1m4 0h5m-37 1h2m3 0h1m2 0h2m2 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h1m1 0h1m-41 1h7m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-33 1h1m3 0h2m3 0h2m4 0h1m4 0h4m2 0h1m4 0h3m1 0h1m1 0h1m2 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h1m2 0h1m1 0h8m1 0h1m5 0h3m-31 1h1m2 0h3m1 0h2m9 0h1m2 0h1m1 0h9m-41 1h1m4 0h2m5 0h1m1 0h3m3 0h2m1 0h2m1 0h4m1 0h1m1 0h1m1 0h4m-35 1h1m2 0h1m1 0h4m2 0h2m4 0h3m2 0h2m3 0h2m1 0h2m1 0h1m-37 1h1m1 0h1m1 0h3m2 0h3m1 0h2m1 0h1m2 0h1m1 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-40 1h1m1 0h2m6 0h2m2 0h1m3 0h2m2 0h1m5 0h1m1 0h1m2 0h7m-41 1h3m2 0h2m2 0h3m4 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m2 0h3m1 0h1m1 0h2m-40 1h3m2 0h1m2 0h3m4 0h2m2 0h2m2 0h2m1 0h2m1 0h2m5 0h2m2 0h1m-41 1h4m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h1m2 0h1m4 0h1m5 0h1m1 0h1m-40 1h2m1 0h1m5 0h1m6 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h7m2 0h2m-37 1h3m3 0h3m2 0h3m2 0h2m5 0h2m3 0h2m2 0h3m-36 1h1m4 0h3m2 0h2m1 0h1m1 0h2m1 0h4m1 0h1m7 0h1m1 0h1m2 0h2m-38 1h1m1 0h4m3 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h1m-36 1h1m3 0h3m4 0h1m1 0h1m1 0h8m2 0h4m1 0h5m1 0h2m-39 1h3m1 0h1m4 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h1m2 0h2m-35 1h3m2 0h1m4 0h5m4 0h1m1 0h1m4 0h1m2 0h4m1 0h2m-37 1h2m3 0h2m4 0h2m2 0h4m2 0h1m2 0h2m2 0h3m1 0h1m3 0h4m-41 1h2m1 0h2m3 0h2m2 0h1m2 0h1m2 0h1m1 0h2m2 0h2m1 0h2m1 0h1m2 0h1m1 0h2m2 0h2m-41 1h1m2 0h1m2 0h1m2 0h2m4 0h1m3 0h1m5 0h1m7 0h6m-39 1h1m2 0h2m3 0h1m4 0h1m1 0h1m2 0h5m1 0h1m3 0h1m4 0h5m-38 1h1m5 0h2m1 0h3m2 0h1m2 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5m1 0h1m1 0h1m-33 1h3m1 0h10m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m-41 1h7m4 0h2m2 0h3m2 0h2m3 0h4m1 0h3m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h2m5 0h4m2 0h2m2 0h1m1 0h1m3 0h2m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h2m3 0h2m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h2m1 0h6m4 0h1m2 0h1m1 0h1m1 0h1m1 0h2m-39 1h1m1 0h3m1 0h1m1 0h4m2 0h5m1 0h3m4 0h2m1 0h1m1 0h5m1 0h1m-39 1h1m5 0h1m2 0h4m4 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h1m1 0h1m2 0h2m3 0h2m2 0h2m1 0h1m3 0h1m1 0h1m1 0h6" },
   "guia-alarma-humedad": { t: "La alarma de humedad paso a paso", c: "guia", d: "La alarma suena apenas el niño empieza a mojar la cama. Con el tiempo, el cuerpo aprende a contener la orina o a despertarse antes de que suene. El entrenamiento completo suma limpieza, ejercicios de retención y una etapa final para evitar recaídas.", n: 41, q: "M0 0.5h7m2 0h2m1 0h2m4 0h3m2 0h1m4 0h5m1 0h7m-41 1h1m5 0h1m2 0h1m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m4 0h3m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h5m1 0h2m4 0h1m5 0h7m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m3 0h2m1 0h4m6 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h4m1 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h3m1 0h4m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m2 0h1m1 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h4m4 0h1m2 0h2m1 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-40 1h1m3 0h4m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1m-40 1h2m2 0h1m2 0h1m1 0h2m9 0h4m2 0h1m4 0h5m1 0h1m1 0h1m-39 1h1m2 0h11m2 0h1m4 0h2m1 0h3m1 0h1m1 0h3m3 0h2m-39 1h2m2 0h1m4 0h1m3 0h4m3 0h2m2 0h1m2 0h2m1 0h1m2 0h1m1 0h6m-41 1h1m4 0h2m2 0h4m1 0h2m3 0h1m1 0h1m7 0h1m2 0h2m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h1m2 0h2m2 0h1m2 0h4m1 0h1m1 0h1m1 0h1m5 0h2m1 0h1m-38 1h1m3 0h1m1 0h4m1 0h5m1 0h1m1 0h1m4 0h3m2 0h1m3 0h1m1 0h1m1 0h4m-39 1h1m1 0h2m1 0h5m2 0h1m2 0h5m1 0h1m1 0h1m5 0h1m2 0h7m-41 1h2m1 0h1m1 0h2m3 0h4m2 0h2m2 0h2m2 0h5m1 0h1m1 0h3m1 0h1m1 0h2m-40 1h4m1 0h1m1 0h2m4 0h6m1 0h6m1 0h1m8 0h2m2 0h1m-41 1h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m4 0h1m2 0h1m1 0h2m2 0h1m1 0h1m5 0h1m1 0h1m-40 1h3m3 0h4m2 0h2m2 0h4m1 0h2m1 0h1m2 0h1m2 0h10m-41 1h1m1 0h2m2 0h2m3 0h2m1 0h4m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m-37 1h4m1 0h2m7 0h1m1 0h2m1 0h4m1 0h1m7 0h4m-38 1h2m3 0h2m7 0h4m2 0h1m1 0h1m1 0h4m1 0h1m7 0h2m-38 1h1m3 0h1m1 0h1m1 0h4m5 0h8m2 0h4m1 0h5m1 0h2m-41 1h1m2 0h2m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h2m1 0h2m-26 1h5m5 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-38 1h1m3 0h1m1 0h2m4 0h2m2 0h5m1 0h1m1 0h3m1 0h4m1 0h1m3 0h3m-40 1h1m2 0h3m2 0h1m2 0h2m5 0h1m6 0h1m1 0h1m2 0h1m1 0h2m1 0h2m2 0h2m-41 1h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h2m4 0h5m1 0h3m2 0h1m1 0h6m-39 1h1m2 0h1m1 0h1m2 0h4m2 0h1m1 0h1m1 0h1m2 0h3m3 0h1m3 0h7m-38 1h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h1m2 0h1m1 0h2m1 0h3m1 0h1m1 0h6m1 0h1m1 0h1m-33 1h3m3 0h1m3 0h3m2 0h1m4 0h3m1 0h1m3 0h2m1 0h2m-41 1h7m3 0h2m1 0h1m4 0h1m3 0h1m4 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h2m3 0h3m8 0h1m1 0h2m1 0h4m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m2 0h2m1 0h2m1 0h1m7 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h4m2 0h3m4 0h2m1 0h1m1 0h5m-37 1h1m5 0h1m4 0h3m3 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h3m1 0h3m1 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
   "guia-miedos-noche": { t: "Cuando tiene miedo de noche", c: "guia", d: "Los miedos a la oscuridad, a los monstruos o a quedarse solo de noche son parte del desarrollo y casi todos los niños los tienen en algún momento. El reto es tranquilizar a su hijo sin reforzar el miedo: ni ignorarlo ni darle tanta atención que el miedo le resulte útil.", n: 37, q: "M0 0.5h7m2 0h1m2 0h1m1 0h3m1 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m5 0h1m2 0h3m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h2m1 0h1m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h6m2 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h2m1 0h2m4 0h6m1 0h2m-28 1h1m1 0h5m7 0h1m2 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-31 1h1m5 0h3m2 0h1m2 0h3m2 0h2m3 0h2m1 0h1m2 0h2m-32 1h4m1 0h1m3 0h3m1 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-35 1h1m1 0h2m2 0h1m1 0h1m2 0h1m1 0h1m2 0h5m1 0h1m1 0h2m5 0h1m2 0h1m-36 1h1m3 0h3m1 0h5m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h4m1 0h5m-36 1h2m1 0h2m1 0h1m2 0h1m2 0h1m2 0h5m2 0h1m1 0h1m2 0h2m1 0h1m-30 1h2m2 0h2m1 0h2m4 0h2m1 0h1m1 0h2m5 0h2m1 0h4m1 0h2m-36 1h1m3 0h1m3 0h2m3 0h2m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-35 1h1m3 0h2m3 0h1m2 0h1m3 0h1m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m1 0h3m5 0h1m2 0h3m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h2m1 0h5m3 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-36 1h2m5 0h1m2 0h4m1 0h1m3 0h3m1 0h1m3 0h3m1 0h1m3 0h1m-36 1h2m1 0h7m2 0h3m1 0h1m1 0h1m3 0h1m1 0h3m1 0h2m1 0h3m-35 1h1m1 0h2m1 0h1m1 0h3m6 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-32 1h6m6 0h2m4 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m1 0h1m2 0h1m2 0h2m4 0h3m3 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h7m1 0h3m3 0h1m2 0h3m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m4 0h1m2 0h1m5 0h1m1 0h4m3 0h1m4 0h1m2 0h1m-32 1h1m1 0h2m2 0h5m3 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m2 0h3m1 0h1m1 0h3m2 0h3m2 0h1m1 0h2m3 0h1m1 0h3m4 0h1m-36 1h1m1 0h7m1 0h1m2 0h1m1 0h1m1 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h3m5 0h8m1 0h1m1 0h2m3 0h2m-34 1h7m3 0h8m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h4m1 0h1m4 0h1m1 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h3m3 0h2m1 0h1m2 0h1m1 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h4m2 0h2m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m4 0h5m3 0h5m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
+  "registro-tartamudez": { t: "Calificación diaria de la tartamudez", d: "Cada día, califique de 1 a 10 cómo fue la tartamudez de su hijo: 1 es sin tartamudez, 2 muy leve y 10 extremadamente grave. Traiga la hoja a cada consulta: con ella se decide cómo seguir el tratamiento.", n: 41, q: "M0 0.5h7m2 0h2m1 0h3m1 0h1m2 0h2m2 0h1m2 0h1m1 0h2m1 0h2m1 0h7m-41 1h1m5 0h1m2 0h2m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h6m1 0h2m3 0h1m5 0h1m2 0h4m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h4m6 0h2m1 0h2m1 0h1m2 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h7m1 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h3m1 0h4m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m2 0h1m1 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h2m1 0h1m3 0h1m3 0h2m1 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-41 1h2m2 0h1m1 0h3m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1m-38 1h1m5 0h3m9 0h4m2 0h1m4 0h5m1 0h1m1 0h2m-40 1h2m2 0h2m1 0h4m1 0h2m2 0h1m4 0h2m1 0h3m1 0h1m1 0h3m3 0h4m-41 1h2m2 0h2m5 0h2m1 0h2m4 0h2m2 0h1m2 0h2m1 0h1m2 0h1m1 0h6m-41 1h1m4 0h2m2 0h3m2 0h1m1 0h1m2 0h1m1 0h1m4 0h1m2 0h2m1 0h2m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h5m1 0h1m3 0h4m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m-38 1h1m3 0h1m1 0h3m5 0h4m1 0h1m2 0h1m2 0h2m1 0h2m3 0h1m1 0h1m1 0h4m-39 1h1m1 0h2m1 0h4m2 0h1m1 0h1m1 0h7m1 0h2m1 0h1m1 0h2m2 0h7m-41 1h2m1 0h1m1 0h2m2 0h1m1 0h2m4 0h1m2 0h2m3 0h4m1 0h1m1 0h3m1 0h1m1 0h2m-40 1h4m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h2m2 0h2m2 0h1m1 0h1m8 0h2m2 0h1m-41 1h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m4 0h1m1 0h2m1 0h1m3 0h1m1 0h1m5 0h1m1 0h1m-41 1h2m1 0h2m3 0h2m3 0h2m2 0h4m1 0h2m1 0h1m2 0h1m2 0h10m-39 1h1m1 0h3m1 0h1m2 0h2m1 0h4m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m-39 1h1m1 0h1m1 0h1m2 0h2m7 0h1m1 0h2m1 0h4m1 0h1m7 0h4m-36 1h2m2 0h1m7 0h4m2 0h1m1 0h1m1 0h4m1 0h1m7 0h2m-38 1h1m1 0h2m3 0h5m5 0h8m2 0h4m1 0h5m2 0h1m-41 1h3m1 0h4m5 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h2m1 0h2m-37 1h1m2 0h1m1 0h1m1 0h1m3 0h5m5 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-32 1h2m5 0h1m2 0h5m1 0h1m1 0h3m1 0h4m1 0h1m3 0h2m-39 1h1m2 0h2m3 0h1m2 0h3m1 0h1m2 0h1m2 0h1m5 0h1m2 0h1m1 0h2m1 0h2m2 0h2m-41 1h1m2 0h2m1 0h1m2 0h1m3 0h3m4 0h1m2 0h3m1 0h2m2 0h1m1 0h6m-39 1h1m2 0h1m1 0h1m2 0h1m1 0h1m5 0h1m1 0h1m2 0h1m1 0h1m3 0h1m3 0h7m-38 1h1m2 0h1m1 0h4m1 0h4m2 0h2m4 0h6m1 0h1m1 0h6m1 0h1m1 0h1m-33 1h2m1 0h3m1 0h1m2 0h3m1 0h3m3 0h3m1 0h1m3 0h2m1 0h2m-41 1h7m3 0h1m1 0h3m1 0h1m1 0h1m3 0h1m4 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h1m6 0h1m4 0h1m2 0h1m2 0h1m1 0h5m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m3 0h1m2 0h4m2 0h1m4 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h4m2 0h3m4 0h2m1 0h1m1 0h5m-37 1h1m5 0h1m4 0h3m3 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h3m1 0h3m1 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
+  "guia-lidcombe-padres": { t: "Cómo responder al habla de su hijo", c: "guia", d: "En el programa Lidcombe, lo que usted dice después de que su hijo habla es el tratamiento. Responde al habla sin tartamudez mucho más que a la tartamudez, siempre de forma positiva. Su terapeuta le irá enseñando cada paso en la consulta.", n: 41, q: "M0 0.5h7m1 0h1m2 0h4m2 0h2m4 0h1m2 0h3m1 0h1m3 0h7m-41 1h1m5 0h1m5 0h3m2 0h1m1 0h2m7 0h1m1 0h2m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m4 0h1m4 0h1m2 0h2m1 0h1m1 0h4m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h4m2 0h3m2 0h2m3 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h5m1 0h3m1 0h1m3 0h3m1 0h4m4 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h1m2 0h1m3 0h1m1 0h6m6 0h4m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m2 0h1m2 0h4m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m3 0h1m1 0h6m5 0h2m1 0h5m2 0h1m1 0h1m1 0h7m2 0h1m-41 1h1m1 0h1m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m3 0h3m4 0h4m1 0h2m-41 1h8m2 0h1m1 0h2m3 0h1m2 0h1m2 0h1m3 0h3m2 0h1m1 0h3m3 0h1m-40 1h2m1 0h1m4 0h1m1 0h2m2 0h4m1 0h2m2 0h1m1 0h1m1 0h7m1 0h2m2 0h1m-39 1h6m2 0h3m2 0h1m1 0h1m1 0h1m1 0h4m3 0h2m2 0h2m5 0h1m-38 1h2m1 0h1m1 0h3m2 0h2m1 0h1m3 0h3m4 0h1m3 0h2m2 0h3m3 0h1m-37 1h1m1 0h1m8 0h3m2 0h2m4 0h2m2 0h2m1 0h2m2 0h2m1 0h1m-41 1h1m4 0h1m1 0h1m1 0h1m2 0h3m1 0h3m2 0h1m2 0h1m2 0h6m3 0h2m2 0h1m-39 1h1m2 0h2m1 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h4m4 0h1m2 0h1m2 0h1m4 0h1m-39 1h1m1 0h1m2 0h2m1 0h7m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m2 0h5m3 0h1m-40 1h2m1 0h1m1 0h1m4 0h1m1 0h5m2 0h1m2 0h2m2 0h1m2 0h1m1 0h2m1 0h1m2 0h3m-40 1h2m1 0h1m3 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h3m5 0h2m1 0h1m-38 1h1m5 0h3m1 0h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h3m4 0h1m1 0h1m3 0h1m1 0h2m-39 1h2m3 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m3 0h5m1 0h1m-41 1h1m1 0h6m7 0h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h4m1 0h2m1 0h1m-41 1h2m1 0h1m3 0h3m1 0h4m2 0h1m1 0h1m1 0h1m4 0h1m1 0h3m4 0h1m3 0h1m-39 1h7m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m1 0h1m-40 1h2m1 0h1m1 0h1m2 0h1m4 0h1m1 0h2m1 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h1m1 0h1m-41 1h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m6 0h6m1 0h1m1 0h1m1 0h1m5 0h1m-39 1h1m4 0h1m2 0h2m1 0h3m1 0h2m2 0h2m1 0h1m4 0h5m1 0h1m1 0h1m1 0h1m-40 1h1m1 0h2m1 0h5m4 0h5m1 0h3m4 0h1m1 0h2m1 0h1m-33 1h3m1 0h2m1 0h1m5 0h2m3 0h2m4 0h1m1 0h1m1 0h1m1 0h3m2 0h4m1 0h1m-38 1h4m3 0h2m1 0h1m1 0h1m1 0h3m2 0h3m3 0h3m2 0h1m3 0h2m1 0h1m-38 1h1m1 0h1m2 0h1m2 0h3m1 0h3m1 0h5m2 0h1m2 0h2m2 0h1m3 0h1m2 0h1m-41 1h4m2 0h1m1 0h1m1 0h1m3 0h2m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h7m1 0h2m-33 1h2m2 0h1m1 0h4m2 0h1m2 0h1m2 0h3m1 0h3m3 0h1m1 0h1m1 0h1m-41 1h7m1 0h4m1 0h1m2 0h1m1 0h1m1 0h4m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-41 1h1m5 0h1m2 0h1m1 0h4m1 0h1m3 0h2m1 0h3m1 0h6m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h3m8 0h2m3 0h2m1 0h1m2 0h8m2 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m4 0h1m1 0h1m3 0h2m1 0h4m3 0h1m2 0h1m3 0h1m-40 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h2m4 0h2m1 0h2m2 0h1m1 0h1m2 0h2m4 0h1m1 0h1m-41 1h1m5 0h1m2 0h1m6 0h1m1 0h1m2 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m-41 1h7m1 0h3m4 0h1m2 0h1m1 0h4m2 0h2m1 0h1m2 0h1m1 0h3m2 0h1" },
+  "guia-lenguaje-padres": { t: "Cómo ayudar a su hijo a hablar más", c: "guia", d: "Su hijo aprende a hablar en las conversaciones y los juegos de todos los días con usted. Estas formas de jugar y de responder le dan muchas ocasiones de comunicarse y modelos un poco más avanzados de lo que ya dice.", n: 41, q: "M0 0.5h7m2 0h1m1 0h2m1 0h2m1 0h5m1 0h1m1 0h1m2 0h1m1 0h3m1 0h7m-41 1h1m5 0h1m2 0h1m6 0h2m3 0h1m3 0h4m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m6 0h4m2 0h2m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m5 0h1m2 0h1m1 0h1m3 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h4m2 0h1m1 0h8m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m3 0h2m1 0h3m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h6m2 0h1m1 0h2m2 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h1m1 0h1m-40 1h3m2 0h1m4 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-33 1h2m3 0h1m2 0h3m4 0h1m4 0h4m2 0h1m4 0h3m1 0h1m1 0h1m-37 1h2m1 0h3m1 0h7m2 0h1m2 0h1m1 0h8m1 0h1m5 0h2m-38 1h1m3 0h1m6 0h1m1 0h1m6 0h1m3 0h1m1 0h1m2 0h1m1 0h9m-41 1h1m4 0h2m3 0h3m2 0h1m2 0h1m1 0h2m1 0h2m1 0h4m1 0h1m1 0h1m1 0h4m-35 1h1m2 0h1m1 0h1m1 0h1m2 0h1m6 0h3m3 0h1m3 0h2m1 0h2m1 0h1m-37 1h1m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-40 1h1m1 0h2m4 0h3m6 0h3m2 0h1m5 0h1m1 0h1m2 0h7m-41 1h3m2 0h2m3 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m4 0h3m2 0h3m1 0h1m1 0h2m-40 1h3m2 0h1m2 0h1m1 0h4m1 0h1m4 0h1m2 0h1m2 0h2m1 0h2m5 0h2m2 0h1m-41 1h4m2 0h1m2 0h2m2 0h4m1 0h2m1 0h2m1 0h1m2 0h1m4 0h1m5 0h1m1 0h1m-40 1h1m6 0h1m5 0h1m2 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h7m2 0h2m-39 1h2m2 0h2m2 0h3m2 0h3m2 0h2m5 0h2m3 0h2m2 0h3m-39 1h1m2 0h1m3 0h4m2 0h2m1 0h1m1 0h2m1 0h4m1 0h1m7 0h1m1 0h1m2 0h2m-41 1h1m4 0h2m5 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h1m-39 1h1m8 0h1m4 0h1m1 0h1m1 0h8m2 0h4m1 0h5m1 0h2m-40 1h3m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h1m2 0h2m-37 1h1m1 0h4m1 0h1m4 0h5m4 0h1m1 0h1m4 0h1m2 0h4m1 0h2m1 0h2m-41 1h2m3 0h3m5 0h1m2 0h4m2 0h1m2 0h2m2 0h3m1 0h1m3 0h3m-40 1h1m2 0h3m2 0h2m3 0h1m1 0h1m2 0h1m1 0h1m3 0h1m2 0h2m1 0h1m2 0h1m1 0h2m2 0h2m-41 1h1m2 0h1m2 0h1m2 0h2m1 0h1m2 0h2m2 0h1m6 0h1m6 0h6m-39 1h1m2 0h2m3 0h3m2 0h3m2 0h4m2 0h1m1 0h1m1 0h1m4 0h5m-38 1h1m5 0h2m1 0h1m6 0h2m1 0h1m2 0h1m1 0h3m2 0h1m2 0h5m1 0h1m1 0h1m-33 1h1m1 0h8m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m-41 1h7m2 0h1m3 0h1m3 0h1m2 0h2m2 0h5m1 0h3m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h4m1 0h2m1 0h3m1 0h4m1 0h1m1 0h1m3 0h2m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m6 0h1m1 0h2m1 0h1m3 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h4m1 0h4m1 0h6m4 0h1m2 0h1m1 0h1m1 0h1m1 0h2m-39 1h1m1 0h3m1 0h1m1 0h4m2 0h5m1 0h3m4 0h2m1 0h1m1 0h5m1 0h1m-39 1h1m5 0h1m2 0h4m4 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h1m1 0h1m2 0h2m3 0h2m2 0h2m1 0h1m3 0h1m1 0h1m1 0h6" },
+  "mi-plan-a-b": { t: "Mi plan A y mi plan B", d: "A veces las cosas no salen como queremos. Eso no es un problema: solo necesitas otro plan. Ser flexible te da más opciones y te ayuda con tus amigos.", n: 37, q: "M0 0.5h7m3 0h1m1 0h2m2 0h1m1 0h3m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h2m4 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h6m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h5m1 0h1m1 0h2m3 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h4m2 0h1m1 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m4 0h1m1 0h1m1 0h2m1 0h2m2 0h1m1 0h3m3 0h5m-35 1h3m1 0h1m2 0h1m4 0h1m1 0h2m2 0h3m2 0h1m4 0h2m1 0h1m2 0h2m-34 1h2m1 0h3m3 0h8m2 0h1m2 0h5m2 0h1m2 0h3m-36 1h1m2 0h2m1 0h1m1 0h2m1 0h4m2 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h2m2 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h1m1 0h1m2 0h1m3 0h5m2 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-29 1h6m1 0h7m1 0h1m1 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-37 1h6m5 0h3m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-36 1h2m3 0h2m1 0h3m2 0h1m4 0h3m4 0h2m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m1 0h1m1 0h1m5 0h3m1 0h6m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h7m1 0h1m1 0h2m5 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m5 0h3m2 0h1m1 0h1m1 0h1m2 0h4m5 0h3m1 0h1m3 0h1m-36 1h1m2 0h3m1 0h2m3 0h1m3 0h1m1 0h1m3 0h1m1 0h3m1 0h2m1 0h3m-34 1h1m1 0h3m2 0h1m1 0h3m1 0h1m1 0h5m2 0h1m4 0h1m4 0h1m-34 1h4m2 0h3m1 0h1m4 0h1m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h1m1 0h1m3 0h2m3 0h1m2 0h4m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h3m2 0h2m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h1m8 0h5m1 0h3m3 0h2m3 0h1m2 0h1m-32 1h1m3 0h1m1 0h1m1 0h1m1 0h4m1 0h3m4 0h1m2 0h3m2 0h7m-37 1h1m1 0h2m3 0h4m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h3m4 0h2m-37 1h1m1 0h1m3 0h1m1 0h4m2 0h2m1 0h2m3 0h5m1 0h8m-28 1h2m3 0h2m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h1m8 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h2m5 0h1m2 0h1m5 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h4m1 0h3m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m7 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m2 0h2m2 0h2m1 0h1m3 0h3m3 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h2m1 0h5" },
+  "meta-plan-hacer-revisar": { t: "Meta, plan, hacer, revisar", d: "Para lograr algo, sirve tener una meta, un plan y revisar si funcionó. Si el plan no funciona, no pasa nada: haces otro plan.", n: 41, q: "M0 0.5h7m2 0h2m1 0h1m2 0h2m1 0h2m3 0h1m2 0h1m1 0h1m1 0h3m1 0h7m-41 1h1m5 0h1m2 0h1m5 0h2m1 0h1m3 0h1m4 0h3m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h4m2 0h1m4 0h1m6 0h3m1 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m4 0h1m2 0h4m5 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h7m1 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m2 0h1m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m3 0h1m2 0h1m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m4 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-34 1h1m1 0h1m2 0h2m2 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-41 1h1m2 0h1m2 0h2m4 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h2m-33 1h2m1 0h2m1 0h1m1 0h3m3 0h1m4 0h4m2 0h1m4 0h5m1 0h1m1 0h2m-41 1h3m1 0h1m1 0h1m1 0h8m1 0h1m4 0h2m1 0h3m1 0h1m1 0h1m1 0h1m3 0h2m-39 1h1m3 0h2m5 0h1m2 0h1m2 0h1m2 0h1m3 0h1m2 0h14m-41 1h1m3 0h3m3 0h1m5 0h1m2 0h1m1 0h1m11 0h1m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h2m5 0h1m2 0h3m2 0h1m3 0h1m3 0h1m1 0h2m1 0h1m-37 1h1m1 0h1m1 0h5m1 0h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h3m2 0h1m3 0h1m1 0h1m1 0h4m-37 1h2m1 0h1m1 0h2m1 0h1m1 0h4m1 0h3m1 0h3m4 0h2m2 0h7m-41 1h3m2 0h4m4 0h2m1 0h2m2 0h2m2 0h5m1 0h1m1 0h3m1 0h1m1 0h2m-40 1h3m2 0h1m1 0h5m1 0h1m2 0h3m1 0h4m1 0h1m1 0h1m2 0h1m5 0h2m2 0h1m-41 1h2m1 0h1m2 0h4m3 0h2m1 0h1m4 0h1m1 0h2m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-41 1h3m1 0h1m3 0h2m3 0h1m3 0h4m1 0h2m1 0h1m2 0h1m1 0h7m1 0h3m-41 1h1m2 0h2m1 0h2m2 0h3m2 0h3m2 0h2m5 0h2m3 0h2m1 0h3m-38 1h1m2 0h1m1 0h1m7 0h2m1 0h1m1 0h2m1 0h4m1 0h1m7 0h1m1 0h2m-38 1h3m2 0h2m2 0h1m3 0h3m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m7 0h4m-40 1h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m3 0h8m2 0h4m1 0h5m2 0h1m-41 1h2m1 0h5m3 0h3m3 0h2m3 0h1m2 0h3m1 0h1m2 0h1m1 0h3m-37 1h4m8 0h4m5 0h1m1 0h1m4 0h1m2 0h4m1 0h2m-36 1h1m3 0h2m3 0h3m3 0h4m1 0h1m1 0h3m1 0h4m5 0h2m-39 1h1m2 0h1m1 0h1m2 0h2m5 0h2m1 0h1m2 0h1m3 0h1m1 0h1m2 0h3m1 0h3m2 0h2m-41 1h1m2 0h1m1 0h2m2 0h6m1 0h3m1 0h2m1 0h2m1 0h3m4 0h6m-39 1h1m2 0h1m4 0h2m3 0h1m1 0h2m1 0h1m2 0h3m3 0h1m5 0h5m-38 1h1m2 0h1m2 0h3m1 0h1m1 0h1m1 0h4m4 0h6m1 0h1m2 0h5m1 0h1m1 0h1m-33 1h2m1 0h1m2 0h3m1 0h3m2 0h1m4 0h2m2 0h1m3 0h2m1 0h2m-41 1h7m2 0h1m2 0h2m1 0h2m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h1m2 0h1m2 0h2m3 0h1m4 0h1m1 0h7m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h3m2 0h3m2 0h1m2 0h2m1 0h1m2 0h1m4 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h3m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h4m3 0h3m4 0h2m1 0h1m1 0h7m-39 1h1m5 0h1m3 0h4m4 0h1m2 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h1m3 0h2m5 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
+  "lista-autoverificacion": { t: "Mi lista para revisar antes de entregar", d: "Revisar tu trabajo antes de entregarlo atrapa errores que se te pasan cuando vas rápido. Arma tu propia lista con lo que sueles olvidar y úsala en tareas y exámenes.", n: 41, q: "M0 0.5h7m1 0h2m1 0h1m2 0h1m1 0h8m1 0h1m4 0h3m1 0h7m-41 1h1m5 0h1m1 0h2m3 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h2m4 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h2m4 0h1m2 0h1m2 0h2m3 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m3 0h4m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m3 0h3m2 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m-33 1h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m3 0h1m1 0h1m2 0h6m2 0h1m2 0h1m1 0h2m-41 1h4m1 0h1m5 0h1m6 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-39 1h1m1 0h1m1 0h2m1 0h1m1 0h5m1 0h1m3 0h3m2 0h1m2 0h1m3 0h4m1 0h2m-39 1h1m1 0h1m1 0h1m1 0h1m5 0h1m2 0h1m1 0h3m2 0h6m1 0h1m1 0h1m2 0h2m2 0h1m-39 1h1m4 0h1m1 0h3m2 0h5m2 0h1m1 0h8m1 0h1m5 0h3m-40 1h5m3 0h1m4 0h1m1 0h1m2 0h1m1 0h1m2 0h4m5 0h3m2 0h1m2 0h1m-40 1h1m1 0h2m1 0h2m3 0h2m2 0h2m2 0h3m1 0h1m1 0h2m3 0h2m2 0h2m2 0h3m-36 1h1m1 0h1m1 0h3m3 0h1m5 0h1m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m-36 1h1m2 0h6m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m4 0h1m1 0h1m3 0h2m2 0h1m-41 1h3m5 0h1m3 0h1m1 0h1m1 0h1m3 0h6m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m-39 1h2m1 0h1m1 0h2m2 0h2m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h2m-39 1h3m3 0h1m1 0h3m2 0h2m1 0h2m1 0h2m1 0h2m3 0h1m3 0h2m1 0h1m1 0h4m-39 1h1m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m9 0h1m2 0h1m1 0h5m1 0h4m-40 1h3m4 0h1m6 0h1m2 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h5m1 0h1m1 0h3m-41 1h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m4 0h2m1 0h1m1 0h3m4 0h5m-40 1h2m3 0h1m1 0h1m4 0h2m1 0h1m7 0h1m1 0h4m1 0h2m1 0h1m1 0h2m3 0h1m-41 1h2m2 0h7m4 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m8 0h3m-41 1h3m1 0h1m3 0h1m2 0h1m3 0h1m1 0h1m1 0h1m2 0h1m2 0h4m2 0h2m1 0h1m2 0h2m1 0h1m-40 1h3m1 0h2m2 0h2m5 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h5m1 0h2m1 0h1m1 0h2m-41 1h2m3 0h1m2 0h1m2 0h1m1 0h4m4 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-36 1h3m1 0h1m1 0h2m1 0h4m1 0h1m2 0h7m1 0h1m3 0h3m1 0h3m-33 1h1m1 0h4m1 0h2m2 0h1m2 0h2m1 0h1m2 0h1m3 0h1m2 0h1m2 0h1m1 0h1m-38 1h1m2 0h2m1 0h1m7 0h2m1 0h3m1 0h2m7 0h1m2 0h6m-37 1h1m2 0h1m3 0h1m1 0h1m1 0h3m1 0h3m2 0h2m3 0h4m3 0h1m2 0h3m-39 1h1m2 0h1m1 0h1m2 0h3m2 0h5m2 0h1m2 0h1m1 0h2m1 0h11m-32 1h1m4 0h3m1 0h7m1 0h2m1 0h1m3 0h1m3 0h2m1 0h2m-41 1h7m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m2 0h3m2 0h2m1 0h2m1 0h1m1 0h1m2 0h1m-40 1h1m5 0h1m1 0h1m1 0h3m1 0h1m1 0h2m6 0h1m2 0h2m1 0h1m1 0h1m3 0h1m2 0h2m-41 1h1m1 0h3m1 0h1m2 0h2m4 0h1m5 0h1m2 0h1m1 0h2m2 0h1m1 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h1m1 0h1m1 0h7m3 0h2m1 0h1m-40 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m2 0h4m3 0h2m5 0h2m2 0h1m2 0h3m-41 1h1m5 0h1m2 0h5m7 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h2m1 0h2m2 0h1m3 0h4m1 0h4m2 0h3m1 0h1m4 0h1" },
+  "rutina-externa": { t: "Mi cuaderno de memoria", d: "Cuando la memoria falla, apuntarlo todo en un solo lugar y revisarlo a horas fijas te ayuda a no olvidar tareas, citas ni lo que tienes que llevar. Lleva esta hoja contigo y revísala cuando suene tu alarma.", n: 37, q: "M0 0.5h7m2 0h6m1 0h1m1 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m6 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m4 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h10m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m3 0h1m1 0h2m3 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m3 0h2m1 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m5 0h4m1 0h1m1 0h1m4 0h3m3 0h5m-35 1h1m3 0h2m4 0h1m1 0h2m1 0h2m2 0h2m2 0h1m4 0h2m1 0h1m2 0h2m-35 1h1m1 0h4m2 0h1m1 0h2m1 0h1m2 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-33 1h1m3 0h1m1 0h1m2 0h1m2 0h1m1 0h5m1 0h1m1 0h2m5 0h1m2 0h1m-37 1h1m2 0h4m1 0h1m3 0h1m4 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-36 1h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-31 1h1m2 0h1m1 0h2m2 0h3m2 0h2m1 0h1m1 0h3m4 0h2m1 0h4m1 0h2m-35 1h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m2 0h2m1 0h1m2 0h3m4 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-34 1h1m1 0h1m1 0h1m1 0h2m3 0h4m1 0h1m3 0h1m1 0h4m1 0h2m3 0h3m-37 1h2m3 0h1m2 0h1m4 0h3m3 0h1m1 0h2m5 0h3m1 0h1m3 0h1m-37 1h3m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m7 0h3m1 0h2m1 0h3m-35 1h2m1 0h3m2 0h1m3 0h1m3 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-31 1h2m1 0h2m1 0h1m3 0h1m1 0h1m4 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-36 1h3m1 0h1m1 0h3m1 0h6m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-37 1h1m5 0h3m3 0h2m3 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h1m1 0h2m3 0h1m2 0h1m2 0h8m1 0h2m4 0h1m2 0h1m-32 1h1m3 0h1m1 0h5m6 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h1m4 0h1m1 0h2m1 0h3m1 0h1m3 0h3m3 0h1m1 0h3m5 0h1m-37 1h1m1 0h1m1 0h3m1 0h2m1 0h3m3 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h5m1 0h3m2 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h2m2 0h2m4 0h1m1 0h2m4 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m2 0h1m3 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m2 0h4m1 0h7m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h5m8 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m1 0h1m2 0h2m4 0h5m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m3 0h1m1 0h2m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
+  "registro-habito": { t: "Registro de las ganas de arrancarme el pelo", d: "Anotar cada vez que te arrancas el pelo o sientes ganas te ayuda a ver cuándo y dónde pasa, y qué haces con esas ganas. No es para juzgarte: es información para el tratamiento.", n: 37, q: "M0 0.5h7m3 0h2m2 0h2m2 0h3m1 0h2m4 0h1m1 0h7m-37 1h1m5 0h1m4 0h1m6 0h1m3 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h3m5 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h6m4 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m2 0h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m2 0h2m3 0h1m3 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m1 0h1m2 0h1m1 0h2m2 0h3m1 0h2m1 0h2m-28 1h1m1 0h5m2 0h2m2 0h1m2 0h5m1 0h1m2 0h2m3 0h5m-35 1h6m2 0h3m1 0h1m1 0h2m2 0h3m1 0h2m4 0h2m1 0h1m2 0h2m-32 1h4m2 0h1m1 0h1m1 0h5m1 0h2m3 0h4m2 0h1m2 0h3m-35 1h2m4 0h1m2 0h1m1 0h3m2 0h1m2 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-35 1h2m2 0h1m2 0h3m2 0h2m1 0h1m1 0h1m2 0h4m1 0h4m1 0h5m-36 1h2m1 0h2m2 0h1m2 0h4m1 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-30 1h2m2 0h1m1 0h5m1 0h4m2 0h1m6 0h2m1 0h4m1 0h2m-37 1h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-36 1h4m2 0h1m2 0h2m6 0h1m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h4m6 0h1m1 0h2m1 0h3m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-36 1h1m2 0h4m1 0h2m2 0h1m1 0h1m3 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-35 1h2m1 0h1m1 0h1m2 0h1m2 0h1m2 0h1m2 0h1m1 0h3m4 0h3m1 0h1m3 0h1m-37 1h2m3 0h2m1 0h1m1 0h3m1 0h1m2 0h1m7 0h3m1 0h2m1 0h3m-35 1h1m1 0h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-31 1h1m2 0h2m4 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h3m1 0h2m3 0h3m1 0h4m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m3 0h3m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h4m1 0h1m3 0h1m3 0h3m1 0h4m2 0h1m4 0h1m2 0h1m-32 1h1m3 0h1m1 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m1 0h1m2 0h1m3 0h1m1 0h5m5 0h2m3 0h1m1 0h3m4 0h2m-37 1h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m1 0h7m1 0h1m-29 1h2m6 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m2 0h1m2 0h5m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m2 0h2m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h1m4 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m2 0h5m1 0h5m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h4m8 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h3m1 0h1m2 0h1m4 0h4m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h2m3 0h3m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h5" },
 };
 /* @@FIN-DATOS@@ */
 
