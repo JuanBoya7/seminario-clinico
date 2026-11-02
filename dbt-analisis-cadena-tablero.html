@@ -410,6 +410,12 @@ async function pedirResumen(grupo){
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const numeroDeGrupo = e => parseInt(String(e.grupo).replace(/\D/g, ""), 10) || 0;
 const plural = (n, uno, varios) => n === 1 ? uno : varios;
+// En la lectura docente, las habilidades van en negrita para que se vean entre el texto.
+const HABILIDADES_RESALTAR = ["STOP", "TIP", "aceptación radical", "mente sabia", "verificar los hechos",
+  "acción opuesta", "ACA CUIDA", "DEAR MAN", "AVES", "VIDA", "validar"];
+const LETRA = "A-Za-zÁÉÍÓÚáéíóúÑñ";
+const resaltar = t => HABILIDADES_RESALTAR.reduce((html, h) =>
+  html.replace(new RegExp("(^|[^" + LETRA + "])(" + h + ")(?![" + LETRA + "])", "gi"), "$1<b>$2</b>"), esc(t));
 const situacionDe = n => SIT[(Math.max(1, n) - 1) % SIT.length];
 // Entregas de esta actividad: cada eslabón es una letra. Las del caso Valeria, que siguen en la
 // misma pestaña de la hoja, traen texto libre y no se muestran.
@@ -477,7 +483,7 @@ function pantallaDetalle(n){
   const clave = verClave ? `<div class="clave-panel"><span class="r">Clave</span>
       <p><b>${aciertos} de 8</b> datos en su eslabón. El dato que sobra: «${esc(s.letras[s.sobra])}»${usoSobra ? " — quedó dentro de la cadena" : " — quedó fuera"}.</p>
       ${fuera ? `<ul>${fuera}</ul>` : ""}
-      <p><b>Un corte posible:</b> ${esc(s.corte)}</p></div>` : "";
+      <p><b>Un corte posible:</b> ${resaltar(s.corte)}</p></div>` : "";
   return `<section class="panel">
     <button class="bt volver" id="bt-volver">&larr; Volver a los globos</button>
     <div class="eyebrow">Grupo ${n}</div>
