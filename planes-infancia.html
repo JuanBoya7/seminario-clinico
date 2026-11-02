@@ -1995,6 +1995,48 @@ REFERENCIAS.push(
   { k: "Baker y Brightman, 2004", ref: "Baker, B. L. y Brightman, A. J. (2004). <em>Steps to independence: Teaching everyday skills to children with special needs</em> (4.ª ed.). Paul H. Brookes." }
 );
 
+/* Neurodesarrollo y tercera generación, bloque 4 (2026-11-02): conducta e
+   irritabilidad (Twohig et al., 2008; McNeil y Hembree-Kigin, 2010; Harvey
+   y Penzo, 2009; Zurita Ona, 2018) y habilidades dialéctico-conductuales en
+   el colegio (Mazza et al., 2016). */
+Object.assign(MODELOS, {
+  "act-externalizante": {
+    t: "Evitación experiencial y conducta externalizante",
+    autor: "Twohig, Hayes y Berlin",
+    d: "Algunas peleas y desafíos no se explican solo por las contingencias del ambiente ni por falta de habilidades, sino por cómo el niño responde a su propia rabia, frustración o pensamientos: la conducta le sirve para escapar de ellos un momento. En los padres, la evitación de su propio malestar se asocia con disciplina inconsistente, poca supervisión y menos participación. La aceptación y el compromiso trabajan esos procesos junto con el manejo conductual.",
+    dim: ["Evitación del niño", "Evitación de los padres", "Fusión con reglas y etiquetas", "Valores", "Manejo conductual"],
+    fuente: "Twohig et al., 2008"
+  },
+  "dbt-padres-intensos": {
+    t: "Emociones intensas e invalidación",
+    autor: "Harvey y Penzo",
+    d: "Un niño con tendencia a emociones intensas que no se siente reconocido por quienes lo rodean queda más confundido y alterado, y sus explosiones se vuelven más probables. Los padres que validan, mantienen la calma, crean rutinas predecibles y responden a las conductas con principios conductuales rompen ese ciclo y le enseñan al niño a calmarse.",
+    dim: ["Vulnerabilidad emocional", "Invalidación", "Validación", "Calma de los padres", "Principios conductuales"],
+    fuente: "Harvey y Penzo, 2009, caps. 1 a 4"
+  },
+  "act-supersensibles": {
+    t: "Sensibilidad emocional y flexibilidad",
+    autor: "Zurita Ona",
+    d: "Algunos adolescentes sienten con más intensidad que los demás. Las soluciones rápidas para quitarse ese malestar —explotar, aislarse, actuar por impulso— alivian un momento pero los alejan de lo que les importa. Aprender a sentir sin huir, tomar distancia de la voz interior y moverse hacia sus valores les da más opciones.",
+    dim: ["Sensibilidad", "Soluciones rápidas", "Voz interior", "Autocuidado", "Valores"],
+    fuente: "Zurita Ona, 2018"
+  },
+  "dbt-steps-a": {
+    t: "Habilidades dialéctico-conductuales como aprendizaje socioemocional",
+    autor: "Mazza, Dexter-Mazza, Miller, Rathus y Murphy",
+    d: "Las habilidades de la terapia dialéctico-conductual —atención plena, tolerancia al malestar, regulación emocional y efectividad interpersonal— son habilidades básicas para la vida que todos los adolescentes pueden aprender. Enseñadas en clase por docentes, como parte de un sistema escalonado, dan a cada estudiante su propia caja de herramientas y permiten identificar a quienes necesitan más apoyo.",
+    dim: ["Atención plena", "Tolerancia al malestar", "Regulación emocional", "Efectividad interpersonal", "Sistema escalonado"],
+    fuente: "Mazza et al., 2016, cap. 1"
+  }
+});
+REFERENCIAS.push(
+  { k: "Twohig et al., 2008", ref: "Twohig, M. P., Hayes, S. C. y Berlin, K. S. (2008). Acceptance and commitment therapy for childhood externalizing disorders. En L. A. Greco y S. C. Hayes (Eds.), <em>Acceptance and mindfulness treatments for children and adolescents</em>. New Harbinger." },
+  { k: "McNeil y Hembree-Kigin, 2010", ref: "McNeil, C. B. y Hembree-Kigin, T. L. (2010). <em>Parent-child interaction therapy</em> (2.ª ed.). Springer." },
+  { k: "Harvey y Penzo, 2009", ref: "Harvey, P. y Penzo, J. A. (2009). <em>Parenting a child who has intense emotions: Dialectical behavior therapy skills to help your child regulate emotional outbursts and aggressive behaviors</em>. New Harbinger." },
+  { k: "Zurita Ona, 2018", ref: "Zurita Ona, P. E. (2018). <em>Escaping the emotional roller coaster: ACT for the emotionally sensitive teen</em>. Exisle Publishing." },
+  { k: "Mazza et al., 2016", ref: "Mazza, J. J., Dexter-Mazza, E. T., Miller, A. L., Rathus, J. H. y Murphy, H. E. (2016). <em>DBT skills in schools: Skills training for emotional problem solving for adolescents (DBT STEPS-A)</em>. Guilford Press." }
+);
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "afr-ease": [
@@ -5241,7 +5283,8 @@ const VARIABLES = [
   sub: "Malestar emocional —tristeza, preocupación, irritabilidad, retraimiento— en adolescentes tempranos que viven adversidad: pobreza, violencia, desplazamiento, crisis familiares. No hace falta un diagnóstico. Lo que se entrena son habilidades para reconocer y manejar las emociones, actuar en lugar de retraerse y resolver problemas, junto con apoyo a los cuidadores.",
   elegir: [
     "<strong>Si hay un grupo de adolescentes de 10 a 15 años con malestar en un contexto de adversidad</strong> y pocos especialistas, EASE de la OMS y UNICEF ofrece un programa grupal breve que pueden aplicar facilitadores no especialistas con supervisión.",
-    "Si el malestar llega a un trastorno, ver <em>Ansiedad</em> o <em>Depresión</em>."
+    "Si el malestar llega a un trastorno, ver <em>Ansiedad</em> o <em>Depresión</em>.",
+    "<strong>Si el colegio quiere enseñar a todos sus estudiantes de secundaria a regular emociones y relacionarse</strong>, el currículo escolar de habilidades dialéctico-conductuales se da en clase durante el año."
   ],
   planes: [
     {
@@ -5348,6 +5391,85 @@ const VARIABLES = [
       cuidado: [
         "No es adecuado para adolescentes en riesgo inminente de autolesión o suicidio, con conductas que alteren el grupo o con trastornos graves: requieren otra atención (OMS y UNICEF, 2023, cap. 1).",
         "Debe haber rutas de remisión para protección y riesgo suicida donde se aplique (OMS y UNICEF, 2023, cap. 1 y anexo 1)."
+      ]
+    },
+    {
+      id: "afr-steps-a",
+      mod: "dbt-steps-a",
+      enf: "dbt",
+      nivel: "preliminar",
+      t: "Habilidades dialéctico-conductuales en el colegio (DBT STEPS-A)",
+      fuente: "Mazza et al., 2016",
+      cuando: "Estudiantes de <strong>secundaria y bachillerato</strong>, con o sin dificultades emocionales, en un colegio que puede dedicar una clase semanal a enseñar habilidades para regular las emociones, resolver problemas y relacionarse.",
+      respaldo: "El currículo adapta el entrenamiento en habilidades de la terapia dialéctico-conductual, que tiene ensayos con adolescentes con problemas múltiples, como aprendizaje socioemocional universal; los primeros colegios que lo aplicaron reportaron resultados preliminares prometedores, por ejemplo menos malestar emocional en estudiantes de noveno frente a compañeros sin el curso (Mazza et al., 2016, cap. 1).",
+      secuencia: "<strong>Secuencia:</strong> unas 30 lecciones de 50 minutos, una por semana durante dos semestres o dos por semana en uno, dadas por docentes o profesionales del colegio. Cada lección tiene la misma estructura: ejercicio breve de atención plena, revisión de tareas en parejas, contenido nuevo y resumen con tarea (Mazza et al., 2016, caps. 1 y 2).",
+      esc: ["colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Orientación, dialéctica y atención plena",
+          tecs: ["mente-sabia", "atencion-plena"],
+          obj: "Presentar el curso y las habilidades de atención plena.",
+          pasos: [
+            "Presentar el curso, sus reglas y la tarjeta diaria de práctica.",
+            "Enseñar la dialéctica: buscar el camino del medio.",
+            "Enseñar la mente sabia y las habilidades de qué hacer y cómo hacerlo."
+          ],
+          casa: "Practicar una habilidad de atención plena y marcarla en la tarjeta diaria.",
+          avance: "Los estudiantes usan la tarjeta diaria.",
+          fuente: "Mazza et al., 2016, lecciones 1 a 5",
+          fichas: ["guia-que-como-adolescentes", "tarjeta-diaria-adolescente"]
+        },
+        {
+          t: "Tolerancia al malestar",
+          tecs: ["tolerancia-malestar", "tip", "aceptacion-radical"],
+          obj: "Sobrevivir a las crisis sin empeorarlas.",
+          pasos: [
+            "Distraerse con mente sabia y mejorar el momento.",
+            "Usar las habilidades TIP y los pros y contras.",
+            "Practicar la aceptación radical, girar la mente y la disposición."
+          ],
+          casa: "Usar una habilidad de crisis en la semana.",
+          avance: "Usan habilidades en momentos de malestar.",
+          fuente: "Mazza et al., 2016, lecciones 6 a 12",
+          fichas: ["guia-stop-tipp-adolescentes", "guia-aceptar-opuesta-adolescentes"]
+        },
+        {
+          t: "Regulación emocional",
+          tecs: ["verificar-hechos", "accion-opuesta", "solucion-problemas"],
+          obj: "Entender y cambiar las emociones.",
+          pasos: [
+            "Entender las funciones de las emociones y describirlas.",
+            "Verificar los hechos, hacer la acción opuesta y resolver problemas.",
+            "Acumular experiencias positivas, construir dominio, anticiparse y cuidar el cuerpo; surfear la ola de la emoción."
+          ],
+          casa: "Practicar una habilidad de regulación.",
+          avance: "Describen y regulan mejor sus emociones.",
+          fuente: "Mazza et al., 2016, lecciones 15 a 21",
+          fichas: ["guia-aceptar-opuesta-adolescentes"]
+        },
+        {
+          t: "Efectividad interpersonal",
+          tecs: ["dear-man"],
+          obj: "Pedir, decir que no y cuidar las relaciones y el respeto propio.",
+          pasos: [
+            "Fijar y priorizar metas en una situación interpersonal.",
+            "Practicar pedir y decir que no, cuidar la relación y cuidar el respeto propio.",
+            "Evaluar las opciones según la situación."
+          ],
+          casa: "Usar una habilidad interpersonal en una situación real.",
+          avance: "Piden y dicen que no de forma efectiva.",
+          fuente: "Mazza et al., 2016, lecciones 25 a 29"
+        }
+      ],
+      medir: [
+        "Tarjeta diaria de práctica y exámenes de cada módulo."
+      ],
+      adapt: [
+        "<strong>Estudiantes que necesitan más:</strong> el currículo se ubica dentro de un sistema escalonado; los estudiantes con más dificultades pueden recibir apoyos adicionales o remitirse a terapia dialéctico-conductual completa (Mazza et al., 2016, cap. 3)."
+      ],
+      cuidado: [
+        "No es una terapia: es el componente de habilidades, para todos los estudiantes. Un adolescente con riesgo suicida o autolesiones necesita evaluación y tratamiento aparte (Mazza et al., 2016, cap. 1)."
       ]
     }
   ]
@@ -6008,7 +6130,9 @@ const VARIABLES = [
   sub: "Explosiones de rabia frecuentes e intensas, desproporcionadas a lo que las provoca, con irritabilidad casi todos los días entre una y otra. Al niño le cuesta adaptarse a los cambios, tolerar la frustración y resolver problemas, y las explosiones aparecen de forma predecible en ciertas situaciones. Lo que se interviene son las habilidades que le faltan y la forma en que los adultos plantean sus expectativas en esas situaciones.",
   elegir: [
     "<strong>La solución colaborativa de problemas entiende las explosiones como el resultado de habilidades que el niño todavía no tiene</strong> —flexibilidad, tolerancia a la frustración, solución de problemas—, que se cruzan con la forma en que los adultos imponen sus expectativas. En un ensayo con niños de 4 a 12 años con conducta oposicionista, tuvo efectos comparables o mayores que el entrenamiento conductual a padres (Greene y Ablon, 2006).",
-    "Si predominan la desobediencia y el desafío sin gran carga emocional, el entrenamiento a padres de Conducta oposicionista y desafiante tiene más respaldo. Si la irritabilidad viene con tristeza o ansiedad, el protocolo unificado de Ansiedad y miedos trabaja las emociones de forma transdiagnóstica. Si hay autolesiones, corresponde Autolesión y riesgo suicida."
+    "Si predominan la desobediencia y el desafío sin gran carga emocional, el entrenamiento a padres de Conducta oposicionista y desafiante tiene más respaldo. Si la irritabilidad viene con tristeza o ansiedad, el protocolo unificado de Ansiedad y miedos trabaja las emociones de forma transdiagnóstica. Si hay autolesiones, corresponde Autolesión y riesgo suicida.",
+    "<strong>Si los padres están desbordados por las explosiones</strong>, las habilidades dialéctico-conductuales para padres les enseñan a validar, prevenir y calmar las crisis.",
+    "<strong>Si es un adolescente que siente todo con intensidad y quiere aprender a manejarlo</strong>, la aceptación y el compromiso pueden trabajarse como autoayuda acompañada."
   ],
   planes: [
     {
@@ -6122,6 +6246,213 @@ const VARIABLES = [
         "Los padres que tienen ellos mismos dificultades en estas habilidades, o con niños en el extremo más grave, necesitan más tiempo (Greene y Ablon, 2006, cap. 6).",
         "En plena explosión, el plan B de emergencia sirve para bajar la tensión, pero es el peor momento para resolver el problema de forma duradera: eso se hace antes, de forma proactiva (Greene y Ablon, 2006, cap. 4)."
       ]
+    },
+    {
+      id: "irr-dbt-padres",
+      mod: "dbt-padres-intensos",
+      enf: "dbt",
+      nivel: "conceptual",
+      t: "Habilidades dialéctico-conductuales para padres de niños con emociones intensas",
+      fuente: "Harvey y Penzo, 2009",
+      cuando: "Padres de un <strong>niño con emociones muy intensas</strong>, explosiones, rabietas prolongadas o agresión, que se sienten desbordados, caminan «sobre cáscaras de huevo» o alternan entre ceder y castigar.",
+      respaldo: "Libro para padres que adapta las habilidades de la terapia dialéctico-conductual a la crianza; no presenta datos propios (Harvey y Penzo, 2009).",
+      secuencia: "<strong>Secuencia:</strong> once capítulos en tres partes —el niño y la intensidad emocional, responder a sus emociones y responder a sus conductas—, trabajados en orientación a padres (Harvey y Penzo, 2009).",
+      esc: ["primer-nivel", "salud-mental"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Entender la intensidad emocional y los supuestos",
+          tecs: ["psicoeducacion", "validacion"],
+          obj: "Mirar al niño con otros ojos.",
+          pasos: [
+            "Explicar cómo la invalidación sin querer, por ejemplo «ya se te va a pasar», confunde y altera más a un niño intenso.",
+            "Practicar los supuestos: el niño hace lo mejor que puede, necesita y quiere hacerlo mejor; no suponer lo peor.",
+            "Practicar la atención plena para notar y responder con sabiduría en lugar de reaccionar."
+          ],
+          casa: "Practicar un supuesto en un momento difícil.",
+          avance: "Los padres describen a su hijo sin juzgarlo.",
+          fuente: "Harvey y Penzo, 2009, caps. 1 y 2"
+        },
+        {
+          t: "La historia de la emoción",
+          tecs: ["analisis-cadena", "validacion"],
+          obj: "Entender qué lleva al niño a la explosión.",
+          pasos: [
+            "Identificar sus vulnerabilidades y sus desencadenantes, incluidos las emociones de los padres y los hermanos.",
+            "Notar sus creencias, sus sensaciones del cuerpo y cómo comunica lo que siente.",
+            "Validar: hacerle saber que se entiende lo que siente, aunque no se apruebe la conducta."
+          ],
+          casa: "Registrar una explosión con sus desencadenantes.",
+          avance: "Los padres anticipan los desencadenantes.",
+          fuente: "Harvey y Penzo, 2009, cap. 3",
+          fichas: ["registro-explosiones"]
+        },
+        {
+          t: "Prevenir y desescalar",
+          tecs: ["validacion", "rutina-actividad-conjunta"],
+          obj: "Reducir las explosiones y calmarlas cuando ocurren.",
+          pasos: [
+            "Crear rutinas predecibles, reglas consistentes, menos actividades y ocasiones de placer y de logro.",
+            "En la crisis, calmarse primero: voz suave, respirar despacio, recordar que el niño hace lo mejor que puede.",
+            "Validar, ofrecer actividades y un lugar para calmarse, y no hacer exigencias ni amenazas hasta que se calme."
+          ],
+          casa: "Aplicar los pasos en la próxima crisis.",
+          avance: "Las crisis duran menos.",
+          fuente: "Harvey y Penzo, 2009, cap. 4",
+          fichas: ["guia-calma-crisis"]
+        },
+        {
+          t: "Enseñarle a calmarse",
+          tecs: ["conciencia-emocional", "tolerancia-malestar"],
+          obj: "Que el niño reconozca lo que siente y use actividades para calmarse.",
+          pasos: [
+            "Enseñarle a notar sus sensaciones y emociones, con ejercicios breves de calma.",
+            "Elegir con él actividades que lo calman: música, dibujo, un lugar tranquilo.",
+            "Revisar después qué le funcionó."
+          ],
+          casa: "Practicar una actividad de calma en un momento tranquilo.",
+          avance: "El niño usa una actividad para calmarse.",
+          fuente: "Harvey y Penzo, 2009, cap. 5",
+          fichas: ["caja-herramientas"]
+        },
+        {
+          t: "Conducta: límites, rabietas y agresión",
+          tecs: ["reforzamiento-positivo", "extincion", "plan-seguridad"],
+          obj: "Responder a las conductas con principios conductuales.",
+          pasos: [
+            "Aplicar los principios conductuales y mantener expectativas, límites y rutinas.",
+            "Revisar cómo se responde a las rabietas para no reforzarlas.",
+            "Ante la agresión, tener un plan de seguridad previo para la familia; cuando el niño esté calmado, ayudarlo a hacerse responsable."
+          ],
+          casa: "Aplicar el plan acordado ante una rabieta.",
+          avance: "Disminuyen las rabietas y la agresión.",
+          fuente: "Harvey y Penzo, 2009, caps. 6 a 8"
+        },
+        {
+          t: "Colegio, familia y cuidado de los padres",
+          tecs: ["consultoria-docente", "autocuidado-padres"],
+          obj: "Atender el colegio, los hermanos y el bienestar de los padres.",
+          pasos: [
+            "Coordinar con el colegio las dificultades escolares.",
+            "Atender el efecto en los hermanos y en la pareja.",
+            "Cuidarse y mantener una vida propia."
+          ],
+          casa: "Hacer algo para el propio cuidado.",
+          avance: "Los padres tienen apoyo y tiempo propio.",
+          fuente: "Harvey y Penzo, 2009, caps. 9 a 11"
+        }
+      ],
+      medir: [
+        "Frecuencia y duración de las explosiones."
+      ],
+      adapt: [
+        "<strong>Hermanos:</strong> después de un episodio de agresión, hablar con los hermanos y validar lo que sienten (Harvey y Penzo, 2009, cap. 8)."
+      ],
+      cuidado: [
+        "Si hay agresión grave, buscar apoyo profesional y tener un plan de seguridad que incluya cómo proteger a los demás niños y cuándo pedir ayuda de emergencia (Harvey y Penzo, 2009, cap. 8).",
+        "En plena explosión no recordar tareas ni amenazar con consecuencias: el niño no puede escuchar hasta calmarse (Harvey y Penzo, 2009, cap. 4)."
+      ]
+    },
+    {
+      id: "irr-act-adol",
+      mod: "act-supersensibles",
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso para adolescentes emocionalmente sensibles",
+      fuente: "Zurita Ona, 2018",
+      cuando: "Un <strong>adolescente que siente todo con mucha intensidad</strong>, se irrita o se aísla con facilidad, actúa por impulso cuando se altera y quiere aprender a manejarlo, con capacidad de leer y practicar entre sesiones.",
+      respaldo: "Libro de autoayuda basado en la terapia de aceptación y compromiso, cuya evidencia general resume la autora; no presenta datos del libro mismo (Zurita Ona, 2018).",
+      secuencia: "<strong>Secuencia:</strong> 37 capítulos breves en siete partes, que el adolescente lee y practica entre sesiones de acompañamiento (Zurita Ona, 2018).",
+      esc: ["primer-nivel", "colegio"],
+      edad: ["12-17"],
+      actividades: [
+        {
+          t: "Supersensible y lo que no ha funcionado",
+          tecs: ["psicoeducacion", "desesperanza-creativa", "valores"],
+          obj: "Entender la propia sensibilidad y aclarar lo que importa.",
+          pasos: [
+            "Reconocerse como alguien que siente con intensidad, sin verlo como un defecto.",
+            "Revisar las soluciones rápidas que ha usado y por qué no funcionan a largo plazo.",
+            "Aclarar sus valores."
+          ],
+          casa: "Escribir sus valores.",
+          avance: "Describe lo que le importa.",
+          fuente: "Zurita Ona, 2018, caps. 1 a 4",
+          fichas: ["valores-adolescente"]
+        },
+        {
+          t: "Las emociones y sus estrategias",
+          tecs: ["conciencia-emocional", "disposicion"],
+          obj: "Entender las emociones y elegir cómo responder.",
+          pasos: [
+            "Entender qué son las emociones y para qué sirven.",
+            "Notar las emociones sobre las emociones y los impulsos que llevan a la irritación o al aislamiento.",
+            "Elegir sentir en lugar de huir."
+          ],
+          casa: "Registrar una emoción intensa y lo que hizo.",
+          avance: "Nota sus impulsos antes de actuar.",
+          fuente: "Zurita Ona, 2018, caps. 5 a 14"
+        },
+        {
+          t: "La voz interior",
+          tecs: ["defusion"],
+          obj: "Tomar distancia de los pensamientos pegajosos.",
+          pasos: [
+            "Notar cómo nace y qué crea la voz interior.",
+            "Practicar ver los pensamientos sobre las emociones como narraciones, no como verdades."
+          ],
+          casa: "Notar un pensamiento pegajoso y nombrarlo.",
+          avance: "Se engancha menos con sus pensamientos.",
+          fuente: "Zurita Ona, 2018, caps. 15 a 19"
+        },
+        {
+          t: "Cuidarse y calmarse",
+          tecs: ["autocompasion", "atencion-plena"],
+          obj: "Cuidarse cuando el cerebro se pone en modo peligro.",
+          pasos: [
+            "Entender cómo responde el cerebro ante el peligro y la atención dispersa.",
+            "Practicar formas de calmarse y consolarse."
+          ],
+          casa: "Practicar una forma de calmarse.",
+          avance: "Usa formas de calmarse.",
+          fuente: "Zurita Ona, 2018, caps. 20 a 24",
+          fichas: ["guia-calma-cuerpo-adolescentes"]
+        },
+        {
+          t: "Las relaciones",
+          tecs: ["entrenamiento-comunicacion", "toma-perspectiva"],
+          obj: "Manejar los conflictos y la comunicación.",
+          pasos: [
+            "Notar la comunicación no verbal y los estilos de apego.",
+            "Manejar los conflictos con curiosidad y empatía.",
+            "Dar y recibir retroalimentación."
+          ],
+          casa: "Practicar una conversación difícil.",
+          avance: "Maneja mejor los conflictos.",
+          fuente: "Zurita Ona, 2018, caps. 25 a 31"
+        },
+        {
+          t: "Atención plena y momentos difíciles",
+          tecs: ["atencion-plena", "prevencion-recaidas"],
+          obj: "Sostener lo aprendido cuando la vida se pone difícil.",
+          pasos: [
+            "Practicar la atención plena en la acción.",
+            "Reconocer su punto de quiebre y qué hacer antes de llegar a él."
+          ],
+          casa: "Practicar atención plena en una actividad diaria.",
+          avance: "Reconoce su punto de quiebre.",
+          fuente: "Zurita Ona, 2018, caps. 32 a 37"
+        }
+      ],
+      medir: [
+        "Episodios de irritación o de actuar por impulso que el adolescente registre."
+      ],
+      adapt: [
+        "<strong>Modelo DNA-V:</strong> para trabajar con adolescentes los valores, la observación y el descubrimiento, ver también el plan de bienestar con DNA-V (Hayes y Ciarrochi, 2015)."
+      ],
+      cuidado: [
+        "Es un libro de autoayuda: si hay autolesiones, ideación suicida o desregulación grave, usar los planes de autolesión y suicidio o de rasgos de personalidad."
+      ]
     }
   ]
 },
@@ -6133,7 +6464,8 @@ const VARIABLES = [
     "<strong>En la niñez, la intervención con más respaldo es el entrenamiento a los padres</strong>: todas las intervenciones con el nivel de evidencia más alto para niños con problemas de conducta trabajan con la familia, y los programas centrados en los padres tienen efectos mayores que los centrados solo en el niño (McMahon y Frick, 2019).",
     "<strong>Si a los padres les cuesta aplicar las estrategias</strong> —ceden ante el llanto, se desbordan, siguen reglas rígidas o se culpan—, la aceptación y compromiso para padres se suma al entrenamiento a padres; tiene ensayos con familias de niños con discapacidad. <strong>Si lo que más pesa es el estrés de la crianza</strong> y los padres reaccionan en automático o repiten patrones de su propia infancia, la crianza consciente es otro complemento, con estudios sin grupo control.",
     "<strong>Entre los 2 y los 7 años</strong>, la terapia de interacción padres-hijos entrena a los padres en vivo mientras juegan con el niño. <strong>Entre los 2 y los 12</strong>, el entrenamiento a padres de Kazdin trabaja con los padres en la consulta y en casa. <strong>Desde los 7</strong>, el entrenamiento en solución de problemas trabaja directamente con el niño y funciona mejor combinado con el de los padres.",
-    "En la adolescencia, cuando la conducta incluye robos, peleas, fugas o problemas con la justicia, corresponde la variable Problemas de conducta graves en la adolescencia. Si la conducta desafiante viene con explosiones de irritabilidad casi a diario, conviene revisar también Irritabilidad y explosiones de rabia."
+    "En la adolescencia, cuando la conducta incluye robos, peleas, fugas o problemas con la justicia, corresponde la variable Problemas de conducta graves en la adolescencia. Si la conducta desafiante viene con explosiones de irritabilidad casi a diario, conviene revisar también Irritabilidad y explosiones de rabia.",
+    "<strong>Si el niño pelea o desafía para escapar de su propia rabia o de pensamientos como «nadie me quiere»</strong>, y el manejo conductual ya está en marcha, se puede sumar aceptación y compromiso con el niño."
   ],
   planes: [
     {
@@ -6396,7 +6728,12 @@ const VARIABLES = [
       ],
       adapt: [
         "<strong>Protección:</strong> el programa se ha usado con familias en procesos de reunificación y con familias de acogida; la motivación de los padres es decisiva (Hembree-Kigin y McNeil, 1995, cap. 1).",
-        "<strong>Primer nivel:</strong> es un formato breve, de 8 a 12 sesiones, pensado para servicios de atención ambulatoria (Hembree-Kigin y McNeil, 1995, cap. 1)."
+        "<strong>Primer nivel:</strong> es un formato breve, de 8 a 12 sesiones, pensado para servicios de atención ambulatoria (Hembree-Kigin y McNeil, 1995, cap. 1).",
+        "<strong>Niños de 7 a 10 años:</strong> la segunda edición propone adaptaciones para niños mayores; con algunos niños de 7 años más pequeños o inmaduros puede usarse el programa estándar (McNeil y Hembree-Kigin, 2010, cap. 10).",
+        "<strong>Autismo:</strong> muchas conductas repetitivas no se mantienen por la atención de los padres, así que ignorarlas no las reduce y puede dejar al niño casi sin atención; tratarlas según su función, y sumar al final un módulo de comunicación y habilidades sociales. No usar el tiempo fuera cuando el niño no responde porque no puede, y no por desafío (McNeil y Hembree-Kigin, 2010, cap. 12).",
+        "<strong>Déficit de atención:</strong> agregar psicoeducación sobre el déficit de atención para los padres y medidas específicas en la evaluación, y ajustar el programa a sus dificultades (McNeil y Hembree-Kigin, 2010, cap. 15).",
+        "<strong>Aula de preescolar:</strong> la versión para docentes se enseña en talleres, uno de juego dirigido por el niño y otro de interacción dirigida por el docente, cada uno con entrenamiento en el aula hasta lograr el dominio (McNeil y Hembree-Kigin, 2010, cap. 21).",
+        "<strong>Niños extremadamente agresivos o explosivos:</strong> el libro dedica un capítulo a los casos que desafían los límites del manejo conductual habitual (McNeil y Hembree-Kigin, 2010, cap. 16)."
       ],
       cuidado: [
         "El programa es menos eficaz con niños menores de 2 o mayores de 7 años, o con autismo, y cuando los padres tienen consumo activo de sustancias, depresión grave o un conflicto de pareja con violencia: en esos casos se atiende primero lo de los padres o se elige otro plan (Hembree-Kigin y McNeil, 1995, cap. 1).",
@@ -6842,6 +7179,96 @@ const VARIABLES = [
       cuidado: [
         "Si hay consumo, violencia grave o riesgo suicida, se atienden primero con el plan correspondiente.",
         "Si el adolescente tiene TDAH, se combina con el tratamiento del TDAH."
+      ]
+    },
+    {
+      id: "opos-act-nino",
+      mod: "act-externalizante",
+      enf: "act",
+      nivel: "conceptual",
+      t: "Aceptación y compromiso con el niño junto con el manejo conductual",
+      fuente: "Twohig et al., 2008",
+      cuando: "Un <strong>niño o adolescente con conductas externalizantes</strong> —peleas, discusiones con adultos, desafío— que no se explican solo por las contingencias del ambiente ni por falta de habilidades, sino por cómo responde a su propia rabia, frustración o pensamientos como «nadie me quiere», cuando el manejo conductual ya está en marcha.",
+      respaldo: "Los autores presentan la aceptación y el compromiso no como una intervención estructurada sino como una forma de hacer terapia conductual con estos niños y sus padres, apoyada en la investigación sobre la evitación experiencial de los padres y la coerción familiar; no presentan datos de un programa con niños (Twohig et al., 2008).",
+      secuencia: "<strong>Secuencia:</strong> sin número fijo de sesiones; se trabaja con el niño y con los padres según el análisis funcional, en coordinación con el colegio (Twohig et al., 2008).",
+      esc: ["primer-nivel", "salud-mental", "colegio"],
+      edad: ["6-11", "12-17"],
+      actividades: [
+        {
+          t: "Análisis funcional",
+          tecs: ["analisis-funcional"],
+          obj: "Saber si la conducta se mantiene por el ambiente o por cómo el niño responde a lo que siente.",
+          pasos: [
+            "Describir la forma, la frecuencia y la intensidad de la conducta problema.",
+            "Identificar los desencadenantes externos y los internos: pensamientos, emociones, recuerdos.",
+            "Identificar qué malestar evita la conducta y qué estrategias de control usa el niño, y qué costos tienen."
+          ],
+          casa: "Los padres registran las situaciones en que aparece la conducta.",
+          avance: "Está claro qué evita el niño con la conducta.",
+          fuente: "Twohig et al., 2008",
+          fichas: ["registro-abc"]
+        },
+        {
+          t: "Aceptación y compromiso con los padres",
+          tecs: ["disposicion", "valores"],
+          obj: "Que los padres puedan aplicar el plan conductual aunque les cueste.",
+          pasos: [
+            "Identificar lo que les impide aplicar el plan: la incomodidad de ignorar una contestación o la idea de que eso es ser «débil».",
+            "Conectar con sus valores de crianza para sostener las pautas aunque la conducta empeore al principio."
+          ],
+          casa: "Aplicar la pauta acordada notando lo que se siente.",
+          avance: "Los padres sostienen el plan conductual.",
+          fuente: "Twohig et al., 2008"
+        },
+        {
+          t: "Aceptar la rabia sin pelear",
+          tecs: ["disposicion", "metaforas-concretas"],
+          obj: "Que el niño pueda sentir rabia sin actuar para quitársela.",
+          pasos: [
+            "Crear en la sesión un ambiente donde las emociones y los pensamientos se pueden tener, y modelarlo.",
+            "Usar metáforas concretas, como rascarse una picadura: alivia un momento y empeora la piel.",
+            "Practicar con juego de roles situaciones de burlas o peleas."
+          ],
+          casa: "Notar la rabia una vez sin actuar sobre ella.",
+          avance: "El niño describe su rabia y elige qué hacer.",
+          fuente: "Twohig et al., 2008"
+        },
+        {
+          t: "Defusión, presente y yo como contexto",
+          tecs: ["defusion", "atencion-plena-sentidos", "yo-contexto"],
+          obj: "Tomar distancia de los pensamientos que lo meten en problemas.",
+          pasos: [
+            "Escribir los pensamientos que molestan en aviones de papel y verlos volar sin atraparlos.",
+            "Practicar notar con los sentidos actividades que le gustan, como deslizarse por un rodadero.",
+            "Explorar las etiquetas que sostiene con esfuerzo, como «el rudo» o «el popular», y practicar actuar distinto."
+          ],
+          casa: "Practicar notar un pensamiento sin obedecerlo.",
+          avance: "Toma distancia de sus pensamientos.",
+          fuente: "Twohig et al., 2008",
+          fichas: ["guion-aviones-papel"]
+        },
+        {
+          t: "Valores y compromisos",
+          tecs: ["valores", "accion-comprometida"],
+          obj: "Moverse hacia lo que le importa.",
+          pasos: [
+            "Identificar lo que le importa: amigos, deporte, familia; o, en los más pequeños, algo concreto como el recreo.",
+            "Acordar acciones pequeñas hacia eso y reforzarlas en casa y en el colegio."
+          ],
+          casa: "Hacer el compromiso de la semana.",
+          avance: "Cumple compromisos ligados a lo que le importa.",
+          fuente: "Twohig et al., 2008",
+          fichas: ["valores-adolescente"]
+        }
+      ],
+      medir: [
+        "Frecuencia de la conducta problema en casa y en el colegio."
+      ],
+      adapt: [
+        "<strong>No en todos los casos:</strong> si la conducta se explica por el ambiente o por falta de habilidades, basta el manejo conductual (Twohig et al., 2008)."
+      ],
+      cuidado: [
+        "Se suma al entrenamiento a padres y al manejo de contingencias en el colegio, no los reemplaza (Twohig et al., 2008)."
       ]
     }
   ]
@@ -17021,7 +17448,11 @@ const GLOSARIO = [
   fuente: "Bertin, 2015, caps. 3 y 4", ficha: "guia-pausa-padres-tdah" },
 { k: "stop-transiciones", t: "STOP en las transiciones", tipo: "Técnica", enf: ["mind"],
   d: "Pausa de cuatro pasos —parar, respirar, observar y proceder con intención— que se practica al pasar de una actividad a otra. Ayuda a los padres a responder en lugar de reaccionar, y al niño o adolescente con déficit de atención a recordar terminar lo que empezó.",
-  fuente: "Bertin, 2015, cap. 2 · Bertin y Bluth, 2021, cap. 8", ficha: "guia-pausa-padres-tdah" }
+  fuente: "Bertin, 2015, cap. 2 · Bertin y Bluth, 2021, cap. 8", ficha: "guia-pausa-padres-tdah" },
+/* ---------- Bloque 4: conducta, irritabilidad y habilidades en el colegio (2026-11-02) ---------- */
+{ k: "tolerancia-malestar", t: "Tolerancia al malestar", alias: ["habilidades de crisis", "actividades para calmarse"], tipo: "Técnica", enf: ["dbt"],
+  d: "Habilidades para sobrellevar un momento de malestar intenso sin empeorarlo: actividades que distraen de las emociones dolorosas y que calman, como escuchar música, dibujar o ir a un lugar tranquilo, además de las habilidades de crisis de la terapia dialéctico-conductual.",
+  fuente: "Harvey y Penzo, 2009, caps. 4 y 5 · Mazza et al., 2016", ficha: "guia-calma-crisis" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
@@ -17140,6 +17571,8 @@ const FICHAS = {
   "guia-pausa-padres-tdah": { t: "Pausas para padres: STOP y quince respiraciones", c: "guia", d: "Criar a un hijo con déficit de atención cansa. Dos prácticas breves le ayudan a responder en lugar de reaccionar y a cuidarse en medio del día. STOP también puede enseñárselo a su hijo, para que recuerde terminar lo que empieza.", n: 41, q: "M0 0.5h7m1 0h1m1 0h1m1 0h7m4 0h2m2 0h2m1 0h1m3 0h7m-41 1h1m5 0h1m2 0h2m2 0h5m1 0h2m7 0h1m1 0h2m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m5 0h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h4m2 0h3m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h6m1 0h1m3 0h3m1 0h5m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h1m2 0h1m2 0h2m1 0h6m6 0h4m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h2m2 0h4m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m3 0h1m1 0h9m2 0h2m1 0h5m2 0h1m1 0h1m1 0h7m2 0h1m-41 1h2m1 0h2m4 0h1m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m3 0h3m4 0h4m2 0h1m-39 1h2m2 0h3m1 0h4m2 0h2m2 0h1m2 0h1m3 0h3m2 0h1m2 0h2m3 0h1m-41 1h1m1 0h1m1 0h2m1 0h3m1 0h1m3 0h4m1 0h2m2 0h1m1 0h1m1 0h6m2 0h2m1 0h2m-41 1h5m1 0h2m2 0h1m1 0h1m3 0h2m1 0h1m1 0h4m3 0h2m2 0h2m5 0h1m-39 1h5m1 0h2m2 0h2m2 0h2m2 0h3m3 0h2m3 0h7m3 0h1m-37 1h3m2 0h4m1 0h1m1 0h3m1 0h2m5 0h1m2 0h1m2 0h2m2 0h2m1 0h1m-41 1h1m3 0h1m2 0h1m1 0h2m1 0h1m2 0h4m2 0h1m2 0h1m2 0h6m3 0h2m2 0h1m-41 1h3m3 0h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h4m4 0h1m1 0h2m2 0h1m4 0h1m-40 1h1m2 0h1m5 0h1m1 0h2m2 0h1m4 0h3m1 0h3m1 0h1m2 0h5m3 0h1m-40 1h1m1 0h2m1 0h1m5 0h2m1 0h3m5 0h2m2 0h1m2 0h1m1 0h2m1 0h1m2 0h3m-40 1h1m2 0h1m2 0h2m4 0h2m1 0h3m1 0h1m1 0h1m3 0h3m5 0h2m1 0h1m-38 1h1m2 0h1m2 0h1m3 0h1m5 0h1m1 0h3m1 0h1m1 0h3m4 0h1m1 0h1m3 0h1m1 0h2m-38 1h1m4 0h2m3 0h1m1 0h1m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-40 1h4m1 0h2m1 0h1m3 0h1m1 0h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h4m4 0h1m-39 1h2m4 0h2m1 0h2m4 0h1m1 0h1m1 0h1m4 0h1m1 0h3m4 0h3m1 0h2m-40 1h1m2 0h5m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m2 0h1m-41 1h3m2 0h1m1 0h2m3 0h2m1 0h1m2 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h3m-41 1h2m1 0h4m3 0h2m1 0h1m1 0h2m6 0h6m1 0h1m1 0h3m5 0h1m-41 1h2m2 0h2m4 0h1m1 0h4m1 0h2m2 0h2m1 0h1m4 0h7m1 0h1m2 0h1m-39 1h2m1 0h2m1 0h2m4 0h1m2 0h2m1 0h3m4 0h1m1 0h2m1 0h2m5 0h2m-41 1h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3m2 0h2m4 0h3m1 0h1m1 0h1m3 0h5m1 0h1m-38 1h1m1 0h2m3 0h1m3 0h3m2 0h1m1 0h4m3 0h3m2 0h1m3 0h2m1 0h1m-38 1h3m2 0h3m4 0h1m1 0h7m2 0h1m2 0h2m1 0h2m3 0h1m2 0h1m-41 1h3m3 0h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h3m4 0h1m1 0h1m1 0h7m1 0h2m-33 1h1m2 0h2m2 0h1m1 0h2m4 0h1m3 0h2m1 0h3m3 0h1m1 0h1m1 0h1m-41 1h7m1 0h2m2 0h5m1 0h1m1 0h8m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-41 1h1m5 0h1m2 0h3m2 0h1m1 0h1m4 0h1m1 0h3m1 0h6m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m3 0h2m1 0h1m2 0h8m2 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h1m1 0h1m3 0h2m1 0h4m3 0h1m2 0h1m1 0h3m-40 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m1 0h2m1 0h2m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1m-41 1h1m5 0h1m2 0h1m3 0h1m2 0h3m2 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m-41 1h7m1 0h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h1m2 0h1m1 0h4m1 0h1" },
   "guia-conversacion-peers": { t: "Cómo empezar una conversación", c: "guia", d: "Las buenas conversaciones van y vienen: tú cuentas algo, la otra persona cuenta algo relacionado, y así se encuentran intereses en común, que son la base de una amistad. Estos pasos te ayudan a empezar con alguien que no conoces.", n: 41, q: "M0 0.5h7m1 0h4m1 0h1m1 0h1m2 0h1m2 0h3m1 0h4m1 0h1m3 0h7m-41 1h1m5 0h1m2 0h2m1 0h1m5 0h2m1 0h2m2 0h2m1 0h2m1 0h1m2 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m6 0h2m3 0h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h3m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m4 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h2m6 0h2m2 0h4m3 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h6m6 0h4m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h2m3 0h3m3 0h1m2 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m3 0h1m1 0h4m1 0h4m2 0h2m1 0h5m2 0h1m1 0h1m1 0h7m2 0h1m-41 1h3m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m3 0h3m4 0h4m2 0h1m-41 1h1m1 0h1m2 0h3m2 0h2m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m3 0h3m2 0h5m3 0h1m-41 1h2m1 0h1m1 0h1m2 0h2m2 0h1m2 0h4m1 0h2m2 0h1m1 0h1m1 0h5m3 0h2m1 0h2m-41 1h1m1 0h2m1 0h2m3 0h3m4 0h1m1 0h5m5 0h1m2 0h1m-33 1h5m2 0h2m3 0h2m3 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h3m3 0h1m-35 1h1m2 0h1m4 0h1m1 0h1m1 0h2m2 0h4m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m-36 1h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h7m2 0h1m2 0h2m1 0h1m3 0h2m2 0h1m-39 1h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h3m2 0h3m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m4 0h1m-40 1h5m2 0h1m4 0h2m2 0h2m3 0h2m2 0h2m4 0h5m3 0h1m-40 1h2m1 0h1m1 0h6m2 0h1m1 0h1m1 0h1m1 0h4m1 0h3m1 0h1m2 0h2m1 0h1m2 0h3m-40 1h2m1 0h1m2 0h2m1 0h2m3 0h1m3 0h1m1 0h1m2 0h2m1 0h3m4 0h2m1 0h1m-38 1h1m1 0h2m2 0h1m3 0h2m1 0h1m1 0h2m2 0h2m3 0h2m4 0h2m1 0h1m1 0h1m1 0h1m1 0h2m-38 1h2m2 0h1m2 0h1m3 0h2m1 0h2m2 0h3m2 0h3m1 0h1m3 0h3m1 0h1m1 0h1m-41 1h1m3 0h4m7 0h1m2 0h1m1 0h5m2 0h1m1 0h2m1 0h6m2 0h1m-40 1h2m2 0h1m2 0h1m1 0h5m2 0h1m1 0h1m1 0h1m4 0h1m1 0h3m4 0h1m1 0h1m2 0h1m-41 1h1m3 0h1m1 0h1m1 0h1m8 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m2 0h1m-37 1h2m1 0h1m3 0h1m1 0h1m1 0h1m2 0h1m3 0h3m1 0h5m1 0h1m1 0h3m1 0h3m-38 1h6m1 0h1m2 0h1m2 0h1m6 0h6m1 0h1m1 0h1m7 0h1m-40 1h2m4 0h2m1 0h2m1 0h6m2 0h2m1 0h1m4 0h5m1 0h1m1 0h1m2 0h1m-38 1h4m1 0h2m1 0h2m1 0h2m1 0h2m2 0h2m1 0h1m2 0h4m1 0h2m5 0h2m-41 1h1m1 0h1m4 0h1m4 0h1m1 0h2m1 0h4m5 0h1m3 0h1m2 0h6m1 0h1m-38 1h2m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m2 0h1m3 0h2m1 0h1m-38 1h3m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m2 0h1m1 0h5m2 0h1m3 0h1m2 0h1m-41 1h3m3 0h1m2 0h1m1 0h1m2 0h1m1 0h8m5 0h1m1 0h7m1 0h2m-33 1h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h8m3 0h1m1 0h1m1 0h1m-41 1h7m1 0h3m1 0h3m1 0h2m2 0h1m2 0h1m3 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m-41 1h1m5 0h1m2 0h2m2 0h6m3 0h1m1 0h1m1 0h3m2 0h2m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m2 0h3m1 0h6m3 0h7m2 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h2m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h2m-40 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h2m1 0h2m1 0h2m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1m-41 1h1m5 0h1m6 0h1m2 0h2m3 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m-41 1h7m1 0h2m2 0h1m1 0h2m4 0h4m2 0h2m1 0h1m2 0h1m1 0h3m2 0h1" },
   "plan-encuentro": { t: "Mi plan para un encuentro con amigos", d: "Los amigos se hacen pasando tiempo juntos. Si no planeas un encuentro, probablemente no pasa. Usa esta hoja para organizarlo y para revisar cómo te fue.", n: 37, q: "M0 0.5h7m2 0h2m2 0h3m2 0h2m3 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m3 0h1m2 0h1m4 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h8m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m3 0h2m1 0h2m3 0h2m1 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m7 0h1m1 0h7m1 0h2m-28 1h1m1 0h5m6 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-35 1h1m1 0h1m1 0h1m2 0h1m3 0h3m1 0h2m2 0h2m2 0h2m3 0h2m1 0h1m2 0h2m-35 1h7m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m2 0h5m2 0h1m2 0h3m-35 1h1m1 0h1m2 0h1m2 0h4m2 0h1m1 0h2m1 0h3m2 0h2m5 0h1m2 0h1m-37 1h1m1 0h7m3 0h1m4 0h1m4 0h4m1 0h4m1 0h5m-37 1h2m1 0h1m1 0h1m1 0h1m3 0h2m3 0h1m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m-28 1h4m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1m4 0h2m1 0h4m1 0h2m-35 1h2m1 0h1m1 0h1m2 0h4m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h2m2 0h1m-31 1h2m2 0h1m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m2 0h2m3 0h2m2 0h1m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-32 1h1m1 0h1m1 0h2m1 0h1m1 0h4m1 0h1m3 0h1m2 0h3m1 0h2m3 0h3m-37 1h2m1 0h1m1 0h1m1 0h1m4 0h4m4 0h3m1 0h1m3 0h3m1 0h1m3 0h1m-37 1h2m2 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m7 0h3m1 0h2m1 0h3m-34 1h1m1 0h3m2 0h1m3 0h2m2 0h1m1 0h4m1 0h1m4 0h1m4 0h1m-34 1h1m2 0h2m1 0h2m6 0h2m4 0h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h6m1 0h2m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m2 0h2m-36 1h1m3 0h3m1 0h1m2 0h3m2 0h1m1 0h2m1 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h2m8 0h1m1 0h2m1 0h6m1 0h2m4 0h1m2 0h1m-32 1h1m2 0h2m1 0h1m2 0h3m5 0h1m4 0h1m1 0h4m2 0h7m-37 1h1m6 0h1m1 0h2m2 0h2m1 0h1m2 0h4m3 0h1m1 0h3m5 0h1m-37 1h1m1 0h1m1 0h6m2 0h2m3 0h3m2 0h5m1 0h7m1 0h1m-29 1h1m2 0h1m1 0h2m1 0h1m1 0h6m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h2m1 0h4m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h6m1 0h1m2 0h1m3 0h1m1 0h9m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h2m3 0h3m1 0h5m1 0h1m1 0h6m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h5m4 0h1m3 0h1m3 0h1m6 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m4 0h3m1 0h1m1 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m2 0h2m1 0h2m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
+  "guia-calma-crisis": { t: "Cuando su hijo explota: calmar sin pelear", c: "guia", d: "En plena explosión su hijo no puede escuchar razones ni consecuencias. Lo que más ayuda es que usted se calme primero, le muestre que entiende lo que siente y le dé un lugar y una forma de calmarse. Las conversaciones y las consecuencias quedan para después.", n: 37, q: "M0 0.5h7m2 0h3m2 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m4 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m3 0h2m4 0h1m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h2m1 0h1m1 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h3m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m1 0h1m3 0h3m5 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h2m4 0h6m1 0h2m-28 1h1m1 0h5m3 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h3m3 0h5m-33 1h1m1 0h1m2 0h2m5 0h2m2 0h3m2 0h2m3 0h2m1 0h1m2 0h2m-34 1h1m1 0h4m1 0h1m1 0h1m1 0h3m1 0h2m2 0h1m3 0h4m2 0h1m2 0h3m-33 1h2m4 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h1m1 0h2m5 0h1m2 0h1m-36 1h2m2 0h2m2 0h5m1 0h1m1 0h1m4 0h1m1 0h2m1 0h4m1 0h5m-37 1h3m2 0h1m1 0h1m2 0h1m5 0h6m1 0h1m1 0h1m2 0h2m1 0h1m-32 1h1m1 0h6m2 0h1m2 0h4m1 0h1m1 0h2m5 0h2m1 0h4m1 0h2m-36 1h1m8 0h1m4 0h1m5 0h2m3 0h1m1 0h2m1 0h2m2 0h1m-36 1h1m3 0h1m1 0h1m2 0h2m2 0h2m2 0h1m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-35 1h2m1 0h3m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m3 0h3m-36 1h3m3 0h2m4 0h2m1 0h1m2 0h1m1 0h2m1 0h1m3 0h3m1 0h1m3 0h1m-36 1h2m1 0h8m1 0h3m1 0h1m5 0h1m1 0h3m1 0h2m1 0h3m-33 1h4m1 0h2m7 0h1m1 0h3m2 0h1m4 0h1m4 0h1m-34 1h4m2 0h2m2 0h1m4 0h1m1 0h2m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m-37 1h1m1 0h1m2 0h1m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m2 0h4m2 0h2m-37 1h7m1 0h1m1 0h1m6 0h3m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m-35 1h4m1 0h1m1 0h1m3 0h2m3 0h5m2 0h1m4 0h1m2 0h1m-32 1h1m1 0h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h3m2 0h7m-37 1h1m2 0h3m1 0h1m1 0h4m1 0h3m3 0h3m3 0h1m1 0h3m4 0h1m-36 1h1m1 0h5m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m2 0h1m1 0h3m1 0h7m1 0h1m-29 1h1m1 0h1m5 0h5m1 0h2m1 0h1m1 0h2m3 0h2m-34 1h7m4 0h3m1 0h3m2 0h3m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m3 0h1m1 0h1m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m1 0h1m4 0h1m2 0h8m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m1 0h5m-37 1h1m1 0h3m1 0h1m1 0h3m3 0h2m4 0h1m7 0h1m6 0h2m-37 1h1m5 0h1m4 0h1m1 0h3m5 0h3m2 0h3m3 0h1m3 0h1m-37 1h7m1 0h1m6 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h5" },
+  "guion-aviones-papel": { t: "Los aviones de papel: dejar volar los pensamientos", c: "guion", d: "Ayudar al niño a ver de otra manera los pensamientos que lo meten en problemas en el colegio o en casa: no para que desaparezcan, sino para que no tenga que agarrarlos ni pelear con ellos.", n: 41, q: "M0 0.5h7m6 0h1m1 0h1m2 0h3m2 0h1m5 0h4m1 0h7m-41 1h1m5 0h1m2 0h1m1 0h1m1 0h2m3 0h1m3 0h1m4 0h1m1 0h1m2 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m6 0h1m2 0h1m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m2 0h1m2 0h4m6 0h1m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h6m2 0h1m2 0h3m1 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h4m1 0h2m2 0h2m3 0h1m2 0h3m1 0h2m3 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h3m1 0h4m2 0h1m2 0h3m2 0h3m1 0h2m-32 1h1m1 0h5m2 0h1m1 0h2m2 0h1m1 0h3m2 0h5m2 0h1m4 0h5m-39 1h2m1 0h1m3 0h1m3 0h2m1 0h1m3 0h3m2 0h1m1 0h2m1 0h2m1 0h6m1 0h3m-41 1h2m2 0h3m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1m-40 1h2m3 0h1m2 0h3m9 0h4m2 0h1m4 0h5m1 0h1m1 0h1m-35 1h7m1 0h2m2 0h1m4 0h2m1 0h3m1 0h1m1 0h3m3 0h2m1 0h1m-41 1h1m3 0h2m3 0h1m1 0h6m3 0h1m3 0h2m1 0h2m1 0h1m2 0h1m1 0h6m-41 1h1m4 0h2m4 0h1m2 0h2m2 0h2m2 0h1m3 0h1m2 0h1m2 0h2m1 0h4m-39 1h1m3 0h1m2 0h1m1 0h1m1 0h1m3 0h1m3 0h3m2 0h1m1 0h1m1 0h1m5 0h2m1 0h1m-38 1h1m3 0h1m1 0h4m1 0h5m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m3 0h1m1 0h1m1 0h4m-39 1h1m1 0h2m1 0h2m3 0h6m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m2 0h7m-41 1h2m1 0h1m1 0h2m2 0h2m2 0h3m1 0h1m2 0h2m3 0h4m1 0h1m1 0h3m1 0h1m1 0h2m-40 1h4m1 0h1m1 0h2m1 0h1m2 0h2m2 0h2m1 0h3m1 0h2m2 0h1m7 0h2m2 0h1m-41 1h2m4 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m5 0h1m1 0h1m-40 1h1m2 0h1m3 0h3m2 0h2m2 0h4m1 0h2m1 0h1m2 0h1m2 0h10m-37 1h3m4 0h2m1 0h4m2 0h2m5 0h2m3 0h2m2 0h1m1 0h1m-39 1h1m1 0h1m1 0h2m2 0h1m7 0h1m1 0h2m1 0h4m1 0h1m7 0h4m-38 1h4m1 0h4m5 0h4m2 0h1m1 0h1m1 0h4m1 0h1m7 0h2m-39 1h1m2 0h2m2 0h1m1 0h4m5 0h8m2 0h4m1 0h5m1 0h2m-40 1h1m2 0h1m1 0h1m6 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m2 0h2m1 0h2m-37 1h1m10 0h5m5 0h1m1 0h1m4 0h1m2 0h3m2 0h2m-32 1h1m6 0h1m3 0h4m1 0h1m1 0h3m1 0h4m1 0h1m3 0h2m-39 1h2m1 0h3m2 0h1m2 0h1m6 0h1m2 0h1m5 0h1m2 0h1m1 0h2m1 0h2m2 0h2m-41 1h1m2 0h2m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h5m2 0h2m2 0h1m1 0h6m-39 1h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h2m1 0h1m2 0h3m2 0h2m3 0h7m-38 1h1m2 0h1m1 0h13m4 0h6m1 0h1m1 0h6m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h2m2 0h2m2 0h1m1 0h3m1 0h1m3 0h2m1 0h2m-41 1h7m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-39 1h1m5 0h1m1 0h3m3 0h2m3 0h1m3 0h1m2 0h2m1 0h4m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m2 0h1m2 0h2m1 0h1m7 0h5m1 0h3m-41 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h4m2 0h3m4 0h2m1 0h1m1 0h5m-37 1h1m5 0h1m4 0h3m3 0h1m3 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m-40 1h7m1 0h3m1 0h3m1 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m1 0h4m1 0h1" },
 };
 /* @@FIN-DATOS@@ */
 
