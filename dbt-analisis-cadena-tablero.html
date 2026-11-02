@@ -105,6 +105,10 @@ select{font-family:var(--font-body); font-size:14.5px; font-weight:600; color:va
 .clave-panel .r{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:4px;}
 .clave-panel p{margin:4px 0;}
 .clave-panel ul{margin:4px 0 6px; padding-left:20px;}
+.clave-panel .crit{font-size:13.5px; color:var(--ink-soft); font-style:italic;}
+.clave-panel ol.orden{margin:6px 0 2px; padding-left:22px;}
+.clave-panel ol.orden li{margin:4px 0;}
+.clave-panel .paso{display:inline-block; min-width:210px; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-dark); margin-right:8px;}
 
 @media (max-width:860px){
   .wrap{padding:16px 14px 30px;}
@@ -194,7 +198,12 @@ const SIT = [
    "D",
    "G"
   ],
-  "corte": "En el impulso, STOP: detenerse antes de lanzar el teléfono, y TIP para bajar la activación. Antes de la cadena, ACA CUIDA: los turnos dobles sin dormir lo dejan vulnerable. Ya en calma, DEAR MAN con su hermana."
+  "nota": null,
+  "prioridades": [
+   "STOP antes de lanzar el teléfono y TIP (agua fría, respiración pausada) para bajar la rabia.",
+   "Verificar los hechos sobre «a nadie le importo»: ¿cancelar una cena es que no le importe?",
+   "ACA CUIDA: dormir entre turnos. Ya en calma, DEAR MAN con su hermana."
+  ]
  },
  {
   "titulo": "La nota del parcial",
@@ -227,7 +236,12 @@ const SIT = [
    "C",
    "H"
   ],
-  "corte": "Es una conducta del nivel 1 de la jerarquía. En la emoción y el impulso, TIP para bajar la activación por debajo del punto de quiebre. En el pensamiento, verificar los hechos: una nota baja no la define. Antes de la cadena, ACA CUIDA: comer."
+  "nota": "Conducta del nivel 1 de la jerarquía: amenaza la vida.",
+  "prioridades": [
+   "TIP para bajar la activación por debajo del punto de quiebre y STOP antes de hacerse daño.",
+   "Verificar los hechos: una nota baja no la define como «inútil».",
+   "ACA CUIDA: comer durante la época de parciales."
+  ]
  },
  {
   "titulo": "El dinero del arriendo",
@@ -260,7 +274,12 @@ const SIT = [
    "C",
    "A"
   ],
-  "corte": "En el pensamiento, verificar los hechos: ¿todos lo ven como un fracasado por un mal mes? En el impulso, STOP antes de abrir la aplicación. Antes de la cadena, ACA CUIDA: tratar el dolor y dormir."
+  "nota": null,
+  "prioridades": [
+   "STOP antes de abrir la aplicación de apuestas.",
+   "Verificar los hechos: ¿todos lo ven como un fracasado por un mal mes?",
+   "ACA CUIDA: tratar el dolor de espalda y dormir."
+  ]
  },
  {
   "titulo": "El mensaje de las dos de la mañana",
@@ -293,7 +312,12 @@ const SIT = [
    "G",
    "J"
   ],
-  "corte": "En el pensamiento, verificar los hechos: ¿llegar tarde es dejarla? En el impulso, STOP y mente sabia antes de escribir. En el evento, DEAR MAN al día siguiente: pedirle que avise si se retrasa."
+  "nota": null,
+  "prioridades": [
+   "STOP y mente sabia antes de escribir el mensaje.",
+   "Verificar los hechos: ¿llegar tarde es dejarla?",
+   "DEAR MAN al día siguiente: pedirle que avise si se retrasa. ACA CUIDA: comer aunque cuide a su madre."
+  ]
  },
  {
   "titulo": "La fiesta",
@@ -326,7 +350,12 @@ const SIT = [
    "A",
    "E"
   ],
-  "corte": "En el impulso, STOP antes del siguiente trago. En la emoción, aceptación radical de la ruptura en lugar de apagarla. Antes de la cadena, ACA CUIDA (anticiparse a la fiesta) y retomar la terapia."
+  "nota": null,
+  "prioridades": [
+   "STOP antes del siguiente trago.",
+   "Aceptación radical de la ruptura en lugar de apagar la emoción.",
+   "ACA CUIDA: anticiparse a la fiesta. Retomar la terapia."
+  ]
  },
  {
   "titulo": "La sesión",
@@ -359,9 +388,16 @@ const SIT = [
    "E",
    "C"
   ],
-  "corte": "Es una conducta que interfiere con la terapia (nivel 2). En la emoción, acción opuesta a la vergüenza: quedarse y nombrarla. En el pensamiento, verificar los hechos. Del lado de la terapeuta, validar (V4 y V5) antes de seguir."
+  "nota": "Conducta que interfiere con la terapia (nivel 2).",
+  "prioridades": [
+   "Acción opuesta a la vergüenza: quedarse y nombrarla. Del lado de la terapeuta, validar (V4 y V5).",
+   "Verificar los hechos: ¿la terapeuta la está juzgando?",
+   "ACA CUIDA: anticipar la sesión cuando llega después de una discusión."
+  ]
  }
 ];
+const PASOS = ["En el momento", "Con menos activación", "Para que no vuelva a empezar"];
+const CRITERIO = "Primero lo que evita la conducta cuando la activación supera el punto de quiebre; después lo que cambia la emoción o el pensamiento que la alimenta; al final lo que reduce la vulnerabilidad o resuelve el evento.";
 
 /* ============================================================
    3. DATOS DE EJEMPLO (?demo=1)
@@ -508,7 +544,9 @@ function pantallaDetalle(n){
   const clave = verClave ? `<div class="clave-panel"><span class="r">Clave</span>
       <p><b>${aciertos} de 8</b> datos en su eslabón. Los que sobran: ${sobrantes}.</p>
       ${fuera ? `<ul>${fuera}</ul>` : ""}
-      <p><b>Un corte posible:</b> ${resaltar(s.corte)}</p></div>` : "";
+      <p><b>Un orden posible, de lo más apremiante a lo menos.</b>${s.nota ? " " + esc(s.nota) : ""}</p>
+      <p class="crit">Criterio: ${esc(CRITERIO)}</p>
+      <ol class="orden">${s.prioridades.map((t, i) => `<li><span class="paso">${esc(PASOS[i])}</span>${resaltar(t)}</li>`).join("")}</ol></div>` : "";
   return `<section class="panel">
     <button class="bt volver" id="bt-volver">&larr; Volver a los globos</button>
     <div class="eyebrow">Grupo ${n}</div>
