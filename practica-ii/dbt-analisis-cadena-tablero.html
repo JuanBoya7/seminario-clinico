@@ -167,7 +167,7 @@ const SIT = [
   "titulo": "El celular contra la pared",
   "persona": "Andrés, 29 años",
   "nombre": "Andrés",
-  "texto": "«Se me fue la mano», le dice Andrés a su terapeuta el martes. El domingo en la noche estrelló el celular contra la pared y desde entonces no ha podido hablar con nadie ni confirmar sus turnos: teme perder el trabajo. Todo empezó cuando su hermana canceló, a última hora y por mensaje, la cena de cumpleaños que habían planeado para él. Andrés venía de una semana de turnos dobles en el hospital, durmiendo cuatro horas por noche. Ese mismo domingo había ido al estadio con un primo. Al leer el mensaje pensó «a nadie le importo, ni siquiera a ella»; le hervía el pecho y le temblaban las manos. Solo quería que ella sintiera lo mismo. Apenas el teléfono se rompió sintió un alivio extraño, «como si algo se desinflara».",
+  "texto": "«Se me fue la mano», le dice Andrés a su terapeuta el martes. El domingo en la noche estrelló el celular contra la pared y desde entonces no ha podido hablar con nadie ni confirmar sus turnos: teme perder el trabajo. El viernes, su jefe le había aprobado las vacaciones. Todo empezó cuando su hermana canceló, a última hora y por mensaje, la cena de cumpleaños que habían planeado para él. Andrés venía de una semana de turnos dobles en el hospital, durmiendo cuatro horas por noche. Ese mismo domingo había ido al estadio con un primo. Al leer el mensaje pensó «a nadie le importo, ni siquiera a ella»; le hervía el pecho y le temblaban las manos. Solo quería que ella sintiera lo mismo. Apenas el teléfono se rompió sintió un alivio extraño, «como si algo se desinflara».",
   "letras": {
    "A": "Le hierve el pecho, le tiemblan las manos",
    "B": "Incomunicado; teme perder el trabajo",
@@ -175,28 +175,32 @@ const SIT = [
    "D": "Fue al estadio con un primo",
    "E": "Querer que ella sienta lo mismo",
    "F": "Una semana de turnos dobles, durmiendo poco",
-   "G": "Alivio extraño, «como si algo se desinflara»",
-   "H": "«A nadie le importo, ni siquiera a ella»",
-   "I": "Estrella el celular contra la pared"
+   "G": "Su jefe le aprueba las vacaciones",
+   "H": "Alivio extraño, «como si algo se desinflara»",
+   "I": "«A nadie le importo, ni siquiera a ella»",
+   "J": "Estrella el celular contra la pared"
   },
   "clave": {
    "vulnerabilidad": "F",
    "evento": "C",
-   "pensamientos": "H",
+   "pensamientos": "I",
    "emociones": "A",
    "impulso": "E",
-   "conducta": "I",
-   "corto": "G",
+   "conducta": "J",
+   "corto": "H",
    "largo": "B"
   },
-  "sobra": "D",
+  "sobran": [
+   "D",
+   "G"
+  ],
   "corte": "En el impulso, STOP: detenerse antes de lanzar el teléfono, y TIP para bajar la activación. Antes de la cadena, ACA CUIDA: los turnos dobles sin dormir lo dejan vulnerable. Ya en calma, DEAR MAN con su hermana."
  },
  {
   "titulo": "La nota del parcial",
   "persona": "Camila, 19 años",
   "nombre": "Camila",
-  "texto": "Camila le cuenta a su terapeuta que el jueves en la noche se hizo daño, sin intención de morir. Al día siguiente no fue a clase por vergüenza y ahora tiene dos fallas que la ponen en riesgo de perder la materia. Esa tarde le habían entregado un parcial con 2,1 sobre 5. Su compañera de cuarto había salido a cine. Camila llevaba tres días casi sin comer por estudiar. Mientras miraba la nota pensó «soy una inútil, nunca voy a servir para esto»; sintió una vergüenza que le quemaba la cara y un vacío en el estómago. Quería que ese dolor de adentro parara ya. Dice que, después de hacerse daño, en pocos minutos se calmó.",
+  "texto": "Camila le cuenta a su terapeuta que el jueves en la noche se hizo daño, sin intención de morir. Al día siguiente no fue a clase por vergüenza y ahora tiene dos fallas que la ponen en riesgo de perder la materia. Esa tarde le habían entregado un parcial con 2,1 sobre 5. Esa mañana su madre la había llamado para saludarla. Su compañera de cuarto había salido a cine. Camila llevaba tres días casi sin comer por estudiar. Mientras miraba la nota pensó «soy una inútil, nunca voy a servir para esto»; sintió una vergüenza que le quemaba la cara y un vacío en el estómago. Quería que ese dolor de adentro parara ya. Dice que, después de hacerse daño, en pocos minutos se calmó.",
   "letras": {
    "A": "Se calma en pocos minutos",
    "B": "«Soy una inútil, nunca voy a servir»",
@@ -205,56 +209,64 @@ const SIT = [
    "E": "Tres días casi sin comer por estudiar",
    "F": "Dos fallas; riesgo de perder la materia",
    "G": "Que el dolor de adentro pare ya",
-   "H": "Le entregan el parcial: 2,1 sobre 5",
-   "I": "Vergüenza que quema la cara; vacío"
+   "H": "Su madre la llama para saludarla",
+   "I": "Le entregan el parcial: 2,1 sobre 5",
+   "J": "Vergüenza que quema la cara; vacío"
   },
   "clave": {
    "vulnerabilidad": "E",
-   "evento": "H",
+   "evento": "I",
    "pensamientos": "B",
-   "emociones": "I",
+   "emociones": "J",
    "impulso": "G",
    "conducta": "D",
    "corto": "A",
    "largo": "F"
   },
-  "sobra": "C",
+  "sobran": [
+   "C",
+   "H"
+  ],
   "corte": "Es una conducta del nivel 1 de la jerarquía. En la emoción y el impulso, TIP para bajar la activación por debajo del punto de quiebre. En el pensamiento, verificar los hechos: una nota baja no la define. Antes de la cadena, ACA CUIDA: comer."
  },
  {
   "titulo": "El dinero del arriendo",
   "persona": "Julián, 34 años",
   "nombre": "Julián",
-  "texto": "Julián todavía no le cuenta a su esposa que el dinero del arriendo ya no está: el lunes tendrá que pedir prestado y teme que, cuando ella se entere, quiera irse. El sábado en la noche apostó en línea todo lo que había ahorrado para ese pago. Mientras apostaba, dice, por fin se sintió tranquilo. Todo empezó el viernes, cuando su jefe le dijo delante del equipo que sus ventas eran las peores del mes. Esa semana venía con dolor de espalda y casi no dormía. Salió de la reunión pensando «soy un fracasado, todos se dieron cuenta», con un nudo en la garganta y un vacío enorme. Necesitaba sentirse bien, aunque fuera un rato. Su equipo de fútbol ganó ese fin de semana.",
+  "texto": "Julián todavía no le cuenta a su esposa que el dinero del arriendo ya no está: el lunes tendrá que pedir prestado y teme que, cuando ella se entere, quiera irse. El sábado en la noche apostó en línea todo lo que había ahorrado para ese pago. Ese mismo sábado su hermano le pidió ayuda con una mudanza. Mientras apostaba, dice, por fin se sintió tranquilo. Todo empezó el viernes, cuando su jefe le dijo delante del equipo que sus ventas eran las peores del mes. Esa semana venía con dolor de espalda y casi no dormía. Salió de la reunión pensando «soy un fracasado, todos se dieron cuenta», con un nudo en la garganta y un vacío enorme. Necesitaba sentirse bien, aunque fuera un rato. Su equipo de fútbol ganó ese fin de semana.",
   "letras": {
-   "A": "Necesitar sentirse bien ya",
-   "B": "Su equipo de fútbol ganó",
-   "C": "Dolor de espalda y casi sin dormir",
-   "D": "Apuesta en línea el dinero del arriendo",
-   "E": "«Soy un fracasado, todos se dieron cuenta»",
-   "F": "Deuda; teme que su esposa se vaya",
-   "G": "El jefe lo expone delante del equipo",
-   "H": "Nudo en la garganta y un vacío enorme",
-   "I": "Se siente tranquilo mientras apuesta"
+   "A": "Su hermano le pide ayuda con una mudanza",
+   "B": "Necesitar sentirse bien ya",
+   "C": "Su equipo de fútbol ganó",
+   "D": "Dolor de espalda y casi sin dormir",
+   "E": "Apuesta en línea el dinero del arriendo",
+   "F": "«Soy un fracasado, todos se dieron cuenta»",
+   "G": "Deuda; teme que su esposa se vaya",
+   "H": "El jefe lo expone delante del equipo",
+   "I": "Nudo en la garganta y un vacío enorme",
+   "J": "Se siente tranquilo mientras apuesta"
   },
   "clave": {
-   "vulnerabilidad": "C",
-   "evento": "G",
-   "pensamientos": "E",
-   "emociones": "H",
-   "impulso": "A",
-   "conducta": "D",
-   "corto": "I",
-   "largo": "F"
+   "vulnerabilidad": "D",
+   "evento": "H",
+   "pensamientos": "F",
+   "emociones": "I",
+   "impulso": "B",
+   "conducta": "E",
+   "corto": "J",
+   "largo": "G"
   },
-  "sobra": "B",
+  "sobran": [
+   "C",
+   "A"
+  ],
   "corte": "En el pensamiento, verificar los hechos: ¿todos lo ven como un fracasado por un mal mes? En el impulso, STOP antes de abrir la aplicación. Antes de la cadena, ACA CUIDA: tratar el dolor y dormir."
  },
  {
   "titulo": "El mensaje de las dos de la mañana",
   "persona": "Natalia, 41 años",
   "nombre": "Natalia",
-  "texto": "Natalia amaneció el domingo con la relación terminada: a las dos de la mañana le escribió a Mario que no quería volver a verlo y lo bloqueó en todas partes. Ahora él no contesta sus llamadas y ella siente que «arruinó lo único bueno». Al bloquearlo, cuenta, sintió que recuperaba el control. Esa noche llovía fuerte. El sábado, Mario llegó dos horas tarde a la comida con los amigos de ella, sin avisar. Natalia había pasado el día cuidando a su madre enferma y no había comido. Cuando él por fin llegó, pensó «me va a dejar, como todos»; sintió pánico, el corazón acelerado, y después una rabia que no podía contener. Quería irse antes de que él se fuera.",
+  "texto": "Natalia amaneció el domingo con la relación terminada: a las dos de la mañana le escribió a Mario que no quería volver a verlo y lo bloqueó en todas partes. Ahora él no contesta sus llamadas y ella siente que «arruinó lo único bueno». Al bloquearlo, cuenta, sintió que recuperaba el control. Esa noche llovía fuerte. El sábado, Mario llegó dos horas tarde a la comida con los amigos de ella, sin avisar. La semana anterior le había regalado flores. Natalia había pasado el día cuidando a su madre enferma y no había comido. Cuando él por fin llegó, pensó «me va a dejar, como todos»; sintió pánico, el corazón acelerado, y después una rabia que no podía contener. Quería irse antes de que él se fuera.",
   "letras": {
    "A": "Él no contesta; «arruiné lo único bueno»",
    "B": "Irse antes de que él se vaya",
@@ -264,7 +276,8 @@ const SIT = [
    "F": "Pánico, corazón acelerado y luego rabia",
    "G": "Esa noche llovía fuerte",
    "H": "«Me va a dejar, como todos»",
-   "I": "Un día cuidando a su madre, sin comer"
+   "I": "Un día cuidando a su madre, sin comer",
+   "J": "Mario le había regalado flores"
   },
   "clave": {
    "vulnerabilidad": "I",
@@ -276,65 +289,76 @@ const SIT = [
    "corto": "E",
    "largo": "A"
   },
-  "sobra": "G",
+  "sobran": [
+   "G",
+   "J"
+  ],
   "corte": "En el pensamiento, verificar los hechos: ¿llegar tarde es dejarla? En el impulso, STOP y mente sabia antes de escribir. En el evento, DEAR MAN al día siguiente: pedirle que avise si se retrasa."
  },
  {
   "titulo": "La fiesta",
   "persona": "Sebastián, 22 años",
   "nombre": "Sebastián",
-  "texto": "Sebastián despertó el domingo en urgencias: sus amigos lo llevaron porque perdió el conocimiento en una fiesta. Ahora su familia le pide que no salga más y él siente que todos lo vigilan. En la fiesta bebió un trago tras otro y por un rato dejó de sentir. Sonaba su canción favorita. Horas antes había visto en redes que su exnovia ya tenía una nueva pareja. Llevaba dos semanas sin ir a terapia porque le cambiaron el horario en el trabajo. Al ver la foto pensó «nadie me va a querer nunca»; sintió un vacío en el pecho y unas ganas de llorar que se aguantó. Quería dejar de sentir eso ya.",
+  "texto": "Sebastián despertó el domingo en urgencias: sus amigos lo llevaron porque perdió el conocimiento en una fiesta. Ahora su familia le pide que no salga más y él siente que todos lo vigilan. En la fiesta bebió un trago tras otro y por un rato dejó de sentir. Sonaba su canción favorita. Horas antes había visto en redes que su exnovia ya tenía una nueva pareja. Más tarde, un amigo pasó a recogerlo para ir a la fiesta. Llevaba dos semanas sin ir a terapia porque le cambiaron el horario en el trabajo. Al ver la foto pensó «nadie me va a querer nunca»; sintió un vacío en el pecho y unas ganas de llorar que se aguantó. Quería dejar de sentir eso ya.",
   "letras": {
    "A": "Sonaba su canción favorita",
    "B": "Bebe hasta perder el conocimiento",
    "C": "Vacío en el pecho; ganas de llorar",
    "D": "Dos semanas sin ir a terapia",
-   "E": "Urgencias; su familia lo vigila",
-   "F": "Ve en redes a su exnovia con nueva pareja",
-   "G": "Por un rato deja de sentir",
-   "H": "Querer dejar de sentir eso ya",
-   "I": "«Nadie me va a querer nunca»"
+   "E": "Un amigo pasa a recogerlo para la fiesta",
+   "F": "Urgencias; su familia lo vigila",
+   "G": "Ve en redes a su exnovia con nueva pareja",
+   "H": "Por un rato deja de sentir",
+   "I": "Querer dejar de sentir eso ya",
+   "J": "«Nadie me va a querer nunca»"
   },
   "clave": {
    "vulnerabilidad": "D",
-   "evento": "F",
-   "pensamientos": "I",
+   "evento": "G",
+   "pensamientos": "J",
    "emociones": "C",
-   "impulso": "H",
+   "impulso": "I",
    "conducta": "B",
-   "corto": "G",
-   "largo": "E"
+   "corto": "H",
+   "largo": "F"
   },
-  "sobra": "A",
+  "sobran": [
+   "A",
+   "E"
+  ],
   "corte": "En el impulso, STOP antes del siguiente trago. En la emoción, aceptación radical de la ruptura en lugar de apagarla. Antes de la cadena, ACA CUIDA (anticiparse a la fiesta) y retomar la terapia."
  },
  {
   "titulo": "La sesión",
   "persona": "Paula, 27 años",
   "nombre": "Paula",
-  "texto": "Paula no fue a la sesión de esta semana y le escribió a su terapeuta que «quizá la terapia no es para ella». La semana pasada se había ido a mitad de la sesión, diciendo que tenía otra cita. Afuera, cuenta, sintió alivio enseguida. Ese día la terapeuta le propuso revisar, paso a paso, la última vez que se hizo daño. Paula había llegado tarde y alterada porque discutió con su madre en la mañana. La sala de espera estaba recién pintada. Cuando empezó a recordar pensó «me va a juzgar como todos»; sintió vergüenza y el estómago revuelto. Solo quería salir de ahí.",
+  "texto": "Paula no fue a la sesión de esta semana y le escribió a su terapeuta que «quizá la terapia no es para ella». La semana pasada se había ido a mitad de la sesión, diciendo que tenía otra cita. Afuera, cuenta, sintió alivio enseguida. Ese día la terapeuta le propuso revisar, paso a paso, la última vez que se hizo daño. Paula había llegado tarde y alterada porque discutió con su madre en la mañana. Al llegar, la terapeuta la saludó con una sonrisa. La sala de espera estaba recién pintada. Cuando empezó a recordar pensó «me va a juzgar como todos»; sintió vergüenza y el estómago revuelto. Solo quería salir de ahí.",
   "letras": {
    "A": "«Me va a juzgar como todos»",
    "B": "Alivio enseguida, afuera",
-   "C": "Discutió con su madre en la mañana",
-   "D": "La sala de espera estaba recién pintada",
-   "E": "No vuelve; duda de la terapia",
-   "F": "Se va a mitad de la sesión",
-   "G": "Vergüenza y estómago revuelto",
-   "H": "Le proponen revisar la última autolesión",
-   "I": "Solo querer salir de ahí"
+   "C": "La terapeuta la saluda con una sonrisa",
+   "D": "Discutió con su madre en la mañana",
+   "E": "La sala de espera estaba recién pintada",
+   "F": "No vuelve; duda de la terapia",
+   "G": "Se va a mitad de la sesión",
+   "H": "Vergüenza y estómago revuelto",
+   "I": "Le proponen revisar la última autolesión",
+   "J": "Solo querer salir de ahí"
   },
   "clave": {
-   "vulnerabilidad": "C",
-   "evento": "H",
+   "vulnerabilidad": "D",
+   "evento": "I",
    "pensamientos": "A",
-   "emociones": "G",
-   "impulso": "I",
-   "conducta": "F",
+   "emociones": "H",
+   "impulso": "J",
+   "conducta": "G",
    "corto": "B",
-   "largo": "E"
+   "largo": "F"
   },
-  "sobra": "D",
+  "sobran": [
+   "E",
+   "C"
+  ],
   "corte": "Es una conducta que interfiere con la terapia (nivel 2). En la emoción, acción opuesta a la vergüenza: quedarse y nombrarla. En el pensamiento, verificar los hechos. Del lado de la terapeuta, validar (V4 y V5) antes de seguir."
  }
 ];
@@ -419,7 +443,7 @@ const resaltar = t => HABILIDADES_RESALTAR.reduce((html, h) =>
 const situacionDe = n => SIT[(Math.max(1, n) - 1) % SIT.length];
 // Entregas de esta actividad: cada eslabón es una letra. Las del caso Valeria, que siguen en la
 // misma pestaña de la hoja, traen texto libre y no se muestran.
-const esNueva = e => Array.isArray(e.eslabones) && e.eslabones.length === 8 && e.eslabones.every(x => /^[A-I]$/.test(String(x).trim()));
+const esNueva = e => Array.isArray(e.eslabones) && e.eslabones.length === 8 && e.eslabones.every(x => /^[A-J]$/.test(String(x).trim()));
 
 let entregas = [], destapado = false, abierto = 0, verClave = false;
 
@@ -475,13 +499,14 @@ function pantallaDetalle(n){
   const uniones = [1, 2, 3, 4, 5, 6, 7].map(u => `<div class="union${u === 4 ? " v" : ""} u${u}"></div>`).join("");
   const eslabones = KEYS.map((_, i) => eslabonHtml(e, s, i)).join("");
   const donde = NOMBRES[KEYS.indexOf(e.intervencion)] || e.intervencion || "—";
-  const usoSobra = e.eslabones.map(x => String(x).trim()).includes(s.sobra);
+  const usadas = e.eslabones.map(x => String(x).trim());
+  const sobrantes = s.sobran.map(l => `«${esc(s.letras[l])}»${usadas.includes(l) ? " (quedó dentro de la cadena)" : ""}`).join(" y ");
   const aciertos = KEYS.filter((k, i) => String(e.eslabones[i]).trim() === s.clave[k]).length;
   // Lo que no coincide va en el panel, no dentro del eslabón: el hueco no da para dos textos.
   const fuera = KEYS.map((k, i) => String(e.eslabones[i]).trim() === s.clave[k] ? ""
     : `<li><b>${esc(NOMBRES[i])}:</b> ${esc(s.letras[s.clave[k]])}</li>`).join("");
   const clave = verClave ? `<div class="clave-panel"><span class="r">Clave</span>
-      <p><b>${aciertos} de 8</b> datos en su eslabón. El dato que sobra: «${esc(s.letras[s.sobra])}»${usoSobra ? " — quedó dentro de la cadena" : " — quedó fuera"}.</p>
+      <p><b>${aciertos} de 8</b> datos en su eslabón. Los que sobran: ${sobrantes}.</p>
       ${fuera ? `<ul>${fuera}</ul>` : ""}
       <p><b>Un corte posible:</b> ${resaltar(s.corte)}</p></div>` : "";
   return `<section class="panel">
