@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caso Valeria — Análisis en cadena</title>
+<title>Análisis en cadena — seis situaciones</title>
 <style>
 /* ============================================================
    TOKENS
@@ -470,16 +470,23 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 /* ============================================================
    PROPIO DEL ANÁLISIS EN CADENA
    ============================================================ */
-.episodio{display:grid; grid-template-columns:minmax(0,1fr) 150px; gap:20px; align-items:center;}
-.episodio[hidden]{display:none;}
-.episodio p{margin:0; font-size:15px; color:var(--ink); line-height:1.6;}
-.episodio img{width:100%; height:auto; border-radius:8px;}
-.episodio-tit{font-family:var(--font-display); font-size:21px; font-weight:600; margin:0 0 8px;}
+/* ---- Análisis en cadena: la situación, sus datos y la cadena ---- */
+.situacion[hidden], #datos-card[hidden]{display:none;}
+.situacion p{margin:10px 0 0; font-size:16px; color:var(--ink); line-height:1.65;}
+.episodio-tit{font-family:var(--font-display); font-size:22px; font-weight:600; margin:0;}
+.sit-persona{font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-top:4px;}
+.datos{list-style:none; margin:10px 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:8px;}
+.datos li{display:flex; gap:10px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 12px; font-size:15px; line-height:1.4; transition:opacity .2s;}
+.datos li b{flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-family:var(--font-mono); font-size:13px; display:flex; align-items:center; justify-content:center;}
+.datos li.usado{opacity:.45;}
+.datos li.usado b{background:var(--ink-faint);}
 .eslabon-num{font-family:var(--font-mono); font-size:12px; color:var(--accent); margin-right:4px;}
-.card.is-problema{border-color:var(--accent); background:var(--accent-soft);}
-.card.is-problema textarea{background:#fff;}
+.card.eslabon-card{border-radius:999px; border-width:3px; border-color:#bcd9dc; padding:14px 26px;}
+.card.eslabon-card .card-label{margin-bottom:6px;}
+.card.is-problema{border-color:#e7c79f; background:var(--moderate-soft);}
+.card.eslabon-card select{background:#fff;}
 .vacio{color:var(--ink-faint); font-style:italic; font-size:15px; margin:0;}
-@media (max-width:700px){.episodio{grid-template-columns:1fr}.episodio img{max-width:160px}}
+@media (max-width:700px){.card.eslabon-card{border-radius:22px; padding:14px 18px;}}
 </style>
 </head>
 <body>
@@ -499,13 +506,13 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
        ============================================================ -->
   <nav class="sidebar">
     <div class="sidebar-brand">TERAPIA DIALÉCTICO-CONDUCTUAL</div>
-    <div class="sidebar-title">Caso Valeria<br>Análisis en cadena</div>
+    <div class="sidebar-title">Análisis en cadena<br>Seis situaciones</div>
 
     <ul class="nav-list" id="nav-list">
       <li><a class="nav-item" href="#bloque-0" data-target="bloque-0"><span class="nav-dot"></span>Datos del grupo</a></li>
-      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>El episodio</a></li>
+      <li><a class="nav-item" href="#bloque-1" data-target="bloque-1"><span class="nav-dot"></span>La situación</a></li>
       <li><a class="nav-item" href="#bloque-2" data-target="bloque-2"><span class="nav-dot"></span>La cadena</a></li>
-      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Análisis de soluciones</a></li>
+      <li><a class="nav-item" href="#bloque-3" data-target="bloque-3"><span class="nav-dot"></span>Dónde cortarla</a></li>
     </ul>
 
     <div class="progress-block">
@@ -540,12 +547,12 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
 
     <header class="masthead">
       <div class="masthead-eyebrow">Práctica en aula · Terapia dialéctico-conductual</div>
-      <h1>Caso Valeria — Análisis en cadena</h1>
+      <h1>Análisis en cadena — seis situaciones</h1>
       <p>
-        Cada grupo recibe un episodio distinto de Valeria, un caso ficticio. Reconstruyan la cadena
-        eslabón por eslabón, desde lo que la hacía vulnerable hasta las consecuencias, y decidan dónde
-        cortarla. Lo que escriban sobre pensamientos, emociones e impulsos son hipótesis que se
-        desprenden del relato.
+        Cada grupo recibe una situación distinta, contada como suele llegar a consulta: empieza
+        por el final. Ubiquen cada dato del relato en su eslabón y decidan dónde cortar la cadena y
+        con qué habilidad. Es un ejercicio breve: después, uno o dos representantes lo explican en el
+        tablero. Las personas de las situaciones son ficticias.
       </p>
       <p>
         Escriban sus respuestas manualmente: copiar, pegar y cortar están deshabilitados en este formulario.
@@ -574,7 +581,7 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
       <div class="card">
         <div class="card-label">Grupo de trabajo <span class="required-mark">*</span></div>
-        <div class="card-help">Escriban únicamente el número: define el episodio que les corresponde.</div>
+        <div class="card-help">Escriban únicamente el número: define la situación que les corresponde.</div>
         <div class="input-prefixed">
           <span class="input-prefix">Grupo</span>
           <input type="text" id="f-grupo" data-required="true" inputmode="numeric"
@@ -589,24 +596,26 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
       </div>
     </section>
 
-    <!-- ============ BLOQUE 1 — EL EPISODIO ============ -->
-    <!-- El texto lo pinta renderEpisodio() según el número de grupo: seis
-         episodios, uno por grupo. -->
+    <!-- ============ BLOQUE 1 — LA SITUACIÓN ============ -->
+    <!-- El relato y sus datos los pinta renderEpisodio() según el número de grupo. -->
     <section class="block" id="bloque-1">
       <div class="block-heading">
         <span class="block-index">01</span>
-        <h2>El episodio</h2>
+        <h2>La situación</h2>
       </div>
       <div class="card" id="sin-episodio">
-        <p class="vacio">Escriban el número de grupo para ver su episodio.</p>
+        <p class="vacio">Escriban el número de grupo para ver su situación.</p>
       </div>
-      <div class="card episodio" id="episodio" hidden>
-        <div>
-          <div class="masthead-eyebrow" id="ep-num"></div>
-          <div class="episodio-tit" id="ep-titulo"></div>
-          <p id="ep-texto"></p>
-        </div>
-        <img src="dbt-valeria-caso.jpg" alt="Ilustración de Valeria sentada en una banca, mirando su celular" width="480" height="519">
+      <div class="card situacion" id="episodio" hidden>
+        <div class="masthead-eyebrow" id="ep-num"></div>
+        <div class="episodio-tit" id="ep-titulo"></div>
+        <div class="sit-persona" id="ep-persona"></div>
+        <p id="ep-texto"></p>
+      </div>
+      <div class="card" id="datos-card" hidden>
+        <div class="card-label">Datos del relato</div>
+        <div class="card-help">Ocho van en la cadena; uno sobra.</div>
+        <ol class="datos" id="ep-datos"></ol>
       </div>
     </section>
 
@@ -616,59 +625,47 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
         <span class="block-index">02</span>
         <h2>La cadena</h2>
       </div>
-      <p class="block-sub">Un eslabón por casilla, en el orden en que ocurrió.</p>
+      <p class="block-sub">Elijan, para cada eslabón, el dato que le corresponde.</p>
 
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">1/8</span>Vulnerabilidad <span class="required-mark">*</span></div>
-        <div class="card-help">Lo que la hacía más vulnerable antes del evento.</div>
-        <textarea id="f-vulnerabilidad" data-etiqueta="Vulnerabilidad" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-vulnerabilidad" data-etiqueta="Vulnerabilidad" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">2/8</span>Evento desencadenante <span class="required-mark">*</span></div>
-        <div class="card-help">El hecho concreto con el que empieza la cadena.</div>
-        <textarea id="f-evento" data-etiqueta="Evento desencadenante" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-evento" data-etiqueta="Evento desencadenante" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">3/8</span>Pensamientos <span class="required-mark">*</span></div>
-        <textarea id="f-pensamientos" data-etiqueta="Pensamientos" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-pensamientos" data-etiqueta="Pensamientos" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">4/8</span>Emociones y sensaciones <span class="required-mark">*</span></div>
-        <textarea id="f-emociones" data-etiqueta="Emociones y sensaciones" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-emociones" data-etiqueta="Emociones y sensaciones" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">5/8</span>Impulso <span class="required-mark">*</span></div>
-        <textarea id="f-impulso" data-etiqueta="Impulso" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-impulso" data-etiqueta="Impulso" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card is-problema">
+      <div class="card eslabon-card is-problema">
         <div class="card-label"><span class="eslabon-num">6/8</span>Conducta problema <span class="required-mark">*</span></div>
-        <textarea id="f-conducta" data-etiqueta="Conducta problema" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-conducta" data-etiqueta="Conducta problema" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">7/8</span>Consecuencias a corto plazo <span class="required-mark">*</span></div>
-        <textarea id="f-corto" data-etiqueta="Consecuencias a corto plazo" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-corto" data-etiqueta="Consecuencias a corto plazo" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
-      <div class="card">
+      <div class="card eslabon-card">
         <div class="card-label"><span class="eslabon-num">8/8</span>Consecuencias a largo plazo <span class="required-mark">*</span></div>
-        <textarea id="f-largo" data-etiqueta="Consecuencias a largo plazo" data-required="true" rows="2" maxlength="600"></textarea>
+        <select id="f-largo" data-etiqueta="Consecuencias a largo plazo" data-required="true"><option value="">— Escriban el número de grupo —</option></select>
       </div>
     </section>
 
-    <!-- ============ BLOQUE 3 — ANÁLISIS DE SOLUCIONES ============ -->
+    <!-- ============ BLOQUE 3 — DÓNDE CORTARLA ============ -->
     <section class="block" id="bloque-3">
       <div class="block-heading">
         <span class="block-index">03</span>
-        <h2>Análisis de soluciones</h2>
-      </div>
-      <div class="card">
-        <div class="card-label">Nivel de la jerarquía de metas <span class="required-mark">*</span></div>
-        <select id="ct-nivel" data-required="true">
-          <option value="">— Seleccionar —</option>
-          <option value="1">1 · Conductas que amenazan la vida</option>
-          <option value="2">2 · Conductas que interfieren con la terapia</option>
-          <option value="3">3 · Conductas que interfieren con la calidad de vida</option>
-          <option value="4">4 · Aumentar las habilidades</option>
-        </select>
+        <h2>Dónde cortarla</h2>
       </div>
       <div class="card">
         <div class="card-label">Eslabón donde intervenir <span class="required-mark">*</span></div>
@@ -679,25 +676,28 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <option value="pensamientos">Pensamientos</option>
           <option value="emociones">Emociones y sensaciones</option>
           <option value="impulso">Impulso</option>
-          <option value="conducta">Conducta problema</option>
-          <option value="corto">Consecuencias a corto plazo</option>
-          <option value="largo">Consecuencias a largo plazo</option>
         </select>
       </div>
       <div class="card">
         <div class="card-label">Habilidad <span class="required-mark">*</span></div>
         <select id="ct-habilidad" data-required="true">
           <option value="">— Seleccionar —</option>
-          <option>STOP</option><option>TIP</option><option>Pros y contras</option>
-          <option>Aceptación radical</option><option>Mindfulness: observar y describir</option>
-          <option>Mindfulness de la emoción actual</option><option>Verificar los hechos</option>
-          <option>Acción opuesta</option><option>ACA CUIDA</option><option>DEAR MAN</option>
-          <option>AVES</option><option>VIDA</option>
+          <option>STOP</option>
+          <option>TIP</option>
+          <option>Aceptación radical</option>
+          <option>Mente sabia</option>
+          <option>Verificar los hechos</option>
+          <option>Acción opuesta</option>
+          <option>ACA CUIDA</option>
+          <option>DEAR MAN</option>
+          <option>AVES</option>
+          <option>VIDA</option>
         </select>
       </div>
       <div class="card">
-        <div class="card-label">Cómo la usaría Valeria en ese momento <span class="required-mark">*</span></div>
-        <textarea id="f-aplicacion" data-required="true" rows="3" maxlength="800"></textarea>
+        <div class="card-label">Cómo usaría la habilidad en ese momento <span class="required-mark">*</span></div>
+        <div class="card-help">Un renglón.</div>
+        <input type="text" id="f-aplicacion" data-required="true" maxlength="110">
       </div>
     </section>
 
@@ -720,17 +720,111 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
    1. DATOS DE CONTENIDO
    ============================================================ */
 
-// Seis episodios de Valeria, un caso ficticio: uno por grupo de trabajo. El
-// número de grupo decide el episodio (grupo 7 vuelve al episodio 1, y así).
-// Las «cadenas posibles» que el docente puede mostrar al cierre viven en el
-// tablero, no aquí, para que los grupos no las vean.
-const EPISODIOS = [
-  {"titulo": "La llamada de la universidad", "texto": "Es lunes. Valeria lleva dos noches durmiendo mal porque su pareja está de viaje. A media mañana la llaman de la universidad: no alcanzó el cupo de una materia que necesitaba para no atrasarse otra vez. Cuelga y siente un nudo en el estómago. Piensa que nunca va a terminar la carrera y que su madre tenía razón. Esa semana no vuelve a clase: se queda en la cama con el celular. El lunes siguiente le da vergüenza aparecer."},
-  {"titulo": "Las fotos del sábado", "texto": "El sábado en la noche Valeria ve en redes las fotos de una reunión de sus amigas del colegio. Nadie le avisó. Ese día había discutido con su madre. Siente un golpe en el pecho y le arde la cara. Piensa «nadie me quiere cerca». Escribe en el grupo mensajes hirientes y se sale del chat. Durante unos minutos se siente más tranquila; al día siguiente dos amigas le dejan de hablar."},
-  {"titulo": "La puerta del cuarto", "texto": "Valeria llega cansada de un parcial que le fue mal. Su madre la ve llorando en la cocina y le dice: «Otra vez con tus dramas». Valeria siente calor en todo el cuerpo y aprieta los puños. Piensa que en esa casa nadie la va a entender nunca. Tira la puerta del cuarto y rompe un portarretratos. Su madre deja de insistir y se va. Después Valeria siente culpa y no sale a comer."},
-  {"titulo": "El dinero del mes", "texto": "Es viernes y su pareja cancela la salida una hora antes, «por cansancio». Valeria no ha almorzado. Siente un vacío que no sabe nombrar y piensa «soy la última opción». Abre la aplicación de compras y en una hora gasta el dinero que tenía para el transporte del mes. Mientras compra se siente mejor. El lunes no tiene cómo ir a la universidad."},
-  {"titulo": "La fiesta", "texto": "Valeria va sola a una fiesta de la carrera porque su pareja no quiso ir. Lleva una semana de entregas y casi sin dormir. Ve a su pareja conectada en el celular, pero sin responderle. Siente miedo y luego rabia. Piensa «seguro está con otra persona». Toma un trago tras otro hasta que una compañera tiene que llevarla a casa. Esa noche deja de pensar; al otro día no recuerda parte de lo que dijo."},
-  {"titulo": "La sesión", "texto": "En la tercera sesión, su terapeuta le propone revisar, eslabón por eslabón, la última vez que se hizo daño. Valeria llegó tarde porque discutió con su madre en la mañana. Mientras recuerda, siente vergüenza y el estómago revuelto. Piensa «me va a juzgar como todos». Dice que tiene otra cita, toma su bolso y se va antes de terminar. Afuera siente alivio. A la semana siguiente duda si volver."}
+// Seis situaciones ficticias, una por grupo de trabajo. La clave de cada cadena y la
+// lectura docente viven en el tablero, no aquí, para que los grupos no las vean.
+const SITUACIONES = [
+ {
+  "titulo": "El celular contra la pared",
+  "persona": "Andrés, 29 años",
+  "nombre": "Andrés",
+  "texto": "«Se me fue la mano», le dice Andrés a su terapeuta el martes. El domingo en la noche estrelló el celular contra la pared y desde entonces no ha podido hablar con nadie ni confirmar sus turnos: teme perder el trabajo. Todo empezó cuando su hermana canceló, a última hora y por mensaje, la cena de cumpleaños que habían planeado para él. Andrés venía de una semana de turnos dobles en el hospital, durmiendo cuatro horas por noche. Ese mismo domingo había ido al estadio con un primo. Al leer el mensaje pensó «a nadie le importo, ni siquiera a ella»; le hervía el pecho y le temblaban las manos. Solo quería que ella sintiera lo mismo. Apenas el teléfono se rompió sintió un alivio extraño, «como si algo se desinflara».",
+  "letras": {
+   "A": "Le hierve el pecho, le tiemblan las manos",
+   "B": "Incomunicado; teme perder el trabajo",
+   "C": "Su hermana cancela la cena por mensaje",
+   "D": "Fue al estadio con un primo",
+   "E": "Querer que ella sienta lo mismo",
+   "F": "Una semana de turnos dobles, durmiendo poco",
+   "G": "Alivio extraño, «como si algo se desinflara»",
+   "H": "«A nadie le importo, ni siquiera a ella»",
+   "I": "Estrella el celular contra la pared"
+  }
+ },
+ {
+  "titulo": "La nota del parcial",
+  "persona": "Camila, 19 años",
+  "nombre": "Camila",
+  "texto": "Camila le cuenta a su terapeuta que el jueves en la noche se hizo daño, sin intención de morir. Al día siguiente no fue a clase por vergüenza y ahora tiene dos fallas que la ponen en riesgo de perder la materia. Esa tarde le habían entregado un parcial con 2,1 sobre 5. Su compañera de cuarto había salido a cine. Camila llevaba tres días casi sin comer por estudiar. Mientras miraba la nota pensó «soy una inútil, nunca voy a servir para esto»; sintió una vergüenza que le quemaba la cara y un vacío en el estómago. Quería que ese dolor de adentro parara ya. Dice que, después de hacerse daño, en pocos minutos se calmó.",
+  "letras": {
+   "A": "Se calma en pocos minutos",
+   "B": "«Soy una inútil, nunca voy a servir»",
+   "C": "Su compañera de cuarto salió a cine",
+   "D": "Se hace daño, sin intención de morir",
+   "E": "Tres días casi sin comer por estudiar",
+   "F": "Dos fallas; riesgo de perder la materia",
+   "G": "Que el dolor de adentro pare ya",
+   "H": "Le entregan el parcial: 2,1 sobre 5",
+   "I": "Vergüenza que quema la cara; vacío"
+  }
+ },
+ {
+  "titulo": "El dinero del arriendo",
+  "persona": "Julián, 34 años",
+  "nombre": "Julián",
+  "texto": "Julián todavía no le cuenta a su esposa que el dinero del arriendo ya no está: el lunes tendrá que pedir prestado y teme que, cuando ella se entere, quiera irse. El sábado en la noche apostó en línea todo lo que había ahorrado para ese pago. Mientras apostaba, dice, por fin se sintió tranquilo. Todo empezó el viernes, cuando su jefe le dijo delante del equipo que sus ventas eran las peores del mes. Esa semana venía con dolor de espalda y casi no dormía. Salió de la reunión pensando «soy un fracasado, todos se dieron cuenta», con un nudo en la garganta y un vacío enorme. Necesitaba sentirse bien, aunque fuera un rato. Su equipo de fútbol ganó ese fin de semana.",
+  "letras": {
+   "A": "Necesitar sentirse bien ya",
+   "B": "Su equipo de fútbol ganó",
+   "C": "Dolor de espalda y casi sin dormir",
+   "D": "Apuesta en línea el dinero del arriendo",
+   "E": "«Soy un fracasado, todos se dieron cuenta»",
+   "F": "Deuda; teme que su esposa se vaya",
+   "G": "El jefe lo expone delante del equipo",
+   "H": "Nudo en la garganta y un vacío enorme",
+   "I": "Se siente tranquilo mientras apuesta"
+  }
+ },
+ {
+  "titulo": "El mensaje de las dos de la mañana",
+  "persona": "Natalia, 41 años",
+  "nombre": "Natalia",
+  "texto": "Natalia amaneció el domingo con la relación terminada: a las dos de la mañana le escribió a Mario que no quería volver a verlo y lo bloqueó en todas partes. Ahora él no contesta sus llamadas y ella siente que «arruinó lo único bueno». Al bloquearlo, cuenta, sintió que recuperaba el control. Esa noche llovía fuerte. El sábado, Mario llegó dos horas tarde a la comida con los amigos de ella, sin avisar. Natalia había pasado el día cuidando a su madre enferma y no había comido. Cuando él por fin llegó, pensó «me va a dejar, como todos»; sintió pánico, el corazón acelerado, y después una rabia que no podía contener. Quería irse antes de que él se fuera.",
+  "letras": {
+   "A": "Él no contesta; «arruiné lo único bueno»",
+   "B": "Irse antes de que él se vaya",
+   "C": "Termina por mensaje y lo bloquea",
+   "D": "Mario llega dos horas tarde sin avisar",
+   "E": "Siente que recupera el control",
+   "F": "Pánico, corazón acelerado y luego rabia",
+   "G": "Esa noche llovía fuerte",
+   "H": "«Me va a dejar, como todos»",
+   "I": "Un día cuidando a su madre, sin comer"
+  }
+ },
+ {
+  "titulo": "La fiesta",
+  "persona": "Sebastián, 22 años",
+  "nombre": "Sebastián",
+  "texto": "Sebastián despertó el domingo en urgencias: sus amigos lo llevaron porque perdió el conocimiento en una fiesta. Ahora su familia le pide que no salga más y él siente que todos lo vigilan. En la fiesta bebió un trago tras otro y por un rato dejó de sentir. Sonaba su canción favorita. Horas antes había visto en redes que su exnovia ya tenía una nueva pareja. Llevaba dos semanas sin ir a terapia porque le cambiaron el horario en el trabajo. Al ver la foto pensó «nadie me va a querer nunca»; sintió un vacío en el pecho y unas ganas de llorar que se aguantó. Quería dejar de sentir eso ya.",
+  "letras": {
+   "A": "Sonaba su canción favorita",
+   "B": "Bebe hasta perder el conocimiento",
+   "C": "Vacío en el pecho; ganas de llorar",
+   "D": "Dos semanas sin ir a terapia",
+   "E": "Urgencias; su familia lo vigila",
+   "F": "Ve en redes a su exnovia con nueva pareja",
+   "G": "Por un rato deja de sentir",
+   "H": "Querer dejar de sentir eso ya",
+   "I": "«Nadie me va a querer nunca»"
+  }
+ },
+ {
+  "titulo": "La sesión",
+  "persona": "Paula, 27 años",
+  "nombre": "Paula",
+  "texto": "Paula no fue a la sesión de esta semana y le escribió a su terapeuta que «quizá la terapia no es para ella». La semana pasada se había ido a mitad de la sesión, diciendo que tenía otra cita. Afuera, cuenta, sintió alivio enseguida. Ese día la terapeuta le propuso revisar, paso a paso, la última vez que se hizo daño. Paula había llegado tarde y alterada porque discutió con su madre en la mañana. La sala de espera estaba recién pintada. Cuando empezó a recordar pensó «me va a juzgar como todos»; sintió vergüenza y el estómago revuelto. Solo quería salir de ahí.",
+  "letras": {
+   "A": "«Me va a juzgar como todos»",
+   "B": "Alivio enseguida, afuera",
+   "C": "Discutió con su madre en la mañana",
+   "D": "La sala de espera estaba recién pintada",
+   "E": "No vuelve; duda de la terapia",
+   "F": "Se va a mitad de la sesión",
+   "G": "Vergüenza y estómago revuelto",
+   "H": "Le proponen revisar la última autolesión",
+   "I": "Solo querer salir de ahí"
+  }
+ }
 ];
 
 /* ============================================================
@@ -775,27 +869,77 @@ function initInputRestrictions(){
 }
 
 /* ============================================================
-   4. EL EPISODIO DEL GRUPO
+   4. LA SITUACIÓN DEL GRUPO
    ============================================================ */
+// El grupo N trabaja la situación ((N-1) mod 6) + 1. Cada eslabón guarda la LETRA del dato
+// elegido: así viaja al receptor y el tablero la traduce al texto y la compara con la clave.
+const CLAVES_ESLABON = ["vulnerabilidad", "evento", "pensamientos", "emociones", "impulso", "conducta", "corto", "largo"];
+
 function episodioDelGrupo(){
   const n = parseInt(state.text["f-grupo"] || "", 10);
   if (!n) return null;
-  return { numero: n, datos: EPISODIOS[(n - 1) % EPISODIOS.length] };
+  return { numero: n, datos: SITUACIONES[(n - 1) % SITUACIONES.length] };
+}
+
+// Cada letra se usa una vez: la que ya está en otro eslabón queda deshabilitada en los demás
+// y atenuada en la lista de datos.
+function marcarUsados(){
+  const usados = CLAVES_ESLABON.map(k => state.text["f-" + k]).filter(Boolean);
+  CLAVES_ESLABON.forEach(k => {
+    const sel = document.getElementById("f-" + k);
+    Array.from(sel.options).forEach(o => { if (o.value) o.disabled = usados.includes(o.value) && o.value !== sel.value; });
+  });
+  document.querySelectorAll("#ep-datos li").forEach(li => li.classList.toggle("usado", usados.includes(li.dataset.letra)));
 }
 
 function renderEpisodio(){
   const ep = episodioDelGrupo();
   document.getElementById("episodio").hidden = !ep;
+  document.getElementById("datos-card").hidden = !ep;
   document.getElementById("sin-episodio").hidden = !!ep;
-  if (!ep) return;
-  document.getElementById("ep-num").textContent = "Episodio del grupo " + ep.numero;
-  document.getElementById("ep-titulo").textContent = ep.datos.titulo;
-  document.getElementById("ep-texto").textContent = ep.datos.texto;
+  const indice = ep ? String((ep.numero - 1) % SITUACIONES.length) : "";
+  CLAVES_ESLABON.forEach(k => {
+    const sel = document.getElementById("f-" + k);
+    if (sel.dataset.sit === indice) return;
+    sel.dataset.sit = indice;
+    sel.innerHTML = "";
+    const vacia = document.createElement("option");
+    vacia.value = "";
+    vacia.textContent = ep ? "— Elegir un dato —" : "— Escriban el número de grupo —";
+    sel.appendChild(vacia);
+    if (ep) Object.keys(ep.datos.letras).forEach(letra => {
+      const o = document.createElement("option");
+      o.value = letra;
+      o.textContent = letra + " · " + ep.datos.letras[letra];
+      sel.appendChild(o);
+    });
+    sel.value = state.text["f-" + k] || "";
+  });
+  if (ep) {
+    document.getElementById("ep-num").textContent = "Situación del grupo " + ep.numero;
+    document.getElementById("ep-titulo").textContent = ep.datos.titulo;
+    document.getElementById("ep-persona").textContent = ep.datos.persona;
+    document.getElementById("ep-texto").textContent = ep.datos.texto;
+    const lista = document.getElementById("ep-datos");
+    lista.innerHTML = "";
+    Object.keys(ep.datos.letras).forEach(letra => {
+      const li = document.createElement("li");
+      li.dataset.letra = letra;
+      const b = document.createElement("b");
+      b.textContent = letra;
+      const span = document.createElement("span");
+      span.textContent = ep.datos.letras[letra];
+      li.appendChild(b); li.appendChild(span);
+      lista.appendChild(li);
+    });
+  }
+  marcarUsados();
 }
 
 function initEpisodio(){
   const el = document.getElementById("f-grupo");
   if (el) el.addEventListener("input", renderEpisodio);
+  CLAVES_ESLABON.forEach(k => document.getElementById("f-" + k).addEventListener("change", marcarUsados));
 }
 
 /* ============================================================
@@ -877,7 +1021,7 @@ function listHasContent(listKey){
    ============================================================ */
 function initSimpleFields(){
   // inputs de texto y textareas identificados por id
-  document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
+  document.querySelectorAll('input[type="text"][id^="f-"], textarea[id^="f-"], select[id^="f-"], input[id^="ct-"], select[id^="ct-"]').forEach(el => {
     el.addEventListener("input", () => {
       state.text[el.id] = el.value;
       updateProgress();
@@ -991,7 +1135,7 @@ function updateProgress(){
       }
     });
     const navItem = document.querySelector(`.nav-item[data-target="${section.id}"]`);
-    // El episodio no tiene campos: queda completo cuando el grupo ya tiene el suyo.
+    // La situación no tiene campos: queda completa cuando el grupo ya tiene la suya.
     if (section.id === "bloque-1") { if (navItem) navItem.classList.toggle("is-complete", !!episodioDelGrupo()); return; }
     if (navItem) navItem.classList.toggle("is-complete", done && requiredCount > 0);
   });
@@ -1007,7 +1151,7 @@ function updateProgress(){
 // Cada vez que cambian los campos de la actividad cambia la clave: así un
 // navegador que guardó la versión anterior no le rehidrata a nadie campos que
 // ya no existen.
-const STORAGE_PREFIX = "caso_valeria_cadena_v1:";
+const STORAGE_PREFIX = "dbt_cadena_situaciones_v1:";
 let SESSION_KEY = null;
 
 function computeSessionKey(embeddedRaw){
@@ -1243,7 +1387,7 @@ function initSaveButton(){
     const grupo = state.text["f-grupo"] || "";
     const curso = (state.text["ct-curso"] || "sin-curso");
     const numero = grupo.trim() || "sin-numero";
-    const filename = `${curso}-caso-valeria-cadena-grupo-${numero}.pdf`;
+    const filename = `${curso}-analisis-cadena-grupo-${numero}.pdf`;
     const status = document.getElementById("save-status");
     const boton = document.getElementById("btn-guardar");
     const textoBoton = boton.textContent;
@@ -1349,7 +1493,7 @@ function recogerEnvio(){
 
   // Campos de texto y selects, etiquetados con el enunciado real de la pregunta
   document.querySelectorAll(
-    'input[type="text"][id^="f-"], textarea[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
+    'input[type="text"][id^="f-"], textarea[id^="f-"], select[id^="f-"], input[id^="ct-"], select[id^="ct-"]'
   ).forEach(el => {
     if (el.id === "f-grupo" || el.id === "ct-curso") return; // van en columna propia
     let valor = el.value;
@@ -1363,10 +1507,10 @@ function recogerEnvio(){
     if (elegido) campos[etiquetaDeCampo(grupo)] = elegido.closest(".option-row").textContent.trim();
   });
 
-  // El episodio no es una respuesta, pero ordena la hoja: se ve qué cadena
+  // La situación no es una respuesta, pero ordena la hoja: se ve qué cadena
   // corresponde a qué relato sin tener que deducirlo del número de grupo.
   const ep = episodioDelGrupo();
-  if (ep) campos["Episodio"] = ep.datos.titulo;
+  if (ep) campos["Episodio"] = ep.datos.persona + " · " + ep.datos.titulo;
 
   // Listas dinámicas (menos integrantes, que también tiene columna propia)
   Object.keys(state.lists).forEach(listKey => {
@@ -1536,30 +1680,30 @@ const RUBRICA_CAMPOS = {
     rotulo: "Ver cómo se evalúa la cadena",
     destino: "seccion",
     niveles: [
-      "Faltan eslabones, o están cambiados de lugar: el evento como vulnerabilidad, una emoción como conducta, una consecuencia antes de la conducta problema.",
-      "Están los ocho, pero varios copian frases del relato sin separarlas, o pensamientos, emociones e impulso no se desprenden del episodio.",
-      "Cada eslabón en su casilla y en orden, con un dato del episodio; la vulnerabilidad es una condición previa y las consecuencias distinguen el alivio inmediato del costo posterior.",
-      "Además señala el eslabón clave, sin el cual la conducta habría sido menos probable, o lo que la consecuencia a corto plazo le resuelve a Valeria."
+      "Tres o más datos fuera de su eslabón, o la conducta problema y sus consecuencias confundidas.",
+      "Uno o dos datos cambiados entre eslabones vecinos (pensamiento, emoción, impulso; corto y largo plazo), o el dato que sobra dentro de la cadena.",
+      "Los ocho datos en su eslabón y el que sobra, fuera.",
+      "Además, al explicarla en el tablero, sostienen las distinciones difíciles: por qué es impulso y no emoción, o qué resuelve el alivio inmediato."
     ]
   },
   "ct-habilidad": {
     peso: "35%",
-    rotulo: "Ver cómo se evalúa dónde cortar la cadena",
+    rotulo: "Ver cómo se evalúa dónde cortarla",
     niveles: [
-      "El nivel de la jerarquía no corresponde a la conducta problema, o la habilidad no tiene relación con el eslabón elegido.",
-      "El nivel es coherente, pero la habilidad es genérica y no actúa sobre el eslabón que eligieron.",
-      "Nivel acorde con la conducta problema, un eslabón donde la cadena puede romperse y una habilidad cuya función corresponde a ese eslabón.",
-      "Además dejan ver por qué ese eslabón y no otro, o cómo reducir la vulnerabilidad para que la cadena no empiece."
+      "La habilidad no tiene relación con el eslabón elegido.",
+      "La habilidad es genérica: podría usarse en cualquier eslabón y no actúa sobre el que eligieron.",
+      "Un eslabón donde la cadena puede romperse y una habilidad cuya función corresponde a ese eslabón.",
+      "Además, al explicarla, dicen por qué ese eslabón y no otro."
     ]
   },
   "f-aplicacion": {
     peso: "25%",
-    rotulo: "Ver cómo se evalúa la aplicación",
+    rotulo: "Ver cómo se evalúa el renglón",
     niveles: [
-      "No hay aplicación, o solo se nombra la habilidad.",
-      "Define la habilidad en general, sin situarla en el episodio.",
-      "Dice qué haría Valeria, en qué momento del episodio y siguiendo los pasos de la habilidad.",
-      "Además anticipa un obstáculo y qué haría si no le funciona, o cómo reparar lo que la conducta dañó."
+      "No hay aplicación, o solo se repite el nombre de la habilidad.",
+      "Define la habilidad en general, sin situarla en la situación.",
+      "Dice qué haría la persona en ese momento de la situación.",
+      "Además lo dice siguiendo un paso concreto de la habilidad."
     ]
   }
 };
