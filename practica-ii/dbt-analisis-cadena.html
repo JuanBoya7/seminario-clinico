@@ -690,6 +690,12 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <option>VIDA</option>
         </select>
       </div>
+      <!-- Va a la hoja del docente, no al tablero: quien expone lo explica de viva voz. -->
+      <div class="card">
+        <div class="card-label">Por qué eligieron esa habilidad <span class="required-mark">*</span></div>
+        <div class="card-help">En pocas líneas.</div>
+        <textarea id="f-porque" data-required="true" rows="3" maxlength="300"></textarea>
+      </div>
       <div class="card">
         <div class="card-label">Cómo usaría la habilidad en ese momento <span class="required-mark">*</span></div>
         <div class="card-help">Un renglón.</div>
@@ -1699,10 +1705,10 @@ const RUBRICA_CAMPOS = {
     peso: "35%",
     rotulo: "Ver cómo se evalúa dónde cortarla",
     niveles: [
-      "La habilidad no tiene relación con el eslabón elegido.",
+      "La habilidad no tiene relación con el eslabón elegido, o el porqué solo repite su nombre.",
       "La habilidad es genérica: podría usarse en cualquier eslabón y no actúa sobre el que eligieron.",
       "Un eslabón donde la cadena puede romperse y una habilidad cuya función corresponde a ese eslabón.",
-      "Además, al explicarla, dicen por qué ese eslabón y no otro."
+      "Además, el porqué explica qué cambia la habilidad en ese eslabón y por qué ese eslabón y no otro."
     ]
   },
   "f-aplicacion": {
