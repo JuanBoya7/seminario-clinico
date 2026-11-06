@@ -14392,7 +14392,8 @@ const CALIFICAR = {
   ],
   "estilo": "adultos",
   "pob": [
-   "adultos"
+   "adultos",
+   "infancia"
   ],
   "cita": "Keuthen et al. (1995), Psychotherapy and Psychosomatics · traducción sin autor identificado.",
   "bloques": [
@@ -16658,6 +16659,95 @@ const CALIFICAR = {
        "Se cumplen los cuatro: orienta a duelo complicado; confirme en entrevista"
       ]
      ]
+    }
+   ]
+  }
+ },
+ "mlhfq": {
+  "clave": "MLHFQ",
+  "sigla": "MLHFQ",
+  "titulo": "Cuestionario de Calidad de Vida de Minnesota en Insuficiencia Cardíaca",
+  "para": "Medir cuánto la insuficiencia cardíaca le ha impedido a la persona vivir como desea en el último mes: síntomas y limitación física, efecto emocional y consecuencias sociales y económicas. Sirve para describir la calidad de vida relacionada con la salud y seguir el cambio en rehabilitación cardíaca o en el acompañamiento psicológico.",
+  "areas": [
+   "Salud, sueño y síntomas físicos",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Rector, Kubo y Cohn (1987) · versión colombiana de Lugo-Agudelo et al. (2020) · derechos de la Universidad de Minnesota.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Las siguientes preguntas son acerca de cuánto su falla cardíaca (enfermedad del corazón) ha afectado su vida durante el último mes (últimas 4 semanas). Después de cada pregunta, encierre en un círculo el 0, 1, 2, 3, 4 o 5 para indicar cuánto se ha visto afectada su vida. Si alguna pregunta no aplica para usted, encierre en un círculo el 0. ¿Su falla cardiaca no le ha permitido vivir como usted desea durante el último mes (últimas 4 semanas) porque…"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Muy poco",
+     "Poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "1. ¿Se le han hinchado sus tobillos o piernas?",
+     "2. ¿Se ha tenido que sentar o acostar a descansar durante el día?",
+     "3. ¿Se le ha dificultado salir a caminar o subir escaleras?",
+     "4. ¿Se le ha dificultado hacer labores domésticas livianas?",
+     "5. ¿Se le ha dificultado ir a sitios lejanos de su casa?",
+     "6. ¿Se le ha dificultado dormir bien en las noches?",
+     "7. ¿Se le ha dificultado relacionarse o realizar actividades con sus amigos o familiares?",
+     "8. ¿Se le ha dificultado trabajar para su sostenimiento económico?",
+     "9. ¿Se le ha dificultado realizar sus actividades de recreación, deporte y pasatiempos?",
+     "10. ¿Se le ha dificultado tener relaciones sexuales?",
+     "11. ¿Ha comido menos los alimentos que le gustan?",
+     "12. ¿Ha sentido que le falta el aire?",
+     "13. ¿Se ha cansado, fatigado o sentido sin energías?",
+     "14. ¿Ha tenido que estar hospitalizado?",
+     "15. ¿Ha tenido que gastar dinero en su cuidado médico?",
+     "16. ¿Ha tenido efectos secundarios por causa de los tratamientos?",
+     "17. ¿Se ha sentido una carga para su familia o amigos?",
+     "18. ¿Ha sentido que pierde el control de su vida?",
+     "19. ¿Se ha sentido preocupado?",
+     "20. ¿Le ha sido difícil concentrarse o recordar cosas?",
+     "21. ¿Se ha sentido deprimido?"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Dimensión física",
+     "js": "L([2, 3, 4, 5, 6, 7, 12, 13])",
+     "texto": "De 0 a 40: a mayor puntaje, más limitación física. Sin punto de corte publicado. Referencia colombiana (Lugo-Agudelo et al., 2020, tabla 1, n=134): M=9,7 (DE=7,9). Cambio mínimo detectable: 6,0."
+    },
+    {
+     "n": "Dimensión emocional",
+     "js": "L([17, 18, 19, 20, 21])",
+     "texto": "De 0 a 25: a mayor puntaje, más afectación emocional. Sin punto de corte publicado. Referencia colombiana (Lugo-Agudelo et al., 2020, tabla 1, n=134): M=4,8 (DE=4,7). Cambio mínimo detectable: 4,8."
+    },
+    {
+     "n": "Puntaje total",
+     "js": "S(1,21)",
+     "texto": "De 0 a 105: a mayor puntaje, peor calidad de vida. Sin punto de corte publicado. Referencia colombiana (Lugo-Agudelo et al., 2020, tabla 1, n=134): M=25,3 (DE=16,7). Cambio mínimo detectable: 12,6."
     }
    ]
   }
