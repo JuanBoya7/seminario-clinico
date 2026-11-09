@@ -10574,7 +10574,29 @@ const CALIFICAR = {
     {
      "n": "Total",
      "js": "(r[40] || 0) + (r[42] || 0) + (r[43] || 0) + (r[44] || 0) + (r[45] || 0) + (r[79] || 0) + (r[81] || 0) + (r[82] || 0) + (r[83] || 0) + (r[84] || 0)",
-     "texto": "De 0 a 40: a mayor puntaje, más gravedad. Sin puntos de corte en el formato; sirve para seguir el cambio."
+     "rangos": [
+      [
+       0,
+       13,
+       "Subclínico (orientativo)"
+      ],
+      [
+       14,
+       21,
+       "Leve (orientativo)"
+      ],
+      [
+       22,
+       29,
+       "Moderado (orientativo)"
+      ],
+      [
+       30,
+       40,
+       "Grave (orientativo)"
+      ]
+     ],
+     "texto": "De 0 a 40: a mayor puntaje, más gravedad. Rangos orientativos de Cervin et al. (2022), para usar después del diagnóstico, no como tamizaje ni baremo en español. Seguimiento (Skarphedinsson et al., 2017): respuesta con reducción de al menos 35 %; remisión con reducción de al menos 55 % o total de 11 o menos."
     }
    ]
   }
