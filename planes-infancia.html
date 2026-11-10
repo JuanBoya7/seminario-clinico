@@ -768,6 +768,9 @@ body[data-pdf] #hoja{display:block !important; position:fixed; left:-10000px; to
 }
 @media print{ .nav-movil, #nm-velo, .nm-cerrar{display:none !important;} }
 </style>
+<script>/* Enlace de un plan compartido (?p=): la guía no se muestra ni un instante. */
+if (/[?&]p=/.test(location.search)) document.documentElement.classList.add("verplan");</script>
+<style>html.verplan body > *:not(#hoja):not(#plan-barra){display:none !important;}</style>
 </head>
 <body>
 
@@ -21956,7 +21959,7 @@ function postCupo(campos){
 async function crearCupo(f, usos, dias, destino){
   const token = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(18)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   postCupo({ accion: "crear", tipo: "cupo", secreto: secretoCupo(), token, a: f.a, prueba: f.s || f.k, cupo: usos, dias });
-  for (let i = 0; i < 8; i++){
+  for (let i = 0; i < 20; i++){
     await new Promise(r => setTimeout(r, 1500));
     const r = await jsonpCupo({ accion: "existe", token, secreto: secretoCupo() }).catch(() => ({}));
     if (r.motivo === "secreto") throw new Error("la clave de Juan Boya no es correcta (actívela de nuevo en calificar.html)");
@@ -21980,17 +21983,18 @@ async function prepararCupos(id, caja){
     const acts = (par.p.actividades || []).concat(...(par.p.opciones || []).map(o => o.actividades || []));
     const claves = [...new Set(acts.flatMap(a => a.fichas || []))].filter(k => FICHAS[k]);
     const venceF = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
-    for (const k of claves){
+    // Todos los códigos a la vez: el Apps Script los ordena con su candado.
+    await Promise.all(claves.map(async k => {
       const url = await crearCupo({ a: "ficha:" + GUIA_FICHAS + ":" + k, s: "Ficha: " + FICHAS[k].t.slice(0, 60) }, usos, dias, FICHA_PUBLICA);
       CUPO_FICHA[k] = Object.assign({ url, nota: usos + " usos, hasta el " + venceF }, trazoQR(url));
-    }
+    }));
   }
   if (!fichas.length) return;
   const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
-  for (const f of fichas){
+  await Promise.all(fichas.map(async f => {
     const url = await crearCupo(f, usos, dias);
     CUPO_QR[f.a] = Object.assign({ url, nota: usos + (usos === 1 ? " uso" : " usos") + ", hasta el " + vence }, trazoQR(url));
-  }
+  }));
 }
 async function exportarPlan(id, caja, notas, boton){
   const marca = caja.querySelector("[data-cupo]");
