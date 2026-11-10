@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ficha en línea</title>
+<style>
+/* Fichas de trabajo en línea. Los datos vienen de fichas-web/<guía>/<clave>.json, que
+   escribe _planes-fuente/fichas/exportar_web.py desde las mismas definiciones de los
+   PDF (fichas_datos.py): lo que se ve aquí es exactamente lo que trae la ficha en PDF.
+   Lo que se escribe no se envía ni se guarda: vive solo en esta pestaña. */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --border:#dde5e5; --campo:#f7fafa;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --ambar:#b8722a; --ambar-soft:#fbf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:900px; margin:0 auto; padding:28px 20px 60px;}
+.rotulo{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+h1{font-size:clamp(23px,3vw,32px); line-height:1.2;}
+.enfoque{font-size:13px; font-weight:600; color:var(--accent); margin-top:6px;}
+.cab{display:flex; gap:22px; align-items:flex-start;}
+.cab .txt{flex:1 1 auto; min-width:0;}
+.cab .ilus{flex:0 0 auto; width:min(30%,220px); text-align:center;}
+.cab .ilus img{max-width:100%; height:auto;}
+.cab .ilus small{display:block; font-size:12px; color:var(--ink-soft);}
+.sec{font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-dark); margin:18px 0 4px;}
+.para{color:var(--ink-soft); margin:0; max-width:70ch;}
+ul.como{margin:4px 0 0; padding-left:20px; color:var(--ink-soft);}
+ul.como li{margin:3px 0;}
+.aviso-p{margin:18px 0 0; padding:10px 14px; background:var(--surface); border-radius:10px; font-size:13px; color:var(--ink-soft); border:1px solid var(--border);}
+.acciones{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+.bt{font:inherit; font-size:13.5px; font-weight:600; color:var(--accent-dark); background:var(--bg); border:1px solid var(--accent); border-radius:8px; padding:7px 13px; cursor:pointer;}
+.bt:hover{background:var(--accent-soft);}
+.datos{display:grid; grid-template-columns:2fr 1fr 1fr; gap:10px; margin:20px 0 0;}
+label.c{display:block; font-size:13px; font-weight:600; color:var(--ink); margin:14px 0 4px;}
+.datos label.c{margin-top:0;}
+textarea,input[type=text]{width:100%; font:inherit; font-size:15px; color:var(--ink); background:var(--campo); border:1px solid var(--border); border-radius:8px; padding:8px 10px; resize:vertical;}
+textarea:focus,input:focus{outline:2px solid var(--accent-soft); border-color:var(--accent);}
+h2.tit{font-size:19px; margin:26px 0 4px; padding-bottom:5px; border-bottom:1px solid var(--border); color:var(--accent-dark);}
+p.nota{margin:10px 0; color:var(--ink-soft);}
+/* Tablas: rejilla en pantallas anchas, tarjetas por fila en el celular. */
+.tabla{width:100%; border-collapse:collapse; margin:12px 0; table-layout:fixed;}
+.tabla th{font-size:12.5px; text-align:left; vertical-align:bottom; background:var(--accent-soft); color:var(--accent-dark); padding:7px 8px; border:1px solid var(--border);}
+.tabla td{border:1px solid var(--border); padding:4px; vertical-align:top;}
+.tabla td textarea,.tabla td input{border:0; background:transparent; padding:4px 6px; min-height:2.4em; resize:none; overflow:hidden;}
+.tabla td.fija{font-size:13.5px; font-weight:600; padding:8px; background:var(--surface);}
+@media (max-width:700px){
+  .tabla, .tabla tbody, .tabla tr, .tabla td{display:block; width:100%;}
+  .tabla thead{display:none;}
+  .tabla tr{border:1px solid var(--border); border-radius:10px; margin:0 0 12px; padding:8px 10px; background:var(--bg);}
+  .tabla td{border:0; padding:4px 0;}
+  .tabla td::before{content:attr(data-col); display:block; font-size:12px; font-weight:600; color:var(--accent-dark); margin-bottom:2px;}
+  .tabla td textarea,.tabla td input{background:var(--campo); border:1px solid var(--border); border-radius:8px; resize:vertical;}
+  .tabla td input{min-height:0;}
+  .tabla td.fija{background:transparent; padding:0 0 4px; font-size:14.5px;}
+  .tabla td.fija::before{content:none;}
+  .datos{grid-template-columns:1fr;}
+  .cab{flex-direction:column-reverse;}
+  .cab .ilus{width:60%; margin:0 auto;}
+}
+.casillas{display:grid; gap:6px 18px; margin:10px 0;}
+.casillas label{display:flex; gap:8px; align-items:flex-start; font-size:14.5px;}
+.casillas input{margin-top:4px; width:18px; height:18px; flex:none;}
+.lista{margin:12px 0;}
+.lista b{display:block; color:var(--accent-dark); margin-bottom:4px;}
+.lista ul,.lista ol{margin:0; padding-left:22px;}
+.lista li{margin:4px 0;}
+.pasos{display:grid; gap:14px; margin:14px 0;}
+.paso{border:1px solid var(--border); border-radius:12px; padding:12px; display:flex; gap:12px; align-items:flex-start; background:var(--bg);}
+.paso img{width:110px; height:auto; flex:none;}
+.paso .n{display:inline-flex; width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:13px; align-items:center; justify-content:center; margin-right:6px;}
+.paso b{font-size:15px;}
+.paso p{margin:4px 0 0; color:var(--ink-soft); font-size:14px;}
+.galeria{display:grid; gap:12px; margin:14px 0;}
+.galeria figure{margin:0; text-align:center; border:1px solid var(--border); border-radius:12px; padding:10px;}
+.galeria img{max-width:100%; height:auto;}
+.galeria figcaption{font-size:13px; color:var(--ink-soft);}
+.guion p{margin:10px 0; font-size:15.5px; line-height:1.6;}
+.guion .pausa{display:inline-block; margin-left:6px; font-size:11.5px; font-weight:700; color:var(--accent); letter-spacing:.06em;}
+.guion .indica{font-style:italic; color:var(--ink-soft); font-size:14px; border-left:3px solid var(--accent-soft); padding-left:10px;}
+.cuidado{margin:14px 0; padding:12px 14px; background:var(--ambar-soft); border:1px solid #ecd2ad; border-left:4px solid var(--ambar); border-radius:10px;}
+.cuidado b{display:block; color:#7a4a17; margin-bottom:3px;}
+.pie{margin-top:30px; padding-top:12px; border-top:1px solid var(--border); font-size:12.5px; color:var(--ink-faint);}
+.error{color:#a83f2b;}
+@media (max-width:700px){ .paso{flex-direction:column;} .paso img{width:100%; max-width:240px; align-self:center;} .pasos,.galeria{grid-template-columns:1fr !important;} .casillas{grid-template-columns:1fr !important;} }
+@media print{ .acciones,.aviso-p{display:none !important;} body{font-size:12px;} .wrap{padding:0;} textarea{background:#fff; border-color:#999;} .tabla{display:table !important;} .tabla thead{display:table-header-group !important;} .tabla tr{display:table-row !important;} .tabla td{display:table-cell !important;} .tabla td::before{content:none !important;} }
+@page{margin:14mm;}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p>Cargando la ficha…</p></div>
+<noscript><p style="padding:20px">Esta ficha necesita JavaScript. Ábrala en el navegador del celular o del computador.</p></noscript>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const app = $("#app");
+const CLASES = {
+  registro: { cab: "Ficha de trabajo", como: "Cómo se llena", pie: "Ficha elaborada" },
+  guia: { cab: "Guía de práctica", como: "Antes de empezar", pie: "Guía elaborada" },
+  guion: { cab: "Guion para el terapeuta", como: "Preparación", pie: "Guion elaborado" }
+};
+const GUIAS = { adultos: "la guía de planes de intervención", infancia: "la guía de planes de niños y adolescentes" };
+let nCampo = 0;
+const linea = etq => '<input type="text" aria-label="' + esc(etq) + '" name="c' + (++nCampo) + '">';
+const area = (etq, lineas) => '<textarea aria-label="' + esc(etq) + '" rows="' + Math.max(2, Math.min(14, lineas || 2)) + '" name="c' + (++nCampo) + '"></textarea>';
+
+const BLOQUES = {
+  campos: b => b.campos.map(([etq, lineas], i) => '<label class="c">' + esc(etq) + '</label>' + ((b.breves || [])[i] ? linea(etq) : area(etq, lineas))).join(""),
+  tabla: b => {
+    const cols = b.cols.map(c => Array.isArray(c) ? c : [c, 1]);
+    const total = cols.reduce((s, c) => s + (c[1] || 1), 0);
+    const fijas = b.fijas || [];
+    let h = '<table class="tabla"><colgroup>' + cols.map(c => '<col style="width:' + ((c[1] || 1) / total * 100).toFixed(1) + '%">').join("") + '</colgroup>' +
+      '<thead><tr>' + cols.map(c => '<th>' + esc(c[0]) + '</th>').join("") + '</tr></thead><tbody>';
+    const filas = Math.max(b.filas || 1, fijas.length);
+    for (let i = 0; i < filas; i++){
+      h += '<tr>' + cols.map((c, j) => (j === 0 && fijas[i] !== undefined)
+        ? '<td class="fija" data-col="' + esc(c[0]) + '">' + esc(fijas[i]) + '</td>'
+        : '<td data-col="' + esc(c[0]) + '">' + ((b.breves || [])[j] ? linea(c[0]) : area(c[0], 1)) + '</td>').join("") + '</tr>';
+    }
+    return h + '</tbody></table>';
+  },
+  casillas: b => '<div class="casillas" style="grid-template-columns:repeat(' + (b.cols || 1) + ',minmax(0,1fr))">' +
+    b.items.map(it => '<label><input type="checkbox" name="c' + (++nCampo) + '"><span>' + esc(it) + '</span></label>').join("") + '</div>',
+  titulo: b => '<h2 class="tit">' + esc(b.texto) + '</h2>',
+  nota: b => '<p class="nota">' + esc(b.texto) + '</p>',
+  lista: b => '<div class="lista">' + (b.titulo ? '<b>' + esc(b.titulo) + '</b>' : '') + (b.numerada ? '<ol>' : '<ul>') +
+    b.items.map(it => '<li>' + esc(it) + '</li>').join("") + (b.numerada ? '</ol>' : '</ul>') + '</div>',
+  aviso: b => '<div class="cuidado">' + (b.titulo ? '<b>' + esc(b.titulo) + '</b>' : '') + esc(b.texto) + '</div>',
+  pasos: b => '<div class="pasos" style="grid-template-columns:repeat(' + Math.min(b.cols || 1, 2) + ',minmax(0,1fr))">' +
+    b.pasos.map((p, i) => '<div class="paso">' + (p.img ? '<img src="fichas-web/img/' + esc(p.img) + '" alt="" loading="lazy">' : '') +
+      '<div><span class="n">' + (i + 1) + '</span><b>' + esc(p.titulo || "") + '</b><p>' + esc(p.texto || "") + '</p></div></div>').join("") + '</div>',
+  galeria: b => (b.titulo ? '<h2 class="tit">' + esc(b.titulo) + '</h2>' : '') +
+    '<div class="galeria" style="grid-template-columns:repeat(' + Math.min(b.cols || 2, 3) + ',minmax(0,1fr))">' +
+    (b.imagenes || []).map((im, i) => '<figure><img src="fichas-web/img/' + esc(im) + '" alt="" loading="lazy"><figcaption>' + esc((b.rotulos || [])[i] || "") + '</figcaption></figure>').join("") + '</div>',
+  guion: b => '<div class="guion">' + b.partes.map(p => typeof p === "string"
+      ? '<p>' + esc(p.replace(/\s*\[p\]\s*$/, "")) + (/\[p\]\s*$/.test(p) ? '<span class="pausa">· PAUSA ·</span>' : '') + '</p>'
+      : '<p class="indica">' + esc(p.indica || "") + '</p>').join("") + '</div>'
+};
+
+function pintar(f, guia){
+  const k = CLASES[f.clase] || CLASES.registro;
+  document.title = f.titulo + " · Ficha en línea";
+  const il = f.ilustracion;
+  let h = '<div class="cab"><div class="txt"><div class="rotulo">' + k.cab + '</div><h1>' + esc(f.titulo) + '</h1>' +
+    (f.enfoque ? '<div class="enfoque">' + esc(f.enfoque) + '</div>' : '') +
+    '<div class="sec">Para qué sirve</div><p class="para">' + esc(f.para) + '</p>' +
+    (f.como && f.como.length ? '<div class="sec">' + k.como + '</div><ul class="como">' + f.como.map(c => '<li>' + esc(c) + '</li>').join("") + '</ul>' : '') +
+    '</div>' + (il ? '<div class="ilus"><img src="fichas-web/img/' + esc(il.archivo) + '" alt="">' +
+      (il.rotulos || []).map(r => '<small>' + esc(Array.isArray(r) ? r[0] : r) + '</small>').join("") + '</div>' : '') + '</div>';
+  h += '<div class="aviso-p">Lo que escriba no se envía ni se guarda: al cerrar o recargar la página se borra. Si quiere conservarlo, use «Imprimir o guardar en PDF» antes de cerrar.</div>' +
+    '<div class="acciones"><button class="bt" id="imprimir">Imprimir o guardar en PDF</button><button class="bt" id="borrar">Borrar lo escrito</button></div>';
+  if (f.clase === "registro" || !f.clase)
+    h += '<div class="datos"><div><label class="c">Nombre</label><input type="text" name="nombre"></div>' +
+      '<div><label class="c">Fecha</label><input type="text" name="fecha"></div><div><label class="c">Sesión</label><input type="text" name="sesion"></div></div>';
+  h += f.bloques.map(b => (BLOQUES[b.t] || (() => ""))(b)).join("");
+  h += '<div class="pie">Fuente: ' + esc(f.fuente || "") + '<br>' + k.pie + ' por Juan Boya Guerra para ' + (GUIAS[guia] || GUIAS.adultos) + '.</div>';
+  app.innerHTML = h;
+  // Las casillas de las tablas crecen con el texto.
+  app.querySelectorAll(".tabla textarea").forEach(t => t.addEventListener("input", () => { t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; }));
+}
+
+document.addEventListener("click", ev => {
+  if (ev.target.id === "imprimir") window.print();
+  if (ev.target.id === "borrar" && confirm("¿Borrar todo lo escrito en esta ficha?")){
+    app.querySelectorAll("textarea,input[type=text]").forEach(t => { t.value = ""; t.style.height = ""; });
+    app.querySelectorAll("input[type=checkbox]").forEach(c => { c.checked = false; });
+  }
+});
+window.addEventListener("beforeunload", ev => {
+  if ([...app.querySelectorAll("textarea,input[type=text]")].some(t => t.value.trim())){ ev.preventDefault(); ev.returnValue = ""; }
+});
+
+async function cargar(clave, guia){
+  const r = await fetch("fichas-web/" + guia + "/" + encodeURIComponent(clave) + ".json", { cache: "no-cache" });
+  if (!r.ok) throw new Error("no existe");
+  return r.json();
+}
+
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const clave = q.get("f"), guia = q.get("g") === "infancia" ? "infancia" : "adultos";
+  if (!clave || !/^[a-z0-9-]{1,80}$/.test(clave)){
+    app.innerHTML = '<h1>Ficha en línea</h1><p class="para">Para abrir una ficha, use el enlace o el código QR que recibió.</p>';
+    return;
+  }
+  try { pintar(await cargar(clave, guia), guia); }
+  catch (e){ app.innerHTML = '<h1>Ficha en línea</h1><p class="error">No se encontró esta ficha. Revise que el enlace esté completo.</p>'; }
+})();
+</script>
+</body>
+</html>
