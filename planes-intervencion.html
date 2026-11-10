@@ -30982,7 +30982,9 @@ async function prepararCupos(id, caja){
   if (SOLO_LINEA){
     // Todas las fichas de trabajo del plan (de cualquier opción de secuencia) pasan a su versión en línea.
     const acts = (par.p.actividades || []).concat(...(par.p.opciones || []).map(o => o.actividades || []));
-    const claves = [...new Set(acts.flatMap(a => a.fichas || []))].filter(k => FICHAS[k]);
+    // Las fichas de registro conservan su PDF (el paciente la imprime y la lleva consigo);
+    // las guías y los guiones (FICHAS[k].c) pasan a su versión en línea con código.
+    const claves = [...new Set(acts.flatMap(a => a.fichas || []))].filter(k => FICHAS[k] && FICHAS[k].c);
     const venceF = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
     // Todos los códigos a la vez: el Apps Script los ordena con su candado.
     await Promise.all(claves.map(async k => {

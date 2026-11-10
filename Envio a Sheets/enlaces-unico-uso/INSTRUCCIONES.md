@@ -77,9 +77,9 @@ copia que usted comparte, con sus notas y sus códigos.
 ## Solo en línea: fichas y calificación sin PDF
 
 La casilla **«Solo en línea (fichas y calificación, sin PDF)»** del cuadro de exportación
-hace que el plan (PDF o enlace) no lleve ningún PDF: las fichas de trabajo pasan a su
+hace que el plan (PDF o enlace) no lleve PDF de instrumentos ni de guías: las guías y los guiones pasan a su
 versión en línea (`ficha.html`) y los instrumentos solo conservan «Calificar en línea»,
-todos con código de cupo (Usos y Días). En las fichas en línea, las guías y los guiones
+todos con código de cupo (Usos y Días). Las fichas de registro conservan su PDF, para que el paciente la imprima y la lleve consigo. En las fichas en línea, las guías y los guiones
 solo se leen (no se imprimen ni se copian) y los registros se exportan únicamente cuando
 están diligenciados. La dirección directa `ficha.html?f=…` solo abre en el navegador
 donde activó sus botones de compartir.
