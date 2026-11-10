@@ -512,7 +512,7 @@ async function compartir(d, boton){
    enlace (no sale del navegador). El estudiante pulsa «Comenzar», la página pide la
    prueba una vez y el Apps Script la marca como usada. La clave SECRETO del Apps Script
    solo la conoce el docente: se escribe una vez por dispositivo y queda en él. */
-const ENLACES = { url: "" };   // URL de la aplicación web (forma de dominio); vacío = botones apagados
+const ENLACES = { url: "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxJeqxsv7s-pRqceQKfOq4JJ7jwlAtm4C-3t1kQlu2CjId3y99QuGesx4Ly7LHNyUrB/exec" };   // URL de la aplicación web (forma de dominio); vacío = botones apagados
 const SECRETO_GUARDA = "calificar-enlaces-secreto";
 const UNICO_GUARDA = "calificar-unico-";
 function secretoDocente(){ try { return localStorage.getItem(SECRETO_GUARDA) || ""; } catch (e) { return ""; } }
