@@ -30903,9 +30903,9 @@ function controlesCupo(){
   if (!secretoCupo()) return "";
   return '<div class="exp-cupo" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;font-size:13px;">' +
     '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
-    '<label><input type="checkbox" data-solo> Solo en línea (fichas y calificación, sin PDF)</label>' +
-    '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="40" style="width:4.5em"></label>' +
-    '<label>Días <input type="number" data-cupo-d min="1" max="365" value="15" style="width:4em"></label>' +
+    '<label><input type="checkbox" data-solo checked> Solo en línea (fichas y calificación, sin PDF)</label>' +
+    '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="20" style="width:4.5em"></label>' +
+    '<label>Días <input type="number" data-cupo-d min="1" max="365" value="30" style="width:4em"></label>' +
     '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span>' +
     '<label style="flex-basis:100%">Contraseña (opcional): <input type="text" data-pdf-clave autocomplete="off" style="width:12em"> ' +
     '<span class="nota">protege el PDF y el enlace del plan</span></label>' +
@@ -30974,8 +30974,8 @@ async function prepararCupos(id, caja){
   const solo = caja.querySelector("[data-solo]");
   SOLO_LINEA = !!(solo && solo.checked);
   if (!SOLO_LINEA && (!marca || !marca.checked)) return;
-  const usos = Math.max(1, Math.min(500, parseInt(caja.querySelector("[data-cupo-n]").value, 10) || 40));
-  const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-cupo-d]").value, 10) || 15));
+  const usos = Math.max(1, Math.min(500, parseInt(caja.querySelector("[data-cupo-n]").value, 10) || 20));
+  const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-cupo-d]").value, 10) || 30));
   const par = planPorId(id); if (!par) return;
   const fichas = instrumentosDe(par.p).map(i => fichaInst(i.s)).filter(f => f && f.qc);
   await cargarQR();
