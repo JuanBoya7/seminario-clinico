@@ -17895,6 +17895,150 @@ const CALIFICAR = {
    ]
   }
  },
+ "lsb-50": {
+  "clave": "LSB-50",
+  "sigla": "LSB-50",
+  "titulo": "Listado de Síntomas Breve",
+  "para": "Identificar y valorar síntomas psicológicos y psicosomáticos de las últimas semanas en adultos: psicorreactividad (hipersensibilidad y obsesión-compulsión), ansiedad, hostilidad, somatización, depresión y sueño. Sirve como tamizaje general de malestar psicológico y para seguir el cambio.",
+  "areas": [
+   "Malestar general",
+   "Ansiedad",
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "de Rivera y Abuín (2012), TEA Ediciones · calificación orientativa con la estructura factorial de Abuín y de Rivera (2014).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Poco",
+     "Moderadamente",
+     "Bastante",
+     "Mucho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49",
+     "Ítem 50"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Psicorreactividad",
+     "js": "Math.round(L([6, 7, 8, 15, 16, 24, 26, 29, 30, 31, 33, 36, 38]) / 13 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,65 (0,52); mujeres 0,77 (0,60) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Ansiedad",
+     "js": "Math.round(L([4, 10, 18, 22, 25, 34, 35, 47, 50]) / 9 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,42 (0,47); mujeres 0,53 (0,55) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Hostilidad",
+     "js": "Math.round(L([3, 9, 23, 41, 44, 48]) / 6 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,60 (0,64); mujeres 0,61 (0,62) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Somatización",
+     "js": "Math.round(L([1, 5, 11, 19, 20, 43, 45, 46]) / 8 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,61 (0,56); mujeres 0,76 (0,64) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Depresión",
+     "js": "Math.round(L([2, 12, 17, 21, 28, 32, 37, 39, 42, 49]) / 10 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,46 (0,49); mujeres 0,65 (0,56) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Alteraciones del sueño",
+     "js": "Math.round(L([13, 14, 27]) / 3 * 100) / 100",
+     "texto": "Promedio de 0 a 4. Media colombiana: varones 0,68 (0,74); mujeres 0,75 (0,93) (manual, tabla 8.3). Orientativo: estructura factorial publicada, no la clave oficial."
+    },
+    {
+     "n": "Síntomas presentes",
+     "js": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50].filter(i => r[i] > 0).length",
+     "texto": "Número de afirmaciones marcadas con algo distinto de Nada (0 a 50). Media colombiana: varones 17,96 (DE 13,06); mujeres 20,41 (DE 12,57)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "(r[17] || 0) >= 1",
+     "texto": "Marcó ideas de acabar con su vida (afirmación 17): valore el riesgo suicida en esta misma sesión, sea cual sea el resto del perfil."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "mlhfq": {
   "clave": "MLHFQ",
   "sigla": "MLHFQ",
