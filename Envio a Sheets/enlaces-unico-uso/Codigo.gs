@@ -19,6 +19,11 @@
  * de la prueba (a), el número de usos (cupo) y los días de vigencia (dias). No llevan
  * la prueba: abren la versión publicada de calificar.html hasta agotar el cupo o vencer.
  *
+ * Planes compartidos (enlace de la guía de planes en lugar del PDF): se crean con
+ * tipo=plan, el plan cifrado en el navegador (datos) y los días de vigencia (dias). Se
+ * leen con accion=ver tantas veces como se quiera hasta que vencen; la llave o la
+ * contraseña nunca llegan aquí. Para retirar uno antes de tiempo, borre su fila.
+ *
  * Hoja «Enlaces»: token | prueba | creado | vence | usado (sí/no, o cuántas veces en los
  * de cupo) | usado_en (último uso) | datos (1..n; en los de cupo, {"tipo":"cupo",…})
  */
@@ -72,7 +77,12 @@ function doPost(e) {
     if (buscar_(h, p.token)) return salida_({ ok: true, repetido: true });
     var ahora = new Date();
     var fila;
-    if (p.tipo === 'cupo') {
+    if (p.tipo === 'plan') {
+      var diasP = Math.max(1, Math.min(365, parseInt(p.dias, 10) || DIAS_VIGENCIA));
+      fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + diasP * 86400000), 0, ''];
+      var dp = 'plan:' + p.datos;
+      for (var j = 0; j < dp.length; j += TROZO) fila.push(dp.slice(j, j + TROZO));
+    } else if (p.tipo === 'cupo') {
       var cupo = Math.max(1, Math.min(500, parseInt(p.cupo, 10) || 1));
       var dias = Math.max(1, Math.min(365, parseInt(p.dias, 10) || DIAS_VIGENCIA));
       if (!/^[a-z0-9-]{1,40}$/.test(p.a || '')) return salida_({ ok: false, motivo: 'datos' });
@@ -104,6 +114,23 @@ function doGet(e) {
     if (!secretoValido_(p.secreto)) return salida_({ ok: false, motivo: 'secreto' }, cb);
     return salida_({ ok: buscar_(h, token) > 0 }, cb);
   }
+  if (p.accion === 'ver') {
+    var lk = LockService.getScriptLock();
+    lk.waitLock(20000);
+    try {
+      var fp = buscar_(h, token);
+      if (!fp) return salida_({ ok: false, motivo: 'no-existe' }, cb);
+      var an = h.getLastColumn();
+      var fl = h.getRange(fp, 1, 1, an).getValues()[0];
+      var txt = fl.slice(6).join('');
+      if (txt.indexOf('plan:') !== 0) return salida_({ ok: false, motivo: 'no-existe' }, cb);
+      if (fl[3] && new Date() > new Date(fl[3])) return salida_({ ok: false, motivo: 'vencido' }, cb);
+      h.getRange(fp, 5, 1, 2).setValues([[(Number(fl[4]) || 0) + 1, new Date()]]);
+      return salida_({ ok: true, datos: txt.slice(5), vence: fl[3] }, cb);
+    } finally {
+      lk.releaseLock();
+    }
+  }
   if (p.accion !== 'usar') return salida_({ ok: false, motivo: 'accion' }, cb);
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
@@ -120,6 +147,7 @@ function doGet(e) {
       h.getRange(f, 5, 1, 2).setValues([[usos + 1, new Date()]]);
       return salida_({ ok: true, cupo: true, a: info.a, quedan: info.cupo - usos - 1 }, cb);
     }
+    if (String(fila[6]).indexOf('plan:') === 0) return salida_({ ok: false, motivo: 'no-existe' }, cb);
     if (fila[4] === true) return salida_({ ok: false, motivo: 'usado', usado_en: fila[5] }, cb);
     if (fila[3] && new Date() > new Date(fila[3])) return salida_({ ok: false, motivo: 'vencido' }, cb);
     var datos = fila.slice(6).join('');

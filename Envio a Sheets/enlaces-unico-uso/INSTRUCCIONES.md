@@ -58,8 +58,24 @@ Después muestra «Este código ya alcanzó su número de usos» o «Este códig
 Sin marcar la opción, el PDF lleva los QR abiertos de siempre. En la hoja «Enlaces» se
 ve cuántas veces se usó cada código (columna `usado`).
 
+## Compartir el plan como enlace, y PDF con contraseña
+
+En el mismo cuadro de exportación (solo con los botones activados):
+
+- **Contraseña (opcional).** Si la escribe, el PDF exportado sale protegido y pide esa
+  clave al abrirse (en el computador se descarga directamente, sin el diálogo de
+  impresión). Es el cifrado básico de PDF: frena a cualquiera, pero no es inviolable.
+- **Crear enlace del plan.** En lugar del PDF, crea un enlace que muestra este plan (con
+  sus notas, sus QR y, si marcó el cupo, los QR con cupo) durante los **Días del
+  enlace** (30 por defecto). Si escribió contraseña, el enlace la pide. Al vencer muestra
+  «Este plan ya no está disponible». Para retirarlo antes, borre su fila en la hoja
+  «Enlaces» (columna `prueba` empieza por «Plan:»; `usado` cuenta las veces que se abrió).
+
+Ojo: el texto de los planes también está en la guía pública; lo que se controla es la
+copia que usted comparte, con sus notas y sus códigos.
+
 ## Si cambia el código
 
 Pegue el `Codigo.gs` nuevo encima del anterior, guarde y vaya a «Implementar →
 Administrar implementaciones → editar (lápiz) → Versión: nueva → Implementar». Así la
-URL no cambia. (Los QR con cupo, del 2026-11-10, necesitan esta actualización.)
+URL no cambia. (Los QR con cupo y los planes compartidos, del 2026-11-10, necesitan esta actualización.)

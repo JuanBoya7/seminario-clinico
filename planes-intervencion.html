@@ -30898,7 +30898,13 @@ function controlesCupo(){
     '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
     '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="40" style="width:4.5em"></label>' +
     '<label>Días <input type="number" data-cupo-d min="1" max="365" value="15" style="width:4em"></label>' +
-    '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span></div>';
+    '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span>' +
+    '<label style="flex-basis:100%">Contraseña (opcional): <input type="text" data-pdf-clave autocomplete="off" style="width:12em"> ' +
+    '<span class="nota">protege el PDF y el enlace del plan</span></label>' +
+    '<label>Días del enlace <input type="number" data-plan-dias min="1" max="365" value="30" style="width:4em"></label>' +
+    '<button type="button" data-plan-enlace>Crear enlace del plan</button>' +
+    '<span class="nota">En lugar del PDF: un enlace que muestra este plan hasta que vence.</span>' +
+    '<div data-plan-salida hidden style="flex-basis:100%;padding:8px 10px;border:1px dashed #1f6f78;border-radius:8px;background:#eef6f6"></div></div>';
 }
 let cargaQR = null;
 function cargarQR(){
@@ -30980,10 +30986,128 @@ async function exportarPlan(id, caja, notas, boton){
     finally { boton.disabled = false; boton.textContent = texto; }
   } else CUPO_QR = {};
   construirHoja(id, opcionesDe(caja), notas);
-  if (ES_MOVIL) { compartirHoja(id, boton); return; }
+  const clavePDF = ((caja.querySelector("[data-pdf-clave]") || {}).value || "").trim();
+  if (ES_MOVIL || clavePDF) { compartirHoja(id, boton, clavePDF); return; }
   document.body.dataset.hoja = "1";
   window.print();
 }
+/* Plan compartido por enlace (en lugar del PDF), con vencimiento y contraseña opcional.
+   El plan se arma igual que el PDF, se cifra en el navegador y se guarda en el Apps Script
+   de «Envio a Sheets/enlaces-unico-uso» (tipo plan). La llave va en el enlace después
+   de # o, si se pone contraseña, se deriva de ella: nunca llega al Apps Script.
+   Quien abre el enlace ve solo el plan mientras no venza. */
+const b64uP = u => btoa(String.fromCharCode(...u)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const deB64uP = s => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)), c => c.charCodeAt(0));
+const ITER_PLAN = 200000;
+async function llaveDeClave(clave, sal){
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(clave), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt: sal, iterations: ITER_PLAN }, base, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+function urlGuia(){
+  const archivo = location.pathname.split("/").pop() || "planes-intervencion.html";
+  return location.protocol === "file:" ? "https://juanboya7.github.io/seminario-clinico/" + archivo : location.origin + location.pathname;
+}
+async function crearEnlacePlan(id, caja, boton){
+  const texto = boton.textContent;
+  const salida = caja.querySelector("[data-plan-salida]");
+  boton.disabled = true; boton.textContent = "Creando enlace…";
+  try {
+    if (!window.crypto || !crypto.subtle) throw new Error("este navegador no puede cifrar");
+    await prepararCupos(id, caja);
+    const notas = caja.querySelector("[data-notas]").value;
+    guardarNotas(id, notas);
+    construirHoja(id, opcionesDe(caja), notas);
+    const par = planPorId(id);
+    const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-plan-dias]").value, 10) || 30));
+    const clave = (caja.querySelector("[data-pdf-clave]").value || "").trim();
+    const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+    const plano = new TextEncoder().encode(JSON.stringify({ t: par.p.t, h: $("hoja").innerHTML, vence }));
+    let llave, fragmento;
+    if (clave){
+      const sal = crypto.getRandomValues(new Uint8Array(16));
+      llave = await llaveDeClave(clave, sal);
+      fragmento = "s=" + b64uP(sal);
+    } else {
+      const raw = crypto.getRandomValues(new Uint8Array(32));
+      llave = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]);
+      fragmento = "k=" + b64uP(raw);
+    }
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const cif = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, llave, plano));
+    const todo = new Uint8Array(12 + cif.length); todo.set(iv); todo.set(cif, 12);
+    const token = b64uP(crypto.getRandomValues(new Uint8Array(18)));
+    postCupo({ accion: "crear", tipo: "plan", secreto: secretoCupo(), token, prueba: "Plan: " + par.p.t.slice(0, 70), dias, datos: b64uP(todo) });
+    let ok = false;
+    for (let i = 0; i < 10 && !ok; i++){
+      await new Promise(r => setTimeout(r, 1500));
+      const r = await jsonpCupo({ accion: "existe", token, secreto: secretoCupo() }).catch(() => ({}));
+      if (r.motivo === "secreto") throw new Error("la clave de Juan Boya no es correcta (actívela de nuevo en calificar.html)");
+      ok = !!r.ok;
+    }
+    if (!ok) throw new Error("no se pudo guardar el plan");
+    const enlace = urlGuia() + "?p=" + token + "#" + fragmento;
+    salida.hidden = false;
+    salida.innerHTML = '<b>Enlace del plan</b> (vence el ' + escapar(vence) + (clave ? '; pide la contraseña que escribió' : '') + ')' +
+      '<input readonly value="' + escapar(enlace) + '" style="width:100%;font:inherit;font-size:12px;padding:5px 7px;margin:4px 0;border:1px solid #ccc;border-radius:6px">' +
+      '<span data-plan-copiado></span>';
+    salida.querySelector("input").addEventListener("focus", ev => ev.target.select());
+    try { await navigator.clipboard.writeText(enlace); salida.querySelector("[data-plan-copiado]").textContent = "Copiado."; }
+    catch (e) { salida.querySelector("input").select(); }
+  } catch (e) {
+    alert("No se pudo crear el enlace del plan: " + e.message + ".");
+  } finally {
+    boton.disabled = false; boton.textContent = texto;
+  }
+}
+// Vista de quien recibe el enlace (?p=…): solo el plan, mientras no venza.
+document.addEventListener("DOMContentLoaded", () => {
+  const token = new URLSearchParams(location.search).get("p");
+  if (!token) return;
+  const frag = new URLSearchParams(location.hash.slice(1));
+  const est = document.createElement("style");
+  est.textContent = 'body[data-verplan] > *:not(#hoja):not(#plan-barra){display:none !important}' +
+    'body[data-verplan] #hoja{display:block !important; position:static !important; max-width:184mm; margin:0 auto 40px; padding:0 16px; background:#fff}' +
+    '#plan-barra{max-width:184mm; margin:20px auto 16px; padding:12px 16px; font:14px/1.45 system-ui,sans-serif; border:1px solid #cfdcdc; border-radius:10px; background:#f3f8f8}' +
+    '#plan-barra input{font:inherit; padding:6px 10px; border:1px solid #bbb; border-radius:8px} #plan-barra button{font:inherit; padding:6px 14px; border-radius:8px; border:1px solid #1f6f78; background:#1f6f78; color:#fff; cursor:pointer}' +
+    '@media print{#plan-barra{display:none !important}}';
+  document.head.appendChild(est);
+  document.body.dataset.verplan = "1";
+  const barra = document.createElement("div");
+  barra.id = "plan-barra";
+  document.body.insertBefore(barra, document.body.firstChild);
+  const hoja = $("hoja");
+  hoja.innerHTML = "";
+  const mensaje = t => { barra.innerHTML = t; };
+  mensaje("Abriendo el plan compartido por Juan Boya…");
+  jsonpCupo({ accion: "ver", token }).then(async r => {
+    if (!r.ok){
+      mensaje(r.motivo === "vencido" ? "<b>Este plan ya no está disponible.</b> Su enlace venció. Si lo necesita, pida a Juan Boya uno nuevo."
+        : "<b>Este plan no está disponible.</b> Revise que copió el enlace completo o pida a Juan Boya uno nuevo.");
+      return;
+    }
+    const datos = deB64uP(r.datos);
+    const abrir = async llave => {
+      const plano = await crypto.subtle.decrypt({ name: "AES-GCM", iv: datos.slice(0, 12) }, llave, datos.slice(12));
+      const p = JSON.parse(new TextDecoder().decode(plano));
+      document.title = p.t + " · Plan compartido";
+      hoja.innerHTML = p.h;
+      hoja.removeAttribute("aria-hidden");
+      mensaje("Plan compartido por <b>Juan Boya</b>. Disponible hasta el " + escapar(p.vence) + ".");
+    };
+    try {
+      if (frag.get("k")) return await abrir(await crypto.subtle.importKey("raw", deB64uP(frag.get("k")), "AES-GCM", false, ["decrypt"]));
+      if (!frag.get("s")) return mensaje("<b>El enlace está incompleto.</b> Pida a Juan Boya uno nuevo.");
+      mensaje('Este plan está protegido. <form id="plan-form" style="display:inline-flex;gap:8px;flex-wrap:wrap;margin-left:6px">' +
+        '<input type="password" id="plan-clave" placeholder="Contraseña" autocomplete="off"><button type="submit">Abrir</button></form> <span id="plan-error"></span>');
+      $("plan-form").addEventListener("submit", async ev => {
+        ev.preventDefault();
+        $("plan-error").textContent = "Abriendo…";
+        try { await abrir(await llaveDeClave($("plan-clave").value, deB64uP(frag.get("s")))); }
+        catch (e) { $("plan-error").textContent = "La contraseña no es correcta."; }
+      });
+    } catch (e) { mensaje("<b>No se pudo abrir el plan.</b> El enlace está dañado o incompleto."); }
+  }).catch(() => mensaje("<b>No se pudo abrir el plan.</b> Revise la conexión e inténtelo de nuevo."));
+});
 function qrFicha(f){
   const lado = f.n + 8;   // cuatro módulos de margen blanco a cada lado
   return '<svg class="qr" viewBox="0 0 ' + lado + ' ' + lado + '" role="img" aria-label="Código QR de la ficha">' +
@@ -31765,6 +31889,7 @@ document.addEventListener("click", ev => {
   if (!caja) return;
   const id = caja.id.replace("exp-", "");
   if (ev.target.closest("[data-cerrar]")){ caja.hidden = true; return; }
+  if (ev.target.closest("[data-plan-enlace]")){ crearEnlacePlan(id, caja, ev.target.closest("[data-plan-enlace]")); return; }
   if (ev.target.closest("[data-imprimir]")){
     const notas = caja.querySelector("[data-notas]").value;
     guardarNotas(id, notas);
@@ -31792,7 +31917,7 @@ function cargarPDF(){
     document.head.appendChild(sc);
   });
 }
-async function compartirHoja(id, boton){
+async function compartirHoja(id, boton, clavePDF){
   const par = planPorId(id); if (!par) return;
   const nombre = par.p.t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) + ".pdf";
   const texto = boton.textContent;
@@ -31815,7 +31940,8 @@ async function compartirHoja(id, boton){
       margin: [13, 13, 16, 13], filename: nombre, enableLinks: true,
       image: { type: "jpeg", quality: 0.92 },
       html2canvas: { scale: escala, useCORS: true, backgroundColor: "#ffffff" },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      jsPDF: Object.assign({ unit: "mm", format: "a4", orientation: "portrait" },
+        clavePDF ? { encryption: { userPassword: clavePDF, ownerPassword: clavePDF + "·JB", userPermissions: ["print"] } } : {}),
       pagebreak: { mode: ["css"], avoid: ["h2", "li", "p", "tr", ".h-act", ".h-ficha", ".h-seg-dec", ".riesgo"] }
     }).from(document.getElementById("hoja")).toPdf();
     const pdf = await worker.get("pdf");
