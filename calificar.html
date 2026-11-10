@@ -232,7 +232,7 @@ function indice(){
     '<p class="vacio" id="vacio" hidden>Ningún instrumento coincide con la búsqueda.</p>' +
     (ENLACES.url ? '<p class="docente">' + (docenteActivo()
       ? 'Botones para compartir activos en este dispositivo. <button type="button" id="docente-salir">Desactivar</button>'
-      : '<button type="button" id="docente-activar">Docente: activar los botones para compartir</button>') + '</p>' : '') + '</div>';
+      : '<button type="button" id="docente-activar">Juan Boya: activar los botones para compartir</button>') + '</p>' : '') + '</div>';
   const sel = {pob: "", quien: ""};
   const filtrar = () => {
     const q = sinTildes($("#q").value.trim()).split(/\s+/).filter(Boolean)
@@ -595,7 +595,7 @@ async function crearUnico(a, boton){
   } catch (e) {
     if (e.message === "secreto"){
       try { localStorage.removeItem(SECRETO_GUARDA); } catch (x) {}
-      alert("La clave de docente no es correcta. Actívela de nuevo al final del índice.");
+      alert("La clave de Juan Boya no es correcta. Actívela de nuevo al final del índice.");
       indice();
       return;
     }
@@ -613,7 +613,7 @@ document.addEventListener("click", async ev => {
   } else if (t.classList.contains("unico") && t.closest(".compartir")){
     crearUnico(t.dataset.a, t);
   } else if (t.id === "docente-activar"){
-    const s = window.prompt("Clave de docente (la propiedad SECRETO del Apps Script de enlaces):");
+    const s = window.prompt("Clave de Juan Boya (la propiedad SECRETO del Apps Script de enlaces):");
     if (s && s.trim()){ try { localStorage.setItem(SECRETO_GUARDA, s.trim()); } catch (e) {} indice(); }
   } else if (t.id === "docente-salir"){
     try { localStorage.removeItem(SECRETO_GUARDA); } catch (e) {}
@@ -629,7 +629,7 @@ function portadaUnico(token){
   document.title = "Calificación en línea";
   const guardada = (() => { try { return sessionStorage.getItem(UNICO_GUARDA + token); } catch (e) { return null; } })();
   if (guardada){ const p = JSON.parse(guardada); p.d.unico = true; instrumento(p.a, p.d); return; }
-  app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por su docente</h1>' +
+  app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por Juan Boya</h1>' +
     '<p class="para">Este enlace sirve <b>una sola vez</b>. Al pulsar «Comenzar» se abre la prueba en esta pestaña; ' +
     'responda hasta el final sin cerrarla. Las respuestas no se envían ni se guardan.</p>' +
     '<button class="bt" id="unico-comenzar">Comenzar</button><p class="error" id="unico-error" hidden></p></div>';
@@ -639,14 +639,14 @@ async function abrirUnico(boton){
   const k = new URLSearchParams(location.hash.slice(1)).get("k");
   const err = $("#unico-error");
   const fallo = txt => { err.textContent = txt; err.hidden = false; boton.disabled = false; boton.textContent = "Comenzar"; };
-  if (!ENLACES.url || !token || !k) return fallo("El enlace está incompleto. Pida a su docente uno nuevo.");
+  if (!ENLACES.url || !token || !k) return fallo("El enlace está incompleto. Pida a Juan Boya uno nuevo.");
   if (!window.crypto || !crypto.subtle) return fallo("Este navegador no puede abrir la prueba. Use otro navegador.");
   boton.disabled = true; boton.textContent = "Abriendo…";
   try {
     const r = await jsonp({ accion: "usar", token });
     if (!r.ok){
-      return fallo(r.motivo === "usado" ? "Este enlace ya se usó. Si necesita responder de nuevo, pida a su docente un enlace nuevo."
-        : r.motivo === "vencido" ? "Este enlace venció sin usarse. Pida a su docente uno nuevo." : "Este enlace no existe. Revise que lo copió completo.");
+      return fallo(r.motivo === "usado" ? "Este enlace ya se usó. Si necesita responder de nuevo, pida a Juan Boya un enlace nuevo."
+        : r.motivo === "vencido" ? "Este enlace venció sin usarse. Pida a Juan Boya uno nuevo." : "Este enlace no existe. Revise que lo copió completo.");
     }
     const llave = await crypto.subtle.importKey("raw", deB64u(k), "AES-GCM", false, ["decrypt"]);
     const p = JSON.parse(new TextDecoder().decode(await descifrar(llave, deB64u(r.datos))));
