@@ -15,7 +15,12 @@
  *   3. Implementar → Nueva implementación → Aplicación web → Ejecutar como: yo;
  *      Quién tiene acceso: cualquier persona → copiar la URL (forma de dominio).
  *
- * Hoja «Enlaces»: token | prueba | creado | vence | usado | usado_en | datos (1..n)
+ * Enlaces con cupo (QR de los planes exportados): se crean con tipo=cupo, la clave
+ * de la prueba (a), el número de usos (cupo) y los días de vigencia (dias). No llevan
+ * la prueba: abren la versión publicada de calificar.html hasta agotar el cupo o vencer.
+ *
+ * Hoja «Enlaces»: token | prueba | creado | vence | usado (sí/no, o cuántas veces en los
+ * de cupo) | usado_en (último uso) | datos (1..n; en los de cupo, {"tipo":"cupo",…})
  */
 
 var HOJA = 'Enlaces';
@@ -59,16 +64,24 @@ function doPost(e) {
   var p = (e && e.parameter) || {};
   if (p.accion !== 'crear') return salida_({ ok: false, motivo: 'accion' });
   if (!secretoValido_(p.secreto)) return salida_({ ok: false, motivo: 'secreto' });
-  if (!/^[A-Za-z0-9_-]{16,64}$/.test(p.token || '') || !p.datos) return salida_({ ok: false, motivo: 'datos' });
+  if (!/^[A-Za-z0-9_-]{16,64}$/.test(p.token || '') || (p.tipo !== 'cupo' && !p.datos)) return salida_({ ok: false, motivo: 'datos' });
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
     var h = hoja_();
     if (buscar_(h, p.token)) return salida_({ ok: true, repetido: true });
     var ahora = new Date();
-    var vence = new Date(ahora.getTime() + DIAS_VIGENCIA * 86400000);
-    var fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, vence, false, ''];
-    for (var i = 0; i < p.datos.length; i += TROZO) fila.push(p.datos.slice(i, i + TROZO));
+    var fila;
+    if (p.tipo === 'cupo') {
+      var cupo = Math.max(1, Math.min(500, parseInt(p.cupo, 10) || 1));
+      var dias = Math.max(1, Math.min(365, parseInt(p.dias, 10) || DIAS_VIGENCIA));
+      if (!/^[a-z0-9-]{1,40}$/.test(p.a || '')) return salida_({ ok: false, motivo: 'datos' });
+      fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + dias * 86400000), 0, '',
+              JSON.stringify({ tipo: 'cupo', a: p.a, cupo: cupo })];
+    } else {
+      fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + DIAS_VIGENCIA * 86400000), false, ''];
+      for (var i = 0; i < p.datos.length; i += TROZO) fila.push(p.datos.slice(i, i + TROZO));
+    }
     h.appendRow(fila);
     return salida_({ ok: true });
   } finally {
@@ -99,6 +112,14 @@ function doGet(e) {
     if (!f) return salida_({ ok: false, motivo: 'no-existe' }, cb);
     var ancho = h.getLastColumn();
     var fila = h.getRange(f, 1, 1, ancho).getValues()[0];
+    if (String(fila[6]).indexOf('{"tipo":"cupo"') === 0) {
+      var info = JSON.parse(fila[6]);
+      var usos = Number(fila[4]) || 0;
+      if (fila[3] && new Date() > new Date(fila[3])) return salida_({ ok: false, motivo: 'vencido' }, cb);
+      if (usos >= info.cupo) return salida_({ ok: false, motivo: 'agotado' }, cb);
+      h.getRange(f, 5, 1, 2).setValues([[usos + 1, new Date()]]);
+      return salida_({ ok: true, cupo: true, a: info.a, quedan: info.cupo - usos - 1 }, cb);
+    }
     if (fila[4] === true) return salida_({ ok: false, motivo: 'usado', usado_en: fila[5] }, cb);
     if (fila[3] && new Date() > new Date(fila[3])) return salida_({ ok: false, motivo: 'vencido' }, cb);
     var datos = fila.slice(6).join('');

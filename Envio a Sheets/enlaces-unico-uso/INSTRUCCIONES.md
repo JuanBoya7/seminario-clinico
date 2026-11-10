@@ -47,7 +47,19 @@ recarga la misma pestaña, la prueba sigue ahí; en otra pestaña o dispositivo,
 En la hoja «Enlaces» puede ver qué enlaces se crearon y cuáles se usaron (columna
 `usado_en`).
 
+## QR con cupo en los planes exportados
+
+Al exportar un plan (botón de PDF de la guía de planes), si en ese navegador ya activó
+los botones de compartir en `calificar.html`, aparece la opción **«QR de "Calificar en
+línea" con cupo»** con dos números: **Usos** (por ejemplo 40, uno por estudiante) y
+**Días** de vigencia. Cada exportación crea códigos nuevos para cada instrumento
+calificable del plan: el QR abre la prueba solo ese número de veces y hasta esa fecha.
+Después muestra «Este código ya alcanzó su número de usos» o «Este código venció».
+Sin marcar la opción, el PDF lleva los QR abiertos de siempre. En la hoja «Enlaces» se
+ve cuántas veces se usó cada código (columna `usado`).
+
 ## Si cambia el código
 
-«Administrar implementaciones → editar (lápiz) → Versión: nueva → Implementar», para
-que la URL no cambie.
+Pegue el `Codigo.gs` nuevo encima del anterior, guarde y vaya a «Implementar →
+Administrar implementaciones → editar (lápiz) → Versión: nueva → Implementar». Así la
+URL no cambia. (Los QR con cupo, del 2026-11-10, necesitan esta actualización.)

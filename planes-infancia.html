@@ -21883,6 +21883,106 @@ const CLASE_FICHA = { guia: { ver: "Ver guía", et: "Guía de práctica" }, guio
 // En el PDF exportado las fichas se enlazan a su dirección pública: el PDF
 // circula solo, lejos de la carpeta fichas/.
 const urlFicha = k => FICHAS_URL + k + ".pdf";
+/* QR de «Calificar en línea» con cupo (solo Juan Boya, con la clave guardada desde
+   calificar.html en este navegador). Al exportar, cada instrumento calificable del
+   plan recibe un enlace nuevo que abre la prueba un número limitado de veces y hasta
+   una fecha; lo cuenta el Apps Script de «Envio a Sheets/enlaces-unico-uso». */
+const ENLACES_URL = "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxJeqxsv7s-pRqceQKfOq4JJ7jwlAtm4C-3t1kQlu2CjId3y99QuGesx4Ly7LHNyUrB/exec";
+const CALIF_PUBLICO = "https://juanboya7.github.io/seminario-clinico/calificar.html";
+let CUPO_QR = {};
+function secretoCupo(){ try { return localStorage.getItem("calificar-enlaces-secreto") || ""; } catch (e) { return ""; } }
+function controlesCupo(){
+  if (!secretoCupo()) return "";
+  return '<div class="exp-cupo" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;font-size:13px;">' +
+    '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
+    '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="40" style="width:4.5em"></label>' +
+    '<label>Días <input type="number" data-cupo-d min="1" max="365" value="15" style="width:4em"></label>' +
+    '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span></div>';
+}
+let cargaQR = null;
+function cargarQR(){
+  if (window.qrcode) return Promise.resolve();
+  return cargaQR ||= new Promise((ok, mal) => {
+    const sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js";
+    sc.onload = ok; sc.onerror = () => { cargaQR = null; mal(new Error("sin conexión")); };
+    document.head.appendChild(sc);
+  });
+}
+// El mismo trazo que usan los QR precalculados: una línea por tramo de módulos negros.
+function trazoQR(texto){
+  const q = qrcode(0, "M"); q.addData(texto); q.make();
+  const n = q.getModuleCount(); let d = "";
+  for (let y = 0; y < n; y++){
+    for (let x = 0; x < n; x++){
+      if (!q.isDark(y, x)) continue;
+      let l = 1; while (x + l < n && q.isDark(y, x + l)) l++;
+      d += "M" + x + " " + (y + 0.5) + "h" + l; x += l - 1;
+    }
+  }
+  return { n, q: d };
+}
+function jsonpCupo(params){
+  return new Promise((ok, mal) => {
+    const cb = "cb" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    const fin = () => { delete window[cb]; s.remove(); clearTimeout(t); };
+    const t = setTimeout(() => { fin(); mal(new Error("sin respuesta")); }, 20000);
+    window[cb] = r => { fin(); ok(r); };
+    s.onerror = () => { fin(); mal(new Error("sin conexión")); };
+    s.src = ENLACES_URL + "?" + new URLSearchParams({ ...params, callback: cb });
+    document.head.appendChild(s);
+  });
+}
+function postCupo(campos){
+  const nombre = "env" + Math.random().toString(36).slice(2);
+  const ifr = document.createElement("iframe"); ifr.name = nombre; ifr.hidden = true; document.body.appendChild(ifr);
+  const f = document.createElement("form"); f.method = "POST"; f.action = ENLACES_URL; f.target = nombre; f.hidden = true;
+  Object.entries(campos).forEach(([k, v]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = v; f.appendChild(i); });
+  document.body.appendChild(f); f.submit();
+  setTimeout(() => { f.remove(); ifr.remove(); }, 60000);
+}
+async function crearCupo(f, usos, dias){
+  const token = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(18)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  postCupo({ accion: "crear", tipo: "cupo", secreto: secretoCupo(), token, a: f.a, prueba: f.s || f.k, cupo: usos, dias });
+  for (let i = 0; i < 8; i++){
+    await new Promise(r => setTimeout(r, 1500));
+    const r = await jsonpCupo({ accion: "existe", token, secreto: secretoCupo() }).catch(() => ({}));
+    if (r.motivo === "secreto") throw new Error("la clave de Juan Boya no es correcta (actívela de nuevo en calificar.html)");
+    if (r.ok) return CALIF_PUBLICO + "?c=" + token;
+  }
+  throw new Error("no se pudo guardar el enlace");
+}
+async function prepararCupos(id, caja){
+  CUPO_QR = {};
+  const marca = caja.querySelector("[data-cupo]");
+  if (!marca || !marca.checked) return;
+  const usos = Math.max(1, Math.min(500, parseInt(caja.querySelector("[data-cupo-n]").value, 10) || 40));
+  const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-cupo-d]").value, 10) || 15));
+  const par = planPorId(id); if (!par) return;
+  const fichas = instrumentosDe(par.p).map(i => fichaInst(i.s)).filter(f => f && f.qc);
+  if (!fichas.length) return;
+  await cargarQR();
+  const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+  for (const f of fichas){
+    const url = await crearCupo(f, usos, dias);
+    CUPO_QR[f.a] = Object.assign({ url, nota: usos + (usos === 1 ? " uso" : " usos") + ", hasta el " + vence }, trazoQR(url));
+  }
+}
+async function exportarPlan(id, caja, notas, boton){
+  const marca = caja.querySelector("[data-cupo]");
+  if (marca && marca.checked){
+    const texto = boton.textContent;
+    boton.disabled = true; boton.textContent = "Creando QR…";
+    try { await prepararCupos(id, caja); }
+    catch (e) { alert("No se pudieron crear los QR con cupo: " + e.message + ". El PDF no se generó."); return; }
+    finally { boton.disabled = false; boton.textContent = texto; }
+  } else CUPO_QR = {};
+  construirHoja(id, opcionesDe(caja), notas);
+  if (ES_MOVIL) { compartirHoja(id, boton); return; }
+  document.body.dataset.hoja = "1";
+  window.print();
+}
 function qrFicha(f){
   const lado = f.n + 8;   // cuatro módulos de margen blanco a cada lado
   return '<svg class="qr" viewBox="0 0 ' + lado + ' ' + lado + '" role="img" aria-label="Código QR de la ficha">' +
@@ -22481,6 +22581,7 @@ function pintarExportador(id){
       ).join("") +
     '</div>' +
     pintarEleccionSecuencia(id) +
+    controlesCupo() +
     '<textarea data-notas placeholder="Notas del profesional: para qué se comparte, qué ajustar al caso, qué revisar en la próxima sesión."></textarea>' +
     '<div class="exp-pie">' +
       '<button type="button" class="principal" data-imprimir>' + (ES_MOVIL ? 'Compartir' : 'Imprimir / Guardar PDF') + '</button>' +
@@ -22598,10 +22699,10 @@ function construirHoja(id, o, notas){
             '<div class="fd">' + etInst(f) + '</div>' +
             '<div class="fu">' + escapar(urlInst(f)) + '</div>' +
           '</div></div>' +
-          (f.qc ? '<div class="h-ficha">' + qrFicha({ n: f.nc, q: f.qc }) + '<div>' +
-            '<a class="ft" href="' + INST_FICHAS_CALIF + f.a + '">Calificar en línea · ' + escapar(f.s || f.k) + '</a>' +
-            '<div class="fd">Responder y obtener el puntaje en el navegador</div>' +
-            '<div class="fu">' + escapar(INST_FICHAS_CALIF + f.a) + '</div>' +
+          (f.qc ? '<div class="h-ficha">' + qrFicha(CUPO_QR[f.a] || { n: f.nc, q: f.qc }) + '<div>' +
+            '<a class="ft" href="' + (CUPO_QR[f.a] ? CUPO_QR[f.a].url : INST_FICHAS_CALIF + f.a) + '">Calificar en línea · ' + escapar(f.s || f.k) + '</a>' +
+            '<div class="fd">Responder y obtener el puntaje en el navegador' + (CUPO_QR[f.a] ? ' · código con ' + escapar(CUPO_QR[f.a].nota) : '') + '</div>' +
+            '<div class="fu">' + escapar(CUPO_QR[f.a] ? CUPO_QR[f.a].url : INST_FICHAS_CALIF + f.a) + '</div>' +
           '</div></div>' : "")).join("") + '</div>';
     }
   }
@@ -22684,10 +22785,7 @@ document.addEventListener("click", ev => {
   if (ev.target.closest("[data-imprimir]")){
     const notas = caja.querySelector("[data-notas]").value;
     guardarNotas(id, notas);
-    construirHoja(id, opcionesDe(caja), notas);
-    if (ES_MOVIL) { compartirHoja(id, ev.target.closest("[data-imprimir]")); return; }
-    document.body.dataset.hoja = "1";
-    window.print();
+    exportarPlan(id, caja, notas, ev.target.closest("[data-imprimir]"));
   }
 });
 document.addEventListener("change", ev => {

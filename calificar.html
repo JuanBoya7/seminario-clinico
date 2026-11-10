@@ -620,8 +620,42 @@ document.addEventListener("click", async ev => {
     indice();
   } else if (t.id === "unico-comenzar"){
     abrirUnico(t);
+  } else if (t.id === "cupo-comenzar"){
+    abrirCupo(t);
   }
 });
+// Enlaces con cupo (?c=…): los QR de los planes exportados. Abren la versión publicada
+// de la prueba mientras quede cupo y no venza; cada «Comenzar» descuenta un uso.
+const CUPO_GUARDA = "calificar-cupo-";
+function portadaCupo(token){
+  document.title = "Calificación en línea";
+  const a = (() => { try { return sessionStorage.getItem(CUPO_GUARDA + token); } catch (e) { return null; } })();
+  if (a && CALIFICAR[a]){ instrumento(a, CALIFICAR[a]); prepararPDF(); return; }
+  app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por Juan Boya</h1>' +
+    '<p class="para">Este código tiene un número limitado de usos y una fecha de vencimiento. Al pulsar «Comenzar» se abre la prueba en esta pestaña ' +
+    'y se descuenta un uso; responda hasta el final sin cerrarla. Las respuestas no se envían ni se guardan.</p>' +
+    '<button class="bt" id="cupo-comenzar">Comenzar</button><p class="error" id="unico-error" hidden></p></div>';
+}
+async function abrirCupo(boton){
+  const token = new URLSearchParams(location.search).get("c");
+  const err = $("#unico-error");
+  const fallo = txt => { err.textContent = txt; err.hidden = false; boton.disabled = false; boton.textContent = "Comenzar"; };
+  if (!ENLACES.url || !token) return fallo("El código está incompleto. Pida a Juan Boya uno nuevo.");
+  boton.disabled = true; boton.textContent = "Abriendo…";
+  try {
+    const r = await jsonp({ accion: "usar", token });
+    if (!r.ok || !r.cupo){
+      return fallo(r.motivo === "agotado" ? "Este código ya alcanzó su número de usos. Si necesita responder, pida a Juan Boya un enlace nuevo."
+        : r.motivo === "vencido" ? "Este código venció. Pida a Juan Boya uno nuevo." : "Este código no existe. Revise que lo escaneó completo.");
+    }
+    if (!CALIFICAR[r.a]) return fallo("La prueba de este código ya no está disponible.");
+    try { sessionStorage.setItem(CUPO_GUARDA + token, r.a); } catch (e) {}
+    instrumento(r.a, CALIFICAR[r.a]);
+    prepararPDF();
+  } catch (e) {
+    fallo("No se pudo abrir la prueba (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
+  }
+}
 // Página que ve el estudiante con ?u=…#k=…: nada se pide hasta que pulsa «Comenzar»
 // (así una vista previa del enlace en un chat no lo gasta). Si recarga la pestaña,
 // la prueba ya abierta se recupera de esta misma pestaña.
@@ -748,7 +782,9 @@ document.addEventListener("submit", async ev => {
     try { await cargarCompleta(await llaveDeRaw(b64(guardada))); } catch (e) { olvidar(); }
   }
   const unico = new URLSearchParams(location.search).get("u");
+  const cupo = new URLSearchParams(location.search).get("c");
   if (unico) portadaUnico(unico);
+  else if (cupo) portadaCupo(cupo);
   else if (param && CALIFICAR[param]){ instrumento(param, CALIFICAR[param]); prepararPDF(); }
   else if (indiceAbierto()) indice();
   else {
