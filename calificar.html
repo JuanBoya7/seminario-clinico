@@ -127,6 +127,21 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .grupo ul{margin-top:10px !important;}
 .indice li .quien{display:block; font-size:12px; color:var(--ink-faint); margin-top:3px;}
 .vacio{color:var(--ink-soft); margin:16px 0 0;}
+/* Compartir desde el índice: enlace normal o de un solo uso (solo docente). */
+.indice li{display:flex; flex-direction:column;}
+.indice li a{flex:1 1 auto;}
+.compartir{display:flex; flex-wrap:wrap; gap:6px; margin:6px 2px 0;}
+.compartir button{font:inherit; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; cursor:pointer;
+  border:1px solid var(--border); background:var(--bg); color:var(--accent-dark);}
+.compartir button:hover{background:var(--accent-soft); border-color:var(--accent);}
+.compartir button.unico{border-style:dashed;}
+.compartir .hecho{font-size:12px; color:var(--ink-soft); align-self:center;}
+.enlace-unico{margin:6px 2px 0; padding:8px 10px; border:1px dashed var(--accent); border-radius:8px; background:var(--accent-soft); font-size:12.5px;}
+.enlace-unico input{width:100%; font:inherit; font-size:12px; padding:5px 7px; margin:4px 0; border:1px solid var(--border); border-radius:6px;}
+.docente{margin:26px 0 0; font-size:12.5px; color:var(--ink-faint);}
+.docente button{font:inherit; font-size:12.5px; color:var(--accent-dark); background:none; border:0; padding:0; text-decoration:underline; cursor:pointer;}
+.unico-portada{max-width:60ch;}
+.unico-portada .bt{font-size:15px; padding:10px 22px; margin-top:8px;}
 /* Respuestas abiertas (hora o número), como las cuatro primeras del PSQI. */
 .dato{display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; padding:10px 0; border-bottom:1px solid var(--border); max-width:75ch;}
 .dato p{flex:1 1 300px; margin:0; font-weight:600;}
@@ -198,7 +213,8 @@ function indice(){
   const item = ([a, d]) => '<li data-a="' + a + '" data-pob="' + esc((d.pob || [d.estilo]).join(" ")) + '" data-quien="' + esc((d.quien || ["persona"]).join(" ")) +
     '" data-txt="' + esc(sinTildes(d.sigla + " " + d.titulo + " " + d.para + " " + (d.areas || []).join(" "))) + '"><a href="?i=' + a + '"><b>' +
     esc(d.sigla) + '</b> · ' + esc(d.titulo) + '<span class="quien">Responde: ' + (d.quien || ["persona"]).map(q => QUIEN[q].toLowerCase()).join(" o ") +
-    '</span></a></li>';
+    '</span></a>' + (docenteActivo() ? '<div class="compartir"><button type="button" class="enlace-normal" data-a="' + a + '">Copiar enlace</button>' +
+    '<button type="button" class="unico" data-a="' + a + '">Enlace de un solo uso</button></div>' : '') + '</li>';
   const chips = (grupo, opciones) => '<div class="chips" role="group" data-grupo="' + grupo + '">' + opciones.map(([v, t]) =>
       '<button type="button" data-v="' + v + '" aria-pressed="' + (v === "") + '">' + t + '</button>').join("") + '</div>';
   app.innerHTML = '<div class="indice"><div class="rotulo">Instrumentos de evaluación</div>' +
@@ -213,7 +229,10 @@ function indice(){
     '<p class="cuenta" id="cuenta" aria-live="polite"></p>' +
     areas.map(ar => '<section class="grupo" data-area="' + esc(ar) + '"><h2>' + esc(ar) + ' <small></small></h2><ul>' +
       lista.filter(([, d]) => (d.areas || ["Otras"]).includes(ar)).map(item).join("") + '</ul></section>').join("") +
-    '<p class="vacio" id="vacio" hidden>Ningún instrumento coincide con la búsqueda.</p></div>';
+    '<p class="vacio" id="vacio" hidden>Ningún instrumento coincide con la búsqueda.</p>' +
+    (ENLACES.url ? '<p class="docente">' + (docenteActivo()
+      ? 'Botones para compartir activos en este dispositivo. <button type="button" id="docente-salir">Desactivar</button>'
+      : '<button type="button" id="docente-activar">Docente: activar los botones para compartir</button>') + '</p>' : '') + '</div>';
   const sel = {pob: "", quien: ""};
   const filtrar = () => {
     const q = sinTildes($("#q").value.trim()).split(/\s+/).filter(Boolean)
@@ -321,14 +340,14 @@ function instrumento(a, d){
     '<p class="para">' + esc(d.para) + '</p>' +
     '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
-    '<div class="acciones">' + (d.cifrado
+    '<div class="acciones">' + (d.unico ? '' : d.cifrado
       ? '<a class="bt" id="pdf-cifrado" data-a="' + a + '" target="_blank" rel="noopener">Abriendo PDF…</a>'
       : '<a class="bt" href="' + (d.local ? "instrumentos-local/" : "instrumentos/") + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>') +
-    (d.hoja && !d.local ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
-    (d.cifrado ? '<button class="bt completa" id="cerrar-completa">Cerrar la versión completa</button>' : '') +
+    (d.hoja && !d.local && !d.unico ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
+    (d.cifrado && !d.unico ? '<button class="bt completa" id="cerrar-completa">Cerrar la versión completa</button>' : '') +
     '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" id="imprimir">' +
     (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button></div>' +
-    (d.hoja && !d.local ? '<div class="candado" id="candado" hidden><p>Escriba la contraseña para ver los ítems y calificar con la versión completa.</p>' +
+    (d.hoja && !d.local && !d.unico ? '<div class="candado" id="candado" hidden><p>Escriba la contraseña para ver los ítems y calificar con la versión completa.</p>' +
       '<form id="form-clave"><input type="password" id="clave" autocomplete="current-password" aria-label="Contraseña">' +
       '<label><input type="checkbox" id="recordar"> Recordar en este dispositivo</label>' +
       '<button class="bt" type="submit">Abrir</button></form><p class="error" id="clave-error" hidden></p></div>' : '') +
@@ -486,6 +505,159 @@ async function compartir(d, boton){
   }
 }
 
+/* Enlaces para compartir una prueba desde el índice (solo el docente).
+   «Copiar enlace» copia la dirección normal (?i=…). «Enlace de un solo uso» cifra la
+   prueba en el navegador con una llave nueva, guarda solo el texto cifrado en el Apps
+   Script de «Envio a Sheets/enlaces-unico-uso» y deja la llave después de # en el
+   enlace (no sale del navegador). El estudiante pulsa «Comenzar», la página pide la
+   prueba una vez y el Apps Script la marca como usada. La clave SECRETO del Apps Script
+   solo la conoce el docente: se escribe una vez por dispositivo y queda en él. */
+const ENLACES = { url: "" };   // URL de la aplicación web (forma de dominio); vacío = botones apagados
+const SECRETO_GUARDA = "calificar-enlaces-secreto";
+const UNICO_GUARDA = "calificar-unico-";
+function secretoDocente(){ try { return localStorage.getItem(SECRETO_GUARDA) || ""; } catch (e) { return ""; } }
+function docenteActivo(){ return !!ENLACES.url && !!secretoDocente(); }
+const b64u = u => btoa(String.fromCharCode(...u)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const deB64u = s => b64(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4));
+function urlBase(){
+  // Desde la copia local (file://) los enlaces apuntan al sitio publicado.
+  return location.protocol === "file:" ? "https://juanboya7.github.io/seminario-clinico/calificar.html" : location.origin + location.pathname;
+}
+function jsonp(params, ms){
+  return new Promise((ok, mal) => {
+    const cb = "cb" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    const fin = () => { delete window[cb]; s.remove(); clearTimeout(t); };
+    const t = setTimeout(() => { fin(); mal(new Error("sin respuesta")); }, ms || 20000);
+    window[cb] = r => { fin(); ok(r); };
+    s.onerror = () => { fin(); mal(new Error("sin conexión")); };
+    s.src = ENLACES.url + "?" + new URLSearchParams({ ...params, callback: cb });
+    document.head.appendChild(s);
+  });
+}
+function postOculto(campos){
+  // Formulario oculto, como los envíos de las actividades: funciona también desde file://.
+  const nombre = "env" + Math.random().toString(36).slice(2);
+  const ifr = document.createElement("iframe");
+  ifr.name = nombre; ifr.hidden = true; document.body.appendChild(ifr);
+  const f = document.createElement("form");
+  f.method = "POST"; f.action = ENLACES.url; f.target = nombre; f.hidden = true;
+  Object.entries(campos).forEach(([k, v]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = v; f.appendChild(i); });
+  document.body.appendChild(f); f.submit();
+  setTimeout(() => { f.remove(); ifr.remove(); }, 60000);
+}
+async function copiar(txt){
+  try { await navigator.clipboard.writeText(txt); return true; } catch (e) { window.prompt("Copie el enlace:", txt); return false; }
+}
+function datosParaCompartir(a){
+  const d = CALIFICAR[a];
+  if (d.hoja && !d.local) return null;   // versión pública sin ítems: hace falta abrir la completa
+  const copia = JSON.parse(JSON.stringify(d));
+  delete copia.cifrado; delete copia.hoja;
+  return copia;
+}
+async function crearUnico(a, boton){
+  const li = boton.closest("li");
+  const d = datosParaCompartir(a);
+  if (!d){
+    alert("Esta prueba es comercial: abra primero su versión completa con la contraseña (marque «Recordar en este dispositivo») y vuelva al índice.");
+    return;
+  }
+  if (!window.crypto || !crypto.subtle){ alert("Este navegador no puede crear enlaces cifrados."); return; }
+  boton.disabled = true; boton.textContent = "Creando…";
+  try {
+    const token = b64u(crypto.getRandomValues(new Uint8Array(18)));
+    const raw = crypto.getRandomValues(new Uint8Array(32));
+    const llave = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const plano = new TextEncoder().encode(JSON.stringify({ a, d }));
+    const cif = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, llave, plano));
+    const todo = new Uint8Array(12 + cif.length); todo.set(iv); todo.set(cif, 12);
+    postOculto({ accion: "crear", secreto: secretoDocente(), token, prueba: d.sigla, datos: b64u(todo) });
+    // Se confirma por JSONP que quedó guardado (la respuesta del formulario no se puede leer).
+    let ok = false;
+    for (let i = 0; i < 8 && !ok; i++){
+      await new Promise(r => setTimeout(r, 1500));
+      const r = await jsonp({ accion: "existe", token, secreto: secretoDocente() }).catch(() => ({}));
+      if (r.motivo === "secreto"){ throw new Error("secreto"); }
+      ok = !!r.ok;
+    }
+    if (!ok) throw new Error("no guardado");
+    const enlace = urlBase() + "?u=" + token + "#k=" + b64u(raw);
+    li.querySelector(".enlace-unico")?.remove();
+    const caja = document.createElement("div");
+    caja.className = "enlace-unico";
+    caja.innerHTML = '<b>Enlace de un solo uso para ' + esc(d.sigla) + '</b><input readonly value="' + esc(enlace) + '">' +
+      'Sirve una sola vez y caduca a los 30 días si no se usa. <span class="estado"></span>';
+    li.appendChild(caja);
+    caja.querySelector("input").addEventListener("focus", ev => ev.target.select());
+    caja.querySelector(".estado").textContent = (await copiar(enlace)) ? "Copiado." : "";
+  } catch (e) {
+    if (e.message === "secreto"){
+      try { localStorage.removeItem(SECRETO_GUARDA); } catch (x) {}
+      alert("La clave de docente no es correcta. Actívela de nuevo al final del índice.");
+      indice();
+      return;
+    }
+    alert("No se pudo crear el enlace (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
+  } finally {
+    boton.disabled = false; boton.textContent = "Enlace de un solo uso";
+  }
+}
+document.addEventListener("click", async ev => {
+  const t = ev.target.closest("button");
+  if (!t) return;
+  if (t.classList.contains("enlace-normal")){
+    const ok = await copiar(urlBase() + "?i=" + t.dataset.a);
+    if (ok){ const v = t.textContent; t.textContent = "Copiado"; setTimeout(() => { t.textContent = v; }, 1500); }
+  } else if (t.classList.contains("unico") && t.closest(".compartir")){
+    crearUnico(t.dataset.a, t);
+  } else if (t.id === "docente-activar"){
+    const s = window.prompt("Clave de docente (la propiedad SECRETO del Apps Script de enlaces):");
+    if (s && s.trim()){ try { localStorage.setItem(SECRETO_GUARDA, s.trim()); } catch (e) {} indice(); }
+  } else if (t.id === "docente-salir"){
+    try { localStorage.removeItem(SECRETO_GUARDA); } catch (e) {}
+    indice();
+  } else if (t.id === "unico-comenzar"){
+    abrirUnico(t);
+  }
+});
+// Página que ve el estudiante con ?u=…#k=…: nada se pide hasta que pulsa «Comenzar»
+// (así una vista previa del enlace en un chat no lo gasta). Si recarga la pestaña,
+// la prueba ya abierta se recupera de esta misma pestaña.
+function portadaUnico(token){
+  document.title = "Calificación en línea";
+  const guardada = (() => { try { return sessionStorage.getItem(UNICO_GUARDA + token); } catch (e) { return null; } })();
+  if (guardada){ const p = JSON.parse(guardada); p.d.unico = true; instrumento(p.a, p.d); return; }
+  app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por su docente</h1>' +
+    '<p class="para">Este enlace sirve <b>una sola vez</b>. Al pulsar «Comenzar» se abre la prueba en esta pestaña; ' +
+    'responda hasta el final sin cerrarla. Las respuestas no se envían ni se guardan.</p>' +
+    '<button class="bt" id="unico-comenzar">Comenzar</button><p class="error" id="unico-error" hidden></p></div>';
+}
+async function abrirUnico(boton){
+  const token = new URLSearchParams(location.search).get("u");
+  const k = new URLSearchParams(location.hash.slice(1)).get("k");
+  const err = $("#unico-error");
+  const fallo = txt => { err.textContent = txt; err.hidden = false; boton.disabled = false; boton.textContent = "Comenzar"; };
+  if (!ENLACES.url || !token || !k) return fallo("El enlace está incompleto. Pida a su docente uno nuevo.");
+  if (!window.crypto || !crypto.subtle) return fallo("Este navegador no puede abrir la prueba. Use otro navegador.");
+  boton.disabled = true; boton.textContent = "Abriendo…";
+  try {
+    const r = await jsonp({ accion: "usar", token });
+    if (!r.ok){
+      return fallo(r.motivo === "usado" ? "Este enlace ya se usó. Si necesita responder de nuevo, pida a su docente un enlace nuevo."
+        : r.motivo === "vencido" ? "Este enlace venció sin usarse. Pida a su docente uno nuevo." : "Este enlace no existe. Revise que lo copió completo.");
+    }
+    const llave = await crypto.subtle.importKey("raw", deB64u(k), "AES-GCM", false, ["decrypt"]);
+    const p = JSON.parse(new TextDecoder().decode(await descifrar(llave, deB64u(r.datos))));
+    try { sessionStorage.setItem(UNICO_GUARDA + token, JSON.stringify(p)); } catch (e) {}
+    p.d.unico = true;
+    instrumento(p.a, p.d);
+  } catch (e) {
+    fallo("No se pudo abrir la prueba (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
+  }
+}
+
 /* Versión completa cifrada (instrumentos/privado/, la escribe
    _planes-fuente/instrumentos/cifrar.py). La contraseña da la llave AES con
    PBKDF2; la llave, no la contraseña, queda en la sesión de la pestaña o, si se
@@ -575,7 +747,9 @@ document.addEventListener("submit", async ev => {
   if (guardada && window.crypto && crypto.subtle && Object.values(CALIFICAR).some(d => d.hoja && !d.local)){
     try { await cargarCompleta(await llaveDeRaw(b64(guardada))); } catch (e) { olvidar(); }
   }
-  if (param && CALIFICAR[param]){ instrumento(param, CALIFICAR[param]); prepararPDF(); }
+  const unico = new URLSearchParams(location.search).get("u");
+  if (unico) portadaUnico(unico);
+  else if (param && CALIFICAR[param]){ instrumento(param, CALIFICAR[param]); prepararPDF(); }
   else if (indiceAbierto()) indice();
   else {
     document.title = "Calificación en línea";

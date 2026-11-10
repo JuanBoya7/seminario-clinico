@@ -15415,6 +15415,350 @@ const CALIFICAR = {
    ]
   }
  },
+ "amas-a": {
+  "clave": "AMAS-A",
+  "sigla": "AMAS-A",
+  "titulo": "Escala de Ansiedad Manifiesta en Adultos, forma A (adultos)",
+  "para": "Medir el nivel y la forma de la ansiedad en adultos de 19 a 59 años: inquietud o hipersensibilidad, ansiedad fisiológica y preocupaciones sociales o por estrés, con una escala de Mentira para detectar la tendencia a dar buena imagen. Sirve para tamizar y para orientar la intervención.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Reynolds, Richmond y Lowe (2003) · versión de El Manual Moderno (2007), estandarización en México.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Inquietud/hipersensibilidad (IHS)",
+     "js": "L([1, 5, 7, 9, 13, 16, 18, 20, 22, 25, 29, 31, 33, 36])",
+     "texto": "De 0 a 14. Media mexicana 6,7 (DE 3,4); por encima de 11,8 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad fisiológica (FIS)",
+     "js": "L([2, 6, 10, 14, 17, 21, 26, 30, 34])",
+     "texto": "De 0 a 9. Media mexicana 2,8 (DE 2,5); por encima de 6,5 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Preocupaciones sociales/estrés (SOC)",
+     "js": "L([3, 11, 15, 19, 23, 27, 35])",
+     "texto": "De 0 a 7. Media mexicana 2,8 (DE 1,7); por encima de 5,3 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad total (TOT)",
+     "js": "L([1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 29, 30, 31, 33, 34, 35, 36])",
+     "texto": "De 0 a 30. Media mexicana 12,4 (DE 6,6); por encima de 22,3 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Mentira",
+     "js": "L([4, 8, 12, 24, 28, 32])",
+     "texto": "De 0 a 6. Media mexicana 3,0 (DE 2,0). Puntajes altos: imagen idealizada; interprete las escalas de ansiedad con cautela."
+    }
+   ]
+  },
+  "hoja": true
+ },
+ "amas-c": {
+  "clave": "AMAS-C",
+  "sigla": "AMAS-C",
+  "titulo": "Escala de Ansiedad Manifiesta en Adultos, forma C (universitarios)",
+  "para": "Medir el nivel y la forma de la ansiedad en estudiantes universitarios: inquietud o hipersensibilidad, ansiedad fisiológica, ansiedad ante los exámenes y preocupaciones sociales o por estrés, con una escala de Mentira. Sirve para tamizar en bienestar universitario y para orientar la intervención, en especial cuando los exámenes son el foco.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Reynolds, Richmond y Lowe (2003) · versión de El Manual Moderno (2007), estandarización en México.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Inquietud/hipersensibilidad (IHS)",
+     "js": "L([4, 6, 13, 15, 18, 22, 25, 29, 35, 43, 46, 49])",
+     "texto": "De 0 a 12. Media mexicana 6,1 (DE 2,8); por encima de 10,3 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad fisiológica (FIS)",
+     "js": "L([19, 30, 32, 34, 36, 40, 45, 47])",
+     "texto": "De 0 a 8. Media mexicana 2,3 (DE 2,2); por encima de 5,6 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad ante los exámenes (EXA)",
+     "js": "L([2, 5, 7, 11, 14, 17, 20, 23, 27, 31, 33, 37, 39, 41, 44])",
+     "texto": "De 0 a 15. Media mexicana 4,8 (DE 3,6); por encima de 10,2 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Preocupaciones sociales/estrés (SOC)",
+     "js": "L([1, 3, 9, 12, 26, 38, 42])",
+     "texto": "De 0 a 7. Media mexicana 1,7 (DE 1,7); por encima de 4,2 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad total (TOT)",
+     "js": "L([1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49])",
+     "texto": "De 0 a 42. Media mexicana 14,9 (DE 8,0); por encima de 26,9 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Mentira",
+     "js": "L([8, 10, 16, 21, 24, 28, 48])",
+     "texto": "De 0 a 7. Media mexicana 3,1 (DE 2,1). Puntajes altos: imagen idealizada; interprete las escalas de ansiedad con cautela."
+    }
+   ]
+  },
+  "hoja": true
+ },
+ "amas-e": {
+  "clave": "AMAS-E",
+  "sigla": "AMAS-E",
+  "titulo": "Escala de Ansiedad Manifiesta en Adultos, forma E (adultos mayores)",
+  "para": "Medir el nivel y la forma de la ansiedad en adultos mayores de 60 años o más: inquietud o hipersensibilidad, ansiedad fisiológica y temor al envejecimiento (memoria, salud, ser una carga), con una escala de Mentira. Sirve para tamizar en atención al adulto mayor y para orientar la intervención.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Reynolds, Richmond y Lowe (2003) · versión de El Manual Moderno (2007), estandarización en México.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Inquietud/hipersensibilidad (IHS)",
+     "js": "L([5, 6, 8, 10, 11, 13, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 34, 35, 36, 38, 39, 42, 44])",
+     "texto": "De 0 a 23. Media mexicana 11,7 (DE 6,1); por encima de 20,8 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad fisiológica (FIS)",
+     "js": "L([1, 3, 4, 18, 20, 23, 37])",
+     "texto": "De 0 a 7. Media mexicana 3,6 (DE 1,9); por encima de 6,4 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Temor al envejecimiento (EDAD)",
+     "js": "L([9, 25, 28, 31, 33, 40, 41])",
+     "texto": "De 0 a 7. Media mexicana 4,9 (DE 2,0); por encima de 7,9 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Ansiedad total (TOT)",
+     "js": "L([1, 3, 4, 5, 6, 8, 9, 10, 11, 13, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44])",
+     "texto": "De 0 a 37. Media mexicana 20,2 (DE 8,9); por encima de 33,5 (1,5 DE) se acerca al corte clínico de T 65. Confirme con la Hoja de perfil."
+    },
+    {
+     "n": "Mentira",
+     "js": "L([2, 7, 12, 14, 16, 32, 43])",
+     "texto": "De 0 a 7. Media mexicana 4,2 (DE 2,2). Puntajes altos: imagen idealizada; interprete las escalas de ansiedad con cautela."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "cdi": {
   "clave": "CDI",
   "sigla": "CDI",
@@ -16012,6 +16356,148 @@ const CALIFICAR = {
     {
      "js": "r[9] >= 1",
      "texto": "El niño marcó ideas de matarse (grupo 9): valore el riesgo suicida en esta misma sesión, sea cual sea el total."
+    }
+   ]
+  },
+  "hoja": true
+ },
+ "cmasr-2": {
+  "clave": "CMASR-2",
+  "sigla": "CMASR-2",
+  "titulo": "Escala de Ansiedad Manifiesta en Niños Revisada, segunda edición",
+  "para": "Medir el nivel y la forma de la ansiedad en niños y adolescentes de 6 a 19 años: ansiedad fisiológica, inquietud o preocupación y ansiedad social, con escalas para detectar respuestas defensivas o inconsistentes. Sirve para tamizar en la escuela y la consulta y para orientar la intervención.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Reynolds y Richmond (2008) · versión de El Manual Moderno (2012).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Ansiedad Fisiológica (FIS)",
+     "js": "L([1, 5, 7, 11, 15, 20, 25, 31, 34, 39, 43, 46])",
+     "texto": "De 0 a 12. Convierta a T con el perfil del cuadernillo según sexo y edad (6-8, 9-14 o 15-19 años). T de 71 o más: extremadamente problemático; 61-70: moderadamente problemático; 40-60: como la mayoría; 39 o menos: menos que la mayoría (tabla 3-3)."
+    },
+    {
+     "n": "Inquietud (INQ)",
+     "js": "L([2, 3, 6, 8, 12, 16, 17, 18, 21, 26, 30, 32, 35, 42, 45, 49])",
+     "texto": "De 0 a 16. Convierta a T con el perfil del cuadernillo según sexo y edad (6-8, 9-14 o 15-19 años). T de 71 o más: extremadamente problemático; 61-70: moderadamente problemático; 40-60: como la mayoría; 39 o menos: menos que la mayoría (tabla 3-3)."
+    },
+    {
+     "n": "Ansiedad Social (SOC)",
+     "js": "L([4, 9, 10, 13, 22, 23, 27, 28, 36, 37, 41, 47])",
+     "texto": "De 0 a 12. Convierta a T con el perfil del cuadernillo según sexo y edad (6-8, 9-14 o 15-19 años). T de 71 o más: extremadamente problemático; 61-70: moderadamente problemático; 40-60: como la mayoría; 39 o menos: menos que la mayoría (tabla 3-3)."
+    },
+    {
+     "n": "Ansiedad Total (TOT)",
+     "js": "L([1, 5, 7, 11, 15, 20, 25, 31, 34, 39, 43, 46, 2, 3, 6, 8, 12, 16, 17, 18, 21, 26, 30, 32, 35, 42, 45, 49, 4, 9, 10, 13, 22, 23, 27, 28, 36, 37, 41, 47])",
+     "texto": "De 0 a 40: es la escala más sólida. Convierta a T con el perfil del cuadernillo según sexo y edad (6-8, 9-14 o 15-19 años). T de 71 o más: extremadamente problemático; 61-70: moderadamente problemático; 40-60: como la mayoría; 39 o menos: menos que la mayoría (tabla 3-3)."
+    },
+    {
+     "n": "Defensividad (DEF)",
+     "js": "L([14, 19, 24, 29, 33, 38]) + C([40, 44, 48], 0)",
+     "texto": "De 0 a 9. Puntajes altos indican una imagen idealizada de sí: interprete las demás escalas con cautela."
+    },
+    {
+     "n": "Respuestas inconsistentes (INC)",
+     "js": "(r[2] !== null && r[8] !== null && r[2] !== r[8] ? 1 : 0) + (r[3] !== null && r[35] !== null && r[3] !== r[35] ? 1 : 0) + (r[4] !== null && r[10] !== null && r[4] !== r[10] ? 1 : 0) + (r[6] !== null && r[49] !== null && r[6] !== r[49] ? 1 : 0) + (r[7] !== null && r[39] !== null && r[7] !== r[39] ? 1 : 0) + (r[19] !== null && r[33] !== null && r[19] !== r[33] ? 1 : 0) + (r[23] !== null && r[37] !== null && r[23] !== r[37] ? 1 : 0) + (r[24] !== null && r[29] !== null && r[24] !== r[29] ? 1 : 0) + (r[38] !== null && r[38] === r[48] ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       5,
+       "Respuestas consistentes"
+      ],
+      [
+       6,
+       9,
+       "6 o más: indague antes de interpretar"
+      ]
+     ],
+     "texto": "De 0 a 9 (manual, tabla 3-1)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "((r[2] !== null && r[8] !== null && r[2] !== r[8] ? 1 : 0) + (r[3] !== null && r[35] !== null && r[3] !== r[35] ? 1 : 0) + (r[4] !== null && r[10] !== null && r[4] !== r[10] ? 1 : 0) + (r[6] !== null && r[49] !== null && r[6] !== r[49] ? 1 : 0) + (r[7] !== null && r[39] !== null && r[7] !== r[39] ? 1 : 0) + (r[19] !== null && r[33] !== null && r[19] !== r[33] ? 1 : 0) + (r[23] !== null && r[37] !== null && r[23] !== r[37] ? 1 : 0) + (r[24] !== null && r[29] !== null && r[24] !== r[29] ? 1 : 0) + (r[38] !== null && r[38] === r[48] ? 1 : 0)) >= 6",
+     "texto": "El índice de inconsistencia es de 6 o más: revise si el niño entendió las oraciones antes de interpretar las escalas."
     }
    ]
   },
