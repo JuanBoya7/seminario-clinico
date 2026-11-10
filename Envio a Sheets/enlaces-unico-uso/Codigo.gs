@@ -85,7 +85,8 @@ function doPost(e) {
     } else if (p.tipo === 'cupo') {
       var cupo = Math.max(1, Math.min(500, parseInt(p.cupo, 10) || 1));
       var dias = Math.max(1, Math.min(365, parseInt(p.dias, 10) || DIAS_VIGENCIA));
-      if (!/^[a-z0-9-]{1,40}$/.test(p.a || '')) return salida_({ ok: false, motivo: 'datos' });
+      // Una prueba de calificar.html («phq-9») o una ficha en línea («ficha:adultos:hoja-valores»).
+      if (!/^[a-z0-9:-]{1,100}$/.test(p.a || '')) return salida_({ ok: false, motivo: 'datos' });
       fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + dias * 86400000), 0, '',
               JSON.stringify({ tipo: 'cupo', a: p.a, cupo: cupo })];
     } else {

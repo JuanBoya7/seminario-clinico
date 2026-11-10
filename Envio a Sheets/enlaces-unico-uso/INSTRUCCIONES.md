@@ -74,8 +74,18 @@ En el mismo cuadro de exportación (solo con los botones activados):
 Ojo: el texto de los planes también está en la guía pública; lo que se controla es la
 copia que usted comparte, con sus notas y sus códigos.
 
+## Solo en línea: fichas y calificación sin PDF
+
+La casilla **«Solo en línea (fichas y calificación, sin PDF)»** del cuadro de exportación
+hace que el plan (PDF o enlace) no lleve ningún PDF: las fichas de trabajo pasan a su
+versión en línea (`ficha.html`) y los instrumentos solo conservan «Calificar en línea»,
+todos con código de cupo (Usos y Días). En las fichas en línea, las guías y los guiones
+solo se leen (no se imprimen ni se copian) y los registros se exportan únicamente cuando
+están diligenciados. La dirección directa `ficha.html?f=…` solo abre en el navegador
+donde activó sus botones de compartir.
+
 ## Si cambia el código
 
 Pegue el `Codigo.gs` nuevo encima del anterior, guarde y vaya a «Implementar →
 Administrar implementaciones → editar (lápiz) → Versión: nueva → Implementar». Así la
-URL no cambia. (Los QR con cupo y los planes compartidos, del 2026-11-10, necesitan esta actualización.)
+URL no cambia. (Los QR con cupo, los planes compartidos y las fichas en línea con cupo, del 2026-11-10, necesitan esta actualización.)

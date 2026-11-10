@@ -89,7 +89,38 @@ p.nota{margin:10px 0; color:var(--ink-soft);}
 .cuidado b{display:block; color:#7a4a17; margin-bottom:3px;}
 .pie{margin-top:30px; padding-top:12px; border-top:1px solid var(--border); font-size:12.5px; color:var(--ink-faint);}
 .error{color:#a83f2b;}
+/* Guía de niños y adolescentes: los colores de sus fichas; letra más grande para los niños. */
+body.infancia{--accent:#c4663c; --accent-dark:#8a4222; --accent-soft:#f8e7de; --surface:#fdf9f5; --border:#e6d6ca; --campo:#fffaf6;}
+body.nino{font-size:17px;} body.nino h1{font-size:clamp(26px,4vw,36px);}
+.termo{display:grid; gap:8px; margin:12px 0;}
+.termo .nivel{display:grid; grid-template-columns:150px 1fr; gap:10px; align-items:start; border-radius:10px; padding:8px 10px; border-left:8px solid;}
+.termo .nivel b{font-size:14px;} .termo .nivel small{display:block; font-size:12px; color:var(--ink-soft);}
+.escalera{display:flex; flex-direction:column-reverse; gap:6px; margin:12px 0;}
+.escalera .peldano{display:flex; gap:8px; align-items:center;}
+.escalera .peldano span{flex:none; width:30px; height:30px; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.dibujo{margin:12px 0; border:1px dashed var(--accent); border-radius:12px; padding:10px;}
+.dibujo p{margin:0 0 6px; color:var(--ink-soft);}
+.dibujo canvas{width:100%; height:240px; background:#fff; border:1px solid var(--border); border-radius:8px; touch-action:none; display:block;}
+.dibujo .dib-acc{display:flex; gap:8px; margin:6px 0;}
+.grafico{margin:12px 0;}
+.grafico .ejes{display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:6px; margin:8px 0;}
+.grafico label{font-size:12px; color:var(--ink-soft);}
+.grafico svg{width:100%; height:180px; background:#fff; border:1px solid var(--border); border-radius:8px;}
+.franja{margin:12px 0; text-align:center;} .franja img{max-width:100%; height:auto;}
+.franja .rots{display:grid; gap:6px; font-size:13px; color:var(--ink-soft);}
+@media (max-width:700px){ .termo .nivel{grid-template-columns:1fr;} }
 @media (max-width:700px){ .paso{flex-direction:column;} .paso img{width:100%; max-width:240px; align-self:center;} .pasos,.galeria{grid-template-columns:1fr !important;} .casillas{grid-template-columns:1fr !important;} }
+/* Solo se imprime un registro diligenciado (body.exportable); las guías, los guiones
+   y los registros incompletos no se imprimen ni con Ctrl+P. Las filas vacías no salen. */
+.wrap{-webkit-user-select:none; user-select:none;}
+.wrap textarea,.wrap input{-webkit-user-select:text; user-select:text;}
+.bt:disabled{opacity:.45; cursor:not-allowed; background:var(--bg);}
+.falta{font-size:12.5px; color:var(--ink-soft); align-self:center;}
+@media print{
+  body:not(.exportable) .wrap{display:none !important;}
+  body:not(.exportable)::before{content:"Esta ficha se consulta en línea y no se puede imprimir. Un registro se exporta desde la página cuando está diligenciado."; display:block; padding:40px; font:16px sans-serif;}
+  tr.vacia{display:none !important;}
+}
 @media print{ .acciones,.aviso-p{display:none !important;} body{font-size:12px;} .wrap{padding:0;} textarea{background:#fff; border-color:#999;} .tabla{display:table !important;} .tabla thead{display:table-header-group !important;} .tabla tr{display:table-row !important;} .tabla td{display:table-cell !important;} .tabla td::before{content:none !important;} }
 @page{margin:14mm;}
 </style>
@@ -108,6 +139,8 @@ const CLASES = {
 };
 const GUIAS = { adultos: "la guía de planes de intervención", infancia: "la guía de planes de niños y adolescentes" };
 let nCampo = 0;
+let IMGDIR = "fichas-web/img/";
+const COLORES_TERMO = ["#3f9b5a", "#c9b03a", "#e08a2e", "#c8452f", "#8e2a6b"];
 const linea = etq => '<input type="text" aria-label="' + esc(etq) + '" name="c' + (++nCampo) + '">';
 const area = (etq, lineas) => '<textarea aria-label="' + esc(etq) + '" rows="' + Math.max(2, Math.min(14, lineas || 2)) + '" name="c' + (++nCampo) + '"></textarea>';
 
@@ -135,11 +168,28 @@ const BLOQUES = {
     b.items.map(it => '<li>' + esc(it) + '</li>').join("") + (b.numerada ? '</ol>' : '</ul>') + '</div>',
   aviso: b => '<div class="cuidado">' + (b.titulo ? '<b>' + esc(b.titulo) + '</b>' : '') + esc(b.texto) + '</div>',
   pasos: b => '<div class="pasos" style="grid-template-columns:repeat(' + Math.min(b.cols || 1, 2) + ',minmax(0,1fr))">' +
-    b.pasos.map((p, i) => '<div class="paso">' + (p.img ? '<img src="fichas-web/img/' + esc(p.img) + '" alt="" loading="lazy">' : '') +
+    b.pasos.map((p, i) => '<div class="paso">' + (p.img ? '<img src="' + IMGDIR + esc(p.img) + '" alt="" loading="lazy">' : '') +
       '<div><span class="n">' + (i + 1) + '</span><b>' + esc(p.titulo || "") + '</b><p>' + esc(p.texto || "") + '</p></div></div>').join("") + '</div>',
   galeria: b => (b.titulo ? '<h2 class="tit">' + esc(b.titulo) + '</h2>' : '') +
     '<div class="galeria" style="grid-template-columns:repeat(' + Math.min(b.cols || 2, 3) + ',minmax(0,1fr))">' +
-    (b.imagenes || []).map((im, i) => '<figure><img src="fichas-web/img/' + esc(im) + '" alt="" loading="lazy"><figcaption>' + esc((b.rotulos || [])[i] || "") + '</figcaption></figure>').join("") + '</div>',
+    (b.imagenes || []).map((im, i) => '<figure><img src="' + IMGDIR + esc(im) + '" alt="" loading="lazy"><figcaption>' + esc((b.rotulos || [])[i] || "") + '</figcaption></figure>').join("") + '</div>',
+  termometro: b => (b.pregunta ? '<p class="nota">' + esc(b.pregunta) + '</p>' : '') + '<div class="termo">' +
+    b.niveles.slice().reverse().map(([de, a, rot], i, arr) => {
+      const col = COLORES_TERMO[Math.min(arr.length - 1 - i, COLORES_TERMO.length - 1)];
+      return '<div class="nivel" style="border-color:' + col + ';background:' + col + '14"><div><b>' + esc(de) + ' a ' + esc(a) + '</b><small>' + esc(rot) + '</small></div>' + area(rot, 2) + '</div>';
+    }).join("") + '</div>',
+  escalera: b => (b.etiqueta ? '<p class="nota">' + esc(b.etiqueta) + '</p>' : '') + '<div class="escalera">' +
+    Array.from({ length: b.peldanos || 5 }, (_, i) => '<div class="peldano" style="margin-left:' + (i * 4) + '%"><span>' + (i + 1) + '</span>' + linea("Peldaño " + (i + 1)) + '</div>').join("") + '</div>',
+  dibujo: b => '<div class="dibujo"><p>' + esc(b.texto || "") + '</p><canvas aria-label="Espacio para dibujar"></canvas>' +
+    '<div class="dib-acc"><button type="button" class="bt dib-borrar">Borrar el dibujo</button></div>' +
+    '<label class="c">O escríbelo aquí</label>' + area(b.texto || "dibujo", 2) + '</div>',
+  semana: b => BLOQUES.tabla({ cols: [[b.col1 || "", 3]].concat(["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"].map(d => [d, 1])),
+    filas: b.filas || 3, breves: [false, true, true, true, true, true, true, true] }),
+  grafico: b => '<div class="grafico">' + (b.nota_eje ? '<p class="nota">' + esc(b.nota_eje) + '</p>' : '') +
+    '<div class="ejes">' + Array.from({ length: b.semanas || 10 }, (_, i) => '<label>Semana ' + (i + 1) + '<input type="text" inputmode="decimal" aria-label="' +
+      esc((b.eje_y || "Puntaje") + ", semana " + (i + 1)) + '" name="c' + (++nCampo) + '"></label>').join("") + '</div><svg viewBox="0 0 400 180" preserveAspectRatio="none"></svg></div>',
+  imagen: b => '<div class="franja"><img src="' + IMGDIR + esc(b.archivo) + '" alt="">' +
+    '<div class="rots" style="grid-template-columns:repeat(' + Math.max(1, (b.rotulos || []).length) + ',1fr)">' + (b.rotulos || []).map(r => '<span>' + esc(r) + '</span>').join("") + '</div></div>',
   guion: b => '<div class="guion">' + b.partes.map(p => typeof p === "string"
       ? '<p>' + esc(p.replace(/\s*\[p\]\s*$/, "")) + (/\[p\]\s*$/.test(p) ? '<span class="pausa">· PAUSA ·</span>' : '') + '</p>'
       : '<p class="indica">' + esc(p.indica || "") + '</p>').join("") + '</div>'
@@ -147,31 +197,105 @@ const BLOQUES = {
 
 function pintar(f, guia){
   const k = CLASES[f.clase] || CLASES.registro;
+  IMGDIR = guia === "infancia" ? "fichas-web/img-infancia/" : "fichas-web/img/";
+  document.body.classList.toggle("infancia", guia === "infancia");
+  document.body.classList.toggle("nino", f.publico === "nino");
   document.title = f.titulo + " · Ficha en línea";
   const il = f.ilustracion;
   let h = '<div class="cab"><div class="txt"><div class="rotulo">' + k.cab + '</div><h1>' + esc(f.titulo) + '</h1>' +
     (f.enfoque ? '<div class="enfoque">' + esc(f.enfoque) + '</div>' : '') +
     '<div class="sec">Para qué sirve</div><p class="para">' + esc(f.para) + '</p>' +
     (f.como && f.como.length ? '<div class="sec">' + k.como + '</div><ul class="como">' + f.como.map(c => '<li>' + esc(c) + '</li>').join("") + '</ul>' : '') +
-    '</div>' + (il ? '<div class="ilus"><img src="fichas-web/img/' + esc(il.archivo) + '" alt="">' +
+    (f.ilustracion_como ? '<div class="franja"><img src="' + IMGDIR + esc(f.ilustracion_como.archivo) + '" alt=""><div class="rots" style="grid-template-columns:repeat(' +
+      Math.max(1, (f.ilustracion_como.rotulos || []).length) + ',1fr)">' + (f.ilustracion_como.rotulos || []).map(r => '<span>' + esc(r) + '</span>').join("") + '</div></div>' : '') +
+    '</div>' + (il ? '<div class="ilus"><img src="' + IMGDIR + esc(il.archivo) + '" alt="">' +
       (il.rotulos || []).map(r => '<small>' + esc(Array.isArray(r) ? r[0] : r) + '</small>').join("") + '</div>' : '') + '</div>';
-  h += '<div class="aviso-p">Lo que escriba no se envía ni se guarda: al cerrar o recargar la página se borra. Si quiere conservarlo, use «Imprimir o guardar en PDF» antes de cerrar.</div>' +
-    '<div class="acciones"><button class="bt" id="imprimir">Imprimir o guardar en PDF</button><button class="bt" id="borrar">Borrar lo escrito</button></div>';
-  if (f.clase === "registro" || !f.clase)
+  const registro = f.clase === "registro" || !f.clase;
+  if (registro)
+    h += '<div class="aviso-p">Lo que escriba no se envía ni se guarda: al cerrar o recargar la página se borra. Cuando termine de llenarla, ' +
+      'use «Exportar ficha diligenciada» para guardarla o imprimirla.</div>' +
+      '<div class="acciones"><button class="bt" id="exportar" disabled>Exportar ficha diligenciada</button><button class="bt" id="borrar">Borrar lo escrito</button>' +
+      '<span class="falta" id="falta"></span></div>';
+  else
+    h += '<div class="aviso-p">Esta ' + (f.clase === "guion" ? 'guía para el terapeuta' : 'guía') + ' se consulta en línea mientras el enlace esté vigente.</div>';
+  if (registro)
     h += '<div class="datos"><div><label class="c">Nombre</label><input type="text" name="nombre"></div>' +
       '<div><label class="c">Fecha</label><input type="text" name="fecha"></div><div><label class="c">Sesión</label><input type="text" name="sesion"></div></div>';
   h += f.bloques.map(b => (BLOQUES[b.t] || (() => ""))(b)).join("");
   h += '<div class="pie">Fuente: ' + esc(f.fuente || "") + '<br>' + k.pie + ' por Juan Boya Guerra para ' + (GUIAS[guia] || GUIAS.adultos) + '.</div>';
   app.innerHTML = h;
+  document.body.classList.remove("exportable");
+  app.querySelectorAll(".dibujo canvas").forEach(prepararDibujo);
+  app.querySelectorAll(".grafico").forEach(g => g.addEventListener("input", () => graficar(g)));
+  if (registro){ app.addEventListener("input", revisar); revisar(); }
   // Las casillas de las tablas crecen con el texto.
   app.querySelectorAll(".tabla textarea").forEach(t => t.addEventListener("input", () => { t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; }));
 }
 
+/* Un registro se puede exportar cuando está diligenciado: nombre y fecha, todos los
+   campos de texto y, en cada tabla, al menos una fila completa. */
+const lleno = el => el.value.trim() !== "";
+function revisar(){
+  const faltan = [];
+  ["nombre", "fecha"].forEach(n => { const el = app.querySelector('[name="' + n + '"]'); if (el && !lleno(el)) faltan.push(n === "nombre" ? "el nombre" : "la fecha"); });
+  const sueltos = [...app.querySelectorAll("textarea,input[type=text]")].filter(el => !el.closest(".tabla") && !el.closest(".datos") && !el.closest(".grafico") && !el.closest(".dibujo"));
+  app.querySelectorAll(".dibujo").forEach(d => { if (!d.dataset.trazos && !lleno(d.querySelector("textarea"))) faltan.push("el dibujo o su descripción"); });
+  app.querySelectorAll(".grafico").forEach(g => { if (![...g.querySelectorAll("input")].some(lleno)) faltan.push("al menos un punto en el gráfico"); });
+  const vaciosC = sueltos.filter(el => !lleno(el)).length;
+  if (vaciosC) faltan.push(vaciosC + (vaciosC === 1 ? " campo de texto" : " campos de texto"));
+  let tablasSin = 0;
+  app.querySelectorAll(".tabla").forEach(t => {
+    let completa = false;
+    t.querySelectorAll("tbody tr").forEach(tr => {
+      const cel = [...tr.querySelectorAll("textarea,input")];
+      const algo = cel.some(lleno);
+      tr.classList.toggle("vacia", !algo);
+      if (cel.length && cel.every(lleno)) completa = true;
+    });
+    if (!completa) tablasSin++;
+  });
+  if (tablasSin) faltan.push(tablasSin === 1 ? "una fila completa en la tabla" : "una fila completa en " + tablasSin + " tablas");
+  const listo = faltan.length === 0;
+  document.body.classList.toggle("exportable", listo);
+  const bt = document.getElementById("exportar");
+  if (bt) bt.disabled = !listo;
+  const f = document.getElementById("falta");
+  if (f) f.textContent = listo ? "Lista para exportar." : "Para exportar falta: " + faltan.join(", ") + ".";
+}
+// Espacio para dibujar con el dedo o el ratón.
+function prepararDibujo(cv){
+  const caja = cv.closest(".dibujo"), ctx = cv.getContext("2d");
+  const r = cv.getBoundingClientRect();
+  cv.width = Math.max(1, r.width) * devicePixelRatio; cv.height = Math.max(1, r.height) * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.strokeStyle = "#16232b";
+  let pintando = false;
+  const pos = ev => { const q = cv.getBoundingClientRect(); return [ev.clientX - q.left, ev.clientY - q.top]; };
+  cv.addEventListener("pointerdown", ev => { pintando = true; cv.setPointerCapture(ev.pointerId); ctx.beginPath(); ctx.moveTo(...pos(ev)); });
+  cv.addEventListener("pointermove", ev => { if (!pintando) return; ctx.lineTo(...pos(ev)); ctx.stroke(); caja.dataset.trazos = "1"; });
+  cv.addEventListener("pointerup", () => { pintando = false; if (typeof revisar === "function") revisar(); });
+  caja.querySelector(".dib-borrar").addEventListener("click", () => { ctx.clearRect(0, 0, cv.width, cv.height); delete caja.dataset.trazos; revisar(); });
+}
+// El gráfico de avance se dibuja con los puntajes que se escriben.
+function graficar(g){
+  const vals = [...g.querySelectorAll("input")].map(i => parseFloat(i.value.replace(",", ".")));
+  const ok = vals.map((v, i) => [i, v]).filter(([, v]) => !isNaN(v));
+  const svg = g.querySelector("svg");
+  if (!ok.length){ svg.innerHTML = ""; return; }
+  const max = Math.max(...ok.map(q => q[1]), 1), n = vals.length;
+  const x = i => 20 + i * (360 / Math.max(1, n - 1)), y = v => 165 - v / max * 145;
+  svg.innerHTML = '<polyline fill="none" stroke="currentColor" stroke-width="2" points="' + ok.map(([i, v]) => x(i) + "," + y(v)).join(" ") + '"/>' +
+    ok.map(([i, v]) => '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="4" fill="currentColor"/>').join("");
+  svg.style.color = getComputedStyle(document.body).getPropertyValue("--accent");
+}
+// El texto de la ficha no se copia; los campos sí (lo que la persona escribe es suyo).
+["copy", "cut"].forEach(t => document.addEventListener(t, ev => { if (!ev.target.closest || !ev.target.closest("textarea,input")) ev.preventDefault(); }));
 document.addEventListener("click", ev => {
-  if (ev.target.id === "imprimir") window.print();
+  if (ev.target.id === "exportar" && document.body.classList.contains("exportable")) window.print();
   if (ev.target.id === "borrar" && confirm("¿Borrar todo lo escrito en esta ficha?")){
     app.querySelectorAll("textarea,input[type=text]").forEach(t => { t.value = ""; t.style.height = ""; });
     app.querySelectorAll("input[type=checkbox]").forEach(c => { c.checked = false; });
+    revisar();
   }
 });
 window.addEventListener("beforeunload", ev => {
@@ -184,11 +308,55 @@ async function cargar(clave, guia){
   return r.json();
 }
 
+/* Acceso: con un código de cupo (?c=…, de un plan compartido por Juan Boya), que se gasta al
+   pulsar «Comenzar», o con la dirección directa (?f=…) solo en el navegador donde Juan Boya
+   activó sus botones de compartir. El Apps Script es el de «Envio a Sheets/enlaces-unico-uso». */
+const ENLACES_URL = "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxJeqxsv7s-pRqceQKfOq4JJ7jwlAtm4C-3t1kQlu2CjId3y99QuGesx4Ly7LHNyUrB/exec";
+const CUPO_GUARDA = "ficha-cupo-";
+const esDocente = () => { try { return !!localStorage.getItem("calificar-enlaces-secreto"); } catch (e) { return false; } };
+function jsonp(params){
+  return new Promise((ok, mal) => {
+    const cb = "cb" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    const fin = () => { delete window[cb]; s.remove(); clearTimeout(t); };
+    const t = setTimeout(() => { fin(); mal(new Error("sin respuesta")); }, 20000);
+    window[cb] = r => { fin(); ok(r); };
+    s.onerror = () => { fin(); mal(new Error("sin conexión")); };
+    s.src = ENLACES_URL + "?" + new URLSearchParams({ ...params, callback: cb });
+    document.head.appendChild(s);
+  });
+}
+async function abrirDe(a){
+  const m = /^ficha:(adultos|infancia):([a-z0-9-]{1,80})$/.exec(a || "");
+  if (!m) throw new Error("no es una ficha");
+  pintar(await cargar(m[2], m[1]), m[1]);
+}
+function portadaCupo(token){
+  const guardada = (() => { try { return sessionStorage.getItem(CUPO_GUARDA + token); } catch (e) { return null; } })();
+  if (guardada){ abrirDe(guardada).catch(() => {}); return; }
+  app.innerHTML = '<div class="rotulo">Ficha en línea</div><h1>Ficha compartida por Juan Boya</h1>' +
+    '<p class="para">Este código tiene un número limitado de usos y una fecha de vencimiento. Al pulsar «Comenzar» se abre la ficha en esta pestaña y se descuenta un uso.</p>' +
+    '<div class="acciones"><button class="bt" id="comenzar">Comenzar</button></div><p class="error" id="cupo-error" hidden></p>';
+  $("#comenzar").addEventListener("click", async ev => {
+    const bt = ev.target, err = $("#cupo-error");
+    const fallo = t => { err.textContent = t; err.hidden = false; bt.disabled = false; bt.textContent = "Comenzar"; };
+    bt.disabled = true; bt.textContent = "Abriendo…";
+    try {
+      const r = await jsonp({ accion: "usar", token });
+      if (!r.ok || !r.cupo) return fallo(r.motivo === "agotado" ? "Este código ya alcanzó su número de usos. Si lo necesita, pida a Juan Boya uno nuevo."
+        : r.motivo === "vencido" ? "Este código venció. Pida a Juan Boya uno nuevo." : "Este código no existe. Revise que lo escaneó completo.");
+      try { sessionStorage.setItem(CUPO_GUARDA + token, r.a); } catch (e) {}
+      await abrirDe(r.a);
+    } catch (e) { fallo("No se pudo abrir la ficha (" + e.message + "). Revise la conexión e inténtelo de nuevo."); }
+  });
+}
+
 (async () => {
   const q = new URLSearchParams(location.search);
+  if (q.get("c")) return portadaCupo(q.get("c"));
   const clave = q.get("f"), guia = q.get("g") === "infancia" ? "infancia" : "adultos";
-  if (!clave || !/^[a-z0-9-]{1,80}$/.test(clave)){
-    app.innerHTML = '<h1>Ficha en línea</h1><p class="para">Para abrir una ficha, use el enlace o el código QR que recibió.</p>';
+  if (!clave || !/^[a-z0-9-]{1,80}$/.test(clave) || !esDocente()){
+    app.innerHTML = '<h1>Ficha en línea</h1><p class="para">Para abrir una ficha, use el enlace o el código QR que recibió de Juan Boya.</p>';
     return;
   }
   try { pintar(await cargar(clave, guia), guia); }

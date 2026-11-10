@@ -21882,7 +21882,7 @@ const fichasDe = claves => (claves || []).map(k => Object.assign({ k }, FICHAS[k
 const CLASE_FICHA = { guia: { ver: "Ver guía", et: "Guía de práctica" }, guion: { ver: "Ver guion", et: "Guion para el terapeuta" } };
 // En el PDF exportado las fichas se enlazan a su dirección pública: el PDF
 // circula solo, lejos de la carpeta fichas/.
-const urlFicha = k => FICHAS_URL + k + ".pdf";
+const urlFicha = k => (typeof CUPO_FICHA !== "undefined" && CUPO_FICHA[k] ? CUPO_FICHA[k].url : FICHAS_URL + k + ".pdf");
 /* QR de «Calificar en línea» con cupo (solo Juan Boya, con la clave guardada desde
    calificar.html en este navegador). Al exportar, cada instrumento calificable del
    plan recibe un enlace nuevo que abre la prueba un número limitado de veces y hasta
@@ -21890,11 +21890,16 @@ const urlFicha = k => FICHAS_URL + k + ".pdf";
 const ENLACES_URL = "https://script.google.com/a/macros/areandina.edu.co/s/AKfycbxJeqxsv7s-pRqceQKfOq4JJ7jwlAtm4C-3t1kQlu2CjId3y99QuGesx4Ly7LHNyUrB/exec";
 const CALIF_PUBLICO = "https://juanboya7.github.io/seminario-clinico/calificar.html";
 let CUPO_QR = {};
+let CUPO_FICHA = {};
+let SOLO_LINEA = false;
+const GUIA_FICHAS = /infancia/.test(location.pathname) ? "infancia" : "adultos";
+const FICHA_PUBLICA = "https://juanboya7.github.io/seminario-clinico/ficha.html";
 function secretoCupo(){ try { return localStorage.getItem("calificar-enlaces-secreto") || ""; } catch (e) { return ""; } }
 function controlesCupo(){
   if (!secretoCupo()) return "";
   return '<div class="exp-cupo" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;font-size:13px;">' +
     '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
+    '<label><input type="checkbox" data-solo> Solo en línea (fichas y calificación, sin PDF)</label>' +
     '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="40" style="width:4.5em"></label>' +
     '<label>Días <input type="number" data-cupo-d min="1" max="365" value="15" style="width:4em"></label>' +
     '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span>' +
@@ -21948,27 +21953,39 @@ function postCupo(campos){
   document.body.appendChild(f); f.submit();
   setTimeout(() => { f.remove(); ifr.remove(); }, 60000);
 }
-async function crearCupo(f, usos, dias){
+async function crearCupo(f, usos, dias, destino){
   const token = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(18)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   postCupo({ accion: "crear", tipo: "cupo", secreto: secretoCupo(), token, a: f.a, prueba: f.s || f.k, cupo: usos, dias });
   for (let i = 0; i < 8; i++){
     await new Promise(r => setTimeout(r, 1500));
     const r = await jsonpCupo({ accion: "existe", token, secreto: secretoCupo() }).catch(() => ({}));
     if (r.motivo === "secreto") throw new Error("la clave de Juan Boya no es correcta (actívela de nuevo en calificar.html)");
-    if (r.ok) return CALIF_PUBLICO + "?c=" + token;
+    if (r.ok) return (destino || CALIF_PUBLICO) + "?c=" + token;
   }
   throw new Error("no se pudo guardar el enlace");
 }
 async function prepararCupos(id, caja){
-  CUPO_QR = {};
+  CUPO_QR = {}; CUPO_FICHA = {};
   const marca = caja.querySelector("[data-cupo]");
-  if (!marca || !marca.checked) return;
+  const solo = caja.querySelector("[data-solo]");
+  SOLO_LINEA = !!(solo && solo.checked);
+  if (!SOLO_LINEA && (!marca || !marca.checked)) return;
   const usos = Math.max(1, Math.min(500, parseInt(caja.querySelector("[data-cupo-n]").value, 10) || 40));
   const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-cupo-d]").value, 10) || 15));
   const par = planPorId(id); if (!par) return;
   const fichas = instrumentosDe(par.p).map(i => fichaInst(i.s)).filter(f => f && f.qc);
-  if (!fichas.length) return;
   await cargarQR();
+  if (SOLO_LINEA){
+    // Todas las fichas de trabajo del plan (de cualquier opción de secuencia) pasan a su versión en línea.
+    const acts = (par.p.actividades || []).concat(...(par.p.opciones || []).map(o => o.actividades || []));
+    const claves = [...new Set(acts.flatMap(a => a.fichas || []))].filter(k => FICHAS[k]);
+    const venceF = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+    for (const k of claves){
+      const url = await crearCupo({ a: "ficha:" + GUIA_FICHAS + ":" + k, s: "Ficha: " + FICHAS[k].t.slice(0, 60) }, usos, dias, FICHA_PUBLICA);
+      CUPO_FICHA[k] = Object.assign({ url, nota: usos + " usos, hasta el " + venceF }, trazoQR(url));
+    }
+  }
+  if (!fichas.length) return;
   const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
   for (const f of fichas){
     const url = await crearCupo(f, usos, dias);
@@ -21977,13 +21994,14 @@ async function prepararCupos(id, caja){
 }
 async function exportarPlan(id, caja, notas, boton){
   const marca = caja.querySelector("[data-cupo]");
-  if (marca && marca.checked){
+  const soloM = caja.querySelector("[data-solo]");
+  if ((marca && marca.checked) || (soloM && soloM.checked)){
     const texto = boton.textContent;
     boton.disabled = true; boton.textContent = "Creando QR…";
     try { await prepararCupos(id, caja); }
     catch (e) { alert("No se pudieron crear los QR con cupo: " + e.message + ". El PDF no se generó."); return; }
     finally { boton.disabled = false; boton.textContent = texto; }
-  } else CUPO_QR = {};
+  } else { CUPO_QR = {}; CUPO_FICHA = {}; SOLO_LINEA = false; }
   construirHoja(id, opcionesDe(caja), notas);
   const clavePDF = ((caja.querySelector("[data-pdf-clave]") || {}).value || "").trim();
   if (ES_MOVIL || clavePDF) { compartirHoja(id, boton, clavePDF); return; }
@@ -22818,11 +22836,11 @@ function construirHoja(id, o, notas){
     if (fi.length){
       h += '<p class="h-fichas-int">Fichas de los instrumentos. El instrumento completo trae los ítems de la versión oficial; la ficha técnica, sin ítems, dice cómo conseguirlo. Se abren con un clic en su nombre o escaneando el código con el celular.</p>' +
         '<div class="h-fichas">' + fi.map(f =>
-          '<div class="h-ficha">' + qrFicha(f) + '<div>' +
+          (SOLO_LINEA ? '' : '<div class="h-ficha">' + qrFicha(f) + '<div>' +
             '<a class="ft" href="' + urlInst(f) + '">' + escapar(f.s || f.k) + ' · ' + escapar(f.t) + '</a>' +
             '<div class="fd">' + etInst(f) + '</div>' +
             '<div class="fu">' + escapar(urlInst(f)) + '</div>' +
-          '</div></div>' +
+          '</div></div>') +
           (f.qc ? '<div class="h-ficha">' + qrFicha(CUPO_QR[f.a] || { n: f.nc, q: f.qc }) + '<div>' +
             '<a class="ft" href="' + (CUPO_QR[f.a] ? CUPO_QR[f.a].url : INST_FICHAS_CALIF + f.a) + '">Calificar en línea · ' + escapar(f.s || f.k) + '</a>' +
             '<div class="fd">Responder y obtener el puntaje en el navegador' + (CUPO_QR[f.a] ? ' · código con ' + escapar(CUPO_QR[f.a].nota) : '') + '</div>' +
@@ -22873,7 +22891,7 @@ function construirHoja(id, o, notas){
     if (fs.length){
       h += '<h2>Fichas del plan</h2><p class="h-fichas-int">Son fichas elaboradas para esta guía a partir de las actividades del plan; no forman parte del material de sus autores. ' + (fs.some(f => f.c) ? 'Las fichas de registro son PDF rellenables; las guías de práctica y los guiones para el terapeuta se leen y se siguen. Todas se abren' : 'Cada ficha es un PDF rellenable. Se abre') + ' con un clic en su nombre o escaneando el código con el celular.</p>' +
         '<div class="h-fichas">' + fs.map(f =>
-          '<div class="h-ficha">' + qrFicha(f) + '<div>' +
+          '<div class="h-ficha">' + qrFicha(CUPO_FICHA[f.k] || f) + '<div>' +
             (CLASE_FICHA[f.c] ? '<div class="fc">' + CLASE_FICHA[f.c].et + '</div>' : '') +
             '<a class="ft" href="' + urlFicha(f.k) + '">' + escapar(f.t) + '</a>' +
             '<div class="fd">' + escapar(f.d) + '</div>' +
