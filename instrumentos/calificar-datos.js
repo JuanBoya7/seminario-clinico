@@ -15415,6 +15415,608 @@ const CALIFICAR = {
    ]
   }
  },
+ "cdi": {
+  "clave": "CDI",
+  "sigla": "CDI",
+  "titulo": "Inventario de Depresión Infantil",
+  "para": "Medir la sintomatología depresiva de las dos últimas semanas en niños y adolescentes de 7 a 15 años: tristeza, anhedonia, autoestima, pesimismo, problemas escolares y sociales, sueño, apetito e ideas de muerte. Sirve para tamizar en colegios y consulta, y para seguir el tratamiento.",
+  "areas": [
+   "Ánimo y depresión",
+   "Riesgo suicida"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Kovacs (1992) · edición española de del Barrio y Carrasco (TEA Ediciones, 2004).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 9"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 10"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 11"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 12"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 13"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 14"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 15"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 16"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 17"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 18"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 19"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 21"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 22"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 23"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 24"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "2",
+     "1",
+     "0"
+    ],
+    "vals": [
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 25"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 26"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 27"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Disforia",
+     "js": "L([1, 4, 5, 7, 8, 9, 10, 12, 16, 17, 18, 20, 21, 22, 25, 27])",
+     "texto": "De 0 a 32. Percentiles por edad y sexo en los baremos del manual."
+    },
+    {
+     "n": "Autoestima negativa",
+     "js": "L([2, 3, 6, 11, 13, 14, 15, 19, 23, 24, 26])",
+     "texto": "De 0 a 22. Percentiles por edad y sexo en los baremos del manual."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,27)",
+     "rangos": [
+      [
+       0,
+       18,
+       "Por debajo del punto de corte"
+      ],
+      [
+       19,
+       54,
+       "Punto de corte o más: evaluación clínica de depresión"
+      ]
+     ],
+     "texto": "De 0 a 54. Corte de 19 (Del Barrio, 1997), usado en población general y clínica."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[9] >= 1",
+     "texto": "El niño marcó ideas de matarse (grupo 9): valore el riesgo suicida en esta misma sesión, sea cual sea el total."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "fiat-q-breve": {
   "clave": "FIAT-Q-breve",
   "sigla": "FIAT-Q-breve",
@@ -15677,6 +16279,128 @@ const CALIFICAR = {
       ]
      ],
      "texto": "De 27 a 162. Centiles de población general española (n = 400): no son puntos de corte."
+    }
+   ]
+  },
+  "hoja": true
+ },
+ "icod": {
+  "clave": "ICOD",
+  "sigla": "ICOD",
+  "titulo": "Instrumento de Codependencia",
+  "para": "Detectar codependencia en mujeres con pareja: justificar y complacer a la pareja a costa de sí misma, negar los problemas, reprimir emociones y hacerse cargo de los demás. Sirve para tamizar en contextos de violencia de pareja o de consumo de alcohol de la pareja, y para orientar el foco del tratamiento.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Noriega Gayol (2011), El Manual Moderno.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "No",
+     "Sí, poco",
+     "Sí, regular",
+     "Sí, mucho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total",
+     "js": "S(1,30)",
+     "rangos": [
+      [
+       0,
+       31,
+       "Por debajo del punto de corte"
+      ],
+      [
+       32,
+       90,
+       "Caso probable de codependencia"
+      ]
+     ],
+     "texto": "De 0 a 90. Corte de 32 o más (Noriega Gayol, 2011)."
+    },
+    {
+     "n": "Mecanismo de negación",
+     "js": "L([4, 11, 14, 15, 16, 18, 19, 22, 23, 24, 29, 30])",
+     "texto": "De 0 a 36: orienta el foco del tratamiento; sin punto de corte propio."
+    },
+    {
+     "n": "Desarrollo incompleto de la identidad",
+     "js": "L([1, 2, 3, 5, 7, 13, 17, 26])",
+     "texto": "De 0 a 24: orienta el foco del tratamiento; sin punto de corte propio."
+    },
+    {
+     "n": "Represión emocional",
+     "js": "L([8, 12, 25, 27, 28])",
+     "texto": "De 0 a 15: orienta el foco del tratamiento; sin punto de corte propio."
+    },
+    {
+     "n": "Orientación rescatadora",
+     "js": "L([6, 9, 10, 20, 21])",
+     "texto": "De 0 a 15: orienta el foco del tratamiento; sin punto de corte propio."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "(r[23] || 0) >= 1 || (r[24] || 0) >= 2 || (r[25] || 0) >= 1",
+     "texto": "Marcó malos tratos, miedo intenso a la pareja o relaciones sexuales no deseadas: explore violencia de pareja y seguridad en esta sesión."
     }
    ]
   },
