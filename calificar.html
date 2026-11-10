@@ -630,7 +630,8 @@ const CUPO_GUARDA = "calificar-cupo-";
 function portadaCupo(token){
   document.title = "Calificación en línea";
   const a = (() => { try { return sessionStorage.getItem(CUPO_GUARDA + token); } catch (e) { return null; } })();
-  if (a && CALIFICAR[a]){ instrumento(a, CALIFICAR[a]); prepararPDF(); return; }
+  // Abierta con código: sin el botón de la ficha en PDF ni el de la versión completa.
+  if (a && CALIFICAR[a]){ instrumento(a, Object.assign({}, CALIFICAR[a], { unico: true })); return; }
   app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por Juan Boya</h1>' +
     '<p class="para">Este código tiene un número limitado de usos y una fecha de vencimiento. Al pulsar «Comenzar» se abre la prueba en esta pestaña ' +
     'y se descuenta un uso; responda hasta el final sin cerrarla. Las respuestas no se envían ni se guardan.</p>' +
@@ -650,8 +651,7 @@ async function abrirCupo(boton){
     }
     if (!CALIFICAR[r.a]) return fallo("La prueba de este código ya no está disponible.");
     try { sessionStorage.setItem(CUPO_GUARDA + token, r.a); } catch (e) {}
-    instrumento(r.a, CALIFICAR[r.a]);
-    prepararPDF();
+    instrumento(r.a, Object.assign({}, CALIFICAR[r.a], { unico: true }));
   } catch (e) {
     fallo("No se pudo abrir la prueba (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
   }
