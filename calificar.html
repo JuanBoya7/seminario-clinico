@@ -176,6 +176,14 @@ body[data-pdf] .panel{position:static;}
 .marca.si{background:var(--accent); border-color:var(--accent);}
 #pdf-velo{position:fixed; inset:0; z-index:100000; background:#fff; display:flex; align-items:center;
   justify-content:center; font-size:16px; font-weight:600; color:var(--ink-soft);}
+/* Solo se imprime desde «Imprimir resultado» (habilitado con la prueba completa), que marca
+   body[data-imprimir]; Ctrl+P o el menú del navegador imprimen únicamente un aviso. */
+body[data-prueba] .wrap{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+body[data-prueba] .wrap input{-webkit-user-select:text; user-select:text;}
+@media print{
+  body:not([data-imprimir]) .wrap{display:none !important;}
+  body:not([data-imprimir])::before{content:"Esta prueba no se puede imprimir desde el navegador. El resultado se imprime con el botón de la página cuando todas las preguntas están respondidas."; display:block; padding:40px; font:16px sans-serif;}
+}
 @media print{
   .acciones,.aviso{display:none;}
   .wrap{grid-template-columns:minmax(0,1fr) 260px;}
@@ -216,7 +224,14 @@ function indiceAbierto(){
   catch (e) { return false; }
 }
 
+const DESDE_INDICE = "calificar-desde-indice";
+function desdeIndice(a){ try { return sessionStorage.getItem(DESDE_INDICE) === a; } catch (e) { return false; } }
+document.addEventListener("click", ev => {
+  const l = ev.target.closest && ev.target.closest(".indice li[data-a] > a");
+  if (l) try { sessionStorage.setItem(DESDE_INDICE, l.closest("li").dataset.a); } catch (e) {}
+});
 function indice(){
+  delete document.body.dataset.prueba;
   document.title = "Calificación en línea";
   const QUIEN = {persona: "La persona", padres: "Padres o docentes", profesional: "El profesional"};
   const lista = Object.entries(CALIFICAR).sort((a, b) => a[1].sigla.localeCompare(b[1].sigla, "es"));
@@ -303,6 +318,7 @@ function mezclar(a, b, t){
 }
 
 function instrumento(a, d){
+  document.body.dataset.prueba = "1";
   document.title = d.sigla + " · Calificación en línea";
   if (d.estilo === "infancia") document.body.classList.add("infancia");
   let q = 0, num = 0, h = "";
@@ -354,9 +370,9 @@ function instrumento(a, d){
     '<p class="para">' + esc(d.para) + '</p>' +
     '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
-    // La ficha en PDF solo la ve Juan Boya (con sus botones activados en este navegador) y
-    // nunca en una prueba abierta con código (decisión del 2026-11-10).
-    '<div class="acciones">' + (d.unico || !docenteActivo() ? '' : d.cifrado
+    // La ficha en PDF solo la ve Juan Boya (con sus botones activados en este navegador) cuando
+    // llega desde su índice; nunca con código ni desde un enlace compartido, aunque lo abra él.
+    '<div class="acciones">' + (d.unico || !docenteActivo() || !desdeIndice(a) ? '' : d.cifrado
       ? '<a class="bt" id="pdf-cifrado" data-a="' + a + '" target="_blank" rel="noopener">Abriendo PDF…</a>'
       : '<a class="bt" href="' + (d.local ? "instrumentos-local/" : "instrumentos/") + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>') +
     (d.hoja && !d.local && !d.unico ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
@@ -442,7 +458,7 @@ function instrumento(a, d){
     document.querySelectorAll(".dato input").forEach(x => x.value = "");
     calc();
   });
-  $("#imprimir").addEventListener("click", ev => ES_MOVIL ? compartir(d, ev.currentTarget) : print());
+  $("#imprimir").addEventListener("click", ev => { if (!ev.currentTarget.disabled) ES_MOVIL ? compartir(d, ev.currentTarget) : imprimirResultado(); });
   const verP = $("#ver-preguntas");
   if (verP) verP.addEventListener("click", () => {
     const oculto = document.body.classList.toggle("sin-preguntas");
@@ -486,6 +502,19 @@ function copiaEstatica(){
   });
   return copia;
 }
+function imprimirResultado(){
+  document.body.dataset.imprimir = "1";
+  print();
+}
+window.addEventListener("afterprint", () => { delete document.body.dataset.imprimir; });
+// En una prueba abierta no se copia, corta, selecciona ni arrastra su texto; los campos sí.
+["copy", "cut", "dragstart", "selectstart", "contextmenu"].forEach(t => document.addEventListener(t, ev => {
+  if (!document.body.dataset.prueba) return;
+  if (!ev.target.closest || !ev.target.closest("input")) ev.preventDefault();
+}));
+document.addEventListener("keydown", ev => {
+  if (document.body.dataset.prueba && (ev.ctrlKey || ev.metaKey) && /^[psc]$/i.test(ev.key) && !(ev.target.closest && ev.target.closest("input"))) ev.preventDefault();
+});
 async function compartir(d, boton){
   const nombre = (d.sigla + " resultado").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
@@ -521,7 +550,7 @@ async function compartir(d, boton){
     }
     pdf.save(nombre);
   } catch (err) {
-    print();
+    imprimirResultado();
   } finally {
     delete document.body.dataset.pdf;
     document.getElementById("pdf-velo")?.remove();
