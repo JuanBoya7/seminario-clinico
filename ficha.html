@@ -225,7 +225,7 @@ function pintar(f, guia){
   document.title = f.titulo + " · Ficha en línea";
   const il = f.ilustracion;
   let h = '<header class="banda"><img class="fondo" src="fichas-web/bandas/' + pub + '.jpg" alt="">' +
-    '<div class="velo"></div><span class="chip"><span class="pto"></span>' + k.cab + ' · ' + PUBLICOS[pub] + '</span>' +
+    '<div class="velo"></div><span class="chip"><span class="pto"></span>' + k.cab + '</span>' +
     '<h1>' + esc(f.titulo) + '</h1>' + (f.enfoque ? '<div class="enfoque">' + esc(f.enfoque) + '</div>' : '') + '</header>';
   h += '<div class="cab"><div class="txt">' +
     '<div class="sec">Para qué sirve</div><p class="para">' + esc(f.para) + '</p>' +
