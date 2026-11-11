@@ -633,11 +633,29 @@ document.addEventListener("click", async ev => {
 // Enlaces con cupo (?c=…): los QR de los planes exportados. Abren la versión publicada
 // de la prueba mientras quede cupo y no venza; cada «Comenzar» descuenta un uso.
 const CUPO_GUARDA = "calificar-cupo-";
+/* Una prueba comercial llega con el código: cifrada en el Apps Script (datos) y con su
+   llave después de # en el enlace. Se abre completa, sin la contraseña general. */
+async function abrirCupoDatos(a, datos){
+  if (!datos) {
+    if (!CALIFICAR[a]) throw new Error("no disponible");
+    instrumento(a, Object.assign({}, CALIFICAR[a], { unico: true }));   // sin PDF ni versión completa
+    return;
+  }
+  const k = new URLSearchParams(location.hash.slice(1)).get("k");
+  if (!k) throw new Error("el enlace está incompleto");
+  const llave = await crypto.subtle.importKey("raw", deB64u(k), "AES-GCM", false, ["decrypt"]);
+  const p = JSON.parse(new TextDecoder().decode(await descifrar(llave, deB64u(datos))));
+  p.d.unico = true;
+  instrumento(p.a, p.d);
+}
 function portadaCupo(token){
   document.title = "Calificación en línea";
-  const a = (() => { try { return sessionStorage.getItem(CUPO_GUARDA + token); } catch (e) { return null; } })();
-  // Abierta con código: sin el botón de la ficha en PDF ni el de la versión completa.
-  if (a && CALIFICAR[a]){ instrumento(a, Object.assign({}, CALIFICAR[a], { unico: true })); return; }
+  const guardada = (() => { try { return sessionStorage.getItem(CUPO_GUARDA + token); } catch (e) { return null; } })();
+  if (guardada){
+    let g; try { g = JSON.parse(guardada); } catch (e) { g = { a: guardada }; }
+    abrirCupoDatos(g.a, g.datos).catch(() => {});
+    return;
+  }
   app.innerHTML = '<div class="indice unico-portada"><div class="rotulo">Calificación en línea</div><h1>Prueba compartida por Juan Boya</h1>' +
     '<p class="para">Este código tiene un número limitado de usos y una fecha de vencimiento. Al pulsar «Comenzar» se abre la prueba en esta pestaña ' +
     'y se descuenta un uso; responda hasta el final sin cerrarla. Las respuestas no se envían ni se guardan.</p>' +
@@ -655,9 +673,9 @@ async function abrirCupo(boton){
       return fallo(r.motivo === "agotado" ? "Este código ya alcanzó su número de usos. Si necesita responder, pida a Juan Boya un enlace nuevo."
         : r.motivo === "vencido" ? "Este código venció. Pida a Juan Boya uno nuevo." : "Este código no existe. Revise que lo escaneó completo.");
     }
-    if (!CALIFICAR[r.a]) return fallo("La prueba de este código ya no está disponible.");
-    try { sessionStorage.setItem(CUPO_GUARDA + token, r.a); } catch (e) {}
-    instrumento(r.a, Object.assign({}, CALIFICAR[r.a], { unico: true }));
+    if (!r.datos && !CALIFICAR[r.a]) return fallo("La prueba de este código ya no está disponible.");
+    try { sessionStorage.setItem(CUPO_GUARDA + token, JSON.stringify({ a: r.a, datos: r.datos || "" })); } catch (e) {}
+    await abrirCupoDatos(r.a, r.datos);
   } catch (e) {
     fallo("No se pudo abrir la prueba (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
   }

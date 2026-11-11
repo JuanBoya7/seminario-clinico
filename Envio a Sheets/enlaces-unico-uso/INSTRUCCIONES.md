@@ -84,8 +84,18 @@ solo se leen (no se imprimen ni se copian) y los registros se exportan únicamen
 están diligenciados. La dirección directa `ficha.html?f=…` solo abre en el navegador
 donde activó sus botones de compartir.
 
+## Pruebas comerciales con código
+
+Las pruebas comerciales (BDI-II, BAI, CDI, AMAS…) de un plan exportado se abren
+**completas** con su código de cupo, sin la contraseña general: al exportar, la página
+toma la versión completa que usted ya abrió en ese navegador y guarda solo esa prueba,
+cifrada, junto al código; la llave va en el propio enlace. Requisito: haber abierto antes
+una prueba comercial en `calificar.html` con la contraseña, marcando «Recordar en este
+dispositivo». Si no, la exportación avisa. El PDF y el enlace del plan ya no llevan
+contraseña.
+
 ## Si cambia el código
 
 Pegue el `Codigo.gs` nuevo encima del anterior, guarde y vaya a «Implementar →
 Administrar implementaciones → editar (lápiz) → Versión: nueva → Implementar». Así la
-URL no cambia. (Los QR con cupo, los planes compartidos y las fichas en línea con cupo, del 2026-11-10, necesitan esta actualización.)
+URL no cambia. (Los QR con cupo, los planes compartidos, las fichas en línea y las pruebas comerciales con código, del 2026-11-10, necesitan esta actualización.)

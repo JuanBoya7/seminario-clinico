@@ -87,8 +87,12 @@ function doPost(e) {
       var dias = Math.max(1, Math.min(365, parseInt(p.dias, 10) || DIAS_VIGENCIA));
       // Una prueba de calificar.html («phq-9») o una ficha en línea («ficha:adultos:hoja-valores»).
       if (!/^[a-z0-9:-]{1,100}$/.test(p.a || '')) return salida_({ ok: false, motivo: 'datos' });
+      // Una prueba comercial viaja cifrada (datos): la llave o la contraseña quedan en el navegador.
+      var info0 = { tipo: 'cupo', a: p.a, cupo: cupo };
+      if (p.datos) info0.cif = 1;
       fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + dias * 86400000), 0, '',
-              JSON.stringify({ tipo: 'cupo', a: p.a, cupo: cupo })];
+              JSON.stringify(info0)];
+      if (p.datos) for (var q = 0; q < p.datos.length; q += TROZO) fila.push(p.datos.slice(q, q + TROZO));
     } else {
       fila = [p.token, String(p.prueba || '').slice(0, 80), ahora, new Date(ahora.getTime() + DIAS_VIGENCIA * 86400000), false, ''];
       for (var i = 0; i < p.datos.length; i += TROZO) fila.push(p.datos.slice(i, i + TROZO));
@@ -146,7 +150,9 @@ function doGet(e) {
       if (fila[3] && new Date() > new Date(fila[3])) return salida_({ ok: false, motivo: 'vencido' }, cb);
       if (usos >= info.cupo) return salida_({ ok: false, motivo: 'agotado' }, cb);
       h.getRange(f, 5, 1, 2).setValues([[usos + 1, new Date()]]);
-      return salida_({ ok: true, cupo: true, a: info.a, quedan: info.cupo - usos - 1 }, cb);
+      var resp = { ok: true, cupo: true, a: info.a, quedan: info.cupo - usos - 1 };
+      if (info.cif) resp.datos = fila.slice(7).join('');
+      return salida_(resp, cb);
     }
     if (String(fila[6]).indexOf('plan:') === 0) return salida_({ ok: false, motivo: 'no-existe' }, cb);
     if (fila[4] === true) return salida_({ ok: false, motivo: 'usado', usado_en: fila[5] }, cb);

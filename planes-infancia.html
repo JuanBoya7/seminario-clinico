@@ -21906,8 +21906,6 @@ function controlesCupo(){
     '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="20" style="width:4.5em"></label>' +
     '<label>Días <input type="number" data-cupo-d min="1" max="365" value="30" style="width:4em"></label>' +
     '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span>' +
-    '<label style="flex-basis:100%">Contraseña (opcional): <input type="text" data-pdf-clave autocomplete="off" style="width:12em"> ' +
-    '<span class="nota">protege el PDF y el enlace del plan</span></label>' +
     '<label>Días del enlace <input type="number" data-plan-dias min="1" max="365" value="30" style="width:4em"></label>' +
     '<button type="button" data-plan-enlace>Crear enlace del plan</button>' +
     '<span class="nota">En lugar del PDF: un enlace que muestra este plan hasta que vence.</span>' +
@@ -21958,12 +21956,12 @@ function postCupo(campos){
 }
 async function crearCupo(f, usos, dias, destino){
   const token = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(18)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  postCupo({ accion: "crear", tipo: "cupo", secreto: secretoCupo(), token, a: f.a, prueba: f.s || f.k, cupo: usos, dias });
+  postCupo({ accion: "crear", tipo: "cupo", secreto: secretoCupo(), token, a: f.a, prueba: f.s || f.k, cupo: usos, dias, datos: f.datos || "" });
   for (let i = 0; i < 20; i++){
     await new Promise(r => setTimeout(r, 1500));
     const r = await jsonpCupo({ accion: "existe", token, secreto: secretoCupo() }).catch(() => ({}));
     if (r.motivo === "secreto") throw new Error("la clave de Juan Boya no es correcta (actívela de nuevo en calificar.html)");
-    if (r.ok) return (destino || CALIF_PUBLICO) + "?c=" + token;
+    if (r.ok) return (destino || CALIF_PUBLICO) + "?c=" + token + (f.frag ? "#" + f.frag : "");
   }
   throw new Error("no se pudo guardar el enlace");
 }
@@ -21993,8 +21991,9 @@ async function prepararCupos(id, caja){
   }
   if (!fichas.length) return;
   const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+  const claveCom = "";   // decisión de Juan Boya: el código basta, sin contraseña adicional
   await Promise.all(fichas.map(async f => {
-    const url = await crearCupo(f, usos, dias);
+    const url = await crearCupo(Object.assign({}, f, await cifrarComercial(f, claveCom)), usos, dias);
     CUPO_QR[f.a] = Object.assign({ url, nota: usos + (usos === 1 ? " uso" : " usos") + ", hasta el " + vence }, trazoQR(url));
   }));
 }
@@ -22009,7 +22008,7 @@ async function exportarPlan(id, caja, notas, boton){
     finally { boton.disabled = false; boton.textContent = texto; }
   } else { CUPO_QR = {}; CUPO_FICHA = {}; SOLO_LINEA = false; }
   construirHoja(id, opcionesDe(caja), notas);
-  const clavePDF = ((caja.querySelector("[data-pdf-clave]") || {}).value || "").trim();
+  const clavePDF = "";   // el PDF ya no lleva contraseña: la casilla es de las pruebas comerciales
   if (ES_MOVIL || clavePDF) { compartirHoja(id, boton, clavePDF); return; }
   document.body.dataset.hoja = "1";
   window.print();
@@ -22042,7 +22041,7 @@ async function crearEnlacePlan(id, caja, boton){
     construirHoja(id, opcionesDe(caja), notas);
     const par = planPorId(id);
     const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-plan-dias]").value, 10) || 30));
-    const clave = (caja.querySelector("[data-pdf-clave]").value || "").trim();
+    const clave = "";   // el enlace del plan no lleva contraseña; la de las pruebas comerciales va en sus códigos
     const vence = new Date(Date.now() + dias * 86400000).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
     const plano = new TextEncoder().encode(JSON.stringify({ t: par.p.t, h: $("hoja").innerHTML, vence }));
     let llave, fragmento;
@@ -22131,6 +22130,64 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (e) { mensaje("<b>No se pudo abrir el plan.</b> El enlace está dañado o incompleto."); }
   }).catch(() => mensaje("<b>No se pudo abrir el plan.</b> Revise la conexión e inténtelo de nuevo."));
 });
+/* Pruebas comerciales (BDI-II, BAI…) con código de cupo: se abren completas sin la
+   contraseña general. Al exportar, la página toma la versión completa que Juan Boya ya
+   abrió en este navegador (la llave que calificar.html guarda como «calificar-llave»),
+   cifra solo esa prueba con una llave nueva (o con la contraseña de las pruebas
+   comerciales, si la escribió) y la guarda junto al código en el Apps Script. */
+let cargaCalif = null;
+function cargarCalif(){
+  if (typeof CALIFICAR !== "undefined") return Promise.resolve(CALIFICAR);
+  return cargaCalif ||= new Promise((ok, mal) => {
+    const sc = document.createElement("script");
+    sc.src = "instrumentos/calificar-datos.js";
+    sc.onload = () => ok(CALIFICAR); sc.onerror = () => { cargaCalif = null; mal(new Error("no se cargaron los instrumentos")); };
+    document.head.appendChild(sc);
+  });
+}
+const esComercial = d => !!(d && (d.hoja || d.local));
+async function marcarComerciales(id, caja){
+  const c = caja.querySelector("[data-clave-com-caja]");
+  if (!c) return;
+  try {
+    const C = await cargarCalif();
+    const par = planPorId(id);
+    c.hidden = !instrumentosDe(par.p).map(i => fichaInst(i.s)).some(f => f && f.qc && esComercial(C[f.a]));
+  } catch (e) { c.hidden = true; }
+}
+let completaCargada = false;
+async function versionCompleta(){
+  if (completaCargada) return CALIFICAR;
+  const C = await cargarCalif();
+  let raw = null;
+  try { raw = sessionStorage.getItem("calificar-llave") || localStorage.getItem("calificar-llave"); } catch (e) {}
+  if (!raw) throw new Error("abra primero una prueba comercial en calificar.html con su contraseña, marcando «Recordar en este dispositivo»");
+  const llave = await crypto.subtle.importKey("raw", Uint8Array.from(atob(raw), c => c.charCodeAt(0)), "AES-GCM", false, ["decrypt"]);
+  const buf = new Uint8Array(await fetch("instrumentos/privado/calificar-datos.js.bin", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error("sin la versión completa"); return r.arrayBuffer(); }));
+  const txt = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: buf.slice(0, 12) }, llave, buf.slice(12)));
+  new Function("CALIFICAR", txt)(C);
+  completaCargada = true;
+  return C;
+}
+async function cifrarComercial(f, clave){
+  const C = await cargarCalif();
+  if (!esComercial(C[f.a])) return {};
+  const full = (await versionCompleta())[f.a];
+  if (!full || full.hoja) throw new Error("no se encontró la versión completa de " + (f.s || f.k));
+  const d = JSON.parse(JSON.stringify(full)); delete d.cifrado; delete d.hoja;
+  let llave, frag;
+  if (clave){
+    const sal = crypto.getRandomValues(new Uint8Array(16));
+    llave = await llaveDeClave(clave, sal); frag = "s=" + b64uP(sal);
+  } else {
+    const raw = crypto.getRandomValues(new Uint8Array(32));
+    llave = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]); frag = "k=" + b64uP(raw);
+  }
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const cif = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, llave, new TextEncoder().encode(JSON.stringify({ a: f.a, d }))));
+  const todo = new Uint8Array(12 + cif.length); todo.set(iv); todo.set(cif, 12);
+  return { datos: b64uP(todo), frag };
+}
 function qrFicha(f){
   const lado = f.n + 8;   // cuatro módulos de margen blanco a cada lado
   return '<svg class="qr" viewBox="0 0 ' + lado + ' ' + lado + '" role="img" aria-label="Código QR de la ficha">' +
