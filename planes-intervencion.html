@@ -30902,7 +30902,7 @@ function secretoCupo(){ try { return localStorage.getItem("calificar-enlaces-sec
 function controlesCupo(){
   if (!secretoCupo()) return "";
   return '<div class="exp-cupo" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;font-size:13px;">' +
-    '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
+    '<label><input type="checkbox" data-cupo checked> QR de «Calificar en línea» con cupo</label>' +
     '<label><input type="checkbox" data-solo checked> Solo en línea (fichas y calificación, sin PDF)</label>' +
     '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="20" style="width:4.5em"></label>' +
     '<label>Días <input type="number" data-cupo-d min="1" max="365" value="30" style="width:4em"></label>' +
