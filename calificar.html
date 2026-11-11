@@ -39,6 +39,16 @@ h1{font-size:clamp(24px,3vw,34px); line-height:1.2;}
   border:1px solid var(--accent); border-radius:8px; padding:7px 13px; cursor:pointer; text-decoration:none;}
 .bt:hover{background:var(--accent-soft);}
 .bt:disabled{opacity:.45; cursor:not-allowed; background:var(--bg);}
+/* CAS: dibujo de referencia, pregunta para quien aplica (se puede ocultar) y figuras grandes. */
+td img.dib{width:72px; height:72px; display:block;}
+.q-ex{font-size:12.5px; color:var(--ink-soft); margin-top:4px; max-width:46ch;}
+body.sin-preguntas .q-ex{display:none;}
+label:has(.fig){position:relative; cursor:pointer;}
+label:has(.fig) input{position:absolute; opacity:0; width:1px; height:1px;}
+.fig{display:inline-block; width:36px; height:36px; border:3px solid var(--accent-dark); position:relative; vertical-align:middle; background:#fff;}
+.fig.r{border-radius:50%;} .fig.c{border-radius:5px;}
+input:checked + .fig::after{content:"✕"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--accent-dark);}
+input:focus-visible + .fig{outline:3px solid var(--accent); outline-offset:2px;}
 .consigna{font-weight:600; margin:24px 0 8px; max-width:75ch;}
 .rej-t{font-weight:700; margin:26px 0 8px; font-size:15px;}
 table{width:100%; border-collapse:collapse; font-size:14.5px;}
@@ -328,9 +338,12 @@ function instrumento(a, d){
       if (o.nivel) niveles = true;
       const rot = b.numerar ? (++num) + ". " + o.x : o.x;
       h += '<tr data-q="' + q + '"' + (o.si ? ' data-si="' + esc(o.si) + '"' : '') + (o.nivel ? ' class="n-' + o.nivel + '"' : '') +
-        '><td>' + esc(rot) + (o.ej ? '<div class="ej">' + esc(o.ej) + '</div>' : '') + '</td>' + b.ops.map((o, k) =>
+        '><td>' + (o.img ? '<img class="dib" src="instrumentos/' + esc(o.img) + '" alt=""><div class="q-ex">' + esc(rot) + '</div>' : esc(rot)) +
+        (o.ej ? '<div class="ej">' + esc(o.ej) + '</div>' : '') + '</td>' + b.ops.map((o, k) =>
         '<td><label title="' + esc(o) + '"><input type="radio" name="q' + q + '" value="' + b.vals[k] + '" aria-label="' + esc(o) + '">' +
-        (b.puntua && b.ops.join() !== "Sí,No" && b.ops.join() !== "No,Sí" ? b.vals[k] : "") + '</label></td>').join("") + '</tr>';
+        // CAS: el niño marca la figura (redondel o cuadradito), no un número.
+        (b.dibujos ? '<span class="fig ' + (k === 0 ? 'r' : 'c') + '"></span>'
+          : (b.puntua && b.ops.join() !== "Sí,No" && b.ops.join() !== "No,Sí" ? b.vals[k] : "")) + '</label></td>').join("") + '</tr>';
     });
     h += '</tbody></table>';
   });
@@ -348,6 +361,7 @@ function instrumento(a, d){
       : '<a class="bt" href="' + (d.local ? "instrumentos-local/" : "instrumentos/") + a + '.pdf" target="_blank" rel="noopener">Ver la ficha en PDF</a>') +
     (d.hoja && !d.local && !d.unico ? '<button class="bt completa" id="abrir-completa">Versión completa (con contraseña)</button>' : '') +
     (d.cifrado && !d.unico ? '<button class="bt completa" id="cerrar-completa">Cerrar la versión completa</button>' : '') +
+    (d.bloques.some(b => b.dibujos) ? '<button class="bt" id="ver-preguntas">Ocultar las preguntas (vista del niño)</button>' : '') +
     '<button class="bt" id="borrar">Borrar respuestas</button><button class="bt" id="imprimir" disabled title="Se habilita al responder todas las preguntas">' +
     (ES_MOVIL ? 'Compartir resultado' : 'Imprimir resultado') + '</button></div>' +
     (d.hoja && !d.local && !d.unico ? '<div class="candado" id="candado" hidden><p>Escriba la contraseña para ver los ítems y calificar con la versión completa.</p>' +
@@ -429,6 +443,11 @@ function instrumento(a, d){
     calc();
   });
   $("#imprimir").addEventListener("click", ev => ES_MOVIL ? compartir(d, ev.currentTarget) : print());
+  const verP = $("#ver-preguntas");
+  if (verP) verP.addEventListener("click", () => {
+    const oculto = document.body.classList.toggle("sin-preguntas");
+    verP.textContent = oculto ? "Mostrar las preguntas (examinador)" : "Ocultar las preguntas (vista del niño)";
+  });
   calc();
 }
 
