@@ -26298,11 +26298,11 @@ function secretoCupo(){ try { return localStorage.getItem("calificar-enlaces-sec
 function controlesCupo(){
   if (!secretoCupo()) return "";
   return '<div class="exp-cupo" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;font-size:13px;">' +
-    '<label><input type="checkbox" data-cupo> QR de «Calificar en línea» con cupo</label>' +
+    '<label><input type="checkbox" data-cupo> Pruebas de uso libre también con cupo</label>' +
     '<label><input type="checkbox" data-solo checked> Solo en línea (fichas y calificación, sin PDF)</label>' +
     '<label>Usos <input type="number" data-cupo-n min="1" max="500" value="20" style="width:4.5em"></label>' +
     '<label>Días <input type="number" data-cupo-d min="1" max="365" value="30" style="width:4em"></label>' +
-    '<span class="nota">Cada QR abre la prueba solo ese número de veces y hasta esa fecha.</span>' +
+    '<span class="nota">Las pruebas comerciales y las fichas en línea siempre llevan cupo: cada código se abre ese número de veces y hasta esa fecha.</span>' +
     '<label>Días del enlace <input type="number" data-plan-dias min="1" max="365" value="30" style="width:4em"></label>' +
     '<button type="button" data-plan-enlace>Crear enlace del plan</button>' +
     '<span class="nota">En lugar del PDF: un enlace que muestra este plan hasta que vence.</span>' +
@@ -26368,11 +26368,15 @@ async function calcularCupos(id, caja){
   const solo = caja.querySelector("[data-solo]");
   const SOLO_LINEA = !!(solo && solo.checked);
   const res = { qr: CUPO_QR, ficha: CUPO_FICHA, solo: SOLO_LINEA };
-  if (!SOLO_LINEA && (!marca || !marca.checked)) return res;
+  const todas = !!(marca && marca.checked);
   const usos = Math.max(1, Math.min(500, parseInt(caja.querySelector("[data-cupo-n]").value, 10) || 20));
   const dias = Math.max(1, Math.min(365, parseInt(caja.querySelector("[data-cupo-d]").value, 10) || 30));
   const par = planPorId(id); if (!par) return res;
-  const fichas = instrumentosDe(par.p).map(i => fichaInst(i.s)).filter(f => f && f.qc);
+  // Las pruebas comerciales siempre llevan código (es la única forma de que el paciente
+  // las abra); las de uso libre, solo con la casilla marcada: si no, van con su enlace abierto.
+  const C = await cargarCalif().catch(() => ({}));
+  const fichas = instrumentosDe(par.p).map(i => fichaInst(i.s)).filter(f => f && f.qc && (todas || esComercial(C[f.a])));
+  if (!SOLO_LINEA && !fichas.length) return res;
   await cargarQR();
   if (SOLO_LINEA){
     // Todas las fichas de trabajo del plan (de cualquier opción de secuencia) pasan a su versión en línea.
@@ -26414,8 +26418,7 @@ function cuposDe(id, caja){
 }
 function precrearCupos(id, caja){
   if (!secretoCupo() || caja._cupos) return;
-  const marca = caja.querySelector("[data-cupo]"), solo = caja.querySelector("[data-solo]");
-  if ((marca && marca.checked) || (solo && solo.checked)) cuposDe(id, caja).catch(() => {});
+  cuposDe(id, caja).catch(() => {});
 }
 async function prepararCupos(id, caja){
   const r = await cuposDe(id, caja);
@@ -26423,9 +26426,7 @@ async function prepararCupos(id, caja){
   CUPO_QR = r.qr; CUPO_FICHA = r.ficha; SOLO_LINEA = r.solo;
 }
 async function exportarPlan(id, caja, notas, boton){
-  const marca = caja.querySelector("[data-cupo]");
-  const soloM = caja.querySelector("[data-solo]");
-  if ((marca && marca.checked) || (soloM && soloM.checked)){
+  if (secretoCupo()){
     const texto = boton.textContent;
     boton.disabled = true; boton.textContent = "Creando QR…";
     try { await prepararCupos(id, caja); }
