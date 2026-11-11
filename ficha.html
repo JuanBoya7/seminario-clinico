@@ -136,15 +136,16 @@ body.pub-adolescente .banda h1{text-shadow:0 1px 6px rgba(10,20,30,.45);}
 .franja .rots{display:grid; gap:6px; font-size:13px; color:var(--ink-soft);}
 @media (max-width:700px){ .termo .nivel{grid-template-columns:1fr;} }
 @media (max-width:700px){ .paso{flex-direction:column;} .paso img{width:100%; max-width:240px; align-self:center;} .pasos,.galeria{grid-template-columns:1fr !important;} .casillas{grid-template-columns:1fr !important;} }
-/* Solo se imprime un registro diligenciado (body.exportable); las guías, los guiones
-   y los registros incompletos no se imprimen ni con Ctrl+P. Las filas vacías no salen. */
-.wrap{-webkit-user-select:none; user-select:none;}
+/* Solo se imprime un registro diligenciado y desde su botón (body[data-imprimir]); las guías,
+   los guiones y los registros incompletos no se imprimen ni con Ctrl+P. Las filas vacías no salen. */
+.wrap{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none;}
+.wrap img{pointer-events:none; -webkit-user-drag:none;}
 .wrap textarea,.wrap input{-webkit-user-select:text; user-select:text;}
 .bt:disabled{opacity:.45; cursor:not-allowed; background:var(--bg);}
 .falta{font-size:12.5px; color:var(--ink-soft); align-self:center;}
 @media print{
-  body:not(.exportable) .wrap{display:none !important;}
-  body:not(.exportable)::before{content:"Esta ficha se consulta en línea y no se puede imprimir. Un registro se exporta desde la página cuando está diligenciado."; display:block; padding:40px; font:16px sans-serif;}
+  body:not([data-imprimir]) .wrap{display:none !important;}
+  body:not([data-imprimir])::before{content:"Esta ficha se consulta en línea y no se puede imprimir. Un registro se exporta desde la página cuando está diligenciado."; display:block; padding:40px; font:16px sans-serif;}
   tr.vacia{display:none !important;}
 }
 @media print{ .acciones,.aviso-p{display:none !important;} body{font-size:12px;} .wrap{padding:0;} textarea{background:#fff; border-color:#999;} .tabla{display:table !important;} .tabla thead{display:table-header-group !important;} .tabla tr{display:table-row !important;} .tabla td{display:table-cell !important;} .tabla td::before{content:none !important;} }
@@ -321,9 +322,14 @@ function graficar(g){
   svg.style.color = getComputedStyle(document.body).getPropertyValue("--accent");
 }
 // El texto de la ficha no se copia; los campos sí (lo que la persona escribe es suyo).
-["copy", "cut"].forEach(t => document.addEventListener(t, ev => { if (!ev.target.closest || !ev.target.closest("textarea,input")) ev.preventDefault(); }));
+["copy", "cut", "dragstart", "selectstart", "contextmenu"].forEach(t => document.addEventListener(t, ev => { if (!ev.target.closest || !ev.target.closest("textarea,input")) ev.preventDefault(); }));
+document.addEventListener("keydown", ev => {
+  if ((ev.ctrlKey || ev.metaKey) && /^[psc]$/i.test(ev.key) && !(ev.target.closest && ev.target.closest("textarea,input"))) ev.preventDefault();
+});
+// Solo «Exportar ficha diligenciada» imprime (y solo con el registro completo); Ctrl+P o el menú del navegador imprimen un aviso.
+window.addEventListener("afterprint", () => { delete document.body.dataset.imprimir; });
 document.addEventListener("click", ev => {
-  if (ev.target.id === "exportar" && document.body.classList.contains("exportable")) window.print();
+  if (ev.target.id === "exportar" && document.body.classList.contains("exportable")){ document.body.dataset.imprimir = "1"; window.print(); }
   if (ev.target.id === "borrar" && confirm("¿Borrar todo lo escrito en esta ficha?")){
     app.querySelectorAll("textarea,input[type=text]").forEach(t => { t.value = ""; t.style.height = ""; });
     app.querySelectorAll("input[type=checkbox]").forEach(c => { c.checked = false; });
