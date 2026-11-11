@@ -15759,6 +15759,220 @@ const CALIFICAR = {
   },
   "hoja": true
  },
+ "cas": {
+  "clave": "CAS",
+  "sigla": "CAS",
+  "titulo": "Cuestionario de Ansiedad Infantil",
+  "para": "Medir la ansiedad en niños de 6 a 8 años (1.º a 3.º de primaria): preocupaciones, miedo, inseguridad y malestar ante las exigencias escolares y sociales. Sirve para tamizar en el colegio y en la consulta.",
+  "areas": [
+   "Ansiedad"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Gillis (1980) · adaptación española de Gómez Fernández y Pulido Picouto (TEA Ediciones, 2011).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Redondel",
+     "Cuadradito"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "numerar": false,
+    "dibujos": true,
+    "items": [
+     {
+      "x": "Ítem 1",
+      "img": "cas/01-mariposa.svg"
+     },
+     {
+      "x": "Ítem 2",
+      "img": "cas/02-cuchara.svg"
+     },
+     {
+      "x": "Ítem 3",
+      "img": "cas/03-nube.svg"
+     },
+     {
+      "x": "Ítem 4",
+      "img": "cas/04-pez.svg"
+     },
+     {
+      "x": "Ítem 5",
+      "img": "cas/05-manzana.svg"
+     },
+     {
+      "x": "Ítem 6",
+      "img": "cas/06-seta.svg"
+     },
+     {
+      "x": "Ítem 7",
+      "img": "cas/07-raton.svg"
+     },
+     {
+      "x": "Ítem 8",
+      "img": "cas/08-luna.svg"
+     },
+     {
+      "x": "Ítem 9",
+      "img": "cas/09-botella.svg"
+     },
+     {
+      "x": "Ítem 10",
+      "img": "cas/10-avion.svg"
+     },
+     {
+      "x": "Ítem 11",
+      "img": "cas/11-libro.svg"
+     },
+     {
+      "x": "Ítem 12",
+      "img": "cas/12-hoja.svg"
+     },
+     {
+      "x": "Ítem 13",
+      "img": "cas/13-buho.svg"
+     },
+     {
+      "x": "Ítem 14",
+      "img": "cas/14-leon.svg"
+     },
+     {
+      "x": "Ítem 15",
+      "img": "cas/15-tarta.svg"
+     },
+     {
+      "x": "Ítem 16",
+      "img": "cas/16-sol.svg"
+     },
+     {
+      "x": "Ítem 17",
+      "img": "cas/17-mano.svg"
+     },
+     {
+      "x": "Ítem 18",
+      "img": "cas/18-bandera.svg"
+     },
+     {
+      "x": "Ítem 19",
+      "img": "cas/19-corazon.svg"
+     },
+     {
+      "x": "Ítem 20",
+      "img": "cas/20-paraguas.svg"
+     }
+    ]
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntuación directa",
+     "js": "L([5, 6, 8, 10, 11, 14, 15, 16, 17, 20]) + C([1, 2, 3, 4, 7, 9, 12, 13, 18, 19], 0)",
+     "rangos": [
+      [
+       0,
+       1,
+       "Percentil 1 · decatipo 1"
+      ],
+      [
+       2,
+       2,
+       "Percentil 2 · decatipo 1"
+      ],
+      [
+       3,
+       3,
+       "Percentil 4 · decatipo 1"
+      ],
+      [
+       4,
+       4,
+       "Percentil 10 · decatipo 2"
+      ],
+      [
+       5,
+       5,
+       "Percentil 17 · decatipo 3"
+      ],
+      [
+       6,
+       6,
+       "Percentil 27 · decatipo 4"
+      ],
+      [
+       7,
+       7,
+       "Percentil 38 · decatipo 4"
+      ],
+      [
+       8,
+       8,
+       "Percentil 51 · decatipo 5"
+      ],
+      [
+       9,
+       9,
+       "Percentil 64 · decatipo 6"
+      ],
+      [
+       10,
+       10,
+       "Percentil 76 · decatipo 6"
+      ],
+      [
+       11,
+       11,
+       "Percentil 84 · decatipo 7"
+      ],
+      [
+       12,
+       12,
+       "Percentil 91 · decatipo 8"
+      ],
+      [
+       13,
+       13,
+       "Percentil 95 · decatipo 8"
+      ],
+      [
+       14,
+       14,
+       "Percentil 98 · decatipo 9"
+      ],
+      [
+       15,
+       20,
+       "Percentil 99 · decatipo 10"
+      ]
+     ],
+     "texto": "De 0 a 20: a mayor puntuación, más ansiedad. Baremo del grupo total (manual, tabla 8); hay también baremos por sexo y por curso."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "C([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 1) === 20 || C([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 0) === 20",
+     "texto": "Marcó todos los redondeles o todos los cuadraditos: según el manual, la hoja se anula porque el niño probablemente no entendió la tarea."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "cdi": {
   "clave": "CDI",
   "sigla": "CDI",
