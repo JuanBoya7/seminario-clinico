@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Cuánto vale esta casa? — Tablero</title><style>
+/* Sistema visual de los tableros de 402 (juego de roles, debates). */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --alta:#a83f2b; --alta-soft:#fbeae6; --baja:#1f6f78; --baja-soft:#e2eff0; --control:#7d8c91; --control-soft:#eef2f2;
+  --moderate:#b8722a; --moderate-soft:#faf1e4; --severe:#a83f2b; --severe-soft:#fbeae6; --mild:#3f7d53;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0;}
+button,select{font-family:var(--font-body);}
+.wrap{max-width:1240px; margin:0 auto; padding:22px 24px 40px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:10px; font-size:14px; margin-bottom:20px;}
+.js-warning[hidden]{display:none;}
+.cabecera{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.cabecera h1{font-size:26px;}
+.controles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+select{font-size:14.5px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:9px 12px;}
+.bt{font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer;}
+.bt:hover{background:var(--surface-alt); color:var(--ink);}
+.bt[hidden]{display:none;}
+.estado{font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono);}
+.estado.error{color:var(--severe);}
+.nav-pantallas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px;}
+.nav-pantallas[hidden]{display:none;}
+.pill{font-size:14px; font-weight:600; cursor:pointer; padding:8px 16px; border-radius:99px; border:1px solid var(--border); background:var(--bg); color:var(--ink-soft);}
+.pill.is-on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
+.pill .n{font-family:var(--font-mono); font-size:11.5px; margin-right:6px; color:var(--ink-faint);}
+.panel{border:1px solid var(--border); border-radius:16px; padding:26px 30px 30px;}
+.panel[hidden]{display:none;}
+.panel h2{font-size:clamp(22px,2.4vw,30px);}
+.panel .sub{font-size:15px; color:var(--ink-faint); margin:6px 0 22px; max-width:78ch;}
+.contador{font-family:var(--font-display); font-size:clamp(72px,11vw,128px); line-height:1; color:var(--accent-dark);}
+.contador-t{font-size:18px; color:var(--ink-soft); margin:6px 0 22px;}
+.btn-principal{font-size:17px; font-weight:600; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:10px; padding:14px 26px; cursor:pointer;}
+.btn-principal:hover{background:var(--accent-dark);}
+.btn-principal[hidden]{display:none;}
+.siguiente{margin-top:26px;}
+
+/* ---- Franjas de puntos: una estimación por punto sobre una escala común ---- */
+.franja{display:grid; grid-template-columns:190px minmax(0,1fr); gap:14px; align-items:center; padding:10px 0; border-top:1px solid var(--border);}
+.franja:first-of-type{border-top:none;}
+.franja .rot{font-size:16px; font-weight:600;}
+.franja .rot small{display:block; font-family:var(--font-mono); font-size:11px; font-weight:500; color:var(--ink-faint);}
+.franja svg{width:100%; height:auto; display:block; overflow:visible;}
+.eje{display:grid; grid-template-columns:190px minmax(0,1fr); gap:14px;}
+.eje svg{width:100%; height:auto; display:block; overflow:visible;}
+
+.cifras{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:24px;}
+.cifra{border-radius:12px; padding:16px 18px; background:var(--surface);}
+.cifra .k{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint);}
+.cifra .v{font-family:var(--font-display); font-size:clamp(28px,3.4vw,40px); line-height:1.1; margin-top:4px;}
+.cifra .d{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+.cifra.indice{background:var(--moderate-soft);}
+.cifra.indice .v{color:var(--moderate);}
+.nota{font-size:14px; color:var(--ink-soft); background:var(--surface); border-left:4px solid var(--accent); border-radius:0 10px 10px 0; padding:12px 16px; margin-top:20px; max-width:90ch;}
+.nota b{color:var(--accent-dark);}
+
+/* ---- ¿Lo notaron? ---- */
+.cols{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+.col{border-radius:12px; padding:18px 20px; background:var(--surface);}
+.col h3{font-size:19px; margin-bottom:12px;}
+.barra-fila{display:grid; grid-template-columns:130px minmax(0,1fr) 56px; gap:10px; align-items:center; margin-bottom:10px; font-size:14px;}
+.barra-fila .pista{height:22px; border-radius:6px; background:var(--surface-alt); overflow:hidden;}
+.barra-fila .pista span{display:block; height:100%; border-radius:6px;}
+.barra-fila .num{font-family:var(--font-mono); font-weight:700; text-align:right;}
+.vacio-msg{color:var(--ink-faint); font-size:16px; font-style:italic;}
+@media (max-width:900px){.cifras{grid-template-columns:1fr 1fr;} .cols{grid-template-columns:1fr;} .franja,.eje{grid-template-columns:120px minmax(0,1fr);} .wrap{padding:16px 14px 30px;} .panel{padding:20px 16px;}}
+</style></head>
+<body><div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, el tablero no se está ejecutando. Ábranlo en un navegador.</div>
+  <noscript><div class="js-warning">Este tablero necesita JavaScript activo en el navegador.</div></noscript>
+  <div class="cabecera">
+    <div><div class="eyebrow">Juicio bajo incertidumbre · Tablero</div><h1>¿Cuánto vale esta casa?</h1></div>
+    <div class="controles"><select id="curso"></select><select id="ronda" title="Día de la aplicación"></select>
+      <button class="bt" id="tapar" hidden>Tapar resultados</button><button class="bt" id="csv">Descargar CSV</button><span class="estado" id="estado"></span></div>
+  </div>
+  <div class="nav-pantallas" id="nav" hidden>
+    <button class="pill is-on" data-p="todos"><span class="n">1</span>Todas las estimaciones</button>
+    <button class="pill" data-p="condiciones"><span class="n">2</span>Qué vio cada quien</button>
+    <button class="pill" data-p="notaron"><span class="n">3</span>¿Lo notaron?</button>
+  </div>
+
+  <!-- Espera: solo el conteo; ni siquiera se dice que hubo condiciones distintas. -->
+  <div class="panel" id="p-espera">
+    <div class="contador" id="contador">0</div>
+    <div class="contador-t" id="contador-t">estimaciones recibidas</div>
+    <p class="sub">Los resultados están tapados para que nadie ajuste su cifra a la de los demás. Destápenlos cuando todos hayan enviado.</p>
+    <button class="btn-principal" id="destapar">Destapar resultados</button>
+  </div>
+
+  <div class="panel" id="p-todos" hidden>
+    <h2 id="todos-tit">La misma casa, la misma ficha</h2>
+    <p class="sub" id="todos-sub"></p>
+    <div id="todos-franjas"></div>
+    <button class="btn-principal siguiente" data-ir="condiciones">Mostrar qué vio cada quien</button>
+  </div>
+
+  <div class="panel" id="p-condiciones" hidden>
+    <h2>No todos vieron la misma ficha</h2>
+    <p class="sub">Un tercio del curso vio un precio alto publicado por la inmobiliaria, otro tercio un precio bajo y el resto no vio ningún precio. La línea punteada marca el precio que vio cada grupo; el triángulo, su mediana.</p>
+    <div id="cond-franjas"></div>
+    <div class="cifras" id="cond-cifras"></div>
+    <div class="nota" id="cond-nota"></div>
+    <button class="btn-principal siguiente" data-ir="notaron">¿Lo notaron?</button>
+  </div>
+
+  <div class="panel" id="p-notaron" hidden>
+    <h2>¿Lo notaron?</h2>
+    <p class="sub">Lo que respondieron sobre su propio juicio, por grupo.</p>
+    <div class="cols" id="notaron-cols"></div>
+    <div class="nota" id="notaron-nota"></div>
+  </div>
+
+  <p class="firma" style="font-size:11.5px;color:var(--ink-faint);margin-top:26px;text-align:center">Actividad elaborada por Juan Boya Guerra.</p>
+</div>
+<script src="anclaje-casa-envio.js?v=20261109"></script>
+<script src="anclaje-casa-config.js?v=20261109"></script>
+<script>
+(function(){
+'use strict';
+/* =========================================================================
+   1. Constantes y utilidades
+   ========================================================================= */
+const C=window.ANCLAJE, ENDPOINT=window.ANC_ENVIO_URL||'';
+const COND=C.condiciones, FILAS_ORDEN=['alta','control','baja'];
+const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const millones=v=>v==null||isNaN(v)?'—':'$'+Math.round(v).toLocaleString('es-CO')+' M';
+const mediana=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2;};
+const media=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+const hoy=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const fechaLarga=r=>{const [a,m,d]=r.split('-').map(Number);return new Date(a,m-1,d).toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});};
+
+let filas=[], pant='todos', destapado=false, timer=null, ronda='';
+
+/* =========================================================================
+   2. Datos de la ronda elegida
+   ========================================================================= */
+function deRonda(){return filas.filter(f=>f.ronda===ronda);}
+function porCond(c){return deRonda().filter(f=>f.condicion===c);}
+function pintarRondas(){
+  const rs=[...new Set(filas.map(f=>f.ronda))].sort().reverse();
+  if(!rs.includes(hoy()))rs.unshift(hoy());
+  if(!ronda||!rs.includes(ronda))ronda=rs[0];
+  el('ronda').innerHTML=rs.map(r=>`<option value="${r}"${r===ronda?' selected':''}>${r===hoy()?'Hoy':fechaLarga(r)}</option>`).join('');
+}
+
+/* =========================================================================
+   3. Escala común y franjas de puntos (SVG)
+   Los puntos que caen casi en el mismo lugar se apilan hacia arriba para que se vean todos.
+   ========================================================================= */
+function escala(){
+  const vals=deRonda().map(f=>f.estimacion).concat([COND.alta.precio,COND.baja.precio]);
+  let lo=Math.min(...vals),hi=Math.max(...vals);
+  const pad=(hi-lo)*0.06||20; lo=Math.max(0,lo-pad); hi=hi+pad;
+  // Ancho real disponible: con preserveAspectRatio="none" los puntos se estirarían en óvalos.
+  const W=Math.max(320,document.querySelector('.wrap').clientWidth-(innerWidth>900?60+204:32+134));
+  return {lo,hi,W,x:v=>((v-lo)/(hi-lo))*W};
+}
+function franja(lista,color,esc_,ancla,etiqueta,sub){
+  const radio=11, pila={};
+  const pts=[...lista].sort((a,b)=>a-b).map(v=>{const cx=esc_.x(v),k=Math.round(cx/(radio*2));pila[k]=(pila[k]||0)+1;return {cx,cy:70-(pila[k]-1)*(radio*1.6)};});
+  const med=mediana(lista);
+  let svg=`<svg viewBox="0 0 ${esc_.W} 86"><line x1="0" y1="80" x2="${esc_.W}" y2="80" stroke="#dde5e5" stroke-width="2"/>`;
+  if(ancla!=null)svg+=`<line x1="${esc_.x(ancla)}" y1="0" x2="${esc_.x(ancla)}" y2="86" stroke="${color}" stroke-width="3" stroke-dasharray="7 6"/>`;
+  svg+=pts.map(p=>`<circle cx="${p.cx}" cy="${Math.max(10,p.cy)}" r="${radio}" fill="${color}" fill-opacity="0.75"/>`).join('');
+  if(med!=null)svg+=`<path d="M${esc_.x(med)-12} 86 L${esc_.x(med)+12} 86 L${esc_.x(med)} 70 Z" fill="#16232b"/>`;
+  svg+='</svg>';
+  return `<div class="franja"><div class="rot">${esc(etiqueta)}<small>${esc(sub)}</small></div>${svg}</div>`;
+}
+function eje(esc_){
+  const paso=[10,20,25,50,100,200,250,500].find(p=>(esc_.hi-esc_.lo)/p<=8)||1000;
+  let t='';for(let v=Math.ceil(esc_.lo/paso)*paso;v<=esc_.hi;v+=paso)t+=`<line x1="${esc_.x(v)}" y1="0" x2="${esc_.x(v)}" y2="7" stroke="#7d8c91"/><text x="${esc_.x(v)}" y="24" text-anchor="middle" font-size="13" fill="#7d8c91" font-family="Consolas,monospace">${v}</text>`;
+  return `<div class="eje"><div></div><svg viewBox="0 0 ${esc_.W} 30">${t}</svg></div><p class="sub" style="margin:4px 0 0 204px;font-size:12.5px">millones de pesos</p>`;
+}
+
+/* =========================================================================
+   4. Pantallas
+   ========================================================================= */
+function render(){
+  const r=deRonda(), n=r.length;
+  el('contador').textContent=n;
+  el('contador-t').textContent=n===1?'estimación recibida':'estimaciones recibidas';
+  el('p-espera').hidden=destapado; el('nav').hidden=!destapado; el('tapar').hidden=!destapado;
+  ['todos','condiciones','notaron'].forEach(p=>el('p-'+p).hidden=!destapado||pant!==p);
+  document.querySelectorAll('.pill').forEach(b=>b.classList.toggle('is-on',b.dataset.p===pant));
+  if(!destapado)return;
+  if(!n){['todos-franjas','cond-franjas','cond-cifras','notaron-cols'].forEach(i=>el(i).innerHTML='<p class="vacio-msg">Aún no hay estimaciones en esta ronda.</p>');el('todos-sub').textContent='';el('cond-nota').hidden=true;el('notaron-nota').hidden=true;return;}
+  const esc_=escala(), vals=r.map(f=>f.estimacion);
+  // 1 · Todas juntas, sin distinguir condición
+  el('todos-sub').textContent=`${n} estimaciones del valor de una misma vivienda, desde ${millones(Math.min(...vals))} hasta ${millones(Math.max(...vals))}. ¿De dónde sale tanta diferencia?`;
+  el('todos-franjas').innerHTML=franja(vals,'#4b5c63',esc_,null,'Todo el curso',`${n} · mediana ${millones(mediana(vals))}`)+eje(esc_);
+  // 2 · Por condición, con el ancla de cada grupo y el índice de anclaje
+  const med={};
+  el('cond-franjas').innerHTML=FILAS_ORDEN.map(c=>{const l=porCond(c).map(f=>f.estimacion);med[c]=mediana(l);
+    return franja(l,COND[c].color,esc_,COND[c].precio,COND[c].corto,COND[c].precio!=null?`vio ${millones(COND[c].precio)} · ${l.length}`:`sin precio · ${l.length}`);}).join('')+eje(esc_);
+  const dAnclas=COND.alta.precio-COND.baja.precio;
+  const indice=med.alta!=null&&med.baja!=null?Math.round((med.alta-med.baja)/dAnclas*100):null;
+  el('cond-cifras').innerHTML=FILAS_ORDEN.map(c=>`<div class="cifra"><div class="k">Mediana · ${esc(COND[c].corto)}</div><div class="v" style="color:${COND[c].color}">${millones(med[c])}</div><div class="d">media ${millones(media(porCond(c).map(f=>f.estimacion)))}</div></div>`).join('')+
+    `<div class="cifra indice"><div class="k">Índice de anclaje</div><div class="v">${indice==null?'—':indice+' %'}</div><div class="d">diferencia entre medianas sobre diferencia entre precios (${millones(dAnclas)})</div></div>`;
+  el('cond-nota').hidden=false;
+  el('cond-nota').innerHTML=`<b>Cómo leer el índice.</b> Sería 100 % si cada grupo hubiera copiado el precio que vio y 0 % si lo hubiera ignorado. Con anclas así, Kahneman (2012, cap. 11) reporta valores típicos cercanos al 55 %; el grupo sin precio muestra hacia dónde habría ido el juicio sin ancla. Se usan medianas para que una cifra extrema no arrastre el resultado.`;
+  // 3 · ¿Lo notaron? Peso que le dieron al precio, comparación y seguridad
+  const anclados=['alta','baja'];
+  const barras=(titulo,items)=>`<div class="col"><h3>${titulo}</h3>${items.map(i=>`<div class="barra-fila"><span>${esc(i.r)}</span><div class="pista"><span style="width:${Math.max(0,Math.min(100,i.p))}%;background:${i.c}"></span></div><span class="num">${i.t}</span></div>`).join('')}</div>`;
+  const pesoItems=anclados.map(c=>{const m=media(porCond(c).map(f=>f.peso).filter(Boolean));return {r:COND[c].corto,p:m==null?0:(m-1)/4*100,c:COND[c].color,t:m==null?'—':m.toFixed(1)};});
+  const compItems=anclados.map(c=>{const l=porCond(c),k=c==='alta'?'menor':'mayor',q=l.filter(f=>f.comparacion===k).length;return {r:COND[c].corto+' · dijeron «'+k+'»',p:l.length?q/l.length*100:0,c:COND[c].color,t:l.length?Math.round(q/l.length*100)+' %':'—'};});
+  const segItems=FILAS_ORDEN.map(c=>{const m=media(porCond(c).map(f=>f.seguridad));return {r:COND[c].corto,p:m==null?0:(m-1)/4*100,c:COND[c].color,t:m==null?'—':m.toFixed(1)};});
+  el('notaron-cols').innerHTML=barras('Cuánto pesó el precio (1 a 5)',pesoItems)+barras('Sabían hacia dónde corregir',compItems)+barras('Seguridad en su estimación (1 a 5)',segItems);
+  el('notaron-nota').hidden=false;
+  el('notaron-nota').innerHTML=`<b>Corregir no basta.</b> Se puede saber hacia dónde corregir y aun así quedarse cerca del precio visto: el ajuste se detiene antes de tiempo (Kahneman, 2012, cap. 11). <b>Lo mismo les pasó a los expertos.</b> En el estudio de Northcraft y Neale (1987), agentes inmobiliarios tasaron una casa tras ver un precio de oferta alto o bajo. Aseguraron que ese precio no había influido en su juicio, pero su índice de anclaje fue del 41 %, cerca del 48 % de estudiantes sin experiencia, que sí reconocían la influencia (Kahneman, 2012, cap. 11).`;
+}
+
+/* =========================================================================
+   5. Lectura del receptor (JSONP cada 15 s)
+   ========================================================================= */
+function cargar(){
+  if(!ENDPOINT){el('estado').textContent='receptor sin configurar';el('estado').className='estado error';return;}
+  const name='ancTab_'+Date.now(),s=document.createElement('script');
+  const clean=()=>{s.remove();globalThis[name]=()=>{};};
+  globalThis[name]=r=>{clean();if(!r||!r.ok){el('estado').textContent='sin datos';el('estado').className='estado error';return;}
+    filas=r.filas||[];pintarRondas();render();
+    el('estado').textContent='actualizado '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});el('estado').className='estado';};
+  s.onerror=()=>{clean();el('estado').textContent='sin conexión';el('estado').className='estado error';};
+  s.src=ENDPOINT+'?tablero='+encodeURIComponent(el('curso').value)+'&callback='+name;
+  document.head.appendChild(s);
+}
+function ciclo(){clearTimeout(timer);cargar();timer=setTimeout(ciclo,15000);}
+function descargarCSV(){
+  const cab=['Ronda','Condición','Precio mostrado (millones)','Mayor o menor','Estimación (millones)','Seguridad (1-5)','Peso del precio (1-5)','Segundos'];
+  const lin=deRonda().map(f=>[f.ronda,COND[f.condicion]?COND[f.condicion].corto:f.condicion,f.precio==null?'':f.precio,f.comparacion,f.estimacion,f.seguridad,f.peso||'',f.segundos]);
+  const csv='﻿'+[cab].concat(lin).map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='anclaje-'+ronda+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+
+/* =========================================================================
+   6. Arranque
+   ========================================================================= */
+try{
+  el('js-warning').hidden=true;
+  el('curso').innerHTML=C.grupos.map(g=>`<option value="${g}">${g}</option>`).join('');
+  pintarRondas();render();
+  el('destapar').onclick=()=>{destapado=true;pant='todos';render();};
+  el('tapar').onclick=()=>{destapado=false;render();};
+  document.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{pant=b.dataset.p;render();});
+  document.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>{pant=b.dataset.ir;render();window.scrollTo({top:0,behavior:'smooth'});});
+  el('ronda').onchange=()=>{ronda=el('ronda').value;render();};
+  el('curso').onchange=ciclo;
+  el('csv').onclick=descargarCSV;
+  let rz=null; addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(render,200);});
+  // Simulación local para revisar el tablero sin receptor: abrir con #demo.
+  if(location.hash==='#demo'){
+    const r=hoy(),g=(m,s)=>Math.max(60,Math.round(m+s*(Math.random()+Math.random()+Math.random()-1.5)));
+    filas=[...Array(11)].map(()=>({ronda:r,condicion:'alta',precio:1200,comparacion:Math.random()<.7?'menor':'mayor',estimacion:g(980,220),seguridad:1+Math.floor(Math.random()*4),peso:1+Math.floor(Math.random()*3),segundos:60}))
+      .concat([...Array(10)].map(()=>({ronda:r,condicion:'baja',precio:500,comparacion:Math.random()<.75?'mayor':'menor',estimacion:g(640,160),seguridad:1+Math.floor(Math.random()*4),peso:1+Math.floor(Math.random()*3),segundos:60})))
+      .concat([...Array(10)].map(()=>({ronda:r,condicion:'control',precio:null,comparacion:'',estimacion:g(800,200),seguridad:1+Math.floor(Math.random()*4),peso:0,segundos:60})));
+    pintarRondas();render();
+  } else ciclo();
+}catch(e){el('js-warning').hidden=false;el('js-warning').textContent='El tablero no pudo iniciar. Recarguen la página.';console.error(e);}
+})();
+</script></body></html>

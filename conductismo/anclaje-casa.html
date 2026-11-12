@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Cuánto vale esta casa?</title>
+<style>
+/* Sistema visual de las hojas individuales desde el celular (observador de Práctica II,
+   jurado del juego de roles de 402). */
+:root{
+  --bg:#ffffff; --surface:#f6f8f8; --surface-alt:#eef2f2; --border:#dde5e5;
+  --ink:#16232b; --ink-soft:#4b5c63; --ink-faint:#7d8c91;
+  --accent:#1f6f78; --accent-dark:#134349; --accent-soft:#e2eff0;
+  --n1:#a83f2b; --n2:#b8722a; --n3:#7d7b3a; --n4:#3f7d53; --n5:#1f6f78;
+  --mild:#3f7d53; --severe:#a83f2b; --severe-soft:#fbeae6; --moderate:#b8722a; --moderate-soft:#faf1e4;
+  --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 40px;}
+.masthead{margin-bottom:18px;}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:6px;}
+.masthead h1{font-size:25px; margin-bottom:8px;}
+.masthead p{color:var(--ink-soft); font-size:14px; margin:0 0 8px;}
+.js-warning{background:var(--severe-soft); border:1px solid var(--severe); color:var(--severe); padding:14px 16px; border-radius:var(--radius); font-size:14px; margin-bottom:20px;}
+.js-warning[hidden]{display:none;}
+
+.ident{display:grid; grid-template-columns:1fr; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px; margin-bottom:16px;}
+.ident label{display:block; font-size:11.5px; font-weight:600; letter-spacing:0.02em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;}
+select{width:100%; font-family:var(--font-body); font-size:15px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 8px;}
+
+/* ---- Ficha de la casa, con aspecto de folleto de inmobiliaria ---- */
+.ficha{border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:8px;}
+.ficha img{display:block; width:100%; height:auto; background:var(--surface);}
+.ficha-cuerpo{padding:16px 16px 18px;}
+.ficha-lugar{font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint);}
+.ficha h2{font-size:21px; margin:2px 0 10px;}
+.ficha ul{margin:0; padding-left:18px; font-size:14px; color:var(--ink-soft);}
+.ficha li{margin-bottom:4px;}
+.precio{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:0 0 14px; padding:12px 14px; border-radius:10px; background:var(--accent-soft); border-left:4px solid var(--accent);}
+.precio[hidden]{display:none;}
+.precio span{font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-dark);}
+.precio b{font-family:var(--font-display); font-size:26px; color:var(--accent-dark);}
+
+.seccion-titulo{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); margin:24px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border);}
+.item{border:1px solid var(--border); border-radius:var(--radius); padding:13px 14px; margin-bottom:11px; background:var(--bg);}
+.item[hidden]{display:none;}
+.item.respondido{background:var(--surface); border-color:var(--surface-alt);}
+.item-num{font-family:var(--font-mono); font-size:11px; color:var(--accent); font-weight:700; margin-right:6px;}
+.item-texto{font-size:15px; font-weight:600; display:block; margin-bottom:3px;}
+.item-pista{font-size:12.5px; color:var(--ink-faint); margin-bottom:11px;}
+.invalid{border-color:var(--severe) !important; box-shadow:0 0 0 3px var(--severe-soft) !important;}
+
+.opciones{display:grid; gap:6px;}
+.opciones.dos{grid-template-columns:1fr 1fr;}
+.opciones.cinco{grid-template-columns:repeat(5,1fr);}
+.opcion{border:1px solid var(--border); background:var(--bg); color:var(--ink-soft); font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.2; padding:12px 4px; border-radius:8px; cursor:pointer; text-align:center;}
+.opcion .cifra{display:block; font-family:var(--font-mono); font-size:16px; margin-bottom:2px;}
+.opcion .etiqueta{display:block; font-size:10px; font-weight:500;}
+.opcion:active{transform:scale(0.97);}
+.opcion[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff;}
+
+.monto{display:flex; align-items:center; gap:8px;}
+.monto input{flex:1; min-width:0; font-family:var(--font-mono); font-size:22px; font-weight:700; color:var(--ink); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; text-align:right;}
+.monto input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+.monto span{font-size:13px; color:var(--ink-soft); font-weight:600; white-space:nowrap;}
+.monto-pesos{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-faint); text-align:right; margin-top:5px; min-height:18px;}
+
+.barra{margin-top:24px; padding:18px 0 0; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:12px;}
+.estado{font-size:13px; color:var(--ink-faint); text-align:center; min-height:18px;}
+.estado.ok{color:var(--mild);} .estado.warn{color:var(--severe);}
+.btn{font-family:var(--font-body); font-size:16px; font-weight:600; padding:15px 26px; border-radius:9px; border:1px solid transparent; cursor:pointer; background:var(--accent); color:#fff; width:100%;}
+.btn:hover{background:var(--accent-dark);}
+.btn:disabled{opacity:.5; cursor:not-allowed;}
+
+.hecho{text-align:center; border:1px solid var(--border); border-radius:14px; padding:30px 20px; background:var(--surface);}
+.hecho[hidden]{display:none;}
+.hecho .marca{font-family:var(--font-display); font-size:46px; color:var(--mild); line-height:1;}
+.hecho h2{font-size:22px; margin:10px 0 6px;}
+.hecho p{color:var(--ink-soft); font-size:14.5px; margin:0;}
+.firma{font-size:11.5px; color:var(--ink-faint); margin-top:30px; text-align:center;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="js-warning" id="js-warning">Si ven este mensaje, la hoja no se está ejecutando. Ábranla en un navegador (Chrome, Safari, Edge o Firefox), no dentro del visor de una app de mensajería.</div>
+  <noscript><div class="js-warning">Esta hoja necesita JavaScript activo en el navegador.</div></noscript>
+
+  <header class="masthead">
+    <div class="eyebrow">Juicio bajo incertidumbre · Estimación</div>
+    <h1>¿Cuánto vale esta casa?</h1>
+    <p>Lean la ficha y den su mejor estimación del valor comercial de la vivienda. Respondan solos, sin consultar a nadie ni buscar en internet: lo que interesa es su juicio, y no hay respuestas que bajen la nota.</p>
+  </header>
+
+  <div id="formulario">
+    <div class="ident">
+      <div><label for="f-curso">Curso</label><select id="f-curso"></select></div>
+    </div>
+
+    <article class="ficha">
+      <img id="ficha-img" alt="Fachada de la casa en venta al atardecer" width="1200" height="800">
+      <div class="ficha-cuerpo">
+        <div class="ficha-lugar" id="ficha-lugar"></div>
+        <h2 id="ficha-titulo"></h2>
+        <div class="precio" id="ficha-precio" hidden><span>Precio publicado por la inmobiliaria</span><b id="precio-valor"></b></div>
+        <ul id="ficha-rasgos"></ul>
+      </div>
+    </article>
+
+    <div class="seccion-titulo">Su juicio</div>
+
+    <div class="item" id="q-comp" data-q="comparacion" hidden>
+      <span class="item-texto"><span class="item-num">P1</span>¿El valor comercial de la casa es mayor o menor que el precio publicado?</span>
+      <div class="item-pista">Respondan con lo primero que les parezca.</div>
+      <div class="opciones dos">
+        <button type="button" class="opcion" data-valor="mayor" aria-pressed="false">Mayor</button>
+        <button type="button" class="opcion" data-valor="menor" aria-pressed="false">Menor</button>
+      </div>
+    </div>
+
+    <div class="item" id="q-estimacion" data-q="estimacion">
+      <span class="item-texto"><span class="item-num" id="num-est">P2</span>Su estimación del valor comercial</span>
+      <div class="item-pista">Escriban la cifra en millones de pesos (por ejemplo, 800 son ochocientos millones).</div>
+      <div class="monto"><input type="text" id="f-estimacion" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="0"><span>millones</span></div>
+      <div class="monto-pesos" id="monto-pesos"></div>
+    </div>
+
+    <div class="item" id="q-seguridad" data-q="seguridad">
+      <span class="item-texto"><span class="item-num" id="num-seg">P3</span>¿Qué tan seguros están de su estimación?</span>
+      <div class="opciones cinco" id="op-seguridad"></div>
+    </div>
+
+    <div class="item" id="q-peso" data-q="peso" hidden>
+      <span class="item-texto"><span class="item-num">P4</span>¿Cuánto pesó el precio publicado en su estimación?</span>
+      <div class="opciones cinco" id="op-peso"></div>
+    </div>
+
+    <div class="barra">
+      <button class="btn" id="btn-enviar">Enviar estimación</button>
+      <div class="estado" id="estado"></div>
+    </div>
+  </div>
+
+  <div class="hecho" id="hecho" hidden>
+    <div class="marca">✓</div>
+    <h2>Estimación registrada</h2>
+    <p>No comenten su cifra con nadie todavía: el docente mostrará los resultados del curso en la clase.</p>
+  </div>
+
+  <p class="firma">Actividad elaborada por Juan Boya Guerra.</p>
+</div>
+
+<script src="anclaje-casa-envio.js?v=20261109"></script>
+<script src="anclaje-casa-config.js?v=20261109"></script>
+<script>
+(function(){
+'use strict';
+/* =========================================================================
+   1. Constantes y utilidades
+   ========================================================================= */
+const C=window.ANCLAJE, ENDPOINT=window.ANC_ENVIO_URL||'', PREFIX=C.clave;
+const SEGURIDAD=['Nada','Poco','Algo','Bastante','Mucho'];
+const PESO=['Nada','Poco','Algo','Bastante','Mucho'];
+const el=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pesos=m=>'$ '+Math.round(m*1e6).toLocaleString('es-CO');
+// La ronda es el día de la clase: así el tablero separa una aplicación de otra sin códigos.
+const hoy=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+function uid(){if(globalThis.crypto&&crypto.randomUUID)return crypto.randomUUID();return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}
+
+/* =========================================================================
+   2. Estado del celular: condición asignada, respuestas y si ya envió hoy
+   ========================================================================= */
+let st={ronda:'',condicion:'',rid:'',enviado:false,comparacion:'',seguridad:0,peso:0,estimacion:''};
+let t0=Date.now(), busy=false;
+function guardar(){try{localStorage.setItem(PREFIX+'estado',JSON.stringify(st));}catch(e){}}
+function cargar(){try{const s=JSON.parse(localStorage.getItem(PREFIX+'estado')||'{}');if(s.ronda===hoy())st={...st,...s};}catch(e){}st.ronda=hoy();}
+
+/* =========================================================================
+   3. Asignación de la condición
+   El receptor reparte alta → baja → sin precio en orden de llegada, para que los tres grupos
+   queden parejos. Si no responde (sin conexión o sin URL), se sortea en el celular.
+   ========================================================================= */
+function asignar(){
+  return new Promise(resolve=>{
+    if(st.condicion){resolve(st.condicion);return;}
+    const azar=()=>C.orden[Math.floor(Math.random()*C.orden.length)];
+    if(!ENDPOINT){resolve(azar());return;}
+    const name='ancAsig_'+Date.now(), s=document.createElement('script');
+    let listo=false;
+    const fin=c=>{if(listo)return;listo=true;s.remove();globalThis[name]=()=>{};resolve(C.condiciones[c]?c:azar());};
+    globalThis[name]=r=>fin(r&&r.condicion);
+    s.onerror=()=>fin('');
+    s.src=ENDPOINT+'?asignar='+encodeURIComponent(st.ronda)+'&callback='+name;
+    document.head.appendChild(s);
+    setTimeout(()=>fin(''),6000);
+  });
+}
+
+/* =========================================================================
+   4. Ficha y preguntas según la condición
+   ========================================================================= */
+function pintarFicha(){
+  const cond=C.condiciones[st.condicion], conAncla=cond.precio!=null;
+  el('ficha-img').src=C.casa.imagen;
+  el('ficha-lugar').textContent=C.casa.lugar;
+  el('ficha-titulo').textContent=C.casa.titulo;
+  el('ficha-rasgos').innerHTML=C.casa.rasgos.map(r=>'<li>'+esc(r)+'</li>').join('');
+  el('ficha-precio').hidden=!conAncla;
+  if(conAncla)el('precio-valor').textContent=pesos(cond.precio);
+  // Sin precio a la vista no hay con qué comparar: P1 y P4 desaparecen y se renumera.
+  el('q-comp').hidden=!conAncla; el('q-peso').hidden=!conAncla;
+  el('num-est').textContent=conAncla?'P2':'P1'; el('num-seg').textContent=conAncla?'P3':'P2';
+}
+function botones(contenedor,etiquetas,clave){
+  el(contenedor).innerHTML=etiquetas.map((e,i)=>`<button type="button" class="opcion" data-valor="${i+1}" aria-pressed="false"><span class="cifra">${i+1}</span><span class="etiqueta">${e}</span></button>`).join('');
+}
+function marcar(){
+  document.querySelectorAll('#q-comp .opcion').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.valor===st.comparacion)));
+  document.querySelectorAll('#op-seguridad .opcion').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.valor)===st.seguridad)));
+  document.querySelectorAll('#op-peso .opcion').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.valor)===st.peso)));
+  el('q-comp').classList.toggle('respondido',!!st.comparacion);
+  el('q-seguridad').classList.toggle('respondido',!!st.seguridad);
+  el('q-peso').classList.toggle('respondido',!!st.peso);
+  el('f-estimacion').value=st.estimacion;
+  montoTexto();
+}
+function montoTexto(){
+  const v=Number(st.estimacion);
+  el('monto-pesos').textContent=v>0?pesos(v):'';
+  el('q-estimacion').classList.toggle('respondido',v>0);
+}
+
+/* =========================================================================
+   5. Validación
+   ========================================================================= */
+function faltante(){
+  document.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));
+  const conAncla=C.condiciones[st.condicion].precio!=null, v=Number(st.estimacion);
+  if(conAncla&&!st.comparacion)return [el('q-comp'),'Respondan si el valor es mayor o menor que el precio publicado.'];
+  if(!(v>0))return [el('q-estimacion'),'Escriban su estimación en millones de pesos.'];
+  if(v<C.minimo||v>C.maximo)return [el('q-estimacion'),'Revisen la cifra: va en millones (por ejemplo, 800 para ochocientos millones).'];
+  if(!st.seguridad)return [el('q-seguridad'),'Indiquen qué tan seguros están.'];
+  if(conAncla&&!st.peso)return [el('q-peso'),'Indiquen cuánto pesó el precio publicado.'];
+  return null;
+}
+
+/* =========================================================================
+   6. Envío sin pestañas y confirmación por JSONP (como en los debates de 402)
+   ========================================================================= */
+function setEstado(m,ok){const s=el('estado');s.textContent=m||'';s.className='estado'+(m?(ok?' ok':' warn'):'');}
+function confirmar(rid){
+  return new Promise(resolve=>{
+    const limite=Date.now()+40000;
+    const intento=()=>{
+      const name='ancAck_'+rid.replace(/-/g,'')+'_'+Date.now(), s=document.createElement('script');
+      const clean=()=>{s.remove();globalThis[name]=()=>{};};
+      globalThis[name]=r=>{clean();if(r&&r.ok&&r.rid===rid)resolve(true);else otra();};
+      s.onerror=()=>{clean();otra();};
+      s.src=ENDPOINT+'?estado='+encodeURIComponent(rid)+'&callback='+name;
+      document.head.appendChild(s);
+    };
+    const otra=()=>{if(Date.now()>limite)resolve(false);else setTimeout(intento,3000);};
+    setTimeout(intento,1500);
+  });
+}
+async function enviar(){
+  if(busy)return;
+  const f=faltante();
+  if(f){f[0].classList.add('invalid');f[0].scrollIntoView({behavior:'smooth',block:'center'});setEstado(f[1],false);return;}
+  if(!ENDPOINT){setEstado('El envío aún no está configurado.',false);return;}
+  if(!st.rid)st.rid=uid();
+  guardar();
+  const cond=C.condiciones[st.condicion], conAncla=cond.precio!=null;
+  const datos={tipo:'anclaje-402',version:1,curso:C.curso,cursoGrupo:el('f-curso').value,rid:st.rid,ronda:st.ronda,
+    condicion:st.condicion,precio:cond.precio,comparacion:conAncla?st.comparacion:'',estimacion:Number(st.estimacion),
+    seguridad:st.seguridad,peso:conAncla?st.peso:0,segundos:Math.round((Date.now()-t0)/1000)};
+  busy=true;el('btn-enviar').disabled=true;setEstado('Enviando…');
+  let ok=false;
+  try{await fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:new URLSearchParams({payload:JSON.stringify(datos)})});ok=await confirmar(st.rid);}catch(e){ok=false;}
+  busy=false;el('btn-enviar').disabled=false;
+  if(ok){st.enviado=true;guardar();mostrarHecho();}
+  else setEstado('Aún no hay confirmación. Revisen la conexión y vuelvan a enviar.',false);
+}
+function mostrarHecho(){el('formulario').hidden=true;el('hecho').hidden=false;window.scrollTo({top:0});}
+
+/* =========================================================================
+   7. Arranque
+   ========================================================================= */
+try{
+  el('js-warning').hidden=true;
+  el('f-curso').innerHTML=C.grupos.map(g=>`<option value="${g}">${g}</option>`).join('');
+  cargar();
+  if(st.enviado){mostrarHecho();return;}
+  botones('op-seguridad',SEGURIDAD);botones('op-peso',PESO);
+  el('q-comp').querySelectorAll('.opcion').forEach(b=>b.onclick=()=>{st.comparacion=st.comparacion===b.dataset.valor?'':b.dataset.valor;guardar();marcar();});
+  el('op-seguridad').querySelectorAll('.opcion').forEach(b=>b.onclick=()=>{const v=Number(b.dataset.valor);st.seguridad=st.seguridad===v?0:v;guardar();marcar();});
+  el('op-peso').querySelectorAll('.opcion').forEach(b=>b.onclick=()=>{const v=Number(b.dataset.valor);st.peso=st.peso===v?0:v;guardar();marcar();});
+  el('f-estimacion').oninput=()=>{const limpio=el('f-estimacion').value.replace(/\D/g,'').slice(0,4);st.estimacion=limpio;el('f-estimacion').value=limpio;el('q-estimacion').classList.remove('invalid');montoTexto();guardar();};
+  el('btn-enviar').onclick=enviar;
+  el('btn-enviar').disabled=true;setEstado('Preparando la ficha…');
+  asignar().then(c=>{st.condicion=c;guardar();pintarFicha();marcar();el('btn-enviar').disabled=false;setEstado('');t0=Date.now();});
+}catch(e){el('js-warning').hidden=false;el('js-warning').textContent='La hoja no pudo iniciar. Recarguen la página o ábranla en otro navegador.';console.error(e);}
+})();
+</script></body></html>
