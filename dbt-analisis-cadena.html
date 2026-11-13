@@ -203,6 +203,40 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   .rubrica-nivel b{flex:none;}
 }
 
+/* Ayuda para elegir la habilidad: ficha de la elegida y guía plegable de las diez. */
+.ficha-elegida{
+  margin-top:12px; padding:12px 14px; border-radius:8px;
+  background:var(--accent-soft); border-left:3px solid var(--accent);
+}
+.habilidades-guia{margin-top:12px; border-top:1px solid var(--border); padding-top:10px;}
+.habilidades-guia > summary{
+  cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:600; color:var(--accent); padding:9px 4px 9px 0;
+}
+.habilidades-guia > summary::-webkit-details-marker{display:none;}
+.habilidades-guia > summary::before{
+  content:""; width:7px; height:7px; flex-shrink:0;
+  border-right:1.8px solid var(--accent); border-bottom:1.8px solid var(--accent);
+  transform:rotate(-45deg); transition:transform 0.2s ease;
+}
+.habilidades-guia[open] > summary::before{transform:rotate(45deg);}
+.hab-intro{font-size:13px; color:var(--ink-soft); margin:6px 0 4px;}
+.hab-modulo{
+  font-family:var(--font-mono); font-size:10.5px; font-weight:700; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-faint); margin:16px 0 6px;
+}
+.hab-item{padding:10px 12px; border-radius:7px; background:var(--surface); margin-bottom:6px;}
+.hab-nombre{font-size:13.5px; font-weight:600; color:var(--ink);}
+.hab-ficha{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); margin-left:6px;}
+.hab-pasos{font-size:12px; color:var(--ink-faint); margin-top:2px;}
+.hab-cambia{font-size:13px; line-height:1.45; color:var(--ink-soft); margin-top:5px;}
+.hab-pregunta{font-size:13px; line-height:1.45; color:var(--accent-dark); margin-top:4px; font-style:italic;}
+.hab-fuente{font-size:11.5px; color:var(--ink-faint); margin-top:12px;}
+.ficha-elegida .hab-cambia{margin-top:3px;}
+@media (max-width:900px){
+  .habilidades-guia > summary{padding:14px 4px 14px 0;}
+}
+
 
 section.block{margin-bottom:40px; scroll-margin-top:24px;}
 .block-heading{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
@@ -692,6 +726,19 @@ textarea.evidence-box{min-height:56px; font-size:13.5px;}
           <option>AVES</option>
           <option>VIDA</option>
         </select>
+        <!-- Ayuda para elegir la habilidad (2026-11-13). Casi todos los grupos elegían STOP
+             sin comparar. Cada habilidad se describe por lo que cambia y por la condición en
+             que el manual la indica, sin nombrar eslabones: la correspondencia
+             habilidad-eslabón es lo que evalúa la rúbrica y la tiene que hacer el grupo. La
+             ficha de la habilidad elegida y la guía plegable las pinta initGuiaHabilidades()
+             desde HABILIDADES. .no-pdf: no entran al PDF rellenable. -->
+        <div class="ficha-elegida no-pdf" id="ficha-habilidad" hidden></div>
+        <details class="habilidades-guia no-pdf" id="guia-habilidades">
+          <summary>Qué hace cada habilidad</summary>
+          <p class="hab-intro">Cada habilidad actúa sobre algo distinto: comparen lo que tendría que cambiar en su situación con lo que cambia cada una.</p>
+          <div id="guia-habilidades-lista"></div>
+          <p class="hab-fuente">Fuente: Linehan, M. M., <i>Manual de entrenamiento en habilidades DBT para el/la terapeuta</i>, fichas indicadas en cada habilidad.</p>
+        </details>
       </div>
       <div class="card">
         <div class="card-label">Cómo usaría la habilidad en ese momento <span class="required-mark">*</span></div>
@@ -1360,6 +1407,7 @@ function applyStateToDOM(){
   });
 
   renderEpisodio();
+  actualizarFichaHabilidad();
 }
 
 /* ============================================================
@@ -1747,6 +1795,123 @@ function initRubricaEnLinea(){
 }
 
 /* ============================================================
+   11-bis. AYUDA PARA ELEGIR LA HABILIDAD
+   ============================================================
+
+   Paráfrasis de Linehan, Manual de entrenamiento en habilidades DBT para el/la
+   terapeuta (sección y ficha de cada habilidad en «ficha»); siglas en castellano
+   como en esa edición. Verificado en la biblioteca el 2026-11-13. Las preguntas
+   guía son genéricas a propósito: no calcan datos de ninguna situación ni nombran
+   el eslabón donde va cada habilidad. Las claves deben coincidir con el texto de
+   las <option> de #ct-habilidad. */
+const HABILIDADES_MODULOS = [
+  ["Tolerancia al malestar", ["STOP", "TIP", "Aceptación radical"]],
+  ["Mindfulness", ["Mente sabia"]],
+  ["Regulación emocional", ["Verificar los hechos", "Acción opuesta", "ACA CUIDA"]],
+  ["Efectividad interpersonal", ["DEAR MAN", "AVES", "VIDA"]]
+];
+
+const HABILIDADES = {
+  "STOP": {
+    ficha: "Tolerancia al malestar 4",
+    pasos: "Stop, Toma un paso atrás, Observa, Procede con mindfulness.",
+    cambia: "Frena la acción antes de que ocurra, cuando la mente emocional toma el control y empuja a reaccionar sin pensar. No baja la emoción ni cambia lo que la persona piensa: abre un espacio para usar otra habilidad.",
+    pregunta: "Si la persona se detiene, ¿qué hace después de detenerse?"
+  },
+  "TIP": {
+    ficha: "Tolerancia al malestar 6–6C",
+    pasos: "Temperatura, ejercicio Intenso, respiración Pausada rítmica, relajación muscular en Paralelo.",
+    cambia: "Cambia la química del cuerpo para bajar rápido una activación emocional tan alta que impide usar la mayoría de las habilidades.",
+    pregunta: "¿Hay un momento en que la activación es tan alta que la persona no podría pensar con claridad?"
+  },
+  "Aceptación radical": {
+    ficha: "Tolerancia al malestar 11–11B",
+    pasos: "Aceptar con la mente, el corazón y el cuerpo lo que no se puede cambiar.",
+    cambia: "Cambia la lucha contra una realidad que no se puede modificar; aceptar no es aprobar. Rechazar esa realidad alimenta amargura, rabia o sufrimiento añadido.",
+    pregunta: "¿Qué parte de la situación ya no se puede cambiar, y qué hace la persona con eso?"
+  },
+  "Mente sabia": {
+    ficha: "Mindfulness 3–3A",
+    pasos: "Integrar la mente emocional y la mente racional.",
+    cambia: "Integra lo que la persona siente y lo que sabe para decidir, cuando una de las dos ocupa todo el espacio.",
+    pregunta: "¿En qué momento la persona decide algo, y desde dónde lo decide?"
+  },
+  "Verificar los hechos": {
+    ficha: "Regulación emocional 8–8A",
+    pasos: "Qué emoción quiero cambiar, qué ocurrió (solo hechos), qué interpreto y qué otras lecturas hay, qué amenaza supongo y qué tan probable es.",
+    cambia: "Cambia la interpretación, para que la emoción se ajuste a los hechos cuando responde más a lo que la persona supone que a lo que ocurrió.",
+    pregunta: "¿Qué ocurrió exactamente, y qué añadió la persona al interpretarlo?"
+  },
+  "Acción opuesta": {
+    ficha: "Regulación emocional 10–11",
+    pasos: "Nombrar la emoción, verificar los hechos, identificar el impulso, consultar a la mente sabia, actuar al revés y hacerlo por completo.",
+    cambia: "Cambia la emoción actuando en sentido contrario a lo que ella pide, cuando no se ajusta a los hechos o su intensidad no ayuda a la meta. Si la emoción está justificada, corresponde resolver el problema.",
+    pregunta: "¿Qué le pide hacer esa emoción, y qué sería lo contrario?"
+  },
+  "ACA CUIDA": {
+    ficha: "Regulación emocional 14 y 20",
+    pasos: "Acumular emociones positivas, Construir competencia, Anticiparse; Cuidar las enfermedades, no Usar drogas, Intentar hacer ejercicio, Dormir de forma equilibrada, Alimentarse bien.",
+    cambia: "Reduce la vulnerabilidad de fondo a la mente emocional; se trabaja en el día a día, no en medio de la crisis.",
+    pregunta: "¿Qué traía la persona encima antes de que pasara lo que encendió todo?"
+  },
+  "DEAR MAN": {
+    ficha: "Efectividad interpersonal 5–5A",
+    pasos: "Describir, Expresar, ser Asertivo, Reforzar; Mantener la posición, Aparentar seguridad, Negociar.",
+    cambia: "Sirve para pedirle algo a otra persona, decir que no o resolver un conflicto (efectividad en el objetivo).",
+    pregunta: "¿Hay algo que la persona necesite de alguien y no ha pedido?"
+  },
+  "AVES": {
+    ficha: "Efectividad interpersonal 6–6A",
+    pasos: "Actuar interesado, Validar, (usar) modales Educados, Ser gentil.",
+    cambia: "Cuida la relación mientras se busca el objetivo (efectividad en la relación).",
+    pregunta: "¿Qué relación está en juego, y cómo se cuidaría al hablar?"
+  },
+  "VIDA": {
+    ficha: "Efectividad interpersonal 7",
+    pasos: "Valores, (ser) Imparcial, (no) Disculparse, (ser) Auténtico.",
+    cambia: "Protege el respeto por uno mismo durante la interacción (efectividad en el autorrespeto).",
+    pregunta: "¿Qué tendría que sostener la persona para seguir respetándose?"
+  }
+};
+
+function escaparHTML(s){
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+}
+
+function htmlHabilidad(nombre, h, conPasos){
+  return "<div class=\"hab-nombre\">" + escaparHTML(nombre) +
+         "<span class=\"hab-ficha\">Ficha " + escaparHTML(h.ficha) + "</span></div>" +
+         (conPasos ? "<div class=\"hab-pasos\">" + escaparHTML(h.pasos) + "</div>" : "") +
+         "<div class=\"hab-cambia\">" + escaparHTML(h.cambia) + "</div>" +
+         "<div class=\"hab-pregunta\">" + escaparHTML(h.pregunta) + "</div>";
+}
+
+// Ficha de la habilidad elegida, debajo del desplegable. Se llama al cambiar la
+// selección y al final de applyStateToDOM (al reabrir o restaurar, el valor se
+// pone por código y no dispara "change").
+function actualizarFichaHabilidad(){
+  const sel = document.getElementById("ct-habilidad");
+  const caja = document.getElementById("ficha-habilidad");
+  if (!sel || !caja) return;
+  const h = HABILIDADES[sel.value];
+  if (!h) { caja.hidden = true; caja.innerHTML = ""; return; }
+  caja.innerHTML = htmlHabilidad(sel.value, h, true);
+  caja.hidden = false;
+}
+
+function initGuiaHabilidades(){
+  const lista = document.getElementById("guia-habilidades-lista");
+  if (lista) {
+    lista.innerHTML = HABILIDADES_MODULOS.map(([modulo, nombres]) =>
+      "<div class=\"hab-modulo\">" + escaparHTML(modulo) + "</div>" +
+      nombres.map(n => "<div class=\"hab-item\">" + htmlHabilidad(n, HABILIDADES[n], true) + "</div>").join("")
+    ).join("");
+  }
+  const sel = document.getElementById("ct-habilidad");
+  if (sel) sel.addEventListener("change", actualizarFichaHabilidad);
+}
+
+/* ============================================================
    12. INICIALIZACIÓN
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -1757,6 +1922,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     loadInitialState();
     initRubricaEnLinea();
+    initGuiaHabilidades();
     initDynamicList("integrantes", "list-integrantes", "btn-add-integrante", "Nombre del integrante", "Quitar integrante", 2);
     initSimpleFields();
     initGrupoNumerico();
