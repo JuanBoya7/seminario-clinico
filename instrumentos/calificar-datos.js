@@ -18880,7 +18880,7 @@ const CALIFICAR = {
      "texto": "Hay respuestas afirmativas sobre muerte o suicidio (sección J de depresión). Pregunte directamente, en esta misma atención, y siga el protocolo de riesgo suicida: la persona no se va sin una valoración de seguridad."
     }
    ],
-   "nota": true
+   "nota": "En la entrevista no se responden todas las preguntas: marque Omitida las que salte. Los conteos muestran síntomas confirmados por sección; la decisión diagnóstica es del entrevistador, con la regla completa, la duración y el daño."
   },
   "hoja": true
  },
