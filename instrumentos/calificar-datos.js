@@ -15340,6 +15340,241 @@ const CALIFICAR = {
    ]
   }
  },
+ "pbat": {
+  "clave": "PBAT",
+  "sigla": "PBAT",
+  "titulo": "Herramienta de Evaluación Basada en Procesos",
+  "para": "Seguir, con medidas repetidas, los procesos de cambio que trabaja la terapia basada en procesos: afecto, cognición, atención, conexión social, motivación, conducta y salud física, y si la persona varía y retiene las respuestas que le sirven. Cada proceso tiene una frase que ayuda y otra que estorba. No es un test con puntaje total: es un banco de frases para elegir las que importan en el caso y verlas cambiar en el tiempo.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Ciarrochi et al. (2022); versión en castellano de Goicoechea et al. (2024), PsyArXiv, apéndice I, CC BY 4.0.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marca en la línea el grado de acuerdo con cada afirmación. Basa tus respuestas en cómo has estado actuando durante la última semana. Recuerda que no hay respuestas correctas o incorrectas. Escala de respuesta: de 0 (totalmente en desacuerdo) a 100 (totalmente de acuerdo)."
+   },
+   {
+    "t": "dato",
+    "x": "1. Fui capaz de cambiar mi comportamiento, cuando cambiar ayudaba a mi vida",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "2. Hice cosas que dañaron mi relación con personas que son importantes para mí",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "3. Fui capaz de sentir una variedad de emociones apropiadas para el momento",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "4. Me costó continuar haciendo algo que era bueno para mí",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "5. No encontré una manera significativa de desafiarme a mí mismo/a",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "6. Actué de forma que ayudó a mi salud física",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "7. Mi pensamiento se interpuso en cosas que eran importantes para mí",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "8. Presté atención a cosas importantes en mi vida diaria",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "9. Hice cosas solo por cumplir con lo que otros querían que hiciera",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "10. Me ceñí a estrategias que parecían haber funcionado",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "11. Encontré maneras personalmente importantes de desafiarme a mí mismo/a",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "12. Me sentí atascado/a e incapaz de cambiar mi comportamiento ineficaz",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "13. Utilicé mi pensamiento de maneras que me ayudaron a vivir mejor",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "14. Me costó conectar con los momentos de mi día a día",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "15. Hice cosas para estar más cerca de las personas que son importantes para mí",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "16. Elegí hacer cosas que eran personalmente importantes para mí",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "17. Actué de forma que perjudicó mi salud física",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   },
+   {
+    "t": "dato",
+    "x": "18. No encontré una salida apropiada para mis emociones",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Afecto · frase que ayuda (ítem 3)",
+     "js": "r[3] == null ? 'Pendiente' : r[3]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 68,6, hombres 72,4."
+    },
+    {
+     "n": "Afecto · frase que estorba (ítem 18)",
+     "js": "r[18] == null ? 'Pendiente' : r[18]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 42,5, hombres 44,1."
+    },
+    {
+     "n": "Cognición · frase que ayuda (ítem 13)",
+     "js": "r[13] == null ? 'Pendiente' : r[13]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 65,1, hombres 66,7."
+    },
+    {
+     "n": "Cognición · frase que estorba (ítem 7)",
+     "js": "r[7] == null ? 'Pendiente' : r[7]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 53,3, hombres 56,4."
+    },
+    {
+     "n": "Atención · frase que ayuda (ítem 8)",
+     "js": "r[8] == null ? 'Pendiente' : r[8]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 70,9, hombres 71,2."
+    },
+    {
+     "n": "Atención · frase que estorba (ítem 14)",
+     "js": "r[14] == null ? 'Pendiente' : r[14]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 44,7, hombres 46,5."
+    },
+    {
+     "n": "Conexión social · frase que ayuda (ítem 15)",
+     "js": "r[15] == null ? 'Pendiente' : r[15]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 68,9, hombres 71,9."
+    },
+    {
+     "n": "Conexión social · frase que estorba (ítem 2)",
+     "js": "r[2] == null ? 'Pendiente' : r[2]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 36,7, hombres 39,5."
+    },
+    {
+     "n": "Motivación (autonomía) · frase que ayuda (ítem 16)",
+     "js": "r[16] == null ? 'Pendiente' : r[16]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 70,4, hombres 70,8."
+    },
+    {
+     "n": "Motivación (autonomía) · frase que estorba (ítem 9)",
+     "js": "r[9] == null ? 'Pendiente' : r[9]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 50,6, hombres 53,3."
+    },
+    {
+     "n": "Conducta (competencia) · frase que ayuda (ítem 11)",
+     "js": "r[11] == null ? 'Pendiente' : r[11]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 57,8, hombres 57,7."
+    },
+    {
+     "n": "Conducta (competencia) · frase que estorba (ítem 5)",
+     "js": "r[5] == null ? 'Pendiente' : r[5]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 46,7, hombres 47,3."
+    },
+    {
+     "n": "Salud física · frase que ayuda (ítem 6)",
+     "js": "r[6] == null ? 'Pendiente' : r[6]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 64,7, hombres 66,5."
+    },
+    {
+     "n": "Salud física · frase que estorba (ítem 17)",
+     "js": "r[17] == null ? 'Pendiente' : r[17]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 37,8, hombres 40,1."
+    },
+    {
+     "n": "Variación · frase que ayuda (ítem 1)",
+     "js": "r[1] == null ? 'Pendiente' : r[1]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 69,0, hombres 71,1."
+    },
+    {
+     "n": "Variación · frase que estorba (ítem 12)",
+     "js": "r[12] == null ? 'Pendiente' : r[12]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 43,6, hombres 48,5."
+    },
+    {
+     "n": "Retención · frase que ayuda (ítem 10)",
+     "js": "r[10] == null ? 'Pendiente' : r[10]",
+     "texto": "0 a 100; más alto es mejor. Media en adultos españoles: mujeres 60,3, hombres 58,4."
+    },
+    {
+     "n": "Retención · frase que estorba (ítem 4)",
+     "js": "r[4] == null ? 'Pendiente' : r[4]",
+     "texto": "0 a 100; más alto indica más dificultad. Media en adultos españoles: mujeres 47,1, hombres 54,4."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r.slice(1,19).some(x => x != null && (x < 0 || x > 100))",
+     "texto": "Hay respuestas fuera del rango de 0 a 100: revíselas antes de interpretar."
+    },
+    {
+     "js": "r[10] != null",
+     "texto": "Sin total ni puntos de corte: compare cada frase con las aplicaciones anteriores de la misma persona. La frase 10 (retención) no se comportó como en el original en la versión española: léala con cautela."
+    }
+   ]
+  }
+ },
  "acips": {
   "clave": "ACIPS",
   "sigla": "ACIPS",
@@ -15428,7 +15663,7 @@ const CALIFICAR = {
   ],
   "estilo": "adultos",
   "pob": [
-   "adultos"
+   "infancia"
   ],
   "cita": "García y Musitu (2014) · TEA Ediciones.",
   "bloques": [
