@@ -1,6 +1,6 @@
 /* Preguntas y reglas de calificación de las fichas completas. Lo escribe
    _planes-fuente/instrumentos/generar.py: no se edita a mano. */
-const AREAS = ["Riesgo suicida", "Malestar general", "Ánimo y depresión", "Ansiedad", "TOC y conductas repetitivas", "Trauma y duelo", "Síntomas psicóticos", "Consumo, juego y pantallas", "Alimentación", "Salud, sueño y síntomas físicos", "Neurodesarrollo y cognición", "Familia, pareja y violencia", "Cuidadores y desgaste laboral", "Autoestima, autocrítica y habilidades sociales", "Procesos psicológicos: aceptación, metacognición y regulación", "Bienestar y apoyo social", "Orientación vocacional", "Otras"];
+const AREAS = ["Riesgo suicida", "Malestar general", "Ánimo y depresión", "Ansiedad", "TOC y conductas repetitivas", "Trauma y duelo", "Síntomas psicóticos", "Consumo, juego y pantallas", "Alimentación", "Salud, sueño y síntomas físicos", "Neurodesarrollo y cognición", "Familia, pareja y violencia", "Cuidadores y desgaste laboral", "Autoestima, autocrítica y habilidades sociales", "Procesos psicológicos: aceptación, metacognición y regulación", "Adherencia, alianza y creencias de salud", "Bienestar y apoyo social", "Orientación vocacional", "Otras"];
 const CALIFICAR = {
  "phq-9": {
   "clave": "PHQ-9",
@@ -963,6 +963,7 @@ const CALIFICAR = {
      "texto": "Se ha inyectado en los últimos 3 meses: pregunte por la frecuencia (más de 4 días al mes pide evaluación y tratamiento más intensivo)."
     }
    ],
+   "blancos": true,
    "nota": "Responda solo las sustancias que la persona ha consumido; las demás quedan en blanco y valen 0."
   }
  },
@@ -2686,6 +2687,319 @@ const CALIFICAR = {
    ]
   }
  },
+ "ghq-12": {
+  "clave": "GHQ-12",
+  "sigla": "GHQ-12",
+  "titulo": "Cuestionario General de Salud, versión de 12 ítems",
+  "para": "Detectar malestar psicológico general y casos probables de trastorno emocional en población no clínica, comparando el estado actual con el habitual de la persona. Es uno de los tamizajes más usados en estudios comunitarios y ocupacionales.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Goldberg y Williams (1988) · versión en español usada por Simancas-Pallares et al. (2017), Biomédica · derechos de GL Assessment.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 9"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 10"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 11"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "A veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 12"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje Likert (0-1-2-3)",
+     "js": "S(1,12)",
+     "rangos": [
+      [
+       0,
+       11,
+       "Por debajo del punto de corte"
+      ],
+      [
+       12,
+       36,
+       "12 o más: posible trastorno emocional; amerita evaluación clínica (validación colombiana, Ruiz et al., 2017)"
+      ]
+     ]
+    },
+    {
+     "n": "Puntaje GHQ (0-0-1-1)",
+     "js": "C(RANGO(1,12),2) + C(RANGO(1,12),3)",
+     "texto": "De 0 a 12. Las fuentes consultadas no publican un corte colombiano para esta forma."
+    }
+   ]
+  },
+  "hoja": true
+ },
  "asq": {
   "clave": "ASQ",
   "sigla": "ASQ",
@@ -3258,6 +3572,91 @@ const CALIFICAR = {
    ]
   }
  },
+ "isi": {
+  "clave": "ISI",
+  "sigla": "ISI",
+  "titulo": "Índice de Gravedad del Insomnio",
+  "para": "Medir la gravedad del insomnio de las dos últimas semanas y cuánto interfiere en el día. Es breve y sensible al cambio, así que es la medida estándar antes y después de la terapia cognitivo-conductual para el insomnio.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Bastien, Vallières y Morin (2001), Sleep Medicine · permiso por Mapi Research Trust.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,7)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Sin insomnio clínicamente significativo"
+      ],
+      [
+       8,
+       14,
+       "Insomnio subumbral"
+      ],
+      [
+       15,
+       21,
+       "Insomnio clínico moderado"
+      ],
+      [
+       22,
+       28,
+       "Insomnio clínico grave"
+      ]
+     ]
+    }
+   ],
+   "nota": "Bandas de Bastien, Vallières y Morin (2001). En el seguimiento, un total menor de 8 se considera remisión."
+  },
+  "sinitems": true
+ },
  "zarit": {
   "clave": "Zarit",
   "sigla": "Zarit",
@@ -3817,6 +4216,103 @@ const CALIFICAR = {
    ]
   }
  },
+ "aase": {
+  "clave": "AASE",
+  "sigla": "AASE",
+  "titulo": "Escala de Autoeficacia para la Abstinencia de Alcohol",
+  "para": "Confianza en poder no consumir en cada tipo de situación de riesgo; la autoeficacia predice el resultado del tratamiento.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde DiClemente et al., 1994, en Marlatt y Donovan, cap. 1",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él. La escala va de 1 (no confía nada) a 5 (confía extremadamente)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Autoeficacia total (promedio de los 20 ítems)",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].some(i => r[i] == null) ? 'Pendiente' : (Math.round(L([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) / 20 * 100) / 100)",
+     "texto": "De 1 a 5: a mayor puntaje, mayor confianza en poder abstenerse de beber."
+    },
+    {
+     "n": "Afecto negativo (ítems 3, 6, 14, 16, 18)",
+     "js": "[3, 6, 14, 16, 18].some(i => r[i] == null) ? 'Pendiente' : (Math.round(L([3, 6, 14, 16, 18]) / 5 * 100) / 100)",
+     "texto": "Promedio de 1 a 5."
+    },
+    {
+     "n": "Social o positivo (ítems 4, 8, 15, 17, 20)",
+     "js": "[4, 8, 15, 17, 20].some(i => r[i] == null) ? 'Pendiente' : (Math.round(L([4, 8, 15, 17, 20]) / 5 * 100) / 100)",
+     "texto": "Promedio de 1 a 5."
+    },
+    {
+     "n": "Preocupaciones físicas y otras (ítems 2, 5, 9, 12, 13)",
+     "js": "[2, 5, 9, 12, 13].some(i => r[i] == null) ? 'Pendiente' : (Math.round(L([2, 5, 9, 12, 13]) / 5 * 100) / 100)",
+     "texto": "Promedio de 1 a 5."
+    },
+    {
+     "n": "Ansias e impulsos (ítems 1, 7, 10, 11, 19)",
+     "js": "[1, 7, 10, 11, 19].some(i => r[i] == null) ? 'Pendiente' : (Math.round(L([1, 7, 10, 11, 19]) / 5 * 100) / 100)",
+     "texto": "Promedio de 1 a 5."
+    }
+   ],
+   "nota": "Forma de confianza de 20 ítems (DiClemente et al., 1994), referida a la última semana. Las fuentes no traen normas ni puntos de corte, ni la forma de tentación, que no se calcula aquí. Un promedio solo se muestra cuando están todos los ítems de la escala."
+  },
+  "sinitems": true
+ },
  "apais": {
   "clave": "APAIS",
   "sigla": "APAIS",
@@ -4181,6 +4677,7 @@ const CALIFICAR = {
      ]
     }
    ],
+   "blancos": true,
    "nota": "La escala de clientes o usuarios solo se responde si la persona trabaja con ellos más de la mitad de su jornada; si queda en blanco, su resultado no se lee."
   }
  },
@@ -4256,6 +4753,219 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "cts2": {
+  "clave": "CTS2",
+  "sigla": "CTS2",
+  "titulo": "Escala de Tácticas de Conflicto revisada",
+  "para": "Formas en que la pareja maneja los conflictos, incluidas la agresión psicológica y la violencia física y sexual.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Christensen et al., 2014, tabla 18.1",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la parte de la propia conducta (39 ítems) con el protocolo oficial. Marque aquí, para cada ítem, con el número del protocolo, la respuesta de 0 a 7: 0 nunca ha ocurrido, 1 una vez, 2 dos veces, 3 de tres a cinco veces, 4 de seis a diez veces, 5 de once a veinte veces, 6 más de 20 veces, 7 no ocurrió en el periodo evaluado pero sí antes. El periodo suele ser los últimos 12 meses y puede cambiarse."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems de su propia conducta (numeración del protocolo)",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 3",
+     "Ítem 5",
+     "Ítem 7",
+     "Ítem 9",
+     "Ítem 11",
+     "Ítem 13",
+     "Ítem 15",
+     "Ítem 17",
+     "Ítem 19",
+     "Ítem 21",
+     "Ítem 23",
+     "Ítem 25",
+     "Ítem 27",
+     "Ítem 29",
+     "Ítem 31",
+     "Ítem 33",
+     "Ítem 35",
+     "Ítem 37",
+     "Ítem 39",
+     "Ítem 41",
+     "Ítem 43",
+     "Ítem 45",
+     "Ítem 47",
+     "Ítem 49",
+     "Ítem 51",
+     "Ítem 53",
+     "Ítem 55",
+     "Ítem 57",
+     "Ítem 59",
+     "Ítem 61",
+     "Ítem 63",
+     "Ítem 65",
+     "Ítem 67",
+     "Ítem 69",
+     "Ítem 71",
+     "Ítem 73",
+     "Ítem 75",
+     "Ítem 77"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Negociación · cronicidad",
+     "js": "[1, 2, 7, 20, 30, 39].some(i => r[i] == null) ? 'Pendiente' : ([1, 2, 7, 20, 30, 39].reduce((s, i) => s + ([0, 1, 2, 4, 8, 15, 25][r[i]] || 0), 0))",
+     "texto": "De 0 a 150. Medias (Loinaz et al., 2012, tabla 2): agresores condenados 75,4 (DT 44,9); hombres de control 61,5 (DT 42,5). Normas de hombres condenados por violencia contra la pareja: no las aplique a población general."
+    },
+    {
+     "n": "Agresión psicológica · cronicidad",
+     "js": "[3, 13, 15, 18, 25, 33, 34, 35].some(i => r[i] == null) ? 'Pendiente' : ([3, 13, 15, 18, 25, 33, 34, 35].reduce((s, i) => s + ([0, 1, 2, 4, 8, 15, 25][r[i]] || 0), 0))",
+     "texto": "De 0 a 200. Medias: agresores condenados 32,5 (DT 34,5); controles 8,7 (DT 12,6). Normas de hombres condenados por violencia contra la pareja: no las aplique a población general."
+    },
+    {
+     "n": "Agresión psicológica · prevalencia",
+     "js": "[3, 13, 15, 18, 25, 33, 34, 35].some(i => r[i] >= 1 && r[i] <= 6) ? 2 : ([3, 13, 15, 18, 25, 33, 34, 35].some(i => r[i] === 7) ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Ninguna conducta de la escala"
+      ],
+      [
+       1,
+       1,
+       "Solo antes del periodo evaluado (respuesta 7)"
+      ],
+      [
+       2,
+       2,
+       "Al menos una conducta en el periodo evaluado (respuestas 1 a 6)"
+      ]
+     ],
+     "texto": "Los autores originales advierten que casi todas las personas presentan alguna conducta de esta escala."
+    },
+    {
+     "n": "Agresión física · cronicidad",
+     "js": "[4, 5, 9, 11, 14, 17, 19, 22, 23, 27, 31, 37].some(i => r[i] == null) ? 'Pendiente' : ([4, 5, 9, 11, 14, 17, 19, 22, 23, 27, 31, 37].reduce((s, i) => s + ([0, 1, 2, 4, 8, 15, 25][r[i]] || 0), 0))",
+     "texto": "De 0 a 300. Medias: agresores condenados 9,0 (DT 20,3); controles 1,5 (DT 7,1). Normas de hombres condenados por violencia contra la pareja: no las aplique a población general."
+    },
+    {
+     "n": "Agresión física · prevalencia",
+     "js": "[4, 5, 9, 11, 14, 17, 19, 22, 23, 27, 31, 37].some(i => r[i] >= 1 && r[i] <= 6) ? 2 : ([4, 5, 9, 11, 14, 17, 19, 22, 23, 27, 31, 37].some(i => r[i] === 7) ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Ninguna conducta de la escala"
+      ],
+      [
+       1,
+       1,
+       "Solo antes del periodo evaluado (respuesta 7)"
+      ],
+      [
+       2,
+       2,
+       "Al menos una conducta en el periodo evaluado (respuestas 1 a 6)"
+      ]
+     ]
+    },
+    {
+     "n": "Coacción sexual · cronicidad",
+     "js": "[8, 10, 24, 26, 29, 32, 38].some(i => r[i] == null) ? 'Pendiente' : ([8, 10, 24, 26, 29, 32, 38].reduce((s, i) => s + ([0, 1, 2, 4, 8, 15, 25][r[i]] || 0), 0))",
+     "texto": "De 0 a 175. Medias: agresores condenados 4,2 (DT 14,5); controles 2,1 (DT 6,2). Normas de hombres condenados por violencia contra la pareja: no las aplique a población general."
+    },
+    {
+     "n": "Coacción sexual · prevalencia",
+     "js": "[8, 10, 24, 26, 29, 32, 38].some(i => r[i] >= 1 && r[i] <= 6) ? 2 : ([8, 10, 24, 26, 29, 32, 38].some(i => r[i] === 7) ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Ninguna conducta de la escala"
+      ],
+      [
+       1,
+       1,
+       "Solo antes del periodo evaluado (respuesta 7)"
+      ],
+      [
+       2,
+       2,
+       "Al menos una conducta en el periodo evaluado (respuestas 1 a 6)"
+      ]
+     ]
+    },
+    {
+     "n": "Daños · cronicidad",
+     "js": "[6, 12, 16, 21, 28, 36].some(i => r[i] == null) ? 'Pendiente' : ([6, 12, 16, 21, 28, 36].reduce((s, i) => s + ([0, 1, 2, 4, 8, 15, 25][r[i]] || 0), 0))",
+     "texto": "De 0 a 150. Medias: agresores condenados 3,1 (DT 6,3); controles 0,2 (DT 1,5). Escala poco fiable (alfa 0,59). Normas de hombres condenados por violencia contra la pareja: no las aplique a población general."
+    },
+    {
+     "n": "Daños · prevalencia",
+     "js": "[6, 12, 16, 21, 28, 36].some(i => r[i] >= 1 && r[i] <= 6) ? 2 : ([6, 12, 16, 21, 28, 36].some(i => r[i] === 7) ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Ninguna conducta de la escala"
+      ],
+      [
+       1,
+       1,
+       "Solo antes del periodo evaluado (respuesta 7)"
+      ],
+      [
+       2,
+       2,
+       "Al menos una conducta en el periodo evaluado (respuestas 1 a 6)"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "[10, 11, 14, 17, 19, 22, 24, 29, 31, 37, 38].some(i => r[i] >= 1)",
+     "texto": "Hay respuestas afirmativas en ítems de violencia física o coacción sexual severas hacia la pareja (ítems 19, 21, 27, 33, 37, 43, 47, 57, 61, 73 y 75): valore el riesgo para la pareja y su seguridad en esta misma atención."
+    }
+   ],
+   "nota": "Parte de la propia conducta (39 ítems) de la versión de Loinaz et al. (2012), validada en hombres condenados por violencia contra la pareja. Cronicidad: cada respuesta pasa al punto medio de su intervalo (0, 1, 2, 4, 8, 15, 25) y se suma; la respuesta 7 no cuenta. No se calcula un total del CTS2 (sin estructura factorial clara, según el Consejo General de la Psicología, 2022) ni la severidad de la violencia física (su cálculo no está confirmado). Los ítems 29 y 65 se asignaron a agresión psicológica reconstruyendo un error de numeración de la figura 1 de Loinaz et al. No hay puntos de corte, ni baremos para población general ni para la parte de la pareja."
+  },
+  "sinitems": true
  },
  "das": {
   "clave": "DAS",
@@ -4593,6 +5303,146 @@ const CALIFICAR = {
   },
   "hoja": true
  },
+ "eao": {
+  "clave": "EAO",
+  "sigla": "EAO",
+  "titulo": "Escala de Autoperdón por una Ofensa Concreta",
+  "para": "Doce afirmaciones, dos por cada paso del modelo, sobre el daño causado a otra persona; los puntajes bajos en un paso indican dónde detenerse.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Worthington et al., 2013",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la escala del cuaderno de autoperdón: en cada uno de los seis pasos hay una afirmación en cada columna. Marque aquí, de 1 (nada parecido a mí) a 5 (muy parecido a mí), lo que la persona marcó, sin invertir nada: la hoja invierte las de la columna derecha."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Columna izquierda",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Paso 1 · izquierda",
+     "Paso 2 · izquierda",
+     "Paso 3 · izquierda",
+     "Paso 4 · izquierda",
+     "Paso 5 · izquierda",
+     "Paso 6 · izquierda"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Columna derecha",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Paso 1 · derecha",
+     "Paso 2 · derecha",
+     "Paso 3 · derecha",
+     "Paso 4 · derecha",
+     "Paso 5 · derecha",
+     "Paso 6 · derecha"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje de autoperdón",
+     "js": "S(1,6) + R(7,6) + R(8,6) + R(9,6) + R(10,6) + R(11,6) + R(12,6)",
+     "rangos": [
+      [
+       12,
+       24,
+       "No se ha perdonado"
+      ],
+      [
+       25,
+       50,
+       "Se ha perdonado en parte"
+      ],
+      [
+       51,
+       60,
+       "Se ha perdonado en su mayor parte"
+      ]
+     ],
+     "texto": "De 12 a 60. Los rangos son los de la clave del cuaderno, no puntos de corte validados."
+    },
+    {
+     "n": "Paso 1",
+     "js": "(r[1] == null || r[7] == null) ? 'Pendiente' : r[1] + (6 - r[7])",
+     "texto": "De 2 a 10 por paso. Un puntaje bajo indica a qué paso prestar atención; con solo dos ítems es fácil sobreinterpretarlo."
+    },
+    {
+     "n": "Paso 2",
+     "js": "(r[2] == null || r[8] == null) ? 'Pendiente' : r[2] + (6 - r[8])"
+    },
+    {
+     "n": "Paso 3",
+     "js": "(r[3] == null || r[9] == null) ? 'Pendiente' : r[3] + (6 - r[9])"
+    },
+    {
+     "n": "Paso 4",
+     "js": "(r[4] == null || r[10] == null) ? 'Pendiente' : r[4] + (6 - r[10])"
+    },
+    {
+     "n": "Paso 5",
+     "js": "(r[5] == null || r[11] == null) ? 'Pendiente' : r[5] + (6 - r[11])"
+    },
+    {
+     "n": "Paso 6",
+     "js": "(r[6] == null || r[12] == null) ? 'Pendiente' : r[6] + (6 - r[12])"
+    }
+   ],
+   "alertas": [
+    {
+     "js": "RANGO(1,12).some(i => r[i] == null)",
+     "texto": "Faltan respuestas por marcar: el puntaje es parcial y su lectura por rangos no es válida todavía."
+    }
+   ],
+   "nota": "Escala breve en inglés de Worthington, Griffin y Lavelock (2013), que el propio cuaderno llama «no oficial»: no publica psicometría ni normas. En el cuadro final del cuaderno, el ítem de rumiación del paso 3 (columna izquierda) está redactado en sentido contrario al del cuadro inicial: use el inicial. No existe versión en español de esta escala en las fuentes."
+  },
+  "sinitems": true
+ },
  "eat-26": {
   "clave": "EAT-26",
   "sigla": "EAT-26",
@@ -4841,6 +5691,141 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "efi": {
+  "clave": "EFI",
+  "sigla": "EFI",
+  "titulo": "Inventario de Perdón de Enright",
+  "para": "Grado de perdón hacia una persona concreta que hirió a quien responde: afectos, pensamientos y conductas hacia ella. Tiene versión para niños.",
+  "areas": [
+   "Procesos psicológicos: aceptación, metacognición y regulación",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Enright y Fitzgibbons, 2015, cap. 13",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el inventario con su protocolo: la persona piensa en una ofensa concreta y responde según su actitud actual hacia quien la ofendió. Marque aquí, de 1 (muy en desacuerdo) a 6 (muy de acuerdo), lo que marcó en cada uno de los 30 ítems; la hoja invierte los que corresponde. Las preguntas de presentación no puntúan. No omita ningún ítem."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Afecto positivo",
+     "js": "[1, 2, 7, 8, 9].some(i => r[i] == null) ? 'Pendiente' : (L([1, 2, 7, 8, 9]))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 16,72 (DE 6,87) (Fariña et al., 2023, tabla 5)."
+    },
+    {
+     "n": "Afecto negativo, invertido",
+     "js": "[3, 4, 5, 6, 10].some(i => r[i] == null) ? 'Pendiente' : (R(3,7) + R(4,7) + R(5,7) + R(6,7) + R(10,7))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 20,02 (DE 6,24) (Fariña et al., 2023, tabla 5). A mayor puntaje, menos de lo negativo."
+    },
+    {
+     "n": "Comportamiento positivo",
+     "js": "[11, 16, 17, 19, 20].some(i => r[i] == null) ? 'Pendiente' : (L([11, 16, 17, 19, 20]))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 19,70 (DE 5,62) (Fariña et al., 2023, tabla 5)."
+    },
+    {
+     "n": "Comportamiento negativo, invertido",
+     "js": "[12, 13, 14, 15, 18].some(i => r[i] == null) ? 'Pendiente' : (R(12,7) + R(13,7) + R(14,7) + R(15,7) + R(18,7))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 20,47 (DE 6,45) (Fariña et al., 2023, tabla 5). A mayor puntaje, menos de lo negativo."
+    },
+    {
+     "n": "Cognición positiva",
+     "js": "[22, 25, 27, 29, 30].some(i => r[i] == null) ? 'Pendiente' : (L([22, 25, 27, 29, 30]))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 20,89 (DE 4,74) (Fariña et al., 2023, tabla 5)."
+    },
+    {
+     "n": "Cognición negativa, invertida",
+     "js": "[21, 23, 24, 26, 28].some(i => r[i] == null) ? 'Pendiente' : (R(21,7) + R(23,7) + R(24,7) + R(26,7) + R(28,7))",
+     "texto": "De 5 a 30. Media en la muestra española (n = 623): 23,38 (DE 5,88) (Fariña et al., 2023, tabla 5). A mayor puntaje, menos de lo negativo."
+    },
+    {
+     "n": "Afecto total",
+     "js": "[1, 2, 7, 8, 9, 3, 4, 5, 6, 10].some(i => r[i] == null) ? 'Pendiente' : (L([1, 2, 7, 8, 9]) + R(3,7) + R(4,7) + R(5,7) + R(6,7) + R(10,7))",
+     "texto": "De 10 a 60. Media: 36,68 (DE 12,26)."
+    },
+    {
+     "n": "Comportamiento total",
+     "js": "[11, 16, 17, 19, 20, 12, 13, 14, 15, 18].some(i => r[i] == null) ? 'Pendiente' : (L([11, 16, 17, 19, 20]) + R(12,7) + R(13,7) + R(14,7) + R(15,7) + R(18,7))",
+     "texto": "De 10 a 60. Media: 40,19 (DE 11,21)."
+    },
+    {
+     "n": "Cognición total",
+     "js": "[22, 25, 27, 29, 30, 21, 23, 24, 26, 28].some(i => r[i] == null) ? 'Pendiente' : (L([22, 25, 27, 29, 30]) + R(21,7) + R(23,7) + R(24,7) + R(26,7) + R(28,7))",
+     "texto": "De 10 a 60. Media: 44,25 (DE 10,10)."
+    },
+    {
+     "n": "Total EFI-30",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30].some(i => r[i] == null) ? 'Pendiente' : (L([1, 2, 7, 8, 9]) + R(3,7) + R(4,7) + R(5,7) + R(6,7) + R(10,7) + L([11, 16, 17, 19, 20]) + R(12,7) + R(13,7) + R(14,7) + R(15,7) + R(18,7) + L([22, 25, 27, 29, 30]) + R(21,7) + R(23,7) + R(24,7) + R(26,7) + R(28,7))",
+     "texto": "De 30 a 180: a mayor puntaje, más perdón. Media: 120,81 (DE 33,41). Los autores piden leer las seis escalas en conjunto."
+    }
+   ],
+   "nota": "EFI-30 en castellano de Fariña et al. (2023). Las tres escalas negativas se invierten (7 menos la respuesta). El anexo de la fuente imprime el ítem 12 en dos escalas; aquí el comportamiento positivo usa el 16, según la tabla 4. No se calculan la escala de falso perdón (ítems 31 a 35; los autores eliminan el protocolo con 20 o más) ni el ítem de perdón global, porque sus ítems no están en las fuentes: la validez del protocolo no se puede comprobar aquí. No hay puntos de corte clínicos. La fuente no declara licencia."
+  },
+  "sinitems": true
  },
  "eii": {
   "clave": "EII",
@@ -5507,6 +6492,141 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "lsas": {
+  "clave": "LSAS",
+  "sigla": "LSAS",
+  "titulo": "Escala de Ansiedad Social de Liebowitz",
+  "para": "Miedo y evitación en situaciones de interacción y de actuación ante otros.",
+  "areas": [
+   "Ansiedad",
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Heimberg y Magee, 2014",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la escala con su protocolo oficial (24 situaciones). Para cada situación marque aquí dos números de 0 a 3, con el mismo número de situación: primero el de miedo o ansiedad y luego el de evitación."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Miedo o ansiedad",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Situación 1",
+     "Situación 2",
+     "Situación 3",
+     "Situación 4",
+     "Situación 5",
+     "Situación 6",
+     "Situación 7",
+     "Situación 8",
+     "Situación 9",
+     "Situación 10",
+     "Situación 11",
+     "Situación 12",
+     "Situación 13",
+     "Situación 14",
+     "Situación 15",
+     "Situación 16",
+     "Situación 17",
+     "Situación 18",
+     "Situación 19",
+     "Situación 20",
+     "Situación 21",
+     "Situación 22",
+     "Situación 23",
+     "Situación 24"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Evitación",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Situación 1",
+     "Situación 2",
+     "Situación 3",
+     "Situación 4",
+     "Situación 5",
+     "Situación 6",
+     "Situación 7",
+     "Situación 8",
+     "Situación 9",
+     "Situación 10",
+     "Situación 11",
+     "Situación 12",
+     "Situación 13",
+     "Situación 14",
+     "Situación 15",
+     "Situación 16",
+     "Situación 17",
+     "Situación 18",
+     "Situación 19",
+     "Situación 20",
+     "Situación 21",
+     "Situación 22",
+     "Situación 23",
+     "Situación 24"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Miedo o ansiedad",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].some(i => r[i] == null) ? 'Pendiente' : (S(1,24))",
+     "texto": "De 0 a 72. Referencia: universitarios de Chimbote (n = 150), media 21,72 (DE 13,39) (Chauca, 2020)."
+    },
+    {
+     "n": "Evitación",
+     "js": "[25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48].some(i => r[i] == null) ? 'Pendiente' : (S(25,48))",
+     "texto": "De 0 a 72. Misma muestra: media 22,26 (DE 13,29)."
+    },
+    {
+     "n": "Total",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48].some(i => r[i] == null) ? 'Pendiente' : (S(1,48))",
+     "texto": "De 0 a 144: suma de las dos columnas (Franco-Jimenez, 2020). Sin puntos de corte."
+    }
+   ],
+   "nota": "Clave de la versión española de Bobes et al. (1999), según Madueño Caro et al. (2002). No se muestran cortes: los de Madueño (leve hasta 51, moderada de 52 a 81, grave «más de 82») dejan el 82 sin categoría, y los de 30 y 60 de Mennin et al. (2002) no se verificaron. Las subescalas por tipo de situación no se calculan: las fuentes no listan sus ítems. Las copias en español difieren en la redacción de las situaciones 10, 12 y 23. Sin periodo de referencia ni regla para datos faltantes en las fuentes."
+  },
+  "sinitems": true
  },
  "mbi": {
   "clave": "MBI",
@@ -7647,6 +8767,113 @@ const CALIFICAR = {
    ]
   }
  },
+ "ppti": {
+  "clave": "PPTI",
+  "sigla": "PPTI",
+  "titulo": "Inventario de Psicoterapia Positiva",
+  "para": "Bienestar según los cinco elementos de la teoría: emociones positivas, compromiso, relaciones, sentido y logro. Es la medida propia del protocolo y se reproduce en su apéndice C.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Rashid y Seligman, 2018, cap. 5 y apéndice C",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él. La escala va de 1 (nada parecido a mí) a 5 (muy parecido a mí)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Emociones positivas (P)",
+     "js": "[1, 6, 11, 16, 21].some(i => r[i] == null) ? 'Pendiente' : (L([1, 6, 11, 16, 21]))",
+     "texto": "De 5 a 25. Valores de referencia del manual: 14 en la muestra clínica y 21 en la no clínica."
+    },
+    {
+     "n": "Compromiso (E)",
+     "js": "[2, 7, 12, 17, 22].some(i => r[i] == null) ? 'Pendiente' : (L([2, 7, 12, 17, 22]))",
+     "texto": "De 5 a 25. Valores de referencia del manual: 16 y 21."
+    },
+    {
+     "n": "Relaciones (R)",
+     "js": "[3, 8, 13, 18, 23].some(i => r[i] == null) ? 'Pendiente' : (L([3, 8, 13, 18, 23]))",
+     "texto": "De 5 a 25. Valores de referencia del manual: 14 y 22."
+    },
+    {
+     "n": "Sentido (M)",
+     "js": "[4, 9, 14, 19, 24].some(i => r[i] == null) ? 'Pendiente' : (L([4, 9, 14, 19, 24]))",
+     "texto": "De 5 a 25. Valores de referencia del manual: 14 y 19."
+    },
+    {
+     "n": "Logro (A)",
+     "js": "[5, 10, 15, 20, 25].some(i => r[i] == null) ? 'Pendiente' : (L([5, 10, 15, 20, 25]))",
+     "texto": "De 5 a 25. Valores de referencia del manual: 18 y 21."
+    },
+    {
+     "n": "Total",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].some(i => r[i] == null) ? 'Pendiente' : (S(1,25))",
+     "texto": "De 25 a 125. Valores de referencia del manual: 76 en la muestra clínica y 104 en la no clínica."
+    }
+   ],
+   "nota": "Clave de Rashid y Seligman (2018, apéndice C.2). Los valores de referencia del manual vienen de 2501 adultos jóvenes, con «clínica» definida como 63 o más en el OQ-45 y «no clínica» como menos de 63; el libro no dice si son medias, medianas o cortes, así que no se usan como puntos de corte. Solo hay ítems en inglés; la adaptación portuguesa (Rodrigues, 2020) halló una estructura distinta y no se mezcla con esta clave."
+  },
+  "sinitems": true
+ },
  "psyrats": {
   "clave": "PSYRATS",
   "sigla": "PSYRATS",
@@ -8278,6 +9505,104 @@ const CALIFICAR = {
    ]
   }
  },
+ "sahd": {
+  "clave": "SAHD",
+  "sigla": "SAHD",
+  "titulo": "Escala de Actitudes ante la Muerte Adelantada",
+  "para": "Deseo de adelantar la muerte, una forma grave de desesperanza. En el ensayo, entre quienes asistieron a tres sesiones o más, solo bajó con la psicoterapia centrada en el sentido.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Breitbart et al., 2015",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la escala de 20 ítems de verdadero o falso con su protocolo y marque aquí la respuesta de cada ítem tal como la dio la persona; la hoja aplica la clave."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Verdadero",
+     "Falso"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "C([1, 7, 9, 12, 15, 19, 20],0) + C([2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 16, 17, 18],1)",
+     "rangos": [
+      [
+       0,
+       3,
+       "Bajo: menor deseo de adelantar la muerte"
+      ],
+      [
+       4,
+       9,
+       "Moderado"
+      ],
+      [
+       10,
+       20,
+       "Alto: mayor deseo de adelantar la muerte"
+      ]
+     ],
+     "texto": "De 0 a 20. Cortes de la validación española (Villavicencio-Chávez, 2016): 3 o menos, de 4 a 9 y 10 o más. Otros estudios usan 7 o más como alto (Rosenfeld et al., 1999; Pessin et al., 2003; Mystakidou et al., 2006). En su muestra de pacientes oncológicos avanzados, la media fue 4,99 (DE 5,30)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "(C([1, 7, 9, 12, 15, 19, 20],0) + C([2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 16, 17, 18],1)) >= 10",
+     "texto": "El total llega al corte alto (10 o más). La escala no mide riesgo suicida, pero este resultado pide explorar directamente el deseo de adelantar la muerte y la ideación suicida en esta misma atención, y revisar las respuestas ítem por ítem."
+    },
+    {
+     "js": "RANGO(1,20).some(i => r[i] == null)",
+     "texto": "Faltan respuestas por marcar: el puntaje es parcial y su lectura por rangos no es válida todavía."
+    }
+   ],
+   "nota": "Versión española (SAHD-Sp, 20 ítems) de Villavicencio-Chávez et al. (2014), con la clave de su tesis (2016). Hay siete ítems que puntúan con «Falso»; la tesis y Kremeike et al. (2025, tabla 1) coinciden, aunque el texto de Kremeike menciona seis. Los autores advierten que los cortes no recogen la complejidad del deseo de adelantar la muerte y piden leer ítem por ítem, y que no se aplique sin acuerdo del equipo tratante sobre el malestar que pueda causar. No es una suma diagnóstica de riesgo suicida. Sin periodo de referencia ni regla para datos faltantes. Los ítems en español de la tesis tienen uso restringido."
+  },
+  "sinitems": true
+ },
  "scoff": {
   "clave": "SCOFF",
   "sigla": "SCOFF",
@@ -8636,6 +9961,342 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "sq": {
+  "clave": "SQ",
+  "sigla": "SQ",
+  "titulo": "Cuestionario de Síntomas de Kellner",
+  "para": "Cuestionario breve que mide a la vez malestar y bienestar (relajación, satisfacción, bienestar físico, cordialidad).",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Fava, 2016, cap. 3",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el cuestionario con su protocolo (92 ítems; siete se responden verdadero o falso). Marque aquí la respuesta de cada ítem: «Sí / Verdadero» o «No / Falso», tal como la dio la persona; la hoja aplica la clave. Al final, indique la forma aplicada."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Sí / Verdadero",
+     "No / Falso"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49",
+     "Ítem 50",
+     "Ítem 51",
+     "Ítem 52",
+     "Ítem 53",
+     "Ítem 54",
+     "Ítem 55",
+     "Ítem 56",
+     "Ítem 57",
+     "Ítem 58",
+     "Ítem 59",
+     "Ítem 60",
+     "Ítem 61",
+     "Ítem 62",
+     "Ítem 63",
+     "Ítem 64",
+     "Ítem 65",
+     "Ítem 66",
+     "Ítem 67",
+     "Ítem 68",
+     "Ítem 69",
+     "Ítem 70",
+     "Ítem 71",
+     "Ítem 72",
+     "Ítem 73",
+     "Ítem 74",
+     "Ítem 75",
+     "Ítem 76",
+     "Ítem 77",
+     "Ítem 78",
+     "Ítem 79",
+     "Ítem 80",
+     "Ítem 81",
+     "Ítem 82",
+     "Ítem 83",
+     "Ítem 84",
+     "Ítem 85",
+     "Ítem 86",
+     "Ítem 87",
+     "Ítem 88",
+     "Ítem 89",
+     "Ítem 90",
+     "Ítem 91",
+     "Ítem 92"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Semanal (la semana pasada)",
+     "Diaria (hoy)"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Forma aplicada"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Malestar total (suma de las cuatro escalas)",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92].some(i => r[i] == null) ? 'Pendiente' : ((C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1) + C([9, 16, 23, 29, 50, 89],0)) + (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1) + C([4, 7, 40, 43, 51, 71],0)) + (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1) + C([10, 14, 19, 21, 46, 78],0)) + (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1) + C([13, 17, 31, 35, 38, 83],0)))",
+     "texto": "De 0 a 92. Las fuentes no traen medias ni cortes: Benasi, Fava y Rafanelli (2020) definen malestar moderado entre 1 y 2 desviaciones estándar por encima de la media de personas sin trastorno, y grave desde 2, según las normas de Kellner (1987), que no están incluidas aquí."
+    },
+    {
+     "n": "Ansiedad (escala principal, 23 ítems)",
+     "js": "[1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87, 9, 16, 23, 29, 50, 89].some(i => r[i] == null) ? 'Pendiente' : (C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1) + C([9, 16, 23, 29, 50, 89],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Ansiedad, síntomas (17 ítems)",
+     "js": "[1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87].some(i => r[i] == null) ? 'Pendiente' : (C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Relajación (6 ítems de bienestar)",
+     "js": "[9, 16, 23, 29, 50, 89].some(i => r[i] == null) ? 'Pendiente' : (C([9, 16, 23, 29, 50, 89],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Depresión (escala principal, 23 ítems)",
+     "js": "[2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91, 4, 7, 40, 43, 51, 71].some(i => r[i] == null) ? 'Pendiente' : (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1) + C([4, 7, 40, 43, 51, 71],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Depresión, síntomas (17 ítems)",
+     "js": "[2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91].some(i => r[i] == null) ? 'Pendiente' : (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Contento (6 ítems de bienestar)",
+     "js": "[4, 7, 40, 43, 51, 71].some(i => r[i] == null) ? 'Pendiente' : (C([4, 7, 40, 43, 51, 71],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Somatización (escala principal, 23 ítems)",
+     "js": "[12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92, 10, 14, 19, 21, 46, 78].some(i => r[i] == null) ? 'Pendiente' : (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1) + C([10, 14, 19, 21, 46, 78],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Somatización, síntomas (17 ítems)",
+     "js": "[12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92].some(i => r[i] == null) ? 'Pendiente' : (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Bienestar físico (6 ítems de bienestar)",
+     "js": "[10, 14, 19, 21, 46, 78].some(i => r[i] == null) ? 'Pendiente' : (C([10, 14, 19, 21, 46, 78],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Hostilidad (escala principal, 23 ítems)",
+     "js": "[3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90, 13, 17, 31, 35, 38, 83].some(i => r[i] == null) ? 'Pendiente' : (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1) + C([13, 17, 31, 35, 38, 83],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Hostilidad, síntomas (17 ítems)",
+     "js": "[3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90].some(i => r[i] == null) ? 'Pendiente' : (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Cordialidad (6 ítems de bienestar)",
+     "js": "[13, 17, 31, 35, 38, 83].some(i => r[i] == null) ? 'Pendiente' : (C([13, 17, 31, 35, 38, 83],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Forma aplicada",
+     "js": "r[93] == null ? 2 : r[93]",
+     "rangos": [
+      [
+       0,
+       0,
+       "Forma semanal: se refiere a la semana pasada"
+      ],
+      [
+       1,
+       1,
+       "Forma diaria: se refiere a hoy"
+      ],
+      [
+       2,
+       2,
+       "Sin indicar"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[47] === 1 || r[67] === 1",
+     "texto": "Se marcó «Sí» en el ítem 47 o en el 67, que exploran ideas sobre la muerte y sobre acabar con la vida: pregunte directamente por ideación suicida en esta misma atención."
+    }
+   ],
+   "nota": "Clave de Benasi, Fava y Rafanelli (2020), apéndice 2. Sin normas ni puntos de corte en las fuentes; esos autores señalan que hay varios cortes sin consenso y que el SQ no es un instrumento diagnóstico. No hay versión en español con ítems en las fuentes. Se ha usado en adolescentes de 13 a 23 años, sin normas por edad."
+  },
+  "sinitems": true
+ },
+ "teps": {
+  "clave": "TEPS",
+  "sigla": "TEPS",
+  "titulo": "Escala de Experiencia Temporal del Placer",
+  "para": "Distingue el placer anticipatorio, que depende de querer, del placer consumatorio, que depende de disfrutar.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Craske et al., 2022, cap. 3",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él. La escala va de 1 (muy falso para mí) a 6 (muy verdadero para mí)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Placer anticipatorio",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].some(i => r[i] == null) ? 'Pendiente' : (L([1,4,6,8,10,11,15,16,18]) + R(13,7))",
+     "texto": "De 10 a 60 (el ítem 13 se invierte). A mayor puntaje, más placer anticipatorio."
+    },
+    {
+     "n": "Placer consumatorio",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].some(i => r[i] == null) ? 'Pendiente' : (L([2,3,5,7,9,12,14,17]))",
+     "texto": "De 8 a 48. A mayor puntaje, más placer consumatorio."
+    },
+    {
+     "n": "Total",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].some(i => r[i] == null) ? 'Pendiente' : (L([1,4,6,8,10,11,15,16,18]) + R(13,7) + L([2,3,5,7,9,12,14,17]))",
+     "texto": "De 18 a 108. A menor puntaje, mayor propensión a la anhedonia. Sin puntos de corte ni normas españolas; como contexto, la versión brasileña de 18 ítems tuvo una media de 70,75 (DE 15,06) en 40 personas de su fase de adaptación (TEPS-Br, 2022)."
+    }
+   ],
+   "nota": "La clave proviene de fuentes secundarias (Chan et al., 2012, tabla 2; TEPS-Br, 2022), no del artículo original de Gard et al. (2006). No hay ítems en español en las fuentes. No se calculan los factores de las versiones chinas de 20 ítems. El ítem 13 funciona mal en las adaptaciones china y brasileña: tómelo con cautela. Sin periodo de referencia ni regla para datos faltantes."
+  },
+  "sinitems": true
  },
  "tmms-24": {
   "clave": "TMMS-24",
@@ -8998,6 +10659,139 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "y-bocs": {
+  "clave": "Y-BOCS",
+  "sigla": "Y-BOCS",
+  "titulo": "Escala de Obsesiones y Compulsiones de Yale-Brown",
+  "para": "Gravedad de obsesiones y compulsiones: tiempo que ocupan, interferencia, malestar, resistencia y control. Es la medida de referencia en los ensayos.",
+  "areas": [
+   "TOC y conductas repetitivas"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Franklin y Foa, 2014",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la entrevista de Goodman con su protocolo oficial. Luego marque aquí, para cada ítem de gravedad, la puntuación de 0 a 4 que asignó. La lista de síntomas y los ítems de investigación no puntúan y no se anotan aquí."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Obsesiones (ítems 1 a 5)",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Compulsiones (ítems 6 a 10)",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Obsesiones (ítems 1 a 5)",
+     "js": "S(1,5)",
+     "texto": "De 0 a 20. Referencia: 20 pacientes peruanos con TOC, medias de 9,50 a 10,50 según el observador (Sal y Rosas, 2002)."
+    },
+    {
+     "n": "Compulsiones (ítems 6 a 10)",
+     "js": "S(6,10)",
+     "texto": "De 0 a 20. Misma muestra: medias de 8,85 a 9,10."
+    },
+    {
+     "n": "Puntaje total",
+     "js": "S(1,10)",
+     "rangos": [
+      [
+       0,
+       7,
+       "Sin manifestaciones clínicas"
+      ],
+      [
+       8,
+       15,
+       "Leve"
+      ],
+      [
+       16,
+       23,
+       "Moderado"
+      ],
+      [
+       24,
+       31,
+       "Severo"
+      ],
+      [
+       32,
+       40,
+       "Extremo"
+      ]
+     ],
+     "texto": "De 0 a 40. Los rangos son los de la versión autoaplicada de Steketee, Frost y Bogart (1996), citados por Yacila (2016): no son puntos de corte de la entrevista de Goodman ni sirven para diagnosticar. Referencia clínica: Goodman et al. (1989), 21,7 a 22,1 (DE 8); pacientes peruanos con TOC, 18,35 a 19,55 (DE 7,78 a 8,56) (Sal y Rosas, 2002)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "RANGO(1,10).some(i => r[i] == null)",
+     "texto": "Faltan respuestas por marcar: el puntaje es parcial y su lectura por rangos no es válida todavía."
+    }
+   ],
+   "nota": "Entrevista de Goodman de diez ítems (Sal y Rosas, 2002). Los rangos llegan a través de Yacila (2016), cuya adaptación es para dismorfia corporal, y se atribuyen a la versión autoaplicada de Steketee et al. (1996); los autores no los validaron clínicamente. No mezcle las normas de la entrevista con las del autoinforme. Las fuentes no traen el periodo de referencia ni la regla para ítems faltantes."
+  },
+  "sinitems": true
  },
  "ysq": {
   "clave": "YSQ",
@@ -9443,6 +11237,165 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "apq": {
+  "clave": "APQ",
+  "sigla": "APQ",
+  "titulo": "Cuestionario de Crianza de Alabama",
+  "para": "Prácticas de crianza que el tratamiento busca cambiar: implicación, crianza positiva, supervisión y disciplina.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "OPS, Familias latinas y jóvenes: un compendio de herramientas de evaluación, pp. 13–15; traducción de Servera (2007). Frick, Developmental Psychopathology Lab, LSU: condiciones y formulario original.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la versión del niño (8 a 12 años) con sus dos hojas, la de la madre y la del padre. Marque aquí la respuesta de 1 a 5 (1 nunca, 5 siempre) en los ítems que puntúan, con el número del protocolo. Los ítems de implicación se anotan por separado para cada progenitor; los demás son iguales en las dos hojas y se anotan una vez. Si el niño no convive con uno de los dos, déjelo en blanco."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Hoja de la madre",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Madre · Ítem 1",
+     "Madre · Ítem 7",
+     "Madre · Ítem 9",
+     "Madre · Ítem 14",
+     "Madre · Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Hoja del padre",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Padre · Ítem 1",
+     "Padre · Ítem 7",
+     "Padre · Ítem 9",
+     "Padre · Ítem 14",
+     "Padre · Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems comunes a las dos hojas",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3",
+     "Ítem 5",
+     "Ítem 8",
+     "Ítem 10",
+     "Ítem 16",
+     "Ítem 18",
+     "Ítem 22",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Implicación de la madre (ítems 1, 7, 9, 14, 20)",
+     "js": "[1, 2, 3, 4, 5].every(i => r[i] == null) ? 'Sin respuestas' : [1, 2, 3, 4, 5].some(i => r[i] == null) ? 'Pendiente' : (S(1,5))",
+     "texto": "De 5 a 25: a mayor puntaje, más implicación parental."
+    },
+    {
+     "n": "Implicación del padre (ítems 1, 7, 9, 14, 20)",
+     "js": "[6, 7, 8, 9, 10].every(i => r[i] == null) ? 'Sin respuestas' : [6, 7, 8, 9, 10].some(i => r[i] == null) ? 'Pendiente' : (S(6,10))",
+     "texto": "De 5 a 25: a mayor puntaje, más implicación parental."
+    },
+    {
+     "n": "Crianza positiva (ítems 5, 16, 18)",
+     "js": "[12, 15, 16].every(i => r[i] == null) ? 'Sin respuestas' : [12, 15, 16].some(i => r[i] == null) ? 'Pendiente' : (L([12, 15, 16]))",
+     "texto": "De 3 a 15: a mayor puntaje, más crianza positiva."
+    },
+    {
+     "n": "Disciplina inconsistente (ítems 3, 8, 22, 31)",
+     "js": "[11, 13, 17, 21].every(i => r[i] == null) ? 'Sin respuestas' : [11, 13, 17, 21].some(i => r[i] == null) ? 'Pendiente' : (L([11, 13, 17, 21]))",
+     "texto": "De 4 a 20: a mayor puntaje, más disciplina inconsistente. Media en muestra comunitaria: 10,25 (DE 3,69) (Escribano et al., 2013, tabla 2, con la escala invertida)."
+    },
+    {
+     "n": "Pobre supervisión (ítems 10, 28, 29, 30)",
+     "js": "[14, 18, 19, 20].every(i => r[i] == null) ? 'Sin respuestas' : [14, 18, 19, 20].some(i => r[i] == null) ? 'Pendiente' : (L([14, 18, 19, 20]))",
+     "texto": "De 4 a 20: a mayor puntaje, más pobre supervisión. Media en muestra comunitaria: 6,37 (DE 2,91) (Escribano et al., 2013, tabla 2, con la escala invertida)."
+    },
+    {
+     "n": "Para comparar con la validación: implicación de la madre, invertida",
+     "js": "[1, 2, 3, 4, 5].every(i => r[i] == null) ? 'Sin respuestas' : [1, 2, 3, 4, 5].some(i => r[i] == null) ? 'Pendiente' : (30 - S(1,5))",
+     "texto": "Así la publica la validación, con la escala invertida (a mayor puntaje, prácticas menos adecuadas). Media: 11,62 (DE 3,95)."
+    },
+    {
+     "n": "Para comparar con la validación: implicación del padre, invertida",
+     "js": "[6, 7, 8, 9, 10].every(i => r[i] == null) ? 'Sin respuestas' : [6, 7, 8, 9, 10].some(i => r[i] == null) ? 'Pendiente' : (30 - S(6,10))",
+     "texto": "Media: 13,09 (DE 4,76)."
+    },
+    {
+     "n": "Para comparar con la validación: crianza positiva, invertida",
+     "js": "[12, 15, 16].every(i => r[i] == null) ? 'Sin respuestas' : [12, 15, 16].some(i => r[i] == null) ? 'Pendiente' : (18 - L([12, 15, 16]))",
+     "texto": "Media: 7,23 (DE 2,99)."
+    }
+   ],
+   "nota": "Autoinforme infantil de 16 ítems en la validación española de Escribano et al. (2013): niños de 8 a 12 años de muestra comunitaria, sin normas ni puntos de corte, y los autores advierten que no se generalice a muestras clínicas. La fiabilidad es baja (alfa de 0,55 a 0,62; 0,74 en implicación del padre). No es la forma de padres que usan los planes: existe la APQ-Pr de preescolares (De la Osa et al., 2014, 36 ítems) y la clave original de 42 ítems y cinco escalas (Shelton et al., 1996), pero no se programaron. Los ítems de castigo corporal (33, 35 y 38) no puntúan en esta versión."
+  },
+  "sinitems": true
  },
  "crafft": {
   "clave": "CRAFFT",
@@ -11605,6 +13558,7 @@ const CALIFICAR = {
      ]
     }
    ],
+   "blancos": true,
    "nota": "Responda solo la forma que vaya a calificar (la del niño o la de los padres); la otra queda en blanco y vale 0."
   }
  },
@@ -12114,6 +14068,7 @@ const CALIFICAR = {
      ]
     }
    ],
+   "blancos": true,
    "nota": "Responda solo la forma que vaya a calificar (la del niño o la del adulto); la otra queda en blanco y vale 0."
   }
  },
@@ -12217,6 +14172,255 @@ const CALIFICAR = {
    ],
    "nota": "Las preguntas 10 y 20 son generales y no entran en la suma. Los cortes se validaron con la forma que responden los docentes."
   }
+ },
+ "sq-k": {
+  "clave": "SQ-K",
+  "sigla": "SQ-K",
+  "titulo": "Cuestionario de Síntomas de Kellner",
+  "para": "Mide a la vez malestar, como la ansiedad y la somatización, y bienestar, como la cordialidad; se usó en los estudios escolares de la terapia de bienestar.",
+  "areas": [
+   "Malestar general"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Citado desde Fava, 2016, caps. 3 y 19",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el cuestionario con su protocolo (92 ítems; siete se responden verdadero o falso). Marque aquí la respuesta de cada ítem: «Sí / Verdadero» o «No / Falso», tal como la dio la persona; la hoja aplica la clave. Al final, indique la forma aplicada."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Sí / Verdadero",
+     "No / Falso"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49",
+     "Ítem 50",
+     "Ítem 51",
+     "Ítem 52",
+     "Ítem 53",
+     "Ítem 54",
+     "Ítem 55",
+     "Ítem 56",
+     "Ítem 57",
+     "Ítem 58",
+     "Ítem 59",
+     "Ítem 60",
+     "Ítem 61",
+     "Ítem 62",
+     "Ítem 63",
+     "Ítem 64",
+     "Ítem 65",
+     "Ítem 66",
+     "Ítem 67",
+     "Ítem 68",
+     "Ítem 69",
+     "Ítem 70",
+     "Ítem 71",
+     "Ítem 72",
+     "Ítem 73",
+     "Ítem 74",
+     "Ítem 75",
+     "Ítem 76",
+     "Ítem 77",
+     "Ítem 78",
+     "Ítem 79",
+     "Ítem 80",
+     "Ítem 81",
+     "Ítem 82",
+     "Ítem 83",
+     "Ítem 84",
+     "Ítem 85",
+     "Ítem 86",
+     "Ítem 87",
+     "Ítem 88",
+     "Ítem 89",
+     "Ítem 90",
+     "Ítem 91",
+     "Ítem 92"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Semanal (la semana pasada)",
+     "Diaria (hoy)"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Forma aplicada"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Malestar total (suma de las cuatro escalas)",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92].some(i => r[i] == null) ? 'Pendiente' : ((C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1) + C([9, 16, 23, 29, 50, 89],0)) + (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1) + C([4, 7, 40, 43, 51, 71],0)) + (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1) + C([10, 14, 19, 21, 46, 78],0)) + (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1) + C([13, 17, 31, 35, 38, 83],0)))",
+     "texto": "De 0 a 92. Las fuentes no traen medias ni cortes: Benasi, Fava y Rafanelli (2020) definen malestar moderado entre 1 y 2 desviaciones estándar por encima de la media de personas sin trastorno, y grave desde 2, según las normas de Kellner (1987), que no están incluidas aquí."
+    },
+    {
+     "n": "Ansiedad (escala principal, 23 ítems)",
+     "js": "[1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87, 9, 16, 23, 29, 50, 89].some(i => r[i] == null) ? 'Pendiente' : (C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1) + C([9, 16, 23, 29, 50, 89],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Ansiedad, síntomas (17 ítems)",
+     "js": "[1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87].some(i => r[i] == null) ? 'Pendiente' : (C([1, 5, 8, 18, 30, 34, 36, 42, 49, 54, 59, 62, 63, 64, 68, 86, 87],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Relajación (6 ítems de bienestar)",
+     "js": "[9, 16, 23, 29, 50, 89].some(i => r[i] == null) ? 'Pendiente' : (C([9, 16, 23, 29, 50, 89],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Depresión (escala principal, 23 ítems)",
+     "js": "[2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91, 4, 7, 40, 43, 51, 71].some(i => r[i] == null) ? 'Pendiente' : (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1) + C([4, 7, 40, 43, 51, 71],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Depresión, síntomas (17 ítems)",
+     "js": "[2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91].some(i => r[i] == null) ? 'Pendiente' : (C([2, 6, 24, 27, 39, 45, 47, 58, 60, 61, 66, 67, 73, 75, 76, 84, 91],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Contento (6 ítems de bienestar)",
+     "js": "[4, 7, 40, 43, 51, 71].some(i => r[i] == null) ? 'Pendiente' : (C([4, 7, 40, 43, 51, 71],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Somatización (escala principal, 23 ítems)",
+     "js": "[12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92, 10, 14, 19, 21, 46, 78].some(i => r[i] == null) ? 'Pendiente' : (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1) + C([10, 14, 19, 21, 46, 78],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Somatización, síntomas (17 ítems)",
+     "js": "[12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92].some(i => r[i] == null) ? 'Pendiente' : (C([12, 15, 22, 28, 33, 41, 44, 52, 53, 57, 65, 72, 74, 77, 79, 85, 92],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Bienestar físico (6 ítems de bienestar)",
+     "js": "[10, 14, 19, 21, 46, 78].some(i => r[i] == null) ? 'Pendiente' : (C([10, 14, 19, 21, 46, 78],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Hostilidad (escala principal, 23 ítems)",
+     "js": "[3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90, 13, 17, 31, 35, 38, 83].some(i => r[i] == null) ? 'Pendiente' : (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1) + C([13, 17, 31, 35, 38, 83],0))",
+     "texto": "De 0 a 23: a mayor puntaje, más síntomas."
+    },
+    {
+     "n": "Hostilidad, síntomas (17 ítems)",
+     "js": "[3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90].some(i => r[i] == null) ? 'Pendiente' : (C([3, 11, 20, 25, 26, 32, 37, 48, 55, 56, 69, 70, 80, 81, 82, 88, 90],1))",
+     "texto": "De 0 a 17."
+    },
+    {
+     "n": "Cordialidad (6 ítems de bienestar)",
+     "js": "[13, 17, 31, 35, 38, 83].some(i => r[i] == null) ? 'Pendiente' : (C([13, 17, 31, 35, 38, 83],1))",
+     "texto": "De 0 a 6: a mayor puntaje, más bienestar."
+    },
+    {
+     "n": "Forma aplicada",
+     "js": "r[93] == null ? 2 : r[93]",
+     "rangos": [
+      [
+       0,
+       0,
+       "Forma semanal: se refiere a la semana pasada"
+      ],
+      [
+       1,
+       1,
+       "Forma diaria: se refiere a hoy"
+      ],
+      [
+       2,
+       2,
+       "Sin indicar"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[47] === 1 || r[67] === 1",
+     "texto": "Se marcó «Sí» en el ítem 47 o en el 67, que exploran ideas sobre la muerte y sobre acabar con la vida: pregunte directamente por ideación suicida en esta misma atención."
+    }
+   ],
+   "nota": "Clave de Benasi, Fava y Rafanelli (2020), apéndice 2. Sin normas ni puntos de corte en las fuentes; esos autores señalan que hay varios cortes sin consenso y que el SQ no es un instrumento diagnóstico. No hay versión en español con ítems en las fuentes. Es el mismo SQ de Kellner: ninguna fuente describe una forma infantil distinta. Se ha usado en adolescentes de 13 a 23 años, pero no hay normas ni validación específicas para niños ni para adolescentes: no lo presente como forma infantil validada."
+  },
+  "sinitems": true
  },
  "sras-r": {
   "clave": "SRAS-R",
@@ -12721,6 +14925,2148 @@ const CALIFICAR = {
    ]
   }
  },
+ "whodas-2-0": {
+  "clave": "WHODAS 2.0",
+  "sigla": "WHODAS 2.0",
+  "titulo": "Evaluación de Discapacidad de la Organización Mundial de la Salud",
+  "para": "Funcionamiento y discapacidad en seis dominios de la vida diaria. No mide síntomas: mide qué tanto interfieren.",
+  "areas": [
+   "Salud, sueño y síntomas físicos",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Malestar psicológico general» · fuente oficial: https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health/who-disability-assessment-schedule.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la versión autoadministrada de 36 ítems de la OMS (últimos 30 días) y marque aquí la respuesta de cada ítem: 1 ninguna dificultad, 2 leve, 3 moderada, 4 grave, 5 extrema o no puede hacerlo."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿La persona trabaja (con o sin remuneración) o estudia?"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítem",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "D1.1"
+     },
+     {
+      "x": "D1.2"
+     },
+     {
+      "x": "D1.3"
+     },
+     {
+      "x": "D1.4"
+     },
+     {
+      "x": "D1.5"
+     },
+     {
+      "x": "D1.6"
+     },
+     {
+      "x": "D2.1"
+     },
+     {
+      "x": "D2.2"
+     },
+     {
+      "x": "D2.3"
+     },
+     {
+      "x": "D2.4"
+     },
+     {
+      "x": "D2.5"
+     },
+     {
+      "x": "D3.1"
+     },
+     {
+      "x": "D3.2"
+     },
+     {
+      "x": "D3.3"
+     },
+     {
+      "x": "D3.4"
+     },
+     {
+      "x": "D4.1"
+     },
+     {
+      "x": "D4.2"
+     },
+     {
+      "x": "D4.3"
+     },
+     {
+      "x": "D4.4"
+     },
+     {
+      "x": "D4.5"
+     },
+     {
+      "x": "D5.1"
+     },
+     {
+      "x": "D5.2"
+     },
+     {
+      "x": "D5.3"
+     },
+     {
+      "x": "D5.4"
+     },
+     {
+      "x": "D5.5",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "D5.6",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "D5.7",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "D5.8",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "D6.1"
+     },
+     {
+      "x": "D6.2"
+     },
+     {
+      "x": "D6.3"
+     },
+     {
+      "x": "D6.4"
+     },
+     {
+      "x": "D6.5"
+     },
+     {
+      "x": "D6.6"
+     },
+     {
+      "x": "D6.7"
+     },
+     {
+      "x": "D6.8"
+     }
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total de discapacidad (0-100)",
+     "js": "Math.round((r[1] === 1 ? ((r[2] == null ? 0 : r[2] - 1) + (r[3] == null ? 0 : r[3] - 1) + (r[4] == null ? 0 : r[4] - 1) + (r[5] == null ? 0 : r[5] - 1) + (r[6] == null ? 0 : [0,1,1,2,2][r[6] - 1]) + (r[7] == null ? 0 : [0,1,1,2,2][r[7] - 1]) + (r[8] == null ? 0 : r[8] - 1) + (r[9] == null ? 0 : [0,1,1,2,2][r[9] - 1]) + (r[10] == null ? 0 : [0,1,1,2,2][r[10] - 1]) + (r[11] == null ? 0 : r[11] - 1) + (r[12] == null ? 0 : r[12] - 1) + (r[13] == null ? 0 : [0,1,1,2,2][r[13] - 1]) + (r[14] == null ? 0 : r[14] - 1) + (r[15] == null ? 0 : [0,1,1,2,2][r[15] - 1]) + (r[16] == null ? 0 : [0,1,1,2,2][r[16] - 1]) + (r[17] == null ? 0 : [0,1,1,2,2][r[17] - 1]) + (r[18] == null ? 0 : [0,1,1,2,2][r[18] - 1]) + (r[19] == null ? 0 : [0,1,1,2,2][r[19] - 1]) + (r[20] == null ? 0 : r[20] - 1) + (r[21] == null ? 0 : [0,1,1,2,2][r[21] - 1]) + (r[22] == null ? 0 : [0,1,1,2,2][r[22] - 1]) + (r[23] == null ? 0 : [0,1,1,2,2][r[23] - 1]) + (r[24] == null ? 0 : r[24] - 1) + (r[25] == null ? 0 : [0,1,1,2,2][r[25] - 1]) + (r[30] == null ? 0 : [0,1,1,2,2][r[30] - 1]) + (r[31] == null ? 0 : r[31] - 1) + (r[32] == null ? 0 : [0,1,1,2,2][r[32] - 1]) + (r[33] == null ? 0 : r[33] - 1) + (r[34] == null ? 0 : r[34] - 1) + (r[35] == null ? 0 : [0,1,1,2,2][r[35] - 1]) + (r[36] == null ? 0 : r[36] - 1) + (r[37] == null ? 0 : [0,1,1,2,2][r[37] - 1]) + (r[26] == null ? 0 : [0,1,1,2,2][r[26] - 1]) + (r[27] == null ? 0 : r[27] - 1) + (r[28] == null ? 0 : r[28] - 1) + (r[29] == null ? 0 : r[29] - 1)) * 100 / 106 : ((r[2] == null ? 0 : r[2] - 1) + (r[3] == null ? 0 : r[3] - 1) + (r[4] == null ? 0 : r[4] - 1) + (r[5] == null ? 0 : r[5] - 1) + (r[6] == null ? 0 : [0,1,1,2,2][r[6] - 1]) + (r[7] == null ? 0 : [0,1,1,2,2][r[7] - 1]) + (r[8] == null ? 0 : r[8] - 1) + (r[9] == null ? 0 : [0,1,1,2,2][r[9] - 1]) + (r[10] == null ? 0 : [0,1,1,2,2][r[10] - 1]) + (r[11] == null ? 0 : r[11] - 1) + (r[12] == null ? 0 : r[12] - 1) + (r[13] == null ? 0 : [0,1,1,2,2][r[13] - 1]) + (r[14] == null ? 0 : r[14] - 1) + (r[15] == null ? 0 : [0,1,1,2,2][r[15] - 1]) + (r[16] == null ? 0 : [0,1,1,2,2][r[16] - 1]) + (r[17] == null ? 0 : [0,1,1,2,2][r[17] - 1]) + (r[18] == null ? 0 : [0,1,1,2,2][r[18] - 1]) + (r[19] == null ? 0 : [0,1,1,2,2][r[19] - 1]) + (r[20] == null ? 0 : r[20] - 1) + (r[21] == null ? 0 : [0,1,1,2,2][r[21] - 1]) + (r[22] == null ? 0 : [0,1,1,2,2][r[22] - 1]) + (r[23] == null ? 0 : [0,1,1,2,2][r[23] - 1]) + (r[24] == null ? 0 : r[24] - 1) + (r[25] == null ? 0 : [0,1,1,2,2][r[25] - 1]) + (r[30] == null ? 0 : [0,1,1,2,2][r[30] - 1]) + (r[31] == null ? 0 : r[31] - 1) + (r[32] == null ? 0 : [0,1,1,2,2][r[32] - 1]) + (r[33] == null ? 0 : r[33] - 1) + (r[34] == null ? 0 : r[34] - 1) + (r[35] == null ? 0 : [0,1,1,2,2][r[35] - 1]) + (r[36] == null ? 0 : r[36] - 1) + (r[37] == null ? 0 : [0,1,1,2,2][r[37] - 1])) * 100 / 92) * 10) / 10",
+     "texto": "Puntuación compleja de la OMS: 0 sin discapacidad, 100 discapacidad total. Sin puntos de corte."
+    },
+    {
+     "n": "Percentil en las normas poblacionales de la OMS",
+     "js": "((x, t) => { for (let k = 1; k < t.length; k++) if (x <= t[k][0]) return Math.round(t[k-1][1] + (x - t[k-1][0]) * (t[k][1] - t[k-1][1]) / (t[k][0] - t[k-1][0])); return 100; })((r[1] === 1 ? ((r[2] == null ? 0 : r[2] - 1) + (r[3] == null ? 0 : r[3] - 1) + (r[4] == null ? 0 : r[4] - 1) + (r[5] == null ? 0 : r[5] - 1) + (r[6] == null ? 0 : [0,1,1,2,2][r[6] - 1]) + (r[7] == null ? 0 : [0,1,1,2,2][r[7] - 1]) + (r[8] == null ? 0 : r[8] - 1) + (r[9] == null ? 0 : [0,1,1,2,2][r[9] - 1]) + (r[10] == null ? 0 : [0,1,1,2,2][r[10] - 1]) + (r[11] == null ? 0 : r[11] - 1) + (r[12] == null ? 0 : r[12] - 1) + (r[13] == null ? 0 : [0,1,1,2,2][r[13] - 1]) + (r[14] == null ? 0 : r[14] - 1) + (r[15] == null ? 0 : [0,1,1,2,2][r[15] - 1]) + (r[16] == null ? 0 : [0,1,1,2,2][r[16] - 1]) + (r[17] == null ? 0 : [0,1,1,2,2][r[17] - 1]) + (r[18] == null ? 0 : [0,1,1,2,2][r[18] - 1]) + (r[19] == null ? 0 : [0,1,1,2,2][r[19] - 1]) + (r[20] == null ? 0 : r[20] - 1) + (r[21] == null ? 0 : [0,1,1,2,2][r[21] - 1]) + (r[22] == null ? 0 : [0,1,1,2,2][r[22] - 1]) + (r[23] == null ? 0 : [0,1,1,2,2][r[23] - 1]) + (r[24] == null ? 0 : r[24] - 1) + (r[25] == null ? 0 : [0,1,1,2,2][r[25] - 1]) + (r[30] == null ? 0 : [0,1,1,2,2][r[30] - 1]) + (r[31] == null ? 0 : r[31] - 1) + (r[32] == null ? 0 : [0,1,1,2,2][r[32] - 1]) + (r[33] == null ? 0 : r[33] - 1) + (r[34] == null ? 0 : r[34] - 1) + (r[35] == null ? 0 : [0,1,1,2,2][r[35] - 1]) + (r[36] == null ? 0 : r[36] - 1) + (r[37] == null ? 0 : [0,1,1,2,2][r[37] - 1]) + (r[26] == null ? 0 : [0,1,1,2,2][r[26] - 1]) + (r[27] == null ? 0 : r[27] - 1) + (r[28] == null ? 0 : r[28] - 1) + (r[29] == null ? 0 : r[29] - 1)) * 100 / 106 : ((r[2] == null ? 0 : r[2] - 1) + (r[3] == null ? 0 : r[3] - 1) + (r[4] == null ? 0 : r[4] - 1) + (r[5] == null ? 0 : r[5] - 1) + (r[6] == null ? 0 : [0,1,1,2,2][r[6] - 1]) + (r[7] == null ? 0 : [0,1,1,2,2][r[7] - 1]) + (r[8] == null ? 0 : r[8] - 1) + (r[9] == null ? 0 : [0,1,1,2,2][r[9] - 1]) + (r[10] == null ? 0 : [0,1,1,2,2][r[10] - 1]) + (r[11] == null ? 0 : r[11] - 1) + (r[12] == null ? 0 : r[12] - 1) + (r[13] == null ? 0 : [0,1,1,2,2][r[13] - 1]) + (r[14] == null ? 0 : r[14] - 1) + (r[15] == null ? 0 : [0,1,1,2,2][r[15] - 1]) + (r[16] == null ? 0 : [0,1,1,2,2][r[16] - 1]) + (r[17] == null ? 0 : [0,1,1,2,2][r[17] - 1]) + (r[18] == null ? 0 : [0,1,1,2,2][r[18] - 1]) + (r[19] == null ? 0 : [0,1,1,2,2][r[19] - 1]) + (r[20] == null ? 0 : r[20] - 1) + (r[21] == null ? 0 : [0,1,1,2,2][r[21] - 1]) + (r[22] == null ? 0 : [0,1,1,2,2][r[22] - 1]) + (r[23] == null ? 0 : [0,1,1,2,2][r[23] - 1]) + (r[24] == null ? 0 : r[24] - 1) + (r[25] == null ? 0 : [0,1,1,2,2][r[25] - 1]) + (r[30] == null ? 0 : [0,1,1,2,2][r[30] - 1]) + (r[31] == null ? 0 : r[31] - 1) + (r[32] == null ? 0 : [0,1,1,2,2][r[32] - 1]) + (r[33] == null ? 0 : r[33] - 1) + (r[34] == null ? 0 : r[34] - 1) + (r[35] == null ? 0 : [0,1,1,2,2][r[35] - 1]) + (r[36] == null ? 0 : r[36] - 1) + (r[37] == null ? 0 : [0,1,1,2,2][r[37] - 1])) * 100 / 92), [[0, 40.0], [1, 46.83], [2, 52.08], [3, 56.2], [4, 59.58], [5, 62.46], [6, 64.94], [7, 67.12], [8, 69.05], [9, 70.78], [10, 72.35], [15, 78.42], [20, 82.66], [25, 85.85], [30, 88.35], [35, 90.38], [50, 94.69], [70, 98.14], [90, 99.9], [100, 100.0]])",
+     "texto": "Tabla 6.1 del manual (Üstün et al., 2010), muestra internacional de 10 países que incluye a Colombia; valores intermedios interpolados."
+    },
+    {
+     "n": "Comprensión y comunicación",
+     "js": "Math.round(((r[2] == null ? 0 : r[2] - 1) + (r[3] == null ? 0 : r[3] - 1) + (r[4] == null ? 0 : r[4] - 1) + (r[5] == null ? 0 : r[5] - 1) + (r[6] == null ? 0 : [0,1,1,2,2][r[6] - 1]) + (r[7] == null ? 0 : [0,1,1,2,2][r[7] - 1])) * 100 / 20)",
+     "texto": "De 0 a 100."
+    },
+    {
+     "n": "Movilidad",
+     "js": "Math.round(((r[8] == null ? 0 : r[8] - 1) + (r[9] == null ? 0 : [0,1,1,2,2][r[9] - 1]) + (r[10] == null ? 0 : [0,1,1,2,2][r[10] - 1]) + (r[11] == null ? 0 : r[11] - 1) + (r[12] == null ? 0 : r[12] - 1)) * 100 / 16)",
+     "texto": "De 0 a 100."
+    },
+    {
+     "n": "Cuidado personal",
+     "js": "Math.round(((r[13] == null ? 0 : [0,1,1,2,2][r[13] - 1]) + (r[14] == null ? 0 : r[14] - 1) + (r[15] == null ? 0 : [0,1,1,2,2][r[15] - 1]) + (r[16] == null ? 0 : [0,1,1,2,2][r[16] - 1])) * 100 / 10)",
+     "texto": "De 0 a 100."
+    },
+    {
+     "n": "Relacionarse con otras personas",
+     "js": "Math.round(((r[17] == null ? 0 : [0,1,1,2,2][r[17] - 1]) + (r[18] == null ? 0 : [0,1,1,2,2][r[18] - 1]) + (r[19] == null ? 0 : [0,1,1,2,2][r[19] - 1]) + (r[20] == null ? 0 : r[20] - 1) + (r[21] == null ? 0 : [0,1,1,2,2][r[21] - 1])) * 100 / 12)",
+     "texto": "De 0 a 100."
+    },
+    {
+     "n": "Actividades del hogar",
+     "js": "Math.round(((r[22] == null ? 0 : [0,1,1,2,2][r[22] - 1]) + (r[23] == null ? 0 : [0,1,1,2,2][r[23] - 1]) + (r[24] == null ? 0 : r[24] - 1) + (r[25] == null ? 0 : [0,1,1,2,2][r[25] - 1])) * 100 / 10)",
+     "texto": "De 0 a 100."
+    },
+    {
+     "n": "Trabajo o estudio",
+     "js": "r[1] === 1 ? Math.round(((r[26] == null ? 0 : [0,1,1,2,2][r[26] - 1]) + (r[27] == null ? 0 : r[27] - 1) + (r[28] == null ? 0 : r[28] - 1) + (r[29] == null ? 0 : r[29] - 1)) * 100 / 14) : 'No aplica'",
+     "texto": "De 0 a 100. Solo si trabaja o estudia."
+    },
+    {
+     "n": "Participación en la sociedad",
+     "js": "Math.round(((r[30] == null ? 0 : [0,1,1,2,2][r[30] - 1]) + (r[31] == null ? 0 : r[31] - 1) + (r[32] == null ? 0 : [0,1,1,2,2][r[32] - 1]) + (r[33] == null ? 0 : r[33] - 1) + (r[34] == null ? 0 : r[34] - 1) + (r[35] == null ? 0 : [0,1,1,2,2][r[35] - 1]) + (r[36] == null ? 0 : r[36] - 1) + (r[37] == null ? 0 : [0,1,1,2,2][r[37] - 1])) * 100 / 24)",
+     "texto": "De 0 a 100."
+    }
+   ],
+   "nota": "Algoritmo de la sintaxis del manual de la OMS (cap. 8). Si faltan uno o dos ítems, el manual sugiere imputar la media del dominio; con más faltantes no se califica."
+  },
+  "sinitems": true
+ },
+ "mdq": {
+  "clave": "MDQ",
+  "sigla": "MDQ",
+  "titulo": "Cuestionario de Trastornos del Ánimo",
+  "para": "Trece síntomas de manía e hipomanía a lo largo de la vida, más agrupación temporal e interferencia.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Hirschfeld et al. (2000), Am J Psychiatry · versión venezolana de González et al. (2009), Investigación Clínica.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Pregunta 1",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1a",
+     "Ítem 1b",
+     "Ítem 1c",
+     "Ítem 1d",
+     "Ítem 1e",
+     "Ítem 1f",
+     "Ítem 1g",
+     "Ítem 1h",
+     "Ítem 1i",
+     "Ítem 1j",
+     "Ítem 1k",
+     "Ítem 1l",
+     "Ítem 1m"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Ninguno",
+     "Problemas menores",
+     "Problemas moderados",
+     "Problemas graves"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí» en la pregunta 1",
+     "js": "C(RANGO(1,13),1)",
+     "texto": "De 0 a 13."
+    },
+    {
+     "n": "Tamizaje",
+     "js": "(C(RANGO(1,13),1) >= 7 && r[14] === 1 && r[15] >= 2) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "Negativo"
+      ],
+      [
+       1,
+       1,
+       "Positivo para el espectro bipolar: se cumplen los tres criterios; amerita evaluación clínica completa"
+      ]
+     ]
+    }
+   ],
+   "nota": "Regla de tres criterios de Hirschfeld et al. (2000). Las validaciones en español (González et al., 2009; Sánchez-Moreno et al., 2008) usaron solo el recuento de 7 o más."
+  },
+  "hoja": true
+ },
+ "ymrs": {
+  "clave": "YMRS",
+  "sigla": "YMRS",
+  "titulo": "Escala de Manía de Young",
+  "para": "Gravedad de once síntomas maníacos en la última semana.",
+  "areas": [
+   "Ánimo y depresión"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Manía y bipolaridad».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la entrevista con el protocolo oficial y sus anclas. Luego marque aquí, para cada ítem, la puntuación que asignó."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5",
+     "Ítem 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 8",
+     "Ítem 9"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 10",
+     "Ítem 11"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,11)",
+     "texto": "De 0 a 60. La escala no publica rangos de gravedad. Valores de referencia de la fuente: en manía, en torno a 12; en depresión, 3; en eutimia, 2 (Young et al., 1978)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[9] != null && r[9] >= 6",
+     "texto": "El ítem 9 en 6 u 8 corresponde, según sus anclas, a amenazas o agresión: valore la seguridad."
+    }
+   ],
+   "nota": "Los ítems 5, 6, 8 y 9 van de 0 a 8 (peso doble). La fuente admite medios puntos con experiencia; aquí se marcan enteros."
+  },
+  "sinitems": true
+ },
+ "pq-16": {
+  "clave": "PQ-16",
+  "sigla": "PQ-16",
+  "titulo": "Cuestionario Prodrómico, versión breve",
+  "para": "Experiencias perceptivas inusuales, ideas de referencia y síntomas negativos atenuados, con su nivel de malestar asociado.",
+  "areas": [
+   "Síntomas psicóticos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Psicosis y riesgo de psicosis».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Experiencias",
+    "ops": [
+     "Verdadero",
+     "Falso"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Malestar (solo si es verdadero)",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "Ítem 1",
+      "si": "r[1] != null && r[1] === 1"
+     },
+     {
+      "x": "Ítem 2",
+      "si": "r[2] != null && r[2] === 1"
+     },
+     {
+      "x": "Ítem 3",
+      "si": "r[3] != null && r[3] === 1"
+     },
+     {
+      "x": "Ítem 4",
+      "si": "r[4] != null && r[4] === 1"
+     },
+     {
+      "x": "Ítem 5",
+      "si": "r[5] != null && r[5] === 1"
+     },
+     {
+      "x": "Ítem 6",
+      "si": "r[6] != null && r[6] === 1"
+     },
+     {
+      "x": "Ítem 7",
+      "si": "r[7] != null && r[7] === 1"
+     },
+     {
+      "x": "Ítem 8",
+      "si": "r[8] != null && r[8] === 1"
+     },
+     {
+      "x": "Ítem 9",
+      "si": "r[9] != null && r[9] === 1"
+     },
+     {
+      "x": "Ítem 10",
+      "si": "r[10] != null && r[10] === 1"
+     },
+     {
+      "x": "Ítem 11",
+      "si": "r[11] != null && r[11] === 1"
+     },
+     {
+      "x": "Ítem 12",
+      "si": "r[12] != null && r[12] === 1"
+     },
+     {
+      "x": "Ítem 13",
+      "si": "r[13] != null && r[13] === 1"
+     },
+     {
+      "x": "Ítem 14",
+      "si": "r[14] != null && r[14] === 1"
+     },
+     {
+      "x": "Ítem 15",
+      "si": "r[15] != null && r[15] === 1"
+     },
+     {
+      "x": "Ítem 16",
+      "si": "r[16] != null && r[16] === 1"
+     }
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Experiencias afirmadas",
+     "js": "C(RANGO(1,16),1)",
+     "rangos": [
+      [
+       0,
+       5,
+       "Por debajo del corte"
+      ],
+      [
+       6,
+       16,
+       "6 o más: probable riesgo de psicosis; amerita evaluación especializada"
+      ]
+     ]
+    },
+    {
+     "n": "Malestar total",
+     "js": "S(17,32)",
+     "texto": "De 0 a 48. Sin corte publicado."
+    },
+    {
+     "n": "Malestar promedio por experiencia afirmada",
+     "js": "C(RANGO(1,16),1) ? Math.round(S(17,32) / C(RANGO(1,16),1) * 100) / 100 : 0",
+     "texto": "De 0 a 3. Sin corte publicado."
+    }
+   ],
+   "nota": "Corte de Ising et al. (2012), en adultos jóvenes que consultan servicios de salud mental; no está validado en población general ni en adolescentes escolarizados."
+  },
+  "sinitems": true
+ },
+ "cape-42": {
+  "clave": "CAPE-42",
+  "sigla": "CAPE-42",
+  "titulo": "Cuestionario de Experiencias Psicóticas en la Comunidad",
+  "para": "Experiencias psicóticas subclínicas en población general, en dimensiones positiva, negativa y depresiva.",
+  "areas": [
+   "Síntomas psicóticos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Stefanis et al. (2002) · adaptación al castellano de Ros-Morente et al. (2011), Actas Españolas de Psiquiatría.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Frecuencia",
+    "ops": [
+     "Nunca",
+     "Algunas veces",
+     "A menudo",
+     "Casi siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Malestar (si no es «nunca»)",
+    "ops": [
+     "No me molesta",
+     "Me molesta un poco",
+     "Me molesta bastante",
+     "Me molesta mucho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "Ítem 1",
+      "si": "r[1] != null && r[1] > 1"
+     },
+     {
+      "x": "Ítem 2",
+      "si": "r[2] != null && r[2] > 1"
+     },
+     {
+      "x": "Ítem 3",
+      "si": "r[3] != null && r[3] > 1"
+     },
+     {
+      "x": "Ítem 4",
+      "si": "r[4] != null && r[4] > 1"
+     },
+     {
+      "x": "Ítem 5",
+      "si": "r[5] != null && r[5] > 1"
+     },
+     {
+      "x": "Ítem 6",
+      "si": "r[6] != null && r[6] > 1"
+     },
+     {
+      "x": "Ítem 7",
+      "si": "r[7] != null && r[7] > 1"
+     },
+     {
+      "x": "Ítem 8",
+      "si": "r[8] != null && r[8] > 1"
+     },
+     {
+      "x": "Ítem 9",
+      "si": "r[9] != null && r[9] > 1"
+     },
+     {
+      "x": "Ítem 10",
+      "si": "r[10] != null && r[10] > 1"
+     },
+     {
+      "x": "Ítem 11",
+      "si": "r[11] != null && r[11] > 1"
+     },
+     {
+      "x": "Ítem 12",
+      "si": "r[12] != null && r[12] > 1"
+     },
+     {
+      "x": "Ítem 13",
+      "si": "r[13] != null && r[13] > 1"
+     },
+     {
+      "x": "Ítem 14",
+      "si": "r[14] != null && r[14] > 1"
+     },
+     {
+      "x": "Ítem 15",
+      "si": "r[15] != null && r[15] > 1"
+     },
+     {
+      "x": "Ítem 16",
+      "si": "r[16] != null && r[16] > 1"
+     },
+     {
+      "x": "Ítem 17",
+      "si": "r[17] != null && r[17] > 1"
+     },
+     {
+      "x": "Ítem 18",
+      "si": "r[18] != null && r[18] > 1"
+     },
+     {
+      "x": "Ítem 19",
+      "si": "r[19] != null && r[19] > 1"
+     },
+     {
+      "x": "Ítem 20",
+      "si": "r[20] != null && r[20] > 1"
+     },
+     {
+      "x": "Ítem 21",
+      "si": "r[21] != null && r[21] > 1"
+     },
+     {
+      "x": "Ítem 22",
+      "si": "r[22] != null && r[22] > 1"
+     },
+     {
+      "x": "Ítem 23",
+      "si": "r[23] != null && r[23] > 1"
+     },
+     {
+      "x": "Ítem 24",
+      "si": "r[24] != null && r[24] > 1"
+     },
+     {
+      "x": "Ítem 25",
+      "si": "r[25] != null && r[25] > 1"
+     },
+     {
+      "x": "Ítem 26",
+      "si": "r[26] != null && r[26] > 1"
+     },
+     {
+      "x": "Ítem 27",
+      "si": "r[27] != null && r[27] > 1"
+     },
+     {
+      "x": "Ítem 28",
+      "si": "r[28] != null && r[28] > 1"
+     },
+     {
+      "x": "Ítem 29",
+      "si": "r[29] != null && r[29] > 1"
+     },
+     {
+      "x": "Ítem 30",
+      "si": "r[30] != null && r[30] > 1"
+     },
+     {
+      "x": "Ítem 31",
+      "si": "r[31] != null && r[31] > 1"
+     },
+     {
+      "x": "Ítem 32",
+      "si": "r[32] != null && r[32] > 1"
+     },
+     {
+      "x": "Ítem 33",
+      "si": "r[33] != null && r[33] > 1"
+     },
+     {
+      "x": "Ítem 34",
+      "si": "r[34] != null && r[34] > 1"
+     },
+     {
+      "x": "Ítem 35",
+      "si": "r[35] != null && r[35] > 1"
+     },
+     {
+      "x": "Ítem 36",
+      "si": "r[36] != null && r[36] > 1"
+     },
+     {
+      "x": "Ítem 37",
+      "si": "r[37] != null && r[37] > 1"
+     },
+     {
+      "x": "Ítem 38",
+      "si": "r[38] != null && r[38] > 1"
+     },
+     {
+      "x": "Ítem 39",
+      "si": "r[39] != null && r[39] > 1"
+     },
+     {
+      "x": "Ítem 40",
+      "si": "r[40] != null && r[40] > 1"
+     },
+     {
+      "x": "Ítem 41",
+      "si": "r[41] != null && r[41] > 1"
+     },
+     {
+      "x": "Ítem 42",
+      "si": "r[42] != null && r[42] > 1"
+     }
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Dimensión positiva (frecuencia)",
+     "js": "L([2, 5, 6, 7, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 30, 31, 33, 34, 41, 42])",
+     "texto": "De 20 a 80. Medias: universitarios 25,1 (DT 4,5); pacientes con psicosis 30,1 (DT 9,3) (Fonseca-Pedrero et al., 2012)."
+    },
+    {
+     "n": "Dimensión negativa (frecuencia)",
+     "js": "L([3, 4, 8, 16, 18, 21, 23, 25, 27, 29, 32, 35, 36, 37])",
+     "texto": "De 14 a 56. Medias: universitarios 22,9 (DT 4,7); pacientes con psicosis 27,1 (DT 8,2)."
+    },
+    {
+     "n": "Dimensión depresiva (frecuencia)",
+     "js": "L([1, 9, 12, 14, 19, 38, 39, 40])",
+     "texto": "De 8 a 32. Medias: universitarios 13,5 (DT 2,8); pacientes con psicosis 15,5 (DT 5,0)."
+    },
+    {
+     "n": "Total (frecuencia)",
+     "js": "S(1,42)",
+     "texto": "De 42 a 168. Medias: universitarios 61,5 (DT 9,4); pacientes con psicosis 72,7 (DT 18,4). Sin puntos de corte."
+    },
+    {
+     "n": "Malestar total",
+     "js": "S(43,84)",
+     "texto": "De 0 a 126. Sin datos de referencia publicados."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[14] != null && r[14] > 1",
+     "texto": "El ítem 14 explora el deseo de no seguir viviendo: pregunte directamente por ideación suicida en esta misma atención."
+    }
+   ],
+   "nota": "Sin normas ni cortes: las medias son de muestras españolas de conveniencia. Ítems por dimensión según la clave original (Stefanis et al., 2002)."
+  },
+  "hoja": true
+ },
+ "panss": {
+  "clave": "PANSS",
+  "sigla": "PANSS",
+  "titulo": "Escala de Síndromes Positivo y Negativo",
+  "para": "Gravedad de treinta síntomas positivos, negativos y de psicopatología general.",
+  "areas": [
+   "Síntomas psicóticos"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Psicosis y riesgo de psicosis».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la entrevista con el protocolo oficial y sus anclas. Luego marque aquí, para cada ítem, la puntuación que asignó."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Escala positiva",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "P 1",
+     "P 2",
+     "P 3",
+     "P 4",
+     "P 5",
+     "P 6",
+     "P 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Escala negativa",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "N 1",
+     "N 2",
+     "N 3",
+     "N 4",
+     "N 5",
+     "N 6",
+     "N 7"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Psicopatología general",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "puntua": true,
+    "items": [
+     "PG 1",
+     "PG 2",
+     "PG 3",
+     "PG 4",
+     "PG 5",
+     "PG 6",
+     "PG 7",
+     "PG 8",
+     "PG 9",
+     "PG 10",
+     "PG 11",
+     "PG 12",
+     "PG 13",
+     "PG 14",
+     "PG 15",
+     "PG 16"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Escala positiva (P1-P7)",
+     "js": "S(1,7)",
+     "rangos": [
+      [
+       7,
+       11,
+       "Por debajo del percentil 5"
+      ],
+      [
+       12,
+       20,
+       "Entre los percentiles 5 y 25"
+      ],
+      [
+       21,
+       25,
+       "Entre los percentiles 25 y 50"
+      ],
+      [
+       26,
+       30,
+       "Entre los percentiles 50 y 75"
+      ],
+      [
+       31,
+       37,
+       "Entre los percentiles 75 y 95"
+      ],
+      [
+       38,
+       49,
+       "En el percentil 95 o por encima"
+      ]
+     ]
+    },
+    {
+     "n": "Escala negativa (N1-N7)",
+     "js": "S(8,14)",
+     "rangos": [
+      [
+       7,
+       8,
+       "Por debajo del percentil 5"
+      ],
+      [
+       9,
+       18,
+       "Entre los percentiles 5 y 25"
+      ],
+      [
+       19,
+       24,
+       "Entre los percentiles 25 y 50"
+      ],
+      [
+       25,
+       34,
+       "Entre los percentiles 50 y 75"
+      ],
+      [
+       35,
+       42,
+       "Entre los percentiles 75 y 95"
+      ],
+      [
+       43,
+       49,
+       "En el percentil 95 o por encima"
+      ]
+     ]
+    },
+    {
+     "n": "Psicopatología general (PG1-PG16)",
+     "js": "S(15,30)",
+     "rangos": [
+      [
+       16,
+       27,
+       "Por debajo del percentil 5"
+      ],
+      [
+       28,
+       37,
+       "Entre los percentiles 5 y 25"
+      ],
+      [
+       38,
+       44,
+       "Entre los percentiles 25 y 50"
+      ],
+      [
+       45,
+       51,
+       "Entre los percentiles 50 y 75"
+      ],
+      [
+       52,
+       60,
+       "Entre los percentiles 75 y 95"
+      ],
+      [
+       61,
+       112,
+       "En el percentil 95 o por encima"
+      ]
+     ]
+    },
+    {
+     "n": "Escala compuesta (P − N)",
+     "js": "S(1,7) - S(8,14)",
+     "rangos": [
+      [
+       -42,
+       -25,
+       "Por debajo del percentil 5"
+      ],
+      [
+       -24,
+       -11,
+       "Entre los percentiles 5 y 25"
+      ],
+      [
+       -10,
+       0,
+       "Entre los percentiles 25 y 50"
+      ],
+      [
+       1,
+       9,
+       "Entre los percentiles 50 y 75"
+      ],
+      [
+       10,
+       18,
+       "Entre los percentiles 75 y 95"
+      ],
+      [
+       19,
+       42,
+       "En el percentil 95 o por encima"
+      ]
+     ]
+    },
+    {
+     "n": "Total (P + N + PG)",
+     "js": "S(1,30)",
+     "texto": "De 30 a 210. La versión del SSPA no publica percentiles del total."
+    },
+    {
+     "n": "Tipo, sistema restrictivo",
+     "js": "((RANGO(1,7).filter(i => r[i] != null && r[i] > 3).length) > 2 && (RANGO(8,14).filter(i => r[i] != null && r[i] > 3).length) > 2) ? 3 : ((RANGO(1,7).filter(i => r[i] != null && r[i] > 3).length) > 2 && (RANGO(8,14).filter(i => r[i] != null && r[i] > 3).length) < 3) ? 1 : ((RANGO(8,14).filter(i => r[i] != null && r[i] > 3).length) > 2 && (RANGO(1,7).filter(i => r[i] != null && r[i] > 3).length) < 3) ? 2 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin tipo según este sistema"
+      ],
+      [
+       1,
+       1,
+       "Positivo: más de 2 ítems de P por encima de 3 y menos de 3 de N"
+      ],
+      [
+       2,
+       2,
+       "Negativo: más de 2 ítems de N por encima de 3 y menos de 3 de P"
+      ],
+      [
+       3,
+       3,
+       "Mixto: más de 2 ítems por encima de 3 en ambas escalas"
+      ]
+     ]
+    },
+    {
+     "n": "Tipo, sistema inclusivo",
+     "js": "Math.sign(S(1,7) - S(8,14))",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "Negativo (P − N menor que 0)"
+      ],
+      [
+       0,
+       0,
+       "Sin tipo (P − N igual a 0)"
+      ],
+      [
+       1,
+       1,
+       "Positivo (P − N mayor que 0)"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[17] === 7 || r[20] === 7 || r[28] === 7",
+     "texto": "Hay un 7 en PG3, PG6 o PG14: sus anclas mencionan ideas o conductas autolesivas o suicidas, o violencia. Valore el riesgo suicida y la seguridad en esta misma atención."
+    }
+   ],
+   "nota": "No hay puntos de corte: las bandas ubican el puntaje entre los percentiles publicados por Bobes et al. (2004), citados en la versión del SSPA."
+  },
+  "sinitems": true
+ },
+ "cpss-5": {
+  "clave": "CPSS-5",
+  "sigla": "CPSS-5",
+  "titulo": "Escala de Síntomas de Estrés Postraumático Infantil",
+  "para": "Sintomatología postraumática y su interferencia en la vida cotidiana.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Trauma y estrés postraumático».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Síntomas",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Funcionamiento",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Gravedad de los síntomas (1-20)",
+     "js": "S(1,20)",
+     "rangos": [
+      [
+       0,
+       10,
+       "Mínima"
+      ],
+      [
+       11,
+       20,
+       "Leve"
+      ],
+      [
+       21,
+       40,
+       "Moderada"
+      ],
+      [
+       41,
+       60,
+       "Grave"
+      ],
+      [
+       61,
+       80,
+       "Muy grave"
+      ]
+     ]
+    },
+    {
+     "n": "Probable estrés postraumático (corte 31)",
+     "js": "S(1,20) >= 31 ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "Por debajo del corte"
+      ],
+      [
+       1,
+       1,
+       "En o por encima del corte de 31: probable estrés postraumático; confirme con entrevista"
+      ]
+     ]
+    },
+    {
+     "n": "Áreas de funcionamiento afectadas (21-27)",
+     "js": "C(RANGO(21,27),1)",
+     "texto": "De 0 a 7. La hoja de Foa no las suma al total ni les da interpretación."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[16] != null && r[16] > 0",
+     "texto": "El ítem 16 se refiere a conductas de riesgo para sí mismo: explórelo directamente."
+    }
+   ],
+   "nota": "Rangos y corte de la hoja de puntuación de Foa et al. (2018). La versión con ítems disponible en las fuentes está en inglés."
+  },
+  "sinitems": true
+ },
+ "icg": {
+  "clave": "ICG",
+  "sigla": "ICG",
+  "titulo": "Inventario de Duelo Complicado",
+  "para": "Explorar síntomas de duelo que persisten e interfieren con la vida de quien perdió a un ser querido: añoranza intensa, incredulidad, evitación de recordatorios, dificultad para aceptar la pérdida. Es la adaptación a población colombiana, con 21 ítems. No es diagnóstico.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Gamba-Collazos y Navia (2017), Revista Colombiana de Psicología · CC BY-NC-ND 2.5 Colombia, reproducción literal.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "El siguiente cuestionario tiene como propósito evaluar algunas de las reacciones que en el presente usted experimenta en relación con el fallecimiento de un ser querido. Por favor, para cada afirmación de la siguiente tabla marque con una equis (X) la opción que más se adapte a su experiencia."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Raras veces",
+     "Algunas veces",
+     "A menudo",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Pienso tanto en la persona que ha fallecido que me resulta difícil hacer las cosas como las hacía normalmente.",
+     "Los recuerdos de la persona que murió me agobian.",
+     "Siento que no puedo aceptar la muerte de la persona fallecida.",
+     "Anhelo a la persona que murió.",
+     "Me siento atraído/a por los lugares y las cosas relacionadas con la persona fallecida.",
+     "No puedo evitar sentirme enfadado/a con su muerte.",
+     "No puedo creer que haya sucedido.",
+     "Me siento aturdido por lo sucedido.",
+     "Desde que él/ella murió me resulta difícil confiar en la gente.",
+     "Desde que él/ella murió siento como si hubiera perdido la capacidad de preocuparme por la gente.",
+     "Desde que él/ella murió me siento distante de las personas que me preocupaban.",
+     "Me siento solo/a la mayor parte del tiempo desde que él/ella falleció.",
+     "Siento dolores en la misma zona del cuerpo que le dolía la persona que murió.",
+     "Tengo alguno de los síntomas que sufría la persona que murió.",
+     "Me desvío de mi camino para evitar los lugares que me recuerdan a la persona que murió.",
+     "Siento que la vida está vacía sin la persona que murió.",
+     "Escucho la voz de la persona fallecida hablándome.",
+     "Veo a la persona que murió de pie delante de mí.",
+     "Siento que es injusto que yo viva mientras que él/ella ha muerto.",
+     "Siento amargura por la muerte de esa persona.",
+     "Siento envidia de otras personas que no han perdido a nadie cercano."
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (21 ítems)",
+     "js": "S(1,21)",
+     "texto": "De 0 a 84. Sin punto de corte para esta versión. Referencia: en la versión original de 19 ítems (rango 0 a 76), sus autores (Prigerson et al., 1995) tomaron más de 25 como duelo complicado; en usuarios de drogas con síntomas de duelo complicado la media fue 41,67 (DE 10,85) (Masferrer et al., 2017, versión de 19 ítems)."
+    }
+   ],
+   "nota": "Gamba-Collazos y Navia (2017) aclaran que el inventario no es diagnóstico y que no se sabe si el corte de Prigerson et al. (1995) aplica en población colombiana: no declare «duelo complicado» con esta versión. Dato faltante: cómo convertir el total de 21 ítems en uno comparable con el de 19 (el artículo no lo dice). Muestra de validación: adultos de 21 a 80 años, con la muerte de un familiar significativo al menos 6 meses antes."
+  }
+ },
+ "pg-13-r": {
+  "clave": "PG-13-R",
+  "sigla": "PG-13-R",
+  "titulo": "Escala de Duelo Prolongado",
+  "para": "Los criterios de trastorno de duelo prolongado, incluido el requisito temporal desde la pérdida.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Duelo».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la escala con el protocolo oficial y marque aquí la respuesta de cada ítem (de 1 a 5, en el orden del protocolo, a partir de Q3). Elija primero cuál versión usó: el original de 10 síntomas o la versión en español de 11 síntomas."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Original de 10 síntomas (Q3 a Q12, Q13 es el impacto)",
+     "Versión en español de 11 síntomas (Q3 a Q13, Q14 es el impacto)"
+    ],
+    "vals": [
+     10,
+     11
+    ],
+    "puntua": true,
+    "items": [
+     "Versión del protocolo"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Adulto",
+     "Niño o adolescente"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Persona en duelo"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿Ha perdido a una persona significativa? (Q1)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "dato",
+    "x": "Meses transcurridos desde la muerte (Q2)",
+    "tipo": "numero",
+    "unidad": "meses"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Síntomas",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Q3",
+     "Q4",
+     "Q5",
+     "Q6",
+     "Q7",
+     "Q8",
+     "Q9",
+     "Q10",
+     "Q11",
+     "Q12",
+     {
+      "x": "Q13",
+      "si": "r[1] === 11"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿Hay impacto en el funcionamiento? (Q13 del original, Q14 de la versión en español)"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje de síntomas",
+     "js": "r[1] === 11 ? S(5,15) : S(5,14)",
+     "rangos_por": [
+      {
+       "si": "r[1] === 10",
+       "rangos": [
+        [
+         10,
+         29,
+         "Por debajo del corte"
+        ],
+        [
+         30,
+         50,
+         "30 o más: nivel sindrómico de síntomas de duelo prolongado (Prigerson et al., 2021)"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "El corte de 30 es de la versión original de 10 síntomas (rango 10 a 50). Con la versión en español de 11 síntomas el total va de 11 a 55 y no tiene corte (Sánchez-Román et al., 2026); elija la versión del protocolo."
+    },
+    {
+     "n": "Criterios del PG-13-R (versión original)",
+     "js": "r[1] !== 10 ? -1 : (r[3] == null || r[4] == null || r[2] == null || r[16] == null || RANGO(5,14).some(i => r[i] == null)) ? 0 : (S(5,14) >= 30 && r[3] === 1 && r[4] >= (r[2] === 1 ? 6 : 12) && r[16] === 1) ? 2 : 1",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "No aplica: el corte y los criterios son de la versión original de 10 síntomas"
+      ],
+      [
+       0,
+       0,
+       "Faltan respuestas"
+      ],
+      [
+       1,
+       1,
+       "No se cumplen todos los criterios: puntaje de 30 o más, pérdida, tiempo desde la muerte e impacto"
+      ],
+      [
+       2,
+       2,
+       "Se cumplen los cuatro criterios (puntaje de 30 o más, pérdida, 12 meses o más desde la muerte, 6 en niños y adolescentes, e impacto): probable trastorno de duelo prolongado; confirme con entrevista clínica"
+      ]
+     ]
+    }
+   ],
+   "nota": "Regla de Prigerson et al. (2021): puntaje de síntomas de 30 o más, pérdida, tiempo desde la muerte de 12 meses o más (6 en niños y adolescentes) e impacto en el funcionamiento; óptimo de 29 en Yale, 32 en Utrecht y 30 en Oxford. La versión en español (Weill Cornell; Sánchez-Román et al., 2026) tiene 11 síntomas y etiquetas de frecuencia, no de intensidad como el original, así que el corte de 30 no se le aplica y no hay corte para ella. Omitir uno de los dos ítems de identidad para aplicar el 30 no está validado."
+  },
+  "sinitems": true
+ },
+ "trig": {
+  "clave": "TRIG",
+  "sigla": "TRIG",
+  "titulo": "Inventario Texas Revisado de Duelo",
+  "para": "Duelo en dos momentos: cómo fue la reacción en el momento de la pérdida y cómo es el sentimiento presente.",
+  "areas": [
+   "Trauma y duelo"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Duelo».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que se eligió. Los ítems de cada parte se numeran de nuevo desde 1. Use el número de 1 a 5 de la opción elegida: 1 es «completamente falso» (o «totalmente en desacuerdo») y 5, «completamente verdadero» (o «totalmente de acuerdo»)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Parte I (después de la muerte)",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Parte I · ítem 1",
+     "Parte I · ítem 2",
+     "Parte I · ítem 3",
+     "Parte I · ítem 4",
+     "Parte I · ítem 5",
+     "Parte I · ítem 6",
+     "Parte I · ítem 7",
+     "Parte I · ítem 8"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Parte II (sentimientos actuales)",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Parte II · ítem 1",
+     "Parte II · ítem 2",
+     "Parte II · ítem 3",
+     "Parte II · ítem 4",
+     "Parte II · ítem 5",
+     "Parte II · ítem 6",
+     "Parte II · ítem 7",
+     "Parte II · ítem 8",
+     "Parte II · ítem 9",
+     "Parte II · ítem 10",
+     "Parte II · ítem 11",
+     "Parte II · ítem 12",
+     "Parte II · ítem 13"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Parte I, conducta tras la muerte (suma)",
+     "js": "S(1,8)",
+     "texto": "De 8 a 40. Sin puntos de corte. En 223 familiares de personas con daño cerebral (otra pérdida) la suma fue 25,21 (DE 7,21) (López de Arroyabe et al.)."
+    },
+    {
+     "n": "Parte II, sentimientos actuales (suma)",
+     "js": "S(9,21)",
+     "texto": "De 13 a 65. Sin puntos de corte. En esos mismos familiares: 42,07 (DE 14,05) (López de Arroyabe et al.)."
+    },
+    {
+     "n": "Parte II: respuesta emocional (ítems 1, 2, 5, 7 y 13)",
+     "js": "L([9,10,13,15,21])",
+     "texto": "De 5 a 25. Sin puntos de corte."
+    },
+    {
+     "n": "Parte II: no aceptación (ítems 3, 10 y 12)",
+     "js": "L([11,18,20])",
+     "texto": "De 3 a 15. Sin puntos de corte."
+    },
+    {
+     "n": "Parte II: pensamientos (ítems 4, 6, 8, 9 y 11)",
+     "js": "L([12,14,16,17,19])",
+     "texto": "De 5 a 25. Sin puntos de corte."
+    }
+   ],
+   "nota": "Sin puntos de corte ni normas en las fuentes: las cuatro categorías del inventario (ausencia de duelo, retardado, prolongado y agudo) usan cortes de García-García et al. (2005) que no están disponibles. Referencia por ítem: media 2,475 (DE 1,454) en la parte I y 2,764 (DE 1,536) en la parte II en universitarios peruanos (Cassaretto et al., 2025). Las fuentes no fijan si se suma o se promedia: aquí se suma. Las subescalas son de la parte II de 13 ítems (Gruppi et al., 2022, con Futterman et al., 2010). Los rótulos de respuesta de Gruppi (acuerdo) y de García-García (verdadero o falso) difieren. No es un instrumento diagnóstico. Validado en adultos y universitarios; en adolescentes no hay fuente."
+  },
+  "sinitems": true
+ },
+ "ess": {
+  "clave": "ESS",
+  "sigla": "ESS",
+  "titulo": "Escala de Somnolencia de Epworth",
+  "para": "Probabilidad de quedarse dormido en ocho situaciones cotidianas. Mide somnolencia diurna, no calidad de sueño.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Johns (1991), Sleep · versión colombiana de Chica-Urzola, Escobar-Córdoba y Eslava-Schmalbach (2007) · distribuye Mapi Research Trust.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Situación",
+    "ops": [
+     "Nunca se queda dormido",
+     "Escasa probabilidad de quedarse dormido",
+     "Moderada probabilidad de quedarse dormido",
+     "Alta probabilidad de quedarse dormido"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,8)",
+     "rangos": [
+      [
+       0,
+       10,
+       "Somnolencia normal"
+      ],
+      [
+       11,
+       12,
+       "Somnolencia marginal"
+      ],
+      [
+       13,
+       24,
+       "Somnolencia excesiva"
+      ]
+     ]
+    }
+   ],
+   "nota": "Bandas de una muestra mexicana (Sandoval-Rincón et al., 2013, citadas por Álvarez-García et al., 2023): la validación colombiana menciona un punto de corte sin publicar su valor. Un puntaje alto pide descartar un trastorno respiratorio del sueño."
+  },
+  "hoja": true
+ },
+ "dast-10": {
+  "clave": "DAST-10",
+  "sigla": "DAST-10",
+  "titulo": "Prueba de Detección de Abuso de Drogas",
+  "para": "Problemas asociados al consumo de drogas distintas del alcohol en los últimos doce meses.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Skinner (1982), Addictive Behaviors · formulario en español de la Red de Ensayos Clínicos del NIDA (CTN).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "C([1,2,4,5,6,7,8,9,10],1) + (r[3] === 0 ? 1 : 0)",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin problemas reportados"
+      ],
+      [
+       1,
+       2,
+       "Nivel bajo: vigile y reevalúe más adelante"
+      ],
+      [
+       3,
+       5,
+       "Nivel moderado: indague más"
+      ],
+      [
+       6,
+       8,
+       "Nivel sustancial: evaluación intensiva"
+      ],
+      [
+       9,
+       10,
+       "Nivel grave: evaluación intensiva"
+      ]
+     ]
+    }
+   ],
+   "nota": "Clave y bandas del formulario de NIDA. En adultos mexicanos en tratamiento, el corte 3 minimizó los falsos negativos (Villalobos-Gallegos et al., 2015). No incluye el alcohol."
+  },
+  "hoja": true
+ },
+ "cage": {
+  "clave": "CAGE",
+  "sigla": "CAGE",
+  "titulo": "Cuestionario CAGE",
+  "para": "Cuatro preguntas sobre problemas con el alcohol a lo largo de la vida.",
+  "areas": [
+   "Consumo, juego y pantallas"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Ewing (1984), JAMA · versión en español de Gómez Restrepo et al., Psiquiatría clínica (3.ª ed.), tabla 77-1.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí»",
+     "js": "C(RANGO(1,4),1)",
+     "rangos": [
+      [
+       0,
+       1,
+       "Tamizaje negativo"
+      ],
+      [
+       2,
+       2,
+       "Tamizaje positivo (2 o más): alto riesgo de consumo problemático de alcohol"
+      ],
+      [
+       3,
+       4,
+       "3 o 4: corte de la versión original para consumo problemático o dependencia"
+      ]
+     ]
+    }
+   ],
+   "nota": "Corte de 2 o más según Gómez-Restrepo et al. (Psiquiatría clínica, tabla 77-1); el de 3 o 4 lo usan la versión original y las encuestas colombianas (Herrán et al., 2008). Siga con el AUDIT."
+  },
+  "hoja": true
+ },
  "lie-bet": {
   "clave": "Lie/Bet",
   "sigla": "Lie/Bet",
@@ -13207,6 +17553,710 @@ const CALIFICAR = {
    ]
   }
  },
+ "ead-3": {
+  "clave": "EAD-3",
+  "sigla": "EAD-3",
+  "titulo": "Escala Abreviada de Desarrollo, tercera edición",
+  "para": "Cuatro áreas del desarrollo: motricidad gruesa, motricidad fina-adaptativa, audición-lenguaje y personal-social.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Guía de tamizaje, grupo «Desarrollo infantil» · fuente oficial: https://www.minsalud.gov.co/sites/rid/lists/bibliotecadigital/ride/de/dij/resolucion-3280-de-2018.pdf.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la escala con su material y sus reglas de inicio y terminación. Elija el rango de edad (use la edad corregida si nació antes de las 37 semanas y tiene hasta 2 años) y anote la puntuación directa de cada área."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Rango 1: 0 días a 1 mes y 0 días",
+     "Rango 2: 1 mes y 1 día a 3 meses y 0 días",
+     "Rango 3: 3 meses y 1 día a 6 meses y 0 días",
+     "Rango 4: 6 meses y 1 día a 9 meses y 0 días",
+     "Rango 5: 9 meses y 1 día a 12 meses y 0 días",
+     "Rango 6: 12 meses y 1 día a 18 meses y 0 días",
+     "Rango 7: 18 meses y 1 día a 24 meses y 0 días",
+     "Rango 8: 2 a 3 años (24 meses y 1 día a 36 meses y 0 días)",
+     "Rango 9: 3 a 4 años (36 meses y 1 día a 48 meses y 0 días)",
+     "Rango 10: 4 a 5 años (48 meses y 1 día a 60 meses y 0 días)",
+     "Rango 11: 5 a 6 años (60 meses y 1 día a 72 meses y 0 días)",
+     "Rango 12: 6 a 7 años (72 meses y 1 día a 84 meses y 0 días)"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "puntua": true,
+    "items": [
+     "Rango de edad"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "dato",
+    "x": "Motricidad gruesa: puntuación directa",
+    "tipo": "numero",
+    "unidad": "de 0 a 36"
+   },
+   {
+    "t": "dato",
+    "x": "Motricidad fina-adaptativa: puntuación directa",
+    "tipo": "numero",
+    "unidad": "de 0 a 36"
+   },
+   {
+    "t": "dato",
+    "x": "Audición y lenguaje: puntuación directa",
+    "tipo": "numero",
+    "unidad": "de 0 a 36"
+   },
+   {
+    "t": "dato",
+    "x": "Personal-social: puntuación directa",
+    "tipo": "numero",
+    "unidad": "de 0 a 36"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Motricidad gruesa: puntuación típica",
+     "js": "((t) => (r[1] == null || r[2] == null) ? 'Pendiente' : ((v) => v == null ? 'Fuera de la tabla' : 'PT ' + v)(t[r[1] - 1][Math.round(r[2])]))([[2, 13, 25, 36, 48, 59, 71, 82, 93, 105, 116, 128, 139, 150, 162, 173, 185, 196, 208, 219, 230, 242, 253, 265, 276, 287, 299, 310, 322, 333, 345, 356, 367, 379, 390, 402, 413], [null, 0, 11, 21, 31, 41, 51, 61, 72, 82, 92, 102, 112, 122, 132, 143, 153, 163, 173, 183, 193, 204, 214, 224, 234, 244, 254, 265, 275, 285, 295, 305, 315, 325, 336, 346, 356], [null, null, null, null, 8, 16, 25, 33, 42, 50, 58, 67, 75, 84, 92, 100, 109, 117, 126, 134, 142, 151, 159, 168, 176, 185, 193, 201, 210, 218, 227, 235, 243, 252, 260, 269, 277], [null, null, null, null, null, 0, 8, 15, 22, 29, 37, 44, 51, 58, 66, 73, 80, 88, 95, 102, 109, 117, 124, 131, 138, 146, 153, 160, 167, 175, 182, 189, 197, 204, 211, 218, 226], [null, null, null, null, null, null, null, 2, 9, 15, 22, 28, 35, 41, 47, 54, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 144, 151, 157, 164, 170, 177, 183, 190], [null, null, null, null, null, null, null, null, null, 1, 6, 12, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 80, 85, 91, 97, 102, 108, 114, 119, 125, 131, 136, 142, 148, 153], [null, null, null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78, 83, 88, 93, 98, 103, 108, 113, 118, 123], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 21, 25, 30, 34, 39, 43, 48, 52, 57, 61, 66, 70, 75, 79, 84, 88, 93, 97], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 19, 24, 28, 33, 37, 41, 46, 50, 54, 59, 63, 68, 72, 76, 81], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 7, 11, 16, 20, 25, 30, 34, 39, 43, 48, 53, 57, 62, 66, 71, 76], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 17, 23, 30, 36, 43, 49, 56, 62, 69], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 11, 24, 37, 51]])"
+    },
+    {
+     "n": "Motricidad gruesa: clasificación",
+     "js": "((t, c) => { if (r[1] == null || r[2] == null) return 0; const pd = Math.round(r[2]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[2, 13, 25, 36, 48, 59, 71, 82, 93, 105, 116, 128, 139, 150, 162, 173, 185, 196, 208, 219, 230, 242, 253, 265, 276, 287, 299, 310, 322, 333, 345, 356, 367, 379, 390, 402, 413], [null, 0, 11, 21, 31, 41, 51, 61, 72, 82, 92, 102, 112, 122, 132, 143, 153, 163, 173, 183, 193, 204, 214, 224, 234, 244, 254, 265, 275, 285, 295, 305, 315, 325, 336, 346, 356], [null, null, null, null, 8, 16, 25, 33, 42, 50, 58, 67, 75, 84, 92, 100, 109, 117, 126, 134, 142, 151, 159, 168, 176, 185, 193, 201, 210, 218, 227, 235, 243, 252, 260, 269, 277], [null, null, null, null, null, 0, 8, 15, 22, 29, 37, 44, 51, 58, 66, 73, 80, 88, 95, 102, 109, 117, 124, 131, 138, 146, 153, 160, 167, 175, 182, 189, 197, 204, 211, 218, 226], [null, null, null, null, null, null, null, 2, 9, 15, 22, 28, 35, 41, 47, 54, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 144, 151, 157, 164, 170, 177, 183, 190], [null, null, null, null, null, null, null, null, null, 1, 6, 12, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 80, 85, 91, 97, 102, 108, 114, 119, 125, 131, 136, 142, 148, 153], [null, null, null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78, 83, 88, 93, 98, 103, 108, 113, 118, 123], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 21, 25, 30, 34, 39, 43, 48, 52, 57, 61, 66, 70, 75, 79, 84, 88, 93, 97], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 19, 24, 28, 33, 37, 41, 46, 50, 54, 59, 63, 68, 72, 76, 81], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 7, 11, 16, 20, 25, 30, 34, 39, 43, 48, 53, 57, 62, 66, 71, 76], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 17, 23, 30, 36, 43, 49, 56, 62, 69], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 11, 24, 37, 51]], [[35, 47], [30, 40], [32, 41], [36, 43], [34, 40], [33, 39], [32, 42], [29, 38], [32, 40], [33, 42], [29, 42], [36, 50]])",
+     "rangos": [
+      [
+       0,
+       0,
+       "Elija el rango y anote la puntuación directa"
+      ],
+      [
+       1,
+       1,
+       "Verde: desarrollo esperado para la edad"
+      ],
+      [
+       2,
+       2,
+       "Amarillo: riesgo de problemas en el desarrollo"
+      ],
+      [
+       3,
+       3,
+       "Rojo: sospecha de problemas en el desarrollo"
+      ],
+      [
+       4,
+       4,
+       "La puntuación directa está fuera de la tabla de este rango: revise el punto de inicio y el rango de edad"
+      ]
+     ]
+    },
+    {
+     "n": "Motricidad fina-adaptativa: puntuación típica",
+     "js": "((t) => (r[1] == null || r[3] == null) ? 'Pendiente' : ((v) => v == null ? 'Fuera de la tabla' : 'PT ' + v)(t[r[1] - 1][Math.round(r[3])]))([[0, 12, 32, 52, 72, 92, 112, 132, 152, 172, 192, 212, 232, 252, 272, 292, 312, 332, 352, 372, 392, 412, 432, 452, 472, 492, 512, 532, 552, 572, 592, 612, 632, 652, 672, 692, 712], [4, 11, 19, 26, 33, 40, 47, 55, 62, 69, 76, 83, 91, 98, 105, 112, 119, 127, 134, 141, 148, 155, 163, 170, 177, 184, 191, 199, 206, 213, 220, 227, 235, 242, 249, 256, 263], [null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172, 178, 184, 190, 196, 202, 208, 214], [null, null, null, 2, 8, 15, 21, 27, 33, 39, 46, 52, 58, 64, 70, 77, 83, 89, 95, 101, 108, 114, 120, 126, 132, 139, 145, 151, 157, 163, 170, 176, 182, 188, 194, 201, 207], [null, null, null, null, null, 0, 7, 13, 20, 26, 32, 39, 45, 52, 58, 65, 71, 77, 84, 90, 97, 103, 110, 116, 122, 129, 135, 142, 148, 155, 161, 168, 174, 180, 187, 193, 200], [null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, 7, 14, 21, 28, 35, 42, 50, 57, 64, 71, 78, 85, 93, 100, 107, 114, 121, 129, 136, 143, 150, 157, 164, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 16, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 96, 102, 108, 114, 120, 126], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 6, 11, 17, 22, 28, 33, 39, 44, 49, 55, 60, 66, 71, 77, 82, 88, 93], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 55, 62, 68, 75, 81, 87], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 9, 18, 28, 37, 46, 55, 64, 73, 82]])"
+    },
+    {
+     "n": "Motricidad fina-adaptativa: clasificación",
+     "js": "((t, c) => { if (r[1] == null || r[3] == null) return 0; const pd = Math.round(r[3]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 12, 32, 52, 72, 92, 112, 132, 152, 172, 192, 212, 232, 252, 272, 292, 312, 332, 352, 372, 392, 412, 432, 452, 472, 492, 512, 532, 552, 572, 592, 612, 632, 652, 672, 692, 712], [4, 11, 19, 26, 33, 40, 47, 55, 62, 69, 76, 83, 91, 98, 105, 112, 119, 127, 134, 141, 148, 155, 163, 170, 177, 184, 191, 199, 206, 213, 220, 227, 235, 242, 249, 256, 263], [null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172, 178, 184, 190, 196, 202, 208, 214], [null, null, null, 2, 8, 15, 21, 27, 33, 39, 46, 52, 58, 64, 70, 77, 83, 89, 95, 101, 108, 114, 120, 126, 132, 139, 145, 151, 157, 163, 170, 176, 182, 188, 194, 201, 207], [null, null, null, null, null, 0, 7, 13, 20, 26, 32, 39, 45, 52, 58, 65, 71, 77, 84, 90, 97, 103, 110, 116, 122, 129, 135, 142, 148, 155, 161, 168, 174, 180, 187, 193, 200], [null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, 7, 14, 21, 28, 35, 42, 50, 57, 64, 71, 78, 85, 93, 100, 107, 114, 121, 129, 136, 143, 150, 157, 164, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 16, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 96, 102, 108, 114, 120, 126], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 6, 11, 17, 22, 28, 33, 39, 44, 49, 55, 60, 66, 71, 77, 82, 88, 93], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 55, 62, 68, 75, 81, 87], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 9, 18, 28, 37, 46, 55, 64, 73, 82]], [[31, 51], [25, 32], [33, 39], [38, 45], [38, 44], [45, null], [34, 40], [34, 40], [32, 38], [29, 42], [34, 40], [36, 45]])",
+     "rangos": [
+      [
+       0,
+       0,
+       "Elija el rango y anote la puntuación directa"
+      ],
+      [
+       1,
+       1,
+       "Verde: desarrollo esperado para la edad"
+      ],
+      [
+       2,
+       2,
+       "Amarillo: riesgo de problemas en el desarrollo"
+      ],
+      [
+       3,
+       3,
+       "Rojo: sospecha de problemas en el desarrollo"
+      ],
+      [
+       4,
+       4,
+       "La puntuación directa está fuera de la tabla de este rango: revise el punto de inicio y el rango de edad"
+      ]
+     ]
+    },
+    {
+     "n": "Audición y lenguaje: puntuación típica",
+     "js": "((t) => (r[1] == null || r[4] == null) ? 'Pendiente' : ((v) => v == null ? 'Fuera de la tabla' : 'PT ' + v)(t[r[1] - 1][Math.round(r[4])]))([[null, null, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350], [null, null, 3, 12, 22, 31, 40, 49, 58, 67, 77, 86, 95, 104, 113, 123, 132, 141, 150, 159, 168, 178, 187, 196, 205, 214, 224, 233, 242, 251, 260, 270, 279, 288, 297, 306, 315], [null, null, null, 1, 9, 17, 25, 33, 41, 49, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264], [null, null, null, null, null, 6, 13, 20, 27, 34, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 184, 191, 198, 205, 212, 219, 226], [null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 56, 62, 69, 75, 82, 88, 94, 101, 107, 114, 120, 127, 133, 140, 146, 153, 159, 166, 172, 178, 185, 191, 198], [null, null, null, null, null, null, null, null, 5, 11, 16, 22, 28, 34, 39, 45, 51, 57, 63, 68, 74, 80, 86, 91, 97, 103, 109, 114, 120, 126, 132, 137, 143, 149, 155, 161, 166], [null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 34, 39, 44, 49, 54, 59, 65, 70, 75, 80, 85, 90, 96, 101, 106, 111, 116, 121, 127, 132, 137], [null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 5, 10, 15, 19, 24, 29, 33, 38, 43, 47, 52, 57, 61, 66, 71, 75, 80, 85, 89, 94, 99, 104, 108], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 8, 13, 17, 22, 26, 31, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 20, 25, 29, 34, 38, 43, 48, 52, 57, 62, 66, 71, 75], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 7, 12, 18, 24, 29, 35, 41, 46, 52, 58, 63], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 14, 22, 31, 39, 47, 55, 64]])"
+    },
+    {
+     "n": "Audición y lenguaje: clasificación",
+     "js": "((t, c) => { if (r[1] == null || r[4] == null) return 0; const pd = Math.round(r[4]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[null, null, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350], [null, null, 3, 12, 22, 31, 40, 49, 58, 67, 77, 86, 95, 104, 113, 123, 132, 141, 150, 159, 168, 178, 187, 196, 205, 214, 224, 233, 242, 251, 260, 270, 279, 288, 297, 306, 315], [null, null, null, 1, 9, 17, 25, 33, 41, 49, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264], [null, null, null, null, null, 6, 13, 20, 27, 34, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 184, 191, 198, 205, 212, 219, 226], [null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 56, 62, 69, 75, 82, 88, 94, 101, 107, 114, 120, 127, 133, 140, 146, 153, 159, 166, 172, 178, 185, 191, 198], [null, null, null, null, null, null, null, null, 5, 11, 16, 22, 28, 34, 39, 45, 51, 57, 63, 68, 74, 80, 86, 91, 97, 103, 109, 114, 120, 126, 132, 137, 143, 149, 155, 161, 166], [null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 34, 39, 44, 49, 54, 59, 65, 70, 75, 80, 85, 90, 96, 101, 106, 111, 116, 121, 127, 132, 137], [null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 5, 10, 15, 19, 24, 29, 33, 38, 43, 47, 52, 57, 61, 66, 71, 75, 80, 85, 89, 94, 99, 104, 108], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 8, 13, 17, 22, 26, 31, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 20, 25, 29, 34, 38, 43, 48, 52, 57, 62, 66, 71, 75], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 7, 12, 18, 24, 29, 35, 41, 46, 52, 58, 63], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 14, 22, 31, 39, 47, 55, 64]], [[19, 29], [30, 39], [24, 40], [26, 41], [35, 42], [38, 44], [33, 43], [32, 42], [30, 39], [33, 42], [34, 40], [30, 46]])",
+     "rangos": [
+      [
+       0,
+       0,
+       "Elija el rango y anote la puntuación directa"
+      ],
+      [
+       1,
+       1,
+       "Verde: desarrollo esperado para la edad"
+      ],
+      [
+       2,
+       2,
+       "Amarillo: riesgo de problemas en el desarrollo"
+      ],
+      [
+       3,
+       3,
+       "Rojo: sospecha de problemas en el desarrollo"
+      ],
+      [
+       4,
+       4,
+       "La puntuación directa está fuera de la tabla de este rango: revise el punto de inicio y el rango de edad"
+      ]
+     ]
+    },
+    {
+     "n": "Personal-social: puntuación típica",
+     "js": "((t) => (r[1] == null || r[5] == null) ? 'Pendiente' : ((v) => v == null ? 'Fuera de la tabla' : 'PT ' + v)(t[r[1] - 1][Math.round(r[5])]))([[0, 8, 17, 25, 34, 42, 50, 59, 67, 76, 84, 92, 101, 109, 118, 126, 134, 143, 151, 160, 168, 176, 185, 193, 202, 210, 218, 227, 235, 244, 252, 260, 269, 277, 286, 294, 302], [null, 3, 11, 18, 26, 34, 41, 49, 57, 64, 72, 79, 87, 95, 102, 110, 118, 125, 133, 141, 148, 156, 163, 171, 179, 186, 194, 202, 209, 217, 225, 232, 240, 248, 255, 263, 270], [null, null, 1, 8, 14, 21, 27, 34, 40, 47, 53, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 145, 152, 158, 165, 171, 178, 184, 191, 197, 204, 210, 217, 223], [null, null, null, null, 6, 11, 17, 23, 29, 34, 40, 46, 52, 58, 63, 69, 75, 81, 86, 92, 98, 104, 110, 115, 121, 127, 133, 138, 144, 150, 156, 162, 167, 173, 179, 185, 190], [null, null, null, null, null, 4, 9, 14, 20, 25, 30, 35, 41, 46, 51, 56, 61, 67, 72, 77, 82, 88, 93, 98, 103, 109, 114, 119, 124, 130, 135, 140, 145, 150, 156, 161, 166], [null, null, null, null, null, null, null, 4, 9, 14, 18, 23, 28, 32, 37, 42, 46, 51, 56, 60, 65, 70, 74, 79, 84, 88, 93, 98, 102, 107, 112, 116, 121, 126, 130, 135, 140], [null, null, null, null, null, null, null, null, null, 2, 6, 10, 15, 19, 23, 27, 31, 36, 40, 44, 48, 52, 57, 61, 65, 69, 74, 78, 82, 86, 90, 95, 99, 103, 107, 111, 116], [null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 22, 26, 30, 34, 38, 42, 46, 50, 54, 57, 61, 65, 69, 73, 77, 81, 85, 89, 92], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 50, 54, 58, 62, 66, 70, 74], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 20, 24, 29, 33, 37, 41, 46, 50, 54, 58, 62, 67], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 12, 19, 26, 33, 39, 46, 53, 59], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 18, 39, 61, 82]])"
+    },
+    {
+     "n": "Personal-social: clasificación",
+     "js": "((t, c) => { if (r[1] == null || r[5] == null) return 0; const pd = Math.round(r[5]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 8, 17, 25, 34, 42, 50, 59, 67, 76, 84, 92, 101, 109, 118, 126, 134, 143, 151, 160, 168, 176, 185, 193, 202, 210, 218, 227, 235, 244, 252, 260, 269, 277, 286, 294, 302], [null, 3, 11, 18, 26, 34, 41, 49, 57, 64, 72, 79, 87, 95, 102, 110, 118, 125, 133, 141, 148, 156, 163, 171, 179, 186, 194, 202, 209, 217, 225, 232, 240, 248, 255, 263, 270], [null, null, 1, 8, 14, 21, 27, 34, 40, 47, 53, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 145, 152, 158, 165, 171, 178, 184, 191, 197, 204, 210, 217, 223], [null, null, null, null, 6, 11, 17, 23, 29, 34, 40, 46, 52, 58, 63, 69, 75, 81, 86, 92, 98, 104, 110, 115, 121, 127, 133, 138, 144, 150, 156, 162, 167, 173, 179, 185, 190], [null, null, null, null, null, 4, 9, 14, 20, 25, 30, 35, 41, 46, 51, 56, 61, 67, 72, 77, 82, 88, 93, 98, 103, 109, 114, 119, 124, 130, 135, 140, 145, 150, 156, 161, 166], [null, null, null, null, null, null, null, 4, 9, 14, 18, 23, 28, 32, 37, 42, 46, 51, 56, 60, 65, 70, 74, 79, 84, 88, 93, 98, 102, 107, 112, 116, 121, 126, 130, 135, 140], [null, null, null, null, null, null, null, null, null, 2, 6, 10, 15, 19, 23, 27, 31, 36, 40, 44, 48, 52, 57, 61, 65, 69, 74, 78, 82, 86, 90, 95, 99, 103, 107, 111, 116], [null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 22, 26, 30, 34, 38, 42, 46, 50, 54, 57, 61, 65, 69, 73, 77, 81, 85, 89, 92], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 50, 54, 58, 62, 66, 70, 74], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 20, 24, 29, 33, 37, 41, 46, 50, 54, 58, 62, 67], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 12, 19, 26, 33, 39, 46, 53, 59], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 18, 39, 61, 82]], [[16, 33], [33, 40], [33, 39], [33, 39], [45, null], [37, 41], [30, 39], [29, 41], [30, 42], [32, 40], [32, 38], [38, 60]])",
+     "rangos": [
+      [
+       0,
+       0,
+       "Elija el rango y anote la puntuación directa"
+      ],
+      [
+       1,
+       1,
+       "Verde: desarrollo esperado para la edad"
+      ],
+      [
+       2,
+       2,
+       "Amarillo: riesgo de problemas en el desarrollo"
+      ],
+      [
+       3,
+       3,
+       "Rojo: sospecha de problemas en el desarrollo"
+      ],
+      [
+       4,
+       4,
+       "La puntuación directa está fuera de la tabla de este rango: revise el punto de inicio y el rango de edad"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "((((t, c) => { if (r[1] == null || r[2] == null) return 0; const pd = Math.round(r[2]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[2, 13, 25, 36, 48, 59, 71, 82, 93, 105, 116, 128, 139, 150, 162, 173, 185, 196, 208, 219, 230, 242, 253, 265, 276, 287, 299, 310, 322, 333, 345, 356, 367, 379, 390, 402, 413], [null, 0, 11, 21, 31, 41, 51, 61, 72, 82, 92, 102, 112, 122, 132, 143, 153, 163, 173, 183, 193, 204, 214, 224, 234, 244, 254, 265, 275, 285, 295, 305, 315, 325, 336, 346, 356], [null, null, null, null, 8, 16, 25, 33, 42, 50, 58, 67, 75, 84, 92, 100, 109, 117, 126, 134, 142, 151, 159, 168, 176, 185, 193, 201, 210, 218, 227, 235, 243, 252, 260, 269, 277], [null, null, null, null, null, 0, 8, 15, 22, 29, 37, 44, 51, 58, 66, 73, 80, 88, 95, 102, 109, 117, 124, 131, 138, 146, 153, 160, 167, 175, 182, 189, 197, 204, 211, 218, 226], [null, null, null, null, null, null, null, 2, 9, 15, 22, 28, 35, 41, 47, 54, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 144, 151, 157, 164, 170, 177, 183, 190], [null, null, null, null, null, null, null, null, null, 1, 6, 12, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 80, 85, 91, 97, 102, 108, 114, 119, 125, 131, 136, 142, 148, 153], [null, null, null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78, 83, 88, 93, 98, 103, 108, 113, 118, 123], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 21, 25, 30, 34, 39, 43, 48, 52, 57, 61, 66, 70, 75, 79, 84, 88, 93, 97], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 19, 24, 28, 33, 37, 41, 46, 50, 54, 59, 63, 68, 72, 76, 81], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 7, 11, 16, 20, 25, 30, 34, 39, 43, 48, 53, 57, 62, 66, 71, 76], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 17, 23, 30, 36, 43, 49, 56, 62, 69], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 11, 24, 37, 51]], [[35, 47], [30, 40], [32, 41], [36, 43], [34, 40], [33, 39], [32, 42], [29, 38], [32, 40], [33, 42], [29, 42], [36, 50]])) === 3 || (((t, c) => { if (r[1] == null || r[3] == null) return 0; const pd = Math.round(r[3]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 12, 32, 52, 72, 92, 112, 132, 152, 172, 192, 212, 232, 252, 272, 292, 312, 332, 352, 372, 392, 412, 432, 452, 472, 492, 512, 532, 552, 572, 592, 612, 632, 652, 672, 692, 712], [4, 11, 19, 26, 33, 40, 47, 55, 62, 69, 76, 83, 91, 98, 105, 112, 119, 127, 134, 141, 148, 155, 163, 170, 177, 184, 191, 199, 206, 213, 220, 227, 235, 242, 249, 256, 263], [null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172, 178, 184, 190, 196, 202, 208, 214], [null, null, null, 2, 8, 15, 21, 27, 33, 39, 46, 52, 58, 64, 70, 77, 83, 89, 95, 101, 108, 114, 120, 126, 132, 139, 145, 151, 157, 163, 170, 176, 182, 188, 194, 201, 207], [null, null, null, null, null, 0, 7, 13, 20, 26, 32, 39, 45, 52, 58, 65, 71, 77, 84, 90, 97, 103, 110, 116, 122, 129, 135, 142, 148, 155, 161, 168, 174, 180, 187, 193, 200], [null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, 7, 14, 21, 28, 35, 42, 50, 57, 64, 71, 78, 85, 93, 100, 107, 114, 121, 129, 136, 143, 150, 157, 164, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 16, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 96, 102, 108, 114, 120, 126], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 6, 11, 17, 22, 28, 33, 39, 44, 49, 55, 60, 66, 71, 77, 82, 88, 93], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 55, 62, 68, 75, 81, 87], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 9, 18, 28, 37, 46, 55, 64, 73, 82]], [[31, 51], [25, 32], [33, 39], [38, 45], [38, 44], [45, null], [34, 40], [34, 40], [32, 38], [29, 42], [34, 40], [36, 45]])) === 3 || (((t, c) => { if (r[1] == null || r[4] == null) return 0; const pd = Math.round(r[4]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[null, null, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350], [null, null, 3, 12, 22, 31, 40, 49, 58, 67, 77, 86, 95, 104, 113, 123, 132, 141, 150, 159, 168, 178, 187, 196, 205, 214, 224, 233, 242, 251, 260, 270, 279, 288, 297, 306, 315], [null, null, null, 1, 9, 17, 25, 33, 41, 49, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264], [null, null, null, null, null, 6, 13, 20, 27, 34, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 184, 191, 198, 205, 212, 219, 226], [null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 56, 62, 69, 75, 82, 88, 94, 101, 107, 114, 120, 127, 133, 140, 146, 153, 159, 166, 172, 178, 185, 191, 198], [null, null, null, null, null, null, null, null, 5, 11, 16, 22, 28, 34, 39, 45, 51, 57, 63, 68, 74, 80, 86, 91, 97, 103, 109, 114, 120, 126, 132, 137, 143, 149, 155, 161, 166], [null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 34, 39, 44, 49, 54, 59, 65, 70, 75, 80, 85, 90, 96, 101, 106, 111, 116, 121, 127, 132, 137], [null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 5, 10, 15, 19, 24, 29, 33, 38, 43, 47, 52, 57, 61, 66, 71, 75, 80, 85, 89, 94, 99, 104, 108], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 8, 13, 17, 22, 26, 31, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 20, 25, 29, 34, 38, 43, 48, 52, 57, 62, 66, 71, 75], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 7, 12, 18, 24, 29, 35, 41, 46, 52, 58, 63], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 14, 22, 31, 39, 47, 55, 64]], [[19, 29], [30, 39], [24, 40], [26, 41], [35, 42], [38, 44], [33, 43], [32, 42], [30, 39], [33, 42], [34, 40], [30, 46]])) === 3 || (((t, c) => { if (r[1] == null || r[5] == null) return 0; const pd = Math.round(r[5]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 8, 17, 25, 34, 42, 50, 59, 67, 76, 84, 92, 101, 109, 118, 126, 134, 143, 151, 160, 168, 176, 185, 193, 202, 210, 218, 227, 235, 244, 252, 260, 269, 277, 286, 294, 302], [null, 3, 11, 18, 26, 34, 41, 49, 57, 64, 72, 79, 87, 95, 102, 110, 118, 125, 133, 141, 148, 156, 163, 171, 179, 186, 194, 202, 209, 217, 225, 232, 240, 248, 255, 263, 270], [null, null, 1, 8, 14, 21, 27, 34, 40, 47, 53, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 145, 152, 158, 165, 171, 178, 184, 191, 197, 204, 210, 217, 223], [null, null, null, null, 6, 11, 17, 23, 29, 34, 40, 46, 52, 58, 63, 69, 75, 81, 86, 92, 98, 104, 110, 115, 121, 127, 133, 138, 144, 150, 156, 162, 167, 173, 179, 185, 190], [null, null, null, null, null, 4, 9, 14, 20, 25, 30, 35, 41, 46, 51, 56, 61, 67, 72, 77, 82, 88, 93, 98, 103, 109, 114, 119, 124, 130, 135, 140, 145, 150, 156, 161, 166], [null, null, null, null, null, null, null, 4, 9, 14, 18, 23, 28, 32, 37, 42, 46, 51, 56, 60, 65, 70, 74, 79, 84, 88, 93, 98, 102, 107, 112, 116, 121, 126, 130, 135, 140], [null, null, null, null, null, null, null, null, null, 2, 6, 10, 15, 19, 23, 27, 31, 36, 40, 44, 48, 52, 57, 61, 65, 69, 74, 78, 82, 86, 90, 95, 99, 103, 107, 111, 116], [null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 22, 26, 30, 34, 38, 42, 46, 50, 54, 57, 61, 65, 69, 73, 77, 81, 85, 89, 92], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 50, 54, 58, 62, 66, 70, 74], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 20, 24, 29, 33, 37, 41, 46, 50, 54, 58, 62, 67], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 12, 19, 26, 33, 39, 46, 53, 59], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 18, 39, 61, 82]], [[16, 33], [33, 40], [33, 39], [33, 39], [45, null], [37, 41], [30, 39], [29, 41], [30, 42], [32, 40], [32, 38], [38, 60]])) === 3)",
+     "texto": "Hay al menos un área en rojo: remita a un médico con entrenamiento en desarrollo o a pediatría para una evaluación integral en el plazo de un mes, y continúe el monitoreo."
+    },
+    {
+     "js": "((((t, c) => { if (r[1] == null || r[2] == null) return 0; const pd = Math.round(r[2]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[2, 13, 25, 36, 48, 59, 71, 82, 93, 105, 116, 128, 139, 150, 162, 173, 185, 196, 208, 219, 230, 242, 253, 265, 276, 287, 299, 310, 322, 333, 345, 356, 367, 379, 390, 402, 413], [null, 0, 11, 21, 31, 41, 51, 61, 72, 82, 92, 102, 112, 122, 132, 143, 153, 163, 173, 183, 193, 204, 214, 224, 234, 244, 254, 265, 275, 285, 295, 305, 315, 325, 336, 346, 356], [null, null, null, null, 8, 16, 25, 33, 42, 50, 58, 67, 75, 84, 92, 100, 109, 117, 126, 134, 142, 151, 159, 168, 176, 185, 193, 201, 210, 218, 227, 235, 243, 252, 260, 269, 277], [null, null, null, null, null, 0, 8, 15, 22, 29, 37, 44, 51, 58, 66, 73, 80, 88, 95, 102, 109, 117, 124, 131, 138, 146, 153, 160, 167, 175, 182, 189, 197, 204, 211, 218, 226], [null, null, null, null, null, null, null, 2, 9, 15, 22, 28, 35, 41, 47, 54, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 144, 151, 157, 164, 170, 177, 183, 190], [null, null, null, null, null, null, null, null, null, 1, 6, 12, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 80, 85, 91, 97, 102, 108, 114, 119, 125, 131, 136, 142, 148, 153], [null, null, null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78, 83, 88, 93, 98, 103, 108, 113, 118, 123], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 21, 25, 30, 34, 39, 43, 48, 52, 57, 61, 66, 70, 75, 79, 84, 88, 93, 97], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 19, 24, 28, 33, 37, 41, 46, 50, 54, 59, 63, 68, 72, 76, 81], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 7, 11, 16, 20, 25, 30, 34, 39, 43, 48, 53, 57, 62, 66, 71, 76], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 17, 23, 30, 36, 43, 49, 56, 62, 69], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 11, 24, 37, 51]], [[35, 47], [30, 40], [32, 41], [36, 43], [34, 40], [33, 39], [32, 42], [29, 38], [32, 40], [33, 42], [29, 42], [36, 50]])) === 2 || (((t, c) => { if (r[1] == null || r[3] == null) return 0; const pd = Math.round(r[3]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 12, 32, 52, 72, 92, 112, 132, 152, 172, 192, 212, 232, 252, 272, 292, 312, 332, 352, 372, 392, 412, 432, 452, 472, 492, 512, 532, 552, 572, 592, 612, 632, 652, 672, 692, 712], [4, 11, 19, 26, 33, 40, 47, 55, 62, 69, 76, 83, 91, 98, 105, 112, 119, 127, 134, 141, 148, 155, 163, 170, 177, 184, 191, 199, 206, 213, 220, 227, 235, 242, 249, 256, 263], [null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172, 178, 184, 190, 196, 202, 208, 214], [null, null, null, 2, 8, 15, 21, 27, 33, 39, 46, 52, 58, 64, 70, 77, 83, 89, 95, 101, 108, 114, 120, 126, 132, 139, 145, 151, 157, 163, 170, 176, 182, 188, 194, 201, 207], [null, null, null, null, null, 0, 7, 13, 20, 26, 32, 39, 45, 52, 58, 65, 71, 77, 84, 90, 97, 103, 110, 116, 122, 129, 135, 142, 148, 155, 161, 168, 174, 180, 187, 193, 200], [null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 166, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, 7, 14, 21, 28, 35, 42, 50, 57, 64, 71, 78, 85, 93, 100, 107, 114, 121, 129, 136, 143, 150, 157, 164, 172], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 10, 16, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 96, 102, 108, 114, 120, 126], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 6, 11, 17, 22, 28, 33, 39, 44, 49, 55, 60, 66, 71, 77, 82, 88, 93], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 55, 62, 68, 75, 81, 87], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 9, 18, 28, 37, 46, 55, 64, 73, 82]], [[31, 51], [25, 32], [33, 39], [38, 45], [38, 44], [45, null], [34, 40], [34, 40], [32, 38], [29, 42], [34, 40], [36, 45]])) === 2 || (((t, c) => { if (r[1] == null || r[4] == null) return 0; const pd = Math.round(r[4]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[null, null, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350], [null, null, 3, 12, 22, 31, 40, 49, 58, 67, 77, 86, 95, 104, 113, 123, 132, 141, 150, 159, 168, 178, 187, 196, 205, 214, 224, 233, 242, 251, 260, 270, 279, 288, 297, 306, 315], [null, null, null, 1, 9, 17, 25, 33, 41, 49, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264], [null, null, null, null, null, 6, 13, 20, 27, 34, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 184, 191, 198, 205, 212, 219, 226], [null, null, null, null, null, null, 4, 11, 17, 23, 30, 36, 43, 49, 56, 62, 69, 75, 82, 88, 94, 101, 107, 114, 120, 127, 133, 140, 146, 153, 159, 166, 172, 178, 185, 191, 198], [null, null, null, null, null, null, null, null, 5, 11, 16, 22, 28, 34, 39, 45, 51, 57, 63, 68, 74, 80, 86, 91, 97, 103, 109, 114, 120, 126, 132, 137, 143, 149, 155, 161, 166], [null, null, null, null, null, null, null, null, null, null, 3, 8, 13, 18, 23, 28, 34, 39, 44, 49, 54, 59, 65, 70, 75, 80, 85, 90, 96, 101, 106, 111, 116, 121, 127, 132, 137], [null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 5, 10, 15, 19, 24, 29, 33, 38, 43, 47, 52, 57, 61, 66, 71, 75, 80, 85, 89, 94, 99, 104, 108], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4, 8, 13, 17, 22, 26, 31, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, 6, 11, 15, 20, 25, 29, 34, 38, 43, 48, 52, 57, 62, 66, 71, 75], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 7, 12, 18, 24, 29, 35, 41, 46, 52, 58, 63], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 14, 22, 31, 39, 47, 55, 64]], [[19, 29], [30, 39], [24, 40], [26, 41], [35, 42], [38, 44], [33, 43], [32, 42], [30, 39], [33, 42], [34, 40], [30, 46]])) === 2 || (((t, c) => { if (r[1] == null || r[5] == null) return 0; const pd = Math.round(r[5]); if (pd < 0 || pd > 36) return 4; const pt = t[r[1] - 1][pd]; if (pt == null) return 4; const [rojo, amar] = c[r[1] - 1]; return pt <= rojo ? 3 : (amar != null && pt <= amar ? 2 : 1); })([[0, 8, 17, 25, 34, 42, 50, 59, 67, 76, 84, 92, 101, 109, 118, 126, 134, 143, 151, 160, 168, 176, 185, 193, 202, 210, 218, 227, 235, 244, 252, 260, 269, 277, 286, 294, 302], [null, 3, 11, 18, 26, 34, 41, 49, 57, 64, 72, 79, 87, 95, 102, 110, 118, 125, 133, 141, 148, 156, 163, 171, 179, 186, 194, 202, 209, 217, 225, 232, 240, 248, 255, 263, 270], [null, null, 1, 8, 14, 21, 27, 34, 40, 47, 53, 60, 67, 73, 80, 86, 93, 99, 106, 112, 119, 125, 132, 138, 145, 152, 158, 165, 171, 178, 184, 191, 197, 204, 210, 217, 223], [null, null, null, null, 6, 11, 17, 23, 29, 34, 40, 46, 52, 58, 63, 69, 75, 81, 86, 92, 98, 104, 110, 115, 121, 127, 133, 138, 144, 150, 156, 162, 167, 173, 179, 185, 190], [null, null, null, null, null, 4, 9, 14, 20, 25, 30, 35, 41, 46, 51, 56, 61, 67, 72, 77, 82, 88, 93, 98, 103, 109, 114, 119, 124, 130, 135, 140, 145, 150, 156, 161, 166], [null, null, null, null, null, null, null, 4, 9, 14, 18, 23, 28, 32, 37, 42, 46, 51, 56, 60, 65, 70, 74, 79, 84, 88, 93, 98, 102, 107, 112, 116, 121, 126, 130, 135, 140], [null, null, null, null, null, null, null, null, null, 2, 6, 10, 15, 19, 23, 27, 31, 36, 40, 44, 48, 52, 57, 61, 65, 69, 74, 78, 82, 86, 90, 95, 99, 103, 107, 111, 116], [null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 22, 26, 30, 34, 38, 42, 46, 50, 54, 57, 61, 65, 69, 73, 77, 81, 85, 89, 92], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 50, 54, 58, 62, 66, 70, 74], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, 7, 12, 16, 20, 24, 29, 33, 37, 41, 46, 50, 54, 58, 62, 67], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6, 12, 19, 26, 33, 39, 46, 53, 59], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 18, 39, 61, 82]], [[16, 33], [33, 40], [33, 39], [33, 39], [45, null], [37, 41], [30, 39], [29, 41], [30, 42], [32, 40], [32, 38], [38, 60]])) === 2)",
+     "texto": "Hay al menos un área en amarillo: si evaluó un profesional no médico, remita a nueva tamización por médico (idealmente pediatra); si evaluó un médico, revise los determinantes y reevalúe en un mes."
+    }
+   ],
+   "nota": "Puntuación típica y colores de los anexos 11 y 10 del manual de la EAD-3 (Ministerio de Salud y Javeriana, 2016). Conducta a seguir según sus normas de interpretación."
+  },
+  "sinitems": true
+ },
+ "bears": {
+  "clave": "BEARS",
+  "sigla": "BEARS",
+  "titulo": "Tamizaje BEARS de Sueño Infantil",
+  "para": "Cinco dominios en cinco preguntas: problemas al acostarse, somnolencia diurna, despertares, regularidad y duración, y ronquido.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "padres",
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el guion BEARS con la pregunta que corresponde a la edad (2 a 5, 6 a 12 o 13 a 18 años) y marque «Sí» en el dominio cuya respuesta fue positiva. En el dominio R, quien aplica decide si la respuesta fue positiva."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Dominios",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "B · Problemas para acostarse",
+     "E · Somnolencia diurna excesiva",
+     "A · Despertares durante la noche",
+     "R · Regularidad y duración del sueño",
+     "S · Ronquidos"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Dominios con respuesta positiva",
+     "js": "((l) => l.length ? l.join(' · ') : 'Ninguno')(['B', 'E', 'A', 'R', 'S'].filter((x, k) => r[k + 1] === 1))",
+     "texto": "B acostarse, E somnolencia diurna, A despertares, R regularidad y duración, S ronquidos."
+    },
+    {
+     "n": "Resultado",
+     "js": "C(RANGO(1,5),1) > 0 ? 1 : (RANGO(1,5).some(i => r[i] == null) ? -1 : 0)",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "Faltan dominios por registrar"
+      ],
+      [
+       0,
+       0,
+       "Ningún dominio positivo"
+      ],
+      [
+       1,
+       1,
+       "Al menos un dominio positivo: debe investigarse más detenidamente (GPC del Ministerio de Sanidad, 2011)"
+      ]
+     ]
+    }
+   ],
+   "nota": "El BEARS es un guion de cribado sin puntaje, normas ni puntos de corte; el resultado depende de la interpretación de quien aplica (Owens y Dalzell, 2005). Un recuento de dominios positivos no tiene fuente. La versión con propiedades psicométricas publicada (Aristizábal-Bogotá, 2018, alfa 0,732 en 8.862 escolares de 9 a 17 años) es autodiligenciada y no da cortes."
+  },
+  "sinitems": true
+ },
+ "bisq": {
+  "clave": "BISQ",
+  "sigla": "BISQ",
+  "titulo": "Cuestionario Breve de Sueño Infantil",
+  "para": "Patrón de sueño del lactante y el preescolar: latencia, despertares nocturnos, lugar y forma de dormirse.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "padres"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el cuestionario a los padres o cuidadores y anote aquí los datos de sueño del niño en horas (con punto decimal, por ejemplo 9.5). Use las franjas de la versión que aplicó (GPC: noche de 21 a 9 h; BISQ-E: noche de 20 a 7 h) y no las mezcle."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "De 6 a 30 meses",
+     "Menor de 6 o mayor de 30 meses"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Edad del niño"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "dato",
+    "x": "Duración del sueño nocturno",
+    "tipo": "numero",
+    "unidad": "horas"
+   },
+   {
+    "t": "dato",
+    "x": "Duración del sueño diurno",
+    "tipo": "numero",
+    "unidad": "horas"
+   },
+   {
+    "t": "dato",
+    "x": "Número de despertares nocturnos",
+    "tipo": "numero",
+    "unidad": "veces"
+   },
+   {
+    "t": "dato",
+    "x": "Vigilia durante la noche",
+    "tipo": "numero",
+    "unidad": "minutos"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Sueño total en 24 horas (nocturno + diurno)",
+     "js": "(r[2] == null || r[3] == null) ? 'Pendiente' : Math.round((r[2] + r[3]) * 100) / 100",
+     "texto": "En horas. La suma es derivable: la fuente no la describe como cálculo, pero el indicador de Sadeh usa el total de 24 horas. Sin percentiles en las fuentes."
+    },
+    {
+     "n": "Indicadores de sueño inadecuado de Sadeh cumplidos (de 3)",
+     "js": "r[1] !== 1 ? '—' : ((n) => (n === 0 && [2,3,4,5].some(i => r[i] == null)) ? 'Pendiente' : n)((r[4] != null && r[4] > 3 ? 1 : 0) + (r[5] != null && r[5] >= 60 ? 1 : 0) + ((r[2] != null && r[3] != null && r[2] + r[3] < 9) ? 1 : 0))",
+     "rangos_por": [
+      {
+       "si": "r[1] === 1",
+       "rangos": [
+        [
+         0,
+         0,
+         "No se cumple ninguno de los tres indicadores"
+        ],
+        [
+         1,
+         3,
+         "Se cumple al menos uno: patrón de sueño inadecuado según Sadeh; no diagnostica un trastorno del sueño (Cassanello et al., 2018)"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Los indicadores de Sadeh se leen solo entre los 6 y los 30 meses."
+    }
+   ],
+   "nota": "Indicadores de Sadeh citados por Cassanello et al. (2018, BISQ-E): más de 3 despertares nocturnos, 1 hora de vigilia en la noche o menos de 9 horas de sueño total en 24 horas. El cuestionario no sirve para diagnosticar un trastorno del sueño. No hay puntaje total ni subescalas publicados; latencia, hora de dormirse y forma de dormirse se registran en el protocolo sin reglas de calificación. El ítem de si los padres consideran el sueño un problema está en el BISQ original, no en la versión de la GPC."
+  },
+  "sinitems": true
+ },
+ "cshq": {
+  "clave": "CSHQ",
+  "sigla": "CSHQ",
+  "titulo": "Cuestionario de Hábitos de Sueño Infantiles",
+  "para": "Ocho dominios de hábitos y alteraciones: resistencia a acostarse, ansiedad del sueño, despertares, parasomnias, respiración y somnolencia diurna.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "padres"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el cuestionario a los padres o cuidadores (última semana, o una semana típica) y marque aquí la respuesta de cada ítem tal como la dieron: la hoja aplica la inversión de los ítems que lo requieren. Solo se piden los ítems que puntúan; los rótulos usan la numeración del texto en español de la tesis de la UAM. Ningún ítem puede quedar sin contestar."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems que puntúan",
+    "ops": [
+     "Rara vez",
+     "A veces",
+     "Generalmente"
+    ],
+    "vals": [
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 7",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 34",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 44"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems 46 y 47 (1 sin sueño, 2 con sueño, 3 se duerme)",
+    "ops": [
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 46",
+     "Ítem 47"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (33 ítems)",
+     "js": "L([4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32, 33]) + R(1,4) + R(2,4) + R(3,4) + R(10,4) + R(11,4) + R(26,4)",
+     "rangos": [
+      [
+       33,
+       41,
+       "Por debajo del corte"
+      ],
+      [
+       42,
+       99,
+       "Más de 41: problema de sueño (corte de Owens et al., 2000, citado por la tesis de la UAM: sensibilidad 0,80, especificidad 0,72)"
+      ]
+     ]
+    },
+    {
+     "n": "Resistencia a acostarse",
+     "js": "L([4, 5, 6, 8]) + R(1,4) + R(3,4)",
+     "texto": "De 6 a 18. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Retardo del inicio del sueño (ítem 2)",
+     "js": "R(2,4)",
+     "texto": "De 1 a 3. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Duración del sueño",
+     "js": "L([9]) + R(10,4) + R(11,4)",
+     "texto": "De 3 a 9. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Ansiedad del sueño",
+     "js": "L([5, 7, 8, 21])",
+     "texto": "De 4 a 12. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Despertares nocturnos",
+     "js": "L([16, 24, 25])",
+     "texto": "De 3 a 9. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Parasomnias",
+     "js": "L([12, 13, 14, 15, 17, 22, 23])",
+     "texto": "De 7 a 21. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Respiración durante el sueño",
+     "js": "L([18, 19, 20])",
+     "texto": "De 3 a 9. Sin puntos de corte para la subescala."
+    },
+    {
+     "n": "Somnolencia diurna",
+     "js": "L([27, 28, 29, 30, 31, 32, 33]) + R(26,4)",
+     "texto": "De 8 a 24. Sin puntos de corte para la subescala."
+    }
+   ],
+   "nota": "Corte de más de 41 de Owens et al. (2000), citado de segunda mano por la tesis de la UAM (el artículo original no está en la biblioteca): contrástelo antes de usarlo como oficial. Ese corte se definió para niños de 4 a 10 años; la tesis aplicó el cuestionario a menores de 3 años sin validarlo (media 50,3, DE 7,2, n = 68) y propuso más de 59 solo para su muestra, que no es un corte validado. Las ocho subescalas son las de Owens; los ítems 7 y 12 cuentan en dos, y su asignación se derivó de la tabla 28 de la tesis. En la traducción de Lara Ledesma (2014) el análisis factorial no reprodujo los ocho factores y los alfa de las subescalas fueron bajos (0,27 a 0,66)."
+  },
+  "sinitems": true
+ },
+ "sdsc": {
+  "clave": "SDSC",
+  "sigla": "SDSC",
+  "titulo": "Escala de Alteraciones del Sueño en la Infancia",
+  "para": "Seis factores de trastornos del sueño, incluidos los del inicio y mantenimiento, los respiratorios y la hipersomnolencia.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "padres"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que se eligió. Los ítems 1 y 2 llevan sus propias opciones (horas de sueño y tiempo para dormirse): marque el número de 1 a 5 que quedó en el protocolo."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (26 a 130)",
+     "js": "S(1,26)",
+     "rangos": [
+      [
+       26,
+       38,
+       "Por debajo del corte"
+      ],
+      [
+       39,
+       130,
+       "39 o más: sospecha de un trastorno del sueño (corte de Bruni et al., 1996); no es diagnóstico"
+      ]
+     ]
+    },
+    {
+     "n": "Total: puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => (x in m ? m[x] : x >= 74 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26], {\"26\": \"T 38\", \"27\": \"T 40\", \"28\": \"T 41\", \"29\": \"T 42\", \"31\": \"T 45\", \"32\": \"T 46\", \"33\": \"T 47\", \"34\": \"T 49\", \"35\": \"T 50\", \"36\": \"T 51\", \"37\": \"T 53\", \"38\": \"T 54\", \"39\": \"T 55\", \"40\": \"T 56\", \"41\": \"T 58\", \"42\": \"T 59\", \"43\": \"T 60\", \"44\": \"T 62\", \"45\": \"T 63\", \"46\": \"T 64\", \"47\": \"T 66\", \"48\": \"T 67\", \"49\": \"T 68\", \"50\": \"T 69\", \"51\": \"T 70\", \"52\": \"T 72\", \"53\": \"T 73\", \"54\": \"T 75\", \"55\": \"T 76\", \"56\": \"T 77\", \"57\": \"T 79\", \"58\": \"T 80\", \"59\": \"T 81\", \"60\": \"T 82\", \"61\": \"T 84\", \"62\": \"T 85\", \"63\": \"T 86\", \"64\": \"T 88\", \"65\": \"T 89\", \"66\": \"T 90\", \"68\": \"T 93\", \"69\": \"T 94\", \"70\": \"T 95\", \"71\": \"T 97\", \"72\": \"T 98\", \"73\": \"T 99\", \"30\": \"sin fila en la hoja (entre T 42 y 45)\", \"67\": \"sin fila en la hoja (entre T 90 y 93)\"})",
+     "texto": "Hoja de puntaje T de Cantellano (2019, apéndice B). La hoja no tiene fila para los totales 30 y 67 y no se interpola."
+    },
+    {
+     "n": "Inicio y mantenimiento del sueño (DIMS) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 26 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([1, 2, 3, 4, 5, 10, 11], {\"7\": \"T 41\", \"8\": \"T 45\", \"9\": \"T 47\", \"10\": \"T 50\", \"11\": \"T 54\", \"12\": \"T 58\", \"13\": \"T 60\", \"14\": \"T 64\", \"15\": \"T 66\", \"16\": \"T 70\", \"17\": \"T 73\", \"18\": \"T 76\", \"19\": \"T 79\", \"20\": \"T 82\", \"21\": \"T 86\", \"22\": \"T 89\", \"23\": \"T 93\", \"24\": \"T 95\", \"25\": \"T 99\"})",
+     "texto": "De 7 a 35. Media de controles italianos: 9,9 (DE 3,11) (Bruni et al., 1996). Sin corte por factor."
+    },
+    {
+     "n": "Trastornos respiratorios del sueño (SBD) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 11 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([13, 14, 15], {\"3\": \"T 45\", \"4\": \"T 51\", \"5\": \"T 58\", \"6\": \"T 64\", \"7\": \"T 72\", \"8\": \"T 79\", \"9\": \"T 86\", \"10\": \"T 93\"})",
+     "texto": "De 3 a 15. Media de controles italianos: 3,77 (DE 1,45) (Bruni et al., 1996). Sin corte por factor."
+    },
+    {
+     "n": "Trastornos del despertar (DA) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 8 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([17, 20, 21], {\"3\": \"T 47\", \"4\": \"T 58\", \"5\": \"T 70\", \"6\": \"T 82\", \"7\": \"T 94\"})",
+     "texto": "De 3 a 15. Media de controles italianos: 3,29 (DE 0,84) (Bruni et al., 1996). Sin corte por factor."
+    },
+    {
+     "n": "Transición sueño-vigilia (SWTD) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 21 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([6, 7, 8, 12, 18, 19], {\"6\": \"T 41\", \"7\": \"T 45\", \"8\": \"T 50\", \"9\": \"T 54\", \"10\": \"T 58\", \"11\": \"T 62\", \"12\": \"T 66\", \"13\": \"T 70\", \"14\": \"T 75\", \"15\": \"T 79\", \"16\": \"T 84\", \"17\": \"T 86\", \"18\": \"T 93\", \"19\": \"T 95\", \"20\": \"T 99\"})",
+     "texto": "De 6 a 30. Media de controles italianos: 8,11 (DE 2,41) (Bruni et al., 1996). Sin corte por factor."
+    },
+    {
+     "n": "Somnolencia excesiva (DOES) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 20 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([22, 23, 24, 25, 26], {\"5\": \"T 42\", \"6\": \"T 46\", \"7\": \"T 50\", \"8\": \"T 53\", \"9\": \"T 58\", \"10\": \"T 62\", \"11\": \"T 64\", \"12\": \"T 69\", \"13\": \"T 73\", \"14\": \"T 77\", \"15\": \"T 81\", \"16\": \"T 85\", \"17\": \"T 88\", \"18\": \"T 93\", \"19\": \"T 95\"})",
+     "texto": "De 5 a 25. Media de controles italianos: 7,11 (DE 2,57) (Bruni et al., 1996). Sin corte por factor."
+    },
+    {
+     "n": "Hiperhidrosis del sueño (SHY) · bruto y puntaje T",
+     "js": "((l, m) => l.some(i => r[i] == null) ? 'Pendiente' : ((x) => x + ' · ' + (x in m ? m[x] : x >= 999 ? 'T 100 o más' : 'sin fila en la hoja'))(L(l)))([9, 16], {\"2\": \"T 45\", \"3\": \"T 51\", \"4\": \"T 58\", \"5\": \"T 64\", \"6\": \"T 69\", \"7\": \"T 75\", \"8\": \"T 80\", \"9\": \"T 86\", \"10\": \"T 93\"})",
+     "texto": "De 2 a 10. Media de controles italianos: 2,87 (DE 1,69) (Bruni et al., 1996). Sin corte por factor."
+    }
+   ],
+   "nota": "Corte del total de 39 de Bruni et al. (1996; AUC 0,91, sensibilidad 0,89, especificidad 0,74), también usado por Cantellano (2019) y por la GPC del Ministerio de Sanidad. Media de controles en el total: 35,05 (DE 7,70). La hoja de puntaje T de Cantellano no declara de dónde salió (Bruni et al. la publican, pero su tabla salió ilegible); la letra «T» es la de la fuente y no se muestran sus franjas de color. Valida con padres o cuidadores de niños de 6,5 a 15,3 años (Bruni); Cantellano la aplica de 2 a 16 años. Hacen falta los 26 ítems."
+  },
+  "sinitems": true
+ },
  "asrs-v1-1": {
   "clave": "ASRS v1.1",
   "sigla": "ASRS v1.1",
@@ -13318,6 +18368,693 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "cfq": {
+  "clave": "CFQ",
+  "sigla": "CFQ",
+  "titulo": "Cuestionario de Fallos Cognitivos",
+  "para": "Medir con qué frecuencia la persona nota fallos cotidianos de memoria, atención y acción: olvidar para qué entró a un cuarto, no oír lo que le dicen, extraviar objetos. Recoge la queja subjetiva, no el rendimiento en una prueba, y es breve. No diagnostica deterioro cognitivo.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Hernández Cruz et al. (2022), Revista ConCiencia EPG · acceso abierto, CC BY 4.0.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Marque, para cada pregunta, la opción que mejor describa con qué frecuencia le ocurre."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Ocasionalmente",
+     "A menudo",
+     "Muy a menudo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Cuando lee algo, ¿le ha pasado que está distraído y necesita volver a lo ya leído?",
+     "¿Ha notado que, al ir de una parte a otra de la casa, olvida lo que iba a hacer allí?",
+     "¿Se ha dado cuenta que no nota los señalamientos en la carretera?",
+     "¿Le ha ocurrido que confunde la derecha con la izquierda cuando está dando una dirección?",
+     "Al ir caminando, ¿choca con otras personas?",
+     "¿Se ha fijado que olvida si ha apagado alguna luz o cerrado con llave alguna puerta?",
+     "¿Le ha ocurrido que falla al tratar de recordar el nombre de personas a las que acaba de conocer?",
+     "¿Le ha pasado que dice algo y después se da cuenta de que puede ser tomado como un insulto?",
+     "¿No logra escuchar cuando le hablan, si usted está haciendo otra cosa?",
+     "¿Pierde el control y después se arrepiente?",
+     "¿Tarda algunos días en responder a mensajes importantes?",
+     "¿Ha notado que olvida hacia dónde debe girar en una calle que conoce bien pero que rara vez usa?",
+     "¿No logra encontrar lo que quiere en un supermercado (a pesar de que está ahí)?",
+     "¿De pronto se pregunta si ha usado una palabra correctamente?",
+     "¿Tiene problemas para decidirse a hacer algo?",
+     "¿Se ha dado cuenta que olvida acudir a citas?",
+     "¿Olvida dónde puso algo, como las llaves o la cartera?",
+     "¿Le ha pasado que accidentalmente tira algo que quería y se queda con lo que pensaba tirar-como el ejemplo de tirar la caja de cerillos y guardar el cerillo usado en su bolsillo?",
+     "¿Piensa en otra cosa, cuando debería estar escuchando con atención algo?",
+     "¿Se da cuenta que olvida los nombres de las personas?",
+     "¿Empieza a hacer alguna cosa en casa y se distrae por hacer otra (sin querer)?",
+     "¿Se ha fijado que no puede recordar bien algo, aunque esté en la punta de su lengua?",
+     "¿Le ha ocurrido que olvida qué era lo que iba a comprar en la tienda?",
+     "¿Deja caer cosas sin querer?",
+     "Al estar conversando ¿le ha pasado que se queda en blanco y no se le ocurre nada que decir?"
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,25)",
+     "texto": "De 0 a 100: a mayor puntaje, más fallos cognitivos en la vida diaria. Sin puntos de corte. Medianas en México: adultos jóvenes 37,5; adultos mayores 18 (Hernández-Cruz et al., 2022)."
+    }
+   ],
+   "nota": "Mide quejas cognitivas, no el rendimiento: se relaciona poco con las pruebas de ejecución."
+  }
+ },
+ "tmt-a-y-b": {
+  "clave": "TMT A y B",
+  "sigla": "TMT A y B",
+  "titulo": "Prueba de Rastreo",
+  "para": "Atención sostenida y velocidad de procesamiento en la parte A; flexibilidad cognitiva y alternancia en la parte B.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Funcionamiento cognitivo en adultos jóvenes».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la prueba con su material y sus instrucciones oficiales, y anote aquí los resultados."
+   },
+   {
+    "t": "dato",
+    "x": "Tiempo en la parte A",
+    "tipo": "numero",
+    "unidad": "segundos"
+   },
+   {
+    "t": "dato",
+    "x": "Tiempo en la parte B",
+    "tipo": "numero",
+    "unidad": "segundos"
+   },
+   {
+    "t": "dato",
+    "x": "Edad",
+    "tipo": "numero",
+    "unidad": "años"
+   },
+   {
+    "t": "dato",
+    "x": "Escolaridad",
+    "tipo": "numero",
+    "unidad": "años aprobados"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Parte A: percentil",
+     "js": "(r[1] == null || r[3] == null || r[4] == null) ? 'Pendiente' : Math.round(PHI(-(r[1] - (74.03 + 0.64 * (r[3] - 58) + 0.006 * (r[3] - 58) ** 2 - 18.417 * (r[4] > 12 ? 1 : 0))) / 18.792) * 100)",
+     "texto": "Normas colombianas (Rivera Camacho, 2016): percentil de rendimiento según edad y escolaridad. Un percentil alto es un tiempo rápido."
+    },
+    {
+     "n": "Parte A: puntaje z",
+     "js": "(r[1] == null || r[3] == null || r[4] == null) ? 'Pendiente' : Math.round(-(r[1] - (74.03 + 0.64 * (r[3] - 58) + 0.006 * (r[3] - 58) ** 2 - 18.417 * (r[4] > 12 ? 1 : 0))) / 18.792 * 100) / 100",
+     "texto": "Positivo: más rápido de lo esperado para su edad y escolaridad; negativo: más lento."
+    },
+    {
+     "n": "Parte B: percentil",
+     "js": "(r[2] == null || r[3] == null || r[4] == null) ? 'Pendiente' : Math.round(PHI(-(r[2] - (179.649 + 2.331 * (r[3] - 58) + 0.024 * (r[3] - 58) ** 2 - 66.597 * (r[4] > 12 ? 1 : 0))) / 64.627) * 100)"
+    },
+    {
+     "n": "Parte B: puntaje z",
+     "js": "(r[2] == null || r[3] == null || r[4] == null) ? 'Pendiente' : Math.round(-(r[2] - (179.649 + 2.331 * (r[3] - 58) + 0.024 * (r[3] - 58) ** 2 - 66.597 * (r[4] > 12 ? 1 : 0))) / 64.627 * 100) / 100"
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[3] != null && (r[3] < 18 || r[3] > 90)",
+     "texto": "Las normas colombianas cubren de 18 a 90 años."
+    },
+    {
+     "js": "(r[1] != null && r[1] > 100) || (r[2] != null && r[2] > 300)",
+     "texto": "En el estudio normativo el tiempo máximo fue 100 segundos en A y 300 en B."
+    }
+   ],
+   "nota": "La tesis no define rangos clínicos de percentil: interprete el percentil junto con la historia y la observación."
+  },
+  "sinitems": true
+ },
+ "fab": {
+  "clave": "FAB",
+  "sigla": "FAB",
+  "titulo": "Batería de Evaluación Frontal",
+  "para": "Seis tareas breves de funciones ejecutivas: conceptualización, flexibilidad, programación motora, control inhibitorio y autonomía.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Funcionamiento cognitivo en adultos jóvenes».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la prueba con su material y sus instrucciones oficiales, y anote aquí los resultados."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Subpruebas",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Subprueba 1",
+     "Subprueba 2",
+     "Subprueba 3",
+     "Subprueba 4",
+     "Subprueba 5",
+     "Subprueba 6"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "29 años o menos",
+     "30 a 39",
+     "40 a 49",
+     "50 a 59",
+     "60 a 69",
+     "70 o más"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Edad"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Primaria o menos",
+     "Secundaria",
+     "Universitaria"
+    ],
+    "vals": [
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Escolaridad"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,6)",
+     "rangos_por": [
+      {
+       "si": "r[7] === 1 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         16,
+         "En o por debajo del percentil 5 de su edad y escolaridad (16)"
+        ],
+        [
+         17,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 1 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         16,
+         "En o por debajo del percentil 5 de su edad y escolaridad (16)"
+        ],
+        [
+         17,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 1 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         16,
+         "En o por debajo del percentil 5 de su edad y escolaridad (16)"
+        ],
+        [
+         17,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 2 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 2 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         15,
+         "En o por debajo del percentil 5 de su edad y escolaridad (15)"
+        ],
+        [
+         16,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 2 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         17,
+         "En o por debajo del percentil 5 de su edad y escolaridad (17)"
+        ],
+        [
+         18,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 3 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 3 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 3 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         16,
+         "En o por debajo del percentil 5 de su edad y escolaridad (16)"
+        ],
+        [
+         17,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 4 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         13,
+         "En o por debajo del percentil 5 de su edad y escolaridad (13)"
+        ],
+        [
+         14,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 4 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         15,
+         "En o por debajo del percentil 5 de su edad y escolaridad (15)"
+        ],
+        [
+         16,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 4 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 5 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         11,
+         "En o por debajo del percentil 5 de su edad y escolaridad (11)"
+        ],
+        [
+         12,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 5 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 5 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         13,
+         "En o por debajo del percentil 5 de su edad y escolaridad (13)"
+        ],
+        [
+         14,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 6 && r[8] === 1",
+       "rangos": [
+        [
+         0,
+         9,
+         "En o por debajo del percentil 5 de su edad y escolaridad (9)"
+        ],
+        [
+         10,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 6 && r[8] === 2",
+       "rangos": [
+        [
+         0,
+         12,
+         "En o por debajo del percentil 5 de su edad y escolaridad (12)"
+        ],
+        [
+         13,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      },
+      {
+       "si": "r[7] === 6 && r[8] === 3",
+       "rangos": [
+        [
+         0,
+         14,
+         "En o por debajo del percentil 5 de su edad y escolaridad (14)"
+        ],
+        [
+         15,
+         18,
+         "Por encima del percentil 5 de su edad y escolaridad"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Elija edad y escolaridad para comparar con las normas.",
+     "texto": "Normas españolas de adultos sanos (Hurtado-Pomares et al., 2024, tabla 4). A mayor puntaje, mejor ejecución; muchas personas sanas obtienen 18."
+    }
+   ]
+  },
+  "sinitems": true
+ },
+ "sdmt": {
+  "clave": "SDMT",
+  "sigla": "SDMT",
+  "titulo": "Prueba de Símbolos y Dígitos",
+  "para": "Velocidad de procesamiento de la información, el dominio que primero cae ante casi cualquier compromiso cognitivo.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Funcionamiento cognitivo en adultos jóvenes».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la prueba con su material y sus instrucciones oficiales, y anote aquí los resultados."
+   },
+   {
+    "t": "dato",
+    "x": "Sustituciones correctas en 90 segundos",
+    "tipo": "numero",
+    "unidad": "de 0 a 110"
+   },
+   {
+    "t": "dato",
+    "x": "Edad",
+    "tipo": "numero",
+    "unidad": "años"
+   },
+   {
+    "t": "dato",
+    "x": "Escolaridad",
+    "tipo": "numero",
+    "unidad": "años aprobados"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "18 a 49 años: puntaje escalar NEURONORMA",
+     "js": "(r[1] == null || r[2] == null || r[3] == null) ? 'Pendiente' : (r[2] < 18 || r[2] > 49 || r[3] < 8) ? 'No aplica' : Math.max(2, Math.min(18, 2 + [31, 34, 35, 40, 44, 49, 51, 53, 59, 63, 67, 70, 75, 78, 79, 82].filter(x => r[1] >= x).length - Math.trunc(0.396 * (r[3] - 13))))",
+     "rangos": [
+      [
+       2,
+       2,
+       "Puntaje escalar 2: percentil <1"
+      ],
+      [
+       3,
+       3,
+       "Puntaje escalar 3: percentil 1"
+      ],
+      [
+       4,
+       4,
+       "Puntaje escalar 4: percentil 2"
+      ],
+      [
+       5,
+       5,
+       "Puntaje escalar 5: percentil 3-5"
+      ],
+      [
+       6,
+       6,
+       "Puntaje escalar 6: percentil 6-10"
+      ],
+      [
+       7,
+       7,
+       "Puntaje escalar 7: percentil 11-18"
+      ],
+      [
+       8,
+       8,
+       "Puntaje escalar 8: percentil 19-28"
+      ],
+      [
+       9,
+       9,
+       "Puntaje escalar 9: percentil 29-40"
+      ],
+      [
+       10,
+       10,
+       "Puntaje escalar 10: percentil 41-59"
+      ],
+      [
+       11,
+       11,
+       "Puntaje escalar 11: percentil 60-71"
+      ],
+      [
+       12,
+       12,
+       "Puntaje escalar 12: percentil 72-81"
+      ],
+      [
+       13,
+       13,
+       "Puntaje escalar 13: percentil 82-89"
+      ],
+      [
+       14,
+       14,
+       "Puntaje escalar 14: percentil 90-94"
+      ],
+      [
+       15,
+       15,
+       "Puntaje escalar 15: percentil 95-97"
+      ],
+      [
+       16,
+       16,
+       "Puntaje escalar 16: percentil 98"
+      ],
+      [
+       17,
+       17,
+       "Puntaje escalar 17: percentil 99"
+      ],
+      [
+       18,
+       18,
+       "Puntaje escalar 18: percentil >99"
+      ]
+     ],
+     "texto": "Normas españolas NEURONORMA (Tamayo et al., 2012), ajustadas por escolaridad. Solo de 18 a 49 años y con 8 o más años de escolaridad."
+    },
+    {
+     "n": "55 años o más: percentil SABIEX (aproximado)",
+     "js": "(r[1] == null || r[2] == null || r[3] == null) ? 'Pendiente' : r[2] < 55 ? 'No aplica' : Math.round(PHI((r[1] - (36.508 - 0.655 * (r[2] - 55) + 0.913 * (r[3] - 3))) / 8.2) * 100)",
+     "texto": "Normas de mayores activos españoles (Iñesta et al., 2021). La fuente no publica el error típico: se usó una estimación (8,2), así que el percentil es aproximado."
+    }
+   ],
+   "nota": "No hay normas colombianas en las fuentes. Entre 50 y 54 años ninguna de las dos normas aplica."
+  },
+  "sinitems": true
  },
  "mini-cog": {
   "clave": "Mini-Cog",
@@ -13440,6 +19177,368 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "moca": {
+  "clave": "MoCA",
+  "sigla": "MoCA",
+  "titulo": "Evaluación Cognitiva de Montreal",
+  "para": "Cribado de deterioro cognitivo leve, más sensible que el Mini-Mental en fases tempranas.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Deterioro cognitivo en adultos mayores».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la prueba con su material y sus instrucciones oficiales, y anote aquí los resultados."
+   },
+   {
+    "t": "dato",
+    "x": "Puntaje total de la prueba",
+    "tipo": "numero",
+    "unidad": "de 0 a 30, sin sumar el punto por escolaridad"
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Primaria o menos",
+     "Bachillerato incompleto",
+     "Bachillerato completo",
+     "Estudios superiores"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Escolaridad"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "r[1] == null ? 0 : r[1]",
+     "rangos_por": [
+      {
+       "si": "r[2] === 1",
+       "rangos": [
+        [
+         0,
+         17,
+         "Compatible con demencia (corte 17/18 entre deterioro leve y demencia)"
+        ],
+        [
+         18,
+         22,
+         "Por debajo del corte de deterioro cognitivo leve (22/23)"
+        ],
+        [
+         23,
+         30,
+         "Por encima del corte (22/23)"
+        ]
+       ]
+      },
+      {
+       "si": "r[2] === 2",
+       "rangos": [
+        [
+         0,
+         17,
+         "Compatible con demencia (corte 17/18 entre deterioro leve y demencia)"
+        ],
+        [
+         18,
+         22,
+         "Por debajo del corte de deterioro cognitivo leve (22/23)"
+        ],
+        [
+         23,
+         30,
+         "Por encima del corte (22/23)"
+        ]
+       ]
+      },
+      {
+       "si": "r[2] === 3",
+       "rangos": [
+        [
+         0,
+         18,
+         "Compatible con demencia (corte 18/19 entre deterioro leve y demencia)"
+        ],
+        [
+         19,
+         23,
+         "Por debajo del corte de deterioro cognitivo leve (23/24)"
+        ],
+        [
+         24,
+         30,
+         "Por encima del corte (23/24)"
+        ]
+       ]
+      },
+      {
+       "si": "r[2] === 4",
+       "rangos": [
+        [
+         0,
+         18,
+         "Compatible con demencia (corte 18/19 entre deterioro leve y demencia)"
+        ],
+        [
+         19,
+         23,
+         "Por debajo del corte de deterioro cognitivo leve (23/24)"
+        ],
+        [
+         24,
+         30,
+         "Por encima del corte (23/24)"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Elija la escolaridad para ver los cortes colombianos.",
+     "texto": "Cortes colombianos de Pedraza et al. (2016), tablas 5 y 6, en adultos de 50 años o más. Corte original de Nasreddine: menos de 26, sumando 1 punto con menos de 12 años de escolaridad. Es tamizaje: confirme con evaluación."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[1] != null && (r[1] < 0 || r[1] > 30)",
+     "texto": "El total debe estar entre 0 y 30."
+    }
+   ]
+  },
+  "sinitems": true
+ },
+ "mmse": {
+  "clave": "MMSE",
+  "sigla": "MMSE",
+  "titulo": "Mini Examen del Estado Mental",
+  "para": "Cribado cognitivo clásico: orientación, memoria, atención, lenguaje y praxis.",
+  "areas": [
+   "Neurodesarrollo y cognición"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Deterioro cognitivo en adultos mayores».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique la prueba con su material y sus instrucciones oficiales, y anote aquí los resultados."
+   },
+   {
+    "t": "dato",
+    "x": "Puntaje total de la prueba",
+    "tipo": "numero",
+    "unidad": "de 0 a 30"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "r[1] == null ? 0 : r[1]",
+     "texto": "Cortes publicados para Colombia: 23/24 para deterioro cognitivo (Pedraza et al., 2016). En una clínica de memoria de Bogotá con alta escolaridad, 27 o menos separó demencia de personas sanas y 28 o menos, deterioro leve (Pedraza et al., 2014). Los cortes dependen de la escolaridad y de la muestra: interprete con cautela."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[1] != null && (r[1] < 0 || r[1] > 30)",
+     "texto": "El total debe estar entre 0 y 30."
+    }
+   ]
+  },
+  "sinitems": true
+ },
+ "pcs-dolor": {
+  "clave": "PCS-dolor",
+  "sigla": "PCS",
+  "titulo": "Escala de Catastrofización ante el Dolor",
+  "para": "Rumiación, magnificación y desesperanza frente al dolor.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Sullivan, Bishop y Pivik (1995) · versión española de Olmedilla, Ortega y Abenza (2013), Cuadernos de Psicología del Deporte.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Rara vez",
+     "Algunas veces",
+     "Muchas veces",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,13)",
+     "texto": "De 0 a 52. Medias: clínica del dolor 28,2 (DE 12,3), con más de 38 (percentil 80) como señal de mayor riesgo de mala evolución en rehabilitación (Thorn, 2017); dolor musculoesquelético en Chile 27,1 (DE 10,7) (Bascour-Sandoval et al., 2022)."
+    },
+    {
+     "n": "Rumiación (8-11)",
+     "js": "L([8,9,10,11])",
+     "texto": "De 0 a 16. Media en clínica del dolor: 10,1 (DE 4,3)."
+    },
+    {
+     "n": "Magnificación (6, 7 y 13)",
+     "js": "L([6,7,13])",
+     "texto": "De 0 a 12. Media en clínica del dolor: 4,8 (DE 2,8)."
+    },
+    {
+     "n": "Indefensión (1-5 y 12)",
+     "js": "L([1,2,3,4,5,12])",
+     "texto": "De 0 a 24. Media en clínica del dolor: 13,3 (DE 6,1)."
+    },
+    {
+     "n": "Forma breve PCS-4 (2, 3, 4 y 12)",
+     "js": "L([2,3,4,12])",
+     "texto": "De 0 a 16. Media en Chile: 7,0 (DE 3,9); mujeres 7,5, hombres 5,6 (Bascour-Sandoval et al., 2022)."
+    }
+   ],
+   "nota": "Sin puntos de corte diagnósticos publicados. La validación chilena halló una sola dimensión: lea las subescalas como descriptivas."
+  },
+  "hoja": true
+ },
+ "tsk": {
+  "clave": "TSK",
+  "sigla": "TSK",
+  "titulo": "Escala de Kinesiofobia de Tampa",
+  "para": "Miedo al movimiento y a volver a lesionarse, y la evitación que se deriva de ese miedo.",
+  "areas": [
+   "Salud, sueño y síntomas físicos"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Kori, Miller y Todd (1990) · TSK-11SV (español) del NIH HEAL (2023), traducción basada en Gómez-Pérez et al. (2011).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1. Totalmente en desacuerdo",
+     "2",
+     "3",
+     "4. Totalmente de acuerdo"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje global",
+     "js": "S(1,11)",
+     "texto": "De 11 a 44: a mayor puntaje, más miedo al movimiento o a lesionarse. Medias con la versión española: dolor crónico 36,0 (DE 5,7), dolor agudo 27,9 (DE 7,3) (Gómez-Pérez et al., 2011); dolor musculoesquelético en Chile 31,7 (DE 6,9) (Bascour-Sandoval et al., 2022)."
+    },
+    {
+     "n": "Evitación de actividad (1, 5, 6, 8-11)",
+     "js": "L([1,5,6,8,9,10,11])",
+     "texto": "De 7 a 28. Medias: dolor crónico 23,9 (DE 4,1); agudo 18,6 (DE 5,3)."
+    },
+    {
+     "n": "Daño (2, 3, 4 y 7)",
+     "js": "L([2,3,4,7])",
+     "texto": "De 4 a 16. Medias: dolor crónico 12,1 (DE 2,8); agudo 9,3 (DE 3,3)."
+    }
+   ],
+   "nota": "Sin puntos de corte publicados para la versión española. Use la numeración del formulario TSK-11SV de los NIH."
+  },
+  "hoja": true
  },
  "hits": {
   "clave": "HITS",
@@ -13591,6 +19690,1113 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "aas": {
+  "clave": "AAS",
+  "sigla": "AAS",
+  "titulo": "Tamizaje de Evaluación de Abuso",
+  "para": "Abuso físico, sexual y durante el embarazo, con mapa corporal de localización de lesiones.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Violencia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el cuestionario con la mujer a solas, siguiendo el protocolo de la guía. Marque aquí, para cada pregunta, la respuesta que dio."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Preguntas del cuestionario",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "Pregunta 1"
+     },
+     {
+      "x": "Pregunta 2",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "Pregunta 3",
+      "si": "r[1] === 1"
+     },
+     {
+      "x": "Pregunta 4",
+      "si": "r[1] === 1"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿Está embarazada actualmente?"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Solo si está embarazada",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "Pregunta 5",
+      "si": "r[5] === 1"
+     },
+     {
+      "x": "Pregunta 6",
+      "si": "r[5] === 1"
+     }
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     {
+      "x": "¿Hay indicadores de sospecha de malos tratos (lesiones, actitud de la mujer, actitud de la pareja; anexo III de la guía)?",
+      "si": "r[1] === 0"
+     }
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Resultado según la guía",
+     "js": "r[1] == null ? 0 : C([2,3,4,6,7],1) > 0 ? 3 : ((r[5] == null || (r[5] === 1 && (r[6] == null || r[7] == null))) || (r[1] === 1 ? (r[2] == null || r[3] == null || r[4] == null) : r[8] == null)) ? 0 : (r[1] === 1 ? 4 : (r[8] === 1 ? 2 : 1))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Faltan respuestas"
+      ],
+      [
+       1,
+       1,
+       "AAS negativo: primera pregunta No y sin indicadores de sospecha"
+      ],
+      [
+       2,
+       2,
+       "Mujer con sospecha de malos tratos-AAS (códigos Z12, abuso psíquico o emocional, y/o Z25, abuso físico): primera pregunta No, pero con indicadores de sospecha"
+      ],
+      [
+       3,
+       3,
+       "Respuesta afirmativa en alguna de las preguntas 2 a 6: realizar el cuestionario DA (Danger Assessment, valoración de peligro; anexo VI de la guía)"
+      ],
+      [
+       4,
+       4,
+       "Primera pregunta Sí y sin respuestas afirmativas en las preguntas 2 a 6: la guía no define el resultado de este caso; decida con criterio clínico"
+      ]
+     ]
+    }
+   ],
+   "alertas": [
+    {
+     "js": "C([2,3,4,6,7],1) > 0",
+     "texto": "Hay una respuesta afirmativa en las preguntas 2 a 6: según la guía del Servicio Gallego de Salud (2020), corresponde realizar el cuestionario DA aunque el resto de las respuestas sea bajo. Haga la entrevista sin otras personas presentes."
+    }
+   ],
+   "nota": "No hay puntaje: el resultado sale de las tres reglas impresas en la guía del Servicio Gallego de Salud (SERGAS, 2020, anexo IV). Esta versión de 4 preguntas más 2 para embarazadas añade el maltrato emocional y no usa el mapa corporal ni la escala de severidad del original de McFarlane (1995). Los indicadores de sospecha son los del anexo III de la guía y los registra quien aplica. El cuestionario DA es otro instrumento y no está incluido. Sin puntos de corte ni normas; la fuente no define datos faltantes."
+  },
+  "sinitems": true
+ },
+ "icast": {
+  "clave": "ICAST",
+  "sigla": "ICAST",
+  "titulo": "Herramientas de Tamizaje de Maltrato Infantil",
+  "para": "Exposición a violencia física, emocional y sexual en el hogar, la escuela y la comunidad.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Violencia» · fuente oficial: https://www.ispcan.org/.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el ICAST-C (adaptación mexicana, 62 ítems; la numeración es la de esa versión, distinta de la de ISPCAN) y marque el código de la respuesta. Ítems 1 a 53: 0 no, nunca me ha pasado; 1 no el último año, pero sí antes; de 2 a 6, frecuencia creciente en el último año. Ítem 54: de 0 (nunca) a 3 (siempre). Ítems 55 a 62: 0 no me ha pasado; 1 no el último año, pero sí antes; 2 sí, el último año."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems 1 a 53 (frecuencia)",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30",
+     "Ítem 31",
+     "Ítem 32",
+     "Ítem 33",
+     "Ítem 34",
+     "Ítem 35",
+     "Ítem 36",
+     "Ítem 37",
+     "Ítem 38",
+     "Ítem 39",
+     "Ítem 40",
+     "Ítem 41",
+     "Ítem 42",
+     "Ítem 43",
+     "Ítem 44",
+     "Ítem 45",
+     "Ítem 46",
+     "Ítem 47",
+     "Ítem 48",
+     "Ítem 49",
+     "Ítem 50",
+     "Ítem 51",
+     "Ítem 52",
+     "Ítem 53"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítem 54",
+    "ops": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 54"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems 55 a 62",
+    "ops": [
+     "0",
+     "1",
+     "2"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 55",
+     "Ítem 56",
+     "Ítem 57",
+     "Ítem 58",
+     "Ítem 59",
+     "Ítem 60",
+     "Ítem 61",
+     "Ítem 62"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Violencia psicológica (19 ítems)",
+     "js": "L([1, 2, 3, 4, 5, 11, 12, 13, 14, 15, 16, 17, 29, 35, 38, 39, 40, 41, 42])",
+     "texto": "De 0 a 114: suma de los códigos de respuesta. Sin puntos de corte ni normas."
+    },
+    {
+     "n": "Violencia física (15 ítems)",
+     "js": "L([18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33])",
+     "texto": "De 0 a 90: suma de los códigos de respuesta. Sin puntos de corte ni normas."
+    },
+    {
+     "n": "Negligencia (8 ítems)",
+     "js": "L([36, 37, 43, 44, 45, 46, 47, 48])",
+     "texto": "De 0 a 48: suma de los códigos de respuesta. Sin puntos de corte ni normas."
+    },
+    {
+     "n": "Violencia sexual (5 ítems)",
+     "js": "L([49, 50, 51, 52, 53])",
+     "texto": "De 0 a 30: suma de los códigos de respuesta. Sin puntos de corte ni normas."
+    },
+    {
+     "n": "Disciplina no violenta (ítems 6, 7, 8, 9, 10 y 34)",
+     "js": "L([6,7,8,9,10,34])",
+     "texto": "De 0 a 36. No es victimización: no se suma a las dimensiones anteriores. Alfa 0,59 y test-retest 0,38 en la validación mexicana."
+    },
+    {
+     "n": "Exposición a la violencia (ítems 54 a 62)",
+     "js": "S(54,62)",
+     "texto": "El ítem 54 va de 0 a 3 y los demás de 0 a 2; la tesis suma los nueve reactivos pero no da rango ni regla de combinación: úselo de forma descriptiva."
+    }
+   ],
+   "nota": "Dimensiones de la tabla 2 de la tesis de Casas-Muñoz (UNAM), suma de los códigos tal como se marcan (incluye el 1, ocurrido antes del último año), con el modelo original. Confiabilidad de la validación (n = 723, 11 a 18 años): alfa ordinal 0,79 a 0,92 y test-retest 0,52 a 0,75. No hay puntos de corte, normas ni reglas ante datos faltantes. Instrumento de acceso restringido (ISPCAN, uso en investigación; no es para tamizaje clínico): la hoja no reproduce ítems. Aplicarlo activa el deber de reporte. Pendiente: verificar los ítems 54 a 62 y su correspondencia con la numeración de ISPCAN en el anexo de la tesis."
+  },
+  "sinitems": true
+ },
+ "easi": {
+  "clave": "EASI",
+  "sigla": "EASI",
+  "titulo": "Índice de Sospecha de Maltrato al Adulto Mayor",
+  "para": "Señales de maltrato físico, psicológico, financiero y negligencia en personas mayores.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Violencia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el índice a la persona mayor sin acompañante, siguiendo el protocolo. Marque aquí la respuesta de cada pregunta; la 6 la responde quien evalúa."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Preguntas a la persona",
+    "ops": [
+     "Sí",
+     "No",
+     "No contesta"
+    ],
+    "vals": [
+     1,
+     0,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Pregunta 1",
+     "Pregunta 2",
+     "Pregunta 3",
+     "Pregunta 4",
+     "Pregunta 5"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No",
+     "No está seguro"
+    ],
+    "vals": [
+     1,
+     0,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Pregunta 6 (la responde quien evalúa)"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "¿Había otra persona presente durante la entrevista?"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas «Sí» en las preguntas 2 a 5",
+     "js": "C([2,3,4,5],1)",
+     "texto": "De 0 a 4. Es solo un recuento: ninguna fuente consultada define a partir de cuántas se considera positivo."
+    },
+    {
+     "n": "Pregunta 6 (valoración de quien evalúa)",
+     "js": "r[6] == null ? -1 : r[6]",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "Sin respuesta"
+      ],
+      [
+       0,
+       0,
+       "No"
+      ],
+      [
+       1,
+       1,
+       "Sí"
+      ],
+      [
+       2,
+       2,
+       "No está seguro"
+      ]
+     ]
+    },
+    {
+     "n": "Respuestas «No contesta» en las preguntas 1 a 5",
+     "js": "C(RANGO(1,5),2)",
+     "texto": "Las fuentes no dicen cómo tratarlas: se muestran aparte y no se suman."
+    },
+    {
+     "n": "Acompañante presente",
+     "js": "r[7] == null ? -1 : r[7]",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "Sin respuesta"
+      ],
+      [
+       0,
+       0,
+       "No"
+      ],
+      [
+       1,
+       1,
+       "Sí: se registra su presencia"
+      ]
+     ]
+    }
+   ],
+   "nota": "Las versiones en español consultadas (IMSERSO-SEGG, 2007; Pérez Rojo et al., 2008) no traen una regla de positividad ni puntos de corte, así que esta hoja solo inventaría las respuestas. El índice no confirma maltrato: su fin es aumentar la sospecha y derivar a expertos. En el estudio de Montreal frente al SWEF tuvo sensibilidad 0,44 y especificidad 0,77 (IMSERSO-SEGG, 2007). Para personas de 65 años o más sin deterioro cognitivo, sobre los últimos 12 meses. Dato faltante: la regla de positividad, en Yaffe et al. (2008)."
+  },
+  "sinitems": true
+ },
+ "apgar-familiar": {
+  "clave": "APGAR familiar",
+  "sigla": "APGAR familiar",
+  "titulo": "Cuestionario APGAR Familiar",
+  "para": "Conocer cuán satisfecha se siente la persona con cinco funciones de su propia familia: adaptación, participación, crecimiento, afecto y capacidad resolutiva. Es muy breve y sirve para abrir la conversación sobre la familia. Mide percepción de apoyo, no etiqueta a la familia como funcional o disfuncional.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Castilla et al. (2014), Propósitos y Representaciones · acceso abierto, CC BY-NC-ND 4.0, reproducción literal.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aquí te vamos a presentar unas frases que te permitirán pensar acerca de tu forma de ser. Deseamos que contestes a cada una de las siguientes preguntas con una X la casilla que mejor represente la frecuencia con que actúas, de acuerdo con la siguiente escala: 0: Nunca, 1: Casi nunca, 2: Algunas veces, 3: Casi siempre, 4: Siempre."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Casi nunca",
+     "Algunas veces",
+     "Casi siempre",
+     "Siempre"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Estoy satisfecho con la ayuda que recibo de mi familia cuando algo me preocupa.",
+     "Estoy satisfecho con la forma en que mi familia discute asuntos de interés común y comparte la solución del problema conmigo.",
+     "Mi familia acepta mis deseos para promover nuevas actividades o hacer cambios en mi estilo de vida.",
+     "Estoy satisfecho con la forma en que mi familia expresa afecto y responde a mis sentimientos de amor y tristeza.",
+     "Estoy satisfecho con la cantidad de tiempo que mi familia y yo compartimos."
+    ],
+    "numerar": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Adolescente (11 a 18 años)",
+     "Persona de 60 años o más",
+     "Otra edad"
+    ],
+    "vals": [
+     1,
+     2,
+     3
+    ],
+    "puntua": true,
+    "items": [
+     "Grupo de edad de la persona (no es un ítem del instrumento: sirve para elegir la interpretación)"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total (0 a 20)",
+     "js": "S(1,5)",
+     "rangos_por": [
+      {
+       "si": "r[6] === 1",
+       "rangos": [
+        [
+         0,
+         15,
+         "Disfunción familiar (corte de 15 o menos; Gómez-Bustamante et al., 2013, escolares de Cartagena)"
+        ],
+        [
+         16,
+         20,
+         "Sin disfunción según ese corte"
+        ]
+       ]
+      },
+      {
+       "si": "r[6] === 2",
+       "rangos": [
+        [
+         0,
+         3,
+         "Disfunción familiar muy severa"
+        ],
+        [
+         4,
+         6,
+         "Disfunción familiar severa"
+        ],
+        [
+         7,
+         11,
+         "Disfunción familiar moderada-severa"
+        ],
+        [
+         12,
+         16,
+         "Disfunción familiar leve"
+        ],
+        [
+         17,
+         20,
+         "Normal (Valencia-Vargas et al., 2021, adultos mayores colombianos)"
+        ]
+       ]
+      }
+     ],
+     "sin_rango": "Con fuente hay clasificación solo para adolescentes (corte de Gómez-Bustamante et al., 2013) y para personas de 60 años o más (baremo de Valencia-Vargas et al., 2021). Elija el grupo de edad; fuera de ellos, lea solo el puntaje."
+    }
+   ],
+   "nota": "A mayor puntaje, mayor satisfacción con la familia. En adolescentes, el 51,8 % de la muestra de Cartagena quedó en disfunción: use el corte con cautela. El baremo de adultos mayores tiene efecto techo (50,7 % obtuvo 20) y sus autores piden estudios con criterio externo; su versión de cuatro niveles es 0-9 severa, 10-11 moderada, 12-16 leve y 17-20 normal. El puntaje 16 es «leve» con el baremo de mayores y «sin disfunción» con el corte de adolescentes. Gómez y Ponce (2010) sostienen que la escala mide satisfacción percibida y no permite etiquetar a una familia como funcional o disfuncional. Variante de la OPS (0 a 2 por ítem, total 0-10): 0-3 disfunción severa, 4-6 moderada y 7-10 funcional; sus cortes no se aplican a esta hoja."
+  }
+ },
+ "faces-iii": {
+  "clave": "FACES III",
+  "sigla": "FACES III",
+  "titulo": "Escala de Cohesión y Adaptabilidad Familiar",
+  "para": "Cohesión y adaptabilidad familiar, las dos dimensiones del modelo circumplejo de funcionamiento familiar.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Funcionamiento familiar».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió. Use la escala de percibida (no la de ideal)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Nunca",
+     "Casi nunca",
+     "Algunas veces",
+     "Casi siempre",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Cohesión (ítems impares)",
+     "js": "L([1, 3, 5, 7, 9, 11, 13, 15, 17, 19])",
+     "rangos": [
+      [
+       10,
+       34,
+       "Desligada"
+      ],
+      [
+       35,
+       40,
+       "Separada"
+      ],
+      [
+       41,
+       45,
+       "Conectada"
+      ],
+      [
+       46,
+       50,
+       "Amalgamada"
+      ]
+     ]
+    },
+    {
+     "n": "Adaptabilidad (ítems pares)",
+     "js": "L([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])",
+     "rangos": [
+      [
+       10,
+       19,
+       "Rígida"
+      ],
+      [
+       20,
+       24,
+       "Estructurada"
+      ],
+      [
+       25,
+       28,
+       "Flexible"
+      ],
+      [
+       29,
+       50,
+       "Caótica"
+      ]
+     ]
+    },
+    {
+     "n": "Tipo de familia (matriz de 16 tipos)",
+     "js": "RANGO(1,20).some(i => r[i] == null) ? 0 : ((c, a) => (a >= 29 ? 0 : a >= 25 ? 1 : a >= 20 ? 2 : 3) * 4 + (c <= 34 ? 0 : c <= 40 ? 1 : c <= 45 ? 2 : 3) + 1)(L([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]), L([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Faltan respuestas: se necesitan los 20 ítems"
+      ],
+      [
+       1,
+       1,
+       "Tipo 1: adaptabilidad caótica, cohesión desligada (cuadrante I)"
+      ],
+      [
+       2,
+       2,
+       "Tipo 2: adaptabilidad caótica, cohesión separada (cuadrante I)"
+      ],
+      [
+       3,
+       3,
+       "Tipo 3: adaptabilidad caótica, cohesión conectada (cuadrante II)"
+      ],
+      [
+       4,
+       4,
+       "Tipo 4: adaptabilidad caótica, cohesión amalgamada (cuadrante II)"
+      ],
+      [
+       5,
+       5,
+       "Tipo 5: adaptabilidad flexible, cohesión desligada (cuadrante I)"
+      ],
+      [
+       6,
+       6,
+       "Tipo 6: adaptabilidad flexible, cohesión separada (cuadrante I)"
+      ],
+      [
+       7,
+       7,
+       "Tipo 7: adaptabilidad flexible, cohesión conectada (cuadrante II)"
+      ],
+      [
+       8,
+       8,
+       "Tipo 8: adaptabilidad flexible, cohesión amalgamada (cuadrante II)"
+      ],
+      [
+       9,
+       9,
+       "Tipo 9: adaptabilidad estructurada, cohesión desligada (cuadrante III)"
+      ],
+      [
+       10,
+       10,
+       "Tipo 10: adaptabilidad estructurada, cohesión separada (cuadrante III)"
+      ],
+      [
+       11,
+       11,
+       "Tipo 11: adaptabilidad estructurada, cohesión conectada (cuadrante IV)"
+      ],
+      [
+       12,
+       12,
+       "Tipo 12: adaptabilidad estructurada, cohesión amalgamada (cuadrante IV)"
+      ],
+      [
+       13,
+       13,
+       "Tipo 13: adaptabilidad rígida, cohesión desligada (cuadrante III)"
+      ],
+      [
+       14,
+       14,
+       "Tipo 14: adaptabilidad rígida, cohesión separada (cuadrante III)"
+      ],
+      [
+       15,
+       15,
+       "Tipo 15: adaptabilidad rígida, cohesión conectada (cuadrante IV)"
+      ],
+      [
+       16,
+       16,
+       "Tipo 16: adaptabilidad rígida, cohesión amalgamada (cuadrante IV)"
+      ]
+     ]
+    },
+    {
+     "n": "Cohesión: unión emocional (ítems 11 y 19)",
+     "js": "L([11, 19])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Cohesión: apoyo (ítems 1 y 17)",
+     "js": "L([1, 17])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Cohesión: límites familiares (ítems 5 y 7)",
+     "js": "L([5, 7])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Cohesión: tiempo y amigos (ítems 3 y 9)",
+     "js": "L([3, 9])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Cohesión: interés y recreación (ítems 13 y 15)",
+     "js": "L([13, 15])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Adaptabilidad: liderazgo (ítems 6 y 18)",
+     "js": "L([6, 18])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Adaptabilidad: control (ítems 2 y 12)",
+     "js": "L([2, 12])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Adaptabilidad: disciplina (ítems 4 y 10)",
+     "js": "L([4, 10])",
+     "texto": "De 4 a 20. Sin cortes por subfactor."
+    },
+    {
+     "n": "Adaptabilidad: roles y reglas (ítems 8, 14, 16 y 20)",
+     "js": "L([8, 14, 16, 20])",
+     "texto": "De 8 a 40. Sin cortes por subfactor."
+    }
+   ],
+   "nota": "Cortes de Olson (1985) tomados de Sánchez Rojas y de Osornio-Castillo et al. (2009); las celdas se numeran de 1 a 16 de izquierda a derecha y de arriba abajo (Sánchez Rojas, tablas 2 y 4). Referencia descriptiva: Ponce Rosas et al. (2002), n = 270, cohesión 40,7 (DE 5,6) y adaptabilidad 28,3 (DE 6,2). Esa validación concluye validez de constructo con 4 de 12 criterios sin cumplir. No se calcula la agrupación «balanceada, rango medio o extrema»: las fuentes la presentan con leyendas contradictorias. Los ítems 18 y 20 tienen redacción negativa y no se invierten, porque la fuente declara que todos tienen direccionalidad positiva."
+  },
+  "sinitems": true
+ },
+ "ff-sil": {
+  "clave": "FF-SIL",
+  "sigla": "FF-SIL",
+  "titulo": "Prueba de Percepción del Funcionamiento Familiar",
+  "para": "Cohesión, armonía, comunicación, permeabilidad, afectividad, roles y adaptabilidad.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Funcionamiento familiar».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Casi nunca",
+     "Pocas veces",
+     "A veces",
+     "Muchas veces",
+     "Casi siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Puntaje total",
+     "js": "S(1,14)",
+     "rangos": [
+      [
+       14,
+       27,
+       "Familia severamente disfuncional"
+      ],
+      [
+       28,
+       42,
+       "Familia disfuncional"
+      ],
+      [
+       43,
+       56,
+       "Familia moderadamente funcional"
+      ],
+      [
+       57,
+       70,
+       "Familia funcional"
+      ]
+     ]
+    },
+    {
+     "n": "Cohesión (ítems 1 y 8)",
+     "js": "L([1,8])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Armonía (ítems 2 y 13)",
+     "js": "L([2,13])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Comunicación (ítems 5 y 11)",
+     "js": "L([5,11])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Adaptabilidad (ítems 6 y 10)",
+     "js": "L([6,10])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Afectividad (ítems 4 y 14)",
+     "js": "L([4,14])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Rol (ítems 3 y 9)",
+     "js": "L([3,9])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    },
+    {
+     "n": "Permeabilidad (ítems 7 y 12)",
+     "js": "L([7,12])",
+     "texto": "De 2 a 10. Sin cortes por categoría."
+    }
+   ],
+   "nota": "Categorías por cuartiles del total, de Pérez et al. (1997; confirmadas por Cabrera, 2012). Fiabilidad de la validación cubana: test-retest 0,94 y consistencia 0,88. La validación se hizo con un miembro de la familia de 18 a 60 años; en adolescentes no hay fuente."
+  },
+  "sinitems": true
+ },
+ "duke-unc": {
+  "clave": "Duke-UNC",
+  "sigla": "Duke-UNC",
+  "titulo": "Cuestionario Duke-UNC de Apoyo Social Funcional",
+  "para": "Apoyo confidencial —tener con quién hablar— y apoyo afectivo —sentirse querido—.",
+  "areas": [
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Apoyo social percibido».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió. Use el número de la opción: 1 es «mucho menos de lo que deseo» y 5 «tanto como deseo»."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Apoyo social funcional total",
+     "js": "S(1,11)",
+     "rangos": [
+      [
+       11,
+       31,
+       "Apoyo social bajo (menos de 32)"
+      ],
+      [
+       32,
+       55,
+       "Apoyo social normal (32 o más)"
+      ]
+     ]
+    },
+    {
+     "n": "Apoyo confidencial (ítems 1, 2, 6, 7, 8, 9 y 10)",
+     "js": "L([1,2,6,7,8,9,10])",
+     "texto": "De 7 a 35. Subescala orientativa (Bellón et al., 1996, según Cuéllar-Flores, 2012); sin puntos de corte."
+    },
+    {
+     "n": "Apoyo afectivo (ítems 3, 4, 5 y 11)",
+     "js": "L([3,4,5,11])",
+     "texto": "De 4 a 20. Subescala orientativa; sin puntos de corte."
+    }
+   ],
+   "nota": "Corte de 32 de la hoja de la Universidad de Sevilla, adaptada de Bellón et al. (1996); el método con que se obtuvo no está en esa hoja. Referencia descriptiva: media 39,78 (DE 10,36) en 128 personas cuidadoras (Cuéllar-Flores, 2012), que no es una norma poblacional. Otros autores asignan distinto los ítems a las subescalas (De la Revilla, 1991; Cuéllar-Flores, 2012)."
+  },
+  "sinitems": true
  },
  "lsns-6": {
   "clave": "LSNS-6",
@@ -13795,6 +21001,578 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "gse": {
+  "clave": "GSE",
+  "sigla": "GSE",
+  "titulo": "Escala de Autoeficacia General",
+  "para": "Confianza en poder afrontar demandas nuevas y resolver situaciones difíciles.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Autoestima y autoeficacia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "Incorrecto",
+     "Apenas cierto",
+     "Más bien cierto",
+     "Cierto"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Autoeficacia general",
+     "js": "S(1,10)",
+     "texto": "De 10 a 40: a mayor puntaje, mayor confianza en poder afrontar las demandas. Sin puntos de corte ni normas publicadas para el formato de 4 puntos (media y desviación del total: sin fuente)."
+    }
+   ],
+   "nota": "Formato de 4 puntos de Báßler y Schwarzer (1996), el original. La media de 65,02 (DE 12,23) de Sanjuán (2000, universitarios españoles) corresponde al formato de 10 puntos y no es comparable con este total. Escala unidimensional."
+  },
+  "sinitems": true
+ },
+ "mhlc": {
+  "clave": "MHLC",
+  "sigla": "MHLC",
+  "titulo": "Escala de Locus de Control de la Salud",
+  "para": "A quién atribuye la persona el control sobre su salud: a sí misma, a los profesionales o al azar.",
+  "areas": [
+   "Adherencia, alianza y creencias de salud"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Autoestima y autoeficacia».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió. Anote el número de la opción tal como aparece en el protocolo y, al final, indique cuál escala de respuesta usó."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Estándar: 1 muy en desacuerdo … 5 muy de acuerdo",
+     "Anexo colombiano, inversa: 1 totalmente de acuerdo … 5 totalmente en desacuerdo"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Escala de respuesta del protocolo"
+    ],
+    "numerar": false,
+    "lista": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Locus interno (I)",
+     "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([1, 6, 8, 12, 13, 17])",
+     "texto": "De 6 a 30 en la dirección estándar: a mayor puntaje, más creencia en que la salud depende de uno mismo. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+    },
+    {
+     "n": "Otros poderosos (P)",
+     "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([3, 5, 7, 10, 14, 18])",
+     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende de los profesionales u otras personas. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+    },
+    {
+     "n": "Azar (C)",
+     "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([2, 4, 9, 11, 15, 16])",
+     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende del azar. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+    }
+   ],
+   "nota": "No hay puntaje total ni puntos de corte. Con el anexo colombiano de Rodríguez-Rosero (2002), cuya escala es inversa, la hoja convierte cada respuesta (6 − x) para dejar los tres puntajes en la dirección estándar. Referencias de esa validación: alfa 0,53 en locus interno, 0,71 en otros poderosos y 0,72 en azar; sus medias están en escala inversa y su tabla 2 rotula P y C al revés del texto, por lo que no se comparan aquí. Pendiente: confirmar la clave de Wallston antes de publicarla como oficial."
+  },
+  "sinitems": true
+ },
+ "batalla": {
+  "clave": "Batalla",
+  "sigla": "Batalla",
+  "titulo": "Test de Batalla",
+  "para": "Conocimiento que la persona tiene de su propia enfermedad, en tres preguntas.",
+  "areas": [
+   "Adherencia, alianza y creencias de salud"
+  ],
+  "quien": [
+   "profesional"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Adherencia al tratamiento».",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Haga las tres preguntas del test y marque si cada respuesta fue correcta."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Preguntas",
+    "ops": [
+     "Correcta",
+     "Incorrecta"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Pregunta 1",
+     "Pregunta 2",
+     "Pregunta 3"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Respuestas correctas",
+     "js": "C([1,2,3],1)",
+     "rangos": [
+      [
+       0,
+       2,
+       "Conocimiento inadecuado de la enfermedad"
+      ],
+      [
+       3,
+       3,
+       "Conocimiento adecuado de la enfermedad"
+      ]
+     ]
+    }
+   ],
+   "nota": "Regla de Gutiérrez-Angulo et al. (2012): basta una respuesta incorrecta para considerar inadecuado el conocimiento. Se diseñó para hipertensión y diabetes tipo 2."
+  },
+  "sinitems": true
+ },
+ "smaq": {
+  "clave": "SMAQ",
+  "sigla": "SMAQ",
+  "titulo": "Cuestionario Simplificado de Adherencia a la Medicación",
+  "para": "Adherencia farmacológica combinando preguntas cualitativas con recuento de dosis omitidas en la última semana y el último trimestre.",
+  "areas": [
+   "Adherencia, alianza y creencias de salud"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Knobel et al. (2002), AIDS (estudio GEEMA) · versión en español de EresVIHda (2022).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Sí",
+     "No"
+    ],
+    "vals": [
+     1,
+     0
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "A. Ninguna",
+     "B. 1-2",
+     "C. 3-5",
+     "D. 6-10",
+     "E. Más de 10"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "dato",
+    "x": "Ítem 6",
+    "tipo": "numero",
+    "unidad": "días"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Clasificación",
+     "js": "(r[1] === 1 || r[2] === 0 || r[3] === 1 || r[4] === 1 || (r[5] != null && r[5] >= 3) || (r[6] != null && r[6] > 2)) ? 1 : 0",
+     "rangos": [
+      [
+       0,
+       0,
+       "Adherente"
+      ],
+      [
+       1,
+       1,
+       "No adherente: al menos una respuesta en ese sentido"
+      ]
+     ]
+    },
+    {
+     "n": "Adherencia estimada por la pregunta 5",
+     "js": "r[5] == null ? 0 : r[5]",
+     "rangos": [
+      [
+       1,
+       1,
+       "95 a 100 %"
+      ],
+      [
+       2,
+       2,
+       "85 a 94 %"
+      ],
+      [
+       3,
+       3,
+       "65 a 84 %"
+      ],
+      [
+       4,
+       4,
+       "30 a 64 %"
+      ],
+      [
+       5,
+       5,
+       "Menos de 30 %"
+      ]
+     ]
+    }
+   ],
+   "nota": "Clave de Knobel et al. (2002, estudio GEEMA en VIH), tomada de una fuente secundaria. Cualquier respuesta en el sentido de no adherencia clasifica como no adherente."
+  },
+  "hoja": true
+ },
+ "arms": {
+  "clave": "ARMS",
+  "sigla": "ARMS",
+  "titulo": "Cuestionario de Adherencia a la Recogida y Administración de la Medicación (versión española)",
+  "para": "Separar dos cosas en la adherencia a la medicación: la dificultad para tomarla (olvidos, omisiones, cambios de dosis) y la dificultad para conseguirla (olvidar recogerla, quedarse sin medicina, no poder pagarla). Sirve como perfil de barreras para decidir en qué intervenir. No diagnostica ni clasifica a la persona como adherente o no.",
+  "areas": [
+   "Adherencia, alianza y creencias de salud"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "González-Bueno et al. (2017), Atención Primaria · acceso abierto, CC BY-NC-ND 4.0, reproducción literal.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Responda a las preguntas con una de las siguientes respuestas: Nunca, algunas veces, casi siempre o siempre."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nunca",
+     "Algunas veces",
+     "Casi siempre",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "¿Con qué frecuencia olvida tomar sus medicinas?",
+     "¿Con qué frecuencia decide no tomar sus medicinas?",
+     "¿Con qué frecuencia olvida recoger de la farmacia las medicinas que le han recetado?",
+     "¿Con qué frecuencia se queda sin medicinas?",
+     "¿Con qué frecuencia se salta una dosis de su medicación antes de ir al médico?",
+     "¿Con qué frecuencia deja de tomar sus medicinas cuando se encuentra mejor?",
+     "¿Con qué frecuencia deja de tomar sus medicinas cuando se encuentra mal?",
+     "¿Con qué frecuencia deja de tomar sus medicinas por descuido?",
+     "¿Con qué frecuencia cambia la dosis de su medicación y la adapta a sus necesidades (por ejemplo, cuando se toma más o menos pastillas de las que debería)?",
+     "¿Con qué frecuencia olvida tomar sus medicinas cuando debe tomarlas más de una vez al día?",
+     "¿Con qué frecuencia retrasa ir a recoger sus medicinas de la farmacia porque cuestan demasiado dinero?",
+     "¿Con qué frecuencia planifica recoger de la farmacia sus medicinas antes de que se le acaben?"
+    ],
+    "numerar": true
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Administración (1, 2 y 5-10)",
+     "js": "L([1,2,5,6,7,8,9,10])",
+     "texto": "De 8 a 32: a menor puntaje, mejor adherencia."
+    },
+    {
+     "n": "Recogida (3, 4 y 11)",
+     "js": "L([3,4,11])",
+     "texto": "De 3 a 12: a menor puntaje, mejor adherencia."
+    },
+    {
+     "n": "Ítem 12 (planificación de la recogida)",
+     "js": "r[12] == null ? 0 : r[12]",
+     "texto": "Redactado en sentido positivo: aquí un puntaje alto indica mejor conducta. La fuente no indica cómo integrarlo al total, así que se muestra aparte."
+    }
+   ],
+   "nota": "Sin punto de corte ni normas: la adaptación española (González-Bueno et al., 2017) no los definió. Úselo como perfil de barreras."
+  }
+ },
+ "wai-sr": {
+  "clave": "WAI-SR",
+  "sigla": "WAI-SR",
+  "titulo": "Inventario de Alianza de Trabajo, versión breve",
+  "para": "Acuerdo en los objetivos, acuerdo en las tareas y vínculo entre quien consulta y quien atiende.",
+  "areas": [
+   "Adherencia, alianza y creencias de salud"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Hatcher y Gillaspy (2006) · versión en español de Delaigue Baechler (2017), tesis, anexo B (paciente).",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Rara vez",
+     "A veces",
+     "A menudo",
+     "Muy frecuentemente",
+     "Siempre"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Acuerdo en las metas (4, 6, 8, 11)",
+     "js": "L([4,6,8,11])",
+     "texto": "De 4 a 20."
+    },
+    {
+     "n": "Acuerdo en las tareas (1, 2, 10, 12)",
+     "js": "L([1,2,10,12])",
+     "texto": "De 4 a 20."
+    },
+    {
+     "n": "Vínculo (3, 5, 7, 9)",
+     "js": "L([3,5,7,9])",
+     "texto": "De 4 a 20."
+    },
+    {
+     "n": "Total",
+     "js": "S(1,12)",
+     "texto": "De 12 a 60. Sin normas ni puntos de corte: compare con aplicaciones anteriores de la misma persona (Horvath, 2020)."
+    }
+   ]
+  },
+  "hoja": true
  },
  "whoqol-bref": {
   "clave": "WHOQOL-BREF",
@@ -14125,6 +21903,187 @@ const CALIFICAR = {
    ]
   }
  },
+ "eq-5d": {
+  "clave": "EQ-5D",
+  "sigla": "EQ-5D",
+  "titulo": "Cuestionario EQ-5D",
+  "para": "Cinco dimensiones —movilidad, autocuidado, actividades, dolor y ansiedad o depresión— más una escala visual de salud global.",
+  "areas": [
+   "Salud, sueño y síntomas físicos",
+   "Bienestar y apoyo social"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Guía de tamizaje, grupo «Calidad de vida relacionada con la salud» · fuente oficial: https://euroqol.org/.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el EQ-5D-5L oficial (registro en EuroQol) y marque aquí el nivel elegido en cada dimensión: 1 sin problemas a 5 el nivel más grave."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Movilidad"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Autocuidado"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Actividades habituales"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Dolor o malestar"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "puntua": true,
+    "items": [
+     "Ansiedad o depresión"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "dato",
+    "x": "Escala visual analógica (EVA)",
+    "tipo": "numero",
+    "unidad": "de 0 a 100"
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Perfil de salud",
+     "js": "[1,2,3,4,5].some(i => r[i] == null) ? 'Pendiente: faltan dimensiones' : [1,2,3,4,5].map(i => r[i]).join('')",
+     "texto": "Nivel de cada dimensión en este orden: movilidad, autocuidado, actividades habituales, dolor o malestar, ansiedad o depresión."
+    },
+    {
+     "n": "Valor del estado de salud (conjunto de España)",
+     "js": "[1,2,3,4,5].some(i => r[i] == null) ? 'Pendiente' : Math.round((1 - (r[1] > 1 ? [0.084, 0.099, 0.249, 0.337][r[1] - 2] : 0) - (r[2] > 1 ? [0.05, 0.053, 0.164, 0.196][r[2] - 2] : 0) - (r[3] > 1 ? [0.044, 0.049, 0.135, 0.153][r[3] - 2] : 0) - (r[4] > 1 ? [0.078, 0.101, 0.245, 0.382][r[4] - 2] : 0) - (r[5] > 1 ? [0.081, 0.128, 0.27, 0.348][r[5] - 2] : 0)) * 1000) / 1000",
+     "texto": "De −0,416 a 1 (1 = salud plena; menos de 0 = estado valorado como peor que la muerte). Conjunto de valores español (Ramos-Goñi et al., 2018): Colombia no tiene uno propio."
+    },
+    {
+     "n": "Escala visual analógica",
+     "js": "r[6] == null ? 'Sin respuesta' : r[6]",
+     "texto": "De 0 a 100. Referencia colombiana con el EQ-5D-3L (no equivalente): media 76,2 en adultos (Rojas-Reyes et al., 2017)."
+    }
+   ],
+   "alertas": [
+    {
+     "js": "r[6] != null && (r[6] < 0 || r[6] > 100)",
+     "texto": "La EVA debe estar entre 0 y 100."
+    }
+   ]
+  },
+  "sinitems": true
+ },
  "whiteley": {
   "clave": "Whiteley",
   "sigla": "Whiteley",
@@ -14400,6 +22359,84 @@ const CALIFICAR = {
    ]
   },
   "hoja": true
+ },
+ "cpq": {
+  "clave": "CPQ",
+  "sigla": "CPQ",
+  "titulo": "Cuestionario de Perfeccionismo Clínico",
+  "para": "Tendencia a fijarse metas altas y consecuencias de no alcanzarlas, incluido el valor personal apoyado en cumplirlas; se ha usado sobre todo como medida del resultado del tratamiento.",
+  "areas": [
+   "Autoestima, autocrítica y habilidades sociales",
+   "Alimentación"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "adultos",
+  "pob": [
+   "adultos"
+  ],
+  "cita": "Citado desde Fairburn et al., 2003, en Egan et al., 2014, cap. 5",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él. Las preguntas iniciales sobre las áreas de la vida no puntúan. La escala va de 1 (en absoluto) a 4 (todo el tiempo)."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Ítems del protocolo",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "escalas": [
+    {
+     "n": "Total (ítems 2 y 8 invertidos)",
+     "js": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].some(i => r[i] == null) ? 'Pendiente' : (L([1,3,6,7,9,10,11]) + R(8,5) + L([4,5,12]) + R(2,5))",
+     "texto": "De 12 a 48: a mayor puntaje, más perfeccionismo clínico. Sin puntos de corte. Medias del total: comunidad 25,25 (DE 4,65) y pacientes con trastorno alimentario 28,48 (DE 6,19) (Egan et al., 2016); muestra clínica de ansiedad, depresión y trastornos alimentarios 30,24 (DE 4,69) (Hoiles et al., 2016, n = 32); comunidad alemana 26,50 (DE 5,70) (Roth et al., 2021)."
+    },
+    {
+     "n": "Factor 1: esfuerzos (ítems 1, 3, 6 a 11)",
+     "js": "[1, 3, 6, 7, 8, 9, 10, 11].some(i => r[i] == null) ? 'Pendiente' : (L([1,3,6,7,9,10,11]) + R(8,5))",
+     "texto": "De 8 a 32 (el ítem 8 se invierte)."
+    },
+    {
+     "n": "Factor 2: preocupaciones (ítems 2, 4, 5 y 12)",
+     "js": "[2, 4, 5, 12].some(i => r[i] == null) ? 'Pendiente' : (L([4,5,12]) + R(2,5))",
+     "texto": "De 4 a 16 (el ítem 2 se invierte)."
+    }
+   ],
+   "nota": "Clave de Egan et al. (2016), con la partición 8 + 4 replicada en Stoeber (2014) y Roth et al. (2021). El 22 que circula como corte es el de la subescala de preocupación por errores de la FMPS en Hoiles et al., no del CPQ. Los ítems 8 y 12 tienen correlaciones bajas con el total (Roth et al.): no se excluyen, pero lea los factores con cautela. No hay versión española validada con ítems en las fuentes."
+  },
+  "sinitems": true
  },
  "mgh-hs": {
   "clave": "MGH-HS",
@@ -29517,5 +37554,468 @@ const CALIFICAR = {
     }
    ]
   }
+ },
+ "espa29": {
+  "clave": "ESPA29",
+  "sigla": "ESPA29",
+  "titulo": "Escala de Estilos de Socialización Parental en la Adolescencia",
+  "para": "Evaluar cómo percibe el adolescente la forma en que su madre y su padre responden a lo que hace: con aceptación e implicación (afecto, diálogo) o con coerción e imposición (riña, castigo físico, privación), y a partir de ahí el estilo de cada uno.",
+  "areas": [
+   "Familia, pareja y violencia"
+  ],
+  "quien": [
+   "persona"
+  ],
+  "estilo": "infancia",
+  "pob": [
+   "infancia"
+  ],
+  "cita": "Musitu y García (2004), TEA Ediciones · prueba comercial: se aplica con el ejemplar original.",
+  "bloques": [
+   {
+    "t": "consigna",
+    "x": "Aplique el ejemplar original. Luego marque aquí, para cada situación, el número (1 a 4) que el adolescente rodeó en cada respuesta, primero en la columna de la madre y después en la del padre. Si responde solo por uno de los dos, deje el otro en blanco."
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Mujer",
+     "Varón"
+    ],
+    "vals": [
+     0,
+     1
+    ],
+    "puntua": true,
+    "items": [
+     "Sexo del adolescente"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "12 a 13 años",
+     "14 a 15 años",
+     "16 a 18 años"
+    ],
+    "vals": [
+     0,
+     1,
+     2
+    ],
+    "puntua": true,
+    "items": [
+     "Edad del adolescente"
+    ],
+    "numerar": false,
+    "lista": true
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Mi madre…",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Situación 1 · Afecto",
+     "Situación 1 · Indiferencia",
+     "Situación 2 · Displicencia",
+     "Situación 2 · Coerción verbal",
+     "Situación 2 · Coerción física",
+     "Situación 2 · Privación",
+     "Situación 2 · Diálogo",
+     "Situación 3 · Indiferencia",
+     "Situación 3 · Afecto",
+     "Situación 4 · Coerción verbal",
+     "Situación 4 · Coerción física",
+     "Situación 4 · Privación",
+     "Situación 4 · Diálogo",
+     "Situación 4 · Displicencia",
+     "Situación 5 · Afecto",
+     "Situación 5 · Indiferencia",
+     "Situación 6 · Coerción física",
+     "Situación 6 · Privación",
+     "Situación 6 · Diálogo",
+     "Situación 6 · Displicencia",
+     "Situación 6 · Coerción verbal",
+     "Situación 7 · Indiferencia",
+     "Situación 7 · Afecto",
+     "Situación 8 · Privación",
+     "Situación 8 · Diálogo",
+     "Situación 8 · Displicencia",
+     "Situación 8 · Coerción verbal",
+     "Situación 8 · Coerción física",
+     "Situación 9 · Diálogo",
+     "Situación 9 · Displicencia",
+     "Situación 9 · Coerción verbal",
+     "Situación 9 · Coerción física",
+     "Situación 9 · Privación",
+     "Situación 10 · Afecto",
+     "Situación 10 · Indiferencia",
+     "Situación 11 · Privación",
+     "Situación 11 · Diálogo",
+     "Situación 11 · Displicencia",
+     "Situación 11 · Coerción verbal",
+     "Situación 11 · Coerción física",
+     "Situación 12 · Coerción física",
+     "Situación 12 · Privación",
+     "Situación 12 · Diálogo",
+     "Situación 12 · Displicencia",
+     "Situación 12 · Coerción verbal",
+     "Situación 13 · Coerción verbal",
+     "Situación 13 · Coerción física",
+     "Situación 13 · Privación",
+     "Situación 13 · Diálogo",
+     "Situación 13 · Displicencia",
+     "Situación 14 · Indiferencia",
+     "Situación 14 · Afecto",
+     "Situación 15 · Displicencia",
+     "Situación 15 · Coerción verbal",
+     "Situación 15 · Coerción física",
+     "Situación 15 · Privación",
+     "Situación 15 · Diálogo",
+     "Situación 16 · Afecto",
+     "Situación 16 · Indiferencia",
+     "Situación 17 · Diálogo",
+     "Situación 17 · Displicencia",
+     "Situación 17 · Coerción verbal",
+     "Situación 17 · Coerción física",
+     "Situación 17 · Privación",
+     "Situación 18 · Indiferencia",
+     "Situación 18 · Afecto",
+     "Situación 19 · Privación",
+     "Situación 19 · Diálogo",
+     "Situación 19 · Displicencia",
+     "Situación 19 · Coerción verbal",
+     "Situación 19 · Coerción física",
+     "Situación 20 · Coerción física",
+     "Situación 20 · Privación",
+     "Situación 20 · Diálogo",
+     "Situación 20 · Displicencia",
+     "Situación 20 · Coerción verbal",
+     "Situación 21 · Coerción verbal",
+     "Situación 21 · Coerción física",
+     "Situación 21 · Privación",
+     "Situación 21 · Diálogo",
+     "Situación 21 · Displicencia",
+     "Situación 22 · Afecto",
+     "Situación 22 · Indiferencia",
+     "Situación 23 · Indiferencia",
+     "Situación 23 · Afecto",
+     "Situación 24 · Afecto",
+     "Situación 24 · Indiferencia",
+     "Situación 25 · Displicencia",
+     "Situación 25 · Coerción verbal",
+     "Situación 25 · Coerción física",
+     "Situación 25 · Privación",
+     "Situación 25 · Diálogo",
+     "Situación 26 · Diálogo",
+     "Situación 26 · Displicencia",
+     "Situación 26 · Coerción verbal",
+     "Situación 26 · Coerción física",
+     "Situación 26 · Privación",
+     "Situación 27 · Indiferencia",
+     "Situación 27 · Afecto",
+     "Situación 28 · Afecto",
+     "Situación 28 · Indiferencia",
+     "Situación 29 · Privación",
+     "Situación 29 · Diálogo",
+     "Situación 29 · Displicencia",
+     "Situación 29 · Coerción verbal",
+     "Situación 29 · Coerción física"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "Mi padre…",
+    "ops": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "vals": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Situación 1 · Afecto",
+     "Situación 1 · Indiferencia",
+     "Situación 2 · Displicencia",
+     "Situación 2 · Coerción verbal",
+     "Situación 2 · Coerción física",
+     "Situación 2 · Privación",
+     "Situación 2 · Diálogo",
+     "Situación 3 · Indiferencia",
+     "Situación 3 · Afecto",
+     "Situación 4 · Coerción verbal",
+     "Situación 4 · Coerción física",
+     "Situación 4 · Privación",
+     "Situación 4 · Diálogo",
+     "Situación 4 · Displicencia",
+     "Situación 5 · Afecto",
+     "Situación 5 · Indiferencia",
+     "Situación 6 · Coerción física",
+     "Situación 6 · Privación",
+     "Situación 6 · Diálogo",
+     "Situación 6 · Displicencia",
+     "Situación 6 · Coerción verbal",
+     "Situación 7 · Indiferencia",
+     "Situación 7 · Afecto",
+     "Situación 8 · Privación",
+     "Situación 8 · Diálogo",
+     "Situación 8 · Displicencia",
+     "Situación 8 · Coerción verbal",
+     "Situación 8 · Coerción física",
+     "Situación 9 · Diálogo",
+     "Situación 9 · Displicencia",
+     "Situación 9 · Coerción verbal",
+     "Situación 9 · Coerción física",
+     "Situación 9 · Privación",
+     "Situación 10 · Afecto",
+     "Situación 10 · Indiferencia",
+     "Situación 11 · Privación",
+     "Situación 11 · Diálogo",
+     "Situación 11 · Displicencia",
+     "Situación 11 · Coerción verbal",
+     "Situación 11 · Coerción física",
+     "Situación 12 · Coerción física",
+     "Situación 12 · Privación",
+     "Situación 12 · Diálogo",
+     "Situación 12 · Displicencia",
+     "Situación 12 · Coerción verbal",
+     "Situación 13 · Coerción verbal",
+     "Situación 13 · Coerción física",
+     "Situación 13 · Privación",
+     "Situación 13 · Diálogo",
+     "Situación 13 · Displicencia",
+     "Situación 14 · Indiferencia",
+     "Situación 14 · Afecto",
+     "Situación 15 · Displicencia",
+     "Situación 15 · Coerción verbal",
+     "Situación 15 · Coerción física",
+     "Situación 15 · Privación",
+     "Situación 15 · Diálogo",
+     "Situación 16 · Afecto",
+     "Situación 16 · Indiferencia",
+     "Situación 17 · Diálogo",
+     "Situación 17 · Displicencia",
+     "Situación 17 · Coerción verbal",
+     "Situación 17 · Coerción física",
+     "Situación 17 · Privación",
+     "Situación 18 · Indiferencia",
+     "Situación 18 · Afecto",
+     "Situación 19 · Privación",
+     "Situación 19 · Diálogo",
+     "Situación 19 · Displicencia",
+     "Situación 19 · Coerción verbal",
+     "Situación 19 · Coerción física",
+     "Situación 20 · Coerción física",
+     "Situación 20 · Privación",
+     "Situación 20 · Diálogo",
+     "Situación 20 · Displicencia",
+     "Situación 20 · Coerción verbal",
+     "Situación 21 · Coerción verbal",
+     "Situación 21 · Coerción física",
+     "Situación 21 · Privación",
+     "Situación 21 · Diálogo",
+     "Situación 21 · Displicencia",
+     "Situación 22 · Afecto",
+     "Situación 22 · Indiferencia",
+     "Situación 23 · Indiferencia",
+     "Situación 23 · Afecto",
+     "Situación 24 · Afecto",
+     "Situación 24 · Indiferencia",
+     "Situación 25 · Displicencia",
+     "Situación 25 · Coerción verbal",
+     "Situación 25 · Coerción física",
+     "Situación 25 · Privación",
+     "Situación 25 · Diálogo",
+     "Situación 26 · Diálogo",
+     "Situación 26 · Displicencia",
+     "Situación 26 · Coerción verbal",
+     "Situación 26 · Coerción física",
+     "Situación 26 · Privación",
+     "Situación 27 · Indiferencia",
+     "Situación 27 · Afecto",
+     "Situación 28 · Afecto",
+     "Situación 28 · Indiferencia",
+     "Situación 29 · Privación",
+     "Situación 29 · Diálogo",
+     "Situación 29 · Displicencia",
+     "Situación 29 · Coerción verbal",
+     "Situación 29 · Coerción física"
+    ],
+    "numerar": false
+   }
+  ],
+  "calif": {
+   "blancos": true,
+   "escalas": [
+    {
+     "n": "Baremo aplicado",
+     "js": "((window.ESPA29 = window.ESPA29 || {T: [[[99, [4.0, null, 2.13, 3.54, 3.98, 3.37, 3.88, 2.37, 2.89]], [97, [null, null, 1.92, 3.38, null, 3.06, 3.75, 1.94, 2.71]], [95, [3.85, null, 1.75, 2.86, 3.88, 2.88, 3.63, 1.79, 2.58]], [93, [null, null, 1.69, 2.65, null, 2.75, null, 1.69, 2.48]], [90, [3.75, 4.0, 1.56, 2.4, 3.79, 2.63, 3.44, 1.45, 2.38]], [85, [null, null, 1.44, 2.15, null, 2.5, 3.31, 1.25, 2.27]], [80, [3.56, 3.77, 1.38, 2.0, 3.63, 2.25, 3.13, 1.19, 2.21]], [75, [3.44, null, 1.31, 1.85, 3.56, null, 3.06, null, 2.13]], [70, [3.29, 3.54, 1.25, 1.77, 3.49, 2.06, 2.89, null, 2.04]], [65, [3.19, 3.32, null, 1.69, null, null, 2.81, null, 2.0]], [60, [3.06, 3.23, 1.19, 1.54, 3.4, 1.88, 2.69, null, 1.96]], [55, [null, null, null, 1.46, 3.34, null, 2.63, null, 1.9]], [50, [2.88, 2.92, 1.13, 1.38, 3.27, 1.75, 2.56, null, 1.83]], [45, [2.75, null, null, 1.31, 3.21, null, 2.44, null, 1.77]], [40, [2.63, 2.77, null, 1.23, 3.16, 1.56, 2.38, 1.0, 1.73]], [35, [null, null, null, null, null, null, 2.31, null, 1.67]], [30, [2.44, 2.54, null, null, 3.08, 1.44, 2.19, null, 1.6]], [25, [null, 2.38, 1.0, null, 3.01, null, 2.06, null, 1.54]], [20, [2.29, 2.23, null, null, 2.95, 1.31, 2.0, null, 1.5]], [15, [2.13, 2.08, null, null, 2.86, 1.2, 1.88, null, 1.44]], [10, [1.94, 1.83, null, 1.0, 2.69, 1.11, 1.75, null, 1.38]], [7, [1.79, 1.54, null, null, 2.55, null, 1.63, null, 1.31]], [5, [1.56, 1.38, null, null, 2.46, null, 1.5, null, 1.27]], [3, [null, null, null, null, 2.21, null, 1.38, null, 1.19]], [1, [null, 1.15, null, null, 1.87, null, 1.13, null, 1.1]]], [[99, [null, null, 2.38, 3.84, 3.98, 3.44, 3.88, 2.31, 2.93]], [97, [null, null, 1.92, 3.14, null, 3.06, 3.69, 1.81, 2.67]], [95, [3.94, null, 1.81, 2.85, 3.87, 2.88, 3.63, 1.66, 2.58]], [93, [null, null, 1.75, 2.62, null, 2.75, 3.5, 1.59, 2.5]], [90, [3.81, 3.92, 1.63, 2.38, 3.77, 2.63, 3.38, 1.44, 2.4]], [85, [null, null, 1.5, 2.08, null, 2.5, 3.25, 1.31, 2.31]], [80, [3.56, 3.69, 1.38, 2.0, 3.62, 2.31, 3.13, 1.25, 2.19]], [75, [3.44, null, 1.31, 1.85, 3.57, 2.19, 3.0, 1.19, 2.13]], [70, [3.29, 3.46, 1.25, 1.69, 3.5, 2.06, 2.88, 1.13, 2.06]], [65, [null, null, null, 1.62, 3.44, 1.95, 2.81, null, 2.0]], [60, [3.13, 3.23, 1.19, 1.54, 3.38, 1.88, 2.75, null, 1.94]], [55, [2.96, null, null, 1.46, 3.33, null, 2.63, null, 1.9]], [50, [2.88, 3.0, 1.13, 1.38, 3.27, 1.75, 2.56, null, 1.81]], [45, [2.79, null, null, 1.31, null, null, 2.44, null, 1.73]], [40, [2.69, 2.77, null, 1.23, 3.17, 1.56, 2.38, null, 1.69]], [35, [null, 2.62, null, null, 3.12, null, 2.25, 1.0, null]], [30, [2.5, 2.46, null, null, 3.07, 1.44, 2.19, null, 1.6]], [25, [null, null, 1.0, null, 3.0, null, 2.06, null, 1.56]], [20, [2.25, 2.15, null, 1.0, 2.91, 1.25, 2.0, null, 1.5]], [15, [2.06, 2.0, null, null, 2.84, null, 1.81, null, 1.42]], [10, [1.81, 1.85, null, null, 2.64, 1.06, 1.68, null, 1.33]], [7, [1.66, 1.74, null, null, 2.56, null, 1.5, null, 1.29]], [5, [1.56, 1.54, null, null, 2.48, null, 1.43, null, 1.23]], [3, [1.39, 1.25, null, null, 2.37, null, 1.31, null, 1.17]], [1, [1.19, 1.08, null, null, 2.15, null, 1.06, null, 1.1]]], [[99, [4.0, null, 2.29, 3.31, 3.95, 3.44, 3.88, 2.51, 2.89]], [97, [null, null, 2.07, 2.93, null, 3.07, 3.75, 1.94, 2.71]], [95, [3.81, null, 1.91, 2.69, 3.88, 2.94, 3.63, 1.81, 2.58]], [93, [null, null, 1.81, 2.53, 3.8, 2.81, null, 1.75, 2.48]], [90, [3.69, 3.92, 1.69, 2.31, 3.73, 2.69, 3.44, 1.63, 2.38]], [85, [3.56, 3.69, 1.5, 2.19, 3.64, 2.56, 3.31, 1.44, 2.27]], [80, [3.44, 3.54, 1.38, 2.08, 3.56, 2.38, 3.13, 1.38, 2.21]], [75, [3.25, null, 1.31, 2.0, 3.48, null, 3.06, 1.25, 2.13]], [70, [3.13, 3.31, 1.25, 1.92, 3.43, 2.19, 2.89, 1.19, 2.04]], [65, [null, 3.15, null, 1.85, 3.37, null, 2.81, null, 2.0]], [60, [2.94, 3.0, 1.19, 1.69, 3.31, 2.0, 2.69, 1.13, 1.96]], [55, [null, null, null, 1.62, 3.23, 1.91, 2.63, null, 1.9]], [50, [2.75, 2.85, 1.13, 1.54, 3.18, 1.81, 2.56, null, 1.83]], [45, [null, null, null, 1.46, null, null, 2.44, null, 1.77]], [40, [2.56, 2.69, null, 1.38, 3.06, 1.69, 2.38, null, 1.73]], [35, [null, null, null, 1.31, null, 1.59, 2.31, null, 1.67]], [30, [2.38, 2.46, null, 1.15, 2.97, 1.5, 2.19, 1.0, 1.6]], [25, [null, null, 1.0, null, 2.89, 1.38, 2.06, null, 1.54]], [20, [2.13, 2.23, null, null, 2.82, 1.25, 2.0, null, 1.5]], [15, [2.0, 2.08, null, 1.0, 2.75, null, 1.88, null, 1.44]], [10, [1.81, 1.92, null, null, 2.63, 1.13, 1.75, null, 1.38]], [7, [1.69, null, null, null, null, null, 1.63, null, 1.31]], [5, [1.53, 1.69, null, null, 2.52, null, 1.5, null, 1.27]], [3, [1.31, 1.54, null, null, 2.39, null, 1.38, null, 1.19]], [1, [1.06, 1.15, null, null, 2.11, null, 1.13, null, 1.1]]], [[99, [4.0, null, 2.4, 3.62, 3.99, 3.57, 3.88, 2.36, 2.93]], [97, [null, null, 2.19, 3.15, 3.87, 3.13, 3.69, 2.13, 2.67]], [95, [3.84, 4.0, 2.0, 2.88, 3.81, 2.97, 3.63, 2.0, 2.58]], [93, [null, null, 1.81, 2.68, null, null, 3.5, 1.81, 2.5]], [90, [3.69, 3.85, 1.69, 2.38, 3.71, 2.69, 3.38, 1.75, 2.4]], [85, [3.5, null, 1.5, 2.15, 3.64, 2.5, 3.25, 1.5, 2.31]], [80, [3.38, 3.54, 1.38, 2.0, 3.56, 2.38, 3.13, 1.44, 2.19]], [75, [null, null, 1.31, 1.92, 3.48, null, 3.0, 1.31, 2.13]], [70, [3.13, 3.31, 1.25, 1.85, 3.42, 2.19, 2.88, 1.25, 2.06]], [65, [null, 3.19, null, 1.77, 3.36, null, 2.81, 1.19, 2.0]], [60, [2.94, 3.08, 1.19, 1.69, 3.31, 2.0, 2.75, 1.13, 1.94]], [55, [null, null, null, 1.62, 3.25, null, 2.63, null, 1.9]], [50, [2.81, 2.85, 1.13, 1.54, 3.19, 1.81, 2.56, null, 1.81]], [45, [2.66, null, null, 1.38, null, null, 2.44, null, 1.73]], [40, [2.5, 2.62, null, 1.31, 3.09, 1.69, 2.38, null, 1.69]], [35, [null, null, null, null, 3.02, null, 2.25, null, null]], [30, [2.31, 2.38, null, 1.23, 2.94, 1.5, 2.19, null, 1.6]], [25, [null, null, 1.0, null, 2.88, null, 2.06, 1.0, 1.56]], [20, [2.13, 2.15, null, null, 2.8, 1.25, 2.0, null, 1.5]], [15, [2.0, 1.96, null, null, 2.73, null, 1.81, null, 1.42]], [10, [1.88, 1.77, null, 1.0, 2.65, 1.06, 1.68, null, 1.33]], [7, [1.69, null, null, null, 2.51, null, 1.5, null, 1.29]], [5, [1.59, 1.54, null, null, 2.45, null, 1.43, null, 1.23]], [3, [null, 1.3, null, null, 2.38, null, 1.31, null, 1.17]], [1, [null, 1.15, null, null, 2.21, null, 1.06, null, 1.1]]], [[99, [4.0, 4.0, 2.67, 3.67, 3.95, 3.31, 3.72, 2.0, 2.74]], [97, [null, null, 2.07, 3.38, 3.86, 3.01, 3.56, 1.69, 2.56]], [95, [3.94, 3.92, 1.94, 3.08, 3.81, 2.73, 3.44, 1.5, 2.4]], [93, [3.82, 3.85, 1.88, 2.92, null, 2.56, null, 1.38, 2.35]], [90, [3.75, 3.69, 1.75, 2.85, 3.73, 2.44, 3.31, 1.25, 2.27]], [85, [3.56, 3.54, 1.63, 2.54, 3.63, 2.19, 3.13, null, 2.13]], [80, [3.44, 3.38, 1.5, 2.38, 3.55, 2.06, 3.0, null, 2.02]], [75, [3.31, 3.23, 1.38, 2.23, 3.47, 1.94, 2.88, null, 1.95]], [70, [3.19, 3.08, 1.31, 2.08, 3.38, 1.81, 2.75, null, 1.88]], [65, [3.06, 2.92, null, 1.92, 3.3, 1.75, 2.69, null, 1.81]], [60, [3.0, 2.77, 1.25, 1.85, 3.24, 1.69, 2.56, null, 1.77]], [55, [2.88, 2.62, null, 1.69, 3.17, 1.63, 2.44, null, 1.72]], [50, [2.81, 2.54, 1.19, 1.62, 3.1, 1.56, 2.38, null, 1.67]], [45, [2.69, 2.46, null, 1.54, 3.02, 1.5, 2.31, 1.0, null]], [40, [2.61, 2.31, 1.13, 1.38, 2.98, 1.44, 2.25, null, 1.58]], [35, [2.44, 2.23, null, 1.31, 2.9, 1.31, 2.13, null, 1.54]], [30, [2.38, 2.15, null, 1.23, 2.83, 1.19, 2.06, null, 1.5]], [25, [2.25, 2.0, null, null, 2.75, null, 1.94, null, 1.44]], [20, [2.13, 1.92, 1.0, null, 2.66, null, 1.88, null, 1.4]], [15, [2.0, 1.77, null, 1.0, 2.55, 1.0, 1.75, null, 1.33]], [10, [1.75, 1.54, null, null, 2.4, null, 1.63, null, 1.29]], [7, [1.5, 1.46, null, null, 2.28, null, 1.5, null, 1.23]], [5, [1.38, 1.31, null, null, 2.18, null, 1.38, null, 1.19]], [3, [null, null, null, null, 1.98, null, 1.25, null, 1.13]], [1, [null, null, null, null, 1.74, null, 1.06, null, 1.04]]], [[99, [null, null, 2.25, 3.71, 3.95, 3.38, 3.75, 2.3, 2.83]], [97, [null, null, 2.0, 3.23, null, 2.89, 3.63, 1.81, 2.58]], [95, [4.0, 4.0, 1.88, 3.08, 3.87, 2.75, 3.5, 1.63, 2.42]], [93, [3.94, 3.92, 1.75, 2.92, 3.82, 2.56, 3.44, 1.44, 2.33]], [90, [3.88, 3.85, 1.63, 2.77, 3.78, 2.38, 3.31, 1.25, 2.24]], [85, [3.69, 3.62, 1.5, 2.38, 3.66, 2.25, 3.13, null, 2.15]], [80, [3.56, 3.46, 1.44, 2.15, 3.59, 2.06, 3.0, null, 2.04]], [75, [3.44, 3.31, null, 2.0, 3.5, 1.94, 2.94, null, 1.96]], [70, [3.31, 3.15, 1.31, 1.92, 3.43, 1.87, 2.81, null, 1.9]], [65, [3.25, 3.0, 1.25, 1.77, 3.35, 1.75, 2.69, null, 1.83]], [60, [3.08, 2.92, 1.19, 1.69, 3.3, 1.69, 2.63, null, 1.79]], [55, [3.0, 2.77, null, 1.54, 3.25, 1.56, 2.56, null, 1.75]], [50, [2.88, 2.62, 1.13, 1.46, 3.2, 1.5, 2.44, null, 1.71]], [45, [2.81, 2.54, null, 1.31, 3.13, 1.44, 2.38, 1.0, 1.67]], [40, [2.69, 2.38, null, 1.23, 3.07, 1.38, 2.25, null, 1.6]], [35, [2.63, 2.31, null, null, 3.0, null, 2.19, null, 1.56]], [30, [2.44, 2.23, null, null, 2.92, 1.25, 2.06, null, 1.52]], [25, [2.38, 2.15, 1.0, null, 2.86, null, 2.0, null, 1.46]], [20, [2.21, 2.0, null, null, 2.78, null, 1.94, null, 1.42]], [15, [2.06, 1.85, null, 1.0, 2.67, 1.0, 1.81, null, 1.35]], [10, [1.88, 1.62, null, null, 2.56, null, 1.63, null, 1.28]], [7, [1.81, 1.46, null, null, 2.43, null, 1.44, null, 1.23]], [5, [1.69, 1.38, null, null, 2.36, null, 1.31, null, 1.17]], [3, [1.56, null, null, null, 2.26, null, null, null, 1.1]], [1, [1.19, null, null, null, 2.03, null, null, null, 1.02]]], [[99, [4.0, 4.0, 2.56, 3.68, 3.9, 3.31, 3.72, 2.3, 2.74]], [97, [3.88, 3.92, 2.25, 3.38, null, 2.91, 3.56, 1.84, 2.56]], [95, [3.81, 3.85, 2.07, 3.23, 3.79, 2.76, 3.44, 1.63, 2.4]], [93, [null, 3.77, 1.88, 3.0, 3.73, 2.63, null, 1.56, 2.35]], [90, [3.69, 3.62, 1.75, 2.85, 3.62, 2.5, 3.31, 1.5, 2.27]], [85, [3.44, 3.31, 1.63, 2.62, 3.48, 2.31, 3.13, 1.31, 2.13]], [80, [3.35, 3.15, 1.56, 2.38, 3.41, 2.13, 3.0, 1.19, 2.02]], [75, [3.23, 3.0, 1.5, 2.23, 3.35, 1.98, 2.88, null, 1.95]], [70, [3.13, 2.85, 1.44, 2.15, 3.27, 1.88, 2.75, null, 1.88]], [65, [3.0, 2.77, 1.38, 2.0, 3.21, 1.81, 2.69, null, 1.81]], [60, [2.88, 2.62, 1.31, 1.85, 3.15, 1.75, 2.56, null, 1.77]], [55, [2.81, 2.54, null, 1.77, 3.07, 1.69, 2.44, null, 1.72]], [50, [2.69, 2.38, 1.25, 1.69, 3.0, 1.63, 2.38, null, 1.67]], [45, [2.56, 2.31, null, 1.62, 2.95, 1.56, 2.31, null, null]], [40, [2.5, 2.15, 1.19, 1.46, 2.9, 1.44, 2.25, 1.0, 1.58]], [35, [2.44, 2.08, null, 1.38, null, 1.38, 2.13, null, 1.54]], [30, [2.31, 2.0, null, 1.31, 2.78, 1.31, 2.06, null, 1.5]], [25, [2.19, 1.92, null, 1.23, 2.72, 1.25, 1.94, null, 1.44]], [20, [2.13, 1.85, 1.0, 1.15, 2.63, 1.19, 1.88, null, 1.4]], [15, [2.0, 1.69, null, null, 2.53, 1.13, 1.75, null, 1.33]], [10, [1.88, 1.54, null, 1.08, 2.42, 1.06, 1.63, null, 1.29]], [7, [1.64, 1.46, null, null, null, null, 1.5, null, 1.23]], [5, [1.5, 1.31, null, null, 2.21, null, 1.38, null, 1.19]], [3, [null, 1.23, null, null, 2.09, null, 1.25, null, 1.13]], [1, [1.14, 1.09, null, null, 1.89, null, 1.06, null, 1.04]]], [[99, [4.0, 4.0, 2.49, 3.74, 3.93, 3.42, 3.75, 2.69, 2.83]], [97, [3.94, 3.92, 2.13, 3.38, 3.84, 2.94, 3.63, 2.09, 2.58]], [95, [3.88, 3.85, 1.88, 3.15, 3.78, 2.81, 3.5, 1.76, 2.42]], [93, [3.8, 3.77, 1.81, 3.0, 3.72, 2.63, 3.44, 1.61, 2.33]], [90, [3.63, 3.62, 1.69, 2.77, 3.61, 2.56, 3.31, 1.44, 2.24]], [85, [3.44, 3.38, 1.63, 2.5, 3.5, 2.28, 3.13, 1.31, 2.15]], [80, [3.31, 3.23, 1.5, 2.31, 3.42, 2.13, 3.0, 1.19, 2.04]], [75, [3.19, 3.08, 1.44, 2.15, 3.35, 2.0, 2.94, null, 1.96]], [70, [3.13, 2.92, 1.38, 2.0, 3.29, 1.88, 2.81, null, 1.9]], [65, [3.0, 2.77, 1.31, 1.92, 3.22, 1.81, 2.69, null, 1.83]], [60, [2.88, 2.62, 1.25, 1.85, 3.15, 1.75, 2.63, null, 1.79]], [55, [2.81, 2.54, null, 1.69, 3.1, 1.69, 2.56, null, 1.75]], [50, [2.69, 2.46, 1.19, 1.62, 3.05, 1.63, 2.44, null, 1.71]], [45, [2.56, 2.31, null, 1.46, 2.98, 1.54, 2.38, null, 1.67]], [40, [2.5, 2.23, 1.13, 1.37, 2.9, 1.44, 2.25, 1.0, 1.6]], [35, [2.44, 2.08, null, null, 2.86, 1.38, 2.19, null, 1.56]], [30, [2.31, 2.0, null, 1.23, 2.81, 1.25, 2.06, null, 1.52]], [25, [2.25, null, null, null, 2.75, null, 2.0, null, 1.46]], [20, [2.06, 1.85, 1.0, null, 2.68, null, 1.94, null, 1.42]], [15, [2.0, 1.69, null, 1.0, 2.59, 1.0, 1.81, null, 1.35]], [10, [1.81, 1.62, null, null, 2.51, null, 1.63, null, 1.28]], [7, [1.69, 1.46, null, null, 2.39, null, 1.44, null, 1.23]], [5, [1.56, 1.38, null, null, 2.32, null, 1.31, null, 1.17]], [3, [1.44, 1.31, null, null, 2.25, null, null, null, 1.1]], [1, [1.14, 1.08, null, null, 1.98, null, null, null, 1.02]]], [[99, [4.0, 4.0, 2.81, 4.0, 3.96, 2.87, 3.69, 1.75, 2.44]], [97, [3.94, null, 2.36, 3.62, 3.84, 2.48, 3.44, 1.38, 2.23]], [95, [3.81, 3.77, 2.06, 3.38, 3.76, 2.31, 3.31, 1.25, 2.15]], [93, [3.75, 3.69, 1.94, 3.23, 3.68, 2.19, 3.25, 1.19, 2.1]], [90, [3.69, 3.54, 1.81, 3.08, 3.61, 2.06, 3.13, 1.13, 2.0]], [85, [3.5, 3.31, 1.75, 2.69, 3.5, 1.88, 3.0, null, 1.92]], [80, [3.38, 3.15, 1.56, 2.54, 3.43, 1.81, 2.81, null, 1.85]], [75, [3.19, 3.0, 1.5, 2.38, 3.35, 1.69, 2.69, null, 1.79]], [70, [3.06, 2.85, 1.44, 2.23, 3.28, 1.63, 2.63, null, 1.73]], [65, [3.0, 2.77, 1.38, 2.08, 3.2, 1.56, 2.5, null, 1.69]], [60, [2.88, 2.62, 1.31, 1.92, 3.13, 1.5, 2.44, null, 1.66]], [55, [2.81, 2.54, null, 1.85, 3.07, 1.44, 2.38, null, 1.63]], [50, [2.69, 2.38, 1.25, 1.77, 3.02, 1.38, 2.25, null, 1.58]], [45, [2.63, 2.31, null, 1.62, 2.96, 1.31, 2.19, 1.0, 1.54]], [40, [2.56, 2.23, 1.19, 1.54, 2.89, 1.25, 2.13, null, 1.52]], [35, [2.44, 2.08, null, 1.46, 2.84, null, 2.06, null, 1.46]], [30, [2.31, 2.0, 1.13, 1.38, 2.75, 1.19, 1.94, null, 1.42]], [25, [2.25, 1.85, null, null, 2.65, null, 1.88, null, 1.38]], [20, [2.13, 1.69, null, null, 2.53, null, 1.75, null, 1.33]], [15, [1.94, 1.54, 1.0, 1.0, 2.41, 1.0, 1.63, null, 1.27]], [10, [1.81, 1.38, null, null, 2.27, null, 1.48, null, 1.21]], [7, [1.63, 1.23, null, null, 2.12, null, 1.31, null, 1.17]], [5, [1.41, 1.15, null, null, 1.95, null, 1.25, null, 1.13]], [3, [null, null, null, null, 1.83, null, 1.13, null, 1.09]], [1, [null, null, null, null, 1.5, null, 1.06, null, 1.04]]], [[99, [null, 4.0, 2.5, 3.76, 3.98, 2.94, 3.75, 1.74, 2.62]], [97, [null, null, 2.11, 3.36, null, 2.61, 3.5, 1.38, 2.27]], [95, [4.0, 3.92, 1.97, 3.15, 3.89, 2.41, 3.38, 1.25, 2.17]], [93, [3.94, 3.85, 1.88, 3.08, 3.83, 2.25, 3.25, 1.19, 2.13]], [90, [3.88, 3.69, 1.75, 2.77, 3.76, 2.06, 3.13, 1.13, 2.02]], [85, [3.69, 3.46, 1.56, 2.46, 3.63, 1.88, 3.0, null, 1.94]], [80, [3.63, 3.31, 1.5, 2.31, 3.55, 1.81, 2.88, null, 1.83]], [75, [3.5, 3.15, 1.44, 2.08, 3.49, 1.69, 2.75, null, 1.81]], [70, [3.38, 3.0, 1.38, 2.0, 3.44, 1.63, 2.63, null, 1.75]], [65, [3.25, 2.92, 1.31, 1.85, 3.36, 1.56, 2.56, null, 1.73]], [60, [3.19, 2.77, 1.25, 1.77, 3.28, 1.5, 2.5, null, 1.69]], [55, [3.0, 2.62, null, 1.62, 3.2, 1.44, 2.44, null, 1.65]], [50, [2.88, 2.54, 1.19, 1.54, 3.13, 1.31, 2.38, null, 1.6]], [45, [2.75, 2.46, null, 1.38, 3.06, 1.25, 2.25, 1.0, 1.56]], [40, [2.69, 2.31, 1.13, 1.31, 3.0, 1.19, 2.19, null, 1.52]], [35, [2.56, 2.23, null, 1.23, 2.95, null, 2.06, null, 1.48]], [30, [2.44, 2.15, null, 1.15, 2.88, 1.13, 2.0, null, 1.44]], [25, [2.31, 2.0, null, null, 2.82, null, 1.88, null, 1.38]], [20, [2.19, 1.92, 1.0, null, 2.73, null, 1.75, null, 1.33]], [15, [2.13, 1.73, null, 1.0, 2.58, 1.0, 1.63, null, 1.27]], [10, [1.94, 1.54, null, null, 2.43, null, 1.5, null, 1.21]], [7, [1.81, 1.44, null, null, 2.33, null, 1.38, null, 1.17]], [5, [1.66, 1.31, null, null, 2.25, null, 1.31, null, 1.13]], [3, [null, null, null, null, 2.04, null, 1.19, null, 1.1]], [1, [null, null, null, null, 1.76, null, 1.02, null, 1.02]]], [[99, [4.0, 4.0, 2.56, 4.0, 3.84, 2.67, 3.69, 1.5, 2.44]], [97, [3.81, 3.77, 2.39, null, 3.72, 2.39, 3.44, 1.39, 2.23]], [95, [3.69, 3.54, 2.19, 3.62, 3.62, 2.19, 3.31, 1.31, 2.15]], [93, [3.58, 3.38, 2.08, null, 3.55, 2.14, 3.25, 1.19, 2.1]], [90, [3.38, 3.23, 2.0, 3.23, 3.46, 2.06, 3.13, 1.13, 2.0]], [85, [3.25, 3.08, 1.88, 2.94, 3.34, 1.94, 3.0, null, 1.92]], [80, [3.13, 2.92, 1.75, 2.85, 3.26, 1.81, 2.81, null, 1.85]], [75, [null, 2.77, 1.61, 2.62, 3.18, 1.75, 2.69, null, 1.79]], [70, [2.94, 2.62, 1.5, 2.46, 3.12, 1.69, 2.63, null, 1.73]], [65, [2.83, 2.46, null, null, 3.05, 1.56, 2.5, null, 1.69]], [60, [2.75, 2.38, 1.44, 2.23, 2.99, 1.5, 2.44, null, 1.66]], [55, [2.67, 2.23, 1.38, null, 2.92, 1.44, 2.38, null, 1.63]], [50, [2.56, 2.15, 1.31, 2.0, 2.84, 1.38, 2.25, null, 1.58]], [45, [null, 2.08, null, null, 2.77, 1.31, 2.19, 1.0, 1.54]], [40, [2.38, 2.0, 1.25, 1.85, 2.69, 1.25, 2.13, null, 1.52]], [35, [null, 1.92, 1.19, 1.67, null, null, 2.06, null, 1.46]], [30, [2.19, 1.77, 1.13, 1.54, 2.57, 1.19, 1.94, null, 1.42]], [25, [2.08, 1.69, null, null, 2.47, null, 1.88, null, 1.38]], [20, [2.0, 1.54, null, 1.31, 2.37, null, 1.75, null, 1.33]], [15, [1.86, 1.38, 1.0, null, 2.31, null, 1.63, null, 1.27]], [10, [1.72, 1.31, null, 1.08, 2.09, 1.0, 1.48, null, 1.21]], [7, [null, 1.15, null, null, 1.96, null, 1.31, null, 1.17]], [5, [1.45, 1.08, null, null, 1.89, null, 1.25, null, 1.13]], [3, [1.31, 1.06, null, null, 1.76, null, 1.13, null, 1.09]], [1, [1.06, null, null, null, 1.61, null, 1.06, null, 1.04]]], [[99, [3.94, 3.9, 2.31, 3.88, 3.83, 2.88, 3.75, 1.75, 2.62]], [97, [3.69, 3.62, 2.13, 3.63, 3.65, 2.44, 3.5, 1.44, 2.27]], [95, [3.63, 3.54, 2.0, 3.54, 3.58, 2.25, 3.38, 1.31, 2.17]], [93, [3.5, 3.46, null, 3.38, null, 2.19, 3.25, 1.2, 2.13]], [90, [3.44, 3.31, 1.84, 3.12, 3.48, 2.06, 3.13, 1.13, 2.02]], [85, [3.31, 3.08, 1.69, 2.69, 3.39, 1.94, 3.0, null, 1.94]], [80, [3.19, 3.0, 1.63, 2.54, 3.32, 1.81, 2.88, null, 1.83]], [75, [3.13, 2.85, 1.56, 2.31, 3.27, 1.75, 2.75, null, 1.81]], [70, [3.0, 2.69, 1.5, 2.23, 3.2, 1.69, 2.63, null, 1.75]], [65, [2.94, 2.62, 1.44, 2.1, 3.15, 1.63, 2.56, null, 1.73]], [60, [2.81, 2.46, 1.38, 2.0, 3.08, 1.56, 2.5, null, 1.69]], [55, [2.75, 2.38, 1.31, 1.92, 3.02, 1.5, 2.44, null, 1.65]], [50, [2.69, 2.27, 1.25, 1.85, 2.95, 1.44, 2.38, null, 1.6]], [45, [2.56, null, null, 1.69, 2.89, 1.31, 2.25, 1.0, 1.56]], [40, [2.5, 2.15, 1.19, 1.54, 2.82, 1.25, 2.19, null, 1.52]], [35, [2.38, 2.08, null, 1.46, 2.75, null, 2.06, null, 1.48]], [30, [2.25, 1.92, 1.13, 1.38, 2.68, 1.19, 2.0, null, 1.44]], [25, [2.13, 1.85, null, null, 2.61, null, 1.88, null, 1.38]], [20, [2.0, 1.69, null, null, 2.56, null, 1.75, null, 1.33]], [15, [1.88, 1.54, 1.0, 1.0, 2.49, 1.0, 1.63, null, 1.27]], [10, [1.75, 1.46, null, null, 2.3, null, 1.5, null, 1.21]], [7, [1.63, 1.31, null, null, 2.11, null, 1.38, null, 1.17]], [5, [1.56, 1.23, null, null, 2.03, null, 1.31, null, 1.13]], [3, [1.44, null, null, null, null, null, 1.19, null, 1.1]], [1, [1.14, null, null, null, 1.91, null, 1.02, null, 1.02]]]], C: [\"Diálogo\", \"Afecto\", \"Displicencia\", \"Indiferencia\", \"Total AI\", \"Privación\", \"Coerción verbal\", \"Coerción física\", \"Total CI\"], cen: function (t, col, x) { const k = this.C.indexOf(col); let mejor = null, d = 1e9; this.T[t].forEach(f => { const v = f[1][k]; if (v != null && Math.abs(v - x) < d - 1e-9) { d = Math.abs(v - x); mejor = f[0]; } }); return mejor; }}), (r[1] == null || r[2] == null) ? 'Elija sexo y edad' : 'Tablas ' + (15 + r[2] * 4 + r[1] * 2) + ' (madre) y ' + (16 + r[2] * 4 + r[1] * 2) + ' (padre)')",
+     "texto": "Puntaje directo (1 a 4) y centil de cada subescala según la edad y el sexo del adolescente y el progenitor."
+    },
+    {
+     "n": "Madre · Afecto",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Afecto', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([3, 11, 17, 25, 36, 54, 60, 68, 84, 87, 88, 101, 102]))"
+    },
+    {
+     "n": "Madre · Indiferencia",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Indiferencia', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([4, 10, 18, 24, 37, 53, 61, 67, 85, 86, 89, 100, 103]))"
+    },
+    {
+     "n": "Madre · Diálogo",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Diálogo', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([9, 15, 21, 27, 31, 39, 45, 51, 59, 62, 70, 76, 82, 94, 95, 105]))"
+    },
+    {
+     "n": "Madre · Displicencia",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Displicencia', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([5, 16, 22, 28, 32, 40, 46, 52, 55, 63, 71, 77, 83, 90, 96, 106]))"
+    },
+    {
+     "n": "Madre · Privación",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Privación', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([8, 14, 20, 26, 35, 38, 44, 50, 58, 66, 69, 75, 81, 93, 99, 104]))"
+    },
+    {
+     "n": "Madre · Coerción verbal",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Coerción verbal', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([6, 12, 23, 29, 33, 41, 47, 48, 56, 64, 72, 78, 79, 91, 97, 107]))"
+    },
+    {
+     "n": "Madre · Coerción física",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Coerción física', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([7, 13, 19, 30, 34, 42, 43, 49, 57, 65, 73, 74, 80, 92, 98, 108]))"
+    },
+    {
+     "n": "Madre · Aceptación/Implicación",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Total AI', Math.round(m * 100) / 100))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([3, 11, 17, 25, 36, 54, 60, 68, 84, 87, 88, 101, 102])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([3, 11, 17, 25, 36, 54, 60, 68, 84, 87, 88, 101, 102])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([9, 15, 21, 27, 31, 39, 45, 51, 59, 62, 70, 76, 82, 94, 95, 105])) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([4, 10, 18, 24, 37, 53, 61, 67, 85, 86, 89, 100, 103]))) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([5, 16, 22, 28, 32, 40, 46, 52, 55, 63, 71, 77, 83, 90, 96, 106])))) / 4))"
+    },
+    {
+     "n": "Madre · Coerción/Imposición",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Total CI', Math.round(m * 100) / 100))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([8, 14, 20, 26, 35, 38, 44, 50, 58, 66, 69, 75, 81, 93, 99, 104])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([8, 14, 20, 26, 35, 38, 44, 50, 58, 66, 69, 75, 81, 93, 99, 104])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([6, 12, 23, 29, 33, 41, 47, 48, 56, 64, 72, 78, 79, 91, 97, 107])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([7, 13, 19, 30, 34, 42, 43, 49, 57, 65, 73, 74, 80, 92, 98, 108]))) / 3))"
+    },
+    {
+     "n": "Madre · estilo de socialización",
+     "js": "((ai, ci) => (ai == null || ci == null || r[1] == null || r[2] == null) ? 0 : ((c1, c2) => c1 >= 50 ? (c2 >= 50 ? 1 : 2) : (c2 >= 50 ? 3 : 4))(window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Total AI', Math.round(ai * 100) / 100), window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 0), 'Total CI', Math.round(ci * 100) / 100)))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([3, 11, 17, 25, 36, 54, 60, 68, 84, 87, 88, 101, 102])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([3, 11, 17, 25, 36, 54, 60, 68, 84, 87, 88, 101, 102])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([9, 15, 21, 27, 31, 39, 45, 51, 59, 62, 70, 76, 82, 94, 95, 105])) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([4, 10, 18, 24, 37, 53, 61, 67, 85, 86, 89, 100, 103]))) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([5, 16, 22, 28, 32, 40, 46, 52, 55, 63, 71, 77, 83, 90, 96, 106])))) / 4), ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([8, 14, 20, 26, 35, 38, 44, 50, 58, 66, 69, 75, 81, 93, 99, 104])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([8, 14, 20, 26, 35, 38, 44, 50, 58, 66, 69, 75, 81, 93, 99, 104])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([6, 12, 23, 29, 33, 41, 47, 48, 56, 64, 72, 78, 79, 91, 97, 107])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([7, 13, 19, 30, 34, 42, 43, 49, 57, 65, 73, 74, 80, 92, 98, 108]))) / 3))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin calcular: faltan respuestas, sexo o edad"
+      ],
+      [
+       1,
+       1,
+       "Autorizativo: aceptación/implicación y coerción/imposición altas"
+      ],
+      [
+       2,
+       2,
+       "Indulgente: aceptación/implicación alta y coerción/imposición baja"
+      ],
+      [
+       3,
+       3,
+       "Autoritario: aceptación/implicación baja y coerción/imposición alta"
+      ],
+      [
+       4,
+       4,
+       "Negligente: aceptación/implicación y coerción/imposición bajas"
+      ]
+     ]
+    },
+    {
+     "n": "Padre · Afecto",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Afecto', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([109, 117, 123, 131, 142, 160, 166, 174, 190, 193, 194, 207, 208]))"
+    },
+    {
+     "n": "Padre · Indiferencia",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Indiferencia', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([110, 116, 124, 130, 143, 159, 167, 173, 191, 192, 195, 206, 209]))"
+    },
+    {
+     "n": "Padre · Diálogo",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Diálogo', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([115, 121, 127, 133, 137, 145, 151, 157, 165, 168, 176, 182, 188, 200, 201, 211]))"
+    },
+    {
+     "n": "Padre · Displicencia",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Displicencia', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([111, 122, 128, 134, 138, 146, 152, 158, 161, 169, 177, 183, 189, 196, 202, 212]))"
+    },
+    {
+     "n": "Padre · Privación",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Privación', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([114, 120, 126, 132, 141, 144, 150, 156, 164, 172, 175, 181, 187, 199, 205, 210]))"
+    },
+    {
+     "n": "Padre · Coerción verbal",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Coerción verbal', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([112, 118, 129, 135, 139, 147, 153, 154, 162, 170, 178, 184, 185, 197, 203, 213]))"
+    },
+    {
+     "n": "Padre · Coerción física",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Coerción física', Math.round(m * 100) / 100))(((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([113, 119, 125, 136, 140, 148, 149, 155, 163, 171, 179, 180, 186, 198, 204, 214]))"
+    },
+    {
+     "n": "Padre · Aceptación/Implicación",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Total AI', Math.round(m * 100) / 100))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([109, 117, 123, 131, 142, 160, 166, 174, 190, 193, 194, 207, 208])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([109, 117, 123, 131, 142, 160, 166, 174, 190, 193, 194, 207, 208])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([115, 121, 127, 133, 137, 145, 151, 157, 165, 168, 176, 182, 188, 200, 201, 211])) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([110, 116, 124, 130, 143, 159, 167, 173, 191, 192, 195, 206, 209]))) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([111, 122, 128, 134, 138, 146, 152, 158, 161, 169, 177, 183, 189, 196, 202, 212])))) / 4))"
+    },
+    {
+     "n": "Padre · Coerción/Imposición",
+     "js": "((m) => m == null ? 'Sin respuestas' : (r[1] == null || r[2] == null) ? (m).toFixed(2).replace('.', ',') : (m).toFixed(2).replace('.', ',') + ' · centil ' + window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Total CI', Math.round(m * 100) / 100))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([114, 120, 126, 132, 141, 144, 150, 156, 164, 172, 175, 181, 187, 199, 205, 210])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([114, 120, 126, 132, 141, 144, 150, 156, 164, 172, 175, 181, 187, 199, 205, 210])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([112, 118, 129, 135, 139, 147, 153, 154, 162, 170, 178, 184, 185, 197, 203, 213])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([113, 119, 125, 136, 140, 148, 149, 155, 163, 171, 179, 180, 186, 198, 204, 214]))) / 3))"
+    },
+    {
+     "n": "Padre · estilo de socialización",
+     "js": "((ai, ci) => (ai == null || ci == null || r[1] == null || r[2] == null) ? 0 : ((c1, c2) => c1 >= 50 ? (c2 >= 50 ? 1 : 2) : (c2 >= 50 ? 3 : 4))(window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Total AI', Math.round(ai * 100) / 100), window.ESPA29.cen((r[2] * 4 + r[1] * 2 + 1), 'Total CI', Math.round(ci * 100) / 100)))(((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([109, 117, 123, 131, 142, 160, 166, 174, 190, 193, 194, 207, 208])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([109, 117, 123, 131, 142, 160, 166, 174, 190, 193, 194, 207, 208])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([115, 121, 127, 133, 137, 145, 151, 157, 165, 168, 176, 182, 188, 200, 201, 211])) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([110, 116, 124, 130, 143, 159, 167, 173, 191, 192, 195, 206, 209]))) + (5 - (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([111, 122, 128, 134, 138, 146, 152, 158, 161, 169, 177, 183, 189, 196, 202, 212])))) / 4), ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([114, 120, 126, 132, 141, 144, 150, 156, 164, 172, 175, 181, 187, 199, 205, 210])) == null ? null : ((((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([114, 120, 126, 132, 141, 144, 150, 156, 164, 172, 175, 181, 187, 199, 205, 210])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([112, 118, 129, 135, 139, 147, 153, 154, 162, 170, 178, 184, 185, 197, 203, 213])) + (((l) => { const a = l.filter(i => r[i] != null).map(i => r[i]); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })([113, 119, 125, 136, 140, 148, 149, 155, 163, 171, 179, 180, 186, 198, 204, 214]))) / 3))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Sin calcular: faltan respuestas, sexo o edad"
+      ],
+      [
+       1,
+       1,
+       "Autorizativo: aceptación/implicación y coerción/imposición altas"
+      ],
+      [
+       2,
+       2,
+       "Indulgente: aceptación/implicación alta y coerción/imposición baja"
+      ],
+      [
+       3,
+       3,
+       "Autoritario: aceptación/implicación baja y coerción/imposición alta"
+      ],
+      [
+       4,
+       4,
+       "Negligente: aceptación/implicación y coerción/imposición bajas"
+      ]
+     ]
+    }
+   ],
+   "nota": "Centiles de los baremos del manual (Musitu y García, 2004, tablas 15 a 26). El estilo se lee con corte en el centil 50 de cada dimensión. Las fórmulas de las dos dimensiones se reconstruyeron y se comprobaron con las medias publicadas del manual."
+  },
+  "sinitems": true
  }
 };

@@ -115,6 +115,28 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .corte .rg{font-variant-numeric:tabular-nums;}
 .corte.aqui{color:var(--ink); font-weight:700; background:var(--accent-soft); border-left-color:var(--accent);}
 .indice{grid-column:1 / -1;}
+/* Portada: más ancha (sin el margen blanco de la derecha) y con índice lateral de áreas. */
+body:has(.indice.con-nav) .wrap{max-width:1640px;}
+.indice.con-nav{display:grid; grid-template-columns:240px minmax(0,1fr); gap:0 34px; align-items:start;}
+.ind-cab{grid-column:1 / -1;}
+.ind-nav{position:sticky; top:16px; margin-top:22px; max-height:calc(100vh - 32px); overflow-y:auto;
+  display:flex; flex-direction:column; gap:2px; padding-right:4px;}
+.ind-nav-t{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 6px 10px;}
+.ind-nav a{display:flex; justify-content:space-between; gap:10px; padding:6px 10px; border-radius:8px;
+  font-size:13.5px; line-height:1.3; color:var(--ink-soft); text-decoration:none;}
+.ind-nav a:hover{background:var(--accent-soft); color:var(--accent-dark);}
+.ind-nav a[hidden]{display:none;}
+.ind-nav small{color:var(--ink-faint); font-size:12px; flex:none;}
+.ind-cont{min-width:0;}
+.grupo{scroll-margin-top:14px;}
+/* Color por área: tarjeta pastel, borde y título del mismo tono (--h lo pone el script). */
+.grupo h2{color:hsl(var(--h) 42% 32%); border-bottom-color:hsl(var(--h) 45% 78%);}
+.grupo li a{background:hsl(var(--h) 70% 96.5%); border-color:hsl(var(--h) 42% 84%);}
+.grupo li a:hover{background:hsl(var(--h) 65% 92%); border-color:hsl(var(--h) 45% 60%);}
+.grupo li b{color:hsl(var(--h) 45% 28%);}
+.ind-nav a span{display:flex; align-items:center; gap:8px;}
+.ind-nav a span::before{content:""; flex:none; width:9px; height:9px; border-radius:50%;
+  background:hsl(var(--h) 60% 80%); border:1px solid hsl(var(--h) 40% 62%);}
 .indice ul{list-style:none; padding:0; margin:16px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px;}
 .indice li a{display:block; padding:12px 14px; border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--ink);}
 .indice li a:hover{border-color:var(--accent); background:var(--accent-soft);}
@@ -140,12 +162,15 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .vacio{color:var(--ink-soft); margin:16px 0 0;}
 /* Compartir desde el índice: enlace normal o de un solo uso (solo docente). */
 .indice li{display:flex; flex-direction:column;}
+.indice li[hidden]{display:none;}
 .indice li a{flex:1 1 auto;}
 .compartir{display:flex; flex-wrap:wrap; gap:6px; margin:6px 2px 0;}
 .compartir button{font:inherit; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; cursor:pointer;
   border:1px solid var(--border); background:var(--bg); color:var(--accent-dark);}
 .compartir button:hover{background:var(--accent-soft); border-color:var(--accent);}
 .compartir button.unico{border-style:dashed;}
+.compartir .usos{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--ink-soft);}
+.compartir .usos input{width:52px; font:inherit; font-size:12px; padding:3px 6px; border:1px solid var(--border); border-radius:999px; text-align:center; background:var(--bg); color:var(--ink);}
 .compartir .hecho{font-size:12px; color:var(--ink-soft); align-self:center;}
 .enlace-unico{margin:6px 2px 0; padding:8px 10px; border:1px dashed var(--accent); border-radius:8px; background:var(--accent-soft); font-size:12.5px;}
 .enlace-unico input{width:100%; font:inherit; font-size:12px; padding:5px 7px; margin:4px 0; border:1px solid var(--border); border-radius:6px;}
@@ -163,6 +188,11 @@ input[type=radio]{width:18px; height:18px; accent-color:var(--accent); cursor:po
 .fuente{font-size:12px; color:var(--ink-faint); margin-top:26px;}
 @media (max-width:900px){
   .wrap{grid-template-columns:minmax(0,1fr);}
+  /* En celular el índice de áreas pasa a una franja horizontal desplazable. */
+  .indice.con-nav{grid-template-columns:minmax(0,1fr);}
+  .ind-nav{position:static; flex-direction:row; overflow-x:auto; max-height:none; margin-top:14px; padding-bottom:4px;}
+  .ind-nav-t{display:none;}
+  .ind-nav a{flex:0 0 auto; white-space:nowrap; border:1px solid var(--border); border-radius:999px;}
   .panel{position:static;}
   td label{min-width:26px;}
 }
@@ -240,25 +270,37 @@ function indice(){
     '" data-txt="' + esc(sinTildes(d.sigla + " " + d.titulo + " " + d.para + " " + (d.areas || []).join(" "))) + '"><a href="?i=' + a + '"><b>' +
     esc(d.sigla) + '</b> · ' + esc(d.titulo) + '<span class="quien">Responde: ' + (d.quien || ["persona"]).map(q => QUIEN[q].toLowerCase()).join(" o ") +
     '</span></a>' + (docenteActivo() ? '<div class="compartir"><button type="button" class="enlace-normal" data-a="' + a + '">Copiar enlace</button>' +
-    '<button type="button" class="unico" data-a="' + a + '">Enlace de un solo uso</button></div>' : '') + '</li>';
+    '<label class="usos" title="Cuántas veces se podrá abrir el enlace">Usos <input type="number" class="n-usos" min="1" max="500" value="1" inputmode="numeric"></label>' +
+    '<button type="button" class="unico" data-a="' + a + '">Crear enlace</button></div>' : '') + '</li>';
   const chips = (grupo, opciones) => '<div class="chips" role="group" data-grupo="' + grupo + '">' + opciones.map(([v, t]) =>
       '<button type="button" data-v="' + v + '" aria-pressed="' + (v === "") + '">' + t + '</button>').join("") + '</div>';
-  app.innerHTML = '<div class="indice"><div class="rotulo">Instrumentos de evaluación</div>' +
+  // Índice lateral de áreas: con más de cien instrumentos, la lista sola obliga a
+  // desplazarse mucho para llegar a un área; el índice lleva directo y muestra cuántos hay.
+  const idArea = ar => "area-" + sinTildes(ar).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  // Tono pastel propio de cada área (pedido del docente: distinguir las áreas por color).
+  // Se reparte con el ángulo áureo para que dos áreas vecinas no queden con tonos parecidos.
+  const tono = ar => Math.round((AREAS_TODAS.indexOf(ar) * 137.508 + 190) % 360);
+  const AREAS_TODAS = typeof AREAS !== "undefined" ? AREAS : ["Otras"];
+  app.innerHTML = '<div class="indice con-nav"><div class="ind-cab"><div class="rotulo">Instrumentos de evaluación</div>' +
     '<h1>Calificación en línea</h1>' +
     '<p class="para">Los instrumentos que la guía reproduce completos, listos para responder y calificar en el navegador, agrupados por área. ' +
+    'Los que tienen licencia traen una hoja de respuestas sin ítems: se aplica el protocolo en papel y aquí se pasan las respuestas. ' +
     'Nada de lo que se marca se envía ni se guarda.</p>' +
     '<div class="buscar"><input type="search" id="q" placeholder="Buscar por sigla, nombre, área o lo que mide" aria-label="Buscar instrumento"></div>' +
     '<div class="filtros"><span class="rot">Población</span>' +
     chips("pob", [["", "Todas"], ["adultos", "Adultos"], ["infancia", "Niños y adolescentes"]]) +
     '<span class="rot">Responde</span>' +
     chips("quien", [["", "Todos"], ["persona", "La persona"], ["padres", "Padres o docentes"], ["profesional", "El profesional"]]) + '</div>' +
-    '<p class="cuenta" id="cuenta" aria-live="polite"></p>' +
-    areas.map(ar => '<section class="grupo" data-area="' + esc(ar) + '"><h2>' + esc(ar) + ' <small></small></h2><ul>' +
+    '<p class="cuenta" id="cuenta" aria-live="polite"></p></div>' +
+    '<nav class="ind-nav" aria-label="Áreas"><div class="ind-nav-t">Áreas</div>' +
+      areas.map(ar => '<a href="#' + idArea(ar) + '" data-area="' + esc(ar) + '" style="--h:' + tono(ar) + '"><span>' + esc(ar) + '</span><small></small></a>').join("") + '</nav>' +
+    '<div class="ind-cont">' +
+    areas.map(ar => '<section class="grupo" id="' + idArea(ar) + '" data-area="' + esc(ar) + '" style="--h:' + tono(ar) + '"><h2>' + esc(ar) + ' <small></small></h2><ul>' +
       lista.filter(([, d]) => (d.areas || ["Otras"]).includes(ar)).map(item).join("") + '</ul></section>').join("") +
     '<p class="vacio" id="vacio" hidden>Ningún instrumento coincide con la búsqueda.</p>' +
     (ENLACES.url ? '<p class="docente">' + (docenteActivo()
       ? 'Botones para compartir activos en este dispositivo. <button type="button" id="docente-salir">Desactivar</button>'
-      : '<button type="button" id="docente-activar">Juan Boya: activar los botones para compartir</button>') + '</p>' : '') + '</div>';
+      : '<button type="button" id="docente-activar">Juan Boya: activar los botones para compartir</button>') + '</p>' : '') + '</div></div>';
   const sel = {pob: "", quien: ""};
   const filtrar = () => {
     const q = sinTildes($("#q").value.trim()).split(/\s+/).filter(Boolean)
@@ -275,6 +317,8 @@ function indice(){
       });
       g.hidden = n === 0;
       g.querySelector("h2 small").textContent = n;
+      const enlace = document.querySelector('.ind-nav a[data-area="' + CSS.escape(g.dataset.area) + '"]');
+      if (enlace){ enlace.hidden = n === 0; enlace.querySelector("small").textContent = n; }
     });
     const n = visibles.size;
     $("#cuenta").textContent = n + (n === 1 ? " instrumento" : " instrumentos");
@@ -290,6 +334,9 @@ function indice(){
   filtrar();
 }
 const sinTildes = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+// N\u00fameros de resultado en notaci\u00f3n espa\u00f1ola: coma decimal y signo menos tipogr\u00e1fico.
+const fmtNum = v => typeof v === "number" ? (Number.isInteger(v) ? String(v) : String(v).replace(".", ",")).replace(/^-/, "\u2212")
+  : String(v).replace(/(\d)\.(\d)/g, "$1,$2").replace(/(^|\s)-(\d)/g, "$1\u2212$2");
 
 // La escala completa de puntos de corte: una barra con el ancho de cada banda
 // proporcional a su rango, una marca en el puntaje y la lista de bandas.
@@ -368,7 +415,8 @@ function instrumento(a, d){
   app.innerHTML =
     '<div><div class="rotulo">Calificación en línea</div><h1>' + esc(d.titulo) + '</h1><div class="sigla">' + esc(d.sigla) + '</div>' +
     '<p class="para">' + esc(d.para) + '</p>' +
-    '<div class="aviso">Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
+    '<div class="aviso">' + (d.sinitems ? '<b>Hoja de respuestas sin ítems.</b> Aplique el protocolo oficial y pase aquí sus respuestas o puntajes, en el mismo orden. ' : '') +
+    'Las respuestas no se envían ni se guardan: al cerrar o recargar la página se borran. ' +
     'El resultado orienta, no diagnostica.' + (d.calif.nota ? " " + esc(d.calif.nota) : "") + '</div>' +
     // La ficha en PDF solo la ve Juan Boya (con sus botones activados en este navegador) cuando
     // llega desde su índice; nunca con código ni desde un enlace compartido, aunque lo abra él.
@@ -408,7 +456,12 @@ function instrumento(a, d){
     const G = l => l.filter(i => r[i] != null && r[i] >= 2).length;
     const R = (i, max) => r[i] == null ? 0 : max - r[i];
     const RANGO = (x, y) => Array.from({ length: y - x + 1 }, (_, k) => x + k);
-    const ev = js => Function("r","S","L","C","G","R","RANGO","return (" + js + ");")(r, S, L, C, G, R, RANGO);
+    // Distribución normal acumulada (Abramowitz y Stegun 26.2.17, error < 7,5e-8), para
+    // los percentiles de las pruebas con normas por regresión (TMT, SDMT).
+    const PHI = z => { const t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2);
+      const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+      return z > 0 ? 1 - p : p; };
+    const ev = js => Function("r","S","L","C","G","R","RANGO","PHI","return (" + js + ");")(r, S, L, C, G, R, RANGO, PHI);
     // Preguntas que dependen de otra (data-si): si la condición no se cumple, se
     // desmarcan, se desactivan y no cuentan como faltantes.
     const omitidas = new Set();
@@ -424,7 +477,9 @@ function instrumento(a, d){
     const btRes = $("#imprimir");
     if (btRes){ btRes.disabled = !(activas.length && !sinResp.length); }
     document.querySelectorAll("[data-q]").forEach(tr => tr.classList.toggle("falta", false));
-    let out = '<div class="faltan">' + (sinResp.length && !d.calif.nota
+    // «blancos»: pruebas donde dejar partes sin responder es parte de la aplicación (ASSIST,
+    // SCARED, SMFQ, CBI, ESPA29); en las demás, faltar respuestas da un resultado parcial.
+    let out = '<div class="faltan">' + (sinResp.length && !d.calif.blancos
       ? "Faltan " + sinResp.length + " de " + activas.length + " respuestas: el resultado es parcial."
       : "Resultado con todas las respuestas marcadas.") + '</div>';
     if (activas.length && sinResp.length === activas.length){
@@ -442,7 +497,7 @@ function instrumento(a, d){
         ? escalaCortes(rangos, val) : "";
       const texto = e.texto || (e.rangos_por && !rangos.length ? e.sin_rango : "");
       out += '<div class="res"><div class="n">' + esc(e.n) + '</div>' +
-        (esSN ? "" : '<div class="v">' + val + '</div>') +
+        (esSN ? "" : '<div class="v">' + fmtNum(val) + '</div>') +
         (rot ? '<div class="r">' + esc(rot) + '</div>' : "") + (texto ? '<div class="x">' + esc(texto) + '</div>' : "") +
         cortes + '</div>';
     });
@@ -655,7 +710,63 @@ async function crearUnico(a, boton){
     }
     alert("No se pudo crear el enlace (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
   } finally {
-    boton.disabled = false; boton.textContent = "Enlace de un solo uso";
+    boton.disabled = false; boton.textContent = "Crear enlace";
+  }
+}
+// Enlace con varios usos (?c=…). Una prueba publicada viaja solo por su clave; una
+// comercial abierta con la contraseña viaja cifrada, con la llave después de # en el enlace.
+async function crearCupo(a, n, boton){
+  const li = boton.closest("li");
+  const base = CALIFICAR[a];
+  const comercial = !!(base.local || base.cifrado);
+  if (base.hoja && !base.local){
+    alert("Esta prueba es comercial: abra primero su versión completa con la contraseña (marque «Recordar en este dispositivo») y vuelva al índice.");
+    return;
+  }
+  if (comercial && (!window.crypto || !crypto.subtle)){ alert("Este navegador no puede crear enlaces cifrados."); return; }
+  boton.disabled = true; boton.textContent = "Creando…";
+  try {
+    const token = b64u(crypto.getRandomValues(new Uint8Array(18)));
+    const campos = { accion: "crear", tipo: "cupo", secreto: secretoDocente(), token, a, cupo: String(n), dias: "30", prueba: base.sigla };
+    let hash = "";
+    if (comercial){
+      const d = datosParaCompartir(a);
+      const raw = crypto.getRandomValues(new Uint8Array(32));
+      const llave = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]);
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const cif = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, llave, new TextEncoder().encode(JSON.stringify({ a, d }))));
+      const todo = new Uint8Array(12 + cif.length); todo.set(iv); todo.set(cif, 12);
+      campos.datos = b64u(todo);
+      hash = "#k=" + b64u(raw);
+    }
+    postOculto(campos);
+    let ok = false;
+    for (let i = 0; i < 8 && !ok; i++){
+      await new Promise(r => setTimeout(r, 1500));
+      const r = await jsonp({ accion: "existe", token, secreto: secretoDocente() }).catch(() => ({}));
+      if (r.motivo === "secreto"){ throw new Error("secreto"); }
+      ok = !!r.ok;
+    }
+    if (!ok) throw new Error("no guardado");
+    const enlace = urlBase() + "?c=" + token + hash;
+    li.querySelector(".enlace-unico")?.remove();
+    const caja = document.createElement("div");
+    caja.className = "enlace-unico";
+    caja.innerHTML = '<b>Enlace de ' + n + ' usos para ' + esc(base.sigla) + '</b><input readonly value="' + esc(enlace) + '">' +
+      'Cada vez que alguien pulsa «Comenzar» se descuenta un uso. Caduca a los 30 días. <span class="estado"></span>';
+    li.appendChild(caja);
+    caja.querySelector("input").addEventListener("focus", ev => ev.target.select());
+    caja.querySelector(".estado").textContent = (await copiar(enlace)) ? "Copiado." : "";
+  } catch (e) {
+    if (e.message === "secreto"){
+      try { localStorage.removeItem(SECRETO_GUARDA); } catch (x) {}
+      alert("La clave de Juan Boya no es correcta. Actívela de nuevo al final del índice.");
+      indice();
+      return;
+    }
+    alert("No se pudo crear el enlace (" + e.message + "). Revise la conexión e inténtelo de nuevo.");
+  } finally {
+    boton.disabled = false; boton.textContent = "Crear enlace";
   }
 }
 document.addEventListener("click", async ev => {
@@ -665,7 +776,10 @@ document.addEventListener("click", async ev => {
     const ok = await copiar(urlBase() + "?i=" + t.dataset.a);
     if (ok){ const v = t.textContent; t.textContent = "Copiado"; setTimeout(() => { t.textContent = v; }, 1500); }
   } else if (t.classList.contains("unico") && t.closest(".compartir")){
-    crearUnico(t.dataset.a, t);
+    // 1 uso: enlace de un solo uso (la prueba cifrada se borra al usarse). Más de 1: enlace
+    // con cupo, el mismo mecanismo de los QR de los planes (el Apps Script admite 1 a 500).
+    const n = Math.max(1, Math.min(500, parseInt((t.closest(".compartir").querySelector(".n-usos") || {}).value, 10) || 1));
+    n === 1 ? crearUnico(t.dataset.a, t) : crearCupo(t.dataset.a, n, t);
   } else if (t.id === "docente-activar"){
     const s = window.prompt("Clave de Juan Boya (la propiedad SECRETO del Apps Script de enlaces):");
     if (s && s.trim()){ try { localStorage.setItem(SECRETO_GUARDA, s.trim()); } catch (e) {} indice(); }

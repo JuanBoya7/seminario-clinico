@@ -315,9 +315,32 @@ a.inst-ficha:hover{background:var(--accent-soft);}
 .riesgo a{color:#7a2a1a; font-weight:600;}
 /* Planes que usan el instrumento y llegada desde un plan (#inst-…). */
 .col{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.04em; border-radius:999px; padding:2px 8px; background:#fff4d6; color:#8a6100;  white-space:nowrap; vertical-align:middle;}
-.inst-planes{margin-top:12px; font-size:12.5px; color:var(--ink-faint); display:flex; flex-direction:column; gap:3px;}
-.inst-planes span{font-weight:700; color:var(--ink-soft);}
-.inst-planes a{color:var(--accent-dark);}
+/* La lista de planes se abre en un globo, como las definiciones del glosario
+   en las guías de planes: un instrumento puede estar en treinta planes y la
+   lista estiraba la tarjeta. */
+.inst-planes{display:block; margin-top:12px;}
+button.planes-btn{
+  font:inherit; font-size:12.5px; font-weight:600; color:var(--ink-soft); background:none; border:0; padding:0; cursor:pointer;
+  text-decoration:underline dotted; text-decoration-color:var(--accent); text-decoration-thickness:1.5px; text-underline-offset:3px;
+}
+button.planes-btn:hover{color:var(--accent-dark); background:var(--accent-soft); border-radius:3px;}
+button.planes-btn:focus-visible{outline:2px solid var(--accent); outline-offset:1px; border-radius:3px;}
+#planes-pop{
+  position:absolute; z-index:40; width:min(400px, calc(100vw - 24px)); max-height:min(60vh, 440px); overflow-y:auto;
+  background:var(--bg); border:1px solid var(--border); border-top:3px solid var(--accent);
+  border-radius:10px; box-shadow:0 10px 34px rgba(22,35,43,.18);
+  padding:14px 16px 13px; font-size:13px; line-height:1.45; color:var(--ink-soft);
+}
+#planes-pop[hidden]{display:none;}
+#planes-pop .pp-tipo{font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint);}
+#planes-pop h4{font-size:16px; line-height:1.25; margin:2px 26px 8px 0;}
+#planes-pop ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px;}
+#planes-pop a{color:var(--accent-dark);}
+#planes-pop .pp-v{display:block; font-size:11.5px; color:var(--ink-faint);}
+#planes-pop .pp-cerrar{
+  position:absolute; top:8px; right:9px; font:inherit; font-size:18px; line-height:1;
+  background:none; border:0; color:var(--ink-faint); cursor:pointer; padding:4px 6px;
+}
 .inst.destacado{outline:3px solid var(--accent); outline-offset:3px;}
 a.inst-ficha.calif::before{-webkit-mask:none; mask:none; width:9px; height:9px; border-radius:50%;}
 a.inst-ficha .fmt{font-weight:500; font-size:11.5px; color:var(--ink-faint);}
@@ -341,6 +364,7 @@ footer strong{color:var(--ink-soft); font-weight:600;}
   .riel-der{display:none !important;}
   .pagina{display:block;}
   .inst{break-inside:avoid; box-shadow:none;}
+  #planes-pop{display:none !important;}
 }
 
 /* Celular y tableta: los rieles laterales no caben, así que dos botones
@@ -440,6 +464,13 @@ footer strong{color:var(--ink-soft); font-weight:600;}
   </aside>
 </div>
 
+<div id="planes-pop" role="dialog" aria-modal="false" aria-labelledby="pp-t" hidden>
+  <button class="pp-cerrar" type="button" aria-label="Cerrar">×</button>
+  <div class="pp-tipo">Se usa en los planes</div>
+  <h4 id="pp-t"></h4>
+  <ul id="pp-lista"></ul>
+</div>
+
 <script>
 /* ============================================================
    POR QUÉ AGRUPADO POR VARIABLE Y NO POR INSTITUCIÓN
@@ -450,7 +481,7 @@ footer strong{color:var(--ink-soft); font-weight:600;}
    necesitar tamizar depresión, consumo o deterioro cognitivo.
 
    Por eso la variable es el grupo y el escenario es un filtro. Un
-   recurso en papel tendría que elegir una de las dos entradas; acá se
+   recurso en papel tendría que elegir una de las dos entradas; aquí se
    pueden tener las dos sin duplicar contenido.
    ============================================================ */
 
@@ -477,7 +508,7 @@ const CATEGORIAS = [
   { t: "Consumo y adicciones", d: "Sustancias y conductas. Comparten mecanismo, suelen aparecer juntas y ninguna se tamiza sin ventana temporal delimitada." },
   { t: "Infancia y desarrollo", d: "Donde quien responde no es quien tiene el problema sino su cuidador o su docente. Comparar entre informantes suele decir más que cualquiera por separado." },
   { t: "Funcionamiento y salud física", d: "No qué siente la persona sino qué puede hacer, y con qué limitación física convive." },
-  { t: "Contexto y vínculos", d: "Lo que rodea a la persona. Casi siempre es acá donde un programa de promoción de la salud puede intervenir de verdad." },
+  { t: "Contexto y vínculos", d: "Lo que rodea a la persona. Casi siempre es aquí donde un programa de promoción de la salud puede intervenir de verdad." },
   { t: "Recursos y resultado", d: "Con qué cuenta la persona y cómo le fue. Son las medidas de antes y después de un programa." },
   { t: "Procesos de cambio", d: "Qué mantiene el problema y si la intervención lo está moviendo. Son las medidas de proceso de las terapias contextuales y cognitivas." }
 ];
@@ -684,7 +715,7 @@ const GRUPOS = [
 {
     cat: "Síntomas y síndromes",
     t: "Psicosis y riesgo de psicosis",
-    sub: "Una de las tres condiciones prioritarias de la guía mhGAP, junto con depresión y suicidio. Acá el falso positivo tiene un costo particular: etiqueta con la categoría más estigmatizante de la salud mental. El resultado se comunica con más cuidado que en ninguna otra variable, y siempre como probabilidad que exige valoración.",
+    sub: "Una de las tres condiciones prioritarias de la guía mhGAP, junto con depresión y suicidio. Aquí el falso positivo tiene un costo particular: etiqueta con la categoría más estigmatizante de la salud mental. El resultado se comunica con más cuidado que en ninguna otra variable, y siempre como probabilidad que exige valoración.",
     inst: [
       {
         n: "Cuestionario Prodrómico, versión breve", s: "PQ-16",
@@ -831,7 +862,7 @@ const GRUPOS = [
         nota: "El más usado en investigación sobre sueño. Sus derechos son de la Universidad de Pittsburgh: el uso clínico y académico sin fines de lucro suele autorizarse, pero <strong>hay que solicitarlo</strong>."
       },
       {
-        n: "Índice de Severidad del Insomnio", s: "ISI",
+        n: "Índice de Gravedad del Insomnio", s: "ISI",
         d: "Gravedad del insomnio, satisfacción con el sueño e interferencia en el funcionamiento diurno.",
         responde: "Autoinforme", pob: "Adolescentes y adultos",
         med: "7 ítems · 5 min", acceso: "registro",
@@ -1029,7 +1060,7 @@ const GRUPOS = [
 {
     cat: "Infancia y desarrollo",
     t: "Desarrollo infantil",
-    sub: "El tamizaje más costo-efectivo de la primera infancia y el que más ventana de intervención abre: lo que se detecta a los dos años admite respuestas que a los siete ya no. Acá no hay autoinforme posible — responde el cuidador o el profesional que observa.",
+    sub: "El tamizaje más costo-efectivo de la primera infancia y el que más ventana de intervención abre: lo que se detecta a los dos años admite respuestas que a los siete ya no. Aquí no hay autoinforme posible — responde el cuidador o el profesional que observa.",
     inst: [
       {
         n: "Escala Abreviada de Desarrollo, tercera edición", s: "EAD-3",
@@ -1062,7 +1093,7 @@ const GRUPOS = [
 {
     cat: "Infancia y desarrollo",
     t: "Sueño en la infancia",
-    sub: "Va aparte del sueño adulto porque los instrumentos son otros: acá el que responde casi siempre es el cuidador, y lo que se tamiza son hábitos y conductas de sueño más que insomnio. Un problema de sueño infantil suele presentarse como problema de conducta diurna, así que conviene descartarlo antes de leer la irritabilidad o la desatención como cuadro emocional.",
+    sub: "Va aparte del sueño adulto porque los instrumentos son otros: aquí el que responde casi siempre es el cuidador, y lo que se tamiza son hábitos y conductas de sueño más que insomnio. Un problema de sueño infantil suele presentarse como problema de conducta diurna, así que conviene descartarlo antes de leer la irritabilidad o la desatención como cuadro emocional.",
     inst: [
       {
         n: "Tamizaje BEARS de Sueño Infantil", s: "BEARS",
@@ -1101,7 +1132,7 @@ const GRUPOS = [
 {
     cat: "Funcionamiento y salud física",
     t: "Funcionamiento cognitivo en adultos jóvenes",
-    sub: "Distinto del cribado en el adulto mayor: acá no se busca degeneración sino un cambio respecto del propio rendimiento previo, casi siempre por consumo, sueño insuficiente, estado anímico o traumatismo. Un resultado bajo señala una causa que hay que buscar en otra parte de esta guía, no un diagnóstico. Ojo además: los tres últimos son pruebas neuropsicológicas, no cuestionarios — exigen formación para aplicarlas e interpretarlas.",
+    sub: "Distinto del cribado en el adulto mayor: aquí no se busca degeneración sino un cambio respecto del propio rendimiento previo, casi siempre por consumo, sueño insuficiente, estado anímico o traumatismo. Un resultado bajo señala una causa que hay que buscar en otra parte de esta guía, no un diagnóstico. Ojo además: los tres últimos son pruebas neuropsicológicas, no cuestionarios — exigen formación para aplicarlas e interpretarlas.",
     inst: [
       {
         n: "Escala de Autorreporte de Déficit de Atención en Adultos", s: "ASRS v1.1",
@@ -1148,7 +1179,7 @@ const GRUPOS = [
 {
     cat: "Funcionamiento y salud física",
     t: "Deterioro cognitivo en adultos mayores",
-    sub: "Acá sí se busca degeneración, a diferencia del cribado en adultos jóvenes. Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
+    sub: "Aquí sí se busca degeneración, a diferencia del cribado en adultos jóvenes. Un tamizaje cognitivo positivo en presencia de depresión no autoriza ninguna conclusión: la depresión en el adulto mayor puede producir un perfil que imita al deterioro. Conviene tamizar las dos cosas.",
     inst: [
       {
         n: "Prueba Mini-Cog", s: "Mini-Cog",
@@ -1594,33 +1625,33 @@ const INST_FICHAS = {
   "BADS-SF": {"a": "bads-sf", "tipo": "completa", "col": "val", "colt": "García, Bianchi-Salguero y Montoya (2019), tesis de maestría, Fundación Universitaria Konrad Lorenz."},
   "ERQ": {"a": "erq", "tipo": "completa", "col": "val", "colt": "Canales, Vélez y Bianchi-Salguero (2022), Fundación Universitaria Konrad Lorenz."},
   "DAS-R": {"a": "das-r", "tipo": "completa", "col": "val", "colt": "Ruiz et al. (2016), Revista Latinoamericana de Psicología, 48, 81–87."},
-  "GHQ-12": {"a": "ghq-12", "tipo": "tecnica", "col": "val", "colt": "Ruiz, García-Beltrán y Suárez-Falcón (2017), Psychiatry Research, 256, 53–58."},
+  "GHQ-12": {"a": "ghq-12", "tipo": "completa", "col": "val", "colt": "Ruiz, García-Beltrán y Suárez-Falcón (2017), Psychiatry Research, 256, 53–58."},
   "ASQ": {"a": "asq", "tipo": "completa"},
   "GDS-15": {"a": "gds-15", "tipo": "completa"},
   "HADS": {"a": "hads", "tipo": "completa"},
-  "ISI": {"a": "isi", "tipo": "tecnica"},
+  "ISI": {"a": "isi", "tipo": "tecnica", "cal": 1},
   "Zarit": {"a": "zarit", "tipo": "completa", "col": "ms", "colt": "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020)."},
   "PSQI": {"a": "psqi", "tipo": "completa"},
   "PCL-5": {"a": "pcl-5", "tipo": "completa", "col": "val", "colt": "Alejo y Cuartas Arias (2024), Diversitas: Perspectivas en Psicología, 20(2), 39–62: 278 adolescentes colombianos con historia de adversidad."},
   "K-10": {"a": "k-10", "tipo": "completa"},
-  "AASE": {"a": "aase", "tipo": "tecnica"},
+  "AASE": {"a": "aase", "tipo": "tecnica", "cal": 1},
   "APAIS": {"a": "apais", "tipo": "completa"},
   "ASI": {"a": "asi", "tipo": "completa"},
   "BPI": {"a": "bpi", "tipo": "tecnica"},
   "CBI": {"a": "cbi", "tipo": "completa"},
   "CSI": {"a": "csi", "tipo": "completa"},
-  "CTS2": {"a": "cts2", "tipo": "tecnica"},
+  "CTS2": {"a": "cts2", "tipo": "tecnica", "cal": 1},
   "DAS": {"a": "das", "tipo": "completa"},
-  "EAO": {"a": "eao", "tipo": "tecnica"},
+  "EAO": {"a": "eao", "tipo": "tecnica", "cal": 1},
   "EAT-26": {"a": "eat-26", "tipo": "completa"},
   "EBP": {"a": "ebp", "tipo": "completa"},
-  "EFI": {"a": "efi", "tipo": "tecnica"},
+  "EFI": {"a": "efi", "tipo": "tecnica", "cal": 1},
   "EII": {"a": "eii", "tipo": "completa"},
   "EMES-M": {"a": "emes-m", "tipo": "completa"},
   "EPDS": {"a": "epds", "tipo": "completa", "col": "val", "colt": "Campo-Arias, Ayola-Castillo, Peinado-Valencia, Amor-Parra y Cogollo (2007), Revista Colombiana de Obstetricia y Ginecología, 58(4), 277–283: embarazadas de Cartagena."},
   "FACIT-Sp": {"a": "facit-sp", "tipo": "completa"},
   "FSCRS": {"a": "fscrs", "tipo": "completa"},
-  "LSAS": {"a": "lsas", "tipo": "tecnica"},
+  "LSAS": {"a": "lsas", "tipo": "tecnica", "cal": 1},
   "MBI": {"a": "mbi", "tipo": "completa"},
   "MCQ-30": {"a": "mcq-30", "tipo": "completa"},
   "MSPSS": {"a": "mspss", "tipo": "completa"},
@@ -1630,27 +1661,27 @@ const INST_FICHAS = {
   "PAIS": {"a": "pais", "tipo": "completa"},
   "PANAS": {"a": "panas", "tipo": "completa"},
   "PDSS": {"a": "pdss", "tipo": "completa"},
-  "PPTI": {"a": "ppti", "tipo": "tecnica"},
+  "PPTI": {"a": "ppti", "tipo": "tecnica", "cal": 1},
   "PSYRATS": {"a": "psyrats", "tipo": "completa"},
   "RAS": {"a": "ras", "tipo": "completa"},
   "RIDI": {"a": "ridi", "tipo": "tecnica"},
   "SAD": {"a": "sad", "tipo": "completa"},
-  "SAHD": {"a": "sahd", "tipo": "tecnica"},
+  "SAHD": {"a": "sahd", "tipo": "tecnica", "cal": 1},
   "SCOFF": {"a": "scoff", "tipo": "completa"},
   "SCS": {"a": "scs", "tipo": "completa"},
   "SHAPS": {"a": "shaps", "tipo": "completa"},
   "SPIN": {"a": "spin", "tipo": "completa"},
-  "SQ": {"a": "sq", "tipo": "tecnica"},
-  "TEPS": {"a": "teps", "tipo": "tecnica"},
+  "SQ": {"a": "sq", "tipo": "tecnica", "cal": 1},
+  "TEPS": {"a": "teps", "tipo": "tecnica", "cal": 1},
   "TMMS-24": {"a": "tmms-24", "tipo": "completa"},
   "VIA-IS": {"a": "via-is", "tipo": "tecnica"},
   "WEL": {"a": "wel", "tipo": "completa"},
-  "Y-BOCS": {"a": "y-bocs", "tipo": "tecnica"},
+  "Y-BOCS": {"a": "y-bocs", "tipo": "tecnica", "cal": 1},
   "YSQ": {"a": "ysq", "tipo": "completa"},
   "SRQ-20 / SRQ-30": {"a": "srq-20-srq-30", "tipo": "completa", "col": "ms", "colt": "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020)."},
   "SRQ-30": {"a": "srq-20-srq-30", "tipo": "completa", "col": "ms", "colt": "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020)."},
   "RQC": {"a": "rqc", "tipo": "completa", "col": "ms", "colt": "Anexo de instrumentos sugeridos de la Ruta de Promoción y Mantenimiento de la Salud, Ministerio de Salud y Protección Social (2020)."},
-  "APQ": {"a": "apq", "tipo": "tecnica"},
+  "APQ": {"a": "apq", "tipo": "tecnica", "cal": 1},
   "CRAFFT": {"a": "crafft", "tipo": "completa"},
   "CY-BOCS": {"a": "cy-bocs", "tipo": "completa"},
   "ECBI": {"a": "ecbi", "tipo": "completa"},
@@ -1664,77 +1695,76 @@ const INST_FICHAS = {
   "SDQ": {"a": "sdq", "tipo": "completa"},
   "SMFQ": {"a": "smfq", "tipo": "completa"},
   "SNAP-IV": {"a": "snap-iv", "tipo": "completa"},
-  "SQ-K": {"a": "sq-k", "tipo": "tecnica"},
+  "SQ-K": {"a": "sq-k", "tipo": "tecnica", "cal": 1},
   "SRAS-R": {"a": "sras-r", "tipo": "completa"},
   "UCLA-PTSD-RI": {"a": "ucla-ptsd-ri", "tipo": "tecnica"},
   "VIA-J": {"a": "via-j", "tipo": "tecnica"},
   "Vanderbilt": {"a": "vanderbilt", "tipo": "completa"},
   "Vineland-3": {"a": "vineland-3", "tipo": "tecnica"},
-  "WHODAS 2.0": {"a": "whodas-2-0", "tipo": "tecnica"},
-  "MDQ": {"a": "mdq", "tipo": "tecnica"},
+  "WHODAS 2.0": {"a": "whodas-2-0", "tipo": "tecnica", "cal": 1},
+  "MDQ": {"a": "mdq", "tipo": "completa"},
   "HCL-32": {"a": "hcl-32", "tipo": "tecnica"},
-  "YMRS": {"a": "ymrs", "tipo": "tecnica"},
-  "PQ-16": {"a": "pq-16", "tipo": "tecnica"},
-  "CAPE-42": {"a": "cape-42", "tipo": "tecnica"},
-  "PANSS": {"a": "panss", "tipo": "tecnica"},
-  "CPSS-5": {"a": "cpss-5", "tipo": "tecnica"},
-  "ICG": {"a": "icg", "tipo": "tecnica"},
-  "PG-13-R": {"a": "pg-13-r", "tipo": "tecnica"},
-  "TRIG": {"a": "trig", "tipo": "tecnica"},
+  "YMRS": {"a": "ymrs", "tipo": "tecnica", "cal": 1},
+  "PQ-16": {"a": "pq-16", "tipo": "tecnica", "cal": 1},
+  "CAPE-42": {"a": "cape-42", "tipo": "completa"},
+  "PANSS": {"a": "panss", "tipo": "tecnica", "cal": 1},
+  "CPSS-5": {"a": "cpss-5", "tipo": "tecnica", "cal": 1},
+  "ICG": {"a": "icg", "tipo": "completa"},
+  "PG-13-R": {"a": "pg-13-r", "tipo": "tecnica", "cal": 1},
+  "TRIG": {"a": "trig", "tipo": "tecnica", "cal": 1},
   "CRDC": {"a": "crdc", "tipo": "tecnica"},
-  "ESS": {"a": "ess", "tipo": "tecnica"},
-  "DAST-10": {"a": "dast-10", "tipo": "tecnica"},
-  "CAGE": {"a": "cage", "tipo": "tecnica"},
+  "ESS": {"a": "ess", "tipo": "completa"},
+  "DAST-10": {"a": "dast-10", "tipo": "completa"},
+  "CAGE": {"a": "cage", "tipo": "completa"},
   "Lie/Bet": {"a": "lie-bet", "tipo": "completa"},
   "SOGS": {"a": "sogs", "tipo": "completa"},
   "IGDS9-SF": {"a": "igds9-sf", "tipo": "completa"},
   "IAT": {"a": "iat", "tipo": "completa"},
   "CBCL": {"a": "cbcl", "tipo": "tecnica"},
   "Conners 3": {"a": "conners-3", "tipo": "tecnica"},
-  "EAD-3": {"a": "ead-3", "tipo": "tecnica"},
+  "EAD-3": {"a": "ead-3", "tipo": "tecnica", "cal": 1},
   "ASQ-3": {"a": "asq-3", "tipo": "tecnica"},
-  "BEARS": {"a": "bears", "tipo": "tecnica"},
-  "BISQ": {"a": "bisq", "tipo": "tecnica"},
-  "CSHQ": {"a": "cshq", "tipo": "tecnica"},
-  "SDSC": {"a": "sdsc", "tipo": "tecnica"},
+  "BEARS": {"a": "bears", "tipo": "tecnica", "cal": 1},
+  "BISQ": {"a": "bisq", "tipo": "tecnica", "cal": 1},
+  "CSHQ": {"a": "cshq", "tipo": "tecnica", "cal": 1},
+  "SDSC": {"a": "sdsc", "tipo": "tecnica", "cal": 1},
   "ASRS v1.1": {"a": "asrs-v1-1", "tipo": "completa"},
-  "CFQ": {"a": "cfq", "tipo": "tecnica"},
-  "TMT A y B": {"a": "tmt-a-y-b", "tipo": "tecnica"},
-  "FAB": {"a": "fab", "tipo": "tecnica"},
-  "SDMT": {"a": "sdmt", "tipo": "tecnica"},
+  "CFQ": {"a": "cfq", "tipo": "completa"},
+  "TMT A y B": {"a": "tmt-a-y-b", "tipo": "tecnica", "cal": 1},
+  "FAB": {"a": "fab", "tipo": "tecnica", "cal": 1},
+  "SDMT": {"a": "sdmt", "tipo": "tecnica", "cal": 1},
   "Mini-Cog": {"a": "mini-cog", "tipo": "completa"},
-  "MoCA": {"a": "moca", "tipo": "tecnica"},
-  "MMSE": {"a": "mmse", "tipo": "tecnica"},
-  "PCS-dolor": {"a": "pcs-dolor", "tipo": "tecnica"},
-  "PCS": {"a": "pcs-dolor", "tipo": "tecnica"},
-  "TSK": {"a": "tsk", "tipo": "tecnica"},
+  "MoCA": {"a": "moca", "tipo": "tecnica", "cal": 1},
+  "MMSE": {"a": "mmse", "tipo": "tecnica", "cal": 1},
+  "PCS-dolor": {"a": "pcs-dolor", "tipo": "completa"},
+  "TSK": {"a": "tsk", "tipo": "completa"},
   "HITS": {"a": "hits", "tipo": "completa"},
   "WAST": {"a": "wast", "tipo": "completa"},
-  "AAS": {"a": "aas", "tipo": "tecnica"},
-  "ICAST": {"a": "icast", "tipo": "tecnica"},
-  "EASI": {"a": "easi", "tipo": "tecnica"},
-  "APGAR familiar": {"a": "apgar-familiar", "tipo": "tecnica"},
-  "FACES III": {"a": "faces-iii", "tipo": "tecnica"},
-  "FF-SIL": {"a": "ff-sil", "tipo": "tecnica"},
-  "Duke-UNC": {"a": "duke-unc", "tipo": "tecnica"},
+  "AAS": {"a": "aas", "tipo": "tecnica", "cal": 1},
+  "ICAST": {"a": "icast", "tipo": "tecnica", "cal": 1},
+  "EASI": {"a": "easi", "tipo": "tecnica", "cal": 1},
+  "APGAR familiar": {"a": "apgar-familiar", "tipo": "completa"},
+  "FACES III": {"a": "faces-iii", "tipo": "tecnica", "cal": 1},
+  "FF-SIL": {"a": "ff-sil", "tipo": "tecnica", "cal": 1},
+  "Duke-UNC": {"a": "duke-unc", "tipo": "tecnica", "cal": 1},
   "LSNS-6": {"a": "lsns-6", "tipo": "completa"},
   "COPSOQ \u00b7 ISTAS21": {"a": "copsoq-istas21", "tipo": "tecnica"},
   "Rosenberg": {"a": "rosenberg", "tipo": "completa"},
-  "GSE": {"a": "gse", "tipo": "tecnica"},
-  "MHLC": {"a": "mhlc", "tipo": "tecnica"},
+  "GSE": {"a": "gse", "tipo": "tecnica", "cal": 1},
+  "MHLC": {"a": "mhlc", "tipo": "tecnica", "cal": 1},
   "MMAS": {"a": "mmas", "tipo": "tecnica"},
-  "Batalla": {"a": "batalla", "tipo": "tecnica"},
-  "SMAQ": {"a": "smaq", "tipo": "tecnica"},
-  "ARMS": {"a": "arms", "tipo": "tecnica"},
-  "WAI-SR": {"a": "wai-sr", "tipo": "tecnica"},
+  "Batalla": {"a": "batalla", "tipo": "tecnica", "cal": 1},
+  "SMAQ": {"a": "smaq", "tipo": "completa"},
+  "ARMS": {"a": "arms", "tipo": "completa"},
+  "WAI-SR": {"a": "wai-sr", "tipo": "completa"},
   "WHOQOL-BREF": {"a": "whoqol-bref", "tipo": "completa", "col": "val", "colt": "Cardona-Arias e Higuita-Gutiérrez (2021), Revista Médica de Risaralda, https://doi.org/10.22517/25395203.24978: 1938 personas sanas de Medellín, con valores de referencia por dominio."},
-  "EQ-5D": {"a": "eq-5d", "tipo": "tecnica"},
+  "EQ-5D": {"a": "eq-5d", "tipo": "tecnica", "cal": 1},
   "KIDSCREEN": {"a": "kidscreen", "tipo": "tecnica"},
   "SF-36 \u00b7 SF-12": {"a": "sf-36-sf-12", "tipo": "tecnica"},
   "Whiteley": {"a": "whiteley", "tipo": "completa"},
   "SSS": {"a": "sss", "tipo": "completa"},
   "FMPS": {"a": "fmps", "tipo": "completa"},
-  "CPQ": {"a": "cpq", "tipo": "tecnica"},
+  "CPQ": {"a": "cpq", "tipo": "tecnica", "cal": 1},
   "MGH-HS": {"a": "mgh-hs", "tipo": "completa"},
   "SMQ": {"a": "smq", "tipo": "completa"},
   "FIAT-Q": {"a": "fiat-q", "tipo": "completa"},
@@ -1761,7 +1791,8 @@ const INST_FICHAS = {
   "MLHFQ": {"a": "mlhfq", "tipo": "completa"},
   "SDQ-18": {"a": "sdq-18", "tipo": "completa"},
   "SDQ-AI": {"a": "sdq-ai", "tipo": "completa"},
-  "VLQ-2": {"a": "vlq-2", "tipo": "completa"}
+  "VLQ-2": {"a": "vlq-2", "tipo": "completa"},
+  "ESPA29": {"a": "espa29", "tipo": "tecnica", "cal": 1}
 };
 /* @@FIN-FICHAS-INST@@ */
 
@@ -1776,11 +1807,44 @@ const slug = s => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u03
 function planesDe(sigla){
   const ps = PLANES_INST[sigla];
   if (!ps || !ps.length) return "";
-  const guia = g => g === "i" ? "planes-infancia.html" : "planes-intervencion.html";
-  return '<div class="inst-planes"><span>Se usa en los planes:</span> ' + ps.map(p =>
-    '<a href="' + guia(p.g) + '#plan-' + p.id + '" target="_blank" rel="noopener">' + escapar(p.v) + ' · ' + escapar(p.t) +
-    (p.g === "i" ? ' <small>(niños y adolescentes)</small>' : "") + '</a>').join("") + '</div>';
+  return '<div class="inst-planes"><button type="button" class="planes-btn" data-planes="' + escapar(sigla) + '" aria-haspopup="dialog">' +
+    'Se usa en ' + ps.length + (ps.length === 1 ? ' plan' : ' planes') + '</button></div>';
 }
+
+// Globo con los planes del instrumento (mismo comportamiento que el glosario
+// de las guías: se abre junto al botón, se cierra con ×, Escape o clic fuera).
+const ppop = $("planes-pop");
+let ppDesde = null;
+function abrirPlanes(b){
+  const sigla = b.dataset.planes, ps = PLANES_INST[sigla]; if (!ps) return;
+  const guia = g => g === "i" ? "planes-infancia.html" : "planes-intervencion.html";
+  $("pp-t").textContent = sigla + " · " + ps.length + (ps.length === 1 ? " plan" : " planes");
+  $("pp-lista").innerHTML = ps.map(p =>
+    '<li><a href="' + guia(p.g) + '#plan-' + p.id + '" target="_blank" rel="noopener">' + escapar(p.t) + '</a>' +
+    '<span class="pp-v">' + escapar(p.v) + (p.g === "i" ? ' · niños y adolescentes' : '') + '</span></li>').join("");
+  ppop.hidden = false;
+  ppop.scrollTop = 0;
+  const r = b.getBoundingClientRect(), ancho = ppop.offsetWidth;
+  ppop.style.left = Math.min(Math.max(12, r.left + scrollX), scrollX + document.documentElement.clientWidth - ancho - 12) + "px";
+  const cabe = r.bottom + ppop.offsetHeight + 16 < innerHeight;
+  ppop.style.top = (cabe ? r.bottom + scrollY + 8 : Math.max(scrollY + 8, r.top + scrollY - ppop.offsetHeight - 8)) + "px";
+  ppDesde = b;
+  ppop.querySelector(".pp-cerrar").focus({ preventScroll: true });
+}
+function cerrarPlanes(devolver){
+  if (ppop.hidden) return;
+  ppop.hidden = true;
+  if (devolver && ppDesde) ppDesde.focus({ preventScroll: true });
+  ppDesde = null;
+}
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("button.planes-btn");
+  if (b){ ppDesde === b && !ppop.hidden ? cerrarPlanes(true) : abrirPlanes(b); return; }
+  if (ev.target.closest(".pp-cerrar")){ cerrarPlanes(true); return; }
+  if (!ev.target.closest("#planes-pop")) cerrarPlanes(false);
+});
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrarPlanes(true); });
+addEventListener("resize", () => cerrarPlanes(false));
 
 // Validado en Colombia o sugerido por el Ministerio de Salud (validacion.py).
 function distintivo(sigla){
@@ -1798,7 +1862,7 @@ function botonFicha(sigla){
     : "Sin ítems: qué mide, cómo se califica, cómo se consigue y su alternativa libre";
   return '<a class="inst-ficha" href="instrumentos/' + f.a + '.pdf" target="_blank" rel="noopener" title="' + ayuda + ' (se abre en una pestaña nueva; desde ahí se descarga o se imprime)">' +
     et + ' <span class="fmt">PDF</span></a>' +
-    (f.tipo === "completa" ? ' <a class="inst-ficha calif" href="calificar.html?i=' + f.a + '" target="_blank" rel="noopener" ' +
+    (f.tipo === "completa" || f.cal ? ' <a class="inst-ficha calif" href="calificar.html?i=' + f.a + '" target="_blank" rel="noopener" ' +
       'title="Responder y calificar en el navegador">Calificar en línea</a>' : "");
 }
 
