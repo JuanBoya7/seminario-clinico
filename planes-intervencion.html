@@ -49,6 +49,7 @@
   --afirm:#b3426f; --afirm-soft:#f9e7ef;
   --fases:#6a4c93; --fases-soft:#efeaf6;
   --rehab:#2e6f68; --rehab-soft:#e3f1ef;
+  --pbt:#4f5d8a;  --pbt-soft:#e9ebf4;
   --font-display:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
   --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --radius:12px;
@@ -299,6 +300,7 @@ h1{font-size:clamp(22px,2.3vw,30px); line-height:1.15; letter-spacing:-.015em; m
 .enf-psp{--enf:var(--psp); --enf-soft:var(--psp-soft);}
 .enf-cc{--enf:var(--cc); --enf-soft:var(--cc-soft);}
 .enf-trans{--enf:var(--trans); --enf-soft:var(--trans-soft);}
+.enf-pbt{--enf:var(--pbt); --enf-soft:var(--pbt-soft);}
 .enf-em {--enf:var(--em);  --enf-soft:var(--em-soft);}
 .enf-mct{--enf:var(--mct); --enf-soft:var(--mct-soft);}
 .enf-esq{--enf:var(--esq); --enf-soft:var(--esq-soft);}
@@ -947,6 +949,7 @@ const ENFOQUES = {
   act: { et: "Aceptación y compromiso", largo: "Terapia de aceptación y compromiso" },
   tcc: { et: "Cognitivo-conductual",    largo: "Terapia cognitivo-conductual" },
   trans:{ et: "Transdiagnóstico",       largo: "Protocolo unificado transdiagnóstico" },
+  pbt: { et: "Basada en procesos",      largo: "Terapia basada en procesos" },
   dbt: { et: "Dialéctico-conductual",   largo: "Terapia dialéctico-conductual" },
   pp:  { et: "Psicología positiva",     largo: "Intervenciones de psicología positiva" },
   est: { et: "Modelos de estadios",     largo: "Modelos de estadios de intervención" },
@@ -2477,6 +2480,34 @@ REFERENCIAS.push(
   { k: "Neff y Germer, 2018", ref: "Neff, K. y Germer, C. (2018). <em>The mindful self-compassion workbook: A proven way to accept yourself, build inner strength, and thrive</em>. Guilford Press." }
 );
 
+/* Terapia basada en procesos (2026-11-16): análisis funcional basado en
+   procesos con el metamodelo evolutivo extendido (Hofmann, Hayes y
+   Lorscheid, 2021, caps. 2, 3, 9-11 y 13), caso ilustrado de Amy (Ong,
+   Hayes y Hofmann, 2022, acceso abierto CC BY) y la herramienta de
+   evaluación basada en procesos (PBAT; Ciarrochi et al., 2022; versión
+   española de Goicoechea et al., 2024). El PBAT va como ficha técnica sin
+   ítems: ni el original ni la versión española declaran licencia de uso. */
+REFERENCIAS.push(
+  { k: "Hofmann et al., 2021", ref: "Hofmann, S. G., Hayes, S. C. y Lorscheid, D. N. (2021). <em>Learning process-based therapy: A skills training manual for targeting the core processes of psychological change in clinical practice</em>. Context Press/New Harbinger." },
+  { k: "Ong et al., 2022", ref: "Ong, C. W., Hayes, S. C. y Hofmann, S. G. (2022). A process-based approach to cognitive behavioral therapy: A theory-based case illustration. <em>Frontiers in Psychology, 13</em>, 1002849." },
+  { k: "Hayes et al., 2020", ref: "Hayes, S. C., Hofmann, S. G. y Ciarrochi, J. (2020). A process-based approach to psychological diagnosis and treatment: The conceptual and treatment utility of an extended evolutionary meta model. <em>Clinical Psychology Review, 82</em>, 101908." },
+  { k: "Hayes et al., 2022", ref: "Hayes, S. C., Ciarrochi, J., Hofmann, S. G., Chin, F. y Sahdra, B. (2022). Evolving an idionomic approach to processes of change: Towards a unified personalized science of human improvement. <em>Behaviour Research and Therapy, 156</em>, 104155." },
+  { k: "Ciarrochi et al., 2022", ref: "Ciarrochi, J., Sahdra, B., Hofmann, S. G. y Hayes, S. C. (2022). Developing an item pool to assess processes of change in psychological interventions: The Process-Based Assessment Tool (PBAT). <em>Journal of Contextual Behavioral Science, 23</em>, 200-213." },
+  { k: "Goicoechea et al., 2024", ref: "Goicoechea, C., Wallman-Jones, A., Ciarrochi, J., Hayes, S. C., Hofmann, S. G. y Perakakis, P. (2024). <em>Development and validation of the Spanish Process-Based Assessment Tool (PBAT)</em> [Preprint]." }
+);
+Object.assign(MODELOS, {
+  "eemm": {
+    t: "Metamodelo evolutivo extendido (EEMM)",
+    autor: "Hayes, Hofmann y Ciarrochi",
+    d: "No es una terapia más, sino un modelo para ordenar los procesos de cambio que estudian las distintas terapias. Mira el caso en seis dimensiones psicológicas —afecto, cognición, atención, yo, motivación y conducta abierta— y en dos niveles, el biofisiológico y el sociocultural. En cada una se pregunta si la persona dispone de respuestas variadas, si selecciona las que le sirven a largo plazo, si las retiene como hábito y en qué contexto funcionan. Los problemas se entienden como una red de procesos que se sostienen entre sí, y el tratamiento busca que esa red pase de ser desadaptativa a adaptativa.",
+    dim: ["Afecto, cognición, atención, yo, motivación y conducta", "Niveles biofisiológico y sociocultural", "Variación", "Selección", "Retención", "Contexto"],
+    fuente: "Hayes et al., 2020, apartado 2.3 · Hofmann et al., 2021, cap. 3"
+  }
+});
+Object.assign(INSTRUMENTOS, {
+  "PBAT": { n: "Herramienta de Evaluación Basada en Procesos", rol: "Medida repetida de procesos", d: "Banco de 18 frases, una positiva y una negativa para cada proceso del metamodelo evolutivo: afecto, cognición, atención, conexión social, motivación, conducta, salud física, variación y retención. Cada una se responde en una barra de 0 a 100 para la ventana de tiempo que se elija: la última semana, el día o las últimas horas. No da un puntaje total ni tiene puntos de corte: se eligen las frases que importan en el caso y se siguen en el tiempo. La versión española se validó en 602 adultos de la población general de España.", med: "1-3 min · se repite a diario o cada semana", guia: false, fuente: "Ciarrochi et al., 2022 · Goicoechea et al., 2024" }
+});
+
 // Generado por _situaciones-fuente/armar.py: situaciones clínicas que enlazan cada plan.
 const SITUACIONES_POR_PLAN = {
 "adh-em": [
@@ -3173,7 +3204,7 @@ Object.assign(MODELOS, {
 (function(){
   const tipos = {
     proceso: ["ttm", "miller-em", "kohlenberg-fap", "enright-fases", "reach", "autoperdon-worthington", "worden-tareas", "aea", "livneh"],
-    marco: ["matriz", "com-b", "taylor-cronico"],
+    marco: ["matriz", "com-b", "taylor-cronico", "eemm"],
     guia: ["guia-ep", "guia-cuidadores", "guia-isupport", "guia-soledad", "guia-mhgap-psi", "guia-oms-2023", "guia-oms-violencia", "guia-acnur"]
   };
   for (const [t, ks] of Object.entries(tipos)) ks.forEach(k => { if (MODELOS[k]) MODELOS[k].tipo = t; });
@@ -4217,6 +4248,7 @@ const VARIABLES = [
     "<strong>Si la persona cree que preocuparse o darle vueltas le sirve</strong> —para estar preparada, para encontrar respuestas— y a la vez que no puede parar, la terapia metacognitiva trabaja justamente esas dos creencias y entrena otra forma de relacionarse con los pensamientos.",
     "<strong>Si la preocupación y la rumiación funcionan como una forma de evitar el malestar</strong> y alejan a la persona de lo que le importa, el protocolo breve de aceptación y compromiso las aborda en dos sesiones.",
     "<strong>Si se trata de ansiedad generalizada</strong> —preocupación crónica por casi todo, con un juicio duro de las propias emociones y una vida que se ha ido restringiendo—, la terapia conductual basada en la aceptación es el tratamiento completo, de unas 16 sesiones.",
+    "<strong>Si la preocupación viene enredada con otros problemas</strong> —revisar, exigencias rígidas, miedo al juicio— y ningún protocolo por trastorno recoge bien el caso, el análisis funcional basado en procesos dibuja con la persona la red que la mantiene y elige dónde intervenir; su respaldo todavía es preliminar.",
     "Si la rumiación aparece sobre todo como riesgo de recaída en quien ya tuvo varias depresiones, corresponde la terapia cognitiva basada en mindfulness de la variable Depresión; si el núcleo es no tolerar la incertidumbre, la variable Intolerancia a la incertidumbre."
   ],
   planes: [
@@ -4707,6 +4739,119 @@ const VARIABLES = [
       cuidado: [
         "Los autores advierten que no es una receta: se aplica con flexibilidad, atendiendo a la experiencia de la persona, y con formación previa en el modelo (Ruiz et al., 2018).",
         "Para trastornos emocionales graves o con riesgo suicida, se prefiere un tratamiento más completo."
+      ]
+    },
+    {
+      id: "rum-pbt",
+      mod: "eemm",
+      inst: ["PBAT", "PSWQ"],
+      enf: "pbt",
+      nivel: "preliminar",
+      t: "Análisis funcional y tratamiento basados en procesos",
+      fuente: "Hofmann et al., 2021",
+      cuando: "La preocupación viene enredada con otros problemas —revisar una y otra vez, exigencias rígidas consigo misma, miedo al juicio de los demás, decisiones que no se toman— y <strong>ningún protocolo por trastorno recoge bien el caso</strong>. En lugar de aplicar un paquete, se dibuja con la persona la red de procesos que mantiene su problema, se mide y se interviene en el proceso que más mueve la red.",
+      respaldo: "El enfoque organiza procesos de cambio que tienen apoyo en estudios de mediación: una revisión encontró 281 hallazgos replicados en 204 estudios, aunque sin evaluar su calidad ni el tamaño de los efectos (Hayes et al., 2022, apartados 5 y 6). Su aplicación clínica completa está descrita en un caso de ansiedad generalizada de 18 sesiones con medición varias veces al día: la red medida no coincidió del todo con la dibujada y hubo una recaída parcial que se trabajó (Ong et al., 2022). Los propios autores reconocen que el enfoque es todavía demasiado joven para documentar sus resultados, y no hay ensayos que lo comparen con los protocolos por trastorno (Hayes et al., 2022, apartado 8).",
+      secuencia: "<strong>Secuencia:</strong> sin número fijo de sesiones; en el caso ilustrado fueron 18. Las tres primeras se dedican a evaluar, dibujar la red y acordar el plan con la persona; después se interviene y se mide en cada sesión, y se vuelve a la red cuando el proceso no cambia o cambia el contexto (Hofmann et al., 2021, cap. 3, «The Ten Steps of Process-Based Functional Analysis»; Ong et al., 2022).",
+      esc: ["salud-mental", "primer-nivel"],
+      actividades: [
+        {
+          t: "Relato del problema y evaluación con el metamodelo",
+          tecs: ["metamodelo-evolutivo"],
+          obj: "Reunir, desde el relato de la persona, lo que ayuda y lo que estorba en cada dimensión de su vida.",
+          pasos: [
+            "Pedir a la persona que cuente sus problemas y lo que quisiera lograr, con sus propias palabras y sin etiquetas diagnósticas.",
+            "Recorrer con ella las dimensiones del metamodelo: qué siente, qué piensa, adónde va su atención, cómo se ve a sí misma, qué le importa y qué hace.",
+            "Preguntar también por el cuerpo —sueño, salud, ejercicio— y por su entorno: familia, pareja, trabajo, cultura e historia.",
+            "Anotar fortalezas además de dificultades: lo que ya le funciona también entra en la red."
+          ],
+          casa: "Anotar dos o tres situaciones de la semana en que apareció la preocupación: qué pasó antes, qué hizo y qué pasó después.",
+          avance: "Hay una descripción del caso que cubre las seis dimensiones y los dos niveles, con fortalezas y dificultades.",
+          fuente: "Hofmann et al., 2021, cap. 3, «The Ten Steps of Process-Based Functional Analysis», pasos 1 y 2"
+        },
+        {
+          t: "Dibujar con la persona la red de procesos",
+          tecs: ["red-procesos", "analisis-funcional"],
+          obj: "Organizar lo evaluado en una red que muestre qué mantiene el problema.",
+          pasos: [
+            "Elegir con la persona entre cuatro y seis nodos, definidos por lo que hacen y no por su forma: por ejemplo, «fijarse en lo que está mal», «presión por ser responsable», «revisar las cuentas».",
+            "Trazar las flechas: qué aumenta o disminuye qué, y con qué fuerza. Marcar aparte lo que no se puede cambiar, como la historia.",
+            "Buscar los círculos que se alimentan a sí mismos y preguntar en cada paso si eso encaja con su experiencia.",
+            "Revisar la red en la sesión siguiente y ajustarla con lo que la persona observe."
+          ],
+          casa: "Observar durante la semana si las flechas de la red se cumplen y traer ejemplos.",
+          avance: "La persona reconoce la red como una descripción fiel de lo que le pasa.",
+          fuente: "Hofmann et al., 2021, cap. 2, «Applying a Network Approach», y cap. 13, «Building Networks with Your Clients» · Ong et al., 2022, «Case conceptualization via network modeling»"
+        },
+        {
+          t: "Medir los nodos y elegir por dónde empezar",
+          tecs: ["medicion-repetida-procesos", "criterios-eleccion-proceso", "nucleo-intervencion"],
+          obj: "Comprobar la red con datos y acordar el proceso y el método con que se empieza.",
+          pasos: [
+            "Acordar tres a cinco preguntas sobre los nodos principales, que la persona califique de 0 a 10 una o varias veces al día, en papel o en el teléfono; se pueden tomar frases de la herramienta de evaluación basada en procesos.",
+            "Revisar los registros: ¿las relaciones se parecen a las de la red dibujada? Corregir la red si no.",
+            "Pasar los procesos candidatos por los seis criterios —acceso, centralidad, competencia, riesgo, probabilidad de cambio y posición estratégica— y decidir con la persona.",
+            "Elegir un método con apoyo para mover ese proceso y explicar a la persona sus beneficios y riesgos."
+          ],
+          casa: "Responder las preguntas acordadas con la frecuencia pactada.",
+          avance: "Hay un proceso elegido, un método acordado y registros que permitirán ver si cambia.",
+          fuente: "Hofmann et al., 2021, cap. 9, «Considering Alternatives», y caps. 10 y 11 · Ciarrochi et al., 2022"
+        },
+        {
+          t: "Responder con flexibilidad a las normas propias",
+          tecs: ["autorregistro", "defusion", "variacion-seleccion-retencion"],
+          obj: "Que las exigencias rígidas dejen de dirigir la conducta y aparezcan formas nuevas de responder.",
+          pasos: [
+            "Explicar cómo una norma sostenida con rigidez —«tengo que responder lo antes posible»— gobierna lo que se hace sin que se note.",
+            "Pedir a la persona que identifique entre cinco y diez normas que sigue y cómo influyen en su conducta.",
+            "Practicar notar la norma cuando aparece y tomar distancia de ella, para elegir otra respuesta.",
+            "Registrar las consecuencias de la respuesta nueva, para decidir si vale la pena conservarla o hay que seguir probando."
+          ],
+          casa: "Hacer cada día algo que cuide su bienestar, de la forma que elija, y anotar qué pasó después.",
+          avance: "La persona describe normas que antes no veía y respuestas nuevas que eligió conservar.",
+          fuente: "Ong et al., 2022, «Treatment plan» y «Treatment description»"
+        },
+        {
+          t: "Mover la atención a voluntad y elegir según los valores",
+          tecs: ["entrenamiento-atencion", "valores"],
+          obj: "Que la persona pueda vigilar cuando hace falta y estar presente cuando no, y decida por lo que le importa y no por lo que se exige.",
+          pasos: [
+            "Revisar en la red el papel de fijarse en lo que está mal y de dónde viene esa vigilancia.",
+            "Practicar dirigir la atención a propósito hacia otros datos de la situación, de sí misma y de los demás.",
+            "Ante una decisión con malestar, preguntar qué valor está en juego en lugar de qué norma hay que cumplir.",
+            "Estar atento a la forma nueva del mismo problema: querer cumplir los valores al máximo puede funcionar igual que la exigencia de antes."
+          ],
+          casa: "Antes de una decisión de la semana, anotar qué valor la guía y cómo resultó.",
+          avance: "La persona cambia el foco de la atención cuando lo decide y toma decisiones con referencia a sus valores.",
+          fuente: "Ong et al., 2022, «Treatment plan» y «Treatment description»"
+        },
+        {
+          t: "Retener lo nuevo y volver a la red",
+          tecs: ["medicion-repetida-procesos", "prevencion-recaidas"],
+          obj: "Sostener la red adaptativa cuando cambian el contexto y las metas.",
+          pasos: [
+            "Agregar a la red los nodos nuevos que se refuerzan entre sí, como sentirse capaz, poner límites y buscar a otros.",
+            "Actualizar las preguntas de registro cuando se cumplen las primeras metas.",
+            "Ante una situación nueva y estresante, revisar con la persona si vuelve la red de antes o recurre a lo que practicó.",
+            "Si el proceso no cambia, volver a la evaluación o a la red; si el resultado no mejora, revisar el modelo elegido."
+          ],
+          casa: "Seguir los registros acordados y anotar las señales de que vuelve la red de antes.",
+          avance: "Las respuestas nuevas se mantienen ante estresores distintos y la persona sabe qué hacer si reaparece la red de antes.",
+          fuente: "Hofmann et al., 2021, cap. 3, «The Ten Steps of Process-Based Functional Analysis», pasos 8 a 10 · Ong et al., 2022, «Treatment description»"
+        }
+      ],
+      medir: [
+        "Las preguntas de los nodos de la red, con la frecuencia acordada.",
+        "Las frases elegidas de la <strong>herramienta de evaluación basada en procesos (PBAT)</strong>, cada semana; no tiene puntaje total ni puntos de corte.",
+        "<strong>PSWQ</strong> al inicio y al final."
+      ],
+      adapt: [
+        "<strong>Formación:</strong> el manual está pensado para aprender aplicándolo primero a un problema propio, con ejercicios de seis nodos o menos antes de usarlo con consultantes (Hofmann et al., 2021, caps. 1 y 2).",
+        "<strong>Sin teléfono o con poco tiempo:</strong> el registro puede hacerse en papel, una vez al día o en cada práctica (Hofmann et al., 2021, cap. 11)."
+      ],
+      cuidado: [
+        "La medición varias veces al día pesa al consultante: el caso ilustrado tuvo dificultades para sostenerla. Se acuerda una carga posible y se revisa (Ong et al., 2022, «Lessons learned»).",
+        "La red dibujada es una hipótesis: puede no coincidir con lo que muestran los registros, y una conducta puede cambiar de función con el tiempo (Ong et al., 2022, «Lessons learned»).",
+        "Si hay riesgo suicida o un trastorno grave, se atiende primero según la variable correspondiente."
       ]
     }
   ]
@@ -25936,7 +26081,26 @@ const GLOSARIO = [
   fuente: "Lee y James, 2011, cap. 12 · Gilbert y Simos, 2022, cap. 25" },
 { k: "nueva-forma-comer", t: "Programa de seis pasos para comer de otra forma", alias: ["seis pasos para comer de otra forma"], tipo: "Procedimiento", enf: ["cft"],
   d: "Plan gradual para el comer en exceso: establecer un patrón regular de comidas, reducir los alimentos de alto riesgo, equilibrar la nutrición, ajustar la energía a lo que el cuerpo necesita, aprender a responder al hambre y a la saciedad, y disfrutar de comer. Requiere planificar las comidas de tres a seis meses; no es una dieta. Se sube de paso cuando se logra unos cinco días de la semana y se vuelve atrás si cuesta dos o tres días seguidos.",
-  fuente: "Goss, 2011, caps. 12 y 13" }
+  fuente: "Goss, 2011, caps. 12 y 13" },
+/* ---------- Terapia basada en procesos (2026-11-16) ---------- */
+{ k: "metamodelo-evolutivo", t: "Metamodelo evolutivo extendido", alias: ["EEMM"], tipo: "Concepto", enf: ["pbt"],
+  d: "Rejilla para revisar un caso desde cualquier enfoque. Las filas son seis dimensiones psicológicas —afecto, cognición, atención, yo, motivación y conducta abierta— y dos niveles, el biofisiológico (sueño, dieta, ejercicio, salud) y el sociocultural (pareja, familia, cultura, relación terapéutica). Las columnas son las funciones de la evolución: variación, selección, retención y contexto. En cada casilla se anota lo que ayuda y lo que estorba. No es una tabla en la que cada proceso cae en una sola casilla.",
+  fuente: "Hayes et al., 2020, apartado 2.3 · Hofmann et al., 2021, cap. 3" },
+{ k: "variacion-seleccion-retencion", t: "Variación, selección y retención", alias: ["variación y selección"], tipo: "Concepto", enf: ["pbt"],
+  d: "Tres preguntas para cualquier conducta. Variación: ¿la persona dispone de otras formas de responder, o repite siempre la misma? Selección: ¿elige las que le sirven a largo plazo o las que alivian en el momento? Retención: ¿lo nuevo se sostiene como hábito, con práctica, apoyo y recordatorios? La rigidez —poca variación— es una marca de los problemas psicológicos; ensayar algo distinto no basta si después no se observan sus consecuencias para decidir si se conserva.",
+  fuente: "Hofmann et al., 2021, cap. 3 · Ong et al., 2022, «Treatment description»" },
+{ k: "red-procesos", t: "Red de procesos del caso", alias: ["red idiográfica", "red conceptual del caso"], tipo: "Técnica", enf: ["pbt"],
+  d: "Dibujo, hecho con el consultante y con sus palabras, de los hechos y procesos que componen su problema y de cómo se influyen. Cada nodo es un proceso que se puede cambiar o una condición que no cambia (la historia, por ejemplo); cada flecha indica qué influye en qué, con una punta más grande si la relación es fuerte y distinta si aumenta o disminuye. Se buscan los círculos que se alimentan a sí mismos. Se empieza con seis nodos o menos: tan compleja como haga falta y tan simple como se pueda. En cada paso se pregunta si encaja con su experiencia.",
+  fuente: "Hofmann et al., 2021, caps. 2 y 13 · Ong et al., 2022, «Case conceptualization via network modeling»" },
+{ k: "criterios-eleccion-proceso", t: "Criterios para elegir el proceso que se interviene", alias: ["por dónde empezar en la red"], tipo: "Concepto", enf: ["pbt"],
+  d: "Seis preguntas para decidir, con el consultante, por dónde empezar: acceso (si el rol, el encuadre y la disposición de la persona permiten trabajarlo), centralidad (cuántas y qué tan fuertes son sus conexiones con el resto de la red y con las metas), competencia (si el terapeuta sabe moverlo), riesgo (posibilidad de hacer daño), probabilidad de cambio (conviene empezar por algo que dé impulso pronto) y posición estratégica (si cambiarlo abre los pasos siguientes). Si el cambio no llega, se revisa la red, no se culpa a la «resistencia» del consultante.",
+  fuente: "Hofmann et al., 2021, cap. 9, «Considering Alternatives»" },
+{ k: "nucleo-intervencion", t: "Núcleo de intervención", alias: ["kernel de intervención"], tipo: "Concepto", enf: ["pbt"],
+  d: "Clase de métodos con apoyo empírico, ligada a un modelo comprobable, que se sabe que mueve un proceso concreto y que el terapeuta puede aplicar con competencia: por ejemplo, manejo de contingencias, exposición, activación conductual, reevaluación cognitiva, defusión, aceptación, entrenamiento de la atención, clarificación de valores o solución de problemas. Se elige por el proceso que el análisis funcional señala, no por la escuela del terapeuta, y se cambia si las medidas muestran que no lo mueve.",
+  fuente: "Hofmann et al., 2021, caps. 10 y 11" },
+{ k: "medicion-repetida-procesos", t: "Medición repetida de procesos", alias: ["registro de los nodos de la red"], tipo: "Técnica", enf: ["pbt"],
+  d: "El consultante califica, de 0 a 10 o de 0 a 100, unas pocas preguntas sobre los nodos de su red —qué tanto se enfocó en lo que está mal, qué tanta presión sintió— varias veces al día o cada semana, en papel o en el teléfono. Con esos datos se comprueba si la red dibujada se parece a lo que pasa y si la intervención está moviendo el proceso elegido. Las preguntas se revisan cuando cambian las metas. Pesa al consultante: se acuerda una carga que pueda sostener.",
+  fuente: "Hofmann et al., 2021, cap. 11, «Gathering Feedback to Guide Treatment» · Ong et al., 2022, «Assessment of treatment progress» y «Lessons learned»" }
 ];
 
 /* Fichas propias: hojas de trabajo redactadas para esta guía a partir de
