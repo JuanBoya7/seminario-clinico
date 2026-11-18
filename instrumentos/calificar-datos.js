@@ -11253,11 +11253,11 @@ const CALIFICAR = {
   "pob": [
    "infancia"
   ],
-  "cita": "OPS, Familias latinas y jóvenes: un compendio de herramientas de evaluación, pp. 13–15; traducción de Servera (2007). Frick, Developmental Psychopathology Lab, LSU: condiciones y formulario original.",
+  "cita": "Shelton et al. (1996) · traducción de Servera (2007) y versión de 16 ítems de Escribano et al. (2013), Psicothema.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la versión del niño (8 a 12 años) con sus dos hojas, la de la madre y la del padre. Marque aquí la respuesta de 1 a 5 (1 nunca, 5 siempre) en los ítems que puntúan, con el número del protocolo. Los ítems de implicación se anotan por separado para cada progenitor; los demás son iguales en las dos hojas y se anotan una vez. Si el niño no convive con uno de los dos, déjelo en blanco."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -11279,11 +11279,11 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Madre · Ítem 1",
-     "Madre · Ítem 7",
-     "Madre · Ítem 9",
-     "Madre · Ítem 14",
-     "Madre · Ítem 20"
+     "Ítem 1",
+     "Ítem 7",
+     "Ítem 9",
+     "Ítem 14",
+     "Ítem 20"
     ],
     "numerar": false
    },
@@ -11307,11 +11307,11 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Padre · Ítem 1",
-     "Padre · Ítem 7",
-     "Padre · Ítem 9",
-     "Padre · Ítem 14",
-     "Padre · Ítem 20"
+     "Ítem 1",
+     "Ítem 7",
+     "Ítem 9",
+     "Ítem 14",
+     "Ítem 20"
     ],
     "numerar": false
    },
@@ -11395,7 +11395,7 @@ const CALIFICAR = {
    ],
    "nota": "Autoinforme infantil de 16 ítems en la validación española de Escribano et al. (2013): niños de 8 a 12 años de muestra comunitaria, sin normas ni puntos de corte, y los autores advierten que no se generalice a muestras clínicas. La fiabilidad es baja (alfa de 0,55 a 0,62; 0,74 en implicación del padre). No es la forma de padres que usan los planes: existe la APQ-Pr de preescolares (De la Osa et al., 2014, 36 ítems) y la clave original de 42 ítems y cinco escalas (Shelton et al., 1996), pero no se programaron. Los ítems de castigo corporal (33, 35 y 38) no puntúan en esta versión."
   },
-  "sinitems": true
+  "hoja": true
  },
  "crafft": {
   "clave": "CRAFFT",
@@ -17811,11 +17811,11 @@ const CALIFICAR = {
   "pob": [
    "infancia"
   ],
-  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "cita": "Owens y Dalzell (2005), Sleep Medicine · versión en español de la GPC del Ministerio de Sanidad (2011), anexo 6.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el guion BEARS con la pregunta que corresponde a la edad (2 a 5, 6 a 12 o 13 a 18 años) y marque «Sí» en el dominio cuya respuesta fue positiva. En el dominio R, quien aplica decide si la respuesta fue positiva."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -17831,11 +17831,11 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "B · Problemas para acostarse",
-     "E · Somnolencia diurna excesiva",
-     "A · Despertares durante la noche",
-     "R · Regularidad y duración del sueño",
-     "S · Ronquidos"
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5"
     ],
     "numerar": false
    }
@@ -17871,7 +17871,7 @@ const CALIFICAR = {
    ],
    "nota": "El BEARS es un guion de cribado sin puntaje, normas ni puntos de corte; el resultado depende de la interpretación de quien aplica (Owens y Dalzell, 2005). Un recuento de dominios positivos no tiene fuente. La versión con propiedades psicométricas publicada (Aristizábal-Bogotá, 2018, alfa 0,732 en 8.862 escolares de 9 a 17 años) es autodiligenciada y no da cortes."
   },
-  "sinitems": true
+  "hoja": true
  },
  "bisq": {
   "clave": "BISQ",
@@ -17987,11 +17987,11 @@ const CALIFICAR = {
   "pob": [
    "infancia"
   ],
-  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "cita": "Owens et al. (2000), Journal of Developmental and Behavioral Pediatrics · versión en español de la tesis de López Olvera (UAM-Xochimilco, 2017), anexo 1.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el cuestionario a los padres o cuidadores (última semana, o una semana típica) y marque aquí la respuesta de cada ítem tal como la dieron: la hoja aplica la inversión de los ítems que lo requieren. Solo se piden los ítems que puntúan; los rótulos usan la numeración del texto en español de la tesis de la UAM. Ningún ítem puede quedar sin contestar."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -18126,7 +18126,7 @@ const CALIFICAR = {
    ],
    "nota": "Corte de más de 41 de Owens et al. (2000), citado de segunda mano por la tesis de la UAM (el artículo original no está en la biblioteca): contrástelo antes de usarlo como oficial. Ese corte se definió para niños de 4 a 10 años; la tesis aplicó el cuestionario a menores de 3 años sin validarlo (media 50,3, DE 7,2, n = 68) y propuso más de 59 solo para su muestra, que no es un corte validado. Las ocho subescalas son las de Owens; los ítems 7 y 12 cuentan en dos, y su asignación se derivó de la tabla 28 de la tesis. En la traducción de Lara Ledesma (2014) el análisis factorial no reprodujo los ocho factores y los alfa de las subescalas fueron bajos (0,27 a 0,66)."
   },
-  "sinitems": true
+  "hoja": true
  },
  "sdsc": {
   "clave": "SDSC",
@@ -18143,11 +18143,11 @@ const CALIFICAR = {
   "pob": [
    "infancia"
   ],
-  "cita": "Guía de tamizaje, grupo «Sueño en la infancia».",
+  "cita": "Bruni et al. (1996), Journal of Sleep Research · versión en español de la tesis de Cantellano García (UNAM), anexo I.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que se eligió. Los ítems 1 y 2 llevan sus propias opciones (horas de sueño y tiempo para dormirse): marque el número de 1 a 5 que quedó en el protocolo."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -18255,7 +18255,7 @@ const CALIFICAR = {
    ],
    "nota": "Corte del total de 39 de Bruni et al. (1996; AUC 0,91, sensibilidad 0,89, especificidad 0,74), también usado por Cantellano (2019) y por la GPC del Ministerio de Sanidad. Media de controles en el total: 35,05 (DE 7,70). La hoja de puntaje T de Cantellano no declara de dónde salió (Bruni et al. la publican, pero su tabla salió ilegible); la letra «T» es la de la fuente y no se muestran sus franjas de color. Valida con padres o cuidadores de niños de 6,5 a 15,3 años (Bruni); Cantellano la aplica de 2 a 16 años. Hacen falta los 26 ítems."
   },
-  "sinitems": true
+  "hoja": true
  },
  "asrs-v1-1": {
   "clave": "ASRS v1.1",
@@ -19695,7 +19695,7 @@ const CALIFICAR = {
   "clave": "AAS",
   "sigla": "AAS",
   "titulo": "Tamizaje de Evaluación de Abuso",
-  "para": "Abuso físico, sexual y durante el embarazo, con mapa corporal de localización de lesiones.",
+  "para": "Maltrato emocional, físico y sexual por parte de la pareja, y durante el embarazo.",
   "areas": [
    "Familia, pareja y violencia"
   ],
@@ -19706,11 +19706,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Violencia».",
+  "cita": "McFarlane et al. (1995), Public Health Nursing · versión en español del SERGAS (2020), anexo IV.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el cuestionario con la mujer a solas, siguiendo el protocolo de la guía. Marque aquí, para cada pregunta, la respuesta que dio."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -19727,18 +19727,18 @@ const CALIFICAR = {
     "puntua": true,
     "items": [
      {
-      "x": "Pregunta 1"
+      "x": "Ítem 1"
      },
      {
-      "x": "Pregunta 2",
+      "x": "Ítem 2",
       "si": "r[1] === 1"
      },
      {
-      "x": "Pregunta 3",
+      "x": "Ítem 3",
       "si": "r[1] === 1"
      },
      {
-      "x": "Pregunta 4",
+      "x": "Ítem 4",
       "si": "r[1] === 1"
      }
     ],
@@ -19778,11 +19778,11 @@ const CALIFICAR = {
     "puntua": true,
     "items": [
      {
-      "x": "Pregunta 5",
+      "x": "Ítem 5",
       "si": "r[5] === 1"
      },
      {
-      "x": "Pregunta 6",
+      "x": "Ítem 6",
       "si": "r[5] === 1"
      }
     ],
@@ -19853,7 +19853,7 @@ const CALIFICAR = {
    ],
    "nota": "No hay puntaje: el resultado sale de las tres reglas impresas en la guía del Servicio Gallego de Salud (SERGAS, 2020, anexo IV). Esta versión de 4 preguntas más 2 para embarazadas añade el maltrato emocional y no usa el mapa corporal ni la escala de severidad del original de McFarlane (1995). Los indicadores de sospecha son los del anexo III de la guía y los registra quien aplica. El cuestionario DA es otro instrumento y no está incluido. Sin puntos de corte ni normas; la fuente no define datos faltantes."
   },
-  "sinitems": true
+  "hoja": true
  },
  "icast": {
   "clave": "ICAST",
@@ -19870,11 +19870,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Violencia» · fuente oficial: https://www.ispcan.org/.",
+  "cita": "ISPCAN, ICAST-C · adaptación a español mexicano de Casas Muñoz (UNAM) y Casas-Muñoz et al. (2022), Child Abuse & Neglect.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el ICAST-C (adaptación mexicana, 62 ítems; la numeración es la de esa versión, distinta de la de ISPCAN) y marque el código de la respuesta. Ítems 1 a 53: 0 no, nunca me ha pasado; 1 no el último año, pero sí antes; de 2 a 6, frecuencia creciente en el último año. Ítem 54: de 0 (nunca) a 3 (siempre). Ítems 55 a 62: 0 no me ha pasado; 1 no el último año, pero sí antes; 2 sí, el último año."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -20041,7 +20041,7 @@ const CALIFICAR = {
    ],
    "nota": "Dimensiones de la tabla 2 de la tesis de Casas-Muñoz (UNAM), suma de los códigos tal como se marcan (incluye el 1, ocurrido antes del último año), con el modelo original. Confiabilidad de la validación (n = 723, 11 a 18 años): alfa ordinal 0,79 a 0,92 y test-retest 0,52 a 0,75. No hay puntos de corte, normas ni reglas ante datos faltantes. Instrumento de acceso restringido (ISPCAN, uso en investigación; no es para tamizaje clínico): la hoja no reproduce ítems. Aplicarlo activa el deber de reporte. Pendiente: verificar los ítems 54 a 62 y su correspondencia con la numeración de ISPCAN en el anexo de la tesis."
   },
-  "sinitems": true
+  "hoja": true
  },
  "easi": {
   "clave": "EASI",
@@ -20058,11 +20058,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Violencia».",
+  "cita": "Yaffe et al. (2008), Journal of Elder Abuse & Neglect · adaptación española de Pérez Rojo, Izal y Montorio (2008).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el índice a la persona mayor sin acompañante, siguiendo el protocolo. Marque aquí la respuesta de cada pregunta; la 6 la responde quien evalúa."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -20080,11 +20080,11 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Pregunta 1",
-     "Pregunta 2",
-     "Pregunta 3",
-     "Pregunta 4",
-     "Pregunta 5"
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5"
     ],
     "numerar": false
    },
@@ -20104,7 +20104,7 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Pregunta 6 (la responde quien evalúa)"
+     "Ítem 6"
     ],
     "numerar": false,
     "lista": true
@@ -20123,7 +20123,7 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "¿Había otra persona presente durante la entrevista?"
+     "Ítem 6b"
     ],
     "numerar": false,
     "lista": true
@@ -20191,7 +20191,7 @@ const CALIFICAR = {
    ],
    "nota": "Las versiones en español consultadas (IMSERSO-SEGG, 2007; Pérez Rojo et al., 2008) no traen una regla de positividad ni puntos de corte, así que esta hoja solo inventaría las respuestas. El índice no confirma maltrato: su fin es aumentar la sospecha y derivar a expertos. En el estudio de Montreal frente al SWEF tuvo sensibilidad 0,44 y especificidad 0,77 (IMSERSO-SEGG, 2007). Para personas de 65 años o más sin deterioro cognitivo, sobre los últimos 12 meses. Dato faltante: la regla de positividad, en Yaffe et al. (2008)."
   },
-  "sinitems": true
+  "hoja": true
  },
  "apgar-familiar": {
   "clave": "APGAR familiar",
