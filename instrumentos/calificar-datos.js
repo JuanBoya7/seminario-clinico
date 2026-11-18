@@ -3587,22 +3587,22 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Bastien, Vallières y Morin (2001), Sleep Medicine · permiso por Mapi Research Trust.",
+  "cita": "Bastien, Vallières y Morin (2001) · versión en español de la Guía Rápida de la GPC de Insomnio en AP (Ministerio de Sanidad y Política Social, 2009) · titular: C. Morin (Mapi Research Trust).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, el número que la persona eligió en él."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
     "titulo": null,
-    "cab": "Ítems del protocolo",
+    "cab": "",
     "ops": [
-     "0",
-     "1",
-     "2",
-     "3",
-     "4"
+     "Nada",
+     "Leve",
+     "Moderado",
+     "Grave",
+     "Muy grave"
     ],
     "vals": [
      0,
@@ -3613,13 +3613,151 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Ítem 1",
-     "Ítem 2",
-     "Ítem 3",
-     "Ítem 4",
-     "Ítem 5",
-     "Ítem 6",
-     "Ítem 7"
+     "Ítem 1a"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Leve",
+     "Moderado",
+     "Grave",
+     "Muy grave"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1b"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Leve",
+     "Moderado",
+     "Grave",
+     "Muy grave"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 1c"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Muy satisfecho",
+     "1",
+     "Moderadamente satisfecho",
+     "3",
+     "Muy insatisfecho"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 2"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 3"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 4"
+    ],
+    "numerar": false
+   },
+   {
+    "t": "items",
+    "titulo": null,
+    "cab": "",
+    "ops": [
+     "Nada",
+     "Un poco",
+     "Algo",
+     "Mucho",
+     "Muchísimo"
+    ],
+    "vals": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "puntua": true,
+    "items": [
+     "Ítem 5"
     ],
     "numerar": false
    }
@@ -3655,7 +3793,7 @@ const CALIFICAR = {
    ],
    "nota": "Bandas de Bastien, Vallières y Morin (2001). En el seguimiento, un total menor de 8 se considera remisión."
   },
-  "sinitems": true
+  "hoja": true
  },
  "zarit": {
   "clave": "Zarit",
