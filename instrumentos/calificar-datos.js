@@ -4769,11 +4769,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Citado desde Christensen et al., 2014, tabla 18.1",
+  "cita": "Straus et al. (1996) · versión española de Loinaz (2009; 2011), figura 1 de Loinaz et al. (2012), Psicothema · derechos de WPS.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la parte de la propia conducta (39 ítems) con el protocolo oficial. Marque aquí, para cada ítem, con el número del protocolo, la respuesta de 0 a 7: 0 nunca ha ocurrido, 1 una vez, 2 dos veces, 3 de tres a cinco veces, 4 de seis a diez veces, 5 de once a veinte veces, 6 más de 20 veces, 7 no ocurrió en el periodo evaluado pero sí antes. El periodo suele ser los últimos 12 meses y puede cambiarse."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -4965,7 +4965,7 @@ const CALIFICAR = {
    ],
    "nota": "Parte de la propia conducta (39 ítems) de la versión de Loinaz et al. (2012), validada en hombres condenados por violencia contra la pareja. Cronicidad: cada respuesta pasa al punto medio de su intervalo (0, 1, 2, 4, 8, 15, 25) y se suma; la respuesta 7 no cuenta. No se calcula un total del CTS2 (sin estructura factorial clara, según el Consejo General de la Psicología, 2022) ni la severidad de la violencia física (su cálculo no está confirmado). Los ítems 29 y 65 se asignaron a agresión psicológica reconstruyendo un error de numeración de la figura 1 de Loinaz et al. No hay puntos de corte, ni baremos para población general ni para la parte de la pareja."
   },
-  "sinitems": true
+  "hoja": true
  },
  "das": {
   "clave": "DAS",
@@ -5708,11 +5708,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Citado desde Enright y Fitzgibbons, 2015, cap. 13",
+  "cita": "Subkoviak et al. (1995); Enright et al. (2022), EFI-30 · versión en castellano de Fariña et al. (2023), Acción Psicológica.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el inventario con su protocolo: la persona piensa en una ofensa concreta y responde según su actitud actual hacia quien la ofendió. Marque aquí, de 1 (muy en desacuerdo) a 6 (muy de acuerdo), lo que marcó en cada uno de los 30 ítems; la hoja invierte los que corresponde. Las preguntas de presentación no puntúan. No omita ningún ítem."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -5825,7 +5825,7 @@ const CALIFICAR = {
    ],
    "nota": "EFI-30 en castellano de Fariña et al. (2023). Las tres escalas negativas se invierten (7 menos la respuesta). El anexo de la fuente imprime el ítem 12 en dos escalas; aquí el comportamiento positivo usa el 16, según la tabla 4. No se calculan la escala de falso perdón (ítems 31 a 35; los autores eliminan el protocolo con 20 o más) ni el ítem de perdón global, porque sus ítems no están en las fuentes: la validez del protocolo no se puede comprobar aquí. No hay puntos de corte clínicos. La fuente no declara licencia."
   },
-  "sinitems": true
+  "hoja": true
  },
  "eii": {
   "clave": "EII",
@@ -6509,11 +6509,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Citado desde Heimberg y Magee, 2014",
+  "cita": "Liebowitz (1987) · versión en español de Bobes et al. (1999), reproducida en Madueño Caro et al. (2002), Medifam.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la escala con su protocolo oficial (24 situaciones). Para cada situación marque aquí dos números de 0 a 3, con el mismo número de situación: primero el de miedo o ansiedad y luego el de evitación."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -6533,30 +6533,30 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Situación 1",
-     "Situación 2",
-     "Situación 3",
-     "Situación 4",
-     "Situación 5",
-     "Situación 6",
-     "Situación 7",
-     "Situación 8",
-     "Situación 9",
-     "Situación 10",
-     "Situación 11",
-     "Situación 12",
-     "Situación 13",
-     "Situación 14",
-     "Situación 15",
-     "Situación 16",
-     "Situación 17",
-     "Situación 18",
-     "Situación 19",
-     "Situación 20",
-     "Situación 21",
-     "Situación 22",
-     "Situación 23",
-     "Situación 24"
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24"
     ],
     "numerar": false
    },
@@ -6578,30 +6578,30 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Situación 1",
-     "Situación 2",
-     "Situación 3",
-     "Situación 4",
-     "Situación 5",
-     "Situación 6",
-     "Situación 7",
-     "Situación 8",
-     "Situación 9",
-     "Situación 10",
-     "Situación 11",
-     "Situación 12",
-     "Situación 13",
-     "Situación 14",
-     "Situación 15",
-     "Situación 16",
-     "Situación 17",
-     "Situación 18",
-     "Situación 19",
-     "Situación 20",
-     "Situación 21",
-     "Situación 22",
-     "Situación 23",
-     "Situación 24"
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24"
     ],
     "numerar": false
    }
@@ -6626,7 +6626,7 @@ const CALIFICAR = {
    ],
    "nota": "Clave de la versión española de Bobes et al. (1999), según Madueño Caro et al. (2002). No se muestran cortes: los de Madueño (leve hasta 51, moderada de 52 a 81, grave «más de 82») dejan el 82 sin categoría, y los de 30 y 60 de Mennin et al. (2002) no se verificaron. Las subescalas por tipo de situación no se calculan: las fuentes no listan sus ítems. Las copias en español difieren en la redacción de las situaciones 10, 12 y 23. Sin periodo de referencia ni regla para datos faltantes en las fuentes."
   },
-  "sinitems": true
+  "hoja": true
  },
  "mbi": {
   "clave": "MBI",
@@ -9520,11 +9520,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Citado desde Breitbart et al., 2015",
+  "cita": "Rosenfeld et al. (1999); Breitbart et al. (2015) · versión española SAHD-Sp (EADAM) de Villavicencio-Chávez et al. (2014), anexo 2 de Villavicencio (2016).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la escala de 20 ítems de verdadero o falso con su protocolo y marque aquí la respuesta de cada ítem tal como la dio la persona; la hoja aplica la clave."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -9601,7 +9601,7 @@ const CALIFICAR = {
    ],
    "nota": "Versión española (SAHD-Sp, 20 ítems) de Villavicencio-Chávez et al. (2014), con la clave de su tesis (2016). Hay siete ítems que puntúan con «Falso»; la tesis y Kremeike et al. (2025, tabla 1) coinciden, aunque el texto de Kremeike menciona seis. Los autores advierten que los cortes no recogen la complejidad del deseo de adelantar la muerte y piden leer ítem por ítem, y que no se aplique sin acuerdo del equipo tratante sobre el malestar que pueda causar. No es una suma diagnóstica de riesgo suicida. Sin periodo de referencia ni regla para datos faltantes. Los ítems en español de la tesis tienen uso restringido."
   },
-  "sinitems": true
+  "hoja": true
  },
  "scoff": {
   "clave": "SCOFF",
@@ -15955,11 +15955,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Psicosis y riesgo de psicosis».",
+  "cita": "Kay, Fiszbein y Opler (1987) · versión española del SSPA (2022), adaptada de Grupo DRECS (2003) y Martín López (2003) · derechos de Multi-Health Systems.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la entrevista con el protocolo oficial y sus anclas. Luego marque aquí, para cada ítem, la puntuación que asignó."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -15985,13 +15985,13 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "P 1",
-     "P 2",
-     "P 3",
-     "P 4",
-     "P 5",
-     "P 6",
-     "P 7"
+     "Ítem 1",
+     "Ítem 2",
+     "Ítem 3",
+     "Ítem 4",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7"
     ],
     "numerar": false
    },
@@ -16019,13 +16019,13 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "N 1",
-     "N 2",
-     "N 3",
-     "N 4",
-     "N 5",
-     "N 6",
-     "N 7"
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14"
     ],
     "numerar": false
    },
@@ -16053,22 +16053,22 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "PG 1",
-     "PG 2",
-     "PG 3",
-     "PG 4",
-     "PG 5",
-     "PG 6",
-     "PG 7",
-     "PG 8",
-     "PG 9",
-     "PG 10",
-     "PG 11",
-     "PG 12",
-     "PG 13",
-     "PG 14",
-     "PG 15",
-     "PG 16"
+     "Ítem 15",
+     "Ítem 16",
+     "Ítem 17",
+     "Ítem 18",
+     "Ítem 19",
+     "Ítem 20",
+     "Ítem 21",
+     "Ítem 22",
+     "Ítem 23",
+     "Ítem 24",
+     "Ítem 25",
+     "Ítem 26",
+     "Ítem 27",
+     "Ítem 28",
+     "Ítem 29",
+     "Ítem 30"
     ],
     "numerar": false
    }
@@ -16280,7 +16280,7 @@ const CALIFICAR = {
    ],
    "nota": "No hay puntos de corte: las bandas ubican el puntaje entre los percentiles publicados por Bobes et al. (2004), citados en la versión del SSPA."
   },
-  "sinitems": true
+  "hoja": true
  },
  "cpss-5": {
   "clave": "CPSS-5",
@@ -16528,11 +16528,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Duelo».",
+  "cita": "Prigerson et al. (2021), World Psychiatry · versión en español de Weill Cornell (Sánchez-Román et al., 2026).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique la escala con el protocolo oficial y marque aquí la respuesta de cada ítem (de 1 a 5, en el orden del protocolo, a partir de Q3). Elija primero cuál versión usó: el original de 10 síntomas o la versión en español de 11 síntomas."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -16586,14 +16586,14 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "¿Ha perdido a una persona significativa? (Q1)"
+     "Ítem 3"
     ],
     "numerar": false,
     "lista": true
    },
    {
     "t": "dato",
-    "x": "Meses transcurridos desde la muerte (Q2)",
+    "x": "Ítem 4",
     "tipo": "numero",
     "unidad": "meses"
    },
@@ -16617,18 +16617,18 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "Q3",
-     "Q4",
-     "Q5",
-     "Q6",
-     "Q7",
-     "Q8",
-     "Q9",
-     "Q10",
-     "Q11",
-     "Q12",
+     "Ítem 5",
+     "Ítem 6",
+     "Ítem 7",
+     "Ítem 8",
+     "Ítem 9",
+     "Ítem 10",
+     "Ítem 11",
+     "Ítem 12",
+     "Ítem 13",
+     "Ítem 14",
      {
-      "x": "Q13",
+      "x": "Ítem 15",
       "si": "r[1] === 11"
      }
     ],
@@ -16648,7 +16648,7 @@ const CALIFICAR = {
     ],
     "puntua": true,
     "items": [
-     "¿Hay impacto en el funcionamiento? (Q13 del original, Q14 de la versión en español)"
+     "Ítem 16"
     ],
     "numerar": false,
     "lista": true
@@ -16707,7 +16707,7 @@ const CALIFICAR = {
    ],
    "nota": "Regla de Prigerson et al. (2021): puntaje de síntomas de 30 o más, pérdida, tiempo desde la muerte de 12 meses o más (6 en niños y adolescentes) e impacto en el funcionamiento; óptimo de 29 en Yale, 32 en Utrecht y 30 en Oxford. La versión en español (Weill Cornell; Sánchez-Román et al., 2026) tiene 11 síntomas y etiquetas de frecuencia, no de intensidad como el original, así que el corte de 30 no se le aplica y no hay corte para ella. Omitir uno de los dos ítems de identidad para aplicar el 30 no está validado."
   },
-  "sinitems": true
+  "hoja": true
  },
  "trig": {
   "clave": "TRIG",
@@ -20597,11 +20597,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Funcionamiento familiar».",
+  "cita": "Pérez González, de la Cuesta, Louro y Bayarre (1997) · texto del anexo de Cabrera et al. (2012).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -20707,7 +20707,7 @@ const CALIFICAR = {
    ],
    "nota": "Categorías por cuartiles del total, de Pérez et al. (1997; confirmadas por Cabrera, 2012). Fiabilidad de la validación cubana: test-retest 0,94 y consistencia 0,88. La validación se hizo con un miembro de la familia de 18 a 60 años; en adolescentes no hay fuente."
   },
-  "sinitems": true
+  "hoja": true
  },
  "duke-unc": {
   "clave": "Duke-UNC",
@@ -20724,11 +20724,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Apoyo social percibido».",
+  "cita": "Broadhead et al. (1988) · versión en español de Bellón et al. (1996), Atención Primaria, según la Universidad de Sevilla (s. f.).",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió. Use el número de la opción: 1 es «mucho menos de lo que deseo» y 5 «tanto como deseo»."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -20796,7 +20796,7 @@ const CALIFICAR = {
    ],
    "nota": "Corte de 32 de la hoja de la Universidad de Sevilla, adaptada de Bellón et al. (1996); el método con que se obtuvo no está en esa hoja. Referencia descriptiva: media 39,78 (DE 10,36) en 128 personas cuidadoras (Cuéllar-Flores, 2012), que no es una norma poblacional. Otros autores asignan distinto los ítems a las subescalas (De la Revilla, 1991; Cuéllar-Flores, 2012)."
   },
-  "sinitems": true
+  "hoja": true
  },
  "lsns-6": {
   "clave": "LSNS-6",
@@ -21082,11 +21082,11 @@ const CALIFICAR = {
   "pob": [
    "adultos"
   ],
-  "cita": "Guía de tamizaje, grupo «Autoestima y autoeficacia».",
+  "cita": "Wallston, Wallston y DeVellis (1978) · versión en español del NIDA Clinical Trials Network (2008), forma A.",
   "bloques": [
    {
     "t": "consigna",
-    "x": "Aplique el protocolo oficial en papel. Luego marque aquí, para cada ítem, la respuesta que la persona eligió. Anote el número de la opción tal como aparece en el protocolo y, al final, indique cuál escala de respuesta usó."
+    "x": "Hoja de respuestas: aplique la prueba con su protocolo original y anote aquí la respuesta de cada ítem. Esta hoja no reproduce los ítems, cuyos derechos son del editor."
    },
    {
     "t": "items",
@@ -21169,7 +21169,7 @@ const CALIFICAR = {
    ],
    "nota": "No hay puntaje total ni puntos de corte. Con el anexo colombiano de Rodríguez-Rosero (2002), cuya escala es inversa, la hoja convierte cada respuesta (6 − x) para dejar los tres puntajes en la dirección estándar. Referencias de esa validación: alfa 0,53 en locus interno, 0,71 en otros poderosos y 0,72 en azar; sus medias están en escala inversa y su tabla 2 rotula P y C al revés del texto, por lo que no se comparan aquí. Pendiente: confirmar la clave de Wallston antes de publicarla como oficial."
   },
-  "sinitems": true
+  "hoja": true
  },
  "batalla": {
   "clave": "Batalla",
