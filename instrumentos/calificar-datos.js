@@ -19978,7 +19978,7 @@ const CALIFICAR = {
       [
        4,
        4,
-       "Primera pregunta Sí y sin respuestas afirmativas en las preguntas 2 a 6: la guía no define el resultado de este caso; decida con criterio clínico"
+       "Antecedente de maltrato, sin maltrato en el último año: regístrelo y mantenga el seguimiento"
       ]
      ]
     }
@@ -20177,6 +20177,12 @@ const CALIFICAR = {
      "texto": "El ítem 54 va de 0 a 3 y los demás de 0 a 2; la tesis suma los nueve reactivos pero no da rango ni regla de combinación: úselo de forma descriptiva."
     }
    ],
+   "alertas": [
+    {
+     "js": "[49,50,51,52,53].some(i => r[i] != null && r[i] > 0)",
+     "texto": "Hay respuestas en la dimensión de violencia sexual (ítems 49 a 53): valore la seguridad del niño, niña o adolescente en esta misma atención y active la ruta de protección y el deber de reporte."
+    }
+   ],
    "nota": "Dimensiones de la tabla 2 de la tesis de Casas-Muñoz (UNAM), suma de los códigos tal como se marcan (incluye el 1, ocurrido antes del último año), con el modelo original. Confiabilidad de la validación (n = 723, 11 a 18 años): alfa ordinal 0,79 a 0,92 y test-retest 0,52 a 0,75. No hay puntos de corte, normas ni reglas ante datos faltantes. Instrumento de acceso restringido (ISPCAN, uso en investigación; no es para tamizaje clínico): la hoja no reproduce ítems. Aplicarlo activa el deber de reporte. Pendiente: verificar los ítems 54 a 62 y su correspondencia con la numeración de ISPCAN en el anexo de la tesis."
   },
   "hoja": true
@@ -20270,9 +20276,30 @@ const CALIFICAR = {
   "calif": {
    "escalas": [
     {
+     "n": "Resultado",
+     "js": "C([2,3,4,5,6],1) > 0 ? 1 : (RANGO(2,6).some(i => r[i] == null) ? -1 : 0)",
+     "rangos": [
+      [
+       -1,
+       -1,
+       "Faltan respuestas en las preguntas 2 a 6"
+      ],
+      [
+       0,
+       0,
+       "Sin sospecha según el índice"
+      ],
+      [
+       1,
+       1,
+       "Sospecha de maltrato: «Sí» en una o más de las preguntas 2 a 6 (Yaffe et al., 2008); derive para una evaluación más completa"
+      ]
+     ]
+    },
+    {
      "n": "Respuestas «Sí» en las preguntas 2 a 5",
      "js": "C([2,3,4,5],1)",
-     "texto": "De 0 a 4. Es solo un recuento: ninguna fuente consultada define a partir de cuántas se considera positivo."
+     "texto": "De 0 a 4."
     },
     {
      "n": "Pregunta 6 (valoración de quien evalúa)",
@@ -20327,7 +20354,7 @@ const CALIFICAR = {
      ]
     }
    ],
-   "nota": "Las versiones en español consultadas (IMSERSO-SEGG, 2007; Pérez Rojo et al., 2008) no traen una regla de positividad ni puntos de corte, así que esta hoja solo inventaría las respuestas. El índice no confirma maltrato: su fin es aumentar la sospecha y derivar a expertos. En el estudio de Montreal frente al SWEF tuvo sensibilidad 0,44 y especificidad 0,77 (IMSERSO-SEGG, 2007). Para personas de 65 años o más sin deterioro cognitivo, sobre los últimos 12 meses. Dato faltante: la regla de positividad, en Yaffe et al. (2008)."
+   "nota": "Regla de sospecha de los autores (Yaffe et al., 2008). El índice no confirma maltrato: su fin es aumentar la sospecha y derivar a expertos. En el estudio de Montreal frente al SWEF tuvo sensibilidad 0,44 y especificidad 0,77 (IMSERSO-SEGG, 2007). Para personas de 65 años o más sin deterioro cognitivo, sobre los últimos 12 meses."
   },
   "hoja": true
  },
@@ -20671,6 +20698,32 @@ const CALIFICAR = {
      ]
     },
     {
+     "n": "Tipo según el modelo circumplejo de Olson",
+     "js": "RANGO(1,20).some(i => r[i] == null) ? 0 : ((c, a) => { const ce = c <= 34 || c >= 46, ae = a <= 19 || a >= 29; return ce && ae ? 3 : (ce || ae ? 2 : 1); })(L([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]), L([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]))",
+     "rangos": [
+      [
+       0,
+       0,
+       "Faltan respuestas: se necesitan los 20 ítems"
+      ],
+      [
+       1,
+       1,
+       "Balanceada: niveles intermedios de cohesión (separada o conectada) y de adaptabilidad (estructurada o flexible)"
+      ],
+      [
+       2,
+       2,
+       "Rango medio: un nivel extremo en una de las dos dimensiones"
+      ],
+      [
+       3,
+       3,
+       "Extrema: niveles extremos en cohesión y en adaptabilidad"
+      ]
+     ]
+    },
+    {
      "n": "Cohesión: unión emocional (ítems 11 y 19)",
      "js": "L([11, 19])",
      "texto": "De 4 a 20. Sin cortes por subfactor."
@@ -20716,7 +20769,7 @@ const CALIFICAR = {
      "texto": "De 8 a 40. Sin cortes por subfactor."
     }
    ],
-   "nota": "Cortes de Olson (1985) tomados de Sánchez Rojas y de Osornio-Castillo et al. (2009); las celdas se numeran de 1 a 16 de izquierda a derecha y de arriba abajo (Sánchez Rojas, tablas 2 y 4). Referencia descriptiva: Ponce Rosas et al. (2002), n = 270, cohesión 40,7 (DE 5,6) y adaptabilidad 28,3 (DE 6,2). Esa validación concluye validez de constructo con 4 de 12 criterios sin cumplir. No se calcula la agrupación «balanceada, rango medio o extrema»: las fuentes la presentan con leyendas contradictorias. Los ítems 18 y 20 tienen redacción negativa y no se invierten, porque la fuente declara que todos tienen direccionalidad positiva."
+   "nota": "Cortes de Olson (1985) tomados de Sánchez Rojas y de Osornio-Castillo et al. (2009); las celdas se numeran de 1 a 16 de izquierda a derecha y de arriba abajo (Sánchez Rojas, tablas 2 y 4). Referencia descriptiva: Ponce Rosas et al. (2002), n = 270, cohesión 40,7 (DE 5,6) y adaptabilidad 28,3 (DE 6,2). Esa validación concluye validez de constructo con 4 de 12 criterios sin cumplir. La agrupación balanceada, de rango medio o extrema sigue el modelo circumplejo de Olson (1985). Los ítems 18 y 20 tienen redacción negativa y no se invierten, porque la fuente declara que todos tienen direccionalidad positiva."
   },
   "sinitems": true
  },
@@ -21292,20 +21345,20 @@ const CALIFICAR = {
     {
      "n": "Locus interno (I)",
      "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([1, 6, 8, 12, 13, 17])",
-     "texto": "De 6 a 30 en la dirección estándar: a mayor puntaje, más creencia en que la salud depende de uno mismo. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+     "texto": "De 6 a 30 en la dirección estándar: a mayor puntaje, más creencia en que la salud depende de uno mismo. Clave de Wallston, Wallston y DeVellis (1978)."
     },
     {
      "n": "Otros poderosos (P)",
      "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([3, 5, 7, 10, 14, 18])",
-     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende de los profesionales u otras personas. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende de los profesionales u otras personas. Clave de Wallston, Wallston y DeVellis (1978)."
     },
     {
      "n": "Azar (C)",
      "js": "((l) => l.reduce((s, i) => s + (r[i] == null ? 0 : (r[19] === 1 ? 6 - r[i] : r[i])), 0))([2, 4, 9, 11, 15, 16])",
-     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende del azar. Asignación de ítems de Rodríguez-Rosero (2002); confírmela con la clave del autor (Wallston), que no está verificada en las fuentes."
+     "texto": "De 6 a 30: a mayor puntaje, más creencia en que la salud depende del azar. Clave de Wallston, Wallston y DeVellis (1978)."
     }
    ],
-   "nota": "No hay puntaje total ni puntos de corte. Con el anexo colombiano de Rodríguez-Rosero (2002), cuya escala es inversa, la hoja convierte cada respuesta (6 − x) para dejar los tres puntajes en la dirección estándar. Referencias de esa validación: alfa 0,53 en locus interno, 0,71 en otros poderosos y 0,72 en azar; sus medias están en escala inversa y su tabla 2 rotula P y C al revés del texto, por lo que no se comparan aquí. Pendiente: confirmar la clave de Wallston antes de publicarla como oficial."
+   "nota": "No hay puntaje total ni puntos de corte. Con el anexo colombiano de Rodríguez-Rosero (2002), cuya escala es inversa, la hoja convierte cada respuesta (6 − x) para dejar los tres puntajes en la dirección estándar. Referencias de esa validación: alfa 0,53 en locus interno, 0,71 en otros poderosos y 0,72 en azar; sus medias están en escala inversa y su tabla 2 rotula P y C al revés del texto, por lo que no se comparan aquí."
   },
   "hoja": true
  },
