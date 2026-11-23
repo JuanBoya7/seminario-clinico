@@ -186,10 +186,10 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-size:clamp(28px,3.9vw,50px);
   line-height:1.2; letter-spacing:-.015em;
   color:var(--ink);
-  max-width:24ch;
+  max-width:none;
   transition:font-size .22s ease, max-width .22s ease;
 }
-.q-texto.ancha{max-width:30ch;}
+.q-texto.ancha{max-width:none;}
 
 /* Etapa 2: ya se respondió y se discutió. La pregunta baja a encabezado y
    el cuerpo deja de centrarse verticalmente — si no, con contenido más
@@ -198,7 +198,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .escena.revelado .q-texto,
 .escena.revelado .q-texto.ancha{
   font-size:clamp(20px,2.2vw,29px);
-  max-width:46ch;
+  max-width:none;
   color:var(--ink-soft);
 }
 
@@ -211,7 +211,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .escena.cierre .q-texto,
 .escena.cierre .q-texto.ancha{
   font-size:clamp(26px,3.4vw,44px);
-  max-width:20ch;
+  max-width:none;
   color:var(--ink);
   margin-bottom:clamp(26px,4.5vh,44px);
 }
@@ -219,7 +219,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 
 .revelar-zona{margin-top:clamp(28px,5vh,52px);}
 .revelar-zona .nota{
-  margin-top:14px; font-size:13px; color:var(--ink-faint); max-width:52ch;
+  margin-top:14px; font-size:13px; color:var(--ink-faint); max-width:none;
 }
 
 /* Etapa 2: la puesta en común. */
@@ -238,7 +238,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   background:var(--accent-soft);
   border-radius:var(--radius);
   padding:22px 26px;
-  max-width:44ch;
+  max-width:none;
 }
 
 .porque{margin-top:clamp(22px,3vh,32px);}
@@ -248,7 +248,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   padding-left:26px; margin-bottom:15px;
   font-size:clamp(16px,1.7vw,21px);
   line-height:1.5; color:var(--ink-soft);
-  max-width:76ch;
+  max-width:none;
 }
 .porque li:last-child{margin-bottom:0;}
 .porque li::before{
@@ -263,7 +263,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
    deja ver eso. Toman el mismo lenguaje que los entregables de la Fase
    II: filete de acento a la izquierda, rótulo en versalitas y el texto
    debajo. Solo aparecen en la pregunta que los usa. */
-.niveles{margin-top:clamp(24px,3.2vh,34px); max-width:76ch;}
+.niveles{margin-top:clamp(24px,3.2vh,34px); max-width:none;}
 .niveles[hidden]{display:none;}
 .niveles-r{
   font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
@@ -308,7 +308,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   border-radius:var(--radius);
   background:var(--surface);
   padding:20px 24px;
-  max-width:76ch;
+  max-width:none;
 }
 .punto .punto-r{
   font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
@@ -379,7 +379,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-size:clamp(20px,2.4vw,30px); line-height:1.32;
   color:var(--accent-dark); background:var(--accent-soft);
   border-radius:var(--radius); padding:24px 28px;
-  max-width:58ch;
+  max-width:none;
 }
 
 /* La tarjeta de rotación reusa el panel del cierre, pero sus tres
@@ -429,7 +429,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   font-family:var(--font-display); font-size:clamp(22px,2.6vw,31px);
   line-height:1.2; letter-spacing:-.01em; color:var(--ink);
 }
-.seccion-s{margin-top:11px; max-width:74ch; font-size:14.5px; line-height:1.65; color:var(--ink-soft);}
+.seccion-s{margin-top:11px; max-width:none; font-size:14.5px; line-height:1.65; color:var(--ink-soft);}
 .seccion-s p{margin:0 0 10px;}
 .seccion-s p:last-child{margin-bottom:0;}
 .seccion-s strong{color:var(--ink); font-weight:600;}
@@ -521,7 +521,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 
 /* --- El marco de intervención ----------------------------------- */
 /* Dos bloques, no una lista de seis. No compiten entre sí: el
-   determinante dice sobre qué causa modificable se actúa y el estadio
+   determinante dice qué se busca modificar y la orientación
    en qué momento se entra, así que cada grupo elige uno de cada uno.
    Entre los dos va un puente que enuncia la relación.
 
@@ -576,7 +576,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .mrc-grupo.como .mrc-cab .mas{color:var(--ink-soft);}
 /* La línea del resumen: de qué decide el bloque, en una frase. */
 .mrc-sub{
-  margin:9px 0 0; max-width:84ch;
+  margin:9px 0 0; max-width:none;
   font-size:14px; line-height:1.6; color:var(--ink-soft);
 }
 .mrc-cuerpo{
@@ -585,7 +585,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   padding:2px 20px 24px;
 }
 .mrc-lead{
-  margin:18px 0 0; max-width:72ch;
+  margin:18px 0 0; max-width:none;
   font-size:14px; line-height:1.6; color:var(--ink-soft);
 }
 .mrc-lead strong{color:var(--ink); font-weight:600;}
@@ -624,7 +624,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 .refs div:last-child{margin-bottom:0;}
 .refs i{font-style:italic;}
 .acr-s{
-  margin:11px 0 0; max-width:70ch;
+  margin:11px 0 0; max-width:none;
   font-size:14px; line-height:1.6; color:var(--ink-soft);
 }
 .acr-s strong{color:var(--ink); font-weight:600; font-style:italic;}
@@ -812,7 +812,7 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
   </section>
 
   <section class="seccion">
-    <div class="seccion-r">Qué se entrega</div>
+    <div class="seccion-r">Qué se sustenta</div>
     <h2 class="seccion-t" id="ent-t"></h2>
     <div class="seccion-s" id="ent-s"></div>
     <div class="entregables" id="entregables"></div>
@@ -835,7 +835,6 @@ h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0; color:var(-
 
     <section class="seccion">
       <div class="seccion-r">Referencias</div>
-      <h2 class="seccion-t">De dónde sale el marco</h2>
       <div class="refs" id="refs"></div>
     </section>
 </div>
@@ -895,17 +894,20 @@ const FASE = {
   "peso": "50%",
   "encuadre": {
     "t": "Programa de promoción de la salud: diseño e implementación",
-    "s": "<p>La promoción de la salud trasciende la prevención de la enfermedad. Implica fortalecer las capacidades de las personas y las comunidades para ejercer mayor control sobre los determinantes de su salud, mediante acciones intersectoriales, participación comunitaria y el desarrollo de entornos saludables.</p><p><strong>Objetivo.</strong> Diseñar, implementar y evaluar un programa de promoción de la salud fundamentado en un determinante modificable y un modelo de estadios de intervención, dirigido a una población del escenario de práctica asignado, utilizando herramientas de evaluación, tamizaje e intervención comunitaria.</p><p><strong>Población.</strong> Cada grupo trabaja con la población de su sitio de prácticas. <strong>La problemática debe surgir del proceso diagnóstico y no de una elección arbitraria.</strong></p><p>La actividad tiene dos fases calificables, de 50% cada una: esta y la implementación, que se sustenta al final del corte.</p>"
+    "s": "<p>La promoción de la salud trasciende la prevención de la enfermedad. Implica fortalecer las capacidades de las personas y las comunidades para ejercer mayor control sobre los determinantes de su salud, mediante acciones intersectoriales, participación comunitaria y el desarrollo de entornos saludables.</p><p><strong>Objetivo.</strong> Diseñar, implementar y evaluar un programa de promoción de la salud fundamentado en un determinante modificable y una orientación de la intervención, dirigido a una población del escenario de práctica asignado, utilizando herramientas de evaluación, tamizaje e intervención comunitaria.</p><p><strong>Población.</strong> Cada grupo trabaja con la población de su sitio de prácticas. <strong>La problemática debe surgir del proceso diagnóstico y no de una elección arbitraria.</strong></p><p>La actividad tiene dos fases calificables, de 50% cada una: esta y la implementación, que se sustenta al final del corte.</p>"
   },
   "entregables": {
     "t": "Los cuatro puntos de la Fase I",
-    "s": "El diagnóstico es la base científica del programa y tiene que justificar la necesidad de la intervención. Cada punto responde a una de las cuatro preguntas de arriba, en el mismo orden."
+    "s": "El diagnóstico es la base científica del programa y tiene que justificar la necesidad de la intervención. Cada punto responde a una de las cuatro preguntas de arriba, en el mismo orden. Todo se sustenta oralmente con apoyo en su presentación PPTX; no se entrega un documento de proyecto."
   },
   "referencias": [
     "Green, L. W. (1974). Toward cost-benefit evaluations of health education: some concepts, methods, and examples. <i>Health Education Monographs</i>, 2(supl. 1), 34-64.",
     "Green, L. W., Kreuter, M. W., Deeds, S. G. y Partridge, K. B. (1980). <i>Health Education Planning: A Diagnostic Approach</i>. Mayfield.",
     "Green, L. W. y Kreuter, M. W. (1991). <i>Health Promotion Planning: An Educational and Environmental Approach</i> (2.ª ed.). Mayfield.",
-    "Green, L. W., Gielen, A. C., Ottoson, J. M., Peterson, D. V. y Kreuter, M. W. (2022). <i>Health Program Planning, Implementation, and Evaluation: Creating Behavioral, Environmental and Policy Change</i>. Johns Hopkins University Press."
+    "Green, L. W., Gielen, A. C., Ottoson, J. M., Peterson, D. V. y Kreuter, M. W. (2022). <i>Health Program Planning, Implementation, and Evaluation: Creating Behavioral, Environmental and Policy Change</i>. Johns Hopkins University Press.",
+    "Bartholomew Eldredge, L. K., Markham, C. M., Ruiter, R. A. C., Fernández, M. E., Kok, G. y Parcel, G. S. (2016). <i>Planning Health Promotion Programs: An Intervention Mapping Approach</i> (4.ª ed.). Jossey-Bass. Capítulos 2–6: teorías, diagnóstico, determinantes y métodos de cambio.",
+    "Rollnick, S., Miller, W. R. y Butler, C. C. (2023). <i>Motivational Interviewing in Health Care: Helping Patients Change Behavior</i> (2.ª ed.). Guilford Press. Capítulo 2: procesos de la entrevista motivacional.",
+    "Deza Villanueva, S. (2007). Intervención en crisis: primeros auxilios psicológicos. <i>Temática Psicológica</i>. Apartado sobre componentes de los primeros auxilios psicológicos."
   ],
   "rubrica": {
     "t": "Rúbrica de la Fase I",
@@ -959,11 +961,11 @@ const FASE = {
         "criterio": "Diseño del programa coherente con el marco declarado",
         "peso": 10,
         "niveles": [
-          "Diseña un programa completo cuyas actividades se derivan con claridad del determinante y el estadio declarados.",
+          "Diseña un programa completo cuyas actividades se derivan con claridad del determinante y la orientación declarados.",
           "Propone un programa coherente, con vínculo reconocible entre el marco y las actividades.",
           "El diseño es incompleto o las actividades no se desprenden del marco declarado.",
           "Esboza un programa con estructura parcial y un marco enunciado pero no aplicado.",
-          "El programa carece de estructura o no declara sobre qué determinante ni en qué estadio interviene."
+          "El programa carece de estructura o no declara sobre qué determinante ni con qué orientación interviene."
         ]
       }
     ]
@@ -978,7 +980,7 @@ const FASE = {
      actividades son siquiera pensables.
 
      Son dos bloques, y responden preguntas distintas —sobre qué causa
-     modificable se actúa, y en qué momento del cambio se entra—, así
+     modificable se actúa, y cómo se orienta la intervención—, así
      que no compiten: cada grupo elige uno de cada uno.
 
      El primero era antes el enfoque teórico, con los seis modelos del
@@ -986,7 +988,7 @@ const FASE = {
      intervención clínica —explican y tratan el caso individual— y esta
      actividad diseña un programa de promoción para una población. Un
      enfoque teórico además se declara sin comprometerse a nada; un
-     determinante no: fija qué tipo de actividad sirve y cuál no.
+     determinante exige justificar qué actividades pueden modificarlo.
 
      Hubo un tercer bloque con los modelos del continuum y se quitó.
      De sus seis criterios, tres escalonaban por lo mismo y el del
@@ -1001,17 +1003,17 @@ const FASE = {
      ---------------------------------------------------------- */
   "marco": {
     "t": "El marco: con qué se sustenta el programa",
-    "s": "<p>El programa se sustenta en dos decisiones: <strong>sobre qué causa modificable actúa</strong> y <strong>en qué momento del cambio entra</strong>. Se toman juntas y antes de diseñar las actividades, porque son las que definen cuáles tienen sentido. El cuarto punto de la fase se evalúa por la coherencia entre lo que se decide acá y lo que el grupo terminó haciendo.</p>",
+    "s": "<p>El programa se sustenta en dos decisiones: <strong>qué determinante busca modificar</strong> y <strong>cómo orientará la intervención</strong>. Se toman juntas y antes de diseñar las actividades, porque son las que definen cuáles tienen sentido. El cuarto punto de la fase se evalúa por la coherencia entre lo que se decide acá y lo que el grupo propone hacer.</p>",
     "acronimo": {
               "r": "Su nombre",
               "a": "PRECEDE",
       "aut": "Lawrence W. Green y Marshall W. Kreuter",
       "b": "PROCEED",
-              "s": "El marco tiene nombre, y el nombre se lee en dos tiempos: <strong>precede</strong>, lo que va antes, y <strong>proceed</strong>, lo que sigue. Primero se averigua la causa; después se ejecuta y se evalúa.",
+              "s": "El marco tiene nombre, y el nombre se lee en dos tiempos: <strong>precede</strong>, lo que va antes, y <strong>proceed</strong>, lo que sigue. Primero se analizan el problema y sus determinantes; después se ejecuta y se evalúa.",
               "cols": [
                 {
                   "h": "PRECEDE",
-                  "sub": "Lo que va antes: averiguar la causa",
+                  "sub": "Lo que va antes: comprender los determinantes",
                   "frase": [
                     {
                       "i": "P",
@@ -1089,174 +1091,228 @@ const FASE = {
       {
         "eje": "El qué",
         "titulo": "Determinante sobre el que se actúa",
-        "sub": "Sobre qué factor modificable actúa el programa. Se elige uno: es lo que explica por qué la población hace o no hace lo que hace, y de ahí sale qué tipo de actividad sirve.",
-        "lead": "Un determinante es la causa modificable de la conducta, no la conducta misma. Green y Kreuter los agrupan en tres tipos, y <strong>cada tipo admite un tipo distinto de actividad</strong>. Una sola conducta puede tener las tres causas: alguien no sostiene su tratamiento <span class=\"lig lig-1\">porque cree que si no siente nada ya no lo necesita<b>predisponente</b></span>; o <span class=\"lig lig-2\">porque se le acabó y no consiguió la cita para la fórmula<b>facilitador</b></span>; o <span class=\"lig lig-3\">porque en la casa nadie acompaña y dejó de tener sentido<b>reforzador</b></span>. <span class=\"lig lig-1\">La primera</span> pide educación, <span class=\"lig lig-2\">la segunda</span> gestión con la institución, <span class=\"lig lig-3\">la tercera</span> trabajo con la familia — y la conducta que se ve es la misma. <strong>Por eso el determinante se lee del diagnóstico y no se elige por gusto.</strong> Ojo con la salida fácil: quedarse siempre en predisponentes es lo que convierte todo programa en un taller.",
+        "sub": "Elijan un factor concreto y modificable que ayude a explicar el problema en esta población. Después identifiquen su categoría.",
+        "lead": "<strong>No basta con declarar «predisponente» o «facilitador».</strong> Nombren el factor: por ejemplo, poca confianza para pedir ayuda o un horario que dificulta acceder al servicio. Justifiquen la elección por su <strong>relación con el problema</strong>, la <strong>evidencia en el sitio</strong> y la <strong>posibilidad de modificarlo</strong> durante el programa. Precisen quién puede actuar: participantes, familias, pares o institución. El tamizaje puede mostrar la magnitud del problema; por sí solo no demuestra su causa. Contrasten la explicación con entrevistas, observación u otros datos pertinentes y distingan los hallazgos de las hipótesis. Prioricen un determinante principal sin desconocer otros factores.",
         "modo": "que",
         "componentes": [
           {
             "title": "Predisponentes",
-            "cat": 1,
-            "explanation": "Lo que la población trae consigo y la motiva o la frena: lo que sabe, lo que cree, lo que valora y el riesgo que percibe. Son los que se modifican con información y educación, y por eso son los más trabajados —y los que más se eligen sin verificar que sean el problema real—.",
-            "base": "Se apoya en el modelo de creencias en salud —susceptibilidad, severidad, beneficios y barreras percibidas— y en la actitud de la teoría de la conducta planificada.",
-          "examples": [
+            "explanation": "Conocimientos, creencias, actitudes y percepciones que pueden favorecer o dificultar una conducta. Informar es pertinente cuando falta conocimiento; otros factores pueden requerir diálogo, experiencias de logro o revisión de creencias.",
+            "base": "PRECEDE: factores predisponentes, facilitadores y reforzadores. Véase Bartholomew Eldredge et al. (2016), capítulo 4, diagnóstico de necesidades; capítulo 5, selección de determinantes.",
+            "examples": [
               {
-                "t": "Conocimiento del problema",
-                "d": "Qué sabe la población sobre lo que le pasa y sobre lo que existe para atenderlo. Su ausencia se corrige informando, y solo su ausencia."
+                "t": "Conocimiento",
+                "d": "Qué información necesaria falta y cómo saben que falta. No supongan desconocimiento solo porque la conducta no ocurre."
               },
               {
-                "t": "Creencias y mitos",
-                "d": "Ideas instaladas que contradicen la conducta buscada. No se corrigen con más datos: hay que trabajar la creencia misma."
+                "t": "Creencias y expectativas",
+                "d": "Qué beneficios, costos o consecuencias espera la población de la conducta. Verifiquen cuáles influyen en este contexto."
               },
               {
                 "t": "Percepción de riesgo",
-                "d": "Cuánto se siente la población expuesta al problema. Quien no se percibe en riesgo no actúa aunque sepa todo lo demás."
+                "d": "Cómo se valora la posibilidad y gravedad del problema. Es un factor posible, no una explicación suficiente de toda conducta."
               },
               {
-                "t": "Actitud hacia el servicio",
-                "d": "Qué espera la población del servicio o del profesional. Una actitud negativa previa bloquea el acceso aunque el acceso exista."
+                "t": "Actitud hacia la ayuda",
+                "d": "Qué piensa y siente la población sobre buscar apoyo. Diferencien esa valoración de las barreras reales del servicio."
               },
               {
                 "t": "Autoeficacia percibida",
-                "d": "Si la persona se cree capaz de hacerlo. Es distinto de tener la habilidad: se puede tener y no creerse capaz."
+                "d": "Cuánta confianza tiene la persona para realizar una acción concreta en una situación determinada. Creerse capaz y tener la habilidad son aspectos distintos."
               }
-            ]
+            ],
+            "cat": 1
           },
           {
             "title": "Facilitadores",
-            "cat": 2,
-            "explanation": "Lo que hace posible o imposible la conducta, más allá de la voluntad: habilidades, recursos, disponibilidad del servicio, distancia, costo, trámites. Cuando el determinante es de este tipo, ninguna actividad educativa lo resuelve: hay que crear la condición o gestionarla con la institución.",
-            "base": "Se apoya en la teoría cognitivo-social de Bandura —autoeficacia y capacidad— y en el control conductual percibido de Ajzen.",
-          "examples": [
+            "explanation": "Habilidades, recursos y condiciones que hacen posible la acción. Si falta una habilidad, puede ser pertinente entrenarla; si existe una barrera del entorno, se necesita actuar con quienes pueden cambiarla.",
+            "base": "PRECEDE: factores predisponentes, facilitadores y reforzadores. Véase Bartholomew Eldredge et al. (2016), capítulo 4, diagnóstico de necesidades; capítulo 5, selección de determinantes.",
+            "examples": [
               {
-                "t": "Habilidades para la acción",
-                "d": "Saber cómo hacerlo, no solo que hay que hacerlo. Se trabaja con entrenamiento y ensayo, no con una charla."
+                "t": "Habilidades",
+                "d": "Qué necesita aprender a hacer la población. El ensayo y la retroalimentación permiten trabajar habilidades concretas."
               },
               {
                 "t": "Disponibilidad del servicio",
-                "d": "Que el servicio exista y esté funcionando cuando la población lo necesita. Si no está, el programa se dirige a la institución."
+                "d": "Si el apoyo requerido existe y tiene capacidad de respuesta. Identifiquen qué puede gestionar realmente el grupo con la institución."
               },
               {
                 "t": "Accesibilidad",
-                "d": "Distancia, transporte, costo y tiempo. Barreras que la población no puede resolver por decisión propia."
+                "d": "Distancia, costo, transporte o tiempo que dificultan el acceso. Identifiquen una barrera específica y a quién corresponde modificarla."
               },
               {
                 "t": "Horarios y trámites",
-                "d": "Requisitos, citas y filas. Suelen ser la barrera más fácil de intervenir desde la práctica, y la que menos se mira."
+                "d": "Qué parte del procedimiento dificulta la acción. Una ruta clara puede ayudar si hay desconocimiento; cambiar un horario requiere un acuerdo institucional."
               },
               {
                 "t": "Recursos materiales",
-                "d": "Lo que hace falta tener para sostener la conducta. Sin el recurso, la intención no se convierte en acto."
+                "d": "Qué recurso hace falta para realizar o sostener la conducta y cómo podría estar disponible."
               }
-            ]
+            ],
+            "cat": 2
           },
           {
             "title": "Reforzadores",
-            "cat": 3,
-            "explanation": "Lo que ocurre después de la conducta y determina si se repite: la reacción de la familia, de los pares, del personal de salud; el reconocimiento, el estigma. Cuando el determinante es de este tipo, el programa se dirige al entorno y no a la persona: es donde el trabajo comunitario y con familias tiene algo que decir.",
-            "base": "Se apoya en el refuerzo y el aprendizaje vicario de Bandura, y en la norma subjetiva de la teoría de la conducta planificada.",
-          "examples": [
+            "explanation": "Respuestas y consecuencias que siguen a la conducta y pueden favorecer o dificultar que se repita. Examinen qué ocurre después de actuar y quién participa en esa respuesta.",
+            "base": "PRECEDE: factores predisponentes, facilitadores y reforzadores. Véase Bartholomew Eldredge et al. (2016), capítulo 4, diagnóstico de necesidades; capítulo 5, selección de determinantes.",
+            "examples": [
               {
-                "t": "Apoyo de la familia",
-                "d": "Si el entorno cercano sostiene o castiga la conducta. Explica buena parte de los abandonos tras un buen inicio."
+                "t": "Respuesta de la familia",
+                "d": "Cómo responde la familia cuando la persona busca ayuda o practica la conducta. El acompañamiento puede favorecer su continuidad."
               },
               {
-                "t": "Presión de los pares",
-                "d": "Lo que el grupo aprueba o ridiculiza. Es el reforzador dominante en adolescentes, por encima de lo que la persona sepa."
+                "t": "Respuesta de los pares",
+                "d": "Qué reconocimiento, apoyo o burla aparece después de la acción. No supongan que todos los grupos reaccionan igual."
               },
               {
-                "t": "Trato del personal de salud",
-                "d": "Cómo se recibe a quien consulta. Un mal trato en la primera vez cancela cualquier campaña previa."
+                "t": "Trato al consultar",
+                "d": "Cómo fue recibida la persona y qué relación tiene esa experiencia con volver a consultar."
               },
               {
-                "t": "Estigma en la comunidad",
-                "d": "El costo social de ser visto buscando ayuda. Es el reforzador que más pesa en salud mental."
+                "t": "Reacciones estigmatizantes",
+                "d": "Si aparecen rechazo o descalificación después de buscar apoyo. Una expectativa de rechazo, antes de actuar, también puede funcionar como creencia predisponente."
               },
               {
-                "t": "Reconocimiento e incentivos",
-                "d": "Lo que la persona gana visiblemente al sostener la conducta. Su ausencia no impide empezar, pero impide mantener."
+                "t": "Reconocimiento",
+                "d": "Qué consecuencias valoradas por la población pueden apoyar la continuidad de la conducta. Su pertinencia debe verificarse en el contexto."
               }
-            ]
+            ],
+            "cat": 3
           }
         ],
-        "puente": "El determinante dice sobre qué se actúa; falta decir en qué momento se entra"
+        "puente": "El determinante señala qué se busca modificar; la orientación explica cómo se trabajará sobre él."
       },
       {
-        "eje": "El cuándo",
-        "titulo": "Modelo de estadios de intervención",
-        "sub": "En qué momento del proceso está la población. Se elige uno: el cambio pasa por fases, y a cada fase le sirve una actividad distinta.",
-        "lead": "En qué momento del proceso está la población. El cambio no ocurre de manera instantánea: pasa por fases sucesivas, y <strong>una actividad pensada para quien ya decidió cambiar no le sirve a quien todavía no reconoce el problema</strong>. Se elige después del tamizaje, no antes: el estadio es un dato de la población, no una preferencia del grupo. Los tres describen cómo cambia una población, que es lo que diseña un programa: no cómo se conduce una terapia.",
+        "eje": "El cómo",
+        "titulo": "Orientación de la intervención",
+        "sub": "Elijan una orientación principal que responda al determinante y justifiquen cómo se expresa en las actividades.",
+        "lead": "Estas opciones tienen alcances distintos: incluyen un modelo de cambio, un enfoque de conversación, métodos de aprendizaje, acciones sobre el entorno y una respuesta específica ante crisis. <strong>No son cinco modelos de etapas ni una secuencia que deban completar.</strong> Elijan la que mejor explique cómo esperan modificar el determinante. Por ejemplo: ambivalencia → trabajo motivacional; dificultad para practicar una habilidad → entrenamiento; barrera de acceso → cambios en el entorno. Pueden combinar recursos cuando sea necesario, manteniendo clara la orientación principal.",
         "modo": "que",
         "componentes": [
           {
             "title": "Transteórico de cambio",
-            "explanation": "Prochaska y DiClemente. El cambio de comportamiento avanza por etapas y la estrategia se ajusta a cada una. Es el más usado en conductas de salud —consumo, dieta, ejercicio, adherencia—.",
+            "explanation": "Pertinente cuando necesitan ajustar las actividades a la disposición para cambiar una conducta concreta. Exploren intención y acciones previas: un puntaje de tamizaje no identifica una etapa, y una población puede reunir disposiciones diferentes. El recorrido no es necesariamente lineal.",
+            "base": "Prochaska y DiClemente, revisados en Bartholomew Eldredge et al. (2016), capítulo 2, «Stage Theories».",
             "examples": [
               {
                 "t": "Precontemplación",
-                "d": "La persona no reconoce la necesidad de cambio ni tiene intención de cambiar en el futuro cercano. La estrategia es aumentar la conciencia del problema."
+                "d": "No hay intención de cambiar en el futuro cercano. Exploren la perspectiva de la persona y ofrezcan información pertinente sin asumir ignorancia o negación."
               },
               {
                 "t": "Contemplación",
-                "d": "Empieza a reconocer el problema, pero aún no ha tomado la decisión de cambiar. La estrategia es resolver la ambivalencia."
+                "d": "La persona considera cambiar, pero aún no se compromete. Exploren razones a favor y en contra."
               },
               {
                 "t": "Preparación",
-                "d": "Planifica el cambio, explora opciones y hace pequeñas acciones para preparar el terreno. La estrategia es diseñar un plan de acción concreto."
+                "d": "Existe intención de actuar pronto y se dan pasos iniciales. Ayuden a concretar un plan viable."
               },
               {
                 "t": "Acción",
-                "d": "Hace modificaciones claras en su comportamiento, su ambiente o sus experiencias para superar el problema."
+                "d": "La persona empieza a realizar la conducta acordada. Apoyen la práctica y la solución de obstáculos."
               },
               {
                 "t": "Mantenimiento",
-                "d": "Consolida los cambios logrados para prevenir recaídas. La estrategia es dar apoyo para sostener lo alcanzado."
+                "d": "La persona busca sostener el cambio. Trabajen apoyos, dificultades previsibles y recuperación ante interrupciones."
               }
             ]
           },
           {
             "title": "Intervención motivacional",
-            "explanation": "Basado en la entrevista motivacional. Trabaja la ambivalencia en lugar de confrontarla: es la persona misma quien nombra la distancia entre lo que hace y lo que quiere. Sirve donde el obstáculo no es la falta de información sino la falta de decisión.",
+            "explanation": "Pertinente cuando hay ambivalencia frente a una conducta: razones para cambiar y para mantenerla. La conversación busca que la persona explore sus propios motivos y decisiones, con respeto por su autonomía. No consiste en convencerla mediante una charla.",
+            "base": "Rollnick, Miller y Butler (2023), capítulo 2, «Four Processes of MI». Son procesos de conversación, no etapas de la población.",
             "examples": [
               {
-                "t": "Generar discrepancia",
-                "d": "Ayudar a la persona a ver la diferencia entre su comportamiento actual y las metas que dice querer."
+                "t": "Vincular",
+                "d": "Construir una relación de colaboración, escucha y aceptación de la perspectiva de la persona."
               },
               {
-                "t": "Aumentar la autoconfianza",
-                "d": "Fomentar la creencia de que es capaz de realizar el cambio. Sin esa creencia, reconocer el problema no basta."
+                "t": "Enfocar",
+                "d": "Acordar qué conducta o cambio se explorará, sin imponer una meta ajena."
               },
               {
-                "t": "Reducir la resistencia",
-                "d": "Evitar la confrontación directa y trabajar de forma colaborativa. La resistencia se lee como señal de que hay que cambiar de estrategia."
+                "t": "Evocar",
+                "d": "Explorar los motivos, valores y recursos que la propia persona expresa para cambiar."
               },
               {
-                "t": "Promover el cambio activo",
-                "d": "Facilitar la planificación de acciones concretas una vez resuelta la ambivalencia."
+                "t": "Planificar",
+                "d": "Cuando exista disposición, acordar pasos concretos. Los procesos pueden retomarse según lo que ocurra en la conversación."
               }
             ]
           },
           {
-            "title": "Crisis e intervención",
-            "explanation": "Caplan. Ordena la intervención según la fase emocional en que está la persona tras un evento crítico. Aplica donde hay trauma, emergencia o pérdida reciente, y es el modelo que está detrás de los primeros auxilios psicológicos.",
+            "title": "Habilidades y autoeficacia",
+            "explanation": "Pertinente cuando la población necesita aprender una acción o fortalecer su confianza para realizarla. Incluyan oportunidades de observar, practicar y recibir retroalimentación; una exposición informativa por sí sola no desarrolla la habilidad.",
+            "base": "Teoría social cognitiva de Bandura, revisada en Bartholomew Eldredge et al. (2016), capítulo 2, «Social Cognitive Theory», y capítulo 6, métodos para el cambio.",
             "examples": [
               {
-                "t": "Impacto",
-                "d": "La persona reacciona al evento con altos niveles de angustia y desorganización. Es el momento de la contención inmediata."
+                "t": "Modelado",
+                "d": "Mostrar cómo se realiza la habilidad mediante un ejemplo cercano y alcanzable, incluyendo cómo afrontar dificultades."
               },
               {
-                "t": "Retiro",
-                "d": "Aparece una evitación emocional de la realidad de la crisis. Se observa distanciamiento o negación de lo ocurrido."
+                "t": "Práctica guiada",
+                "d": "Ensayar la conducta con acompañamiento: por ejemplo, pedir apoyo o comunicar una necesidad."
               },
               {
-                "t": "Adaptación",
-                "d": "La persona empieza a buscar soluciones y a enfrentar la situación. Es cuando el apoyo puede orientarse a recursos concretos."
+                "t": "Logros graduales",
+                "d": "Empezar con tareas alcanzables y aumentar la dificultad. La experiencia de logro puede fortalecer la confianza."
               },
               {
-                "t": "Reorganización",
-                "d": "Acepta la nueva realidad y comienza la recuperación emocional. Se consolida lo aprendido durante la crisis."
+                "t": "Retroalimentación",
+                "d": "Señalar qué se hizo bien y qué conviene ajustar. Valoren por separado la ejecución y la confianza percibida."
               }
             ]
-          }        ]
+          },
+          {
+            "title": "Cambios en el entorno y apoyos sociales",
+            "explanation": "Pertinente cuando la dificultad está en el acceso, las condiciones de la institución o las respuestas del entorno. La actividad debe involucrar a quienes pueden modificar esas condiciones y precisar qué cambio es viable.",
+            "base": "Línea de intervención, no un modelo único. Bartholomew Eldredge et al. (2016), capítulo 3, teorías de apoyo social y cambio organizacional; capítulos 5 y 6, agentes y métodos de cambio ambiental.",
+            "examples": [
+              {
+                "t": "Reducir barreras",
+                "d": "Acordar con la institución una mejora concreta de acceso, procedimiento o disponibilidad de recursos."
+              },
+              {
+                "t": "Movilizar apoyos",
+                "d": "Conectar a las personas con apoyos emocionales, prácticos o informativos pertinentes para sus necesidades."
+              },
+              {
+                "t": "Trabajar con personas clave",
+                "d": "Involucrar a pares, familias o personal del sitio que puedan acompañar y favorecer la conducta."
+              },
+              {
+                "t": "Acordar continuidad",
+                "d": "Definir quién sostendrá el apoyo o la mejora después de la actividad. No prometer cambios fuera del alcance del grupo."
+              }
+            ]
+          },
+          {
+            "title": "Intervención en crisis · uso específico",
+            "explanation": "Se considera cuando existe una situación crítica que desborda los recursos habituales de afrontamiento y requiere apoyo inmediato. No se elige solo porque haya estrés o malestar. En un programa de promoción puede orientar la preparación de apoyos y rutas; la atención de una crisis real exige supervisión y articulación con los servicios correspondientes.",
+            "base": "Deza Villanueva (2007), «Intervención en crisis: primeros auxilios psicológicos», componentes retomados de Slaikeu. Son acciones de ayuda, no fases emocionales obligatorias.",
+            "examples": [
+              {
+                "t": "Contacto y escucha",
+                "d": "Establecer contacto respetuoso y escuchar las necesidades sin forzar el relato de lo ocurrido."
+              },
+              {
+                "t": "Necesidades y riesgos",
+                "d": "Reconocer necesidades inmediatas y situaciones que requieren atención especializada según la ruta del sitio."
+              },
+              {
+                "t": "Opciones y apoyos",
+                "d": "Identificar recursos disponibles y alternativas de ayuda pertinentes para la situación."
+              },
+              {
+                "t": "Acción concreta",
+                "d": "Facilitar un paso inmediato y viable, acorde con las necesidades y las competencias de quien ayuda."
+              },
+              {
+                "t": "Seguimiento y enlace",
+                "d": "Verificar el acceso al apoyo y vincular con las personas o servicios responsables de continuar la atención."
+              }
+            ]
+          }
+        ]
       }
     ]
   }
@@ -1305,7 +1361,7 @@ const PREGUNTAS = [
     punto: {
       n: "Punto 2 de la Fase I",
       t: "Identificación y priorización del problema",
-      items: ["Problema priorizado", "Criterios de priorización y sustento diagnóstico"]
+      items: ["Problema priorizado y criterios de priorización"]
     }
   },
   {
@@ -1335,14 +1391,14 @@ const PREGUNTAS = [
     pregunta: "Si el tamizaje confirma el problema, ¿qué van a hacer con esa población?",
     idea: "Un programa que el sitio no permite ejecutar no es un programa. La viabilidad se resuelve ahora, mientras todavía se puede cambiar de plan, y no la semana de la implementación.",
     porque: [
-      "El diseño responde cuatro preguntas: <strong>desde dónde se interviene</strong> —el determinante y el estadio—, <strong>qué se busca</strong> —objetivos y población—, <strong>qué se va a hacer</strong> —actividades, cronograma, recursos— y <strong>cómo se sabrá si sirvió</strong> —el indicador—.",
+      "El diseño responde cuatro preguntas: <strong>desde dónde se interviene</strong> —el determinante y la orientación—, <strong>qué se busca</strong> —objetivos y población—, <strong>qué se va a hacer</strong> —actividades, cronograma, recursos— y <strong>cómo se sabrá si sirvió</strong> —el indicador—.",
       "Las actividades acá son <strong>proyección</strong>: lo que se hará. La descripción detallada de lo que efectivamente ocurrió es el primer punto de la Fase II, y casi nunca coincide con lo proyectado — esa diferencia es después un hallazgo, no una falla.",
       "El marco entra acá, y entra primero. Si las actividades ya están escritas y después se les busca un modelo que las cubra, el modelo no sustentó nada: lo decoró."
     ],
     punto: {
       n: "Punto 4 de la Fase I",
       t: "Diseño del programa",
-      items: ["Determinante declarado<span class=\"et\">predisponente</span><span class=\"et\">facilitador</span><span class=\"et\">reforzador</span>", "Estadio declarado<span class=\"et\">transteórico</span><span class=\"et\">motivacional</span><span class=\"et\">crisis</span>", "Qué se busca: objetivos y población focalizada", "Qué se proyecta hacer: actividades, cronograma y recursos"]
+      items: ["Determinante concreto y evidencia del sitio<span class=\"et\">predisponente</span><span class=\"et\">facilitador</span><span class=\"et\">reforzador</span>", "Orientación declarada<span class=\"et\">transteórico</span><span class=\"et\">motivacional</span><span class=\"et\">habilidades y autoeficacia</span><span class=\"et\">entorno y apoyos</span><span class=\"et\">crisis: uso específico</span>", "Qué se busca: objetivos y población focalizada", "Qué se proyecta hacer: actividades, cronograma y recursos"]
     }
   }
 ];
@@ -1409,10 +1465,8 @@ const CIERRE = {
 // La rotación solo existe donde hay franja de clase para ella; en el otro
 // deck ROTACION es null y la tarjeta simplemente no aparece.
 const TARJETAS = [
-  ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p)),
-  ...(ROTACION ? [ROTACION] : []),
-  CIERRE
-];
+  ...PREGUNTAS.map(p => Object.assign({ tipo: "pregunta" }, p))
+  ];
 
 /* ============================================================
    CUADRÍCULA
